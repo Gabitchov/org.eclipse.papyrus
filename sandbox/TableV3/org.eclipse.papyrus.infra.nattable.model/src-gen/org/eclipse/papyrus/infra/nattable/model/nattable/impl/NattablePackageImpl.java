@@ -14,19 +14,19 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 
@@ -43,7 +43,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.NattablelabelproviderPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl;
 
 /**
@@ -59,27 +61,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * @generated
 	 */
 	private EClass tableEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iAxisEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass idAxisEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eObjectAxisEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -136,6 +117,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
 		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
 		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
+		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) : NattableaxisPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattablePackage.createPackageContents();
@@ -144,6 +126,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		theNattablelabelproviderPackage.createPackageContents();
 		theNattableaxisconfigurationPackage.createPackageContents();
 		theNattabletesterPackage.createPackageContents();
+		theNattableaxisPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattablePackage.initializePackageContents();
@@ -152,6 +135,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		theNattablelabelproviderPackage.initializePackageContents();
 		theNattableaxisconfigurationPackage.initializePackageContents();
 		theNattabletesterPackage.initializePackageContents();
+		theNattableaxisPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattablePackage.freeze();
@@ -185,7 +169,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTable_EditorConfiguration() {
+	public EReference getTable_TableConfiguration() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -203,8 +187,8 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIAxis() {
-		return iAxisEClass;
+	public EReference getTable_ColumnAxisProvidersHistory() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -212,8 +196,8 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getIAxis__GetElement() {
-		return iAxisEClass.getEOperations().get(0);
+	public EReference getTable_RowAxisProvidersHistory() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -221,8 +205,8 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIdAxis() {
-		return idAxisEClass;
+	public EReference getTable_LocalRowHeaderAxisConfiguration() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -230,8 +214,8 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIdAxis_Element() {
-		return (EAttribute)idAxisEClass.getEStructuralFeatures().get(0);
+	public EReference getTable_LocalColumnHeaderAxisConfiguration() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -239,8 +223,8 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEObjectAxis() {
-		return eObjectAxisEClass;
+	public EReference getTable_CurrentRowAxisProvider() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -248,8 +232,8 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEObjectAxis_Element() {
-		return (EReference)eObjectAxisEClass.getEStructuralFeatures().get(0);
+	public EReference getTable_CurrentColumnAxisProvider() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -282,17 +266,14 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		// Create classes and their features
 		tableEClass = createEClass(TABLE);
 		createEReference(tableEClass, TABLE__CONTEXT);
-		createEReference(tableEClass, TABLE__EDITOR_CONFIGURATION);
+		createEReference(tableEClass, TABLE__TABLE_CONFIGURATION);
 		createEAttribute(tableEClass, TABLE__INVERT_AXIS);
-
-		iAxisEClass = createEClass(IAXIS);
-		createEOperation(iAxisEClass, IAXIS___GET_ELEMENT);
-
-		idAxisEClass = createEClass(ID_AXIS);
-		createEAttribute(idAxisEClass, ID_AXIS__ELEMENT);
-
-		eObjectAxisEClass = createEClass(EOBJECT_AXIS);
-		createEReference(eObjectAxisEClass, EOBJECT_AXIS__ELEMENT);
+		createEReference(tableEClass, TABLE__COLUMN_AXIS_PROVIDERS_HISTORY);
+		createEReference(tableEClass, TABLE__ROW_AXIS_PROVIDERS_HISTORY);
+		createEReference(tableEClass, TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION);
+		createEReference(tableEClass, TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION);
+		createEReference(tableEClass, TABLE__CURRENT_ROW_AXIS_PROVIDER);
+		createEReference(tableEClass, TABLE__CURRENT_COLUMN_AXIS_PROVIDER);
 	}
 
 	/**
@@ -324,6 +305,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		NattablelabelproviderPackage theNattablelabelproviderPackage = (NattablelabelproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI);
 		NattableaxisconfigurationPackage theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI);
 		NattabletesterPackage theNattabletesterPackage = (NattabletesterPackage)EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI);
+		NattableaxisPackage theNattableaxisPackage = (NattableaxisPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
@@ -332,32 +314,26 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		getESubpackages().add(theNattablelabelproviderPackage);
 		getESubpackages().add(theNattableaxisconfigurationPackage);
 		getESubpackages().add(theNattabletesterPackage);
+		getESubpackages().add(theNattableaxisPackage);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		tableEClass.getESuperTypes().add(theNattableconfigurationPackage.getAbstractTableConfiguration());
-		iAxisEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
-		idAxisEClass.getESuperTypes().add(this.getIAxis());
-		eObjectAxisEClass.getESuperTypes().add(this.getIAxis());
+		tableEClass.getESuperTypes().add(theNattableconfigurationPackage.getTableNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTable_Context(), ecorePackage.getEObject(), null, "context", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTable_EditorConfiguration(), theNattableconfigurationPackage.getTableConfiguration(), null, "editorConfiguration", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_TableConfiguration(), theNattableconfigurationPackage.getTableConfiguration(), null, "tableConfiguration", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTable_InvertAxis(), theEcorePackage.getEBoolean(), "invertAxis", "false", 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-
-		initEClass(iAxisEClass, IAxis.class, "IAxis", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEOperation(getIAxis__GetElement(), ecorePackage.getEJavaObject(), "getElement", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(idAxisEClass, IdAxis.class, "IdAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getIdAxis_Element(), ecorePackage.getEString(), "element", null, 1, 1, IdAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(eObjectAxisEClass, EObjectAxis.class, "EObjectAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getEObjectAxis_Element(), theEcorePackage.getEObject(), null, "element", null, 0, 1, EObjectAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_ColumnAxisProvidersHistory(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "columnAxisProvidersHistory", null, 1, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_RowAxisProvidersHistory(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "rowAxisProvidersHistory", null, 1, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_LocalRowHeaderAxisConfiguration(), theNattableaxisconfigurationPackage.getLocalTableHeaderAxisConfiguration(), null, "localRowHeaderAxisConfiguration", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_LocalColumnHeaderAxisConfiguration(), theNattableaxisconfigurationPackage.getLocalTableHeaderAxisConfiguration(), null, "localColumnHeaderAxisConfiguration", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_CurrentRowAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "currentRowAxisProvider", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_CurrentColumnAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "currentColumnAxisProvider", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

@@ -24,6 +24,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.NattableaxisconfigurationPackageImpl;
@@ -121,6 +125,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
 		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
 		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
+		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) : NattableaxisPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattabletesterPackage.createPackageContents();
@@ -129,6 +134,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 		theNattableaxisproviderPackage.createPackageContents();
 		theNattablelabelproviderPackage.createPackageContents();
 		theNattableaxisconfigurationPackage.createPackageContents();
+		theNattableaxisPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattabletesterPackage.initializePackageContents();
@@ -137,6 +143,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 		theNattableaxisproviderPackage.initializePackageContents();
 		theNattablelabelproviderPackage.initializePackageContents();
 		theNattableaxisconfigurationPackage.initializePackageContents();
+		theNattableaxisPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattabletesterPackage.freeze();

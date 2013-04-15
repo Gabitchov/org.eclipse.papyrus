@@ -37,8 +37,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.N
  *
  * @generated
  */
-public class FeatureLabelProviderConfigurationImpl extends 
-ObjectLabelProviderConfigurationImpl implements FeatureLabelProviderConfiguration {
+public class FeatureLabelProviderConfigurationImpl extends ObjectLabelProviderConfigurationImpl implements FeatureLabelProviderConfiguration {
 	/**
 	 * The default value of the '{@link #isDisplayIsDerived() <em>Display Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->

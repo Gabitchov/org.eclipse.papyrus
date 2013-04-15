@@ -25,11 +25,24 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisIndexStyle;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
@@ -42,7 +55,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.NattablelabelproviderPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl;
 
 /**
@@ -57,14 +72,77 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abstractAxisConfigurationEClass = null;
+	private EClass abstractHeaderAxisConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass defaultAxisConfigurationEClass = null;
+	private EClass axisManagerRepresentationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass axisManagerConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableHeaderAxisConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass localTableHeaderAxisConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iAxisConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featureAxisConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iFillingConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eStructuralFeatureValueFillingConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iPasteConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pasteEObjectConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,6 +206,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
 		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
 		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
+		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) : NattableaxisPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattableaxisconfigurationPackage.createPackageContents();
@@ -136,6 +215,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		theNattableaxisproviderPackage.createPackageContents();
 		theNattablelabelproviderPackage.createPackageContents();
 		theNattabletesterPackage.createPackageContents();
+		theNattableaxisPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattableaxisconfigurationPackage.initializePackageContents();
@@ -144,6 +224,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		theNattableaxisproviderPackage.initializePackageContents();
 		theNattablelabelproviderPackage.initializePackageContents();
 		theNattabletesterPackage.initializePackageContents();
+		theNattableaxisPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattableaxisconfigurationPackage.freeze();
@@ -159,8 +240,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAbstractAxisConfiguration() {
-		return abstractAxisConfigurationEClass;
+	public EClass getAbstractHeaderAxisConfiguration() {
+		return abstractHeaderAxisConfigurationEClass;
 	}
 
 	/**
@@ -168,8 +249,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractAxisConfiguration_LabelConfiguration() {
-		return (EReference)abstractAxisConfigurationEClass.getEStructuralFeatures().get(0);
+	public EAttribute getAbstractHeaderAxisConfiguration_IndexStyle() {
+		return (EAttribute)abstractHeaderAxisConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -177,8 +258,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDefaultAxisConfiguration() {
-		return defaultAxisConfigurationEClass;
+	public EAttribute getAbstractHeaderAxisConfiguration_DisplayLabel() {
+		return (EAttribute)abstractHeaderAxisConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -186,8 +267,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDefaultAxisConfiguration_IndexStyle() {
-		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(0);
+	public EAttribute getAbstractHeaderAxisConfiguration_DisplayFilter() {
+		return (EAttribute)abstractHeaderAxisConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -195,8 +276,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDefaultAxisConfiguration_DisplayIndex() {
-		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(3);
+	public EAttribute getAbstractHeaderAxisConfiguration_DisplayIndex() {
+		return (EAttribute)abstractHeaderAxisConfigurationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -204,8 +285,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDefaultAxisConfiguration_DisplayLabel() {
-		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(1);
+	public EReference getAbstractHeaderAxisConfiguration_OwnedLabelConfiguration() {
+		return (EReference)abstractHeaderAxisConfigurationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -213,8 +294,215 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDefaultAxisConfiguration_DisplayFilter() {
-		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(2);
+	public EReference getAbstractHeaderAxisConfiguration_OwnedAxisConfiguration() {
+		return (EReference)abstractHeaderAxisConfigurationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAxisManagerRepresentation() {
+		return axisManagerRepresentationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAxisManagerRepresentation_AxisManagerId() {
+		return (EAttribute)axisManagerRepresentationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAxisManagerRepresentation_LabelProviderContext() {
+		return (EAttribute)axisManagerRepresentationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAxisManagerRepresentation_HeaderLabelConfiguration() {
+		return (EReference)axisManagerRepresentationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAxisManagerRepresentation_SpecificAxisConfiguration() {
+		return (EReference)axisManagerRepresentationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAxisManagerConfiguration() {
+		return axisManagerConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAxisManagerConfiguration_LocalHeaderLabelConfiguration() {
+		return (EReference)axisManagerConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAxisManagerConfiguration_AxisManager() {
+		return (EReference)axisManagerConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAxisManagerConfiguration_LocalSpecificConfiguration() {
+		return (EReference)axisManagerConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTableHeaderAxisConfiguration() {
+		return tableHeaderAxisConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTableHeaderAxisConfiguration_AxisManagers() {
+		return (EReference)tableHeaderAxisConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLocalTableHeaderAxisConfiguration() {
+		return localTableHeaderAxisConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLocalTableHeaderAxisConfiguration_AxisManagerConfigurations() {
+		return (EReference)localTableHeaderAxisConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIAxisConfiguration() {
+		return iAxisConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFeatureAxisConfiguration() {
+		return featureAxisConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFeatureAxisConfiguration_ShowOnlyCommonFeature() {
+		return (EAttribute)featureAxisConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIFillingConfiguration() {
+		return iFillingConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEStructuralFeatureValueFillingConfiguration() {
+		return eStructuralFeatureValueFillingConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEStructuralFeatureValueFillingConfiguration_ListenFeature() {
+		return (EReference)eStructuralFeatureValueFillingConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIPasteConfiguration() {
+		return iPasteConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPasteEObjectConfiguration() {
+		return pasteEObjectConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPasteEObjectConfiguration_PastedElementId() {
+		return (EAttribute)pasteEObjectConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPasteEObjectConfiguration_PasteElementContainementFeature() {
+		return (EReference)pasteEObjectConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -254,14 +542,46 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		isCreated = true;
 
 		// Create classes and their features
-		abstractAxisConfigurationEClass = createEClass(ABSTRACT_AXIS_CONFIGURATION);
-		createEReference(abstractAxisConfigurationEClass, ABSTRACT_AXIS_CONFIGURATION__LABEL_CONFIGURATION);
+		abstractHeaderAxisConfigurationEClass = createEClass(ABSTRACT_HEADER_AXIS_CONFIGURATION);
+		createEAttribute(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE);
+		createEAttribute(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL);
+		createEAttribute(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER);
+		createEAttribute(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX);
+		createEReference(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION);
+		createEReference(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION);
 
-		defaultAxisConfigurationEClass = createEClass(DEFAULT_AXIS_CONFIGURATION);
-		createEAttribute(defaultAxisConfigurationEClass, DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE);
-		createEAttribute(defaultAxisConfigurationEClass, DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL);
-		createEAttribute(defaultAxisConfigurationEClass, DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER);
-		createEAttribute(defaultAxisConfigurationEClass, DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX);
+		axisManagerRepresentationEClass = createEClass(AXIS_MANAGER_REPRESENTATION);
+		createEAttribute(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID);
+		createEAttribute(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT);
+		createEReference(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION);
+		createEReference(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION);
+
+		axisManagerConfigurationEClass = createEClass(AXIS_MANAGER_CONFIGURATION);
+		createEReference(axisManagerConfigurationEClass, AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION);
+		createEReference(axisManagerConfigurationEClass, AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER);
+		createEReference(axisManagerConfigurationEClass, AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION);
+
+		tableHeaderAxisConfigurationEClass = createEClass(TABLE_HEADER_AXIS_CONFIGURATION);
+		createEReference(tableHeaderAxisConfigurationEClass, TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS);
+
+		localTableHeaderAxisConfigurationEClass = createEClass(LOCAL_TABLE_HEADER_AXIS_CONFIGURATION);
+		createEReference(localTableHeaderAxisConfigurationEClass, LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS);
+
+		iAxisConfigurationEClass = createEClass(IAXIS_CONFIGURATION);
+
+		featureAxisConfigurationEClass = createEClass(FEATURE_AXIS_CONFIGURATION);
+		createEAttribute(featureAxisConfigurationEClass, FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE);
+
+		iFillingConfigurationEClass = createEClass(IFILLING_CONFIGURATION);
+
+		eStructuralFeatureValueFillingConfigurationEClass = createEClass(ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION);
+		createEReference(eStructuralFeatureValueFillingConfigurationEClass, ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE);
+
+		iPasteConfigurationEClass = createEClass(IPASTE_CONFIGURATION);
+
+		pasteEObjectConfigurationEClass = createEClass(PASTE_EOBJECT_CONFIGURATION);
+		createEAttribute(pasteEObjectConfigurationEClass, PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID);
+		createEReference(pasteEObjectConfigurationEClass, PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE);
 
 		// Create enums
 		axisIndexStyleEEnum = createEEnum(AXIS_INDEX_STYLE);
@@ -299,23 +619,61 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		abstractAxisConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
-		defaultAxisConfigurationEClass.getESuperTypes().add(this.getAbstractAxisConfiguration());
+		abstractHeaderAxisConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		tableHeaderAxisConfigurationEClass.getESuperTypes().add(this.getAbstractHeaderAxisConfiguration());
+		localTableHeaderAxisConfigurationEClass.getESuperTypes().add(this.getAbstractHeaderAxisConfiguration());
+		featureAxisConfigurationEClass.getESuperTypes().add(this.getIAxisConfiguration());
+		iFillingConfigurationEClass.getESuperTypes().add(this.getIAxisConfiguration());
+		eStructuralFeatureValueFillingConfigurationEClass.getESuperTypes().add(this.getIFillingConfiguration());
+		iPasteConfigurationEClass.getESuperTypes().add(this.getIAxisConfiguration());
+		pasteEObjectConfigurationEClass.getESuperTypes().add(this.getIPasteConfiguration());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(abstractAxisConfigurationEClass, AbstractAxisConfiguration.class, "AbstractAxisConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAbstractAxisConfiguration_LabelConfiguration(), theNattablelabelproviderPackage.getILabelConfiguration(), null, "labelConfiguration", null, 0, 1, AbstractAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(abstractHeaderAxisConfigurationEClass, AbstractHeaderAxisConfiguration.class, "AbstractHeaderAxisConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getAbstractHeaderAxisConfiguration_IndexStyle(), this.getAxisIndexStyle(), "indexStyle", null, 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayLabel(), theEcorePackage.getEBoolean(), "displayLabel", "true", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayFilter(), theEcorePackage.getEBoolean(), "displayFilter", "false", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayIndex(), theEcorePackage.getEBoolean(), "displayIndex", "true", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getAbstractHeaderAxisConfiguration_OwnedLabelConfiguration(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "ownedLabelConfiguration", null, 0, -1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAbstractHeaderAxisConfiguration_OwnedAxisConfiguration(), this.getIAxisConfiguration(), null, "ownedAxisConfiguration", null, 0, -1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(defaultAxisConfigurationEClass, DefaultAxisConfiguration.class, "DefaultAxisConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getDefaultAxisConfiguration_IndexStyle(), this.getAxisIndexStyle(), "indexStyle", null, 1, 1, DefaultAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getDefaultAxisConfiguration_DisplayLabel(), theEcorePackage.getEBoolean(), "displayLabel", "true", 1, 1, DefaultAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getDefaultAxisConfiguration_DisplayFilter(), theEcorePackage.getEBoolean(), "displayFilter", "false", 1, 1, DefaultAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getDefaultAxisConfiguration_DisplayIndex(), theEcorePackage.getEBoolean(), "displayIndex", "true", 1, 1, DefaultAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEClass(axisManagerRepresentationEClass, AxisManagerRepresentation.class, "AxisManagerRepresentation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getAxisManagerRepresentation_AxisManagerId(), ecorePackage.getEString(), "axisManagerId", null, 1, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getAxisManagerRepresentation_LabelProviderContext(), theEcorePackage.getEString(), "labelProviderContext", null, 0, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAxisManagerRepresentation_HeaderLabelConfiguration(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "headerLabelConfiguration", null, 1, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAxisManagerRepresentation_SpecificAxisConfiguration(), this.getIAxisConfiguration(), null, "specificAxisConfiguration", null, 0, -1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(axisManagerConfigurationEClass, AxisManagerConfiguration.class, "AxisManagerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAxisManagerConfiguration_LocalHeaderLabelConfiguration(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "localHeaderLabelConfiguration", null, 0, 1, AxisManagerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAxisManagerConfiguration_AxisManager(), this.getAxisManagerRepresentation(), null, "axisManager", null, 1, 1, AxisManagerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAxisManagerConfiguration_LocalSpecificConfiguration(), this.getIAxisConfiguration(), null, "localSpecificConfiguration", null, 0, -1, AxisManagerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(tableHeaderAxisConfigurationEClass, TableHeaderAxisConfiguration.class, "TableHeaderAxisConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getTableHeaderAxisConfiguration_AxisManagers(), this.getAxisManagerRepresentation(), null, "axisManagers", null, 1, -1, TableHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(localTableHeaderAxisConfigurationEClass, LocalTableHeaderAxisConfiguration.class, "LocalTableHeaderAxisConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getLocalTableHeaderAxisConfiguration_AxisManagerConfigurations(), this.getAxisManagerConfiguration(), null, "axisManagerConfigurations", null, 0, -1, LocalTableHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(iAxisConfigurationEClass, IAxisConfiguration.class, "IAxisConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(featureAxisConfigurationEClass, FeatureAxisConfiguration.class, "FeatureAxisConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getFeatureAxisConfiguration_ShowOnlyCommonFeature(), ecorePackage.getEBoolean(), "showOnlyCommonFeature", null, 0, 1, FeatureAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(iFillingConfigurationEClass, IFillingConfiguration.class, "IFillingConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(eStructuralFeatureValueFillingConfigurationEClass, EStructuralFeatureValueFillingConfiguration.class, "EStructuralFeatureValueFillingConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getEStructuralFeatureValueFillingConfiguration_ListenFeature(), theEcorePackage.getEStructuralFeature(), null, "listenFeature", null, 1, 1, EStructuralFeatureValueFillingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(iPasteConfigurationEClass, IPasteConfiguration.class, "IPasteConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(pasteEObjectConfigurationEClass, PasteEObjectConfiguration.class, "PasteEObjectConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getPasteEObjectConfiguration_PastedElementId(), ecorePackage.getEString(), "pastedElementId", null, 0, 1, PasteEObjectConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPasteEObjectConfiguration_PasteElementContainementFeature(), theEcorePackage.getEStructuralFeature(), null, "pasteElementContainementFeature", null, 0, 1, PasteEObjectConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(axisIndexStyleEEnum, AxisIndexStyle.class, "AxisIndexStyle"); //$NON-NLS-1$
-		addEEnumLiteral(axisIndexStyleEEnum, AxisIndexStyle.NUMERIC);
 		addEEnumLiteral(axisIndexStyleEEnum, AxisIndexStyle.ALPHABETIC);
+		addEEnumLiteral(axisIndexStyleEEnum, AxisIndexStyle.NUMERIC);
 	}
 
 } //NattableaxisconfigurationPackageImpl

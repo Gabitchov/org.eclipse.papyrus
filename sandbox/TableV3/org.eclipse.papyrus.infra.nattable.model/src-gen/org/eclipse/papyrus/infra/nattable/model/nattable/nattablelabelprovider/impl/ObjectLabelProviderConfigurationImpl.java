@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.O
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#getLabelProviderContext <em>Label Provider Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayIcon <em>Display Icon</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayLabel <em>Display Label</em>}</li>
  * </ul>
@@ -37,27 +36,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.O
  *
  * @generated
  */
-public class ObjectLabelProviderConfigurationImpl extends EModelElementImpl implements ObjectLabelProviderConfiguration {
-	/**
-	 * The default value of the '{@link #getLabelProviderContext() <em>Label Provider Context</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLabelProviderContext()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String LABEL_PROVIDER_CONTEXT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getLabelProviderContext() <em>Label Provider Context</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLabelProviderContext()
-	 * @generated
-	 * @ordered
-	 */
-	protected String labelProviderContext = LABEL_PROVIDER_CONTEXT_EDEFAULT;
-
+public class ObjectLabelProviderConfigurationImpl extends 
+EModelElementImpl implements ObjectLabelProviderConfiguration {
 	/**
 	 * The default value of the '{@link #isDisplayIcon() <em>Display Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -122,27 +102,6 @@ public class ObjectLabelProviderConfigurationImpl extends EModelElementImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLabelProviderContext() {
-		return labelProviderContext;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLabelProviderContext(String newLabelProviderContext) {
-		String oldLabelProviderContext = labelProviderContext;
-		labelProviderContext = newLabelProviderContext;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT, oldLabelProviderContext, labelProviderContext));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isDisplayIcon() {
 		return displayIcon;
 	}
@@ -188,8 +147,6 @@ public class ObjectLabelProviderConfigurationImpl extends EModelElementImpl impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
-				return getLabelProviderContext();
 			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				return isDisplayIcon();
 			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
@@ -206,9 +163,6 @@ public class ObjectLabelProviderConfigurationImpl extends EModelElementImpl impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
-				setLabelProviderContext((String)newValue);
-				return;
 			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				setDisplayIcon((Boolean)newValue);
 				return;
@@ -227,9 +181,6 @@ public class ObjectLabelProviderConfigurationImpl extends EModelElementImpl impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
-				setLabelProviderContext(LABEL_PROVIDER_CONTEXT_EDEFAULT);
-				return;
 			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				setDisplayIcon(DISPLAY_ICON_EDEFAULT);
 				return;
@@ -248,8 +199,6 @@ public class ObjectLabelProviderConfigurationImpl extends EModelElementImpl impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
-				return LABEL_PROVIDER_CONTEXT_EDEFAULT == null ? labelProviderContext != null : !LABEL_PROVIDER_CONTEXT_EDEFAULT.equals(labelProviderContext);
 			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				return displayIcon != DISPLAY_ICON_EDEFAULT;
 			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
@@ -268,9 +217,7 @@ public class ObjectLabelProviderConfigurationImpl extends EModelElementImpl impl
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (labelProviderContext: "); //$NON-NLS-1$
-		result.append(labelProviderContext);
-		result.append(", displayIcon: "); //$NON-NLS-1$
+		result.append(" (displayIcon: "); //$NON-NLS-1$
 		result.append(displayIcon);
 		result.append(", displayLabel: "); //$NON-NLS-1$
 		result.append(displayLabel);

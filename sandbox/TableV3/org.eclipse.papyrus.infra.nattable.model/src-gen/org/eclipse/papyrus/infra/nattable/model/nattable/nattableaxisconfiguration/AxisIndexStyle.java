@@ -29,16 +29,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum AxisIndexStyle implements Enumerator {
 	/**
-	 * The '<em><b>NUMERIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NUMERIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NUMERIC(0, "NUMERIC", "NUMERIC"), //$NON-NLS-1$ //$NON-NLS-2$
-
-	/**
 	 * The '<em><b>ALPHABETIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46,22 +36,17 @@ public enum AxisIndexStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ALPHABETIC(1, "ALPHABETIC", "ALPHABETIC"); //$NON-NLS-1$ //$NON-NLS-2$
+	ALPHABETIC(1, "ALPHABETIC", "ALPHABETIC"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-	 * The '<em><b>NUMERIC</b></em>' literal value.
+	 * The '<em><b>NUMERIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NUMERIC</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NUMERIC
-	 * @model
+	 * @see #NUMERIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NUMERIC_VALUE = 0;
+	NUMERIC(0, "NUMERIC", "NUMERIC"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>ALPHABETIC</b></em>' literal value.
@@ -79,6 +64,21 @@ public enum AxisIndexStyle implements Enumerator {
 	public static final int ALPHABETIC_VALUE = 1;
 
 	/**
+	 * The '<em><b>NUMERIC</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NUMERIC</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NUMERIC
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NUMERIC_VALUE = 0;
+
+	/**
 	 * An array of all the '<em><b>Axis Index Style</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,8 +86,8 @@ public enum AxisIndexStyle implements Enumerator {
 	 */
 	private static final AxisIndexStyle[] VALUES_ARRAY =
 		new AxisIndexStyle[] {
-			NUMERIC,
 			ALPHABETIC,
+			NUMERIC,
 		};
 
 	/**
@@ -138,8 +138,8 @@ public enum AxisIndexStyle implements Enumerator {
 	 */
 	public static AxisIndexStyle get(int value) {
 		switch (value) {
-			case NUMERIC_VALUE: return NUMERIC;
 			case ALPHABETIC_VALUE: return ALPHABETIC;
+			case NUMERIC_VALUE: return NUMERIC;
 		}
 		return null;
 	}

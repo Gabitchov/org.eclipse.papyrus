@@ -66,8 +66,8 @@ public class NattableaxisproviderFactoryImpl extends EFactoryImpl implements Nat
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case NattableaxisproviderPackage.DEFAULT_AXIS_PROVIDER: return createDefaultAxisProvider();
-			case NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER: return createEMFFeatureValueAxisProvider();
+			case NattableaxisproviderPackage.SLAVE_OBJECT_AXIS_PROVIDER: return createSlaveObjectAxisProvider();
+			case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER: return createMasterObjectAxisProvider();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -78,9 +78,9 @@ public class NattableaxisproviderFactoryImpl extends EFactoryImpl implements Nat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DefaultAxisProvider createDefaultAxisProvider() {
-		DefaultAxisProviderImpl defaultAxisProvider = new DefaultAxisProviderImpl();
-		return defaultAxisProvider;
+	public SlaveObjectAxisProvider createSlaveObjectAxisProvider() {
+		SlaveObjectAxisProviderImpl slaveObjectAxisProvider = new SlaveObjectAxisProviderImpl();
+		return slaveObjectAxisProvider;
 	}
 
 	/**
@@ -88,9 +88,9 @@ public class NattableaxisproviderFactoryImpl extends EFactoryImpl implements Nat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMFFeatureValueAxisProvider createEMFFeatureValueAxisProvider() {
-		EMFFeatureValueAxisProviderImpl emfFeatureValueAxisProvider = new EMFFeatureValueAxisProviderImpl();
-		return emfFeatureValueAxisProvider;
+	public MasterObjectAxisProvider createMasterObjectAxisProvider() {
+		MasterObjectAxisProviderImpl masterObjectAxisProvider = new MasterObjectAxisProviderImpl();
+		return masterObjectAxisProvider;
 	}
 
 	/**

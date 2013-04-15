@@ -30,7 +30,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider;
  * @model
  * @generated
  */
-public interface ObjectLabelProviderConfiguration extends ILabelConfiguration {
+public interface ObjectLabelProviderConfiguration extends ILabelProviderConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Display Icon</b></em>' attribute.
 	 * The default value is <code>"true"</code>.

@@ -88,40 +88,22 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int ABSTRACT_AXIS_PROVIDER__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Java Axis Manager Ids</b></em>' attribute list.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ABSTRACT_AXIS_PROVIDER__DESCRIPTION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Axis Configuration</b></em>' containment reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Pasted Element Type Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Pasted Element Containment Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ABSTRACT_AXIS_PROVIDER__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Axis Provider</em>' class.
@@ -130,7 +112,7 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_AXIS_PROVIDER_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ABSTRACT_AXIS_PROVIDER_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -160,14 +142,14 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int ABSTRACT_AXIS_PROVIDER_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.DefaultAxisProviderImpl <em>Default Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl <em>Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.DefaultAxisProviderImpl
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getDefaultAxisProvider()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getAxisProvider()
 	 * @generated
 	 */
-	int DEFAULT_AXIS_PROVIDER = 1;
+	int AXIS_PROVIDER = 3;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -176,43 +158,25 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_PROVIDER__EANNOTATIONS = ABSTRACT_AXIS_PROVIDER__EANNOTATIONS;
+	int AXIS_PROVIDER__EANNOTATIONS = ABSTRACT_AXIS_PROVIDER__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Java Axis Manager Ids</b></em>' attribute list.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS = ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS;
+	int AXIS_PROVIDER__DESCRIPTION = ABSTRACT_AXIS_PROVIDER__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Axis Configuration</b></em>' containment reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_PROVIDER__AXIS_CONFIGURATION = ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION;
-
-	/**
-	 * The feature id for the '<em><b>Pasted Element Type Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID = ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID;
-
-	/**
-	 * The feature id for the '<em><b>Pasted Element Containment Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE = ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE;
+	int AXIS_PROVIDER__NAME = ABSTRACT_AXIS_PROVIDER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
@@ -221,16 +185,16 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_PROVIDER__AXIS = ABSTRACT_AXIS_PROVIDER_FEATURE_COUNT + 0;
+	int AXIS_PROVIDER__AXIS = ABSTRACT_AXIS_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Default Axis Provider</em>' class.
+	 * The number of structural features of the '<em>Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_PROVIDER_FEATURE_COUNT = ABSTRACT_AXIS_PROVIDER_FEATURE_COUNT + 1;
+	int AXIS_PROVIDER_FEATURE_COUNT = ABSTRACT_AXIS_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -239,7 +203,7 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_PROVIDER___GET_EANNOTATION__STRING = ABSTRACT_AXIS_PROVIDER___GET_EANNOTATION__STRING;
+	int AXIS_PROVIDER___GET_EANNOTATION__STRING = ABSTRACT_AXIS_PROVIDER___GET_EANNOTATION__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Axis</em>' operation.
@@ -248,26 +212,26 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_PROVIDER___GET_AXIS = ABSTRACT_AXIS_PROVIDER___GET_AXIS;
+	int AXIS_PROVIDER___GET_AXIS = ABSTRACT_AXIS_PROVIDER___GET_AXIS;
 
 	/**
-	 * The number of operations of the '<em>Default Axis Provider</em>' class.
+	 * The number of operations of the '<em>Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_PROVIDER_OPERATION_COUNT = ABSTRACT_AXIS_PROVIDER_OPERATION_COUNT + 0;
+	int AXIS_PROVIDER_OPERATION_COUNT = ABSTRACT_AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.EMFFeatureValueAxisProviderImpl <em>EMF Feature Value Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider <em>IMaster Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.EMFFeatureValueAxisProviderImpl
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getEMFFeatureValueAxisProvider()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getIMasterAxisProvider()
 	 * @generated
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER = 2;
+	int IMASTER_AXIS_PROVIDER = 1;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -276,43 +240,25 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER__EANNOTATIONS = DEFAULT_AXIS_PROVIDER__EANNOTATIONS;
+	int IMASTER_AXIS_PROVIDER__EANNOTATIONS = AXIS_PROVIDER__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Java Axis Manager Ids</b></em>' attribute list.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS = DEFAULT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS;
+	int IMASTER_AXIS_PROVIDER__DESCRIPTION = AXIS_PROVIDER__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Axis Configuration</b></em>' containment reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER__AXIS_CONFIGURATION = DEFAULT_AXIS_PROVIDER__AXIS_CONFIGURATION;
-
-	/**
-	 * The feature id for the '<em><b>Pasted Element Type Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID = DEFAULT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID;
-
-	/**
-	 * The feature id for the '<em><b>Pasted Element Containment Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE = DEFAULT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE;
+	int IMASTER_AXIS_PROVIDER__NAME = AXIS_PROVIDER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
@@ -321,25 +267,25 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER__AXIS = DEFAULT_AXIS_PROVIDER__AXIS;
+	int IMASTER_AXIS_PROVIDER__AXIS = AXIS_PROVIDER__AXIS;
 
 	/**
-	 * The feature id for the '<em><b>Listen Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Disconnect Slave</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE = DEFAULT_AXIS_PROVIDER_FEATURE_COUNT + 0;
+	int IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE = AXIS_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>EMF Feature Value Axis Provider</em>' class.
+	 * The number of structural features of the '<em>IMaster Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER_FEATURE_COUNT = DEFAULT_AXIS_PROVIDER_FEATURE_COUNT + 1;
+	int IMASTER_AXIS_PROVIDER_FEATURE_COUNT = AXIS_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -348,7 +294,7 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER___GET_EANNOTATION__STRING = DEFAULT_AXIS_PROVIDER___GET_EANNOTATION__STRING;
+	int IMASTER_AXIS_PROVIDER___GET_EANNOTATION__STRING = AXIS_PROVIDER___GET_EANNOTATION__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Axis</em>' operation.
@@ -357,16 +303,271 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER___GET_AXIS = DEFAULT_AXIS_PROVIDER___GET_AXIS;
+	int IMASTER_AXIS_PROVIDER___GET_AXIS = AXIS_PROVIDER___GET_AXIS;
 
 	/**
-	 * The number of operations of the '<em>EMF Feature Value Axis Provider</em>' class.
+	 * The number of operations of the '<em>IMaster Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER_OPERATION_COUNT = DEFAULT_AXIS_PROVIDER_OPERATION_COUNT + 0;
+	int IMASTER_AXIS_PROVIDER_OPERATION_COUNT = AXIS_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getISlaveAxisProvider()
+	 * @generated
+	 */
+	int ISLAVE_AXIS_PROVIDER = 2;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISLAVE_AXIS_PROVIDER__EANNOTATIONS = AXIS_PROVIDER__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISLAVE_AXIS_PROVIDER__DESCRIPTION = AXIS_PROVIDER__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISLAVE_AXIS_PROVIDER__NAME = AXIS_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISLAVE_AXIS_PROVIDER__AXIS = AXIS_PROVIDER__AXIS;
+
+	/**
+	 * The number of structural features of the '<em>ISlave Axis Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISLAVE_AXIS_PROVIDER_FEATURE_COUNT = AXIS_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISLAVE_AXIS_PROVIDER___GET_EANNOTATION__STRING = AXIS_PROVIDER___GET_EANNOTATION__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Axis</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISLAVE_AXIS_PROVIDER___GET_AXIS = AXIS_PROVIDER___GET_AXIS;
+
+	/**
+	 * The number of operations of the '<em>ISlave Axis Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISLAVE_AXIS_PROVIDER_OPERATION_COUNT = AXIS_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl <em>Slave Object Axis Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getSlaveObjectAxisProvider()
+	 * @generated
+	 */
+	int SLAVE_OBJECT_AXIS_PROVIDER = 4;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLAVE_OBJECT_AXIS_PROVIDER__EANNOTATIONS = ISLAVE_AXIS_PROVIDER__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLAVE_OBJECT_AXIS_PROVIDER__DESCRIPTION = ISLAVE_AXIS_PROVIDER__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLAVE_OBJECT_AXIS_PROVIDER__NAME = ISLAVE_AXIS_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLAVE_OBJECT_AXIS_PROVIDER__AXIS = ISLAVE_AXIS_PROVIDER__AXIS;
+
+	/**
+	 * The number of structural features of the '<em>Slave Object Axis Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLAVE_OBJECT_AXIS_PROVIDER_FEATURE_COUNT = ISLAVE_AXIS_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLAVE_OBJECT_AXIS_PROVIDER___GET_EANNOTATION__STRING = ISLAVE_AXIS_PROVIDER___GET_EANNOTATION__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Axis</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLAVE_OBJECT_AXIS_PROVIDER___GET_AXIS = ISLAVE_AXIS_PROVIDER___GET_AXIS;
+
+	/**
+	 * The number of operations of the '<em>Slave Object Axis Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLAVE_OBJECT_AXIS_PROVIDER_OPERATION_COUNT = ISLAVE_AXIS_PROVIDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl <em>Master Object Axis Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getMasterObjectAxisProvider()
+	 * @generated
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER = 5;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER__EANNOTATIONS = IMASTER_AXIS_PROVIDER__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER__DESCRIPTION = IMASTER_AXIS_PROVIDER__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER__NAME = IMASTER_AXIS_PROVIDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER__AXIS = IMASTER_AXIS_PROVIDER__AXIS;
+
+	/**
+	 * The feature id for the '<em><b>Disconnect Slave</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE = IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE;
+
+	/**
+	 * The number of structural features of the '<em>Master Object Axis Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER_FEATURE_COUNT = IMASTER_AXIS_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER___GET_EANNOTATION__STRING = IMASTER_AXIS_PROVIDER___GET_EANNOTATION__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Axis</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER___GET_AXIS = IMASTER_AXIS_PROVIDER___GET_AXIS;
+
+	/**
+	 * The number of operations of the '<em>Master Object Axis Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER_OPERATION_COUNT = IMASTER_AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 
 	/**
@@ -380,50 +581,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getAbstractAxisProvider();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getJavaAxisManagerIds <em>Java Axis Manager Ids</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Java Axis Manager Ids</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getJavaAxisManagerIds()
-	 * @see #getAbstractAxisProvider()
-	 * @generated
-	 */
-	EAttribute getAbstractAxisProvider_JavaAxisManagerIds();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxisConfiguration <em>Axis Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Axis Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxisConfiguration()
-	 * @see #getAbstractAxisProvider()
-	 * @generated
-	 */
-	EReference getAbstractAxisProvider_AxisConfiguration();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getPastedElementTypeId <em>Pasted Element Type Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Pasted Element Type Id</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getPastedElementTypeId()
-	 * @see #getAbstractAxisProvider()
-	 * @generated
-	 */
-	EAttribute getAbstractAxisProvider_PastedElementTypeId();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Pasted Element Containment Feature</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getPastedElementContainmentFeature()
-	 * @see #getAbstractAxisProvider()
-	 * @generated
-	 */
-	EReference getAbstractAxisProvider_PastedElementContainmentFeature();
-
-	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxis() <em>Get Axis</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -434,46 +591,76 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EOperation getAbstractAxisProvider__GetAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.DefaultAxisProvider <em>Default Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider <em>IMaster Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Default Axis Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.DefaultAxisProvider
+	 * @return the meta object for class '<em>IMaster Axis Provider</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
 	 * @generated
 	 */
-	EClass getDefaultAxisProvider();
+	EClass getIMasterAxisProvider();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.DefaultAxisProvider#getAxis <em>Axis</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave <em>Disconnect Slave</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Disconnect Slave</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave()
+	 * @see #getIMasterAxisProvider()
+	 * @generated
+	 */
+	EAttribute getIMasterAxisProvider_DisconnectSlave();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ISlave Axis Provider</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
+	 * @generated
+	 */
+	EClass getISlaveAxisProvider();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider <em>Axis Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Axis Provider</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider
+	 * @generated
+	 */
+	EClass getAxisProvider();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider#getAxis <em>Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Axis</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.DefaultAxisProvider#getAxis()
-	 * @see #getDefaultAxisProvider()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider#getAxis()
+	 * @see #getAxisProvider()
 	 * @generated
 	 */
-	EReference getDefaultAxisProvider_Axis();
+	EReference getAxisProvider_Axis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider <em>EMF Feature Value Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider <em>Slave Object Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EMF Feature Value Axis Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider
+	 * @return the meta object for class '<em>Slave Object Axis Provider</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider
 	 * @generated
 	 */
-	EClass getEMFFeatureValueAxisProvider();
+	EClass getSlaveObjectAxisProvider();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider#getListenFeature <em>Listen Feature</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider <em>Master Object Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Listen Feature</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider#getListenFeature()
-	 * @see #getEMFFeatureValueAxisProvider()
+	 * @return the meta object for class '<em>Master Object Axis Provider</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider
 	 * @generated
 	 */
-	EReference getEMFFeatureValueAxisProvider_ListenFeature();
+	EClass getMasterObjectAxisProvider();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -509,38 +696,6 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EClass ABSTRACT_AXIS_PROVIDER = eINSTANCE.getAbstractAxisProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Java Axis Manager Ids</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS = eINSTANCE.getAbstractAxisProvider_JavaAxisManagerIds();
-
-		/**
-		 * The meta object literal for the '<em><b>Axis Configuration</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION = eINSTANCE.getAbstractAxisProvider_AxisConfiguration();
-
-		/**
-		 * The meta object literal for the '<em><b>Pasted Element Type Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID = eINSTANCE.getAbstractAxisProvider_PastedElementTypeId();
-
-		/**
-		 * The meta object literal for the '<em><b>Pasted Element Containment Feature</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE = eINSTANCE.getAbstractAxisProvider_PastedElementContainmentFeature();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Axis</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -549,14 +704,42 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EOperation ABSTRACT_AXIS_PROVIDER___GET_AXIS = eINSTANCE.getAbstractAxisProvider__GetAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.DefaultAxisProviderImpl <em>Default Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider <em>IMaster Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.DefaultAxisProviderImpl
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getDefaultAxisProvider()
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getIMasterAxisProvider()
 		 * @generated
 		 */
-		EClass DEFAULT_AXIS_PROVIDER = eINSTANCE.getDefaultAxisProvider();
+		EClass IMASTER_AXIS_PROVIDER = eINSTANCE.getIMasterAxisProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Disconnect Slave</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE = eINSTANCE.getIMasterAxisProvider_DisconnectSlave();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getISlaveAxisProvider()
+		 * @generated
+		 */
+		EClass ISLAVE_AXIS_PROVIDER = eINSTANCE.getISlaveAxisProvider();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl <em>Axis Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getAxisProvider()
+		 * @generated
+		 */
+		EClass AXIS_PROVIDER = eINSTANCE.getAxisProvider();
 
 		/**
 		 * The meta object literal for the '<em><b>Axis</b></em>' containment reference list feature.
@@ -564,25 +747,27 @@ public interface NattableaxisproviderPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEFAULT_AXIS_PROVIDER__AXIS = eINSTANCE.getDefaultAxisProvider_Axis();
+		EReference AXIS_PROVIDER__AXIS = eINSTANCE.getAxisProvider_Axis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.EMFFeatureValueAxisProviderImpl <em>EMF Feature Value Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl <em>Slave Object Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.EMFFeatureValueAxisProviderImpl
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getEMFFeatureValueAxisProvider()
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getSlaveObjectAxisProvider()
 		 * @generated
 		 */
-		EClass EMF_FEATURE_VALUE_AXIS_PROVIDER = eINSTANCE.getEMFFeatureValueAxisProvider();
+		EClass SLAVE_OBJECT_AXIS_PROVIDER = eINSTANCE.getSlaveObjectAxisProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Listen Feature</b></em>' reference feature.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl <em>Master Object Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl#getMasterObjectAxisProvider()
 		 * @generated
 		 */
-		EReference EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE = eINSTANCE.getEMFFeatureValueAxisProvider_ListenFeature();
+		EClass MASTER_OBJECT_AXIS_PROVIDER = eINSTANCE.getMasterObjectAxisProvider();
 
 	}
 

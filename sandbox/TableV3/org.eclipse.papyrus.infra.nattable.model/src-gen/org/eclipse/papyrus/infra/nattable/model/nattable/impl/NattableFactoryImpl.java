@@ -67,8 +67,6 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case NattablePackage.TABLE: return createTable();
-			case NattablePackage.ID_AXIS: return createIdAxis();
-			case NattablePackage.EOBJECT_AXIS: return createEObjectAxis();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -82,26 +80,6 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	public Table createTable() {
 		TableImpl table = new TableImpl();
 		return table;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IdAxis createIdAxis() {
-		IdAxisImpl idAxis = new IdAxisImpl();
-		return idAxis;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EObjectAxis createEObjectAxis() {
-		EObjectAxisImpl eObjectAxis = new EObjectAxisImpl();
-		return eObjectAxis;
 	}
 
 	/**

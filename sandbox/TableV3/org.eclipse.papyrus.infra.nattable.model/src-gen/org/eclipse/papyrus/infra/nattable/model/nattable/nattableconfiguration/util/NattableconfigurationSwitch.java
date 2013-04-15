@@ -77,17 +77,17 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION: {
-				AbstractTableConfiguration abstractTableConfiguration = (AbstractTableConfiguration)theEObject;
-				T result = caseAbstractTableConfiguration(abstractTableConfiguration);
-				if (result == null) result = caseEModelElement(abstractTableConfiguration);
+			case NattableconfigurationPackage.TABLE_NAMED_ELEMENT: {
+				TableNamedElement tableNamedElement = (TableNamedElement)theEObject;
+				T result = caseTableNamedElement(tableNamedElement);
+				if (result == null) result = caseEModelElement(tableNamedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case NattableconfigurationPackage.TABLE_CONFIGURATION: {
 				TableConfiguration tableConfiguration = (TableConfiguration)theEObject;
 				T result = caseTableConfiguration(tableConfiguration);
-				if (result == null) result = caseAbstractTableConfiguration(tableConfiguration);
+				if (result == null) result = caseTableNamedElement(tableConfiguration);
 				if (result == null) result = caseEModelElement(tableConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -97,17 +97,17 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Table Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Table Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Table Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Table Named Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractTableConfiguration(AbstractTableConfiguration object) {
+	public T caseTableNamedElement(TableNamedElement object) {
 		return null;
 	}
 

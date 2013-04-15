@@ -79,8 +79,8 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 	protected NattablelabelproviderSwitch<Adapter> modelSwitch =
 		new NattablelabelproviderSwitch<Adapter>() {
 			@Override
-			public Adapter caseILabelConfiguration(ILabelConfiguration object) {
-				return createILabelConfigurationAdapter();
+			public Adapter caseILabelProviderConfiguration(ILabelProviderConfiguration object) {
+				return createILabelProviderConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseFeatureLabelProviderConfiguration(FeatureLabelProviderConfiguration object) {
@@ -115,16 +115,16 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration <em>ILabel Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration <em>ILabel Provider Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration
 	 * @generated
 	 */
-	public Adapter createILabelConfigurationAdapter() {
+	public Adapter createILabelProviderConfigurationAdapter() {
 		return null;
 	}
 

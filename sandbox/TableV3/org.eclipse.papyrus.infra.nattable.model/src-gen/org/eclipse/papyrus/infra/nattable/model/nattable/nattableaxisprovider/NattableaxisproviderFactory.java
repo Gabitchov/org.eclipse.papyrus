@@ -32,22 +32,22 @@ public interface NattableaxisproviderFactory extends EFactory {
 	NattableaxisproviderFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Default Axis Provider</em>'.
+	 * Returns a new object of class '<em>Slave Object Axis Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Default Axis Provider</em>'.
+	 * @return a new object of class '<em>Slave Object Axis Provider</em>'.
 	 * @generated
 	 */
-	DefaultAxisProvider createDefaultAxisProvider();
+	SlaveObjectAxisProvider createSlaveObjectAxisProvider();
 
 	/**
-	 * Returns a new object of class '<em>EMF Feature Value Axis Provider</em>'.
+	 * Returns a new object of class '<em>Master Object Axis Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>EMF Feature Value Axis Provider</em>'.
+	 * @return a new object of class '<em>Master Object Axis Provider</em>'.
 	 * @generated
 	 */
-	EMFFeatureValueAxisProvider createEMFFeatureValueAxisProvider();
+	MasterObjectAxisProvider createMasterObjectAxisProvider();
 
 	/**
 	 * Returns the package supported by this factory.

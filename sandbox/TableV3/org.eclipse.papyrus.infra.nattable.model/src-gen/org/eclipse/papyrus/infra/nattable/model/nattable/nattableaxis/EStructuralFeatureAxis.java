@@ -10,27 +10,27 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>EObject Axis</b></em>'.
+ * A representation of the model object '<em><b>EStructural Feature Axis</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getEObjectAxis()
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getEStructuralFeatureAxis()
  * @model
  * @generated
  */
-public interface EObjectAxis extends IAxis {
+public interface EStructuralFeatureAxis extends FeatureAxis {
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -40,21 +40,21 @@ public interface EObjectAxis extends IAxis {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
-	 * @see #setElement(EObject)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getEObjectAxis_Element()
-	 * @model
+	 * @see #setElement(EStructuralFeature)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getEStructuralFeatureAxis_Element()
+	 * @model required="true"
 	 * @generated
 	 */
-	EObject getElement();
+	EStructuralFeature getElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getElement <em>Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement <em>Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Element</em>' reference.
 	 * @see #getElement()
 	 * @generated
 	 */
-	void setElement(EObject value);
+	void setElement(EStructuralFeature value);
 
-} // EObjectAxis
+} // EStructuralFeatureAxis

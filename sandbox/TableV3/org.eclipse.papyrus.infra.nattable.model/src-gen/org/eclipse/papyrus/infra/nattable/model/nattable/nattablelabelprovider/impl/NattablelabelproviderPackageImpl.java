@@ -16,21 +16,37 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.NattableaxisconfigurationPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl;
 
 /**
@@ -45,7 +61,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iLabelConfigurationEClass = null;
+	private EClass iLabelProviderConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -116,6 +132,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
 		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
 		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
+		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) : NattableaxisPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattablelabelproviderPackage.createPackageContents();
@@ -124,6 +141,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		theNattableaxisproviderPackage.createPackageContents();
 		theNattableaxisconfigurationPackage.createPackageContents();
 		theNattabletesterPackage.createPackageContents();
+		theNattableaxisPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattablelabelproviderPackage.initializePackageContents();
@@ -132,6 +150,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		theNattableaxisproviderPackage.initializePackageContents();
 		theNattableaxisconfigurationPackage.initializePackageContents();
 		theNattabletesterPackage.initializePackageContents();
+		theNattableaxisPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattablelabelproviderPackage.freeze();
@@ -147,17 +166,8 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getILabelConfiguration() {
-		return iLabelConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getILabelConfiguration_LabelProviderContext() {
-		return (EAttribute)iLabelConfigurationEClass.getEStructuralFeatures().get(0);
+	public EClass getILabelProviderConfiguration() {
+		return iLabelProviderConfigurationEClass;
 	}
 
 	/**
@@ -260,8 +270,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		isCreated = true;
 
 		// Create classes and their features
-		iLabelConfigurationEClass = createEClass(ILABEL_CONFIGURATION);
-		createEAttribute(iLabelConfigurationEClass, ILABEL_CONFIGURATION__LABEL_PROVIDER_CONTEXT);
+		iLabelProviderConfigurationEClass = createEClass(ILABEL_PROVIDER_CONFIGURATION);
 
 		featureLabelProviderConfigurationEClass = createEClass(FEATURE_LABEL_PROVIDER_CONFIGURATION);
 		createEAttribute(featureLabelProviderConfigurationEClass, FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED);
@@ -305,13 +314,12 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		iLabelConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		iLabelProviderConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		featureLabelProviderConfigurationEClass.getESuperTypes().add(this.getObjectLabelProviderConfiguration());
-		objectLabelProviderConfigurationEClass.getESuperTypes().add(this.getILabelConfiguration());
+		objectLabelProviderConfigurationEClass.getESuperTypes().add(this.getILabelProviderConfiguration());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(iLabelConfigurationEClass, ILabelConfiguration.class, "ILabelConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getILabelConfiguration_LabelProviderContext(), theEcorePackage.getEString(), "labelProviderContext", null, 0, 1, ILabelConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(iLabelProviderConfigurationEClass, ILabelProviderConfiguration.class, "ILabelProviderConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(featureLabelProviderConfigurationEClass, FeatureLabelProviderConfiguration.class, "FeatureLabelProviderConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getFeatureLabelProviderConfiguration_DisplayIsDerived(), theEcorePackage.getEBoolean(), "displayIsDerived", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$

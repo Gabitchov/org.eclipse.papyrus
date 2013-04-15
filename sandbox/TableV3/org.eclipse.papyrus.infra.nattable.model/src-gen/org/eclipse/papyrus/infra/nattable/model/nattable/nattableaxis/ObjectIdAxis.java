@@ -10,27 +10,18 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis;
 
-import org.eclipse.emf.ecore.EModelElement;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>IAxis</b></em>'.
+ * A representation of the model object '<em><b>Object Id Axis</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getIAxis()
- * @model interface="true" abstract="true"
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getObjectIdAxis()
+ * @model
  * @generated
  */
-public interface IAxis extends EModelElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	Object getElement();
-
-} // IAxis
+public interface ObjectIdAxis extends IdAxis, ObjectAxis {
+} // ObjectIdAxis

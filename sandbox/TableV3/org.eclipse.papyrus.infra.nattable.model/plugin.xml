@@ -63,4 +63,12 @@
             genModel="model/nattable.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattable -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage"
+            genModel="model/nattable.genmodel"/>
+   </extension>
+
 </plugin>

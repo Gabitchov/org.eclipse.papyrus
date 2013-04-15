@@ -10,27 +10,27 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>EMF Feature Value Axis Provider</b></em>'.
+ * A representation of the model object '<em><b>EStructural Feature Value Filling Configuration</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider#getListenFeature <em>Listen Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration#getListenFeature <em>Listen Feature</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getEMFFeatureValueAxisProvider()
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getEStructuralFeatureValueFillingConfiguration()
  * @model
  * @generated
  */
-public interface EMFFeatureValueAxisProvider extends DefaultAxisProvider {
+public interface EStructuralFeatureValueFillingConfiguration extends IFillingConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Listen Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -41,14 +41,14 @@ public interface EMFFeatureValueAxisProvider extends DefaultAxisProvider {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Listen Feature</em>' reference.
 	 * @see #setListenFeature(EStructuralFeature)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getEMFFeatureValueAxisProvider_ListenFeature()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getEStructuralFeatureValueFillingConfiguration_ListenFeature()
 	 * @model required="true"
 	 * @generated
 	 */
 	EStructuralFeature getListenFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider#getListenFeature <em>Listen Feature</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration#getListenFeature <em>Listen Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Listen Feature</em>' reference.
@@ -57,4 +57,4 @@ public interface EMFFeatureValueAxisProvider extends DefaultAxisProvider {
 	 */
 	void setListenFeature(EStructuralFeature value);
 
-} // EMFFeatureValueAxisProvider
+} // EStructuralFeatureValueFillingConfiguration

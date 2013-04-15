@@ -25,15 +25,22 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.NattableaxisconfigurationPackageImpl;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.DefaultAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 
@@ -42,7 +49,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.NattablelabelproviderPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl;
 
 /**
@@ -64,14 +73,35 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass defaultAxisProviderEClass = null;
+	private EClass iMasterAxisProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass emfFeatureValueAxisProviderEClass = null;
+	private EClass iSlaveAxisProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass axisProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass slaveObjectAxisProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass masterObjectAxisProviderEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -128,6 +158,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
 		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
 		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
+		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) : NattableaxisPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattableaxisproviderPackage.createPackageContents();
@@ -136,6 +167,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 		theNattablelabelproviderPackage.createPackageContents();
 		theNattableaxisconfigurationPackage.createPackageContents();
 		theNattabletesterPackage.createPackageContents();
+		theNattableaxisPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattableaxisproviderPackage.initializePackageContents();
@@ -144,6 +176,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 		theNattablelabelproviderPackage.initializePackageContents();
 		theNattableaxisconfigurationPackage.initializePackageContents();
 		theNattabletesterPackage.initializePackageContents();
+		theNattableaxisPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattableaxisproviderPackage.freeze();
@@ -168,42 +201,6 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAbstractAxisProvider_JavaAxisManagerIds() {
-		return (EAttribute)abstractAxisProviderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractAxisProvider_AxisConfiguration() {
-		return (EReference)abstractAxisProviderEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAbstractAxisProvider_PastedElementTypeId() {
-		return (EAttribute)abstractAxisProviderEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractAxisProvider_PastedElementContainmentFeature() {
-		return (EReference)abstractAxisProviderEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getAbstractAxisProvider__GetAxis() {
 		return abstractAxisProviderEClass.getEOperations().get(0);
 	}
@@ -213,8 +210,8 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDefaultAxisProvider() {
-		return defaultAxisProviderEClass;
+	public EClass getIMasterAxisProvider() {
+		return iMasterAxisProviderEClass;
 	}
 
 	/**
@@ -222,8 +219,8 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDefaultAxisProvider_Axis() {
-		return (EReference)defaultAxisProviderEClass.getEStructuralFeatures().get(0);
+	public EAttribute getIMasterAxisProvider_DisconnectSlave() {
+		return (EAttribute)iMasterAxisProviderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -231,8 +228,8 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEMFFeatureValueAxisProvider() {
-		return emfFeatureValueAxisProviderEClass;
+	public EClass getISlaveAxisProvider() {
+		return iSlaveAxisProviderEClass;
 	}
 
 	/**
@@ -240,8 +237,35 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEMFFeatureValueAxisProvider_ListenFeature() {
-		return (EReference)emfFeatureValueAxisProviderEClass.getEStructuralFeatures().get(0);
+	public EClass getAxisProvider() {
+		return axisProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAxisProvider_Axis() {
+		return (EReference)axisProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSlaveObjectAxisProvider() {
+		return slaveObjectAxisProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMasterObjectAxisProvider() {
+		return masterObjectAxisProviderEClass;
 	}
 
 	/**
@@ -273,17 +297,19 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 
 		// Create classes and their features
 		abstractAxisProviderEClass = createEClass(ABSTRACT_AXIS_PROVIDER);
-		createEAttribute(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS);
-		createEReference(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION);
-		createEAttribute(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID);
-		createEReference(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE);
 		createEOperation(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER___GET_AXIS);
 
-		defaultAxisProviderEClass = createEClass(DEFAULT_AXIS_PROVIDER);
-		createEReference(defaultAxisProviderEClass, DEFAULT_AXIS_PROVIDER__AXIS);
+		iMasterAxisProviderEClass = createEClass(IMASTER_AXIS_PROVIDER);
+		createEAttribute(iMasterAxisProviderEClass, IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE);
 
-		emfFeatureValueAxisProviderEClass = createEClass(EMF_FEATURE_VALUE_AXIS_PROVIDER);
-		createEReference(emfFeatureValueAxisProviderEClass, EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE);
+		iSlaveAxisProviderEClass = createEClass(ISLAVE_AXIS_PROVIDER);
+
+		axisProviderEClass = createEClass(AXIS_PROVIDER);
+		createEReference(axisProviderEClass, AXIS_PROVIDER__AXIS);
+
+		slaveObjectAxisProviderEClass = createEClass(SLAVE_OBJECT_AXIS_PROVIDER);
+
+		masterObjectAxisProviderEClass = createEClass(MASTER_OBJECT_AXIS_PROVIDER);
 	}
 
 	/**
@@ -311,8 +337,8 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		NattableaxisconfigurationPackage theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI);
-		NattablePackage theNattablePackage = (NattablePackage)EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI);
+		NattableconfigurationPackage theNattableconfigurationPackage = (NattableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI);
+		NattableaxisPackage theNattableaxisPackage = (NattableaxisPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -320,23 +346,29 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 
 		// Add supertypes to classes
 		abstractAxisProviderEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
-		defaultAxisProviderEClass.getESuperTypes().add(this.getAbstractAxisProvider());
-		emfFeatureValueAxisProviderEClass.getESuperTypes().add(this.getDefaultAxisProvider());
+		abstractAxisProviderEClass.getESuperTypes().add(theNattableconfigurationPackage.getTableNamedElement());
+		iMasterAxisProviderEClass.getESuperTypes().add(this.getAxisProvider());
+		iSlaveAxisProviderEClass.getESuperTypes().add(this.getAxisProvider());
+		axisProviderEClass.getESuperTypes().add(this.getAbstractAxisProvider());
+		slaveObjectAxisProviderEClass.getESuperTypes().add(this.getISlaveAxisProvider());
+		masterObjectAxisProviderEClass.getESuperTypes().add(this.getIMasterAxisProvider());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractAxisProviderEClass, AbstractAxisProvider.class, "AbstractAxisProvider", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getAbstractAxisProvider_JavaAxisManagerIds(), ecorePackage.getEString(), "javaAxisManagerIds", null, 1, -1, AbstractAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAbstractAxisProvider_AxisConfiguration(), theNattableaxisconfigurationPackage.getAbstractAxisConfiguration(), null, "axisConfiguration", null, 1, 1, AbstractAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getAbstractAxisProvider_PastedElementTypeId(), theEcorePackage.getEString(), "pastedElementTypeId", null, 0, 1, AbstractAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAbstractAxisProvider_PastedElementContainmentFeature(), theEcorePackage.getEStructuralFeature(), null, "pastedElementContainmentFeature", null, 0, 1, AbstractAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getAbstractAxisProvider__GetAxis(), theNattablePackage.getIAxis(), "getAxis", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getAbstractAxisProvider__GetAxis(), theNattableaxisPackage.getIAxis(), "getAxis", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(defaultAxisProviderEClass, DefaultAxisProvider.class, "DefaultAxisProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getDefaultAxisProvider_Axis(), theNattablePackage.getIAxis(), null, "axis", null, 0, -1, DefaultAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(iMasterAxisProviderEClass, IMasterAxisProvider.class, "IMasterAxisProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getIMasterAxisProvider_DisconnectSlave(), theEcorePackage.getEBoolean(), "disconnectSlave", null, 0, 1, IMasterAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(emfFeatureValueAxisProviderEClass, EMFFeatureValueAxisProvider.class, "EMFFeatureValueAxisProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getEMFFeatureValueAxisProvider_ListenFeature(), theEcorePackage.getEStructuralFeature(), null, "listenFeature", null, 1, 1, EMFFeatureValueAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(iSlaveAxisProviderEClass, ISlaveAxisProvider.class, "ISlaveAxisProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(axisProviderEClass, AxisProvider.class, "AxisProvider", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAxisProvider_Axis(), theNattableaxisPackage.getIAxis(), null, "axis", null, 0, -1, AxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(slaveObjectAxisProviderEClass, SlaveObjectAxisProvider.class, "SlaveObjectAxisProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(masterObjectAxisProviderEClass, MasterObjectAxisProvider.class, "MasterObjectAxisProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 	}
 
 } //NattableaxisproviderPackageImpl

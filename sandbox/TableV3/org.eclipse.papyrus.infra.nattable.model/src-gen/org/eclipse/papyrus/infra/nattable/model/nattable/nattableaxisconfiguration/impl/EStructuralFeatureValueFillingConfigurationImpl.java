@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -19,24 +19,25 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EMF Feature Value Axis Provider</b></em>'.
+ * An implementation of the model object '<em><b>EStructural Feature Value Filling Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.EMFFeatureValueAxisProviderImpl#getListenFeature <em>Listen Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.EStructuralFeatureValueFillingConfigurationImpl#getListenFeature <em>Listen Feature</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl implements EMFFeatureValueAxisProvider {
+public class EStructuralFeatureValueFillingConfigurationImpl extends MinimalEObjectImpl.Container implements EStructuralFeatureValueFillingConfiguration {
 	/**
 	 * The cached value of the '{@link #getListenFeature() <em>Listen Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -52,7 +53,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EMFFeatureValueAxisProviderImpl() {
+	protected EStructuralFeatureValueFillingConfigurationImpl() {
 		super();
 	}
 
@@ -63,7 +64,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NattableaxisproviderPackage.Literals.EMF_FEATURE_VALUE_AXIS_PROVIDER;
+		return NattableaxisconfigurationPackage.Literals.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION;
 	}
 
 	/**
@@ -77,7 +78,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 			listenFeature = (EStructuralFeature)eResolveProxy(oldListenFeature);
 			if (listenFeature != oldListenFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE, oldListenFeature, listenFeature));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE, oldListenFeature, listenFeature));
 			}
 		}
 		return listenFeature;
@@ -101,7 +102,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 		EStructuralFeature oldListenFeature = listenFeature;
 		listenFeature = newListenFeature;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE, oldListenFeature, listenFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE, oldListenFeature, listenFeature));
 	}
 
 	/**
@@ -112,7 +113,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE:
+			case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE:
 				if (resolve) return getListenFeature();
 				return basicGetListenFeature();
 		}
@@ -127,7 +128,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE:
+			case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE:
 				setListenFeature((EStructuralFeature)newValue);
 				return;
 		}
@@ -142,7 +143,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE:
+			case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE:
 				setListenFeature((EStructuralFeature)null);
 				return;
 		}
@@ -157,10 +158,10 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE:
+			case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE:
 				return listenFeature != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //EMFFeatureValueAxisProviderImpl
+} //EStructuralFeatureValueFillingConfigurationImpl

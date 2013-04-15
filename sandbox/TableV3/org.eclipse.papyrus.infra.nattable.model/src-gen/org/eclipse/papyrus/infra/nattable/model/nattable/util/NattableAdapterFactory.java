@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.*;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,24 +85,12 @@ public class NattableAdapterFactory extends AdapterFactoryImpl {
 				return createTableAdapter();
 			}
 			@Override
-			public Adapter caseIAxis(IAxis object) {
-				return createIAxisAdapter();
-			}
-			@Override
-			public Adapter caseIdAxis(IdAxis object) {
-				return createIdAxisAdapter();
-			}
-			@Override
-			public Adapter caseEObjectAxis(EObjectAxis object) {
-				return createEObjectAxisAdapter();
-			}
-			@Override
 			public Adapter caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
 			@Override
-			public Adapter caseAbstractTableConfiguration(AbstractTableConfiguration object) {
-				return createAbstractTableConfigurationAdapter();
+			public Adapter caseTableNamedElement(TableNamedElement object) {
+				return createTableNamedElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -139,48 +127,6 @@ public class NattableAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.IAxis <em>IAxis</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.IAxis
-	 * @generated
-	 */
-	public Adapter createIAxisAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis <em>Id Axis</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis
-	 * @generated
-	 */
-	public Adapter createIdAxisAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis <em>EObject Axis</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis
-	 * @generated
-	 */
-	public Adapter createEObjectAxisAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -195,16 +141,16 @@ public class NattableAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration <em>Abstract Table Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement <em>Table Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement
 	 * @generated
 	 */
-	public Adapter createAbstractTableConfigurationAdapter() {
+	public Adapter createTableNamedElementAdapter() {
 		return null;
 	}
 

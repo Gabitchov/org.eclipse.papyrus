@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl;
 
 import java.util.Collection;
 
@@ -24,41 +24,40 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.DefaultAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Default Axis Provider</b></em>'.
+ * An implementation of the model object '<em><b>Table Header Axis Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.DefaultAxisProviderImpl#getAxis <em>Axis</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TableHeaderAxisConfigurationImpl#getAxisManagers <em>Axis Managers</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DefaultAxisProviderImpl extends AbstractAxisProviderImpl implements DefaultAxisProvider {
+public class TableHeaderAxisConfigurationImpl extends AbstractHeaderAxisConfigurationImpl implements TableHeaderAxisConfiguration {
 	/**
-	 * The cached value of the '{@link #getAxis() <em>Axis</em>}' containment reference list.
+	 * The cached value of the '{@link #getAxisManagers() <em>Axis Managers</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAxis()
+	 * @see #getAxisManagers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IAxis> axis;
+	protected EList<AxisManagerRepresentation> axisManagers;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DefaultAxisProviderImpl() {
+	protected TableHeaderAxisConfigurationImpl() {
 		super();
 	}
 
@@ -69,7 +68,7 @@ public class DefaultAxisProviderImpl extends AbstractAxisProviderImpl implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NattableaxisproviderPackage.Literals.DEFAULT_AXIS_PROVIDER;
+		return NattableaxisconfigurationPackage.Literals.TABLE_HEADER_AXIS_CONFIGURATION;
 	}
 
 	/**
@@ -77,11 +76,11 @@ public class DefaultAxisProviderImpl extends AbstractAxisProviderImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IAxis> getAxis() {
-		if (axis == null) {
-			axis = new EObjectContainmentEList<IAxis>(IAxis.class, this, NattableaxisproviderPackage.DEFAULT_AXIS_PROVIDER__AXIS);
+	public EList<AxisManagerRepresentation> getAxisManagers() {
+		if (axisManagers == null) {
+			axisManagers = new EObjectContainmentEList<AxisManagerRepresentation>(AxisManagerRepresentation.class, this, NattableaxisconfigurationPackage.TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS);
 		}
-		return axis;
+		return axisManagers;
 	}
 
 	/**
@@ -92,8 +91,8 @@ public class DefaultAxisProviderImpl extends AbstractAxisProviderImpl implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.DEFAULT_AXIS_PROVIDER__AXIS:
-				return ((InternalEList<?>)getAxis()).basicRemove(otherEnd, msgs);
+			case NattableaxisconfigurationPackage.TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS:
+				return ((InternalEList<?>)getAxisManagers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -106,8 +105,8 @@ public class DefaultAxisProviderImpl extends AbstractAxisProviderImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.DEFAULT_AXIS_PROVIDER__AXIS:
-				return getAxis();
+			case NattableaxisconfigurationPackage.TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS:
+				return getAxisManagers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,9 +120,9 @@ public class DefaultAxisProviderImpl extends AbstractAxisProviderImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.DEFAULT_AXIS_PROVIDER__AXIS:
-				getAxis().clear();
-				getAxis().addAll((Collection<? extends IAxis>)newValue);
+			case NattableaxisconfigurationPackage.TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS:
+				getAxisManagers().clear();
+				getAxisManagers().addAll((Collection<? extends AxisManagerRepresentation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,8 +136,8 @@ public class DefaultAxisProviderImpl extends AbstractAxisProviderImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.DEFAULT_AXIS_PROVIDER__AXIS:
-				getAxis().clear();
+			case NattableaxisconfigurationPackage.TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS:
+				getAxisManagers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -152,10 +151,10 @@ public class DefaultAxisProviderImpl extends AbstractAxisProviderImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.DEFAULT_AXIS_PROVIDER__AXIS:
-				return axis != null && !axis.isEmpty();
+			case NattableaxisconfigurationPackage.TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS:
+				return axisManagers != null && !axisManagers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //DefaultAxisProviderImpl
+} //TableHeaderAxisConfigurationImpl

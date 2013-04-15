@@ -79,8 +79,8 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	protected NattableconfigurationSwitch<Adapter> modelSwitch =
 		new NattableconfigurationSwitch<Adapter>() {
 			@Override
-			public Adapter caseAbstractTableConfiguration(AbstractTableConfiguration object) {
-				return createAbstractTableConfigurationAdapter();
+			public Adapter caseTableNamedElement(TableNamedElement object) {
+				return createTableNamedElementAdapter();
 			}
 			@Override
 			public Adapter caseTableConfiguration(TableConfiguration object) {
@@ -111,16 +111,16 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration <em>Abstract Table Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement <em>Table Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement
 	 * @generated
 	 */
-	public Adapter createAbstractTableConfigurationAdapter() {
+	public Adapter createTableNamedElementAdapter() {
 		return null;
 	}
 

@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis;
 
 
 /**
@@ -21,12 +21,12 @@ package org.eclipse.papyrus.infra.nattable.model.nattable;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getIdAxis()
- * @model
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getIdAxis()
+ * @model abstract="true"
  * @generated
  */
 public interface IdAxis extends IAxis {
@@ -40,14 +40,14 @@ public interface IdAxis extends IAxis {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' attribute.
 	 * @see #setElement(String)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getIdAxis_Element()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getIdAxis_Element()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis#getElement <em>Element</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement <em>Element</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Element</em>' attribute.

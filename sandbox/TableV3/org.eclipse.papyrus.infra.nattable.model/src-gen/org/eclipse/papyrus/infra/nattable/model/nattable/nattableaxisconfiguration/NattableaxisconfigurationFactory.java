@@ -32,22 +32,76 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	NattableaxisconfigurationFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.NattableaxisconfigurationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Abstract Axis Configuration</em>'.
+	 * Returns a new object of class '<em>Axis Manager Representation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Abstract Axis Configuration</em>'.
+	 * @return a new object of class '<em>Axis Manager Representation</em>'.
 	 * @generated
 	 */
-	AbstractAxisConfiguration createAbstractAxisConfiguration();
+	AxisManagerRepresentation createAxisManagerRepresentation();
 
 	/**
-	 * Returns a new object of class '<em>Default Axis Configuration</em>'.
+	 * Returns a new object of class '<em>Axis Manager Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Default Axis Configuration</em>'.
+	 * @return a new object of class '<em>Axis Manager Configuration</em>'.
 	 * @generated
 	 */
-	DefaultAxisConfiguration createDefaultAxisConfiguration();
+	AxisManagerConfiguration createAxisManagerConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Table Header Axis Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Table Header Axis Configuration</em>'.
+	 * @generated
+	 */
+	TableHeaderAxisConfiguration createTableHeaderAxisConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Local Table Header Axis Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Local Table Header Axis Configuration</em>'.
+	 * @generated
+	 */
+	LocalTableHeaderAxisConfiguration createLocalTableHeaderAxisConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Feature Axis Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Axis Configuration</em>'.
+	 * @generated
+	 */
+	FeatureAxisConfiguration createFeatureAxisConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>EStructural Feature Value Filling Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EStructural Feature Value Filling Configuration</em>'.
+	 * @generated
+	 */
+	EStructuralFeatureValueFillingConfiguration createEStructuralFeatureValueFillingConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>IPaste Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>IPaste Configuration</em>'.
+	 * @generated
+	 */
+	IPasteConfiguration createIPasteConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Paste EObject Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Paste EObject Configuration</em>'.
+	 * @generated
+	 */
+	PasteEObjectConfiguration createPasteEObjectConfiguration();
 
 	/**
 	 * Returns the package supported by this factory.

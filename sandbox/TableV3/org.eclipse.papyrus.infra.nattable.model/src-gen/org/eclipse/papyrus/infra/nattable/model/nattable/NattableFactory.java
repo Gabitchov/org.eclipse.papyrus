@@ -41,24 +41,6 @@ public interface NattableFactory extends EFactory {
 	Table createTable();
 
 	/**
-	 * Returns a new object of class '<em>Id Axis</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Id Axis</em>'.
-	 * @generated
-	 */
-	IdAxis createIdAxis();
-
-	/**
-	 * Returns a new object of class '<em>EObject Axis</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>EObject Axis</em>'.
-	 * @generated
-	 */
-	EObjectAxis createEObjectAxis();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
