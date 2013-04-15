@@ -13,7 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
 
 
 /**
@@ -31,8 +32,8 @@ public abstract class AbstractRowChangeLabelConfigurationValueHandler extends Ab
 	 * @return
 	 */
 	@Override
-	protected ILabelConfiguration getEditedLabelConfiguration() {
-		return getCurrentNattableModelManager().getRowAxisConfiguration().getLabelConfiguration();
+	protected ILabelProviderConfiguration getEditedLabelConfiguration() {
+		return LabelConfigurationManagementUtils.getRowFeatureLabelConfigurationInTable(getCurrentNattableModelManager().getTable());
 	}
 
 }

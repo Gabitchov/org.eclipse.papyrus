@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 
 /**
  * 
@@ -63,7 +63,7 @@ public class TableContentsAdviceHelper extends AbstractEditHelperAdvice {
 	 */
 	protected List<EObject> getAssociatedElementToDestroy(final EObject eobject) {
 		final CrossReferenceAdapter adapter = getCrossReferenceAdapter(eobject);
-		Set<EObject> elementsToDestroy = adapter.getInverseReferencers(eobject, NattablePackage.eINSTANCE.getEObjectAxis_Element(), NattablePackage.eINSTANCE.getEObjectAxis());
+		Set<EObject> elementsToDestroy = adapter.getInverseReferencers(eobject, NattableaxisPackage.eINSTANCE.getEObjectAxis_Element(), NattableaxisPackage.eINSTANCE.getEObjectAxis());
 		return new ArrayList<EObject>(elementsToDestroy);
 	}
 

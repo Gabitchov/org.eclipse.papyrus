@@ -20,9 +20,8 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisIndexStyle;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -44,28 +43,22 @@ public abstract class AbstractChangeIndexStyleHandler extends AbstractTableHandl
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final AbstractAxisConfiguration configuration = getAxisConfiguration();
-		if(configuration instanceof DefaultAxisConfiguration) {
+		final AbstractHeaderAxisConfiguration configuration = getAxisConfiguration();
 
-			if(HandlerUtil.matchesRadioState(event)) {
-				return null; // we are already in the updated state - do nothing
-			}
-			String currentState = event.getParameter(RadioState.PARAMETER_ID);
-
-			TransactionalEditingDomain domain = getEditingDomain();
-			AxisIndexStyle newStyle = AxisIndexStyle.get(currentState);
-			final IEditCommandRequest request = new SetRequest(domain, configuration, NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_IndexStyle(), newStyle);
-			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(configuration);
-			final ICommand cmd = provider.getEditCommand(request);
-			domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
-
-			// and finally update the current state
-			HandlerUtil.updateRadioState(event.getCommand(), currentState);
-
-			return null;
+		if(HandlerUtil.matchesRadioState(event)) {
+			return null; // we are already in the updated state - do nothing
 		}
+		String currentState = event.getParameter(RadioState.PARAMETER_ID);
 
+		TransactionalEditingDomain domain = getEditingDomain();
+		AxisIndexStyle newStyle = AxisIndexStyle.get(currentState);
+		final IEditCommandRequest request = new SetRequest(domain, configuration, NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_IndexStyle(), newStyle);
+		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(configuration);
+		final ICommand cmd = provider.getEditCommand(request);
+		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 
+		// and finally update the current state
+		HandlerUtil.updateRadioState(event.getCommand(), currentState);
 		return null;
 	}
 
@@ -74,6 +67,6 @@ public abstract class AbstractChangeIndexStyleHandler extends AbstractTableHandl
 	 * @return
 	 *         the axis configuration to edit
 	 */
-	protected abstract AbstractAxisConfiguration getAxisConfiguration();
+	protected abstract AbstractHeaderAxisConfiguration getAxisConfiguration();
 
 }

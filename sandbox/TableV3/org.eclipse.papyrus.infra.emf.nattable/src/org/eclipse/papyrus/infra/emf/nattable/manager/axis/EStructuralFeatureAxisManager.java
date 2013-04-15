@@ -33,10 +33,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -46,8 +47,8 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 
 	@Override
-	public void init(INattableModelManager manager, String managerId, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
-		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
+	public void init(INattableModelManager manager, AxisManagerRepresentation rep, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
+		super.init(manager, rep, table, provider, mustRefreshOnAxisChanges);
 	}
 
 
@@ -83,13 +84,14 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 		for(final Object current : objectToAdd) {
 			if(isAllowedContents(current)) {
-				final EObjectAxis newAxis = NattableFactory.eINSTANCE.createEObjectAxis();
-				newAxis.setElement((EObject)current);
+				final EStructuralFeatureAxis newAxis = NattableaxisFactory.eINSTANCE.createEStructuralFeatureAxis();
+				newAxis.setElement((EStructuralFeature)current);
+				newAxis.setManager(this.rep);
 				toAdd.add(newAxis);
 			}
 		}
 		if(!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), toAdd);
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
 		}
 		return null;
 	}
@@ -148,8 +150,8 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 		final List<Object> axisElements = getTableManager().getElementsList(getRepresentedContentProvider());
 		for(int i = 0; i < axis.size(); i++) {
 			IAxis current = axis.get(i);
-			if(current instanceof EObjectAxis) {
-				final EObject element = (EObject)current.getElement();
+			if(current instanceof EStructuralFeatureAxis) {
+				final EStructuralFeature element = (EStructuralFeature)current.getElement();
 				if(element instanceof EStructuralFeature) {
 					int currentIndex = axisElements.indexOf(element);
 					if(currentIndex == -1) {

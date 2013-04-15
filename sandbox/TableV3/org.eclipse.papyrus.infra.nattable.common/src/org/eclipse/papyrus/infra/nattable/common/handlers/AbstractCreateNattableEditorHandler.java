@@ -115,7 +115,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
 		// default Value
 		final String name;
-		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattableconfigurationPackage.eINSTANCE.getAbstractTableConfiguration_Name(), this.defaultName, getTableContext());
+		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name(), this.defaultName, getTableContext());
 		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, nameWithIncrement, null);
 		if(dialog.open() == Dialog.OK) {
 			name = dialog.getValue();

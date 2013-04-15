@@ -173,7 +173,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 			 */
 			@Override
 			public void notifyChanged(final Notification notification) {
-				if(notification.getFeature() == NattableconfigurationPackage.eINSTANCE.getAbstractTableConfiguration_Name()) {
+				if(notification.getFeature() == NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name()) {
 					setPartName(PartNameSynchronizer.this.papyrusTable.getName());
 				}
 			}

@@ -16,12 +16,10 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
 
 /**
  * 
@@ -36,8 +34,8 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	protected Adapter featureListener;
 
 	@Override
-	public void init(final INattableModelManager manager, final String managerId, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
-		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
+	public void init(final INattableModelManager manager, final AxisManagerRepresentation rep, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
+		super.init(manager, rep, table, provider, mustRefreshOnAxisChanges);
 		verifyValues();
 	}
 
@@ -46,8 +44,9 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 * 
 	 */
 	protected void verifyValues() {
-		assert getRepresentedContentProvider() instanceof EMFFeatureValueAxisProvider;
-		verifyCoupleContextFeature();
+		//FIXME
+		//		assert getRepresentedContentProvider() instanceof EStructuralFeatureValueAxisProvider;
+		//		verifyCoupleContextFeature();
 	}
 
 	/**
@@ -55,10 +54,11 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 * 
 	 */
 	protected void verifyCoupleContextFeature() {
-		final EStructuralFeature feature = ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
-		assert feature.isMany();
-		final EObject context = getTable().getContext();
-		assert context.eClass().getEAllReferences().contains(feature);
+		//FIXME
+		//		final EStructuralFeature feature = ((EStructuralFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
+		//		assert feature.isMany();
+		//		final EObject context = getTable().getContext();
+		//		assert context.eClass().getEAllReferences().contains(feature);
 	}
 
 	/**

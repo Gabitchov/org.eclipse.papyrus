@@ -32,7 +32,7 @@ public class ColumnDisplayLabelHeaderHandler extends AbstractColumnChangeHeaderC
 	 */
 	@Override
 	protected EStructuralFeature getEditedFeature() {
-		return NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayLabel();
+		return NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayLabel();
 	}
 
 }

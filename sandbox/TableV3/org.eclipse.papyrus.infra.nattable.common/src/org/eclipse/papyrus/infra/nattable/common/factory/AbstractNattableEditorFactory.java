@@ -72,7 +72,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier) {
 		if(pageIdentifier instanceof Table) {
-			return getExpectedType().equals(((Table)pageIdentifier).getEditorConfiguration().getType().trim());
+			return getExpectedType().equals(((Table)pageIdentifier).getTableConfiguration().getType().trim());
 		}
 		return false;
 	}

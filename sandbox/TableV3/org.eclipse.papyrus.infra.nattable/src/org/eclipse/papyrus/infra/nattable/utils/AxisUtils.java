@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 
 /**
  * Common methods for axis management

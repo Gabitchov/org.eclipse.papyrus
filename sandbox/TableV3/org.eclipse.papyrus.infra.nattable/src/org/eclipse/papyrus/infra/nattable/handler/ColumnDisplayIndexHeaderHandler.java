@@ -33,6 +33,6 @@ public class ColumnDisplayIndexHeaderHandler extends AbstractColumnChangeHeaderC
 	 */
 	@Override
 	protected EStructuralFeature getEditedFeature() {
-		return NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayIndex();
+		return NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayIndex();
 	}
 }

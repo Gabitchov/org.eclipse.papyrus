@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,7 +23,6 @@ import java.util.TreeSet;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -34,10 +32,10 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.manager.table.ILimitedNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
@@ -51,6 +49,8 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/** the id of this manager */
 	private String manager_id;
+
+	protected AxisManagerRepresentation rep;
 
 	/**
 	 * the managed table
@@ -88,10 +88,13 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param provider
 	 *        the represented axis provider
 	 */
-	public void init(final INattableModelManager manager, final String managerId, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
+	public void init(final INattableModelManager manager, final AxisManagerRepresentation rep, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
 		this.tableManager = manager;
-		this.manager_id = managerId;
+		if(rep != null) {
+			this.manager_id = rep.getAxisManagerId();//FIXME : remove this field
+		}
 		this.pTable = table;
+		this.rep = rep;
 		this.representedContentProvider = provider;
 		updateAxisContents();
 		if(mustRefreshOnAxisChanges) {
@@ -300,13 +303,14 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 
+	//FIXME : we should use a boolean somewhere in the model to replace the call to this method 	
 	protected boolean hasAxisConfiguration(final TableConfiguration configuration) {
 		AbstractAxisProvider axisConfig = null;
 		// we are working with the horizontal content provider
-		if(getTable().getRowAxisProvider() == getRepresentedContentProvider()) {
-			axisConfig = configuration.getRowAxisProvider();
+		if(getTable().getCurrentRowAxisProvider() == getRepresentedContentProvider()) {
+			axisConfig = configuration.getDefaultRowAxisProvider();//FIXME : in case of several axisprovider -> doesn't work
 		} else {// we are working with the
-			axisConfig = configuration.getColumnAxisProvider();
+			axisConfig = configuration.getDefaultColumnAxisProvider(); //FIXME : incase of several axisProvier -> doesn't work
 		}
 		if(axisConfig != null) {
 			return !axisConfig.getAxis().isEmpty();
@@ -315,7 +319,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	protected boolean hasConfiguration() {
-		final TableConfiguration configuration = getTable().getEditorConfiguration();
+		final TableConfiguration configuration = getTable().getTableConfiguration();
 		return hasAxisConfiguration(configuration);
 	}
 
@@ -341,8 +345,9 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		axis.addAll(getRepresentedContentProvider().getAxis());
 
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(this.representedContentProvider);//FIXME
-		final Command cmd = SetCommand.create(domain, this.representedContentProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), new ArrayList<IAxis>(axis));
-		domain.getCommandStack().execute(cmd);
+		//FIXME
+		//		final Command cmd = SetCommand.create(domain, this.representedContentProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), new ArrayList<IAxis>(axis));
+		//		domain.getCommandStack().execute(cmd);
 	}
 
 	/**

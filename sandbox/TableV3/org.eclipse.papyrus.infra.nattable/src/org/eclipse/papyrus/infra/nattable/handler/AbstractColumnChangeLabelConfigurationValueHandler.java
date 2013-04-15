@@ -13,7 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
 
 /**
  * The abstract handler used to change the column header label configuration
@@ -30,8 +31,8 @@ public abstract class AbstractColumnChangeLabelConfigurationValueHandler extends
 	 * @return
 	 */
 	@Override
-	protected ILabelConfiguration getEditedLabelConfiguration() {
-		return getCurrentNattableModelManager().getColumnAxisConfiguration().getLabelConfiguration();
+	protected ILabelProviderConfiguration getEditedLabelConfiguration() {
+		return LabelConfigurationManagementUtils.getColumnFeatureLabelConfigurationInTable(getCurrentNattableModelManager().getTable());
 	}
 
 }

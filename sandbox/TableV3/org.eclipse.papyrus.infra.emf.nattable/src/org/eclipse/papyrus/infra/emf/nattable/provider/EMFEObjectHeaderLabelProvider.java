@@ -16,16 +16,11 @@ package org.eclipse.papyrus.infra.emf.nattable.provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
-import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
-import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
 
@@ -66,15 +61,9 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 		final EObject object = (EObject)context.getObject();
 		final IConfigRegistry configRegistry = context.getConfigRegistry();
 		final LabelProviderService serv = getLabelProviderService(configRegistry);
-		ILabelConfiguration conf = null;
+		ILabelProviderConfiguration conf = null;
 		if(element instanceof LabelProviderCellContextElement) {
-			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
-			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
-				conf = manager.getColumnAxisConfiguration().getLabelConfiguration();
-			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
-				conf = manager.getRowAxisConfiguration().getLabelConfiguration();
-			}
+			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
 			return "";
@@ -94,16 +83,9 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 		final EObject object = (EObject)((ILabelProviderContextElement)element).getObject();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
 		final LabelProviderService serv = getLabelProviderService(configRegistry);
-		ILabelConfiguration conf = null;
+		ILabelProviderConfiguration conf = null;
 		if(element instanceof LabelProviderCellContextElement) {
-			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
-			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
-				conf = manager.getColumnAxisConfiguration().getLabelConfiguration();
-			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
-				conf = manager.getRowAxisConfiguration().getLabelConfiguration();
-			}
-
+			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayIcon()) {
 			return null;

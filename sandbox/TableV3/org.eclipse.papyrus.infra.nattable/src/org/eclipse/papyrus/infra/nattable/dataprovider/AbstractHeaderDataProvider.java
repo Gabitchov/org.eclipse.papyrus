@@ -18,9 +18,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisIndexStyle;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.tools.util.IntegerAndSpreadsheetNumberConverter;
 
@@ -52,7 +51,7 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 	/**
 	 * the listen axis configuration
 	 */
-	private AbstractAxisConfiguration listenAxisConfiguration;
+	private AbstractHeaderAxisConfiguration listenAxisConfiguration;
 
 
 	/**
@@ -61,7 +60,7 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 	 * 
 	 * @param tableModelManager
 	 */
-	public AbstractHeaderDataProvider(INattableModelManager tableModelManager) {
+	public AbstractHeaderDataProvider(INattableModelManager tableModelManager) {//FIXME : we don't manage the remove of the axis configuration (possible when we return to the initial configuration
 		super(tableModelManager);
 		this.listenAxisConfiguration = getAxisConfiguration();
 		initListeners();
@@ -79,16 +78,16 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 			public void notifyChanged(Notification msg) {
 				final Object feature = msg.getFeature();
 				if(feature != null) {
-					if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayFilter())) {
+					if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayFilter())) {
 						AbstractHeaderDataProvider.this.displayFilter = msg.getNewBooleanValue();
 						updateAxisCount();
-					} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayIndex())) {
+					} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayIndex())) {
 						AbstractHeaderDataProvider.this.displayIndex = msg.getNewBooleanValue();
 						updateAxisCount();
-					} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayLabel())) {
+					} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayLabel())) {
 						AbstractHeaderDataProvider.this.displayLabel = msg.getNewBooleanValue();
 						updateAxisCount();
-					} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_IndexStyle())) {
+					} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_IndexStyle())) {
 						AbstractHeaderDataProvider.this.style = AxisIndexStyle.get(msg.getNewStringValue());
 						updateAxisCount();
 					}
@@ -114,17 +113,19 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 	 * init the field value, and update the listen axis if required
 	 */
 	private void initFields() {
-		if(this.listenAxisConfiguration != getAxisConfiguration()) {
+		if(this.listenAxisConfiguration != getAxisConfiguration() && this.listenAxisConfiguration != null) {
 			this.listenAxisConfiguration.eAdapters().remove(this.axisListener);
 		}
 		this.listenAxisConfiguration = getAxisConfiguration();
-		this.listenAxisConfiguration.eAdapters().add(this.axisListener);
-		if(this.listenAxisConfiguration instanceof DefaultAxisConfiguration) {
-			DefaultAxisConfiguration config = (DefaultAxisConfiguration)this.listenAxisConfiguration;
-			this.style = config.getIndexStyle();
-			this.displayFilter = config.isDisplayFilter();
-			this.displayLabel = config.isDisplayLabel();
-			this.displayIndex = config.isDisplayIndex();
+		if(this.listenAxisConfiguration != null) {
+			this.listenAxisConfiguration.eAdapters().add(this.axisListener);
+			if(this.listenAxisConfiguration instanceof AbstractHeaderAxisConfiguration) {
+				AbstractHeaderAxisConfiguration config = this.listenAxisConfiguration;
+				this.style = config.getIndexStyle();
+				this.displayFilter = config.isDisplayFilter();
+				this.displayLabel = config.isDisplayLabel();
+				this.displayIndex = config.isDisplayIndex();
+			}
 		}
 		updateAxisCount();
 	}
@@ -139,7 +140,7 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 	 * @return
 	 *         the axis configuration to listen
 	 */
-	protected abstract AbstractAxisConfiguration getAxisConfiguration();
+	protected abstract AbstractHeaderAxisConfiguration getAxisConfiguration();
 
 	/**
 	 * 

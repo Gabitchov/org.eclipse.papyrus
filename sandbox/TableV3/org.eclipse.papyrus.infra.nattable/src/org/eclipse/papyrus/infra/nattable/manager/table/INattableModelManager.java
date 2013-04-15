@@ -21,9 +21,8 @@ import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.swt.graphics.Point;
@@ -125,19 +124,5 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public AbstractAxisProvider getHorizontalAxisProvider();
 
 	public BodyLayerStack getBodyLayerStack();
-
-	/**
-	 * 
-	 * @return
-	 *         the vertical axis configuration
-	 */
-	public AbstractAxisConfiguration getColumnAxisConfiguration();
-
-	/**
-	 * 
-	 * @return
-	 *         the horizontal axis configuration
-	 */
-	public AbstractAxisConfiguration getRowAxisConfiguration();
 
 }

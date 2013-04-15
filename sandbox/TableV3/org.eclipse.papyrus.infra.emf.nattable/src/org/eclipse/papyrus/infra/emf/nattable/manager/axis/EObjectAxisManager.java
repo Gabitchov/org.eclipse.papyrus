@@ -26,9 +26,9 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
-import org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
 /**
@@ -56,9 +56,10 @@ public class EObjectAxisManager extends AbstractAxisManager {
 		final CompoundCommand cmd = new CompoundCommand(Messages.EObjectManager_AddAxisElement);
 		for(final Object object : objectToAdd) {
 			if(isAllowedContents(object)) {
-				final EObjectAxis horizontalAxis = NattableFactory.eINSTANCE.createEObjectAxis();
+				final EObjectAxis horizontalAxis = NattableaxisFactory.eINSTANCE.createEObjectAxis();
 				horizontalAxis.setElement((EObject)object);
-				final Command tmp = AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), horizontalAxis);
+				horizontalAxis.setManager(this.rep);
+				final Command tmp = AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), horizontalAxis);
 				cmd.append(tmp);
 			}
 		}

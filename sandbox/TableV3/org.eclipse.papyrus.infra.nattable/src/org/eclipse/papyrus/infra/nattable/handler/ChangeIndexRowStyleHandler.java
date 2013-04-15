@@ -13,7 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 
 
 /**
@@ -24,15 +25,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  */
 public class ChangeIndexRowStyleHandler extends AbstractChangeIndexStyleHandler {
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractChangeHeaderStyleConfigurationHandler#getAxisConfiguration()
-	 * 
-	 * @return
-	 */
 	@Override
-	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return getCurrentNattableModelManager().getRowAxisConfiguration();
+	protected AbstractHeaderAxisConfiguration getAxisConfiguration() {
+		return HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTable(getCurrentNattableModelManager().getTable());
 	}
 
 

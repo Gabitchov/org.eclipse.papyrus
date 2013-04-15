@@ -87,20 +87,22 @@ public class TableHelper {
 		assert configuration != null;
 
 		Table table = NattableFactory.eINSTANCE.createTable();
-		table.setEditorConfiguration(configuration);
+		table.setTableConfiguration(configuration);
 		table.setDescription(description);
 		table.setName(name);
 		table.setContext(context);
 
 		//the configuration always provides axis provider
-		AbstractAxisProvider rowProvider = configuration.getRowAxisProvider();
+		AbstractAxisProvider rowProvider = configuration.getDefaultRowAxisProvider();
 		rowProvider = EcoreUtil.copy(rowProvider);
 
-		AbstractAxisProvider columnProvider = configuration.getColumnAxisProvider();
+		AbstractAxisProvider columnProvider = configuration.getDefaultColumnAxisProvider();
 		columnProvider = EcoreUtil.copy(columnProvider);
 
-		table.setRowAxisProvider(rowProvider);
-		table.setColumnAxisProvider(columnProvider);
+		table.setCurrentRowAxisProvider(rowProvider);
+		table.setCurrentColumnAxisProvider(columnProvider);
+		table.getRowAxisProvidersHistory().add(rowProvider);
+		table.getColumnAxisProvidersHistory().add(columnProvider);
 		return table;
 
 	}

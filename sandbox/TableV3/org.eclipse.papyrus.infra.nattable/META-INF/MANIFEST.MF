@@ -45,3 +45,5 @@ Export-Package: org.eclipse.papyrus.infra.nattable,
  org.eclipse.papyrus.infra.nattable.tester,
  org.eclipse.papyrus.infra.nattable.utils,
  org.eclipse.papyrus.infra.nattable.widget
+Import-Package: org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider

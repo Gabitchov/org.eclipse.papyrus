@@ -63,7 +63,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 
 		final BodyLayerStack bodyLayerStack = modelManager.getBodyLayerStack();
 		final Table table = modelManager.getTable();
-		final CellEditorDeclaration editorDeclaration = modelManager.getTable().getEditorDeclaration();
+		final CellEditorDeclaration editorDeclaration = modelManager.getTable().getTableConfiguration().getCellEditorDeclaration();
 		if(editorDeclaration.equals(CellEditorDeclaration.COLUMN)) {
 			if(table.isInvertAxis()) {
 				//we declared celleditor on row

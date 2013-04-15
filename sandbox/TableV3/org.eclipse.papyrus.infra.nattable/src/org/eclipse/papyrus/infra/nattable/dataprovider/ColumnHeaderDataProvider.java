@@ -14,7 +14,8 @@
 package org.eclipse.papyrus.infra.nattable.dataprovider;
 
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 
 /**
  * 
@@ -104,8 +105,8 @@ public class ColumnHeaderDataProvider extends AbstractHeaderDataProvider {
 	 * @return
 	 */
 	@Override
-	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return this.manager.getColumnAxisConfiguration();
+	protected AbstractHeaderAxisConfiguration getAxisConfiguration() {
+		return HeaderAxisConfigurationManagementUtils.getUsedColumnAbstractHeaderAxisInTableConfiguration(this.manager.getTable());
 	}
 
 	/**

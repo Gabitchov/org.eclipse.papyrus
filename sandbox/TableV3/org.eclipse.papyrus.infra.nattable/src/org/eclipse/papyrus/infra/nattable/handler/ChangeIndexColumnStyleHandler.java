@@ -13,7 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 
 /**
  * the handler used to change the index style of the column
@@ -30,8 +31,8 @@ public class ChangeIndexColumnStyleHandler extends AbstractChangeIndexStyleHandl
 	 * @return
 	 */
 	@Override
-	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return getCurrentNattableModelManager().getColumnAxisConfiguration();
+	protected AbstractHeaderAxisConfiguration getAxisConfiguration() {
+		return HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisInTable(getCurrentNattableModelManager().getTable());
 	}
 
 

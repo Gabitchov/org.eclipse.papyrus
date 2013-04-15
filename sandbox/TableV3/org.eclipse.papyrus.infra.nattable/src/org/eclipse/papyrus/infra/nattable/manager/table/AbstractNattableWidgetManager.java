@@ -66,8 +66,8 @@ import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
@@ -324,7 +324,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						if(start >= 0 && start < end) {
 							end--;
 						}
-						final List<IAxis> allAxis = AbstractNattableWidgetManager.this.table.getColumnAxisProvider().getAxis();
+						final List<IAxis> allAxis = AbstractNattableWidgetManager.this.table.getCurrentColumnAxisProvider().getAxis();
 						final IAxis axisToMove = allAxis.get(start);
 						if(axisToMove != null) {
 							reorderColumnsElements(axisToMove, end);

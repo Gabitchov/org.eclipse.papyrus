@@ -15,9 +15,16 @@ package org.eclipse.papyrus.infra.nattable.provider;
 
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
+import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -144,5 +151,25 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 */
 	protected LabelProviderService getLabelProviderService(final IConfigRegistry registry) {
 		return registry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+	}
+
+	/**
+	 * 
+	 * @param element
+	 *        a label provider context element
+	 * @return
+	 *         the configuration to use for this element
+	 */
+	protected ILabelProviderConfiguration getLabelConfiguration(final LabelProviderCellContextElement element) {
+		ILabelProviderConfiguration conf = null;
+		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+		LabelStack labels = element.getCell().getConfigLabels();
+		if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
+			conf = LabelConfigurationManagementUtils.getUsedColumnFeatureLabelConfiguration(manager.getTable());
+		} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
+			conf = LabelConfigurationManagementUtils.getUsedRowFeatureLabelConfiguration(manager.getTable());
+		}
+		return conf;
 	}
 }

@@ -13,7 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 
 /**
  * Abstract class to edit the header cofniguration
@@ -26,10 +27,10 @@ public abstract class AbstractRowChangeHeaderConfigurationHandler extends Abstra
 	/**
 	 * 
 	 * @return
-	 *         the edited axis configuration
+	 *         the edited axis configuration or <code>null</code> if it doesn't exists in the table
 	 */
 	@Override
-	protected AbstractAxisConfiguration getEditedAxisConfiguration() {
-		return getCurrentNattableModelManager().getRowAxisConfiguration();
+	protected AbstractHeaderAxisConfiguration getEditedAxisConfiguration() {
+		return HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTable(getCurrentNattableModelManager().getTable());
 	}
 }

@@ -18,17 +18,12 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
-import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
-import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
 
@@ -147,19 +142,12 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	public String getText(Object element) {
 		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
-		ILabelConfiguration conf = null;
+		ILabelProviderConfiguration conf = null;
 		if(element instanceof LabelProviderCellContextElement) {
-			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
-			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
-				conf = manager.getColumnAxisConfiguration().getLabelConfiguration();
-			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
-				conf = manager.getRowAxisConfiguration().getLabelConfiguration();
-			}
-
+			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		if(conf instanceof FeatureLabelProviderConfiguration) {
 			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, feature.getName(), feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
@@ -177,17 +165,9 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	 */
 	@Override
 	public Image getImage(Object element) {
-		ILabelConfiguration conf = null;
+		ILabelProviderConfiguration conf = null;
 		if(element instanceof LabelProviderCellContextElement) {
-			final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
-			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
-			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
-				conf = manager.getColumnAxisConfiguration().getLabelConfiguration();
-			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
-				conf = manager.getRowAxisConfiguration().getLabelConfiguration();
-			}
-
+			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayIcon()) {
 			return null;
@@ -201,6 +181,7 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 		}
 		return super.getImage(feature);
 	}
+
 
 	/**
 	 * 

@@ -32,6 +32,6 @@ public class RowDisplayIndexHeaderHandler extends AbstractRowChangeHeaderConfigu
 	 */
 	@Override
 	protected EStructuralFeature getEditedFeature() {
-		return NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayIndex();
+		return NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayIndex();
 	}
 }

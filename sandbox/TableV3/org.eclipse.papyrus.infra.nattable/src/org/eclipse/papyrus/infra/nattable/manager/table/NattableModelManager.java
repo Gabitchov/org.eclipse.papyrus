@@ -19,7 +19,6 @@ import java.util.Collection;
 import java.util.EventObject;
 import java.util.List;
 
-import org.eclipse.core.commands.State;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
@@ -28,7 +27,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -43,22 +41,16 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
-import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AxisManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.axis.CompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -72,8 +64,6 @@ import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPartSite;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommandService;
 
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
 
@@ -124,8 +114,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public NattableModelManager(final Table rawModel) {
 		super(rawModel);
 		// this.table = rawModel;
-		this.rowProvider = rawModel.getRowAxisProvider();
-		this.columnProvider = rawModel.getColumnAxisProvider();
+		this.rowProvider = rawModel.getCurrentRowAxisProvider();
+		this.columnProvider = rawModel.getCurrentColumnAxisProvider();
 		this.verticalElements = new ArrayList<Object>();
 		this.horizontalElements = new ArrayList<Object>();
 
@@ -164,13 +154,15 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 
 	protected void addAxisConfigurationListener() {
-		getColumnAxisConfiguration().eAdapters().add(this.axisConfigurationListener);
-		getRowAxisConfiguration().eAdapters().add(this.axisConfigurationListener);
+		//FIXME
+		//		getColumnAxisConfiguration().eAdapters().add(this.axisConfigurationListener);
+		//		getRowAxisConfiguration().eAdapters().add(this.axisConfigurationListener);
 	}
 
-	protected void removeAxisConfigurationListener() {
-		getColumnAxisConfiguration().eAdapters().remove(this.axisConfigurationListener);
-		getRowAxisConfiguration().eAdapters().remove(this.axisConfigurationListener);
+	protected void removeAxisConfigurationListener() {//
+		//FIXME
+		//		getColumnAxisConfiguration().eAdapters().remove(this.axisConfigurationListener);
+		//		getRowAxisConfiguration().eAdapters().remove(this.axisConfigurationListener);
 	}
 
 
@@ -216,169 +208,169 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 * this command update the status of the toggle actions
 	 */
-	protected void updateToggleActionState() {
-		final ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
-		if(commandService != null) {
-			final AbstractAxisConfiguration verticalAxisConfiguration = getColumnAxisConfiguration();
-			final AbstractAxisConfiguration horizontalAxisConfiguration = getRowAxisConfiguration();
-			if(verticalAxisConfiguration instanceof DefaultAxisConfiguration) {
-				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_INDEX_ID);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).isDisplayIndex());
-					}
-				}
-				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_LABEL_ID);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).isDisplayLabel());
-					}
-				}
-				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_INDEX_STYLE_ID);
-				if(command != null) {
-					final State state = command.getState(CommandIds.RADIO_STATE);
-					if(state != null) {
-						state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).getIndexStyle().getLiteral());
-					}
-				}
-			}
-
-			if(horizontalAxisConfiguration instanceof DefaultAxisConfiguration) {
-
-				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_INDEX_ID);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(((DefaultAxisConfiguration)horizontalAxisConfiguration).isDisplayIndex());
-					}
-				}
-				command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_LABEL_ID);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(((DefaultAxisConfiguration)horizontalAxisConfiguration).isDisplayLabel());
-					}
-				}
-				command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_INDEX_STYLE_ID);
-				if(command != null) {
-					final State state = command.getState(CommandIds.RADIO_STATE);
-					if(state != null) {
-						state.setValue(((DefaultAxisConfiguration)horizontalAxisConfiguration).getIndexStyle().getLiteral());
-					}
-				}
-			}
-
-
-			//update the label header configuration
-			final ILabelConfiguration columnLabelConfiguration = verticalAxisConfiguration.getLabelConfiguration();
-			final ILabelConfiguration rowLabelConfiguration = horizontalAxisConfiguration.getLabelConfiguration();
-			if(columnLabelConfiguration instanceof ObjectLabelProviderConfiguration) {
-				final ObjectLabelProviderConfiguration labelConfig = (ObjectLabelProviderConfiguration)columnLabelConfiguration;
-				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_DISPLAY_ICON);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(labelConfig.isDisplayIcon());
-					}
-				}
-
-				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_DISPLAY_LABEL);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(labelConfig.isDisplayLabel());
-					}
-				}
-				if(labelConfig instanceof FeatureLabelProviderConfiguration) {
-					final FeatureLabelProviderConfiguration labelFeatureConf = (FeatureLabelProviderConfiguration)labelConfig;
-					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_IS_DERIVED);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelFeatureConf.isDisplayIsDerived());
-						}
-					}
-					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_MULTIPLICITY);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelFeatureConf.isDisplayMultiplicity());
-						}
-					}
-					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_TYPE);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelFeatureConf.isDisplayType());
-						}
-					}
-
-					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_NAME);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelFeatureConf.isDisplayName());
-						}
-					}
-				}
-			}
-
-			if(rowLabelConfiguration instanceof ObjectLabelProviderConfiguration) {
-				final ObjectLabelProviderConfiguration labelConfig = (ObjectLabelProviderConfiguration)rowLabelConfiguration;
-				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_DISPLAY_ICON);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(labelConfig.isDisplayIcon());
-					}
-				}
-
-				command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_DISPLAY_LABEL);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(labelConfig.isDisplayLabel());
-					}
-				}
-				if(labelConfig instanceof FeatureLabelProviderConfiguration) {
-					final FeatureLabelProviderConfiguration labelFeatureConf = (FeatureLabelProviderConfiguration)labelConfig;
-					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_IS_DERIVED);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelFeatureConf.isDisplayIsDerived());
-						}
-					}
-					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_MULTIPLICITY);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelFeatureConf.isDisplayMultiplicity());
-						}
-					}
-					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_TYPE);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelFeatureConf.isDisplayType());
-						}
-					}
-
-					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_NAME);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelFeatureConf.isDisplayName());
-						}
-					}
-				}
-			}
-
-		} else {
-			throw new RuntimeException(String.format("The Eclipse service {0} has not been found", ICommandService.class));
-		}
+	protected void updateToggleActionState() {//FIXME
+		//		final ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
+		//		if(commandService != null) {
+		//			final AbstractAxisConfiguration verticalAxisConfiguration = getColumnAxisConfiguration();
+		//			final AbstractAxisConfiguration horizontalAxisConfiguration = getRowAxisConfiguration();
+		//			if(verticalAxisConfiguration instanceof DefaultAxisConfiguration) {
+		//				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_INDEX_ID);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//					if(state != null) {
+		//						state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).isDisplayIndex());
+		//					}
+		//				}
+		//				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_LABEL_ID);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//					if(state != null) {
+		//						state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).isDisplayLabel());
+		//					}
+		//				}
+		//				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_INDEX_STYLE_ID);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.RADIO_STATE);
+		//					if(state != null) {
+		//						state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).getIndexStyle().getLiteral());
+		//					}
+		//				}
+		//			}
+		//
+		//			if(horizontalAxisConfiguration instanceof DefaultAxisConfiguration) {
+		//
+		//				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_INDEX_ID);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//					if(state != null) {
+		//						state.setValue(((DefaultAxisConfiguration)horizontalAxisConfiguration).isDisplayIndex());
+		//					}
+		//				}
+		//				command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_LABEL_ID);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//					if(state != null) {
+		//						state.setValue(((DefaultAxisConfiguration)horizontalAxisConfiguration).isDisplayLabel());
+		//					}
+		//				}
+		//				command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_INDEX_STYLE_ID);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.RADIO_STATE);
+		//					if(state != null) {
+		//						state.setValue(((DefaultAxisConfiguration)horizontalAxisConfiguration).getIndexStyle().getLiteral());
+		//					}
+		//				}
+		//			}
+		//
+		//
+		//			//update the label header configuration
+		//			final ILabelConfiguration columnLabelConfiguration = verticalAxisConfiguration.getLabelConfiguration();
+		//			final ILabelConfiguration rowLabelConfiguration = horizontalAxisConfiguration.getLabelConfiguration();
+		//			if(columnLabelConfiguration instanceof ObjectLabelProviderConfiguration) {
+		//				final ObjectLabelProviderConfiguration labelConfig = (ObjectLabelProviderConfiguration)columnLabelConfiguration;
+		//				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_DISPLAY_ICON);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//					if(state != null) {
+		//						state.setValue(labelConfig.isDisplayIcon());
+		//					}
+		//				}
+		//
+		//				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_DISPLAY_LABEL);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//					if(state != null) {
+		//						state.setValue(labelConfig.isDisplayLabel());
+		//					}
+		//				}
+		//				if(labelConfig instanceof FeatureLabelProviderConfiguration) {
+		//					final FeatureLabelProviderConfiguration labelFeatureConf = (FeatureLabelProviderConfiguration)labelConfig;
+		//					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_IS_DERIVED);
+		//					if(command != null) {
+		//						final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//						if(state != null) {
+		//							state.setValue(labelFeatureConf.isDisplayIsDerived());
+		//						}
+		//					}
+		//					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_MULTIPLICITY);
+		//					if(command != null) {
+		//						final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//						if(state != null) {
+		//							state.setValue(labelFeatureConf.isDisplayMultiplicity());
+		//						}
+		//					}
+		//					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_TYPE);
+		//					if(command != null) {
+		//						final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//						if(state != null) {
+		//							state.setValue(labelFeatureConf.isDisplayType());
+		//						}
+		//					}
+		//
+		//					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_NAME);
+		//					if(command != null) {
+		//						final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//						if(state != null) {
+		//							state.setValue(labelFeatureConf.isDisplayName());
+		//						}
+		//					}
+		//				}
+		//			}
+		//
+		//			if(rowLabelConfiguration instanceof ObjectLabelProviderConfiguration) {
+		//				final ObjectLabelProviderConfiguration labelConfig = (ObjectLabelProviderConfiguration)rowLabelConfiguration;
+		//				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_DISPLAY_ICON);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//					if(state != null) {
+		//						state.setValue(labelConfig.isDisplayIcon());
+		//					}
+		//				}
+		//
+		//				command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_DISPLAY_LABEL);
+		//				if(command != null) {
+		//					final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//					if(state != null) {
+		//						state.setValue(labelConfig.isDisplayLabel());
+		//					}
+		//				}
+		//				if(labelConfig instanceof FeatureLabelProviderConfiguration) {
+		//					final FeatureLabelProviderConfiguration labelFeatureConf = (FeatureLabelProviderConfiguration)labelConfig;
+		//					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_IS_DERIVED);
+		//					if(command != null) {
+		//						final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//						if(state != null) {
+		//							state.setValue(labelFeatureConf.isDisplayIsDerived());
+		//						}
+		//					}
+		//					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_MULTIPLICITY);
+		//					if(command != null) {
+		//						final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//						if(state != null) {
+		//							state.setValue(labelFeatureConf.isDisplayMultiplicity());
+		//						}
+		//					}
+		//					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_TYPE);
+		//					if(command != null) {
+		//						final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//						if(state != null) {
+		//							state.setValue(labelFeatureConf.isDisplayType());
+		//						}
+		//					}
+		//
+		//					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_NAME);
+		//					if(command != null) {
+		//						final State state = command.getState(CommandIds.TOGGLE_STATE);
+		//						if(state != null) {
+		//							state.setValue(labelFeatureConf.isDisplayName());
+		//						}
+		//					}
+		//				}
+		//			}
+		//
+		//		} else {
+		//			throw new RuntimeException(String.format("The Eclipse service {0} has not been found", ICommandService.class));
+		//		}
 
 	}
 
@@ -406,13 +398,15 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * create the line and the columns managers
 	 */
 	protected void init() {
-		final List<String> verticalContentProviderIds = getVerticalContentProviderIds();
-		assert !verticalContentProviderIds.isEmpty();
-		this.columnManager = createAxisManager(verticalContentProviderIds, this.table.getColumnAxisProvider());
+		//FIXME : we don't manage invert axis
 
-		final List<String> horizontalContentProviderIds = getHorizontalContentProviderIds();
-		assert !horizontalContentProviderIds.isEmpty();
-		this.rowManager = createAxisManager(horizontalContentProviderIds, this.table.getRowAxisProvider());
+		//		final List<String> verticalContentProviderIds = getVerticalContentProviderIds();
+		//		assert !verticalContentProviderIds.isEmpty();
+		this.columnManager = createAxisManager(getTable().getTableConfiguration().getColumnHeaderAxisConfiguration().getAxisManagers(), this.table.getCurrentColumnAxisProvider());
+
+		//		final List<String> horizontalContentProviderIds = getHorizontalContentProviderIds();
+		//		assert !horizontalContentProviderIds.isEmpty();
+		this.rowManager = createAxisManager(getTable().getTableConfiguration().getRowHeaderAxisConfiguration().getAxisManagers(), this.table.getCurrentRowAxisProvider());
 	}
 
 	/**
@@ -423,18 +417,18 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *        the content provider in the model
 	 * @return the created axis manager to use to manage the {@link IAxisContentsProvider}
 	 */
-	protected IAxisManager createAxisManager(final List<String> ids, final AbstractAxisProvider contentProvider) {
+	protected IAxisManager createAxisManager(final List<AxisManagerRepresentation> representations, final AbstractAxisProvider contentProvider) {
 		final List<IAxisManager> managers = new ArrayList<IAxisManager>();
-		for(String id : ids) {
-			id = id.trim();
-			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(this, id, this.table, contentProvider, ids.size() == 1);
+		for(AxisManagerRepresentation current : representations) {
+			String id = current.getAxisManagerId().trim();
+			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(this, current, this.table, contentProvider, representations.size() == 1);
 			assert manager != null;
 			managers.add(manager);
 		}
 		IAxisManager manager = null;
 		if(managers.size() > 1) {
 			manager = new CompositeAxisManager();
-			manager.init(this, "", this.table, contentProvider, true); //$NON-NLS-1$
+			manager.init(this, null, this.table, contentProvider, true);
 			((CompositeAxisManager)manager).setAxisManager(managers);
 		} else {
 			manager = managers.get(0);
@@ -447,8 +441,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return the list of the ids of the axis manager to use for the vertical
 	 *         axis
 	 */
-	protected List<String> getVerticalContentProviderIds() {
-		return this.table.getColumnAxisProvider().getJavaAxisManagerIds();
+	protected List<String> getVerticalContentProviderIds() {//FIXME : maybe we must return AxisManager which contains the id!
+		final List<String> ids = new ArrayList<String>();
+		for(final AxisManagerRepresentation axisManager : this.table.getTableConfiguration().getColumnHeaderAxisConfiguration().getAxisManagers()) {
+			ids.add(axisManager.getAxisManagerId());
+		}
+		return ids;
 	}
 
 	/**
@@ -457,7 +455,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *         axis
 	 */
 	protected List<String> getHorizontalContentProviderIds() {
-		return this.table.getRowAxisProvider().getJavaAxisManagerIds();
+		final List<String> ids = new ArrayList<String>();
+		for(final AxisManagerRepresentation axisManager : this.table.getTableConfiguration().getRowHeaderAxisConfiguration().getAxisManagers()) {
+			ids.add(axisManager.getAxisManagerId());
+		}
+		return ids;
 	}
 
 	/**
@@ -723,16 +725,17 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public void reorderColumnsElements(final IAxis axisToMove, final int newIndex) {
-		final EditingDomain domain = getEditingDomain(table.getContext());
-		final Command cmd = MoveCommand.create(getEditingDomain(table.getContext()), this.columnProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
-		domain.getCommandStack().execute(cmd);
+		final EditingDomain domain = getEditingDomain(this.table.getContext());
+		//FIXME
+		//		final Command cmd = MoveCommand.create(getEditingDomain(this.table.getContext()), this.columnProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
+		//		domain.getCommandStack().execute(cmd);
 	}
 
 	// not tested
 	public void reorderRowElements(final IAxis axisToMove, final int newIndex) {
-		final EditingDomain domain = getEditingDomain(table.getContext());
-		final Command cmd = MoveCommand.create(getEditingDomain(table.getContext()), this.rowProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
-		domain.getCommandStack().execute(cmd);
+		final EditingDomain domain = getEditingDomain(this.table.getContext());
+		//		final Command cmd = MoveCommand.create(getEditingDomain(this.table.getContext()), this.rowProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
+		//		domain.getCommandStack().execute(cmd);
 	}
 
 	/**
@@ -890,9 +893,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	public AbstractAxisProvider getVerticalAxisProvider() {
 		if(this.table.isInvertAxis()) {
-			return this.table.getRowAxisProvider();
+			return this.table.getCurrentRowAxisProvider();
 		} else {
-			return this.table.getColumnAxisProvider();
+			return this.table.getCurrentColumnAxisProvider();
 		}
 	}
 
@@ -904,28 +907,28 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	public AbstractAxisProvider getHorizontalAxisProvider() {
 		if(this.table.isInvertAxis()) {
-			return this.table.getColumnAxisProvider();
+			return this.table.getCurrentColumnAxisProvider();
 		} else {
-			return this.table.getRowAxisProvider();
+			return this.table.getCurrentRowAxisProvider();
 		}
 	}
 
-	/**
-	 * 
-	 * @return
-	 *         the vertical axis configuration
-	 */
-	public AbstractAxisConfiguration getColumnAxisConfiguration() {
-		return getVerticalAxisProvider().getAxisConfiguration();
-	}
-
-	/**
-	 * 
-	 * @return
-	 *         the horizontal axis configuration
-	 */
-	public AbstractAxisConfiguration getRowAxisConfiguration() {
-		return getHorizontalAxisProvider().getAxisConfiguration();
-	}
+	//	/**
+	//	 * 
+	//	 * @return
+	//	 *         the vertical axis configuration
+	//	 */
+	//	public AbstractHeaderAxisConfiguration getColumnAxisConfiguration() {
+	//		return getVerticalAxisProvider().getAxisConfiguration();
+	//	}
+	//
+	//	/**
+	//	 * 
+	//	 * @return
+	//	 *         the horizontal axis configuration
+	//	 */
+	//	public AbstractHeaderAxisConfiguration getRowAxisConfiguration() {
+	//		return getHorizontalAxisProvider().getAxisConfiguration();
+	//	}
 
 }

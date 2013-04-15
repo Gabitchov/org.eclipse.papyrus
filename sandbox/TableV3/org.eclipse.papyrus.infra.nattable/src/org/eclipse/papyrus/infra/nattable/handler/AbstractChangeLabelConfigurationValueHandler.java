@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -44,7 +44,7 @@ public abstract class AbstractChangeLabelConfigurationValueHandler extends Abstr
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ILabelConfiguration labelConf = getEditedLabelConfiguration();
+		final ILabelProviderConfiguration labelConf = getEditedLabelConfiguration();
 		TransactionalEditingDomain domain = getEditingDomain();
 		Command command = event.getCommand();
 		boolean oldValue = HandlerUtil.toggleCommandState(command);
@@ -60,7 +60,7 @@ public abstract class AbstractChangeLabelConfigurationValueHandler extends Abstr
 	 * @return
 	 *         the edited label configuration
 	 */
-	protected abstract ILabelConfiguration getEditedLabelConfiguration();
+	protected abstract ILabelProviderConfiguration getEditedLabelConfiguration();
 
 	/**
 	 * 

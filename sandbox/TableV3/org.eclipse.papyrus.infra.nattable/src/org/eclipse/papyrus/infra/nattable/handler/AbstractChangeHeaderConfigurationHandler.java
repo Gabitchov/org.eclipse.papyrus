@@ -22,8 +22,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -45,16 +44,14 @@ public abstract class AbstractChangeHeaderConfigurationHandler extends AbstractT
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final AbstractAxisConfiguration configuration = getEditedAxisConfiguration();
-		if(configuration instanceof DefaultAxisConfiguration) {
-			Command command = event.getCommand();
-			boolean oldValue = HandlerUtil.toggleCommandState(command);
-			TransactionalEditingDomain domain = getEditingDomain();
-			final IEditCommandRequest request = new SetRequest(domain, configuration, getEditedFeature(), !oldValue);
-			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(configuration);
-			final ICommand cmd = provider.getEditCommand(request);
-			domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
-		}
+		final AbstractHeaderAxisConfiguration configuration = getEditedAxisConfiguration();
+		Command command = event.getCommand();
+		boolean oldValue = HandlerUtil.toggleCommandState(command);
+		TransactionalEditingDomain domain = getEditingDomain();
+		final IEditCommandRequest request = new SetRequest(domain, configuration, getEditedFeature(), !oldValue);
+		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(configuration);
+		final ICommand cmd = provider.getEditCommand(request);
+		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 		return null;
 	}
 
@@ -70,5 +67,5 @@ public abstract class AbstractChangeHeaderConfigurationHandler extends AbstractT
 	 * @return
 	 *         the edited axis configuration
 	 */
-	protected abstract AbstractAxisConfiguration getEditedAxisConfiguration();
+	protected abstract AbstractHeaderAxisConfiguration getEditedAxisConfiguration();
 }
