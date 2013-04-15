@@ -7,8 +7,19 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_aRu8QKNREeKYtpMIQ0VJGQ" name="UseCase">
       <packagedElement xmi:type="uml:Component" xmi:id="_9HsZEKNSEeKYtpMIQ0VJGQ" name="ValidationModule" useCase="_D0UpIKNTEeKYtpMIQ0VJGQ _RCkMEKNTEeKYtpMIQ0VJGQ _U89lEKNTEeKYtpMIQ0VJGQ _nSqKAKNTEeKYtpMIQ0VJGQ">
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_D0UpIKNTEeKYtpMIQ0VJGQ" name="Generate constraints directly into the definition" subject="_9HsZEKNSEeKYtpMIQ0VJGQ"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_D0UpIKNTEeKYtpMIQ0VJGQ" name="Generate constraints directly into the definition" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_r4fLAKNmEeK7_saMR_mmoA" annotatedElement="_D0UpIKNTEeKYtpMIQ0VJGQ">
+            <body>Constraint written in OCL in the profile can be generated into the definition of the profile and taken in charge during the validation of the model.&#xD;
+The problem with this use case if to know if it is possible to respect the requirement ValidationReq002.&#xD;
+</body>
+          </ownedComment>
+        </ownedUseCase>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_RCkMEKNTEeKYtpMIQ0VJGQ" name="Generate constraints as EMF validation plugins" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_-oMLYKNmEeK7_saMR_mmoA" annotatedElement="_RCkMEKNTEeKYtpMIQ0VJGQ">
+            <body>The user can generate plugins that wrap constraint and can be used in the EMF plugin validation.&#xD;
+The constraint can be generated in Java code, or directly from OCL.&#xD;
+</body>
+          </ownedComment>
           <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_rPSXoaNTEeKYtpMIQ0VJGQ" name="point"/>
         </ownedUseCase>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_U89lEKNTEeKYtpMIQ0VJGQ" name="Constraint in OCL" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
