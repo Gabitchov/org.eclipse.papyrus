@@ -31,10 +31,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
@@ -59,8 +61,8 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	//	private Adapter listener;
 
 	@Override
-	public void init(INattableModelManager manager, String managerId, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
-		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
+	public void init(INattableModelManager manager, AxisManagerRepresentation rep, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
+		super.init(manager, rep, table, provider, mustRefreshOnAxisChanges);
 		//		if(hasConfiguration()) {
 		//			updateAxisContents();
 		//		}
@@ -139,12 +141,13 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 		if(!allPropertyQN.isEmpty()) {
 			final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 			for(String propQN : allPropertyQN) {
-				final IdAxis newAxis = NattableFactory.eINSTANCE.createIdAxis();
+				final IdAxis newAxis = NattableaxisFactory.eINSTANCE.createFeatureIdAxis();
 				newAxis.setElement(propQN);
+				newAxis.setManager(this.rep);
 				toAdd.add(newAxis);
 			}
 			//FIXME : we must use a factory and use the service edit
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), toAdd);
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
 
 		}
 		// TODO Auto-generated method stub
@@ -163,7 +166,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 		final List<Object> axisElements = getTableManager().getElementsList(getRepresentedContentProvider());
 		for(int i = 0; i < axis.size(); i++) {
 			final IAxis current = axis.get(i);
-			if(current instanceof IdAxis) {
+			if(current instanceof FeatureIdAxis) {
 				int currentIndex = axisElements.indexOf(current);
 				if(currentIndex == -1) {//the element was not in the axis with its id representation
 					//					currentIndex = axisElements.indexOf(current);

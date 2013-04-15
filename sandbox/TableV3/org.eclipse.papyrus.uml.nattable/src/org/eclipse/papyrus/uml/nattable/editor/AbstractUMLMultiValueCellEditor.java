@@ -24,7 +24,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
@@ -80,7 +80,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	 */
 	@Override
 	public int open() {
-		return ((MultipleValueSelectorDialog)dialog).open();
+		return ((MultipleValueSelectorDialog)this.dialog).open();
 	}
 
 	/**
@@ -91,13 +91,13 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	 */
 	@Override
 	public Object createDialogInstance() {
-		int columnIndex = layerCell.getColumnIndex();
-		int rowIndex = layerCell.getRowIndex();
+		int columnIndex = this.layerCell.getColumnIndex();
+		int rowIndex = this.layerCell.getRowIndex();
 		final Object row = this.manager.getRowElement(rowIndex);
 		final Object column = this.manager.getColumnElement(columnIndex);
 		Element editedElement = null;
 		Object feature = null;
-		if(row instanceof EObject && column == axisElement) {
+		if(row instanceof EObject && column == this.axisElement) {
 			editedElement = (Element)row;
 			feature = column;
 		} else {
@@ -113,12 +113,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 			realFeature = (EStructuralFeature)feature;
 			realEditedObject = editedElement;
 		} else {
-			String id = null;
-			if(feature instanceof IdAxis) {
-				id = ((IdAxis)feature).getElement();
-			} else if(feature instanceof String) {
-				id = (String)feature;
-			}
+			final String id = AxisUtils.getPropertyId(this.axisElement);
 			stereotypesWithEditedFeatureAppliedOnElement = UMLTableUtils.getAppliedSteretoypesWithThisProperty(editedElement, id);
 			stereotype = stereotypesWithEditedFeatureAppliedOnElement.get(0);
 			realEditedObject = editedElement.getStereotypeApplication(stereotypesWithEditedFeatureAppliedOnElement.get(0));
@@ -128,9 +123,9 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 		if(stereotypesWithEditedFeatureAppliedOnElement != null && stereotypesWithEditedFeatureAppliedOnElement.size() > 1) {
 			//FIXME : not yet managed
 		} else {
-			dialog = createDialog(realEditedObject, realFeature, stereotype, editedElement.eResource().getResourceSet());
+			this.dialog = createDialog(realEditedObject, realFeature, stereotype, editedElement.eResource().getResourceSet());
 		}
-		return dialog;
+		return this.dialog;
 	}
 
 	/**
@@ -165,8 +160,8 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 					newValue.add(object);
 
 				}
-				returnedValue = newValue;
-				editHandler.commit(newValue, MoveDirectionEnum.NONE);
+				AbstractUMLMultiValueCellEditor.this.returnedValue = newValue;
+				AbstractUMLMultiValueCellEditor.this.editHandler.commit(newValue, MoveDirectionEnum.NONE);
 			}
 
 		};
@@ -206,7 +201,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 
 	@Override
 	public Object getDialogInstance() {
-		return dialog;
+		return this.dialog;
 	}
 
 	/**
@@ -217,7 +212,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	 */
 	@Override
 	public Object getEditorValue() {
-		return returnedValue;
+		return this.returnedValue;
 	}
 
 	/**

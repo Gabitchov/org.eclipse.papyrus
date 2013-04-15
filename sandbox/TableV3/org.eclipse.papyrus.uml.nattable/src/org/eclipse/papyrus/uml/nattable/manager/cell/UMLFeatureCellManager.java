@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;

@@ -26,7 +26,6 @@
             locationURI="popup:org.eclipse.papyrus.infra.nattable.popupmenu.createnattable">
          <command
                commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
-               label="UML Generic NatTable"
                mnemonic="&amp;G"
                style="push">
             <visibleWhen>
@@ -44,7 +43,6 @@
             locationURI="menu:org.eclipse.papyrus.infra.nattable.menu.createnattable">
          <command
                commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
-               label="UML Generic NatTable"
                mnemonic="&amp;G"
                style="push">
             <visibleWhen>
@@ -62,7 +60,6 @@
             locationURI="toolbar:org.eclipse.papyrus.infra.nattable.toolbar.createnattable">
          <command
                commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
-               label="UML Generic NatTable"
                mnemonic="&amp;G"
                style="push">
             <visibleWhen>
@@ -84,7 +81,7 @@
                class="org.eclipse.papyrus.infra.nattable.common.handlers.CreateNatTableEditorHandler">
             <parameter
                   name="tableType"
-                  value="PapyruGenericNattable">
+                  value="PapyrusGenericTable">
             </parameter>
          </class>
       </handler>

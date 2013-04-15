@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.celleditor.AbstractComboAction;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.uml.nattable.Activator;
@@ -68,19 +68,19 @@ public class UMLDialogComboAction extends AbstractComboAction {
 
 	@Override
 	public void run() {
-		if(dataProvider instanceof UMLSingleReferenceComboBoxDataProvider) {
+		if(this.dataProvider instanceof UMLSingleReferenceComboBoxDataProvider) {
 			final TreeSelectorDialog dialog = new TreeSelectorDialog(Display.getDefault().getActiveShell());
-			final Object rowElement = ((UMLSingleReferenceComboBoxDataProvider)dataProvider).getEditedEObject(columnIndex, rowIndex);
-			final Object columnElement = ((UMLSingleReferenceComboBoxDataProvider)dataProvider).getEditedFeature(columnIndex, rowIndex);
+			final Object rowElement = ((UMLSingleReferenceComboBoxDataProvider)this.dataProvider).getEditedEObject(this.columnIndex, this.rowIndex);
+			final Object columnElement = ((UMLSingleReferenceComboBoxDataProvider)this.dataProvider).getEditedFeature(this.columnIndex, this.rowIndex);
 
 			EObject realEditedObject = null;
 			EStructuralFeature realFeature = null;
 
 			Element editedElement = null;
-			Object feature = axisElement;
-			if(rowElement instanceof Element && columnElement == axisElement) {
+			Object feature = this.axisElement;
+			if(rowElement instanceof Element && columnElement == this.axisElement) {
 				editedElement = (Element)rowElement;
-			} else if(rowElement == axisElement && columnElement instanceof EObject) {
+			} else if(rowElement == this.axisElement && columnElement instanceof EObject) {
 				editedElement = (Element)columnElement;
 			}
 
@@ -91,12 +91,7 @@ public class UMLDialogComboAction extends AbstractComboAction {
 				realFeature = (EStructuralFeature)feature;
 				realEditedObject = editedElement;
 			} else {
-				String id = null;
-				if(feature instanceof IdAxis) {
-					id = ((IdAxis)feature).getElement();
-				} else if(feature instanceof String) {
-					id = (String)feature;
-				}
+				String id = AxisUtils.getPropertyId(feature);
 				stereotypesWithEditedFeatureAppliedOnElement = UMLTableUtils.getAppliedSteretoypesWithThisProperty(editedElement, id);
 				stereotype = stereotypesWithEditedFeatureAppliedOnElement.get(0);
 				realEditedObject = editedElement.getStereotypeApplication(stereotypesWithEditedFeatureAppliedOnElement.get(0));
@@ -111,8 +106,8 @@ public class UMLDialogComboAction extends AbstractComboAction {
 			dialog.setTitle(realFeature.getEType().getName());
 
 			dialog.setLabelProvider(getLabelProvider(editedElement));
-			int currentIndex = combo.getSelectionIndex();
-			List<?> values = dataProvider.getValues(columnIndex, rowIndex);
+			int currentIndex = this.combo.getSelectionIndex();
+			List<?> values = this.dataProvider.getValues(this.columnIndex, this.rowIndex);
 			Object initialSelection = null;
 			if(currentIndex != -1) {
 				initialSelection = values.get(currentIndex);
@@ -126,7 +121,7 @@ public class UMLDialogComboAction extends AbstractComboAction {
 			if(res == Window.OK) {
 				final Object[] result = dialog.getResult();
 				int index = values.indexOf(result[0]);
-				combo.select(index);
+				this.combo.select(index);
 			}
 		}
 	}

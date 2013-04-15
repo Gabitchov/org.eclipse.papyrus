@@ -54,7 +54,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 			Profile profile = (Profile)parentElement;
 			Set<Stereotype> restrictedStereotypes = new HashSet<Stereotype>();
 			if(this.isRestricted && !profile.getOwnedStereotypes().isEmpty()) {
-				AbstractAxisProvider horizontalAxisProvider = this.umlStereotypePropertyManager.getTable().getRowAxisProvider();
+				AbstractAxisProvider horizontalAxisProvider = this.umlStereotypePropertyManager.getTable().getCurrentRowAxisProvider();
 				List<Object> elementsList = this.umlStereotypePropertyManager.getTableManager().getElementsList(horizontalAxisProvider);
 				for(Object object : elementsList) {
 					if(object instanceof Element) {

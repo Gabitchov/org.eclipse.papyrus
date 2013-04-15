@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.widgets.providers.HierarchicToFlatContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.TreeToFlatContentProvider;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
@@ -73,15 +73,15 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	 * @return
 	 */
 	public List<?> getValues(int columnIndex, int rowIndex) {
-		final Object colElement = elementProvider.getColumnElement(columnIndex);
-		final Object rowElement = elementProvider.getRowElement(rowIndex);
+		final Object colElement = this.elementProvider.getColumnElement(columnIndex);
+		final Object rowElement = this.elementProvider.getRowElement(rowIndex);
 
 		Element editedElement = null;
 		Object axis = null;
-		if(colElement == axisElement && rowElement instanceof EObject) {
+		if(colElement == this.axisElement && rowElement instanceof EObject) {
 			editedElement = (Element)rowElement;
 			axis = colElement;
-		} else if(colElement instanceof EObject && rowElement == axisElement) {
+		} else if(colElement instanceof EObject && rowElement == this.axisElement) {
 			editedElement = (Element)colElement;
 			axis = rowElement;
 		}
@@ -90,12 +90,7 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 			if(axis instanceof EReference) {
 				return getPossibleValues(editedElement, (EReference)axis);
 			} else {
-				String id = null;
-				if(axis instanceof IdAxis) {
-					id = ((IdAxis)axis).getElement();
-				} else if(axis instanceof String) {
-					id = (String)axis;
-				}
+				final String id = AxisUtils.getPropertyId(this.axisElement);
 				return getPossibleValuesForStereotypeProperty(editedElement, id);
 			}
 		}
@@ -172,14 +167,14 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	 */
 	//	FIXME : try to remove this method, improving the ComboAction...
 	public EObject getEditedEObject(int columnIndex, int rowIndex) {
-		final Object colElement = elementProvider.getColumnElement(columnIndex);
-		final Object rowElement = elementProvider.getRowElement(rowIndex);
+		final Object colElement = this.elementProvider.getColumnElement(columnIndex);
+		final Object rowElement = this.elementProvider.getRowElement(rowIndex);
 
 		Element el = (Element)rowElement;
 
-		if(colElement == axisElement) {
+		if(colElement == this.axisElement) {
 			el = (Element)rowElement;
-		} else if(rowElement == axisElement) {
+		} else if(rowElement == this.axisElement) {
 			el = (Element)colElement;
 		} else {
 			//There is a problem in the declaration of the editor...
@@ -198,7 +193,7 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	 */
 	//FIXME : try to remove this method, improving the ComboAction...
 	public Object getEditedFeature(int columnIndex, int rowIndex) {
-		return axisElement;
+		return this.axisElement;
 	}
 
 

@@ -22,9 +22,10 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.celleditor.ButtonConfiguration;
 import org.eclipse.papyrus.infra.nattable.celleditor.ComboBoxWithButtonCellEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.uml.nattable.dataprovider.UMLSingleReferenceComboBoxDataProvider;
 import org.eclipse.papyrus.uml.nattable.dataprovider.UMLStereotypeSingleEnumerationComboBoxDataProvider;
 import org.eclipse.papyrus.uml.nattable.editor.MultiBooleanCellEditor;
@@ -90,12 +91,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 	@Override
 	public boolean handles(Table table, Object axisElement) {
 		boolean result = false;
-		String id = null;
-		if(axisElement instanceof IdAxis) {
-			id = ((IdAxis)axisElement).getElement();
-		} else if(axisElement instanceof String) {
-			id = (String)axisElement;
-		}
+		final String id = AxisUtils.getPropertyId(axisElement);
 		if(id != null) {
 			result = id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX);
 		}

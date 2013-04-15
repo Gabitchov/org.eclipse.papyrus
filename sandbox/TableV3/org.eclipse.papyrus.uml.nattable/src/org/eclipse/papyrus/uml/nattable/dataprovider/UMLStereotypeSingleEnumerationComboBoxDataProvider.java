@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -71,23 +71,16 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 	 */
 	public List<?> getValues(int columnIndex, int rowIndex) {
 		final List<Object> literals = new ArrayList<Object>();
-		Object el = elementProvider.getColumnElement(columnIndex);
-		Object rowElement = elementProvider.getRowElement(rowIndex);
+		Object el = this.elementProvider.getColumnElement(columnIndex);
+		Object rowElement = this.elementProvider.getRowElement(rowIndex);
 		Element modelElement = null;
-		if(rowElement instanceof Element && el == axisElement) {
+		if(rowElement instanceof Element && el == this.axisElement) {
 			modelElement = (Element)rowElement;
-		} else if(rowElement == axisElement && el instanceof Element) {
+		} else if(rowElement == this.axisElement && el instanceof Element) {
 			modelElement = (Element)el;
 		}
 		if(modelElement != null) {
-			final String id;
-			if(axisElement instanceof IdAxis) {
-				id = ((IdAxis)axisElement).getElement();
-			} else if(axisElement instanceof String) {
-				id = (String)axisElement;
-			} else {
-				id = null;
-			}
+			final String id = AxisUtils.getPropertyId(this.axisElement);
 			final Property property = UMLTableUtils.getRealStereotypeProperty(modelElement, id);
 			final List<Stereotype> ste = UMLTableUtils.getAppliedSteretoypesWithThisProperty(modelElement, id);
 			if(ste.size() == 1) {
