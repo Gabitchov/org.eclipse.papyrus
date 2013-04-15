@@ -60,4 +60,20 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.extra.marte.textedit.source.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.extra.layout.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.diagramtemplate.feature"
+         version="0.0.0"/>
+         
+   <includes
+         id="org.eclipse.papyrus.extra.layout.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.diagramtemplate.source.feature"
+         version="0.0.0"/>
+
 </feature>
