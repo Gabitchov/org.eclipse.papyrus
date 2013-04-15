@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.present
 
 import java.io.IOException;
 import java.io.InputStream;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -34,24 +33,56 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.ui.MarkerHelper;
+import org.eclipse.emf.common.ui.ViewerPane;
+import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
+import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-
 import org.eclipse.jface.util.LocalSelectionTransfer;
-
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -65,29 +96,29 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider.NattableaxisItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider.NattableaxisconfigurationItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.provider.NattableaxisproviderItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider.NattableconfigurationItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider.NattablelabelproviderItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider.NattabletesterItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorPlugin;
+import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableItemProviderAdapterFactory;
 import org.eclipse.swt.SWT;
-
 import org.eclipse.swt.custom.CTabFolder;
-
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
-
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
-
 import org.eclipse.swt.graphics.Point;
-
 import org.eclipse.swt.layout.FillLayout;
-
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
-
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -95,92 +126,17 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
-
 import org.eclipse.ui.ide.IGotoMarker;
-
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
-
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
-
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
-
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.ui.MarkerHelper;
-import org.eclipse.emf.common.ui.ViewerPane;
-
-import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
-
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-
-import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
-
-import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
-
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider.NattabletesterItemProviderAdapterFactory;
-
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider.NattableaxisconfigurationItemProviderAdapterFactory;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.provider.NattableaxisproviderItemProviderAdapterFactory;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider.NattableconfigurationItemProviderAdapterFactory;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider.NattablelabelproviderItemProviderAdapterFactory;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorPlugin;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableItemProviderAdapterFactory;
-
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
@@ -350,14 +306,14 @@ public class NattabletesterEditor
 		new IPartListener() {
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
-					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
+					if (((ContentOutline)p).getCurrentPage() == NattabletesterEditor.this.contentOutlinePage) {
 						getActionBarContributor().setActiveEditor(NattabletesterEditor.this);
 
-						setCurrentViewer(contentOutlineViewer);
+						setCurrentViewer(NattabletesterEditor.this.contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
-					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
+					if (NattabletesterEditor.this.propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
 						getActionBarContributor().setActiveEditor(NattabletesterEditor.this);
 						handleActivate();
 					}
@@ -438,13 +394,13 @@ public class NattabletesterEditor
 							Resource resource = (Resource)notification.getNotifier();
 							Diagnostic diagnostic = analyzeResourceProblems(resource, null);
 							if (diagnostic.getSeverity() != Diagnostic.OK) {
-								resourceToDiagnosticMap.put(resource, diagnostic);
+								NattabletesterEditor.this.resourceToDiagnosticMap.put(resource, diagnostic);
 							}
 							else {
-								resourceToDiagnosticMap.remove(resource);
+								NattabletesterEditor.this.resourceToDiagnosticMap.remove(resource);
 							}
 
-							if (updateProblemIndication) {
+							if (NattabletesterEditor.this.updateProblemIndication) {
 								getSite().getShell().getDisplay().asyncExec
 									(new Runnable() {
 										 public void run() {
@@ -469,8 +425,8 @@ public class NattabletesterEditor
 			@Override
 			protected void unsetTarget(Resource target) {
 				basicUnsetTarget(target);
-				resourceToDiagnosticMap.remove(target);
-				if (updateProblemIndication) {
+				NattabletesterEditor.this.resourceToDiagnosticMap.remove(target);
+				if (NattabletesterEditor.this.updateProblemIndication) {
 					getSite().getShell().getDisplay().asyncExec
 						(new Runnable() {
 							 public void run() {
@@ -493,7 +449,7 @@ public class NattabletesterEditor
 				IResourceDelta delta = event.getDelta();
 				try {
 					class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-						protected ResourceSet resourceSet = editingDomain.getResourceSet();
+						protected ResourceSet resourceSet = NattabletesterEditor.this.editingDomain.getResourceSet();
 						protected Collection<Resource> changedResources = new ArrayList<Resource>();
 						protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
@@ -501,13 +457,13 @@ public class NattabletesterEditor
 							if (delta.getResource().getType() == IResource.FILE) {
 								if (delta.getKind() == IResourceDelta.REMOVED ||
 								    delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
-									Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+									Resource resource = this.resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
 									if (resource != null) {
 										if (delta.getKind() == IResourceDelta.REMOVED) {
-											removedResources.add(resource);
+											this.removedResources.add(resource);
 										}
-										else if (!savedResources.remove(resource)) {
-											changedResources.add(resource);
+										else if (!NattabletesterEditor.this.savedResources.remove(resource)) {
+											this.changedResources.add(resource);
 										}
 									}
 								}
@@ -518,11 +474,11 @@ public class NattabletesterEditor
 						}
 
 						public Collection<Resource> getChangedResources() {
-							return changedResources;
+							return this.changedResources;
 						}
 
 						public Collection<Resource> getRemovedResources() {
-							return removedResources;
+							return this.removedResources;
 						}
 					}
 
@@ -533,7 +489,7 @@ public class NattabletesterEditor
 						getSite().getShell().getDisplay().asyncExec
 							(new Runnable() {
 								 public void run() {
-									 removedResources.addAll(visitor.getRemovedResources());
+									 NattabletesterEditor.this.removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
 										 getSite().getPage().closeEditor(NattabletesterEditor.this, false);
 									 }
@@ -545,7 +501,7 @@ public class NattabletesterEditor
 						getSite().getShell().getDisplay().asyncExec
 							(new Runnable() {
 								 public void run() {
-									 changedResources.addAll(visitor.getChangedResources());
+									 NattabletesterEditor.this.changedResources.addAll(visitor.getChangedResources());
 									 if (getSite().getPage().getActiveEditor() == NattabletesterEditor.this) {
 										 handleActivate();
 									 }
@@ -568,29 +524,29 @@ public class NattabletesterEditor
 	protected void handleActivate() {
 		// Recompute the read only state.
 		//
-		if (editingDomain.getResourceToReadOnlyMap() != null) {
-		  editingDomain.getResourceToReadOnlyMap().clear();
+		if (this.editingDomain.getResourceToReadOnlyMap() != null) {
+		  this.editingDomain.getResourceToReadOnlyMap().clear();
 
 		  // Refresh any actions that may become enabled or disabled.
 		  //
 		  setSelection(getSelection());
 		}
 
-		if (!removedResources.isEmpty()) {
+		if (!this.removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(NattabletesterEditor.this, false);
 			}
 			else {
-				removedResources.clear();
-				changedResources.clear();
-				savedResources.clear();
+				this.removedResources.clear();
+				this.changedResources.clear();
+				this.savedResources.clear();
 			}
 		}
-		else if (!changedResources.isEmpty()) {
-			changedResources.removeAll(savedResources);
+		else if (!this.changedResources.isEmpty()) {
+			this.changedResources.removeAll(this.savedResources);
 			handleChangedResources();
-			changedResources.clear();
-			savedResources.clear();
+			this.changedResources.clear();
+			this.savedResources.clear();
 		}
 	}
 
@@ -601,32 +557,32 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	protected void handleChangedResources() {
-		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+		if (!this.changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
 			if (isDirty()) {
-				changedResources.addAll(editingDomain.getResourceSet().getResources());
+				this.changedResources.addAll(this.editingDomain.getResourceSet().getResources());
 			}
-			editingDomain.getCommandStack().flush();
+			this.editingDomain.getCommandStack().flush();
 
-			updateProblemIndication = false;
-			for (Resource resource : changedResources) {
+			this.updateProblemIndication = false;
+			for (Resource resource : this.changedResources) {
 				if (resource.isLoaded()) {
 					resource.unload();
 					try {
 						resource.load(Collections.EMPTY_MAP);
 					}
 					catch (IOException exception) {
-						if (!resourceToDiagnosticMap.containsKey(resource)) {
-							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+						if (!this.resourceToDiagnosticMap.containsKey(resource)) {
+							this.resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
 						}
 					}
 				}
 			}
 
-			if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+			if (AdapterFactoryEditingDomain.isStale(this.editorSelection)) {
 				setSelection(StructuredSelection.EMPTY);
 			}
 
-			updateProblemIndication = true;
+			this.updateProblemIndication = true;
 			updateProblemIndication();
 		}
 	}
@@ -638,15 +594,15 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	protected void updateProblemIndication() {
-		if (updateProblemIndication) {
+		if (this.updateProblemIndication) {
 			BasicDiagnostic diagnostic =
 				new BasicDiagnostic
 					(Diagnostic.OK,
 					 "org.eclipse.papyrus.infra.nattable.model.editor", //$NON-NLS-1$
 					 0,
 					 null,
-					 new Object [] { editingDomain.getResourceSet() });
-			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
+					 new Object [] { this.editingDomain.getResourceSet() });
+			for (Diagnostic childDiagnostic : this.resourceToDiagnosticMap.values()) {
 				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
 				}
@@ -662,7 +618,7 @@ public class NattabletesterEditor
 			else if (diagnostic.getSeverity() != Diagnostic.OK) {
 				ProblemEditorPart problemEditorPart = new ProblemEditorPart();
 				problemEditorPart.setDiagnostic(diagnostic);
-				problemEditorPart.setMarkerHelper(markerHelper);
+				problemEditorPart.setMarkerHelper(this.markerHelper);
 				try {
 					addPage(++lastEditorPage, problemEditorPart, getEditorInput());
 					setPageText(lastEditorPage, problemEditorPart.getPartName());
@@ -674,11 +630,11 @@ public class NattabletesterEditor
 				}
 			}
 
-			if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
-				markerHelper.deleteMarkers(editingDomain.getResourceSet());
+			if (this.markerHelper.hasMarkers(this.editingDomain.getResourceSet())) {
+				this.markerHelper.deleteMarkers(this.editingDomain.getResourceSet());
 				if (diagnostic.getSeverity() != Diagnostic.OK) {
 					try {
-						markerHelper.createMarkers(diagnostic);
+						this.markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
 						NattableEditorPlugin.INSTANCE.log(exception);
@@ -722,17 +678,18 @@ public class NattabletesterEditor
 	protected void initializeEditingDomain() {
 		// Create an adapter factory that yields item providers.
 		//
-		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		this.adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new NattableItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new NattableconfigurationItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new NattableaxisproviderItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new NattablelabelproviderItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new NattableaxisconfigurationItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new NattabletesterItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new NattableItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new NattableconfigurationItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new NattableaxisproviderItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new NattablelabelproviderItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new NattableaxisconfigurationItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new NattabletesterItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new NattableaxisItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
 		//
@@ -754,7 +711,7 @@ public class NattabletesterEditor
 								  if (mostRecentCommand != null) {
 									  setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 								  }
-								  for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext(); ) {
+								  for (Iterator<PropertySheetPage> i = NattabletesterEditor.this.propertySheetPages.iterator(); i.hasNext(); ) {
 									  PropertySheetPage propertySheetPage = i.next();
 									  if (propertySheetPage.getControl().isDisposed()) {
 										  i.remove();
@@ -770,7 +727,7 @@ public class NattabletesterEditor
 
 		// Create the editing domain with a special command stack.
 		//
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		this.editingDomain = new AdapterFactoryEditingDomain(this.adapterFactory, commandStack, new HashMap<Resource, Boolean>());
 	}
 
 	/**
@@ -800,8 +757,8 @@ public class NattabletesterEditor
 					public void run() {
 						// Try to select the items in the current content viewer of the editor.
 						//
-						if (currentViewer != null) {
-							currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+						if (NattabletesterEditor.this.currentViewer != null) {
+							NattabletesterEditor.this.currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
 						}
 					}
 				};
@@ -818,7 +775,7 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public EditingDomain getEditingDomain() {
-		return editingDomain;
+		return this.editingDomain;
 	}
 
 	/**
@@ -886,13 +843,13 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public void setCurrentViewerPane(ViewerPane viewerPane) {
-		if (currentViewerPane != viewerPane) {
-			if (currentViewerPane != null) {
-				currentViewerPane.showFocus(false);
+		if (this.currentViewerPane != viewerPane) {
+			if (this.currentViewerPane != null) {
+				this.currentViewerPane.showFocus(false);
 			}
-			currentViewerPane = viewerPane;
+			this.currentViewerPane = viewerPane;
 		}
-		setCurrentViewer(currentViewerPane.getViewer());
+		setCurrentViewer(this.currentViewerPane.getViewer());
 	}
 
 	/**
@@ -905,11 +862,11 @@ public class NattabletesterEditor
 	public void setCurrentViewer(Viewer viewer) {
 		// If it is changing...
 		//
-		if (currentViewer != viewer) {
-			if (selectionChangedListener == null) {
+		if (this.currentViewer != viewer) {
+			if (this.selectionChangedListener == null) {
 				// Create the listener on demand.
 				//
-				selectionChangedListener =
+				this.selectionChangedListener =
 					new ISelectionChangedListener() {
 						// This just notifies those things that are affected by the section.
 						//
@@ -921,23 +878,23 @@ public class NattabletesterEditor
 
 			// Stop listening to the old one.
 			//
-			if (currentViewer != null) {
-				currentViewer.removeSelectionChangedListener(selectionChangedListener);
+			if (this.currentViewer != null) {
+				this.currentViewer.removeSelectionChangedListener(this.selectionChangedListener);
 			}
 
 			// Start listening to the new one.
 			//
 			if (viewer != null) {
-				viewer.addSelectionChangedListener(selectionChangedListener);
+				viewer.addSelectionChangedListener(this.selectionChangedListener);
 			}
 
 			// Remember it.
 			//
-			currentViewer = viewer;
+			this.currentViewer = viewer;
 
 			// Set the editors selection based on the current viewer's selection.
 			//
-			setSelection(currentViewer == null ? StructuredSelection.EMPTY : currentViewer.getSelection());
+			setSelection(this.currentViewer == null ? StructuredSelection.EMPTY : this.currentViewer.getSelection());
 		}
 	}
 
@@ -948,7 +905,7 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public Viewer getViewer() {
-		return currentViewer;
+		return this.currentViewer;
 	}
 
 	/**
@@ -969,7 +926,7 @@ public class NattabletesterEditor
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(), FileTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
-		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
+		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(this.editingDomain, viewer));
 	}
 
 	/**
@@ -985,18 +942,18 @@ public class NattabletesterEditor
 		try {
 			// Load the resource through the editing domain.
 			//
-			resource = editingDomain.getResourceSet().getResource(resourceURI, true);
+			resource = this.editingDomain.getResourceSet().getResource(resourceURI, true);
 		}
 		catch (Exception e) {
 			exception = e;
-			resource = editingDomain.getResourceSet().getResource(resourceURI, false);
+			resource = this.editingDomain.getResourceSet().getResource(resourceURI, false);
 		}
 
 		Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
 		if (diagnostic.getSeverity() != Diagnostic.OK) {
-			resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
+			this.resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
 		}
-		editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
+		this.editingDomain.getResourceSet().eAdapters().add(this.problemIndicationAdapter);
 	}
 
 	/**
@@ -1066,17 +1023,17 @@ public class NattabletesterEditor
 					};
 				viewerPane.createControl(getContainer());
 
-				selectionViewer = (TreeViewer)viewerPane.getViewer();
-				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				this.selectionViewer = (TreeViewer)viewerPane.getViewer();
+				this.selectionViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
 
-				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-				selectionViewer.setInput(editingDomain.getResourceSet());
-				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
-				viewerPane.setTitle(editingDomain.getResourceSet());
+				this.selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
+				this.selectionViewer.setInput(this.editingDomain.getResourceSet());
+				this.selectionViewer.setSelection(new StructuredSelection(this.editingDomain.getResourceSet().getResources().get(0)), true);
+				viewerPane.setTitle(this.editingDomain.getResourceSet());
 
-				new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
+				new AdapterFactoryTreeEditor(this.selectionViewer.getTree(), this.adapterFactory);
 
-				createContextMenuFor(selectionViewer);
+				createContextMenuFor(this.selectionViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_SelectionPage_label")); //$NON-NLS-1$
 			}
@@ -1100,12 +1057,12 @@ public class NattabletesterEditor
 					};
 				viewerPane.createControl(getContainer());
 
-				parentViewer = (TreeViewer)viewerPane.getViewer();
-				parentViewer.setAutoExpandLevel(30);
-				parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
-				parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.parentViewer = (TreeViewer)viewerPane.getViewer();
+				this.parentViewer.setAutoExpandLevel(30);
+				this.parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(this.adapterFactory));
+				this.parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				createContextMenuFor(parentViewer);
+				createContextMenuFor(this.parentViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_ParentPage_label")); //$NON-NLS-1$
 			}
@@ -1126,11 +1083,11 @@ public class NattabletesterEditor
 						}
 					};
 				viewerPane.createControl(getContainer());
-				listViewer = (ListViewer)viewerPane.getViewer();
-				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.listViewer = (ListViewer)viewerPane.getViewer();
+				this.listViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+				this.listViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				createContextMenuFor(listViewer);
+				createContextMenuFor(this.listViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_ListPage_label")); //$NON-NLS-1$
 			}
@@ -1151,13 +1108,13 @@ public class NattabletesterEditor
 						}
 					};
 				viewerPane.createControl(getContainer());
-				treeViewer = (TreeViewer)viewerPane.getViewer();
-				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.treeViewer = (TreeViewer)viewerPane.getViewer();
+				this.treeViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+				this.treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				new AdapterFactoryTreeEditor(treeViewer.getTree(), adapterFactory);
+				new AdapterFactoryTreeEditor(this.treeViewer.getTree(), this.adapterFactory);
 
-				createContextMenuFor(treeViewer);
+				createContextMenuFor(this.treeViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TreePage_label")); //$NON-NLS-1$
 			}
@@ -1178,9 +1135,9 @@ public class NattabletesterEditor
 						}
 					};
 				viewerPane.createControl(getContainer());
-				tableViewer = (TableViewer)viewerPane.getViewer();
+				this.tableViewer = (TableViewer)viewerPane.getViewer();
 
-				Table table = tableViewer.getTable();
+				Table table = this.tableViewer.getTable();
 				TableLayout layout = new TableLayout();
 				table.setLayout(layout);
 				table.setHeaderVisible(true);
@@ -1196,11 +1153,11 @@ public class NattabletesterEditor
 				selfColumn.setText(getString("_UI_SelfColumn_label")); //$NON-NLS-1$
 				selfColumn.setResizable(true);
 
-				tableViewer.setColumnProperties(new String [] {"a", "b"}); //$NON-NLS-1$ //$NON-NLS-2$
-				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.tableViewer.setColumnProperties(new String [] {"a", "b"}); //$NON-NLS-1$ //$NON-NLS-2$
+				this.tableViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+				this.tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				createContextMenuFor(tableViewer);
+				createContextMenuFor(this.tableViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TablePage_label")); //$NON-NLS-1$
 			}
@@ -1222,9 +1179,9 @@ public class NattabletesterEditor
 					};
 				viewerPane.createControl(getContainer());
 
-				treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
+				this.treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
 
-				Tree tree = treeViewerWithColumns.getTree();
+				Tree tree = this.treeViewerWithColumns.getTree();
 				tree.setLayoutData(new FillLayout());
 				tree.setHeaderVisible(true);
 				tree.setLinesVisible(true);
@@ -1239,11 +1196,11 @@ public class NattabletesterEditor
 				selfColumn.setResizable(true);
 				selfColumn.setWidth(200);
 
-				treeViewerWithColumns.setColumnProperties(new String [] {"a", "b"}); //$NON-NLS-1$ //$NON-NLS-2$
-				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.treeViewerWithColumns.setColumnProperties(new String [] {"a", "b"}); //$NON-NLS-1$ //$NON-NLS-2$
+				this.treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+				this.treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				createContextMenuFor(treeViewerWithColumns);
+				createContextMenuFor(this.treeViewerWithColumns);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label")); //$NON-NLS-1$
 			}
@@ -1264,10 +1221,10 @@ public class NattabletesterEditor
 				boolean guard = false;
 				@Override
 				public void controlResized(ControlEvent event) {
-					if (!guard) {
-						guard = true;
+					if (!this.guard) {
+						this.guard = true;
 						hideTabs();
-						guard = false;
+						this.guard = false;
 					}
 				}
 			 });
@@ -1326,8 +1283,8 @@ public class NattabletesterEditor
 	protected void pageChange(int pageIndex) {
 		super.pageChange(pageIndex);
 
-		if (contentOutlinePage != null) {
-			handleContentOutlineSelection(contentOutlinePage.getSelection());
+		if (this.contentOutlinePage != null) {
+			handleContentOutlineSelection(this.contentOutlinePage.getSelection());
 		}
 	}
 
@@ -1361,37 +1318,37 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public IContentOutlinePage getContentOutlinePage() {
-		if (contentOutlinePage == null) {
+		if (this.contentOutlinePage == null) {
 			// The content outline is just a tree.
 			//
 			class MyContentOutlinePage extends ContentOutlinePage {
 				@Override
 				public void createControl(Composite parent) {
 					super.createControl(parent);
-					contentOutlineViewer = getTreeViewer();
-					contentOutlineViewer.addSelectionChangedListener(this);
+					NattabletesterEditor.this.contentOutlineViewer = getTreeViewer();
+					NattabletesterEditor.this.contentOutlineViewer.addSelectionChangedListener(this);
 
 					// Set up the tree viewer.
 					//
-					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-					contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-					contentOutlineViewer.setInput(editingDomain.getResourceSet());
+					NattabletesterEditor.this.contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(NattabletesterEditor.this.adapterFactory));
+					NattabletesterEditor.this.contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(NattabletesterEditor.this.adapterFactory));
+					NattabletesterEditor.this.contentOutlineViewer.setInput(NattabletesterEditor.this.editingDomain.getResourceSet());
 
 					// Make sure our popups work.
 					//
-					createContextMenuFor(contentOutlineViewer);
+					createContextMenuFor(NattabletesterEditor.this.contentOutlineViewer);
 
-					if (!editingDomain.getResourceSet().getResources().isEmpty()) {
+					if (!NattabletesterEditor.this.editingDomain.getResourceSet().getResources().isEmpty()) {
 					  // Select the root object in the view.
 					  //
-					  contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+					  NattabletesterEditor.this.contentOutlineViewer.setSelection(new StructuredSelection(NattabletesterEditor.this.editingDomain.getResourceSet().getResources().get(0)), true);
 					}
 				}
 
 				@Override
 				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
 					super.makeContributions(menuManager, toolBarManager, statusLineManager);
-					contentOutlineStatusLineManager = statusLineManager;
+					NattabletesterEditor.this.contentOutlineStatusLineManager = statusLineManager;
 				}
 
 				@Override
@@ -1401,11 +1358,11 @@ public class NattabletesterEditor
 				}
 			}
 
-			contentOutlinePage = new MyContentOutlinePage();
+			this.contentOutlinePage = new MyContentOutlinePage();
 
 			// Listen to selection so that we can handle it is a special way.
 			//
-			contentOutlinePage.addSelectionChangedListener
+			this.contentOutlinePage.addSelectionChangedListener
 				(new ISelectionChangedListener() {
 					 // This ensures that we handle selections correctly.
 					 //
@@ -1415,7 +1372,7 @@ public class NattabletesterEditor
 				 });
 		}
 
-		return contentOutlinePage;
+		return this.contentOutlinePage;
 	}
 
 	/**
@@ -1426,7 +1383,7 @@ public class NattabletesterEditor
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
 		PropertySheetPage propertySheetPage =
-			new ExtendedPropertySheetPage(editingDomain) {
+			new ExtendedPropertySheetPage(this.editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
 					NattabletesterEditor.this.setSelectionToViewer(selection);
@@ -1439,8 +1396,8 @@ public class NattabletesterEditor
 					getActionBarContributor().shareGlobalActions(this, actionBars);
 				}
 			};
-		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
-		propertySheetPages.add(propertySheetPage);
+		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+		this.propertySheetPages.add(propertySheetPage);
 
 		return propertySheetPage;
 	}
@@ -1452,7 +1409,7 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
-		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
+		if (this.currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
 			Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
 			if (selectedElements.hasNext()) {
 				// Get the first selected element.
@@ -1461,7 +1418,7 @@ public class NattabletesterEditor
 
 				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
-				if (currentViewerPane.getViewer() == selectionViewer) {
+				if (this.currentViewerPane.getViewer() == this.selectionViewer) {
 					ArrayList<Object> selectionList = new ArrayList<Object>();
 					selectionList.add(selectedElement);
 					while (selectedElements.hasNext()) {
@@ -1470,14 +1427,14 @@ public class NattabletesterEditor
 
 					// Set the selection to the widget.
 					//
-					selectionViewer.setSelection(new StructuredSelection(selectionList));
+					this.selectionViewer.setSelection(new StructuredSelection(selectionList));
 				}
 				else {
 					// Set the input to the widget.
 					//
-					if (currentViewerPane.getViewer().getInput() != selectedElement) {
-						currentViewerPane.getViewer().setInput(selectedElement);
-						currentViewerPane.setTitle(selectedElement);
+					if (this.currentViewerPane.getViewer().getInput() != selectedElement) {
+						this.currentViewerPane.getViewer().setInput(selectedElement);
+						this.currentViewerPane.setTitle(selectedElement);
 					}
 				}
 			}
@@ -1492,14 +1449,15 @@ public class NattabletesterEditor
 	 */
 	@Override
 	public boolean isDirty() {
-		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
+		return ((BasicCommandStack)this.editingDomain.getCommandStack()).isSaveNeeded();
 	}
 
 	/**
 	 * This is for implementing {@link IEditorPart} and simply saves the model file.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
@@ -1508,7 +1466,7 @@ public class NattabletesterEditor
 		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
-
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, true);
 		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//
 		WorkspaceModifyOperation operation =
@@ -1520,17 +1478,17 @@ public class NattabletesterEditor
 					// Save the resources to the file system.
 					//
 					boolean first = true;
-					for (Resource resource : editingDomain.getResourceSet().getResources()) {
-						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
+					for (Resource resource : NattabletesterEditor.this.editingDomain.getResourceSet().getResources()) {
+						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !NattabletesterEditor.this.editingDomain.isReadOnly(resource)) {
 							try {
 								long timeStamp = resource.getTimeStamp();
 								resource.save(saveOptions);
 								if (resource.getTimeStamp() != timeStamp) {
-									savedResources.add(resource);
+									NattabletesterEditor.this.savedResources.add(resource);
 								}
 							}
 							catch (Exception exception) {
-								resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+								NattabletesterEditor.this.resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
 							}
 							first = false;
 						}
@@ -1538,7 +1496,7 @@ public class NattabletesterEditor
 				}
 			};
 
-		updateProblemIndication = false;
+		this.updateProblemIndication = false;
 		try {
 			// This runs the options, and shows progress.
 			//
@@ -1546,7 +1504,7 @@ public class NattabletesterEditor
 
 			// Refresh the necessary state.
 			//
-			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
+			((BasicCommandStack)this.editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
 		catch (Exception exception) {
@@ -1554,7 +1512,7 @@ public class NattabletesterEditor
 			//
 			NattableEditorPlugin.INSTANCE.log(exception);
 		}
-		updateProblemIndication = true;
+		this.updateProblemIndication = true;
 		updateProblemIndication();
 	}
 
@@ -1568,7 +1526,7 @@ public class NattabletesterEditor
 	protected boolean isPersisted(Resource resource) {
 		boolean result = false;
 		try {
-			InputStream stream = editingDomain.getResourceSet().getURIConverter().createInputStream(resource.getURI());
+			InputStream stream = this.editingDomain.getResourceSet().getURIConverter().createInputStream(resource.getURI());
 			if (stream != null) {
 				result = true;
 				stream.close();
@@ -1616,7 +1574,7 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
-		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+		(this.editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
 		IProgressMonitor progressMonitor =
@@ -1632,7 +1590,7 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public void gotoMarker(IMarker marker) {
-		List<?> targetObjects = markerHelper.getTargetObjects(editingDomain, marker);
+		List<?> targetObjects = this.markerHelper.getTargetObjects(this.editingDomain, marker);
 		if (!targetObjects.isEmpty()) {
 			setSelectionToViewer(targetObjects);
 		}
@@ -1650,8 +1608,8 @@ public class NattabletesterEditor
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
 		site.setSelectionProvider(this);
-		site.getPage().addPartListener(partListener);
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
+		site.getPage().addPartListener(this.partListener);
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(this.resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
 	}
 
 	/**
@@ -1661,8 +1619,8 @@ public class NattabletesterEditor
 	 */
 	@Override
 	public void setFocus() {
-		if (currentViewerPane != null) {
-			currentViewerPane.setFocus();
+		if (this.currentViewerPane != null) {
+			this.currentViewerPane.setFocus();
 		}
 		else {
 			getControl(getActivePage()).setFocus();
@@ -1676,7 +1634,7 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public void addSelectionChangedListener(ISelectionChangedListener listener) {
-		selectionChangedListeners.add(listener);
+		this.selectionChangedListeners.add(listener);
 	}
 
 	/**
@@ -1686,7 +1644,7 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
-		selectionChangedListeners.remove(listener);
+		this.selectionChangedListeners.remove(listener);
 	}
 
 	/**
@@ -1696,7 +1654,7 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public ISelection getSelection() {
-		return editorSelection;
+		return this.editorSelection;
 	}
 
 	/**
@@ -1707,9 +1665,9 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public void setSelection(ISelection selection) {
-		editorSelection = selection;
+		this.editorSelection = selection;
 
-		for (ISelectionChangedListener listener : selectionChangedListeners) {
+		for (ISelectionChangedListener listener : this.selectionChangedListeners) {
 			listener.selectionChanged(new SelectionChangedEvent(this, selection));
 		}
 		setStatusLineManager(selection);
@@ -1721,8 +1679,8 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public void setStatusLineManager(ISelection selection) {
-		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ?
-			contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
+		IStatusLineManager statusLineManager = this.currentViewer != null && this.currentViewer == this.contentOutlineViewer ?
+			this.contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
@@ -1733,7 +1691,7 @@ public class NattabletesterEditor
 						break;
 					}
 					case 1: {
-						String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
+						String text = new AdapterFactoryItemDelegator(this.adapterFactory).getText(collection.iterator().next());
 						statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text)); //$NON-NLS-1$
 						break;
 					}
@@ -1803,7 +1761,7 @@ public class NattabletesterEditor
 	 * @generated
 	 */
 	public AdapterFactory getAdapterFactory() {
-		return adapterFactory;
+		return this.adapterFactory;
 	}
 
 	/**
@@ -1813,24 +1771,24 @@ public class NattabletesterEditor
 	 */
 	@Override
 	public void dispose() {
-		updateProblemIndication = false;
+		this.updateProblemIndication = false;
 
-		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this.resourceChangeListener);
 
-		getSite().getPage().removePartListener(partListener);
+		getSite().getPage().removePartListener(this.partListener);
 
-		adapterFactory.dispose();
+		this.adapterFactory.dispose();
 
 		if (getActionBarContributor().getActiveEditor() == this) {
 			getActionBarContributor().setActiveEditor(null);
 		}
 
-		for (PropertySheetPage propertySheetPage : propertySheetPages) {
+		for (PropertySheetPage propertySheetPage : this.propertySheetPages) {
 			propertySheetPage.dispose();
 		}
 
-		if (contentOutlinePage != null) {
-			contentOutlinePage.dispose();
+		if (this.contentOutlinePage != null) {
+			this.contentOutlinePage.dispose();
 		}
 
 		super.dispose();

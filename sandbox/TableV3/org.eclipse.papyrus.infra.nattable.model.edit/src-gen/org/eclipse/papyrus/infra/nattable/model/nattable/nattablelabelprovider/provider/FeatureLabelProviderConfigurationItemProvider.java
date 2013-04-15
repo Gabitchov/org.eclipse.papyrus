@@ -39,8 +39,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.N
  * @generated
  */
 public class FeatureLabelProviderConfigurationItemProvider
-	extends 
-ObjectLabelProviderConfigurationItemProvider
+	extends ObjectLabelProviderConfigurationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

@@ -19,6 +19,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -27,20 +29,22 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisIndexStyle;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
+
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DefaultAxisConfigurationItemProvider
-	extends AbstractAxisConfigurationItemProvider
+public class AxisManagerRepresentationItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -53,7 +57,7 @@ public class DefaultAxisConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DefaultAxisConfigurationItemProvider(AdapterFactory adapterFactory) {
+	public AxisManagerRepresentationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,28 +72,28 @@ public class DefaultAxisConfigurationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIndexStylePropertyDescriptor(object);
-			addDisplayLabelPropertyDescriptor(object);
-			addDisplayFilterPropertyDescriptor(object);
-			addDisplayIndexPropertyDescriptor(object);
+			addAxisManagerIdPropertyDescriptor(object);
+			addLabelProviderContextPropertyDescriptor(object);
+			addHeaderLabelConfigurationPropertyDescriptor(object);
+			addSpecificAxisConfigurationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Index Style feature.
+	 * This adds a property descriptor for the Axis Manager Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIndexStylePropertyDescriptor(Object object) {
+	protected void addAxisManagerIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DefaultAxisConfiguration_indexStyle_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_DefaultAxisConfiguration_indexStyle_feature", "_UI_DefaultAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE,
+				 getString("_UI_AxisManagerRepresentation_axisManagerId_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_axisManagerId_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID,
 				 true,
 				 false,
 				 false,
@@ -99,80 +103,80 @@ public class DefaultAxisConfigurationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Index feature.
+	 * This adds a property descriptor for the Label Provider Context feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDisplayIndexPropertyDescriptor(Object object) {
+	protected void addLabelProviderContextPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DefaultAxisConfiguration_displayIndex_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_DefaultAxisConfiguration_displayIndex_feature", "_UI_DefaultAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX,
+				 getString("_UI_AxisManagerRepresentation_labelProviderContext_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_labelProviderContext_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Label feature.
+	 * This adds a property descriptor for the Header Label Configuration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDisplayLabelPropertyDescriptor(Object object) {
+	protected void addHeaderLabelConfigurationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DefaultAxisConfiguration_displayLabel_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_DefaultAxisConfiguration_displayLabel_feature", "_UI_DefaultAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL,
+				 getString("_UI_AxisManagerRepresentation_headerLabelConfiguration_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_headerLabelConfiguration_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Filter feature.
+	 * This adds a property descriptor for the Specific Axis Configuration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDisplayFilterPropertyDescriptor(Object object) {
+	protected void addSpecificAxisConfigurationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DefaultAxisConfiguration_displayFilter_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_DefaultAxisConfiguration_displayFilter_feature", "_UI_DefaultAxisConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER,
+				 getString("_UI_AxisManagerRepresentation_specificAxisConfiguration_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_specificAxisConfiguration_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns DefaultAxisConfiguration.gif.
+	 * This returns AxisManagerRepresentation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DefaultAxisConfiguration")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AxisManagerRepresentation")); //$NON-NLS-1$
 	}
 
 	/**
@@ -183,11 +187,10 @@ public class DefaultAxisConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		AxisIndexStyle labelValue = ((DefaultAxisConfiguration)object).getIndexStyle();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((AxisManagerRepresentation)object).getAxisManagerId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_DefaultAxisConfiguration_type") : //$NON-NLS-1$
-			getString("_UI_DefaultAxisConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_AxisManagerRepresentation_type") : //$NON-NLS-1$
+			getString("_UI_AxisManagerRepresentation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -201,11 +204,9 @@ public class DefaultAxisConfigurationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DefaultAxisConfiguration.class)) {
-			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE:
-			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL:
-			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER:
-			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
+		switch (notification.getFeatureID(AxisManagerRepresentation.class)) {
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -222,6 +223,17 @@ public class DefaultAxisConfigurationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return NattableEditPlugin.INSTANCE;
 	}
 
 }

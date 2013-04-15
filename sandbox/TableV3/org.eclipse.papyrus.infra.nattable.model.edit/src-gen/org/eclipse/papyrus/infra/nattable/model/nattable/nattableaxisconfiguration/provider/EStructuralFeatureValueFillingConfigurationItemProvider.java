@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.provider;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider;
 
 
 import java.util.Collection;
@@ -21,8 +21,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,17 +28,20 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EObjectAxisItemProvider
-	extends EModelElementItemProvider
+public class EStructuralFeatureValueFillingConfigurationItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -53,7 +54,7 @@ public class EObjectAxisItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObjectAxisItemProvider(AdapterFactory adapterFactory) {
+	public EStructuralFeatureValueFillingConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,25 +69,25 @@ public class EObjectAxisItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addElementPropertyDescriptor(object);
+			addListenFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Element feature.
+	 * This adds a property descriptor for the Listen Feature feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addElementPropertyDescriptor(Object object) {
+	protected void addListenFeaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EObjectAxis_element_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectAxis_element_feature", "_UI_EObjectAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattablePackage.Literals.EOBJECT_AXIS__ELEMENT,
+				 getString("_UI_EStructuralFeatureValueFillingConfiguration_listenFeature_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeatureValueFillingConfiguration_listenFeature_feature", "_UI_EStructuralFeatureValueFillingConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE,
 				 true,
 				 false,
 				 true,
@@ -96,14 +97,14 @@ public class EObjectAxisItemProvider
 	}
 
 	/**
-	 * This returns EObjectAxis.gif.
+	 * This returns EStructuralFeatureValueFillingConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EObjectAxis")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/EStructuralFeatureValueFillingConfiguration")); //$NON-NLS-1$
 	}
 
 	/**
@@ -114,7 +115,7 @@ public class EObjectAxisItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_EObjectAxis_type"); //$NON-NLS-1$
+		return getString("_UI_EStructuralFeatureValueFillingConfiguration_type"); //$NON-NLS-1$
 	}
 
 	/**

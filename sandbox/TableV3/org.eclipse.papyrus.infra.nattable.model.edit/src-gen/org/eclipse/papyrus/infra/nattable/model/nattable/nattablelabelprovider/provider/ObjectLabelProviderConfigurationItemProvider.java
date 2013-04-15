@@ -20,9 +20,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -35,7 +33,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
 /**
@@ -45,7 +42,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * @generated
  */
 public class ObjectLabelProviderConfigurationItemProvider
-	extends EModelElementItemProvider
+	extends 
+EModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -73,33 +71,10 @@ public class ObjectLabelProviderConfigurationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLabelProviderContextPropertyDescriptor(object);
 			addDisplayIconPropertyDescriptor(object);
 			addDisplayLabelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Label Provider Context feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLabelProviderContextPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ILabelConfiguration_labelProviderContext_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ILabelConfiguration_labelProviderContext_feature", "_UI_ILabelConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattablelabelproviderPackage.Literals.ILABEL_CONFIGURATION__LABEL_PROVIDER_CONTEXT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -165,10 +140,8 @@ public class ObjectLabelProviderConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ObjectLabelProviderConfiguration)object).getLabelProviderContext();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ObjectLabelProviderConfiguration_type") : //$NON-NLS-1$
-			getString("_UI_ObjectLabelProviderConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		ObjectLabelProviderConfiguration objectLabelProviderConfiguration = (ObjectLabelProviderConfiguration)object;
+		return getString("_UI_ObjectLabelProviderConfiguration_type") + " " + objectLabelProviderConfiguration.isDisplayIcon(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -183,7 +156,6 @@ public class ObjectLabelProviderConfigurationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ObjectLabelProviderConfiguration.class)) {
-			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

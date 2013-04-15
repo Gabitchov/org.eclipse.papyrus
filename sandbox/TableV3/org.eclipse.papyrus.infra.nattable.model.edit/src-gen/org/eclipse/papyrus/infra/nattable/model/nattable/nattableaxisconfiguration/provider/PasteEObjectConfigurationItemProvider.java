@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.provider;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider;
 
 
 import java.util.Collection;
@@ -26,18 +26,20 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EMFFeatureValueAxisProviderItemProvider
-	extends DefaultAxisProviderItemProvider
+public class PasteEObjectConfigurationItemProvider
+	extends IPasteConfigurationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -50,7 +52,7 @@ public class EMFFeatureValueAxisProviderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMFFeatureValueAxisProviderItemProvider(AdapterFactory adapterFactory) {
+	public PasteEObjectConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,25 +67,48 @@ public class EMFFeatureValueAxisProviderItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addListenFeaturePropertyDescriptor(object);
+			addPastedElementIdPropertyDescriptor(object);
+			addPasteElementContainementFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Listen Feature feature.
+	 * This adds a property descriptor for the Pasted Element Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addListenFeaturePropertyDescriptor(Object object) {
+	protected void addPastedElementIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EMFFeatureValueAxisProvider_listenFeature_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFFeatureValueAxisProvider_listenFeature_feature", "_UI_EMFFeatureValueAxisProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisproviderPackage.Literals.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE,
+				 getString("_UI_PasteEObjectConfiguration_pastedElementId_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PasteEObjectConfiguration_pastedElementId_feature", "_UI_PasteEObjectConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Paste Element Containement Feature feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPasteElementContainementFeaturePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PasteEObjectConfiguration_pasteElementContainementFeature_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PasteEObjectConfiguration_pasteElementContainementFeature_feature", "_UI_PasteEObjectConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE,
 				 true,
 				 false,
 				 true,
@@ -93,14 +118,14 @@ public class EMFFeatureValueAxisProviderItemProvider
 	}
 
 	/**
-	 * This returns EMFFeatureValueAxisProvider.gif.
+	 * This returns PasteEObjectConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EMFFeatureValueAxisProvider")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PasteEObjectConfiguration")); //$NON-NLS-1$
 	}
 
 	/**
@@ -111,10 +136,10 @@ public class EMFFeatureValueAxisProviderItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EMFFeatureValueAxisProvider)object).getPastedElementTypeId();
+		String label = ((PasteEObjectConfiguration)object).getPastedElementId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EMFFeatureValueAxisProvider_type") : //$NON-NLS-1$
-			getString("_UI_EMFFeatureValueAxisProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_PasteEObjectConfiguration_type") : //$NON-NLS-1$
+			getString("_UI_PasteEObjectConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -127,6 +152,12 @@ public class EMFFeatureValueAxisProviderItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(PasteEObjectConfiguration.class)) {
+			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

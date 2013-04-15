@@ -35,6 +35,18 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisEditorID"
+            name="%_UI_NattableaxisEditor_label"
+            icon="icons/full/obj16/NattableaxisModelFile.gif"
+            extensions="nattableaxis"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated nattable -->
+      <editor
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation.NattabletesterEditorID"
             name="%_UI_NattabletesterEditor_label"
             icon="icons/full/obj16/NattabletesterModelFile.gif"
@@ -44,6 +56,23 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisModelWizardID"
+            name="%_UI_NattableaxisModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattableaxisModelFile.gif">
+         <description>%_UI_NattableaxisModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -72,6 +101,8 @@
       </wizard>
    </extension>
 
+null
+null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -100,26 +131,6 @@
       </wizard>
    </extension>
 
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
 null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
@@ -150,31 +161,6 @@ null
    </extension>
 
 null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -204,32 +190,6 @@ null
    </extension>
 
 null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -258,31 +218,4 @@ null
       </wizard>
    </extension>
 
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-null
-</plugin>
+null</plugin>

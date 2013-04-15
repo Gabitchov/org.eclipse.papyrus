@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.provider;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider;
 
 
 import java.util.Collection;
@@ -23,26 +23,22 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class IdAxisItemProvider
+public class ILabelProviderConfigurationItemProvider
 	extends EModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -56,7 +52,7 @@ public class IdAxisItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IdAxisItemProvider(AdapterFactory adapterFactory) {
+	public ILabelProviderConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,42 +67,8 @@ public class IdAxisItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Element feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IdAxis_element_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IdAxis_element_feature", "_UI_IdAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattablePackage.Literals.ID_AXIS__ELEMENT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns IdAxis.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/IdAxis")); //$NON-NLS-1$
 	}
 
 	/**
@@ -117,10 +79,7 @@ public class IdAxisItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IdAxis)object).getElement();
-		return label == null || label.length() == 0 ?
-			getString("_UI_IdAxis_type") : //$NON-NLS-1$
-			getString("_UI_IdAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return getString("_UI_ILabelProviderConfiguration_type"); //$NON-NLS-1$
 	}
 
 	/**
@@ -133,12 +92,6 @@ public class IdAxisItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(IdAxis.class)) {
-			case NattablePackage.ID_AXIS__ELEMENT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

@@ -8,7 +8,8 @@ Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.provider.Nat
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider,
+Export-Package: org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider,
@@ -18,5 +19,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.nattable.model;visibility:=reexport;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.0"
 Bundle-ActivationPolicy: lazy

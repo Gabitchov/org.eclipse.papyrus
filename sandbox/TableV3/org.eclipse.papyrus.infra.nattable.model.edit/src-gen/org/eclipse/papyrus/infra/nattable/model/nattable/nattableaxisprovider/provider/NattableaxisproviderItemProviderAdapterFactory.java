@@ -82,49 +82,49 @@ public class NattableaxisproviderItemProviderAdapterFactory extends Nattableaxis
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.DefaultAxisProvider} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DefaultAxisProviderItemProvider defaultAxisProviderItemProvider;
+	protected SlaveObjectAxisProviderItemProvider slaveObjectAxisProviderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.DefaultAxisProvider}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createDefaultAxisProviderAdapter() {
-		if (defaultAxisProviderItemProvider == null) {
-			defaultAxisProviderItemProvider = new DefaultAxisProviderItemProvider(this);
+	public Adapter createSlaveObjectAxisProviderAdapter() {
+		if (slaveObjectAxisProviderItemProvider == null) {
+			slaveObjectAxisProviderItemProvider = new SlaveObjectAxisProviderItemProvider(this);
 		}
 
-		return defaultAxisProviderItemProvider;
+		return slaveObjectAxisProviderItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EMFFeatureValueAxisProviderItemProvider emfFeatureValueAxisProviderItemProvider;
+	protected MasterObjectAxisProviderItemProvider masterObjectAxisProviderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createEMFFeatureValueAxisProviderAdapter() {
-		if (emfFeatureValueAxisProviderItemProvider == null) {
-			emfFeatureValueAxisProviderItemProvider = new EMFFeatureValueAxisProviderItemProvider(this);
+	public Adapter createMasterObjectAxisProviderAdapter() {
+		if (masterObjectAxisProviderItemProvider == null) {
+			masterObjectAxisProviderItemProvider = new MasterObjectAxisProviderItemProvider(this);
 		}
 
-		return emfFeatureValueAxisProviderItemProvider;
+		return masterObjectAxisProviderItemProvider;
 	}
 
 	/**
@@ -226,8 +226,8 @@ public class NattableaxisproviderItemProviderAdapterFactory extends Nattableaxis
 	 * @generated
 	 */
 	public void dispose() {
-		if (defaultAxisProviderItemProvider != null) defaultAxisProviderItemProvider.dispose();
-		if (emfFeatureValueAxisProviderItemProvider != null) emfFeatureValueAxisProviderItemProvider.dispose();
+		if (slaveObjectAxisProviderItemProvider != null) slaveObjectAxisProviderItemProvider.dispose();
+		if (masterObjectAxisProviderItemProvider != null) masterObjectAxisProviderItemProvider.dispose();
 	}
 
 }

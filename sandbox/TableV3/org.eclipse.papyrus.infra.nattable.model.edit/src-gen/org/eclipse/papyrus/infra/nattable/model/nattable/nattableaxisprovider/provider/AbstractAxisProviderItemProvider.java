@@ -21,8 +21,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -35,10 +33,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationFactory;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
@@ -77,27 +75,26 @@ public class AbstractAxisProviderItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addJavaAxisManagerIdsPropertyDescriptor(object);
-			addPastedElementTypeIdPropertyDescriptor(object);
-			addPastedElementContainmentFeaturePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Java Axis Manager Ids feature.
+	 * This adds a property descriptor for the Description feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addJavaAxisManagerIdsPropertyDescriptor(Object object) {
+	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AbstractAxisProvider_javaAxisManagerIds_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractAxisProvider_javaAxisManagerIds_feature", "_UI_AbstractAxisProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisproviderPackage.Literals.ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS,
+				 getString("_UI_TableNamedElement_description_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableNamedElement_description_feature", "_UI_TableNamedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_NAMED_ELEMENT__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -107,77 +104,25 @@ public class AbstractAxisProviderItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Pasted Element Type Id feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPastedElementTypeIdPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AbstractAxisProvider_pastedElementTypeId_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractAxisProvider_pastedElementTypeId_feature", "_UI_AbstractAxisProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisproviderPackage.Literals.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID,
+				 getString("_UI_TableNamedElement_name_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableNamedElement_name_feature", "_UI_TableNamedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_NAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Pasted Element Containment Feature feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPastedElementContainmentFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AbstractAxisProvider_pastedElementContainmentFeature_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractAxisProvider_pastedElementContainmentFeature_feature", "_UI_AbstractAxisProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisproviderPackage.Literals.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(NattableaxisproviderPackage.Literals.ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -188,7 +133,7 @@ public class AbstractAxisProviderItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AbstractAxisProvider)object).getPastedElementTypeId();
+		String label = ((AbstractAxisProvider)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_AbstractAxisProvider_type") : //$NON-NLS-1$
 			getString("_UI_AbstractAxisProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
@@ -206,12 +151,9 @@ public class AbstractAxisProviderItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AbstractAxisProvider.class)) {
-			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS:
-			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID:
+			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__DESCRIPTION:
+			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -227,16 +169,6 @@ public class AbstractAxisProviderItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisproviderPackage.Literals.ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION,
-				 NattableaxisconfigurationFactory.eINSTANCE.createAbstractAxisConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisproviderPackage.Literals.ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION,
-				 NattableaxisconfigurationFactory.eINSTANCE.createDefaultAxisConfiguration()));
 	}
 
 	/**
