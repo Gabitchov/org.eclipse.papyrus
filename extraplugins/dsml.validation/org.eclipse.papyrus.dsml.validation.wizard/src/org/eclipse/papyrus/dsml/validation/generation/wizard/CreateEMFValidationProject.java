@@ -13,10 +13,15 @@
 package org.eclipse.papyrus.dsml.validation.generation.wizard;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
+import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsCategory;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
+import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidationRule;
+import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
 import org.eclipse.pde.internal.ui.wizards.plugin.NewPluginProjectWizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
@@ -39,6 +44,7 @@ public class CreateEMFValidationProject extends NewPluginProjectWizard {
 
 
 	private Profile selectedProfile;
+	private EPackage definition=null;
 
 	/**
 	 * 
@@ -48,11 +54,12 @@ public class CreateEMFValidationProject extends NewPluginProjectWizard {
 	 * @param constraintsExtractor
 	 */
 	public CreateEMFValidationProject(Profile selectedProfile,
-			IConstraintsManager constraintsExtractor) {
+		IConstraintsManager constraintsExtractor, EPackage definition) {
 		super();
 		setWindowTitle(GENERATION_MESSAGE);
 		this.constraintsManager = constraintsExtractor;
 		this.selectedProfile = selectedProfile;
+		this.definition=definition;
 	}
 
 	@Override
@@ -62,7 +69,7 @@ public class CreateEMFValidationProject extends NewPluginProjectWizard {
 		}
 		return super.getNextPage(page);
 	}
-	
+
 	@Override
 	public void addPages() {
 		super.addPages();
@@ -83,13 +90,14 @@ public class CreateEMFValidationProject extends NewPluginProjectWizard {
 		if (result) {
 			IProject project = this.fMainPage.getProjectHandle();
 			try {
+
 				//generate java code
 				generateAllJava = new JavaContentGenerator(project, selectedProfile);
 				generateAllJava.run();
 				//generate plugin + extension point
-				ValidationPluginGenerator.instance.generate(project, this,constraintsManager);
-				
-				
+				ValidationPluginGenerator.instance.generate(project, this,constraintsManager,  definition);
+
+
 				project.refreshLocal(IProject.DEPTH_INFINITE, null);
 			} catch (Exception e) {
 				e.printStackTrace();

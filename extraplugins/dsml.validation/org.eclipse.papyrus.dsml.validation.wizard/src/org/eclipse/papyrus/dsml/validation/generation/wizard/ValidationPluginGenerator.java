@@ -22,6 +22,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
@@ -61,7 +62,7 @@ public class ValidationPluginGenerator {
 
 	private static final String UML_URL = "http://www.eclipse.org/uml2/4.0.0/UML";
 
-//	private final static String contextPrefix = "org.eclipse.papyrus.validation.generation.context";
+	//	private final static String contextPrefix = "org.eclipse.papyrus.validation.generation.context";
 
 	/**
 	 * singleton
@@ -76,19 +77,19 @@ public class ValidationPluginGenerator {
 	 * generate the java code form constraints contained in the profile
 	 * @param project the project eclipse
 	 * @param wizard the ref to to wizard
-	 * @param constraintsManager the class in charge to collect all inforamtion from the model
+	 * @param constraintsManager the class in charge to collect all information from the model
 	 * @throws CoreException
 	 * @throws IOException
 	 * @throws SAXException
 	 * @throws ParserConfigurationException
 	 */
-	public void generate(IProject project, NewPluginProjectWizard wizard, IConstraintsManager constraintsManager) throws CoreException,
-		IOException, SAXException, ParserConfigurationException {
+	public void generate(IProject project, NewPluginProjectWizard wizard, IConstraintsManager constraintsManager, EPackage definition) throws CoreException,
+	IOException, SAXException, ParserConfigurationException {
 		PluginEditor editor;
 
 		String packageName= "org.eclipse.papyrus.validation";
 		this.constraintsManager = constraintsManager;
-		
+
 		//prepare the plugin
 		editor = new PluginEditor(project);
 		editor.setBundleName(editor.getSymbolicBundleName()+SINGLETON_TRUE);
@@ -109,7 +110,7 @@ public class ValidationPluginGenerator {
 		//add the constraint provider extension point, normally it exist only one
 		for (IConstraintProvider constraintProvider : constraintsManager.getConstraintsProviders()) {
 			//create the extension point for the provider
-			Element extElForConstraintsProvider = createExtensionForConstraintsProvider(constraintProvider, extension, editor);
+			Element extElForConstraintsProvider = createExtensionForConstraintsProvider(constraintProvider, extension, editor, definition);
 			// go though category  (profile+ stereotype)
 			for (IConstraintsCategory constraintCategory : constraintProvider.getConstraintsCategories()) {
 
@@ -118,7 +119,7 @@ public class ValidationPluginGenerator {
 					constraintCategory, extElForConstraintsProvider, editor);
 
 				for (IValidationRule constraint : constraintCategory.getConstraints()) {
-					
+
 					//this is a java constraint?
 					if (Utils.hasSpecificationForJava(constraint.getConstraint())) {
 						createExtensionForConstraint(packageName,constraint,extElForConstraintsCategory, editor);
@@ -293,7 +294,7 @@ public class ValidationPluginGenerator {
 	 */
 	private Element createExtensionForConstraintsProvider(
 		IConstraintProvider constraintProvider, Element parentElement,
-		PluginEditor editor) {
+		PluginEditor editor, EPackage definition) {
 
 		Element extElForConstraintsProvider = editor.getPluginEditor().addChild(parentElement, "constraintProvider");
 
@@ -302,7 +303,14 @@ public class ValidationPluginGenerator {
 		extElForConstraintsProvider.setAttribute("cache",String.valueOf(constraintProvider.getCache()));
 
 		Element pcg = editor.addChild(extElForConstraintsProvider, "package");
-		pcg.setAttribute("namespaceUri",UML_URL);
+		
+		if(definition==null){
+			pcg.setAttribute("namespaceUri",UML_URL);
+		}
+		else{
+			pcg.setAttribute("namespaceUri",definition.getNsURI());
+			
+		}
 
 		return extElForConstraintsProvider;
 
@@ -343,7 +351,7 @@ public class ValidationPluginGenerator {
 		this.createCategoriesForBinding(projectName,this.constraintsManager.getPrimeCategory(), element, editor);
 	}
 
-	
+
 	/**
 	 * create the extension point categories
 	 * @param projectName the name of the project
