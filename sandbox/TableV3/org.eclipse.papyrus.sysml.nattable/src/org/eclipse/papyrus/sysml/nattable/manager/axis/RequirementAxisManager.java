@@ -12,10 +12,13 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFea
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
 import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 
@@ -25,11 +28,21 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 
 	private boolean isRefreshing = false;
 
+
+
 	@Override
-	public void init(INattableModelManager manager, String managerId, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
-		super.init(manager, managerId, table, provider, false);//false, with this axis manager, the contents is derived of the feature
+	public void init(INattableModelManager manager, AxisManagerRepresentation rep, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
+		super.init(manager, rep, table, provider, false);//false, with this axis manager, the contents is derived of the feature
 		updateAxisContents();
-		final EStructuralFeature listenFeature = ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
+
+		EStructuralFeatureValueFillingConfiguration config = null;
+		for(final IAxisConfiguration current : this.rep.getSpecificAxisConfiguration()) {
+			if(current instanceof EStructuralFeatureValueFillingConfiguration) {
+				config = (EStructuralFeatureValueFillingConfiguration)current;
+				break;
+			}
+		}
+		final EStructuralFeature listenFeature = config.getListenFeature();
 
 		//		this.featureListener = new UMLDerivedUnionAdapter() {
 		//
@@ -48,20 +61,20 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				//				if(msg.getFeature() == ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature() || msg.getFeature() == UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute()) {
-				//								//FIXME : add test
-				if(!RequirementAxisManager.this.isRefreshing) {//to avoid to many thread
-					RequirementAxisManager.this.isRefreshing = true;
-					Display.getDefault().asyncExec(new Runnable() {
+				if(msg.getFeature() == listenFeature || msg.getFeature() == UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute()) {
+					//FIXME : add test
+					if(!RequirementAxisManager.this.isRefreshing) {//to avoid to many thread
+						RequirementAxisManager.this.isRefreshing = true;
+						Display.getDefault().asyncExec(new Runnable() {
 
-						public void run() {
-							updateAxisContents();
-							((NattableModelManager)getTableManager()).refreshNattable();
-							RequirementAxisManager.this.isRefreshing = false;
-						}
-					});
+							public void run() {
+								updateAxisContents();
+								((NattableModelManager)getTableManager()).refreshNattable();
+								RequirementAxisManager.this.isRefreshing = false;
+							}
+						});
+					}
 				}
-				//				}
 			}
 		};
 		getTable().getContext().eAdapters().add(this.featureListener);
@@ -80,7 +93,16 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 	@Override
 	public synchronized void updateAxisContents() {
 		final EObject context = getTable().getContext();
-		final EStructuralFeature ref = ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
+		//FIXME
+		EStructuralFeatureValueFillingConfiguration config = null;
+		for(final IAxisConfiguration current : this.rep.getSpecificAxisConfiguration()) {
+			if(current instanceof EStructuralFeatureValueFillingConfiguration) {
+				config = (EStructuralFeatureValueFillingConfiguration)current;
+				break;
+			}
+		}
+		final EStructuralFeature ref = config.getListenFeature();
+
 		Object value = context.eGet(ref);
 		assert value instanceof List<?>;
 

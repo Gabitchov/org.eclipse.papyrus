@@ -4,23 +4,22 @@
    <extension
          point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram
-            factoryClass="org.eclipse.papyrus.infra.nattable.views.editor.factory.NattablePageEditorFactory"
-            icon="icons/nattablepageeditor.png">
+            factoryClass="org.eclipse.papyrus.infra.nattable.common.factory.NattableEditorFactory"
+            icon="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/icons/nattablepageeditor.png">
       </editorDiagram>
    </extension>
  <extension
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            description="Create a View NatTable Editor"
+            description="Create a new Views Table"
             id="org.eclipse.papyrus.infra.nattable.page.editor.create.command"
-            name="Create a View NatTable Editor">
+            name="Create a new Views Table">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.infra.nattable.views.editor.handlers.CreateNattablePageEditorHandler"
             commandId="org.eclipse.papyrus.infra.nattable.page.editor.create.command">
          <activeWhen>
             <or>
@@ -32,6 +31,13 @@
                </with>
             </or>
          </activeWhen>
+         <class
+               class="org.eclipse.papyrus.infra.nattable.common.handlers.CreateNatTableEditorHandler">
+            <parameter
+                  name="tableType"
+                  value="PapyrusTableViewsEditor">
+            </parameter>
+         </class>
       </handler>
    </extension>
    <extension
@@ -43,8 +49,6 @@
             locationURI="popup:org.eclipse.papyrus.infra.nattable.popupmenu.createnattable">
          <command
                commandId="org.eclipse.papyrus.infra.nattable.page.editor.create.command"
-               icon="icons/nattablepageeditor.png"
-               label="Papyrus View Editor"
                style="push">
             <visibleWhen>
                <with
@@ -61,8 +65,6 @@
             locationURI="menu:org.eclipse.papyrus.infra.nattable.menu.createnattable">
          <command
                commandId="org.eclipse.papyrus.infra.nattable.page.editor.create.command"
-               icon="icons/nattablepageeditor.png"
-               label="Papyrus View Editor"
                style="push">
             <visibleWhen>
                <with
@@ -79,8 +81,6 @@
             locationURI="toolbar:org.eclipse.papyrus.infra.nattable.toolbar.createnattable">
          <command
                commandId="org.eclipse.papyrus.infra.nattable.page.editor.create.command"
-               icon="icons/nattablepageeditor.png"
-               label="Papyrus View Editor"
                style="push">
             <visibleWhen>
                <with
@@ -94,42 +94,10 @@
       </menuContribution>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.nattable.axismanager">
-      <axisManager
-            id="org.eclipse.papyrus.infra.nattable.page.editor.contents.axis.manager"
-            manager="org.eclipse.papyrus.infra.nattable.views.editor.manager.axis.EditorContextSynchronizerAxisManager">
-      </axisManager>
-      <axisManager
-            id="org.eclipse.papyrus.infra.nattable.page.editor.view.feature.axis.manager"
-            manager="org.eclipse.papyrus.infra.nattable.views.editor.manager.axis.EditorFeatureAxisManager">
-      </axisManager>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.nattable.cellmanager">
-      <cellManager
-            id="org.eclipse.papyrus.infra.nattable.page.editor.modelviewscellmanager"
-            manager="org.eclipse.papyrus.infra.nattable.views.editor.manager.cell.ModelViewsCellManager"
-            order="50">
-      </cellManager>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
-      <labelProvider
-            priority="1000"
-            provider="org.eclipse.papyrus.infra.nattable.views.editor.provider.ModelViewsHeaderLabelProvider">
-         <labelProviderContext
-               context="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider">
-         </labelProviderContext>
-         <labelProviderContext
-               context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
-         </labelProviderContext>
-      </labelProvider>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
-      <configuration
-            class="org.eclipse.papyrus.infra.nattable.views.editor.celleditor.ModelViewsCellEditorConfiguration"
-            order="50">
-      </configuration>
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.page.editor.create.command"
+            icon="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/icons/nattablepageeditor.png">
+      </image>
    </extension>
 </plugin>
