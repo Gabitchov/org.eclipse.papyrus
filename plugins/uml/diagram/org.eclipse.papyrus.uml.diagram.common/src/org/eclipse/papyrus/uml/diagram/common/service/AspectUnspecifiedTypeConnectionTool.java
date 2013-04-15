@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredCreateConnectionViewCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
@@ -236,7 +235,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 					Command command = targetEditPart.getCommand(connectionRequest);
 
-					if (command != null) {
+					if(command != null) {
 						ICommand completeCommand = getCompleteCommand(command);
 
 						setCurrentCommand(new ICommandProxy(completeCommand));
@@ -266,7 +265,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 	protected ICommand getCompleteCommand(Command createConnectionCommand) {
 		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
-		CompositeTransactionalCommand compositeCmd = new CompositeTransactionalCommand (editingDomain, "Create Link");
+		CompositeTransactionalCommand compositeCmd = new CompositeTransactionalCommand(editingDomain, "Create Link");
 
 		for(IPreAction preAction : preActions) {
 			if(getTargetRequest() instanceof CreateConnectionRequest) {
@@ -283,13 +282,13 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 		compositeCmd.add(new CommandProxy(createConnectionCommand));
 
-		if (getTargetRequest() instanceof CreateRequest) {
+		if(getTargetRequest() instanceof CreateRequest) {
 			CreateUnspecifiedAdapter viewAdapter = new CreateUnspecifiedAdapter();
 			viewAdapter.add((CreateRequest)getTargetRequest());
 
-			for (IPostAction action : postActions) {
+			for(IPostAction action : postActions) {
 				ICommand cmd = action.getPostCommand(viewAdapter);
-				if (cmd != null) {
+				if(cmd != null) {
 					compositeCmd.add(cmd);
 				}
 			}
@@ -350,7 +349,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		EditPartViewer viewer = getCurrentViewer();
 		Command endCommand = getCommand();
 
-		if (endCommand != null) {
+		if(endCommand != null) {
 			ICommand completeCommand = getCompleteCommand(endCommand);
 
 			setCurrentCommand(new ICommandProxy(completeCommand));
@@ -379,8 +378,8 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	 * @return <code>true</code> if post actions need a post commit run
 	 */
 	protected boolean requiresPostCommitRun() {
-		for (IPostAction action : postActions) {
-			if (action.needsPostCommitRun()) {
+		for(IPostAction action : postActions) {
+			if(action.needsPostCommitRun()) {
 				return true;
 			}
 		}
@@ -479,22 +478,23 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * See bug 288695
 		 * 
 		 * if there is only one {@link CreateRequest}, returns this {@link CreateRequest#getNewObject()},
-		 * else, returns a list containing a single {@link IAdaptable} that delegates to the
-		 * {@link CreateRequest#getNewObject()} after the command is executed.
+		 * else, returns a list containing a single {@link IAdaptable} that delegates to the {@link CreateRequest#getNewObject()} after the command is
+		 * executed.
 		 * It is safe to use the return {@link IAdaptable} in a {@link DeferredCreateConnectionViewCommand}.
 		 */
+		@Override
 		public Object getNewObject() {
-			if (newObjectList.isEmpty()) {
-				if (requests.size() == 1) {
+			if(newObjectList.isEmpty()) {
+				if(requests.size() == 1) {
 					Object createRequest = requests.values().iterator().next();
-					if (createRequest instanceof CreateRequest) {
+					if(createRequest instanceof CreateRequest) {
 						newObjectList.add(((CreateRequest)createRequest).getNewObject());
 					}
-				} else if (requests.size() > 1) {
+				} else if(requests.size() > 1) {
 					/* See bug 288695 */
 					CreateUnspecifiedAdapter adapter = new CreateUnspecifiedAdapter();
-					for (Object request : requests.values()) {
-						if (request instanceof CreateRequest) {
+					for(Object request : requests.values()) {
+						if(request instanceof CreateRequest) {
 							adapter.add((CreateRequest)request);
 						}
 					}
@@ -535,7 +535,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 		@Override
 		public void addRequest(IElementType relationshipType, Request request) {
-			if (requests != null && request instanceof CreateConnectionRequest) {
+			if(requests != null && request instanceof CreateConnectionRequest) {
 				requests.put(relationshipType, (CreateConnectionRequest)request);
 			}
 		}
@@ -606,6 +606,24 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 */
 		@Override
 		public void setType(Object type) {
+			if(REQ_CONNECTION_END.equals(getType()) && REQ_CONNECTION_START.equals(type)) {
+
+				//Bug 386011: [Class Diagrams] Incomplete associations get left on diagram
+				//https://bugs.eclipse.org/bugs/show_bug.cgi?id=386011
+
+				//This case is specific to the two-clicks association mode
+				//When we draw an association to nothing, and discard the popup menu proposing to
+				//create a new Element as the target of the Association, the target request is changed
+				//from type "connection_end" to "connection_start", which prevents cleaning the feedback
+
+				//We should clean the feedback before changing the type (Because eraseSourceFeedback 
+				//tests the type of the request, and expects "connection_end")
+				AspectUnspecifiedTypeConnectionTool.this.setAvoidDeactivation(false);
+				AspectUnspecifiedTypeConnectionTool.this.eraseSourceFeedback();
+				AspectUnspecifiedTypeConnectionTool.this.deactivate();
+				AspectUnspecifiedTypeConnectionTool.this.handleFinished();
+			}
+
 			if(requests != null) {
 				for(CreateConnectionRequest request : requests.values()) {
 					request.setType(type);
