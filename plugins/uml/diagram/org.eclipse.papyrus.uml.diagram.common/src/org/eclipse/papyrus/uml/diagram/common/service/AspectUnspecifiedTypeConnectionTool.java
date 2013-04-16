@@ -26,10 +26,12 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -37,7 +39,7 @@ import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdap
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredCreateConnectionViewCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
@@ -53,16 +55,11 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.ConnectionToolPreferences;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.layout.LayoutUtils;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
@@ -199,46 +196,38 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 						// register a listener to have information about element
 						// creation
 						// retrieves editing domain
-						TransactionalEditingDomain domain;
-						try {
-							domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
-							eventBroker = DiagramEventBroker.getInstance(domain);
+						TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
+						eventBroker = DiagramEventBroker.getInstance(domain);
 
-							if(eventBroker == null) {
-								return;
-							}
-							listener = new NotificationListener() {
+						listener = new NotificationListener() {
 
-								public void notifyChanged(Notification notification) {
-									Object newValue = notification.getNewValue();
+							public void notifyChanged(Notification notification) {
+								Object newValue = notification.getNewValue();
 
-									Map<?, ?> map = viewer.getEditPartRegistry();
-									EditPart editPart = (EditPart)map.get(newValue);
-									for(IPostAction action : postActions) {
-										action.runInPostCommit(editPart);
-									}
+								Map<?, ?> map = viewer.getEditPartRegistry();
+								EditPart editPart = (EditPart)map.get(newValue);
+								for(IPostAction action : postActions) {
+									action.runInPostCommit(editPart);
 								}
-							};
-
-							// we need to add only one time the listener of the
-							// target (eobject)
-							if(!done) {
-								listeners.add(listener);
-								eobjects.add(eObject);
-								eventBroker.addNotificationListener(eObject, listener);
-								done = true;
 							}
-						} catch (ServiceException e) {
-							Activator.log.error(e);
+						};
+
+						// we need to add only one time the listener of the
+						// target (eobject)
+						if(!done && eventBroker != null) {
+							listeners.add(listener);
+							eobjects.add(eObject);
+							eventBroker.addNotificationListener(eObject, listener);
+							done = true;
 						}
 					}
 
 					Command command = targetEditPart.getCommand(connectionRequest);
 
 					if(command != null) {
-						ICommand completeCommand = getCompleteCommand(command);
+						Command completeCommand = getCompleteCommand(command);
 
-						setCurrentCommand(new ICommandProxy(completeCommand));
+						setCurrentCommand(completeCommand);
 
 						executeCurrentCommand();
 					}
@@ -251,7 +240,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 						}
 					}
 
-					selectAddedObject(getCurrentViewer(), DiagramCommandStack.getReturnValues(command));
+					selectAddedObject(viewer, DiagramCommandStack.getReturnValues(command));
 
 				}
 			}
@@ -263,9 +252,9 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		}
 	}
 
-	protected ICommand getCompleteCommand(Command createConnectionCommand) {
-		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
-		CompositeTransactionalCommand compositeCmd = new CompositeTransactionalCommand(editingDomain, "Create Link");
+	protected Command getCompleteCommand(Command createConnectionCommand) {
+		CompoundCommand compositeCmd = new CompoundCommand("Create Link");
+//		CompositeTransactionalCommand compositeCmd = new CompositeTransactionalCommand(editingDomain, "Create Link");
 
 		for(IPreAction preAction : preActions) {
 			if(getTargetRequest() instanceof CreateConnectionRequest) {
@@ -274,13 +263,13 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 				if(sourceModel instanceof View && targetModel instanceof View) {
 					ICommand cmd = preAction.getConnectionPreCommand((View)sourceModel, (View)targetModel);
 					if(cmd != null) {
-						compositeCmd.add(cmd);
+						compositeCmd.add(new ICommandProxy(cmd));
 					}
 				}
 			}
 		}
 
-		compositeCmd.add(new CommandProxy(createConnectionCommand));
+		compositeCmd.add(createConnectionCommand);
 
 		if(getTargetRequest() instanceof CreateRequest) {
 			CreateUnspecifiedAdapter viewAdapter = new CreateUnspecifiedAdapter();
@@ -289,7 +278,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 			for(IPostAction action : postActions) {
 				ICommand cmd = action.getPostCommand(viewAdapter);
 				if(cmd != null) {
-					compositeCmd.add(cmd);
+					compositeCmd.add(new ICommandProxy(cmd));
 				}
 			}
 		}
@@ -316,54 +305,49 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		View eObject = (View)getTargetEditPart().getAdapter(View.class);
 		DiagramEventBroker eventBroker = null;
 		NotificationListener listener = null;
-		boolean requiresPostCommitRun = requiresPostCommitRun();
+		boolean requiresPostCommitRun = true;
+		final EditPartViewer currentViewer = getCurrentViewer();
 
 		// adds the listener
 		if(requiresPostCommitRun) {
 			// register a listener to have information about element creation
 			// retrieves editing domain
-			try {
-				TransactionalEditingDomain domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
-				eventBroker = DiagramEventBroker.getInstance(domain);
+			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
+			eventBroker = DiagramEventBroker.getInstance(domain);
 
-				if(eventBroker == null) {
-					return false;
-				}
-				listener = new NotificationListener() {
+			listener = new NotificationListener() {
 
-					public void notifyChanged(Notification notification) {
-						Connector newValue = (Connector)notification.getNewValue();
-						EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
+				public void notifyChanged(Notification notification) {
+					Object newValue = notification.getNewValue();
+					if (currentViewer != null) {
+						EditPart editPart = (EditPart)currentViewer.getEditPartRegistry().get(newValue);
 						for(IPostAction action : postActions) {
 							action.runInPostCommit(editPart);
 						}
 					}
-				};
+				}
+			};
 
+			if(eventBroker != null) {
 				eventBroker.addNotificationListener(eObject, listener);
-			} catch (ServiceException e) {
-				Activator.log.error(e);
 			}
 		}
 
-		EditPartViewer viewer = getCurrentViewer();
 		Command endCommand = getCommand();
 
 		if(endCommand != null) {
-			ICommand completeCommand = getCompleteCommand(endCommand);
+			Command completeCommand = getCompleteCommand(endCommand);
 
-			setCurrentCommand(new ICommandProxy(completeCommand));
+			setCurrentCommand(completeCommand);
 
 			executeCurrentCommand();
 		}
 
-		if(requiresPostCommitRun) {
-			if(eventBroker != null) {
-				eventBroker.removeNotificationListener(eObject, listener);
-			}
+		if(requiresPostCommitRun && eventBroker != null) {
+			eventBroker.removeNotificationListener(eObject, listener);
 		}
 
-		selectAddedObject(viewer, DiagramCommandStack.getReturnValues(endCommand));
+		selectAddedObject(currentViewer, DiagramCommandStack.getReturnValues(endCommand));
 
 		setAvoidDeactivation(false);
 		eraseSourceFeedback();

@@ -22,16 +22,17 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedAdapter;
@@ -42,15 +43,11 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
@@ -98,79 +95,66 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		View eObject = (View)getTargetEditPart().getAdapter(View.class);
 		DiagramEventBroker eventBroker = null;
 		NotificationListener listener = null;
+		final EditPartViewer currentViewer = getCurrentViewer();
+
 		if(requiresPostCommitRun) {
 			// register a listener to have information about element creation
 			// retrieves editing domain
-			TransactionalEditingDomain domain;
-			try {
-				domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
-				eventBroker = DiagramEventBroker.getInstance(domain);
+			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
+			eventBroker = DiagramEventBroker.getInstance(domain);
 
-				if(eventBroker == null) {
-					return;
-				}
-				listener = new NotificationListener() {
+			listener = new NotificationListener() {
 
-					public void notifyChanged(Notification notification) {
-						Object newValue = notification.getNewValue();
-						EditPartViewer viewer = getCurrentViewer();
-						if(viewer == null) {
-							viewer = (getTargetEditPart() != null) ? getTargetEditPart().getViewer() : null;
-						}
-						if(viewer != null) {
-							EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
+				public void notifyChanged(Notification notification) {
+					Object newValue = notification.getNewValue();
+					if(currentViewer != null) {
+						EditPart editPart = (EditPart)currentViewer.getEditPartRegistry().get(newValue);
 
-							for(IPostAction action : postActions) {
-								action.runInPostCommit(editPart);
-							}
-						} else {
-							Activator.log.error("Impossible to find the current viewer", null);
+						for(IPostAction action : postActions) {
+							action.runInPostCommit(editPart);
 						}
 					}
-				};
+				}
+			};
 
+			if(eventBroker != null) {
 				eventBroker.addNotificationListener(eObject, listener);
-			} catch (ServiceException e) {
-				Activator.log.error(e);
 			}
 		}
 
 		Command command = getCurrentCommand();
 
 		if(command != null) {
-			ICommand completeCommand = getCompleteCommand(command);
+			Command completeCommand = getCompleteCommand(command);
 
-			setCurrentCommand(new ICommandProxy(completeCommand));
+			setCurrentCommand(completeCommand);
 
 			executeCurrentCommand();
 		}
 
-		if(requiresPostCommitRun) {
-			if(eventBroker != null) {
-				eventBroker.removeNotificationListener(eObject, listener);
-			}
+		if(requiresPostCommitRun && eventBroker != null) {
+			eventBroker.removeNotificationListener(eObject, listener);
 		}
 
-		selectAddedObject(getCurrentViewer(), DiagramCommandStack.getReturnValues(command));
+		selectAddedObject(currentViewer, DiagramCommandStack.getReturnValues(command));
 
 		antiScroll = false;
 	}
 
-	protected ICommand getCompleteCommand(Command createCommand) {
-		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
-		CompositeTransactionalCommand compositeCmd = new CompositeTransactionalCommand(editingDomain, "Create Element");
+	protected Command getCompleteCommand(Command createCommand) {
+		CompoundCommand compositeCmd = new CompoundCommand("Create Element");
 
 		for(IPreAction preAction : preActions) {
 			Object context = getTargetEditPart().getModel();
 			if(context instanceof View) {
 				ICommand cmd = preAction.getNodePreCommand((View)context);
 				if(cmd != null) {
-					compositeCmd.add(cmd);
+					compositeCmd.add(new ICommandProxy(cmd));
 				}
 			}
 		}
 
-		compositeCmd.add(new CommandProxy(createCommand));
+		compositeCmd.add(createCommand);
 
 		CreateUnspecifiedAdapter viewAdapter = new CreateUnspecifiedAdapter();
 		viewAdapter.add(getCreateRequest());
@@ -178,7 +162,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		for(IPostAction action : postActions) {
 			ICommand cmd = action.getPostCommand(viewAdapter);
 			if(cmd != null) {
-				compositeCmd.add(cmd);
+				compositeCmd.add(new ICommandProxy(cmd));
 			}
 		}
 
