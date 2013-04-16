@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+ 
+      <mapping
+            source="pathmap://DEVELOPER_PROFILES/"
+            target="platform:/plugin/org.eclipse.papyrus.developer.profile/profile/">
+      </mapping>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="Developer profile"
+            name="Developer profile"
+            path="pathmap://DEVELOPER_PROFILES/CommentProfile.profile.uml"
+            provider="Eclipse.org">
+      </profile>
+   </extension>
+</plugin>
