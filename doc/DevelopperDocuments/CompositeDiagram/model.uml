@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CommentProfile="http:///schemas/CommentProfile/_EWPeoKZtEeK7_saMR_mmoA/2" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/CommentProfile/_EWPeoKZtEeK7_saMR_mmoA/2 pathmap://DEVELOPER_PROFILES/CommentProfile.profile.uml#_EWPeoaZtEeK7_saMR_mmoA http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements">
+  <uml:Model xmi:id="_0tTQUKZrEeK7_saMR_mmoA" name="CompositeDiagram">
+    <packagedElement xmi:type="uml:Package" xmi:id="_9IOOMKZrEeK7_saMR_mmoA" name="Requirements">
+      <packagedElement xmi:type="uml:Class" xmi:id="_AjOVcKZsEeK7_saMR_mmoA" name="BehaviorPort"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Rhks8KZsEeK7_saMR_mmoA" name="UseCases">
+      <packagedElement xmi:type="uml:Component" xmi:id="_WewYoKZsEeK7_saMR_mmoA" name="CompositeDiagramEditor" useCase="_Z5KC8KZsEeK7_saMR_mmoA _fLUgIKZsEeK7_saMR_mmoA">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Z5KC8KZsEeK7_saMR_mmoA" name="Create a port" subject="_WewYoKZsEeK7_saMR_mmoA">
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_f9T9wqZsEeK7_saMR_mmoA" name="point"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_fLUgIKZsEeK7_saMR_mmoA" name="create behavioral port" subject="_WewYoKZsEeK7_saMR_mmoA">
+          <extend xmi:type="uml:Extend" xmi:id="_f83R0KZsEeK7_saMR_mmoA" extendedCase="_Z5KC8KZsEeK7_saMR_mmoA" extensionLocation="_f9T9wqZsEeK7_saMR_mmoA"/>
+        </ownedUseCase>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_ZKSx0KZsEeK7_saMR_mmoA" name="User"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ddrSkKZsEeK7_saMR_mmoA" name="A_user_create a port" memberEnd="_ddrSkaZsEeK7_saMR_mmoA _ddrSlKZsEeK7_saMR_mmoA">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_ddrSkaZsEeK7_saMR_mmoA" name="user" type="_ZKSx0KZsEeK7_saMR_mmoA" association="_ddrSkKZsEeK7_saMR_mmoA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ddrSkqZsEeK7_saMR_mmoA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ddrSk6ZsEeK7_saMR_mmoA" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_ddrSlKZsEeK7_saMR_mmoA" name="create a port" type="_Z5KC8KZsEeK7_saMR_mmoA" association="_ddrSkKZsEeK7_saMR_mmoA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ddrSlaZsEeK7_saMR_mmoA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ddrSlqZsEeK7_saMR_mmoA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="__s6_kKZrEeK7_saMR_mmoA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__tEJgKZrEeK7_saMR_mmoA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_xcaVEKZwEeKF3spcIwuN_A">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xc3BAKZwEeKF3spcIwuN_A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/CommentProfile.profile.uml#_EWPeoaZtEeK7_saMR_mmoA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/CommentProfile.profile.uml#_EV0hkBzpEeKLhMLY6huzvQ"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_AjhQYKZsEeK7_saMR_mmoA" text="Composite structure diagram editor shall support the behavior port notation" id="CompositeDiagram001" base_Class="_AjOVcKZsEeK7_saMR_mmoA"/>
+  <CommentProfile:BugzillaReferences xmi:id="_z9r_AKZwEeKF3spcIwuN_A" base_Element="_AjOVcKZsEeK7_saMR_mmoA" id="399865" webLink="https://bugs.eclipse.org/bugs/show_bug.cgi?id=399865"/>
+  <CommentProfile:InformationSource xmi:id="_CIB90KZxEeKF3spcIwuN_A" base_Package="_0tTQUKZrEeK7_saMR_mmoA" author="P. Tessier" version="0.1" copyright="CEA LIST"/>
+</xmi:XMI>
