@@ -17,10 +17,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 
 /**
  * 
@@ -29,14 +27,20 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EM
  */
 public class SynchronizedFeatureValueAxisManager extends AbstractSynchronizedOnFeatureAxisManager {
 
-	@Override
-	public void init(INattableModelManager manager, String managerId, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
-		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
-	}
+	public static final String AXIS_MANAGER_ID = "org.eclipse.papyrus.emf.nattable.synchronized.featurevalue.axis.manager"; //$NON-NLS-1$
 
 	@Override
 	public synchronized void updateAxisContents() {
-		EStructuralFeature synchronizedFeature = ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
+
+		EStructuralFeatureValueFillingConfiguration config = null;
+		for(final IAxisConfiguration current : this.rep.getSpecificAxisConfiguration()) {
+			if(current instanceof EStructuralFeatureValueFillingConfiguration) {
+				config = (EStructuralFeatureValueFillingConfiguration)current;
+				break;
+			}
+		}
+
+		EStructuralFeature synchronizedFeature = config.getListenFeature();
 
 		List<Object> theList = getTableManager().getElementsList(getRepresentedContentProvider());
 		theList.clear();

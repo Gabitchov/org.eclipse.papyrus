@@ -24,8 +24,10 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.views.properties.contexts.Property;
@@ -33,11 +35,11 @@ import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.table.Activator;
 import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
-import org.eclipse.papyrus.views.properties.widgets.layout.GridData;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
@@ -61,7 +63,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		fillLayout.marginWidth = 10;
 		self.setLayout(fillLayout);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		data.heightHint = 300;
+		data.minimumHeight = 300;
 		self.setLayoutData(data);
 	}
 
@@ -142,7 +144,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 		final Table table = NattableFactory.eINSTANCE.createTable();
 
-		table.setEditorConfiguration(tableConfiguration);
+		table.setTableConfiguration(tableConfiguration);
 		Property property = getModelProperty();
 		if(property != null) {
 			String description = property.getDescription();
@@ -154,29 +156,35 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		table.setName(getLabel());
 		table.setContext(sourceElement);
 
-		AbstractAxisProvider rowProvider = tableConfiguration.getRowAxisProvider();
+		AbstractAxisProvider rowProvider = tableConfiguration.getDefaultRowAxisProvider();
 		if(rowProvider == null) {
-			rowProvider = NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider();
+			rowProvider = NattableaxisproviderFactory.eINSTANCE.createMasterObjectAxisProvider();
 		} else {
 			rowProvider = EcoreUtil.copy(rowProvider);
 		}
 
-		AbstractAxisProvider columnProvider = tableConfiguration.getColumnAxisProvider();
+		AbstractAxisProvider columnProvider = tableConfiguration.getDefaultColumnAxisProvider();
 		if(columnProvider == null) {
-			columnProvider = NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider();
+			columnProvider = NattableaxisproviderFactory.eINSTANCE.createSlaveObjectAxisProvider();
 		} else {
 			columnProvider = EcoreUtil.copy(columnProvider);
 		}
 
 
-		if(rowProvider instanceof EMFFeatureValueAxisProvider) {
-			EMFFeatureValueAxisProvider emfAxisProvider = (EMFFeatureValueAxisProvider)rowProvider;
-
-			emfAxisProvider.setListenFeature(synchronizedFeature);
+		TableHeaderAxisConfiguration rowHeaderAxisconfig = tableConfiguration.getRowHeaderAxisConfiguration();
+		for(IAxisConfiguration axisConfig : rowHeaderAxisconfig.getOwnedAxisConfiguration()) {
+			if(axisConfig instanceof EStructuralFeatureValueFillingConfiguration) {
+				((EStructuralFeatureValueFillingConfiguration)axisConfig).setListenFeature(synchronizedFeature);
+			}
 		}
+		//		if(rowProvider instanceof EMFFeatureValueAxisProvider) {
+		//			EMFFeatureValueAxisProvider emfAxisProvider = (EMFFeatureValueAxisProvider)rowProvider;
+		//
+		//			emfAxisProvider.setListenFeature(synchronizedFeature);
+		//		}
 
-		table.setColumnAxisProvider(columnProvider);
-		table.setRowAxisProvider(rowProvider);
+		table.setCurrentColumnAxisProvider(columnProvider);
+		table.setCurrentRowAxisProvider(rowProvider);
 
 		return table;
 	}
