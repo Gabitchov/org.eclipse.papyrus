@@ -1875,5 +1875,9 @@
       <browserCustomization file="resource/UMLFacetDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
       <browserCustomization file="resource/NotationCustomization.uiCustom" loadByDefault="true">
       </browserCustomization>
+      <browserCustomization
+            file="resource/SimpleUML.uiCustom"
+            loadByDefault="false">
+      </browserCustomization>
    </extension>
 </plugin>
