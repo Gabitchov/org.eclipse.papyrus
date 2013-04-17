@@ -15,18 +15,11 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivitie
 
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 
 public class FlowFinalNodeActivation extends ControlNodeActivation {
 
 	public void fire(List<Token> incomingTokens) {
-		super.fire(incomingTokens) ;
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			if (locus.engine.isTerminated())
-				return ;
-		}
 		// Consume all incoming tokens.
 		Debug.println("[fire] Flow final node " + this.node.getName() + "...");
 		for(int i = 0; i < incomingTokens.size(); i++) {

@@ -16,43 +16,14 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.debug.core.ILaunchManager;
-import org.eclipse.papyrus.moka.debug.MokaDebugTarget;
-import org.eclipse.papyrus.moka.debug.MokaStackFrame;
-import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.ExtensionalValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
-import org.eclipse.papyrus.moka.fuml.debug.FumlThread;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 
 public class Locus {
-	
-	public boolean isInDebugMode = false ;
-	
-	public FUMLExecutionEngine engine ;
-	
-	public FumlThread mainThread ;
-	
-	public MokaStackFrame[] stackFrames ;
-	
-	public void initDebugInformation(String debugMode, FUMLExecutionEngine engine) {
-		this.engine = engine ;
-		Locus.debugTarget = engine.getDebugTarget() ;
-		if (debugMode.equals(ILaunchManager.DEBUG_MODE)) {
-			this.isInDebugMode = true ;
-			this.mainThread = new FumlThread(engine.getDebugTarget()) ;
-			this.mainThread.setName("Main thread") ;
-		}
-	}
-	
-	protected static MokaDebugTarget debugTarget ;
-	
-	public static MokaDebugTarget getDebugTarget() {
-		return Locus.debugTarget ;
-	}
-	
+
 	/*
 	 * The executor to be used at this locus.
 	 */

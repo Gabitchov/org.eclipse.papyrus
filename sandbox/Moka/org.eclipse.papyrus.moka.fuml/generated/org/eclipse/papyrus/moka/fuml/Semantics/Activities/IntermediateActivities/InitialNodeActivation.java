@@ -16,17 +16,9 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivitie
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
-
 public class InitialNodeActivation extends ControlNodeActivation {
 
 	public void fire(List<Token> incomingTokens) {
-		super.fire(incomingTokens) ;
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			if (locus.engine.isTerminated())
-				return ;
-		}
 		// Create a single token and send offers for it.
 		List<Token> tokens = new ArrayList<Token>();
 		tokens.add(new ControlToken());

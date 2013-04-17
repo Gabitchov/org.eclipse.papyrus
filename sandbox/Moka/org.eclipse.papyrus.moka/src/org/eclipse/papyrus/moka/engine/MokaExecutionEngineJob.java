@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.papyrus.moka.debug.MokaDebugTarget;
 
 /**
  * A Job for hosting the execution of an engine
@@ -30,6 +31,8 @@ public class MokaExecutionEngineJob extends Job {
 	 * The engine performing the execution
 	 */
 	protected IExecutionEngine engine ;
+	
+	protected MokaDebugTarget debugTarget ;
 
 	public MokaExecutionEngineJob(String name, IExecutionEngine engine) {
 		super(name) ;
@@ -37,7 +40,7 @@ public class MokaExecutionEngineJob extends Job {
 	}
 
 	/** 
-	 * Calls the start method of the owned execution engine
+	 * Start the execution engine
 	 * 
 	 * (non-Javadoc)
 	 * @see org.eclipse.core.runtime.jobs.Job#run(org.eclipse.core.runtime.IProgressMonitor)
@@ -49,6 +52,14 @@ public class MokaExecutionEngineJob extends Job {
 			return new Status(IStatus.ERROR, "org.eclipse.papyrus.moka", e.getMessage());
 		}
 		return new Status(IStatus.OK, "org.eclipse.papyrus.moka", "Execution was successfull");
-	}	
+	}
+	
+	public void setDebugTarget(MokaDebugTarget debugTarget) {
+		this.debugTarget = debugTarget ;
+	}
+	
+	public MokaDebugTarget getDebugTarget() {
+		return this.debugTarget ;
+	}
 
 }

@@ -17,11 +17,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.debug.Debug;
+import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.BasicActions.ActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.BasicActions.OutputPinActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ActivityNodeActivationGroup;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.Token;
+import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.uml2.uml.ExpansionKind;
 import org.eclipse.uml2.uml.ExpansionNode;
 import org.eclipse.uml2.uml.ExpansionRegion;
@@ -73,7 +74,8 @@ public class ExpansionRegionActivation extends ActionActivation {
 		for(int i = 0; i < inputElements.size(); i++) {
 			ExpansionNode inputElement = inputElements.get(i);
 			ExpansionNodeActivation expansionNodeActivation = this.getExpansionNodeActivation(inputElement);
-			expansionNodeActivation.fire(expansionNodeActivation.takeOfferedTokens());
+			if (FUMLExecutionEngine.eInstance.getControlDelegate().control(expansionNodeActivation)) // Added for connection with debug API
+				expansionNodeActivation.fire(expansionNodeActivation.takeOfferedTokens());
 			List<Token> tokens = expansionNodeActivation.takeTokens();
 			TokenSet tokenSet = new TokenSet();
 			int j = 1;
@@ -206,7 +208,8 @@ public class ExpansionRegionActivation extends ActionActivation {
 			_beginIsolation();
 			for(int j = 0; j < groupOutputs.size(); j++) {
 				OutputPinActivation groupOutput = groupOutputs.get(j);
-				groupOutput.fire(groupOutput.takeOfferedTokens());
+				if (FUMLExecutionEngine.eInstance.getControlDelegate().control(groupOutput)) // Added for connection with debug API
+					groupOutput.fire(groupOutput.takeOfferedTokens());
 			}
 			activationGroup.terminateAll();
 			_endIsolation();
@@ -263,7 +266,8 @@ public class ExpansionRegionActivation extends ActionActivation {
 			List<OutputPinActivation> groupOutputs = activationGroup.groupOutputs;
 			for(int i = 0; i < groupOutputs.size(); i++) {
 				OutputPinActivation groupOutput = groupOutputs.get(i);
-				groupOutput.fire(groupOutput.takeOfferedTokens());
+				if (FUMLExecutionEngine.eInstance.getControlDelegate().control(groupOutput)) // Added for connection with debug API
+					groupOutput.fire(groupOutput.takeOfferedTokens());
 			}
 			activationGroup.terminateAll();
 		}

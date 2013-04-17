@@ -90,12 +90,12 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 	 * The server socket used to accept connection from the requestSocket (connection is done in Moka debug target) 
 	 */
 	protected ServerSocket requestServer ;
-	
+
 	/**
 	 * The server socket used to accept connection from the replySocket (connection is done in Moka debug target) 
 	 */
 	protected ServerSocket replyServer ;
-	
+
 	/**
 	 * The socket used to reply to request emitted by the debug target
 	 */
@@ -137,25 +137,18 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 	protected boolean isTerminated = false ;
 
 	/**
-	 * Inits the execution engine in Run mode
-	 */
-	public void initRun(EObject eObjectToExecute, String[] args) {
-		this.eObjectToExecute = eObjectToExecute ;
-		this.initializeArguments(args) ;
-	}
-
-	/**
 	 * Inits the execution engine in Debug mode.
 	 * This includes the creation of server sockets, to enable connection of sockets in the moka debug target. 
 	 * 
 	 */
-	public void initDebug(EObject eObjectToExecute, String[] args, MokaDebugTarget debugTarget, int requestPort, int replyPort, int eventPort) throws UnknownHostException, IOException {
+	public void init(EObject eObjectToExecute, String[] args, MokaDebugTarget debugTarget, int requestPort, int replyPort, int eventPort) throws UnknownHostException, IOException {
 		this.debugTarget = debugTarget ;
 		this.requestServer = new ServerSocket(requestPort) ;
 		this.replyServer = new ServerSocket(replyPort) ;
 		this.eventServer = new ServerSocket(eventPort) ;
 		this.mode = ILaunchManager.DEBUG_MODE ;
-		this.initRun(eObjectToExecute, args) ;
+		this.eObjectToExecute = eObjectToExecute ;
+		this.initializeArguments(args) ;
 	}
 
 	/**
@@ -166,8 +159,8 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 	public MokaDebugTarget getDebugTarget() {
 		return this.debugTarget ;
 	}
-	
-	
+
+
 	/**
 	 * Returns true if the execution is terminated, false otherwise
 	 * 
@@ -176,7 +169,7 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 	public boolean isTerminated() {
 		return this.isTerminated ;
 	}
-	
+
 	/**
 	 * Initializes the execution engine with given arguments
 	 */
@@ -187,79 +180,73 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 	 */
 	public void start() throws IOException {
 		if (eObjectToExecute != null) {
-			if (this.mode.equals(ILaunchManager.DEBUG_MODE)) {
-				String request = "";
-				// First accepts connection of the request socket (from the moka debug target) and initializes reader/writer 
-				requestSocket = requestServer.accept() ;
-				requestReader = new BufferedReader(new InputStreamReader(requestSocket.getInputStream()));
-				// Then accepts connection of the reply socket
-				replySocket = replyServer.accept() ;
-				replyWriter = new PrintWriter(replySocket.getOutputStream());
-				// Then accepts connection of the event socket
-				eventSocket = eventServer.accept() ;
-				eventWriter = new PrintWriter(eventSocket.getOutputStream()) ;
-				// Communication protocol starts by notifying the moka debug target that execution has started
-				this.sendEvent(new Start_Event(this.debugTarget, this.getThreads())) ;
-				while (!this.isTerminated && request != null) {
-					try {
-						request = requestReader.readLine();
-						if (request != null) {
-							if (request.startsWith(MokaConstants.request_addBreakpoint)) {
-								// Add breakpoint request
-								this.addBreakpoint_reply(request);
-							}
-							else if (request.startsWith(MokaConstants.request_removeBreakpoint)) {
-								// Remove breakpoint request
-								this.removeBreakpoint_reply(request) ;
-							}
-							else if (request.startsWith(MokaConstants.request_disconnect)) {
-								// Disconnection requested
-								this.disconnect_reply() ;
-							}
-							else if (request.startsWith(MokaConstants.request_resume)) {
-								// Resume requested
-								this.resume_reply(request) ;
-							}
-							else if (request.startsWith(MokaConstants.request_suspend)) {
-								// Suspend requested
-								this.suspend_reply(request) ;
-							}
-							else if (request.startsWith(MokaConstants.request_terminate)) {
-								// Terminate requested
-								this.terminate_reply(request) ;
-							}
-							else if (request.startsWith(MokaConstants.request_getStackFrames)) {
-								// Stack frames requested
-								this.getStackFrames_reply(request) ;
-							}
-							else if (request.startsWith(MokaConstants.request_getVariables)) {
-								// Variables requested
-								this.getVariables_reply(request) ;
-							}
-							else if (request.startsWith(MokaConstants.request_getValue)) {
-								// Variable value requested
-								this.getValue_reply(request) ;
-							}
-							else if (request.startsWith(MokaConstants.request_getReferenceTypeName)) {
-								// Reference type name of a variable requested
-								this.getReferenceTypeName_reply(request) ;
-							}
-							else if (request.startsWith(MokaConstants.request_getValueString)) {
-								// String representation of a value requested
-								this.getValueString_reply(request) ;
-							}
+			String request = "";
+			// First accepts connection of the request socket (from the moka debug target) and initializes reader/writer 
+			requestSocket = requestServer.accept() ;
+			requestReader = new BufferedReader(new InputStreamReader(requestSocket.getInputStream()));
+			// Then accepts connection of the reply socket
+			replySocket = replyServer.accept() ;
+			replyWriter = new PrintWriter(replySocket.getOutputStream());
+			// Then accepts connection of the event socket
+			eventSocket = eventServer.accept() ;
+			eventWriter = new PrintWriter(eventSocket.getOutputStream()) ;
+			// Communication protocol starts by notifying the moka debug target that execution has started
+			this.sendEvent(new Start_Event(this.debugTarget, this.getThreads())) ;
+			while (!this.isTerminated && request != null) {
+				try {
+					request = requestReader.readLine();
+					if (request != null) {
+						if (request.startsWith(MokaConstants.request_addBreakpoint)) {
+							// Add breakpoint request
+							this.addBreakpoint_reply(request);
 						}
-					} catch (IOException e) {
-						this.isTerminated = true ;
+						else if (request.startsWith(MokaConstants.request_removeBreakpoint)) {
+							// Remove breakpoint request
+							this.removeBreakpoint_reply(request) ;
+						}
+						else if (request.startsWith(MokaConstants.request_disconnect)) {
+							// Disconnection requested
+							this.disconnect_reply() ;
+						}
+						else if (request.startsWith(MokaConstants.request_resume)) {
+							// Resume requested
+							this.resume_reply(request) ;
+						}
+						else if (request.startsWith(MokaConstants.request_suspend)) {
+							// Suspend requested
+							this.suspend_reply(request) ;
+						}
+						else if (request.startsWith(MokaConstants.request_terminate)) {
+							// Terminate requested
+							this.terminate_reply(request) ;
+						}
+						else if (request.startsWith(MokaConstants.request_getStackFrames)) {
+							// Stack frames requested
+							this.getStackFrames_reply(request) ;
+						}
+						else if (request.startsWith(MokaConstants.request_getVariables)) {
+							// Variables requested
+							this.getVariables_reply(request) ;
+						}
+						else if (request.startsWith(MokaConstants.request_getValue)) {
+							// Variable value requested
+							this.getValue_reply(request) ;
+						}
+						else if (request.startsWith(MokaConstants.request_getReferenceTypeName)) {
+							// Reference type name of a variable requested
+							this.getReferenceTypeName_reply(request) ;
+						}
+						else if (request.startsWith(MokaConstants.request_getValueString)) {
+							// String representation of a value requested
+							this.getValueString_reply(request) ;
+						}
 					}
+				} catch (IOException e) {
+					this.isTerminated = true ;
 				}
-				// Communication protocol ends by notifying the moka debug target that execution has terminated
-				this.sendEvent(new Terminate_Event(this.debugTarget)) ;
 			}
-			else {
-				// In Run mode, simply resumes the execution once.
-				this.resume() ;
-			}
+			// Communication protocol ends by notifying the moka debug target that execution has terminated
+			this.sendEvent(new Terminate_Event(this.debugTarget)) ;
 		}
 	}
 
@@ -350,11 +337,6 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 	 * @see org.eclipse.papyrus.moka.engine.IExecutionEngine#resume(Resume_Request request)
 	 */
 	public abstract void resume(Resume_Request request) ;
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.moka.engine.IExecutionEngine#resume()
-	 */
-	public abstract void resume() ;
 
 	// **************************************
 	// Management of a suspend() request emitted from the debug target.
@@ -395,7 +377,7 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 	 * @see org.eclipse.papyrus.moka.engine.IExecutionEngine#terminate(org.eclipse.papyrus.moka.communication.request.iterminate.Terminate_Request)
 	 */
 	public abstract void terminate(Terminate_Request request) ;
-	
+
 	// **************************************
 	// Management of a getStackFrames() request emitted from the debug target.
 	// @see IThread.getStackFrames() 
@@ -533,4 +515,14 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 			eventWriter.flush();
 		}
 	}
+
+	/**
+	 * Convenience method to set the value of property isTerminated
+	 * 
+	 * @param isTerminated
+	 */
+	public void setIsTerminated(boolean isTerminated) {
+		this.isTerminated = true ;
+	}
+	
 }

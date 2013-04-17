@@ -18,19 +18,12 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.Parameter;
 
 public class ActivityParameterNodeActivation extends ObjectNodeActivation {
 
 	public void fire(List<Token> incomingTokens) {
-		super.fire(incomingTokens) ;
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			if (locus.engine.isTerminated())
-				return ;
-		}
 		// If there are no incoming edges, this is an activation of an input
 		// activity parameter node.
 		// Get the values from the input parameter indicated by the activity

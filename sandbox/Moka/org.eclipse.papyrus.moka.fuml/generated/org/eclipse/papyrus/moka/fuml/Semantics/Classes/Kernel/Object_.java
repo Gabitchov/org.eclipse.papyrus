@@ -123,8 +123,4 @@ public class Object_ extends ExtensionalValue {
 		}
 		return types;
 	}
-	
-	public String toString() {
-		return this.objectId() ;
-	}
 }

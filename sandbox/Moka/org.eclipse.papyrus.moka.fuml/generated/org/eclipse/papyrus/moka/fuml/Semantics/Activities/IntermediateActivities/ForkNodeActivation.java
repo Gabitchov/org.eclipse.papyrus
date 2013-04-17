@@ -16,20 +16,11 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivitie
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 
 public class ForkNodeActivation extends ControlNodeActivation {
 
 	public void fire(List<Token> incomingTokens) {
-		if (this.group != null) {
-		super.fire(incomingTokens) ;
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			if (locus.engine.isTerminated())
-				return ;
-		}
-		}
 		// Create forked tokens for all incoming tokens and offer them on all
 		// outgoing edges.
 		if(this.node == null) {

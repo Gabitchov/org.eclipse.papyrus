@@ -38,27 +38,7 @@ import org.eclipse.papyrus.moka.debug.MokaThread;
 public interface IExecutionEngine {
 	
 	/**
-	 * Returns true if this execution engine supports the debug mode
-	 * 
-	 * @return true if debug mode is supported, false otherwise
-	 */
-	public boolean isDebugModeSupported() ;
-	
-	/**
-	 * Initializes the engine for an execution in "Run" mode
-	 * 
-	 * @param eObjectToExecute The object to be executed by the engine
-	 * @param args Optional arguments for the execution of the object
-	 */
-	public void initRun(EObject eObjectToExecute, String[] args) ;
-	
-	/**
-	 * Resumes the execution of the target program, after initialization in "Run" mode
-	 */
-	public void resume() ;
-	
-	/**
-	 * Initializes the engine for an execution in "Debug" mode.
+	 * Initializes the engine.
 	 * This requires to know the debugTarget which will communicate with this execution engine.
 	 * Since the debugTarget and the execution engine must run asynchronously, they communicate through sockets.
 	 * requestPort indicates the address of the socket through which requests emitted from the debug target flow.
@@ -74,7 +54,7 @@ public interface IExecutionEngine {
 	 * @throws UnknownHostException when problems occur while establishing connection with the sockets
 	 * @throws IOException when problems occur while reading/writing on sockets
 	 */
-	public void initDebug(EObject eObjectToExecute, String[] args, MokaDebugTarget debugTarget, int requestPort, int replyPort, int eventPort) throws UnknownHostException, IOException ;
+	public void init(EObject eObjectToExecute, String[] args, MokaDebugTarget debugTarget, int requestPort, int replyPort, int eventPort) throws UnknownHostException, IOException ;
 	
 	/**
 	 * Initialization of the execution engine with given arguments. This is supposed to be called in the implementation of initRun and/or initDebug methods

@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ActivityEdgeInstance;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ObjectNodeActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.Token;
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.uml2.uml.Pin;
 
@@ -31,12 +30,6 @@ public abstract class PinActivation extends ObjectNodeActivation {
 	public ActionActivation actionActivation;
 
 	public void fire(List<Token> incomingTokens) {
-		super.fire(incomingTokens) ;
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			if (locus.engine.isTerminated())
-				return ;
-		}
 		// Add all incoming tokens to the pin.
 		Debug.println("[fire] Pin " + (this.node == null ? "" : this.node.getName() + "..."));
 		this.addTokens(incomingTokens);

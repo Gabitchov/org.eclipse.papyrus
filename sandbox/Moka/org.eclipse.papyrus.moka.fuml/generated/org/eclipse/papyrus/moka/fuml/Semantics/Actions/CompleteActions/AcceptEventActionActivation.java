@@ -22,7 +22,6 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.FeatureValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Signal;
@@ -48,12 +47,6 @@ public class AcceptEventActionActivation extends ActionActivation {
 	}
 
 	public void fire(List<Token> incomingTokens) {
-		super.fire(incomingTokens) ;
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			if (locus.engine.isTerminated())
-				return ;
-		}
 		// Register the event accepter for this accept event action activation
 		// with the context object of the enclosing activity execution
 		// and wait for an event to be accepted.

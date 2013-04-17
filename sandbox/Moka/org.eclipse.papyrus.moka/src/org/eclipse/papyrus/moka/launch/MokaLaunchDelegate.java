@@ -25,10 +25,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
@@ -84,7 +82,7 @@ public class MokaLaunchDelegate extends LaunchConfigurationDelegate implements I
 			this.abort("Could not instantiate execution engine", null) ;
 
 		// Create a job for the execution of this engine
-		Job engineJob = new MokaExecutionEngineJob("Execution Engine Job", engine) ;
+		MokaExecutionEngineJob engineJob = new MokaExecutionEngineJob("Execution Engine Job", engine) ;
 
 		// retrieves values for the various attributes associated with the launch configuration
 		String resourceURI = configuration.getAttribute(URI_ATTRIBUTE_NAME, "") ;
@@ -114,38 +112,30 @@ public class MokaLaunchDelegate extends LaunchConfigurationDelegate implements I
 		int requestPort = -1;
 		int replyPort = -1;
 		int eventPort = -1;
-
-		if (mode.equals(ILaunchManager.DEBUG_MODE)) {
-			requestPort = findFreePort();
-			eventPort = findFreePort();
-			replyPort = findFreePort();
-			if (requestPort == -1 || replyPort == -1 || eventPort == -1) {
-				this.abort("Unable to find free port", null);
-			}
+		requestPort = findFreePort();
+		eventPort = findFreePort();
+		replyPort = findFreePort();
+		if (requestPort == -1 || replyPort == -1 || eventPort == -1) {
+			this.abort("Unable to find free port", null);
 		}
 
 		// The resulting job is used for the creation of MokaRuntimeProcess, thereby simulating a real, physical process
 		IProcess process = new MokaProcess(launch, engineJob, "Moka runtime process", new HashMap<String,String>()) ;
 
-		// Initializes the engine, as well as the debug target if we are in DEBUG_MODE
-		if (mode.equals(ILaunchManager.DEBUG_MODE) && engine.isDebugModeSupported()) {
-			MokaDebugTarget target = new MokaDebugTarget(launch, process);
-			try {
-				engine.initDebug(eObjectToExecute, args, target, requestPort, replyPort, eventPort) ;
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		// Initializes the engine as well as the debug target
+		MokaDebugTarget target = new MokaDebugTarget(launch, process);
+		try {
+			engine.init(eObjectToExecute, args, target, requestPort, replyPort, eventPort) ;
 			target.connect(requestPort, replyPort, eventPort) ;
 			launch.addDebugTarget(target);
+			engineJob.setDebugTarget(target) ;
+			engineJob.schedule() ;
+		} catch (UnknownHostException e) {
+			org.eclipse.papyrus.infra.core.Activator.log.equals(e) ;
+		} catch (IOException e) {
+			org.eclipse.papyrus.infra.core.Activator.log.equals(e) ;
 		}
-		else {
-			engine.initRun(eObjectToExecute, args) ;
-		}
-
-		// Schedules the job so that execution effectively starts
-		engineJob.schedule() ;
+			
 	}
 
 	/**
@@ -168,9 +158,9 @@ public class MokaLaunchDelegate extends LaunchConfigurationDelegate implements I
 			final Object o = e.createExecutableExtension("class");
 			return (IExecutionEngine)o ;
 		} catch (CoreException ex) {
-
+			org.eclipse.papyrus.infra.core.Activator.log.equals(ex) ;
 		} catch (Exception ex) {
-
+			org.eclipse.papyrus.infra.core.Activator.log.equals(ex) ;
 		}
 		// If null is returned, the calling method (launch) fires a CoreException
 		return null ; 

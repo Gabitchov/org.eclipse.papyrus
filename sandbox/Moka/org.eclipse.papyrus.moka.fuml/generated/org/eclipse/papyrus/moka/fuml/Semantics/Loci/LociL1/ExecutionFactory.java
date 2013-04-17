@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
-import org.eclipse.papyrus.moka.fuml.debug.StackFrameManager;
-import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ActivityExecution;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Evaluation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
@@ -75,9 +73,6 @@ public abstract class ExecutionFactory {
 		} else {
 			execution.context = context;
 		}
-		// Statement added for connection with the DebugAPI
-		if (execution instanceof ActivityExecution)
-			StackFrameManager.getInstance().pushActivityExecution((ActivityExecution)execution) ;
 		return execution;
 	}
 

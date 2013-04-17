@@ -16,16 +16,6 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivitie
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.Activator;
-import org.eclipse.papyrus.moka.MokaConstants;
-import org.eclipse.papyrus.moka.communication.event.isuspendresume.Suspend_Event;
-import org.eclipse.papyrus.moka.debug.MokaStackFrame;
-import org.eclipse.papyrus.moka.debug.MokaThread;
-import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
-import org.eclipse.papyrus.moka.fuml.debug.StackFrameManager;
-import org.eclipse.papyrus.moka.fuml.presentation.FUMLPresentationUtils;
-import org.eclipse.papyrus.moka.ui.presentation.AnimationUtils;
 import org.eclipse.uml2.uml.ActivityEdge;
 
 public class ActivityEdgeInstance {
@@ -69,57 +59,6 @@ public class ActivityEdgeInstance {
 			offer.offeredTokens.add(token);
 		}
 		this.offers.add(offer);
-
-		// Connection with the debug api
-		if (this.group != null) { // TODO : Understand why group may be null
-			Locus locus = this.group.getActivityExecution().locus ;
-			if (locus.isInDebugMode) {
-				if (locus.engine.isTerminated())
-					return ;
-				boolean animationMarkerNeedsToBeRemoved = false ;
-				long date = 0 ;
-				if (MokaConstants.MOKA_AUTOMATIC_ANIMATION) {
-					date = System.currentTimeMillis() ;
-					AnimationUtils.getInstance().addAnimationMarker(edge) ;
-					animationMarkerNeedsToBeRemoved = true ;
-				}
-				MokaStackFrame stackFrame = FUMLPresentationUtils.getMokaStackFrame(this) ;
-				//stackFrame.setModelElement(this.edge) ;
-				stackFrame.setThread(locus.mainThread) ;
-				stackFrame.setName(this.edge.getName()) ;
-				StackFrameManager.getInstance().setStackFrame(this.group.getActivityExecution(), stackFrame) ;
-				int reasonForSuspending = FUMLExecutionEngine.controlDelegate.shallSuspend(this.group.getActivityExecution(), this) ; 
-				if (reasonForSuspending != -1) {
-					locus.mainThread.setSuspended(true) ;
-					locus.mainThread.setStackFrames(null) ;
-					//locus.stackFrames = new MokaStackFrame[]{stackFrame} ;
-					locus.stackFrames = StackFrameManager.getInstance().getStackFrames() ;
-					Suspend_Event breakpointEvent = new Suspend_Event(locus.mainThread, reasonForSuspending, new MokaThread[]{locus.mainThread}) ;
-					locus.engine.sendEvent(breakpointEvent) ;
-					try {
-						FUMLExecutionEngine.controlDelegate.suspend(this.group.getActivityExecution()) ;
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					locus.mainThread.setSuspended(false) ;
-				}
-				if (animationMarkerNeedsToBeRemoved) {
-					try {
-						long ellapsed = System.currentTimeMillis() - date ;
-						long delay = Math.max(1,MokaConstants.MOKA_ANIMATION_DELAY - ellapsed) ;
-						Thread.sleep(delay) ;
-					} catch (InterruptedException e1) {
-						Activator.log.error(e1);
-					}	
-					AnimationUtils.getInstance().removeAnimationMarker(edge) ;
-				}
-				if (locus.engine.isTerminated())
-					return ;
-			}
-		}
-
-		// End: Connection with the debug api
-
 		this.target.receiveOffer();
 	}
 

@@ -6,7 +6,7 @@
    <extension
          point="org.eclipse.papyrus.moka.engine">
       <engine
-            class="org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine">
+            class="org.eclipse.papyrus.moka.fuml.FUMLExecutionEngineForMoka">
       </engine>
    </extension>
 

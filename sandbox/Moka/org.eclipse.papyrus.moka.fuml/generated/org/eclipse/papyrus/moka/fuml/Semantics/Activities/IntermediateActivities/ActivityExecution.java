@@ -15,11 +15,10 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivitie
 
 import java.util.List;
 
+import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.debug.Debug;
-import org.eclipse.papyrus.moka.fuml.debug.StackFrameManager;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 
@@ -62,8 +61,6 @@ public class ActivityExecution extends Execution {
 			}
 			this.setParameterValue(parameterValue);
 		}
-		// Statement added for connection with the DebugAPI
-		StackFrameManager.getInstance().popActivityExecution() ;
 		Debug.println("[execute] Activity " + activity.getName() + " completed.");
 	}
 

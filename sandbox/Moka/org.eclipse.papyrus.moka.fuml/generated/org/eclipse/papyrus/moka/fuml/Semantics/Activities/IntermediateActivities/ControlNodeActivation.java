@@ -15,18 +15,11 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivitie
 
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 
 public abstract class ControlNodeActivation extends ActivityNodeActivation {
 
 	public void fire(List<Token> incomingTokens) {
-		super.fire(incomingTokens) ;
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			if (locus.engine.isTerminated())
-				return ;
-		}
 		// By default, offer all tokens on all outgoing edges.
 		if(this.node != null) {
 			Debug.println("[fire] Control node " + this.node.getName() + "...");

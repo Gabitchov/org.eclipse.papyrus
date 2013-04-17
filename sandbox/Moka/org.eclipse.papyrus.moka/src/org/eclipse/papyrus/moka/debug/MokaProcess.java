@@ -30,6 +30,7 @@ import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipse.debug.core.model.ITerminate;
+import org.eclipse.papyrus.moka.engine.MokaExecutionEngineJob;
 
 /**
  * An IProcess is an abstraction of a running program (in our case, the actual execution engine). 
@@ -47,9 +48,6 @@ import org.eclipse.debug.core.model.ITerminate;
  */
 public class MokaProcess extends PlatformObject implements IProcess {
 
-	private static final int MAX_WAIT_FOR_DEATH_ATTEMPTS = 10;
-	private static final int TIME_TO_WAIT_FOR_THREAD_DEATH = 500; // ms
-
 	/**
 	 * The launch this process is contained in
 	 */
@@ -58,7 +56,7 @@ public class MokaProcess extends PlatformObject implements IProcess {
 	/**
 	 * The Job used to run the execution engine
 	 */
-	protected Job job;
+	protected MokaExecutionEngineJob job;
 
 	/**
 	 * This Job's exit value
@@ -92,7 +90,7 @@ public class MokaProcess extends PlatformObject implements IProcess {
 	public MokaProcess(ILaunch launch, Job job, String label, Map<String, String> attributes) {
 		this.launch = launch;
 		initializeAttributes(attributes);
-		this.job = job ;
+		this.job = (MokaExecutionEngineJob)job ;
 		this.job.addJobChangeListener(new MokaJobChangeListener(this)) ;
 		this.label = label;
 		isTerminated= false ;
@@ -150,30 +148,8 @@ public class MokaProcess extends PlatformObject implements IProcess {
 		if (!isTerminated()) {			
 			//Job job = getExecutionEngineJob();
 			if (this.job != null) {
-				this.job.cancel();
+				this.job.getDebugTarget().terminate();
 			}
-			int attempts = 0;
-			while (attempts < MAX_WAIT_FOR_DEATH_ATTEMPTS) {
-				try {
-					if (this.job != null) {
-						IStatus result = this.job.getResult() ;
-						if (result == null) // No result available. It means that cancellation is not yet effective.
-							throw new IllegalThreadStateException() ;
-						else
-							this.exitValue = this.job.getResult().getCode() ;
-					}
-					return;
-				} catch (IllegalThreadStateException ie) {
-					ie.printStackTrace() ;
-				}
-				try {
-					Thread.sleep(TIME_TO_WAIT_FOR_THREAD_DEATH);
-				} catch (InterruptedException e) {
-				}
-				attempts++;
-			}
-			IStatus status = new Status(IStatus.ERROR, DebugPlugin.getUniqueIdentifier(), DebugException.TARGET_REQUEST_FAILED, "Terminate failed", null);		 
-			throw new DebugException(status);
 		}
 	}
 

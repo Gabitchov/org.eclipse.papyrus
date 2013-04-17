@@ -16,20 +16,10 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivitie
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.Activator;
-import org.eclipse.papyrus.moka.MokaConstants;
-import org.eclipse.papyrus.moka.communication.event.isuspendresume.Suspend_Event;
-import org.eclipse.papyrus.moka.debug.MokaStackFrame;
-import org.eclipse.papyrus.moka.debug.MokaThread;
-import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
-import org.eclipse.papyrus.moka.fuml.debug.StackFrameManager;
-import org.eclipse.papyrus.moka.fuml.presentation.FUMLPresentationUtils;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
-import org.eclipse.papyrus.moka.ui.presentation.AnimationUtils;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.DecisionNode;
@@ -46,51 +36,6 @@ public class DecisionNodeActivation extends ControlNodeActivation {
 	public Execution decisionInputExecution;
 
 	public void fire(List<Token> incomingTokens) {
-		// Inserted for connection with the debug api
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			boolean animationMarkerNeedsToBeRemoved = false ;
-			long date = 0 ;
-			this.incomingTokens_DEBUG = incomingTokens ;
-			if (locus.engine.isTerminated())
-				return ;
-			if (MokaConstants.MOKA_AUTOMATIC_ANIMATION) {
-				date = System.currentTimeMillis() ;
-				AnimationUtils.getInstance().addAnimationMarker(node) ;
-				animationMarkerNeedsToBeRemoved = true ;
-			}
-			MokaStackFrame stackFrame = FUMLPresentationUtils.getMokaStackFrame(this) ;
-			stackFrame.setThread(locus.mainThread) ;
-			stackFrame.setName(this.node.getName()) ;
-			StackFrameManager.getInstance().setStackFrame(this.getActivityExecution(), stackFrame) ;
-			int reasonForSuspending = FUMLExecutionEngine.controlDelegate.shallSuspend(this.getActivityExecution(), this) ; 
-			if (reasonForSuspending != -1) {
-				locus.mainThread.setSuspended(true) ;
-				locus.mainThread.setStackFrames(null) ;
-				//locus.stackFrames = new MokaStackFrame[]{stackFrame} ;
-				locus.stackFrames = StackFrameManager.getInstance().getStackFrames() ;
-				Suspend_Event breakpointEvent = new Suspend_Event(locus.mainThread, reasonForSuspending, new MokaThread[]{locus.mainThread}) ;
-				locus.engine.sendEvent(breakpointEvent) ;
-				try {
-					FUMLExecutionEngine.controlDelegate.suspend(this.getActivityExecution()) ;
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				locus.mainThread.setSuspended(false) ;
-			}
-			if (animationMarkerNeedsToBeRemoved) {
-				try {
-					long ellapsed = System.currentTimeMillis() - date ;
-					long delay = Math.max(1,MokaConstants.MOKA_ANIMATION_DELAY - ellapsed) ;
-					Thread.sleep(delay) ;
-				} catch (InterruptedException e1) {
-					Activator.log.error(e1);
-				}	
-				AnimationUtils.getInstance().removeAnimationMarker(node) ;
-			}
-			if (locus.engine.isTerminated())
-				return ;
-		}
 		// Get the decision values and test them on each guard.
 		// Forward the offer over the edges for which the test succeeds.
 		Debug.println("[fire] Decision node " + this.node.getName() + "...");

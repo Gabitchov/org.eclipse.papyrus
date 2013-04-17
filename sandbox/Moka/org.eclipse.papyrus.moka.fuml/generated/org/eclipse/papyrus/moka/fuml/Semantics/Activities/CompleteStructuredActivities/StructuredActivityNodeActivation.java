@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.BasicActions.ActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.BasicActions.PinActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ActivityEdgeInstance;
@@ -151,7 +152,7 @@ public class StructuredActivityNodeActivation extends ActionActivation {
 		// Create an activation group and create node activations for all the
 		// nodes within the structured activity node.
 		super.createNodeActivations();
-		
+
 		this.activationGroup = new ActivityNodeActivationGroup();
 		this.activationGroup.containingNodeActivation = this;
 		this.activationGroup.createNodeActivations(((StructuredActivityNode)(this.node)).getNodes());
@@ -202,7 +203,8 @@ public class StructuredActivityNodeActivation extends ActionActivation {
 		// then finish its resumption.
 		List<Token> incomingTokens = super.completeAction();
 		if(incomingTokens.size() > 0) {
-			this.fire(incomingTokens);
+			if (FUMLExecutionEngine.eInstance.getControlDelegate().control(this)) // Added for connection with debug API
+				this.fire(incomingTokens);
 		}
 		if(!this.isSuspended()) {
 			super.resume();

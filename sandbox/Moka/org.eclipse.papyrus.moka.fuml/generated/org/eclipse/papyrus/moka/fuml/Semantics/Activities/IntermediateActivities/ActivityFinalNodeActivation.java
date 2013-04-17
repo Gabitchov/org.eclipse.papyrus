@@ -17,17 +17,10 @@ import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.ExtraStructuredActivities.ExpansionActivationGroup;
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 
 public class ActivityFinalNodeActivation extends ControlNodeActivation {
 
 	public void fire(List<Token> incomingTokens) {
-		super.fire(incomingTokens) ;
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			if (locus.engine.isTerminated())
-				return ;
-		}
 		// Terminate the activity execution or structured node activation
 		// containing this activation.
 		Debug.println("[fire] Activity final node " + this.node.getName() + "...");

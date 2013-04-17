@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ActivityEdgeInstance;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ActivityNodeActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ControlToken;
@@ -27,7 +28,6 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.FeatureValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Link;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActivityNode;
@@ -90,7 +90,8 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 			InputPin pin = i.next();
 			PinActivation pinActivation = this.getPinActivation(pin);
 			List<Token> tokens = pinActivation.takeOfferedTokens();
-			pinActivation.fire(tokens);
+			if (FUMLExecutionEngine.eInstance.getControlDelegate().control(pinActivation)) // Added for connection with debug API
+				pinActivation.fire(tokens);
 			for(int j = 0; j < tokens.size(); j++) {
 				Token token = tokens.get(j);
 				offeredTokens.add(token);
@@ -100,12 +101,6 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 	}
 
 	public void fire(List<Token> incomingTokens) {
-		super.fire(incomingTokens) ;
-		Locus locus = this.getExecutionLocus() ;
-		if (locus.isInDebugMode) {
-			if (locus.engine.isTerminated())
-				return ;
-		}
 		// Do the main action behavior then concurrently fire all output pin
 		// activations
 		// and offer a single control token. Then activate the action again,
