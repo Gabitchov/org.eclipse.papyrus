@@ -99,7 +99,7 @@ public class MokaLaunchDelegate extends LaunchConfigurationDelegate implements I
 			resourceSet = servicesRegistry.getService(ModelSet.class) ;
 		} catch (ServiceException e1) {
 			resourceSet = new ResourceSetImpl() ;
-			e1.printStackTrace();
+			org.eclipse.papyrus.infra.core.Activator.log.error(e1);
 		}
 
 		// from the arguments, retrieves the EObject to be executed

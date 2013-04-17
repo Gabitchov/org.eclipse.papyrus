@@ -120,7 +120,7 @@ public class StandardLibraryRegistry extends AbstractOpaqueBehaviorExecutionRegi
 			// ListConcat
 			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.list.ListConcat(), "FoundationalModelLibrary::PrimitiveBehaviors::ListFunctions::ListConcat");
 		} catch (Exception e) {
-			e.printStackTrace();
+			org.eclipse.papyrus.infra.core.Activator.log.error(e);
 		}
 	}
 

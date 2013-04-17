@@ -23,6 +23,7 @@ import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.moka.MokaConstants;
 import org.eclipse.papyrus.moka.debug.MokaBreakpoint;
 
@@ -48,7 +49,7 @@ public class ToggleBreakpointHandler extends MokaAbstractHandler implements IHan
 				try {
 					eObjectOfBreakpointUri = (String)breakpoint.getMarker().getAttribute(EValidator.URI_ATTRIBUTE);
 				} catch (CoreException e) {
-					e.printStackTrace();
+					Activator.log.error(e);
 				}
 				if (eObjectOfBreakpointUri.equals(selectedElementURI)) {
 					alreadyDefinedBreakpoint = breakpoint ;
@@ -64,7 +65,7 @@ public class ToggleBreakpointHandler extends MokaAbstractHandler implements IHan
 					breakpointManager.addBreakpoint(breakpoint) ;
 				}
 			} catch (CoreException e) {
-				e.printStackTrace();
+				Activator.log.error(e);
 			}
 			return null;
 		}

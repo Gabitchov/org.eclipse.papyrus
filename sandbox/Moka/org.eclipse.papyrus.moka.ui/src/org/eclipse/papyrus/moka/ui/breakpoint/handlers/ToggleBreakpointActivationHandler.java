@@ -22,6 +22,7 @@ import org.eclipse.debug.core.IBreakpointManager;
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.moka.MokaConstants;
 import org.eclipse.papyrus.moka.debug.MokaBreakpoint;
 
@@ -55,7 +56,7 @@ public class ToggleBreakpointActivationHandler extends MokaAbstractHandler imple
 					alreadyDefinedBreakpoint.setEnabled(enabledOrDisabled) ;
 					DebugPlugin.getDefault().getBreakpointManager().fireBreakpointChanged(alreadyDefinedBreakpoint) ;
 				} catch (CoreException e) {
-					e.printStackTrace();
+					Activator.log.error(e);
 				}
 			}
 			return null;

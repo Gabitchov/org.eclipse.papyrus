@@ -173,6 +173,14 @@ public abstract class FUMLExecutionEngine extends AbstractExecutionEngine {
 		SafeRunner.run(runnable);
 	}
 
+	/**
+	 * Returns the ControlDelegate object associated with this engine.
+	 * This object can be used by fUML visitors as a kind of control manager,
+	 * which is charge of managing debug specific aspects (e.g., suspension,
+	 * termination, animation, etc.)
+	 * 
+	 * @return The ControlDelegate object associated with this engine
+	 */
 	public abstract ControlDelegate getControlDelegate() ;
 	
 }

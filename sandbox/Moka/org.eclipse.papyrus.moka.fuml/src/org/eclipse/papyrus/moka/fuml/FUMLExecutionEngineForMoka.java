@@ -23,6 +23,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.UnlimitedNaturalVa
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.debug.ControlDelegate;
+import org.eclipse.papyrus.moka.fuml.presentation.FUMLPresentationUtils;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
@@ -43,6 +44,7 @@ public class FUMLExecutionEngineForMoka extends FUMLExecutionEngine {
 			main = (Behavior)eObjectToExecute ;
 			this.debugTarget = debugTarget ;
 			this.debugTarget.setName("FUML Execution Engine") ;
+			FUMLPresentationUtils.init(eObjectToExecute) ;
 			FUMLExecutionEngine.eInstance = this ;
 		}
 	}
@@ -123,6 +125,9 @@ public class FUMLExecutionEngineForMoka extends FUMLExecutionEngine {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine#getControlDelegate()
+	 */
 	public ControlDelegate getControlDelegate() {
 		if (this.controlDelegate == null)
 			this.controlDelegate = new ControlDelegate(this) ;

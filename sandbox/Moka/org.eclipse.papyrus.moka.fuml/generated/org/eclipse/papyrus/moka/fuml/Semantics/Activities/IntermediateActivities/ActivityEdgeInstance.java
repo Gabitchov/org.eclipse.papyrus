@@ -16,6 +16,7 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivitie
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.uml2.uml.ActivityEdge;
 
 public class ActivityEdgeInstance {
@@ -59,6 +60,9 @@ public class ActivityEdgeInstance {
 			offer.offeredTokens.add(token);
 		}
 		this.offers.add(offer);
+		if (! FUMLExecutionEngine.eInstance.getControlDelegate().control(this)) { // Added for connection with the debug API
+			return ;
+		}
 		this.target.receiveOffer();
 	}
 

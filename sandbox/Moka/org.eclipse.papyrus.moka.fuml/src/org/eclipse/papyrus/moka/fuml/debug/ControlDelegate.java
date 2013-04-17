@@ -1,7 +1,9 @@
 package org.eclipse.papyrus.moka.fuml.debug;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.debug.core.ILaunchManager;
@@ -17,45 +19,95 @@ import org.eclipse.papyrus.moka.communication.request.iterminate.Terminate_Reque
 import org.eclipse.papyrus.moka.debug.MokaBreakpoint;
 import org.eclipse.papyrus.moka.debug.MokaStackFrame;
 import org.eclipse.papyrus.moka.debug.MokaThread;
-import org.eclipse.papyrus.moka.debug.MokaVariable;
 import org.eclipse.papyrus.moka.engine.AbstractExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ActivityEdgeInstance;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ActivityNodeActivation;
+import org.eclipse.papyrus.moka.fuml.presentation.FUMLPresentationUtils;
 import org.eclipse.papyrus.moka.ui.presentation.AnimationUtils;
-import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActivityEdge;
-import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.Pin;
 
 public class ControlDelegate {
 
 	/**
-	 * 
+	 * The execution engine associated with this ControlDelegate object
 	 */
 	protected AbstractExecutionEngine engine ;
-
+	
+	/**
+	 * The list of threads implied by current execution
+	 */
 	protected List<MokaThread> threads ;
 
+	/**
+	 * Determines if execution is suspended 
+	 */
 	protected boolean suspended = false ;
 
+	/**
+	 * The reason for suspending execution
+	 */
+	protected int reasonForSuspending = -1 ; 
+
+	/**
+	 * The reason for resuming execution
+	 */
+	protected int reasonForResuming = -1 ;
+
+	/**
+	 * The execution mode (i.e., Debug or Run)
+	 */
 	protected String mode ;
+
+	/**
+	 * Semantic elements associated with a breakpoint
+	 */
+	protected Set<EObject> elementsWithBreakpoints ;
 
 	public ControlDelegate(AbstractExecutionEngine engine) {
 		this.engine = engine ;
 		this.mode = this.engine.getDebugTarget().getLaunch().getLaunchMode() ;
+		this.elementsWithBreakpoints = new HashSet<EObject>() ;
 	}
 
+	/**
+	 * Manages addition of a breakpoint in the course of execution
+	 * 
+	 * @param breakpoint The added breakpoint
+	 */
 	public void addBreakpoint(MokaBreakpoint breakpoint) {
-		// TODO Auto-generated method stub
+		EObject modelElement = breakpoint.getModelElement() ;
+		if (modelElement != null) {
+			if (modelElement.eIsProxy())
+				modelElement = AnimationUtils.resolve(modelElement) ; 
+			this.elementsWithBreakpoints.add(modelElement) ;
+		}
 	}
 
+	/**
+	 * Manages removal of a breakpoint in the course of execution
+	 * 
+	 * @param breakpoint The removed breakpoint
+	 */
 	public void removeBreakpoint(MokaBreakpoint breakpoint) {
-		// TODO Auto-generated method stub
+		EObject modelElement = breakpoint.getModelElement() ;
+		if (modelElement != null) {
+			if (modelElement.eIsProxy())
+				modelElement = AnimationUtils.resolve(modelElement) ; 
+			this.elementsWithBreakpoints.remove(modelElement) ;
+		}
 	}
 
+	/**
+	 * Manages resuming of execution
+	 * 
+	 * @param request The request underlying this resume
+	 */
 	public void resume(Resume_Request request) {
 		this.suspended = false ;
+		this.reasonForResuming = request.getResumeDetail() ;
+		if (reasonForResuming != DebugEvent.CLIENT_REQUEST)
+			reasonForResuming = DebugEvent.STEP_OVER ;
 		this.getThreads()[0].setSuspended(false) ;
 		synchronized (this) {
 			notify() ;
@@ -63,17 +115,45 @@ public class ControlDelegate {
 		}
 	}
 
+	/**
+	 * Manages suspension of execution
+	 * 
+	 * @param request The request underlying this suspension
+	 */
+	public void suspend(Suspend_Request request) {
+		this.suspended = true ;
+		this.reasonForSuspending = DebugEvent.CLIENT_REQUEST ;
+	}
+
+	/**
+	 * Manages termination of execution
+	 * 
+	 * @param request The request underlying this termination
+	 */
+	public void terminate(Terminate_Request request) {
+		engine.setIsTerminated(true) ;
+		synchronized (this) {
+			notify() ;
+		}
+	}
+	
+	/**
+	 * Return the stack of the given thread
+	 * 
+	 * @param thread The thread from which a stack has to be retrieved
+	 * @return The stack of the given thread
+	 */
 	public IStackFrame[] getStackFrames(IThread thread) {
 		// Never called in this implementation
 		// When the debug is notified, threads are already constructed with appropriate stack frames.
 		return null;
 	}
-
-	public void suspend(Suspend_Request request) {
-		this.suspended = true ;
-		this.getThreads()[0].setSuspended(true) ;
-	}
-
+	
+	/**
+	 * Returns the threads underlying this execution
+	 * 
+	 * @return The threads underlying this execution
+	 */
 	public MokaThread[] getThreads() {
 		if (this.threads == null) {
 			this.threads = new ArrayList<MokaThread>() ;
@@ -108,22 +188,26 @@ public class ControlDelegate {
 		}
 		else {
 			Activator.log.error(new Exception("Unexpected element in ControlDelegate::control")) ;
+			this.engine.setIsTerminated(true) ;
+			return false ;
 		}
 
 		// Manages animation
-		if (object instanceof ActivityNodeActivation && semanticElement != null && MokaConstants.MOKA_AUTOMATIC_ANIMATION && this.mode.equals(ILaunchManager.DEBUG_MODE)) {
-			this.animate((ActivityNodeActivation)object, (ActivityNode)semanticElement) ;
+		//if (object instanceof ActivityNodeActivation && semanticElement != null && MokaConstants.MOKA_AUTOMATIC_ANIMATION && this.mode.equals(ILaunchManager.DEBUG_MODE)) {
+		//	this.animate((ActivityNodeActivation)object, (ActivityNode)semanticElement) ;
+		//}
+		if (semanticElement != null && MokaConstants.MOKA_AUTOMATIC_ANIMATION && this.mode.equals(ILaunchManager.DEBUG_MODE)) {
+			//this.animate((ActivityNodeActivation)object, (ActivityNode)semanticElement) ;
+			this.animate(semanticElement) ;
 		}
-		
-		if (this.suspended) {
+
+		if (this.suspended) { /* Client request*/
 			try {
 				synchronized (this) {
-					this.getThreads() ; // To make sure that this.threads is not empty
+					this.getThreads() ; // To make sure that this.threads is neither null nor empty
 					MokaThread mainThread = this.threads.get(0) ;
-					MokaStackFrame stackFrame = new MokaStackFrame(this.engine.getDebugTarget()) ;
-					stackFrame.setName(semanticElement.toString()) ;
-					stackFrame.setModelElement(semanticElement) ;
-					stackFrame.setVariables(new MokaVariable[]{}) ;
+					mainThread.setSuspended(true) ;
+					MokaStackFrame stackFrame = FUMLPresentationUtils.getMokaStackFrame(object) ;
 					stackFrame.setThread(mainThread) ;
 					mainThread.setStackFrames(new IStackFrame[]{stackFrame}) ;
 					Suspend_Event suspendEvent = new Suspend_Event(mainThread, DebugEvent.CLIENT_REQUEST, this.getThreads()) ;
@@ -131,86 +215,54 @@ public class ControlDelegate {
 					wait() ;
 				}
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Activator.log.error(e) ;
 			}
 		}
-
+		else { // Tries to check if a breakpoint applies
+			if (this.elementsWithBreakpoints.contains(semanticElement) || this.reasonForResuming == DebugEvent.STEP_OVER) {
+				if ((object instanceof ActivityNodeActivation && ((ActivityNodeActivation)object).group != null) ||
+					(object instanceof ActivityEdgeInstance && ((ActivityEdgeInstance)object).group != null)) {
+					try {
+						synchronized (this) {
+							this.getThreads() ; // To make sure that this.threads is neither null nor empty
+							MokaThread mainThread = this.threads.get(0) ;
+							mainThread.setSuspended(true) ;
+							MokaStackFrame stackFrame = FUMLPresentationUtils.getMokaStackFrame(object) ;
+							stackFrame.setThread(mainThread) ;
+							mainThread.setStackFrames(new IStackFrame[]{stackFrame}) ;
+							Suspend_Event suspendEvent = new Suspend_Event(mainThread, DebugEvent.BREAKPOINT, this.getThreads()) ;
+							engine.sendEvent(suspendEvent) ;
+							wait() ;
+						}
+					} catch (InterruptedException e) {
+						Activator.log.error(e) ;
+					}
+				}
+			}
+		}
 		return !this.engine.isTerminated() ;
 	}
 
-	protected void animate(ActivityNodeActivation activation, ActivityNode node) {
-		if (node instanceof Pin)
-			return ;
+	protected void animate(EObject element) {
 		try {
-			// Simulates, in the animation, instantaneous consumption 
-			// on all input pins and production on all output pins
-
-			// Retrieves all incoming edges for node and for its input pins
-			List<ActivityEdge> allEdges = new ArrayList<ActivityEdge>() ;
-			allEdges.addAll(node.getIncomings()) ;
-			if (node instanceof Action) {
-				for (InputPin input : ((Action)node).getInputs()) {
-					allEdges.addAll(input.getIncomings()) ;
-				}
-			}
-
-			// From all edges, retrieves all source output pins
-			List<Pin> previousOutputs = new ArrayList<Pin>() ;
-			for (ActivityEdge edge : allEdges) {
-				ActivityNode source = edge.getSource() ;
-				if (source instanceof Pin) {
-					previousOutputs.add((Pin)source) ;
-				}
-			}
-
-			// animate all previous outputs "simultaneously"
-			for (Pin output : previousOutputs) {
-				AnimationUtils.getInstance().addAnimationMarker(output) ;
-			}
-			if (! previousOutputs.isEmpty())
-				Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
-			for (Pin output : previousOutputs) {
-				AnimationUtils.getInstance().removeAnimationMarker(output) ;
-			}
-
-			// animate all input edges simultaneously
-//			for (ActivityEdge edge : allEdges) {
-//				AnimationUtils.getInstance().addAnimationMarker(edge) ;
-//			}
-//			if (! allEdges.isEmpty())
-//				Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
-//			for (ActivityEdge edge : allEdges) {
-//				AnimationUtils.getInstance().removeAnimationMarker(edge) ;
-//			}
-
-			// animate inputs
-			if (node instanceof Action) {
-				for (InputPin input : ((Action)node).getInputs()) {
-					AnimationUtils.getInstance().addAnimationMarker(input) ;
-				}
-				if (!((Action)node).getInputs().isEmpty())
+			// If the element is an activity edge,
+			// Also animates the source, in the case where it is a pin
+			if (element instanceof ActivityEdge) {
+				ActivityEdge edge = (ActivityEdge)element ;
+				if (edge.getSource() instanceof Pin) {
+					AnimationUtils.getInstance().addAnimationMarker(edge.getSource()) ;
 					Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
-				for (InputPin input : ((Action)node).getInputs()) {
-					AnimationUtils.getInstance().removeAnimationMarker(input) ;
+					AnimationUtils.getInstance().removeAnimationMarker(edge.getSource()) ;
 				}
 			}
-
-			// animate node
-			AnimationUtils.getInstance().addAnimationMarker(node) ;
+			// Animates the element
+			AnimationUtils.getInstance().addAnimationMarker(element) ;
 			Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
-			AnimationUtils.getInstance().removeAnimationMarker(node) ;
-
+			AnimationUtils.getInstance().removeAnimationMarker(element) ;
 		} catch (InterruptedException e) {
 			Activator.log.error(e) ;
 		}
 	}
 
-	public void terminate(Terminate_Request request) {
-		engine.setIsTerminated(true) ;
-		synchronized (this) {
-			notify() ;
-		}
-	}
 
 }

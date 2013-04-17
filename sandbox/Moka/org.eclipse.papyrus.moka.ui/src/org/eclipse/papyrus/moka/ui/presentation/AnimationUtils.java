@@ -38,6 +38,7 @@ import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -176,10 +177,10 @@ public class AnimationUtils {
 					}
 				}); 
 			} catch (Exception e) {
-				e.printStackTrace() ;
+				Activator.log.error(e) ;
 			}
 		} catch (ServiceException e1) {
-			e1.printStackTrace();
+			Activator.log.error(e1);
 		}
 	}
 
@@ -212,7 +213,7 @@ public class AnimationUtils {
 				eObjectToSuspendedMarker.put(semanticElement, PapyrusMarkerAdapter.wrap(semanticElement.eResource(), marker)) ;
 			}
 		} catch (CoreException ce) {
-			ce.printStackTrace() ;
+			Activator.log.error(ce) ;
 		}
 	}
 
@@ -227,7 +228,7 @@ public class AnimationUtils {
 			try {
 				stackFrameMarker.delete() ;
 			} catch (CoreException e) {
-				e.printStackTrace();
+				Activator.log.error(e);
 			}
 		}
 		eObjectToSuspendedMarker.clear() ;
@@ -259,7 +260,7 @@ public class AnimationUtils {
 				eObjectToAnimationMarker.put(semanticElement, PapyrusMarkerAdapter.wrap(semanticElement.eResource(), marker)) ;
 			}
 		} catch (CoreException ce) {
-			ce.printStackTrace() ;
+			Activator.log.error(ce) ;
 		}
 	}
 
@@ -277,7 +278,7 @@ public class AnimationUtils {
 				stackFrameMarker.delete() ;
 				eObjectToAnimationMarker.remove(semanticElement) ;
 			} catch (CoreException e) {
-				e.printStackTrace();
+				Activator.log.error(e) ;
 			}
 		}
 	}

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
@@ -221,7 +222,7 @@ public class SelectEObjectTab extends AbstractLaunchConfigurationTab {
 			String init_args = configuration.getAttribute(MokaLaunchDelegate.ARGS_ATTRIBUTE_NAME, "") ;
 			argsText.setText(init_args) ;
 		} catch (CoreException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 	}
 

@@ -40,6 +40,7 @@ import org.eclipse.debug.core.model.IRegisterGroup;
 import org.eclipse.debug.core.model.IStackFrame;
 import org.eclipse.debug.core.model.IThread;
 import org.eclipse.debug.core.model.IValue;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.moka.MokaConstants;
 import org.eclipse.papyrus.moka.communication.Marshaller;
 import org.eclipse.papyrus.moka.communication.event.Start_Event;
@@ -231,11 +232,11 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 						@SuppressWarnings("unused")
 						String ack = replyReader.readLine() ;
 					} catch (IOException e) {
-						e.printStackTrace();
+						Activator.log.error(e);
 					}
 				}
 			} catch (CoreException e) {
-				e.printStackTrace() ;
+				Activator.log.error(e) ;
 			}
 		}
 	}
@@ -254,9 +255,9 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 				@SuppressWarnings("unused")
 				String ack = replyReader.readLine() ;
 			} catch (CoreException e) {
-				e.printStackTrace() ;
+				Activator.log.error(e) ;
 			} catch (IOException e) {
-				e.printStackTrace();
+				Activator.log.error(e);
 			}
 		}
 	}
@@ -273,7 +274,7 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 					this.breakpointRemoved(breakpoint, delta);
 				}
 			} catch (CoreException e) {
-				e.printStackTrace() ;
+				Activator.log.error(e) ;
 			}
 		}
 	}
@@ -307,9 +308,9 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 			String ack = replyReader.readLine() ;
 			this.isDisconnected = true ;
 		} catch (CoreException e) {
-			e.printStackTrace() ;
+			Activator.log.error(e) ;
 		} catch (IOException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 	}
 
@@ -594,7 +595,7 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 			resume();
 			this.isStarted = true ;
 		} catch (DebugException e) {
-			e.printStackTrace() ;
+			Activator.log.error(e) ;
 		}
 	}
 

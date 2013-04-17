@@ -92,7 +92,7 @@ public class MokaBreakpoint extends Breakpoint {
 				this.setPersisted(true) ;
 			}
 		} catch (CoreException ce) {
-			ce.printStackTrace() ;
+			Activator.log.error(ce) ;
 		}
 	}
 
