@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.dnd.Activator;
 import org.eclipse.papyrus.uml.diagram.dnd.strategy.instancespecification.command.SelectAndCreateSlotsCommand;
 import org.eclipse.swt.graphics.Image;
@@ -75,6 +76,10 @@ public class ClassifierToSlotsDropStrategy extends TransactionalDropStrategy {
 
 	@Override
 	public Command doGetCommand(Request request, EditPart targetEditPart) {
+
+		if( request instanceof CreateAspectUnspecifiedTypeConnectionRequest){
+			return null;
+		}
 		CompositeCommand cc = new CompositeCommand(getLabel());
 
 		EObject semanticElement = getTargetSemanticElement(targetEditPart);
