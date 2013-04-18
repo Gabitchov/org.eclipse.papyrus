@@ -5,12 +5,40 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_AjOVcKZsEeK7_saMR_mmoA" name="BehaviorPort"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_Rhks8KZsEeK7_saMR_mmoA" name="UseCases">
-      <packagedElement xmi:type="uml:Component" xmi:id="_WewYoKZsEeK7_saMR_mmoA" name="CompositeDiagramEditor" useCase="_Z5KC8KZsEeK7_saMR_mmoA _fLUgIKZsEeK7_saMR_mmoA">
+      <packagedElement xmi:type="uml:Component" xmi:id="_WewYoKZsEeK7_saMR_mmoA" name="CompositeDiagramEditor" useCase="_Z5KC8KZsEeK7_saMR_mmoA _fLUgIKZsEeK7_saMR_mmoA _m0WwMKc_EeKF3spcIwuN_A _pXHn4Kc_EeKF3spcIwuN_A _sCqBEKc_EeKF3spcIwuN_A _weONcKc_EeKF3spcIwuN_A">
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Z5KC8KZsEeK7_saMR_mmoA" name="Create a port" subject="_WewYoKZsEeK7_saMR_mmoA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_Ana-QKdDEeKF3spcIwuN_A" annotatedElement="_Z5KC8KZsEeK7_saMR_mmoA">
+            <body>In the composite diagram, the user can create a port on a classifier or on a part</body>
+          </ownedComment>
           <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_f9T9wqZsEeK7_saMR_mmoA" name="point"/>
         </ownedUseCase>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_fLUgIKZsEeK7_saMR_mmoA" name="create behavioral port" subject="_WewYoKZsEeK7_saMR_mmoA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_FhMJkKdDEeKF3spcIwuN_A" annotatedElement="_fLUgIKZsEeK7_saMR_mmoA">
+            <body>The user can create a behavioral port; to do that the user creates a port and set the property is behavioral to true.</body>
+          </ownedComment>
           <extend xmi:type="uml:Extend" xmi:id="_f83R0KZsEeK7_saMR_mmoA" extendedCase="_Z5KC8KZsEeK7_saMR_mmoA" extensionLocation="_f9T9wqZsEeK7_saMR_mmoA"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_m0WwMKc_EeKF3spcIwuN_A" name="Drop a behavioral port" subject="_WewYoKZsEeK7_saMR_mmoA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_IMSd4KdDEeKF3spcIwuN_A" annotatedElement="_m0WwMKc_EeKF3spcIwuN_A">
+            <body>The user can drop from the model explorer the behavioral port into a composite. In this case the representation of the behavioral port must be displayed.</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_pXHn4Kc_EeKF3spcIwuN_A" name="Delete from diagram a behavioral port" subject="_WewYoKZsEeK7_saMR_mmoA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_LHS2cKdDEeKF3spcIwuN_A" annotatedElement="_pXHn4Kc_EeKF3spcIwuN_A">
+            <body>The user can remove from the diagram, the behavioral port. The symbol of the behavior disappears also.</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_sCqBEKc_EeKF3spcIwuN_A" name="Delete from model a behavioral port" subject="_WewYoKZsEeK7_saMR_mmoA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_Ny12sKdDEeKF3spcIwuN_A" annotatedElement="_sCqBEKc_EeKF3spcIwuN_A">
+            <body>The user can remove from the model, the behavioral port. The symbol of the behavior disappears also.</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_weONcKc_EeKF3spcIwuN_A" name="Move a behavioral port" subject="_WewYoKZsEeK7_saMR_mmoA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_PzPBIKdDEeKF3spcIwuN_A" annotatedElement="_weONcKc_EeKF3spcIwuN_A">
+            <body>The port can move around the composite, this also the case for the behavioral port. The symbol of the behavior can move independently from the port.&#xD;
+When the port moves, the symbol of the behavioral port does not move.&#xD;
+</body>
+          </ownedComment>
         </ownedUseCase>
       </packagedElement>
       <packagedElement xmi:type="uml:Actor" xmi:id="_ZKSx0KZsEeK7_saMR_mmoA" name="User"/>
@@ -22,6 +50,149 @@
         <ownedEnd xmi:type="uml:Property" xmi:id="_ddrSlKZsEeK7_saMR_mmoA" name="create a port" type="_Z5KC8KZsEeK7_saMR_mmoA" association="_ddrSkKZsEeK7_saMR_mmoA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ddrSlaZsEeK7_saMR_mmoA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ddrSlqZsEeK7_saMR_mmoA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_zzITwKc_EeKF3spcIwuN_A" name="A_user_drop a behavioral port" memberEnd="_zzITwac_EeKF3spcIwuN_A _zzITxKc_EeKF3spcIwuN_A">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_zzITwac_EeKF3spcIwuN_A" name="user" type="_ZKSx0KZsEeK7_saMR_mmoA" association="_zzITwKc_EeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zzITwqc_EeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zzITw6c_EeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_zzITxKc_EeKF3spcIwuN_A" name="drop a behavioral port" type="_m0WwMKc_EeKF3spcIwuN_A" association="_zzITwKc_EeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zzITxac_EeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zzITxqc_EeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_0YK6gKc_EeKF3spcIwuN_A" name="A_user_delete from diagram a behvioral port" memberEnd="_0YK6gac_EeKF3spcIwuN_A _0YK6hKc_EeKF3spcIwuN_A">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_0YK6gac_EeKF3spcIwuN_A" name="user" type="_ZKSx0KZsEeK7_saMR_mmoA" association="_0YK6gKc_EeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0YK6gqc_EeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0YK6g6c_EeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_0YK6hKc_EeKF3spcIwuN_A" name="delete from diagram a behvioral port" type="_pXHn4Kc_EeKF3spcIwuN_A" association="_0YK6gKc_EeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0YK6hac_EeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0YK6hqc_EeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_07SOoKc_EeKF3spcIwuN_A" name="A_user_deletefrom model a beahvioral port" memberEnd="_07SOoac_EeKF3spcIwuN_A _07SOpKc_EeKF3spcIwuN_A">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_07SOoac_EeKF3spcIwuN_A" name="user" type="_ZKSx0KZsEeK7_saMR_mmoA" association="_07SOoKc_EeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_07SOoqc_EeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_07SOo6c_EeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_07SOpKc_EeKF3spcIwuN_A" name="deletefrom model a beahvioral port" type="_sCqBEKc_EeKF3spcIwuN_A" association="_07SOoKc_EeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_07SOpac_EeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_07SOpqc_EeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_1mRsYKc_EeKF3spcIwuN_A" name="A_user_move a behaviora lport" memberEnd="_1mRsYac_EeKF3spcIwuN_A _1mRsZKc_EeKF3spcIwuN_A">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_1mRsYac_EeKF3spcIwuN_A" name="user" type="_ZKSx0KZsEeK7_saMR_mmoA" association="_1mRsYKc_EeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1mRsYqc_EeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1mRsY6c_EeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_1mRsZKc_EeKF3spcIwuN_A" name="move a behaviora lport" type="_weONcKc_EeKF3spcIwuN_A" association="_1mRsYKc_EeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1mRsZac_EeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1mRsZqc_EeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_DOn0kKdEEeKF3spcIwuN_A" name="UseCaseTest">
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_INdGEKdEEeKF3spcIwuN_A" name="Test the move a behavioral port">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_INdGEadEEeKF3spcIwuN_A" annotatedElement="_INdGEKdEEeKF3spcIwuN_A">
+          <body>The port can move around the composite, this also the case for the behavioral port. The symbol of the behavior can move independently from the port.&#xD;
+When the port moves, the symbol of the behavioral port does not move.&#xD;
+</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_INm3EKdEEeKF3spcIwuN_A" name="Test the Drop a behavioral port">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_INm3EadEEeKF3spcIwuN_A" annotatedElement="_INm3EKdEEeKF3spcIwuN_A">
+          <body>The user can drop from the model explorer the behavioral port into a composite. In this case the representation of the behavioral port must be displayed.</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_INm3EqdEEeKF3spcIwuN_A" name="Test the deletion from diagram a behavioral port">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_INm3E6dEEeKF3spcIwuN_A" annotatedElement="_INm3EqdEEeKF3spcIwuN_A">
+          <body>The user can remove from the diagram, the behavioral port. The symbol of the behavior disappears also.</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_INm3FKdEEeKF3spcIwuN_A" name="Test the create of  behavioral port">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_INm3FadEEeKF3spcIwuN_A" annotatedElement="_INm3FKdEEeKF3spcIwuN_A">
+          <body>The user can create a behavioral port; to do that the user creates a port and set the property is behavioral to true.</body>
+        </ownedComment>
+        <include xmi:type="uml:Include" xmi:id="_aw_SsKdEEeKF3spcIwuN_A" addition="_RNhYYKdEEeKF3spcIwuN_A"/>
+        <include xmi:type="uml:Include" xmi:id="_bSBjMKdEEeKF3spcIwuN_A" addition="_TZXk4KdEEeKF3spcIwuN_A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_INwBAKdEEeKF3spcIwuN_A" name="Test the deletion from model a behavioral port">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_INwBAadEEeKF3spcIwuN_A" annotatedElement="_INwBAKdEEeKF3spcIwuN_A">
+          <body>The user can remove from the model, the behavioral port. The symbol of the behavior disappears also.</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_RNhYYKdEEeKF3spcIwuN_A" name="Creation from the palette"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_TZXk4KdEEeKF3spcIwuN_A" name="Open a file with a bad display of a behavioral port"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_-FfssKdFEeKF3spcIwuN_A" name="SolutionProposal">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_DTKKsKgSEeKz1qKLwNwRfw">
+        <body>Each editpart has been generated from the gmfgen. But in the case of BehaviorPortEditPart and BehaviorLinkEditPart no semantic has been associated. In this manner, semantic command creation has not been created.</body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_BFtVYKdGEeKF3spcIwuN_A" name="PortEditPart">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_NI7V8KgSEeKz1qKLwNwRfw" annotatedElement="_BFtVYKdGEeKF3spcIwuN_A">
+          <body>The portEditpart that represent the port has now an editPolicy BehaviorPortEditPolicy. This editpolicy has in charge to create notation element that represent the symbol.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_Mu_psKdnEeKF3spcIwuN_A" name="behaviorPortEditPolicy" type="_-jxhIKdmEeKF3spcIwuN_A" aggregation="composite" association="_MvFJQKdnEeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Mu_psadnEeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Mu_psqdnEeKF3spcIwuN_A" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CNHpYKdGEeKF3spcIwuN_A" name="BehaviorPortEditPart">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_oGS7UKgSEeKz1qKLwNwRfw" annotatedElement="_CNHpYKdGEeKF3spcIwuN_A">
+          <body>This editpart represents the controller of the symbol behavior. In order to ensure its deletion when the port is removed from the diagram, it has got a listener BeahviorSymbolEditPolicy.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_qsM88KdqEeKF3spcIwuN_A" name="behaviorSymbolEditPolicy" type="_QUVRUKdqEeKF3spcIwuN_A" aggregation="composite" association="_qsM886dqEeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qsM88adqEeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qsM88qdqEeKF3spcIwuN_A" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_vB4gkKdmEeKF3spcIwuN_A" name="BehaviorPortLinkEditPart"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_7LYpAKdmEeKF3spcIwuN_A" name="BehaviorPortLocator"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_-jxhIKdmEeKF3spcIwuN_A" name="BehaviorPortEditPolicy">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_baRUoKgSEeKz1qKLwNwRfw" annotatedElement="_-jxhIKdmEeKF3spcIwuN_A">
+          <body>This editpolicy is a listener that listen the feature is_behavior of the port. It launches a synchronous thread to create a notation node and the link.&#xD;
+This editpolicy calls explicitly BehaviorPortLocator  in order to place the symbol behavior at the good place (inside the composite).&#xD;
+</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_XZHDAKdnEeKF3spcIwuN_A" name="behaviorPortLocator" type="_7LYpAKdmEeKF3spcIwuN_A" aggregation="composite" association="_XZNJoKdnEeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XZHDAadnEeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XZHDAqdnEeKF3spcIwuN_A" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_YAa6oKdnEeKF3spcIwuN_A" name="createBehaviorPortCommand" type="_BwtXMKdnEeKF3spcIwuN_A" aggregation="composite" association="_YAgaMKdnEeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAa6oadnEeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAa6oqdnEeKF3spcIwuN_A" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_BwtXMKdnEeKF3spcIwuN_A" name="CreateBehaviorPortCommand"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_MvFJQKdnEeKF3spcIwuN_A" name="portEditPart_behaviorPortEditPolicy_1" memberEnd="_MvFJQadnEeKF3spcIwuN_A _Mu_psKdnEeKF3spcIwuN_A">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_MvFJQadnEeKF3spcIwuN_A" name="portEditPart" type="_BFtVYKdGEeKF3spcIwuN_A" association="_MvFJQKdnEeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MvFJQqdnEeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MvFJQ6dnEeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_XZNJoKdnEeKF3spcIwuN_A" name="behaviorPortEditPolicy_behaviorPortLocator_1" memberEnd="_XZNJoadnEeKF3spcIwuN_A _XZHDAKdnEeKF3spcIwuN_A">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_XZNJoadnEeKF3spcIwuN_A" name="behaviorPortEditPolicy" type="_-jxhIKdmEeKF3spcIwuN_A" association="_XZNJoKdnEeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XZNJoqdnEeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XZNJo6dnEeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_YAgaMKdnEeKF3spcIwuN_A" name="behaviorPortEditPolicy_createBehaviorPortCommand_1" memberEnd="_YAgaMadnEeKF3spcIwuN_A _YAa6oKdnEeKF3spcIwuN_A">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_YAgaMadnEeKF3spcIwuN_A" name="behaviorPortEditPolicy" type="_-jxhIKdmEeKF3spcIwuN_A" association="_YAgaMKdnEeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAgaMqdnEeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAgaM6dnEeKF3spcIwuN_A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_QUVRUKdqEeKF3spcIwuN_A" name="BehaviorSymbolEditPolicy">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_wG1DQKgSEeKz1qKLwNwRfw" annotatedElement="_QUVRUKdqEeKF3spcIwuN_A">
+          <body>This editpolicy listen the notation node of the PortEditpart, when it is removed the notation representation of the symbol is removed.</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_qsM886dqEeKF3spcIwuN_A" name="behaviorPortEditPart_behaviorSymbolEditPolicy_1" memberEnd="_qsM89KdqEeKF3spcIwuN_A _qsM88KdqEeKF3spcIwuN_A">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_qsM89KdqEeKF3spcIwuN_A" name="behaviorPortEditPart" type="_CNHpYKdGEeKF3spcIwuN_A" association="_qsM886dqEeKF3spcIwuN_A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qsM89adqEeKF3spcIwuN_A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qsM89qdqEeKF3spcIwuN_A" value="1"/>
         </ownedEnd>
       </packagedElement>
     </packagedElement>
