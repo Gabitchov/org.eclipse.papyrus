@@ -390,6 +390,7 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 	protected void handle_Resume_Event(String message) {
 		Resume_Event event = Marshaller.getInstance().resume_event_unmarshal(message) ;
 		this.isSuspended = false ;
+		this.threads = event.getThreads() ;
 		this.fireEvent(event.getDebugEvent()) ;
 	}
 
@@ -497,7 +498,11 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 		this.isTerminated = true;
 		this.isSuspended = false ;
 		DebugPlugin.getDefault().getBreakpointManager().removeBreakpointListener(this) ;
-		this.fireEvent(new Terminate_Event(this).getDebugEvent()) ;
+		try {
+			this.fireEvent(new Terminate_Event(this, this.getThreads()).getDebugEvent()) ;
+		} catch (DebugException e) {
+			this.fireEvent(new Terminate_Event(this, null).getDebugEvent()) ;
+		}
 	}
 
 	/* (non-Javadoc)
@@ -528,8 +533,15 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 	 * This method is called by the event dispatch job. 
 	 * 
 	 */
-	protected void handle_Terminate_Event() {
-		this.isTerminated = true ;
+	protected void handle_Terminate_Event(String event) {
+		Terminate_Event terminateEvent = Marshaller.getInstance().terminate_event_unmarshal(event) ;
+		if (terminateEvent.getSource() instanceof IDebugTarget) {
+			this.isTerminated = true ;
+		}
+		else {
+			this.threads = (MokaThread[]) terminateEvent.getThreads() ;
+			this.fireEvent(terminateEvent.getDebugEvent());
+		}
 	}
 
 	/**
@@ -563,7 +575,7 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 							handle_Suspend_Event(event);
 						}
 						else if (event.startsWith(MokaConstants.event_terminate)) {
-							handle_Terminate_Event() ;
+							handle_Terminate_Event(event) ;
 						}
 					}
 				} catch (IOException e) {
@@ -592,8 +604,10 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 		//if (DebugPlugin.getDefault().getBreakpointManager().isEnabled())
 		this.installDeferredBreakpoints();
 		try {
-			resume();
-			this.isStarted = true ;
+			if (! this.isStarted) {
+				resume();
+				this.isStarted = true ;
+			}
 		} catch (DebugException e) {
 			Activator.log.error(e) ;
 		}

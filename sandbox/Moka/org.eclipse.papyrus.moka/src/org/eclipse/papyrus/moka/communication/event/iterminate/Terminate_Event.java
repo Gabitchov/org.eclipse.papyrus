@@ -15,6 +15,7 @@ package org.eclipse.papyrus.moka.communication.event.iterminate;
 
 import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.debug.core.model.IDebugElement;
+import org.eclipse.debug.core.model.IThread;
 import org.eclipse.papyrus.moka.communication.Marshaller;
 import org.eclipse.papyrus.moka.communication.event.EventMessage;
 
@@ -28,14 +29,21 @@ import org.eclipse.papyrus.moka.communication.event.EventMessage;
 public class Terminate_Event extends EventMessage {
 	
 	/**
+	 * The threads available at the execution engine when it emitted 
+	 * this Terminate_Event message
+	 */
+	protected IThread[] threads ;
+	
+	/**
 	 * Construct a terminate event from the given source.
 	 * The source is usually the debug target. See Start_Event for the rationale.
 	 * 
 	 * @param source The source for the terminate event
 	 */
-	public Terminate_Event(IDebugElement source) {
+	public Terminate_Event(IDebugElement source, IThread[] threads) {
 		this.source = source;
 		this.eventKind = DebugEvent.TERMINATE ;
+		this.threads = threads ;
 	}
 
 	/* (non-Javadoc)
@@ -53,5 +61,23 @@ public class Terminate_Event extends EventMessage {
 			this.debugEvent = new DebugEvent(source, eventKind) ;
 		return this.debugEvent;
 	}
+	
+	/**
+	 * Returns the source of this terminate event
+	 * 
+	 * @return the source of this terminate event
+	 */
+	public IDebugElement getSource() {
+		return this.source ;
+	}
 
+	/**
+	 * Returns the threads available at the execution engine when it emitted this Terminate_Event message
+	 * 
+	 * @return The threads available at the execution engine when it emitted this Terminate_Event message
+	 */
+	public IThread[] getThreads() {
+		return this.threads ;
+	}
+	
 }

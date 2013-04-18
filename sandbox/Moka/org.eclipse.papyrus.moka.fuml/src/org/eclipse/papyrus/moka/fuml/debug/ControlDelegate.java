@@ -37,7 +37,7 @@ public class ControlDelegate {
 	/**
 	 * The list of threads implied by current execution
 	 */
-	protected List<MokaThread> threads ;
+	protected List<FUMLThread> threads ;
 
 	/**
 	 * Determines if execution is suspended 
@@ -156,9 +156,9 @@ public class ControlDelegate {
 	 */
 	public MokaThread[] getThreads() {
 		if (this.threads == null) {
-			this.threads = new ArrayList<MokaThread>() ;
+			this.threads = new ArrayList<FUMLThread>() ;
 			if (this.engine.getDebugTarget().getLaunch().getLaunchMode().equals(ILaunchManager.DEBUG_MODE)) {
-				MokaThread thread = new MokaThread(this.engine.getDebugTarget()) ;
+				FUMLThread thread = new FUMLThread(this.engine.getDebugTarget()) ;
 				thread.setName("Main Thread") ;
 				thread.setStackFrames(new IStackFrame[]{}) ;
 				this.threads.add(thread) ;
@@ -264,5 +264,8 @@ public class ControlDelegate {
 		}
 	}
 
+	public void waitForTermination() {
+		// Nothing to do
+	}
 
 }

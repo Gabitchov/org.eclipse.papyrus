@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
+import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
@@ -135,7 +136,16 @@ public class DecisionNodeActivation extends ControlNodeActivation {
 			this.decisionInputExecution.execute();
 			List<ParameterValue> outputParameterValues = this.decisionInputExecution.getOutputParameterValues();
 			decisionInputExecution.destroy();
-			decisionInputResult = outputParameterValues.get(0).values.get(0);
+			if (outputParameterValues.get(0).values.size() == 0) { 
+				// FIXME Added for connection with debug API
+				// When execution stops due to client request, outputParameterValues is empty
+				// Just puts true. Execution flow is supposed to stop "by itself" then
+				decisionInputResult = new BooleanValue() ;
+				((BooleanValue)decisionInputResult).value = true ;
+			}
+			else {
+				decisionInputResult = outputParameterValues.get(0).values.get(0);
+			}
 		}
 		return decisionInputResult;
 	}

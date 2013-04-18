@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.moka.engine.AbstractExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Executor;
@@ -78,6 +79,7 @@ public abstract class FUMLExecutionEngine extends AbstractExecutionEngine {
 			// Finally launches the execution
 			this.started = true ;
 			this.locus.executor.execute(main, null,this.arguments);
+			eInstance.getControlDelegate().waitForTermination() ;
 		}
 	}
 
@@ -99,9 +101,9 @@ public abstract class FUMLExecutionEngine extends AbstractExecutionEngine {
 				loadLibrary(o, locus, main);
 			}
 		} catch (CoreException ex) {
-			System.out.println(ex.getMessage());
+			Activator.log.error(ex);
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
+			Activator.log.error(ex);
 		}
 	}
 
@@ -117,9 +119,9 @@ public abstract class FUMLExecutionEngine extends AbstractExecutionEngine {
 				loadServices(o, locus, main);
 			}
 		} catch (CoreException ex) {
-			System.out.println(ex.getMessage());
+			Activator.log.error(ex);
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
+			Activator.log.error(ex);
 		}
 	}
 
@@ -146,9 +148,9 @@ public abstract class FUMLExecutionEngine extends AbstractExecutionEngine {
 	// Loads a library of OpaqueBehaviorExecutions using the safe runner pattern
 	protected static void loadLibrary(final Object o, final Locus locus, final Object context) {
 		ISafeRunnable runnable = new ISafeRunnable() {
-
+			
 			public void handleException(Throwable e) {
-				System.out.println("Exception while loading the library");
+				Activator.log.error(e);
 			}
 
 			public void run() throws Exception {
@@ -163,7 +165,7 @@ public abstract class FUMLExecutionEngine extends AbstractExecutionEngine {
 		ISafeRunnable runnable = new ISafeRunnable() {
 
 			public void handleException(Throwable e) {
-				System.out.println("Exception while loading system services");
+				Activator.log.error(e);
 			}
 
 			public void run() throws Exception {

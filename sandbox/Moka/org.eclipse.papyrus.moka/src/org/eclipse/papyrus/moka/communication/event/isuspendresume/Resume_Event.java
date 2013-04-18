@@ -17,6 +17,7 @@ import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.debug.core.model.IDebugElement;
 import org.eclipse.papyrus.moka.communication.Marshaller;
 import org.eclipse.papyrus.moka.communication.event.EventMessage;
+import org.eclipse.papyrus.moka.debug.MokaThread;
 
 /**
  * An event message representing a Resume event.
@@ -32,6 +33,11 @@ public class Resume_Event extends EventMessage {
 	protected int resumeDetail ;
 	
 	/**
+	 * The threads available at the execution engine when this message was sent
+	 */
+	protected MokaThread[] threads ;
+	
+	/**
 	 * Constructs a Resume_Event from the given source and details.
 	 * Source is supposed to be same element as in the Resume_Request 
 	 * which preceded the creation of this Resume_Event. 
@@ -43,11 +49,13 @@ public class Resume_Event extends EventMessage {
 	 * 
 	 * @param source The source for this Resume_Event
 	 * @param resumeDetail The reason/detail of this Resume_Event
+	 * @param threads The threads available at the execution engine when this message was sent
 	 */
-	public Resume_Event(IDebugElement source, int resumeDetail) {
+	public Resume_Event(IDebugElement source, int resumeDetail, MokaThread[] threads) {
 		this.source = source;
 		this.resumeDetail = resumeDetail;
 		this.eventKind = DebugEvent.RESUME ;
+		this.threads = threads ;
 	}
 
 	/* (non-Javadoc)
@@ -64,6 +72,15 @@ public class Resume_Event extends EventMessage {
 		if (this.debugEvent == null)
 			this.debugEvent = new DebugEvent(source, eventKind, resumeDetail) ;
 		return this.debugEvent;
+	}
+	
+	/**
+	 * Returns the threads available at the execution engine when this message was sent
+	 * 
+	 * @return The threads available at the execution engine when this message was sent
+	 */
+	public MokaThread[] getThreads() {
+		return this.threads ;
 	}
 
 }

@@ -246,7 +246,7 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 				}
 			}
 			// Communication protocol ends by notifying the moka debug target that execution has terminated
-			this.sendEvent(new Terminate_Event(this.debugTarget)) ;
+			this.sendEvent(new Terminate_Event(this.debugTarget, this.getThreads())) ;
 		}
 	}
 
@@ -328,7 +328,7 @@ public abstract class AbstractExecutionEngine implements IExecutionEngine {
 	 */
 	protected void resume_reply(String message) {
 		Resume_Request request = Marshaller.getInstance().resume_request_unmarshal(message) ;
-		Resume_Event event = new Resume_Event(request.getDebugElement(), request.getResumeDetail()) ;
+		Resume_Event event = new Resume_Event(request.getDebugElement(), request.getResumeDetail(), this.getThreads()) ;
 		this.sendEvent(event) ;
 		this.resume(request) ;
 	}
