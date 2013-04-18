@@ -311,6 +311,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Node_3121 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Node_3121"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Port_3069 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Port_3069"); //$NON-NLS-1$
 
 	/**
@@ -552,6 +557,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Class_3114 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Class_3114"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Link_4022 = getElementType("org.eclipse.papyrus.uml.diagram.composite.Link_4022"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -937,6 +947,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_2112);
 			KNOWN_ELEMENT_TYPES.add(InteractionConstraint_2113);
 			KNOWN_ELEMENT_TYPES.add(Constraint_2114);
+			KNOWN_ELEMENT_TYPES.add(Node_3121);
 			KNOWN_ELEMENT_TYPES.add(Port_3069);
 			KNOWN_ELEMENT_TYPES.add(Parameter_3088);
 			KNOWN_ELEMENT_TYPES.add(Property_3070);
@@ -986,6 +997,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(PrimitiveType_3112);
 			KNOWN_ELEMENT_TYPES.add(DataType_3113);
 			KNOWN_ELEMENT_TYPES.add(Class_3114);
+			KNOWN_ELEMENT_TYPES.add(Link_4022);
 			KNOWN_ELEMENT_TYPES.add(Link_4001);
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4002);
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4003);
@@ -1114,6 +1126,8 @@ public class UMLElementTypes {
 			return InteractionConstraint_2113;
 		case ConstraintEditPart.VISUAL_ID:
 			return Constraint_2114;
+		case BehaviorPortEditPart.VISUAL_ID:
+			return Node_3121;
 		case PortEditPart.VISUAL_ID:
 			return Port_3069;
 		case ParameterEditPart.VISUAL_ID:
@@ -1212,6 +1226,8 @@ public class UMLElementTypes {
 			return DataType_3113;
 		case ClassEditPartCLN.VISUAL_ID:
 			return Class_3114;
+		case BehaviorPortLinkEditPart.VISUAL_ID:
+			return Link_4022;
 		case LinkDescriptorEditPart.VISUAL_ID:
 			return Link_4001;
 		case CommentAnnotatedElementEditPart.VISUAL_ID:

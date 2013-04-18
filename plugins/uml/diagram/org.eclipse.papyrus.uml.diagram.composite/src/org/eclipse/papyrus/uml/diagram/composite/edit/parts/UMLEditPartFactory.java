@@ -251,6 +251,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConstraintNameEditPart(view);
 			case ConstraintSpecificationEditPart.VISUAL_ID:
 				return new ConstraintSpecificationEditPart(view);
+			case BehaviorPortEditPart.VISUAL_ID:
+				return new BehaviorPortEditPart(view);
 			case PortEditPart.VISUAL_ID:
 				return new PortEditPart(view);
 			case PortNameEditPart.VISUAL_ID:
@@ -491,6 +493,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new CollaborationCompositeCompartmentEditPart(view);
 			case PropertyPartCompartmentEditPartCN.VISUAL_ID:
 				return new PropertyPartCompartmentEditPartCN(view);
+			case BehaviorPortLinkEditPart.VISUAL_ID:
+				return new BehaviorPortLinkEditPart(view);
 			case LinkDescriptorEditPart.VISUAL_ID:
 				return new LinkDescriptorEditPart(view);
 			case CommentAnnotatedElementEditPart.VISUAL_ID:

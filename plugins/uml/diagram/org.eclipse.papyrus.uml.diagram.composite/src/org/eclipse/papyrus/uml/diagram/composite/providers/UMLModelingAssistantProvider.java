@@ -606,7 +606,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ClassCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -638,6 +638,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.IntervalConstraint_3118);
 			types.add(UMLElementTypes.InteractionConstraint_3119);
 			types.add(UMLElementTypes.Constraint_3120);
+			types.add(UMLElementTypes.Node_3121);
 			return types;
 		}
 		if(editPart instanceof CollaborationCompositeCompartmentEditPartCN) {

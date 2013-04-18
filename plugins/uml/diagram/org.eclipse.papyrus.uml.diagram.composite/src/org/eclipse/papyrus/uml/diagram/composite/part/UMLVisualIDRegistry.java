@@ -4581,6 +4581,9 @@ public class UMLVisualIDRegistry {
 			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(BehaviorPortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case CollaborationCompositeCompartmentEditPartCN.VISUAL_ID:
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -6067,6 +6070,7 @@ public class UMLVisualIDRegistry {
 		case IntervalConstraintEditPartCN.VISUAL_ID:
 		case InteractionConstraintEditPartCN.VISUAL_ID:
 		case ConstraintEditPartCN.VISUAL_ID:
+		case BehaviorPortEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

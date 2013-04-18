@@ -113,8 +113,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CompositeStructure"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2060,2061,2062,2063,2064,2065,2069,2070,2071,2072,2073,2075,2076,2066,2067,2068,2077,2078,2079,2080,2081,2082,2083,2084,2085,2088,2089,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,3069,3088,3070,3115,3071,3072,3073,3074,3075,3076,3077,3081,3082,3083,3084,3085,3086,3087,3078,3079,3080,3091,3092,3093,3094,3095,3096,3097,3116,3117,3118,3119,3120,3101,3102,3100,3066,3103,3104,3105,3106,3107,3108,3109,3110,3111,3112,3113,3114"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4011,4006,4012,4007,4008,4009,4017,4010,4013,4015,4018,4019,4020,4021"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2060,2061,2062,2063,2064,2065,2069,2070,2071,2072,2073,2075,2076,2066,2067,2068,2077,2078,2079,2080,2081,2082,2083,2084,2085,2088,2089,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,3121,3069,3088,3070,3115,3071,3072,3073,3074,3075,3076,3077,3081,3082,3083,3084,3085,3086,3087,3078,3079,3080,3091,3092,3093,3094,3095,3096,3097,3116,3117,3118,3119,3120,3101,3102,3100,3066,3103,3104,3105,3106,3107,3108,3109,3110,3111,3112,3113,3114"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4022,4001,4002,4003,4004,4005,4011,4006,4012,4007,4008,4009,4017,4010,4013,4015,4018,4019,4020,4021"/>
       </viewProvider>
    </extension>
 
@@ -195,6 +195,7 @@
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.IntervalConstraintEditPart" id="IntervalConstraint_2112"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionConstraintEditPart" id="InteractionConstraint_2113"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart" id="Constraint_2114"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortEditPart" id="Node_3121"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart" id="Port_3069"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ParameterEditPart" id="Parameter_3088"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartEditPartCN" id="Property_3070"/>
@@ -244,7 +245,7 @@
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PrimitiveTypeEditPartCLN" id="PrimitiveType_3112"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeEditPartCLN" id="DataType_3113"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassEditPartCLN" id="Class_3114"/>
-         <context elements="Package_1000,Activity_2060,Interaction_2061,ProtocolStateMachine_2062,StateMachine_2063,FunctionBehavior_2064,OpaqueBehavior_2065,Component_2069,Device_2070,ExecutionEnvironment_2071,Node_2072,Class_2073,Collaboration_2075,Interface_2076,PrimitiveType_2066,Enumeration_2067,DataType_2068,Actor_2077,DeploymentSpecification_2078,Artifact_2079,InformationItem_2080,Signal_2081,UseCase_2082,SignalEvent_2083,CallEvent_2084,AnyReceiveEvent_2085,ChangeEvent_2088,TimeEvent_2089,DurationObservation_2093,TimeObservation_2094,LiteralBoolean_2095,LiteralInteger_2096,LiteralNull_2097,LiteralString_2098,LiteralUnlimitedNatural_2099,StringExpression_2100,OpaqueExpression_2101,TimeExpression_2102,Expression_2103,Duration_2104,TimeInterval_2105,DurationInterval_2106,Interval_2107,InstanceValue_2108,Comment_2109,DurationConstraint_2110,TimeConstraint_2111,IntervalConstraint_2112,InteractionConstraint_2113,Constraint_2114,Port_3069,Parameter_3088,Property_3070,ConnectableElement_3115,CollaborationUse_3071,Activity_3072,Interaction_3073,ProtocolStateMachine_3074,StateMachine_3075,FunctionBehavior_3076,OpaqueBehavior_3077,Component_3081,Device_3082,ExecutionEnvironment_3083,Node_3084,Class_3085,Collaboration_3086,Interface_3087,PrimitiveType_3078,Enumeration_3079,DataType_3080,Actor_3091,DeploymentSpecification_3092,Artifact_3093,InformationItem_3094,Signal_3095,UseCase_3096,Comment_3097,DurationConstraint_3116,TimeConstraint_3117,IntervalConstraint_3118,InteractionConstraint_3119,Constraint_3120,Property_3101,Operation_3102,Reception_3100,EnumerationLiteral_3066,Activity_3103,Interaction_3104,ProtocolStateMachine_3105,StateMachine_3106,FunctionBehavior_3107,OpaqueBehavior_3108,Collaboration_3109,Interface_3110,Enumeration_3111,PrimitiveType_3112,DataType_3113,Class_3114"/>
+         <context elements="Package_1000,Activity_2060,Interaction_2061,ProtocolStateMachine_2062,StateMachine_2063,FunctionBehavior_2064,OpaqueBehavior_2065,Component_2069,Device_2070,ExecutionEnvironment_2071,Node_2072,Class_2073,Collaboration_2075,Interface_2076,PrimitiveType_2066,Enumeration_2067,DataType_2068,Actor_2077,DeploymentSpecification_2078,Artifact_2079,InformationItem_2080,Signal_2081,UseCase_2082,SignalEvent_2083,CallEvent_2084,AnyReceiveEvent_2085,ChangeEvent_2088,TimeEvent_2089,DurationObservation_2093,TimeObservation_2094,LiteralBoolean_2095,LiteralInteger_2096,LiteralNull_2097,LiteralString_2098,LiteralUnlimitedNatural_2099,StringExpression_2100,OpaqueExpression_2101,TimeExpression_2102,Expression_2103,Duration_2104,TimeInterval_2105,DurationInterval_2106,Interval_2107,InstanceValue_2108,Comment_2109,DurationConstraint_2110,TimeConstraint_2111,IntervalConstraint_2112,InteractionConstraint_2113,Constraint_2114,Node_3121,Port_3069,Parameter_3088,Property_3070,ConnectableElement_3115,CollaborationUse_3071,Activity_3072,Interaction_3073,ProtocolStateMachine_3074,StateMachine_3075,FunctionBehavior_3076,OpaqueBehavior_3077,Component_3081,Device_3082,ExecutionEnvironment_3083,Node_3084,Class_3085,Collaboration_3086,Interface_3087,PrimitiveType_3078,Enumeration_3079,DataType_3080,Actor_3091,DeploymentSpecification_3092,Artifact_3093,InformationItem_3094,Signal_3095,UseCase_3096,Comment_3097,DurationConstraint_3116,TimeConstraint_3117,IntervalConstraint_3118,InteractionConstraint_3119,Constraint_3120,Property_3101,Operation_3102,Reception_3100,EnumerationLiteral_3066,Activity_3103,Interaction_3104,ProtocolStateMachine_3105,StateMachine_3106,FunctionBehavior_3107,OpaqueBehavior_3108,Collaboration_3109,Interface_3110,Enumeration_3111,PrimitiveType_3112,DataType_3113,Class_3114"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -752,6 +753,13 @@
             <param name="semanticHint" value="2114"/>
          </metamodelType>
       </metamodel>
+      <specializationType
+            id="org.eclipse.papyrus.uml.diagram.composite.Node_3121"
+            name="%metatype.name.Node_3121"
+            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+         <param name="semanticHint" value="3121"/>
+      </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Port_3069"
@@ -1196,6 +1204,13 @@
          </specializationType>
       </metamodel>
       <specializationType
+            id="org.eclipse.papyrus.uml.diagram.composite.Link_4022"
+            name="%metatype.name.Link_4022"
+            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+         <param name="semanticHint" value="4022"/>
+      </specializationType>
+      <specializationType
             id="org.eclipse.papyrus.uml.diagram.composite.Link_4001"
             name="%metatype.name.Link_4001"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
@@ -1439,6 +1454,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_2112"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_2113"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Constraint_2114"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_3121"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Port_3069"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Parameter_3088"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Property_3070"/>
@@ -1488,6 +1504,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3112"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DataType_3113"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Class_3114"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4022"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4001"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ConstraintConstrainedElement_4003"/>
@@ -1747,6 +1764,7 @@
             id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralStringPreferencePage"
             name="LiteralString Node" />
 	
+			
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"

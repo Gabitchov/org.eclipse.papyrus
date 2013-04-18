@@ -418,6 +418,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateLink_4022() {
+			return canExistLink_4022();
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canCreateLink_4001() {
 			return canExistLink_4001();
 		}
@@ -571,6 +578,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateInformationFlow_4021(Package container, NamedElement source, NamedElement target) {
 			return canExistInformationFlow_4021(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistLink_4022() {
+			return true;
 		}
 
 		/**
