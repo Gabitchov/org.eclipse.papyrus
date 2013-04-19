@@ -23,10 +23,13 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.transaction.RunnableWithResult;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -52,6 +55,7 @@ import org.junit.Before;
 @SuppressWarnings("deprecation")
 public abstract class AbstractPapyrusTestCase extends TestCase {
 
+	protected boolean operationFailed = false;
 
 	/** The Constant CREATION. */
 	protected static final String CREATION = "CREATION:";
@@ -258,5 +262,82 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			fail("Project creation failed: " + e.getMessage());
 		}
 	}
+	
+	/** Call {@link AbstractPapyrusTestCase#execute(Command) execute} on the UI thread. */
+	protected void executeOnUIThread(final Command command) {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				execute(command);
+			}
+		});
+	}
+
+	/** Call {@link AbstractPapyrusTestCase#undo() undo} on the UI thread. */
+	protected void undoOnUIThread() {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				undo();
+			}
+		});
+	}
+
+	/** Call {@link AbstractPapyrusTestCase#redo() redo} on the UI thread. */
+	protected void redoOnUIThread() {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				redo();
+			}
+		});
+	}
+	
+	protected void assertLastOperationSuccessful() {
+		assertFalse(
+				"The operation failed. Look at the log, or put a breakpoint on ExecutionException or DefaultOperationHistory#notifyNotOK to find the cause.",
+				this.operationFailed);
+	}
+	
+	
+	/**
+	 * Reset the "operation failed" state. Call this before executing each operation for which you want to test whether
+	 * if failed with {@link AbstractPapyrusTestCase#assertLastOperationSuccessful()}.
+	 */
+	protected void resetLastOperationFailedState() {
+		this.operationFailed = false;
+	}
+	
+	/** Execute the given command in the diagram editor. */
+	protected void execute(final Command command) {
+		resetLastOperationFailedState();
+		getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		assertLastOperationSuccessful();
+	}
+
+	/** Undo the last command done in the diagram editor. */
+	protected void undo() {
+		resetLastOperationFailedState();
+		final CommandStack commandStack = getCommandStack();
+		assertTrue("We should be able to undo", commandStack.canUndo());
+		commandStack.undo();
+		assertLastOperationSuccessful();
+	}
+
+	/** Redo the last command undone in the diagram editor. */
+	protected void redo() {
+		resetLastOperationFailedState();
+		final CommandStack commandStack = getCommandStack();
+		assertTrue("We should be able to redo", commandStack.canRedo());
+		commandStack.redo();
+		assertLastOperationSuccessful();
+	}
+
+	/** The command stack to use to execute commands on the diagram. */
+	protected CommandStack getCommandStack() {
+		// not "diagramEditor.getDiagramEditDomain().getDiagramCommandStack()" because it messes up undo contexts
+		return this.diagramEditor.getEditingDomain().getCommandStack();
+	}
+	
 
 }
