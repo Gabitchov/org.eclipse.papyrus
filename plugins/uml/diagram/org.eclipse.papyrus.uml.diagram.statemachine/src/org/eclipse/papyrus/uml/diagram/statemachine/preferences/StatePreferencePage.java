@@ -77,7 +77,7 @@ public class StatePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("StateCompartment", Boolean.TRUE);
+		map.put("StateCompartment", Boolean.FALSE);
 		return map;
 	}
 

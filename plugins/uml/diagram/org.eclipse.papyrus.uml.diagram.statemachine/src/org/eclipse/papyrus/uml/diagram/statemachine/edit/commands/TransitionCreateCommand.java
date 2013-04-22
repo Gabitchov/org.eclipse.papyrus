@@ -11,13 +11,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomTransitionReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Pseudostate;
-import org.eclipse.uml2.uml.PseudostateKind;
 import org.eclipse.uml2.uml.Region;
-import org.eclipse.uml2.uml.State;
-import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Vertex;
@@ -34,41 +31,8 @@ public class TransitionCreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected Region deduceContainer(EObject source, EObject target) {
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		EObject searchFrom = source;
-		if (source instanceof Pseudostate) {
-			// Entry pseudo state must be handled differently: a transition starting from here
-			// targets an inner region of the state machine or state, but this region depends
-			// on target (in case of multi-regions)
-			if (((Pseudostate) source).getKind() == PseudostateKind.ENTRY_POINT_LITERAL) {
-				if (target != null) {
-					searchFrom = target;
-				}
-				else {
-					// target not available yet, use first region
-					// of state or statemachine (will be refined later)
-					StateMachine sm = ((Pseudostate) source).getStateMachine();
-					if (sm != null) {
-						if (!sm.getRegions().isEmpty()) {
-							return sm.getRegions().get(0);
-						}
-					}
-					State state = ((Pseudostate) source).getState();
-					if (state != null) {
-						if (!state.getRegions().isEmpty()) {
-							return state.getRegions().get(0);
-						}
-					}		}
-			}
-		}
-		for(EObject element = searchFrom; element != null; element = element.eContainer()) {
-			if(element instanceof Region) {
-				return (Region)element;
-			}
-		}
-		return null;
+		// TODO: avoid modification of generated code, problem is that model needs to be changed at many places ... 
+		return CustomTransitionReorientCommand.deduceContainer (source, target);
 	}
 
 	/**
@@ -114,6 +78,9 @@ public class TransitionCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		if(getContainer() == null) {
+			return false;
+		}
+		if(!CustomTransitionReorientCommand.isValid(source, target)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateTransition_7000(getContainer(), getSource(), getTarget());
