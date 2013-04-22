@@ -49,7 +49,7 @@ public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITre
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NoConnectableEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,	new NoDeleteFromDiagramEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new NoDeleteFromDiagramEditPolicy());
 	}
 
 	/**
