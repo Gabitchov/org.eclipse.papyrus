@@ -10442,5 +10442,10 @@
         role="TargetMultiplicity"
         linkLabels="/0/@diagram/@links.14/@labels.3"
         visibleByDefault="false"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="this is an abstract class for BehaviorPortEditPart"
+        genView="/0/@diagram/@childNodes.0"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts.AbstractBehaviorPortEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
