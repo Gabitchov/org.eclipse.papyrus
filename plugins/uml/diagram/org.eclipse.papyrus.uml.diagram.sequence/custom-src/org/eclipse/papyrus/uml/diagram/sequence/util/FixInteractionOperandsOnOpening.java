@@ -44,22 +44,17 @@ public class FixInteractionOperandsOnOpening {
 	 *        the diagram
 	 */
 	public void fix(Diagram diagram) {
-
 		String IAO_ID = "" + InteractionOperandEditPart.VISUAL_ID;
-
 		// Parse diagram content
 		Iterator<EObject> it = diagram.eAllContents();
 		while(it.hasNext()) {
 			EObject current = it.next();
-
 			// Select only shapes
 			if(!(current instanceof Shape)) {
 				continue;
 			}
-
 			String currentType = ((Shape)current).getType();
 			if(IAO_ID.equals(currentType)) {
-
 				Shape iaOperandShape = (Shape)current;
 				View parentDecoration = ViewUtil.getViewContainer(iaOperandShape);
 				if(parentDecoration != null) {
@@ -68,20 +63,16 @@ public class FixInteractionOperandsOnOpening {
 						Shape parentShape = (Shape)parentParentView;
 						Bounds iaOperandShapeBounds = (Bounds)iaOperandShape.getLayoutConstraint();
 						Bounds parentShapeBounds = (Bounds)parentShape.getLayoutConstraint();
-
 						if((iaOperandShapeBounds.getX() == 0) && (iaOperandShapeBounds.getY() == 0) && (iaOperandShapeBounds.getWidth() == -1)) {
 							// distribute operands equally within the combined fragment.
 							int size = parentDecoration.getChildren().size();
 							int index = parentDecoration.getChildren().indexOf(iaOperandShape);
 							int height = (parentShapeBounds.getHeight() - TOP_HEIGHT) / size;
 							int y = index * height;
-
 							final Rectangle newBounds = new Rectangle(0, y, parentShapeBounds.getWidth() - 2, height);
-
 							// Fix when current location is not the valid location (only possible if parent size is set)
 							TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
 							Command fixCommand = new FixLocationCommand(editingDomain, "Fix combined fragment on opening", iaOperandShapeBounds, newBounds);
-
 							editingDomain.getCommandStack().execute(fixCommand);
 						}
 					}

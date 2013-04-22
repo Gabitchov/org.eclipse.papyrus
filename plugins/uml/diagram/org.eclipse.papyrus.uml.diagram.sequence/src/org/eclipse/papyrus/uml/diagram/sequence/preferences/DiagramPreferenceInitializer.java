@@ -25,32 +25,29 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	/**
 	 * Add the diagram preference page to the initialization
 	 * 
-	 * @generated NOT (update at each gmf change) diagram preference page
+	 * @generated
 	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
+		InteractionPreferencePage.initDefaults(store);
+		TimeConstraintPreferencePage.initDefaults(store);
 		TimeObservationPreferencePage.initDefaults(store);
 		CommentPreferencePage.initDefaults(store);
-		StateInvariantPreferencePage.initDefaults(store);
-		CombinedFragmentPreferencePage.initDefaults(store);
 		ConstraintPreferencePage.initDefaults(store);
+		LifelinePreferencePage.initDefaults(store);
+		InteractionUsePreferencePage.initDefaults(store);
+		CombinedFragmentPreferencePage.initDefaults(store);
+		DurationConstraintPreferencePage.initDefaults(store);
+		BehaviorExecutionSpecificationPreferencePage.initDefaults(store);
+		DurationObservationPreferencePage.initDefaults(store);
 		ActionExecutionSpecificationPreferencePage.initDefaults(store);
 		InteractionOperandPreferencePage.initDefaults(store);
-		DestructionEventPreferencePage.initDefaults(store);
-		InteractionPreferencePage.initDefaults(store);
-		DurationConstraintPreferencePage.initDefaults(store);
-		InteractionUsePreferencePage.initDefaults(store);
 		ContinuationPreferencePage.initDefaults(store);
+		StateInvariantPreferencePage.initDefaults(store);
+		DestructionOccurrenceSpecificationPreferencePage.initDefaults(store);
 		ConsiderIgnoreFragmentPreferencePage.initDefaults(store);
-		DurationObservationPreferencePage.initDefaults(store);
-		TimeConstraintPreferencePage.initDefaults(store);
-		LifelinePreferencePage.initDefaults(store);
-		BehaviorExecutionSpecificationPreferencePage.initDefaults(store);
 		MessagePreferencePage.initDefaults(store);
 		GeneralOrderingPreferencePage.initDefaults(store);
-		// diagram preference page
-		DiagramGeneralPreferencePage.initDefaults(store);
-		DestructionOccurrenceSpecificationPreferencePage.initDefaults(store);
 	}
 
 	/**

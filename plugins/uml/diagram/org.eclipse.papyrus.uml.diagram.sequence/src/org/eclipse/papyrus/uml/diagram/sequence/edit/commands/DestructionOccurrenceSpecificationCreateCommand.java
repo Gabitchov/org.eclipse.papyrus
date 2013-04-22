@@ -13,11 +13,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
-import org.eclipse.uml2.uml.InteractionFragment;
-import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
@@ -76,17 +74,9 @@ public class DestructionOccurrenceSpecificationCreateCommand extends EditElement
 	/**
 	 * A DestructionEvent on a lifeline can only be created if it doesn't exist yet a destructionEvent on that lifeline.
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean canExecute() {
-		// Get the lifeline
-		Lifeline lifeline = (Lifeline)getElementToEdit();
-		for(InteractionFragment ift : lifeline.getCoveredBys()) {
-			if(ift instanceof DestructionOccurrenceSpecification) {
-				// For each occurenceSpecification which covered the lifeline, check the associated event.
-				return false;
-			}
-		}
 		return true;
 	}
 
@@ -94,13 +84,13 @@ public class DestructionOccurrenceSpecificationCreateCommand extends EditElement
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// Get the model container
-		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
-		DestructionOccurrenceSpecification destructionSpecification = (DestructionOccurrenceSpecification)CommandHelper.doCreateDestructionOccurrenceSpecification((Lifeline)getElementToEdit(), modelContainer);
-		ElementInitializers.getInstance().init_DestructionOccurrenceSpecification_3022(destructionSpecification);
-		doConfigure(destructionSpecification, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(destructionSpecification);
-		return CommandResult.newOKCommandResult(destructionSpecification);
+		DestructionOccurrenceSpecification newElement = UMLFactory.eINSTANCE.createDestructionOccurrenceSpecification();
+		Interaction owner = (Interaction)getElementToEdit();
+		owner.getFragments().add(newElement);
+		ElementInitializers.getInstance().init_DestructionOccurrenceSpecification_3022(newElement);
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**

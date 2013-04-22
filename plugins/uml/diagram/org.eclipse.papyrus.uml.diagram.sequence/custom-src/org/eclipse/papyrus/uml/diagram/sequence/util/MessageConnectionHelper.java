@@ -25,7 +25,6 @@ import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
-
 /**
  * Helper class for determine the message connections. Both for connecting and reconnecting.
  * 
@@ -180,10 +179,9 @@ public class MessageConnectionHelper {
 			return false;
 		}
 		//Only available for ExecutionSpecification and Lifeline.
-		if(target != null && !(target instanceof ExecutionSpecification || target instanceof Lifeline || target instanceof InteractionFragment)) {
+		if(target != null && !(target instanceof ExecutionSpecification || target instanceof Lifeline || target instanceof InteractionFragment || target instanceof MessageEnd)) {
 			return false;
 		}
 		return true;
 	}
-
 }

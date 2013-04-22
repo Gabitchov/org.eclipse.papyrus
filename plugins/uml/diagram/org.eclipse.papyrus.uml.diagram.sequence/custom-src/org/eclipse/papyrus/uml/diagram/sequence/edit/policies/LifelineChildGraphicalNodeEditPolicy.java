@@ -84,7 +84,6 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	 * @return the command
 	 */
 	private Command getUnspecifiedConnectionCreateCommand(final CreateUnspecifiedTypeConnectionRequest request) {
-
 		if(request.isDirectionReversed()) {
 			return new Command() {
 
@@ -99,7 +98,6 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 				}
 			};
 		} else {
-
 			// Get the start command for each individual request, this will
 			// update each request as required.
 			final List commands = new ArrayList();
@@ -115,13 +113,11 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 					commands.add(cmd);
 				}
 			}
-
 			if(commands.isEmpty()) {
 				// GEF's AbstractConnectionCreationTool expects a null command
 				// when the gesture should be disabled.
 				return null;
 			}
-
 			// return an executable command that does nothing
 			return new Command() {/* do nothing */
 			};

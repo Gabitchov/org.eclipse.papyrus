@@ -62,5 +62,4 @@ public class InteractionOperandDragDropEditPolicy extends ResizableEditPolicy {
 			return null;
 		}
 	}
-
 }

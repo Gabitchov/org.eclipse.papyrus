@@ -41,5 +41,4 @@ public class InteractionOperandFigure extends PapyrusNodeFigure {
 	public void setLineSeparator(boolean lineSeparator) {
 		this.lineSeparator = lineSeparator;
 	}
-
 }

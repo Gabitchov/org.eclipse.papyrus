@@ -48,7 +48,6 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-
 /**
  * Specific Parser for the TimeConstraint and DurationConstraint.
  */
@@ -231,7 +230,6 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 				return new Integer[]{ value, value };
 			} catch (Exception e) {
 			}
-
 			// same value for min and max
 			return new String[]{ newString, newString };
 		}
@@ -276,5 +274,4 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 			}
 		}
 	}
-
 }

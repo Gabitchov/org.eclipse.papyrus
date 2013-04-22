@@ -1,8 +1,10 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.diagram.sequence,
  org.eclipse.papyrus.uml.diagram.sequence.edit.parts,
+ org.eclipse.papyrus.uml.diagram.sequence.figures,
  org.eclipse.papyrus.uml.diagram.sequence.part,
- org.eclipse.papyrus.uml.diagram.sequence.providers
+ org.eclipse.papyrus.uml.diagram.sequence.providers,
+ org.eclipse.papyrus.uml.diagram.sequence.util
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -60,19 +62,17 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
  org.eclipse.papyrus.uml.diagram.stereotype.edition;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
+ org.eclipse.gmf.tooling.runtime
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.part.UMLDia
- gramEditorPlugin
+Bundle-Version: 0.10.1.qualifier
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence;singleto
- n:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence; singleton:=true
 Import-Package: org.eclipse.core.databinding.observable,
  org.eclipse.papyrus.infra.emf.databinding,
  org.eclipse.papyrus.infra.tools.databinding,
  org.eclipse.papyrus.uml.tools.databinding,
  org.eclipse.papyrus.views.properties.contexts,
  org.eclipse.papyrus.views.properties.modelelement
-

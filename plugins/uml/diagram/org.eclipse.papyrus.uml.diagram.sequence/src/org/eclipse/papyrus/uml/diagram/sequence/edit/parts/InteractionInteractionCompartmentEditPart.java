@@ -18,10 +18,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -29,13 +27,14 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionInteractionCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
-import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 
 /**
  * @generated
@@ -71,21 +70,20 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionInteractionCompartmentItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionInteractionCompartmentCanonicalEditPolicy());
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionInteractionCompartmentCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new InteractionCompartmentXYLayoutEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-		removeEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE);
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
 	}
 
 	/**
@@ -127,53 +125,5 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();
-	}
-
-	/**
-	 * Generated not for send to back CombinedFragment and InteractionUse {@inheritDoc}
-	 */
-	// TODO Use transparency instead of send to back method
-	@Override
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(childEditPart instanceof CombinedFragmentEditPart || childEditPart instanceof ConsiderIgnoreFragmentEditPart || childEditPart instanceof InteractionUseEditPart) {
-			index = 0;
-		}
-		super.addChildVisual(childEditPart, index);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#
-	 * showTargetFeedback(org.eclipse.gef.Request)
-	 */
-	@Override
-	public void showTargetFeedback(Request request) {
-		if(!isEditModeEnabled() || !isActive()) {
-			return;
-		}
-		// Avoid default drop feedback by setting background, just highlight it
-		// with bold border.
-		EditPolicyIterator i = getEditPolicyIterator();
-		while(i.hasNext()) {
-			EditPolicy next = i.next();
-			if(REQ_CREATE.equals(request.getType()) && next.getClass().getName().equals("org.eclipse.papyrus.infra.gmfdiag.dnd.policy.CustomizableDropEditPolicy")) {
-				HighlightUtil.highlight(this);
-			} else {
-				next.showTargetFeedback(request);
-			}
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#
-	 * eraseTargetFeedback(org.eclipse.gef.Request)
-	 */
-	@Override
-	public void eraseTargetFeedback(Request request) {
-		super.eraseTargetFeedback(request);
-		HighlightUtil.unhighlight(this);
 	}
 }

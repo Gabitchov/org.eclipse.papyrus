@@ -82,7 +82,6 @@ public class FragmentOrderingKeeper {
 	private Set<GeneralOrdering> constrainingGeneralOrderings;
 
 	/* private Set<CombinedFragment> constrainingCombinedFragments; */
-
 	private List<List<InteractionFragment>> orderConstraints;
 
 	private Set<InteractionFragment> conflictingFragments;
@@ -226,7 +225,6 @@ public class FragmentOrderingKeeper {
 		if(editor instanceof IDiagramWorkbenchPart) {
 			diagram = ((IDiagramWorkbenchPart)editor).getDiagramEditPart();
 		}
-
 		// reset constraints
 		constrainingNotRepresentedLifelines = new HashSet<Lifeline>();
 		constrainingLifelineParts = new HashSet<LifelineEditPart>();
@@ -294,7 +292,6 @@ public class FragmentOrderingKeeper {
 				constrainingGeneralOrderings.addAll(orderings);
 			}
 		}
-
 		// construct constrained partial orders
 		constructPartialOrders();
 	}
@@ -375,7 +372,6 @@ public class FragmentOrderingKeeper {
 			if(frag instanceof InteractionFragment && orderedFragments.contains(frag)) {
 				constraint.add((InteractionFragment)frag);
 			}
-
 			DestructionOccurrenceUtil.constraintDestructionOccurrence(mess, constraint);
 			// store constraint
 			orderConstraints.add(indexConstraint, constraint);
@@ -594,7 +590,6 @@ public class FragmentOrderingKeeper {
 			// inspect each constraint list to know whether fragment is mature enough, in such a case, store it with constraint index
 			Map<Integer, InteractionFragment> matureFragments = new HashMap<Integer, InteractionFragment>(n);
 			for(int i = 0; i < n; i++) {
-
 				InteractionFragment fragmentToInspect = getFragmentToInspect(i, pointers);
 				// if no more fragment in this constraint (fragmentToInspect == null), nothing to do
 				if(fragmentToInspect != null) {
@@ -626,7 +621,6 @@ public class FragmentOrderingKeeper {
 				// inspect each constraint list to know whether fragment is mature enough, in such a case, store it with constraint index
 				matureFragments = new HashMap<Integer, InteractionFragment>(n);
 				for(int i = 0; i < n; i++) {
-
 					InteractionFragment fragmentToInspect = getFragmentToInspect(i, pointers);
 					// if no more fragment in this constraint (fragmentToInspect == null), nothing to do
 					if(fragmentToInspect != null) {
@@ -657,7 +651,6 @@ public class FragmentOrderingKeeper {
 										}
 									}
 									List<InteractionFragment> waitingList = orderConstraints.get(j).subList(updatedPointer + 1, orderConstraints.get(j).size());
-
 									if(waitingList.contains(fragmentToInspect)) {
 										wait = true;
 										break;
@@ -717,7 +710,6 @@ public class FragmentOrderingKeeper {
 						}
 					}
 				}
-
 				//				// no valid trace.
 				//				if(valid) {
 				//					// store first conflicting fragments for user explanation
@@ -770,9 +762,7 @@ public class FragmentOrderingKeeper {
 		 */
 		initialFragmentsList.removeAll(reorderedFragments);
 		reorderedFragments.addAll(initialFragmentsList);
-
 		DestructionOccurrenceUtil.reorderDestructionOccurrence(reorderedFragments);
-
 		/*
 		 * Now that we have a valid trace, apply it on orderedFragments.
 		 * Only move operations must be performed on the EList, since others strongly affect the model.

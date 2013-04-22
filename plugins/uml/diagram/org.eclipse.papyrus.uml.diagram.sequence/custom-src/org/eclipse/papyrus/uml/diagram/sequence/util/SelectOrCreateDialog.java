@@ -34,7 +34,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -168,27 +168,19 @@ public class SelectOrCreateDialog extends FormDialog {
 	protected void createFormContent(IManagedForm pForm) {
 		ScrolledForm scrolledForm = pForm.getForm();
 		scrolledForm.setText(title);
-
 		FormToolkit toolkit = pForm.getToolkit();
 		Composite parent = scrolledForm.getBody();
 		parent.setLayout(new GridLayout());
-
 		// Create the selection section
 		createSelectionSection(scrolledForm.getBody(), toolkit);
 		// Create the creation section
 		createCreationSection(scrolledForm.getBody(), toolkit);
-
-
 		// Create the nothing section
 		createNothingSection(scrolledForm.getBody(), toolkit);
-
-
 		refreshSectionsEnable(selectionRadio);
 		hookListeners();
-
 		// name is set after listeners, since we count on listener to update it properly
 		setName(null);
-
 		scrolledForm.reflow(true);
 	}
 
@@ -196,19 +188,15 @@ public class SelectOrCreateDialog extends FormDialog {
 		// create the section
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
 		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
-
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
 		lInsideScrolledForm.setExpandVertical(true);
 		Composite lBody = lInsideScrolledForm.getBody();
-
 		lBody.setLayout(new GridLayout(1, false));
-
 		// content of the section
-		nothingRadio = pToolkit.createButton(lBody, Messages.SelectOrCreateDialog_NothingLabel, SWT.RADIO);
+		nothingRadio = pToolkit.createButton(lBody, CustomMessages.SelectOrCreateDialog_NothingLabel, SWT.RADIO);
 		nothingRadio.setSelection(true);
 		nothingRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -225,23 +213,18 @@ public class SelectOrCreateDialog extends FormDialog {
 		// create the section
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
 		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
-
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
 		lInsideScrolledForm.setExpandVertical(true);
 		Composite lBody = lInsideScrolledForm.getBody();
-
 		lBody.setLayout(new GridLayout(3, false));
-
 		// content of the section
-		selectionRadio = pToolkit.createButton(lBody, Messages.SelectOrCreateDialog_SelectLabel, SWT.RADIO);
+		selectionRadio = pToolkit.createButton(lBody, CustomMessages.SelectOrCreateDialog_SelectLabel, SWT.RADIO);
 		selectionRadio.setSelection(true);
 		selectionRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
-
 		selectionText = pToolkit.createText(lBody, "", SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
 		selectionText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		selectionButton = pToolkit.createButton(lBody, "...", SWT.FLAT); //$NON-NLS-1$
-
 		// find the first non null eobject and use its associated image
 		if(existingElements != null) {
 			Iterator<EObject> it = existingElements.iterator();
@@ -253,11 +236,8 @@ public class SelectOrCreateDialog extends FormDialog {
 				}
 			}
 		}
-
 		selectionButton.setLayoutData(new GridData(SWT.NONE));
-
 		filterSignalButton = pToolkit.createButton(lBody, "filter out all signals which are not receivable", SWT.CHECK);
-
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -274,28 +254,23 @@ public class SelectOrCreateDialog extends FormDialog {
 		// create the section
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
 		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
-
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
 		lInsideScrolledForm.setExpandVertical(true);
 		Composite lBody = lInsideScrolledForm.getBody();
-
 		lBody.setLayout(new GridLayout(3, false));
-
 		// content of the section
-		creationRadio = pToolkit.createButton(lBody, Messages.SelectOrCreateDialog_CreateLabel, SWT.RADIO);
+		creationRadio = pToolkit.createButton(lBody, CustomMessages.SelectOrCreateDialog_CreateLabel, SWT.RADIO);
 		creationRadio.setSelection(false);
 		creationRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
-
 		EClass defaultType = null;
 		Set<EClass> possibleTypes = mapTypesPossibleParents.keySet();
-
 		// only create the type selection buttons if more than one type
 		// is possible
 		if(possibleTypes.size() == 1) {
 			defaultType = (EClass)possibleTypes.toArray()[0];
 		} else {
-			pToolkit.createLabel(lBody, Messages.SelectOrCreateDialog_TypeLabel, SWT.NONE);
+			pToolkit.createLabel(lBody, CustomMessages.SelectOrCreateDialog_TypeLabel, SWT.NONE);
 			creationTypeCombo = new Combo(lBody, SWT.DROP_DOWN | SWT.READ_ONLY);
 			typeComboViewer = new ComboViewer(creationTypeCombo);
 			pToolkit.adapt(creationTypeCombo);
@@ -308,19 +283,15 @@ public class SelectOrCreateDialog extends FormDialog {
 				typeComboViewer.setSelection(new StructuredSelection(defaultType));
 			}
 		}
-
-		pToolkit.createLabel(lBody, Messages.SelectOrCreateDialog_NameLabel, SWT.NONE);
+		pToolkit.createLabel(lBody, CustomMessages.SelectOrCreateDialog_NameLabel, SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, "", SWT.BORDER); //$NON-NLS-1$
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-
-		pToolkit.createLabel(lBody, Messages.SelectOrCreateDialog_OwnerLabel + ":", SWT.NONE); //$NON-NLS-1$
+		pToolkit.createLabel(lBody, CustomMessages.SelectOrCreateDialog_OwnerLabel + ":", SWT.NONE); //$NON-NLS-1$
 		creationParentText = pToolkit.createText(lBody, elementLabelProvider.getText(selectedParent), SWT.BORDER | SWT.READ_ONLY);
 		creationParentText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		creationParentButton = pToolkit.createButton(lBody, "...", SWT.FLAT); //$NON-NLS-1$
 		creationParentButton.setLayoutData(new GridData(SWT.NONE));
-
 		setType(defaultType);
-
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -344,7 +315,6 @@ public class SelectOrCreateDialog extends FormDialog {
 		selectionRadio.addSelectionListener(radioListener);
 		creationRadio.addSelectionListener(radioListener);
 		nothingRadio.addSelectionListener(radioListener);
-
 		// listener to select existing element
 		SelectionListener selectBtnListener = new SelectionAdapter() {
 
@@ -357,7 +327,6 @@ public class SelectOrCreateDialog extends FormDialog {
 			}
 		};
 		selectionButton.addSelectionListener(selectBtnListener);
-
 		if(creationTypeCombo != null && typeComboViewer != null) {
 			// listener to select invocation type
 			ModifyListener lTypeListener = new ModifyListener() {
@@ -381,7 +350,6 @@ public class SelectOrCreateDialog extends FormDialog {
 			};
 			creationTypeCombo.addModifyListener(lTypeListener);
 		}
-
 		// listener to invocation element name
 		ModifyListener lNameListener = new ModifyListener() {
 
@@ -394,7 +362,6 @@ public class SelectOrCreateDialog extends FormDialog {
 			}
 		};
 		creationNameText.addModifyListener(lNameListener);
-
 		// listener to select new element parent
 		SelectionListener selectParentBtnListener = new SelectionAdapter() {
 
@@ -464,7 +431,7 @@ public class SelectOrCreateDialog extends FormDialog {
 	 */
 	private void handleSelectElement() {
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), elementLabelProvider);
-		dialog.setMessage(Messages.SelectOrCreateDialog_SelectLabel);
+		dialog.setMessage(CustomMessages.SelectOrCreateDialog_SelectLabel);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(filterElements(existingElements));
 		if(dialog.open() == Window.OK) {
@@ -480,7 +447,6 @@ public class SelectOrCreateDialog extends FormDialog {
 				Classifier c = (Classifier)t;
 				collectSignals(c, accept, collected);
 			}
-
 		return accept;
 	}
 
@@ -493,7 +459,6 @@ public class SelectOrCreateDialog extends FormDialog {
 			for(Reception r : receptions)
 				accept.add(r.getSignal());
 		}
-
 		EList<Property> attrs = c.getAllAttributes();
 		for(Property p : attrs)
 			if(p.getType() instanceof Signal) {
@@ -506,9 +471,7 @@ public class SelectOrCreateDialog extends FormDialog {
 	private Object[] filterElements(Collection<EObject> elements) {
 		if(!filterSignalButton.getSelection() || types == null || types.isEmpty())
 			return elements.toArray(new EObject[elements.size()]);
-
 		Set<Signal> accept = getAllSignals(types);
-
 		List<EObject> result = new ArrayList<EObject>();
 		for(EObject o : elements)
 			if(!(o instanceof Signal))
@@ -524,7 +487,7 @@ public class SelectOrCreateDialog extends FormDialog {
 	 */
 	private void handleSelectParent() {
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), elementLabelProvider);
-		dialog.setMessage(Messages.SelectOrCreateDialog_OwnerLabel);
+		dialog.setMessage(CustomMessages.SelectOrCreateDialog_OwnerLabel);
 		dialog.setMultipleSelection(false);
 		List<EObject> possibleParents = mapTypesPossibleParents.get(selectedType);
 		if(possibleParents != null) {
@@ -616,12 +579,10 @@ public class SelectOrCreateDialog extends FormDialog {
 		} else {
 			nothingSelected = true;
 		}
-
 		// Selection widgets
 		selectionRadio.setSelection(selectionSelected);
 		selectionText.setEnabled(selectionSelected);
 		selectionButton.setEnabled(selectionSelected);
-
 		// Creation widgets
 		creationRadio.setSelection(creationSelected);
 		if(creationTypeCombo != null) {
@@ -630,7 +591,6 @@ public class SelectOrCreateDialog extends FormDialog {
 		creationNameText.setEnabled(creationSelected);
 		creationParentText.setEnabled(creationSelected);
 		creationParentButton.setEnabled(creationSelected);
-
 		// Nothing widgets
 		nothingRadio.setSelection(nothingSelected);
 	}
@@ -643,5 +603,4 @@ public class SelectOrCreateDialog extends FormDialog {
 	public EObject getSelected() {
 		return selectedElement;
 	}
-
 }

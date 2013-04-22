@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.C
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 
-
 /**
  * Custom ConnectionHandleEditPolicy for Comment, Observation and Constraint, only one outgoing supported.
  * 
@@ -62,7 +61,6 @@ public class AnnotatedConnectionHandleEditPolicy extends ConnectionHandleEditPol
 			});
 			list.add(connectionHandle);
 		}
-
 		return list;
 	}
 }

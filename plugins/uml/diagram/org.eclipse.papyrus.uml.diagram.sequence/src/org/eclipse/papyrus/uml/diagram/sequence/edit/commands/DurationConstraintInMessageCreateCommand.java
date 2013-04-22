@@ -85,11 +85,10 @@ public class DurationConstraintInMessageCreateCommand extends EditElementCommand
 	}
 
 	/**
-	 * @generated NOT disable, use {@link DurationConstraintCreateCommand} instead
+	 * @generated
 	 */
 	public boolean canExecute() {
-		// disable, use {@link DurationConstraintCreateCommand} instead
-		return false;
+		return true;
 	}
 
 	/**

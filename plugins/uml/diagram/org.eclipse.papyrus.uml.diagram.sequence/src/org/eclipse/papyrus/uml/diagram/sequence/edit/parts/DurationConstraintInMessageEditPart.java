@@ -14,33 +14,33 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editparts.AbstractConnectionEditPart;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ListItemComponentEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
-import org.eclipse.gmf.runtime.diagram.ui.figures.LabelLocator;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -53,11 +53,11 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
+import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DurationConstraintInMessageItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MoveableNonResizableLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.SWT;
@@ -107,35 +107,7 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 	}
 
 	/**
-	 * Make sure bounds are also refreshed.
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refresh()
-	 * @generated NOT
-	 */
-	@Override
-	public void refresh() {
-		super.refresh();
-		refreshBounds();
-	}
-
-	/**
-	 * Handles refresh bounds the same way as for a non resizable label
-	 * 
-	 * @generated NOT
-	 */
-	protected void refreshBounds() {
-		int dx = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int dy = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		Point offset = new Point(dx, dy);
-		if(getParent() instanceof AbstractConnectionEditPart) {
-			((AbstractGraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new LabelLocator(((AbstractConnectionEditPart)getParent()).getConnectionFigure(), offset, ConnectionLocator.MIDDLE));
-		} else {
-			getFigure().getParent().setConstraint(getFigure(), new LabelLocator(getFigure().getParent(), offset, ConnectionLocator.MIDDLE));
-		}
-	}
-
-	/**
-	 * @generated NOT use ExternalLabelPrimaryDragRoleEditPolicy
+	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
@@ -144,8 +116,14 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID:
-					// use ExternalLabelPrimaryDragRoleEditPolicy
-					return new ExternalLabelPrimaryDragRoleEditPolicy();
+					return new BorderItemSelectionEditPolicy() {
+
+						protected List createSelectionHandles() {
+							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+							mh.setBorder(null);
+							return Collections.singletonList(mh);
+						}
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -231,12 +209,12 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 	}
 
 	/**
-	 * @generated NOT use ExternalLabelPositionLocator
+	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if(borderItemEditPart instanceof DurationConstraintInMessageAppliedStereotypeEditPart) {
-			//use ExternalLabelPositionLocator
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
@@ -244,16 +222,14 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 	}
 
 	/**
-	 * @generated NOT use correct minimum size
+	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		// use correct minimum size
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(-1, -1);
-		//String prefElementId = "DurationConstraint";
-		//IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		String prefElementId = "DurationConstraint";
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		return result;
 	}
 
@@ -1178,11 +1154,10 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 		}
 
 		/**
-		 * @generated NOT use this for label
+		 * @generated
 		 */
 		public WrappingLabel getDurationLabel() {
-			// use this for label
-			return this;
+			return fDurationLabel;
 		}
 	}
 

@@ -104,11 +104,9 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 				return true;
 			}
 		};
-
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(DUMMY_TYPE);
 		node.setElement(model);
-
 		return node;
 	}
 
@@ -194,7 +192,6 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 				if(view == null) {
 					continue; // should not happen
 				}
-
 				EList edges = view.getSourceEdges();
 				for(Object o : edges) {
 					if(o instanceof Edge) {
@@ -212,12 +209,10 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 		if(e.getTarget() == null) {
 			return true;
 		}
-
 		EObject model = e.getTarget().getElement();
 		if(!(model instanceof OccurrenceSpecification)) {
 			return false;
 		}
-
 		if(model == this.resolveSemanticElement()) {
 			if(!this.getNotationView().equals(e.getTarget())) {
 				return true;
@@ -255,13 +250,11 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 				diagram = d;
 				allViews.clear();
 				viewMaps.clear();
-
 				getAllNestedViews(diagram, allViews);
 				for(View v : allViews) {
 					if(v instanceof DecorationNode) {
 						continue;
 					}
-
 					viewMaps.put(v.getElement(), v);
 				}
 			}
@@ -400,7 +393,6 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 			CommandResult res = super.doExecuteWithResult(monitor, info);
 			if(getTarget() instanceof OccurrenceSpecification) {
 				ExecutionSpecificationEndHelper.addConnectionSourceToExecutionSpecificationEnd((OccurrenceSpecification)getTarget(), getSource());
@@ -422,7 +414,6 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 		//		Label tooltip = new Label();
 		//		tooltip.setText(model.getName());
 		//		fig.setToolTip(tooltip);
-
 		fig.setOpaque(false);
 		return fig;
 	}

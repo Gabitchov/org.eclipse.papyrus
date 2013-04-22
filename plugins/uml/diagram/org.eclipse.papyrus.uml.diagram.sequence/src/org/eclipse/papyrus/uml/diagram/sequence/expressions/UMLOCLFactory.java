@@ -43,46 +43,66 @@ public class UMLOCLFactory {
 	/**
 	 * @generated
 	 */
+	private final String[] expressionBodies;
+
+	/**
+	 * @generated
+	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[22];
+		this.expressionBodies = new String[]{ "\' \'", //$NON-NLS-1$
+		"self.messageSort=MessageSort::synchCall and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+		"(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+		"true\r\n-- The following rule is completely false : check can not be performed with only source and target (depends on the the location on the lifeline). Anyway, job is previously done by method CommandHelper.hasValidContainer(IEditCommandRequest)\r\n--(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.owner = oppositeEnd.owner or self.owner = oppositeEnd or self = oppositeEnd.owner)", //$NON-NLS-1$
+		"self.messageSort=MessageSort::reply and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+		"self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+		"self.messageSort=MessageSort::deleteMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::DestructionOccurrenceSpecification) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+		"self.receiveEvent=null", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::Interaction)", //$NON-NLS-1$
+		"self.sendEvent=null", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::Interaction)", //$NON-NLS-1$
+		"(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment))", //$NON-NLS-1$
+		};
+	}
+
+	/**
+	 * @generated
+	 */
+	private static UMLOCLFactory getInstance() {
+		UMLOCLFactory instance = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
+		if(instance == null) {
+			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(instance = new UMLOCLFactory());
+		}
+		return instance;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static String getExpressionBody(int index) {
+		return getInstance().expressionBodies[index];
 	}
 
 	/**
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
-		UMLOCLFactory cached = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
-		if(cached == null) {
-			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(cached = new UMLOCLFactory());
-		}
+		UMLOCLFactory cached = getInstance();
 		if(index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
 		}
 		if(cached.expressions[index] == null) {
-			final String[] exprBodies = new String[]{ "\' \'", //$NON-NLS-1$
-			"self.messageSort=MessageSort::synchCall and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"true\r\n-- The following rule is completely false : check can not be performed with only source and target (depends on the the location on the lifeline). Anyway, job is previously done by method CommandHelper.hasValidContainer(IEditCommandRequest)\r\n--(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.owner = oppositeEnd.owner or self.owner = oppositeEnd or self = oppositeEnd.owner)", //$NON-NLS-1$
-			"self.messageSort=MessageSort::reply and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"self.messageSort=MessageSort::deleteMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::DestructionOccurrenceSpecification) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"self.receiveEvent=null", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::Interaction)", //$NON-NLS-1$
-			"self.sendEvent=null", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::Interaction)", //$NON-NLS-1$
-			"(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment))", //$NON-NLS-1$
-			};
-			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
+			cached.expressions[index] = getExpression(cached.expressionBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}

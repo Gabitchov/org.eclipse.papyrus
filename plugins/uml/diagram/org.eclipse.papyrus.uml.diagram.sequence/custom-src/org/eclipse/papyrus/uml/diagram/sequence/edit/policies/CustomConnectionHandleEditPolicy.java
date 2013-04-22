@@ -16,13 +16,11 @@ public final class CustomConnectionHandleEditPolicy extends ConnectionHandleEdit
 	@Override
 	protected List getHandleFigures() {
 		List list = new ArrayList(2);
-
 		String tooltip;
 		tooltip = buildTooltip(ConnectionHandle.HandleDirection.INCOMING);
 		if(tooltip != null) {
 			list.add(new ConnectionHandle((IGraphicalEditPart)getHost(), ConnectionHandle.HandleDirection.INCOMING, tooltip));
 		}
-
 		tooltip = buildTooltip(ConnectionHandle.HandleDirection.OUTGOING);
 		if(tooltip != null) {
 			ConnectionHandle connectionHandle = new ConnectionHandle((IGraphicalEditPart)getHost(), ConnectionHandle.HandleDirection.OUTGOING, tooltip);
@@ -59,7 +57,6 @@ public final class CustomConnectionHandleEditPolicy extends ConnectionHandleEdit
 			});
 			list.add(connectionHandle);
 		}
-
 		return list;
 	}
 }

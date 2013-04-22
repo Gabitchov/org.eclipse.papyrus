@@ -33,13 +33,16 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 
 public class LifelineMessageCreateHelper {
 
@@ -65,16 +68,27 @@ public class LifelineMessageCreateHelper {
 	}
 
 	static ConnectionAnchor getTargetConnectionAnchor(LifelineEditPart part, Request request) {
+		NodeFigure nodeFigure = null;
+		if(part instanceof CustomLifelineEditPart) {
+			nodeFigure = ((CustomLifelineEditPart)part).getNodeFigure();
+		} else {
+			if(part.getContentPane() instanceof LifelineDotLineCustomFigure) {
+				nodeFigure = ((LifelineDotLineCustomFigure)part.getContentPane()).getDashLineRectangle();
+			}
+		}
+		if(nodeFigure == null) {
+			return null;
+		}
 		if(request instanceof ReconnectRequest) {
 			if(((DropRequest)request).getLocation() == null) {
-				return part.getNodeFigure().getTargetConnectionAnchorAt(null);
+				return nodeFigure.getTargetConnectionAnchorAt(null);
 			}
 			Point pt = ((DropRequest)request).getLocation().getCopy();
-			return part.getNodeFigure().getTargetConnectionAnchorAt(pt);
+			return nodeFigure.getTargetConnectionAnchorAt(pt);
 		} else if(request instanceof DropRequest) {
-			return part.getNodeFigure().getTargetConnectionAnchorAt(((DropRequest)request).getLocation());
+			return nodeFigure.getTargetConnectionAnchorAt(((DropRequest)request).getLocation());
 		}
-		return part.getNodeFigure().getTargetConnectionAnchorAt(null);
+		return nodeFigure.getTargetConnectionAnchorAt(null);
 	}
 
 	//when a create message is deleted, move its target lifelines up
@@ -171,7 +185,6 @@ public class LifelineMessageCreateHelper {
 			command = command.chain(new ICommandProxy(boundsCommand));
 			command = moveCascadeLifeline(oldTarget, command, dy);
 		}
-
 		//move down the new connection target lifeline
 		command = moveLifelineDown(command, newTarget, request.getLocation().getCopy());
 		return command;
@@ -180,21 +193,24 @@ public class LifelineMessageCreateHelper {
 	public static Command moveLifelineDown(Command command, LifelineEditPart part, Point sourcePointCopy) {
 		IFigure fig = part.getFigure();
 		Rectangle bounds = fig.getBounds().getCopy();
-		fig.translateToAbsolute(bounds);
 		int height = part.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
+		//Fixed bug: When the Lifeline is created by MessageCreate at dynamic time(@see https://bugs.eclipse.org/bugs/show_bug.cgi?id=403134), the bounds would not be get when the Lifeline is not displayed yet.
+		if(bounds.isEmpty()) {
+			bounds = SequenceUtil.getAbsoluteBounds(part);
+			height = 29;
+		} else {
+			fig.translateToAbsolute(bounds);
+		}
 		Point location = new Point(bounds.x, Math.max(bounds.y, sourcePointCopy.y() - height / 2));
-
 		View targetView = part.getNotationView();
 		if(location.y != bounds.y) {
 			int dy = location.y - bounds.y;
 			fig.translateToRelative(location);
 			fig.translateToParent(location);
-
 			ICommand boundsCommand = new SetBoundsCommand(part.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(targetView), location);
 			command = command.chain(new ICommandProxy(boundsCommand));
 			command = moveCascadeLifeline(part, command, dy);
 		}
-
 		return command;
 	}
 
@@ -247,12 +263,10 @@ public class LifelineMessageCreateHelper {
 					Rectangle inBounds = highPart.getFigure().getBounds();
 					if(newBounds.y - inBounds.y < halfHeight)
 						return false;
-
 					if(newBounds.y > inBounds.getBottom().y - halfHeight)
 						return false;
 				}
 		}
-
 		return true;
 	}
 }

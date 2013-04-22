@@ -17,12 +17,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -38,7 +36,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -102,24 +99,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-		if(event.getFeature() instanceof EReference) {
-			EReference ref = (EReference)event.getFeature();
-			if("specification".equals(ref.getName())) {
-				List parts = getChildren();
-				for(Object p : parts)
-					if(p instanceof Constraint2EditPart) {
-						((Constraint2EditPart)p).handleNotificationEvent(event);
-					}
-			}
-		}
-	}
-
-	protected void refreshLabel() {
-		List parts = getChildren();
-		for(Object p : parts)
-			if(p instanceof Constraint2EditPart) {
-				((Constraint2EditPart)p).refreshLabel();
-			}
 	}
 
 	/**
@@ -242,8 +221,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		IFigure shape = createNodeShape();
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
-		figure.setForegroundColor(ColorConstants.black); // fix constraint link color
-		figure.setBackgroundColor(ColorConstants.black);
 		return figure;
 	}
 
@@ -287,9 +264,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure) {
-			((NodeFigure)primaryShape).setLineWidth(width);
-		} else if(primaryShape instanceof Shape) {
+		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -1162,18 +1137,5 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
-
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshLabel();
-		refreshTransparency();
-	}
-
-	protected void refreshTransparency() {
-		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-		if(style != null) {
-			setTransparency(style.getTransparency());
-		}
 	}
 }

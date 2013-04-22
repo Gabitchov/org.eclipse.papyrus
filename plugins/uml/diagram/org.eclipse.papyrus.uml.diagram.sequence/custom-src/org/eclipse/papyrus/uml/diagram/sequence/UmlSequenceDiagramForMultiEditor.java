@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.util.FixInteractionOperandsOnOpening;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -57,7 +58,8 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	public UmlSequenceDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
-
+		// Fix interaction operand bounds (see bug 400460)
+		new FixInteractionOperandsOnOpening().fix(diagram);
 	}
 
 	/**
@@ -113,5 +115,4 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	public String getEditingDomainID() {
 		return "org.eclipse.papyrus.uml.diagram.sequence.EditingDomain";
 	}
-
 }

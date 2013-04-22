@@ -81,31 +81,26 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
 		StringBuffer sb = new StringBuffer();
-
 		if(obj instanceof Lifeline) {
 			Lifeline lifeline = (Lifeline)obj;
 			ConnectableElement connectableElement = lifeline.getRepresents();
 			ValueSpecification selector = lifeline.getSelector();
-
 			if(connectableElement != null) {
 				// Add ConnectableElement Name
 				String connectableElementName = connectableElement.getName();
 				if(connectableElementName != null) {
 					sb.append(connectableElementName);
 				}
-
 				// Add the selector if it is a LiteralSpecification
 				if(selector instanceof LiteralSpecification) {
 					sb.append("[").append(ValueSpecificationUtil.getSpecificationValue(selector)).append("]");
 				}
-
 				// Add the type name
 				Type type = connectableElement.getType();
 				if(type != null && type.getName() != null && type.getName().length() > 0) {
 					sb.append(" : ").append(type.getName());
 				}
 			}
-
 			// Add the selector if it is an Expression
 			if(selector instanceof Expression || selector instanceof OpaqueExpression || selector instanceof TimeExpression) {
 				String specificationValue = ValueSpecificationUtil.getSpecificationValue(selector);
@@ -113,7 +108,6 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 					sb.append("\n").append(specificationValue);
 				}
 			}
-
 			// Add the decomposition
 			PartDecomposition partDecomposition = lifeline.getDecomposedAs();
 			if(partDecomposition != null) {
@@ -122,7 +116,6 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 					sb.append("\nref ").append(refersTo.getName());
 				}
 			}
-
 			// LifelineIndent cannot be empty so if the stringBuffer is empty we add the name of the
 			// lifeline
 			// This case occurs when creating the lifeline for example
@@ -130,7 +123,6 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 				sb.append(lifeline.getName());
 			}
 		}
-
 		return sb.toString();
 	}
 
@@ -157,14 +149,12 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
 		if(element instanceof Lifeline) {
 			Lifeline lifeline = (Lifeline)element;
-
 			// Add the lifeline
 			semanticElementsBeingParsed.add(lifeline);
 			// Add the selector
 			if(lifeline.getSelector() != null) {
 				semanticElementsBeingParsed.add(lifeline.getSelector());
 			}
-
 			// Add the partDecomposition
 			PartDecomposition partDecomposition = lifeline.getDecomposedAs();
 			if(partDecomposition != null) {
@@ -174,7 +164,6 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 					semanticElementsBeingParsed.add(partDecomposition.getRefersTo());
 				}
 			}
-
 			// Add the connectableElement and its type if it has any
 			ConnectableElement connectableElement = lifeline.getRepresents();
 			if(connectableElement != null) {

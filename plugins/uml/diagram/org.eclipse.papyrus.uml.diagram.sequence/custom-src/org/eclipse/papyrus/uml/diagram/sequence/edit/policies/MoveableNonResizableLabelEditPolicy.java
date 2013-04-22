@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableEditPolicyEx;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.figures.LabelHelper;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
@@ -98,11 +99,9 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 	@Override
 	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
 		super.showChangeBoundsFeedback(request);
-
 		IFigure p = getDragSourceFeedbackFigure();
 		Rectangle r = p.getBounds();
 		Point refPoint = getReferencePoint();
-
 		// translate the feedback figure
 		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 		getHostFigure().translateToAbsolute(rect);
@@ -110,7 +109,6 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 		rect.resize(request.getSizeDelta());
 		p.translateToRelative(rect);
 		p.setBounds(rect);
-
 		Rectangle centerMain = null;
 		// TODO: remove this hack. We should be using the reference point for
 		// the teher end, however,
@@ -126,19 +124,14 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 			getHostFigure().translateToAbsolute(centerMain);
 			p.translateToRelative(centerMain);
 		}
-
 		PrecisionRectangle ref = new PrecisionRectangle(centerMain);
-
 		Point midTop = new Point(r.x + r.width / 2, r.y);
 		Point midBottom = new Point(r.x + r.width / 2, r.y + r.height);
 		Point midLeft = new Point(r.x, r.y + r.height / 2);
 		Point midRight = new Point(r.x + r.width, r.y + r.height / 2);
-
 		Point startPoint = midTop;
-
 		int x = r.x + r.width / 2 - refPoint.x;
 		int y = r.y + r.height / 2 - refPoint.y;
-
 		if(y > 0 && y > x && y > -x) {
 			startPoint = midTop;
 		} else if(y < 0 && y < x && y < -x) {
@@ -148,7 +141,6 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 		} else {
 			startPoint = midLeft;
 		}
-
 		tether.setStart(startPoint);
 		tether.setEnd(ref.getLocation());
 	}
@@ -157,16 +149,13 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
 		GraphicalEditPart editPart = (GraphicalEditPart)getHost();
 		Point refPoint = getReferencePoint();
-
 		// translate the feedback figure
 		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 		getHostFigure().translateToAbsolute(rect);
 		rect.translate(request.getMoveDelta());
 		rect.resize(request.getSizeDelta());
 		getHostFigure().translateToRelative(rect);
-
 		Point normalPoint = LabelHelper.offsetFromRelativeCoordinate(getHostFigure(), rect, refPoint);
-
 		ICommand moveCommand = new SetBoundsCommand(editPart.getEditingDomain(), DiagramUIMessages.MoveLabelCommand_Label_Location, new EObjectAdapter((View)editPart.getModel()), normalPoint);
 		return new ICommandProxy(moveCommand);
 	}

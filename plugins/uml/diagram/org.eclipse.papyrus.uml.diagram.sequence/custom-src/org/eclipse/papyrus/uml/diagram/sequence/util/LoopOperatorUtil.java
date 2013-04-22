@@ -25,7 +25,6 @@ public class LoopOperatorUtil {
 		}
 		Integer minint = InteractionConstraintUtil.getMinintValue(guard);
 		Integer maxint = InteractionConstraintUtil.getMaxintValue(guard);
-
 		if(minint == null && maxint == null) {
 			return "";
 		}

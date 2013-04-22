@@ -1,28 +1,20 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import org.eclipse.draw2d.ArrowLocator;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.Shape;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GeneralOrderingItemSemanticEditPolicy;
-import org.eclipse.swt.graphics.Color;
 
 /**
  * @generated
@@ -111,9 +103,9 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	}
 
 	/**
-	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
+	 * @generated
 	 */
-	public class GeneralOrderingDescriptor extends UMLEdgeFigure {
+	public class GeneralOrderingDescriptor extends PolylineConnectionEx {
 
 		/**
 		 * @generated
@@ -121,24 +113,12 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 		private WrappingLabel fAppliedStereotypeLabel;
 
 		/**
-		 * Decoration to place in the middle of the connection
-		 * 
-		 * @generated NOT
-		 */
-		private RotatableDecoration middleDecoration;
-
-		/**
-		 * @generated NOT call the super constructor, create super contents, set the middle decoration
+		 * @generated
 		 */
 		public GeneralOrderingDescriptor() {
-			// call the super constructor
-			super();
-			// create super contents
-			createContents();
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(ColorConstants.black);
-			// set the middle decoration
-			setMiddleDecoration(createTargetDecoration());
+			setTargetDecoration(createTargetDecoration());
 		}
 
 		/**
@@ -147,8 +127,8 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 		private RotatableDecoration createTargetDecoration() {
 			PolygonDecoration df = new PolygonDecoration();
 			df.setFill(true);
-			df.setForegroundColor(getForegroundColor());
-			df.setBackgroundColor(getForegroundColor());
+			df.setForegroundColor(ColorConstants.black);
+			df.setBackgroundColor(ColorConstants.black);
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
 			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
@@ -160,93 +140,10 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 		}
 
 		/**
-		 * @generated NOT get the stereotype label of super class
+		 * @generated
 		 */
 		public WrappingLabel getAppliedStereotypeLabel() {
-			return super.getAppliedStereotypeLabel();
+			return fAppliedStereotypeLabel;
 		}
-
-		/**
-		 * Get the decoration of the middle
-		 * 
-		 * @return the middle decoration - possibly null
-		 * @generated NOT
-		 */
-		protected RotatableDecoration getMiddleDecoration() {
-			return middleDecoration;
-		}
-
-		/**
-		 * Set the foreground background
-		 * 
-		 * @see org.eclipse.draw2d.IFigure#setForegroundColor(org.eclipse.swt.graphics.Color)
-		 * @generated NOT
-		 */
-		public void setForegroundColor(Color fg) {
-			super.setForegroundColor(fg);
-			if(getMiddleDecoration() != null) {
-				getMiddleDecoration().setForegroundColor(fg);
-				getMiddleDecoration().setBackgroundColor(fg);
-			}
-		}
-
-		@Override
-		public void setLineWidth(int w) {
-			super.setLineWidth(w);
-			if(getMiddleDecoration() instanceof Shape) {
-				((Shape)getMiddleDecoration()).setLineWidth(w);
-			}
-		}
-
-		/**
-		 * Set the middle decoration
-		 * 
-		 * @see org.eclipse.draw2d.PolylineConnection#setTargetDecoration(org.eclipse.draw2d.RotatableDecoration)
-		 * @generated NOT
-		 */
-		public void setMiddleDecoration(RotatableDecoration dec) {
-			if(getMiddleDecoration() != null) {
-				remove(getMiddleDecoration());
-			}
-			middleDecoration = dec;
-			if(dec != null) {
-				add(dec, new ArrowLocator(this, ConnectionLocator.MIDDLE) {
-
-					/**
-					 * Relocates the passed in figure (which must be a {@link RotatableDecoration}) at the middle of the connection.
-					 * 
-					 * @param target
-					 *        The RotatableDecoration to relocate
-					 */
-					public void relocate(IFigure target) {
-						PointList points = getConnection().getPoints();
-						RotatableDecoration arrow = (RotatableDecoration)target;
-						arrow.setLocation(getLocation(points));
-						Point refPoint;
-						if(points.size() % 2 == 0) {
-							int i = points.size() / 2;
-							refPoint = points.getPoint(i - 1);
-						} else {
-							int i = (points.size() - 1) / 2;
-							refPoint = points.getPoint(i - 1);
-						}
-						arrow.setReferencePoint(refPoint);
-					}
-				});
-			}
-		}
-	}
-
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-		super.handleNotificationEvent(notification);
-		Object feature = notification.getFeature();
-		if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
-			refreshLineWidth();
-		}
-	}
-
-	protected void setLineWidth(int width) {
-		getPrimaryShape().setLineWidth(width);
 	}
 }

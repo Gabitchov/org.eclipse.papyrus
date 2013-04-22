@@ -80,7 +80,6 @@ public class LifelineCoveredByUpdater {
 			Rectangle childBounds = figure.getBounds().getCopy();
 			figure.translateToAbsolute(childBounds);
 			Rectangle centralLineBounds = new Rectangle(childBounds.x() + childBounds.width() / 2, childBounds.y(), 1, childBounds.height());
-
 			lifelines.put((LifelineEditPart)editPart, centralLineBounds);
 		}
 		if(editPart instanceof InteractionFragmentEditPart) {
@@ -99,7 +98,6 @@ public class LifelineCoveredByUpdater {
 	public void update(GraphicalEditPart context) {
 		this.context = context;
 		this.init();
-
 		for(Map.Entry<LifelineEditPart, Rectangle> entry : lifelines.entrySet()) {
 			LifelineEditPart editPart = entry.getKey();
 			Rectangle childBounds = entry.getValue();
@@ -109,14 +107,14 @@ public class LifelineCoveredByUpdater {
 
 	public void updateLifeline(LifelineEditPart lifelineEditpart, Rectangle rect) {
 		Lifeline lifeline = (Lifeline)lifelineEditpart.resolveSemanticElement();
+		if(lifeline == null) {
+			return;
+		}
 		EList<InteractionFragment> coveredByLifelines = lifeline.getCoveredBys();
-
 		coveredByLifelinesToAdd.clear();
 		coveredByLifelinesToRemove.clear();
-
 		//Update height of Lifeline when coveredBy some InteractionFragments.
 		int bottom = 0;
-
 		for(Map.Entry<InteractionFragmentEditPart, Rectangle> entry : interactionFragments.entrySet()) {
 			InteractionFragmentEditPart editPart = entry.getKey();
 			Rectangle childBounds = entry.getValue();
@@ -130,10 +128,8 @@ public class LifelineCoveredByUpdater {
 				coveredByLifelinesToRemove.add(interactionFragment);
 			}
 		}
-
 		if(!coveredByLifelinesToAdd.isEmpty()) {
 			CommandHelper.executeCommandWithoutHistory(editingDomain, AddCommand.create(editingDomain, lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToAdd), true);
-
 			//Update Lifeline height.
 			int newHeight = bottom - rect.y;
 			if(newHeight > rect.height) {

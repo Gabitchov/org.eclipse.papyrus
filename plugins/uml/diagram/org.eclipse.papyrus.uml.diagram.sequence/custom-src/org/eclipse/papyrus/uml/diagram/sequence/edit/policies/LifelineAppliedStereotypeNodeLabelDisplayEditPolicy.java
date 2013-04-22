@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 
 /**
  * This policy is used to automatically move a lifeline when a stereotype is changed.
@@ -31,9 +31,8 @@ public class LifelineAppliedStereotypeNodeLabelDisplayEditPolicy extends Applied
 	@Override
 	public void refreshDisplay() {
 		super.refreshDisplay();
-
-		if(getHost() instanceof LifelineEditPart) {
-			((LifelineEditPart)getHost()).updateLifelinePosition();
+		if(getHost() instanceof CustomLifelineEditPart) {
+			((CustomLifelineEditPart)getHost()).updateLifelinePosition();
 		}
 	}
 }

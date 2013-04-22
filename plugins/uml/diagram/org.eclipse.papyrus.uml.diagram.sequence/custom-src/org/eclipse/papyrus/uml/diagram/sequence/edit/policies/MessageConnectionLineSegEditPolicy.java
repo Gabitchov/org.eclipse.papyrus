@@ -43,14 +43,14 @@ import org.eclipse.gmf.runtime.diagram.ui.util.SelectInDiagramHelper;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.LineMode;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart.MessageCreate;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
@@ -111,7 +111,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		if((getHost().getViewer() instanceof ScrollingGraphicalViewer) && (getHost().getViewer().getControl() instanceof FigureCanvas)) {
 			SelectInDiagramHelper.exposeLocation((FigureCanvas)getHost().getViewer().getControl(), request.getLocation().getCopy());
 		}
-
 		if(getHost() instanceof ConnectionNodeEditPart) {
 			ConnectionNodeEditPart connectionPart = (ConnectionNodeEditPart)getHost();
 			EObject message = connectionPart.resolveSemanticElement();
@@ -130,15 +129,12 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						IFigure fig = tgtLifelinePart.getPrimaryShape().getFigureLifelineNameContainerFigure();
 						Rectangle bounds = fig.getBounds().getCopy();
 						fig.translateToAbsolute(bounds);
-
 						PointList points = getConnection().getPoints();
 						Point sourceRefPoint = points.getFirstPoint().getCopy();
 						getConnection().translateToAbsolute(sourceRefPoint);
-
 						int dy = sourceRefPoint.y - bounds.getCenter().y;
 						Point location = tgtLifelinePart.getFigure().getBounds().getLocation().getCopy().translate(0, dy);
 						Command moveCmd = new ICommandProxy(new SetBoundsCommand(tgtLifelinePart.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(tgtLifelinePart.getNotationView()), location));
-
 						// Take care of the order of commands, to make sure target is always bellow the source.
 						if(dy < 0) { // move up
 							return LifelineMessageCreateHelper.moveCascadeLifeline(tgtLifelinePart, moveCmd, dy);
@@ -152,7 +148,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						List<EditPart> empty = Collections.emptyList();
 						Command srcCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)send, null, y, -1, srcLifelinePart, empty);
 						Command tgtCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)rcv, null, y, -1, tgtLifelinePart, empty);
-						CompoundCommand compoudCmd = new CompoundCommand(Messages.MoveMessageCommand_Label);
+						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
 						/*
 						 * Take care of the order of commands, to make sure target is always bellow the source.
 						 * Otherwise, moving the target above the source would cause order conflict with existing CF.
@@ -179,7 +175,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	protected Command getSelfLinkMoveCommand(BendpointRequest request, ConnectionNodeEditPart connectionPart, MessageEnd send, MessageEnd rcv, LifelineEditPart srcLifelinePart) {
 		//Just do it, checking was finished by showing feedback.
 		Object moveData = request.getExtendedData().get(MOVE_LINE_ORIENTATION_DATA);
-		CompoundCommand compoudCmd = new CompoundCommand(Messages.MoveMessageCommand_Label);
+		CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
 		//And make sure the self linked message can be customized by using bendpoints.
 		compoudCmd.add(super.getBendpointsChangedCommand(request));
 		PointList points = getConnection().getPoints();
@@ -277,7 +273,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				getConnection().setConnectionRouter(new DummyRouter());
 			}
 			PointList linkPoints = getConnection().getPoints().getCopy();
-
 			Point ptLoc = new Point(request.getLocation());
 			getConnection().translateToRelative(ptLoc);
 			int dy = 0;
@@ -309,7 +304,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					linkPoints.setPoint(p, i);
 				}
 			}
-
 			// link should not exceed lifeline bounds  
 			if(checkBounds(linkPoints)) {
 				getConnection().setPoints(linkPoints);
@@ -323,7 +317,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				getConnection().setConnectionRouter(new DummyRouter());
 			}
 			PointList linkPoints = getConnection().getPoints().getCopy();
-
 			Point ptLoc = new Point(request.getLocation());
 			getConnection().translateToRelative(ptLoc);
 			int dy = ptLoc.y - linkPoints.getFirstPoint().y;
@@ -351,7 +344,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			NodeFigure fig = lep.getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
 			Rectangle bounds = fig.getBounds().getCopy();
 			fig.translateToAbsolute(bounds);
-
 			Rectangle conBounds = linkPoints.getBounds();
 			getConnection().translateToAbsolute(conBounds);
 			// check top and bottom y limit
@@ -383,13 +375,11 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	protected void eraseConnectionFeedback(BendpointRequest request, boolean removeFeedbackFigure) {
 		getConnection().setVisible(true);
 		super.eraseConnectionFeedback(request, removeFeedbackFigure);
-
 		if(router != null) {
 			getConnection().setConnectionRouter(router);
 		}
 		router = null;
 	}
-
 	//	private boolean isHorizontal() {
 	//		Connection connection = getConnection();
 	//		RouterKind kind = RouterKind.getKind(connection, connection.getPoints());

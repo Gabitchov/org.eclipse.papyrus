@@ -63,7 +63,6 @@ import org.eclipse.uml2.uml.TimeObservation;
 /**
  * An Helper to get deleting command for the sequence diagram elements.
  */
-
 public class SequenceDeleteHelper {
 
 	/**
@@ -81,7 +80,6 @@ public class SequenceDeleteHelper {
 	public static CompoundCommand completeDeleteDestructionOccurenceViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart destructionEventPart) {
 		if(destructionEventPart instanceof IGraphicalEditPart) {
 			EObject obj = ((IGraphicalEditPart)destructionEventPart).resolveSemanticElement();
-
 			if(obj instanceof DestructionOccurrenceSpecification) {
 				LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(destructionEventPart);
 				if(lifelinePart != null) {
@@ -123,11 +121,9 @@ public class SequenceDeleteHelper {
 				LifelineEditPart srcLifelinePart = SequenceUtil.getParentLifelinePart(((ConnectionNodeEditPart)messagePart).getSource());
 				MessageEnd send = message.getSendEvent();
 				addDeleteRelatedTimePartsToCommand(deleteViewsCmd, editingDomain, srcLifelinePart, send);
-
 				LifelineEditPart tgtLifelinePart = SequenceUtil.getParentLifelinePart(((ConnectionNodeEditPart)messagePart).getTarget());
 				MessageEnd receive = message.getReceiveEvent();
 				addDeleteRelatedTimePartsToCommand(deleteViewsCmd, editingDomain, tgtLifelinePart, receive);
-
 				// also delete time observation links which are related to message end
 				if(send instanceof OccurrenceSpecification) {
 					addDeleteRelatedTimeObservationLinkCommand(deleteViewsCmd, editingDomain, (OccurrenceSpecification)send, srcLifelinePart, false);
@@ -171,7 +167,6 @@ public class SequenceDeleteHelper {
 	public static CompoundCommand completeDeleteExecutionSpecificationViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart executionPart) {
 		if(executionPart instanceof IGraphicalEditPart) {
 			EObject obj = ((IGraphicalEditPart)executionPart).resolveSemanticElement();
-
 			if(obj instanceof ExecutionSpecification) {
 				ExecutionSpecification execution = (ExecutionSpecification)obj;
 				LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(executionPart);
@@ -190,7 +185,6 @@ public class SequenceDeleteHelper {
 							}
 						}
 					}
-
 					// delete each observation linked time element
 					for(Object targetConnection : lifelinePart.getTargetConnections()) {
 						if(targetConnection instanceof ObservationLinkEditPart) {
@@ -271,7 +265,6 @@ public class SequenceDeleteHelper {
 				CompositeCommand command = new CompositeCommand(deleteCommand.getLabel());
 				command.add(deleteCommand);
 				Message message = (Message)selectedEObject;
-
 				MessageEnd receiveEvent = message.getReceiveEvent();
 				if(receiveEvent != null) {
 					DestroyElementRequest myReq = new DestroyElementRequest(req.getEditingDomain(), receiveEvent, false);
@@ -282,36 +275,28 @@ public class SequenceDeleteHelper {
 					DestroyElementRequest myReq = new DestroyElementRequest(req.getEditingDomain(), sendEvent, false);
 					command.add(new DestroyElementCommand(myReq));
 				}
-
 				CompoundCommand compoundCommand = new CompoundCommand();
 				compoundCommand.add(new ICommandProxy(command));
-
 				addDeleteMessageRelatedTimeObservationLinkCommand(req.getEditingDomain(), editPart, compoundCommand, receiveEvent, true);
 				addDeleteMessageRelatedTimeObservationLinkCommand(req.getEditingDomain(), editPart, compoundCommand, sendEvent, true);
-
 				return compoundCommand;
 			}
 		}
-
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	public static void destroyExecutionOccurrenceSpecification(DestroyElementRequest req, CompoundCommand deleteElementsCommand, ShapeNodeEditPart host, ExecutionSpecification es) {
 		DestroyElementRequest delStart = new DestroyElementRequest(req.getEditingDomain(), es.getStart(), false);
 		deleteElementsCommand.add(new ICommandProxy(new DestroyElementCommand(delStart)));
-
 		DestroyElementRequest delEnd = new DestroyElementRequest(req.getEditingDomain(), es.getFinish(), false);
 		deleteElementsCommand.add(new ICommandProxy(new DestroyElementCommand(delEnd)));
-
 		destroyMessageEvents(deleteElementsCommand, host, req.getEditingDomain());
-
 		if(host.getParent() instanceof LifelineEditPart) {
 			List<OccurrenceSpecification> oss = new ArrayList<OccurrenceSpecification>();
 			oss.add(es.getStart());
 			oss.add(es.getFinish());
 			SequenceDeleteHelper.addDeleteRelatedTimeObservationLinkCommand(deleteElementsCommand, req.getEditingDomain(), (LifelineEditPart)host.getParent(), oss, true);
 		}
-
 		SequenceDeleteHelper.addDestroyExecutionSpecificationChildrenCommand(deleteElementsCommand, req.getEditingDomain(), host);
 	}
 
@@ -345,12 +330,10 @@ public class SequenceDeleteHelper {
 		for(ShapeNodeEditPart p : list) {
 			Request request = new EditCommandRequestWrapper(new DestroyElementRequest(p.resolveSemanticElement(), false));
 			deleteElementsCommand.add(p.getCommand(request));
-
 			destroyMessageEvents(deleteElementsCommand, p.getSourceConnections(), editingDomain);
 			destroyMessageEvents(deleteElementsCommand, p.getTargetConnections(), editingDomain);
 		}
 	}
-
 
 	/**
 	 * Add delete message related time observation link command
@@ -419,5 +402,4 @@ public class SequenceDeleteHelper {
 			}
 		}
 	}
-
 }

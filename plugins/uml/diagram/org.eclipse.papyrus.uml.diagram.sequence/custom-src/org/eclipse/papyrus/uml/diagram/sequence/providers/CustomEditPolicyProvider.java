@@ -32,6 +32,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.TooltipUtil;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.NamedElement;
@@ -48,7 +49,6 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void addProviderChangeListener(IProviderChangeListener listener) {
-
 	}
 
 	/**
@@ -57,9 +57,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 */
 	public void createEditPolicies(final EditPart editPart) {
 		installHighlightPolicy(editPart);
-
 		SequenceUtil.installObservationLinkPolicy(editPart);
-
 		//install annotated link edit policy.
 		if(editPart instanceof INodeEditPart) {
 			Object model = editPart.getModel();
@@ -75,6 +73,8 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 				}
 			}
 		}
+		//install/removel Tooltip EditPolicy
+		TooltipUtil.manageTooltipEditPolicy(editPart);
 	}
 
 	/**
@@ -107,14 +107,11 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 		if(!(epOperation.getEditPart() instanceof GraphicalEditPart) && !(epOperation.getEditPart() instanceof ConnectionEditPart)) {
 			return false;
 		}
-
 		EditPart gep = epOperation.getEditPart();
 		String diagramType = ((View)gep.getModel()).getDiagram().getType();
 		if(PackageEditPart.MODEL_ID.equals(diagramType)) {
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -123,7 +120,5 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void removeProviderChangeListener(IProviderChangeListener listener) {
-
 	}
-
 }

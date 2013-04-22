@@ -21,8 +21,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -45,22 +43,12 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceCon
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentItemComponentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ConsiderIgnoreFragmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
-import org.eclipse.uml2.uml.InteractionOperatorKind;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Reception;
-import org.eclipse.uml2.uml.Signal;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -83,17 +71,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	protected IFigure primaryShape;
 
 	/**
-	 * Notfier for listen and unlistend model element.
-	 */
-	private NotificationHelper notifier = new NotificationHelper(new UIAdapterImpl() {
-
-		@Override
-		protected void safeNotifyChanged(Notification msg) {
-			handleNotificationEvent(msg);
-		}
-	});
-
-	/**
 	 * @generated
 	 */
 	public ConsiderIgnoreFragmentEditPart(View view) {
@@ -111,6 +88,15 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
 	}
 
 	/**
@@ -141,20 +127,19 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		primaryShape = super.createNodeShape();
-		return primaryShape;
+		return primaryShape = new CombinedFragmentFigure();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public CombinedFragmentFigure getPrimaryShape() {
-		return super.getPrimaryShape();
+		return (CombinedFragmentFigure)primaryShape;
 	}
 
 	/**
@@ -165,7 +150,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new AnchorHelper.CombinedFragmentNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		return result;
 	}
 
@@ -192,10 +177,10 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
-	 * @generated NOT
+	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		return super.setupContentPane(nodeShape); // use nodeShape itself as contentPane
+		return nodeShape; // use nodeShape itself as contentPane
 	}
 
 	/**
@@ -218,12 +203,10 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure) {
-			((NodeFigure)primaryShape).setLineWidth(width);
-		} else if(primaryShape instanceof Shape) {
+		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -1011,96 +994,5 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
-
-	/**
-	 * Handle for message
-	 */
-	protected void handleNotificationEvent(Notification notification) {
-		Object feature = notification.getFeature();
-		if(UMLPackage.eINSTANCE.getConsiderIgnoreFragment_Message().equals(feature)) {
-			// Handle message creation
-			Object newValue = notification.getNewValue();
-			// TODO Filter NamedElements type for message on higher level
-			if(newValue == null || newValue instanceof Operation || newValue instanceof Reception || newValue instanceof Signal) {
-				updateHeaderLabel();
-				notifier.unlistenObject((Notifier)notification.getOldValue());
-				notifier.listenObject((Notifier)notification.getNewValue());
-			} else {
-				ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement();
-				considerIgnoreFragment.getMessages().remove(newValue);
-			}
-		} else if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)) {
-			// Handle message modification
-			updateHeaderLabel();
-		}
-		super.handleNotificationEvent(notification);
-	}
-
-	/**
-	 * Update operator kind
-	 */
-	protected void updateHeaderLabel() {
-		ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement();
-		StringBuilder operatorKind = new StringBuilder();
-		operatorKind.append(considerIgnoreFragment.getInteractionOperator().getName());
-		EList<NamedElement> messages = considerIgnoreFragment.getMessages();
-		if(messages != null && messages.size() > 0) {
-			StringBuilder sb = new StringBuilder();
-			for(int i = 0; i < messages.size(); i++) {
-				String name = messages.get(i).getName();
-				if(name != null) {
-					sb.append(name).append(",");
-				}
-			}
-			if(sb.length() > 0) {
-				operatorKind.append(" {").append(sb.deleteCharAt(sb.length() - 1).toString()).append("}");
-			}
-		}
-		getPrimaryShape().getHeaderLabel().setText(operatorKind.toString());
-	}
-
-	/**
-	 * Return true if the InteractionOperatorKind is allowed
-	 * 
-	 * @param interactionOperatorLiteral
-	 *        The InteractionOperator to test
-	 * @return true if allowed
-	 */
-	protected boolean isAllowedInteractionOperator(String interactionOperatorLiteral) {
-		return InteractionOperatorKind.CONSIDER_LITERAL.getLiteral().equals(interactionOperatorLiteral) || InteractionOperatorKind.IGNORE_LITERAL.getLiteral().equals(interactionOperatorLiteral);
-	}
-
-	/**
-	 * Activate a listener for the interactionUse to Handle notification in the refered Interaction
-	 */
-	public void activate() {
-		super.activate();
-		ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement();
-		for(NamedElement message : considerIgnoreFragment.getMessages()) {
-			notifier.listenObject(message);
-		}
-	}
-
-	/**
-	 * Deactivate a listener for the interactionUse to Handle notification in the refered
-	 * Interaction
-	 */
-	public void deactivate() {
-		super.deactivate();
-		notifier.unlistenAll();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void removeNotify() {
-		notifier.unlistenAll();
-		super.removeNotify();
-	}
-
-	public String getTitlePreferenceKey() {
-		return "ELEMENT_PapyrusUMLSequenceDiagram_ConsiderIgnoreFragment_CombinedFragmentCompartment.compartment_name.visibility";
 	}
 }

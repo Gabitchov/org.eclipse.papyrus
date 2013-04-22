@@ -55,7 +55,6 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 	public LifelineDotLineCustomFigure() {
 		super();
 		normalModeManager = new XYLayout();
-
 		/*
 		 * inlineModeManager = new FlowLayout(true) {
 		 * 
@@ -132,12 +131,10 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 		if(!dashLineRectangle.isOpaque()) {
 			return;
 		}
-
 		Rectangle r = getBounds().getCopy();
 		r.x = r.x + r.width / 2;
 		r.width = 1;
 		Rectangle lineBounds = r.expand(4, 0);
-
 		graphics.pushState();
 		try {
 			graphics.setBackgroundColor(dashLineRectangle.getBackgroundColor());

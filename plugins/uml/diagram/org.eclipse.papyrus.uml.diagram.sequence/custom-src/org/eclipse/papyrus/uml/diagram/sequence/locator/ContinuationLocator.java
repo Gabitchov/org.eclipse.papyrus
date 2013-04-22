@@ -50,7 +50,6 @@ public class ContinuationLocator extends BorderItemLocator {
 	 */
 	@Override
 	protected Point locateOnParent(Point suggestedLocation, int suggestedSide, IFigure borderItem) {
-
 		Rectangle bounds = getParentBorder();
 		Dimension borderItemSize = getSize(borderItem);
 		if(getPreferredSideOfParent() == PositionConstants.SOUTH) {
@@ -68,18 +67,12 @@ public class ContinuationLocator extends BorderItemLocator {
 	 */
 	@Override
 	public void relocate(IFigure borderItem) {
-
 		// Determines the size of the figure
 		Dimension size = getParentBorder().getSize().getCopy();
 		size.width = size.width - MARGIN * 2;
 		size.height = getSize(borderItem).height;
-
 		// Set figure bounds
 		Point ptNewLocation = locateOnBorder(getPreferredLocation(borderItem), getPreferredSideOfParent(), 0, borderItem);
 		borderItem.setBounds(new Rectangle(ptNewLocation, size));
-
 	}
-
-
-
 }

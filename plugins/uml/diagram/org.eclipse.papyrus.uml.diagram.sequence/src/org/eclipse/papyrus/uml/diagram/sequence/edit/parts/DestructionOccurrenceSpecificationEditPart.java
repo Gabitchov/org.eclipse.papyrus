@@ -8,12 +8,9 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
@@ -73,10 +70,10 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DestructionOccurrenceSpecificationItemSemanticEditPolicy());
-		installEditPolicy(org.eclipse.gef.EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(org.eclipse.gef.EditPolicy.COMPONENT_ROLE, new DestructionEventComponentEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DestructionEventComponentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -87,8 +84,8 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
-			protected org.eclipse.gef.EditPolicy createChildEditPolicy(EditPart child) {
-				org.eclipse.gef.EditPolicy result = child.getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
+			protected EditPolicy createChildEditPolicy(EditPart child) {
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -134,27 +131,11 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 		return result;
 	}
 
-	protected void refreshBounds() {
-		if(getBorderItemLocator() != null) {
-			int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-			int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-			Point loc = new Point(x, y);
-			int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-			int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-			Dimension size = new Dimension(width, height);
-			if(width != -1 && height != -1)
-				getFigure().setBounds(new Rectangle(loc, size));
-			getBorderItemLocator().setConstraint(new Rectangle(loc, size));
-		} else {
-			super.refreshBounds();
-		}
-	}
-
 	/**
 	 * @generated
 	 */
-	public org.eclipse.gef.EditPolicy getPrimaryDragEditPolicy() {
-		org.eclipse.gef.EditPolicy result = super.getPrimaryDragEditPolicy();
+	public EditPolicy getPrimaryDragEditPolicy() {
+		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if(result instanceof ResizableEditPolicy) {
 			ResizableEditPolicy ep = (ResizableEditPolicy)result;
 			ep.setResizeDirections(PositionConstants.NONE);
@@ -214,10 +195,9 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		getPrimaryShape().setLineWidth(width);
-		//		if(primaryShape instanceof Shape) {
-		//			((Shape)primaryShape).setLineWidth(width);
-		//		}
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
+		}
 	}
 
 	/**
@@ -1012,21 +992,5 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
-
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-		super.handleNotificationEvent(notification);
-		Object feature = notification.getFeature();
-		if((getModel() != null) && (getModel() == notification.getNotifier())) {
-			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
-				refreshLineWidth();
-			}
-		}
-	}
-
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshLineWidth();
 	}
 }

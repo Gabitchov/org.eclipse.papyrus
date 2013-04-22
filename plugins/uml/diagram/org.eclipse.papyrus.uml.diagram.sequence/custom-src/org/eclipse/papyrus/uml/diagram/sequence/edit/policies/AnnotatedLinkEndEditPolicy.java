@@ -42,7 +42,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.EllipseDecoration;
 import org.eclipse.swt.SWT;
-
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * An editpolicy for handling connections end from Comment, Constraint and Observations.
@@ -78,7 +78,6 @@ public class AnnotatedLinkEndEditPolicy extends GraphicalNodeEditPolicy {
 		if(editPart instanceof InteractionEditPart || editPart instanceof CombinedFragmentEditPart || editPart instanceof InteractionOperandEditPart) {
 			IFigure figure = ((AbstractGraphicalEditPart)editPart).getFigure();
 			figure.translateToRelative(p);
-
 			// if mouse location is far from border, do not handle connection event 
 			Rectangle innerRetangle = figure.getBounds().getCopy().shrink(10, 10);
 			if(innerRetangle.contains(p)) {
@@ -190,7 +189,6 @@ public class AnnotatedLinkEndEditPolicy extends GraphicalNodeEditPolicy {
 			}
 		}
 	}
-
 
 	private Connection getConnectionFeedback(EditPolicy policy) {
 		if(policy != null) {

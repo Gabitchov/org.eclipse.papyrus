@@ -32,7 +32,6 @@ public class MessageConnectionEditPolicy extends ConnectionEditPolicy {
 		CompoundCommand deleteSemanticsCommand = new CompoundCommand();
 		Command deleteSemanticCommand = super.createDeleteSemanticCommand(deleteRequest);
 		deleteSemanticsCommand.add(deleteSemanticCommand);
-
 		return LifelineMessageCreateHelper.restoreLifelineOnMessageDelete(deleteSemanticsCommand, getHost());
 	}
 
@@ -48,7 +47,6 @@ public class MessageConnectionEditPolicy extends ConnectionEditPolicy {
 			TransactionalEditingDomain editingDomain = ((ConnectionNodeEditPart)getHost()).getEditingDomain();
 			SequenceDeleteHelper.completeDeleteMessageViewCommand(deleteViewsCommand, editingDomain, getHost());
 		}
-
 		return LifelineMessageCreateHelper.restoreLifelineOnMessageDelete(deleteViewsCommand, getHost());
 	}
 }

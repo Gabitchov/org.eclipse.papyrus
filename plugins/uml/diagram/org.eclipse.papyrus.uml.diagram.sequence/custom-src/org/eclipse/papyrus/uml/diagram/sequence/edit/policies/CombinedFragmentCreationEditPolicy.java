@@ -45,17 +45,11 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
-
 		Command createElementAndViewCmd = super.getCreateElementAndViewCommand(request);
-
 		if(isDerivedCombinedFragment(request.getViewAndElementDescriptor().getSemanticHint())) {
-
 			Rectangle selectionRect = getSelectionRectangle(request);
-
 			Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(selectionRect, getHost(), null);
-
 			request.getExtendedData().put(SequenceRequestConstant.COVERED_INTERACTIONFRAGMENTS, coveredInteractionFragments);
-
 			// Add updating bounds command for Combined fragment createment
 			String hint = request.getViewAndElementDescriptor().getSemanticHint();
 			if(OperandBoundsComputeHelper.isDerivedCombinedFragment(hint)) {
@@ -98,7 +92,6 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 					}
 				}
 			}
-
 			createViewCmd = new ICommandProxy(compositeCommand.reduce());
 		}
 		return createViewCmd;
@@ -113,10 +106,8 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 	 */
 	private Rectangle getSelectionRectangle(CreateViewAndElementRequest request) {
 		Rectangle selectionRect = new Rectangle();
-
 		Point location = request.getLocation();
 		Dimension size = request.getSize();
-
 		if(location != null) {
 			selectionRect.x = location.x;
 			selectionRect.y = location.y;
@@ -125,7 +116,6 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 			selectionRect.x = 100;
 			selectionRect.y = 100;
 		}
-
 		if(size != null) {
 			selectionRect.height = size.height;
 			selectionRect.width = size.width;
@@ -134,7 +124,6 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 			selectionRect.height = 61;
 			selectionRect.width = 112;
 		}
-
 		return selectionRect;
 	}
 

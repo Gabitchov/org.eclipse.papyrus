@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
@@ -46,6 +45,7 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -55,18 +55,18 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEd
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLParserProvider;
-import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * @generated
  */
-public class Constraint2EditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class Constraint2EditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -167,9 +167,7 @@ public class Constraint2EditPart extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof ConstraintFigure) {
-			((ConstraintFigure)figure).setAppliedStereotypeIcon(icon);
-		} else if(figure instanceof WrappingLabel) {
+		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
@@ -214,7 +212,7 @@ public class Constraint2EditPart extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return ElementIconUtil.getLabelIcon(this);
+		return null;
 	}
 
 	/**
@@ -473,6 +471,13 @@ public class Constraint2EditPart extends CompartmentEditPart implements ITextAwa
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
 		}
 	}
 

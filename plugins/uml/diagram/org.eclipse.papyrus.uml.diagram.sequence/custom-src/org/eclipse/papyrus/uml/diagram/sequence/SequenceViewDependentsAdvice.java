@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -40,7 +41,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
@@ -55,6 +55,9 @@ public class SequenceViewDependentsAdvice extends AbstractEditHelperAdvice {
 			//Clear edge's when the UML model has been changed.
 			EStructuralFeature feature = request.getFeature();
 			Object value = request.getValue();
+			if(!(value instanceof List<?>)) {
+				return null;
+			}
 			List<Edge> destroyEdges = new ArrayList<Edge>();
 			List<Element> targetObjects = new ArrayList<Element>();
 			if(element instanceof Comment && UMLPackage.Literals.COMMENT__ANNOTATED_ELEMENT == feature) {
@@ -67,7 +70,7 @@ public class SequenceViewDependentsAdvice extends AbstractEditHelperAdvice {
 				targetObjects.addAll(((Constraint)element).getConstrainedElements());
 			}
 			for(Element object : targetObjects) {
-				if(((List)value).contains(object)) {
+				if(value instanceof List && ((List)value).contains(object)) {
 					continue;
 				}
 				View target = findView(object);
@@ -88,9 +91,7 @@ public class SequenceViewDependentsAdvice extends AbstractEditHelperAdvice {
 				for(Edge edge : destroyEdges) {
 					DestroyElementRequest destroy = new DestroyElementRequest(editingDomain, edge, false);
 					Object eHelperContext = destroy.getEditHelperContext();
-
 					IElementType context = ElementTypeRegistry.getInstance().getElementType(eHelperContext);
-
 					if(context != null) {
 						ICommand result = context.getEditCommand(destroy);
 						if(result != null) {

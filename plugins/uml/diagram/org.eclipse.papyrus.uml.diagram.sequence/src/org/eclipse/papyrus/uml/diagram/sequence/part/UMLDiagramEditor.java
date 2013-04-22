@@ -44,13 +44,13 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteContextMenuProvider;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem;
-import org.eclipse.papyrus.uml.diagram.sequence.util.FixInteractionOperandsOnOpening;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.events.KeyEvent;
@@ -58,6 +58,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
@@ -94,26 +95,26 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	private IUndoableOperation savedOperation = null;
 
-	private boolean isDirty = false;
-
-	/** The editing domain. */
+	/**
+	 * @generated
+	 */
 	private TransactionalEditingDomain editingDomain;
 
-	/** The document provider. */
+	/**
+	 * @generated
+	 */
 	private IDocumentProvider documentProvider;
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
-		// Fix interaction operand bounds (see bug 400460)
-		new FixInteractionOperandsOnOpening().fix(diagram);
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 		// Share the same editing provider
 		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
-		documentProvider = new org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider(editingDomain);
+		documentProvider = new GmfMultiDiagramDocumentProvider(editingDomain);
 		// overrides editing domain created by super constructor
 		setDocumentProvider(documentProvider);
 	}
@@ -269,60 +270,40 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	}
 
 	/**
-	 * Overrides createEditingDomain.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#createEditingDomain()
+	 * @generated
 	 */
-	@Override
 	protected TransactionalEditingDomain createEditingDomain() {
 		// Already configured
 		return editingDomain;
 	}
 
 	/**
-	 * Overrides configureDiagramEditDomain.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#configureDiagramEditDomain()
+	 * @generated
 	 */
-	@Override
 	protected void configureDiagramEditDomain() {
 		super.configureDiagramEditDomain();
 		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new CommandStackListener() {
 
 			public void commandStackChanged(EventObject event) {
-				isDirty = true;
+				firePropertyChange(IEditorPart.PROP_DIRTY);
 			}
 		});
 	}
 
 	/**
-	 * Overrides doSave.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#doSave(IProgressMonitor)
+	 * @generated
 	 */
-	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
-		// Just notify the command stack here
-		isDirty = false;
+		savedOperation = getOperationHistory().getUndoOperation(getUndoContext());
 	}
 
 	/**
-	 * Overrides isDirty.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#isDirty()
+	 * @generated
 	 */
-	@Override
 	public boolean isDirty() {
-		return isDirty;
+		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
+		return savedOperation != op;
 	}
 
 	/**

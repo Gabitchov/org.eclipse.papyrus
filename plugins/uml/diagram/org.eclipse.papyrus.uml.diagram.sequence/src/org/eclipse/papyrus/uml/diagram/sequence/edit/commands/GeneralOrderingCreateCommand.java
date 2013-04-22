@@ -1,8 +1,5 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.commands;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -16,8 +13,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -46,36 +41,12 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 	/**
 	 * Non generated, completely redefined to find correct ends and correct container
 	 * 
-	 * @generated NOT find source and target events and container
+	 * @generated
 	 */
 	public GeneralOrderingCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
-		// check source occurrence specification
-		List<OccurrenceSpecification> possibleSourceOcc = null;
-		if(getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION)) {
-			Object paramOccurrence1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-			List<OccurrenceSpecification> occ1List = SequenceUtil.getAsOccSpecList(paramOccurrence1);
-			possibleSourceOcc = occ1List;
-		}
-		// check target occurrence specification
-		List<OccurrenceSpecification> possibleTargetOcc = null;
-		if(getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
-			Object paramOccurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
-			List<OccurrenceSpecification> occ2List = SequenceUtil.getAsOccSpecList(paramOccurrence2);
-			possibleTargetOcc = occ2List;
-		}
-		// disable duration constraint on a same event
-		if(possibleSourceOcc != null && !possibleSourceOcc.isEmpty()) {
-			this.source = possibleSourceOcc.get(0);
-		} else {
-			this.source = null;
-		}
-		if(possibleTargetOcc != null && !possibleTargetOcc.isEmpty() && Collections.disjoint(possibleSourceOcc, possibleTargetOcc)) {
-			this.target = possibleTargetOcc.get(0);
-		} else {
-			// set invalid target to disable it (or null to enable in case second end is not defined)
-			this.target = target;
-		}
+		this.source = source;
+		this.target = target;
 		container = deduceContainer(source, target);
 	}
 

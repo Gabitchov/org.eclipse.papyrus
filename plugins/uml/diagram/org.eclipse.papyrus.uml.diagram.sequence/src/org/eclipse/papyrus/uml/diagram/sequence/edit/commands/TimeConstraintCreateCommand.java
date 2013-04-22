@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.commands;
 
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -28,13 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
-import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.Namespace;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -93,52 +85,20 @@ public class TimeConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT enable only if there is an occurrence specification
+	 * @generated
 	 */
 	public boolean canExecute() {
-		Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		List<OccurrenceSpecification> occList = SequenceUtil.getAsOccSpecList(paramOccurrence);
-		if(!occList.isEmpty()) {
-			for(OccurrenceSpecification occurrence : occList) {
-				if(occurrence instanceof MessageOccurrenceSpecification) {
-					Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
-					if(mess != null && occurrence.equals(mess.getReceiveEvent()) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
-						// filter receive event, we prefer the corresponding start event at the same location
-						continue;
-					}
-				}
-				return true;
-			}
-		}
-		return false;
+		return true;
 	}
 
 	/**
-	 * @generated NOT get the Lifeline parent as owner, assign the occurrence specification
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		TimeConstraint newElement = UMLFactory.eINSTANCE.createTimeConstraint();
-		// get the Lifeline parent as owner
-		Namespace owner = (Namespace)getElementToEdit().eContainer();
+		Namespace owner = (Namespace)getElementToEdit();
 		owner.getOwnedRules().add(newElement);
 		ElementInitializers.getInstance().init_TimeConstraint_3019(newElement);
-		// assign the occurrence specification
-		Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		List<OccurrenceSpecification> occList = SequenceUtil.getAsOccSpecList(paramOccurrence);
-		if(!occList.isEmpty()) {
-			for(OccurrenceSpecification occurrence : occList) {
-				if(occurrence instanceof MessageOccurrenceSpecification) {
-					Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
-					if(mess != null && occurrence.equals(mess.getReceiveEvent()) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
-						// filter receive event, we prefer the corresponding start event at the same location
-						continue;
-					}
-				}
-				// otherwise, first occ is just fine
-				newElement.getConstrainedElements().add(occurrence);
-				break;
-			}
-		}
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

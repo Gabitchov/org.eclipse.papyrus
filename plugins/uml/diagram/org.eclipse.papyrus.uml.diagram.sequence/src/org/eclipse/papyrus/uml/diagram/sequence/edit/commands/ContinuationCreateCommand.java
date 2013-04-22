@@ -26,11 +26,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Continuation;
-import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -88,42 +85,21 @@ public class ContinuationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean canExecute() {
-		if(getElementToEdit() instanceof InteractionOperand) {
-			InteractionOperand interactionOperand = (InteractionOperand)getElementToEdit();
-			CombinedFragment combinedFragment = getEnclosingCombinedFragment(interactionOperand);
-			if(combinedFragment != null) {
-				if(combinedFragment.getInteractionOperator() == InteractionOperatorKind.ALT_LITERAL) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	private CombinedFragment getEnclosingCombinedFragment(InteractionFragment interactionFragment) {
-		if(interactionFragment.eContainer() instanceof CombinedFragment) {
-			return (CombinedFragment)interactionFragment.eContainer();
-		} else if(interactionFragment.eContainer() instanceof InteractionFragment) {
-			return getEnclosingCombinedFragment((InteractionFragment)interactionFragment.eContainer());
-		}
-		return null;
+		return true;
 	}
 
 	/**
 	 * Generated not to handle the constraint on covered lifelines.
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Continuation newElement = UMLFactory.eINSTANCE.createContinuation();
 		InteractionOperand owner = (InteractionOperand)getElementToEdit();
 		owner.getFragments().add(newElement);
-		// Continuations are always global in the enclosing InteractionFragment 
-		//(e.g., it always covers all Lifelines covered by the enclosing InteractionFragment)
-		newElement.getCovereds().addAll(owner.getCovereds());
 		ElementInitializers.getInstance().init_Continuation_3016(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

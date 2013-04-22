@@ -56,7 +56,6 @@ public class CustomTimeObservationCreateCommand extends EditElementCommand {
 
 	@Override
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -69,16 +68,12 @@ public class CustomTimeObservationCreateCommand extends EditElementCommand {
 
 	@Override
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();
-
 		// get the parent package as owner
 		EObject container = getElementToEdit();
 		while(container != null && !(container instanceof Package)) {
@@ -89,11 +84,8 @@ public class CustomTimeObservationCreateCommand extends EditElementCommand {
 		}
 		Package owner = (Package)container;
 		owner.getPackagedElements().add(newElement);
-
 		ElementInitializers.getInstance().init_TimeObservation_3020(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -108,5 +100,4 @@ public class CustomTimeObservationCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

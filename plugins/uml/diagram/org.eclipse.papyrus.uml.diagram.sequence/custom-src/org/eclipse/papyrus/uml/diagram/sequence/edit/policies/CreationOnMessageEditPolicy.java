@@ -32,7 +32,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
-
 public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 
 	/**
@@ -47,7 +46,6 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 	@Override
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
 		Map<String, Object> extendedData = request.getExtendedData();
-
 		// record the nearest event if necessary
 		String requestHint = request.getViewAndElementDescriptor().getSemanticHint();
 		if(isCreatedOnOccurrenceSpecification(requestHint)) {
@@ -79,7 +77,6 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 				} else {
 					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, location);
 				}
-
 				if(location != null) {
 					//Let the hosted lifeline to do it.
 					EditPart object = getHost().getViewer().findObjectAtExcluding(location, Collections.emptyList(), new EditPartViewer.Conditional() {
@@ -104,7 +101,6 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 						return targetEditPart.getCommand(request);
 					}
 				}
-
 			}
 		}
 		return super.getCreateElementAndViewCommand(request);
@@ -147,5 +143,4 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 		String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
 		return timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint);
 	}
-
 }

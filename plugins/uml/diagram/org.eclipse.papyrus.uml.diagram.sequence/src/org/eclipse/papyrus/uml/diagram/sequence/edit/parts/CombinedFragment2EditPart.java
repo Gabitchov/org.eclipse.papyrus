@@ -20,7 +20,6 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -49,7 +48,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.CoRegionCombinedFragment
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.uml.Lifeline;
 
 /**
  * @generated
@@ -981,47 +979,5 @@ public class CombinedFragment2EditPart extends ShapeNodeEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
-
-	/**
-	 * Overrides to return a ghost central vertical line which will be used for creating message (message will be bound to the lifeline and not the
-	 * outline of this shape).
-	 */
-	@Override
-	protected NodeFigure getNodeFigure() {
-		NodeFigure centerFigure = null;
-		if(getContentPane() instanceof CoRegionCombinedFragmentFigure) {
-			centerFigure = ((CoRegionCombinedFragmentFigure)getContentPane()).getCentralVerticalLine();
-		}
-		return centerFigure;
-	}
-
-	/**
-	 * Get the lifeline element where the CoRegion is drawn
-	 * 
-	 * @return the attached lifeline
-	 */
-	public Lifeline getAttachedLifeline() {
-		Lifeline attachedLifeline = null;
-		EditPart editPartParent = getParent();
-		if(editPartParent instanceof LifelineEditPart) {
-			attachedLifeline = (Lifeline)((LifelineEditPart)editPartParent).resolveSemanticElement();
-		}
-		return attachedLifeline;
-	}
-
-	protected void handleNotificationEvent(Notification notification) {
-		super.handleNotificationEvent(notification);
-		Object feature = notification.getFeature();
-		if((getModel() != null) && (getModel() == notification.getNotifier())) {
-			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
-				refreshLineWidth();
-			}
-		}
-	}
-
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshLineWidth();
 	}
 }

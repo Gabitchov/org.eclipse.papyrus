@@ -41,11 +41,9 @@ public class CustomZOrderCommand extends AbstractTransactionalCommand {
 	 */
 	public CustomZOrderCommand(TransactionalEditingDomain editingDomain, View view, int index) {
 		super(editingDomain, "change ZOrder", getWorkspaceFiles(view));
-
 		this.view = view;
 		this.index = index;
 		containerView = ViewUtil.getContainerView(view);
-
 	}
 
 	@Override
@@ -53,5 +51,4 @@ public class CustomZOrderCommand extends AbstractTransactionalCommand {
 		ViewUtil.repositionChildAt(containerView, view, index);
 		return CommandResult.newOKCommandResult();
 	}
-
 }

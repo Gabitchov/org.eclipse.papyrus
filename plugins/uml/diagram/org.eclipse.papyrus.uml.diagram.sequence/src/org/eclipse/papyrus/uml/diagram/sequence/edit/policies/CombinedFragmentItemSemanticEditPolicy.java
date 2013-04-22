@@ -18,10 +18,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
@@ -42,7 +45,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message7CreateComm
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message7ReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
@@ -53,8 +55,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.util.CombinedFragmentDeleteHelper;
-import org.eclipse.uml2.uml.CombinedFragment;
 
 /**
  * @generated
@@ -69,7 +69,7 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		EObject selectedEObject = req.getElementToDestroy();
@@ -78,13 +78,8 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
 			if(deleteCommand != null) {
-				if(selectedEObject instanceof CombinedFragment) {
-					ICommand selectCmd = CombinedFragmentDeleteHelper.createDestroyElementCommand((CombinedFragment)selectedEObject, getEditingDomain(), provider, req, deleteCommand, (CombinedFragmentEditPart)getHost());
-					return new ICommandProxy(selectCmd);
-				} else
-					return new ICommandProxy(deleteCommand);
+				return new ICommandProxy(deleteCommand);
 			}
-			return null;
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -101,31 +96,68 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4003 == req.getElementType()) {
-			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.Message_4004 == req.getElementType()) {
-			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.Message_4005 == req.getElementType()) {
-			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.Message_4006 == req.getElementType()) {
-			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.Message_4007 == req.getElementType()) {
-			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.Message_4008 == req.getElementType()) {
-			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.Message_4009 == req.getElementType()) {
-			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
 			return null;
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.Message_4003 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Message_4004 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Message_4005 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Message_4006 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Message_4007 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Message_4008 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Message_4009 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.CommentAnnotatedElement_4010 == baseElementType) {
+			return null;
+		}
+		if(UMLElementTypes.ConstraintConstrainedElement_4011 == baseElementType) {
 			return null;
 		}
 		return null;
@@ -135,31 +167,74 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4003 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return null;
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.Message_4003 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4004 == req.getElementType()) {
+		if(UMLElementTypes.Message_4004 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4005 == req.getElementType()) {
+		if(UMLElementTypes.Message_4005 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_4006 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4007 == req.getElementType()) {
+		if(UMLElementTypes.Message_4007 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4008 == req.getElementType()) {
+		if(UMLElementTypes.Message_4008 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4009 == req.getElementType()) {
+		if(UMLElementTypes.Message_4009 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_4010 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_4011 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;

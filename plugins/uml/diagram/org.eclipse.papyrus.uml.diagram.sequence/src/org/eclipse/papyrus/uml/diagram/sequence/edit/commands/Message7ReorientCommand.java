@@ -58,15 +58,14 @@ public class Message7ReorientCommand extends EditElementCommand {
 	/**
 	 * Block reorient source
 	 * 
-	 * @generated NOT do not reorient source
+	 * @generated
 	 */
 	public boolean canExecute() {
 		if(false == getElementToEdit() instanceof Message) {
 			return false;
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
-			// do not reorient source
-			// return canReorientSource();
+			return canReorientSource();
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
@@ -75,7 +74,7 @@ public class Message7ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected boolean canReorientSource() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
@@ -93,7 +92,7 @@ public class Message7ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected boolean canReorientTarget() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
@@ -104,13 +103,7 @@ public class Message7ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interaction container = (Interaction)getLink().eContainer();
-		//Fixed bug about message reconnection.
-		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4009(container, getLink(), source, getNewTarget())) {
-			return false;
-		}
-		//FIXME: Please complete reorientTarget() firstly.
-		return false;
-		//		return MessageConnectionHelper.canReorientTarget(getLink(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4009(container, getLink(), source, getNewTarget());
 	}
 
 	/**

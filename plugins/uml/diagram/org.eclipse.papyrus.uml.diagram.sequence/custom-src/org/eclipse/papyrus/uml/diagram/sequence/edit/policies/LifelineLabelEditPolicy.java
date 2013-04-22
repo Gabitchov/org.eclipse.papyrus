@@ -18,13 +18,12 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.sequence.preferences.LifelinePreferencePage;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomLifelinePreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineLabelHelper;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-
 
 public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
@@ -33,7 +32,6 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	@Override
 	public void addAdditionalListeners() {
 		super.addAdditionalListeners();
-
 		if(preferenceListener == null) {
 			preferenceListener = new IPropertyChangeListener() {
 
@@ -44,7 +42,6 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 			store.addPropertyChangeListener(this.preferenceListener);
 		}
-
 		Lifeline lifeline = getUMLElement();
 		// check host semantic element is not null
 		if(lifeline == null) {
@@ -52,7 +49,6 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		}
 		// adds a listener to the element itself, and to linked elements, like Type
 		getDiagramEventBroker().addNotificationListener(lifeline, this);
-
 		ConnectableElement ce = lifeline.getRepresents();
 		if(ce != null) {
 			getDiagramEventBroker().addNotificationListener(ce, this);
@@ -67,9 +63,8 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(part == null || part.getParent() == null) {
 			return;
 		}
-
 		String key = event.getProperty();
-		if(key.equals(LifelinePreferencePage.LABEL_DISPLAY_PREFERENCE)) {
+		if(key.equals(CustomLifelinePreferencePage.LABEL_DISPLAY_PREFERENCE)) {
 			refreshDisplay();
 		}
 	}
@@ -83,7 +78,6 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return;
 		}
 		getDiagramEventBroker().removeNotificationListener(lifeline, this);
-
 		ConnectableElement ce = lifeline.getRepresents();
 		if(ce != null) {
 			getDiagramEventBroker().removeNotificationListener(ce, this);
@@ -96,12 +90,10 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	@Override
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
-
 		Object object = notification.getNotifier();
 		if(object == null || getUMLElement() == null) {
 			return;
 		}
-
 		if(notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
 			refreshDisplay();
 		} else if(notification.getFeature().equals(UMLPackage.Literals.LIFELINE__REPRESENTS)) {
@@ -113,16 +105,13 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					getDiagramEventBroker().addNotificationListener(ce.getType(), this);
 				}
 			}
-
 			if(notification.getOldValue() instanceof ConnectableElement) {
 				ConnectableElement ce = (ConnectableElement)notification.getOldValue();
 				getDiagramEventBroker().removeNotificationListener(ce, this);
-
 				if(ce.getType() != null) {
 					getDiagramEventBroker().removeNotificationListener(ce.getType(), this);
 				}
 			}
-
 			refreshDisplay();
 		} else if(isMaskManagedAnnotation(object) || isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
@@ -131,15 +120,12 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			if(notification.getNewValue() instanceof Type && notification.getNewValue() instanceof EObject) {
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 			}
-
 			if(notification.getOldValue() instanceof Type && notification.getOldValue() instanceof EObject) {
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 			}
-
 			refreshDisplay();
 		}
 	}
-
 
 	@Override
 	public void refreshDisplay() {
@@ -161,7 +147,7 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(LifelinePreferencePage.LABEL_DISPLAY_PREFERENCE);
+			int displayValueTemp = store.getInt(CustomLifelinePreferencePage.LABEL_DISPLAY_PREFERENCE);
 			if(displayValueTemp != 0) {
 				displayValue = displayValueTemp;
 			}
@@ -170,7 +156,7 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	public int getDefaultDisplayValue() {
-		return LifelinePreferencePage.DEFAULT_LABEL_DISPLAY;
+		return CustomLifelinePreferencePage.DEFAULT_LABEL_DISPLAY;
 	}
 
 	public String getMaskLabel(int value) {
@@ -212,5 +198,4 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	public Lifeline getUMLElement() {
 		return (Lifeline)hostSemanticElement;
 	}
-
 }

@@ -23,7 +23,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-
 /**
  * Abstract ItemSemanticEditPolicy for messages.
  * 
@@ -44,7 +43,6 @@ public class AbstractMessageItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		EObject connectionSemElement = ViewUtil.resolveSemanticElement((View)request.getConnectionEditPart().getModel());
 		EObject targetSemElement = ViewUtil.resolveSemanticElement((View)request.getTarget().getModel());
 		EObject oldSemElement = ViewUtil.resolveSemanticElement((View)request.getConnectionEditPart().getTarget().getModel());
-
 		// check if we need to redirect the semantic request because of a tree
 		// gesture.
 		//		String connectionHint = ViewUtil.getSemanticElementClassId((View)request.getConnectionEditPart().getModel());
@@ -56,13 +54,9 @@ public class AbstractMessageItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		//				targetSemElement = ViewUtil.resolveSemanticElement((View)targetBranch.getTarget().getModel());
 		//			}
 		//		}
-
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		ReorientRelationshipRequest semRequest = new ReorientRelationshipRequest(editingDomain, connectionSemElement, targetSemElement, oldSemElement, ReorientRelationshipRequest.REORIENT_TARGET);
-
 		semRequest.addParameters(request.getExtendedData());
-
 		return getSemanticCommand(semRequest);
 	}
-
 }

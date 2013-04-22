@@ -29,6 +29,8 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.tools.AbstractConnectionCreationTool;
+import org.eclipse.gef.tools.AbstractTool;
 import org.eclipse.gef.tools.TargetingTool;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
@@ -46,9 +48,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
-
 public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
-
 
 	static private Cursor CURSOR_TARGET_MENU = new Cursor(Display.getDefault(), SWT.CURSOR_HAND);
 
@@ -401,7 +401,6 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 			if(getAutoexposeHelper() != null) {
 				return SharedCursors.HAND;
 			} else {
-
 				// Give some feedback so the user knows that they can't drag
 				// outside the viewport.
 				if(getCurrentViewer() != null) {
@@ -412,7 +411,6 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 						viewport.getClientArea(rect);
 						viewport.translateToParent(rect);
 						viewport.translateToAbsolute(rect);
-
 						if(!rect.contains(getLocation())) {
 							return getDisabledCursor();
 						}
@@ -488,5 +486,4 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 		}
 		return null;
 	}
-
 }

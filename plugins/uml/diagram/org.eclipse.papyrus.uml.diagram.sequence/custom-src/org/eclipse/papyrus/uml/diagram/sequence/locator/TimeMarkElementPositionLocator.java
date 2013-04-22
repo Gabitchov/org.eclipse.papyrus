@@ -28,13 +28,16 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart.CustomDurationConstraintFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeConstraintEditPart.TimeConstraintFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeObservationEditPart.TimeObservationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
@@ -116,7 +119,6 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	@Override
 	protected Point locateOnBorder(Point suggestedLocation, int suggestedSide, int circuitCount, IFigure borderItem) {
 		Point recommendedLocation = locateOnParent(suggestedLocation, suggestedSide, borderItem);
-
 		IFigure conflictingBorderItem = getConflictingBorderItemFigure(recommendedLocation, borderItem);
 		// max circuit count of 2 allows to try other side, then go back to original side if occupied
 		if(circuitCount < 2 && conflictingBorderItem != null) {
@@ -345,7 +347,6 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 		}
 		// ensure the side property is correctly set
 		setCurrentSideOfParent(findClosestSideOfParent(borderItem.getBounds(), getParentBorder()));
-
 		// redraw time mark if necessary
 		redrawTimeMarks(borderItem, validLocation);
 	}
@@ -374,12 +375,12 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	 */
 	private void redrawTimeMarks(IFigure borderItem, Rectangle location) {
 		for(Object child : borderItem.getChildren()) {
-			if(child instanceof TimeConstraintEditPart.TimeMarkElementFigure) {
-				((TimeConstraintEditPart.TimeMarkElementFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
-			} else if(child instanceof TimeObservationEditPart.TimeMarkElementFigure) {
-				((TimeObservationEditPart.TimeMarkElementFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
-			} else if(child instanceof DurationConstraintEditPart.DurationConstraintFigure) {
-				((DurationConstraintEditPart.DurationConstraintFigure)child).updateArrow(location.width, location.height);
+			if(child instanceof TimeConstraintFigure) {
+				((TimeConstraintFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
+			} else if(child instanceof TimeObservationFigure) {
+				((TimeObservationFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
+			} else if(child instanceof CustomDurationConstraintFigure) {
+				((CustomDurationConstraintFigure)child).updateArrow(location.width, location.height);
 			} else if(child instanceof DefaultSizeNodeFigure) {
 				redrawTimeMarks((IFigure)child, location);
 			}

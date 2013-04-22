@@ -20,10 +20,9 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
-import org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo;
-import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -686,120 +685,106 @@ public class UMLVisualIDRegistry {
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
-	// test
 	/**
 	 * @generated
 	 */
-	private static ViewInfo diagramViewInfo = null;
-
-	/**
-	 * @generated
-	 */
-	public static ViewInfo getDiagramViewInfo() {
-		if(diagramViewInfo == null) {
-			diagramViewInfo = getPackage_1000ViewInfo();
+	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		if(candidate == -1) {
+			//unrecognized id is always bad
+			return false;
 		}
-		return diagramViewInfo;
+		int basic = getNodeVisualID(containerView, domainElement);
+		return basic == candidate;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected static ViewInfo getPackage_1000ViewInfo() {
-		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
-		ViewInfo viewInfo = null;
-		ViewInfo labelInfo = null;
-		viewInfo = new BaseViewInfo(2001, ViewInfo.Node, "Interaction");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6013, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ConsiderIgnoreFragment");
-		root.addNode(7001, viewInfo);
-		root.addNode(3005, viewInfo);
-		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "CombinedFragment");
-		root.addNode(3005, viewInfo);
-		root.addNode(7001, viewInfo);
-		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "InteractionOperand");
-		root.addNode(7004, viewInfo);
-		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "InteractionUse");
-		root.addNode(3005, viewInfo);
-		root.addNode(7001, viewInfo);
-		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "Continuation");
-		root.addNode(3005, viewInfo);
-		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Lifeline");
-		root.addNode(7001, viewInfo);
-		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "ActionExecutionSpecification");
-		root.addNode(3001, viewInfo);
-		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "BehaviorExecutionSpecification");
-		root.addNode(3001, viewInfo);
-		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "StateInvariant");
-		root.addNode(3001, viewInfo);
-		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "CombinedFragment");
-		root.addNode(3001, viewInfo);
-		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "TimeConstraint");
-		root.addNode(3001, viewInfo);
-		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "TimeObservation");
-		root.addNode(3001, viewInfo);
-		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "DurationConstraint");
-		root.addNode(3001, viewInfo);
-		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "DestructionOccurrenceSpecification");
-		root.addNode(3001, viewInfo);
-		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "Constraint");
-		root.addNode(7001, viewInfo);
-		viewInfo = new BaseViewInfo(3009, ViewInfo.Node, "Comment");
-		root.addNode(7001, viewInfo);
-		viewInfo = new BaseViewInfo(3023, ViewInfo.Node, "DurationConstraint");
-		root.addNode(2001, viewInfo);
-		viewInfo = new BaseViewInfo(3024, ViewInfo.Node, "DurationObservation");
-		root.addNode(2001, viewInfo);
-		return root;
+	public static boolean isCompartmentVisualID(int visualID) {
+		switch(visualID) {
+		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
+		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
 	}
+
+	/**
+	 * @generated
+	 */
+	public static boolean isSemanticLeafVisualID(int visualID) {
+		switch(visualID) {
+		case PackageEditPart.VISUAL_ID:
+			return false;
+		case InteractionUseEditPart.VISUAL_ID:
+		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
+		case ActionExecutionSpecificationEditPart.VISUAL_ID:
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+		case ConstraintEditPart.VISUAL_ID:
+		case CommentEditPart.VISUAL_ID:
+		case ContinuationEditPart.VISUAL_ID:
+		case StateInvariantEditPart.VISUAL_ID:
+		case CombinedFragment2EditPart.VISUAL_ID:
+		case TimeConstraintEditPart.VISUAL_ID:
+		case TimeObservationEditPart.VISUAL_ID:
+		case DurationConstraintEditPart.VISUAL_ID:
+		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+		case DurationObservationEditPart.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+
+		/**
+		 * @generated
+		 */
+		public int getVisualID(View view) {
+			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public String getModelID(View view) {
+			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getModelID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public int getNodeVisualID(View containerView, EObject domainElement) {
+			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isCompartmentVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isSemanticLeafVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
+		}
+	};
 }

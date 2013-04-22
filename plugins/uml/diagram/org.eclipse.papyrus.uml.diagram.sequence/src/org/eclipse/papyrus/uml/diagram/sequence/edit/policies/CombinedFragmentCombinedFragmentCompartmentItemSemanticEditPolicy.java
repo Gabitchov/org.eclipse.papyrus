@@ -13,20 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.InteractionOperandCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.InteractionOperatorKind;
 
 /**
  * @generated
@@ -43,57 +36,31 @@ public class CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy e
 	/**
 	 * Generated not for limit InteractionOperand number. {@inheritDoc}
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.InteractionOperand_3005 == req.getElementType()) {
-			CombinedFragment combinedFragment = getAssociatedCombinedFragment(req.getContainer());
-			if(combinedFragment == null) {
-				return UnexecutableCommand.INSTANCE;
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return super.getCreateCommand(req);
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
 			}
-			// Set the container of the request to the combinedFragment.
-			req.setContainer(combinedFragment);
-			InteractionOperatorKind interactionOperator = combinedFragment.getInteractionOperator();
-			EList<InteractionOperand> operands = combinedFragment.getOperands();
-			if(interactionOperator != null && !operands.isEmpty() && (InteractionOperatorKind.OPT_LITERAL.equals(interactionOperator) || InteractionOperatorKind.LOOP_LITERAL.equals(interactionOperator) || InteractionOperatorKind.BREAK_LITERAL.equals(interactionOperator) || InteractionOperatorKind.NEG_LITERAL.equals(interactionOperator))) {
-				return UnexecutableCommand.INSTANCE;
+		}
+		if(UMLElementTypes.InteractionOperand_3005 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			// make compound command
-			CompoundCommand result = new CompoundCommand();
-			Command cmd = getGEFWrapper(new InteractionOperandCreateCommand(req));
-			result.add(cmd);
-			// append a command which notifies
-			Command notifyCmd = new Command() {
-
-				@Override
-				public void execute() {
-					NotificationBuilder warning = NotificationBuilder.createAsyncPopup(Messages.Warning_ResizeInteractionOperandTitle, NLS.bind(Messages.Warning_ResizeInteractionOperandTxt, System.getProperty("line.separator")));
-					warning.run();
-				}
-
-				@Override
-				public void undo() {
-					execute();
-				}
-			};
-			if(notifyCmd.canExecute()) {
-				result.add(notifyCmd);
-			}
-			return result;
+			return getGEFWrapper(new InteractionOperandCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
-	}
-
-	/**
-	 * Retrieve the combined fragment associated with the request.
-	 */
-	private CombinedFragment getAssociatedCombinedFragment(EObject eObject) {
-		CombinedFragment combinedFragment = null;
-		if(eObject instanceof CombinedFragment) {
-			return (CombinedFragment)eObject;
-		} else if(eObject != null) {
-			combinedFragment = getAssociatedCombinedFragment(eObject.eContainer());
-		}
-		return combinedFragment;
 	}
 }

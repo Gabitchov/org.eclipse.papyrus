@@ -27,7 +27,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * Specific Parser for the TimeObservation.
  */
@@ -120,5 +119,4 @@ public class TimeObservationParser extends MessageFormatParser implements ISeman
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature);
 	}
-
 }

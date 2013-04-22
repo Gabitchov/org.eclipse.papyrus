@@ -40,7 +40,6 @@ public class ReconnectMessageHelper {
 	 */
 	public static void updateMessage(Message message) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -60,7 +59,6 @@ public class ReconnectMessageHelper {
 
 	public static void updateGate(Gate messageEnd, Element oldElement, Element newElement) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public static void updateMos(MessageOccurrenceSpecification messageEnd, Element oldElement, Element newElement) {
@@ -76,10 +74,8 @@ public class ReconnectMessageHelper {
 			CombinedFragment cf = (CombinedFragment)newElement;
 			InteractionOperand io = CommandHelper.getCoRegionInteractionOperand(cf);
 			messageEnd.setEnclosingOperand(io);
-
 			// try to find and put in the operand the other mos of the message
 			MessageEnd messageEnd2 = findSecondMessageEnd(messageEnd);
-
 			if(messageEnd2 instanceof MessageOccurrenceSpecification) {
 				((MessageOccurrenceSpecification)messageEnd2).setEnclosingOperand(io);
 			}
@@ -89,9 +85,7 @@ public class ReconnectMessageHelper {
 			// handle reorient from coregion
 			CombinedFragment cf = (CombinedFragment)oldElement;
 			Element backInteraction = cf.getOwner();
-
 			SequenceUtil.setEnclosingInteraction(messageEnd, backInteraction, true);
-
 			MessageEnd messageEnd2 = findSecondMessageEnd(messageEnd);
 			if(messageEnd2 instanceof MessageOccurrenceSpecification) {
 				SequenceUtil.setEnclosingInteraction((MessageOccurrenceSpecification)messageEnd2, backInteraction, true);
@@ -103,7 +97,6 @@ public class ReconnectMessageHelper {
 
 	public static MessageEnd findSecondMessageEnd(MessageEnd messageEnd) {
 		Message msg = messageEnd.getMessage();
-
 		MessageEnd messageEnd2 = null;
 		if(msg != null) {
 			if(messageEnd.equals(msg.getSendEvent())) {
@@ -115,7 +108,6 @@ public class ReconnectMessageHelper {
 		return messageEnd2;
 	}
 
-
 	/**
 	 * OccurrenceSpecification cover a unique lifeline.
 	 * 
@@ -125,7 +117,6 @@ public class ReconnectMessageHelper {
 	 *        the new lifeline covered by the OS
 	 */
 	public static void updateOccurenceSpecification(OccurrenceSpecification os, Lifeline newLifeline) {
-
 		// An occurrence specification covers a unique lifeline
 		os.getCovereds().clear();
 		os.getCovereds().add(newLifeline);
@@ -150,5 +141,4 @@ public class ReconnectMessageHelper {
 			}
 		}
 	}
-
 }

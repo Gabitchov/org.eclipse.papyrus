@@ -49,20 +49,17 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 	@Override
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
 		LabelEditPart editPart = (LabelEditPart)getHost();
-
 		// FeedBack - Port + Delta
 		Rectangle updatedRect = new Rectangle();
 		PrecisionRectangle initialRect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 		updatedRect = initialRect.getTranslated(getHostFigure().getParent().getBounds().getLocation().getNegated());
 		updatedRect = updatedRect.getTranslated(request.getMoveDelta());
-
 		// translate the feedback figure
 		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 		getHostFigure().translateToAbsolute(rect);
 		rect.translate(request.getMoveDelta());
 		rect.resize(request.getSizeDelta());
 		getHostFigure().translateToRelative(rect);
-
 		ICommand moveCommand = new SetBoundsCommand(editPart.getEditingDomain(), DiagramUIMessages.MoveLabelCommand_Label_Location, new EObjectAdapter((View)editPart.getModel()), updatedRect);
 		return new ICommandProxy(moveCommand);
 	}

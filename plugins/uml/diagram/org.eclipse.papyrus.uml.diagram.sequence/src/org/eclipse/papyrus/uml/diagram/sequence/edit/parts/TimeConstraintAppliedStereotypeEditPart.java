@@ -63,7 +63,6 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
@@ -82,11 +81,12 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
 
 /**
- * @generated NOT implements IPapyrusEditPart
+ * @generated
  */
-public class TimeConstraintAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
+public class TimeConstraintAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -531,6 +531,13 @@ public class TimeConstraintAppliedStereotypeEditPart extends LabelEditPart imple
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
+		}
 	}
 
 	/**
@@ -752,12 +759,5 @@ public class TimeConstraintAppliedStereotypeEditPart extends LabelEditPart imple
 	 */
 	protected IFigure createFigurePrim() {
 		return new AppliedStereotypeWrappingLabelFigure();
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public IFigure getPrimaryShape() {
-		return getFigure();
 	}
 }

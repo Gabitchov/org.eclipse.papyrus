@@ -25,14 +25,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageSort;
 
 /**
  * @generated
@@ -67,7 +62,7 @@ public class Message7CreateCommand extends EditElementCommand {
 	/**
 	 * Add a condition on the MOS container
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean canExecute() {
@@ -87,37 +82,20 @@ public class Message7CreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		if(getSource() != null && getTarget() != null) {
-			if(!CommandHelper.hasValidContainer(getRequest())) {
-				return false;
-			}
-		}
-		//Fixed bug about message connection.
-		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4009(getContainer(), getSource(), getTarget())) {
-			return false;
-		}
-		return MessageConnectionHelper.canExist(MessageSort.ASYNCH_SIGNAL_LITERAL, null, getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4009(getContainer(), getSource(), getTarget());
 	}
 
 	/**
 	 * Create a MessageOccurenceSpecification and the call event when a message is created
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
-		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
-		Message message = CommandHelper.doCreateMessage(container, MessageSort.ASYNCH_SIGNAL_LITERAL, null, getTarget(), sourceContainer, targetContainer);
-		if(message != null) {
-			doConfigure(message, monitor, info);
-			((CreateElementRequest)getRequest()).setNewElement(message);
-			return CommandResult.newOKCommandResult(message);
-		}
-		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
+		throw new UnsupportedOperationException();
 	}
 
 	/**

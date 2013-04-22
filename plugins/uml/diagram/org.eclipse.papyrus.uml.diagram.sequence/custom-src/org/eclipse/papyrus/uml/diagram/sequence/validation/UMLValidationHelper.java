@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -78,7 +78,7 @@ public class UMLValidationHelper {
 			FragmentOrderingKeeper keeper = new FragmentOrderingKeeper();
 			return keeper.validate(context, ctx);
 		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError(Messages.FragmentOrderingKeeper_error, e);
+			UMLDiagramEditorPlugin.getInstance().logError(CustomMessages.FragmentOrderingKeeper_error, e);
 			// avoid returning the exception, or the constraint will never be called again.
 			return ctx.createSuccessStatus();
 		}
@@ -100,10 +100,9 @@ public class UMLValidationHelper {
 			FragmentOrderingKeeper keeper = new FragmentOrderingKeeper();
 			return keeper.validate(context, ctx);
 		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError(Messages.FragmentOrderingKeeper_error, e);
+			UMLDiagramEditorPlugin.getInstance().logError(CustomMessages.FragmentOrderingKeeper_error, e);
 			// avoid returning the exception, or the constraint will never be called again.
 			return ctx.createSuccessStatus();
 		}
 	}
-
 }

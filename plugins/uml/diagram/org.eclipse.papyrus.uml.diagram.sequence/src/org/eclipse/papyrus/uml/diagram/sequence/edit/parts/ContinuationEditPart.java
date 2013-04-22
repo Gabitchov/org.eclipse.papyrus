@@ -17,14 +17,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -36,7 +33,6 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -52,12 +48,10 @@ import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ContinuationItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.locator.ContinuationLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -1065,56 +1059,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 		public CenteredWrappedLabel getFigureContinuationNameLabel() {
 			return fFigureContinuationNameLabel;
 		}
-
-		protected void fillShape(Graphics graphics) {
-			graphics.pushState();
-			applyTransparency(graphics);
-			graphics.fillRoundRectangle(getBounds(), corner.width, corner.height);
-			graphics.popState();
-		}
-
-		/**
-		 * The transparency of this shape in percent.
-		 * Must be in [0, 100] range.
-		 */
-		private int transparency = 0;
-
-		/**
-		 * Returns transparency value (belongs to [0, 100] interval)
-		 * 
-		 * @return transparency
-		 * @since 1.2
-		 */
-		public int getTransparency() {
-			return transparency;
-		}
-
-		/**
-		 * Sets the transparency if the given parameter is in [0, 100] range
-		 * 
-		 * @param transparency
-		 *        The transparency to set
-		 * @since 1.2
-		 */
-		public void setTransparency(int transparency) {
-			if(transparency != this.transparency && transparency >= 0 && transparency <= 100) {
-				this.transparency = transparency;
-				repaint();
-			}
-		}
-
-		/**
-		 * Converts transparency value from percent range [0, 100] to alpha range
-		 * [0, 255] and applies converted value. 0% corresponds to alpha 255 and
-		 * 100% corresponds to alpha 0.
-		 * 
-		 * @param g
-		 *        The Graphics used to paint
-		 * @since 1.2
-		 */
-		protected void applyTransparency(Graphics g) {
-			g.setAlpha(255 - transparency * 255 / 100);
-		}
 	}
 
 	/**
@@ -1147,38 +1091,5 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
-
-	/**
-	 * Overrides to manage the position of the Continuation
-	 */
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-		if(UMLPackage.eINSTANCE.getContinuation_Setting().equals(notification.getFeature())) {
-			IBorderItemLocator borderItemLocator = getBorderItemLocator();
-			int newValue = (Boolean)notification.getNewValue() ? PositionConstants.SOUTH : PositionConstants.NORTH;
-			if(borderItemLocator instanceof ContinuationLocator) {
-				((ContinuationLocator)borderItemLocator).setPreferredSideOfParent(newValue);
-				// Refresh the position of the figure
-				borderItemLocator.relocate(this.getFigure());
-			}
-		}
-		super.handleNotificationEvent(notification);
-		Object feature = notification.getFeature();
-		if((getModel() != null) && (getModel() == notification.getNotifier())) {
-			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
-				refreshLineWidth();
-			}
-		}
-	}
-
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshLineWidth();
-		refreshTransparency();
-	}
-
-	protected void setTransparency(int transp) {
-		getPrimaryShape().setTransparency(transp);
 	}
 }

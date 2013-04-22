@@ -41,12 +41,10 @@ public class CombinedFragmentFigure extends InteractionRectangleFigure {
 		titleLabel.setBorder(new MarginBorder(3, 0, 0, 3));
 		titleLabel.setTextWrap(false);
 		IFigure leftContainer = super.createHeader();
-
 		Figure headerPane = new Figure();
 		headerPane.setLayoutManager(new BorderLayout());
 		headerPane.add(leftContainer, BorderLayout.LEFT);
 		headerPane.add(titleLabel, BorderLayout.RIGHT);
-
 		return headerPane;
 	}
 

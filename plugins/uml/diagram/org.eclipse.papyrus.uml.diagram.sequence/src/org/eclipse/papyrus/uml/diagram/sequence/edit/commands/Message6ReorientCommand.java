@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
@@ -59,7 +58,7 @@ public class Message6ReorientCommand extends EditElementCommand {
 	/**
 	 * Block reorient target
 	 * 
-	 * @generated NOT do not reorient target
+	 * @generated
 	 */
 	public boolean canExecute() {
 		if(false == getElementToEdit() instanceof Message) {
@@ -69,14 +68,13 @@ public class Message6ReorientCommand extends EditElementCommand {
 			return canReorientSource();
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
-			// do not reorient target
-			// return canReorientTarget();
+			return canReorientTarget();
 		}
 		return false;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected boolean canReorientSource() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
@@ -90,10 +88,7 @@ public class Message6ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interaction container = (Interaction)getLink().eContainer();
-		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4008(container, getLink(), getNewSource(), target)) {
-			return false;
-		}
-		return MessageConnectionHelper.canReorientSource(getLink(), getNewSource());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4008(container, getLink(), getNewSource(), target);
 	}
 
 	/**

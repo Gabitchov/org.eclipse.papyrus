@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -88,27 +87,21 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 	/**
 	 * The creation command can only be executed if the elementToEdit (i.e the container) is an Interaction or an InteractionOperand
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean canExecute() {
-		return getElementToEdit() instanceof Interaction || getElementToEdit() instanceof InteractionOperand;
+		return true;
 	}
 
 	/**
 	 * Handle creation on InteractionOperand
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InteractionUse newElement = UMLFactory.eINSTANCE.createInteractionUse();
-		EObject elementToEdit = getElementToEdit();
-		if(elementToEdit instanceof InteractionOperand) {
-			InteractionOperand owner = (InteractionOperand)elementToEdit;
-			owner.getFragments().add(newElement);
-		} else {
-			Interaction owner = (Interaction)elementToEdit;
-			owner.getFragments().add(newElement);
-		}
+		Interaction owner = (Interaction)getElementToEdit();
+		owner.getFragments().add(newElement);
 		ElementInitializers.getInstance().init_InteractionUse_3002(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

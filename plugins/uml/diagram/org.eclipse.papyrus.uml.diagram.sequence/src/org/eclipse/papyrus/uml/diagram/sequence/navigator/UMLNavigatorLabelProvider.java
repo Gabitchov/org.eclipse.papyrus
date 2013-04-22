@@ -138,66 +138,66 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	public Image getImage(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case Message5EditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4007); //$NON-NLS-1$
-		case MessageEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4003); //$NON-NLS-1$
-		case ConstraintEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Constraint", UMLElementTypes.Constraint_3008); //$NON-NLS-1$
-		case TimeObservationEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?TimeObservation", UMLElementTypes.TimeObservation_3020); //$NON-NLS-1$
-		case CombinedFragment2EditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?CombinedFragment", UMLElementTypes.CombinedFragment_3018); //$NON-NLS-1$
-		case GeneralOrderingEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?GeneralOrdering", UMLElementTypes.GeneralOrdering_4012); //$NON-NLS-1$
-		case StateInvariantEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?StateInvariant", UMLElementTypes.StateInvariant_3017); //$NON-NLS-1$
-		case InteractionUseEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InteractionUse", UMLElementTypes.InteractionUse_3002); //$NON-NLS-1$
-		case CommentEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Comment", UMLElementTypes.Comment_3009); //$NON-NLS-1$
-		case Message3EditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4005); //$NON-NLS-1$
-		case DurationConstraintEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3021); //$NON-NLS-1$
-		case TimeConstraintEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3019); //$NON-NLS-1$
-		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ConsiderIgnoreFragment", UMLElementTypes.ConsiderIgnoreFragment_3007); //$NON-NLS-1$
-		case ContinuationEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Continuation", UMLElementTypes.Continuation_3016); //$NON-NLS-1$
+		case PackageEditPart.VISUAL_ID:
+			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/4.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
+		case InteractionEditPart.VISUAL_ID:
+			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/4.0.0/UML?Interaction", UMLElementTypes.Interaction_2001); //$NON-NLS-1$
 		case LifelineEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Lifeline", UMLElementTypes.Lifeline_3001); //$NON-NLS-1$
-		case Message4EditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4006); //$NON-NLS-1$
+		case InteractionUseEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InteractionUse", UMLElementTypes.InteractionUse_3002); //$NON-NLS-1$
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?BehaviorExecutionSpecification", UMLElementTypes.BehaviorExecutionSpecification_3003); //$NON-NLS-1$
+		case CombinedFragmentEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?CombinedFragment", UMLElementTypes.CombinedFragment_3004); //$NON-NLS-1$
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?InteractionOperand", UMLElementTypes.InteractionOperand_3005); //$NON-NLS-1$
-		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Constraint?constrainedElement", UMLElementTypes.ConstraintConstrainedElement_4011); //$NON-NLS-1$
+		case ActionExecutionSpecificationEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionExecutionSpecification", UMLElementTypes.ActionExecutionSpecification_3006); //$NON-NLS-1$
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ConsiderIgnoreFragment", UMLElementTypes.ConsiderIgnoreFragment_3007); //$NON-NLS-1$
+		case ConstraintEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Constraint", UMLElementTypes.Constraint_3008); //$NON-NLS-1$
+		case CommentEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Comment", UMLElementTypes.Comment_3009); //$NON-NLS-1$
+		case ContinuationEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Continuation", UMLElementTypes.Continuation_3016); //$NON-NLS-1$
+		case StateInvariantEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?StateInvariant", UMLElementTypes.StateInvariant_3017); //$NON-NLS-1$
+		case CombinedFragment2EditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?CombinedFragment", UMLElementTypes.CombinedFragment_3018); //$NON-NLS-1$
+		case TimeConstraintEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3019); //$NON-NLS-1$
+		case TimeObservationEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?TimeObservation", UMLElementTypes.TimeObservation_3020); //$NON-NLS-1$
+		case DurationConstraintEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3021); //$NON-NLS-1$
+		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DestructionOccurrenceSpecification", UMLElementTypes.DestructionOccurrenceSpecification_3022); //$NON-NLS-1$
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3023); //$NON-NLS-1$
+		case DurationObservationEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DurationObservation", UMLElementTypes.DurationObservation_3024); //$NON-NLS-1$
+		case MessageEditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4003); //$NON-NLS-1$
+		case Message2EditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4004); //$NON-NLS-1$
+		case Message3EditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4005); //$NON-NLS-1$
+		case Message4EditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4006); //$NON-NLS-1$
+		case Message5EditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4007); //$NON-NLS-1$
 		case Message6EditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4008); //$NON-NLS-1$
 		case Message7EditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4009); //$NON-NLS-1$
-		case DurationObservationEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DurationObservation", UMLElementTypes.DurationObservation_3024); //$NON-NLS-1$
-		case PackageEditPart.VISUAL_ID:
-			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/4.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
-		case Message2EditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Message", UMLElementTypes.Message_4004); //$NON-NLS-1$
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Comment?annotatedElement", UMLElementTypes.CommentAnnotatedElement_4010); //$NON-NLS-1$
-		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DestructionOccurrenceSpecification", UMLElementTypes.DestructionOccurrenceSpecification_3022); //$NON-NLS-1$
-		case InteractionEditPart.VISUAL_ID:
-			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/4.0.0/UML?Interaction", UMLElementTypes.Interaction_2001); //$NON-NLS-1$
-		case ActionExecutionSpecificationEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?ActionExecutionSpecification", UMLElementTypes.ActionExecutionSpecification_3006); //$NON-NLS-1$
-		case DurationConstraintInMessageEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3023); //$NON-NLS-1$
-		case CombinedFragmentEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?CombinedFragment", UMLElementTypes.CombinedFragment_3004); //$NON-NLS-1$
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?Constraint?constrainedElement", UMLElementTypes.ConstraintConstrainedElement_4011); //$NON-NLS-1$
+		case GeneralOrderingEditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/4.0.0/UML?GeneralOrdering", UMLElementTypes.GeneralOrdering_4012); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -245,66 +245,66 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case Message5EditPart.VISUAL_ID:
-			return getMessage_4007Text(view);
-		case MessageEditPart.VISUAL_ID:
-			return getMessage_4003Text(view);
-		case ConstraintEditPart.VISUAL_ID:
-			return getConstraint_3008Text(view);
-		case TimeObservationEditPart.VISUAL_ID:
-			return getTimeObservation_3020Text(view);
-		case CombinedFragment2EditPart.VISUAL_ID:
-			return getCombinedFragment_3018Text(view);
-		case GeneralOrderingEditPart.VISUAL_ID:
-			return getGeneralOrdering_4012Text(view);
-		case StateInvariantEditPart.VISUAL_ID:
-			return getStateInvariant_3017Text(view);
-		case InteractionUseEditPart.VISUAL_ID:
-			return getInteractionUse_3002Text(view);
-		case CommentEditPart.VISUAL_ID:
-			return getComment_3009Text(view);
-		case Message3EditPart.VISUAL_ID:
-			return getMessage_4005Text(view);
-		case DurationConstraintEditPart.VISUAL_ID:
-			return getDurationConstraint_3021Text(view);
-		case TimeConstraintEditPart.VISUAL_ID:
-			return getTimeConstraint_3019Text(view);
-		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-			return getConsiderIgnoreFragment_3007Text(view);
-		case ContinuationEditPart.VISUAL_ID:
-			return getContinuation_3016Text(view);
+		case PackageEditPart.VISUAL_ID:
+			return getPackage_1000Text(view);
+		case InteractionEditPart.VISUAL_ID:
+			return getInteraction_2001Text(view);
 		case LifelineEditPart.VISUAL_ID:
 			return getLifeline_3001Text(view);
-		case Message4EditPart.VISUAL_ID:
-			return getMessage_4006Text(view);
+		case InteractionUseEditPart.VISUAL_ID:
+			return getInteractionUse_3002Text(view);
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			return getBehaviorExecutionSpecification_3003Text(view);
+		case CombinedFragmentEditPart.VISUAL_ID:
+			return getCombinedFragment_3004Text(view);
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getInteractionOperand_3005Text(view);
-		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return getConstraintConstrainedElement_4011Text(view);
+		case ActionExecutionSpecificationEditPart.VISUAL_ID:
+			return getActionExecutionSpecification_3006Text(view);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return getConsiderIgnoreFragment_3007Text(view);
+		case ConstraintEditPart.VISUAL_ID:
+			return getConstraint_3008Text(view);
+		case CommentEditPart.VISUAL_ID:
+			return getComment_3009Text(view);
+		case ContinuationEditPart.VISUAL_ID:
+			return getContinuation_3016Text(view);
+		case StateInvariantEditPart.VISUAL_ID:
+			return getStateInvariant_3017Text(view);
+		case CombinedFragment2EditPart.VISUAL_ID:
+			return getCombinedFragment_3018Text(view);
+		case TimeConstraintEditPart.VISUAL_ID:
+			return getTimeConstraint_3019Text(view);
+		case TimeObservationEditPart.VISUAL_ID:
+			return getTimeObservation_3020Text(view);
+		case DurationConstraintEditPart.VISUAL_ID:
+			return getDurationConstraint_3021Text(view);
+		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+			return getDestructionOccurrenceSpecification_3022Text(view);
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			return getDurationConstraint_3023Text(view);
+		case DurationObservationEditPart.VISUAL_ID:
+			return getDurationObservation_3024Text(view);
+		case MessageEditPart.VISUAL_ID:
+			return getMessage_4003Text(view);
+		case Message2EditPart.VISUAL_ID:
+			return getMessage_4004Text(view);
+		case Message3EditPart.VISUAL_ID:
+			return getMessage_4005Text(view);
+		case Message4EditPart.VISUAL_ID:
+			return getMessage_4006Text(view);
+		case Message5EditPart.VISUAL_ID:
+			return getMessage_4007Text(view);
 		case Message6EditPart.VISUAL_ID:
 			return getMessage_4008Text(view);
 		case Message7EditPart.VISUAL_ID:
 			return getMessage_4009Text(view);
-		case DurationObservationEditPart.VISUAL_ID:
-			return getDurationObservation_3024Text(view);
-		case PackageEditPart.VISUAL_ID:
-			return getPackage_1000Text(view);
-		case Message2EditPart.VISUAL_ID:
-			return getMessage_4004Text(view);
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return getCommentAnnotatedElement_4010Text(view);
-		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-			return getDestructionOccurrenceSpecification_3022Text(view);
-		case InteractionEditPart.VISUAL_ID:
-			return getInteraction_2001Text(view);
-		case ActionExecutionSpecificationEditPart.VISUAL_ID:
-			return getActionExecutionSpecification_3006Text(view);
-		case DurationConstraintInMessageEditPart.VISUAL_ID:
-			return getDurationConstraint_3023Text(view);
-		case CombinedFragmentEditPart.VISUAL_ID:
-			return getCombinedFragment_3004Text(view);
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return getConstraintConstrainedElement_4011Text(view);
+		case GeneralOrderingEditPart.VISUAL_ID:
+			return getGeneralOrdering_4012Text(view);
 		}
 		return getUnknownElementText(view);
 	}

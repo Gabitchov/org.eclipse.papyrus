@@ -28,7 +28,6 @@ import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * Specific Parser for the DurationObservation.
  */
@@ -118,5 +117,4 @@ public class DurationObservationParser extends MessageFormatParser implements IS
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getMessage_SendEvent().equals(feature) || UMLPackage.eINSTANCE.getMessage_ReceiveEvent().equals(feature) || UMLPackage.eINSTANCE.getDurationObservation_Event().equals(feature);
 	}
-
 }

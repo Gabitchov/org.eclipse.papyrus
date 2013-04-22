@@ -47,25 +47,20 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 	@Override
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
 		//		CompoundCommand compound = new CompoundCommand();
-
 		Command command = super.getConnectionCompleteCommand(request);
-
 		if(command != null && command.canExecute()) {
 			//			compound.add(command);
-
 			if(request instanceof CreateConnectionViewAndElementRequest) {
 				CreateConnectionViewAndElementRequest viewRequest = (CreateConnectionViewAndElementRequest)request;
 				EditPart targetEP = getTargetEditPart(viewRequest);
 				EObject target = ViewUtil.resolveSemanticElement((View)targetEP.getModel());
 				EditPart sourceEP = viewRequest.getSourceEditPart();
 				EObject source = ViewUtil.resolveSemanticElement((View)sourceEP.getModel());
-
 				if(getSyncMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint()) || getReplyMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint())) {
 					if(target instanceof Lifeline ||
 					// handle reflexive synch message by creating a new ES
 					(target instanceof ExecutionSpecification && target.equals(source))) {
 						InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(viewRequest.getLocation(), getHost());
-
 						// retrieve the good execution specification type using the source of the message
 						if(target instanceof ExecutionSpecification) {
 							// retrieve its associated lifeline
@@ -97,7 +92,6 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 				}
 			}
 		}
-
 		return command;
 	}
 

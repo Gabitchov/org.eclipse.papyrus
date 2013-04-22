@@ -23,7 +23,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.SelfMessageLabelLocator;
 
-
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
@@ -83,5 +82,4 @@ public class SelfMessageHelper {
 		}
 		return getLifeline(editPart.getParent());
 	}
-
 }

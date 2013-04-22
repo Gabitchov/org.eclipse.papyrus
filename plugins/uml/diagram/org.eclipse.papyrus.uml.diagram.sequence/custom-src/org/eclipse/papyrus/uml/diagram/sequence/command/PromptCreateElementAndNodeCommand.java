@@ -73,7 +73,6 @@ public class PromptCreateElementAndNodeCommand extends CreateOrSelectElementComm
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		sourceEP.eraseSourceFeedback(request);
 		targetEP.eraseSourceFeedback(request);
-
 		CommandResult cmdResult = super.doExecuteWithResult(progressMonitor, info);
 		if(!cmdResult.getStatus().isOK()) {
 			return cmdResult;
@@ -83,17 +82,13 @@ public class PromptCreateElementAndNodeCommand extends CreateOrSelectElementComm
 			return cmdResult;
 		}
 		IHintedType connectionType = (IHintedType)returnValue;
-
 		CreateElementAndNodeCommand createExecutionSpecificationCommand = new CreateElementAndNodeCommand(editingDomain, (ShapeNodeEditPart)targetEP, target, connectionType, location);
 		createExecutionSpecificationCommand.putCreateElementRequestParameter(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, container);
 		command.add(new ICommandProxy(createExecutionSpecificationCommand));
-
 		// put the anchor at the top of the figure
 		ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(editingDomain, createExecutionSpecificationCommand, descriptor, "(1.0, 0.0)");
 		command.add(new ICommandProxy(changeTargetCommand));
-
 		command.execute();
-
 		return CommandResult.newOKCommandResult(descriptor);
 	}
 
@@ -132,6 +127,5 @@ public class PromptCreateElementAndNodeCommand extends CreateOrSelectElementComm
 				return super.getText(object);
 			}
 		};
-
 	}
 }

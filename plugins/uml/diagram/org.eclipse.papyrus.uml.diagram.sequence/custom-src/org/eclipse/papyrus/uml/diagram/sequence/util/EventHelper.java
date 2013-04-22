@@ -56,7 +56,6 @@ public class EventHelper {
 		return event;
 	}
 
-
 	/**
 	 * Create a SendOperation event and initializes its name
 	 * 
@@ -72,7 +71,6 @@ public class EventHelper {
 	//		sendOperationEvent.setOperation(operation);
 	//		return sendOperationEvent;
 	//	}
-
 	/**
 	 * Create a ReceiveOperation event and initializes its name
 	 * 
@@ -88,7 +86,6 @@ public class EventHelper {
 	//		receiveOperationEvent.setOperation(operation);
 	//		return receiveOperationEvent;
 	//	}
-
 	/**
 	 * Create a send signal event and initializes its name
 	 * 
@@ -104,7 +101,6 @@ public class EventHelper {
 	//		sendSignalEvent.setSignal(signal);
 	//		return sendSignalEvent;
 	//	}
-
 	/**
 	 * Create a ReceiveSignal event and initializes its name
 	 * 
@@ -120,7 +116,6 @@ public class EventHelper {
 	//		receiveSignalEvent.setSignal(signal);
 	//		return receiveSignalEvent;
 	//	}
-
 	// Does not exist anymore in UML 2.4	
 	//	/**
 	//	 * Create a receive signal event
@@ -154,8 +149,6 @@ public class EventHelper {
 	//	public static ExecutionEvent doCreateExecutionEvent(Package eventContainer) {
 	//		return (ExecutionEvent)doCreateEvent(eventContainer, UMLPackage.eINSTANCE.getExecutionEvent());
 	//	}
-
-
 	/**
 	 * Create a receive event in the package containing the interaction
 	 * If the messageSort is ASYNCH_SIGNAL, it creates a ReceiveSignalEvent
@@ -174,7 +167,6 @@ public class EventHelper {
 	public static Event doCreateReceiveEvent(MessageSort messageSort, Interaction interaction, NamedElement signature) {
 		Package eventContainer = interaction.getNearestPackage();
 		Event event = null;
-
 		switch(messageSort) {
 		case ASYNCH_SIGNAL_LITERAL:
 			//event = doCreateReceiveSignalEvent(eventContainer, (Signal)signature);
@@ -192,7 +184,6 @@ public class EventHelper {
 			break;
 		default:
 			break;
-
 		}
 		return event;
 	}
@@ -226,9 +217,7 @@ public class EventHelper {
 			break;
 		default:
 			break;
-
 		}
 		return event;
 	}
-
 }

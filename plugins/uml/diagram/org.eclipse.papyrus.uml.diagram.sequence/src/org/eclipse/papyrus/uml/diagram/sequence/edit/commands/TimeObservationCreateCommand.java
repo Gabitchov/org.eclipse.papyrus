@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.commands;
 
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -28,12 +26,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
-import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.MessageSort;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -93,59 +85,20 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT enable only if there is an occurrence specification
+	 * @generated
 	 */
 	public boolean canExecute() {
-		Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		List<OccurrenceSpecification> occList = SequenceUtil.getAsOccSpecList(paramOccurrence);
-		if(!occList.isEmpty()) {
-			for(OccurrenceSpecification occurrence : occList) {
-				if(occurrence instanceof MessageOccurrenceSpecification) {
-					Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
-					if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
-						// filter receive event, we prefer the corresponding start event at the same location
-						continue;
-					}
-				}
-				return true;
-			}
-		}
-		return false;
+		return true;
 	}
 
 	/**
-	 * @generated NOT get the Lifeline grand parent as owner, assign the occurrence specification
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();
-		// get the parent package as owner
-		EObject container = getElementToEdit();
-		while(container != null && !(container instanceof Package)) {
-			container = container.eContainer();
-		}
-		if(container == null) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		Package owner = (Package)container;
+		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 		ElementInitializers.getInstance().init_TimeObservation_3020(newElement);
-		// assign the occurrence specification
-		Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		List<OccurrenceSpecification> occList = SequenceUtil.getAsOccSpecList(paramOccurrence);
-		if(!occList.isEmpty()) {
-			for(OccurrenceSpecification occurrence : occList) {
-				if(occurrence instanceof MessageOccurrenceSpecification) {
-					Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
-					if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
-						// filter receive event, we prefer the corresponding start event at the same location
-						continue;
-					}
-				}
-				// otherwise, first occ is just fine
-				newElement.setEvent(occurrence);
-				break;
-			}
-		}
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

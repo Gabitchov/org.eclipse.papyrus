@@ -20,7 +20,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -34,7 +33,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
@@ -44,41 +42,43 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.extensionpoints.editors.Activator;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
+import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
+import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLParserProvider;
-import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * @generated
  */
-public class LifelineNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class LifelineNameEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -112,7 +112,11 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 	/**
@@ -188,7 +192,6 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	public void setLabel(WrappingLabel figure) {
-		figure.setTextWrap(false); // If the width is too small, the text will be displayed in part and suffixed by "..." 
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -221,7 +224,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return ElementIconUtil.getLabelIcon(this);
+		return null;
 	}
 
 	/**
@@ -374,14 +377,10 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 * This methods is no more generated to handle the case of editing the name of a lifeline
 	 * with a directEdition when its properties represents and decomposedAs are null
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
 		final Request theRequest = request;
-		Lifeline lifeline = (Lifeline)resolveSemanticElement();
-		if(lifeline.getRepresents() != null || lifeline.getDecomposedAs() != null) {
-			directEditionMode = IDirectEdition.NO_DIRECT_EDITION;
-		}
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -395,14 +394,26 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
-				final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
+				Dialog dialog = null;
+				if(configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
+					helper.showEditor();
+					return;
+				} else if(configuration instanceof IAdvancedEditorConfiguration) {
+					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
+				} else if(configuration instanceof IDirectEditorConfiguration) {
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
+				} else {
+					return;
+				}
+				final Dialog finalDialog = dialog;
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
 						@Override
 						protected void doExecute() {
-							configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
+							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -450,14 +461,14 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void refreshLabel() {
-		EditPolicy maskLabelPolicy = getParent().getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if(maskLabelPolicy == null) {
 			setLabelTextHelper(getFigure(), getLabelText());
+			setLabelIconHelper(getFigure(), getLabelIcon());
 		}
-		setLabelIconHelper(getFigure(), getLabelIcon());
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
@@ -475,6 +486,13 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
 		}
 	}
 
@@ -616,11 +634,15 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if(languagePreferred != configuration.getLanguage()) {
+		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
 		}
 	}
 
@@ -629,6 +651,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -640,7 +663,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if(theRequest instanceof DirectEditRequest && getEditText().equals(getLabelText())) {
+						} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest)theRequest;
 							performDirectEdit(editRequest.getLocation());
 						} else {
@@ -671,7 +694,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	}
 
 	/**
-	 * @generated NOT (update at each lifeline name modification) handle possible change in the name container size
+	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		refreshLabel();
@@ -700,16 +723,6 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 				}
 			}
 		}
-		Object notifier = event.getNotifier();
-		Lifeline lifeline = (Lifeline)this.resolveSemanticElement();
-		// handle possible change in the name container size
-		// In AutoSize mode, the width should be resized if the content of the text gets changed. see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
-		if(notifier.equals(lifeline.getRepresents()) || UMLPackage.Literals.NAMED_ELEMENT__NAME.equals(feature) || UMLPackage.Literals.LIFELINE__REPRESENTS.equals(feature) || UMLPackage.Literals.LIFELINE__DECOMPOSED_AS.equals(feature) || UMLPackage.Literals.LIFELINE__SELECTOR.equals(feature) || event.getNotifier() instanceof Bounds) {
-			((LifelineEditPart)getParent()).updateLifelinePosition();
-		}
-		if(notifier instanceof EAnnotation && ((EAnnotation)notifier).getSource().equals(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION)) {
-			((LifelineEditPart)getParent()).updateLifelinePosition();
-		}
 		super.handleNotificationEvent(event);
 	}
 
@@ -721,6 +734,9 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

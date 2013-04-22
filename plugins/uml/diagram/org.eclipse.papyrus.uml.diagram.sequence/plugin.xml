@@ -1007,17 +1007,6 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif">
  	</entry>
- 	<!-- add -->
- 	<entry
-       defineOnly="true"
-       description="Create Consider Ignore Fragment"
-       id="createConsiderIgnoreFragment5CreationTool"
-       kind="tool"
-       label="Consider Ignore Fragment"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif">
- 	</entry>
 	<entry
        defineOnly="true"
        description="Create Interaction Operand"
@@ -1124,9 +1113,9 @@
        id="createDestructionEvent16CreationTool"
        kind="tool"
        label="Destruction Event"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif"
        path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -1184,9 +1173,9 @@
        id="createMessageLost6CreationTool"
        kind="tool"
        label="Message Lost"
-       large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageLost.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
        path=""
-       small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageLost.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -1194,9 +1183,9 @@
        id="createMessageFound7CreationTool"
        kind="tool"
        label="Message Found"
-       large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageFound.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
        path=""
-       small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageFound.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -1208,16 +1197,26 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif">
  	</entry>
- 	<?gmfgen generated="false"?>
-  <entry
-        defineOnly="true"
-        description="Create Link"
-        id="createLinkCreationTool"
-        kind="tool"
-        label="Link"
-        large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif"
-        small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif">
-  </entry>
+	<entry
+       defineOnly="true"
+       description="Create a comment link"
+       id="createCommentlink9CreationTool"
+       kind="tool"
+       label="Comment link"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a constraint link"
+       id="createConstraintlink10CreationTool"
+       kind="tool"
+       label="Constraint link"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
 
 			</contribution>
 		</paletteProvider>	
@@ -1270,12 +1269,6 @@
           id="createCombinedFragment5CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
-    <!-- add -->
-    <predefinedEntry
-          id="createConsiderIgnoreFragment5CreationTool"
-          path="/createNodes1Group">
-    </predefinedEntry>
-    
  	<predefinedEntry
           id="createInteractionOperand6CreationTool"
           path="/createNodes1Group">
@@ -1366,11 +1359,14 @@
           id="createGeneralOrdering8CreationTool"
           path="/createEdges2Group">
     </predefinedEntry>
-    <?gmfgen generated="false"?>
-  <predefinedEntry
-        id="createLinkCreationTool"
-        path="/createEdges2Group">
-  </predefinedEntry>
+ 	<predefinedEntry
+          id="createCommentlink9CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createConstraintlink10CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
 
 
 			</contribution>
@@ -1438,7 +1434,7 @@
             <target class="uml.InteractionOperand"/>
          </constraint>
                   <constraint id="FragmentOrderingKeeper.LifelineFigure"
-            lang="Java" class="org.eclipse.papyrus.uml.diagram.sequence.providers.UMLValidationProvider$Adapter3"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomValidationProvider$Adapter3"
             name="Fragment ordering"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1514,6 +1510,412 @@
             ref="org.eclipse.papyrus.uml.diagram.sequence.viewDependences">
       </advice>
    </binding>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+   <editpartProvider
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomEditPartProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Diagram"
+            id="generated-diagram">
+         <method
+               name="getType()"
+               value="PapyrusUMLSequenceDiagram">
+         </method>
+      </object>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node"
+            id="generated-nodes">
+         <method
+               name="getType()"
+               value="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3022,3008,3009,3023,3024">
+         </method>
+      </object>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Edge"
+            id="generated-links">
+         <method
+               name="getType()"
+               value="4003,4004,4005,4006,4007,4008,4009,4010,4011,4012">
+         </method>
+      </object>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node"
+            id="generated-labels">
+         <method
+               name="getType()"
+               value="5001,5003,5004,5007,5002,5008,5009,5013,5010,5014,5011,5015,5005,5012,5006,5018,5019,5016,5017">
+         </method>
+      </object>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node"
+            id="generated-compartments">
+         <method
+               name="getType()"
+               value="7001,7004">
+         </method>
+      </object>
+      <context
+            views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments">
+      </context>
+   </editpartProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+   <viewProvider
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomViewProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <context
+            semanticHints="PapyrusUMLSequenceDiagram"
+            viewClass="org.eclipse.gmf.runtime.notation.Diagram">
+      </context>
+      <context
+            semanticHints="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3022,3008,3009,3023,3024"
+            viewClass="org.eclipse.gmf.runtime.notation.Node">
+      </context>
+      <context
+            semanticHints="4003,4004,4005,4006,4007,4008,4009,4010,4011,4012"
+            viewClass="org.eclipse.gmf.runtime.notation.Edge">
+      </context>
+   </viewProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
+   <modelingAssistantProvider
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomModelingAssistantProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+   </modelingAssistantProvider>
+</extension>
+<extension
+      id="Sequence.custom"
+      name="Sequence Custom Palette"
+      point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
+   <paletteProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <contribution
+            factoryClass="org.eclipse.papyrus.uml.diagram.sequence.part.UMLPaletteFactory">
+         <predefinedEntry
+               id="/createNodes1Group/createCombinedFragment5CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createNodes1Group/createDurationObservation12CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createNodes1Group/createTimeObservation14CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createNodes1Group/createDurationConstraint15CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createNodes1Group/createDestructionEvent16CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createNodes1Group/createComment9CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createNodes1Group/createConstraint10CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createMessageSync1CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createMessageAsync2CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createMessageReply3CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createMessageCreate4CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createMessageDelete5CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createMessageLost6CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createMessageFound7CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createGeneralOrdering8CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createCommentlink9CreationTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="/createEdges2Group/createConstraintlink10CreationTool"
+               remove="true">
+         </predefinedEntry>
+      </contribution>
+      <editor
+            id="org.eclipse.papyrus.uml.diagram.sequence">
+      </editor>
+      <contribution
+            factoryClass="org.eclipse.papyrus.uml.diagram.sequence.SequencePaletteFactory">
+         <entry
+               defineOnly="true"
+               description="Create Combined Fragment"
+               id="createCombinedFragmentTool"
+               kind="tool"
+               label="Combined Fragment"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create Consider Ignore Fragment"
+               id="createConsiderIgnoreFragmentTool"
+               kind="tool"
+               label="Consider Ignore Fragment"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create a Duration Constraint"
+               id="createDurationConstraintTool"
+               kind="tool"
+               label="Duration Constraint"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create a Duration Observation on a Message"
+               id="createDurationObservationTool"
+               kind="tool"
+               label="Duration Observation"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create a Time Observation"
+               id="createTimeObservationTool"
+               kind="tool"
+               label="Time Observation"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create a Destruction Event"
+               id="createDestructionEventTool"
+               kind="tool"
+               label="Destruction Event"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create a comment"
+               id="createCommentTool"
+               kind="tool"
+               label="Comment"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create a constraint"
+               id="createConstraintTool"
+               kind="tool"
+               label="Constraint"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create MessageSync"
+               id="createMessageSyncTool"
+               kind="tool"
+               label="Message Sync"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_synchCall.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_synchCall.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create MessageAsync"
+               id="createMessageAsyncTool"
+               kind="tool"
+               label="Message Async"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_asynchCall.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_asynchCall.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create MessageReply"
+               id="createMessageReplyTool"
+               kind="tool"
+               label="Message Reply"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_reply.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_reply.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create MessageCreate"
+               id="createMessageCreateTool"
+               kind="tool"
+               label="Message Create"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create MessageDelete"
+               id="createMessageDeleteTool"
+               kind="tool"
+               label="Message Delete"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_deleteMessage.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_deleteMessage.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create MessageLost"
+               id="createMessageLostTool"
+               kind="tool"
+               label="Message Lost"
+               large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageLost.gif"
+               small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageLost.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create MessageFound"
+               id="createMessageFoundTool"
+               kind="tool"
+               label="Message Found"
+               large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageFound.gif"
+               small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageFound.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create GeneralOrdering"
+               id="createGeneralOrderingTool"
+               kind="tool"
+               label="General Ordering"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif">
+         </entry>
+         <entry
+               defineOnly="true"
+               description="Create Annotated Link"
+               id="createAnnotatedLinkTool"
+               kind="tool"
+               label="Link"
+               large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif"
+               small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif">
+         </entry>
+      </contribution>
+   </paletteProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
+   <paletteProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+      <Priority
+            name="High">
+      </Priority>
+      <contribution
+            factoryClass="org.eclipse.papyrus.uml.diagram.sequence.SequencePaletteFactory">
+         <predefinedEntry
+               id="createCombinedFragmentTool"
+               path="/createNodes1Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createConsiderIgnoreFragmentTool"
+               path="/createNodes1Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createDurationConstraintTool"
+               path="/createNodes1Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createDurationObservationTool"
+               path="/createNodes1Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createTimeObservationTool"
+               path="/createNodes1Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createDestructionEventTool"
+               path="/createNodes1Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createCommentTool"
+               path="/createNodes1Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createConstraintTool"
+               path="/createNodes1Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createMessageSyncTool"
+               path="/createEdges2Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createMessageAsyncTool"
+               path="/createEdges2Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createMessageReplyTool"
+               path="/createEdges2Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createMessageCreateTool"
+               path="/createEdges2Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createMessageDeleteTool"
+               path="/createEdges2Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createMessageLostTool"
+               path="/createEdges2Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createMessageFoundTool"
+               path="/createEdges2Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createGeneralOrderingTool"
+               path="/createEdges2Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createAnnotatedLinkTool"
+               path="/createEdges2Group">
+         </predefinedEntry>
+      </contribution>
+      <editor
+            id="org.eclipse.papyrus.uml.diagram.sequence">
+      </editor>
+   </paletteProvider>
 </extension>
 
 

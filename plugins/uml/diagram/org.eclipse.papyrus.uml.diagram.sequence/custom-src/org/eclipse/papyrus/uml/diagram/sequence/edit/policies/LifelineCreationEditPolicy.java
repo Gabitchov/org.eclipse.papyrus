@@ -58,20 +58,16 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
 		// get the element descriptor
 		CreateElementRequestAdapter requestAdapter = request.getViewAndElementDescriptor().getCreateElementRequestAdapter();
-
 		// get the semantic request
 		CreateElementRequest createElementRequest = (CreateElementRequest)requestAdapter.getAdapter(CreateElementRequest.class);
-
 		if(createElementRequest.getContainer() == null) {
 			// complete the semantic request by filling in the host's semantic
 			// element as the context
 			View view = (View)getHost().getModel();
 			EObject hostElement = ViewUtil.resolveSemanticElement(view);
-
 			if(hostElement == null && view.getElement() == null) {
 				hostElement = view;
 			}
-
 			// Returns null if host is unresolvable so that trying to create a
 			// new element in an unresolved shape will not be allowed.
 			if(hostElement == null) {
@@ -79,12 +75,9 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 			}
 			createElementRequest.setContainer(hostElement);
 		}
-
 		InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(request.getLocation(), getHost());
-
 		Map<String, Object> extendedData = request.getExtendedData();
 		extendedData.put(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
-
 		// record the nearest event if necessary
 		String requestHint = request.getViewAndElementDescriptor().getSemanticHint();
 		if(isCreatedOnOccurrenceSpecification(requestHint)) {
@@ -110,11 +103,9 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 				}
 			}
 		}
-
 		// get the create element command based on the elementdescriptor's
 		// request
 		Command createElementCommand = getHost().getCommand(new EditCommandRequestWrapper((CreateElementRequest)requestAdapter.getAdapter(CreateElementRequest.class), request.getExtendedData()));
-
 		if(createElementCommand == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -124,10 +115,7 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		// create the semantic create wrapper command
 		SemanticCreateCommand semanticCommand = new SemanticCreateCommand(requestAdapter, createElementCommand);
 		Command viewCommand = getCreateCommand(request);
-
 		Command refreshConnectionCommand = getHost().getCommand(new RefreshConnectionsRequest(((List)request.getNewObject())));
-
-
 		// form the compound command and return
 		CompositeCommand cc = new CompositeCommand(semanticCommand.getLabel());
 		cc.compose(semanticCommand);
@@ -135,13 +123,11 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		if(refreshConnectionCommand != null) {
 			cc.compose(new CommandProxy(refreshConnectionCommand));
 		}
-
 		LifelineEditPart parentPart = (LifelineEditPart)getHost();
 		IHintedType type = (IHintedType)UMLElementTypes.Lifeline_3001;
 		if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
 			setChildLifelineBounds(cc, request, parentPart);
 		}
-
 		return new ICommandProxy(cc);
 	}
 
@@ -150,13 +136,11 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		LifelineDotLineCustomFigure parentFigure = (LifelineDotLineCustomFigure)parentPart.getContentPane();
 		Rectangle parentBounds = parentFigure.getBounds().getCopy();
 		parentFigure.translateToAbsolute(parentBounds);
-
 		Rectangle childBounds = parentBounds.getCopy();
 		childBounds.height = parentBounds.height;
 		childBounds.width = -1; // default size
 		childBounds.y = 0; // y offset from parent
 		childBounds.x = location.x - parentBounds.x; // x offset from parent
-
 		SetBoundsCommand cmd = new SetBoundsCommand(parentPart.getEditingDomain(), "set size", request.getViewAndElementDescriptor(), childBounds);
 		cc.compose(cmd);
 	}
@@ -198,5 +182,4 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
 		return timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint);
 	}
-
 }

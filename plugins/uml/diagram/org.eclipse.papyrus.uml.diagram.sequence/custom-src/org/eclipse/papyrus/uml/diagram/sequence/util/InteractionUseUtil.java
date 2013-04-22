@@ -10,7 +10,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.uml2.uml.Interaction;
 
-
 public class InteractionUseUtil {
 
 	public static Diagram findDiagram(View view, Interaction refInteraction) {
@@ -24,7 +23,6 @@ public class InteractionUseUtil {
 				}
 			}
 		}
-
 		return null;
 	}
 

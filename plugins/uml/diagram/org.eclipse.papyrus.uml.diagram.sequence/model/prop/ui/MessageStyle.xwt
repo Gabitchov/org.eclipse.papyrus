@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors"
-	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
-	text="Style">
-	<Composite.layout>
-		<GridLayout></GridLayout>
-	</Composite.layout>
-	<Group text="Line">
-		<Group.layout>
-			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
-		</Group.layout>		
-		<gmf:XWTAwareColorPicker input="{Binding}"
-			property="MessageStyle:LineStyle:lineColor"></gmf:XWTAwareColorPicker>
-	</Group>
-	<Group text="Font">
-		<Group.layout>
-			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
-		</Group.layout>
-		<gmf:XWTAwareFontEditor input="{Binding}"
-			property="MessageStyle:FontStyle:fontName" showLabel="false"></gmf:XWTAwareFontEditor>
-		<ppe:IntegerEditor input="{Binding}"
-			property="MessageStyle:FontStyle:fontHeight"></ppe:IntegerEditor>
-		<ppe:BooleanToggle
-			image="/org.eclipse.gmf.runtime.diagram.ui.properties/icons/bold.gif"
-			input="{Binding}" property="MessageStyle:FontStyle:bold" showLabel="false"></ppe:BooleanToggle>
-		<gmf:XWTAwareColorPicker input="{Binding}"
-			property="MessageStyle:FontStyle:fontColor" showLabel="false"></gmf:XWTAwareColorPicker>
-	</Group>
+<Composite
+    xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+    xmlns:j="clr-namespace:java.lang"
+    xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors"
+    xmlns:x="http://www.eclipse.org/xwt"
+    xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+    xmlns="http://www.eclipse.org/xwt/presentation"
+    text="Style">
+    <Composite.layout>
+        <GridLayout></GridLayout>
+    </Composite.layout>
+    <Group text="Line">
+        <Group.layout>
+            <ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+        </Group.layout>
+        <gmf:XWTAwareColorPicker
+            input="{Binding}"
+            property="MessageStyle:LineStyle:lineColor"></gmf:XWTAwareColorPicker>
+    </Group>
+    <Group text="Font">
+        <Group.layout>
+            <ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+        </Group.layout>
+        <gmf:XWTAwareFontEditor
+            input="{Binding}"
+            property="MessageStyle:FontStyle:fontName"
+            showLabel="false"></gmf:XWTAwareFontEditor>
+        <ppe:IntegerEditor
+            input="{Binding}"
+            property="MessageStyle:FontStyle:fontHeight"></ppe:IntegerEditor>
+        <ppe:BooleanToggle
+            input="{Binding}"
+            image="/org.eclipse.gmf.runtime.diagram.ui.properties/icons/bold.gif"
+            property="MessageStyle:FontStyle:bold"
+            showLabel="false"></ppe:BooleanToggle>
+        <gmf:XWTAwareColorPicker
+            input="{Binding}"
+            property="MessageStyle:FontStyle:fontColor"
+            showLabel="false"></gmf:XWTAwareColorPicker>
+    </Group>
 </Composite>

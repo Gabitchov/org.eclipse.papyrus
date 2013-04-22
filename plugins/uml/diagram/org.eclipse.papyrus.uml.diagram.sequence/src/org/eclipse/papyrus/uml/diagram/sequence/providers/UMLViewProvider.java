@@ -52,6 +52,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
@@ -121,12 +123,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintLabelEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
-import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.InteractionOperand;
 
 /**
  * @generated
@@ -174,14 +173,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * Indicates for which diagram this provider works for.
-	 * <p>
-	 * This method can be overloaded when diagram editor inherits from another one
-	 * </p>
-	 * 
-	 * @return the unique identifier of the diagram for which views are provided.
+	 * @generated
 	 */
 	protected String getDiagramProvidedId() {
+		/*
+		 * Indicates for which diagram this provider works for.
+		 * <p>
+		 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+		 * </p>
+		 * 
+		 * @return the unique identifier of the diagram for which views are provided.
+		 */
 		return PackageEditPart.MODEL_ID;
 	}
 
@@ -213,8 +215,15 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		} else {
 			visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if(elementType != null) {
-				if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
-					return false; // foreign element type
+				if(elementType instanceof IExtendedHintedElementType) {
+					IElementType closestNonExtendedType = ElementTypeUtils.getClosestDiagramType(elementType);
+					if(!UMLElementTypes.isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof IHintedType))) {
+						return false; // foreign element type.
+					}
+				} else {
+					if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+						return false; // foreign element type
+					}
 				}
 				String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
 				if(!op.getSemanticHint().equals(elementTypeHint)) {
@@ -264,9 +273,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateEdgeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
-			return false; // foreign element type
+		//RS: add code for extended types creation
+		if(elementType instanceof IExtendedHintedElementType) {
+			IElementType closestNonExtendedType = ElementTypeUtils.getClosestDiagramType(elementType);
+			if(!UMLElementTypes.isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof IHintedType))) {
+				return false; // foreign element type.
+			}
+		} else {
+			if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+				return false; // foreign element type
+			}
 		}
+		//if (!org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
+		//	return false; // foreign element type
+		//}
+		// END R.S.
 		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
 		if(elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
@@ -497,7 +518,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public Node createTimeObservation_3020(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -510,16 +531,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "TimeObservation");
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeObservation");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "TimeObservation");
-		Node label5010 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID), true);
+		Node label5010 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
 		label5010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5010 = (Location)label5010.getLayoutConstraint();
-		location5010.setX(0);
-		location5010.setY(0);
-		Node label5014 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID), true);
+		location5010.setX(22);
+		location5010.setY(-7);
+		Node label5014 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID));
 		label5014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5014 = (Location)label5014.getLayoutConstraint();
 		location5014.setX(0);
-		location5014.setY(0);
+		location5014.setY(-22);
 		return node;
 	}
 
@@ -541,7 +562,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label5011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5011 = (Location)label5011.getLayoutConstraint();
 		location5011.setX(25);
-		location5011.setY(0);
+		location5011.setY(45);
 		Node label5015 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAppliedStereotypeEditPart.VISUAL_ID));
 		label5015.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5015 = (Location)label5015.getLayoutConstraint();
@@ -607,7 +628,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * Generated not for always have an InteractionOperand on a CombinedFragment
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public Node createCombinedFragment_3004(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -615,17 +636,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(CombinedFragmentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "CombinedFragment");
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CombinedFragment");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CombinedFragment");
-		Node compartment = createCompartment(node, UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID), false, false, true, true);
-		// Add by default InteractionOperand
-		for(InteractionOperand interactionOperand : ((CombinedFragment)domainElement).getOperands()) {
-			createInteractionOperand_3005(interactionOperand, compartment, -1, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		}
-		//initialization for the compartment visibility
+		createCompartment(node, UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "CombinedFragment");
 		return node;
 	}
@@ -703,7 +719,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated NOT custom layout for location
+	 * @generated
 	 */
 	public Node createDurationConstraint_3023(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createShape();
@@ -713,10 +729,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(DurationConstraintInMessageEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// custom layout for location
-		Location location3023 = (Location)node.getLayoutConstraint();
-		location3023.setX(0);
-		location3023.setY(20);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DurationConstraint");
@@ -730,7 +742,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated NOT custom layout for location
+	 * @generated
 	 */
 	public Node createDurationObservation_3024(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createShape();
@@ -740,10 +752,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(DurationObservationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// custom layout for location
-		Location location3024 = (Location)node.getLayoutConstraint();
-		location3024.setX(0);
-		location3024.setY(0);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DurationObservation");
@@ -752,12 +760,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label5017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5017 = (Location)label5017.getLayoutConstraint();
 		location5017.setX(0);
-		location5017.setY(0);
+		location5017.setY(-22);
 		return node;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public Node createConsiderIgnoreFragment_3007(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -765,18 +773,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ConsiderIgnoreFragmentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
-		Node compartment = createCompartment(node, UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID), false, false, true, true);
-		// Add by default InteractionOperand
-		for(InteractionOperand interactionOperand : ((CombinedFragment)domainElement).getOperands()) {
-			createInteractionOperand_3005(interactionOperand, compartment, -1, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		}
-		//initialization for the compartment visibility
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
 		return node;
 	}
 
@@ -814,8 +815,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6008 = (Location)label6008.getLayoutConstraint();
 		location6008.setX(1);
 		location6008.setY(-33);
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -853,8 +852,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6009 = (Location)label6009.getLayoutConstraint();
 		location6009.setX(1);
 		location6009.setY(-33);
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -892,8 +889,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6010 = (Location)label6010.getLayoutConstraint();
 		location6010.setX(1);
 		location6010.setY(-33);
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -931,8 +926,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6011 = (Location)label6011.getLayoutConstraint();
 		location6011.setX(1);
 		location6011.setY(-33);
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -970,8 +963,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6012 = (Location)label6012.getLayoutConstraint();
 		location6012.setX(1);
 		location6012.setY(-33);
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -1009,8 +1000,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6013 = (Location)label6013.getLayoutConstraint();
 		location6013.setX(1);
 		location6013.setY(-33);
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -1048,8 +1037,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6014 = (Location)label6014.getLayoutConstraint();
 		location6014.setX(1);
 		location6014.setY(-33);
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -1077,8 +1064,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -1106,8 +1091,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -1140,8 +1123,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6015 = (Location)label6015.getLayoutConstraint();
 		location6015.setX(1);
 		location6015.setY(-33);
-		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "GeneralOrdering");
 		return edge;
 	}
 
@@ -1165,14 +1146,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		rv.setType(hint);
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
 		return rv;
-	}
-
-	protected Node createLabel(View owner, String hint, boolean isTimeObservationLable) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(hint);
-		ViewUtil.insertChildView(owner, node, ViewUtil.APPEND, true);
-		return node;
 	}
 
 	/**

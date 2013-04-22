@@ -32,9 +32,9 @@ import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.ObliqueRouter;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.OrthogonalRouterUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart.MessageCreate;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageAsync;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
 
 /**
  * A multi behavior router which enable to draw message.
@@ -62,7 +62,7 @@ public class MessageRouter extends ObliqueRouter {
 		}
 
 		private static boolean isHorizontalConnection(Connection conn, PointList newLine) {
-			if(!(conn instanceof Message2EditPart.MessageAsync)) {
+			if(!(conn instanceof MessageAsync)) {
 				return false;
 			}
 			Point sourcePoint = newLine.getFirstPoint();
@@ -85,7 +85,6 @@ public class MessageRouter extends ObliqueRouter {
 			while(targetLifeline != null && !(targetLifeline instanceof LifelineFigure)) {
 				targetLifeline = targetLifeline.getParent();
 			}
-
 			return sourceLifeline != null && sourceLifeline.equals(targetLifeline);
 		}
 	}
@@ -96,7 +95,6 @@ public class MessageRouter extends ObliqueRouter {
 		switch(RouterKind.getKind(conn, newLine)) {
 		case HORIZONTAL:
 			originalRectilinearRouteLine(conn, nestedRoutingDepth, newLine);
-
 			// force 2 bendpoints on the same Y coordinate
 			sourcePoint = newLine.getFirstPoint();
 			targetPoint = newLine.getLastPoint();
@@ -108,7 +106,6 @@ public class MessageRouter extends ObliqueRouter {
 		case OBLIQUE:
 			super.routeLine(conn, nestedRoutingDepth, newLine);
 			adjustCreateEndpoint(conn, newLine);
-
 			// force 2 bendpoints only
 			if(newLine.size() > 2) {
 				sourcePoint = newLine.getFirstPoint();
@@ -154,12 +151,9 @@ public class MessageRouter extends ObliqueRouter {
 	protected void getSelfRelVertices(Connection conn, PointList newLine) {
 		//Copy the points calculated from Bendpoints.
 		PointList oldLine = newLine.getCopy();
-
 		rectilinearResetEndPointsToEdge(conn, newLine);
-
 		IFigure owner = conn.getSourceAnchor().getOwner();
 		Point middle = owner.getBounds().getCenter();
-
 		// ensure that the end points are anchored properly to the shape.
 		Point ptS2 = newLine.getPoint(0);
 		Point ptS1 = conn.getSourceAnchor().getReferencePoint();
@@ -169,7 +163,6 @@ public class MessageRouter extends ObliqueRouter {
 		Point ptEdge = conn.getSourceAnchor().getLocation(ptAbsS2);
 		conn.translateToRelative(ptEdge);
 		ptS1 = getStraightEdgePoint(ptEdge, ptS1, ptS2);
-
 		Point ptE2 = newLine.getPoint(newLine.size() - 1);
 		Point ptE1 = conn.getTargetAnchor().getReferencePoint();
 		conn.translateToRelative(ptE1);
@@ -178,10 +171,8 @@ public class MessageRouter extends ObliqueRouter {
 		ptEdge = conn.getTargetAnchor().getLocation(ptAbsE2);
 		conn.translateToRelative(ptEdge);
 		ptE1 = getStraightEdgePoint(ptEdge, ptE1, ptE2);
-
 		newLine.removeAllPoints();
 		newLine.addPoint(ptS1);
-
 		// Fixed bug about custom self message. If there are 4 points, insert middle two ones for supporting bendpoints.
 		if(oldLine.size() == 4) {
 			Point p2 = oldLine.getPoint(1);
@@ -198,7 +189,6 @@ public class MessageRouter extends ObliqueRouter {
 				extraPoint1.translate(-SELFRELSIZEINIT, 0);
 			}
 			Point extraPoint2 = extraPoint1.getCopy();
-
 			if(isFeedback(conn)) {
 				extraPoint1.y = ptS2.y;
 				extraPoint2.y = ptE2.y;
@@ -209,7 +199,6 @@ public class MessageRouter extends ObliqueRouter {
 			newLine.addPoint(extraPoint1);
 			newLine.addPoint(extraPoint2);
 		}
-
 		newLine.addPoint(ptE1);
 	}
 
@@ -240,18 +229,14 @@ public class MessageRouter extends ObliqueRouter {
 	 * 
 	 * Copyright (c) 2002, 2010 IBM Corporation and others.
 	 */
-
 	private void originalRectilinearRouteLine(Connection conn, int nestedRoutingDepth, PointList newLine) {
-
 		boolean skipNormalization = (routerFlags & ROUTER_FLAG_SKIPNORMALIZATION) != 0;
-
 		// if we are reorienting, then just default to the super class implementation and
 		// don't try to do rectilinear routing.
 		if(isReorienting(conn)) {
 			super.routeLine(conn, nestedRoutingDepth, newLine);
 			return;
 		}
-
 		/*
 		 * Remove and store former anchor points. Anchor points will be re-calculated anyway.
 		 * However, the old anchor points may be useful if connection didn't have any bend points
@@ -259,26 +244,21 @@ public class MessageRouter extends ObliqueRouter {
 		 */
 		Point lastStartAnchor = newLine.removePoint(0);
 		Point lastEndAnchor = newLine.removePoint(newLine.size() - 1);
-
 		/*
 		 * Check if connection is rectilinear and if not make it rectilinear
 		 */
 		if(!OrthogonalRouterUtilities.isRectilinear(newLine)) {
 			OrthogonalRouterUtilities.transformToOrthogonalPointList(newLine, PositionConstants.NONE, PositionConstants.NONE);
 		}
-
 		removeRedundantPoints(newLine);
-
 		/*
 		 * Remove unnecessary points that are contained within source and/or target shapes
 		 * as well as insert extra points if all points are within source and/or target shapes
 		 */
 		removePointsInViews(conn, newLine, lastStartAnchor, lastEndAnchor);
-
 		Dimension tolerance = new Dimension(3, 0);
 		if(!isFeedback(conn))
 			tolerance = (Dimension)MapModeUtil.getMapMode(conn).DPtoLP(tolerance);
-
 		/*
 		 * Normalize polyline to eliminate extra segments. (This makes 3 segments collapsing into
 		 * one, while line segments are moved)
@@ -292,7 +272,6 @@ public class MessageRouter extends ObliqueRouter {
 				normalizeToStraightLineTolerance(newLine, tolerance.width);
 			}
 		}
-
 		/*
 		 * Normalization is not touching the end points, hence we'd like to handle this here.
 		 * If distance between start and end (which are the only points in a polyline) points
@@ -304,13 +283,11 @@ public class MessageRouter extends ObliqueRouter {
 				newLine.removePoint(0);
 			}
 		}
-
 		/*
 		 * Calculate connection anchor points and possibly some extra routing work to keep
 		 * the connection rectilinear if anchor points make it not rectilinear.
 		 */
 		rectilinearResetEndPointsToEdge(conn, newLine);
-
 		if(nestedRoutingDepth < 1 && !isValidRectilinearLine(conn, newLine)) {
 			routeLine(conn, ++nestedRoutingDepth, newLine);
 		}
@@ -463,10 +440,8 @@ public class MessageRouter extends ObliqueRouter {
 			conn.getTargetAnchor().getOwner().translateToAbsolute(target);
 			conn.translateToRelative(target);
 		}
-
 		Point lastRemovedFromSource = null;
 		Point lastRemovedFromTarget = null;
-
 		/*
 		 * Starting from the first point of polyline remove points that are contained
 		 * within the source shape until the first point outside is found.
@@ -479,7 +454,6 @@ public class MessageRouter extends ObliqueRouter {
 				lastRemovedFromSource = newLine.removePoint(i--);
 			}
 		}
-
 		/*
 		 * Starting from the end point of polyline remove points that are contained
 		 * within the target shape until the first point outside is found.
@@ -492,7 +466,6 @@ public class MessageRouter extends ObliqueRouter {
 				lastRemovedFromTarget = newLine.removePoint(i - 1);
 			}
 		}
-
 		/*
 		 * Handle the special case of all points removed from polyline.
 		 */
@@ -635,7 +608,6 @@ public class MessageRouter extends ObliqueRouter {
 			targetAnchorRelativeLocation = getAnchorOffRectangleDirection(line.getLastPoint(), target);
 			offTargetDirection = getOffShapeDirection(targetAnchorRelativeLocation);
 		}
-
 		/*
 		 * Convert the polyline to rectilinear. If the connection is rectilinear already then the
 		 * connection will remain as it is.
@@ -776,19 +748,16 @@ public class MessageRouter extends ObliqueRouter {
 			criteriaValue = tempCriteria;
 			position = PositionConstants.SOUTH;
 		}
-
 		tempCriteria = Math.abs(anchorPoint.x - rect.x);
 		if(tempCriteria < criteriaValue) {
 			criteriaValue = tempCriteria;
 			position = PositionConstants.WEST;
 		}
-
 		tempCriteria = Math.abs(anchorPoint.x - rect.x - rect.width);
 		if(tempCriteria < criteriaValue) {
 			criteriaValue = tempCriteria;
 			position = PositionConstants.EAST;
 		}
-
 		return position;
 	}
 

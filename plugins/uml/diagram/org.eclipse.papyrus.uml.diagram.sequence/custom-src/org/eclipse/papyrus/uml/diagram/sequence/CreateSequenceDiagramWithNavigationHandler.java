@@ -15,11 +15,9 @@ package org.eclipse.papyrus.uml.diagram.sequence;
 
 import org.eclipse.papyrus.infra.gmfdiag.navigation.CreateDiagramWithNavigationHandler;
 
-
 public class CreateSequenceDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
 
 	public CreateSequenceDiagramWithNavigationHandler() {
 		super(new CreateSequenceDiagramCommand(), new SequenceDiagramCreationCondition());
 	}
-
 }

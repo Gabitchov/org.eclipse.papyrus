@@ -70,5 +70,4 @@ public class SelfMessageLabelLocator extends LabelLocator {
 			super.relocate(target);
 		}
 	}
-
 }

@@ -87,15 +87,12 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	 */
 	@Override
 	public void activate() {
-
 		// retrieve the view and the element associated to the host edit part
 		final View hostView = (View)getHost().getModel();
 		hostSemanticElement = hostView.getElement();
-
 		// adds listener to the event broker, listening for the view and the semantic element associated to the host edit part
 		getDiagramEventBroker().addNotificationListener(hostView, this);
 		getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
-
 		// retrieve the list of linked view to listen parents
 		for(View linkedView : getLinkedViews()) {
 			getDiagramEventBroker().addNotificationListener(linkedView.eContainer(), this);
@@ -134,20 +131,16 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	public void deactivate() {
 		// retrieve the view and the element associated to the host edit part
 		final View hostView = (View)getHost().getModel();
-
 		// removes all notification listeners for the additional parent to listen
 		for(EObject parent : additionalParentToListen.keySet()) {
 			getDiagramEventBroker().removeNotificationListener(parent, this);
 		}
 		additionalParentToListen.clear();
 		additionalParentToListen = null;
-
 		getDiagramEventBroker().removeNotificationListener(hostView, this);
 		getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
-
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
-
 		super.deactivate();
 	}
 
@@ -156,7 +149,6 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	 */
 	protected final void deleteTimeElement() {
 		Command cmd = getDeleteElementCommand(false);
-
 		if(cmd.canExecute()) {
 			executeCommand(cmd);
 		}
@@ -167,7 +159,6 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	 */
 	protected final void deleteTimeView() {
 		Command cmd = getDeleteElementCommand(true);
-
 		if(cmd.canExecute()) {
 			executeCommand(cmd);
 		}
@@ -190,11 +181,9 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 		if(viewer instanceof DiagramGraphicalViewer) {
 			isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
 		}
-
 		if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)getHost(), false, false)) {
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
 		}
-
 		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)getHost()).getEditingDomain(), StringStatics.BLANK, options) {
 
 			@Override
@@ -347,7 +336,6 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
@@ -394,11 +382,9 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	protected void removeListenerForView(View oldView) {
 		// create a temp list of elements to delete (iterator concurrent modification..)
 		Map<EObject, List<View>> parentsToDelete = new HashMap<EObject, List<View>>();
-
 		for(EObject parent : additionalParentToListen.keySet()) {
 			List<View> parentViews = additionalParentToListen.get(parent);
 			if(parentViews.contains(oldView)) {
-
 				List<View> views = parentsToDelete.get(parent);
 				if(views == null) {
 					views = new ArrayList<View>();
@@ -415,13 +401,11 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	protected void removeListeners(List<View> impactedViews) {
 		// create a temp list of elements to delete (iterator concurrent modification..)
 		Map<EObject, List<View>> parentsToDelete = new HashMap<EObject, List<View>>();
-
 		// collect the elements to delete
 		for(View view : impactedViews) {
 			for(EObject parent : additionalParentToListen.keySet()) {
 				List<View> parentViews = additionalParentToListen.get(parent);
 				if(parentViews.contains(view)) {
-
 					List<View> views = parentsToDelete.get(parent);
 					if(views == null) {
 						views = new ArrayList<View>();
@@ -431,7 +415,6 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 				}
 			}
 		}
-
 		// do the job
 		for(EObject object : parentsToDelete.keySet()) {
 			List<View> views = parentsToDelete.get(object);
@@ -461,5 +444,4 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	public void forceRefresh() {
 		deleteTimeElementIfNeeded();
 	}
-
 }

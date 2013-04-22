@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -93,19 +92,12 @@ public class InteractionCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated-NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Interaction newElement = UMLFactory.eINSTANCE.createInteraction();
-		EObject elementToEdit = getElementToEdit();
-		if(elementToEdit instanceof Package) {
-			if(((Package)elementToEdit).getPackagedElements() != null) {
-				((Package)elementToEdit).getPackagedElements().add(newElement);
-			}
-			// the interaction will be created in a behavioredClassifier
-		} else if(elementToEdit instanceof BehavioredClassifier) {
-			((BehavioredClassifier)elementToEdit).setClassifierBehavior(newElement);
-		}
+		Package owner = (Package)getElementToEdit();
+		owner.getPackagedElements().add(newElement);
 		ElementInitializers.getInstance().init_Interaction_2001(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

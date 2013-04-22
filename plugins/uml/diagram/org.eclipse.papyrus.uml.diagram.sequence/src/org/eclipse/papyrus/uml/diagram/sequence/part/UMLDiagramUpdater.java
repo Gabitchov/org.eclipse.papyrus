@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeObservationHelper;
@@ -115,7 +116,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated NOT remove fake children for messages (DurationConstraintInMessageEditPart/DurationObservationEditPart)
 	 */
-	public static List getInteraction_2001SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getInteraction_2001SemanticChildren(View view) {
 		if(!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -165,7 +166,7 @@ public class UMLDiagramUpdater {
 	 * @generated NOT (update at each lifeline modification) Added code for manage ExecutionSpecification, handle TimeConstraintEditPart and
 	 *            DurationConstraintEditPart children, handle TimeObservationEditPart children
 	 */
-	public static List getLifeline_3001SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getLifeline_3001SemanticChildren(View view) {
 		if(!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -2478,4 +2479,38 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
+
+		/**
+		 * @generated
+		 */
+		public List<UMLNodeDescriptor> getSemanticChildren(View view) {
+			return UMLDiagramUpdater.getSemanticChildren(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getContainedLinks(View view) {
+			return UMLDiagramUpdater.getContainedLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getIncomingLinks(View view) {
+			return UMLDiagramUpdater.getIncomingLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getOutgoingLinks(View view) {
+			return UMLDiagramUpdater.getOutgoingLinks(view);
+		}
+	};
 }

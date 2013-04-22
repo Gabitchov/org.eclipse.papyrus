@@ -27,8 +27,8 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
@@ -67,17 +67,14 @@ public class CreateLocatedConnectionViewCommand extends CommonDeferredCreateConn
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info, IGraphicalEditPart sourceEditPart, IGraphicalEditPart targetEditPart) throws ExecutionException {
-
 		// If these are null, then the diagram's editparts may not
 		// have been refreshed yet.
 		Assert.isNotNull(sourceEditPart);
 		Assert.isNotNull(targetEditPart);
-
 		// use the String semanticHint to create a view
 		// modification in order to fix the bug
 		CreateConnectionViewRequest createRequest = new CreateConnectionViewRequest(viewDescriptor);
 		createConnectionCmd = getCreateCommand(createRequest, sourceEditPart, targetEditPart);
-
 		if(createConnectionCmd != null && createConnectionCmd.canExecute()) {
 			createConnectionCmd.execute();
 			if(element != null) {
@@ -115,21 +112,17 @@ public class CreateLocatedConnectionViewCommand extends CommonDeferredCreateConn
 		if(targetEditPart instanceof LifelineEditPart && targetLocation != null) {
 			newTargetEditPart = SequenceUtil.findPartToReconnectTo((LifelineEditPart)targetEditPart, targetLocation);
 		}
-
 		Assert.isNotNull(request);
 		Assert.isNotNull(sourceEditPart);
 		Assert.isNotNull(targetEditPart);
 		Assert.isNotNull(newSourceEditPart);
 		Assert.isNotNull(newTargetEditPart);
-
 		request.setSourceEditPart(sourceEditPart);
 		request.setTargetEditPart(targetEditPart);
-
 		request.setType(RequestConstants.REQ_CONNECTION_START);
 		// set source location
 		request.setLocation(sourceLocation);
 		newSourceEditPart.getCommand(request);
-
 		request.setType(RequestConstants.REQ_CONNECTION_END);
 		// set target location
 		request.setLocation(targetLocation);
@@ -211,8 +204,8 @@ public class CreateLocatedConnectionViewCommand extends CommonDeferredCreateConn
 		String sourceText = EMFCoreUtil.getQualifiedName(source, true);
 		EObject target = targetEditPart.resolveSemanticElement();
 		String targetText = EMFCoreUtil.getQualifiedName(target, true);
-		String txt = NLS.bind(Messages.DropError_UphillMessageTxt, new Object[]{ sourceText, targetText, delta });
-		NotificationBuilder notif = NotificationBuilder.createAsyncPopup(Messages.DropError_UphillMessageTitle, txt);
+		String txt = NLS.bind(CustomMessages.DropError_UphillMessageTxt, new Object[]{ sourceText, targetText, delta });
+		NotificationBuilder notif = NotificationBuilder.createAsyncPopup(CustomMessages.DropError_UphillMessageTitle, txt);
 		notif.setType(Type.WARNING);
 		notif.run();
 	}
@@ -230,10 +223,9 @@ public class CreateLocatedConnectionViewCommand extends CommonDeferredCreateConn
 		String sourceText = EMFCoreUtil.getQualifiedName(source, true);
 		EObject target = targetEditPart.resolveSemanticElement();
 		String targetText = EMFCoreUtil.getQualifiedName(target, true);
-		String txt = NLS.bind(Messages.DropError_DefaultTxt, sourceText, targetText);
-		NotificationBuilder notif = NotificationBuilder.createAsyncPopup(Messages.DropError_DefaultTitle, txt);
+		String txt = NLS.bind(CustomMessages.DropError_DefaultTxt, sourceText, targetText);
+		NotificationBuilder notif = NotificationBuilder.createAsyncPopup(CustomMessages.DropError_DefaultTitle, txt);
 		notif.setType(Type.ERROR);
 		notif.run();
 	}
-
 }

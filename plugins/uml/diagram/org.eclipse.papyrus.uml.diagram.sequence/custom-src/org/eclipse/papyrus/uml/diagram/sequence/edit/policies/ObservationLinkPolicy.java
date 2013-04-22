@@ -48,6 +48,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -108,9 +109,7 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 					return getReconnectTargetCommand((ReconnectRequest)request);
 				}
 			}
-
 		}
-
 		return null;
 	}
 
@@ -154,14 +153,10 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 		} else {
 			return null;
 		}
-
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_CreateCommand_Connection_Label);
-
 		CreateObservationLinkCommand cmd = new CreateObservationLinkCommand(((GraphicalEditPart)editPart).getEditingDomain(), "Create connection command", null);
-
 		cmd.setSourceEditPart(host);
 		cmd.setRequest(request);
-
 		cc.compose(cmd);
 		Command c = new ICommandProxy(cc);
 		request.setStartCommand(c);
@@ -171,33 +166,27 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getConnectionCompleteCommand(final CreateConnectionRequest request) {
 		EditPart sourceEditPart = request.getSourceEditPart();
-
 		if((sourceEditPart instanceof TimeObservationLabelEditPart) && !(getHost() instanceof LifelineEditPart)) {
 			return null;
 		} else if(sourceEditPart instanceof DurationObservationEditPart && !(getHost() instanceof AbstractMessageEditPart)) {
 			return null;
 		}
-
 		ICommandProxy proxy = (ICommandProxy)request.getStartCommand();
 		if(proxy == null) {
 			return null;
 		}
-
 		CompositeCommand result = new CompositeCommand("Add observation link command");
-
 		if(sourceEditPart instanceof TimeObservationLabelEditPart) {
 			result.add(new UpdateTimeObservationLinkTargetElementCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
 		} else if(sourceEditPart instanceof DurationObservationEditPart) {
 			result.add(new UpdateDurationObservationLinkTargetElementCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
 		}
-
 		//1:
 		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
 		Iterator commandItr = cc.iterator();
 		CreateObservationLinkCommand createConnectorViewCommand = (CreateObservationLinkCommand)commandItr.next();
 		createConnectorViewCommand.setSourceEditPart(request.getSourceEditPart());
 		createConnectorViewCommand.setTargetEditPart(request.getTargetEditPart());
-
 		result.add(cc);
 		return new ICommandProxy(result);
 	}
@@ -207,7 +196,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 		Command reconnectSourceCommand = super.getReconnectSourceCommand(request);
 		ICommandProxy proxy = (ICommandProxy)reconnectSourceCommand;
 		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
-
 		// update semantic model
 		if(request.getConnectionEditPart().getSource() instanceof TimeObservationLabelEditPart && getHost() instanceof TimeObservationLabelEditPart) {
 			TimeObservationLabelEditPart timeObservationLabelEditPart = (TimeObservationLabelEditPart)getHost();
@@ -222,7 +210,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			}
 			cc.add(new UpdateDurationObservationLinkSourceElementCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
 		}
-
 		return reconnectSourceCommand;
 	}
 
@@ -231,14 +218,12 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 		Command reconnectTargetCommand = super.getReconnectTargetCommand(request);
 		ICommandProxy proxy = (ICommandProxy)reconnectTargetCommand;
 		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
-
 		// update semantic model
 		if(request.getConnectionEditPart().getSource() instanceof TimeObservationLabelEditPart) {
 			cc.add(new UpdateTimeObservationLinkTargetElementCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
 		} else if(request.getConnectionEditPart().getSource() instanceof DurationObservationEditPart) {
 			cc.add(new UpdateDurationObservationLinkTargetElementCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
 		}
-
 		return proxy;
 	}
 
@@ -308,15 +293,12 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			if(sourceTolEP == hostPart) {
 				return CommandResult.newCancelledCommandResult();
 			}
-
 			View sourceView = (View)sourceTolEP.getModel();
 			DurationObservation sourceDurationObservation = (DurationObservation)sourceView.getElement();
-
 			DurationObservationEditPart targetDoEP = (DurationObservationEditPart)hostPart;
 			View targetView = (View)targetDoEP.getModel();
 			DurationObservation targetDurationObservation = (DurationObservation)targetView.getElement();
 			targetDurationObservation.getEvents().addAll(sourceDurationObservation.getEvents());
-
 			sourceDurationObservation.getEvents().clear();
 			return CommandResult.newOKCommandResult();
 		}
@@ -328,7 +310,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			}
 			return false;
 		}
-
 	}
 
 	public class UpdateDurationObservationLinkTargetElementCommand extends AbstractTransactionalCommand {
@@ -373,12 +354,10 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 		public boolean canExecute() {
 			if(hostPart instanceof ConnectionNodeEditPart) {
 				Map<String, Object> extendedData = request.getExtendedData();
-
 				if(hostPart instanceof AbstractMessageEditPart) {
 					AbstractMessageEditPart messageEP = (AbstractMessageEditPart)hostPart;
 					View view = (View)messageEP.getModel();
 					Message message = (Message)view.getElement();
-
 					if(message.getSendEvent() != null) {
 						extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, message.getSendEvent());
 					}
@@ -386,14 +365,12 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 						extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, message.getReceiveEvent());
 					}
 				}
-
 				if(extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION) && extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
 					return true;
 				}
 			}
 			return false;
 		}
-
 	}
 
 	private class UpdateTimeObservationLinkSourceElementCommand extends AbstractTransactionalCommand {
@@ -418,15 +395,12 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			if(sourceTolEP == hostPart) {
 				return CommandResult.newCancelledCommandResult();
 			}
-
 			View sourceView = (View)sourceTolEP.getModel();
 			TimeObservation sourceTimeObservation = (TimeObservation)sourceView.getElement();
-
 			TimeObservationLabelEditPart targetTolEP = (TimeObservationLabelEditPart)hostPart;
 			View targetView = (View)targetTolEP.getModel();
 			TimeObservation targetTimeObservation = (TimeObservation)targetView.getElement();
 			targetTimeObservation.setEvent(sourceTimeObservation.getEvent());
-
 			sourceTimeObservation.setEvent(null);
 			return CommandResult.newOKCommandResult();
 		}
@@ -464,7 +438,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			}
 			View view = (View)tolEP.getModel();
 			TimeObservation timeObservation = (TimeObservation)view.getElement();
-
 			// assign the occurrence specification
 			if(!occList.isEmpty()) {
 				for(OccurrenceSpecification occurrence : occList) {
@@ -481,7 +454,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 					break;
 				}
 			}
-
 			// reset request vertical location
 			if(timeObservation.getEvent() instanceof MessageOccurrenceSpecification) {
 				Point messageOccurrenceLoc = SequenceUtil.findLocationOfMessageOccurrence((GraphicalEditPart)hostPart, (MessageOccurrenceSpecification)timeObservation.getEvent());
@@ -490,7 +462,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 				Point executionOccurrenceLoc = SequenceUtil.findLocationOfExecutionOccurrence((GraphicalEditPart)hostPart, (ExecutionOccurrenceSpecification)timeObservation.getEvent());
 				setRequestLocation(executionOccurrenceLoc);
 			}
-
 			return CommandResult.newOKCommandResult();
 		}
 
@@ -498,7 +469,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			if(occurrenceLoc == null) {
 				return;
 			}
-
 			if(request instanceof CreateConnectionRequest) {
 				CreateConnectionRequest req = (CreateConnectionRequest)request;
 				req.setLocation(new Point(req.getLocation().x, occurrenceLoc.y));
@@ -517,7 +487,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 				} else if(request instanceof ReconnectRequest) {
 					location = ((ReconnectRequest)request).getLocation();
 				}
-
 				Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(location, (LifelineEditPart)hostPart);
 				// find an event near enough to create the
 				// constraint or observation
@@ -577,12 +546,9 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			c = new ObservationLink();
 			c.setType(SequenceUtil.OBSERVATION_LINK_TYPE);
 			c.setElement(null);
-
 			View newSourceView = (View)sourceEditPart.getModel();
 			c.setSource(newSourceView);
-
 			ViewUtil.insertChildView(newSourceView.getDiagram(), c, -1, true);
-
 			INodeEditPart ce = (INodeEditPart)sourceEditPart;
 			ConnectionAnchor sourceAnchor = ce.getSourceConnectionAnchor(request);
 			newSourceTerminal = ce.mapConnectionAnchorToTerminal(sourceAnchor);
@@ -598,9 +564,7 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 					c.setSourceAnchor(a);
 				}
 			}
-
 			initCompleteCommand();
-
 			return CommandResult.newOKCommandResult();
 		}
 
@@ -611,15 +575,13 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 				c.setTarget(newTargetView);
 				// 3:
 				INodeEditPart ce = (INodeEditPart)targetEditPart;
-
 				ConnectionAnchor targetAnchor = null;
 				if(ce instanceof LifelineEditPart) {
 					LifelineEditPart lifelinePart = (LifelineEditPart)ce;
-					targetAnchor = lifelinePart.getNodeFigure().getTargetConnectionAnchorAt(request.getLocation());
+					targetAnchor = LifelineEditPartUtil.getNodeFigure(lifelinePart).getTargetConnectionAnchorAt(request.getLocation());
 				} else {
 					targetAnchor = ce.getTargetConnectionAnchor(request);
 				}
-
 				String newTargetTerminal = ce.mapConnectionAnchorToTerminal(targetAnchor);
 				if(newTargetTerminal != null) {
 					if(newTargetTerminal.length() == 0) {
@@ -651,15 +613,11 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 					Dimension t = pointList.getPoint(i).getDifference(targetAnchor.getReferencePoint());
 					newBendpoints.add(new RelativeBendpoint(s.width, s.height, t.width, t.height));
 				}
-
 				RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
 				bendpoints.setPoints(newBendpoints);
 				c.setBendpoints(bendpoints);
-
 			}
-
 		}
-
 	}
 
 	public static class ObservationLink extends ConnectorImpl {
@@ -668,5 +626,4 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			super();
 		}
 	}
-
 }

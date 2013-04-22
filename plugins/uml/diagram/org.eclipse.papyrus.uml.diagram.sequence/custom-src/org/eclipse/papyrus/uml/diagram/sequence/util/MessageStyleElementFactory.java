@@ -15,7 +15,6 @@ import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;
 
-
 public class MessageStyleElementFactory implements ModelElementFactory {
 
 	public ModelElement createFromSource(Object sourceElement, DataContextElement context) {

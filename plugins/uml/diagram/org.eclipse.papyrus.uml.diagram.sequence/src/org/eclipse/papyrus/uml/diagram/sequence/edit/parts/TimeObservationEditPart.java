@@ -14,53 +14,46 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.transaction.TransactionalCommandStack;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.LayoutConstraint;
-import org.eclipse.gmf.runtime.notation.Location;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomExternalLabelPrimaryDragRoleEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.TimeObservationItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.TimeRelatedSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -98,29 +91,16 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		//installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new TimeObservationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		//installEditPolicy(DeleteTimeElementWithoutEventPolicy.KEY, new DeleteTimeElementWithoutEventPolicy());
+		installEditPolicy(DeleteTimeElementWithoutEventPolicy.KEY, new DeleteTimeElementWithoutEventPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	/**
-	 * This method creates a specific edit policy for time realted elements
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart#getPrimaryDragEditPolicy()
-	 * 
-	 * @return <code>EditPolicy</code>
-	 * @generated NOT
-	 */
-	@Override
-	public EditPolicy getPrimaryDragEditPolicy() {
-		return new TimeRelatedSelectionEditPolicy();
-	}
-
-	/**
-	 * @generated NOT use ExternalLabelPrimaryDragRoleEditPolicy
+	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
@@ -130,8 +110,14 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case TimeObservationLabelEditPart.VISUAL_ID:
 				case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
-					// use ExternalLabelPrimaryDragRoleEditPolicy
-					return new CustomExternalLabelPrimaryDragRoleEditPolicy();
+					return new BorderItemSelectionEditPolicy() {
+
+						protected List createSelectionHandles() {
+							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+							mh.setBorder(null);
+							return Collections.singletonList(mh);
+						}
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -166,12 +152,12 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	}
 
 	/**
-	 * @generated NOT use ExternalLabelPositionLocator
+	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if(borderItemEditPart instanceof TimeObservationLabelEditPart || borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
-			//use ExternalLabelPositionLocator
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
@@ -179,23 +165,16 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	}
 
 	/**
-	 * @generated NOT use correct dimensions
+	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		// use correct dimensions
-		/*
-		 * Bypass the preference mechanism which finally returns an incoherent constant hard written in NodePreferencePage.xpt templates.
-		 * Instead, we shall use the correct default size.
-		 */
-		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(TimeMarkElementFigure.TIME_MARK_LENGTH, 1);
-		//String prefElementId = "TimeObservation";
-		//IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		String prefElementId = "TimeObservation";
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		//FIXME: workaround for #154536
-		//result.getBounds().setSize(result.getPreferredSize());
-		NodeFigure result = new NodeFigure();
+		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
 
@@ -1017,82 +996,17 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
-	public class TimeMarkElementFigure extends Figure {
+	public class TimeMarkElementFigure extends PolylineShape {
 
 		/**
-		 * the length of the time mark
-		 * 
-		 * @generated NOT
-		 */
-		private static final int TIME_MARK_LENGTH = 20;
-
-		/**
-		 * The side where the figure currently is
-		 * 
-		 * @generated NOT
-		 */
-		private int sideOfFigure = PositionConstants.NONE;
-
-		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		public TimeMarkElementFigure() {
-			//this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
-			//this.addPoint(new Point(getMapMode().DPtoLP(20), getMapMode().DPtoLP(0)));
+			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
+			this.addPoint(new Point(getMapMode().DPtoLP(20), getMapMode().DPtoLP(0)));
 			this.setLocation(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
-		}
-
-		/**
-		 * Update the side of the lifeline where the figure lies
-		 * 
-		 * @param side
-		 *        side where the figure must be
-		 * @param newLocation
-		 *        the new location rectangle
-		 * @generated NOT
-		 */
-		public void setCurrentSideOfFigure(int side, Rectangle newLocation) {
-			// no effect if side has not changed or side is set to default one
-			if(sideOfFigure != side && !(PositionConstants.NONE == sideOfFigure && side == PositionConstants.EAST)) {
-				// mirror the label too
-				IGraphicalEditPart labelChild = getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
-				if(labelChild instanceof TimeObservationLabelEditPart) {
-					TimeObservationLabelEditPart label = (TimeObservationLabelEditPart)labelChild;
-					int labelWidth = label.getFigure().getMinimumSize().width;
-					if(label.getNotationView() instanceof Node) {
-						LayoutConstraint constraint = ((Node)label.getNotationView()).getLayoutConstraint();
-						// update model location constraint for persisting the mirror effect
-						if(constraint instanceof Location) {
-							int xLocation = ((Location)constraint).getX();
-							int mirroredLocation = -xLocation - labelWidth;
-							TransactionalEditingDomain dom = getEditingDomain();
-							org.eclipse.emf.common.command.Command setCmd = SetCommand.create(dom, constraint, NotationPackage.eINSTANCE.getLocation_X(), mirroredLocation);
-							TransactionalCommandStack stack = (TransactionalCommandStack)dom.getCommandStack();
-							Map<String, Boolean> options = new HashMap<String, Boolean>();
-							options.put(Transaction.OPTION_NO_NOTIFICATIONS, true);
-							options.put(Transaction.OPTION_NO_UNDO, true);
-							options.put(Transaction.OPTION_UNPROTECTED, true);
-							try {
-								stack.execute(setCmd, options);
-								// then, update graphically for short time effect
-								IBorderItemLocator locator = label.getBorderItemLocator();
-								Rectangle constrRect = ((ExternalLabelPositionLocator)locator).getConstraint();
-								constrRect.x = mirroredLocation;
-								locator.relocate(label.getFigure());
-							} catch (InterruptedException e) {
-								// log and skip update
-								UMLDiagramEditorPlugin.log.error(e);
-							} catch (RollbackException e) {
-								// log and skip update
-								UMLDiagramEditorPlugin.log.error(e);
-							}
-						}
-					}
-				}
-			}
-			sideOfFigure = side;
 		}
 	}
 
@@ -1126,38 +1040,5 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			return getParent().getCommand(request);
-		}
-		return super.getCommand(request);
-	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public void showSourceFeedback(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			getParent().showSourceFeedback(request);
-		}
-		super.showSourceFeedback(request);
-	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public void eraseSourceFeedback(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			getParent().eraseSourceFeedback(request);
-		}
-		super.eraseSourceFeedback(request);
 	}
 }

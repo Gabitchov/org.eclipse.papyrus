@@ -22,7 +22,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 
-
 public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 
 	// The area (to the left,right, top and bottom) near the border of the Coregion that is sensible to the mouse
@@ -42,7 +41,6 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 	 */
 	public CoRegionCombinedFragmentFigure() {
 		super();
-
 		// Init centralVerticalLine
 		centralVerticalLine = new NodeFigure();
 		centralVerticalLine.setParent(this);
@@ -66,7 +64,6 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 		graphics.drawLine(r.right() - 1, r.y + BRACKET_HEIGHT, r.right() - 1, r.y);
 		graphics.drawLine(r.right() - 1, r.bottom() - 1, r.right() - 1, r.bottom() - 1 - BRACKET_HEIGHT);
 		graphics.drawLine(r.x, r.bottom() - 1, r.x, r.bottom() - 1 - BRACKET_HEIGHT);
-
 		// Refresh the line
 		int endY = r.height + r.x;
 		Point pStart = new Point(r.x + r.width / 2, r.y + 1);
@@ -86,28 +83,24 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 				return true;
 			}
 		}
-
 		// check if point is at the bottom line of the figure
 		if(x > rect.x && x < rect.x + rect.width) {
 			if(y > rect.y + rect.height - COREGION_HIT_WIDTH && y < rect.y + rect.height + COREGION_HIT_WIDTH) {
 				return true;
 			}
 		}
-
 		// check if point is at the left line of the figure
 		if(x > rect.x - COREGION_HIT_WIDTH && x < rect.x + COREGION_HIT_WIDTH) {
 			if(y > rect.y && y < rect.y + rect.height) {
 				return true;
 			}
 		}
-
 		// check if point is at the right line of the figure
 		if(x > rect.x + rect.width - COREGION_HIT_WIDTH && x < rect.x + rect.width + COREGION_HIT_WIDTH) {
 			if(y > rect.y && y < rect.y + rect.height) {
 				return true;
 			}
 		}
-
 		for(IFigure child : (List<IFigure>)getChildren()) {
 			Point local = new Point(x, y);
 			translateFromParent(local);
@@ -115,7 +108,6 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -125,5 +117,4 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 	public NodeFigure getCentralVerticalLine() {
 		return centralVerticalLine;
 	}
-
 }

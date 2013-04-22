@@ -13,19 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ActionExecutionSpecificationCreateCommand;
@@ -37,9 +37,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrai
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DestructionOccurrenceSpecificationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationConstraintCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingReorientCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.LifelineCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message3CreateCommand;
@@ -56,11 +53,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageCreateComma
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.StateInvariantCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.TimeConstraintCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.TimeObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
@@ -69,9 +64,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * @generated
@@ -88,52 +80,74 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	/**
 	 * Generated not for add lifelines on lifeline
 	 * 
-	 * @generated NOT
+	 * @generated
 	 *            (update at each lifeline modification) add lifelines, add DurationObservation/Constraint
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.ActionExecutionSpecification_3006 == req.getElementType()) {
-			return getGEFWrapper(new ActionExecutionSpecificationCreateCommand(req));
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return super.getCreateCommand(req);
 		}
-		if(UMLElementTypes.BehaviorExecutionSpecification_3003 == req.getElementType()) {
-			return getGEFWrapper(new BehaviorExecutionSpecificationCreateCommand(req));
-		}
-		if(UMLElementTypes.StateInvariant_3017 == req.getElementType()) {
-			return getGEFWrapper(new StateInvariantCreateCommand(req));
-		}
-		if(UMLElementTypes.CombinedFragment_3018 == req.getElementType()) {
-			return getGEFWrapper(new CombinedFragment2CreateCommand(req));
-		}
-		if(UMLElementTypes.TimeConstraint_3019 == req.getElementType()) {
-			return getGEFWrapper(new TimeConstraintCreateCommand(req));
-		}
-		//Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826		
-		//		if(UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
-		//			return getGEFWrapper(new TimeObservationCreateCommand(req));
-		//		}
-		if(UMLElementTypes.DurationConstraint_3021 == req.getElementType()) {
-			return getGEFWrapper(new DurationConstraintCreateCommand(req));
-		}
-		if(UMLElementTypes.DestructionOccurrenceSpecification_3022 == req.getElementType()) {
-			return getGEFWrapper(new DestructionOccurrenceSpecificationCreateCommand(req));
-		}
-		//add lifelines
-		if(UMLElementTypes.Lifeline_3001 == req.getElementType()) {
-			LifelineEditPart lifelineEditPart = (LifelineEditPart)getHost();
-			if(lifelineEditPart.isInlineCapability()) {
-				LifelineCreateCommand cmd = new LifelineCreateCommand(req);
-				cmd.setAvailableProperties(lifelineEditPart.getAvailableProperties());
-				return getGEFWrapper(cmd);
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
 			}
 		}
-		//add DurationObservation/Constraint
-		if(UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
+		if(UMLElementTypes.ActionExecutionSpecification_3006 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new ActionExecutionSpecificationCreateCommand(req));
+		}
+		if(UMLElementTypes.BehaviorExecutionSpecification_3003 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new BehaviorExecutionSpecificationCreateCommand(req));
+		}
+		if(UMLElementTypes.StateInvariant_3017 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new StateInvariantCreateCommand(req));
+		}
+		if(UMLElementTypes.CombinedFragment_3018 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new CombinedFragment2CreateCommand(req));
+		}
+		if(UMLElementTypes.TimeConstraint_3019 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new TimeConstraintCreateCommand(req));
+		}
+		if(UMLElementTypes.TimeObservation_3020 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new TimeObservationCreateCommand(req));
+		}
+		if(UMLElementTypes.DurationConstraint_3021 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new DurationConstraintCreateCommand(req));
 		}
-		//		Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826			
-		//		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
-		//			return getGEFWrapper(new DurationObservationCreateCommand(req));
-		//		}
+		if(UMLElementTypes.DestructionOccurrenceSpecification_3022 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new DestructionOccurrenceSpecificationCreateCommand(req));
+		}
 		return super.getCreateCommand(req);
 	}
 
@@ -147,20 +161,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
 			if(deleteCommand != null) {
-				Command command = new ICommandProxy(deleteCommand);
-				command = LifelineMessageCreateHelper.restoreLifelineOnDelete(command, (LifelineEditPart)getHost());
-				CompoundCommand deleteElementsCommand = new CompoundCommand();
-				deleteElementsCommand.add(command);
-				if(getHost() instanceof LifelineEditPart) {
-					LifelineEditPart ep = (LifelineEditPart)getHost();
-					SequenceDeleteHelper.destroyMessageEvents(deleteElementsCommand, ep, req.getEditingDomain());
-					List children = ep.getChildren();
-					for(Object obj : children)
-						if(obj instanceof AbstractExecutionSpecificationEditPart) {
-							SequenceDeleteHelper.destroyMessageEvents(deleteElementsCommand, (AbstractExecutionSpecificationEditPart)obj, req.getEditingDomain());
-						}
-				}
-				return deleteElementsCommand;
+				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -175,79 +176,151 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 *            (update at each lifeline modification) add general ordering
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4003 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return null;
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.Message_4003 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4004 == req.getElementType()) {
+		if(UMLElementTypes.Message_4004 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4005 == req.getElementType()) {
+		if(UMLElementTypes.Message_4005 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_4006 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4007 == req.getElementType()) {
+		if(UMLElementTypes.Message_4007 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4008 == req.getElementType()) {
+		if(UMLElementTypes.Message_4008 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4009 == req.getElementType()) {
+		if(UMLElementTypes.Message_4009 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_4010 == baseElementType) {
 			return null;
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_4011 == baseElementType) {
 			return null;
-		}
-		//add general ordering
-		if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
-			return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 *            (update at each lifeline modification) add general ordering
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4003 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return null;
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.Message_4003 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4004 == req.getElementType()) {
+		if(UMLElementTypes.Message_4004 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4005 == req.getElementType()) {
+		if(UMLElementTypes.Message_4005 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_4006 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4007 == req.getElementType()) {
+		if(UMLElementTypes.Message_4007 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4008 == req.getElementType()) {
+		if(UMLElementTypes.Message_4008 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Message_4009 == req.getElementType()) {
+		if(UMLElementTypes.Message_4009 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_4010 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_4011 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		//add general ordering
-		if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
-			return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -256,7 +329,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * Returns command to reorient EClass based link. New link target or source should be the domain
 	 * model element associated with this node.
 	 * 
-	 * @generated NOT
+	 * @generated
 	 *            (update at each lifeline modification) add general ordering
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
@@ -275,13 +348,6 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			return getGEFWrapper(new Message6ReorientCommand(req));
 		case Message7EditPart.VISUAL_ID:
 			return getGEFWrapper(new Message7ReorientCommand(req));
-			//add general ordering
-		case GeneralOrderingEditPart.VISUAL_ID:
-			if(req.getNewRelationshipEnd() instanceof OccurrenceSpecification) {
-				return getGEFWrapper(new GeneralOrderingReorientCommand(req));
-			} else {
-				return null;
-			}
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

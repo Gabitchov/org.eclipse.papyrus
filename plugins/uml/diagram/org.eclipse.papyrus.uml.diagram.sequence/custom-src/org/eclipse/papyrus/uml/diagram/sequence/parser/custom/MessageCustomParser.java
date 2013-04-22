@@ -52,11 +52,9 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 	public String getPrintString(IAdaptable adapter, int flags) {
 		Object obj = adapter.getAdapter(EObject.class);
 		String result = null;
-
 		if(obj instanceof Message) {
 			Message message = (Message)obj;
 			NamedElement signature = message.getSignature();
-
 			if(signature instanceof Operation) {
 				Operation operation = (Operation)signature;
 				if(MessageSort.REPLY_LITERAL.equals(message.getMessageSort())) {
@@ -71,13 +69,11 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 			} else if(signature != null) {
 				result = signature.getName();
 			}
-
 			// If the String is empty, we add the name of the message
 			if(result == null || result.equals("")) {
 				result = message.getName();
 			}
 		}
-
 		return result;
 	}
 
@@ -92,7 +88,6 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 			semanticElementsBeingParsed.add(message);
 			NamedElement signature = message.getSignature();
 			semanticElementsBeingParsed.add(signature);
-
 			if(signature instanceof Operation) {
 				for(Parameter parameter : ((Operation)signature).getOwnedParameters()) {
 					semanticElementsBeingParsed.add(parameter);
@@ -103,9 +98,7 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 					semanticElementsBeingParsed.add(property);
 				}
 			}
-
 		}
 		return semanticElementsBeingParsed;
 	}
-
 }

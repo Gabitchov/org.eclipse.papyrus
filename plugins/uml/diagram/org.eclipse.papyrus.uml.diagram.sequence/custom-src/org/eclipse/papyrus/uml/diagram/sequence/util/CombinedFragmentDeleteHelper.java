@@ -56,7 +56,6 @@ public class CombinedFragmentDeleteHelper {
 
 		public Object getEditHelperContext() {
 			IClientContext context = getClientContext();
-
 			if(context == null) {
 				return getElementToEdit();
 			} else {
@@ -128,7 +127,6 @@ public class CombinedFragmentDeleteHelper {
 				for(CombinedFragmentEditPart cef : keepParts) {
 					View view = cef.getNotationView();
 					op.getNotationView().getPersistedChildren().add(view);
-
 					Bounds bounds = (Bounds)((Shape)cef.getNotationView()).getLayoutConstraint();
 					Rectangle absolute = getAbsoluteBounds(cef);
 					bounds.setX(absolute.x() - parentBounds.x());
@@ -144,10 +142,8 @@ public class CombinedFragmentDeleteHelper {
 					View view = cef.getNotationView();
 					op.getNotationView().getPersistedChildren().add(view);
 					Bounds bounds = (Bounds)((Shape)cef.getNotationView()).getLayoutConstraint();
-
 					Rectangle absolute = getAbsoluteBounds(cef);
 					absolute.performTranslate(-b.x, -b.y);
-
 					bounds.setX(absolute.x() - 5);
 					bounds.setY(absolute.y() - 6);
 				}
@@ -263,18 +259,15 @@ public class CombinedFragmentDeleteHelper {
 		}
 	}
 
-
 	public static ICommand createDestroyElementCommand(CombinedFragment cf, TransactionalEditingDomain transactionalEditingDomain, IElementEditService provider, DestroyElementRequest req, ICommand deleteCommand, CombinedFragmentEditPart host) {
 		CompositeTransactionalCommand deleteAll = new CompositeTransactionalCommand(transactionalEditingDomain, null);
 		deleteAll.add(deleteCommand);
-
 		CompositeTransactionalCommand deleteCfOnly = new CompositeTransactionalCommand(transactionalEditingDomain, null);
 		{
 			// remove children from operands and append to parent combined fragment
 			for(InteractionOperand op : cf.getOperands()) {
 				deleteCfOnly.add(new MoveOperandFragmentsCommand(host, cf, op, new EditRequest(transactionalEditingDomain, cf)));
 			}
-
 			deleteCfOnly.add(new DeleteCombinedFragmentCommand(transactionalEditingDomain, provider, req));
 		}
 		return new SelectAndDeleteCommand(deleteAll, deleteCfOnly, new String[]{ "Delete all", "Keep contents" });
@@ -288,14 +281,12 @@ public class CombinedFragmentDeleteHelper {
 			// Create the delete view commands
 			SequenceDeleteHelper.deleteView(deleteAll, elements, transactionalEditingDomain);
 		}
-
 		CompositeTransactionalCommand deleteCfOnly = new CompositeTransactionalCommand(transactionalEditingDomain, null);
 		{
 			// remove children from operands and append to parent combined fragment
 			for(InteractionOperand op : cf.getOperands()) {
 				deleteCfOnly.add(new MoveOperandFragmentsCommand(host, cf, op, new EditRequest(transactionalEditingDomain, cf)));
 			}
-
 			// delete operands from combined fragment
 			for(Element element : cf.getOperands()) {
 				SequenceDeleteHelper.deleteView(deleteCfOnly, element, transactionalEditingDomain);
@@ -315,12 +306,10 @@ public class CombinedFragmentDeleteHelper {
 		if(children != null && children.size() > 0) {
 			for(Object o : children) {
 				EditPart p = (EditPart)o;
-
 				Object model = p.getModel();
 				if(model != null && model instanceof View && m.equals(((View)model).getElement())) {
 					return p;
 				}
-
 				EditPart res = findEditPartByModel(p, m);
 				if(res != null) {
 					return res;

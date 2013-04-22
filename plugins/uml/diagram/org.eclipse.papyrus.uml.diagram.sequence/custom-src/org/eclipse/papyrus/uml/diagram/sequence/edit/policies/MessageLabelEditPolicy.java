@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomMessagePreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.MessagePreferencePage;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
@@ -44,11 +45,9 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-
 public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	public static interface ICustomMessageLabel {
-
 	}
 
 	private DefaultValueListener defaultValueListener;
@@ -126,7 +125,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return;
 		}
 		hookMessageSignature(e.getSignature());
-
 		EList<ValueSpecification> argments = e.getArguments();
 		for(ValueSpecification v : argments) {
 			if(v instanceof EObject) {
@@ -146,7 +144,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			for(Parameter parameter : operation.getOwnedParameters()) {
 				getDiagramEventBroker().addNotificationListener(parameter, this);
 				getDiagramEventBroker().addNotificationListener(parameter.getDefaultValue(), defaultValueListener);
-
 				// should also add this element as a listener of parameter type
 				getDiagramEventBroker().addNotificationListener(parameter.getType(), this);
 			}
@@ -156,7 +153,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			for(Property property : signal.getOwnedAttributes()) {
 				getDiagramEventBroker().addNotificationListener(property, this);
 				getDiagramEventBroker().addNotificationListener(property.getDefaultValue(), defaultValueListener);
-
 				// should also add this element as a listener of parameter type
 				getDiagramEventBroker().addNotificationListener(property.getType(), this);
 			}
@@ -172,7 +168,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return;
 		}
 		unhookMessageSignature(e.getSignature());
-
 		EList<ValueSpecification> argments = e.getArguments();
 		for(ValueSpecification v : argments) {
 			if(v instanceof EObject) {
@@ -191,7 +186,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			for(Parameter parameter : operation.getOwnedParameters()) {
 				getDiagramEventBroker().removeNotificationListener(parameter, this);
 				getDiagramEventBroker().removeNotificationListener(parameter.getDefaultValue(), defaultValueListener);
-
 				// remove parameter type listener
 				getDiagramEventBroker().removeNotificationListener(parameter.getType(), this);
 			}
@@ -201,7 +195,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			for(Property property : signal.getOwnedAttributes()) {
 				getDiagramEventBroker().removeNotificationListener(property, this);
 				getDiagramEventBroker().removeNotificationListener(property.getDefaultValue(), defaultValueListener);
-
 				// remove parameter type listener
 				getDiagramEventBroker().removeNotificationListener(property.getType(), this);
 			}
@@ -224,11 +217,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 			return;
 		}
-
 		NamedElement sig = e.getSignature();
 		if(sig instanceof Operation) {
 			Operation operation = (Operation)sig;
-
 			if(object.equals(operation)) {
 				notifyOperationChanged(operation, notification);
 			} else if(isParameter(object, operation)) {
@@ -251,7 +242,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				}
 			}
 		}
-
 		if(isMaskManagedAnnotation(object)) {
 			refreshDisplay();
 		} else if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
@@ -301,7 +291,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			break;
 		case UMLPackage.PROPERTY__TYPE:
 			parameterListChange(notification);
-
 			break;
 		default:
 			// does nothing in other cases
@@ -340,7 +329,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			break;
 		case UMLPackage.PARAMETER__TYPE:
 			parameterListChange(notification);
-
 			break;
 		default:
 			// does nothing in other cases
@@ -392,10 +380,8 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 			}
 			refreshDisplay();
-
 		default:
 			break;
-
 		}
 	}
 
@@ -450,7 +436,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		}
 	}
 
-
 	private void notifySignalChanged(Signal signal, Notification notification) {
 		switch(notification.getFeatureID(Signal.class)) {
 		case UMLPackage.SIGNAL__NAME:
@@ -479,7 +464,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(!(object instanceof Type)) {
 			return false;
 		}
-
 		for(Parameter parameter : operation.getOwnedParameters()) {
 			if(object.equals(parameter.getType())) {
 				return true;
@@ -500,7 +484,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(!(object instanceof Parameter)) {
 			return false;
 		}
-
 		return operation.getOwnedParameters().contains(object);
 	}
 
@@ -508,7 +491,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(!(object instanceof Type)) {
 			return false;
 		}
-
 		for(Property property : signal.getOwnedAttributes()) {
 			if(object.equals(property.getType())) {
 				return true;
@@ -521,7 +503,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(!(object instanceof Property)) {
 			return false;
 		}
-
 		return signal.getOwnedAttributes().contains(object);
 	}
 
@@ -548,7 +529,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			masks.put(ICustomAppearence.DISP_DERIVE, "Parameters Value");
 			masks.put(ICustomAppearence.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
 			masks.put(ICustomAppearence.DISP_MOFIFIERS, "Modifiers");
-
 		}
 
 		/**
@@ -577,9 +557,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			if(editPart instanceof LabelEditPart) {
 				editPart = (GraphicalEditPart)editPart.getParent();
 			}
-
-			int displayValue = MessagePreferencePage.DEFAULT_LABEL_DISPLAY;
-
+			int displayValue = CustomMessagePreferencePage.DEFAULT_LABEL_DISPLAY;
 			IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 			if(policy != null) {
 				displayValue = policy.getCurrentDisplayValue();
@@ -589,7 +567,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				return null;
 			}
 			NamedElement signature = e.getSignature();
-
 			if(signature instanceof Operation) {
 				return OperationUtil.getCustomLabel(e, (Operation)signature, displayValue);
 			} else if(signature instanceof Signal) {
@@ -597,7 +574,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			} else if(signature != null) {
 				return signature.getName();
 			}
-
 			// signature is null
 			return getMessageLabel(e, displayValue);
 		}
@@ -605,7 +581,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		private String getMessageLabel(Message e, int style) {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(e.getName());
-
 			// parameters : '(' parameter-list ')'
 			EList<ValueSpecification> arguments = e.getArguments();
 			if(arguments.size() > 0 && (style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_DERIVE) != 0) {
@@ -614,7 +589,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					if(i > 0) {
 						buffer.append(", ");
 					}
-
 					ValueSpecification arg = arguments.get(i);
 					//type
 					if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
@@ -633,7 +607,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 							showEqualMark = true;
 						}
 					}
-
 					// value
 					if((style & ICustomAppearence.DISP_DERIVE) != 0) {
 						String value = ValueSpecificationUtil.getSpecificationValue(arg);
@@ -672,19 +645,16 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		private static String getCustomPropertyLabel(Message e, Property property, int style) {
 			StringBuffer buffer = new StringBuffer();
 			// visibility
-
 			buffer.append(" ");
 			if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
 				buffer.append(NamedElementUtil.getVisibilityAsSign(property));
 			}
-
 			// derived property
 			if((style & ICustomAppearence.DISP_DERIVE) != 0) {
 				if(property.isDerived()) {
 					buffer.append("/");
 				}
 			}
-
 			boolean showEqualMark = false;
 			// name
 			if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
@@ -695,7 +665,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				}
 				buffer.append(name);
 			}
-
 			if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
 				// type
 				if(property.getType() != null) {
@@ -705,13 +674,11 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				}
 				showEqualMark = true;
 			}
-
 			if((style & ICustomAppearence.DISP_MULTIPLICITY) != 0) {
 				// multiplicity -> do not display [1]
 				String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 				buffer.append(multiplicity);
 			}
-
 			if((style & ICustomAppearence.DISP_DERIVE) != 0) {
 				String value = getValue(e, property);
 				if(value != null) {
@@ -729,7 +696,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					buffer.append(property.getDefault());
 				}
 			}
-
 			if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
 				boolean multiLine = ((style & ICustomAppearence.DISP_MULTI_LINE) != 0);
 				// property modifiers
@@ -738,11 +704,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					if(multiLine) {
 						buffer.append("\n");
 					}
-
 					if(!buffer.toString().endsWith(" ")) {
 						buffer.append(" ");
 					}
-
 					buffer.append(modifiers);
 				}
 			}
@@ -775,24 +739,20 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		public static String getCustomLabel(Message e, Signal signal, int style) {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(" "); // adds " " first for correct display considerations
-
 			// visibility
 			if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
 				buffer.append(NamedElementUtil.getVisibilityAsSign(signal));
 			}
-
 			// name
 			if((style & ICustomAppearence.DISP_NAME) != 0) {
 				buffer.append(" ");
 				buffer.append(trimToEmpty(signal.getName()));
 			}
-
 			// 
 			// parameters : '(' parameter-list ')'
 			buffer.append("(");
 			buffer.append(getPropertiesAsString(e, signal, style));
 			buffer.append(")");
-
 			return buffer.toString();
 		}
 
@@ -828,13 +788,11 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
 				buffer.append(NamedElementUtil.getVisibilityAsSign(parameter));
 			}
-
 			// direction property
 			if((style & ICustomAppearence.DISP_PARAMETER_DIRECTION) != 0) {
 				buffer.append(" ");
 				buffer.append(parameter.getDirection().getLiteral());
 			}
-
 			boolean showEqualMark = false;
 			// name
 			if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
@@ -845,7 +803,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				}
 				buffer.append(name);
 			}
-
 			if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
 				// type
 				if(parameter.getType() != null) {
@@ -855,13 +812,11 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				}
 				showEqualMark = true;
 			}
-
 			if((style & ICustomAppearence.DISP_PARAMETER_MULTIPLICITY) != 0) {
 				// multiplicity -> do not display [1]
 				String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(parameter);
 				buffer.append(multiplicity);
 			}
-
 			if((style & ICustomAppearence.DISP_DERIVE) != 0) {
 				String value = getValue(e, paramIndex, parameter);
 				if(value != null) {
@@ -879,7 +834,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					buffer.append(parameter.getDefault());
 				}
 			}
-
 			if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
 				boolean multiLine = ((style & ICustomAppearence.DISP_MULTI_LINE) != 0);
 				// property modifiers
@@ -908,29 +862,24 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		public static String getCustomLabel(Message e, Operation operation, int style) {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(" "); // adds " " first for correct display considerations
-
 			// visibility
 			if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
 				buffer.append(NamedElementUtil.getVisibilityAsSign(operation));
 			}
-
 			// name
 			if((style & ICustomAppearence.DISP_NAME) != 0) {
 				buffer.append(" ");
 				buffer.append(trimToEmpty(operation.getName()));
 			}
-
 			// 
 			// parameters : '(' parameter-list ')'
 			buffer.append("(");
 			buffer.append(getParametersAsString(e, operation, style));
 			buffer.append(")");
-
 			// return type
 			if((style & ICustomAppearence.DISP_RT_TYPE) != 0) {
 				buffer.append(getReturnTypeAsString(operation, style));
 			}
-
 			// modifiers
 			if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
 				String modifiers = getModifiersAsString(operation);
@@ -951,7 +900,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		private static String getModifiersAsString(Operation operation) {
 			StringBuffer buffer = new StringBuffer();
 			boolean needsComma = false;
-
 			// Return parameter modifiers
 			Parameter returnParameter = OperationUtil.getReturnParameter(operation);
 			if(returnParameter != null) {
@@ -960,7 +908,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					buffer.append("nonunique");
 					needsComma = true;
 				}
-
 				// return parameter has ordered values
 				if(returnParameter.isOrdered()) {
 					if(needsComma) {
@@ -970,7 +917,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					needsComma = true;
 				}
 			}
-
 			// is the operation a query ?
 			if(operation.isQuery()) {
 				if(needsComma) {
@@ -979,7 +925,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				buffer.append("query");
 				needsComma = true;
 			}
-
 			// is the operation redefining another operation ?
 			Iterator<Operation> it = operation.getRedefinedOperations().iterator();
 			while(it.hasNext()) {
@@ -991,7 +936,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				buffer.append(currentOperation.getName());
 				needsComma = true;
 			}
-
 			// has the operation a constraint ?
 			Iterator<Constraint> it2 = operation.getOwnedRules().iterator();
 			while(it2.hasNext()) {
@@ -1004,7 +948,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				}
 				needsComma = true;
 			}
-
 			return buffer.toString();
 		}
 
@@ -1019,22 +962,18 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			boolean displayType = ((style & ICustomAppearence.DISP_RT_TYPE) != 0);
 			boolean displayMultiplicity = ((style & ICustomAppearence.DISP_RT_MULTIPLICITY) != 0);
 			StringBuffer label = new StringBuffer("");
-
 			// Retrieve the return parameter (assume to be unique if defined)
 			Parameter returnParameter = getReturnParameter(operation);
 			// Create the string for the return type
 			if(returnParameter == null) {
 				// no-operation: label = ""
-
 			} else if(!displayType && !displayMultiplicity) {
 				// no-operation: label = ""
-
 			} else {
 				label.append(": ");
 				if(displayType) {
 					label.append(TypedElementUtil.getTypeAsString(returnParameter));
 				}
-
 				if(displayMultiplicity) {
 					label.append(MultiplicityElementUtil.getMultiplicityAsString(returnParameter));
 				}
@@ -1050,7 +989,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		private static Parameter getReturnParameter(Operation operation) {
 			// Retrieve the return parameter (assume to be unique if defined)
 			Parameter returnParameter = null;
-
 			Iterator<Parameter> it = operation.getOwnedParameters().iterator();
 			while((returnParameter == null) && (it.hasNext())) {
 				Parameter parameter = it.next();

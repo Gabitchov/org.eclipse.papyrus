@@ -11,7 +11,6 @@ public class InteractionOperatorKindCompatibleMapping {
 	 * Set the true if the kind of InteractionOperator supports multi operand
 	 */
 	private static final Map<InteractionOperatorKind, Boolean> map = new HashMap<InteractionOperatorKind, Boolean>();
-
 	static {
 		map.put(InteractionOperatorKind.SEQ_LITERAL, true);
 		map.put(InteractionOperatorKind.ALT_LITERAL, true);
@@ -37,5 +36,4 @@ public class InteractionOperatorKindCompatibleMapping {
 		Boolean multiOperandSupport = map.get(kind);
 		return multiOperandSupport == null ? false : multiOperandSupport;
 	}
-
 }

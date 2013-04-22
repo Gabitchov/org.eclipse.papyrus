@@ -25,10 +25,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
-import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -97,18 +95,16 @@ public class ActionExecutionSpecificationCreateCommand extends EditElementComman
 	/**
 	 * To add the lifeline to the attribute covered of the AES
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// Get the model container
-		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
-		// Create the action execution specification
-		ActionExecutionSpecification aes = (ActionExecutionSpecification)CommandHelper.doCreateExecutionSpecification(UMLFactory.eINSTANCE.createActionExecutionSpecification(), (Lifeline)getElementToEdit(), modelContainer);
-		//TODO : add the corresponding action
-		doConfigure(aes, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(aes);
-		return CommandResult.newOKCommandResult(aes);
+		ActionExecutionSpecification newElement = UMLFactory.eINSTANCE.createActionExecutionSpecification();
+		Interaction owner = (Interaction)getElementToEdit();
+		owner.getFragments().add(newElement);
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**

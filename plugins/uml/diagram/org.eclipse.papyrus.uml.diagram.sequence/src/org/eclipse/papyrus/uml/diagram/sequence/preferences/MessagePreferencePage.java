@@ -31,6 +31,16 @@ import org.eclipse.swt.widgets.Group;
  */
 public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 
+	public static final String LABEL_DISPLAY_PREFERENCE = PackageEditPart.MODEL_ID + "_Message.label.display";
+
+	public static final int DEFAULT_LABEL_DISPLAY = ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_PARAMETER_NAME | ICustomAppearence.DISP_PARAMETER_TYPE | ICustomAppearence.DISP_RT_TYPE;
+
+	/** current operation display style */
+	private int displayValue = getPreferenceStore().getInt(LABEL_DISPLAY_PREFERENCE);
+
+	/** buttons to select the display kind for the label of */
+	private Button dispParamDir, dispParamMod, dispParamName, dispVis, dispParamType, dispReturnType, dispParamMul, dispParamDef, dispName, dispMod, dispParamVal;
+
 	/**
 	 * @generated
 	 */
@@ -47,23 +57,10 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		return UMLDiagramEditorPlugin.ID;
 	}
 
-	/**
-	 * @generated
-	 */
 	public static void initDefaults(IPreferenceStore store) {
 		// default for label display
 		store.setDefault(LABEL_DISPLAY_PREFERENCE, DEFAULT_LABEL_DISPLAY);
 	}
-
-	public static final String LABEL_DISPLAY_PREFERENCE = PackageEditPart.MODEL_ID + "_Message.label.display";
-
-	public static final int DEFAULT_LABEL_DISPLAY = ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_PARAMETER_NAME | ICustomAppearence.DISP_PARAMETER_TYPE | ICustomAppearence.DISP_RT_TYPE;
-
-	/** current operation display style */
-	private int displayValue = getPreferenceStore().getInt(LABEL_DISPLAY_PREFERENCE);
-
-	/** buttons to select the display kind for the label of */
-	private Button dispParamDir, dispParamMod, dispParamName, dispVis, dispParamType, dispReturnType, dispParamMul, dispParamDef, dispName, dispMod, dispParamVal;
 
 	/**
 	 * Creates the group and check boxes to choose the kind of display

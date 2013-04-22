@@ -36,7 +36,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -259,9 +258,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure) {
-			((NodeFigure)primaryShape).setLineWidth(width);
-		} else if(primaryShape instanceof Shape) {
+		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -1134,17 +1131,5 @@ public class CommentEditPart extends AbstractCommentEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
-
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshTransparency();
-	}
-
-	protected void refreshTransparency() {
-		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-		if(style != null) {
-			setTransparency(style.getTransparency());
-		}
 	}
 }

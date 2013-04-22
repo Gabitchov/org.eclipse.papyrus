@@ -49,6 +49,7 @@ import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
@@ -220,7 +221,7 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(240, 200));
 
 		Interaction interaction = (Interaction)getRootSemanticModel();
-		LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		CustomLifelineEditPart lifeline1 = (CustomLifelineEditPart)getRootEditPart().getChildren().get(0);
 		Classifier p = interaction.getNestedClassifier("Person");
 		changeRepresents(lifeline1, p.getFeature("company"));
 		assertTrue(CREATION + INITIALIZATION_TEST, !lifeline1.isInlineMode());

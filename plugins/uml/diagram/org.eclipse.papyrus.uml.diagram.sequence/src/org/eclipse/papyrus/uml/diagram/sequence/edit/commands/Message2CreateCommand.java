@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.commands;
 
-import java.util.Map;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -27,27 +25,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageSort;
 
 /**
  * @generated
  */
 public class Message2CreateCommand extends EditElementCommand {
-
-	/**
-	 * Message for create link error
-	 */
-	private static final String CREATE_LINK_ERROR_MSG = "Invalid arguments in create link command"; //$NON-NLS-1$
-
-	/**
-	 * Message for no container error
-	 */
-	private static final String NO_CONTAINER_ERROR_MSG = "There is now valid container for events"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -77,7 +62,7 @@ public class Message2CreateCommand extends EditElementCommand {
 	/**
 	 * Add a condition on the MOS container
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean canExecute() {
@@ -97,39 +82,20 @@ public class Message2CreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		if(getSource() != null && getTarget() != null) {
-			if(!CommandHelper.hasValidContainer(getRequest())) {
-				return false;
-			}
-		}
-		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4004(getContainer(), getSource(), getTarget())) {
-			return false;
-		}
-		return MessageConnectionHelper.canExist(MessageSort.ASYNCH_CALL_LITERAL, getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4004(getContainer(), getSource(), getTarget());
 	}
 
 	/**
 	 * added code to create the gate , message occurence and event when a Async message is created.
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
-			throw new ExecutionException(CREATE_LINK_ERROR_MSG);
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		Map<Object, Object> parameters = getRequest().getParameters();
-		Message message = CommandHelper.doCreateMessage(container, null, getSource(), getTarget(), parameters);
-		//Fixed bug about creating message, if created failed, return error result.
-		if(message == null || message.getSendEvent() == null || message.getReceiveEvent() == null) {
-			return CommandResult.newErrorCommandResult("Failed to create message");
-		}
-		if(message != null) {
-			doConfigure(message, monitor, info);
-			((CreateElementRequest)getRequest()).setNewElement(message);
-			return CommandResult.newOKCommandResult(message);
-		}
-		return CommandResult.newErrorCommandResult(NO_CONTAINER_ERROR_MSG);
+		throw new UnsupportedOperationException();
 	}
 
 	/**

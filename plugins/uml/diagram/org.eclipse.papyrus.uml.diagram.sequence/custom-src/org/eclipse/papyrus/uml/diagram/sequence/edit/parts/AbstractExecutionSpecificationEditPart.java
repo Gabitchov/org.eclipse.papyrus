@@ -45,6 +45,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -67,7 +68,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 
 	protected void initExecutionSpecificationEndEditPart() {
 		executionSpecificationEndParts = new ArrayList();
-
 		EObject element = this.resolveSemanticElement();
 		if(!(element instanceof ExecutionSpecification)) {
 			return;
@@ -75,14 +75,11 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		ExecutionSpecification execution = (ExecutionSpecification)element;
 		final ExecutionSpecificationEndEditPart startPart = new ExecutionSpecificationEndEditPart(execution.getStart(), this, new RelativeLocator(getFigure(), PositionConstants.NORTH));
 		executionSpecificationEndParts.add(startPart);
-
 		final ExecutionSpecificationEndEditPart finishPart = new ExecutionSpecificationEndEditPart(execution.getFinish(), this, new RelativeLocator(getFigure(), PositionConstants.SOUTH));
 		executionSpecificationEndParts.add(finishPart);
-
 		Diagram diagram = ((View)this.getModel()).getDiagram();
 		startPart.rebuildLinks(diagram);
 		finishPart.rebuildLinks(diagram);
-
 		addChild(startPart, -1);
 		addChild(finishPart, -1);
 	}
@@ -98,7 +95,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 	 * Overrides to disable the defaultAnchorArea. The edge is now more stuck with the middle of the
 	 * figure.
 	 * 
-	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(16, 60) {
@@ -146,12 +142,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 			@Override
 			protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
 				request.getMoveDelta().x = 0; // reset offset
-
 				IFigure feedback = getDragSourceFeedbackFigure();
-
 				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 				getHostFigure().translateToAbsolute(rect);
-
 				IFigure f = getHostFigure();
 				Dimension min = f.getMinimumSize().getCopy();
 				Dimension max = f.getMaximumSize().getCopy();
@@ -160,11 +153,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				min.width = mmode.LPtoDP(min.width);
 				max.height = mmode.LPtoDP(max.height);
 				max.width = mmode.LPtoDP(max.width);
-
 				Rectangle originalBounds = rect.getCopy();
 				rect.translate(request.getMoveDelta());
 				rect.resize(request.getSizeDelta());
-
 				if(min.width > rect.width) {
 					rect.width = min.width;
 				} else if(max.width < rect.width) {
@@ -175,16 +166,13 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				} else if(max.height < rect.height) {
 					rect.height = max.height;
 				}
-
 				if(rect.height == min.height && request.getSizeDelta().height < 0 && request.getMoveDelta().y > 0) { //shrink at north
 					Point loc = rect.getLocation();
 					loc.y = originalBounds.getBottom().y - min.height;
 					rect.setLocation(loc);
-
 					request.getSizeDelta().height = min.height - originalBounds.height;
 					request.getMoveDelta().y = loc.y - originalBounds.y;
 				}
-
 				if(request.getSizeDelta().height == 0) { // moving
 					EditPart parentBar = moveExecutionSpecificationFeedback(request, AbstractExecutionSpecificationEditPart.this, rect);
 					if(parentBar == null) {
@@ -261,7 +249,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 		Object feature = event.getFeature();
 		if((getModel() != null) && (getModel() == event.getNotifier())) {
 			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
@@ -280,7 +267,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 			}
 			refreshChildren();
 		}
-
 		refreshShadow();
 	}
 
@@ -330,16 +316,14 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 
 	//see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=385604
 	protected ShapeNodeEditPart moveExecutionSpecificationFeedback(ChangeBoundsRequest request, AbstractExecutionSpecificationEditPart movedPart, PrecisionRectangle rect) {
-		LifelineEditPart lifelineEP = (LifelineEditPart)movedPart.getParent();
+		CustomLifelineEditPart lifelineEP = (CustomLifelineEditPart)movedPart.getParent();
 		Rectangle copy = rect.getCopy();
 		lifelineEP.getPrimaryShape().translateToRelative(copy);
-
-		List<ShapeNodeEditPart> executionSpecificationList = lifelineEP.getChildShapeNodeEditPart();
+		List<ShapeNodeEditPart> executionSpecificationList = LifelineEditPartUtil.getChildShapeNodeEditPart(lifelineEP);
 		List<ShapeNodeEditPart> movedChildrenParts = LifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(AbstractExecutionSpecificationEditPart.this);
 		executionSpecificationList.remove(movedPart); // ignore current action and its children
 		executionSpecificationList.removeAll(movedChildrenParts);
 		ShapeNodeEditPart parentBar = LifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
-
 		Rectangle dotLineBounds = lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure().getBounds();
 		int dotLineBarLocationX = dotLineBounds.x + dotLineBounds.width / 2 - LifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH / 2;
 		if(parentBar == null) {
@@ -357,7 +341,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				rect.x += dx;
 				request.getMoveDelta().x += dx;
 				copy.x = x;
-
 				// check again to see if the new bar location overlaps with existing bars
 				ShapeNodeEditPart part = LifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
 				if(part == parentBar) {
@@ -445,7 +428,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 			}
 		}
-
 		return super.getTargetConnectionAnchor(request);
 	}
 
@@ -464,7 +446,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		}
 		return super.getTargetConnectionAnchor(connEditPart);
 	}
-
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)

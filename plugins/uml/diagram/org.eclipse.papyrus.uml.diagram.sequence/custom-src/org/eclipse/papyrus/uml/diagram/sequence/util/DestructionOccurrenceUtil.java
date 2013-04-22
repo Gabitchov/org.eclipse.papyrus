@@ -24,7 +24,6 @@ import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageSort;
 
-
 public class DestructionOccurrenceUtil {
 
 	public static void reorderDestructionOccurrence(List<InteractionFragment> reorderedFragments) {
@@ -36,7 +35,6 @@ public class DestructionOccurrenceUtil {
 				destructionOccurrenceList.add(o);
 			}
 		}
-
 		reorderedFragments.removeAll(destructionOccurrenceList);
 		reorderedFragments.addAll(destructionOccurrenceList);
 	}
@@ -66,7 +64,6 @@ public class DestructionOccurrenceUtil {
 			if(f instanceof DestructionOccurrenceSpecification) {
 				return (DestructionOccurrenceSpecification)f;
 			}
-
 		return null;
 	}
 }

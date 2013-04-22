@@ -59,28 +59,27 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart.MessageLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLParserProvider;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * @generated
  */
-public class MessageNameEditPart extends MessageLabelEditPart implements ITextAwareEditPart, MessageLabelEditPolicy.ICustomMessageLabel {
+public class MessageNameEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -107,10 +106,18 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 	/**
 	 * @generated
@@ -468,7 +475,7 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 	 * @generated
 	 */
 	protected void refreshLabel() {
-		EditPolicy maskLabelPolicy = getParent().getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if(maskLabelPolicy == null) {
 			setLabelTextHelper(getFigure(), getLabelText());
 			setLabelIconHelper(getFigure(), getLabelIcon());
@@ -491,6 +498,13 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
+		}
 	}
 
 	/**
@@ -506,7 +520,7 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public void refreshFont() {
+	protected void refreshFont() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
 			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
@@ -568,7 +582,7 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View)getParent().getModel();
+		return (View)getModel();
 	}
 
 	/**
@@ -631,6 +645,8 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
@@ -646,6 +662,7 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -709,15 +726,5 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
-	}
-
-	@Override
-	public void refreshBounds() {
-		super.refreshBounds();
-		MessageEditPart parent = (MessageEditPart)getParent();
-		//Update location of label for self linked message.
-		if(SelfMessageHelper.isSelfLink(parent)) {
-			SelfMessageHelper.updateLabelLocation(this);
-		}
 	}
 }

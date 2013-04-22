@@ -51,11 +51,9 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 		if(obj instanceof Shape) {
 			// we get the element linked to this editpart
 			EObject element = ((Shape)obj).getElement();
-
 			if(element instanceof InteractionFragment) {
 				// we get the list of the covered lifelinnes by the InteractionUse
 				List<Lifeline> lifelineCoveredList = ((InteractionFragment)element).getCovereds();
-
 				if(lifelineCoveredList != null && getParent() != null) {
 					// we get the interactionCompartimentEditPart to have access to all lifelines
 					// EditParts
@@ -65,7 +63,6 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 						int minX = Integer.MAX_VALUE;
 						int maxX = -Integer.MAX_VALUE;
 						int maxR = -Integer.MAX_VALUE;
-
 						for(EditPart childEditPart : childrenEditPart) {
 							// we check all the EditParts to select only the lifelineEditParts
 							if(childEditPart instanceof LifelineEditPart) {
@@ -86,7 +83,6 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 													// the maxR will represent the futur value of
 													// the rectangle right value.
 													maxR = liflelineEditPart.getFigure().getBounds().right();
-
 												}
 												if(liflelineEditPart.getFigure().getBounds().x < minX) {
 													// the min value will represent the rectangle x
@@ -99,7 +95,6 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 								}
 							}
 						}
-
 						if(minX != Integer.MAX_VALUE || maxR != -Integer.MAX_VALUE) {
 							// after this loop we have the coordinate of two lifeline figure ,
 							// even if we have more than two covered Lifelne we choose the
@@ -124,11 +119,8 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 	private void getNewSize(int min, int max) {
 		int h = getFigure().getBounds().height;
 		int y = getFigure().getBounds().y;
-
 		Dimension size = new Dimension(max - min, h);
-
 		Point loc = new Point(min, y);
-
 		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
@@ -141,7 +133,6 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 		Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds.getHeight());
 		InteractionFragment combinedFragment = (InteractionFragment)resolveSemanticElement();
 		EList<Lifeline> coveredLifelines = combinedFragment.getCovereds();
-
 		List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>();
 		List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>();
 		EditPart interactionCompartment = getInteractionCompartment();
@@ -160,13 +151,11 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 		if(!coveredLifelinesToRemove.isEmpty()) {
 			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove), true);
 		}
-
 	}
 
 	// check lifelines in PartDecomposition, see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=364813
 	private void updateCoveredLifelines(LifelineEditPart lifelineEditPart, Rectangle newBound, List<Lifeline> coveredLifelinesToAdd, List<Lifeline> coveredLifelinesToRemove, EList<Lifeline> coveredLifelines) {
 		Lifeline lifeline = (Lifeline)lifelineEditPart.resolveSemanticElement();
-
 		LifelineDotLineCustomFigure dotLineFigure = lifelineEditPart.getPrimaryShape().getFigureLifelineDotLineFigure();
 		Rectangle dotLineBounds = dotLineFigure.getBounds().getCopy();
 		Rectangle centralLineBounds = new Rectangle(dotLineBounds.x() + dotLineBounds.width() / 2, dotLineBounds.y(), 1, dotLineBounds.height());
@@ -178,7 +167,6 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 		} else if(coveredLifelines.contains(lifeline)) {
 			coveredLifelinesToRemove.add(lifeline);
 		}
-
 		PartDecomposition partDecomposition = lifeline.getDecomposedAs();
 		if(partDecomposition != null) {
 			List subLifelines = lifelineEditPart.getChildren();
@@ -202,5 +190,4 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 		}
 		return editPart;
 	}
-
 }

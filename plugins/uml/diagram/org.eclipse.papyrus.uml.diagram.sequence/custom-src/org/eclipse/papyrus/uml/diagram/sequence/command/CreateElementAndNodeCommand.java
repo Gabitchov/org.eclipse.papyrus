@@ -138,12 +138,9 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 	 * @return the element.
 	 */
 	protected EObject createModelElement() {
-
 		CreateElementRequest req = new CreateElementRequest(editingDomain, parent, elementType);
 		req.addParameters(createElementRequestParameters);
-
 		elementCreationCommand = nodeEditPart.getCommand(new EditCommandRequestWrapper(req));
-
 		if(elementCreationCommand != null) {
 			elementCreationCommand.execute();
 			EObject result = req.getNewElement();

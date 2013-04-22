@@ -30,5 +30,4 @@ public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 		super();
 		init(notOrphanNode);
 	}
-
 }

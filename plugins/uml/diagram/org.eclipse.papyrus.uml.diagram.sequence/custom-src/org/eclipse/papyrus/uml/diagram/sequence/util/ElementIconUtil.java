@@ -20,7 +20,6 @@ public class ElementIconUtil {
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, part.getViewer());
 		for(View view : views) {
 			//if(NameLabelIconHelper.showLabelIcon(view)) {

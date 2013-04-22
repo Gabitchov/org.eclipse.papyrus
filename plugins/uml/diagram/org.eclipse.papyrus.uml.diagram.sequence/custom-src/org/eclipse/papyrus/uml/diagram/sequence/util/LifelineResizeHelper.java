@@ -26,8 +26,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
-
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 
 public class LifelineResizeHelper {
 
@@ -112,5 +111,4 @@ public class LifelineResizeHelper {
 			return CommandResult.newOKCommandResult();
 		}
 	}
-
 }

@@ -16,11 +16,9 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
@@ -29,42 +27,27 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.AccessibleEditPart;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.DirectEditRequest;
-import org.eclipse.gef.requests.DropRequest;
-import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.tools.DirectEditManager;
-import org.eclipse.gmf.runtime.common.core.util.Log;
-import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.Anchor;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FontStyle;
-import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.Dialog;
@@ -84,7 +67,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -95,12 +77,13 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
 
 /**
- * @generated NOT
+ * @generated
  */
 //Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826
-public class TimeObservationLabelEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, INodeEditPart {
+public class TimeObservationLabelEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -127,10 +110,18 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 	/**
 	 * @generated
@@ -147,13 +138,12 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new CustomConnectionHandleEditPolicy());
 	}
 
 	/**
@@ -180,60 +170,52 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
-		} else if(figure instanceof NodeFigure && getWrappingLabel(figure) != null) {
-			return getWrappingLabel(figure).getText();
 		} else {
 			return ((Label)figure).getText();
 		}
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
-		} else if(figure instanceof NodeFigure && getWrappingLabel(figure) != null) {
-			getWrappingLabel(figure).setText(text);
 		} else {
 			((Label)figure).setText(text);
 		}
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
-		} else if(figure instanceof NodeFigure && getWrappingLabel(figure) != null) {
-			return getWrappingLabel(figure).getIcon();
 		} else {
 			return ((Label)figure).getIcon();
 		}
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
-		} else if(figure instanceof NodeFigure && getWrappingLabel(figure) != null) {
-			getWrappingLabel(figure).setIcon(icon);
 		} else {
 			((Label)figure).setIcon(icon);
 		}
@@ -535,6 +517,13 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
+		}
 	}
 
 	/**
@@ -612,8 +601,7 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		//return getPrimaryView();
-		return (View)getModel();
+		return getPrimaryView();
 	}
 
 	/**
@@ -675,6 +663,8 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
@@ -690,6 +680,7 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -716,7 +707,7 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
@@ -729,10 +720,6 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 			refreshStrikeThrough();
 		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
-		} else if(NotationPackage.eINSTANCE.getView_SourceEdges().equals(feature)) {
-			refreshSourceConnections();
-		} else if(NotationPackage.eINSTANCE.getView_TargetEdges().equals(feature)) {
-			refreshTargetConnections();
 		} else {
 			if(getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
 				refreshLabel();
@@ -751,38 +738,13 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 		super.handleNotificationEvent(event);
 	}
 
-	//	/**
-	//	 * @generated
-	//	 */
-	//	protected IFigure createFigure() {
-	//		IFigure label = createFigurePrim();
-	//		defaultText = getLabelTextHelper(label);
-	//		return label;
-	//	}
-	protected NodeFigure createFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		return figure;
-	}
-
-	protected NodeFigure createNodePlate() {
-		NodeFigure result = new NodeFigure();
-		return result;
-	}
-
-	protected IFigure createNodeShape() {
+	/**
+	 * @generated
+	 */
+	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
 		return label;
-	}
-
-	protected WrappingLabel getWrappingLabel(IFigure nodeFigure) {
-		if(nodeFigure instanceof NodeFigure) {
-			return ((WrappingLabel)(nodeFigure.getChildren().get(0)));
-		}
-		return null;
 	}
 
 	/**
@@ -807,95 +769,5 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 			this.setTextWrap(true);
 			this.setTextJustification(PositionConstants.CENTER);
 		}
-	}
-
-	//Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826
-	protected List getModelSourceConnections() {
-		return ViewUtil.getSourceConnectionsConnectingVisibleViews((View)getModel());
-	}
-
-	protected List getModelTargetConnections() {
-		List list = ViewUtil.getTargetConnectionsConnectingVisibleViews((View)getModel());
-		return list;
-	}
-
-	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		if(request instanceof ReconnectRequest) {
-			if(((DropRequest)request).getLocation() == null) {
-				return ((NodeFigure)getFigure()).getSourceConnectionAnchorAt(null);
-			}
-			Point pt = ((DropRequest)request).getLocation().getCopy();
-			return ((NodeFigure)getFigure()).getSourceConnectionAnchorAt(pt);
-		} else if(request instanceof DropRequest) {
-			return ((NodeFigure)getFigure()).getSourceConnectionAnchorAt(((DropRequest)request).getLocation());
-		}
-		return ((NodeFigure)getFigure()).getSourceConnectionAnchorAt(null);
-	}
-
-	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
-		final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)connEditPart;
-		String t = ""; //$NON-NLS-1$
-		try {
-			t = (String)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
-
-				public void run() {
-					Anchor a = ((Edge)connection.getModel()).getSourceAnchor();
-					if(a instanceof IdentityAnchor)
-						setResult(((IdentityAnchor)a).getId());
-					else
-						setResult(""); //$NON-NLS-1$
-				}
-			});
-		} catch (InterruptedException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "getSourceConnectionAnchor", e); //$NON-NLS-1$
-			Log.error(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "getSourceConnectionAnchor", e); //$NON-NLS-1$
-		}
-		return ((NodeFigure)getFigure()).getConnectionAnchor(t);
-	}
-
-	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)connEditPart;
-		String t = ""; //$NON-NLS-1$
-		try {
-			t = (String)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
-
-				public void run() {
-					Anchor a = ((Edge)connection.getModel()).getTargetAnchor();
-					if(a instanceof IdentityAnchor)
-						setResult(((IdentityAnchor)a).getId());
-					else
-						setResult(""); //$NON-NLS-1$
-				}
-			});
-		} catch (InterruptedException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "getTargetConnectionAnchor", e); //$NON-NLS-1$
-			Log.error(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "getTargetConnectionAnchor", e); //$NON-NLS-1$
-		}
-		return ((NodeFigure)getFigure()).getConnectionAnchor(t);
-	}
-
-	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		if(request instanceof ReconnectRequest) {
-			if(((DropRequest)request).getLocation() == null) {
-				return ((NodeFigure)getFigure()).getTargetConnectionAnchorAt(null);
-			}
-			Point pt = ((DropRequest)request).getLocation().getCopy();
-			return ((NodeFigure)getFigure()).getTargetConnectionAnchorAt(pt);
-		} else if(request instanceof DropRequest) {
-			return ((NodeFigure)getFigure()).getTargetConnectionAnchorAt(((DropRequest)request).getLocation());
-		}
-		return ((NodeFigure)getFigure()).getTargetConnectionAnchorAt(null);
-	}
-
-	final public String mapConnectionAnchorToTerminal(ConnectionAnchor c) {
-		return ((NodeFigure)getFigure()).getConnectionAnchorTerminal(c);
-	}
-
-	final public ConnectionAnchor mapTerminalToConnectionAnchor(String terminal) {
-		return ((NodeFigure)getFigure()).getConnectionAnchor(terminal);
-	}
-
-	public boolean canAttachNote() {
-		return true;
 	}
 }

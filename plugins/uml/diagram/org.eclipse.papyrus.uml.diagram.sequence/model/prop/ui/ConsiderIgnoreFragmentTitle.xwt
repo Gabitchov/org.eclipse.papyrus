@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
-	<Composite.layout>
-		<ppel:PropertiesLayout></ppel:PropertiesLayout>
-	</Composite.layout>	
-	<ppe:BooleanCheckbox input="{Binding}"	property="Preference:org.eclipse.papyrus.infra.gmfdiag.preferences:ELEMENT_PapyrusUMLSequenceDiagram_ConsiderIgnoreFragment_CombinedFragmentCompartment.compartment_name.visibility"></ppe:BooleanCheckbox>
+<Composite
+    xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+    xmlns="http://www.eclipse.org/xwt/presentation"
+    xmlns:x="http://www.eclipse.org/xwt"
+    xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
+    <Composite.layout>
+        <ppel:PropertiesLayout></ppel:PropertiesLayout>
+    </Composite.layout>
+    <ppe:BooleanCheckbox
+        input="{Binding}"
+        property="Preference:org.eclipse.papyrus.infra.gmfdiag.preferences:ELEMENT_PapyrusUMLSequenceDiagram_ConsiderIgnoreFragment_CombinedFragmentCompartment.compartment_name.visibility"></ppe:BooleanCheckbox>
 </Composite>

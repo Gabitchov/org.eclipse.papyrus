@@ -21,8 +21,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.ReconnectMessageHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
@@ -74,26 +72,25 @@ public class MessageReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected boolean canReorientSource() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
+		if(getLink().getOwnedElements().size() != 1) {
+			return false;
+		}
+		Element target = (Element)getLink().getOwnedElements().get(0);
 		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
 		Interaction container = (Interaction)getLink().eContainer();
-		boolean canExistMessage = UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4003(container, getLink(), getNewSource(), getOldTarget());
-		if(!canExistMessage) {
-			return false;
-		}
-		//Fixed bug about reconnect messages.
-		return MessageConnectionHelper.canReorientSource(getLink(), getNewSource());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4003(container, getLink(), getNewSource(), target);
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected boolean canReorientTarget() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
@@ -104,10 +101,7 @@ public class MessageReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interaction container = (Interaction)getLink().eContainer();
-		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4003(container, getLink(), source, getNewTarget())) {
-			return false;
-		}
-		return MessageConnectionHelper.canReorientTarget(getLink(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4003(container, getLink(), source, getNewTarget());
 	}
 
 	/**
@@ -127,20 +121,17 @@ public class MessageReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		ReconnectMessageHelper.updateMessageEnd(getLink().getSendEvent(), getOldSource(), getNewSource());
-		return CommandResult.newOKCommandResult(getLink());
+		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		ReconnectMessageHelper.updateMessageEnd(getLink().getReceiveEvent(), getOldTarget(), getNewTarget());
-		ReconnectMessageHelper.updateMessage(getLink());
-		return CommandResult.newOKCommandResult(getLink());
+		throw new UnsupportedOperationException();
 	}
 
 	/**

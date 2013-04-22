@@ -32,7 +32,6 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Observation;
 import org.eclipse.uml2.uml.TimeObservation;
 
-
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
@@ -98,13 +97,11 @@ public class AnnotatedLinkEditCommand extends AbstractTransactionalCommand {
 		if(!canExecute()) {
 			return CommandResult.newErrorCommandResult("Unable to create annotated link");
 		}
-
 		NamedElement targetElement = (NamedElement)(newTargetElement == null ? oldTargetElement : newTargetElement);
 		Element sourceElement = newSourceElement == null ? oldSourceElement : newSourceElement;
 		if(targetElement == null || sourceElement == null) {
 			return CommandResult.newErrorCommandResult("Unable to create annotated link");
 		}
-
 		if(oldSourceElement != null) {
 			if(oldSourceElement instanceof Comment) {
 				((Comment)oldSourceElement).getAnnotatedElements().remove(targetElement);
@@ -116,7 +113,6 @@ public class AnnotatedLinkEditCommand extends AbstractTransactionalCommand {
 				((Constraint)oldSourceElement).getConstrainedElements().remove(targetElement);
 			}
 		}
-
 		if(sourceElement instanceof Comment) {
 			((Comment)sourceElement).getAnnotatedElements().add(targetElement);
 		} else if(sourceElement instanceof DurationObservation) {
@@ -177,5 +173,4 @@ public class AnnotatedLinkEditCommand extends AbstractTransactionalCommand {
 			oldTargetElement = resolveElement(annotatedLink.getTarget());
 		}
 	}
-
 }

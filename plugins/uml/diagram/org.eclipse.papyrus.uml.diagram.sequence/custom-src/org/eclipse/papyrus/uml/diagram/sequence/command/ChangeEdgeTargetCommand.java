@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 
-
 /**
  * Command used to change the target of an edge.
  * It create an IdentityAnchor to attach the edge.
@@ -67,20 +66,15 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		// retrieve the edge from the descriptor
 		Object obj = descriptor.getAdapter(Edge.class);
-
 		if(obj instanceof Edge) {
 			Edge edge = (Edge)obj;
 			View newTarget = createElementAndNodeCommand.getCreatedView();
 			edge.setTarget(newTarget);
-
 			IdentityAnchor anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
 			anchor.setId(anchorId);
-
 			edge.setTargetAnchor(anchor);
-
 			//reset bendpoints to target
 			Bendpoints bendpoints = edge.getBendpoints();
 			if(bendpoints instanceof RelativeBendpoints) {
@@ -102,5 +96,4 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 		}
 		return null;
 	}
-
 }

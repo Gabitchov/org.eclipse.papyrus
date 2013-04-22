@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndpointEditPolicy;
 
-
 /**
  * Abstract link class for connections with Comment, Constraint and Observations.
  * 
@@ -69,11 +68,9 @@ public abstract class AnnotatedLinkEditPart extends ConnectionNodeEditPart imple
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		EditPart ep = super.getTargetEditPart(request);
-
 		if(ep != null && ep instanceof org.eclipse.gef.ConnectionEditPart) {
 			if(request instanceof ReconnectRequest) {
 				ReconnectRequest rRequest = (ReconnectRequest)request;
-
 				// If this is just moving an anchor point on the same target or
 				// source, then it is fine.  See bugzilla# 208408. 
 				if(rRequest.isMovingStartAnchor()) {
@@ -83,7 +80,6 @@ public abstract class AnnotatedLinkEditPart extends ConnectionNodeEditPart imple
 				} else if(rRequest.getConnectionEditPart().getTarget() == ep) {
 					return ep;
 				}
-
 				// If source anchor is moved, the connection's source edit part
 				// should not be taken into account for a cyclic dependency
 				// check so as to avoid false checks. Same goes for the target
@@ -95,51 +91,40 @@ public abstract class AnnotatedLinkEditPart extends ConnectionNodeEditPart imple
 				}
 			}
 		}
-
 		return ep;
 	}
 
 	private boolean isCyclicConnectionRequest(org.eclipse.gef.ConnectionEditPart targetCEP, org.eclipse.gef.ConnectionEditPart sourceCEP, boolean checkSourceAndTargetEditParts, boolean doNotCheckSourceEditPart) {
-
 		if(targetCEP == null || sourceCEP == null) {
 			return false;
 		}
-
 		if(sourceCEP == targetCEP) {
 			return true;
 		}
-
 		// first, do a cyclic check on source and target connections 
 		// of the source connection itself.
 		// (as every connection is also a node).
-
 		HashSet set = new HashSet();
 		getSourceAndTargetConnections(set, sourceCEP);
 		if(set.contains(targetCEP.getFigure())) {
 			return true;
 		}
-
-
 		// now do the cyclic check on the source and target of the source connection...  
 		EditPart sourceEP = sourceCEP.getSource(), targetEP = sourceCEP.getTarget();
-
 		if((sourceEP == targetCEP) || (targetEP == targetCEP)) {
 			return true;
 		} else {
-
 			if(!checkSourceAndTargetEditParts && doNotCheckSourceEditPart) {
 				// .
 			} else if(sourceEP instanceof org.eclipse.gef.ConnectionEditPart && isCyclicConnectionRequest(targetCEP, (org.eclipse.gef.ConnectionEditPart)sourceEP, true, doNotCheckSourceEditPart)) {
 				return true;
 			}
-
 			if(!checkSourceAndTargetEditParts && !doNotCheckSourceEditPart) {
 				// .
 			} else if(targetEP instanceof org.eclipse.gef.ConnectionEditPart && isCyclicConnectionRequest(targetCEP, (org.eclipse.gef.ConnectionEditPart)targetEP, true, doNotCheckSourceEditPart)) {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -152,28 +137,21 @@ public abstract class AnnotatedLinkEditPart extends ConnectionNodeEditPart imple
 	 *        the connection edit part.
 	 */
 	private void getSourceAndTargetConnections(HashSet set, org.eclipse.gef.ConnectionEditPart connectionEditPart) {
-
 		if(connectionEditPart == null || set == null) {
 			return;
 		}
-
 		for(Iterator i = connectionEditPart.getSourceConnections().iterator(); i.hasNext();) {
-
 			org.eclipse.gef.ConnectionEditPart next = (org.eclipse.gef.ConnectionEditPart)i.next();
 			Connection sourceConnection = (Connection)next.getFigure();
 			set.add(sourceConnection);
 			getSourceAndTargetConnections(set, next);
 		}
-
 		for(Iterator i = connectionEditPart.getTargetConnections().iterator(); i.hasNext();) {
-
 			org.eclipse.gef.ConnectionEditPart next = (org.eclipse.gef.ConnectionEditPart)i.next();
 			Connection targetConnection = (Connection)next.getFigure();
 			set.add(targetConnection);
 			getSourceAndTargetConnections(set, next);
 		}
-
-
 		//For message edit part, we need to collect all connections from message ends.
 		if(connectionEditPart instanceof AbstractMessageEditPart) {
 			List children = ((AbstractMessageEditPart)connectionEditPart).getChildren();
@@ -182,14 +160,12 @@ public abstract class AnnotatedLinkEditPart extends ConnectionNodeEditPart imple
 					continue;
 				}
 				for(Iterator i = ((MessageEndEditPart)object).getSourceConnections().iterator(); i.hasNext();) {
-
 					org.eclipse.gef.ConnectionEditPart next = (org.eclipse.gef.ConnectionEditPart)i.next();
 					Connection sourceConnection = (Connection)next.getFigure();
 					set.add(sourceConnection);
 					getSourceAndTargetConnections(set, next);
 				}
 				for(Iterator i = ((MessageEndEditPart)object).getTargetConnections().iterator(); i.hasNext();) {
-
 					org.eclipse.gef.ConnectionEditPart next = (org.eclipse.gef.ConnectionEditPart)i.next();
 					Connection targetConnection = (Connection)next.getFigure();
 					set.add(targetConnection);
@@ -216,6 +192,4 @@ public abstract class AnnotatedLinkEditPart extends ConnectionNodeEditPart imple
 			this.setLineStyle(Graphics.LINE_DASH);
 		}
 	}
-
-
 }

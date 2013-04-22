@@ -120,17 +120,14 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 	private void updateRequest(ChangeBoundsRequest request) {
 		IBorderItemEditPart borderItemEP = (IBorderItemEditPart)getHost();
 		IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
-
 		if(borderItemLocator != null) {
 			Rectangle initialFeedbackBounds = getInitialFeedbackBounds();
 			PrecisionRectangle rect = new PrecisionRectangle(initialFeedbackBounds.getCopy());
 			getHostFigure().translateToAbsolute(rect);
 			rect.translate(request.getMoveDelta());
 			rect.resize(request.getSizeDelta());
-
 			getHostFigure().translateToRelative(rect);
 			Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemEP.getFigure());
-
 			Point parentOrigin = borderItemEP.getFigure().getParent().getBounds().getTopLeft();
 			Dimension d = realLocation.getTopLeft().getDifference(parentOrigin);
 			Point newLocation = new Point(d.width, d.height);

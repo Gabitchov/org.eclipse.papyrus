@@ -6,7 +6,7 @@
  * 
  * Contributors: David Sciamma (Anyware Technologies), Mathieu Garcia (Anyware
  * Technologies), Jacques Lescot (Anyware Technologies), Thomas Friol (Anyware
- * Technologies), Nicolas Lalevée (Anyware Technologies) - initial API and
+ * Technologies), Nicolas Lalevee (Anyware Technologies) - initial API and
  * implementation
  ******************************************************************************/
 
@@ -27,7 +27,6 @@ public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
 	 * @generated
 	 */
 	public DestructionEventFigure() {
-
 		super();
 	}
 
@@ -40,7 +39,6 @@ public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
 	protected void paintFigure(Graphics graphics) {
 		super.paintFigure(graphics);
 		graphics.pushState();
-
 		int width = bounds.width;
 		int height = bounds.height;
 		if(width > height) {

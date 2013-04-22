@@ -78,7 +78,7 @@ public class HighlightUtil {
 			figures.add(cep.getPrimaryShape());
 		} else if(host != null) {
 			try {
-				Method getMethod = host.getClass().getDeclaredMethod("getPrimaryShape");
+				Method getMethod = getGetPrimaryShapeMethod(host.getClass());
 				getMethod.setAccessible(true);
 				figures.add((IFigure)getMethod.invoke(host));
 			} catch (Exception e) {
@@ -86,6 +86,28 @@ public class HighlightUtil {
 			}
 		}
 		return figures;
+	}
+
+	/**
+	 * Fixed bug when introducing some sub class.
+	 * 
+	 * @param type
+	 * @return getPrimaryShape()
+	 * @throws Exception
+	 */
+	protected static Method getGetPrimaryShapeMethod(Class<?> type) throws Exception {
+		if(type == null) {
+			throw new NoSuchMethodException("getPrimaryShape");
+		}
+		try {
+			return type.getDeclaredMethod("getPrimaryShape");
+		} catch (Exception e) {
+			Method method = getGetPrimaryShapeMethod(type.getSuperclass());
+			if(method == null) {
+				throw e;
+			}
+			return method;
+		}
 	}
 
 	/**

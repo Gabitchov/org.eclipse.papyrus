@@ -39,24 +39,19 @@ public class InteractionOperandComponentEditPolicy extends ComponentEditPolicy {
 	 */
 	@Override
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-
 		if(getEditingDomain() != null) {
 			CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 			cmd.setTransactionNestingEnabled(false);
 			cmd.add(new CommandProxy(super.createDeleteViewCommand(deleteRequest)));
-
 			if(getEObject() instanceof InteractionOperand) {
 				// Get the elements associated with the CF
 				List<Element> elements = SequenceUtil.getInteractionOperandAssociatedElement((InteractionOperand)getEObject());
 				// Create the delete view commands
 				SequenceDeleteHelper.deleteView(cmd, elements, getEditingDomain());
 			}
-
 			OperandBoundsComputeHelper.addUpdateBoundsCommandForOperandDelelete(this.getHost(), cmd);
-
 			return new ICommandProxy(cmd.reduce());
 		}
-
 		return null;
 	}
 

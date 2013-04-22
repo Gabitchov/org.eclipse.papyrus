@@ -77,7 +77,6 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 		return super.getCommand(request);
 	}
-
 	//	/**
 	//	 * Handle combined fragment resize
 	//	 */
@@ -106,5 +105,4 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 	//		}
 	//		return compoundCmd.unwrap();
 	//	}
-
 }

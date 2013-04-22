@@ -31,6 +31,4 @@ public class SequenceDiagramCreationCondition extends PerspectiveContextDependen
 		}
 		return false;
 	}
-
-
 }

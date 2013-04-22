@@ -34,7 +34,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.AnnotatedLinkEditCommand
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart;
 import org.eclipse.uml2.uml.TimeObservation;
 
-
 /**
  * An editpolicy for handling connections start from Comment, Constraint and Observations.
  * 

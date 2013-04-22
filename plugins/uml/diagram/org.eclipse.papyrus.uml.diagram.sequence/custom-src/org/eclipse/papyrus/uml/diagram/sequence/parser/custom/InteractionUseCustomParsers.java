@@ -52,7 +52,6 @@ public class InteractionUseCustomParsers extends MessageFormatParser implements 
 			Object feature = ((Notification)notification).getFeature();
 			if(feature instanceof EStructuralFeature) {
 				featureImpl = (EStructuralFeature)feature;
-
 			}
 		}
 		return featureImpl;
@@ -69,7 +68,6 @@ public class InteractionUseCustomParsers extends MessageFormatParser implements 
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*
@@ -83,11 +81,9 @@ public class InteractionUseCustomParsers extends MessageFormatParser implements 
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
 		StringBuffer sb = new StringBuffer();
-
 		if(obj instanceof InteractionUse) {
 			InteractionUse interactionUse = (InteractionUse)obj;
 			Interaction interaction = interactionUse.getRefersTo();
-
 			if(interaction != null) {
 				String interactionName = interaction.getName();
 				if(interactionName != null) {
@@ -122,12 +118,10 @@ public class InteractionUseCustomParsers extends MessageFormatParser implements 
 		if(element instanceof InteractionUse) {
 			InteractionUse interactionUse = (InteractionUse)element;
 			semanticElementsBeingParsed.add(interactionUse);
-
 			Interaction interaction = interactionUse.getRefersTo();
 			if(interaction != null) {
 				// Add the interaction refered.
 				semanticElementsBeingParsed.add(interaction);
-
 				// TODO : Collaboration and interactionUse
 			}
 		}
@@ -144,5 +138,4 @@ public class InteractionUseCustomParsers extends MessageFormatParser implements 
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(feature) || UMLPackage.eINSTANCE.getInteractionUse_RefersTo().equals(feature);
 	}
-
 }

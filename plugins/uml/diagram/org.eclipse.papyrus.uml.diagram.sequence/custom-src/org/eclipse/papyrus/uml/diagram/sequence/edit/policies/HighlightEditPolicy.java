@@ -29,9 +29,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.EllipseDecoration;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
@@ -149,7 +149,6 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 		} else if(request instanceof ReconnectRequest) {
 			highlight(((ReconnectRequest)request).getTarget());
 			highlight(((ReconnectRequest)request).getConnectionEditPart());
-
 			// for message end
 			if(host instanceof MessageEndEditPart) {
 				highlightMessageEnd(request);
@@ -226,7 +225,6 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 	 */
 	private void highlightObservationEvent(Request request) {
 		Point location = getConnectiveLocation(request);
-
 		Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(location, (LifelineEditPart)getHost());
 		OccurrenceSpecification event = null;
 		if(eventAndLocation != null) {
@@ -291,7 +289,6 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 	}
 
 	private Point fixLocationOfEventOnLifeline(EditPart lifeline, OccurrenceSpecification event, Point location) {
-
 		if(lifeline == null) {
 			lifeline = findLifelineAt(location);
 		}
@@ -438,6 +435,5 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 			setAntialias(SWT.ON);
 			setSize(10, 10);
 		}
-
 	}
 }

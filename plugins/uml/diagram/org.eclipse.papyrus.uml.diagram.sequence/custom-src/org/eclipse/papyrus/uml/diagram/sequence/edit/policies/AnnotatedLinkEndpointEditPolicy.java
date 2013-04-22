@@ -32,6 +32,7 @@ import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.handles.ConnectionEndpointHandle;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.tools.ConnectionEndpointTracker;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart;
 import org.eclipse.swt.SWT;
 
 /**

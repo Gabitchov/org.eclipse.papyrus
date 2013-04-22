@@ -20,10 +20,9 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.internal.figures.BorderItemContainerFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
-
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 
 public class CenterLocator extends BorderItemLocator {
 
@@ -130,7 +129,6 @@ public class CenterLocator extends BorderItemLocator {
 			}
 		}
 		super.relocate(borderItem);
-
 	}
 
 	@Override
@@ -159,9 +157,6 @@ public class CenterLocator extends BorderItemLocator {
 		return super.getParentBorder();
 	}
 
-
-
-
 	/**
 	 * Locate the figure on its parent
 	 * 
@@ -171,9 +166,7 @@ public class CenterLocator extends BorderItemLocator {
 	 */
 	@Override
 	protected Point locateOnParent(Point suggestedLocation, int suggestedSide, IFigure borderItem) {
-
 		Dimension borderItemSize = getSize(borderItem);
-
 		int y = getVerticalPosition(suggestedLocation.y, borderItemSize.height);
 		int x = getHorizontalPosition(borderItem);
 		return new Point(x, y);
@@ -200,7 +193,6 @@ public class CenterLocator extends BorderItemLocator {
 		return validY;
 	}
 
-
 	/**
 	 * Get the horizontal position of the borderItem drawn on a lifeline.
 	 * Those elements are drawn at the center of the lifeline, ie on the dot line.
@@ -212,7 +204,6 @@ public class CenterLocator extends BorderItemLocator {
 	private int getHorizontalPosition(IFigure borderItem) {
 		return getParentBorder().getCenter().x - borderItem.getSize().width / 2;
 	}
-
 
 	/**
 	 * Get the insets to use at the bottom of the figure.
@@ -227,8 +218,4 @@ public class CenterLocator extends BorderItemLocator {
 		}
 		return 0;
 	}
-
-
-
-
 }

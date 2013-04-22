@@ -31,8 +31,8 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -46,7 +46,7 @@ public class MessageAnchorRepairer {
 		Dimension sizeDelta = new Dimension(0, heightDelta);
 		int preserveAxis = PreserveAnchorsPositionCommand.PRESERVE_Y;
 		if(editPart instanceof LifelineEditPart) {
-			return new LifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, preserveAxis);
+			return new CustomLifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, preserveAxis);
 		}
 		return new PreserveAnchorsPositionCommand(editPart, sizeDelta, preserveAxis);
 	}
@@ -57,7 +57,7 @@ public class MessageAnchorRepairer {
 		}
 		Dimension sizeDelta = new Dimension(0, heightDelta);
 		if(editPart instanceof LifelineEditPart) {
-			return new LifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y, editPart.getFigure(), direction);
+			return new CustomLifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y, editPart.getFigure(), direction);
 		}
 		return new PreserveAnchorsPositionCommand(editPart, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y, editPart.getFigure(), direction);
 	}
@@ -121,17 +121,13 @@ public class MessageAnchorRepairer {
 	private static void updateAnchorTerminal(EditingDomain editingDomain, final IdentityAnchor anchor, int oldHeight, int newHeight) {
 		final String oldTerminal = anchor.getId();
 		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(oldTerminal);
-
 		int yPos = (int)Math.round(oldHeight * pp.preciseY());
-
 		pp.setPreciseY((double)yPos / newHeight);
-
 		if(pp.preciseY() > 1.0) {
 			pp.setPreciseY(1.0);
 		} else if(pp.preciseY() < 0.0) {
 			pp.setPreciseY(0.0);
 		}
-
 		final String newTerminal = (new BaseSlidableAnchor(null, pp)).getTerminal();
 		CommandHelper.executeCommandWithoutHistory(editingDomain, new AbstractCommand("Update Target Anchors") {
 
@@ -154,5 +150,4 @@ public class MessageAnchorRepairer {
 			}
 		}, true);
 	}
-
 }
