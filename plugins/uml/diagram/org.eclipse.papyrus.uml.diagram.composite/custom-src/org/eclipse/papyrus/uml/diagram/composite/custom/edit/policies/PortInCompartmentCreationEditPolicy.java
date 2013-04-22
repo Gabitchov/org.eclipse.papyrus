@@ -13,14 +13,28 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
 
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GroupEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
 
 /**
@@ -51,5 +65,17 @@ public class PortInCompartmentCreationEditPolicy extends CreationEditPolicy {
 
 		return super.getTargetEditPart(request);
 	}
+	protected Command getReparentCommand(ChangeBoundsRequest request) {
+		Iterator editParts = request.getEditParts().iterator();
+		View container = (View)getHost().getAdapter(View.class);
+		EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
+		while ( editParts.hasNext() ) {
+			EditPart ep = (EditPart)editParts.next();
+			if ( ep instanceof BehaviorPortEditPart ) {
+				return UnexecutableCommand.INSTANCE;
+			}
 
+		}
+		return super.getReparentCommand(request);
+	}
 }
