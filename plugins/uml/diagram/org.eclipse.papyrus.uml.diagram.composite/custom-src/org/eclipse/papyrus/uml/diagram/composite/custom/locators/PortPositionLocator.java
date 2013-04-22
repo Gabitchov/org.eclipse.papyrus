@@ -46,7 +46,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 	/** Constructor **/
 	public PortPositionLocator(IFigure parentFigure, int preferredSide) {
-		currentLocator= new InternalPortPositionLocator(parentFigure, preferredSide);
+		currentLocator= new ExternalPortPositionLocator(parentFigure, preferredSide);
 	}
 
 	/**
