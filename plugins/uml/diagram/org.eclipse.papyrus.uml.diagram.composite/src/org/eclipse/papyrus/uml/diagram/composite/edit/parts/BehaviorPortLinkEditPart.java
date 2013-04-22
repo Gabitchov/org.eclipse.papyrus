@@ -21,6 +21,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ViewComponentEditPolicy;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoConnectableEditPolicy;
+import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoDeleteFromDiagramEditPolicy;
 
 /**
  * @generated
@@ -46,6 +48,8 @@ public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITre
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NoConnectableEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,	new NoDeleteFromDiagramEditPolicy());
 	}
 
 	/**

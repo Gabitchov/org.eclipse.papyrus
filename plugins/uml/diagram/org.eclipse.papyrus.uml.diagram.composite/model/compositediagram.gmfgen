@@ -7639,6 +7639,14 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoConnectableEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.COMPONENT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoDeleteFromDiagramEditPolicy"/>
       </links>
       <links
           visualID="4001"

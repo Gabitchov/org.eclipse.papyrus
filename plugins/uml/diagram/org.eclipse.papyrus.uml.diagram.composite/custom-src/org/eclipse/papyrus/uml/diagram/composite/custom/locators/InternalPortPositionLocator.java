@@ -1,29 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *		
- *		Patrick Tessier (CEA LIST) - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.locators;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
-/**
- *used to place the symbol behavior at the good place (inside the composite). 
- *
- */
-public class BehaviorPortLocator extends PortPositionLocator {
 
-	public BehaviorPortLocator(IFigure parentFigure, int preferredSide) {
+public class InternalPortPositionLocator extends PortPositionLocator {
+
+	public InternalPortPositionLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}
 	
@@ -45,10 +29,10 @@ public class BehaviorPortLocator extends PortPositionLocator {
 		// Calculate Max position around the graphical parent (1/2 size or the port around
 		// the graphical parent bounds.
 		//this is an intra rectangle
-		int xMin = parentRec.x + borderItemOffset;
-		int xMax = parentRec.x - borderItemOffset + parentRec.width;
-		int yMin = parentRec.y + borderItemOffset;
-		int yMax = parentRec.y - borderItemOffset + parentRec.height;
+		int xMin = parentRec.x ;
+		int xMax = parentRec.x -(2*borderItemOffset) + parentRec.width;
+		int yMin = parentRec.y ;
+		int yMax = parentRec.y -(2*borderItemOffset) + parentRec.height;
 
 		// Modify Port location if MAX X or Y are exceeded
 		if(realLocation.x < xMin) {
@@ -83,5 +67,4 @@ public class BehaviorPortLocator extends PortPositionLocator {
 		// Return constrained location
 		return realLocation;
 	}
-	
 }
