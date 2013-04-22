@@ -24,6 +24,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmen
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentAttributeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentOperationCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceAttributeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNestedClassifierCompartmentEditPart;
@@ -167,7 +168,7 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 	@Test
 	public void testToManageEnumerationLiteralEnumeration() {
 		//Enumeration
-		//testToManageTopNode(UMLElementTypes.Enumeration_2006, UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
+		testToManageTopNode(UMLElementTypes.Enumeration_2006, UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
 	}
 
 	@Test
