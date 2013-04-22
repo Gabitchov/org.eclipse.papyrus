@@ -19,10 +19,10 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TestClassDiagramChildNode.
  */
@@ -35,11 +35,19 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean isSemanticTest() {
+		return true;
+	}
+	
+	/**
 	 * Test to manage component.
 	 */
 	@Test
 	public void testToManageComponent() {
-		testToManageChildNode(UMLElementTypes.Component_3021, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.Component_3021, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -47,7 +55,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageInstanceSpecification() {
-		testToManageChildNode(UMLElementTypes.InstanceSpecification_3020, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.InstanceSpecification_3020, UMLPackage.eINSTANCE.getInstanceSpecification(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -55,7 +63,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageSignal() {
-		testToManageChildNode(UMLElementTypes.Signal_3022, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.Signal_3022, UMLPackage.eINSTANCE.getSignal(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -63,7 +71,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageModel() {
-		testToManageChildNode(UMLElementTypes.Model_3024, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.Model_3024, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -71,7 +79,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageEnumeration() {
-		testToManageChildNode(UMLElementTypes.Enumeration_3025, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.Enumeration_3025, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -79,7 +87,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageIPackage() {
-		testToManageChildNode(UMLElementTypes.Package_3009, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.Package_3009, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -87,7 +95,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageClass() {
-		testToManageChildNode(UMLElementTypes.Class_3010, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.Class_3010, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -95,7 +103,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageInformationItem() {
-		testToManageChildNode(UMLElementTypes.InformationItem_3040, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.InformationItem_3040, UMLPackage.eINSTANCE.getInformationItem(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -103,7 +111,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManagePrimitiveType() {
-		testToManageChildNode(UMLElementTypes.PrimitiveType_3026, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.PrimitiveType_3026, UMLPackage.eINSTANCE.getPrimitiveType(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -111,7 +119,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageDataType() {
-		testToManageChildNode(UMLElementTypes.DataType_3027, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.DataType_3027, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -119,7 +127,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageChildNode(UMLElementTypes.Constraint_3029, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.Constraint_3029, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_3009, true);
 	}
 
 	/**
@@ -127,7 +135,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageChildNode(UMLElementTypes.Comment_3028, UMLElementTypes.Package_3009, true);
+		testToManageChildNode(UMLElementTypes.Comment_3028, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_3009, true);
 	}
 
 	@Override

@@ -238,6 +238,30 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new NestedInterfaceForComponentEditPart(view);
 			case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
 				return new NestedInterfaceForInterfaceEditPart(view);
+			case NestedEnumerationForClassEditPart.VISUAL_ID:
+				return new NestedEnumerationForClassEditPart(view);
+			case NestedEnumerationForComponentEditPart.VISUAL_ID:
+				return new NestedEnumerationForComponentEditPart(view);
+			case NestedEnumerationForInterfaceEditPart.VISUAL_ID:
+				return new NestedEnumerationForInterfaceEditPart(view);
+			case NestedPrimitiveTypeForClassEditPart.VISUAL_ID:
+				return new NestedPrimitiveTypeForClassEditPart(view);
+			case NestedPrimitiveTypeForComponentEditPart.VISUAL_ID:
+				return new NestedPrimitiveTypeForComponentEditPart(view);
+			case NestedPrimitiveTypeForInterfaceEditPart.VISUAL_ID:
+				return new NestedPrimitiveTypeForInterfaceEditPart(view);
+			case NestedDataTypeForClassEditPart.VISUAL_ID:
+				return new NestedDataTypeForClassEditPart(view);
+			case NestedDataTypeForComponentEditPart.VISUAL_ID:
+				return new NestedDataTypeForComponentEditPart(view);
+			case NestedDataTypeForInterfaceEditPart.VISUAL_ID:
+				return new NestedDataTypeForInterfaceEditPart(view);
+			case NestedSignalForClassEditPart.VISUAL_ID:
+				return new NestedSignalForClassEditPart(view);
+			case NestedSignalForComponentEditPart.VISUAL_ID:
+				return new NestedSignalForComponentEditPart(view);
+			case NestedSignalForInterfaceEditPart.VISUAL_ID:
+				return new NestedSignalForInterfaceEditPart(view);
 			case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
 				return new ClassAttributeCompartmentEditPartCN(view);
 			case ClassOperationCompartmentEditPartCN.VISUAL_ID:

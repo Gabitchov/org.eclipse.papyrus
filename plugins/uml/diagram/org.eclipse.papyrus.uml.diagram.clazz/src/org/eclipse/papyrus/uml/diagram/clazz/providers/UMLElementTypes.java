@@ -27,95 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationBranchEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassDashedLinkEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassLinkEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassifierTemplateParameterEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentCircleEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentLinkEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DefaultNamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ElementImportEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationSetEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationLinkEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartTN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForInterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForPrimitiveTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageImportEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageMergeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ProfileApplicationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforPrimitiveTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RealizationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionInInterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShapeNamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShortCutDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SlotEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SubstitutionEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TemplateBindingEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TemplateParameterEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TemplateSignatureEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TimeObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.UsageEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -281,7 +193,6 @@ public class UMLElementTypes {
 	 */
 	public static final IElementType Property_3041 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Property_3041"); //$NON-NLS-1$
 
-
 	/**
 	 * @generated
 	 */
@@ -316,7 +227,6 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Operation_3007 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Operation_3007"); //$NON-NLS-1$
-
 
 	/**
 	 * @generated
@@ -462,6 +372,66 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Interface_3038 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Interface_3038"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Enumeration_3052 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3052"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Enumeration_3053 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3053"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Enumeration_3054 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3054"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType PrimitiveType_3047 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_3047"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType PrimitiveType_3046 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_3046"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType PrimitiveType_3048 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_3048"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DataType_3044 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.DataType_3044"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DataType_3045 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.DataType_3045"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DataType_3043 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.DataType_3043"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Signal_3050 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Signal_3050"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Signal_3051 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Signal_3051"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Signal_3049 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Signal_3049"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -760,6 +730,18 @@ public class UMLElementTypes {
 			elements.put(Interface_3036, UMLPackage.eINSTANCE.getInterface());
 			elements.put(Interface_3037, UMLPackage.eINSTANCE.getInterface());
 			elements.put(Interface_3038, UMLPackage.eINSTANCE.getInterface());
+			elements.put(Enumeration_3052, UMLPackage.eINSTANCE.getEnumeration());
+			elements.put(Enumeration_3053, UMLPackage.eINSTANCE.getEnumeration());
+			elements.put(Enumeration_3054, UMLPackage.eINSTANCE.getEnumeration());
+			elements.put(PrimitiveType_3047, UMLPackage.eINSTANCE.getPrimitiveType());
+			elements.put(PrimitiveType_3046, UMLPackage.eINSTANCE.getPrimitiveType());
+			elements.put(PrimitiveType_3048, UMLPackage.eINSTANCE.getPrimitiveType());
+			elements.put(DataType_3044, UMLPackage.eINSTANCE.getDataType());
+			elements.put(DataType_3045, UMLPackage.eINSTANCE.getDataType());
+			elements.put(DataType_3043, UMLPackage.eINSTANCE.getDataType());
+			elements.put(Signal_3050, UMLPackage.eINSTANCE.getSignal());
+			elements.put(Signal_3051, UMLPackage.eINSTANCE.getSignal());
+			elements.put(Signal_3049, UMLPackage.eINSTANCE.getSignal());
 			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
 			elements.put(Association_4001, UMLPackage.eINSTANCE.getAssociation());
 			elements.put(Association_4019, UMLPackage.eINSTANCE.getAssociation());
@@ -863,6 +845,18 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Interface_3036);
 			KNOWN_ELEMENT_TYPES.add(Interface_3037);
 			KNOWN_ELEMENT_TYPES.add(Interface_3038);
+			KNOWN_ELEMENT_TYPES.add(Enumeration_3052);
+			KNOWN_ELEMENT_TYPES.add(Enumeration_3053);
+			KNOWN_ELEMENT_TYPES.add(Enumeration_3054);
+			KNOWN_ELEMENT_TYPES.add(PrimitiveType_3047);
+			KNOWN_ELEMENT_TYPES.add(PrimitiveType_3046);
+			KNOWN_ELEMENT_TYPES.add(PrimitiveType_3048);
+			KNOWN_ELEMENT_TYPES.add(DataType_3044);
+			KNOWN_ELEMENT_TYPES.add(DataType_3045);
+			KNOWN_ELEMENT_TYPES.add(DataType_3043);
+			KNOWN_ELEMENT_TYPES.add(Signal_3050);
+			KNOWN_ELEMENT_TYPES.add(Signal_3051);
+			KNOWN_ELEMENT_TYPES.add(Signal_3049);
 			KNOWN_ELEMENT_TYPES.add(Link_4016);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_4017);
 			KNOWN_ELEMENT_TYPES.add(Association_4001);
@@ -1024,6 +1018,30 @@ public class UMLElementTypes {
 			return Interface_3037;
 		case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
 			return Interface_3038;
+		case NestedEnumerationForClassEditPart.VISUAL_ID:
+			return Enumeration_3052;
+		case NestedEnumerationForComponentEditPart.VISUAL_ID:
+			return Enumeration_3053;
+		case NestedEnumerationForInterfaceEditPart.VISUAL_ID:
+			return Enumeration_3054;
+		case NestedPrimitiveTypeForClassEditPart.VISUAL_ID:
+			return PrimitiveType_3047;
+		case NestedPrimitiveTypeForComponentEditPart.VISUAL_ID:
+			return PrimitiveType_3046;
+		case NestedPrimitiveTypeForInterfaceEditPart.VISUAL_ID:
+			return PrimitiveType_3048;
+		case NestedDataTypeForClassEditPart.VISUAL_ID:
+			return DataType_3044;
+		case NestedDataTypeForComponentEditPart.VISUAL_ID:
+			return DataType_3045;
+		case NestedDataTypeForInterfaceEditPart.VISUAL_ID:
+			return DataType_3043;
+		case NestedSignalForClassEditPart.VISUAL_ID:
+			return Signal_3050;
+		case NestedSignalForComponentEditPart.VISUAL_ID:
+			return Signal_3051;
+		case NestedSignalForInterfaceEditPart.VISUAL_ID:
+			return Signal_3049;
 		case AssociationClassDashedLinkEditPart.VISUAL_ID:
 			return Link_4016;
 		case AssociationClassLinkEditPart.VISUAL_ID:

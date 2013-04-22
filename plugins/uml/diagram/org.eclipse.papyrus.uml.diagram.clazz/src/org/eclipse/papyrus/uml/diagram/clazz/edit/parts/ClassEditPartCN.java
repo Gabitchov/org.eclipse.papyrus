@@ -2188,6 +2188,21 @@ public class ClassEditPartCN extends ClassifierEditPart {
 			if(type == UMLElementTypes.Class_3014) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID));
 			}
+			if(type == UMLElementTypes.Interface_3036) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID));
+			}
+			if(type == UMLElementTypes.Enumeration_3052) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID));
+			}
+			if(type == UMLElementTypes.PrimitiveType_3047) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID));
+			}
+			if(type == UMLElementTypes.DataType_3044) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID));
+			}
+			if(type == UMLElementTypes.Signal_3050) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID));
+			}
 		}
 		return super.getTargetEditPart(request);
 	}

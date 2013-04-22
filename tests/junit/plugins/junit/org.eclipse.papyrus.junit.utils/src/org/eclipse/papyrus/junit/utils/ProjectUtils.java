@@ -43,6 +43,9 @@ public class ProjectUtils {
 		final IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		final IProject testProject = workspace.getRoot().getProject(projectName);
 
+		if(testProject.exists()) {
+			testProject.delete(true, new NullProgressMonitor());
+		}
 		testProject.create(new NullProgressMonitor());
 		testProject.open(new NullProgressMonitor());
 

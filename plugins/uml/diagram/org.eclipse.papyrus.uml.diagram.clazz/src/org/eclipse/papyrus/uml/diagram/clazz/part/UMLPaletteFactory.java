@@ -486,9 +486,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createDataType6CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.DataType_3027);
 		types.add(UMLElementTypes.DataType_2010);
+		types.add(UMLElementTypes.DataType_3044);
+		types.add(UMLElementTypes.DataType_3045);
+		types.add(UMLElementTypes.DataType_3043);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -507,9 +510,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createEnumeration8CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.Enumeration_3025);
 		types.add(UMLElementTypes.Enumeration_2006);
+		types.add(UMLElementTypes.Enumeration_3052);
+		types.add(UMLElementTypes.Enumeration_3053);
+		types.add(UMLElementTypes.Enumeration_3054);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -528,9 +534,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createInterface10CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.Interface_2004);
 		types.add(UMLElementTypes.Interface_3023);
+		types.add(UMLElementTypes.Interface_3036);
+		types.add(UMLElementTypes.Interface_3037);
+		types.add(UMLElementTypes.Interface_3038);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -561,9 +570,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createPrimitiveType13CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.PrimitiveType_3026);
 		types.add(UMLElementTypes.PrimitiveType_2009);
+		types.add(UMLElementTypes.PrimitiveType_3047);
+		types.add(UMLElementTypes.PrimitiveType_3046);
+		types.add(UMLElementTypes.PrimitiveType_3048);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -654,9 +666,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createSignal21CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.Signal_2003);
 		types.add(UMLElementTypes.Signal_3022);
+		types.add(UMLElementTypes.Signal_3050);
+		types.add(UMLElementTypes.Signal_3051);
+		types.add(UMLElementTypes.Signal_3049);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

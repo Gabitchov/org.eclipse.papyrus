@@ -21,18 +21,10 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-
 // child nodes
-TestActivityDiagramChildNode.class, TestActivityDiagramChildWithOtherCreationNode.class, TestActivityChildNodeInStructuredActivity.class
-//Nodes in structured Activity
-//TestActivityChildNodeInStructuredActivity.class,
-//test links
-//TestActivityDiagramLink.class,
-//test links owned by source
-//TestClassDiagramLinkOwnedBySource.class,
-//containmentLink
-//TestClassDiagramContainment.class,
-
+TestActivityDiagramChildNode.class, 
+TestActivityDiagramChildWithOtherCreationNode.class, 
+TestActivityChildNodeInStructuredActivity.class
 })
 public class AllCanonicalTests {
 

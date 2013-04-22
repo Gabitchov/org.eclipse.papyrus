@@ -33,6 +33,11 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedDataTypeForComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedEnumerationForComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedPrimitiveTypeForComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedSignalForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
@@ -87,7 +92,17 @@ public class ComponentNestedClassifierCompartmentCanonicalEditPolicyCN extends C
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return NestedClassForComponentEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		switch(visualID) {
+		case NestedClassForComponentEditPart.VISUAL_ID:
+		case NestedInterfaceForComponentEditPart.VISUAL_ID:
+		case NestedEnumerationForComponentEditPart.VISUAL_ID:
+		case NestedPrimitiveTypeForComponentEditPart.VISUAL_ID:
+		case NestedDataTypeForComponentEditPart.VISUAL_ID:
+		case NestedSignalForComponentEditPart.VISUAL_ID:
+			return true;
+		}
+		return false;
 	}
 
 	/**

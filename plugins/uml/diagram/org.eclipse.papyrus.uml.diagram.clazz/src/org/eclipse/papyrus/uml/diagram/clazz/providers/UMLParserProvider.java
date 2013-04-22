@@ -29,99 +29,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.RoleInstanceSpecific
 import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.SlotParser;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.TemplateBindingParser;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.TemplateParameterParser;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AbstractionNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeAbstractionEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeAssociationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeDependencyEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeElementImportEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeGeneralizationSetLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeInterfaceRealizationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypePackageImportEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypePackageMergeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeRealizationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeSubstitutionEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeTemplateBindingEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationBranchMutliplicityEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationMultiplicitySourceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationMultiplicityTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationSourceNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.BindingSubstitutionEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassifierTemplateParameterEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentBodyEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentBodyEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintBodyEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintBodyEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DefaultNamedElementNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DiagramNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationStereotypeLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ElementImportAliasEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceRealizationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelNameEditPartTN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.MultiDependencyLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForInterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForPrimitiveTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforPrimitiveTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RealizationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionInInterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShapeNamedElementNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SlotEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SourceISLinkLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SubstitutionNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TargetISLinkLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TemplateParameterEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TimeObservationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TimeObservationStereotypeLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.UsageNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.parser.CommentParser;
@@ -568,7 +476,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return property_3006Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -704,8 +611,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return operation_3042Parser;
 	}
-
-
 
 	/**
 	 * @generated
@@ -1139,6 +1044,210 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			interface_3038Parser = parser;
 		}
 		return interface_3038Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser enumeration_3052Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getEnumeration_3052Parser() {
+		if(enumeration_3052Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			enumeration_3052Parser = parser;
+		}
+		return enumeration_3052Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser enumeration_3053Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getEnumeration_3053Parser() {
+		if(enumeration_3053Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			enumeration_3053Parser = parser;
+		}
+		return enumeration_3053Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser enumeration_3054Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getEnumeration_3054Parser() {
+		if(enumeration_3054Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			enumeration_3054Parser = parser;
+		}
+		return enumeration_3054Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser primitiveType_3047Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPrimitiveType_3047Parser() {
+		if(primitiveType_3047Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			primitiveType_3047Parser = parser;
+		}
+		return primitiveType_3047Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser primitiveType_3046Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPrimitiveType_3046Parser() {
+		if(primitiveType_3046Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			primitiveType_3046Parser = parser;
+		}
+		return primitiveType_3046Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser primitiveType_3048Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPrimitiveType_3048Parser() {
+		if(primitiveType_3048Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			primitiveType_3048Parser = parser;
+		}
+		return primitiveType_3048Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataType_3044Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataType_3044Parser() {
+		if(dataType_3044Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			dataType_3044Parser = parser;
+		}
+		return dataType_3044Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataType_3045Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataType_3045Parser() {
+		if(dataType_3045Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			dataType_3045Parser = parser;
+		}
+		return dataType_3045Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataType_3043Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataType_3043Parser() {
+		if(dataType_3043Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			dataType_3043Parser = parser;
+		}
+		return dataType_3043Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser signal_3050Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSignal_3050Parser() {
+		if(signal_3050Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			signal_3050Parser = parser;
+		}
+		return signal_3050Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser signal_3051Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSignal_3051Parser() {
+		if(signal_3051Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			signal_3051Parser = parser;
+		}
+		return signal_3051Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser signal_3049Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSignal_3049Parser() {
+		if(signal_3049Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			signal_3049Parser = parser;
+		}
+		return signal_3049Parser;
 	}
 
 	/**
@@ -1817,6 +1926,30 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInterface_3037Parser();
 		case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
 			return getInterface_3038Parser();
+		case NestedEnumerationForClassEditPart.VISUAL_ID:
+			return getEnumeration_3052Parser();
+		case NestedEnumerationForComponentEditPart.VISUAL_ID:
+			return getEnumeration_3053Parser();
+		case NestedEnumerationForInterfaceEditPart.VISUAL_ID:
+			return getEnumeration_3054Parser();
+		case NestedPrimitiveTypeForClassEditPart.VISUAL_ID:
+			return getPrimitiveType_3047Parser();
+		case NestedPrimitiveTypeForComponentEditPart.VISUAL_ID:
+			return getPrimitiveType_3046Parser();
+		case NestedPrimitiveTypeForInterfaceEditPart.VISUAL_ID:
+			return getPrimitiveType_3048Parser();
+		case NestedDataTypeForClassEditPart.VISUAL_ID:
+			return getDataType_3044Parser();
+		case NestedDataTypeForComponentEditPart.VISUAL_ID:
+			return getDataType_3045Parser();
+		case NestedDataTypeForInterfaceEditPart.VISUAL_ID:
+			return getDataType_3043Parser();
+		case NestedSignalForClassEditPart.VISUAL_ID:
+			return getSignal_3050Parser();
+		case NestedSignalForComponentEditPart.VISUAL_ID:
+			return getSignal_3051Parser();
+		case NestedSignalForInterfaceEditPart.VISUAL_ID:
+			return getSignal_3049Parser();
 		case AssociationClassRoleSourceEditPart.VISUAL_ID:
 			return getAssociationClassName_6031Parser();
 		case AssociationClassRoleTargetEditPart.VISUAL_ID:

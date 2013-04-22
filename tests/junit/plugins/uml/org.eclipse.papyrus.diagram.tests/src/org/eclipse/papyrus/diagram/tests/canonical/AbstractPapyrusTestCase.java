@@ -42,7 +42,9 @@ import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.IntroPart;
 import org.eclipse.uml2.uml.Element;
 import org.junit.After;
 import org.junit.Assert;
@@ -207,6 +209,26 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 * Project creation.
 	 */
 	protected void projectCreation() {
+		
+		// assert the intro is not visible
+		Runnable closeIntroRunnable = new Runnable() {
+
+			public void run() {
+				try {
+					IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
+					if(introPart!=null) {
+						PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
+					}
+				} catch (Exception ex) {
+					ex.printStackTrace(System.out);
+					fail(ex.getMessage());
+				}
+			}
+		};
+
+		Display.getDefault().syncExec(closeIntroRunnable);
+		
+		
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
 		project = root.getProject("ClazzDiagramTestProject");
@@ -250,6 +272,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 						page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 						papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), PapyrusMultiDiagramEditor.EDITOR_ID);
 					} catch (Exception ex) {
+						fail(ex.getMessage());
 						ex.printStackTrace(System.out);
 					}
 				}

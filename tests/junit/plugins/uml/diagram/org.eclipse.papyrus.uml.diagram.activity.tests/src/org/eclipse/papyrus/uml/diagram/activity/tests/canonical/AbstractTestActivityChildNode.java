@@ -14,18 +14,6 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *****************************************************************************/
-
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -58,9 +46,16 @@ public abstract class AbstractTestActivityChildNode extends TestChildNode {
 			}
 			index++;
 		}
-
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected boolean isSemanticTest() {
+		return true;
+	}
+	
 	/**
 	 * Test change container.
 	 * 
@@ -72,20 +67,20 @@ public abstract class AbstractTestActivityChildNode extends TestChildNode {
 	@Override
 	public void testChangeContainer(IElementType type, IElementType containerType) {
 		//CHANGE CONTAINER
-		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, getRootCompartment().getChildren().size() == 1);
+		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, getContainerEditPart().getChildren().size() == 1);
 		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 1);
 
 
-		Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(containerType, getRootCompartment().getDiagramPreferencesHint());
-		Command command = getRootCompartment().getCommand(requestcreation);
+		Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(containerType, getContainerEditPart().getDiagramPreferencesHint());
+		Command command = getContainerEditPart().getCommand(requestcreation);
 		assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CONTAINER_CREATION + TEST_THE_EXECUTION, getRootView().getChildren().size() == 2);
-		GraphicalEditPart containerEditPart = (GraphicalEditPart)getRootCompartment().getChildren().get(1);
+		GraphicalEditPart containerEditPart = (GraphicalEditPart)getContainerEditPart().getChildren().get(1);
 		ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_ADD);
-		changeBoundsRequest.setEditParts((EditPart)getRootCompartment().getChildren().get(0));
+		changeBoundsRequest.setEditParts((EditPart)getContainerEditPart().getChildren().get(0));
 		changeBoundsRequest.setLocation(new Point(30, 30));
 		ShapeCompartmentEditPart compartment = null;
 		int index = 0;

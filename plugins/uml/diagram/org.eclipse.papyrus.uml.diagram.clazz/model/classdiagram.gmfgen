@@ -2459,7 +2459,7 @@
           canonicalEditPolicyClassName="NestedInterfaceForClassCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="NestedInterfaceForClassGraphicalNodeEditPolicy"
           createCommandClassName="NestedInterfaceForClassCreateCommand"
-          containers="/0/@diagram/@compartments.20">
+          containers="/0/@diagram/@compartments.20 /0/@diagram/@compartments.2">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -2507,7 +2507,7 @@
           canonicalEditPolicyClassName="NestedInterfaceForComponentCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="NestedInterfaceForComponentGraphicalNodeEditPolicy"
           createCommandClassName="NestedInterfaceForComponentCreateCommand"
-          containers="/0/@diagram/@compartments.23">
+          containers="/0/@diagram/@compartments.23 /0/@diagram/@compartments.5">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -2553,7 +2553,7 @@
           canonicalEditPolicyClassName="NestedInterfaceForInterfaceCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="NestedInterfaceForInterfaceGraphicalNodeEditPolicy"
           createCommandClassName="NestedInterfaceForInterfaceCreateCommand"
-          containers="/0/@diagram/@compartments.26">
+          containers="/0/@diagram/@compartments.26 /0/@diagram/@compartments.9">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -2569,6 +2569,594 @@
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3052"
+          editPartClassName="NestedEnumerationForClassEditPart"
+          itemSemanticEditPolicyClassName="NestedEnumerationForClassItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedEnumerationForClassCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedEnumerationForClassGraphicalNodeEditPolicy"
+          createCommandClassName="NestedEnumerationForClassCreateCommand"
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.20">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3052"
+            displayName="Enumeration"
+            metamodelType="/0/@diagram/@childNodes.30/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3053"
+          editPartClassName="NestedEnumerationForComponentEditPart"
+          itemSemanticEditPolicyClassName="NestedEnumerationForComponentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedEnumerationForComponentCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedEnumerationForComponentGraphicalNodeEditPolicy"
+          createCommandClassName="NestedEnumerationForComponentCreateCommand"
+          containers="/0/@diagram/@compartments.5 /0/@diagram/@compartments.23">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3053"
+            displayName="Enumeration"
+            metamodelType="/0/@diagram/@childNodes.30/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3054"
+          editPartClassName="NestedEnumerationForInterfaceEditPart"
+          itemSemanticEditPolicyClassName="NestedEnumerationForInterfaceItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedEnumerationForInterfaceCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedEnumerationForInterfaceGraphicalNodeEditPolicy"
+          createCommandClassName="NestedEnumerationForInterfaceCreateCommand"
+          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.26">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3054"
+            displayName="Enumeration"
+            metamodelType="/0/@diagram/@childNodes.30/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Enumeration"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3047"
+          editPartClassName="NestedPrimitiveTypeForClassEditPart"
+          itemSemanticEditPolicyClassName="NestedPrimitiveTypeForClassItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedPrimitiveTypeForClassCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedPrimitiveTypeForClassGraphicalNodeEditPolicy"
+          createCommandClassName="NestedPrimitiveTypeForClassCreateCommand"
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.20">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_3047"
+            displayName="PrimitiveType"
+            metamodelType="/0/@diagram/@childNodes.34/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PrimitiveType"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3046"
+          editPartClassName="NestedPrimitiveTypeForComponentEditPart"
+          itemSemanticEditPolicyClassName="NestedPrimitiveTypeForComponentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedPrimitiveTypeForComponentCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedPrimitiveTypeForComponentGraphicalNodeEditPolicy"
+          createCommandClassName="NestedPrimitiveTypeForComponentCreateCommand"
+          containers="/0/@diagram/@compartments.5 /0/@diagram/@compartments.23">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_3046"
+            displayName="PrimitiveType"
+            metamodelType="/0/@diagram/@childNodes.34/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PrimitiveType"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3048"
+          editPartClassName="NestedPrimitiveTypeForInterfaceEditPart"
+          itemSemanticEditPolicyClassName="NestedPrimitiveTypeForInterfaceItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedPrimitiveTypeForInterfaceCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedPrimitiveTypeForInterfaceGraphicalNodeEditPolicy"
+          createCommandClassName="NestedPrimitiveTypeForInterfaceCreateCommand"
+          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.26">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_3048"
+            displayName="PrimitiveType"
+            metamodelType="/0/@diagram/@childNodes.34/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PrimitiveType"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3044"
+          editPartClassName="NestedDataTypeForClassEditPart"
+          itemSemanticEditPolicyClassName="NestedDataTypeForClassItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedDataTypeForClassCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedDataTypeForClassGraphicalNodeEditPolicy"
+          createCommandClassName="NestedDataTypeForClassCreateCommand"
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.20">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.DataType_3044"
+            displayName="DataType"
+            metamodelType="/0/@diagram/@childNodes.35/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3045"
+          editPartClassName="NestedDataTypeForComponentEditPart"
+          itemSemanticEditPolicyClassName="NestedDataTypeForComponentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedDataTypeForComponentCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedDataTypeForComponentGraphicalNodeEditPolicy"
+          createCommandClassName="NestedDataTypeForComponentCreateCommand"
+          containers="/0/@diagram/@compartments.5 /0/@diagram/@compartments.23">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.DataType_3045"
+            displayName="DataType"
+            metamodelType="/0/@diagram/@childNodes.35/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3043"
+          editPartClassName="NestedDataTypeForInterfaceEditPart"
+          itemSemanticEditPolicyClassName="NestedDataTypeForInterfaceItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedDataTypeForInterfaceCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedDataTypeForInterfaceGraphicalNodeEditPolicy"
+          createCommandClassName="NestedDataTypeForInterfaceCreateCommand"
+          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.26">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.DataType_3043"
+            displayName="DataType"
+            metamodelType="/0/@diagram/@childNodes.35/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3050"
+          editPartClassName="NestedSignalForClassEditPart"
+          itemSemanticEditPolicyClassName="NestedSignalForClassItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedSignalForClassCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedSignalForClassGraphicalNodeEditPolicy"
+          createCommandClassName="NestedSignalForClassCreateCommand"
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.20">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.Signal_3050"
+            displayName="Signal"
+            metamodelType="/0/@diagram/@topLevelNodes.5/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3051"
+          editPartClassName="NestedSignalForComponentEditPart"
+          itemSemanticEditPolicyClassName="NestedSignalForComponentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedSignalForComponentCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedSignalForComponentGraphicalNodeEditPolicy"
+          createCommandClassName="NestedSignalForComponentCreateCommand"
+          containers="/0/@diagram/@compartments.5 /0/@diagram/@compartments.23">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.Signal_3051"
+            displayName="Signal"
+            metamodelType="/0/@diagram/@topLevelNodes.5/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="3049"
+          editPartClassName="NestedSignalForInterfaceEditPart"
+          itemSemanticEditPolicyClassName="NestedSignalForInterfaceItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="NestedSignalForInterfaceCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="NestedSignalForInterfaceGraphicalNodeEditPolicy"
+          createCommandClassName="NestedSignalForInterfaceCreateCommand"
+          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.26">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.clazz.Signal_3049"
+            displayName="Signal"
+            metamodelType="/0/@diagram/@topLevelNodes.5/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Signal"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface/nestedClassifier"/>
           <childMetaFeature
@@ -6288,7 +6876,7 @@
           editPartClassName="ClassNestedClassifierCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="ClassNestedClassifierCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ClassNestedClassifierCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.6"
+          childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.50"
           title="NestedClassifierCompartment"
           node="/0/@diagram/@childNodes.33">
         <diagramRunTimeClass
@@ -6361,7 +6949,7 @@
           editPartClassName="ComponentNestedClassifierCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="ComponentNestedClassifierCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ComponentNestedClassifierCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.7"
+          childNodes="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.51"
           title="NestedClassifierCompartment"
           node="/0/@diagram/@childNodes.26">
         <diagramRunTimeClass
@@ -6457,7 +7045,7 @@
           editPartClassName="InterfaceNestedClassifierCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="InterfaceNestedClassifierCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="InterfaceNestedClassifierCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.8"
+          childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.52"
           title="NestedClassifierCompartment"
           node="/0/@diagram/@childNodes.28">
         <diagramRunTimeClass
@@ -6734,7 +7322,7 @@
           editPartClassName="ClassNestedClassifierCompartmentEditPart"
           itemSemanticEditPolicyClassName="ClassNestedClassifierCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ClassNestedClassifierCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.38"
+          childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.50"
           title="NestedClassifierCompartment"
           node="/0/@diagram/@topLevelNodes.11">
         <diagramRunTimeClass
@@ -6811,7 +7399,7 @@
           editPartClassName="ComponentNestedClassifierCompartmentEditPart"
           itemSemanticEditPolicyClassName="ComponentNestedClassifierCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ComponentNestedClassifierCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.39"
+          childNodes="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.51"
           title="NestedClassifierCompartment"
           node="/0/@diagram/@topLevelNodes.4">
         <diagramRunTimeClass
@@ -6888,7 +7476,7 @@
           editPartClassName="InterfaceNestedClassifierCompartmentEditPart"
           itemSemanticEditPolicyClassName="InterfaceNestedClassifierCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="InterfaceNestedClassifierCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.40"
+          childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.52"
           title="NestedClassifierCompartment"
           node="/0/@diagram/@topLevelNodes.6">
         <diagramRunTimeClass
@@ -7327,7 +7915,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
               id="&quot;clazz.tool.datatype&quot;"
-              genNodes="/0/@diagram/@childNodes.35 /0/@diagram/@topLevelNodes.13"/>
+              genNodes="/0/@diagram/@childNodes.35 /0/@diagram/@topLevelNodes.13 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="DurationObservation"
@@ -7342,7 +7930,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
               id="&quot;clazz.tool.enumeration&quot;"
-              genNodes="/0/@diagram/@childNodes.30 /0/@diagram/@topLevelNodes.8"/>
+              genNodes="/0/@diagram/@childNodes.30 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Enumeration literal"
@@ -7358,7 +7946,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
               id="&quot;clazz.tool.interface&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.28"/>
+              genNodes="/0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="InstanceSpecification"
@@ -7382,7 +7970,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
               id="&quot;clazz.tool.primitivetype&quot;"
-              genNodes="/0/@diagram/@childNodes.34 /0/@diagram/@topLevelNodes.12"/>
+              genNodes="/0/@diagram/@childNodes.34 /0/@diagram/@topLevelNodes.12 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Model"
@@ -7447,7 +8035,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
               id="&quot;clazz.tool.signal&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.27"/>
+              genNodes="/0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.51 /0/@diagram/@childNodes.52"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Slot"
@@ -7773,7 +8361,7 @@
           uses="/0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@childNodes.9/@labelModelFacet /0/@diagram/@links.25/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.10/@labelModelFacet /0/@diagram/@childNodes.7/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.3/@labelModelFacet /0/@diagram/@childNodes.11/@labelModelFacet /0/@diagram/@childNodes.8/@labelModelFacet /0/@diagram/@childNodes.18/@labelModelFacet /0/@diagram/@childNodes.19/@labelModelFacet /0/@diagram/@childNodes.6/@labelModelFacet /0/@diagram/@childNodes.5/@labelModelFacet /0/@diagram/@childNodes.13/@labelModelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.33/@labels.0/@modelFacet /0/@diagram/@childNodes.34/@labels.0/@modelFacet /0/@diagram/@childNodes.35/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.3/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.18/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.19/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.20/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.4/@modelFacet /0/@diagram/@links.2/@labels.5/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@childNodes.38/@labelModelFacet /0/@diagram/@childNodes.39/@labelModelFacet /0/@diagram/@childNodes.40/@labelModelFacet /0/@diagram/@childNodes.20/@labelModelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labelModelFacet /0/@diagram/@childNodes.12/@labelModelFacet"/>
+          uses="/0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.10/@labelModelFacet /0/@diagram/@childNodes.7/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.3/@labelModelFacet /0/@diagram/@childNodes.11/@labelModelFacet /0/@diagram/@childNodes.8/@labelModelFacet /0/@diagram/@childNodes.18/@labelModelFacet /0/@diagram/@childNodes.19/@labelModelFacet /0/@diagram/@childNodes.6/@labelModelFacet /0/@diagram/@childNodes.5/@labelModelFacet /0/@diagram/@childNodes.13/@labelModelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.33/@labels.0/@modelFacet /0/@diagram/@childNodes.34/@labels.0/@modelFacet /0/@diagram/@childNodes.35/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.3/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.18/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.19/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.20/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.4/@modelFacet /0/@diagram/@links.2/@labels.5/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@childNodes.38/@labelModelFacet /0/@diagram/@childNodes.39/@labelModelFacet /0/@diagram/@childNodes.40/@labelModelFacet /0/@diagram/@childNodes.20/@labelModelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labelModelFacet /0/@diagram/@childNodes.12/@labelModelFacet /0/@diagram/@childNodes.49/@labelModelFacet /0/@diagram/@childNodes.44/@labelModelFacet /0/@diagram/@childNodes.45/@labelModelFacet /0/@diagram/@childNodes.48/@labelModelFacet /0/@diagram/@childNodes.47/@labelModelFacet /0/@diagram/@childNodes.46/@labelModelFacet /0/@diagram/@childNodes.52/@labelModelFacet /0/@diagram/@childNodes.50/@labelModelFacet /0/@diagram/@childNodes.51/@labelModelFacet /0/@diagram/@childNodes.41/@labelModelFacet /0/@diagram/@childNodes.42/@labelModelFacet /0/@diagram/@childNodes.43/@labelModelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.19/@labels.0/@modelFacet"
@@ -7950,7 +8538,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Extended Gen View For UML compartments child label nodes, like properties in classifier representation of class diagram"
-        genView="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.12"
+        genView="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.51 /0/@diagram/@childNodes.52"
         name="UMLCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart"/>
     <extensionNodes
@@ -7962,7 +8550,7 @@
         xsi:type="papyrusgmfgenextension:EditPartUsingDeleteService"
         comment="List of editpart using the delete service"
         name="DeleteService editpart List"
-        genView="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.11 /0/@diagram/@topLevelNodes.12 /0/@diagram/@topLevelNodes.13 /0/@diagram/@topLevelNodes.14 /0/@diagram/@topLevelNodes.15 /0/@diagram/@topLevelNodes.16 /0/@diagram/@topLevelNodes.17 /0/@diagram/@topLevelNodes.18 /0/@diagram/@topLevelNodes.19 /0/@diagram/@topLevelNodes.20 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11 /0/@diagram/@links.12 /0/@diagram/@links.13 /0/@diagram/@links.14 /0/@diagram/@links.15 /0/@diagram/@links.16 /0/@diagram/@links.17 /0/@diagram/@links.18 /0/@diagram/@links.19 /0/@diagram/@links.20 /0/@diagram/@links.21 /0/@diagram/@links.23 /0/@diagram/@links.24 /0/@diagram/@childNodes.20 /0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.32 /0/@diagram/@links.25 /0/@diagram/@childNodes.12"/>
+        genView="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.11 /0/@diagram/@topLevelNodes.12 /0/@diagram/@topLevelNodes.13 /0/@diagram/@topLevelNodes.14 /0/@diagram/@topLevelNodes.15 /0/@diagram/@topLevelNodes.16 /0/@diagram/@topLevelNodes.17 /0/@diagram/@topLevelNodes.18 /0/@diagram/@topLevelNodes.19 /0/@diagram/@topLevelNodes.20 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11 /0/@diagram/@links.12 /0/@diagram/@links.13 /0/@diagram/@links.14 /0/@diagram/@links.15 /0/@diagram/@links.16 /0/@diagram/@links.17 /0/@diagram/@links.18 /0/@diagram/@links.19 /0/@diagram/@links.20 /0/@diagram/@links.21 /0/@diagram/@links.23 /0/@diagram/@links.24 /0/@diagram/@childNodes.20 /0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.32 /0/@diagram/@links.25 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.51 /0/@diagram/@childNodes.52"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:EditPartUsingReorientService"
         comment="use the reorient service for Generalization"

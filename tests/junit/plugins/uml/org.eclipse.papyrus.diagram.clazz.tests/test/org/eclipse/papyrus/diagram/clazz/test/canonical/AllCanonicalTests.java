@@ -39,6 +39,8 @@ TestClassDiagramContainment.class,
 TestDropfunction.class,
 //test is a static operation is underlined
 TestStaticFeatureRepresentation.class,
+//test nested classifier
+TestClassDiagramNestedClassifier.class,
 
 })
 public class AllCanonicalTests {

@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -39,6 +40,14 @@ public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestA
 	@Test
 	public void testToManageCallOperationAction() {
 		testToManageChildNode(UMLElementTypes.CallOperationAction_3010, UMLElementTypes.StructuredActivityNode_3065, false);
+	}
+	
+	/**
+	 * Test to manageDecision Node.
+	 */
+	@Test
+	public void testToManageSendSignalAction() {
+		testToManageChildNode(UMLElementTypes.SendSignalAction_3052, UMLElementTypes.StructuredActivityNode_3065, false);
 	}
 	
 	@Override

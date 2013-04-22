@@ -18,7 +18,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedClassForInterfaceCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedDataTypeForInterfaceCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedEnumerationForInterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedInterfaceForInterfaceCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedPrimitiveTypeForInterfaceCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedSignalForInterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 
 /**
@@ -64,6 +68,30 @@ public class InterfaceNestedClassifierCompartmentItemSemanticEditPolicy extends 
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new NestedInterfaceForInterfaceCreateCommand(req));
+		}
+		if(UMLElementTypes.Enumeration_3054 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new NestedEnumerationForInterfaceCreateCommand(req));
+		}
+		if(UMLElementTypes.PrimitiveType_3048 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new NestedPrimitiveTypeForInterfaceCreateCommand(req));
+		}
+		if(UMLElementTypes.DataType_3043 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new NestedDataTypeForInterfaceCreateCommand(req));
+		}
+		if(UMLElementTypes.Signal_3049 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new NestedSignalForInterfaceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
