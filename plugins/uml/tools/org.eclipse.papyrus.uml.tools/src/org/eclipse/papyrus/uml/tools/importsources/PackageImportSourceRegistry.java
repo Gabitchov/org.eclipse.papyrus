@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.expressions.EvaluationContext;
 import org.eclipse.core.expressions.EvaluationResult;
@@ -38,11 +39,9 @@ import org.eclipse.uml2.uml.Package;
 /**
  * This is the PackageImportSourceRegistry type. Enjoy.
  */
-public class PackageImportSourceRegistry
-		implements Iterable<PackageImportSourceRegistry.Descriptor> {
+public class PackageImportSourceRegistry implements Iterable<PackageImportSourceRegistry.Descriptor> {
 
-	private static final String EXTPT_ID = Activator.PLUGIN_ID
-		+ ".importSources";
+	private static final String EXTPT_ID = Activator.PLUGIN_ID + ".importSources";
 
 	private final List<Descriptor> descriptors = new java.util.ArrayList<Descriptor>();
 
@@ -51,10 +50,9 @@ public class PackageImportSourceRegistry
 	public PackageImportSourceRegistry(IEvaluationService evaluationService) {
 		this.evaluationService = evaluationService;
 
-		for (IConfigurationElement config : sort(Platform
-			.getExtensionRegistry().getConfigurationElementsFor(EXTPT_ID))) {
+		for(IConfigurationElement config : sort(Platform.getExtensionRegistry().getConfigurationElementsFor(EXTPT_ID))) {
 
-			if ("importSource".equals(config.getName())) {
+			if("importSource".equals(config.getName())) {
 				descriptors.add(new Descriptor(config));
 			}
 		}
@@ -70,45 +68,37 @@ public class PackageImportSourceRegistry
 
 	public IPackageImportSource createImportSourceFor(Collection<?> selection) {
 
-		List<IPackageImportSource> result = new java.util.ArrayList<IPackageImportSource>(
-			3);
+		List<IPackageImportSource> result = new java.util.ArrayList<IPackageImportSource>(3);
 
-		for (Descriptor next : this) {
-			if (next.canImportInto(selection)) {
+		for(Descriptor next : this) {
+			if(next.canImportInto(selection)) {
 				result.add(next.getInstance());
 			}
 		}
 
-		return result.isEmpty()
-			? new NullImportSource()
-			: (result.size() == 1)
-				? result.get(0)
-				: new CompositePackageImportSource(result);
+		return result.isEmpty() ? new NullImportSource() : (result.size() == 1) ? result.get(0) : new CompositePackageImportSource(result);
 	}
 
 	// sort configuration elements by contributing plug-in. Our own last, all
 	// others as they come
-	private List<IConfigurationElement> sort(
-			IConfigurationElement[] providerElements) {
+	private List<IConfigurationElement> sort(IConfigurationElement[] providerElements) {
 
-		List<IConfigurationElement> result = new java.util.ArrayList<IConfigurationElement>(
-			Arrays.asList(providerElements));
+		List<IConfigurationElement> result = new java.util.ArrayList<IConfigurationElement>(Arrays.asList(providerElements));
 
 		Collections.sort(result, new Comparator<IConfigurationElement>() {
 
-			public int compare(IConfigurationElement o1,
-					IConfigurationElement o2) {
+			public int compare(IConfigurationElement o1, IConfigurationElement o2) {
 
 				int result;
 
 				String plugin1 = o1.getContributor().getName();
 				String plugin2 = o2.getContributor().getName();
 
-				if (plugin1.equals(plugin2)) {
+				if(plugin1.equals(plugin2)) {
 					result = 0;
-				} else if (Activator.PLUGIN_ID.equals(plugin1)) {
+				} else if(Activator.PLUGIN_ID.equals(plugin1)) {
 					result = +1;
-				} else if (Activator.PLUGIN_ID.equals(plugin2)) {
+				} else if(Activator.PLUGIN_ID.equals(plugin2)) {
 					result = -1;
 				} else {
 					result = 0;
@@ -125,8 +115,7 @@ public class PackageImportSourceRegistry
 	// Nested types
 	//
 
-	public class Descriptor
-			implements IPackageImportSource {
+	public class Descriptor implements IPackageImportSource {
 
 		private final IConfigurationElement config;
 
@@ -149,21 +138,16 @@ public class PackageImportSourceRegistry
 		}
 
 		IPackageImportSource getInstance() {
-			if (instance == null) {
+			if(instance == null) {
 				try {
-					instance = (IPackageImportSource) config
-						.createExecutableExtension("class");
+					instance = (IPackageImportSource)config.createExecutableExtension("class");
 				} catch (ClassCastException e) {
-					Activator.log
-						.error(
-							"Import source does not implement IPackageImportSource interface.",
-							e);
+					Activator.log.error("Import source does not implement IPackageImportSource interface.", e);
 				} catch (Exception e) {
-					Activator.log.error(
-						"Could not instantiate storage provider.", e);
+					Activator.log.error("Could not instantiate storage provider.", e);
 				}
 
-				if (instance == null) {
+				if(instance == null) {
 					instance = new NullImportSource();
 				}
 			}
@@ -174,9 +158,8 @@ public class PackageImportSourceRegistry
 		public boolean canImportInto(Collection<?> initialSelection) {
 			boolean result;
 
-			if (matchSelection != null) {
-				IEvaluationContext ctx = new EvaluationContext(
-					evaluationService.getCurrentState(), initialSelection);
+			if(matchSelection != null) {
+				IEvaluationContext ctx = new EvaluationContext(evaluationService.getCurrentState(), initialSelection);
 
 				EvaluationResult evalResult = EvaluationResult.FALSE;
 				try {
@@ -197,34 +180,31 @@ public class PackageImportSourceRegistry
 			getInstance().initialize(selection);
 		}
 
-		public IStaticContentProvider getModelHierarchyContentProvider() {
-			return getInstance().getModelHierarchyContentProvider();
+		public IStaticContentProvider getModelHierarchyContentProvider(Map<String, String> extensionFilters) {
+			return getInstance().getModelHierarchyContentProvider(extensionFilters);
 		}
 
 		public ILabelProvider getModelHierarchyLabelProvider() {
 			return getInstance().getModelHierarchyLabelProvider();
 		}
 
-		public List<Package> getPackages(ResourceSet resourceSet, Object model)
-				throws CoreException {
+		public List<Package> getPackages(ResourceSet resourceSet, Object model) throws CoreException {
 
 			return getInstance().getPackages(resourceSet, model);
 		}
 
 		public void dispose() {
-			if (instance != null) {
+			if(instance != null) {
 				instance.dispose();
 				instance = null;
 			}
 		}
 
 		private void initMatchExpression(IConfigurationElement parentConfig) {
-			IConfigurationElement[] configs = parentConfig
-				.getChildren("enablement");
-			if (configs.length > 0) {
+			IConfigurationElement[] configs = parentConfig.getChildren("enablement");
+			if(configs.length > 0) {
 				try {
-					matchSelection = ExpressionConverter.getDefault().perform(
-						configs[0]);
+					matchSelection = ExpressionConverter.getDefault().perform(configs[0]);
 				} catch (CoreException e) {
 					Activator.getDefault().getLog().log(e.getStatus());
 				}
@@ -232,8 +212,7 @@ public class PackageImportSourceRegistry
 		}
 	}
 
-	private static final class NullImportSource
-			implements IPackageImportSource {
+	private static final class NullImportSource implements IPackageImportSource {
 
 		public boolean canImportInto(Collection<?> selection) {
 			return false;
@@ -243,7 +222,7 @@ public class PackageImportSourceRegistry
 			// pass
 		}
 
-		public IStaticContentProvider getModelHierarchyContentProvider() {
+		public IStaticContentProvider getModelHierarchyContentProvider(Map<String, String> extensionFilters) {
 			return null;
 		}
 
@@ -251,12 +230,9 @@ public class PackageImportSourceRegistry
 			return null;
 		}
 
-		public List<Package> getPackages(ResourceSet resourceSet, Object model)
-				throws CoreException {
+		public List<Package> getPackages(ResourceSet resourceSet, Object model) throws CoreException {
 
-			throw new CoreException(new Status(IStatus.ERROR,
-				Activator.PLUGIN_ID,
-				"Null import source should not be invoked to import packages."));
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Null import source should not be invoked to import packages."));
 		}
 
 		public void dispose() {

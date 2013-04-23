@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.tools.importsources;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -26,29 +27,29 @@ import org.eclipse.uml2.uml.Package;
 public interface IPackageImportSource {
 
 	boolean canImportInto(Collection<?> selection);
-	
+
 	void initialize(Collection<?> selection);
 
 	/**
 	 * Obtains a content provider for the model hierarchy content that I
 	 * contribute.
 	 * 
+	 * The ContentProvider is configured with the given extension
+	 * 
 	 * @return my content provider
 	 */
-	IStaticContentProvider getModelHierarchyContentProvider();
+	IStaticContentProvider getModelHierarchyContentProvider(Map<String, String> extensionFilters);
 
 	/**
 	 * Obtains a label provider for the model hierarchy content that I
-	 * contribute. As a special case, it may be asked for a label for the
-	 * {@code IPackageImportSource}, itself. In this case, a label should be
+	 * contribute. As a special case, it may be asked for a label for the {@code IPackageImportSource}, itself. In this case, a label should be
 	 * provided that suitably represents "my kind of content."
 	 * 
 	 * @return my label provider
 	 */
 	ILabelProvider getModelHierarchyLabelProvider();
 
-	List<Package> getPackages(ResourceSet resourceSet, Object model)
-			throws CoreException;
+	List<Package> getPackages(ResourceSet resourceSet, Object model) throws CoreException;
 
 	/**
 	 * Clean up any resources that I allocated that are no longer required.

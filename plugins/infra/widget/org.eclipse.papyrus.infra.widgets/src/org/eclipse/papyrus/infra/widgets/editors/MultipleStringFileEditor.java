@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.widgets.editors;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -151,7 +152,17 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 
 		ReferenceSelector selector = new ReferenceSelector();
 		selector.setLabelProvider(labelProvider);
-		selector.setContentProvider(new WorkspaceContentProvider());
+
+
+		//Prepare the WorkspaceContentProvider and use the right filters
+		WorkspaceContentProvider contentProvider = new WorkspaceContentProvider();
+
+		contentProvider.setExtensionFilters(new LinkedHashMap<String, String>()); //Reset the default filters
+		for(int i = 0; i < Math.min(filterNames.size(), filterExtensions.size()); i++) {
+			contentProvider.addExtensionFilter(filterExtensions.get(i), filterNames.get(i));
+		}
+
+		selector.setContentProvider(contentProvider);
 
 
 		MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(getShell(), selector);

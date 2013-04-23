@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.tools.importsources;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
@@ -77,13 +78,30 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 	 *         user cancelled
 	 */
 	public static Collection<Package> open(Shell parentShell, String title, Collection<?> selection) {
+		return open(parentShell, title, selection, null);
+	}
+
+	/**
+	 * Opens a new {@code PackageImportSourceDialog} and returns the selected
+	 * models, if any.
+	 * 
+	 * @return the selected models from which to import, or {@code null} if the
+	 *         user cancelled
+	 */
+	public static Collection<Package> open(Shell parentShell, String title, Collection<?> selection, Map<String, String> extensionFilters) {
 
 		PackageImportSourceDialog dlg = new PackageImportSourceDialog(parentShell, title);
+		dlg.setExtensionFilters(extensionFilters);
 		dlg.initialize(selection);
-
 		dlg.open();
 
 		return dlg.getSelectedPackages();
+	}
+
+	protected Map<String, String> extensionFilters;
+
+	protected void setExtensionFilters(Map<String, String> extensionFilters) {
+		this.extensionFilters = extensionFilters;
 	}
 
 	public void initialize(Collection<?> selection) {
@@ -94,7 +112,7 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 		MyReferenceSelector selector = (MyReferenceSelector)this.selector;
 		ILabelProvider labelProvider = source.getModelHierarchyLabelProvider();
 		selector.setLabelProvider(labelProvider);
-		selector.setContentProvider(source.getModelHierarchyContentProvider());
+		selector.setContentProvider(source.getModelHierarchyContentProvider(extensionFilters));
 		selector.setImportSource(source);
 
 		setLabelProvider(labelProvider);

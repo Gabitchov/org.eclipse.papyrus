@@ -40,14 +40,14 @@ public class FilteredRegisteredMetamodelsSelectionDialog extends FilteredRegiste
 	 * @param alreadySelected
 	 *        list of already selected items
 	 */
-	public FilteredRegisteredMetamodelsSelectionDialog(Shell shell, boolean multi, Object[] input,
-			Collection alreadySelected) {
+	public FilteredRegisteredMetamodelsSelectionDialog(Shell shell, boolean multi, Object[] input, Collection alreadySelected) {
 		super(shell, multi, input, alreadySelected, "Metamodels to import: ", "Metamodels already imported: ");
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected IDialogSettings getDialogSettings() {
 		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
 		if(settings == null) {

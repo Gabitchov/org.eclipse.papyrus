@@ -13,6 +13,7 @@ package org.eclipse.papyrus.infra.widgets.editors;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -110,7 +111,20 @@ public class StringFileSelector extends StringEditor {
 				if(labelText != null) {
 					dialog.setTitle(labelText);
 				}
-				dialog.setContentProvider(new WorkspaceContentProvider());
+
+				WorkspaceContentProvider contentProvider = new WorkspaceContentProvider();
+
+				if(!(filterExtensions.isEmpty() || filterNames.isEmpty())) {
+					//The filters have been defined 
+					contentProvider.setExtensionFilters(new LinkedHashMap<String, String>()); //Reset the default filters
+
+					//Use our own filters
+					for(int i = 0; i < Math.min(filterNames.size(), filterExtensions.size()); i++) {
+						contentProvider.addExtensionFilter(filterExtensions.get(i), filterNames.get(i));
+					}
+				}
+
+				dialog.setContentProvider(contentProvider);
 				dialog.setLabelProvider(labelProvider);
 
 

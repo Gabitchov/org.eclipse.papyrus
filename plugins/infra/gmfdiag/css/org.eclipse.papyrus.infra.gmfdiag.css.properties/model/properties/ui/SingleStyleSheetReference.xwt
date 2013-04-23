@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
 	xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:j="clr-namespace:java.lang"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
 	xmlns="http://www.eclipse.org/xwt/presentation">
 	<Composite.layout>
@@ -12,6 +13,19 @@
 		</Composite.layout>
 		<ppe:StringFileSelector allowFileSystem="false"
 			input="{Binding}" allowWorkspace="true"
-			property="modelstylesheets:StyleSheetReference:path"></ppe:StringFileSelector>
+			property="modelstylesheets:StyleSheetReference:path">
+			<ppe:StringFileSelector.filterNames>
+				<x:Array Type="j:String">
+					<j:String>CSS Stylesheets</j:String>
+					<j:String>All</j:String>
+				</x:Array>
+			</ppe:StringFileSelector.filterNames>
+			<ppe:StringFileSelector.filterExtensions>
+				<x:Array Type="j:String">
+					<j:String>*.css</j:String>
+					<j:String>*</j:String>
+				</x:Array>
+			</ppe:StringFileSelector.filterExtensions>
+		</ppe:StringFileSelector>
 	</Composite>
 </Composite>

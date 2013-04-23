@@ -109,6 +109,7 @@ public class StyleCreationDialog extends AbstractStyleDialog {
 
 		//Create or use an existing External Stylesheet
 		externalStylesheetEditor = new StringFileSelector(parent, SWT.NONE);
+		externalStylesheetEditor.setFilters(new String[]{ "*.css", "*" }, new String[]{ "CSS Stylesheets (*.css)", "All (*)" });
 		externalStylesheetEditor.setAllowFileSystem(false);
 		externalStylesheetEditor.setLabel("External stylesheet:");
 		externalStylesheetEditor.setToolTipText("Create or use an existing external CSS Stylesheet");

@@ -40,14 +40,14 @@ public class FilteredRegisteredProfilesAsLibrarySelectionDialog extends Filtered
 	 * @param alreadySelected
 	 *        list of already selected items
 	 */
-	public FilteredRegisteredProfilesAsLibrarySelectionDialog(Shell shell, boolean multi, Object[] input,
-			Collection alreadySelected) {
+	public FilteredRegisteredProfilesAsLibrarySelectionDialog(Shell shell, boolean multi, Object[] input, Collection alreadySelected) {
 		super(shell, multi, input, alreadySelected, "Profiles to import: ", "Profiles already imported: ");
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected IDialogSettings getDialogSettings() {
 		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
 		if(settings == null) {

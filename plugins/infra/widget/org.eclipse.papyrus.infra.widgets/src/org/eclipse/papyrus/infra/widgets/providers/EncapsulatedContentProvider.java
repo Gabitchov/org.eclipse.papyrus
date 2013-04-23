@@ -11,13 +11,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.providers;
 
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
@@ -96,6 +99,12 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	public void dispose() {
 		//encapsulated.dispose();
 		//encapsulated = null;
+	}
+
+	protected void addViewerFilter(StructuredViewer viewer, ViewerFilter filter) {
+		Set<ViewerFilter> currentFilters = new LinkedHashSet<ViewerFilter>(Arrays.asList(viewer.getFilters()));
+		currentFilters.add(filter);
+		viewer.setFilters(currentFilters.toArray(new ViewerFilter[currentFilters.size()]));
 	}
 
 	/**

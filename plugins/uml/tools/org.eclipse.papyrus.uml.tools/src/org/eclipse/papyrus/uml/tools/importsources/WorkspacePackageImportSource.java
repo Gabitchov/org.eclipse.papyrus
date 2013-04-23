@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.importsources;
 
+import java.util.Map;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -27,29 +29,31 @@ import org.eclipse.swt.graphics.Image;
 /**
  * This is the WorkspacePackageImportSource type. Enjoy.
  */
-public class WorkspacePackageImportSource
-		extends AbstractPackageImportSource {
+public class WorkspacePackageImportSource extends AbstractPackageImportSource {
 
 	public WorkspacePackageImportSource() {
 		super();
 	}
 
-	protected IStaticContentProvider createModelHierarchyContentProvider() {
-		return new WorkspaceContentProvider();
+	@Override
+	protected IStaticContentProvider createModelHierarchyContentProvider(Map<String, String> extensionFilters) {
+		WorkspaceContentProvider contentProvider = new WorkspaceContentProvider();
+		if(extensionFilters != null) {
+			contentProvider.setExtensionFilters(extensionFilters);
+		}
+		return contentProvider;
 	}
 
 	@Override
 	protected ILabelProvider createModelHierarchyLabelProvider() {
-		return new DelegatingLabelProvider(
-			super.createModelHierarchyLabelProvider()) {
+		return new DelegatingLabelProvider(super.createModelHierarchyLabelProvider()) {
 
 			@Override
 			protected Image customGetImage(Object element) {
 				Image result = null;
 
-				if (element == WorkspacePackageImportSource.this) {
-					result = delegatedGetImage(ResourcesPlugin.getWorkspace()
-						.getRoot());
+				if(element == WorkspacePackageImportSource.this) {
+					result = delegatedGetImage(ResourcesPlugin.getWorkspace().getRoot());
 				}
 
 				return result;
@@ -59,9 +63,8 @@ public class WorkspacePackageImportSource
 			protected String customGetText(Object element) {
 				String result = null;
 
-				if (element == WorkspacePackageImportSource.this) {
-					result = delegatedGetText(ResourcesPlugin.getWorkspace()
-						.getRoot());
+				if(element == WorkspacePackageImportSource.this) {
+					result = delegatedGetText(ResourcesPlugin.getWorkspace().getRoot());
 				}
 
 				return result;
@@ -71,13 +74,10 @@ public class WorkspacePackageImportSource
 	}
 
 	@Override
-	protected void validateSelection(Object model)
-			throws CoreException {
+	protected void validateSelection(Object model) throws CoreException {
 
-		if (!(model instanceof IFile)) {
-			throw new CoreException(new Status(IStatus.WARNING,
-				Activator.PLUGIN_ID, NLS.bind(
-					"Selection is not a file: \"{0}\".", getText(model))));
+		if(!(model instanceof IFile)) {
+			throw new CoreException(new Status(IStatus.WARNING, Activator.PLUGIN_ID, NLS.bind("Selection is not a file: \"{0}\".", getText(model))));
 		}
 	}
 

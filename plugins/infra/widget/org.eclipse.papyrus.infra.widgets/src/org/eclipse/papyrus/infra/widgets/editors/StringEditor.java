@@ -121,10 +121,13 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 		super(parent, label);
 
 		GridData data = getDefaultLayoutData();
+		data.grabExcessVerticalSpace = true;
+		data.grabExcessHorizontalSpace = true;
+		data.verticalAlignment = SWT.FILL;
 
 		if((style & SWT.MULTI) != 0) {
-			data.heightHint = heighHint;
-			data.widthHint = widthHint;
+			data.minimumHeight = heighHint;
+			data.minimumWidth = widthHint;
 			style = style | SWT.V_SCROLL;
 		}
 

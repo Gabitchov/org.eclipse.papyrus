@@ -72,8 +72,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	 * @param input
 	 *        the input in which selection is done
 	 */
-	public FilteredRegisteredElementsSelectionDialog(Shell shell, boolean multi, Object[] input,
-			Collection<Object> alreadySelected, String title, String extendedAreaTitle) {
+	public FilteredRegisteredElementsSelectionDialog(Shell shell, boolean multi, Object[] input, Collection<Object> alreadySelected, String title, String extendedAreaTitle) {
 		super(shell, multi);
 		setTitle(title);
 		setInitialPattern("**");
@@ -91,6 +90,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected IDialogSettings getDialogSettings() {
 		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
 		if(settings == null) {
@@ -102,6 +102,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected Control createExtendedContentArea(Composite parent) {
 		Composite content = new Composite(parent, SWT.NONE);
 		GridData gd = new GridData(GridData.FILL_BOTH);
@@ -148,6 +149,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getElementName(Object item) {
 		return registeredElementsLabelProvider.getText(item);
 	}
@@ -157,6 +159,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	 * 
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#validateItem(java.lang.Object)
 	 */
+	@Override
 	protected IStatus validateItem(Object item) {
 		return new Status(IStatus.OK, Activator.PLUGIN_ID, "");
 	}
@@ -166,6 +169,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	 * 
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#createFilter()
 	 */
+	@Override
 	protected ItemsFilter createFilter() {
 		return new RegisteredElementExtensionPointFilter() {
 		};
@@ -174,12 +178,12 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected Comparator<RegisteredElementExtensionPoint> getItemsComparator() {
 		Comparator<RegisteredElementExtensionPoint> comp = new Comparator<RegisteredElementExtensionPoint>() {
 
 			public int compare(RegisteredElementExtensionPoint o1, RegisteredElementExtensionPoint o2) {
-				return ((RegisteredElementExtensionPoint)o1).getName().compareTo(
-						((RegisteredElementExtensionPoint)o2).getName());
+				return o1.getName().compareTo(o2.getName());
 			}
 		};
 		return comp;
@@ -188,8 +192,8 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	/**
 	 * {@inheritDoc}
 	 */
-	protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter,
-			IProgressMonitor progressMonitor) throws CoreException {
+	@Override
+	protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
 		if(progressMonitor != null) {
 			progressMonitor.beginTask("Displaying registered elements", totalInput.length);
 		}
@@ -200,8 +204,9 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 			}
 			progressMonitor.worked(1);
 		}
-		if(progressMonitor != null)
+		if(progressMonitor != null) {
 			progressMonitor.done();
+		}
 
 	}
 
@@ -229,7 +234,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 			if(!(item instanceof RegisteredElementExtensionPoint)) {
 				return false;
 			}
-			return matches(registeredElementsLabelProvider.getText((RegisteredElementExtensionPoint)item));
+			return matches(registeredElementsLabelProvider.getText(item));
 		}
 	}
 }

@@ -112,7 +112,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 			public void mouseDown(MouseEvent e) {
 				FileDialog fd = new FileDialog(getEditHyperlinkShell(), SWT.OPEN);
 				fd.setText(Messages.EditorHyperlinkDocumentShell_Open);
-				String[] filterExt = { "*.txt", "*.doc", "*.pdf", "*.*" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				String[] filterExt = { "*.pdf", "*.doc", "*.txt", "*" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 				fd.setFilterExtensions(filterExt);
 				String selected = fd.open();
 				if(selected != null) {

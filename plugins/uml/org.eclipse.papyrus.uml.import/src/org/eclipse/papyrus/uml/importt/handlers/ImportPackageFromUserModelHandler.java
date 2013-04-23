@@ -14,9 +14,10 @@
 package org.eclipse.papyrus.uml.importt.handlers;
 
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.command.ChangeCommand;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.importt.ui.PackageImportDialog;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
@@ -41,6 +42,7 @@ public class ImportPackageFromUserModelHandler extends AbstractImportHandler {
 	 * Specific {@link ChangeCommand} that imports libraries from repository
 	 */
 	public class ImportFromFileCommand extends AbstractImportCommand {
+
 		/**
 		 * Creates a new ImportLibraryFromRepositoryCommand
 		 * 
@@ -61,33 +63,32 @@ public class ImportPackageFromUserModelHandler extends AbstractImportHandler {
 					// Retrieve shell instance
 					Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
-					Collection<Package> packages = PackageImportSourceDialog
-						.open(shell, "Select the models to import",
-							getSelection());
+					Map<String, String> extensionFilters = new LinkedHashMap<String, String>();
+					extensionFilters.put("*.uml", "UML (*.uml)");
+					extensionFilters.put("*.profile.uml", "UML Profiles (*.profile.uml)");
+					extensionFilters.put("*", "All (*)");
 
-					if (packages == null) {
+					Collection<Package> packages = PackageImportSourceDialog.open(shell, "Select the models to import", getSelection(), extensionFilters);
+
+					if(packages == null) {
 						return; // user cancelled the dialog
 					}
 
-					if (!packages.isEmpty()) {
-						PackageImportDialog dialog = new PackageImportDialog(
-							PlatformUI.getWorkbench()
-								.getActiveWorkbenchWindow().getShell(),
-							packages);
+					if(!packages.isEmpty()) {
+						PackageImportDialog dialog = new PackageImportDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), packages);
 
-						if (dialog.open() == Window.OK) {
+						if(dialog.open() == Window.OK) {
 							Collection<ImportSpec<Package>> result = dialog.getResult();
 
-							for (ImportSpec<Package> resultElement : result) {
-								Package selectedPackage = resultElement
-									.getElement();
-								switch (resultElement.getAction()) {
-									case COPY :
-										handleCopyPackage(selectedPackage);
-										break;
-									default :
-										handleImportPackage(selectedPackage);
-										break;
+							for(ImportSpec<Package> resultElement : result) {
+								Package selectedPackage = resultElement.getElement();
+								switch(resultElement.getAction()) {
+								case COPY:
+									handleCopyPackage(selectedPackage);
+									break;
+								default:
+									handleImportPackage(selectedPackage);
+									break;
 								}
 							}
 						}

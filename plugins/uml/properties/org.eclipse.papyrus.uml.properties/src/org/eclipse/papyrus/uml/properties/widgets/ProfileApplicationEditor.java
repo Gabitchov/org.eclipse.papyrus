@@ -16,7 +16,9 @@ package org.eclipse.papyrus.uml.properties.widgets;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -106,17 +108,19 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		// ResourceSelectionDialog dialog =
 		// new ResourceSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), "Apply Profiles");
 
-		Collection<Package> packages = PackageImportSourceDialog.open(
-			getShell(),
-			Messages.ProfileApplicationEditor_ApplyProfilesDialogTitle,
-			Collections.singletonList(umlPackage));
+		Map<String, String> extensionFilters = new LinkedHashMap<String, String>();
+		extensionFilters.put("*.profile.uml", "UML Profiles (*.profile.uml)");
+		extensionFilters.put("*.uml", "UML (*.uml)");
+		extensionFilters.put("*", "All (*)");
+
+		Collection<Package> packages = PackageImportSourceDialog.open(getShell(), Messages.ProfileApplicationEditor_ApplyProfilesDialogTitle, Collections.singletonList(umlPackage), extensionFilters);
 
 		// If nothing is selected : abort
 		if((packages == null) || packages.isEmpty()) {
 			return;
 		}
 
-		if (packages.size() > 0) {
+		if(packages.size() > 0) {
 			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), packages, true);
 
 			if(profileDialog.open() != Window.OK) {
@@ -127,7 +131,7 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 
 			Message message = new Message(Messages.ProfileApplicationEditor_WaitMessageTitle, Messages.ProfileApplicationEditor_WaitMessage);
 			message.open();
-			for (ImportSpec<Profile> profile : profilesToApply) {
+			for(ImportSpec<Profile> profile : profilesToApply) {
 				modelProperty.add(profile.getElement());
 			}
 			message.close();

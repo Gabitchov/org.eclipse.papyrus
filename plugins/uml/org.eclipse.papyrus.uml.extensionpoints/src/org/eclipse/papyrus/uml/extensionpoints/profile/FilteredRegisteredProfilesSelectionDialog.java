@@ -40,14 +40,14 @@ public class FilteredRegisteredProfilesSelectionDialog extends FilteredRegistere
 	 * @param alreadySelected
 	 *        list of already selected items
 	 */
-	public FilteredRegisteredProfilesSelectionDialog(Shell shell, boolean multi, Object[] input,
-			Collection alreadySelected) {
+	public FilteredRegisteredProfilesSelectionDialog(Shell shell, boolean multi, Object[] input, Collection alreadySelected) {
 		super(shell, multi, input, alreadySelected, "Profiles to apply: ", "Profiles already applied: ");
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected IDialogSettings getDialogSettings() {
 		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
 		if(settings == null) {

@@ -14,7 +14,6 @@ package org.eclipse.papyrus.infra.widgets.providers;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
@@ -72,7 +71,7 @@ public class FilteredContentProvider extends EncapsulatedContentProvider {
 
 	private void updateFilter() {
 		if(this.viewer != null && filterPattern != null) {
-			this.viewer.setFilters(new ViewerFilter[]{ filter });
+			addViewerFilter(viewer, filter);
 		}
 	}
 
