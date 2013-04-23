@@ -24,6 +24,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
 
@@ -48,16 +49,16 @@ public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
 	
 	@Test
 	public void testToManageUseCaseForClassSubject() {
-		testToManageChildNode(UMLElementTypes.UseCase_3009, UMLElementTypes.Classifier_2015, false);
+		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
 	}
 	
 	@Test
 	public void testToManageUseCaseForComponentSubject() {
-		testToManageChildNode(UMLElementTypes.UseCase_3009, UMLElementTypes.Classifier_2015, false);
+		testToManageNode(UMLElementTypes.UseCase_3009,UMLPackage.eINSTANCE.getUseCase(),  UMLElementTypes.Classifier_2015, false);
 	}
 	@Test
 	public void testToManageUseCaseForInterfaceSubject() {
-		testToManageChildNode(UMLElementTypes.UseCase_3009, UMLElementTypes.Classifier_2015, false);
+		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
 	}
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {

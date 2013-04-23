@@ -19,6 +19,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
 
@@ -39,7 +40,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	 */
 	@Test
 	public void testToManagePackage() {
-		testToManageChildNode(UMLElementTypes.Package_3014, UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Package_3014, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_3014, true);
 	}
 	
 	/**
@@ -47,7 +48,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	 */
 	@Test
 	public void testToManageActor() {
-		testToManageChildNode(UMLElementTypes.Actor_3011, UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Actor_3011, UMLPackage.eINSTANCE.getActor(), UMLElementTypes.Package_3014, true);
 	}
 	
 	/**
@@ -55,22 +56,22 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageChildNode(UMLElementTypes.Comment_3015, UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Comment_3015, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_3014, true);
 	}
 	/**
 	 * Test to manage component.
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageChildNode(UMLElementTypes.Constraint_3010, UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Constraint_3010, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_3014, true);
 	}
 	@Test
 	public void testToManageComponent() {
-		testToManageChildNode(UMLElementTypes.Component_3013, UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Component_3013, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_3014, true);
 	}
 	@Test
 	public void testToManageUseCase() {
-		testToManageChildNode(UMLElementTypes.UseCase_3012, UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.UseCase_3012, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Package_3014, true);
 	}
 	
 	@Override
