@@ -617,6 +617,8 @@ public class MokaDebugTarget extends MokaDebugElement implements IDebugTarget {
 	 * Install breakpoints that are already registered with the breakpoint manager
 	 */
 	protected void installDeferredBreakpoints() {
+		if (!DebugPlugin.getDefault().getBreakpointManager().isEnabled())
+			return ;
 		IBreakpoint[] breakpoints = DebugPlugin.getDefault().getBreakpointManager().getBreakpoints(MokaConstants.MOKA_DEBUG_MODEL_ID) ;
 		for (int i = 0; i < breakpoints.length; i++) {
 			this.breakpointAdded(breakpoints[i]);
