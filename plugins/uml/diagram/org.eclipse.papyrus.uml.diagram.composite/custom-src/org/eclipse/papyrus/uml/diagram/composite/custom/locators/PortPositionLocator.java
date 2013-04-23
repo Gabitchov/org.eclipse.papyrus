@@ -14,10 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.composite.custom.locators;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.CustomDiagramPreferencePage;
+import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 
 /**
  * This class is used to constrain the position of Port when they are added on a Property or a
@@ -42,11 +42,15 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
  */
 public class PortPositionLocator implements IBorderItemLocator {
 
-	org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator currentLocator= null;
+	protected org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator currentLocator= null;
+	protected  IFigure parentFigure;
+	protected int preferredSide;
 
 	/** Constructor **/
 	public PortPositionLocator(IFigure parentFigure, int preferredSide) {
 		currentLocator= new ExternalPortPositionLocator(parentFigure, preferredSide);
+		this.parentFigure= parentFigure;
+		this.preferredSide= preferredSide;
 	}
 
 	/**
@@ -59,23 +63,48 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 * @return a valid location
 	 */
 	public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
+		updateLocator();
 		return currentLocator.getValidLocation(proposedLocation, borderItem);
 	}
 
 	public void setConstraint(Rectangle constraint) {
+		updateLocator();
 		currentLocator.setConstraint(constraint);
 
 	}
 
 	public int getCurrentSideOfParent() {
+		updateLocator();
 		return currentLocator.getCurrentSideOfParent();
 	}
 
 	public void relocate(IFigure target) {
+		updateLocator();
 		currentLocator.relocate(target);
 
 	}
 	public Rectangle getPreferredLocation(Rectangle proposedLocation) {
 		return currentLocator.getPreferredLocation(proposedLocation);
+	}
+
+	public void setInternal(){
+		if(currentLocator instanceof ExternalPortPositionLocator){
+			currentLocator= new InternalPortPositionLocator(parentFigure, preferredSide);
+		}
+	}
+	public void setExternal(){
+		if(currentLocator instanceof InternalPortPositionLocator){
+			currentLocator= new ExternalPortPositionLocator(parentFigure, preferredSide);
+		}
+	}
+	protected void updateLocator(){
+		boolean isInside=UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramPreferencePage.IS_INSIDE_COMPOSITE_COMPOSITE_DIAGRAM);
+		if(isInside){
+			setInternal();
+		}
+		else{
+			setExternal();
+		}
+
 	}
 }
