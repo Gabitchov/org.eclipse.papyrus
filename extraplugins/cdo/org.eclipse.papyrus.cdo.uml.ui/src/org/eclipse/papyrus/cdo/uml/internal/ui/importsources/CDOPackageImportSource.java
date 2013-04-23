@@ -16,6 +16,7 @@ import static org.eclipse.papyrus.cdo.internal.ui.Activator.ICON_PAPYRUS_MODEL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -97,7 +98,7 @@ public class CDOPackageImportSource extends AbstractPackageImportSource {
 	}
 
 	@Override
-	protected IStaticContentProvider createModelHierarchyContentProvider() {
+	protected IStaticContentProvider createModelHierarchyContentProvider(Map<String, String> extensionFilters) {
 		return new CDOContent();
 	}
 
