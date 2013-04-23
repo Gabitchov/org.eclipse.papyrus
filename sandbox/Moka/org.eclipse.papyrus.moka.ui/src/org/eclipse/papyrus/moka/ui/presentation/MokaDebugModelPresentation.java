@@ -172,7 +172,7 @@ public class MokaDebugModelPresentation implements IDebugModelPresentation, IDeb
 	/* (non-Javadoc)
 	 * @see org.eclipse.debug.ui.IDebugEditorPresentation#removeAnnotations(org.eclipse.ui.IEditorPart, org.eclipse.debug.core.model.IThread)
 	 */
-	public void removeAnnotations(IEditorPart editorPart, IThread thread) {		
+	public void removeAnnotations(IEditorPart editorPart, IThread thread) {
 		AnimationUtils.getInstance().removeSuspendedMarker(thread) ;
 	}
 

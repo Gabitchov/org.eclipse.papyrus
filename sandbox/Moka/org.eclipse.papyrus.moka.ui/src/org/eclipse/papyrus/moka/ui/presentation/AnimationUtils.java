@@ -50,7 +50,6 @@ import org.eclipse.papyrus.infra.services.markerlistener.PapyrusMarkerAdapter;
 import org.eclipse.papyrus.moka.MokaConstants;
 import org.eclipse.papyrus.moka.debug.MokaBreakpoint;
 import org.eclipse.papyrus.moka.launch.EditorUtils;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -63,17 +62,17 @@ public class AnimationUtils {
 	 * The static instance for this class
 	 */
 	protected static AnimationUtils eInstance = null ;
-	
+
 	/**
 	 * An EObject -> 'Suspended' marker map
 	 */
 	protected static Map<EObject, IPapyrusMarker> eObjectToSuspendedMarker = new HashMap<EObject, IPapyrusMarker>() ;
-	
+
 	/**
 	 * An EObject -> 'Animation' marker map
 	 */
 	protected static Map<EObject, IPapyrusMarker> eObjectToAnimationMarker = new HashMap<EObject, IPapyrusMarker>() ;
-	
+
 	/**
 	 * An EObject -> List<Diagram> map
 	 */
@@ -89,7 +88,7 @@ public class AnimationUtils {
 		eObjectToSuspendedMarker = new HashMap<EObject, IPapyrusMarker>() ;
 		eObjectToDiagrams = new HashMap<EObject, List<Diagram> >() ;
 	}
-	
+
 	/**
 	 * Returns an instance of AnimationUtils. Guarantees that AnimationUtils is instantiated only once.
 	 * 
@@ -112,7 +111,7 @@ public class AnimationUtils {
 		if (matchingDiagrams != null) {
 			return matchingDiagrams ;
 		}
-		
+
 		Resource resource = modelElement.eResource() ;
 		ResourceSet resourceSet = resource.getResourceSet() ;
 
@@ -135,12 +134,12 @@ public class AnimationUtils {
 				}
 			}
 		}
-		
+
 		eObjectToDiagrams.put(modelElement, matchingDiagrams) ;
-		
+
 		return matchingDiagrams ;
 	}
-	
+
 	/**
 	 * In the case where the list of diagrams for the given modelElement has already been retrieved,
 	 * resets this list 
@@ -164,18 +163,15 @@ public class AnimationUtils {
 		ServicesRegistry servicesRegistry =  (ServicesRegistry)part.getAdapter(ServicesRegistry.class);
 		try {
 			final IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(servicesRegistry) ;
-			try {
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {						
-						if (pageMngr.isOpen(diagram))
-							pageMngr.selectPage(diagram) ;
-						else {
-							TransactionalEditingDomain domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(diagram) ;
-							OpenDiagramCommand updateCommand = new OpenDiagramCommand(diagram, pageMngr, domain);
-							domain.getCommandStack().execute(updateCommand) ;
-						}
-					}
-				}); 
+			try {						
+				if (pageMngr.isOpen(diagram)) {
+					pageMngr.selectPage(diagram) ;
+				}
+				else {
+					TransactionalEditingDomain domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(diagram) ;
+					OpenDiagramCommand updateCommand = new OpenDiagramCommand(diagram, pageMngr, domain);
+					domain.getCommandStack().execute(updateCommand) ;
+				} 
 			} catch (Exception e) {
 				Activator.log.error(e) ;
 			}
@@ -233,7 +229,7 @@ public class AnimationUtils {
 		}
 		eObjectToSuspendedMarker.clear() ;
 	}
-	
+
 	/**
 	 * Adds an "Animation" marker to the given semantic element
 	 * 
@@ -307,7 +303,11 @@ public class AnimationUtils {
 		}
 		return semanticElement ;
 	}
-	
+
+	public boolean isAnimationMarkerApplied(EObject element) {
+		return eObjectToAnimationMarker.get(element) != null ;
+	}
+
 	/**
 	 * A command for opening a diagram
 	 *
@@ -340,7 +340,7 @@ public class AnimationUtils {
 		@Override
 		protected void doExecute() {
 			this.pageMngr.openPage(diagram) ;
-			//this.pageMngr.selectPage(diagram) ;
+			this.pageMngr.selectPage(diagram) ;
 		}
 
 	}
