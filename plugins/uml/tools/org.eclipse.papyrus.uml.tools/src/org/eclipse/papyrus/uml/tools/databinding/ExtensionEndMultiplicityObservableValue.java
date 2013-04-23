@@ -1,9 +1,23 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.uml.tools.Activator;
+import org.eclipse.papyrus.uml.tools.util.MultiplicityParser;
 import org.eclipse.uml2.uml.ExtensionEnd;
 
 /**
@@ -21,7 +35,7 @@ public class ExtensionEndMultiplicityObservableValue extends MultiplicityObserva
 
 	@Override
 	public Command getCommand(Object value) {
-		if(ONE.equals(value) || OPTIONAL.equals(value)) {
+		if(MultiplicityParser.ONE.equals(value) || MultiplicityParser.OPTIONAL.equals(value)) {
 			return super.getCommand(value);
 		}
 

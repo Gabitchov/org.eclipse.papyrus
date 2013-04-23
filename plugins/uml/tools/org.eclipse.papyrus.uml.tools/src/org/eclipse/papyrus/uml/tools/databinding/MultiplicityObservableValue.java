@@ -18,19 +18,16 @@ import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.uml.tools.Activator;
+import org.eclipse.papyrus.uml.tools.commands.SetMultiplicityCommand;
 import org.eclipse.papyrus.uml.tools.helper.UMLDatabindingHelper;
+import org.eclipse.papyrus.uml.tools.util.MultiplicityParser;
+import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -44,37 +41,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author Camille Letavernier
  */
 public class MultiplicityObservableValue extends AbstractObservableValue implements IChangeListener, CommandBasedObservableValue, AggregatedObservable {
-
-	/**
-	 * The 0..* multiplicity (Any)
-	 */
-	public static String ANY = "0..*"; //$NON-NLS-1$
-
-	/**
-	 * The * multiplicity (Any)
-	 * Equivalent to 0..*
-	 */
-	public static String STAR = "*"; //$NON-NLS-1$
-
-	/***
-	 * The 1 multiplicity (One)
-	 */
-	public static String ONE = "1"; //$NON-NLS-1$
-
-	/**
-	 * The 0..1 multiplicity (Optional)
-	 */
-	public static String OPTIONAL = "0..1"; //$NON-NLS-1$
-
-	/**
-	 * The 1..* multiplicity (One or more)
-	 */
-	public static String ONE_OR_MORE = "1..*"; //$NON-NLS-1$
-
-	/**
-	 * The multiplicity separator (..)
-	 */
-	public static String SEPARATOR = ".."; //$NON-NLS-1$
 
 	private IObservableValue lowerBound, upperBound, lowerValue, upperValue, lowerValueSpecification, upperValueSpecification;
 
@@ -205,17 +171,7 @@ public class MultiplicityObservableValue extends AbstractObservableValue impleme
 		lower = (Integer)lowerValue;
 		upper = (Integer)upperValue;
 
-		if(lower == 0 && upper == -1) {
-			return ANY;
-		} else if(lower == 0 && upper == 1) {
-			return OPTIONAL;
-		} else if(lower == 1 && upper == -1) {
-			return ONE_OR_MORE;
-		} else if(lower == 1 && upper == 1) {
-			return ONE;
-		} else {
-			return lower + SEPARATOR + (upper < 0 ? STAR : upper);
-		}
+		return MultiplicityParser.getMultiplicity(lower, upper);
 	}
 
 	@Override
@@ -224,70 +180,21 @@ public class MultiplicityObservableValue extends AbstractObservableValue impleme
 		domain.getCommandStack().execute(command);
 	}
 
-	private Command getSetCommand(EStructuralFeature feature, int value) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(eObject);
-		if(provider != null) {
-			SetRequest request = new SetRequest(eObject, feature, value);
-			ICommand createGMFCommand = provider.getEditCommand(request);
-
-			Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
-
-			return emfCommand;
-		}
-		return null;
-	}
-
 	public Command getCommand(Object value) {
-		int lower, upper;
 		String val = (String)value;
-		if(val.equals(ANY) || val.equals(STAR)) {
-			lower = 0;
-			upper = -1;
-		} else if(val.equals(OPTIONAL)) {
-			lower = 0;
-			upper = 1;
-		} else if(val.equals(ONE_OR_MORE)) {
-			lower = 1;
-			upper = -1;
-		} else if(val.equals(ONE)) {
-			lower = 1;
-			upper = 1;
-		} else {
-			if(val.matches("^[0-9]+(..[0-9*]+)?$")) { //$NON-NLS-1$
-				try {
-					if(val.contains(SEPARATOR)) {
-						lower = Integer.parseInt(val.substring(0, val.indexOf(SEPARATOR)));
-						String upperString = val.substring(val.indexOf(SEPARATOR) + SEPARATOR.length(), val.length());
-						if(STAR.equals(upperString)) {
-							upper = -1;
-						} else {
-							upper = Integer.parseInt(upperString);
-						}
-					} else {
-						lower = Integer.parseInt(val);
-						upper = Integer.parseInt(val);
-					}
-				} catch (NumberFormatException ex) {
-					return UnexecutableCommand.INSTANCE; //Invalid multiplicity
-				}
-			} else {
-				return UnexecutableCommand.INSTANCE; //Invalid multiplicity
+
+		int[] lowerUpper = MultiplicityParser.getBounds(val);
+		if(lowerUpper == null || lowerUpper.length < 2) {
+			return UnexecutableCommand.INSTANCE; //Invalid multiplicity
+		}
+
+		int lower = lowerUpper[0], upper = lowerUpper[1];
+		if(MultiplicityParser.isValidMultiplicity(lower, upper)) {
+			try {
+				return new SetMultiplicityCommand((MultiplicityElement)eObject, val);
+			} catch (Exception ex) {
+				Activator.log.error(ex);
 			}
-		}
-
-		if((upper > 0 && upper < lower) || upper == 0) {
-			return UnexecutableCommand.INSTANCE;
-		}
-
-		try {
-			Command lowerSetCommand = getSetCommand(lowerFeature, lower);
-			Command upperSetCommand = getSetCommand(upperFeature, upper);
-			CompoundCommand command = new CompoundCommand("Set multiplicity");
-			command.append(lowerSetCommand);
-			command.append(upperSetCommand);
-			return command;
-		} catch (Exception ex) {
-			Activator.log.error(ex);
 		}
 
 		return UnexecutableCommand.INSTANCE;
