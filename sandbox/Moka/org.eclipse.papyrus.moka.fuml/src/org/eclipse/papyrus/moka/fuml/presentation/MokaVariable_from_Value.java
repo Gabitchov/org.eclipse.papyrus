@@ -8,11 +8,11 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class MokaVariable_from_Value extends MokaVariable_for_fUML {
 
-	protected Value value ;
+	protected Value fUMLValue ;
 	
 	public MokaVariable_from_Value(Value value) {
 		super();
-		this.value = value ;
+		this.fUMLValue = value ;
 	}
 
 	//////////////////////////////////
@@ -29,7 +29,7 @@ public class MokaVariable_from_Value extends MokaVariable_for_fUML {
 	//////////////////////////////////
 	@Override
 	public IValue getValue() throws DebugException {
-		return new MokaValue_from_Value(value) ;
+		return new MokaValue_from_Value(fUMLValue) ;
 	}
 
 }
