@@ -3,6 +3,13 @@ This document is a brief guide to getting started with Papyrus UML models in the
 
 For more information about CDO, see the [EMF CDO wiki](http://wiki.eclipse.org/CDO).
 
+## <a id="Installing">Installation</a>
+The CDO Model Repository integration feature is not installed by default with Papyrus; it is an optional extra component.  To install this feature, open the Papyrus discovery wizard from the **Help &rarr; Install Papyrus Additional Components** menu.  You should find an entry like the following in the list:
+
+![Install additional components](discovery_dialog.png)
+
+Select the CDO integration feature by checking the box on the left side and press **Finish** to perform the installation.
+
 ## <a id="Connecting">Connecting to a Repository</a>
 Repository connections are managed in the **Model Repositories** view.  Use the **Add Repository...** button in the view to create a new repository connection:
 

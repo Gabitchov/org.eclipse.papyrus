@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <toc label="Getting Started" topic="resource/start/cdo-start.html">
    <topic href="resource/start/cdo-start.html" label="Getting Started">
+      <topic href="resource/start/cdo-start.html#Installing" label="Installation"></topic>
       <topic href="resource/start/cdo-start.html#Connecting" label="Connecting to a Repository"></topic>
       <topic href="resource/start/cdo-start.html#Importing" label="Importing Models form the Workspace"></topic>
       <topic href="resource/start/cdo-start.html#Validating" label="Validating Models"></topic>
