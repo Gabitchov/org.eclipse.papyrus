@@ -11,12 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
-import static org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue.ANY;
-import static org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue.ONE;
-import static org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue.ONE_OR_MORE;
-import static org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue.OPTIONAL;
 import static org.eclipse.papyrus.uml.tools.databinding.OwnerObservableValue.ASSOCIATION;
 import static org.eclipse.papyrus.uml.tools.databinding.OwnerObservableValue.CLASSIFIER;
+import static org.eclipse.papyrus.uml.tools.util.MultiplicityParser.ANY;
+import static org.eclipse.papyrus.uml.tools.util.MultiplicityParser.ONE;
+import static org.eclipse.papyrus.uml.tools.util.MultiplicityParser.ONE_OR_MORE;
+import static org.eclipse.papyrus.uml.tools.util.MultiplicityParser.OPTIONAL;
 
 import java.util.List;
 
