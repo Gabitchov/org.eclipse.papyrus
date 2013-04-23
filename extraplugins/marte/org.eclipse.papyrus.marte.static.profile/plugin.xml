@@ -152,14 +152,6 @@
       </profile>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.generated_package">
-      <package
-            class="org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimePackage"
-            genModel="MARTE.genmodel"
-            uri="http://www.eclipse.org/papyrus/Time/1">
-      </package>
-   </extension>
-   <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_WStkoAPMEdyuUt-4qHuVvQ"
