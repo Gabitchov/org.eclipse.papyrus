@@ -79,7 +79,7 @@ public class CDOPackageImportSourceTest extends AbstractPapyrusCDOUITest {
 
 	@Test
 	public void testCreateModelHierarchyContentProvider() throws InterruptedException {
-		IStaticContentProvider provider = fixture.getModelHierarchyContentProvider();
+		IStaticContentProvider provider = fixture.getModelHierarchyContentProvider(null);
 
 		assertThat(provider, instanceOf(ITreeContentProvider.class));
 
