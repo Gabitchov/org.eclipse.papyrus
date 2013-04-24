@@ -143,9 +143,10 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.moka.ui.preferences.MokaPreferencePage"
             id="org.eclipse.papyrus.moka.ui.preferences"
-            name="Moka preference page">
+            name="Moka">
       </page>
    </extension>
    <extension
