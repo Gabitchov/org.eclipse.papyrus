@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ASCII"?>
 <uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/uml2/4.0.0/UML">
   <types metaclassName="uml.Abstraction">
     <references referenceName="mapping">
@@ -19,7 +19,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.PackageableElement"/>
   <types metaclassName="uml.ParameterableElement">
     <references referenceName="owningTemplateParameter">
       <customizedFeatures>
@@ -254,7 +253,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.ValueSpecification"/>
   <types metaclassName="uml.TypedElement">
     <references referenceName="type">
       <customizedFeatures>
@@ -296,8 +294,8 @@
       </customizedFeatures>
     </references>
     <references referenceName="profileApplication">
-      <customizedFeatures customizedFeature="collapseLink">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
     <references referenceName="ownedType">
@@ -459,7 +457,10 @@
   <types metaclassName="uml.ElementImport">
     <references referenceName="importedElement">
       <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
     <references referenceName="importingNamespace">
@@ -471,7 +472,10 @@
   <types metaclassName="uml.PackageImport">
     <references referenceName="importedPackage">
       <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
     <references referenceName="importingNamespace">
@@ -566,7 +570,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.StructuralFeature"/>
   <types metaclassName="uml.MultiplicityElement">
     <references referenceName="lowerValue">
       <customizedFeatures customizedFeature="collapseLink">
@@ -622,7 +625,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.ConnectableElementTemplateParameter"/>
   <types metaclassName="uml.DeploymentTarget">
     <references referenceName="deployedElement">
       <customizedFeatures>
@@ -681,7 +683,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.DeployedArtifact"/>
   <types metaclassName="uml.Manifestation">
     <references referenceName="utilizedElement">
       <customizedFeatures>
@@ -819,7 +820,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.Realization"/>
   <types metaclassName="uml.Interface">
     <references referenceName="nestedClassifier">
       <customizedFeatures customizedFeature="collapseLink">
@@ -1032,7 +1032,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.Event"/>
   <types metaclassName="uml.Port">
     <references referenceName="protocol">
       <customizedFeatures>
@@ -1162,9 +1161,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.OperationTemplateParameter"/>
-  <types metaclassName="uml.ExtensionEnd"/>
-  <types metaclassName="uml.Model"/>
   <types metaclassName="uml.Enumeration">
     <references referenceName="ownedLiteral">
       <customizedFeatures customizedFeature="collapseLink">
@@ -1213,8 +1209,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.PrimitiveType"/>
-  <types metaclassName="uml.Usage"/>
   <types metaclassName="uml.CollaborationUse">
     <references referenceName="roleBinding">
       <customizedFeatures customizedFeature="collapseLink">
@@ -1384,7 +1378,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.Image"/>
   <types metaclassName="uml.OpaqueExpression">
     <references referenceName="behavior">
       <customizedFeatures>
@@ -1667,8 +1660,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.InputPin"/>
-  <types metaclassName="uml.Pin"/>
   <types metaclassName="uml.ObjectNode">
     <references referenceName="inState">
       <customizedFeatures>
@@ -1686,7 +1677,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.OutputPin"/>
   <types metaclassName="uml.Variable">
     <references referenceName="activityScope">
       <customizedFeatures>
@@ -1801,7 +1791,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.PartDecomposition"/>
   <types metaclassName="uml.InteractionUse">
     <references referenceName="actualGate">
       <customizedFeatures customizedFeature="collapseLink">
@@ -1829,7 +1818,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.Gate"/>
   <types metaclassName="uml.MessageEnd">
     <references referenceName="message">
       <customizedFeatures>
@@ -1951,9 +1939,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.ActivityFinalNode"/>
-  <types metaclassName="uml.FinalNode"/>
-  <types metaclassName="uml.ControlNode"/>
   <types metaclassName="uml.ActivityParameterNode">
     <references referenceName="parameter">
       <customizedFeatures>
@@ -1961,7 +1946,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.Actor"/>
   <types metaclassName="uml.AddStructuralFeatureValueAction">
     <references referenceName="insertAt">
       <customizedFeatures customizedFeature="collapseLink">
@@ -2014,9 +1998,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.AnyReceiveEvent"/>
-  <types metaclassName="uml.MessageEvent"/>
-  <types metaclassName="uml.AssociationClass"/>
   <types metaclassName="uml.BehaviorExecutionSpecification">
     <references referenceName="behavior">
       <customizedFeatures>
@@ -2076,7 +2057,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.CentralBufferNode"/>
   <types metaclassName="uml.ChangeEvent">
     <references referenceName="changeExpression">
       <customizedFeatures customizedFeature="collapseLink">
@@ -2135,7 +2115,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.ClearVariableAction"/>
   <types metaclassName="uml.CombinedFragment">
     <references referenceName="cfragmentGate">
       <customizedFeatures customizedFeature="collapseLink">
@@ -2148,7 +2127,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.CommunicationPath"/>
   <types metaclassName="uml.Component">
     <references referenceName="packagedElement">
       <customizedFeatures customizedFeature="collapseLink">
@@ -2202,10 +2180,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.Continuation"/>
-  <types metaclassName="uml.ControlFlow"/>
-  <types metaclassName="uml.CreateLinkAction"/>
-  <types metaclassName="uml.WriteLinkAction"/>
   <types metaclassName="uml.LinkAction">
     <references referenceName="endData">
       <customizedFeatures customizedFeature="collapseLink">
@@ -2273,7 +2247,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.DataStoreNode"/>
   <types metaclassName="uml.DecisionNode">
     <references referenceName="decisionInput">
       <customizedFeatures>
@@ -2298,7 +2271,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.DestroyLinkAction"/>
   <types metaclassName="uml.LinkEndDestructionData">
     <references referenceName="destroyAt">
       <customizedFeatures>
@@ -2313,9 +2285,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.DestructionOccurrenceSpecification"/>
-  <types metaclassName="uml.MessageOccurrenceSpecification"/>
-  <types metaclassName="uml.Device"/>
   <types metaclassName="uml.Node">
     <references referenceName="nestedNode">
       <customizedFeatures customizedFeature="collapseLink">
@@ -2335,9 +2304,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.Observation"/>
-  <types metaclassName="uml.DurationConstraint"/>
-  <types metaclassName="uml.IntervalConstraint"/>
   <types metaclassName="uml.Interval">
     <references referenceName="max">
       <customizedFeatures>
@@ -2350,7 +2316,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.DurationInterval"/>
   <types metaclassName="uml.DurationObservation">
     <references referenceName="event">
       <customizedFeatures>
@@ -2358,7 +2323,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.ExecutionEnvironment"/>
   <types metaclassName="uml.ExecutionOccurrenceSpecification">
     <references referenceName="execution">
       <customizedFeatures>
@@ -2390,11 +2354,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.FinalState"/>
-  <types metaclassName="uml.FlowFinalNode"/>
-  <types metaclassName="uml.ForkNode"/>
-  <types metaclassName="uml.FunctionBehavior"/>
-  <types metaclassName="uml.OpaqueBehavior"/>
   <types metaclassName="uml.InformationFlow">
     <references referenceName="conveyed">
       <customizedFeatures>
@@ -2439,7 +2398,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.InitialNode"/>
   <types metaclassName="uml.InstanceValue">
     <references referenceName="instance">
       <customizedFeatures>
@@ -2454,13 +2412,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.LiteralBoolean"/>
-  <types metaclassName="uml.LiteralSpecification"/>
-  <types metaclassName="uml.LiteralInteger"/>
-  <types metaclassName="uml.LiteralNull"/>
-  <types metaclassName="uml.LiteralReal"/>
-  <types metaclassName="uml.LiteralString"/>
-  <types metaclassName="uml.LiteralUnlimitedNatural"/>
   <types metaclassName="uml.LoopNode">
     <references referenceName="bodyOutput">
       <customizedFeatures>
@@ -2503,7 +2454,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.MergeNode"/>
   <types metaclassName="uml.OpaqueAction">
     <references referenceName="inputValue">
       <customizedFeatures customizedFeature="collapseLink">
@@ -2772,8 +2722,6 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.TimeConstraint"/>
-  <types metaclassName="uml.TimeInterval"/>
   <types metaclassName="uml.TimeExpression">
     <references referenceName="expr">
       <customizedFeatures customizedFeature="collapseLink">
