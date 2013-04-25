@@ -300,11 +300,6 @@
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
-    <references referenceName="importedPackage">
-      <customizedFeatures customizedFeature="collapseLink">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
     <references referenceName="importingNamespace">
       <customizedFeatures>
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
