@@ -250,17 +250,19 @@ public class ControlDelegate {
 			if (element instanceof ActivityEdge) {
 				ActivityEdge edge = (ActivityEdge)element ;
 				if (edge.getSource() instanceof Pin) {
-					AnimationUtils.getInstance().addAnimationMarker(edge.getSource()) ;
-					if (AnimationUtils.getInstance().diagramsExistFor(element)) {
+					if (AnimationUtils.getInstance().diagramsExistFor(edge.getSource())) {
+						AnimationUtils.getInstance().addAnimationMarker(edge.getSource()) ;
 						Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
+						AnimationUtils.getInstance().removeAnimationMarker(edge.getSource()) ;
 					}
-					AnimationUtils.getInstance().removeAnimationMarker(edge.getSource()) ;
 				}
 			}
 			// Animates the element
-			AnimationUtils.getInstance().addAnimationMarker(element) ;
-			Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
-			AnimationUtils.getInstance().removeAnimationMarker(element) ;
+			if (AnimationUtils.getInstance().diagramsExistFor(element)) {
+				AnimationUtils.getInstance().addAnimationMarker(element) ;
+				Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
+				AnimationUtils.getInstance().removeAnimationMarker(element) ;
+			}
 		} catch (InterruptedException e) {
 			Activator.log.error(e) ;
 		}
