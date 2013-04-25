@@ -248,6 +248,13 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 		selector.addElementSelectionListener(this);
 	}
 
+	@Override
+	protected void configureShell(Shell shell) {
+		super.configureShell(shell);
+		shell.setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
+	}
+
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -274,8 +281,6 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 		createRightButtonsSection(selectedPane);
 
 		getShell().pack();
-
-		super.getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
 
 		updateControls();
 	}

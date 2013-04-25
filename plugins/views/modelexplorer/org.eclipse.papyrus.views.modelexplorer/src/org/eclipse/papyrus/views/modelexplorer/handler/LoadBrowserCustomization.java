@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.facet.infra.browser.Messages;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.TypeView;
-import org.eclipse.emf.facet.infra.browser.custom.ui.dialogs.LoadCustomizationsDialog;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.facet.Facet;
 import org.eclipse.emf.facet.infra.facet.FacetSet;
@@ -48,9 +47,11 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.services.semantic.service.SemanticService;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.views.modelexplorer.dialog.PapyrusLoadBrowserCustomizationDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.navigator.CommonNavigator;
 
 /**
@@ -85,14 +86,16 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			CustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
 			final List<MetamodelView> registeredCustomizations = customizationManager.getRegisteredCustomizations();
 
-			LoadCustomizationsDialog loadCustomizationsDialog;
+			PapyrusLoadBrowserCustomizationDialog loadCustomizationsDialog;
+
+			Shell shell = HandlerUtil.getActiveShell(event);
 
 			try {
 				ServicesRegistry registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
-				loadCustomizationsDialog = new LoadCustomizationsDialog(new Shell(), registeredCustomizations, getMetamodels(registry));
+				loadCustomizationsDialog = new PapyrusLoadBrowserCustomizationDialog(shell, registeredCustomizations, getMetamodels(registry));
 			} catch (ServiceException ex) {
 				Activator.log.error(ex);
-				loadCustomizationsDialog = new LoadCustomizationsDialog(new Shell(), registeredCustomizations, Collections.<EPackage> emptyList());
+				loadCustomizationsDialog = new PapyrusLoadBrowserCustomizationDialog(shell, registeredCustomizations, Collections.<EPackage> emptyList());
 			}
 
 			if(Window.OK == loadCustomizationsDialog.open()) {
@@ -102,11 +105,12 @@ public class LoadBrowserCustomization extends AbstractHandler {
 					List<MetamodelView> selectedCustomizations = loadCustomizationsDialog.getSelectedCustomizations();
 					//before loading, clean all facet to prevent to let not interesting facets.
 					customizationManager.clearFacets();
-					if(loadCustomizationsDialog.isLoadRequiredFacetsSelected()) {
-						// load facets corresponding to customizations
 
-						loadFacetsForCustomizations(selectedCustomizations, customizationManager);
-					}
+
+					// Always load facets corresponding to customizations
+					loadFacetsForCustomizations(selectedCustomizations, customizationManager);
+
+
 					for(MetamodelView metamodelView : selectedCustomizations) {
 						customizationManager.registerCustomization(metamodelView);
 					}
@@ -114,10 +118,10 @@ public class LoadBrowserCustomization extends AbstractHandler {
 					if(getCommonNavigator() != null) {
 						Tree tree = getCommonNavigator().getCommonViewer().getTree();
 						customizationManager.installCustomPainter(tree);
-						tree.redraw();
 					}
-					// Activator.getDefault().getCustomizationManager().loadCustomizations(selectedCustomizations);
 
+					//Save the current state of the customizations
+					org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
 				} catch (final Exception e) {
 					Activator.log.error(e);
 				}
@@ -130,7 +134,6 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		}
 		return null;
 	}
-
 
 	/**
 	 * 

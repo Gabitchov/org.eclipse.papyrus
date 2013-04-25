@@ -18,7 +18,10 @@ import org.eclipse.jface.viewers.Viewer;
 
 /**
  * Content provider for the history table
+ * 
+ * @deprecated Use the generic {@link org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider#instance} instead
  */
+@Deprecated
 public class HistoryContentProvider implements IStructuredContentProvider {
 
 	/**

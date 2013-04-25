@@ -45,6 +45,7 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.IDetailLabelProv
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
+import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.PatternViewerFilter;
 import org.eclipse.swt.SWT;
@@ -217,7 +218,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 		data.heightHint = 70;
 		historyTable.setLayoutData(data);
 		historyViewer = new TableViewer(historyTable);
-		historyViewer.setContentProvider(new HistoryContentProvider());
+		historyViewer.setContentProvider(CollectionContentProvider.instance);
 		historyViewer.setLabelProvider(viewer.getLabelProvider());
 		historyViewer.setInput(selectionHistory);
 		historyViewer.addSelectionChangedListener(new ISelectionChangedListener() {

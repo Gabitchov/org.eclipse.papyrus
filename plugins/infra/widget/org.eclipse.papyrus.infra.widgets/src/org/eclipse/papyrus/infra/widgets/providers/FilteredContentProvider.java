@@ -78,7 +78,7 @@ public class FilteredContentProvider extends EncapsulatedContentProvider {
 	@Override
 	public void createBefore(Composite parent) {
 		super.createBefore(parent);
-		filterPattern = new StringEditor(parent, SWT.NONE, "Filter : "); //$NON-NLS-1$
+		filterPattern = new StringEditor(parent, SWT.NONE, "Filter: ");
 		filterPattern.setValidateOnDelay(true);
 		filterPattern.setValue(BASE_PATTERN);
 		filter = getViewerFilter();
