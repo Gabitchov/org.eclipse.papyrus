@@ -2,13 +2,10 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.infra.services.controlmode.customControlCommand">
-      <customControlCommand
-            controlCommand="org.eclipse.papyrus.infra.table.controlmode.handlers.PapyrusTableControlCommand">
-      </customControlCommand>
-      <customUncontrolCommand
-            uncontrolCommand="org.eclipse.papyrus.infra.table.controlmode.handlers.PapyrusTableUncontrolCommand">
-      </customUncontrolCommand>
+         point="org.eclipse.papyrus.infra.services.controlmode.participant">
+      <participant
+            class="org.eclipse.papyrus.infra.table.controlmode.TableControlParticipant">
+      </participant>
    </extension>
 
 </plugin>

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="org.eclipse.papyrus.infra.services.controlmode.customControlCommand" name="customControlCommand" schema="schema/customControlCommand.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.services.controlmode.participant" name="participant" schema="schema/participant.exsd"/>
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.infra.services.controlmode.action.PapyrusControlHandler"
-            id="org.eclipse.papyrus.infra.services.controlmode.control"
-            name="Control">
+            defaultHandler="org.eclipse.papyrus.infra.services.controlmode.handlers.ControlCommandHandler"
+            description="Move this submodel into its own resource (file)"
+            id="org.eclipse.papyrus.infra.services.controlmode.createsubmodel"
+            name="Create submodel unit">
       </command>
       <command
-            defaultHandler="org.eclipse.papyrus.infra.services.controlmode.action.PapyrusUncontrolHandler"
-            id="org.eclipse.papyrus.infra.services.controlmode.uncontrol"
-            name="Uncontrol">
+            defaultHandler="org.eclipse.papyrus.infra.services.controlmode.handlers.UncontrolCommandHandler"
+            description="Reintegrate this submodel into the resource (file) of the parent model"
+            id="org.eclipse.papyrus.infra.services.controlmode.reintegratesubmodel"
+            name="Reintegrate submodel unit into parent model">
       </command>
    </extension>
    <extension
@@ -21,48 +23,66 @@
             allPopups="false"
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
          <command
-               commandId="org.eclipse.papyrus.infra.services.controlmode.control"
-               label="Control"
+               commandId="org.eclipse.papyrus.infra.services.controlmode.createsubmodel"
+               icon="icons/CreateSubModel_16.png"
+               label="Create submodel unit"
                style="push"
-               tooltip="Split the model into an external model">
+               tooltip="Move this submodel into its own resource (file)">
             <visibleWhen
                   checkEnabled="false">
                <with
                      variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.infra.services.controlmode.control">
-                  </test>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.eclipse.papyrus.infra.services.controlmode.isFragmentModel"
+                       value="false">
+                 </test>
                </with>
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.infra.services.controlmode.uncontrol"
-               label="Uncontrol"
+               commandId="org.eclipse.papyrus.infra.services.controlmode.reintegratesubmodel"
+               icon="icons/ReintegrateSubModel_16.png"
+               label="Reintegrate submodel unit into parent model"
                style="push"
-               tooltip="Merge the external model with the current model">
+               tooltip="Reintegrate this submodel into the resource (file) of the parent model">
             <visibleWhen
                   checkEnabled="false">
                <with
                      variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.infra.services.controlmode.uncontrol">
-                  </test>
+                 <and>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.eclipse.papyrus.infra.services.controlmode.isFragmentModel"
+                          value="true">
+                    </test>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.eclipse.papyrus.infra.services.controlmode.isParentLoaded"
+                          value="true">
+                    </test>
+                 </and>
                </with>
             </visibleWhen>
          </command>
       </menuContribution>
    </extension>
+
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.eclipse.papyrus.infra.services.controlmode.action.ControlModePropertyTester"
+            class="org.eclipse.papyrus.infra.services.controlmode.IsControlledFragmentTester"
             id="org.eclipse.papyrus.infra.services.controlmode"
             namespace="org.eclipse.papyrus.infra.services.controlmode"
-            properties="control,uncontrol"
+            properties="isFragmentModel,isParentLoaded"
             type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.controlmode.participant">
+      <participant
+            class="org.eclipse.papyrus.infra.services.controlmode.participants.SashControlParticipant">
+      </participant>
    </extension>
 
 </plugin>

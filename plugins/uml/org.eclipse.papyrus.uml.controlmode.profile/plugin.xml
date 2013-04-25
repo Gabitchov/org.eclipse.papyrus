@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
-         point="org.eclipse.papyrus.infra.services.controlmode.customControlCommand">
-      <customControlCommand
-            controlCommand="org.eclipse.papyrus.uml.controlmode.profile.commands.UMLProfileControlCommand">
-      </customControlCommand>
-      <customUncontrolCommand
-            uncontrolCommand="org.eclipse.papyrus.uml.controlmode.profile.commands.UMLProfileUncontrolCommand">
-      </customUncontrolCommand>
-      <enableControlCommand
-            controlCondition="org.eclipse.papyrus.uml.controlmode.profile.commands.UMLProfileControlCondition">
-      </enableControlCommand>
-   </extension>
    
    <extension point="org.eclipse.emf.validation.constraintProviders">
       <category id="org.eclipse.papyrus.uml.controlmode.profile/duplicateProfileApplication" mandatory="false" name="duplicateProfileApplication">
@@ -47,6 +35,12 @@
 
    <extension point="org.eclipse.emf.validation.ui.UIRegisteredClientContext">
       <clientContext id="org.eclipse.papyrus.controlmodeDefaultCtx"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.controlmode.participant">
+      <participant
+            class="org.eclipse.papyrus.uml.controlmode.profile.UMLProfileControlParticipant">
+      </participant>
    </extension>
 
 </plugin>

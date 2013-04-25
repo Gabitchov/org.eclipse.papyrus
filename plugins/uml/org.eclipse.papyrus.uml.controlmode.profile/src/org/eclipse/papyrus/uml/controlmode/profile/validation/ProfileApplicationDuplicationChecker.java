@@ -296,6 +296,7 @@ public class ProfileApplicationDuplicationChecker extends AbstractModelConstrain
 			Runnable runStrategySwitch = new Runnable() {
 
 				public void run() {
+					//TODO
 					StrategyChooser.setCurrentStrategy(LOAD_ALL_STRATEGY);
 					stategyChanged.setValue(true);
 				}

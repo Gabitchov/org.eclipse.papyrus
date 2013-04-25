@@ -18,6 +18,7 @@
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -28,7 +29,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -100,6 +104,12 @@ public class ModelSet extends ResourceSetImpl {
 	protected Adapter modificationTrackingAdapter;
 
 	protected IReadOnlyHandler roHandler;
+
+	/**
+	 * URI pointing to resource on which back end should be deleted on save
+	 * One example of use is empty uncontrolled resources
+	 */
+	protected Set<URI> toDeleteOnSave = new HashSet<URI>();
 
 	/**
 	 * 
@@ -184,8 +194,7 @@ public class ModelSet extends ResourceSetImpl {
 				if(r == null) {
 					throw e;
 				}
-			}
-			else {
+			} else {
 				// don't log, but throw error again, bug 405047 - [core] FileNotFoundException during MARTE profile loads
 				throw e;
 			}
@@ -647,6 +656,13 @@ public class ModelSet extends ResourceSetImpl {
 				}
 			}
 
+			for(URI u : getResourcesToDeleteOnSave()) {
+				Optional<Boolean> res = getReadOnlyHandler().anyReadOnly(new URI[]{ u });
+				if(res.isPresent() && res.get()) {
+					roUris.add(u);
+				}
+			}
+
 			if(!roUris.isEmpty()) {
 				Optional<Boolean> authorizeSave = getReadOnlyHandler().makeWritable(roUris.toArray(new URI[roUris.size()]));
 
@@ -668,9 +684,104 @@ public class ModelSet extends ResourceSetImpl {
 				}
 			}
 			additional.saveModel();
+
+			//Delete resource back end to delete on save
+			handleResourcesToDelete();
 		} finally {
 			monitor.done();
 		}
+	}
+
+	/**
+	 * @return {@link ModelSet#toDeleteOnSave}
+	 */
+	public Set<URI> getResourcesToDeleteOnSave() {
+		return toDeleteOnSave;
+	}
+
+	/**
+	 * Delete resources pointed by {@link ModelSet#toDeleteOnSave}set.
+	 */
+	protected void handleResourcesToDelete() {
+		Iterator<URI> uriIterator = getResourcesToDeleteOnSave().iterator();
+		while(uriIterator.hasNext()) {
+			URI uri = (URI)uriIterator.next();
+			Resource resource = getResource(uri, false);
+			if(resource != null) {
+				String warMessage = "The resource " + resource.getURI().lastSegment() + " was about to deleted but was still contained in the resource set. The will not be deleted";
+				Activator.log.warn(warMessage);
+
+				continue;
+			}
+			IFile file = getFile(uri);
+			if(file != null && file.exists()) {
+				try {
+					file.delete(true, new NullProgressMonitor());
+					uriIterator.remove();
+				} catch (CoreException e) {
+					Activator.log.error(e);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Finds the file corresponding to the specified URI, using a URI converter
+	 * if necessary (and provided) to normalize it.
+	 * 
+	 * @param uri
+	 *        a URI
+	 * @param converter
+	 *        an optional URI converter (may be <code>null</code>)
+	 * 
+	 * @return the file, if available in the workspace
+	 */
+	protected IFile getFile(URI uri) {
+		IFile result = null;
+		if(uri.isPlatformPlugin()) {
+			/* resource with platform plug-in URI could not be in the workspace */
+			return result;
+		} else if(uri.isPlatformResource()) {
+			IPath path = new Path(uri.toPlatformString(true));
+			result = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+		} else if(uri.isFile() && !uri.isRelative()) {
+			result = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(uri.toFileString()));
+		} else {
+			// normalize, to see whether may we can resolve it this time
+			if(uriConverter != null) {
+				URI normalized = uriConverter.normalize(uri);
+				if(!uri.equals(normalized)) {
+					// recurse on the new URI
+					result = getFile(normalized);
+				}
+			}
+		}
+		if((result == null) && !uri.isRelative()) {
+			try {
+				java.net.URI location = new java.net.URI(uri.toString());
+				if(hasRegisteredEFS(location)) {
+					IFile[] files = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(new java.net.URI(uri.toString()));
+					if(files.length > 0) {
+						// set the result to be the first file found
+						result = files[0];
+					}
+				}
+			} catch (URISyntaxException e) {
+				// won't get this because EMF provides a well-formed URI
+			}
+		}
+		return result;
+	}
+
+	protected boolean hasRegisteredEFS(java.net.URI location) {
+		try {
+			if(EFS.getStore(location) != null) {
+				return true;
+			}
+		} catch (CoreException ex) {
+			return false;
+		}
+		return false;
 	}
 
 	/**

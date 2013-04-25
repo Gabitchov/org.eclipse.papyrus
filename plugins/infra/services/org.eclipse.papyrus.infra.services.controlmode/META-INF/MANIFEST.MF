@@ -1,28 +1,24 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf.edit.ui,
- org.eclipse.ui.navigator,
+Require-Bundle: org.eclipse.emf.edit.ui,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.services.controlmode.history;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.services.resourceloading;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.services.resourceloading.preferences;bundle-version="0.10.0",
- org.eclipse.core.resources;bundle-version="3.7.0",
- org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
  org.eclipse.core.expressions;bundle-version="3.4.400",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
- org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.0"
+ com.google.guava,
+ org.eclipse.equinox.registry,
+ org.eclipse.emf.workspace,
+ org.eclipse.gmf.runtime.common.core;visibility:=reexport,
+ org.eclipse.gmf.runtime.emf.commands.core;visibility:=reexport,
+ org.eclipse.gmf.runtime.emf.type.core;visibility:=reexport,
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands,
+ org.eclipse.papyrus.infra.widgets.toolbox
 Export-Package: org.eclipse.papyrus.infra.services.controlmode,
- org.eclipse.papyrus.infra.services.controlmode.action,
  org.eclipse.papyrus.infra.services.controlmode.commands,
- org.eclipse.papyrus.infra.services.controlmode.ui
+ org.eclipse.papyrus.infra.services.controlmode.handlers,
+ org.eclipse.papyrus.infra.services.controlmode.participants,
+ org.eclipse.papyrus.infra.services.controlmode.ui,
+ org.eclipse.papyrus.infra.services.controlmode.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.0.qualifier

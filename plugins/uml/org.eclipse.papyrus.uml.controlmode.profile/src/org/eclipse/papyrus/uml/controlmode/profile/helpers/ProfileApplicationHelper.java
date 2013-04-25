@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.controlmode.profile.helpers;
 
@@ -109,44 +109,32 @@ public class ProfileApplicationHelper {
 	/**
 	 * Relocate stereotype applications for the nested elements of the selection in the controlled resource
 	 * 
-	 * @param root
-	 *        the root element for which stereotype applications must be relocated
+	 * @param pack
+	 *        the package for which stereotype application must be relocated
 	 * @param target
 	 *        the target controlled resource
 	 */
-	public static void relocateStereotypeApplications(Element root, Resource target) {
-		// Relocate stereotype applications of the root element itself.
-		for(EObject stereotypeApplication : root.getStereotypeApplications()) {
-			relocateStereotypeApplication(root, stereotypeApplication);
-		}
-		// Relocate stereotype applications of the root's child elements.
-		for(Iterator<EObject> i = EcoreUtil.getAllProperContents(root, false); i.hasNext();) {
+	public static void nestedRelocateStereotypeApplications(Package pack, Resource target) {
+		relocateStereotypeApplications(pack, target);
+		for(Iterator<EObject> i = EcoreUtil.getAllProperContents(pack, true); i.hasNext();) {
 			EObject current = i.next();
 			if(current instanceof Element) {
-				Element element = (Element)current;
-				for(EObject stereotypeApplication : element.getStereotypeApplications()) {
-					relocateStereotypeApplication(element, stereotypeApplication);
-				}
+				relocateStereotypeApplications((Element)current, target);
 			}
 		}
 	}
 	
 	/**
-	 * Relocate one stereotype application of the given element.
+	 * Relocate stereotype applications for the an element in the controlled resource
 	 * 
 	 * @param element
-	 *        the element holding the stereotype application to be relocated
-	 * @param stereotypeApplication
-	 *        the stereotype application to be relocated
+	 *        the element for which stereotype application must be relocated
+	 * @param target
+	 *        the target controlled resource
 	 */
-	public static void relocateStereotypeApplication(Element element, EObject stereotypeApplication) {
-		// Too bad that StereotypeApplicationHelper.getContainmentList is not public, it would have allowed a completely generic heuristic.
-		EList<EObject> containmentList; // = StereotypeApplicationHelper.INSTANCE.getContainmentList(element, stereotypeApplication.eClass());
-		Resource resource = element.eResource();
-		containmentList = resource != null ? resource.getContents() : null; // Default heuristic of StereotypeApplicationHelper.
-		if (containmentList != null) {
-			containmentList.add(stereotypeApplication);
-		}
+	public static void relocateStereotypeApplications(Element element, Resource targetResource) {
+		EList<EObject> stereotypeApplications = element.getStereotypeApplications();
+			targetResource.getContents().addAll(stereotypeApplications);
 	}
 
 	/**

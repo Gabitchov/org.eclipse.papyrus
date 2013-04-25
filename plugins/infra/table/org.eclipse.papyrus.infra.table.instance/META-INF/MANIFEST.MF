@@ -17,7 +17,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.widgets.nattable.tableconfiguration;visibility:=reexport,
  org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom;visibility:=reexport,
- org.eclipse.ui.workbench
+ org.eclipse.ui.workbench,
+ com.google.guava,
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0"
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2
