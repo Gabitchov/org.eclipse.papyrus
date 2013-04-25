@@ -24,6 +24,11 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Op
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.papyrus.moka.fuml.registry.SystemServicesRegistryUtils;
+import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.IConsoleManager;
+import org.eclipse.ui.console.IOConsole;
+import org.eclipse.ui.console.IOConsoleOutputStream;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.OpaqueBehavior;
@@ -34,9 +39,24 @@ public class StandardOutputChannelImpl extends Object_ {
 	protected static OpaqueBehavior writeLineMethod ;
 	protected static OpaqueBehavior writeMethod;
 	
+	protected static final String CONSOLE_NAME = "fUML Console";
+	
+	protected static IOConsole console = null;
+	protected IOConsoleOutputStream out = null;
+	
+	public static IOConsole getConsole() {
+		if (console == null) {
+			console = new IOConsole(CONSOLE_NAME, null);
+			IConsoleManager conMan = ConsolePlugin.getDefault().getConsoleManager();
+			conMan.addConsoles(new IConsole[]{console});
+		}
+		return console;
+	}
+	
 	public StandardOutputChannelImpl(Class service) {
 		super() ;
-		this.types.add(service) ;
+		this.types.add(service) ;		
+		this.out = getConsole().newOutputStream();
 	}
 
 	@Override
@@ -67,7 +87,7 @@ public class StandardOutputChannelImpl extends Object_ {
 			// Supposed to have only one input argument, corresponding to parameter 'value'
 			try {
 				String message = ((StringValue)inputParameters.get(0).values.get(0)).value;
-				System.out.println(message);
+				out.write(message + "\n");
 				// This implementation does not produce errorStatus information.
 			} catch (Exception e) {
 				Debug.println("An error occured during the execution of writeLine " + e.getMessage());
@@ -102,7 +122,7 @@ public class StandardOutputChannelImpl extends Object_ {
 			// Supposed to have only one input argument, corresponding to parameter 'value'
 			try {
 				String message = inputParameters.get(0).values.get(0).toString();
-				System.out.print(message);
+				out.write(message);
 				// This implementation does not produce errorStatus information.
 			} catch (Exception e) {
 				Debug.println("An error occured during the execution of write " + e.getMessage());

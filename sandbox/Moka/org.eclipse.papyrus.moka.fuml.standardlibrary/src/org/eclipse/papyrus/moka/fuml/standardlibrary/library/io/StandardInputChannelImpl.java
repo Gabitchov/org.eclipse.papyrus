@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.moka.fuml.standardlibrary.library.io;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,13 @@ public class StandardInputChannelImpl extends Object_ {
 	
 	protected static OpaqueBehavior readLineMethod ;
 	protected static BufferedReader bufferedReader ;
+	
+	protected InputStream in = null;
 
 	public StandardInputChannelImpl(Class service) {
 		super() ;
 		this.types.add(service) ;
+		this.in = StandardOutputChannelImpl.getConsole().getInputStream();
 	}
 
 	@Override
@@ -68,7 +72,7 @@ public class StandardInputChannelImpl extends Object_ {
 			// This implementation does not produce errorStatus information.
 			try {
 				if (bufferedReader == null)
-					bufferedReader = new BufferedReader(new InputStreamReader(System.in)) ;
+					bufferedReader = new BufferedReader(new InputStreamReader(in)) ;
 				String line = bufferedReader.readLine() ;
 				StringValue result = new StringValue() ;
 				result.value = "" + line ;
