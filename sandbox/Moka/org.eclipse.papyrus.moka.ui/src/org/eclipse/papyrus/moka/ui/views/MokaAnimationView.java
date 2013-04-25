@@ -81,7 +81,7 @@ public class MokaAnimationView extends ViewPart {
 		
 		final Slider animationDelaySlider = new Slider(self, SWT.HORIZONTAL) ;
 		final Label sliderLabel = new Label(self, SWT.NONE) ;
-		sliderLabel.setText("Animation delay: " + MokaConstants.MOKA_ANIMATION_DELAY + " ms") ;
+		sliderLabel.setText("Animation delay: " + MokaConstants.MOKA_ANIMATION_DELAY + " ms ") ;
 		animationDelaySlider.setEnabled(MokaConstants.MOKA_AUTOMATIC_ANIMATION) ;
 		animationDelaySlider.setValues(MokaConstants.MOKA_ANIMATION_DELAY /*selection*/, 
 									   50 /*minimum*/, 

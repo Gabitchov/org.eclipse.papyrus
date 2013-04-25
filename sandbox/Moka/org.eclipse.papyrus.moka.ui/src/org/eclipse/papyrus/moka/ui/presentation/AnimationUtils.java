@@ -113,6 +113,11 @@ public class AnimationUtils {
 		}
 
 		Resource resource = modelElement.eResource() ;
+		if (! resource.getURI().isPlatformResource()) {
+			matchingDiagrams = new ArrayList<Diagram>() ;
+			eObjectToDiagrams.put(modelElement, new ArrayList<Diagram>()) ;
+			return matchingDiagrams ;
+		}
 		ResourceSet resourceSet = resource.getResourceSet() ;
 
 		final String  resourceNotationURI = modelElement.eResource().getURI().toString().replaceAll(".uml", ".notation") ;
@@ -140,6 +145,16 @@ public class AnimationUtils {
 		return matchingDiagrams ;
 	}
 
+	/**
+	 * Returns true if some diagrams with graphical representation of the given model element exist, false otherwise 
+	 * 
+	 * @param modelElement
+	 * @return true if some diagrams with graphical representation of the given model element exist, false otherwise
+	 */
+	public boolean diagramsExistFor(EObject modelElement) {
+		return ! this.getDiagrams(modelElement).isEmpty() ;
+	}
+	
 	/**
 	 * In the case where the list of diagrams for the given modelElement has already been retrieved,
 	 * resets this list 
@@ -193,6 +208,7 @@ public class AnimationUtils {
 	 * Adds a "Suspended" marker to the given semantic element
 	 * 
 	 * @param semanticElement The semantic element to which a "Suspended" marker has to be attached
+	 * @param thread The context thread in which this marker is attached
 	 */
 	public void addSuspendedMarker(EObject semanticElement) {
 		if (eObjectToSuspendedMarker.get(semanticElement) != null)
