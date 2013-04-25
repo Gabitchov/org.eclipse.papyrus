@@ -33,7 +33,7 @@ public class ControlDelegate {
 	 * The execution engine associated with this ControlDelegate object
 	 */
 	protected AbstractExecutionEngine engine ;
-	
+
 	/**
 	 * The list of threads implied by current execution
 	 */
@@ -136,7 +136,7 @@ public class ControlDelegate {
 			notify() ;
 		}
 	}
-	
+
 	/**
 	 * Return the stack of the given thread
 	 * 
@@ -148,7 +148,7 @@ public class ControlDelegate {
 		// When the debug is notified, threads are already constructed with appropriate stack frames.
 		return null;
 	}
-	
+
 	/**
 	 * Returns the threads underlying this execution
 	 * 
@@ -221,7 +221,7 @@ public class ControlDelegate {
 		else { // Tries to check if a breakpoint applies
 			if (this.elementsWithBreakpoints.contains(semanticElement) || this.reasonForResuming == DebugEvent.STEP_OVER) {
 				if ((object instanceof ActivityNodeActivation && ((ActivityNodeActivation)object).group != null) ||
-					(object instanceof ActivityEdgeInstance && ((ActivityEdgeInstance)object).group != null)) {
+						(object instanceof ActivityEdgeInstance && ((ActivityEdgeInstance)object).group != null)) {
 					try {
 						synchronized (this) {
 							this.getThreads() ; // To make sure that this.threads is neither null nor empty
@@ -251,7 +251,9 @@ public class ControlDelegate {
 				ActivityEdge edge = (ActivityEdge)element ;
 				if (edge.getSource() instanceof Pin) {
 					AnimationUtils.getInstance().addAnimationMarker(edge.getSource()) ;
-					Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
+					if (AnimationUtils.getInstance().diagramsExistFor(element)) {
+						Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
+					}
 					AnimationUtils.getInstance().removeAnimationMarker(edge.getSource()) ;
 				}
 			}
