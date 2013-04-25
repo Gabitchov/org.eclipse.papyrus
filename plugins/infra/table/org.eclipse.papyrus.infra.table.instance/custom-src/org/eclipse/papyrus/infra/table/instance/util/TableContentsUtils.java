@@ -179,4 +179,22 @@ public class TableContentsUtils {
 
 		return result;
 	}
+
+	/**
+	 * 
+	 * @param selection
+	 *        the current selection
+	 * @return
+	 *         the list of the papyrus table instance which have the selection has context
+	 */
+	public static Collection<PapyrusTableInstance> getPapyrusTableInstances(final EObject selection) {
+		final Collection<PapyrusTableInstance> pTables = new ArrayList<PapyrusTableInstance>();
+		Iterable<EObject> allDescendingPapyrusTables = createDescendantTablesIterable(selection);
+		for(EObject eObject : allDescendingPapyrusTables) {
+			if(eObject instanceof PapyrusTableInstance) {
+				pTables.add((PapyrusTableInstance)eObject);
+			}
+		}
+		return pTables;
+	}
 }

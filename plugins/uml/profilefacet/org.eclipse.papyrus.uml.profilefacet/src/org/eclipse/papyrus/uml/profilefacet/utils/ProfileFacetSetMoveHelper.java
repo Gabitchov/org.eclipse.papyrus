@@ -25,8 +25,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
@@ -35,7 +33,6 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.facet.Facet;
 import org.eclipse.emf.facet.infra.facet.FacetSet;
 import org.eclipse.emf.facet.infra.query.ModelQuerySet;
@@ -47,9 +44,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.table.controlmode.helpers.TableMoveHelper;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.infra.table.instance.util.TableContentsUtils;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyElement;
 
 /**
@@ -232,8 +229,9 @@ public final class ProfileFacetSetMoveHelper {
 //		return result;
 //	}
 
-	public static void addAllFacetSetMoveCommands(EditingDomain domain, EObject selection, Resource source, final Resource target, CompoundCommand commandToModify) {
-		final Collection<PapyrusTableInstance> pTables = TableMoveHelper.getPapyrusTableInstances(selection);
+	public static ICommand getMoveAllFacetSetsCommand(TransactionalEditingDomain domain, EObject selection, Resource source, final Resource target) {
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(domain, "Move facet sets");
+		final Collection<PapyrusTableInstance> pTables = TableContentsUtils.getPapyrusTableInstances(selection);
 		if(!pTables.isEmpty()) {
 			final Set<Facet> facetsUsed = new HashSet<Facet>();
 			for(PapyrusTableInstance papyrusTableInstance : pTables) {
@@ -263,9 +261,9 @@ public final class ProfileFacetSetMoveHelper {
 				} else if(additionalEPackageSource != null) {
 					if(moveAdditionalFacetSet) {
 						if(additionalEPackageTarget != null) {
-							Command tmp = getMergeAdditionalContentsEPackageCommand((TransactionalEditingDomain)domain, (XMIResource)source, (XMIResource)target, pTables, facetsets, facetsets, additionalEPackageSource, additionalEPackageTarget);
+							ICommand tmp = getMergeAdditionalContentsEPackageCommand((TransactionalEditingDomain)domain, (XMIResource)source, (XMIResource)target, pTables, facetsets, facetsets, additionalEPackageSource, additionalEPackageTarget);
 							if(tmp != null) {
-								commandToModify.append(tmp);
+								cc.add(tmp);
 							}
 						} else {
 							//we should copy the AdditionalContentsEPackage
@@ -297,19 +295,20 @@ public final class ProfileFacetSetMoveHelper {
 									return CommandResult.newOKCommandResult();
 								}
 							};
-							commandToModify.append(new GMFtoEMFCommandWrapper(addToResource));
+							cc.add(addToResource);
 
-							Command tmp2 = getUpdateFacetElementReferencesCommand((TransactionalEditingDomain)domain, pTables, copier);
+							ICommand tmp2 = getUpdateFacetElementReferencesCommand((TransactionalEditingDomain)domain, pTables, copier);
 							if(tmp2 != null) {
-								commandToModify.append(tmp2);
+								cc.add(tmp2);
 							}
 
-							commandToModify.append(getCopyXMI_IDCommand((TransactionalEditingDomain)domain, copier));
+							cc.add(getCopyXMI_IDCommand((TransactionalEditingDomain)domain, copier));
 						}
 					}
 				}
 			}
 		}
+		return cc;
 	}
 
 	/**
@@ -334,8 +333,8 @@ public final class ProfileFacetSetMoveHelper {
 	 *         the command to merge the contents of the Epakche source into the EPackage target AND duplicating the required ModelQuerySet referenced
 	 *         by the source FacetSets
 	 */
-	private static Command getMergeAdditionalContentsEPackageCommand(final TransactionalEditingDomain domain, final XMIResource sourceResource, final XMIResource targetResource, final Collection<PapyrusTableInstance> tables, final Collection<FacetSet> sourceFacetSets, Collection<FacetSet> targetFacetSets, EPackage source, final EPackage target) {
-		final CompoundCommand compoundCommand = new CompoundCommand("Merge additional epackage contents"); //$NON-NLS-1$
+	private static ICommand getMergeAdditionalContentsEPackageCommand(final TransactionalEditingDomain domain, final XMIResource sourceResource, final XMIResource targetResource, final Collection<PapyrusTableInstance> tables, final Collection<FacetSet> sourceFacetSets, Collection<FacetSet> targetFacetSets, EPackage source, final EPackage target) {
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(domain, "Merge additional epackage contents");
 		//1. we init the maps
 		final Map<ModelQuerySet, ModelQuerySet> sourceVSTargetModelQuerySet = new HashMap<ModelQuerySet, ModelQuerySet>();
 		final Map<String, FacetSet> sourceMap = new HashMap<String, FacetSet>();
@@ -369,7 +368,7 @@ public final class ProfileFacetSetMoveHelper {
 							return CommandResult.newOKCommandResult();
 						}
 					};
-					compoundCommand.append(new GMFtoEMFCommandWrapper(addModelQuerySetToResource));
+					cc.add(addModelQuerySetToResource);
 				}
 
 				copier.copyReferences();
@@ -382,18 +381,18 @@ public final class ProfileFacetSetMoveHelper {
 						return CommandResult.newOKCommandResult();
 					}
 				};
-				compoundCommand.append(new GMFtoEMFCommandWrapper(addFacetSetToAdditionalContentsFacetSet));
-				compoundCommand.append(getCopyXMI_IDCommand(domain, copier));
-				final Command tmp = getUpdateFacetElementReferencesCommand(domain, tables, copier);
+				cc.add(addFacetSetToAdditionalContentsFacetSet);
+				cc.add(getCopyXMI_IDCommand(domain, copier));
+				ICommand tmp = getUpdateFacetElementReferencesCommand(domain, tables, copier);
 				if(tmp != null) {
-					compoundCommand.append(tmp);
+					cc.add(tmp);
 				}
 			}
 		}
-		if(compoundCommand.isEmpty()) {
+		if(cc.isEmpty()) {
 			return null;
 		} else {
-			return compoundCommand;
+			return cc;
 		}
 	}
 
@@ -424,8 +423,8 @@ public final class ProfileFacetSetMoveHelper {
 	 * @return the copy xm i_ id command
 	 *         the command set the XMI_ID of the source eobject to the target eobject
 	 */
-	private static Command getCopyXMI_IDCommand(final TransactionalEditingDomain domain, final Map<EObject, EObject> map) {
-		final ICommand copyXMI_ID_Command = new AbstractTransactionalCommand(domain, "Copy XMI_ID Command", null) { //$NON-NLS-1$
+	private static ICommand getCopyXMI_IDCommand(final TransactionalEditingDomain domain, final Map<EObject, EObject> map) {
+		return new AbstractTransactionalCommand(domain, "Copy XMI_ID Command", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -443,7 +442,6 @@ public final class ProfileFacetSetMoveHelper {
 				return CommandResult.newOKCommandResult();
 			}
 		};
-		return new GMFtoEMFCommandWrapper(copyXMI_ID_Command);
 	}
 
 	/**
@@ -459,8 +457,8 @@ public final class ProfileFacetSetMoveHelper {
 	 *         the command to replace each call to source element by a call to target element in the managed tables or <code>null</code> if there is
 	 *         nothing to do
 	 */
-	private static Command getUpdateFacetElementReferencesCommand(final TransactionalEditingDomain domain, final Collection<PapyrusTableInstance> papyrusTables, final Map<EObject, EObject> sourceToTarget) {
-		final CompoundCommand updateCommand = new CompoundCommand("Update References To facet Element Command"); //$NON-NLS-1$
+	private static ICommand getUpdateFacetElementReferencesCommand(final TransactionalEditingDomain domain, final Collection<PapyrusTableInstance> papyrusTables, final Map<EObject, EObject> sourceToTarget) {
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(domain, "Update References To facet Element Command");
 		final Collection<TableInstance2> tableInstances = new ArrayList<TableInstance2>();
 		for(final PapyrusTableInstance pTable : papyrusTables) {
 			tableInstances.add(pTable.getTable());
@@ -483,7 +481,7 @@ public final class ProfileFacetSetMoveHelper {
 										return CommandResult.newOKCommandResult();
 									}
 								};
-								updateCommand.append(new GMFtoEMFCommandWrapper(cmd));
+								cc.add(cmd);
 							}
 						}
 					}
@@ -500,16 +498,16 @@ public final class ProfileFacetSetMoveHelper {
 									return CommandResult.newOKCommandResult();
 								}
 							};
-							updateCommand.append(new GMFtoEMFCommandWrapper(cmd));
+							cc.add(cmd);
 						}
 					}
 				}
 			}
 		}
-		if(updateCommand.isEmpty()) {
+		if(cc.isEmpty()) {
 			return null;
 		}
-		return updateCommand;
+		return cc;
 	}
 
 
