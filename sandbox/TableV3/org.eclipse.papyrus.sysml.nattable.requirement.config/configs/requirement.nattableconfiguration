@@ -6,7 +6,7 @@
     <ownedAxisConfiguration xsi:type="nattableaxisconfiguration:EStructuralFeatureValueFillingConfiguration">
       <listenFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/ownedMember"/>
     </ownedAxisConfiguration>
-    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.sysml.nattable.requirement.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@rowHeaderAxisConfiguration/@ownedLabelConfiguration.0" specificAxisConfiguration="//@rowHeaderAxisConfiguration/@ownedAxisConfiguration.0"/>
+    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.sysml.nattable.requirement.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@rowHeaderAxisConfiguration/@ownedLabelConfiguration.0" specificAxisConfigurations="//@rowHeaderAxisConfiguration/@ownedAxisConfiguration.0"/>
   </rowHeaderAxisConfiguration>
   <columnHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration">
     <ownedLabelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration"/>
