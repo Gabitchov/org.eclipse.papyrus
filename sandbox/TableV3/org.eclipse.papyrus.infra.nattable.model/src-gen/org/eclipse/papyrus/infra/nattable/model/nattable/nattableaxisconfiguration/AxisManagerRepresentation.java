@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getAxisManagerId <em>Axis Manager Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getLabelProviderContext <em>Label Provider Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getHeaderLabelConfiguration <em>Header Label Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getSpecificAxisConfiguration <em>Specific Axis Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getSpecificAxisConfigurations <em>Specific Axis Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -117,19 +117,19 @@ public interface AxisManagerRepresentation extends EObject {
 	void setHeaderLabelConfiguration(ILabelProviderConfiguration value);
 
 	/**
-	 * Returns the value of the '<em><b>Specific Axis Configuration</b></em>' reference list.
+	 * Returns the value of the '<em><b>Specific Axis Configurations</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Specific Axis Configuration</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Specific Axis Configurations</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specific Axis Configuration</em>' reference list.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisManagerRepresentation_SpecificAxisConfiguration()
+	 * @return the value of the '<em>Specific Axis Configurations</em>' reference list.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisManagerRepresentation_SpecificAxisConfigurations()
 	 * @model
 	 * @generated
 	 */
-	EList<IAxisConfiguration> getSpecificAxisConfiguration();
+	EList<IAxisConfiguration> getSpecificAxisConfigurations();
 
 } // AxisManagerRepresentation

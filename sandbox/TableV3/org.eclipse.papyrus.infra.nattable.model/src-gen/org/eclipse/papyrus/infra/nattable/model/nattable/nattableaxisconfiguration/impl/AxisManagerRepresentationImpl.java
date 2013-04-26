@@ -42,7 +42,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getAxisManagerId <em>Axis Manager Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getLabelProviderContext <em>Label Provider Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getHeaderLabelConfiguration <em>Header Label Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getSpecificAxisConfiguration <em>Specific Axis Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getSpecificAxisConfigurations <em>Specific Axis Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,14 +100,14 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	protected ILabelProviderConfiguration headerLabelConfiguration;
 
 	/**
-	 * The cached value of the '{@link #getSpecificAxisConfiguration() <em>Specific Axis Configuration</em>}' reference list.
+	 * The cached value of the '{@link #getSpecificAxisConfigurations() <em>Specific Axis Configurations</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSpecificAxisConfiguration()
+	 * @see #getSpecificAxisConfigurations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IAxisConfiguration> specificAxisConfiguration;
+	protected EList<IAxisConfiguration> specificAxisConfigurations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -213,11 +213,11 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IAxisConfiguration> getSpecificAxisConfiguration() {
-		if (specificAxisConfiguration == null) {
-			specificAxisConfiguration = new EObjectResolvingEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION);
+	public EList<IAxisConfiguration> getSpecificAxisConfigurations() {
+		if (specificAxisConfigurations == null) {
+			specificAxisConfigurations = new EObjectResolvingEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS);
 		}
-		return specificAxisConfiguration;
+		return specificAxisConfigurations;
 	}
 
 	/**
@@ -235,8 +235,8 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
 				if (resolve) return getHeaderLabelConfiguration();
 				return basicGetHeaderLabelConfiguration();
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION:
-				return getSpecificAxisConfiguration();
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
+				return getSpecificAxisConfigurations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -259,9 +259,9 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
 				setHeaderLabelConfiguration((ILabelProviderConfiguration)newValue);
 				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION:
-				getSpecificAxisConfiguration().clear();
-				getSpecificAxisConfiguration().addAll((Collection<? extends IAxisConfiguration>)newValue);
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
+				getSpecificAxisConfigurations().clear();
+				getSpecificAxisConfigurations().addAll((Collection<? extends IAxisConfiguration>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -284,8 +284,8 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
 				setHeaderLabelConfiguration((ILabelProviderConfiguration)null);
 				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION:
-				getSpecificAxisConfiguration().clear();
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
+				getSpecificAxisConfigurations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -305,8 +305,8 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 				return LABEL_PROVIDER_CONTEXT_EDEFAULT == null ? labelProviderContext != null : !LABEL_PROVIDER_CONTEXT_EDEFAULT.equals(labelProviderContext);
 			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
 				return headerLabelConfiguration != null;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION:
-				return specificAxisConfiguration != null && !specificAxisConfiguration.isEmpty();
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
+				return specificAxisConfigurations != null && !specificAxisConfigurations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

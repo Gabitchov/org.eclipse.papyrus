@@ -339,7 +339,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAxisManagerRepresentation_SpecificAxisConfiguration() {
+	public EReference getAxisManagerRepresentation_SpecificAxisConfigurations() {
 		return (EReference)axisManagerRepresentationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -375,7 +375,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAxisManagerConfiguration_LocalSpecificConfiguration() {
+	public EReference getAxisManagerConfiguration_LocalSpecificConfigurations() {
 		return (EReference)axisManagerConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -554,12 +554,12 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		createEAttribute(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID);
 		createEAttribute(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT);
 		createEReference(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION);
-		createEReference(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION);
+		createEReference(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS);
 
 		axisManagerConfigurationEClass = createEClass(AXIS_MANAGER_CONFIGURATION);
 		createEReference(axisManagerConfigurationEClass, AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION);
 		createEReference(axisManagerConfigurationEClass, AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER);
-		createEReference(axisManagerConfigurationEClass, AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION);
+		createEReference(axisManagerConfigurationEClass, AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS);
 
 		tableHeaderAxisConfigurationEClass = createEClass(TABLE_HEADER_AXIS_CONFIGURATION);
 		createEReference(tableHeaderAxisConfigurationEClass, TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS);
@@ -641,12 +641,12 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		initEAttribute(getAxisManagerRepresentation_AxisManagerId(), ecorePackage.getEString(), "axisManagerId", null, 1, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getAxisManagerRepresentation_LabelProviderContext(), theEcorePackage.getEString(), "labelProviderContext", null, 0, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAxisManagerRepresentation_HeaderLabelConfiguration(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "headerLabelConfiguration", null, 1, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAxisManagerRepresentation_SpecificAxisConfiguration(), this.getIAxisConfiguration(), null, "specificAxisConfiguration", null, 0, -1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAxisManagerRepresentation_SpecificAxisConfigurations(), this.getIAxisConfiguration(), null, "specificAxisConfigurations", null, 0, -1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(axisManagerConfigurationEClass, AxisManagerConfiguration.class, "AxisManagerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getAxisManagerConfiguration_LocalHeaderLabelConfiguration(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "localHeaderLabelConfiguration", null, 0, 1, AxisManagerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAxisManagerConfiguration_AxisManager(), this.getAxisManagerRepresentation(), null, "axisManager", null, 1, 1, AxisManagerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAxisManagerConfiguration_LocalSpecificConfiguration(), this.getIAxisConfiguration(), null, "localSpecificConfiguration", null, 0, -1, AxisManagerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAxisManagerConfiguration_LocalSpecificConfigurations(), this.getIAxisConfiguration(), null, "localSpecificConfigurations", null, 0, -1, AxisManagerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(tableHeaderAxisConfigurationEClass, TableHeaderAxisConfiguration.class, "TableHeaderAxisConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTableHeaderAxisConfiguration_AxisManagers(), this.getAxisManagerRepresentation(), null, "axisManagers", null, 1, -1, TableHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

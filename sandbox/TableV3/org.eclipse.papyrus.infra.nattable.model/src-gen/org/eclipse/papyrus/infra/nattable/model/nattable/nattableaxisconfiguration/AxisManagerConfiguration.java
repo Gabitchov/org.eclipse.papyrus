@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalHeaderLabelConfiguration <em>Local Header Label Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getAxisManager <em>Axis Manager</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfiguration <em>Local Specific Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfigurations <em>Local Specific Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,19 +90,19 @@ public interface AxisManagerConfiguration extends EObject {
 	void setAxisManager(AxisManagerRepresentation value);
 
 	/**
-	 * Returns the value of the '<em><b>Local Specific Configuration</b></em>' reference list.
+	 * Returns the value of the '<em><b>Local Specific Configurations</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Local Specific Configuration</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Local Specific Configurations</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Local Specific Configuration</em>' reference list.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisManagerConfiguration_LocalSpecificConfiguration()
+	 * @return the value of the '<em>Local Specific Configurations</em>' reference list.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisManagerConfiguration_LocalSpecificConfigurations()
 	 * @model
 	 * @generated
 	 */
-	EList<IAxisConfiguration> getLocalSpecificConfiguration();
+	EList<IAxisConfiguration> getLocalSpecificConfigurations();
 
 } // AxisManagerConfiguration

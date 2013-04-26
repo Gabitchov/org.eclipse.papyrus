@@ -138,7 +138,7 @@
           eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="headerLabelConfiguration"
           lowerBound="1" eType="#//nattablelabelprovider/ILabelProviderConfiguration"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="specificAxisConfiguration"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specificAxisConfigurations"
           upperBound="-1" eType="#//nattableaxisconfiguration/IAxisConfiguration"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AxisManagerConfiguration">
@@ -146,7 +146,7 @@
           eType="#//nattablelabelprovider/ILabelProviderConfiguration"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="axisManager" lowerBound="1"
           eType="#//nattableaxisconfiguration/AxisManagerRepresentation"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="localSpecificConfiguration"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="localSpecificConfigurations"
           upperBound="-1" eType="#//nattableaxisconfiguration/IAxisConfiguration"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TableHeaderAxisConfiguration" eSuperTypes="#//nattableaxisconfiguration/AbstractHeaderAxisConfiguration">

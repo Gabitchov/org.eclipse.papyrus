@@ -206,13 +206,13 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	int AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Specific Axis Configuration</b></em>' reference list.
+	 * The feature id for the '<em><b>Specific Axis Configurations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION = 3;
+	int AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Axis Manager Representation</em>' class.
@@ -261,13 +261,13 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	int AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Local Specific Configuration</b></em>' reference list.
+	 * The feature id for the '<em><b>Local Specific Configurations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION = 2;
+	int AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Axis Manager Configuration</em>' class.
@@ -840,15 +840,15 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	EReference getAxisManagerRepresentation_HeaderLabelConfiguration();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getSpecificAxisConfiguration <em>Specific Axis Configuration</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getSpecificAxisConfigurations <em>Specific Axis Configurations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Specific Axis Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getSpecificAxisConfiguration()
+	 * @return the meta object for the reference list '<em>Specific Axis Configurations</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getSpecificAxisConfigurations()
 	 * @see #getAxisManagerRepresentation()
 	 * @generated
 	 */
-	EReference getAxisManagerRepresentation_SpecificAxisConfiguration();
+	EReference getAxisManagerRepresentation_SpecificAxisConfigurations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration <em>Axis Manager Configuration</em>}'.
@@ -883,15 +883,15 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	EReference getAxisManagerConfiguration_AxisManager();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfiguration <em>Local Specific Configuration</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfigurations <em>Local Specific Configurations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Local Specific Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfiguration()
+	 * @return the meta object for the reference list '<em>Local Specific Configurations</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfigurations()
 	 * @see #getAxisManagerConfiguration()
 	 * @generated
 	 */
-	EReference getAxisManagerConfiguration_LocalSpecificConfiguration();
+	EReference getAxisManagerConfiguration_LocalSpecificConfigurations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration <em>Table Header Axis Configuration</em>}'.
@@ -1165,12 +1165,12 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 		EReference AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION = eINSTANCE.getAxisManagerRepresentation_HeaderLabelConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Specific Axis Configuration</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Specific Axis Configurations</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION = eINSTANCE.getAxisManagerRepresentation_SpecificAxisConfiguration();
+		EReference AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS = eINSTANCE.getAxisManagerRepresentation_SpecificAxisConfigurations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl <em>Axis Manager Configuration</em>}' class.
@@ -1199,12 +1199,12 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 		EReference AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER = eINSTANCE.getAxisManagerConfiguration_AxisManager();
 
 		/**
-		 * The meta object literal for the '<em><b>Local Specific Configuration</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Local Specific Configurations</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION = eINSTANCE.getAxisManagerConfiguration_LocalSpecificConfiguration();
+		EReference AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS = eINSTANCE.getAxisManagerConfiguration_LocalSpecificConfigurations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TableHeaderAxisConfigurationImpl <em>Table Header Axis Configuration</em>}' class.

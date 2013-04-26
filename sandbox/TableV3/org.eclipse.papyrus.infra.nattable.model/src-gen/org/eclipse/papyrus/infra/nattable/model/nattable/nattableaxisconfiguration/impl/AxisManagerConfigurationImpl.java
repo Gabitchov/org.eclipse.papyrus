@@ -42,7 +42,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getLocalHeaderLabelConfiguration <em>Local Header Label Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getAxisManager <em>Axis Manager</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getLocalSpecificConfiguration <em>Local Specific Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getLocalSpecificConfigurations <em>Local Specific Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,14 +70,14 @@ public class AxisManagerConfigurationImpl extends MinimalEObjectImpl.Container i
 	protected AxisManagerRepresentation axisManager;
 
 	/**
-	 * The cached value of the '{@link #getLocalSpecificConfiguration() <em>Local Specific Configuration</em>}' reference list.
+	 * The cached value of the '{@link #getLocalSpecificConfigurations() <em>Local Specific Configurations</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLocalSpecificConfiguration()
+	 * @see #getLocalSpecificConfigurations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IAxisConfiguration> localSpecificConfiguration;
+	protected EList<IAxisConfiguration> localSpecificConfigurations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -179,11 +179,11 @@ public class AxisManagerConfigurationImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IAxisConfiguration> getLocalSpecificConfiguration() {
-		if (localSpecificConfiguration == null) {
-			localSpecificConfiguration = new EObjectResolvingEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION);
+	public EList<IAxisConfiguration> getLocalSpecificConfigurations() {
+		if (localSpecificConfigurations == null) {
+			localSpecificConfigurations = new EObjectResolvingEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS);
 		}
-		return localSpecificConfiguration;
+		return localSpecificConfigurations;
 	}
 
 	/**
@@ -200,8 +200,8 @@ public class AxisManagerConfigurationImpl extends MinimalEObjectImpl.Container i
 			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER:
 				if (resolve) return getAxisManager();
 				return basicGetAxisManager();
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION:
-				return getLocalSpecificConfiguration();
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS:
+				return getLocalSpecificConfigurations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -221,9 +221,9 @@ public class AxisManagerConfigurationImpl extends MinimalEObjectImpl.Container i
 			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER:
 				setAxisManager((AxisManagerRepresentation)newValue);
 				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION:
-				getLocalSpecificConfiguration().clear();
-				getLocalSpecificConfiguration().addAll((Collection<? extends IAxisConfiguration>)newValue);
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS:
+				getLocalSpecificConfigurations().clear();
+				getLocalSpecificConfigurations().addAll((Collection<? extends IAxisConfiguration>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -243,8 +243,8 @@ public class AxisManagerConfigurationImpl extends MinimalEObjectImpl.Container i
 			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER:
 				setAxisManager((AxisManagerRepresentation)null);
 				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION:
-				getLocalSpecificConfiguration().clear();
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS:
+				getLocalSpecificConfigurations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -262,8 +262,8 @@ public class AxisManagerConfigurationImpl extends MinimalEObjectImpl.Container i
 				return localHeaderLabelConfiguration != null;
 			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER:
 				return axisManager != null;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION:
-				return localSpecificConfiguration != null && !localSpecificConfiguration.isEmpty();
+			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS:
+				return localSpecificConfigurations != null && !localSpecificConfigurations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
