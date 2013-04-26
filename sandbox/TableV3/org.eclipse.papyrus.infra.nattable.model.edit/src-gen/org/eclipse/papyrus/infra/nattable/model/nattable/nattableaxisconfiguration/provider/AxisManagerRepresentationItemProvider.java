@@ -75,7 +75,7 @@ public class AxisManagerRepresentationItemProvider
 			addAxisManagerIdPropertyDescriptor(object);
 			addLabelProviderContextPropertyDescriptor(object);
 			addHeaderLabelConfigurationPropertyDescriptor(object);
-			addSpecificAxisConfigurationPropertyDescriptor(object);
+			addSpecificAxisConfigurationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -147,19 +147,19 @@ public class AxisManagerRepresentationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Specific Axis Configuration feature.
+	 * This adds a property descriptor for the Specific Axis Configurations feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSpecificAxisConfigurationPropertyDescriptor(Object object) {
+	protected void addSpecificAxisConfigurationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AxisManagerRepresentation_specificAxisConfiguration_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_specificAxisConfiguration_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATION,
+				 getString("_UI_AxisManagerRepresentation_specificAxisConfigurations_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerRepresentation_specificAxisConfigurations_feature", "_UI_AxisManagerRepresentation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS,
 				 true,
 				 false,
 				 true,

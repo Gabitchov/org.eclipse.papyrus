@@ -73,6 +73,7 @@
    </extension>
 
 null
+null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -101,6 +102,7 @@ null
       </wizard>
    </extension>
 
+null
 null
 null
    <extension point="org.eclipse.ui.editors">
@@ -132,6 +134,7 @@ null
    </extension>
 
 null
+null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -160,6 +163,7 @@ null
       </wizard>
    </extension>
 
+null
 null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
@@ -190,6 +194,7 @@ null
    </extension>
 
 null
+null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -218,4 +223,5 @@ null
       </wizard>
    </extension>
 
+null
 null</plugin>

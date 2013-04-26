@@ -71,7 +71,7 @@ public class AxisManagerConfigurationItemProvider
 
 			addLocalHeaderLabelConfigurationPropertyDescriptor(object);
 			addAxisManagerPropertyDescriptor(object);
-			addLocalSpecificConfigurationPropertyDescriptor(object);
+			addLocalSpecificConfigurationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -121,19 +121,19 @@ public class AxisManagerConfigurationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Local Specific Configuration feature.
+	 * This adds a property descriptor for the Local Specific Configurations feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLocalSpecificConfigurationPropertyDescriptor(Object object) {
+	protected void addLocalSpecificConfigurationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AxisManagerConfiguration_localSpecificConfiguration_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerConfiguration_localSpecificConfiguration_feature", "_UI_AxisManagerConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATION,
+				 getString("_UI_AxisManagerConfiguration_localSpecificConfigurations_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerConfiguration_localSpecificConfigurations_feature", "_UI_AxisManagerConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS,
 				 true,
 				 false,
 				 true,
