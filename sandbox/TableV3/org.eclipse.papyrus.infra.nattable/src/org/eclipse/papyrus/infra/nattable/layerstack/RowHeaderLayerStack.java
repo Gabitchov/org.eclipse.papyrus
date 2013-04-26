@@ -33,7 +33,7 @@ import org.eclipse.swt.SWT;
 
 public class RowHeaderLayerStack extends AbstractLayerTransform {
 
-	private static final int DEFAULT_COLUMN_WIDTH = 50;
+	private static final int DEFAULT_COLUMN_WIDTH = 150;
 
 	private static final int DEFAULT_ROW_HEIGHT = 20;
 

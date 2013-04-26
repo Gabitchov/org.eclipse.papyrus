@@ -89,11 +89,33 @@ public class NatComboButton extends NatCombo {
 	 * @param style
 	 * @param buttonConfiguration
 	 *        the configuration of the button
+	 * @deprecated freeEdit parameter is deprecated. Use the SWT.READ_ONLY flag to specify freeEdit = false
 	 */
+	@Deprecated
 	public NatComboButton(Composite parent, IStyle cellStyle, int maxVisibleItems, boolean freeEdit, int style, ButtonConfiguration buttonConfiguration) {
-		super(parent, cellStyle, maxVisibleItems, freeEdit, style);
+		super(parent, cellStyle, maxVisibleItems, computeFreeEditStyle(freeEdit, style));
 		this.buttonConfiguration = buttonConfiguration;
 		configureButton();
+	}
+
+	//NatCombo computes freeEdit from the style
+	//freeEdit == true <=> style | SWT.READ_ONLY = false
+	@Deprecated
+	private static int computeFreeEditStyle(boolean freeEdit, int style) {
+		if(freeEdit) {
+			return style & ~SWT.READ_ONLY;
+		} else {
+			return style | SWT.READ_ONLY;
+		}
+	}
+
+	@Deprecated
+	private static int computeMultiSelectStyle(boolean multiselect, int style) {
+		if(multiselect) {
+			return style | SWT.MULTI; //Add the SWT.MULTI style
+		} else {
+			return style & ~SWT.MULTI; //Remove the SWT.MULTI style
+		}
 	}
 
 	/**
@@ -109,11 +131,12 @@ public class NatComboButton extends NatCombo {
 	 * @param style
 	 * @param buttonConfiguration
 	 *        the configuration of the button
+	 * 
+	 * @deprecated multiselect parameter is deprecated. Use the SWT.MULTI flag instead
 	 */
+	@Deprecated
 	public NatComboButton(Composite parent, IStyle cellStyle, int maxVisibleItems, boolean freeEdit, boolean multiselect, int style, ButtonConfiguration buttonConfiguration) {
-		super(parent, cellStyle, maxVisibleItems, freeEdit, multiselect, style);
-		this.buttonConfiguration = buttonConfiguration;
-		configureButton();
+		this(parent, cellStyle, maxVisibleItems, multiselect, computeMultiSelectStyle(multiselect, style), buttonConfiguration);
 	}
 
 	/**
@@ -130,9 +153,27 @@ public class NatComboButton extends NatCombo {
 	 * @param iconImage
 	 * @param buttonConfiguration
 	 *        the configuration of the button
+	 * 
+	 * @deprecated The freeEdit and multiselect parameter. Use the SWT.READ_ONLY flag to specify freeEdit = False. Use SWT.MULTI flag to specify
+	 *             multiselect = True
 	 */
+	@Deprecated
 	public NatComboButton(Composite parent, IStyle cellStyle, int maxVisibleItems, boolean freeEdit, boolean multiselect, int style, Image iconImage, ButtonConfiguration buttonConfiguration) {
-		super(parent, cellStyle, maxVisibleItems, freeEdit, multiselect, style, iconImage);
+		this(parent, cellStyle, maxVisibleItems, computeMultiSelectStyle(multiselect, computeFreeEditStyle(freeEdit, style)), buttonConfiguration);
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param parent
+	 * @param cellStyle
+	 * @param maxVisibleItems
+	 * @param style
+	 * @param iconImage
+	 * @param buttonConfiguration
+	 */
+	public NatComboButton(Composite parent, IStyle cellStyle, int maxVisibleItems, int style, Image iconImage, ButtonConfiguration buttonConfiguration) {
+		super(parent, cellStyle, maxVisibleItems, style, iconImage);
 		this.buttonConfiguration = buttonConfiguration;
 		configureButton();
 	}

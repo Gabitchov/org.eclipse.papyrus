@@ -47,7 +47,11 @@ public class CustomizedCellPainter extends TextPainter {
 		final LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 		final ILabelProviderContextElement contextElement = new LabelProviderCellContextElement(cell, configRegistry);
 		final ILabelProvider provider = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT, contextElement);
-		return provider.getText(contextElement);
+		String str = provider.getText(contextElement);
+		if(str == null) {
+			str = ""; //$NON-NLS-1$
+		}
+		return str;
 	}
 
 }

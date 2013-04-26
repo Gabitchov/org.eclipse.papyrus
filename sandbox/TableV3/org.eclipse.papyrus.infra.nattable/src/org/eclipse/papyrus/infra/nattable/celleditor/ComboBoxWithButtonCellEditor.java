@@ -49,8 +49,8 @@ public class ComboBoxWithButtonCellEditor extends ComboBoxCellEditor {
 	 *        the action done by the button
 	 */
 	public ComboBoxWithButtonCellEditor(IComboBoxDataProvider dataProvider, int maxVisibleItems, boolean freeEdit, boolean multiselect, ButtonConfiguration buttonConfig) {
-		super(dataProvider, maxVisibleItems, freeEdit, multiselect);
-		this.buttonConfiguration = buttonConfig;
+		this(dataProvider, maxVisibleItems, freeEdit, buttonConfig);
+		setMultiselect(multiselect);
 	}
 
 	/**
@@ -63,8 +63,8 @@ public class ComboBoxWithButtonCellEditor extends ComboBoxCellEditor {
 	 * @param action
 	 */
 	public ComboBoxWithButtonCellEditor(IComboBoxDataProvider dataProvider, int maxVisibleItems, boolean freeEdit, ButtonConfiguration action) {
-		super(dataProvider, maxVisibleItems, freeEdit);
-		this.buttonConfiguration = action;
+		this(dataProvider, maxVisibleItems, action);
+		setFreeEdit(freeEdit);
 	}
 
 	/**
@@ -103,8 +103,8 @@ public class ComboBoxWithButtonCellEditor extends ComboBoxCellEditor {
 	 * @param action
 	 */
 	public ComboBoxWithButtonCellEditor(List<?> canonicalValues, int maxVisibleItems, boolean freeEdit, boolean multiselect, ButtonConfiguration action) {
-		super(canonicalValues, maxVisibleItems, freeEdit, multiselect);
-		this.buttonConfiguration = action;
+		this(canonicalValues, maxVisibleItems, freeEdit, action);
+		setMultiselect(multiselect);
 	}
 
 	/**
@@ -117,8 +117,8 @@ public class ComboBoxWithButtonCellEditor extends ComboBoxCellEditor {
 	 * @param action
 	 */
 	public ComboBoxWithButtonCellEditor(List<?> canonicalValues, int maxVisibleItems, boolean freeEdit, ButtonConfiguration action) {
-		super(canonicalValues, maxVisibleItems, freeEdit);
-		this.buttonConfiguration = action;
+		this(canonicalValues, maxVisibleItems, action);
+		setFreeEdit(freeEdit);
 	}
 
 	/**
