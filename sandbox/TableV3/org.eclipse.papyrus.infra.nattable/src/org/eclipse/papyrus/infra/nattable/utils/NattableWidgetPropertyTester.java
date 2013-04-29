@@ -35,9 +35,9 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 				return expectedValue.equals(manager != null);
 			} else if(HAS_FEATURE_ROW_HEADER_CONFIGURATION.equals(property) && expectedValue instanceof Boolean) {
 				LabelConfigurationManagementUtils.getRowFeatureLabelConfigurationInTable(manager.getTable());
-				return expectedValue.equals(LabelConfigurationManagementUtils.getRowFeatureLabelConfigurationInTable(manager.getTable()) != null);
+				return expectedValue.equals(LabelConfigurationManagementUtils.hasRowFeatureLabelConfiguration(manager.getTable()));
 			} else if(HAS_FEATURE_COLUMN_HEADER_CONFIGURATION.equals(property) && expectedValue instanceof Boolean) {
-				return expectedValue.equals(LabelConfigurationManagementUtils.getColumnFeatureLabelConfigurationInTable(manager.getTable()) != null);
+				return expectedValue.equals(LabelConfigurationManagementUtils.hasColumnFeatureLabelConfiguration(manager.getTable()));
 			}
 		}
 		return false;

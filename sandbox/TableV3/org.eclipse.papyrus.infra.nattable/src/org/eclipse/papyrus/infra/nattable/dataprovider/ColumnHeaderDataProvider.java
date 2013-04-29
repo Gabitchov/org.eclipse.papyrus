@@ -106,7 +106,7 @@ public class ColumnHeaderDataProvider extends AbstractHeaderDataProvider {
 	 */
 	@Override
 	protected AbstractHeaderAxisConfiguration getAxisConfiguration() {
-		return HeaderAxisConfigurationManagementUtils.getUsedColumnAbstractHeaderAxisInTableConfiguration(this.manager.getTable());
+		return HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisUsedInTable(this.manager.getTable());
 	}
 
 	/**
@@ -128,7 +128,5 @@ public class ColumnHeaderDataProvider extends AbstractHeaderDataProvider {
 		}
 		this.rowCount = newAxisCOunt;
 	}
-
-
 
 }

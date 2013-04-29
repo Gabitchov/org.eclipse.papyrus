@@ -285,7 +285,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractHeaderAxisConfiguration_OwnedLabelConfiguration() {
+	public EReference getAbstractHeaderAxisConfiguration_OwnedLabelConfigurations() {
 		return (EReference)abstractHeaderAxisConfigurationEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -294,7 +294,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractHeaderAxisConfiguration_OwnedAxisConfiguration() {
+	public EReference getAbstractHeaderAxisConfiguration_OwnedAxisConfigurations() {
 		return (EReference)abstractHeaderAxisConfigurationEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -547,8 +547,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		createEAttribute(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL);
 		createEAttribute(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER);
 		createEAttribute(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX);
-		createEReference(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION);
-		createEReference(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION);
+		createEReference(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS);
+		createEReference(abstractHeaderAxisConfigurationEClass, ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS);
 
 		axisManagerRepresentationEClass = createEClass(AXIS_MANAGER_REPRESENTATION);
 		createEAttribute(axisManagerRepresentationEClass, AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID);
@@ -634,8 +634,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayLabel(), theEcorePackage.getEBoolean(), "displayLabel", "true", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayFilter(), theEcorePackage.getEBoolean(), "displayFilter", "false", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayIndex(), theEcorePackage.getEBoolean(), "displayIndex", "true", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getAbstractHeaderAxisConfiguration_OwnedLabelConfiguration(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "ownedLabelConfiguration", null, 0, -1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAbstractHeaderAxisConfiguration_OwnedAxisConfiguration(), this.getIAxisConfiguration(), null, "ownedAxisConfiguration", null, 0, -1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAbstractHeaderAxisConfiguration_OwnedLabelConfigurations(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "ownedLabelConfigurations", null, 0, -1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAbstractHeaderAxisConfiguration_OwnedAxisConfigurations(), this.getIAxisConfiguration(), null, "ownedAxisConfigurations", null, 0, -1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(axisManagerRepresentationEClass, AxisManagerRepresentation.class, "AxisManagerRepresentation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getAxisManagerRepresentation_AxisManagerId(), ecorePackage.getEString(), "axisManagerId", null, 1, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

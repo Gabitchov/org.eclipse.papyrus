@@ -165,7 +165,7 @@
                          variable="selection">
                       <test
                             forcePluginActivation="true"
-                            property="org.eclipse.papyrus.infra.nattable.tester.isFeatureColumnHeaderConfiguration"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureColumnHeaderConfiguration"
                             value="true">
                       </test>
                    </with>
@@ -180,7 +180,7 @@
                          variable="selection">
                       <test
                             forcePluginActivation="true"
-                            property="org.eclipse.papyrus.infra.nattable.tester.isFeatureColumnHeaderConfiguration"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureColumnHeaderConfiguration"
                             value="true">
                       </test>
                    </with>
@@ -195,7 +195,7 @@
                          variable="selection">
                       <test
                             forcePluginActivation="true"
-                            property="org.eclipse.papyrus.infra.nattable.tester.isFeatureColumnHeaderConfiguration"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureColumnHeaderConfiguration"
                             value="true">
                       </test>
                    </with>
@@ -210,7 +210,7 @@
                          variable="selection">
                       <test
                             forcePluginActivation="true"
-                            property="org.eclipse.papyrus.infra.nattable.tester.isFeatureColumnHeaderConfiguration"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureColumnHeaderConfiguration"
                             value="true">
                       </test>
                    </with>
@@ -448,7 +448,7 @@
           class="org.eclipse.papyrus.infra.nattable.utils.NattableWidgetPropertyTester"
           id="org.eclipse.papyrus.infra.nattable.tester"
           namespace="org.eclipse.papyrus.infra.nattable.tester"
-          properties="isNattableWidget, hasFeatureRowHeaderConfiguration, isFeatureColumnHeaderConfiguration"
+          properties="isNattableWidget, hasFeatureRowHeaderConfiguration, hasFeatureColumnHeaderConfiguration"
           type="org.eclipse.jface.viewers.IStructuredSelection">
     </propertyTester>
  </extension>

@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.tools.model.UmlModel;
 
 public class TableViewCreationTester implements ITableTester {
 
-	@Override
+
 	public IStatus isAllowed(Object context) {
 		if(context instanceof EObject) {
 			final EObject current = (EObject)context;

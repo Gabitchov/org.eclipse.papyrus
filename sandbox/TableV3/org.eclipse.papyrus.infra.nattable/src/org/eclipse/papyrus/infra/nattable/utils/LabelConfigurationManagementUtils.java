@@ -44,7 +44,7 @@ public class LabelConfigurationManagementUtils {
 			config = table.getLocalColumnHeaderAxisConfiguration();
 		}
 		if(config != null) {
-			for(final ILabelProviderConfiguration current : config.getOwnedLabelConfiguration()) {
+			for(final ILabelProviderConfiguration current : config.getOwnedLabelConfigurations()) {
 				if(current instanceof FeatureLabelProviderConfiguration) {
 					return (FeatureLabelProviderConfiguration)current;
 				}
@@ -66,7 +66,7 @@ public class LabelConfigurationManagementUtils {
 			config = table.getTableConfiguration().getColumnHeaderAxisConfiguration();
 		}
 		//can be null according to the metamodel
-		for(final ILabelProviderConfiguration current : config.getOwnedLabelConfiguration()) {
+		for(final ILabelProviderConfiguration current : config.getOwnedLabelConfigurations()) {
 			if(current instanceof FeatureLabelProviderConfiguration) {
 				return (FeatureLabelProviderConfiguration)current;
 			}
@@ -98,7 +98,7 @@ public class LabelConfigurationManagementUtils {
 			config = table.getLocalColumnHeaderAxisConfiguration();
 		}
 		if(config != null) {
-			for(final ILabelProviderConfiguration current : config.getOwnedLabelConfiguration()) {
+			for(final ILabelProviderConfiguration current : config.getOwnedLabelConfigurations()) {
 				if(current instanceof FeatureLabelProviderConfiguration) {
 					return (FeatureLabelProviderConfiguration)current;
 				}
@@ -120,7 +120,7 @@ public class LabelConfigurationManagementUtils {
 			config = table.getTableConfiguration().getColumnHeaderAxisConfiguration();
 		}
 		//can be null according to the metamodel
-		for(final ILabelProviderConfiguration current : config.getOwnedLabelConfiguration()) {
+		for(final ILabelProviderConfiguration current : config.getOwnedLabelConfigurations()) {
 			if(current instanceof FeatureLabelProviderConfiguration) {
 				return (FeatureLabelProviderConfiguration)current;
 			}
@@ -153,7 +153,7 @@ public class LabelConfigurationManagementUtils {
 			config = table.getLocalColumnHeaderAxisConfiguration();
 		}
 		if(config != null) {
-			for(final ILabelProviderConfiguration current : config.getOwnedLabelConfiguration()) {
+			for(final ILabelProviderConfiguration current : config.getOwnedLabelConfigurations()) {
 				if(current instanceof ObjectLabelProviderConfiguration) {
 					return (ObjectLabelProviderConfiguration)current;
 				}
@@ -175,7 +175,7 @@ public class LabelConfigurationManagementUtils {
 			config = table.getTableConfiguration().getColumnHeaderAxisConfiguration();
 		}
 		//can be null according to the metamodel
-		for(final ILabelProviderConfiguration current : config.getOwnedLabelConfiguration()) {
+		for(final ILabelProviderConfiguration current : config.getOwnedLabelConfigurations()) {
 			if(current instanceof ObjectLabelProviderConfiguration) {
 				return (ObjectLabelProviderConfiguration)current;
 			}
@@ -207,7 +207,7 @@ public class LabelConfigurationManagementUtils {
 			config = table.getLocalColumnHeaderAxisConfiguration();
 		}
 		if(config != null) {
-			for(final ILabelProviderConfiguration current : config.getOwnedLabelConfiguration()) {
+			for(final ILabelProviderConfiguration current : config.getOwnedLabelConfigurations()) {
 				if(current instanceof ObjectLabelProviderConfiguration) {
 					return (ObjectLabelProviderConfiguration)current;
 				}
@@ -229,7 +229,7 @@ public class LabelConfigurationManagementUtils {
 			config = table.getTableConfiguration().getColumnHeaderAxisConfiguration();
 		}
 		//can be null according to the metamodel
-		for(final ILabelProviderConfiguration current : config.getOwnedLabelConfiguration()) {
+		for(final ILabelProviderConfiguration current : config.getOwnedLabelConfigurations()) {
 			if(current instanceof ObjectLabelProviderConfiguration) {
 				return (ObjectLabelProviderConfiguration)current;
 			}

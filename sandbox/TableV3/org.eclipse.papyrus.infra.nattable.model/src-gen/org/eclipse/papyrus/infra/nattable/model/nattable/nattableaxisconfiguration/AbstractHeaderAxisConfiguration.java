@@ -30,8 +30,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#isDisplayLabel <em>Display Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#isDisplayFilter <em>Display Filter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#isDisplayIndex <em>Display Index</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedLabelConfiguration <em>Owned Label Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedAxisConfiguration <em>Owned Axis Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedLabelConfigurations <em>Owned Label Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedAxisConfigurations <em>Owned Axis Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -151,35 +151,35 @@ public interface AbstractHeaderAxisConfiguration extends EModelElement {
 	void setDisplayIndex(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Label Configuration</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Label Configurations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Label Configuration</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Label Configurations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Label Configuration</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAbstractHeaderAxisConfiguration_OwnedLabelConfiguration()
+	 * @return the value of the '<em>Owned Label Configurations</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAbstractHeaderAxisConfiguration_OwnedLabelConfigurations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ILabelProviderConfiguration> getOwnedLabelConfiguration();
+	EList<ILabelProviderConfiguration> getOwnedLabelConfigurations();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Axis Configuration</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Axis Configurations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Axis Configuration</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Axis Configurations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Axis Configuration</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAbstractHeaderAxisConfiguration_OwnedAxisConfiguration()
+	 * @return the value of the '<em>Owned Axis Configurations</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAbstractHeaderAxisConfiguration_OwnedAxisConfigurations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IAxisConfiguration> getOwnedAxisConfiguration();
+	EList<IAxisConfiguration> getOwnedAxisConfigurations();
 
 } // AbstractHeaderAxisConfiguration

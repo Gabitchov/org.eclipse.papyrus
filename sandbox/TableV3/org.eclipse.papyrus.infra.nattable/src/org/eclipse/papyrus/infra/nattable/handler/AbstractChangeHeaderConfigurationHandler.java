@@ -18,11 +18,14 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -44,16 +47,32 @@ public abstract class AbstractChangeHeaderConfigurationHandler extends AbstractT
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final AbstractHeaderAxisConfiguration configuration = getEditedAxisConfiguration();
+		AbstractHeaderAxisConfiguration configuration = getEditedAxisConfiguration();
+		final CompositeCommand cmd = new CompositeCommand("ChangeHeaderConfigurationCommand"); //$NON-NLS-1$
+		TransactionalEditingDomain domain = getEditingDomain();
+		if(configuration instanceof TableHeaderAxisConfiguration) {
+			//we can't edit it, because it's comes from the initial configuration
+			configuration = HeaderAxisConfigurationManagementUtils.transformToLocalHeaderConfiguration((TableHeaderAxisConfiguration)configuration);
+			final Table table = getCurrentNattableModelManager().getTable();
+			final IEditCommandRequest request = new SetRequest(domain, table, getLocalHeaderAxisConfigurationFeature(), configuration);
+			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(table);
+			cmd.add(provider.getEditCommand(request));
+		}
 		Command command = event.getCommand();
 		boolean oldValue = HandlerUtil.toggleCommandState(command);
-		TransactionalEditingDomain domain = getEditingDomain();
 		final IEditCommandRequest request = new SetRequest(domain, configuration, getEditedFeature(), !oldValue);
 		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(configuration);
-		final ICommand cmd = provider.getEditCommand(request);
+		cmd.add(provider.getEditCommand(request));
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 		return null;
 	}
+
+	/**
+	 * 
+	 * @return
+	 * 
+	 */
+	protected abstract EStructuralFeature getLocalHeaderAxisConfigurationFeature();
 
 	/**
 	 * 

@@ -124,22 +124,22 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	int ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Owned Label Configuration</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Label Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Owned Axis Configuration</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Axis Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Header Axis Configuration</em>' class.
@@ -343,22 +343,22 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	int TABLE_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX = ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX;
 
 	/**
-	 * The feature id for the '<em><b>Owned Label Configuration</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Label Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION = ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION;
+	int TABLE_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS = ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Axis Configuration</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Axis Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION = ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION;
+	int TABLE_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS = ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Axis Managers</b></em>' containment reference list.
@@ -452,22 +452,22 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	int LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX = ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX;
 
 	/**
-	 * The feature id for the '<em><b>Owned Label Configuration</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Label Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION = ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION;
+	int LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS = ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Axis Configuration</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Axis Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION = ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION;
+	int LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS = ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Axis Manager Configurations</b></em>' containment reference list.
@@ -775,26 +775,26 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	EAttribute getAbstractHeaderAxisConfiguration_DisplayIndex();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedLabelConfiguration <em>Owned Label Configuration</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedLabelConfigurations <em>Owned Label Configurations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Label Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedLabelConfiguration()
+	 * @return the meta object for the containment reference list '<em>Owned Label Configurations</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedLabelConfigurations()
 	 * @see #getAbstractHeaderAxisConfiguration()
 	 * @generated
 	 */
-	EReference getAbstractHeaderAxisConfiguration_OwnedLabelConfiguration();
+	EReference getAbstractHeaderAxisConfiguration_OwnedLabelConfigurations();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedAxisConfiguration <em>Owned Axis Configuration</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedAxisConfigurations <em>Owned Axis Configurations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Axis Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedAxisConfiguration()
+	 * @return the meta object for the containment reference list '<em>Owned Axis Configurations</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration#getOwnedAxisConfigurations()
 	 * @see #getAbstractHeaderAxisConfiguration()
 	 * @generated
 	 */
-	EReference getAbstractHeaderAxisConfiguration_OwnedAxisConfiguration();
+	EReference getAbstractHeaderAxisConfiguration_OwnedAxisConfigurations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation <em>Axis Manager Representation</em>}'.
@@ -1115,20 +1115,20 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 		EAttribute ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX = eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayIndex();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Label Configuration</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Label Configurations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION = eINSTANCE.getAbstractHeaderAxisConfiguration_OwnedLabelConfiguration();
+		EReference ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS = eINSTANCE.getAbstractHeaderAxisConfiguration_OwnedLabelConfigurations();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Axis Configuration</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Axis Configurations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION = eINSTANCE.getAbstractHeaderAxisConfiguration_OwnedAxisConfiguration();
+		EReference ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS = eINSTANCE.getAbstractHeaderAxisConfiguration_OwnedAxisConfigurations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl <em>Axis Manager Representation</em>}' class.

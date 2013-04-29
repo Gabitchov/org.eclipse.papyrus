@@ -28,8 +28,8 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumul
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.accumulator.CustomRowOverrideLabelAccumulator;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.CellEditorConfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration;

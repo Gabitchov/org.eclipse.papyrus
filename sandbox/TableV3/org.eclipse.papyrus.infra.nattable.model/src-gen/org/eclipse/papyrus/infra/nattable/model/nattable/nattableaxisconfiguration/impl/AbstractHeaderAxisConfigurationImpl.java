@@ -46,8 +46,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayLabel <em>Display Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayFilter <em>Display Filter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayIndex <em>Display Index</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedLabelConfiguration <em>Owned Label Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedAxisConfiguration <em>Owned Axis Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedLabelConfigurations <em>Owned Label Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedAxisConfigurations <em>Owned Axis Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,24 +135,24 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends EModelElementI
 	protected boolean displayIndex = DISPLAY_INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwnedLabelConfiguration() <em>Owned Label Configuration</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedLabelConfigurations() <em>Owned Label Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedLabelConfiguration()
+	 * @see #getOwnedLabelConfigurations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ILabelProviderConfiguration> ownedLabelConfiguration;
+	protected EList<ILabelProviderConfiguration> ownedLabelConfigurations;
 
 	/**
-	 * The cached value of the '{@link #getOwnedAxisConfiguration() <em>Owned Axis Configuration</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedAxisConfigurations() <em>Owned Axis Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedAxisConfiguration()
+	 * @see #getOwnedAxisConfigurations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IAxisConfiguration> ownedAxisConfiguration;
+	protected EList<IAxisConfiguration> ownedAxisConfigurations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -262,11 +262,11 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends EModelElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ILabelProviderConfiguration> getOwnedLabelConfiguration() {
-		if (ownedLabelConfiguration == null) {
-			ownedLabelConfiguration = new EObjectContainmentEList<ILabelProviderConfiguration>(ILabelProviderConfiguration.class, this, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION);
+	public EList<ILabelProviderConfiguration> getOwnedLabelConfigurations() {
+		if (ownedLabelConfigurations == null) {
+			ownedLabelConfigurations = new EObjectContainmentEList<ILabelProviderConfiguration>(ILabelProviderConfiguration.class, this, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS);
 		}
-		return ownedLabelConfiguration;
+		return ownedLabelConfigurations;
 	}
 
 	/**
@@ -274,11 +274,11 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends EModelElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IAxisConfiguration> getOwnedAxisConfiguration() {
-		if (ownedAxisConfiguration == null) {
-			ownedAxisConfiguration = new EObjectContainmentEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION);
+	public EList<IAxisConfiguration> getOwnedAxisConfigurations() {
+		if (ownedAxisConfigurations == null) {
+			ownedAxisConfigurations = new EObjectContainmentEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS);
 		}
-		return ownedAxisConfiguration;
+		return ownedAxisConfigurations;
 	}
 
 	/**
@@ -289,10 +289,10 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends EModelElementI
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION:
-				return ((InternalEList<?>)getOwnedLabelConfiguration()).basicRemove(otherEnd, msgs);
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION:
-				return ((InternalEList<?>)getOwnedAxisConfiguration()).basicRemove(otherEnd, msgs);
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				return ((InternalEList<?>)getOwnedLabelConfigurations()).basicRemove(otherEnd, msgs);
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				return ((InternalEList<?>)getOwnedAxisConfigurations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -313,10 +313,10 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends EModelElementI
 				return isDisplayFilter();
 			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
 				return isDisplayIndex();
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION:
-				return getOwnedLabelConfiguration();
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION:
-				return getOwnedAxisConfiguration();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				return getOwnedLabelConfigurations();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				return getOwnedAxisConfigurations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -342,13 +342,13 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends EModelElementI
 			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
 				setDisplayIndex((Boolean)newValue);
 				return;
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION:
-				getOwnedLabelConfiguration().clear();
-				getOwnedLabelConfiguration().addAll((Collection<? extends ILabelProviderConfiguration>)newValue);
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				getOwnedLabelConfigurations().clear();
+				getOwnedLabelConfigurations().addAll((Collection<? extends ILabelProviderConfiguration>)newValue);
 				return;
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION:
-				getOwnedAxisConfiguration().clear();
-				getOwnedAxisConfiguration().addAll((Collection<? extends IAxisConfiguration>)newValue);
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				getOwnedAxisConfigurations().clear();
+				getOwnedAxisConfigurations().addAll((Collection<? extends IAxisConfiguration>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -374,11 +374,11 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends EModelElementI
 			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
 				setDisplayIndex(DISPLAY_INDEX_EDEFAULT);
 				return;
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION:
-				getOwnedLabelConfiguration().clear();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				getOwnedLabelConfigurations().clear();
 				return;
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION:
-				getOwnedAxisConfiguration().clear();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				getOwnedAxisConfigurations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -400,10 +400,10 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends EModelElementI
 				return displayFilter != DISPLAY_FILTER_EDEFAULT;
 			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
 				return displayIndex != DISPLAY_INDEX_EDEFAULT;
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATION:
-				return ownedLabelConfiguration != null && !ownedLabelConfiguration.isEmpty();
-			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATION:
-				return ownedAxisConfiguration != null && !ownedAxisConfiguration.isEmpty();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
+				return ownedLabelConfigurations != null && !ownedLabelConfigurations.isEmpty();
+			case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
+				return ownedAxisConfigurations != null && !ownedAxisConfigurations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

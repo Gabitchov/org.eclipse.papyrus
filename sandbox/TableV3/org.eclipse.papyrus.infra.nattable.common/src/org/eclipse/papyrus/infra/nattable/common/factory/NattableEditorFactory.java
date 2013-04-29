@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.nattable.common.factory;
 
 import java.lang.reflect.Constructor;
 
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.extension.diagrameditor.AbstractEditorFactory;
 import org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
@@ -189,12 +188,7 @@ public class NattableEditorFactory extends AbstractEditorFactory {
 		 * 
 		 */
 		public Image getTabIcon() {
-			ImageDescriptor imageDescriptor = getEditorDescriptor().getIcon();
-			if(imageDescriptor == null) {
-				return null;
-			}
-
-			return imageDescriptor.createImage();
+			return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(this.rawModel.getTableConfiguration().getIconPath());
 		}
 
 		/**

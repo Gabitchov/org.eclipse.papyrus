@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 
@@ -27,10 +30,28 @@ public abstract class AbstractRowChangeHeaderConfigurationHandler extends Abstra
 	/**
 	 * 
 	 * @return
-	 *         the edited axis configuration or <code>null</code> if it doesn't exists in the table
+	 *         the axis configuration used by the table, can't be <code>null</code>;
 	 */
 	@Override
 	protected AbstractHeaderAxisConfiguration getEditedAxisConfiguration() {
-		return HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTable(getCurrentNattableModelManager().getTable());
+		AbstractHeaderAxisConfiguration conf = HeaderAxisConfigurationManagementUtils.getAbstractHeaderAxisConfigurationUsedInTable(getCurrentNattableModelManager().getTable());
+		return conf;
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractChangeHeaderConfigurationHandler#getLocalHeaderAxisConfigurationFeature()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected EStructuralFeature getLocalHeaderAxisConfigurationFeature() {
+		final Table table = getCurrentNattableModelManager().getTable();
+		if(table.isInvertAxis()) {
+			return NattablePackage.eINSTANCE.getTable_LocalColumnHeaderAxisConfiguration();
+		}
+		return NattablePackage.eINSTANCE.getTable_LocalRowHeaderAxisConfiguration();
+	}
+
+
 }

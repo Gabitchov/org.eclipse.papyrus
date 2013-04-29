@@ -15,6 +15,9 @@ package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 
 /**
  * Utils class for AxisConfiguration
@@ -69,7 +72,7 @@ public class HeaderAxisConfigurationManagementUtils {
 	 * @return
 	 *         the header configuration used for rows in the table. The result can't be <code>null</code>
 	 */
-	public static final AbstractHeaderAxisConfiguration getUsedRowAbstractHeaderAxisInTableConfiguration(final Table table) {
+	public static final AbstractHeaderAxisConfiguration getAbstractHeaderAxisConfigurationUsedInTable(final Table table) {
 		AbstractHeaderAxisConfiguration config = getRowAbstractHeaderAxisInTable(table);
 		if(config == null) {
 			config = getRowAbstractHeaderAxisInTableConfiguration(table);
@@ -119,13 +122,45 @@ public class HeaderAxisConfigurationManagementUtils {
 	 * @return
 	 *         the header configuration used for columns in the table. The result can't be <code>null</code>
 	 */
-	public static final AbstractHeaderAxisConfiguration getUsedColumnAbstractHeaderAxisInTableConfiguration(final Table table) {
+	public static final AbstractHeaderAxisConfiguration getColumnAbstractHeaderAxisUsedInTable(final Table table) {
 		AbstractHeaderAxisConfiguration config = getColumnAbstractHeaderAxisInTable(table);
 		if(config == null) {
 			config = getColumnAbstractHeaderAxisInTableConfiguration(table);
 		}
 		assert config != null;
 		return config;
+	}
+
+	/**
+	 * 
+	 * @param table
+	 *        the table
+	 * @return
+	 *         the header configuration used for row in the table. The result can't be <code>null</code>
+	 */
+	public static final AbstractHeaderAxisConfiguration getRowAbstractHeaderAxisUsedInTable(final Table table) {
+		AbstractHeaderAxisConfiguration config = getRowAbstractHeaderAxisInTable(table);
+		if(config == null) {
+			config = getRowAbstractHeaderAxisInTableConfiguration(table);
+		}
+		assert config != null;
+		return config;
+	}
+
+	/**
+	 * 
+	 * @param configuration
+	 *        the configuration to duplicate
+	 * @return
+	 *         the {@link LocalTableHeaderAxisConfiguration} mapped on the {@link TableHeaderAxisConfiguration}
+	 */
+	public static LocalTableHeaderAxisConfiguration transformToLocalHeaderConfiguration(final TableHeaderAxisConfiguration configuration) {
+		LocalTableHeaderAxisConfiguration conf = NattableaxisconfigurationFactory.eINSTANCE.createLocalTableHeaderAxisConfiguration();
+		conf.setDisplayFilter(configuration.isDisplayFilter());
+		conf.setDisplayIndex(configuration.isDisplayIndex());
+		conf.setDisplayLabel(configuration.isDisplayLabel());
+		conf.setIndexStyle(configuration.getIndexStyle());
+		return conf;
 	}
 
 }

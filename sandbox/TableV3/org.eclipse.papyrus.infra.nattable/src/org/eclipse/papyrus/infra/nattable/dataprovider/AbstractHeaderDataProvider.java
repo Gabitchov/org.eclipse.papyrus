@@ -49,6 +49,11 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 	private Adapter axisListener;
 
 	/**
+	 * listener on the table
+	 */
+	private Adapter localHeaderConfigListener;
+
+	/**
 	 * the listen axis configuration
 	 */
 	private AbstractHeaderAxisConfiguration listenAxisConfiguration;
@@ -65,6 +70,7 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 		this.listenAxisConfiguration = getAxisConfiguration();
 		initListeners();
 		this.manager.getTable().eAdapters().add(this.invertedListener);
+		this.manager.getTable().eAdapters().add(this.localHeaderConfigListener);
 		initFields();
 	}
 
@@ -104,6 +110,16 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 					if(oldValue != null && newValue != null) {
 						initFields();
 					}
+				}
+			}
+		};
+
+		this.localHeaderConfigListener = new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_LocalColumnHeaderAxisConfiguration() || msg.getFeature() == NattablePackage.eINSTANCE.getTable_LocalRowHeaderAxisConfiguration()) {
+					initFields();
 				}
 			}
 		};
@@ -158,8 +174,11 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 	 * remove the listener
 	 */
 	protected void removeListeners() {
-		this.listenAxisConfiguration.eAdapters().remove(this.axisListener);
+		if(this.listenAxisConfiguration != null) {
+			this.listenAxisConfiguration.eAdapters().remove(this.axisListener);
+		}
 		this.manager.getTable().eAdapters().remove(this.invertedListener);
+		this.manager.getTable().eAdapters().remove(this.localHeaderConfigListener);
 	}
 
 	/**
