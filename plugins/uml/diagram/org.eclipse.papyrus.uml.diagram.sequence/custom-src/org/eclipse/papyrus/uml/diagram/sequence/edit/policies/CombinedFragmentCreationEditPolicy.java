@@ -18,7 +18,10 @@ import java.util.Set;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -27,6 +30,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
@@ -145,5 +150,45 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#getTargetEditPart(org.eclipse.gef.Request)
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		//Fixed bugs about creating Gates on clientArea of CombinedFragment. Whatever the host is InteractionOperand or Compartment, just use CombinedFragment.
+		if(isCreatingGate(request)) {
+			return getCombinedFragmentEditPart();
+		}
+		return super.getTargetEditPart(request);
+	}
+
+	private EditPart getCombinedFragmentEditPart() {
+		EditPart editPart = getHost();
+		while(editPart != null) {
+			if(editPart instanceof CombinedFragmentEditPart) {
+				return editPart;
+			}
+			editPart = editPart.getParent();
+		}
+		return null;
+	}
+
+	private boolean isCreatingGate(Request request) {
+		if(!(request instanceof CreateRequest)) {
+			return false;
+		}
+		CreateRequest createReq = (CreateRequest)request;
+		try {
+			Object newObjectType = createReq.getNewObjectType();
+			return GateEditPart.GATE_TYPE.equals(newObjectType);
+		} catch (Exception e) {
+			//There's no CreationFactory set.
+			return false;
+		}
 	}
 }

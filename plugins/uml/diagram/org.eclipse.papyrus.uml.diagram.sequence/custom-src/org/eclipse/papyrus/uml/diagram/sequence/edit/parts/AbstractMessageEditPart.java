@@ -286,7 +286,14 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	@Override
 	protected void installRouter() {
 		getConnectionFigure().setConnectionRouter(LifelineChildGraphicalNodeEditPolicy.messageRouter);
+		getConnectionFigure().setCursor(org.eclipse.gmf.runtime.gef.ui.internal.l10n.Cursors.CURSOR_SEG_MOVE);
 		refreshBendpoints();
+	}
+
+	/**
+	 * Ignore routing style since we are using a custom router and a custom ConnectionBendpointEditPolicy.
+	 */
+	protected void refreshRoutingStyles() {
 	}
 
 	//	public static class MessageFigure extends UMLEdgeFigure {

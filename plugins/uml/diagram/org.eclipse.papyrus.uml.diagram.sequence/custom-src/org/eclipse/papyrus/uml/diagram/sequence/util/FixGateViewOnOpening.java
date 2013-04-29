@@ -43,8 +43,10 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
@@ -86,6 +88,10 @@ public class FixGateViewOnOpening {
 	 * @param gate
 	 */
 	private void doFix(Diagram diagram, Shape parent, Gate gate) {
+		//Ignore CoRegion.
+		if(UMLVisualIDRegistry.getType(CombinedFragment2EditPart.VISUAL_ID).equals(parent.getType())) {
+			return;
+		}
 		View view = findPrimaryView(diagram, gate);
 		if(view != null) {
 			return;

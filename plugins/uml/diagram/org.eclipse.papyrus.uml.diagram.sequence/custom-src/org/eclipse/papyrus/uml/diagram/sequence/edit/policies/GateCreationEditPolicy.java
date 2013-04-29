@@ -17,11 +17,13 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -30,6 +32,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateElementAndView
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
+import org.eclipse.uml2.uml.InteractionUse;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -143,6 +146,14 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
 		if(isGateCreation(request)) {
+			//Disable creation when there's no refersTo set for InteractionUse.
+			IGraphicalEditPart adapter = (IGraphicalEditPart)getHost().getAdapter(IGraphicalEditPart.class);
+			if(adapter != null) {
+				EObject semanticElement = adapter.resolveSemanticElement();
+				if(semanticElement instanceof InteractionUse && ((InteractionUse)semanticElement).getRefersTo() == null) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
 			Point location = (Point)request.getExtendedData().get(GATE_LOCATION_DATA);
 			if(location == null) {
 				location = GateHelper.computeGateLocation(request.getLocation(), getHostFigure(), null);

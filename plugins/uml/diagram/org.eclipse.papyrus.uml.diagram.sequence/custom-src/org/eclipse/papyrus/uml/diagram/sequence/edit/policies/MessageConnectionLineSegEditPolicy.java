@@ -46,15 +46,19 @@ import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.LineMode;
 import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -99,6 +103,39 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
 		if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
 			return super.getCommand(request);
+		} else if(request instanceof BendpointRequest) {
+			return getMoveMessageCommand((BendpointRequest)request);
+		}
+		return null;
+	}
+
+	/**
+	 * Add impossible to move the message lost/found by drag the middle line
+	 * 
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=403138
+	 */
+	protected Command getMoveMessageCommand(BendpointRequest request) {
+		if(getHost() instanceof Message6EditPart || getHost() instanceof Message7EditPart) {
+			PointList points = getConnection().getPoints();
+			CompoundCommand command = new CompoundCommand("Move");
+			AbstractMessageEditPart messageEditPart = (AbstractMessageEditPart)getHost();
+			//move source
+			ReconnectRequest sourceReq = new ReconnectRequest(REQ_RECONNECT_SOURCE);
+			sourceReq.setConnectionEditPart(messageEditPart);
+			sourceReq.setLocation(SequenceUtil.getAbsoluteEdgeExtremity(messageEditPart, true).setY(points.getFirstPoint().y));
+			EditPart source = messageEditPart.getSource();
+			sourceReq.setTargetEditPart(source);
+			Command moveSourceCommand = source.getCommand(sourceReq);
+			command.add(moveSourceCommand);
+			//move target
+			EditPart target = messageEditPart.getTarget();
+			ReconnectRequest targetReq = new ReconnectRequest(REQ_RECONNECT_TARGET);
+			targetReq.setConnectionEditPart(messageEditPart);
+			targetReq.setLocation(SequenceUtil.getAbsoluteEdgeExtremity(messageEditPart, false).setY(points.getLastPoint().y));
+			targetReq.setTargetEditPart(target);
+			Command moveTargetCommand = target.getCommand(targetReq);
+			command.add(moveTargetCommand);
+			return command.unwrap();
 		}
 		return null;
 	}
@@ -121,7 +158,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				LifelineEditPart srcLifelinePart = SequenceUtil.getParentLifelinePart(srcPart);
 				EditPart tgtPart = connectionPart.getTarget();
 				LifelineEditPart tgtLifelinePart = SequenceUtil.getParentLifelinePart(tgtPart);
-				if(send instanceof OccurrenceSpecification && rcv instanceof OccurrenceSpecification && srcLifelinePart != null && tgtLifelinePart != null) {
+				if(/* send instanceof OccurrenceSpecification && rcv instanceof OccurrenceSpecification && */srcLifelinePart != null && tgtLifelinePart != null) {
 					RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
 					if((getHost() instanceof MessageEditPart || getHost() instanceof Message2EditPart) && kind == RouterKind.SELF) {
 						return getSelfLinkMoveCommand(request, connectionPart, send, rcv, srcLifelinePart);
@@ -145,9 +182,8 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						}
 					} else {
 						int y = request.getLocation().y;
-						List<EditPart> empty = Collections.emptyList();
-						Command srcCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)send, null, y, -1, srcLifelinePart, empty);
-						Command tgtCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)rcv, null, y, -1, tgtLifelinePart, empty);
+						Command srcCmd = createMoveMessageEndCommand((Message)message, srcPart, send, y, srcLifelinePart);
+						Command tgtCmd = createMoveMessageEndCommand((Message)message, tgtPart, rcv, y, tgtLifelinePart);
 						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
 						/*
 						 * Take care of the order of commands, to make sure target is always bellow the source.
@@ -167,6 +203,41 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						}
 					}
 				}
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Add impossible to move the anchor connected inside of CoRegion
+	 * 
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=402970
+	 */
+	protected Command createMoveMessageEndCommand(Message message, EditPart endEditPart, MessageEnd end, int yLocation, LifelineEditPart lifeline) {
+		if(end instanceof OccurrenceSpecification) {
+			List<EditPart> empty = Collections.emptyList();
+			return OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)end, null, yLocation, -1, lifeline, empty);
+		} else if(end instanceof Gate) {
+			boolean isSource = (end == message.getSendEvent());
+			ConnectionNodeEditPart connection = (ConnectionNodeEditPart)getHost();
+			if(isSource) {
+				ReconnectRequest req = new ReconnectRequest(REQ_RECONNECT_SOURCE);
+				req.setConnectionEditPart(connection);
+				req.setTargetEditPart(endEditPart);
+				Point location = SequenceUtil.getAbsoluteEdgeExtremity(connection, true);
+				location.setY(yLocation);
+				req.setLocation(location);
+				Command command = endEditPart.getCommand(req);
+				return command;
+			} else {
+				ReconnectRequest req = new ReconnectRequest(REQ_RECONNECT_TARGET);
+				req.setConnectionEditPart(connection);
+				req.setTargetEditPart(endEditPart);
+				Point location = SequenceUtil.getAbsoluteEdgeExtremity(connection, false);
+				location.setY(yLocation);
+				req.setLocation(location);
+				Command command = endEditPart.getCommand(req);
+				return command;
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -252,6 +323,10 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					showMoveLineSegFeedback((BendpointRequest)request);
 				}
 			}
+			//Add impossible to move MessageLost and MessageFound by dragging the line.
+			else if(getHost() instanceof Message7EditPart || getHost() instanceof Message6EditPart) {
+				showMoveLineSegFeedback((BendpointRequest)request);
+			}
 		}
 	}
 
@@ -311,7 +386,8 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			}
 			return;
 		}
-		if(getHost() instanceof Message4EditPart) {
+		//Add impossible to dragging MessageLost and MessageFound. See bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403138 
+		if(getHost() instanceof Message4EditPart || getHost() instanceof Message6EditPart || getHost() instanceof Message7EditPart) {
 			if(router == null) {
 				router = getConnection().getConnectionRouter();
 				getConnection().setConnectionRouter(new DummyRouter());

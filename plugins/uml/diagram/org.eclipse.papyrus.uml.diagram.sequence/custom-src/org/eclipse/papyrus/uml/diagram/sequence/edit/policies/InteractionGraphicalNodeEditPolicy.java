@@ -52,6 +52,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnecti
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -123,7 +124,8 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 		if(command != null && command.canExecute() && REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_4008)) {
 			EditPart sourceEditPart = request.getSourceEditPart();
 			EObject source = ViewUtil.resolveSemanticElement((View)sourceEditPart.getModel());
-			if(source instanceof CombinedFragment || source instanceof Interaction || source instanceof InteractionUse) {
+			//ignore CoRegion
+			if(!(sourceEditPart instanceof CombinedFragment2EditPart) && (source instanceof CombinedFragment || source instanceof Interaction || source instanceof InteractionUse)) {
 				Point location = null;
 				IGraphicalEditPart adapter = (IGraphicalEditPart)sourceEditPart.getAdapter(IGraphicalEditPart.class);
 				TransactionalEditingDomain editingDomain = null;

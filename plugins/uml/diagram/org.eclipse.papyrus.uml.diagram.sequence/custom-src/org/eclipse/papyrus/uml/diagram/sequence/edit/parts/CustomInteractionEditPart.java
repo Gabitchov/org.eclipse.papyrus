@@ -345,7 +345,8 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 		} else if(request instanceof ReconnectRequest) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if(messageType.equals(connectionEditPart.getClass()) && request instanceof LocationRequest) {
+			//Fixed bug creating anchors for MessageLost and MessageFound.
+			if(messageType.isInstance(connectionEditPart) && request instanceof LocationRequest) {
 				return createAnchor(((LocationRequest)request).getLocation().getCopy());
 			}
 		}
