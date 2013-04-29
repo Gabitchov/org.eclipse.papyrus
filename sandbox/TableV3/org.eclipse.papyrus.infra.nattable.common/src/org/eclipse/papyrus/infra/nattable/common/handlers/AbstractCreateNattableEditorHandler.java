@@ -59,7 +59,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * 
  */
-public abstract class AbstractCreateNattableEditorHandler2 extends AbstractHandler {
+public abstract class AbstractCreateNattableEditorHandler extends AbstractHandler {
 
 
 
@@ -106,7 +106,7 @@ public abstract class AbstractCreateNattableEditorHandler2 extends AbstractHandl
 				@Override
 				protected void doExecute() {
 					try {
-						AbstractCreateNattableEditorHandler2.this.doExecute(serviceRegistry, name, this.description);
+						AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry, name, this.description);
 					} catch (final NotFoundException e) {
 						Activator.log.error(e);
 					} catch (final ServiceException e) {

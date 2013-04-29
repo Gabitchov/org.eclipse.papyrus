@@ -16,8 +16,6 @@ package org.eclipse.papyrus.infra.nattable.common.handlers;
 import java.util.Hashtable;
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
@@ -26,33 +24,50 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
 
-
-public class CreateNatTableEditorHandler extends AbstractCreateNattableEditorHandler2 implements IExecutableExtension {
+/**
+ * The handler used to create a nattable editor
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
+public class CreateNatTableEditorHandler extends AbstractCreateNattableEditorHandler implements IExecutableExtension {
 
 	/**
 	 * the name of the parameter of the handler
 	 */
-	private static final String TABLE_TYPE_PARAMETER = "tableType";
+	private static final String TABLE_TYPE_PARAMETER = "tableType"; //$NON-NLS-1$
 
 	/**
 	 * the type of the table to create
 	 */
 	private String type;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
 	public CreateNatTableEditorHandler() {
 		super();
 	}
 
-	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		return super.execute(event);
-	}
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.common.handlers.AbstractCreateNattableEditorHandler2#getTableEditorConfigurationURI()
+	 * 
+	 * @return
+	 */
 	@Override
 	protected URI getTableEditorConfigurationURI() {
 		return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(this.type);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
+	 * 
+	 * @param evaluationContext
+	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
 		if(this.type != null) {
