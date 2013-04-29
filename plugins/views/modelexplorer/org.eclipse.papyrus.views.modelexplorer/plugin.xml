@@ -191,7 +191,7 @@
 <extension point="org.eclipse.ui.commands">
 
 	<!-- Command declaration : Load modisco browser customization command -->			
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.LoadBrowserCustomization" description="Load a customization for the papyrus browser" id="org.eclipse.papyrus.views.modelexplorer.LoadBrowserCustomization" name="loadBrowserCustomization">
+	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.LoadBrowserCustomization" description="Load a customization for the papyrus browser" id="org.eclipse.papyrus.views.modelexplorer.LoadBrowserCustomization" name="Customize Model Explorer">
 	</command>
 	
 	<!-- Command declaration : Search element command -->			
