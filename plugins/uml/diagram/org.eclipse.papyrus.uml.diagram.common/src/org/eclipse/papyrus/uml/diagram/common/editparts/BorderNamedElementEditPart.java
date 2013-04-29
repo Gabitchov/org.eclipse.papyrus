@@ -79,6 +79,7 @@ public abstract class BorderNamedElementEditPart extends BorderUMLNodeEditPart i
 			refreshIconNamedLabel();
 			refreshFontColor();
 		}
+		refreshBounds();
 	}
 
 	/**

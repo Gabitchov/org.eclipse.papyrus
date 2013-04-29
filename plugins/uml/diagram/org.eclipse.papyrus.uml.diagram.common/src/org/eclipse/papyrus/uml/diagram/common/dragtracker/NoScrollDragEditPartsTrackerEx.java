@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.dragtracker;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -27,7 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
 public class NoScrollDragEditPartsTrackerEx extends DragEditPartsTrackerEx{
 
 	/** border size */ 
-	private int border = 10; // default size : 10
+	private int border = 15; // default size : 10
 
 	public NoScrollDragEditPartsTrackerEx(EditPart sourceEditPart) {
 		super(sourceEditPart);
@@ -46,11 +47,15 @@ public class NoScrollDragEditPartsTrackerEx extends DragEditPartsTrackerEx{
 			Rectangle childRect=((GraphicalEditPart)getSourceEditPart()).getFigure().getBounds();
 			if( getSourceEditPart().getParent() instanceof GraphicalEditPart){
 				Rectangle parentRect= 	((GraphicalEditPart) getSourceEditPart().getParent()).getFigure().getBounds();
+				IFigure fig=((GraphicalEditPart) getSourceEditPart().getParent()).getFigure();
+				
+				IFigure contentPane=((GraphicalEditPart) getSourceEditPart().getParent()).getContentPane();
 				
 				//calculate the virtual position
 				Rectangle virtualPosition= childRect.getCopy();
 				virtualPosition.x=virtualPosition.x+delta.width;
 				virtualPosition.y=virtualPosition.y+delta.height;
+				
 				if( virtualPosition.x<0){
 					delta.width=0-childRect.x;
 				}
@@ -68,7 +73,6 @@ public class NoScrollDragEditPartsTrackerEx extends DragEditPartsTrackerEx{
 				ChangeBoundsRequest request = (ChangeBoundsRequest) getTargetRequest();
 				Point moveDelta = new Point(delta.width, delta.height);
 				request.setMoveDelta(moveDelta);
-				
 				
 				//Very important the child element to block inside the container
 				//if not test first the target editPart.
