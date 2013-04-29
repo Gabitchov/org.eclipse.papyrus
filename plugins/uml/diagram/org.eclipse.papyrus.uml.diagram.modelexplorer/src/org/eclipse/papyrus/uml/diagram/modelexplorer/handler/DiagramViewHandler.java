@@ -56,6 +56,10 @@ public class DiagramViewHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		if(getCommonNavigator() == null || getCommonNavigator().getCommonViewer() == null) {
+			return null; //The model explorer is not displayed (The editor is closed?)
+		}
+
 		CommonViewer viewer = getCommonNavigator().getCommonViewer();
 
 		String[] newContents = null;

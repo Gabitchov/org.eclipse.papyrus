@@ -46,7 +46,7 @@
 </extension>
 <extension point="org.eclipse.ui.commands">
 <command id="org.eclipse.papyrus.views.modelexplorer.diagramviewcommand"
-		name="DiagramView" description="go to the diagram view"
+		name="Show diagrams" description="go to the diagram view"
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.uml.diagram.modelexplorer.handler.DiagramViewHandler">
 	</command>

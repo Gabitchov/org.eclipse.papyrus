@@ -195,11 +195,11 @@
 	</command>
 	
 	<!-- Command declaration : Search element command -->			
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.SearchElementHandler" description="Search an element in the model explorer" id="org.eclipse.papyrus.views.modelexplorer.searchelement" name="searchelement">
+	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.SearchElementHandler" description="Search an element in the model explorer" id="org.eclipse.papyrus.views.modelexplorer.searchelement" name="Quick Search">
 	</command>
 	
 	<!-- Command declaration : Sort elements command -->			
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.SortElementHandler" description="Sort elements" id="org.eclipse.papyrus.views.modelexplorer.sortelement" name="SortElement">
+	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.SortElementHandler" description="Sort elements" id="org.eclipse.papyrus.views.modelexplorer.sortelement" name="Sort elements">
 	</command>
        
 	<!-- Command declaration : Delete element command -->
