@@ -47,6 +47,10 @@ Workflow {
 		
 		//load UML
 		
+		uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel"
+            to = "platform:/resource/org.eclipse.uml2.types/model/Types.genmodel"
+        }
         uriMap = {
             from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
             to = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
@@ -65,10 +69,16 @@ Workflow {
             from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
             to = "platform:/resource/org.eclipse.uml2.uml/model/UML.ecore"
         }
-		
+        
+        uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.types/model/Types.ecore"
+            to = "platform:/resource/org.eclipse.uml2.types/model/Types.ecore"
+        }
+        registerGeneratedEPackage = "org.eclipse.uml2.types.TypesPackage"
         registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
         registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
         
+        registerGenModelFile = "platform:/resource/org.eclipse.uml2.types/model/Types.genmodel"
 	 	registerGenModelFile = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
         registerGenModelFile = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
 	}

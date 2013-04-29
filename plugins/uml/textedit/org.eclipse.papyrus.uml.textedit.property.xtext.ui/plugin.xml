@@ -210,15 +210,6 @@
                editorConfiguration="org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions.PropertyPopupEditorConfigurationContribution">
          </popupeditor>
       </DirectEditor>
-      <DirectEditor
-            contributor="CEA LIST"
-            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
-            language="Advanced Port Textual Editor"
-            objectToEdit="org.eclipse.uml2.uml.Port">
-         <popupeditor
-               editorConfiguration="org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions.PropertyPopupEditorConfigurationContribution">
-         </popupeditor>
-      </DirectEditor>
    </extension>
 
 </plugin>
