@@ -17,6 +17,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.labelprovider.Activator;
@@ -175,6 +176,12 @@ public class LabelProviderServiceImpl implements LabelProviderService {
 
 		if(!labelProviders.containsKey(context)) {
 			Activator.log.warn("Unknown label provider context: " + context + ". The default label provider will be used");
+
+			//The default label provider has been unregistered (or is not registered yet)
+			if(DEFAULT_LABEL_PROVIDER.equals(context)) {
+				return new LabelProvider();
+			}
+
 			return getLabelProvider();
 		}
 		return labelProviders.get(context);
