@@ -115,6 +115,9 @@ public interface ICustomAppearence {
 
 	/** Style constant for return parameter multiplicity display in labels */
 	public final int DISP_RT_MULTIPLICITY = 1 << 18;
+	
+	/** Style constant for conjugated labels */
+	public final int DISP_CONJUGATED = 1 << 19;
 
 	// /////////////////////////////////////////////////////////////////////////
 	// UML DEFAULT DISPLAY
@@ -149,8 +152,7 @@ public interface ICustomAppearence {
 	/**
 	 * default uml Port ins composite diagrams.
 	 */
-	// @unused
-	public final static int DEFAULT_UML_PORT = DISP_NAME | DISP_TYPE;
+	public final static int DEFAULT_UML_PORT = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY|DISP_CONJUGATED;
 
 	/**
 	 * default uml OpaqueAction in activity diagrams.
