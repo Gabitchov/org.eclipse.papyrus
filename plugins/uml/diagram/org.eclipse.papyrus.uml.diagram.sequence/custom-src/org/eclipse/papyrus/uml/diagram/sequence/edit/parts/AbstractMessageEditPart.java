@@ -26,12 +26,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Message;
 
 public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart {
@@ -96,9 +98,12 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			return;
 		}
 		PointList points = primaryShape.getPoints();
+		if(points.size() <= 1) {
+			return;
+		}
 		List lineSegments = PointListUtilities.getLineSegments(points);
 		LineSeg nearestSegment = PointListUtilities.getNearestSegment(lineSegments, p.x, p.y);
-		if(points.size() > 3 && p.getDistance(points.getPoint(1)) < 5 || p.getDistance(points.getPoint(2)) < 5) {
+		if(points.size() > 3 && (p.getDistance(points.getPoint(1)) < 5 || p.getDistance(points.getPoint(2)) < 5)) {
 			myCursor = Cursors.SIZEALL;
 		} else if(nearestSegment.isHorizontal()) {
 			myCursor = Cursors.SIZENS;
@@ -184,15 +189,19 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		}
 		Message message = (Message)element;
 		UMLEdgeFigure edgeFigure = (UMLEdgeFigure)this.getFigure();
-		final MessageEndEditPart sendEventPart = new MessageEndEditPart(message.getSendEvent(), this, new ConnectionLocator(edgeFigure, ConnectionLocator.SOURCE));
-		messageEventParts.add(sendEventPart);
-		final MessageEndEditPart receiveEventPart = new MessageEndEditPart(message.getReceiveEvent(), this, new ConnectionLocator(edgeFigure, ConnectionLocator.TARGET));
-		messageEventParts.add(receiveEventPart);
 		Diagram diagram = ((View)this.getModel()).getDiagram();
-		sendEventPart.rebuildLinks(diagram);
-		receiveEventPart.rebuildLinks(diagram);
-		addChild(sendEventPart, -1);
-		addChild(receiveEventPart, -1);
+		if(!(message.getSendEvent() instanceof Gate)) {
+			final MessageEndEditPart sendEventPart = new MessageEndEditPart(message.getSendEvent(), this, new ConnectionLocator(edgeFigure, ConnectionLocator.SOURCE));
+			messageEventParts.add(sendEventPart);
+			sendEventPart.rebuildLinks(diagram);
+			addChild(sendEventPart, -1);
+		}
+		if(!(message.getReceiveEvent() instanceof Gate)) {
+			final MessageEndEditPart receiveEventPart = new MessageEndEditPart(message.getReceiveEvent(), this, new ConnectionLocator(edgeFigure, ConnectionLocator.TARGET));
+			messageEventParts.add(receiveEventPart);
+			receiveEventPart.rebuildLinks(diagram);
+			addChild(receiveEventPart, -1);
+		}
 	}
 
 	@Override
@@ -268,6 +277,16 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			getTarget().eraseSourceFeedback(request);
 		}
 		super.eraseSourceFeedback(request);
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart#installRouter()
+	 * 
+	 */
+	@Override
+	protected void installRouter() {
+		getConnectionFigure().setConnectionRouter(LifelineChildGraphicalNodeEditPolicy.messageRouter);
+		refreshBendpoints();
 	}
 
 	//	public static class MessageFigure extends UMLEdgeFigure {

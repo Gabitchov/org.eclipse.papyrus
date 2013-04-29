@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -27,6 +28,9 @@ import org.eclipse.swt.widgets.Group;
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class CustomMessagePreferencePage extends MessagePreferencePage {
+	public static final String LABEL_DISPLAY_PREFERENCE = PackageEditPart.MODEL_ID + "_Message.label.display";
+
+	public static final int DEFAULT_LABEL_DISPLAY = ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_PARAMETER_NAME | ICustomAppearence.DISP_PARAMETER_TYPE | ICustomAppearence.DISP_RT_TYPE;
 
 	/** current operation display style */
 	private int displayValue = getPreferenceStore().getInt(LABEL_DISPLAY_PREFERENCE);

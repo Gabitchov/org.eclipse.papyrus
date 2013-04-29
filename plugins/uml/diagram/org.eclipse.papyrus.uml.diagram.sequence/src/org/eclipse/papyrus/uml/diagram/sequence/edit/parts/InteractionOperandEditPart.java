@@ -95,13 +95,8 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 	}
 
 	/**
-	 * Remove EditPolicyRoles.DRAG_DROP_ROLE and EditPolicy.PRIMARY_DRAG_ROLE :
-	 * - adding elements to an interactionOperand doesn't anymore resize the enclosing CF
-	 * - interactionOperand are no longer dNd
-	 * 
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -175,7 +170,6 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if(result instanceof ResizableEditPolicy) {
@@ -193,7 +187,6 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -204,8 +197,8 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set
-	 * for generated figure.
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -230,7 +223,6 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -241,7 +233,6 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -251,7 +242,6 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
@@ -261,7 +251,6 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);

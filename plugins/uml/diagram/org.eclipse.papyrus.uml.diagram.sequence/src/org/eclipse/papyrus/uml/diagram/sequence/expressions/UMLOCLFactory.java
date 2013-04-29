@@ -49,7 +49,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[22];
+		this.expressions = new UMLAbstractExpression[23];
 		this.expressionBodies = new String[]{ "\' \'", //$NON-NLS-1$
 		"self.messageSort=MessageSort::synchCall and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 		"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
@@ -72,6 +72,7 @@ public class UMLOCLFactory {
 		"self.sendEvent=null", //$NON-NLS-1$
 		"self.oclIsKindOf(uml::Interaction)", //$NON-NLS-1$
 		"(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment))", //$NON-NLS-1$
+		"(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Gate))", //$NON-NLS-1$
 		};
 	}
 

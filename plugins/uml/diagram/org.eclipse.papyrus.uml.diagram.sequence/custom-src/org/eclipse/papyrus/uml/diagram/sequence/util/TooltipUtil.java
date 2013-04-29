@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.MouseEvent;
 import org.eclipse.draw2d.MouseMotionListener;
@@ -34,19 +33,17 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorLabelProvider;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.GeneralOrdering;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
+import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
@@ -123,6 +120,23 @@ public class TooltipUtil {
 			return ViewUtil.resolveSemanticElement((View)model);
 		}
 		return null;
+	}
+
+	public static View getTopNodeView(Object model, EObject semanticElement) {
+		if(model == null || !(model instanceof View)) {
+			return null;
+		}
+		View view = (View)model;
+		EObject elt = ViewUtil.resolveSemanticElement(view);
+		if(elt == null || elt != semanticElement) {
+			return null;
+		}
+		View containerView = ViewUtil.getContainerView(view);
+		EObject containerElement = ViewUtil.resolveSemanticElement(containerView);
+		if(containerElement == null || containerElement != semanticElement) {
+			return view;
+		}
+		return getTopNodeView(containerView, semanticElement);
 	}
 
 	public static class TooltipEditPolicy extends GraphicalEditPolicy {
@@ -270,8 +284,10 @@ public class TooltipUtil {
 		public String getTooltipName() {
 			if(editPart instanceof CombinedFragment2EditPart) {
 				return "Co Region";
-			} else if(editPart instanceof AbstractMessageEditPart) {
-				Message message = (Message)((AbstractMessageEditPart)editPart).resolveSemanticElement();
+			}
+			EObject semanticElement = getSemanticElement(editPart);
+			if(semanticElement instanceof Message) {
+				Message message = (Message)semanticElement;
 				MessageSort messageSort = message.getMessageSort();
 				switch(messageSort) {
 				case ASYNCH_CALL_LITERAL:
@@ -293,10 +309,11 @@ public class TooltipUtil {
 				case SYNCH_CALL_LITERAL:
 					return "Synchronous Message";
 				}
+			} else if(semanticElement instanceof DestructionOccurrenceSpecification) {
+				return "Destruction Event";
 			}
-			EClass semanticElementType = getSemanticElementType(editPart);
-			if(semanticElementType != null) {
-				return getDisplayName(semanticElementType.getName());
+			if(semanticElement != null) {
+				return getDisplayName(semanticElement.eClass().getName());
 			}
 			return null;
 		}
@@ -319,6 +336,10 @@ public class TooltipUtil {
 		 * @return
 		 */
 		public String getTooltipDescription() {
+			//CoRegion
+			if(editPart instanceof CombinedFragment2EditPart) {
+				return null;
+			}
 			EObject semanticElement = getSemanticElement(editPart);
 			if(semanticElement instanceof StateInvariant || semanticElement instanceof DestructionOccurrenceSpecification || semanticElement instanceof GeneralOrdering) {
 				return null;
@@ -329,40 +350,21 @@ public class TooltipUtil {
 			} else {
 				descBuf.append("name: ");
 			}
+			UMLNavigatorLabelProvider labelProvider = new UMLNavigatorLabelProvider();
+			Object model = editPart.getModel();
 			String label = null;
-			if(editPart instanceof ITextAwareEditPart) {
-				label = ((ITextAwareEditPart)editPart).getEditText();
-			}
-			LabelEditPart labelChild = null;
-			ITextAwareEditPart textAwareChild = null;
-			if(editPart instanceof LabelEditPart) {
-				labelChild = (LabelEditPart)editPart;
-			} else {
-				List children = editPart.getChildren();
-				for(Object object : children) {
-					if(object instanceof LabelEditPart) {
-						labelChild = (LabelEditPart)object;
-						break;
-					} else if(object instanceof ITextAwareEditPart) {
-						textAwareChild = (ITextAwareEditPart)object;
-						break;
-					}
+			View topNodeView = getTopNodeView(model, semanticElement);
+			if(topNodeView != null) {
+				label = labelProvider.getText(topNodeView);
+				if(label.startsWith("<UnknownElement")) {
+					label = null;
 				}
 			}
-			if(textAwareChild != null) {
-				label = textAwareChild.getEditText();
+			//Try to use the real name of InteractionUse.
+			if(semanticElement instanceof InteractionUse) {
+				label = ((InteractionUse)semanticElement).getLabel();
 			}
-			if(labelChild != null) {
-				IFigure figure = labelChild.getFigure();
-				if(figure instanceof Label) {
-					label = ((Label)figure).getText();
-				} else if(figure instanceof WrappingLabel) {
-					label = ((WrappingLabel)figure).getText();
-				} else if(figure instanceof NodeNamedElementFigure) {
-					label = ((NodeNamedElementFigure)figure).getNameLabel().getText();
-				}
-			}
-			if(label == null && semanticElement instanceof NamedElement) {
+			if((label == null) && semanticElement instanceof NamedElement) {
 				label = ((NamedElement)semanticElement).getLabel();
 			}
 			descBuf.append(label);
@@ -372,22 +374,29 @@ public class TooltipUtil {
 				InteractionOperatorKind operator = ((CombinedFragment)semanticElement).getInteractionOperator();
 				if(operator != null) {
 					descBuf.append(operator.getName());
-					descBuf.append("\n");
 				}
+				descBuf.append("\n");
 			} else if(semanticElement instanceof InteractionOperand) {
 				descBuf.append("parent:name: ");
 				CombinedFragment parent = (CombinedFragment)((InteractionOperand)semanticElement).eContainer();
 				if(parent != null) {
-					descBuf.append(parent.getName());
-					descBuf.append("\n");
+					descBuf.append(parent.getLabel());
 				}
+				descBuf.append("\n");
 				descBuf.append("parent:operator: ");
 				if(parent != null) {
 					InteractionOperatorKind operator = parent.getInteractionOperator();
 					if(operator != null) {
 						descBuf.append(operator.getName());
-						descBuf.append("\n");
 					}
+				}
+				descBuf.append("\n");
+			} else if(semanticElement instanceof InteractionUse) {
+				Interaction refersTo = ((InteractionUse)semanticElement).getRefersTo();
+				if(refersTo != null) {
+					descBuf.append("ref: ");
+					descBuf.append(refersTo.getLabel());
+					descBuf.append("\n");
 				}
 			}
 			return new String(descBuf);

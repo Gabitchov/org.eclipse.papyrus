@@ -17,6 +17,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomMessage2ItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageAsync;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -44,6 +45,24 @@ public class CustomMessage2EditPart extends Message2EditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomMessage2ItemSemanticEditPolicy());
+	}
+
+	/**
+	 * Installs a specific message router on the edit part.
+	 * 
+	 */
+	@Override
+	protected void installRouter() {
+		getConnectionFigure().setConnectionRouter(LifelineChildGraphicalNodeEditPolicy.messageRouter);
+		getConnectionFigure().setCursor(org.eclipse.gmf.runtime.gef.ui.internal.l10n.Cursors.CURSOR_SEG_MOVE);
+		refreshBendpoints();
+	}
+
+	/**
+	 * Ignore routing style since we are using a custom router and a custom ConnectionBendpointEditPolicy.
+	 */
+	@Override
+	protected void refreshRoutingStyles() {
 	}
 
 	/**

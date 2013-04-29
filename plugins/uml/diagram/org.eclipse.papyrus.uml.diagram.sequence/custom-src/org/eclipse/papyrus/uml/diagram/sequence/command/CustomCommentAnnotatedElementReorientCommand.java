@@ -17,7 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart.MessageEndHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndHelper;
 import org.eclipse.uml2.uml.MessageEnd;
 
 /**

@@ -499,7 +499,8 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 							if(!request.getType().equals(REQ_MOVE_CHILDREN)) {
 								CompoundCommand resizeChildrenCommand = new CompoundCommand();
 								InteractionCompartmentXYLayoutEditPolicy.addLifelineResizeChildrenCommand(resizeChildrenCommand, request, child, 1);
-								Command cmd = resizeChildrenCommand.unwrap();
+								//If no child, just ignore it. Fixed bug about Resizing child lifeline: 
+								Command cmd = resizeChildrenCommand.isEmpty() ? null: resizeChildrenCommand.unwrap();
 								if(cmd != null) {
 									composite.add(new CommandProxy(cmd));
 								}

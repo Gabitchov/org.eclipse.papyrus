@@ -24,7 +24,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -576,27 +575,6 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 				getAllNestedViews(childView, allViews);
 				allViews.add(childView);
 			}
-		}
-	}
-
-	public static class MessageEndHelper {
-
-		public static void removeConnectionSourceFromMessageEnd(MessageEnd messageEnd, EObject connectionSource) {
-			EAnnotation annotation = messageEnd.getEAnnotation("Connections");
-			if(annotation != null) {
-				annotation.getReferences().remove(connectionSource);
-			}
-		}
-
-		public static void addConnectionSourceToMessageEnd(MessageEnd messageEnd, EObject connectionSource) {
-			EAnnotation annotation = messageEnd.getEAnnotation("Connections");
-			if(annotation == null) {
-				annotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				annotation.setSource("Connections"); //$NON-NLS-1$
-				messageEnd.getEAnnotations().add(annotation);
-			}
-			if(!annotation.getReferences().contains(connectionSource))
-				annotation.getReferences().add(connectionSource);
 		}
 	}
 

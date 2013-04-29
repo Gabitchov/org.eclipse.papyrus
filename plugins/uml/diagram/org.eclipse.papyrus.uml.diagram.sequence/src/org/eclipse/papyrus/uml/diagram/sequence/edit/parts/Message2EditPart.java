@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message2ItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy;
@@ -42,25 +41,6 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 	 */
 	public Message2EditPart(View view) {
 		super(view);
-	}
-
-	/**
-	 * Installs a specific message router on the edit part.
-	 * 
-	 * @Override
-	 */
-	@Override
-	protected void installRouter() {
-		getConnectionFigure().setConnectionRouter(LifelineChildGraphicalNodeEditPolicy.messageRouter);
-		getConnectionFigure().setCursor(org.eclipse.gmf.runtime.gef.ui.internal.l10n.Cursors.CURSOR_SEG_MOVE);
-		refreshBendpoints();
-	}
-
-	/**
-	 * Ignore routing style since we are using a custom router and a custom ConnectionBendpointEditPolicy.
-	 */
-	@Override
-	protected void refreshRoutingStyles() {
 	}
 
 	/**
@@ -126,8 +106,8 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove
-	 * <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */

@@ -23,7 +23,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEd
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomMessagePreferencePage;
-import org.eclipse.papyrus.uml.diagram.sequence.preferences.MessagePreferencePage;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
@@ -75,7 +74,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(MessagePreferencePage.LABEL_DISPLAY_PREFERENCE);
+			int displayValueTemp = store.getInt(CustomMessagePreferencePage.LABEL_DISPLAY_PREFERENCE);
 			if(displayValueTemp != 0) {
 				displayValue = displayValueTemp;
 			}
@@ -84,7 +83,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	public int getDefaultDisplayValue() {
-		return MessagePreferencePage.DEFAULT_LABEL_DISPLAY;
+		return CustomMessagePreferencePage.DEFAULT_LABEL_DISPLAY;
 	}
 
 	public String getMaskLabel(int value) {

@@ -1632,7 +1632,7 @@
               parser="/0/@labelParsers/@implementations.8"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.5"
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.22"
             targetEnd="/0/@expressionProviders/@providers.1/@expressions.6"/>
       </links>
       <links
@@ -1736,7 +1736,7 @@
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.1/@expressions.8"
-            targetEnd="/0/@expressionProviders/@providers.1/@expressions.9"/>
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.22"/>
       </links>
       <links
           visualID="4006"
@@ -2046,7 +2046,7 @@
               parser="/0/@labelParsers/@implementations.8"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.17"
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.22"
             targetEnd="/0/@expressionProviders/@providers.1/@expressions.18"/>
       </links>
       <links
@@ -2151,7 +2151,7 @@
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.1/@expressions.20"
-            targetEnd="/0/@expressionProviders/@providers.1/@expressions.21"/>
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.22"/>
       </links>
       <links
           visualID="4010"
@@ -7360,6 +7360,9 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment))"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Gate))"/>
       </providers>
     </expressionProviders>
     <labelParsers

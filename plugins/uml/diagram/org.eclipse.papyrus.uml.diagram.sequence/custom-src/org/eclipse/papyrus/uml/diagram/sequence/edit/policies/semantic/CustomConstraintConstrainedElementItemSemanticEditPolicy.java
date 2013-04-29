@@ -20,7 +20,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart.MessageEndHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ConstraintConstrainedElementItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.MessageEnd;
 
