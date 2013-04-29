@@ -279,20 +279,6 @@
       
       
    </extension>
- <menuContribution
-          allPopups="true"
-          locationURI="popup:org.eclipse.ui.popup.any">
-       <menu
-             id="table.common.menu"
-             label="Add Axis Element">
-          <visibleWhen
-                checkEnabled="false">
-             <with
-                   variable="selection">
-             </with>
-          </visibleWhen>
-       </menu>
-    </menuContribution>
  <extension
        point="org.eclipse.core.expressions.propertyTesters">
     <propertyTester
