@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
@@ -183,6 +184,16 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 
 	protected void initMessageEventPart() {
 		messageEventParts = new ArrayList();
+		
+		String id = String.valueOf( MessageEndEditPart.VISUAL_ID);
+		List list = this.getModelChildren();
+		for(Object o : list)
+			if(o instanceof Shape ){
+				Shape s = (Shape) o;
+				if(s.getType().equals(id ))
+					return;  // if the model already persist, do not create it again
+			}
+		
 		EObject element = this.resolveSemanticElement();
 		if(!(element instanceof Message)) {
 			return;

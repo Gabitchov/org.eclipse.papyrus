@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -443,7 +444,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 				return null;
 			}
 			Request req = getTargetRequest();
-			if(targetPart instanceof ConnectionNodeEditPart) {
+			/*if(targetPart instanceof ConnectionNodeEditPart) {
 				// a message part is targeted. Instead, we must take the nearby lifeline part.
 				// redirect to the message part will be performed later in case we really want to draw a duration on a message
 				ConnectionNodeEditPart conn = (ConnectionNodeEditPart)targetPart;
@@ -481,9 +482,24 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 						}
 					}
 				}
+			}*/
+			if(targetPart instanceof InteractionInteractionCompartmentEditPart || targetPart instanceof ConnectionNodeEditPart) 
+				return targetPart.getCommand(req);
+			targetPart = getInteractionEditPart(targetPart);
+			if(targetPart != null){
+				return targetPart.getCommand(req);
 			}
-			return targetPart.getCommand(req);
 		}
 		return null;
+	}
+	
+	private EditPart getInteractionEditPart(EditPart editPart) {
+		if(editPart == null) {
+			return null;
+		}
+		if(editPart instanceof InteractionInteractionCompartmentEditPart) {
+			return editPart;
+		}
+		return getInteractionEditPart(editPart.getParent());
 	}
 }

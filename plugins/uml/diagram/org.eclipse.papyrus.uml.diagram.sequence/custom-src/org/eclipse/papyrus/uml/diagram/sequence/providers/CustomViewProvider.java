@@ -16,7 +16,10 @@ package org.eclipse.papyrus.uml.diagram.sequence.providers;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -37,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLab
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -50,6 +54,31 @@ import org.eclipse.uml2.uml.InteractionOperand;
  */
 public class CustomViewProvider extends UMLViewProvider {
 
+	protected boolean provides(CreateNodeViewOperation op) {
+		if(op.getContainerView() == null) {
+			return false;
+		}
+		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if(visualID == DurationConstraintEditPart.VISUAL_ID){ // avoid to modify UMLVisualIDRegistry.getNodeVisualID(View, EObject)
+			if(InteractionInteractionCompartmentEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(op.getContainerView()))
+				return true;
+		}
+		return super.provides(op);
+	}
+	
+	protected boolean provides(CreateViewForKindOperation op) {
+		if(op.getContainerView() == null) {
+			return false;
+		}
+		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if(visualID == DurationConstraintEditPart.VISUAL_ID){ // avoid to modify UMLVisualIDRegistry.getNodeVisualID(View, EObject)
+			if(InteractionInteractionCompartmentEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(op.getContainerView()))
+				return true;
+		}
+		return super.provides(op);
+	}
+	
+	
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);

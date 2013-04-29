@@ -128,7 +128,7 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 		String durCstOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
 		String durCstOnMessage = ((IHintedType)UMLElementTypes.DurationConstraint_3023).getSemanticHint();
 		String durObsOnMessage = ((IHintedType)UMLElementTypes.DurationObservation_3024).getSemanticHint();
-		return durCstOnLifelineHint.equals(requestHint) || durCstOnMessage.equals(requestHint) || durObsOnMessage.equals(requestHint);
+		return durCstOnLifelineHint.equals(requestHint) /* || durCstOnMessage.equals(requestHint) */ || durObsOnMessage.equals(requestHint);
 	}
 
 	/**

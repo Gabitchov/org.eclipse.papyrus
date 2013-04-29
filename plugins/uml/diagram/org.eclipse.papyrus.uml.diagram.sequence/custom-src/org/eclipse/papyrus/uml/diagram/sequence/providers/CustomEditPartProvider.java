@@ -147,7 +147,13 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 			return new CustomConstraintConstrainedElementEditPart(view);
 		case GeneralOrderingEditPart.VISUAL_ID:
 			return new CustomGeneralOrderingEditPart(view);
+		case ExecutionSpecificationEndEditPart.VISUAL_ID:
+			return new ExecutionSpecificationEndEditPart(view);
+		case MessageEndEditPart.VISUAL_ID:
+			return new MessageEndEditPart(view);
 		}
+		
+		
 		return null;
 	}
 }

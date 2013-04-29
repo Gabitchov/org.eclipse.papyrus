@@ -14,6 +14,7 @@ import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RelativeLocator;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -76,11 +77,12 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 public class ExecutionSpecificationEndEditPart extends GraphicalEditPart implements INodeEditPart {
-
-	private static final String DUMMY_TYPE = "999998";
+	public static final int VISUAL_ID = 999998;
 
 	private static final int DEFAULT_SIZE = 16;
 
@@ -91,9 +93,21 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 	public ExecutionSpecificationEndEditPart(OccurrenceSpecification occurrenceSpecification, ShapeNodeEditPart parent, RelativeLocator locator) {
 		super(createDummyView(parent, occurrenceSpecification));
 		this.executionSpecificationEnd = occurrenceSpecification;
-		this.setParent(parent);
 		this.locator = locator;
+		this.setParent(parent);
 		addToResource(parent.getNotationView(), this.getNotationView());
+	}
+
+	public ExecutionSpecificationEndEditPart(View view) {
+		super(view);
+		if(view.getElement() instanceof OccurrenceSpecification)
+			this.executionSpecificationEnd = (OccurrenceSpecification) view.getElement();
+		
+	}
+
+	public void setParent(EditPart parent) {
+		super.setParent(parent);
+		initLocator();
 	}
 
 	private static EObject createDummyView(ShapeNodeEditPart parent, EObject model) {
@@ -105,7 +119,7 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 			}
 		};
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(DUMMY_TYPE);
+		node.setType(String.valueOf(VISUAL_ID));
 		node.setElement(model);
 		return node;
 	}
@@ -184,7 +198,8 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 
 	public void rebuildLinks(Diagram diagram) {
 		helper.collectViews(diagram);
-		EObject semanticModel = this.resolveSemanticElement();
+		if(executionSpecificationEnd == null)
+			return;
 		EAnnotation annotation = executionSpecificationEnd.getEAnnotation("Connections");
 		if(annotation != null) {
 			for(EObject eo : annotation.getReferences()) {
@@ -571,8 +586,26 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 
 		@Override
 		public void validate() {
-			locator.relocate(this); //place figure at north or south, ignore layout manager
+			relocateFigure(this);
 			super.validate();
 		}
+	}
+	
+	private void initLocator() {
+		if(locator == null && executionSpecificationEnd instanceof ExecutionOccurrenceSpecification){
+			ExecutionSpecification es = ((ExecutionOccurrenceSpecification) executionSpecificationEnd ).getExecution();
+			if(es.getStart() == executionSpecificationEnd)
+				locator = new RelativeLocator(((org.eclipse.gef.GraphicalEditPart) getParent()).getFigure(), PositionConstants.NORTH);
+			else
+				locator = new RelativeLocator(((org.eclipse.gef.GraphicalEditPart) getParent()).getFigure(), PositionConstants.SOUTH);
+		}
+	}
+
+	public void relocateFigure(
+			ExecutionSpecificationEndFigure fig) {
+		if(locator == null)
+			initLocator();
+		if(locator != null)
+			locator.relocate(fig); //place figure at north or south, ignore layout manager
 	}
 }

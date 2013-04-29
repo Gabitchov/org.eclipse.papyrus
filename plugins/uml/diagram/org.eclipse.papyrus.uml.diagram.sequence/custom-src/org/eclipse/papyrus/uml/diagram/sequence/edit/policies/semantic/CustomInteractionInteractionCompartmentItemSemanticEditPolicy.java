@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomCombinedFragmentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomConsiderIgnoreFragmentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomConstraintCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.CustomDurationConstraintCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomDurationObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomInteractionUseCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomLifelineCreateCommand;
@@ -59,6 +60,9 @@ public class CustomInteractionInteractionCompartmentItemSemanticEditPolicy exten
 		}
 		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationObservationCreateCommand(req));
+		}
+		if(UMLElementTypes.DurationConstraint_3021 ==  req.getElementType()) {
+			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

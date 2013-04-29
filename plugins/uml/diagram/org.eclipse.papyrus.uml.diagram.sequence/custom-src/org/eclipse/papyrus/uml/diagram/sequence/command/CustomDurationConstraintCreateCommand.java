@@ -27,7 +27,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationConstraint
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -61,6 +63,7 @@ public class CustomDurationConstraintCreateCommand extends DurationConstraintCre
 	 */
 	@Override
 	public boolean canExecute() {
+		/*
 		// check first occurrence specification
 		if(!getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION)) {
 			return true; // duration creation is in progress; source is not defined yet
@@ -92,6 +95,8 @@ public class CustomDurationConstraintCreateCommand extends DurationConstraintCre
 			return enabled;
 		}
 		return false;
+		*/
+		return true;
 	}
 
 	/**
@@ -101,7 +106,7 @@ public class CustomDurationConstraintCreateCommand extends DurationConstraintCre
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		DurationConstraint newElement = UMLFactory.eINSTANCE.createDurationConstraint();
 		// get the Lifeline parent as owner
-		Namespace owner = (Namespace)getElementToEdit().eContainer();
+		Namespace owner = getNamespace(getElementToEdit().eContainer());
 		owner.getOwnedRules().add(newElement);
 		ElementInitializers.getInstance().init_DurationConstraint_3021(newElement);
 		// assign the occurrence specification
@@ -117,5 +122,15 @@ public class CustomDurationConstraintCreateCommand extends DurationConstraintCre
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
+	}
+	
+	protected Namespace getNamespace(EObject element) {
+		if(element instanceof Namespace) {
+			return (Namespace)element;
+		}
+		if(element instanceof CombinedFragment) {
+			return ((CombinedFragment)element).getNamespace();
+		}
+		return null;
 	}
 }

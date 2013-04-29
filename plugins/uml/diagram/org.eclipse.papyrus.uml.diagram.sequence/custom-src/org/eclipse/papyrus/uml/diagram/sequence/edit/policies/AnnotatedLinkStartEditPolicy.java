@@ -32,6 +32,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.AnnotatedLinkEditCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart;
+import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.TimeObservation;
 
 /**
@@ -123,6 +125,11 @@ public class AnnotatedLinkStartEditPolicy extends GraphicalNodeEditPolicy {
 			EObject element = ViewUtil.resolveSemanticElement(primaryView);
 			if(element instanceof TimeObservation && ((TimeObservation)element).getEvent() != null) {
 				return UnexecutableCommand.INSTANCE;
+			}
+			if(host instanceof CustomDurationConstraintEditPart){
+				boolean can = ((CustomDurationConstraintEditPart) host).canCreateLink(request.getLocation());
+				if(!can)
+					return UnexecutableCommand.INSTANCE;
 			}
 		}
 		Command command = super.getConnectionCreateCommand(request);

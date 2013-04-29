@@ -158,21 +158,21 @@ public class AnchorHelper {
 
 	public static class FixedAnchorEx extends SlidableAnchor {
 
-		private int location;
+		private int position;
 
 		public FixedAnchorEx(IFigure f, int location) {
 			super(f, location == PositionConstants.TOP ? new PrecisionPoint(0.0, 0.0) : new PrecisionPoint(0.0, 1.0));
-			this.location = location;
+			this.position = location;
 		}
 
 		public Point getLocation(Point reference) {
-			if(location == PositionConstants.TOP) {
+			if(position == PositionConstants.TOP) {
 				Point topLeft = getBox().getTopLeft();
 				if(reference.x < topLeft.x)
 					return topLeft;
 				else
 					return getBox().getTopRight();
-			} else if(location == PositionConstants.BOTTOM) {
+			} else if(position == PositionConstants.BOTTOM) {
 				Point bottomLeft = getBox().getBottomLeft();
 				if(reference.x < bottomLeft.x)
 					return bottomLeft;
@@ -180,6 +180,10 @@ public class AnchorHelper {
 					return getBox().getBottomRight();
 			}
 			return super.getLocation(reference);
+		}
+
+		public int getPosition() {
+			return position;
 		}
 	}
 
