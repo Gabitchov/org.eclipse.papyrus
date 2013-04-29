@@ -54,10 +54,12 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
@@ -87,8 +89,11 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHel
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GatesHolderGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomCombinedFragmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -158,6 +163,9 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomCombinedFragmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new CombinedFragmentDirectEditPolicy());
+		//Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GatesHolderGraphicalNodeEditPolicy());
+		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
 	}
 
 	/**
@@ -170,6 +178,25 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 		primaryShape = new CombinedFragmentFigure();
 		updateHeaderLabel();
 		return primaryShape;
+	}
+
+	/**
+	 * Create a BorderedNodeFigure for holding Gates.
+	 */
+	@Override
+	protected NodeFigure createNodeFigure() {
+		return new BorderedNodeFigure(super.createNodeFigure());
+	}
+
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if(editPart instanceof IBorderItemEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
+		}
+		return getContentPane();
+	}
+
+	public final BorderedNodeFigure getBorderedFigure() {
+		return (BorderedNodeFigure)getFigure();
 	}
 
 	@Override
@@ -201,8 +228,26 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((CombinedFragmentCombinedFragmentCompartmentEditPart)childEditPart).getFigure());
 			return true;
+		} else if(childEditPart instanceof GateEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart)childEditPart).getFigure());
+			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart#addFixedChild(org.eclipse.gef.EditPart)
+	 * 
+	 * @param childEditPart
+	 * @return
+	 */
+	@Override
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof GateEditPart) {
+			getBorderedFigure().getBorderItemContainer().add(((GateEditPart)childEditPart).getFigure(), new GateLocator(getFigure()));
+			return true;
+		}
+		return super.addFixedChild(childEditPart);
 	}
 
 	public List<CustomInteractionOperandEditPart> getOperandChildrenEditParts() {

@@ -13,21 +13,39 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
+import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy.ICustomMessageLabel;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class CustomMessageName2EditPart extends MessageName2EditPart implements ICustomMessageLabel {
+
+	private NotificationHelper notifier = new NotificationHelper(new UIAdapterImpl() {
+
+		@Override
+		protected void safeNotifyChanged(Notification msg) {
+			handleNotificationEvent(msg);
+		}
+	});
 
 	/**
 	 * Constructor.
@@ -36,6 +54,37 @@ public class CustomMessageName2EditPart extends MessageName2EditPart implements 
 	 */
 	public CustomMessageName2EditPart(View view) {
 		super(view);
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#deactivate()
+	 * 
+	 */
+	@Override
+	public void deactivate() {
+		notifier.unlistenAll();
+		super.deactivate();
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#activate()
+	 * 
+	 */
+	@Override
+	public void activate() {
+		super.activate();
+		Message outerCFMessage = getOuterCFMessage();
+		if(outerCFMessage != null) {
+			notifier.listenObject(outerCFMessage);
+		}
+	}
+
+	private Message getOuterCFMessage() {
+		EObject element = resolveSemanticElement();
+		if(element instanceof Message) {
+			return GateHelper.getOuterCFMessage((Message)element);
+		}
+		return null;
 	}
 
 	@Override
@@ -76,5 +125,41 @@ public class CustomMessageName2EditPart extends MessageName2EditPart implements 
 
 	private View getFontStyleOwnerView() {
 		return (View)getParent().getModel();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName2EditPart#performDirectEditRequest(org.eclipse.gef.Request)
+	 * 
+	 * @param request
+	 */
+	@Override
+	protected void performDirectEditRequest(Request request) {
+		EObject element = resolveSemanticElement();
+		if(element instanceof Message) {
+			//By using suggestion name for message in CombinedFragment.
+			MessageEnd sendEvent = ((Message)element).getSendEvent();
+			if(sendEvent instanceof Gate && GateHelper.isInnerCFGate((Gate)sendEvent)) {
+				return;
+			}
+			MessageEnd receiveEvent = ((Message)element).getReceiveEvent();
+			if(receiveEvent instanceof Gate && GateHelper.isInnerCFGate((Gate)receiveEvent)) {
+				return;
+			}
+		}
+		super.performDirectEditRequest(request);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName2EditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 * 
+	 * @param event
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification event) {
+		if(event.getNotifier() == getOuterCFMessage() && UMLPackage.eINSTANCE.getNamedElement_Name() == event.getFeature()) {
+			Message message = (Message)resolveSemanticElement();
+			message.setName(getOuterCFMessage().getName());
+		}
+		super.handleNotificationEvent(event);
 	}
 }

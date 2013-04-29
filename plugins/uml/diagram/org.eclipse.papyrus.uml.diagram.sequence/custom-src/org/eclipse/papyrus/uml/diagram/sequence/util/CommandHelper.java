@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -42,7 +41,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
@@ -53,11 +51,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.SequencePaletteFactory.AspectUnspecifiedTypeConnectionToolEx;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
@@ -769,7 +764,9 @@ public class CommandHelper {
 	 */
 	public static MessageEnd createMessageEnd(InteractionFragment interactionFragment, Event event, Element element, MessageDirection direction) {
 		MessageEnd endMsg = null;
-		if(element instanceof Lifeline) {
+		if(element instanceof MessageEnd) {
+			endMsg = (MessageEnd)element;
+		} else if(element instanceof Lifeline) {
 			endMsg = doCreateMessageOccurrence(interactionFragment, event, (Lifeline)element);
 		} else if(element instanceof ExecutionSpecification) {
 			Lifeline lifeline = getExecutionSpecificationLifeline((ExecutionSpecification)element);
@@ -792,103 +789,104 @@ public class CommandHelper {
 	 *         if the element is not a right element type
 	 */
 	public static Gate doCreateGate(Element element, MessageDirection direction) {
-		Gate gate = null;
-		if(element instanceof Interaction) {
-			gate = ((Interaction)element).createFormalGate(null);
-		} else if(element instanceof CombinedFragment) {
-			CombinedFragment combinedFragment = (CombinedFragment)element;
-			EList<Gate> cfragmentGates = combinedFragment.getCfragmentGates();
-			if(cfragmentGates.isEmpty()) {
-				gate = ((CombinedFragment)element).createCfragmentGate(null);
-			} else {
-				// remove connection feedbacks before opening dialog
-				clearConnectionFeedback();
-				// Introduce to create new Gate every time.
-				final Gate newGate = UMLFactory.eINSTANCE.createGate();
-				Shell shell = Display.getCurrent().getActiveShell();
-				ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()) {
-
-					@Override
-					public Image getImage(Object object) {
-						if(newGate == object) {
-							return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ADD);
-						}
-						return super.getImage(object);
-					}
-
-					@Override
-					public String getText(Object object) {
-						if(newGate == object) {
-							return "<create new gate>";
-						}
-						return super.getText(object);
-					}
-				};
-				ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
-				dialog.setTitle("Gates of the CombinedFragment has");
-				dialog.setMessage(CHOOSE_GATE_DIALOG_MSG);
-				dialog.setMultipleSelection(false);
-				List<Gate> gates = new ArrayList<Gate>();
-				gates.add(newGate);
-				for(Gate actualGate : cfragmentGates) {
-					gates.add(actualGate);
-				}
-				//Reuse existing gates by default.
-				if(!cfragmentGates.isEmpty()) {
-					dialog.setInitialSelections(new Object[]{ cfragmentGates.get(0) });
-				}
-				dialog.setElements(gates.toArray());
-				if(dialog.open() == Window.OK) {
-					gate = (Gate)dialog.getFirstResult();
-					if(gate == newGate) {
-						gate = combinedFragment.createCfragmentGate(null);
-					}
-				} else { // cancel button
-					throw new OperationCanceledException();
-				}
-			}
-		} else if(element instanceof InteractionUse) {
-			// remove connection feedbacks before opening dialog
-			clearConnectionFeedback();
-			Shell shell = Display.getCurrent().getActiveShell();
-			InteractionUse interactionUse = (InteractionUse)element;
-			if(interactionUse.getRefersTo() == null) {
-				MessageDialog.openError(shell, NO_REFERENCED_INTERACTION_DIALOG_TITLE, NO_REFERENCED_INTERACTION_DIALOG_MSG);
-				return null;
-			}
-			//			ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-			//			ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
-			//			dialog.setTitle(CHOOSE_GATE_DIALOG_TITLE);
-			//			dialog.setMessage(CHOOSE_GATE_DIALOG_MSG);
-			//			dialog.setMultipleSelection(false);
-			//
-			//			List<Gate> gates = new ArrayList<Gate>();
-			//			for(Gate actualGate : ((InteractionUse)element).getActualGates()) {
-			//				if(actualGate.getName().startsWith(direction.getName())) {
-			//					gates.add(actualGate);
-			//				}
-			//			}
-			//			dialog.setElements(gates.toArray());
-			//			if(dialog.open() == Window.OK) {
-			//				gate = (Gate)dialog.getFirstResult();
-			//			}
-			/**
-			 * Quickly fixed: Try to create new gate every time.
-			 */
-			Interaction refersTo = interactionUse.getRefersTo();
-			String name = direction.toString().toLowerCase() + "_Gate";
-			int index = 0;
-			while(refersTo.getFormalGate(name) != null) {
-				name = direction.toString().toLowerCase() + "_Gate" + index;
-				index++;
-			}
-			Gate formalGate = UMLFactory.eINSTANCE.createGate();
-			formalGate.setName(name);
-			refersTo.getFormalGates().add(formalGate);
-			gate = ((InteractionUse)element).getActualGate(formalGate.getName());
-		} else {
-			throw new IllegalArgumentException(WRONG_GATE_CONTAINER_TYPE_ERROR_MSG);
-		}
+		Gate gate = GateHelper.createGate(element, true);
+		//		Gate gate = null;
+		//		if(element instanceof Interaction) {
+		//			gate = ((Interaction)element).createFormalGate(null);
+		//		} else if(element instanceof CombinedFragment) {
+		//			CombinedFragment combinedFragment = (CombinedFragment)element;
+		//			EList<Gate> cfragmentGates = combinedFragment.getCfragmentGates();
+		//			if(cfragmentGates.isEmpty()) {
+		//				gate = ((CombinedFragment)element).createCfragmentGate(null);
+		//			} else {
+		//				// remove connection feedbacks before opening dialog
+		//				clearConnectionFeedback();
+		//				// Introduce to create new Gate every time.
+		//				final Gate newGate = UMLFactory.eINSTANCE.createGate();
+		//				Shell shell = Display.getCurrent().getActiveShell();
+		//				ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()) {
+		//
+		//					@Override
+		//					public Image getImage(Object object) {
+		//						if(newGate == object) {
+		//							return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ADD);
+		//						}
+		//						return super.getImage(object);
+		//					}
+		//
+		//					@Override
+		//					public String getText(Object object) {
+		//						if(newGate == object) {
+		//							return "<create new gate>";
+		//						}
+		//						return super.getText(object);
+		//					}
+		//				};
+		//				ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+		//				dialog.setTitle("Gates of the CombinedFragment has");
+		//				dialog.setMessage(CHOOSE_GATE_DIALOG_MSG);
+		//				dialog.setMultipleSelection(false);
+		//				List<Gate> gates = new ArrayList<Gate>();
+		//				gates.add(newGate);
+		//				for(Gate actualGate : cfragmentGates) {
+		//					gates.add(actualGate);
+		//				}
+		//				//Reuse existing gates by default.
+		//				if(!cfragmentGates.isEmpty()) {
+		//					dialog.setInitialSelections(new Object[]{ cfragmentGates.get(0) });
+		//				}
+		//				dialog.setElements(gates.toArray());
+		//				if(dialog.open() == Window.OK) {
+		//					gate = (Gate)dialog.getFirstResult();
+		//					if(gate == newGate) {
+		//						gate = combinedFragment.createCfragmentGate(null);
+		//					}
+		//				} else { // cancel button
+		//					throw new OperationCanceledException();
+		//				}
+		//			}
+		//		} else if(element instanceof InteractionUse) {
+		//			// remove connection feedbacks before opening dialog
+		//			clearConnectionFeedback();
+		//			Shell shell = Display.getCurrent().getActiveShell();
+		//			InteractionUse interactionUse = (InteractionUse)element;
+		//			if(interactionUse.getRefersTo() == null) {
+		//				MessageDialog.openError(shell, NO_REFERENCED_INTERACTION_DIALOG_TITLE, NO_REFERENCED_INTERACTION_DIALOG_MSG);
+		//				return null;
+		//			}
+		//			//			ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+		//			//			ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+		//			//			dialog.setTitle(CHOOSE_GATE_DIALOG_TITLE);
+		//			//			dialog.setMessage(CHOOSE_GATE_DIALOG_MSG);
+		//			//			dialog.setMultipleSelection(false);
+		//			//
+		//			//			List<Gate> gates = new ArrayList<Gate>();
+		//			//			for(Gate actualGate : ((InteractionUse)element).getActualGates()) {
+		//			//				if(actualGate.getName().startsWith(direction.getName())) {
+		//			//					gates.add(actualGate);
+		//			//				}
+		//			//			}
+		//			//			dialog.setElements(gates.toArray());
+		//			//			if(dialog.open() == Window.OK) {
+		//			//				gate = (Gate)dialog.getFirstResult();
+		//			//			}
+		//			/**
+		//			 * Quickly fixed: Try to create new gate every time.
+		//			 */
+		//			Interaction refersTo = interactionUse.getRefersTo();
+		//			String name = direction.toString().toLowerCase() + "_Gate";
+		//			int index = 0;
+		//			while(refersTo.getFormalGate(name) != null) {
+		//				name = direction.toString().toLowerCase() + "_Gate" + index;
+		//				index++;
+		//			}
+		//			Gate formalGate = UMLFactory.eINSTANCE.createGate();
+		//			formalGate.setName(name);
+		//			refersTo.getFormalGates().add(formalGate);
+		//			gate = ((InteractionUse)element).getActualGate(formalGate.getName());
+		//		} else {
+		//			throw new IllegalArgumentException(WRONG_GATE_CONTAINER_TYPE_ERROR_MSG);
+		//		}
 		if(gate != null && gate.getName() != null) {
 			ElementInitializers.init_NamedElement(gate, direction.toString().toLowerCase() + "_"); //$NON-NLS-1$
 		}
@@ -1047,6 +1045,19 @@ public class CommandHelper {
 			// Update the message with the messages end
 			message.setReceiveEvent(receiveMessageEnd);
 		}
+		//If sendEvent is Gate and the Gate is a inner one of CombinedFragment, make the message name same as the outer one.
+		if(sendMessageEnd instanceof Gate && GateHelper.isInnerCFGate((Gate)sendMessageEnd)) {
+			Gate outerGate = GateHelper.getOuterCFGate((Gate)sendMessageEnd);
+			if(outerGate != null && outerGate.getMessage() != null) {
+				message.setName(outerGate.getMessage().getName());
+			}
+		}
+		if(receiveMessageEnd instanceof Gate && GateHelper.isInnerCFGate((Gate)receiveMessageEnd)) {
+			Gate outerCFGate = GateHelper.getOuterCFGate((Gate)receiveMessageEnd);
+			if(outerCFGate != null && outerCFGate.getMessage() != null) {
+				message.setName(outerCFGate.getMessage().getName());
+			}
+		}
 		return message;
 	}
 
@@ -1103,6 +1114,8 @@ public class CommandHelper {
 				if(src instanceof InteractionOperand) {
 					// consider the containing CF
 					src = src.eContainer();
+				} else if(src instanceof Gate) {
+					src = ((Gate)src).eContainer();
 				}
 				if(src instanceof InteractionFragment) {
 					// check whether container of gate is in the target's fragment container
@@ -1123,6 +1136,8 @@ public class CommandHelper {
 				if(tgt instanceof InteractionOperand) {
 					// consider the containing CF
 					tgt = tgt.eContainer();
+				} else if(tgt instanceof Gate) {
+					tgt = ((Gate)tgt).eContainer();
 				}
 				if(tgt instanceof InteractionFragment) {
 					// check whether container of gate is in the source's fragment container

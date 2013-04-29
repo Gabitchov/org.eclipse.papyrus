@@ -22,9 +22,14 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -34,9 +39,11 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GatesHolderGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionUseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionUseRectangleFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionUseUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
@@ -129,7 +136,53 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInteractionUseItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
+		//installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
+		//Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GatesHolderGraphicalNodeEditPolicy());
+		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
+	}
+
+	/**
+	 * Create a BorderedNodeFigure for holding Gates.
+	 */
+	@Override
+	protected NodeFigure createNodeFigure() {
+		return new BorderedNodeFigure(super.createNodeFigure());
+	}
+
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if(editPart instanceof IBorderItemEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
+		}
+		return getContentPane();
+	}
+
+	public final BorderedNodeFigure getBorderedFigure() {
+		return (BorderedNodeFigure)getFigure();
+	}
+
+	@Override
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof GateEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart)childEditPart).getFigure());
+			return true;
+		}
+		return super.removeFixedChild(childEditPart);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart#addFixedChild(org.eclipse.gef.EditPart)
+	 * 
+	 * @param childEditPart
+	 * @return
+	 */
+	@Override
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof GateEditPart) {
+			getBorderedFigure().getBorderItemContainer().add(((GateEditPart)childEditPart).getFigure(), new GateLocator(getFigure()));
+			return true;
+		}
+		return super.addFixedChild(childEditPart);
 	}
 
 	protected void refreshShadow() {

@@ -58,7 +58,19 @@ public class ReconnectMessageHelper {
 	}
 
 	public static void updateGate(Gate messageEnd, Element oldElement, Element newElement) {
-		// TODO Auto-generated method stub
+		if(newElement instanceof Gate && messageEnd != newElement) {
+			Gate newEnd = (Gate)newElement;
+			Message message = messageEnd.getMessage();
+			if(message != null) {
+				if(messageEnd == message.getSendEvent()) {
+					message.setSendEvent(newEnd);
+				} else if(messageEnd == message.getReceiveEvent()) {
+					message.setReceiveEvent(newEnd);
+				}
+				newEnd.setMessage(message);
+				messageEnd.setMessage(null);
+			}
+		}
 	}
 
 	public static void updateMos(MessageOccurrenceSpecification messageEnd, Element oldElement, Element newElement) {

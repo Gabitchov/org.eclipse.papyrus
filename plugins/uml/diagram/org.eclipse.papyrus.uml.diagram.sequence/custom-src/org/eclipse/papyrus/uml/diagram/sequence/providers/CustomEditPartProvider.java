@@ -35,6 +35,11 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 	}
 
 	protected IGraphicalEditPart createCustomEditPart(View view) {
+		if(GateEditPart.GATE_TYPE.equals(view.getType())) {
+			return new GateEditPart(view);
+		} else if(GateNameEditPart.GATE_NAME_TYPE.equals(view.getType())) {
+			return new GateNameEditPart(view);
+		}
 		if(view instanceof Connector) {
 			if(((Connector)view).getType().equals(SequenceUtil.OBSERVATION_LINK_TYPE))
 				return new ObservationLinkEditPart((View)view);

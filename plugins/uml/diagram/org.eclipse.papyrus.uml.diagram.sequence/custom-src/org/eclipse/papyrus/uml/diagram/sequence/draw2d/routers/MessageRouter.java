@@ -128,6 +128,10 @@ public class MessageRouter extends ObliqueRouter {
 	}
 
 	protected boolean checkShapesIntersect(Connection conn, PointList newLine) {
+		//Fixed bug about MessageLost and MessageFound.
+		if(conn.getSourceAnchor() instanceof AnchorHelper.InnerPointAnchor || conn.getTargetAnchor() instanceof AnchorHelper.InnerPointAnchor) {
+			return false;
+		}
 		if(conn.getTargetAnchor().getOwner() instanceof AnchorHelper.CombinedFragmentNodeFigure) {
 			return false;
 		}

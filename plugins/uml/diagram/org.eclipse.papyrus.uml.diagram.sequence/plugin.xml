@@ -1831,6 +1831,15 @@
                large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif"
                small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif">
          </entry>
+         <entry
+               defineOnly="true"
+               description="Create a Gate"
+               id="createGateTool"
+               kind="tool"
+               label="Gate"
+               large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif"
+               small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif">
+         </entry>
       </contribution>
    </paletteProvider>
 </extension>
@@ -1873,6 +1882,10 @@
          </predefinedEntry>
          <predefinedEntry
                id="createConstraintTool"
+               path="/createNodes1Group">
+         </predefinedEntry>
+         <predefinedEntry
+               id="createGateTool"
                path="/createNodes1Group">
          </predefinedEntry>
          <predefinedEntry

@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.util.FixGateViewOnOpening;
 import org.eclipse.papyrus.uml.diagram.sequence.util.FixInteractionOperandsOnOpening;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
@@ -60,6 +61,8 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 		super(servicesRegistry, diagram);
 		// Fix interaction operand bounds (see bug 400460)
 		new FixInteractionOperandsOnOpening().fix(diagram);
+		// Fix to add graphical view of gate. (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531)
+		new FixGateViewOnOpening().fix(diagram);
 	}
 
 	/**

@@ -13,26 +13,39 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.PromptCreateElementAndNodeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * Edit Policy to create an element on a lifeline associated with the creation of a message.
@@ -88,6 +101,46 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 						//							ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(getEditingDomain(), createExecutionSpecificationCommand, viewRequest.getConnectionViewDescriptor(), "(0.5, 0.0)");
 						//							compound.add(new ICommandProxy(changeTargetCommand));
 						//						}
+					}
+				}
+				/*
+				 * Create Graphical Gate if needed, See: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
+				 */
+				String semanticHint = viewRequest.getConnectionViewAndElementDescriptor().getSemanticHint();
+				if(((IHintedType)(UMLElementTypes.Message_4004)).getSemanticHint().equals(semanticHint) || ((IHintedType)(UMLElementTypes.Message_4005)).getSemanticHint().equals(semanticHint)) {
+					if(source instanceof CombinedFragment || source instanceof Interaction || source instanceof InteractionUse) {
+						CompoundCommand cc = new CompoundCommand("Redirect to Gate");
+						Point location = null;
+						IGraphicalEditPart adapter = (IGraphicalEditPart)sourceEP.getAdapter(IGraphicalEditPart.class);
+						if(adapter != null) {
+							location = GateHelper.computeGateLocation(request.getLocation(), adapter.getFigure(), null);
+						}
+						ConnectionViewDescriptor edgeAdapter = viewRequest.getConnectionViewDescriptor();
+						final IAdaptable elementAdapter = edgeAdapter.getElementAdapter();
+						if(elementAdapter != null) {
+							IAdaptable gateAdapter = new IAdaptable() {
+
+								public Object getAdapter(Class adapter) {
+									if(Gate.class == adapter) {
+										Message message = (Message)elementAdapter.getAdapter(Message.class);
+										MessageEnd sendEvent = message.getSendEvent();
+										if(sendEvent instanceof Gate) {
+											return sendEvent;
+										}
+									}
+									return null;
+								}
+							};
+							CreateGateViewCommand createGateCommand = new CreateGateViewCommand(getEditingDomain(), sourceEP, location, gateAdapter);
+							cc.add(new ICommandProxy(createGateCommand));
+							SetConnectionEndsCommand resetSourceCommand = new SetConnectionEndsCommand(getEditingDomain(), null);
+							resetSourceCommand.setEdgeAdaptor(edgeAdapter);
+							resetSourceCommand.setNewSourceAdaptor(createGateCommand.getResult());
+							cc.add(new ICommandProxy(resetSourceCommand));
+							if(cc.canExecute()) {
+								command = command.chain(cc);
+							}
+						}
 					}
 				}
 			}

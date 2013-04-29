@@ -31,7 +31,10 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
@@ -47,8 +50,10 @@ import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForEle
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
@@ -104,9 +109,11 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		//Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403134
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new InteractionGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInteractionItemSemanticEditPolicy());
+		//Fixed bugs: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403134 and https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new InteractionGraphicalNodeEditPolicy());
+		//Create gate: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
+		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
 	}
 
 	/**
@@ -367,8 +374,37 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InteractionInteractionCompartmentEditPart)childEditPart).getFigure());
 			return true;
+		} else if(childEditPart instanceof GateEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart)childEditPart).getFigure());
+			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Create a BorderedNodeFigure for holding Gates.
+	 */
+	protected NodeFigure createNodeFigure() {
+		return new BorderedNodeFigure(super.createNodeFigure());
+	}
+
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if(editPart instanceof IBorderItemEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
+		}
+		return getContentPane();
+	}
+
+	public final BorderedNodeFigure getBorderedFigure() {
+		return (BorderedNodeFigure)getFigure();
+	}
+
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof GateEditPart) {
+			getBorderedFigure().getBorderItemContainer().add(((GateEditPart)childEditPart).getFigure(), new GateLocator(getFigure()));
+			return true;
+		}
+		return super.addFixedChild(childEditPart);
 	}
 
 	@Override

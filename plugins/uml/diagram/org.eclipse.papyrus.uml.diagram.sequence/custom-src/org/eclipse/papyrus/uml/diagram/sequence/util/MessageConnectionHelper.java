@@ -51,7 +51,7 @@ public class MessageConnectionHelper {
 		} else if(receiveEvent instanceof Gate) {
 			target = ((Gate)receiveEvent).getOwner();
 		}
-		return canExist(message.getMessageSort(), newSource, target);
+		return canExist(message, newSource, target);
 	}
 
 	public static boolean canReorientTarget(Message message, Element newTarget) {
@@ -68,32 +68,44 @@ public class MessageConnectionHelper {
 		} else if(sendEvent instanceof Gate) {
 			source = ((Gate)sendEvent).getOwner();
 		}
-		return canExist(message.getMessageSort(), source, newTarget);
+		return canExist(message, source, newTarget);
 	}
 
-	public static boolean canExist(MessageSort messageSort, Element source, Element target) {
+	public static boolean canExist(Message message, Element source, Element target) {
+		MessageSort messageSort = null;
+		if(message != null) {
+			messageSort = message.getMessageSort();
+		}
+		return canExist(message, messageSort, source, target);
+	}
+
+	public static boolean canExist(Message message, MessageSort messageSort, Element source, Element target) {
 		if(debug) {
 			print(messageSort, source, target);
 		}
 		if(MessageSort.ASYNCH_CALL_LITERAL == messageSort) {
-			return canExistAsynchMessage(source, target);
+			return canExistAsynchMessage(message, source, target);
 		} else if(MessageSort.ASYNCH_SIGNAL_LITERAL == messageSort) {
 			if(source == null) {
-				return canExistFoundMessage(target);
+				return canExistFoundMessage(message, target);
 			}
 			if(target == null) {
-				return canExistLostMessage(source);
+				return canExistLostMessage(message, source);
 			}
 		} else if(MessageSort.SYNCH_CALL_LITERAL == messageSort) {
-			return canExistSynchMessage(source, target);
+			return canExistSynchMessage(message, source, target);
 		} else if(MessageSort.CREATE_MESSAGE_LITERAL == messageSort) {
-			return canExistCreateMessage(source, target);
+			return canExistCreateMessage(message, source, target);
 		} else if(MessageSort.DELETE_MESSAGE_LITERAL == messageSort) {
-			return canExistDeleteMessage(source, target);
+			return canExistDeleteMessage(message, source, target);
 		} else if(MessageSort.REPLY_LITERAL == messageSort) {
-			return canExistReplyMessage(source, target);
+			return canExistReplyMessage(message, source, target);
 		}
 		return false;
+	}
+
+	public static boolean canExist(MessageSort messageSort, Element source, Element target) {
+		return canExist(null, messageSort, source, target);
 	}
 
 	private static void print(MessageSort messageSort, Element source, Element target) {
@@ -128,7 +140,7 @@ public class MessageConnectionHelper {
 		System.out.println(new String(buf));
 	}
 
-	public static boolean canExistReplyMessage(Element source, Element target) {
+	public static boolean canExistReplyMessage(Message message, Element source, Element target) {
 		if(target instanceof Message) {
 			return false;
 		}
@@ -137,14 +149,21 @@ public class MessageConnectionHelper {
 				return false;
 			}
 		}
+		if(target instanceof Gate) {
+			Message ownMessage = ((Gate)target).getMessage();
+			if(ownMessage == null) {
+				return true;
+			}
+			return ownMessage == message;
+		}
 		return true;
 	}
 
-	public static boolean canExistDeleteMessage(Element source, Element target) {
+	public static boolean canExistDeleteMessage(Message message, Element source, Element target) {
 		return true;
 	}
 
-	public static boolean canExistCreateMessage(Element source, Element target) {
+	public static boolean canExistCreateMessage(Message message, Element source, Element target) {
 		if(target != null) {
 			if(false == target instanceof Lifeline) {
 				return false;
@@ -156,7 +175,7 @@ public class MessageConnectionHelper {
 		return true;
 	}
 
-	public static boolean canExistSynchMessage(Element source, Element target) {
+	public static boolean canExistSynchMessage(Message message, Element source, Element target) {
 		if(source != null && !(source instanceof ExecutionSpecification || source instanceof Lifeline)) {
 			return false;
 		}
@@ -166,21 +185,39 @@ public class MessageConnectionHelper {
 		return true;
 	}
 
-	public static boolean canExistLostMessage(Element source) {
+	public static boolean canExistLostMessage(Message message, Element source) {
+		if(source instanceof Gate) {
+			Message ownMessage = ((Gate)source).getMessage();
+			if(ownMessage == null) {
+				return true;
+			}
+			return ownMessage == message;
+		}
 		return true;
 	}
 
-	public static boolean canExistFoundMessage(Element target) {
+	public static boolean canExistFoundMessage(Message message, Element target) {
+		if(target instanceof Gate) {
+			return message == null ? ((Gate)target).getMessage() == null : message == ((Gate)target).getMessage();
+		}
 		return true;
 	}
 
-	public static boolean canExistAsynchMessage(Element source, Element target) {
+	public static boolean canExistAsynchMessage(Message message, Element source, Element target) {
 		if(target instanceof Message) {
 			return false;
 		}
 		//Only available for ExecutionSpecification and Lifeline.
 		if(target != null && !(target instanceof ExecutionSpecification || target instanceof Lifeline || target instanceof InteractionFragment || target instanceof MessageEnd)) {
 			return false;
+		}
+		if(source instanceof Gate) {
+			Message ownerMessage = ((Gate)source).getMessage();
+			return ownerMessage == null ? true : ownerMessage == message;
+		}
+		if(target instanceof Gate) {
+			Message ownerMessage = ((Gate)target).getMessage();
+			return ownerMessage == null ? true : ownerMessage == message;
 		}
 		return true;
 	}

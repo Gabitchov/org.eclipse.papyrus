@@ -21,6 +21,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.requests.CreateConnectionRequest;
+import org.eclipse.gef.requests.CreationFactory;
+import org.eclipse.gef.tools.CreationTool;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
@@ -28,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
@@ -72,6 +75,8 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 	private static final String CREATEGENERALORDERINGTOOL = "createGeneralOrderingTool";
 
 	private static final String CREATEANNOTATEDLINKTOOL = "createAnnotatedLinkTool";
+
+	private static final String CREATEGATETOOL = "createGateTool";
 
 	public SequencePaletteFactory() {
 	}
@@ -130,8 +135,27 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATEANNOTATEDLINKTOOL)) {
 			return createAnnotatedLink9CreationTool();
 		}
+		if(toolId.equals(CREATEGATETOOL)) {
+			return createGateTool();
+		}
 		// default return: null
 		return null;
+	}
+
+	/**
+	 * @return
+	 */
+	private Tool createGateTool() {
+		return new CreationTool(new CreationFactory() {
+
+			public Object getObjectType() {
+				return GateEditPart.GATE_TYPE;
+			}
+
+			public Object getNewObject() {
+				return GateEditPart.GATE_TYPE;
+			}
+		});
 	}
 
 	@Override

@@ -42,6 +42,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.DirectEditRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -114,6 +115,8 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 	private DirectEditManager manager;
 
 	private IParser parser;
+
+	private boolean firstOperand;
 
 	/**
 	 * Constructor.
@@ -481,6 +484,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 	 * Set if this Edit Part is the first Operand of his CombinedFragment's parent.
 	 */
 	public void setFirstOperand(boolean firstOperand) {
+		this.firstOperand = firstOperand;
 		if(primaryShape != null) {
 			getPrimaryShape().setLineSeparator(!firstOperand);
 		}
@@ -645,6 +649,13 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		if(ignoreRequest(request)) {
 			return null;
 		}
+		if(request instanceof ReconnectRequest) {
+			if(REQ_RECONNECT_SOURCE.equals(request.getType()) && ((ReconnectRequest)request).getConnectionEditPart().getSource() instanceof GateEditPart) {
+				return getParent().getParent().getCommand(request);
+			} else if(REQ_RECONNECT_TARGET.equals(request.getType()) && ((ReconnectRequest)request).getConnectionEditPart().getTarget() instanceof GateEditPart) {
+				return getParent().getParent().getCommand(request);
+			}
+		}
 		return super.getCommand(request);
 	}
 
@@ -686,6 +697,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 			super();
 			this.setLineWidth(2);
 			updateConstraintLabel();
+			setLineSeparator(!firstOperand);
 		}
 
 		/**
