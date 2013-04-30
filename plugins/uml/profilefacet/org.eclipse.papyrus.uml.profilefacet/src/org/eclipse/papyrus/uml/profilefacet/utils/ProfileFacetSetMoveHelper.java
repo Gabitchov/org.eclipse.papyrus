@@ -308,6 +308,9 @@ public final class ProfileFacetSetMoveHelper {
 				}
 			}
 		}
+		if(cc.isEmpty()) {
+			return null;
+		}
 		return cc;
 	}
 
