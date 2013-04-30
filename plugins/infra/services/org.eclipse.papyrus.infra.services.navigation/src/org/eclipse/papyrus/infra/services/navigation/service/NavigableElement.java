@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.services.navigation.service;
 
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
+import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -40,10 +41,21 @@ public interface NavigableElement {
 	 * Executes the navigation action
 	 * 
 	 * @param navigationContext
+	 *        The NavigationTarget that can be used to select the navigation target
+	 * @return true if the navigation context could select and reveal this element
+	 */
+	public boolean navigate(NavigationTarget navigationContext);
+
+	/**
+	 * Executes the navigation action
+	 * 
+	 * @param navigationContext
 	 *        The IRevealSemanticElement that can be used to select the navigation target
 	 * 
+	 * @deprecated Use {@link #navigate(NavigationTarget)} instead
 	 */
-	public void navigate(IRevealSemanticElement navigationContext);
+	@Deprecated
+	public void navigate(IRevealSemanticElement revealSemanticElement);
 
 	/**
 	 * The Image of this navigable element

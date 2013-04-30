@@ -399,4 +399,14 @@
             file="resources/PapyrusPages.uiCustom"
             loadByDefault="true"/>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
+      <target
+            description="Display an element in the ModelExplorer"
+            id="org.eclipse.papyrus.views.modelexplorer.navigation.target"
+            label="Show in ModelExplorer"
+            navigationTargetProvider="org.eclipse.papyrus.views.modelexplorer.navigation.ModelExplorerNavigationTargetProvider"
+            order="500">
+      </target>
+   </extension>
 </plugin>

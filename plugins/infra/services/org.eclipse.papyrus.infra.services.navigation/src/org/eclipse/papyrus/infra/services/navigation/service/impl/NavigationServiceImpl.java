@@ -11,9 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.navigation.service.impl;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -22,11 +24,13 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.navigation.Activator;
+import org.eclipse.papyrus.infra.services.navigation.provider.NavigationTargetProvider;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationContributor;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
 import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
+import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
@@ -47,25 +51,37 @@ public class NavigationServiceImpl implements NavigationService {
 	 */
 	public static final String IS_ACTIVE_KEY = "isActive"; //$NON-NLS-1$
 
+	protected ServicesRegistry registry;
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 		// Nothing
+		this.registry = servicesRegistry;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void startService() throws ServiceException {
 		createNavigationContributors();
-
+		createNavigationTargetProviders();
 	}
 
 	protected void createNavigationContributors() {
-		navigationContributors = new LinkedList<NavigationContributorWrapper>();
+		navigationContributors = new LinkedList<NavigationContributorDescriptor>();
 
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 
 		for(IConfigurationElement e : config) {
+			if(!"contributor".equals(e.getName())) {
+				continue;
+			}
 			try {
 				Object instance = e.createExecutableExtension("contributor");
 				if(instance instanceof NavigationContributor) {
-					NavigationContributorWrapper wrapper = new NavigationContributorWrapper((NavigationContributor)instance);
+					NavigationContributorDescriptor wrapper = new NavigationContributorDescriptor((NavigationContributor)instance);
 					wrapper.setId(e.getAttribute("id"));
 					wrapper.setLabel(e.getAttribute("label"));
 					wrapper.setDescription(e.getAttribute("description"));
@@ -78,14 +94,45 @@ public class NavigationServiceImpl implements NavigationService {
 		}
 	}
 
-	public void disposeService() throws ServiceException {
-		// Nothing
+	protected void createNavigationTargetProviders() {
+		navigationTargetProviders = new TreeSet<NavigationTargetProvider>();
+
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+
+		for(IConfigurationElement e : config) {
+			if(!"target".equals(e.getName())) {
+				continue;
+			}
+			try {
+				Object instance = e.createExecutableExtension("navigationTargetProvider");
+				if(instance instanceof NavigationTargetProvider) {
+					NavigationTargetProviderDescriptor descriptor = new NavigationTargetProviderDescriptor((NavigationTargetProvider)instance);
+					descriptor.setId(e.getAttribute("id"));
+					descriptor.setLabel(e.getAttribute("label"));
+					descriptor.setDescription(e.getAttribute("description"));
+					descriptor.setOrder(Integer.parseInt(e.getAttribute("order")));
+					navigationTargetProviders.add(descriptor);
+				}
+			} catch (Exception ex) {
+				Activator.log.warn("Invalid navigation target contribution from: " + e.getContributor());
+			}
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void disposeService() throws ServiceException {
+		this.registry = null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<NavigableElement> getNavigableElements(Object fromElement) {
 		List<NavigableElement> navigableElements = new LinkedList<NavigableElement>();
 
-		for(NavigationContributorWrapper contributor : navigationContributors) {
+		for(NavigationContributorDescriptor contributor : navigationContributors) {
 			if(contributor.isActive()) {
 				navigableElements.addAll(contributor.getNavigableElements(fromElement));
 			}
@@ -94,7 +141,73 @@ public class NavigationServiceImpl implements NavigationService {
 		return navigableElements;
 	}
 
-	public static class NavigationContributorWrapper implements NavigationContributor {
+	public static class NavigationTargetProviderDescriptor implements NavigationTargetProvider, Comparable<NavigationTargetProviderDescriptor> {
+
+		private NavigationTargetProvider provider;
+
+		private int order;
+
+		private String label;
+
+		private String description;
+
+		private String id;
+
+		public NavigationTargetProviderDescriptor(NavigationTargetProvider provider) {
+			this.provider = provider;
+		}
+
+		public NavigationTarget getNavigationTarget(ServicesRegistry registry) {
+			return provider.getNavigationTarget(registry);
+		}
+
+		public int getOrder() {
+			return order;
+		}
+
+		public String getLabel() {
+			return label;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		public void setOrder(int order) {
+			this.order = order;
+		}
+
+		public void setLabel(String label) {
+			this.label = label;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
+		public int compareTo(NavigationTargetProviderDescriptor o) {
+			if(o == null) {
+				return -1;
+			}
+
+			if(o.order == order) {
+				return 0;
+			}
+
+			return o.order < order ? 1 : -1;
+		}
+
+	}
+
+	public static class NavigationContributorDescriptor implements NavigationContributor {
 
 		private final NavigationContributor contributor;
 
@@ -106,7 +219,7 @@ public class NavigationServiceImpl implements NavigationService {
 
 		private final IPreferenceStore preferences;
 
-		public NavigationContributorWrapper(NavigationContributor contributor) {
+		public NavigationContributorDescriptor(NavigationContributor contributor) {
 			this.contributor = contributor;
 
 			preferences = Activator.getDefault().getPreferenceStore();
@@ -154,18 +267,27 @@ public class NavigationServiceImpl implements NavigationService {
 			return preferences.getBoolean(preferenceKey);
 		}
 
-		public static String getIsActiveKey(NavigationContributorWrapper strategy) {
+		public static String getIsActiveKey(NavigationContributorDescriptor strategy) {
 			return strategy.getId() + "." + IS_ACTIVE_KEY;
 		}
 
 	}
 
-	private List<NavigationContributorWrapper> navigationContributors;
+	private List<NavigationContributorDescriptor> navigationContributors;
 
-	public List<NavigationContributorWrapper> getNavigationContributors() {
+	private Collection<NavigationTargetProvider> navigationTargetProviders;
+
+	public List<NavigationContributorDescriptor> getNavigationContributors() {
 		return navigationContributors;
 	}
 
+	public Collection<NavigationTargetProvider> getNavigationTargetProviders() {
+		return navigationTargetProviders;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public SelectionMenu createNavigationList(Object fromElement, final Control parent) {
 		List<NavigableElement> navigableElements = getNavigableElements(fromElement);
 		if(navigableElements.isEmpty()) {
@@ -217,5 +339,26 @@ public class NavigationServiceImpl implements NavigationService {
 		selectionMenu.open();
 
 		return selectionMenu;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void navigate(NavigableElement navigableElement) {
+		if(registry == null) {
+			throw new IllegalStateException("The navigation service is not initialized");
+		}
+
+		for(NavigationTargetProvider provider : getNavigationTargetProviders()) {
+			NavigationTarget target = provider.getNavigationTarget(registry);
+
+			if(target == null) {
+				continue;
+			}
+
+			if(navigableElement.navigate(target)) {
+				return;
+			}
+		}
 	}
 }

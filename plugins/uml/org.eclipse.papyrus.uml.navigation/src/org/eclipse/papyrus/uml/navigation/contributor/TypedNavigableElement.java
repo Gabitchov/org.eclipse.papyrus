@@ -17,6 +17,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
+import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Type;
 
@@ -55,6 +56,7 @@ public class TypedNavigableElement implements NavigableElement {
 		}
 	}
 
+	@Deprecated
 	public void navigate(IRevealSemanticElement navigationContext) {
 		if(!isEnabled()) {
 			return;
@@ -80,5 +82,15 @@ public class TypedNavigableElement implements NavigableElement {
 	 */
 	public boolean isEnabled() {
 		return type != null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean navigate(NavigationTarget navigationContext) {
+		if(!isEnabled()) {
+			return false;
+		}
+		return navigationContext.revealElement(type);
 	}
 }

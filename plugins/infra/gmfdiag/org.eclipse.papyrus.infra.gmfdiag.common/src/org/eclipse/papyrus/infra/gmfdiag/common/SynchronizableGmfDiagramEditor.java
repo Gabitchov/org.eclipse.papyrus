@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocument
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
+import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 
 /**
  * 
@@ -34,12 +37,11 @@ import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
  * 
  */
 
-public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implements IRevealSemanticElement {
+public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implements IRevealSemanticElement, NavigationTarget {
 
 	public SynchronizableGmfDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
 	}
-
 
 	/**
 	 * reveal all editpart that represent an element in the given list.
@@ -48,6 +50,26 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 	 * 
 	 */
 	public void revealSemanticElement(List<?> elementList) {
+		revealElement(elementList);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean revealElement(Object element) {
+		return revealElement(Collections.singleton(element));
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * reveal all editpart that represent an element in the given list.
+	 * 
+	 * @see org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement#revealSemanticElement(java.util.List)
+	 * 
+	 */
+	public boolean revealElement(Collection<?> elementList) {
 		//create an instance that can get semantic element from gmf
 		SemanticFromGMFElement semanticFromGMFElement = new SemanticFromGMFElement();
 
@@ -84,8 +106,11 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 			if(researchedEditPart != null) {
 				graphicalViewer.select(researchedEditPart); //Set selection
 				graphicalViewer.reveal(researchedEditPart); //If needed, scroll to make the edit part visible
+				return true;
 			}
 		}
+
+		return false;
 	}
 
 	@Override

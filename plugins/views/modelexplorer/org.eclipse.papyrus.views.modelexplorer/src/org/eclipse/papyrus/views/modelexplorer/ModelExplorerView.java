@@ -461,7 +461,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 						//TODO: Implement a priority on NavigableElements and navigate the element with the highest priority
 						for(NavigableElement navigableElement : navigableElements) {
 							if(navigableElement.isEnabled()) {
-								navigableElement.navigate(ModelExplorerView.this);
+								service.navigate(navigableElement);
 							}
 						}
 					} catch (ServiceException ex) {
@@ -554,7 +554,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	private void enterItem(TreeItem item) {
 		try {
-			NavigationService navigation = serviceRegistry.getService(NavigationService.class);
+			final NavigationService navigation = serviceRegistry.getService(NavigationService.class);
 			disposeCurrentMenu();
 			selectionMenu = navigation.createNavigationList(item.getData(), item.getParent());
 			if(selectionMenu == null) {
@@ -571,7 +571,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					if(selectedElement instanceof NavigableElement) {
 						NavigableElement navigableElement = (NavigableElement)selectedElement;
 						if(navigableElement.isEnabled()) {
-							((NavigableElement)selectedElement).navigate(ModelExplorerView.this);
+							navigation.navigate((NavigableElement)selectedElement);
 							exitItem();
 						}
 					}

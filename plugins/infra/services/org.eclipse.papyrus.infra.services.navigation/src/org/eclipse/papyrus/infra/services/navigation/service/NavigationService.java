@@ -30,4 +30,6 @@ import org.eclipse.swt.widgets.Control;
 public interface NavigationService extends IService, NavigationContributor {
 
 	public SelectionMenu createNavigationList(Object data, Control parent);
+
+	public void navigate(NavigableElement navigableElement);
 }

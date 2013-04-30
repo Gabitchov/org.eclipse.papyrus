@@ -20,5 +20,15 @@
             name="Navigation Service">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
+      <target
+            description="Display elements in the current active editor"
+            id="org.eclipse.papyrus.infra.services.navigation.target.activeEditor"
+            label="Show in the active editor"
+            navigationTargetProvider="org.eclipse.papyrus.infra.services.navigation.provider.impl.ActiveEditorNavigationTargetProvider"
+            order="10">
+      </target>
+   </extension>
 
 </plugin>

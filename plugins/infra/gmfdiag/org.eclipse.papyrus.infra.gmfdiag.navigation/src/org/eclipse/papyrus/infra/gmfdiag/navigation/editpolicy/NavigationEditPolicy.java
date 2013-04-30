@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -36,9 +35,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
 import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
-import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
-import org.eclipse.ui.IEditorPart;
 
 /**
  * An edit policy to use the {@link NavigationService} on GMF Diagrams
@@ -125,7 +122,7 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 			}
 		}
 
-		public Command navigate(SelectionRequest request) {
+		public Command navigate(final SelectionRequest request) {
 			if(!isAlt(request)) {
 				return null;
 			}
@@ -139,7 +136,11 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 
 				@Override
 				public void execute() {
-					element.navigate(getNavigationContext());
+					try {
+						getNavigationService(request).navigate(element);
+					} catch (ServiceException ex) {
+						Activator.log.error(ex);
+					}
 					exitItem();
 				}
 			};
@@ -147,7 +148,7 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 
 		private NavigableElement getElementToNavigate(SelectionRequest request) {
 			try {
-				List<NavigableElement> navigableElements = getServicesRegistry().getService(NavigationService.class).getNavigableElements(getEditPart(request));
+				List<NavigableElement> navigableElements = getNavigationService(request).getNavigableElements(getEditPart(request));
 				if(navigableElements.isEmpty()) {
 					return null;
 				}
@@ -158,9 +159,13 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 					}
 				}
 			} catch (ServiceException ex) {
-				//Ignore
+				//Ignore: the service is not available, do nothing
 			}
 			return null;
+		}
+
+		private NavigationService getNavigationService(SelectionRequest request) throws ServiceException {
+			return getServicesRegistry().getService(NavigationService.class);
 		}
 
 		public ViewerContext(EditPartViewer editPartViewer) {
@@ -241,7 +246,7 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 			try {
 				EditPart targetEditPart = getEditPart(request);
 
-				NavigationService navigation = getServicesRegistry().getService(NavigationService.class);
+				final NavigationService navigation = getServicesRegistry().getService(NavigationService.class);
 				disposeCurrentMenu();
 				selectionMenu = navigation.createNavigationList(targetEditPart, editPartViewer.getControl());
 				if(selectionMenu == null) {
@@ -268,7 +273,7 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 						Object selectedElement = ((IStructuredSelection)event.getSelection()).getFirstElement();
 						if(selectedElement instanceof NavigableElement) {
 							NavigableElement navigableElement = (NavigableElement)selectedElement;
-							navigate(navigableElement);
+							navigate(navigableElement, navigation);
 						}
 					}
 				});
@@ -277,44 +282,14 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 			}
 		}
 
-		private void navigate(NavigableElement navigableElement) {
-			if(navigableElement != null && navigableElement.isEnabled()) {
-				IRevealSemanticElement navigationContext = getNavigationContext();
-				if(navigationContext != null) {
-					navigableElement.navigate(navigationContext);
-				}
-
-				exitItem();
-			}
+		private void navigate(NavigableElement navigableElement, NavigationService navigationService) {
+			navigationService.navigate(navigableElement);
+			exitItem();
 		}
 
 		private ServicesRegistry getServicesRegistry() throws ServiceException {
 			return ServiceUtilsForEditPart.getInstance().getServiceRegistry(getHost());
 		}
 
-		private IRevealSemanticElement getNavigationContext() {
-			IMultiDiagramEditor multiDiagramEditor;
-			try {
-				multiDiagramEditor = ServiceUtilsForEditPart.getInstance().getService(IMultiDiagramEditor.class, getHost());
-			} catch (ServiceException ex) {
-				Activator.log.error(ex);
-				return null;
-			}
-
-			IRevealSemanticElement navigationContext;
-			if(multiDiagramEditor instanceof IRevealSemanticElement) {
-				navigationContext = (IRevealSemanticElement)multiDiagramEditor;
-			} else {
-				navigationContext = (IRevealSemanticElement)multiDiagramEditor.getAdapter(IRevealSemanticElement.class);
-				if(navigationContext == null) {
-					IEditorPart activeEditor = multiDiagramEditor.getActiveEditor();
-					if(activeEditor instanceof IRevealSemanticElement) {
-						navigationContext = (IRevealSemanticElement)activeEditor;
-					}
-				}
-			}
-
-			return navigationContext;
-		}
 	}
 }
