@@ -14,19 +14,38 @@
 package org.eclipse.papyrus.infra.nattable.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 
-
+/**
+ * The abstract handler to use for the table actions
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public abstract class AbstractTableHandler extends AbstractHandler {
 
+	/**
+	 * 
+	 * @return
+	 *         the current active part
+	 */
 	protected IWorkbenchPart getActivePart() {
 		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the current table manager or <code>null</code> if not found
+	 */
 	protected INattableModelManager getCurrentNattableModelManager() {
 		final IWorkbenchPart currentPart = getActivePart();
 		if(currentPart != null) {
@@ -36,12 +55,38 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		return null;
 	}
 
-	@Override
-	public boolean isEnabled() {
-		return getCurrentNattableModelManager() != null;
+
+	/**
+	 * Returns the EditingDomain associated to the table
+	 * 
+	 * @return
+	 */
+	protected EditingDomain getTableEditingDomain() {//duplicated code from NattableModelManager
+		ServicesRegistry registry = null;
+		try {
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getCurrentNattableModelManager().getTable());
+			return registry.getService(EditingDomain.class);
+		} catch (final ServiceException e) {
+			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
+		}
+		return null;
 	}
 
-	protected TransactionalEditingDomain getEditingDomain() {
-		return TransactionUtil.getEditingDomain(getCurrentNattableModelManager().getTable());//FIXME
+	/**
+	 * Returns the EditingDomain associated to the context
+	 * 
+	 * @return
+	 */
+	protected EditingDomain getContextEditingDomain() {//duplicated code from NattableModelManager
+		ServicesRegistry registry = null;
+		try {
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getCurrentNattableModelManager().getTable());
+			return registry.getService(EditingDomain.class);
+		} catch (final ServiceException e) {
+			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
+		}
+
+		return null;
 	}
+
 }

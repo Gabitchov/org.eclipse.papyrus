@@ -95,12 +95,12 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handlersAxisElement(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handlesAxisElement(java.lang.Object)
 	 * 
 	 * @param obj
 	 * @return
 	 */
-	public boolean handlersAxisElement(Object obj) {
+	public boolean handlesAxisElement(Object obj) {
 		return false;
 	}
 

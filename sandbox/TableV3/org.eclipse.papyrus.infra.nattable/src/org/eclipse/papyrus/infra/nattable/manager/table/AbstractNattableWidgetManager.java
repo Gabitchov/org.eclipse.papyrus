@@ -214,8 +214,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			}
 		});
 
-		this.natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
-		this.natTable.configure();
+		configureNatTable();
 		addColumnReorderListener(this.bodyLayerStack.getColumnReorderLayer());
 		addDragAndDropSupport(this.natTable);
 
@@ -233,16 +232,21 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		return this.natTable;
 	}
 
+	protected void configureNatTable() {
+		if(!this.natTable.isDisposed()) {
+			this.natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
+			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
+			this.natTable.configure();
+		}
+	}
 
-	protected final IConfigRegistry createAndInitializeNewConfigRegistry() {
+	protected IConfigRegistry createAndInitializeNewConfigRegistry() {
 		final IConfigRegistry newRegistry = new ConfigRegistry();
 		if(!this.natTable.isDisposed()) {
 			newRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 			newRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			//commented because seems generate several bugs with edition
 			//newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL,  GridRegion.BODY);
-
-
 			newRegistry.registerConfigAttribute(CellConfigAttributes.EXPORT_FORMATTER, new ExportFormatter());
 		}
 		return newRegistry;

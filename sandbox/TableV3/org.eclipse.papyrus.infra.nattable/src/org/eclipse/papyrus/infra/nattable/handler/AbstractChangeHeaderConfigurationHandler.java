@@ -49,7 +49,7 @@ public abstract class AbstractChangeHeaderConfigurationHandler extends AbstractT
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		AbstractHeaderAxisConfiguration configuration = getEditedAxisConfiguration();
 		final CompositeCommand cmd = new CompositeCommand("ChangeHeaderConfigurationCommand"); //$NON-NLS-1$
-		TransactionalEditingDomain domain = getEditingDomain();
+		TransactionalEditingDomain domain = (TransactionalEditingDomain)getTableEditingDomain();
 		if(configuration instanceof TableHeaderAxisConfiguration) {
 			//we can't edit it, because it's comes from the initial configuration
 			configuration = HeaderAxisConfigurationManagementUtils.transformToLocalHeaderConfiguration((TableHeaderAxisConfiguration)configuration);

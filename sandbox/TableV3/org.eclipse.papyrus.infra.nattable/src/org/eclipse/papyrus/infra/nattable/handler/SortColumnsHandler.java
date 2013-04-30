@@ -55,6 +55,6 @@ public class SortColumnsHandler extends AbstractTableHandler {
 		if(manager != null) {
 			setBaseEnabled(manager.canReorderColumns());
 		}
-		super.setEnabled(evaluationContext);
+		setBaseEnabled(false);
 	}
 }

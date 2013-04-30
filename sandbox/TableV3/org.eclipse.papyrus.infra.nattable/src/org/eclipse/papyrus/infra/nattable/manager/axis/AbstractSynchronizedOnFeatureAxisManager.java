@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
@@ -25,13 +24,10 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * 
@@ -45,55 +41,43 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 */
 	protected Adapter featureListener;
 
-	protected boolean isRefreshing = false;
-
+	/**
+	 * the featuer currenlty listen
+	 */
 	protected EStructuralFeature currentListenFeature;
 
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
 	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation,
-	 *      org.eclipse.papyrus.infra.nattable.model.nattable.Table,
-	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider, boolean)
+	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider)
 	 * 
 	 * @param manager
-	 * @param rep
-	 * @param table
 	 * @param provider
-	 * @param mustRefreshOnAxisChanges
+	 * @param rep
 	 */
 	@Override
-	public void init(final INattableModelManager manager, final AxisManagerRepresentation rep, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
-		super.init(manager, rep, table, provider, mustRefreshOnAxisChanges);
+	public void init(final INattableModelManager manager, final AxisManagerRepresentation rep, final AbstractAxisProvider provider) {
+		super.init(manager, rep, provider);
 		verifyValues();
 		this.currentListenFeature = getListenFeature();
 		addContextFeatureValueListener();
-		updateAxisContents();
 	}
 
-
+	/**
+	 * add a listener on the table context to listen the required feature
+	 */
 	protected void addContextFeatureValueListener() {
 		this.featureListener = new AdapterImpl() {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-
 				if(msg.getFeature() == AbstractSynchronizedOnFeatureAxisManager.this.currentListenFeature) {//FIXME : create our own adapter for derived/subset feature
-					if(!AbstractSynchronizedOnFeatureAxisManager.this.isRefreshing) {//to avoid to many thread
-						AbstractSynchronizedOnFeatureAxisManager.this.isRefreshing = true;
-						Display.getDefault().asyncExec(new Runnable() {
-
-							public void run() {
-								updateAxisContents();
-								((NattableModelManager)getTableManager()).refreshNattable();
-								AbstractSynchronizedOnFeatureAxisManager.this.isRefreshing = false;
-							}
-						});
-					}
+					getTableManager().updateAxisContents(getRepresentedContentProvider());
 				}
 			};
 		};
-		getTable().getContext().eAdapters().add(this.featureListener);
+		getTableManager().getTable().getContext().eAdapters().add(this.featureListener);
 	}
 
 	/**
@@ -124,7 +108,7 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 *         the filling configuration used by the table or <code>null</code> if any is defined
 	 */
 	protected EStructuralFeatureValueFillingConfiguration getFillingConfiguration() {//FIXME : local configuration not yet managed
-		for(final IAxisConfiguration current : this.rep.getSpecificAxisConfigurations()) {
+		for(final IAxisConfiguration current : this.representedAxisManager.getSpecificAxisConfigurations()) {
 			if(current instanceof EStructuralFeatureValueFillingConfiguration) {
 				return (EStructuralFeatureValueFillingConfiguration)current;
 			}
@@ -139,7 +123,7 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 */
 	@Override
 	public void dispose() {
-		getTable().getContext().eAdapters().remove(this.featureListener);
+		getTableManager().getTable().getContext().eAdapters().remove(this.featureListener);
 		super.dispose();
 	}
 
@@ -151,7 +135,7 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 		final EStructuralFeature feature = getListenFeature();
 		if(feature != null) {
 			Assert.isTrue(feature.isMany());
-			Assert.isTrue(getTable().getContext().eClass().getEAllStructuralFeatures().contains(feature));
+			Assert.isTrue(getTableManager().getTable().getContext().eClass().getEAllStructuralFeatures().contains(feature));
 		}
 	}
 
@@ -181,11 +165,14 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	}
 
 	/**
-	 * calculus of the contents of the axis
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAllManagedAxis()
+	 * 
+	 * @return
 	 */
 	@Override
-	public synchronized void updateAxisContents() {
-		final EObject context = getTable().getContext();
+	public Collection<Object> getAllManagedAxis() {
+		final EObject context = getTableContext();
 		Object value;
 		if(this.currentListenFeature != null) {
 			value = context.eGet(this.currentListenFeature);
@@ -195,12 +182,7 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 		assert value instanceof List<?>;
 		List<Object> interestingObject = filterObject((List<?>)value);
 		interestingObject = sortObjects(interestingObject);
-		final List<Object> axisElements = getTableManager().getElementsList(getRepresentedContentProvider());
-		axisElements.clear();
-		Iterator<Object> iter = interestingObject.iterator();
-		while(iter.hasNext()) {
-			axisElements.add(iter.next());
-		}
+		return interestingObject;
 	}
 
 	/**
@@ -229,6 +211,20 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 */
 	@Override
 	public boolean canReoderElements() {
+		return false;
+	}
+
+	public final boolean isDynamic() {
+		return true;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#isSlave()
+	 * 
+	 * @return
+	 */
+	public boolean isSlave() {
 		return false;
 	}
 }

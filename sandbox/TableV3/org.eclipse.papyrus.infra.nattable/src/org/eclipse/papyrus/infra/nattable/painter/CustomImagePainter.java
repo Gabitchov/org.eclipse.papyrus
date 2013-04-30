@@ -30,7 +30,7 @@ import org.eclipse.swt.graphics.Image;
  * Custom Image painter for the header of the table
  * 
  */
-public class CustomImagePainter extends ImagePainter {//FIXME change this name!
+public class CustomImagePainter extends ImagePainter {
 
 	/**
 	 * 

@@ -13,11 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.ListIterator;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -27,7 +23,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
@@ -58,56 +53,12 @@ public class EObjectAxisManager extends AbstractAxisManager {
 			if(isAllowedContents(object)) {
 				final EObjectAxis horizontalAxis = NattableaxisFactory.eINSTANCE.createEObjectAxis();
 				horizontalAxis.setElement((EObject)object);
-				horizontalAxis.setManager(this.rep);
+				horizontalAxis.setManager(this.representedAxisManager);
 				final Command tmp = AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), horizontalAxis);
 				cmd.append(tmp);
 			}
 		}
 		return cmd;
-	}
-
-	/**
-	 * calculus of the contents of the axis
-	 */
-	@Override
-	public synchronized void updateAxisContents() {
-		if(getTableManager() != null) {
-			final List<Object> axisContents = getTableManager().getElementsList(getRepresentedContentProvider());
-			final List<IAxis> axis = getRepresentedContentProvider().getAxis();
-			final List<EObject> representedElement = new ArrayList<EObject>();
-			for(int i = 0; i < axis.size(); i++) {
-				IAxis current = axis.get(i);
-				if(current instanceof EObjectAxis) {
-					final EObject element = (EObject)current.getElement();
-					if(element != null) {
-						int currentIndex = axisContents.indexOf(element);
-						if(currentIndex == -1) {
-							axisContents.add(element);
-						} else if(currentIndex != i) {
-							axisContents.remove(currentIndex);
-							if(i <= axisContents.size()) {
-								axisContents.add(i, element);
-							} else {
-								axisContents.add(element);
-							}
-
-						}
-						representedElement.add((EObject)current.getElement());
-					}
-				}
-			}
-
-			//we remove the elements which are referenced but removed from the table (probably destroyed)
-			final ListIterator<Object> iterator = axisContents.listIterator();
-			while(iterator.hasNext()) {
-				final Object current = iterator.next();
-				if(current instanceof EObject || current == null) {
-					if(!representedElement.contains(current)) {
-						iterator.remove();
-					}
-				}
-			}
-		}
 	}
 
 	/**
@@ -125,14 +76,6 @@ public class EObjectAxisManager extends AbstractAxisManager {
 		return null;
 	}
 
-	/**
-	 * 
-	 * @return
-	 *         the list of the encapsulated axis manager
-	 */
-	public List<String> getEncapsulatedAxisManager() {
-		return Collections.emptyList();
-	}
 
 	/**
 	 * 
@@ -166,4 +109,25 @@ public class EObjectAxisManager extends AbstractAxisManager {
 		}
 		return false;
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ISubAxisManager#isDynamic()
+	 * 
+	 * @return
+	 */
+	public boolean isDynamic() {
+		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#isSlave()
+	 * 
+	 * @return
+	 */
+	public boolean isSlave() {
+		return false;
+	}
+
 }

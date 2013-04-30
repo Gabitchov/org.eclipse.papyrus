@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
@@ -47,7 +48,7 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	public boolean accept(Object element) {
 		if(element instanceof ILabelProviderContextElement) {
 			final Object object = ((ILabelProviderContextElement)element).getObject();
-			return object instanceof EStructuralFeature;
+			return object instanceof EStructuralFeature || object instanceof EStructuralFeatureAxis;
 		}
 		return false;
 	}
@@ -140,7 +141,14 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	 */
 	@Override
 	public String getText(Object element) {
-		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
+		final Object object = ((ILabelProviderContextElement)element).getObject();
+		EStructuralFeature feature = null;
+		if(object instanceof EStructuralFeatureAxis) {
+			feature = ((EStructuralFeatureAxis)object).getElement();
+		} else if(feature instanceof EStructuralFeature) {
+			feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
+		}
+
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
 		ILabelProviderConfiguration conf = null;
 		if(element instanceof LabelProviderCellContextElement) {
@@ -172,7 +180,14 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayIcon()) {
 			return null;
 		}
-		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
+
+		final Object object = ((ILabelProviderContextElement)element).getObject();
+		EStructuralFeature feature = null;
+		if(object instanceof EStructuralFeatureAxis) {
+			feature = ((EStructuralFeatureAxis)object).getElement();
+		} else if(object instanceof EStructuralFeature) {
+			feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
+		}
 		if(feature instanceof EAttribute) {
 			return EStructuralFeatureImageRegistry.getAttributeIcon();
 

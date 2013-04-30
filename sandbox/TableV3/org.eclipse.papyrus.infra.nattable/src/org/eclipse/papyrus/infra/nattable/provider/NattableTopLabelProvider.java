@@ -21,6 +21,7 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
@@ -29,7 +30,12 @@ import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
 
-
+/**
+ * The LabelProvider used in the table
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider {
 
 
@@ -40,15 +46,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @return
 	 */
 	protected String getColumnHeaderLabel(final ILayerCell cell, final IConfigRegistry configRegistry) {
-		final INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-		//FIXME : we must find the managed config for this axis
-		//		final AbstractLabelConfiguration labelConfiguration = manager.getVerticalAxisProvider().getAxisConfiguration().getLabelConfiguration();
-		//		final String labelContext = labelConfiguration.getLabelProviderContext();
-		//		if(labelContext != null) {
-		//			return getLabel(cell, configRegistry, labelContext);
-		//		} else {
-			return getLabel(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
-		//		}
+		return getLabel(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 	}
 
 	/**
@@ -58,15 +56,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @return
 	 */
 	protected String getRowHeaderLabel(final ILayerCell cell, final IConfigRegistry configRegistry) {
-		final INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-		//FIXME : we must find the managed config for this axis
-		//		final ILabelConfiguration labelConfiguration = manager.getHorizontalAxisProvider().getAxisConfiguration().getLabelConfiguration();
-		//		final String labelContext = labelConfiguration.getLabelProviderContext();
-		//		if(labelContext != null) {
-		//			return getLabel(cell, configRegistry, labelContext);
-		//		} else {
-			return getLabel(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
-		//		}
+		return getLabel(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 	}
 
 	/**
@@ -80,6 +70,11 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	public String getText(Object element) {
 		final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		String labelProviderContextId = null;
+		if(element instanceof IAxis) {
+			labelProviderContextId = ((IAxis)element).getManager().getLabelProviderContext();
+			return getLabel(cell, configRegistry, labelProviderContextId);
+		}
 		final LabelStack labels = getLabelStack(cell, configRegistry);
 		if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
 			return getColumnHeaderLabel(cell, configRegistry);
@@ -92,7 +87,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 		if(value != null) {
 			return value.toString();
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
@@ -119,7 +114,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @return
 	 */
 	protected String getLabel(final ILayerCell cell, final IConfigRegistry configRegistry, final String labelproviderContext) {
-		String txt = "";
+		String txt = ""; //$NON-NLS-1$
 		Object value = cell.getDataValue();
 		final ILabelProviderContextElement contextElement = new LabelProviderCellContextElement(cell, configRegistry);
 		LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
@@ -175,7 +170,13 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	public Image getImage(Object element) {
 		if(element instanceof ILabelProviderContextElement) {
 			final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
+			Object object = ((ILabelProviderContextElement)element).getObject();
+			String labelProviderContextId = null;
 			final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+			if(object instanceof IAxis) {
+				labelProviderContextId = ((IAxis)object).getManager().getLabelProviderContext();
+				return getImage(cell, configRegistry, labelProviderContextId);
+			}
 			final LabelStack labels = getLabelStack(cell, configRegistry);
 			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
 				return getColumnHeaderImage(cell, configRegistry);
@@ -208,16 +209,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 *         the image to display in the row
 	 */
 	private Image getRowHeaderImage(ILayerCell cell, IConfigRegistry configRegistry) {
-		final INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-
-		//FIXME : we must find the managed config for this axis
-		//		final ILabelConfiguration labelConfiguration = manager.getHorizontalAxisProvider().getAxisConfiguration().getLabelConfiguration();
-		//		final String labelContext = labelConfiguration.getLabelProviderContext();
-		//		if(labelContext != null) {
-		//			return getImage(cell, configRegistry, labelContext);
-		//		} else {
-			return getImage(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
-		//		}
+		return getImage(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 	}
 
 	/**
@@ -262,15 +254,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 *         the image to display for the header
 	 */
 	private Image getColumnHeaderImage(ILayerCell cell, IConfigRegistry configRegistry) {
-		final INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-		//FIXME : we must find the managed config for this axis
-		//		final ILabelConfiguration labelConfiguration = manager.getVerticalAxisProvider().getAxisConfiguration().getLabelConfiguration();
-		//		final String labelContext = labelConfiguration.getLabelProviderContext();
-		//		if(labelContext != null) {
-		//			return getImage(cell, configRegistry, labelContext);
-		//		} else {
-			return getImage(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
-		//		}
+		return getImage(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 	}
 
 }

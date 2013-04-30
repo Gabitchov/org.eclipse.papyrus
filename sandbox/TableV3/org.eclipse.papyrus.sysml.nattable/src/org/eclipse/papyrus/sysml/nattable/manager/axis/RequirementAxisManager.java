@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.nattable.manager.axis;
 
 import java.util.ArrayList;
@@ -7,24 +20,23 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
-
+/**
+ * AxisManager for SysML Requirements
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisManager {
 
-	@Override
-	public void init(INattableModelManager manager, AxisManagerRepresentation rep, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
-		super.init(manager, rep, table, provider, false);//false, with this axis manager, the contents is derived of the feature
-	}
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
+	 * 
+	 */
 	@Override
 	protected void addContextFeatureValueListener() {
 		this.featureListener = new AdapterImpl() {
@@ -32,29 +44,31 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 			@Override
 			public void notifyChanged(Notification msg) {
 				if(msg.getFeature() == RequirementAxisManager.this.currentListenFeature || msg.getFeature() == UMLPackage.eINSTANCE.getPackage_PackagedElement()) {
-					if(!RequirementAxisManager.this.isRefreshing) {//to avoid to many thread
-						RequirementAxisManager.this.isRefreshing = true;
-						Display.getDefault().asyncExec(new Runnable() {
-
-							public void run() {
-								updateAxisContents();
-								((NattableModelManager)getTableManager()).refreshNattable();
-								RequirementAxisManager.this.isRefreshing = false;
-							}
-						});
-					}
+					getTableManager().updateAxisContents(getRepresentedContentProvider());
 				}
 			}
 		};
-		getTable().getContext().eAdapters().add(this.featureListener);
+		getTableContext().eAdapters().add(this.featureListener);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#dispose()
+	 * 
+	 */
 	@Override
 	public void dispose() {
-		getTable().getContext().eAdapters().remove(this.featureListener);
+		getTableContext().eAdapters().remove(this.featureListener);
 		super.dispose();
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#filterObject(java.util.List)
+	 * 
+	 * @param objects
+	 * @return
+	 */
 	@Override
 	protected List<Object> filterObject(final List<?> objects) {
 		final List<Object> interestingObjects = new ArrayList<Object>();

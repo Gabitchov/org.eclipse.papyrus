@@ -59,7 +59,7 @@ public abstract class AbstractChangeLabelConfigurationValueHandler extends Abstr
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final CompositeCommand cmd = new CompositeCommand("ChangeLabelConfigurationValueCommand"); //$NON-NLS-1$
-		final TransactionalEditingDomain domain = getEditingDomain();
+		TransactionalEditingDomain domain = (TransactionalEditingDomain)getTableEditingDomain();
 		ILabelProviderConfiguration labelConf = getLabelProviderConfiguration();
 		ILabelProviderConfiguration editedLabelConf;
 		if(labelConf.eContainer() instanceof TableHeaderAxisConfiguration) {
@@ -97,7 +97,7 @@ public abstract class AbstractChangeLabelConfigurationValueHandler extends Abstr
 	 * 
 	 */
 	protected ICommand getRegisterLocalLabelConfigurationCommand(ILabelProviderConfiguration tableLabelConfiguration, ILabelProviderConfiguration localTableLabelConfiguration) {
-		TransactionalEditingDomain domain = getEditingDomain();
+		TransactionalEditingDomain domain = (TransactionalEditingDomain)getTableEditingDomain();
 		final CompositeCommand cmd = new CompositeCommand("ChangeHeaderLabelConfigurationCommand"); //$NON-NLS-1$
 		final Table table = getCurrentNattableModelManager().getTable();
 

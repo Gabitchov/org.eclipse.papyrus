@@ -193,35 +193,12 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 *         the context used to create the table or <code>null</code> if not found
 	 * @throws ServiceException
 	 */
-	//FIXME: This method introduces a dependency to UML. Use the semantic service instead.
 	protected EObject getTableContext() {
 		final List<EObject> selection = getSelection();
 
 		if(!selection.isEmpty()) {
 			return selection.get(0);
 		}
-		//FIXME
-		//
-		//		//we shouldn't try to find a valid context when the selection is not valid!
-		//		ModelSet modelSet = null;
-		//		ServicesRegistry serviceRegistry;
-		//		try {
-		//			serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
-		//			modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
-		//		} catch (NullPointerException npe) {
-		//			//
-		//		} catch (ServiceException exception) {
-		//
-		//		}
-		//
-		//
-		//		if(modelSet != null) {
-		//			IModel model = modelSet.getModel(org.eclipse.papyrus.uml.tools.model.UmlModel.MODEL_ID);
-		//
-		//			if(model instanceof AbstractBaseModel) {
-		//				return getRootElement(((AbstractBaseModel)model).getResource());
-		//			}
-		//		}
 		return null;
 	}
 

@@ -20,18 +20,20 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.nattable.Activator;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
-
+/**
+ * The axis manager factory
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public class AxisManagerFactory {
 
-	public static final String CLASS_MANAGER = "manager"; //$NON-NLS-1$
+	private static final String CLASS_MANAGER = "manager"; //$NON-NLS-1$
 
-	public static final String CLASS_ID = "id"; //$NON-NLS-1$
+	private static final String CLASS_ID = "id"; //$NON-NLS-1$
 
 	private final Map<String, Class<IAxisManager>> map;
 
@@ -42,25 +44,31 @@ public class AxisManagerFactory {
 	private AxisManagerFactory() {
 		this.map = new HashMap<String, Class<IAxisManager>>();
 
-		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.papyrus.infra.nattable.axismanager"); //$NON-NLS-1$
+		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 
 		for(final IConfigurationElement iConfigurationElement : configElements) {
 			final String id = iConfigurationElement.getAttribute(CLASS_ID);
-			//			final String classQualifiedName = iConfigurationElement.getAttribute(CLASS_MANAGER);
 			try {
-				//to avoid pb when the provided class in not this plugin!
-				final Class<IAxisManager> myClass = (Class<IAxisManager>)iConfigurationElement.createExecutableExtension(CLASS_MANAGER).getClass();
+				//to avoid problem when the provided class in not this plugin!
+				IAxisManager axisManager = (IAxisManager)iConfigurationElement.createExecutableExtension(CLASS_MANAGER);
+				@SuppressWarnings("unchecked")
+				final Class<IAxisManager> myClass = (Class<IAxisManager>)axisManager.getClass();
 				this.map.put(id, myClass);
 			} catch (final CoreException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Activator.log.error(String.format(Messages.AxisManagerFactory_AxisManagerClassCantBeLoaded, id), e);
 			}
 		}
 	}
 
-	//	INattableModelManager manager, String managerId, Table table, IAxisContentsProvider provider
-	public IAxisManager getAxisManager(final INattableModelManager nattableManager, final AxisManagerRepresentation id, final Table table, final AbstractAxisProvider contentProvider, boolean mustRefreshContentsOnAxisChanges) {
-		final Class<IAxisManager> managerClass = this.map.get(id.getAxisManagerId());
+	/**
+	 * 
+	 * @param axisManagerRepresentation
+	 * @return
+	 *         the axis manager for this axisManagerRepresentation. The class calling this method must initialize itself the IAxisManager with its
+	 *         method #init
+	 */
+	public IAxisManager getAxisManager(final AxisManagerRepresentation axisManagerRepresentation) {
+		final Class<IAxisManager> managerClass = this.map.get(axisManagerRepresentation.getAxisManagerId());
 		IAxisManager axisManager = null;
 		if(managerClass != null) {
 			try {
@@ -70,9 +78,6 @@ public class AxisManagerFactory {
 			} catch (final IllegalAccessException e) {
 				Activator.log.error(e);
 			}
-		}
-		if(axisManager != null) {
-			axisManager.init(nattableManager, id, table, contentProvider, mustRefreshContentsOnAxisChanges);//FIXME
 		}
 		return axisManager;
 	}

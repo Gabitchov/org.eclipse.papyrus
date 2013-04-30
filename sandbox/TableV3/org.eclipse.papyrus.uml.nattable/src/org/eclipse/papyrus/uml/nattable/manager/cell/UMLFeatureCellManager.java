@@ -27,6 +27,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -53,6 +55,12 @@ public class UMLFeatureCellManager extends EMFFeatureValueCellManager {
 	 */
 	protected List<Object> organizeUMLObject(Object obj1, Object obj2) {
 		final List<Object> objects = new ArrayList<Object>();
+		if(obj1 instanceof IAxis) {
+			obj1 = ((IAxis)obj1).getElement();
+		}
+		if(obj2 instanceof IAxis) {
+			obj2 = ((IAxis)obj2).getElement();
+		}
 		if(obj2 instanceof Element) {
 			objects.add(obj2);
 			objects.add(obj1);
@@ -103,14 +111,17 @@ public class UMLFeatureCellManager extends EMFFeatureValueCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#handlersAxisElement(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#handlesAxisElement(java.lang.Object)
 	 * 
 	 * @param obj
 	 * @return
 	 */
 	@Override
-	public boolean handlersAxisElement(Object obj) {
-		if(super.handlersAxisElement(obj)) {
+	public boolean handlesAxisElement(Object obj) {
+		if(super.handlesAxisElement(obj)) {
+			if(obj instanceof EStructuralFeatureAxis) {
+				obj = ((EStructuralFeatureAxis)obj).getElement();
+			}
 			final EStructuralFeature feature = (EStructuralFeature)obj;
 			EObject featureContainer = feature.eContainer();
 			if(UMLPackage.eINSTANCE.eContents().contains(featureContainer)) {
@@ -200,7 +211,6 @@ public class UMLFeatureCellManager extends EMFFeatureValueCellManager {
 					final AbstractEditCommandRequest request = new SetRequest((TransactionalEditingDomain)domain, stereotypeApplication, steApFeature, newValue);
 					final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(stereotypeApplication);
 					final ICommand editCommand = provider.getEditCommand(request);
-					//					boolean canExecute = editCommand.canExecute();
 					return new GMFtoEMFCommandWrapper(editCommand);
 				} else {
 					//FIXME : not yet managed

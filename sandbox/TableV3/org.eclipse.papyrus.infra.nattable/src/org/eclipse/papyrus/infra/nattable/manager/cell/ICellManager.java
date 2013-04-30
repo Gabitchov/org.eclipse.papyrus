@@ -17,8 +17,12 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 
-
-//FIXME : the extension point should be declared on an Abstract class instead an Interface (to add method easily?)=
+/**
+ * The interface to implements for a cell manager
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public interface ICellManager {
 
 	/**
@@ -29,7 +33,7 @@ public interface ICellManager {
 
 	public boolean handles(final Object obj1, final Object obj2);//FIXME : add the table as parameter
 
-	public boolean handlersAxisElement(final Object obj);
+	public boolean handlesAxisElement(final Object obj);
 
 	/**
 	 * 
@@ -44,13 +48,41 @@ public interface ICellManager {
 	 */
 	public Object getValue(final Object axisElement1, final Object axisElement2);
 
+	/**
+	 * Set the newValue to the intersection of the 2 objects
+	 * 
+	 * @param domain
+	 *        the editing domain
+	 * @param obj1
+	 *        the first object
+	 * @param obj2
+	 *        the second object
+	 * @param newValue
+	 *        the new value
+	 */
 	public void setValue(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue);
 
+	/**
+	 * 
+	 * @param obj1
+	 * @param obj2
+	 * @return
+	 *         <code>true</code> if the intersection of the 2 objects is editable
+	 */
 	public boolean isCellEditable(final Object obj1, final Object obj2);
 
+	/**
+	 * 
+	 * @param domain
+	 *        the editing domain
+	 * @param obj1
+	 *        the first object
+	 * @param obj2
+	 *        the second object
+	 * @param newValue
+	 *        the new value to set to the intersection of these 2 objects
+	 * @return
+	 *         the command to set the value
+	 */
 	public Command getSetValueCommand(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue);
-
-	//	public ICellEditor getCellEditor(final Table table, final Object obj1);
-
-
 }

@@ -31,12 +31,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
@@ -55,34 +52,25 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
-
+/**
+ * This axis manager provides the axis for properties of stereotypes
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 
-	//	private Adapter listener;
-
-	@Override
-	public void init(INattableModelManager manager, AxisManagerRepresentation rep, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
-		super.init(manager, rep, table, provider, mustRefreshOnAxisChanges);
-		//		if(hasConfiguration()) {
-		//			updateAxisContents();
-		//		}
-		//		this.listener = new AdapterImpl() {
-		//
-		//			@Override
-		//			public void notifyChanged(final Notification msg) {
-		//				if(NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis() == msg.getFeature()) {
-		//					updateAxisContents();
-		//					((NattableModelManager)getTableManager()).refreshNattable();
-		//				}
-		//			}
-		//		};
-		//		provider.eAdapters().add(this.listener);
-	}
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.util.Collection)
+	 * 
+	 * @param domain
+	 * @param objectToAdd
+	 * @return
+	 */
 	@Override
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
-		//FIXME : we must test the configuration
-		//		if(!hasConfiguration()) {
 		final Set<Stereotype> appliedStereotypes = new HashSet<Stereotype>();
 		for(final Object current : objectToAdd) {
 			if(current instanceof Element) {
@@ -107,27 +95,23 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 					continue;
 				}
 			}
-			//			allPropertyQN.add(Constants.PROPERTY_OF_STEREOTYPE_PREFIX + property.getQualifiedName());
 			propertiesToAdd.add(property);
 		}
 		if(!propertiesToAdd.isEmpty()) {
 			return getAddAxisCommand(domain, propertiesToAdd);
 		}
-		//		allPropertyQN.removeAll(getTableManager().getElementsList(getRepresentedContentProvider()));
-		//		if(!allPropertyQN.isEmpty()) {
-		//			final Collection<IAxis> toAdd = new ArrayList<IAxis>();
-		//			for(String propQN : allPropertyQN) {
-		//				final IdAxis newAxis = NattableFactory.eINSTANCE.createIdAxis();
-		//				newAxis.setElement(propQN);
-		//				toAdd.add(newAxis);
-		//			}
-		//			//FIXME : we must use a factory and use the service edit
-		//			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), toAdd);
-		//
-		//		}
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.util.Collection)
+	 * 
+	 * @param domain
+	 * @param objectToAdd
+	 * @return
+	 */
 	@Override
 	public Command getAddAxisCommand(EditingDomain domain, Collection<Object> objectToAdd) {
 		final List<String> allPropertyQN = new ArrayList<String>();
@@ -143,44 +127,13 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 			for(String propQN : allPropertyQN) {
 				final IdAxis newAxis = NattableaxisFactory.eINSTANCE.createFeatureIdAxis();
 				newAxis.setElement(propQN);
-				newAxis.setManager(this.rep);
+				newAxis.setManager(this.representedAxisManager);
 				toAdd.add(newAxis);
 			}
 			//FIXME : we must use a factory and use the service edit
 			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
-
 		}
-		// TODO Auto-generated method stub
 		return null;
-	}
-
-
-
-	/**
-	 * calculus of the contents of the axis
-	 */
-	@Override
-	public synchronized void updateAxisContents() {
-		final List<IAxis> axis = getRepresentedContentProvider().getAxis();
-
-		final List<Object> axisElements = getTableManager().getElementsList(getRepresentedContentProvider());
-		for(int i = 0; i < axis.size(); i++) {
-			final IAxis current = axis.get(i);
-			if(current instanceof FeatureIdAxis) {
-				int currentIndex = axisElements.indexOf(current);
-				if(currentIndex == -1) {//the element was not in the axis with its id representation
-					//					currentIndex = axisElements.indexOf(current);
-
-					if(currentIndex == -1) {//the element was not in the axis with its real representation
-						axisElements.add(current);//we add it
-					} else if(currentIndex != i) {
-						axisElements.remove(currentIndex);
-						axisElements.add(i, current);
-					}
-
-				}
-			}
-		}
 	}
 
 	/**
@@ -237,7 +190,6 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	}
 
 	public Collection<Object> getAllPossibleAxis() {
-
 		return getRootProfiles();
 	}
 
@@ -290,47 +242,25 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 			return new GMFtoEMFCommandWrapper(compositeCommand);
 		}
 		return null;
-
-
-		//		
-		//		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
-		//		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
-		//		for(final Object current : getAllExistingAxis()) {
-		//			Object element = null;
-		//			if(current instanceof Property) {
-		//
-		//				Property property = (Property)current;
-		//				if(property != null && property.eContainer() instanceof Stereotype) {
-		//					//FIXME : use isAllowedContent?
-		//
-		//					if(objectToDestroy.contains(current) || objectToDestroy.contains(element)) {
-		//						DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)domain, false);
-		//						request.setElementToDestroy(property);
-		//						compositeCommand.add(provider.getEditCommand(request));
-		//					}
-		//				}
-		//			}
-		//		}
-		//
-		//		if(!compositeCommand.isEmpty()) {
-		//			return new GMFtoEMFCommandWrapper(compositeCommand);
-		//		}
-		//		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAllManagedAxis()
+	 * 
+	 * @return
+	 */
 	@Override
-	public Collection<Object> getAllExistingAxis() {
+	public Collection<Object> getAllManagedAxis() {
 		Set<Object> eObjects = new HashSet<Object>();
-		List<Object> columnElementsList = ((INattableModelManager)getTableManager()).getColumnElementsList();
-		for(final Object element : columnElementsList) {//FIXME bad implementation
-			if(element instanceof IdAxis) {
+		final List<Object> elementList = (getTableManager().getElementsList(getRepresentedContentProvider()));
+		for(final Object element : elementList) {
+			if(element instanceof IAxis && ((IAxis)element).getManager() == this.representedAxisManager) {
 				EObject context = ((INattableModelManager)getTableManager()).getTable().getContext();
 				String id = null;
 				IdAxis idAxis = (IdAxis)element;
 				id = idAxis.getElement();
-
 				Property property = UMLTableUtils.getRealStereotypeProperty(context, id);
-
 				if(property != null) {
 					eObjects.add(property);
 				} else {
@@ -339,6 +269,26 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 			}
 		}
 		return eObjects;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ISubAxisManager#isDynamic()
+	 * 
+	 * @return
+	 */
+	public boolean isDynamic() {
+		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#isSlave()
+	 * 
+	 * @return
+	 */
+	public boolean isSlave() {
+		return true;
 	}
 
 }

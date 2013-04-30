@@ -13,12 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.config.manager.axis;
 
-import java.util.List;
-
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
-import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 
 /**
  * The feature axis content provider for the ModelViews table
@@ -28,16 +23,24 @@ import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
  */
 public class EditorFeatureAxisManager extends AbstractAxisManager {
 
-	@Override
-	public synchronized void updateAxisContents() {
-		final List<Object> elements = getTableManager().getElementsList(getRepresentedContentProvider());
-		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
-			if(current instanceof IdAxis) {
-				final String id = (String)current.getElement();
-				if(id.startsWith(Utils.NATTABLE_EDITOR_PAGE_ID) && !elements.contains(id)) {
-					elements.add(id);
-				}
-			}
-		}
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ISubAxisManager#isDynamic()
+	 * 
+	 * @return
+	 */
+	public boolean isDynamic() {
+		return false;
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#isSlave()
+	 * 
+	 * @return
+	 */
+	public boolean isSlave() {
+		return true;
+	}
+
 }

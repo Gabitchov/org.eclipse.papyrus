@@ -27,6 +27,8 @@ public class Messages extends NLS {
 
 	public static String AbstractTableHandler_CurrentEditorCantBeFound;
 
+	public static String AxisManagerFactory_AxisManagerClassCantBeLoaded;
+
 	public static String AxisManagerFactory_TheClassCantBeInstanciated;
 
 	public static String CompositeAxisManager_AddAxisCommand;
@@ -61,11 +63,19 @@ public class Messages extends NLS {
 
 	public static String NattableConfigurationRegistry_TesterNotManager;
 
+	public static String NattableModelManager_ActionNotYetSupported;
+
 	public static String NattableModelManager_AddColumnCommand;
 
 	public static String NattableModelManager_AddRowCommand;
 
+	public static String NattableModelManager_AtLeastOfOneTheAxisManagerMustBeAMaster;
+
+	public static String NattableModelManager_CreateDestroyAxis;
+
 	public static String NattableModelManager_EditingDomainNotFound;
+
+	public static String NattableModelManager_SelectColumns;
 
 	public static String NattableModelManager_ServiceRegistryNotFound;
 

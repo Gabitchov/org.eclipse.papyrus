@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.config.manager.axis;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -23,11 +25,6 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 
 /**
@@ -39,22 +36,9 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
-	 *      java.lang.String, org.eclipse.papyrus.infra.nattable.model.nattable.Table,
-	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider, boolean)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
 	 * 
-	 * @param manager
-	 * @param rep
-	 * @param table
-	 * @param provider
-	 * @param mustRefreshOnAxisChanges
 	 */
-	@Override
-	public void init(final INattableModelManager manager, final AxisManagerRepresentation rep, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
-		super.init(manager, rep, table, provider, mustRefreshOnAxisChanges);
-	}
-
-
 	@Override
 	protected void addContextFeatureValueListener() {
 		this.featureListener = new AdapterImpl() {
@@ -62,14 +46,14 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 			@Override
 			public void notifyChanged(Notification msg) {
 				if(msg.getFeature() == DiPackage.eINSTANCE.getPageList_AvailablePage()) {
-					updateAxisContents();
-					((NattableModelManager)getTableManager()).refreshNattable();
+					getTableManager().updateAxisContents(getRepresentedContentProvider());
 				}
 			}
 		};
-		final PageList pageList = Utils.getPageList(getTable());
+		final PageList pageList = Utils.getPageList(getTableManager().getTable());
 		pageList.eAdapters().add(this.featureListener);
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#verifyCoupleContextFeature()
@@ -78,24 +62,6 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	@Override
 	protected void verifyCoupleContextFeature() {
 		//nothing to do
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#updateAxisContents()
-	 * 
-	 */
-	@Override
-	public synchronized void updateAxisContents() {
-		final PageList pageList = Utils.getPageList(getTable());
-		final List<Object> elements = getTableManager().getElementsList(getRepresentedContentProvider());
-		elements.clear();//FIXME risk of blinking with the glazed list!
-		for(final PageRef ref : pageList.getAvailablePage()) {
-			final Object page = ref.getPageIdentifier();
-			if(mustBeDisplayedInThisTable(page)) {
-				elements.add(page);
-			}
-		}
 	}
 
 
@@ -109,7 +75,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	private boolean mustBeDisplayedInThisTable(final Object page) {
 		final Object value = CellManagerFactory.INSTANCE.getCrossValue(page, Utils.NATTABLE_EDITOR_PAGE_ID + Utils.VIEW_CONTEXT);
 		if(value instanceof EObject) {
-			final EObject tableContext = getTable().getContext();
+			final EObject tableContext = getTableContext();
 			EObject container = (EObject)value;
 			while(container != null) {
 				if(container == tableContext) {
@@ -128,8 +94,29 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	 */
 	@Override
 	public void dispose() {
-		final PageList pageList = Utils.getPageList(getTable());
+		final PageList pageList = Utils.getPageList(getTableManager().getTable());
 		pageList.eAdapters().remove(this.featureListener);
+		super.dispose();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAllManagedAxis()
+	 * 
+	 * @return
+	 */
+	@Override
+	public Collection<Object> getAllManagedAxis() {
+		final PageList pageList = Utils.getPageList(getTableManager().getTable());
+		final List<Object> elements = new ArrayList<Object>();
+		elements.clear();
+		for(final PageRef ref : pageList.getAvailablePage()) {
+			final Object page = ref.getPageIdentifier();
+			if(mustBeDisplayedInThisTable(page)) {
+				elements.add(page);
+			}
+		}
+		return elements;
 	}
 
 }

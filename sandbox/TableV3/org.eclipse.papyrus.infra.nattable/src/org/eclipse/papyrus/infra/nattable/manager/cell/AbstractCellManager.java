@@ -22,8 +22,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * @author Vincent Lorenzo
  * 
  */
-//FIXME : the extension point must be declared on this abstract class
-//FIXME : all cell manager should extends me!
 public abstract class AbstractCellManager implements ICellManager {
 
 	/**

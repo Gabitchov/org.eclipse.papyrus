@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 
@@ -105,7 +106,10 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			//FIXME : for containement feature : see oep.views.properties.
 			// example : create Usecase in a class from the property view : EcorePropertyEditorFactory create a popup to display available type 
 			//then EditionDialog to edit the created object
-			final Object current = elements.get(i);
+			Object current = elements.get(i);
+			if(current instanceof IAxis) {
+				current = ((IAxis)current).getElement();
+			}
 			final Table table = modelManager.getTable();
 			final IAxisCellEditorConfiguration config = factory.getFirstCellEditorConfiguration(table, current);
 			if(config != null) {

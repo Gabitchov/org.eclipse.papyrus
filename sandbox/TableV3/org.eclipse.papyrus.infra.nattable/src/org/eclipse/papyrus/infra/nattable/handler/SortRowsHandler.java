@@ -37,7 +37,7 @@ public class SortRowsHandler extends AbstractTableHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final String directionParameter = event.getParameter(Constants.SORT_COMMAND_PARAMETER);
 		INattableModelManager manager = getCurrentNattableModelManager();
-		boolean alphabeticOrder = "true".equals(directionParameter);
+		boolean alphabeticOrder = Boolean.TRUE.toString().equals(directionParameter);
 		manager.sortRowsByName(alphabeticOrder);
 		return null;
 	}
@@ -54,6 +54,6 @@ public class SortRowsHandler extends AbstractTableHandler {
 		if(manager != null) {
 			setBaseEnabled(manager.canReorderColumns());
 		}
-		super.setEnabled(evaluationContext);
+		super.setBaseEnabled(false);
 	}
 }

@@ -46,7 +46,6 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 	public Object[] getChildren(Object parentElement) {
 		List<Object> asList = new ArrayList<Object>();
 		if(parentElement instanceof EClass) {
-
 			EClass eClass = (EClass)parentElement;
 			asList.addAll(eClass.getEStructuralFeatures());
 			return asList.toArray();

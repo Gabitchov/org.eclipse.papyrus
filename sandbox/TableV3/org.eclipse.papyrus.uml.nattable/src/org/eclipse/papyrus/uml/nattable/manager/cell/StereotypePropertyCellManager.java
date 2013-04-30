@@ -94,7 +94,7 @@ public class StereotypePropertyCellManager implements ICellManager {
 		return null;
 	}
 
-	public boolean handlersAxisElement(Object obj) {
+	public boolean handlesAxisElement(Object obj) {
 		// TODO Auto-generated method stub
 		return false;
 	}

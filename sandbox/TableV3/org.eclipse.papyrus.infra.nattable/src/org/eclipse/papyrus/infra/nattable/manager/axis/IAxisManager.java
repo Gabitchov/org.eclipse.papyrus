@@ -14,26 +14,23 @@
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.papyrus.infra.nattable.manager.table.ILimitedNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.ui.services.IDisposable;
 
+/**
+ * The common interface used by the axis manager
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public interface IAxisManager extends IDisposable {
-
-	/**
-	 * 
-	 * @return the id of the manager
-	 */
-	public String getManagerId();
 
 	/**
 	 * 
@@ -68,38 +65,43 @@ public interface IAxisManager extends IDisposable {
 	 */
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd);
 
-	public void init(final INattableModelManager manager, AxisManagerRepresentation managerRep, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges);
+	/**
+	 * 
+	 * @param manager
+	 *        the table model manager
+	 * @param managerRep
+	 *        its axis manager representation
+	 * @param provider
+	 *        //FIXME : realy usefule?
+	 *        the managed axis provider
+	 */
+	public void init(final INattableModelManager manager, AxisManagerRepresentation managerRep, final AbstractAxisProvider provider);
 
 	public void setHeaderDataValue(int columnIndex, int rowIndex, Object newValue);
 
-	public boolean isComposite();
+	/**
+	 * 
+	 * @return
+	 *         the managed axis provider
+	 */
+	public AbstractAxisProvider getRepresentedContentProvider();
 
-	public Table getTable();;
+	/**
+	 * 
+	 * 
+	 * @return
+	 *         the table manager using this axis manager
+	 */
+	public NattableModelManager getTableManager(); //FIXME : we must use an interface with a small set of accessible method... 
 
-	public AbstractAxisProvider getRepresentedContentProvider();;
-
-	public ILimitedNattableModelManager getTableManager();
 
 
 	/**
 	 * 
 	 * @return
-	 *         all the elements which can be used as axis according to the current table contents
+	 *         <code>true</code> if the contents provided by the axis manager is derived of the contents provided by the others axis manager
 	 */
-	public List<?> getAllPossibleAxisForTheTableContents();
-
-	/**
-	 * 
-	 * @return
-	 *         all the existing axis managed by the axis manager
-	 */
-	public Collection<Object> getAllExistingAxis();
-
-	// public boolean isUsedVertically();
-	//
-	// public boolean isUsedHorizontally();
-
-	// public boolean isMaster();
+	public boolean isSlave();
 
 	public boolean canInsertAxis(Collection<Object> objectsToAdd, int index);
 
@@ -107,8 +109,13 @@ public interface IAxisManager extends IDisposable {
 
 	public Command getInsertAxisCommand(Collection<Object> objectsToAdd, int index);
 
-	public void updateAxisContents();
-
+	/**
+	 * 
+	 * @param object
+	 *        an object
+	 * @return
+	 *         <code>true</code> if the object can be managed by the AxisManager
+	 */
 	public boolean isAllowedContents(final Object object);
 
 	/**
@@ -117,21 +124,35 @@ public interface IAxisManager extends IDisposable {
 	 */
 	public boolean canReoderElements();
 
-
+	/**
+	 * 
+	 * @param isRestricted
+	 * @return
+	 */
 	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted);
 
 
 	/**
 	 * 
-	 * @param alpabeticOrder
-	 *        <code>true</code> if we sort the axis by alphabetic order, <code>false</code> if not
-	 * @param iConfigRegistry
-	 *        the config registry used to find the label provider
+	 * @param domain
+	 * @param objectToDestroy
+	 * @return
 	 */
-	public void sortAxisByName(final boolean alpabeticOrder, IConfigRegistry iConfigRegistry);
-
 	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy);
 
+	/**
+	 * 
+	 * @return
+	 *         the list of the existing axis managed by the axis manager
+	 */
+	public Collection<Object> getAllManagedAxis();
+
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> if the contents provided by this axis manager is derived of the (UML) model
+	 */
+	public boolean isDynamic();
 
 
 }

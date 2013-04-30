@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.papyrus.infra.nattable" id="org.eclipse.papyrus.infra.nattable.cellmanager.exsd" name="Cell Manager"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         An extension point to register cell manager for the Papyrus table
       </documentation>
    </annotation>
 
@@ -69,7 +69,7 @@ more the order is small, more the configuration is prioritary
          <attribute name="manager" type="string" use="required">
             <annotation>
                <documentation>
-                  A Cell Manager class used to manage cells in the table
+                  A Cell Manager class used to manage cells in the table. We advice to extends AbstractCellManager
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.nattable.manager.table.ICellManager"/>

@@ -25,6 +25,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -72,7 +74,13 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @param obj2
 	 * @return
 	 */
-	protected List<EObject> organizeObject(final Object obj1, final Object obj2) {
+	protected List<EObject> organizeObject(Object obj1, Object obj2) {
+		if(obj1 instanceof IAxis) {
+			obj1 = ((IAxis)obj1).getElement();
+		}
+		if(obj2 instanceof IAxis) {
+			obj2 = ((IAxis)obj2).getElement();
+		}
 		final List<EObject> objects = new ArrayList<EObject>();
 		if(obj1 instanceof EObject && obj2 instanceof EStructuralFeature) {
 			objects.add((EObject)obj1);
@@ -124,7 +132,6 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 */
 	public Command getSetValueCommand(EditingDomain domain, Object rowElement, Object lineElement, Object newValue) {
 		final List<EObject> objects = organizeObject(rowElement, lineElement);
-		//FIXME : we must distinguish the set, the add, the unset?, the remove?
 		final AbstractEditCommandRequest request = new SetRequest((TransactionalEditingDomain)domain, objects.get(0), (EStructuralFeature)objects.get(1), newValue);
 		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(objects.get(0));
 		return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
@@ -132,13 +139,13 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handlersAxisElement(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handlesAxisElement(java.lang.Object)
 	 * 
 	 * @param obj
 	 * @return
 	 */
-	public boolean handlersAxisElement(Object obj) {
-		return obj instanceof EStructuralFeature;
+	public boolean handlesAxisElement(Object obj) {
+		return obj instanceof EStructuralFeature || obj instanceof EStructuralFeatureAxis;
 	}
 
 }

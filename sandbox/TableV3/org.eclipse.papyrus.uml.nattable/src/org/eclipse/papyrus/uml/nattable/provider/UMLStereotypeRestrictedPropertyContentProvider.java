@@ -47,15 +47,35 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		this.isRestricted = isRestricted;
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the other axis provider
+	 */
+	protected AbstractAxisProvider getOtherAxisProvider() {
+		AbstractAxisProvider currentProvider = this.umlStereotypePropertyManager.getRepresentedContentProvider();
+		if(currentProvider == this.umlStereotypePropertyManager.getTableManager().getVerticalAxisProvider()) {
+			return this.umlStereotypePropertyManager.getTableManager().getHorizontalAxisProvider();
+		} else {
+			return this.umlStereotypePropertyManager.getTableManager().getVerticalAxisProvider();
+		}
+	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.tools.providers.UMLStereotypePropertyContentProvider#getChildren(java.lang.Object)
+	 * 
+	 * @param parentElement
+	 * @return
+	 */
 	@Override
 	public Object[] getChildren(Object parentElement) {
 		if(parentElement instanceof Profile) {
 			Profile profile = (Profile)parentElement;
 			Set<Stereotype> restrictedStereotypes = new HashSet<Stereotype>();
 			if(this.isRestricted && !profile.getOwnedStereotypes().isEmpty()) {
-				AbstractAxisProvider horizontalAxisProvider = this.umlStereotypePropertyManager.getTable().getCurrentRowAxisProvider();
-				List<Object> elementsList = this.umlStereotypePropertyManager.getTableManager().getElementsList(horizontalAxisProvider);
+				AbstractAxisProvider otherAxisProvider = getOtherAxisProvider();
+				final List<Object> elementsList = this.umlStereotypePropertyManager.getTableManager().getElementsList(otherAxisProvider);
 				for(Object object : elementsList) {
 					if(object instanceof Element) {
 						Element typedElement = (Element)object;

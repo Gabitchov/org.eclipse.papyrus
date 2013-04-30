@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.emf.nattable.provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider;
@@ -42,7 +44,10 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 	@Override
 	public boolean accept(Object element) {
 		if(element instanceof ILabelProviderContextElement) {
-			final Object object = ((ILabelProviderContextElement)element).getObject();
+			Object object = ((ILabelProviderContextElement)element).getObject();
+			if(object instanceof IAxis) {
+				object = ((IAxis)object).getElement();
+			}
 			return object instanceof EObject && !(object instanceof EStructuralFeature);
 		}
 		return false;
@@ -58,7 +63,10 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 	@Override
 	public String getText(Object element) {
 		ILabelProviderContextElement context = (ILabelProviderContextElement)element;
-		final EObject object = (EObject)context.getObject();
+		EObject object = (EObject)((ILabelProviderContextElement)element).getObject();
+		if(object instanceof EObjectAxis) {
+			object = ((EObjectAxis)object).getElement();
+		}
 		final IConfigRegistry configRegistry = context.getConfigRegistry();
 		final LabelProviderService serv = getLabelProviderService(configRegistry);
 		ILabelProviderConfiguration conf = null;
@@ -80,7 +88,10 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 	 */
 	@Override
 	public Image getImage(Object element) {
-		final EObject object = (EObject)((ILabelProviderContextElement)element).getObject();
+		EObject object = (EObject)((ILabelProviderContextElement)element).getObject();
+		if(object instanceof EObjectAxis) {
+			object = ((EObjectAxis)object).getElement();
+		}
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
 		final LabelProviderService serv = getLabelProviderService(configRegistry);
 		ILabelProviderConfiguration conf = null;

@@ -50,7 +50,7 @@ public abstract class AbstractChangeIndexStyleHandler extends AbstractTableHandl
 		}
 		String currentState = event.getParameter(RadioState.PARAMETER_ID);
 
-		TransactionalEditingDomain domain = getEditingDomain();
+		TransactionalEditingDomain domain = (TransactionalEditingDomain)getTableEditingDomain();
 		AxisIndexStyle newStyle = AxisIndexStyle.get(currentState);
 		final IEditCommandRequest request = new SetRequest(domain, configuration, NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_IndexStyle(), newStyle);
 		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(configuration);

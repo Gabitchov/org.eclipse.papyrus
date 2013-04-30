@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -22,13 +24,24 @@ import java.util.Set;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.utils.AxisComparator;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.providers.CompoundFilteredRestrictedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 
 
-public class CompositeAxisManager extends AbstractAxisManager {
+public class CompositeAxisManager extends AbstractAxisManager implements ICompositeAxisManager {
 
 	/**
 	 * the id of this manager
@@ -36,18 +49,18 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	public static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.composite.axis.manager"; //$NON-NLS-1$
 
 	/**
-	 * the managed managers
+	 * the sub managers
 	 */
-	protected List<IAxisManager> managers;
+	protected List<IAxisManager> subManagers;
 
 	/**
-	 * Setter for {@link #managers}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager#setSubAxisManager(java.util.List)
 	 * 
 	 * @param managers
-	 *        the managers managed by this one
 	 */
-	public void setAxisManager(final List<IAxisManager> managers) {
-		this.managers = managers;
+	public void setSubAxisManager(final List<IAxisManager> managers) {
+		this.subManagers = managers;
 		updateAxisContents();
 	}
 
@@ -58,22 +71,12 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	 */
 	@Override
 	public void dispose() {
-		for(final IAxisManager current : this.managers) {
+		for(final IAxisManager current : this.subManagers) {
 			current.dispose();
 		}
-		this.managers.clear();
+		this.subManagers.clear();
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getManagerId()
-	 * 
-	 * @return
-	 */
-	@Override
-	public String getManagerId() {
-		return MANAGER_ID;
-	}
 
 	/**
 	 * 
@@ -84,7 +87,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	@Override
 	public boolean canBeUsedAsRowManager() {
 		boolean answer = true;
-		final Iterator<IAxisManager> iter = this.managers.iterator();
+		final Iterator<IAxisManager> iter = this.subManagers.iterator();
 		while(iter.hasNext() && answer) {
 			answer = iter.next().canBeUsedAsRowManager();
 		}
@@ -100,7 +103,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	@Override
 	public boolean canBeUsedAsColumnManager() {
 		boolean answer = true;
-		final Iterator<IAxisManager> iter = this.managers.iterator();
+		final Iterator<IAxisManager> iter = this.subManagers.iterator();
 		while(iter.hasNext() && answer) {
 			answer = iter.next().canBeUsedAsColumnManager();
 		}
@@ -119,7 +122,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	@Override
 	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
 		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
-		for(final IAxisManager current : this.managers) {
+		for(final IAxisManager current : this.subManagers) {
 			final Command tmp = current.getAddAxisCommand(domain, objectToAdd);
 			if(tmp != null) {
 				cmd.append(tmp);
@@ -143,7 +146,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	@Override
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
 		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
-		for(final IAxisManager current : this.managers) {
+		for(final IAxisManager current : this.subManagers) {
 			final Command tmp = current.getComplementaryAddAxisCommand(domain, objectToAdd);
 			if(tmp != null) {
 				cmd.append(tmp);
@@ -157,14 +160,20 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#updateAxisContents()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager#updateAxisContents()
 	 * 
 	 */
-	@Override
 	public synchronized void updateAxisContents() {
-		if(this.managers != null) {
-			for(final IAxisManager current : this.managers) {
-				current.updateAxisContents();
+		final List<Object> displayedElement = getTableManager().getElementsList(getRepresentedContentProvider());
+		synchronized(displayedElement) {
+			displayedElement.clear();
+			displayedElement.addAll(getRepresentedContentProvider().getAxis());
+			if(this.subManagers != null) {
+				for(final IAxisManager current : this.subManagers) {
+					if(current.isDynamic()) {
+						displayedElement.addAll(current.getAllManagedAxis());
+					}
+				}
 			}
 		}
 	}
@@ -178,7 +187,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	 */
 	@Override
 	public boolean isAllowedContents(Object object) {
-		for(final IAxisManager current : this.managers) {
+		for(final IAxisManager current : this.subManagers) {
 			if(current.isAllowedContents(object)) {
 				return true;
 			}
@@ -186,35 +195,74 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canReoderElements()
+	 * 
+	 * @return
+	 */
 	@Override
 	public boolean canReoderElements() {
-		for(final IAxisManager current : this.managers) {
-			if(!current.canReoderElements()) {
+		for(final IAxisManager current : this.subManagers) {
+			if(!current.canReoderElements() || current.isDynamic()) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	public void sortAxisByName(boolean inverted, final IConfigRegistry configRegistry) {
-		super.sortAxisByName(inverted, configRegistry);
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#sortAxisByName(boolean,
+	 *      org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
+	 * 
+	 * @param inverted
+	 * @param configRegistry
+	 */
+	public void sortAxisByName(boolean alphabeticOrder, final IConfigRegistry configRegistry) {
+		if(canReoderElements()) {
+			final List<IAxis> axis = new ArrayList<IAxis>(getRepresentedContentProvider().getAxis());
+			Collections.sort(axis, new AxisComparator(alphabeticOrder, configRegistry));
+			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getRepresentedContentProvider());
+			final AbstractEditCommandRequest request = new SetRequest(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), axis);
+			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
+			final ICommand cmd = provider.getEditCommand(request);
+			domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
+		}
 	}
 
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#createDestroyColumnsContentProvider(boolean)
+	 * 
+	 * @param isRestricted
+	 * @return
+	 */
 	@Override
 	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted) {
 
 		CompoundFilteredRestrictedContentProvider compoundContentProvider = new CompoundFilteredRestrictedContentProvider();
-		for(final IAxisManager current : managers) {
+		for(final IAxisManager current : this.subManagers) {
 			IRestrictedContentProvider contentProvider = current.createDestroyColumnsContentProvider(isRestricted);
 			compoundContentProvider.add(contentProvider);
 		}
 		return compoundContentProvider;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.util.Collection)
+	 * 
+	 * @param domain
+	 * @param objectToDestroy
+	 * @return
+	 */
 	@Override
 	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
 		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_DestroyAxisCommand);
-		for(final IAxisManager current : this.managers) {
+		for(final IAxisManager current : this.subManagers) {
 			final Command tmp = current.getDestroyAxisCommand(domain, objectToDestroy);
 			if(tmp != null) {
 				cmd.append(tmp);
@@ -226,16 +274,72 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		return cmd;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAllManagedAxis()
+	 * 
+	 * @return
+	 */
 	@Override
-	public Collection<Object> getAllExistingAxis() {
+	public Collection<Object> getAllManagedAxis() {
 		Set<Object> allExistingAxis = new HashSet<Object>();
-		for(IAxisManager manager : managers) {
-			Collection<Object> managerPossibleElements = manager.getAllExistingAxis();
+		for(IAxisManager manager : this.subManagers) {
+			Collection<Object> managerPossibleElements = manager.getAllManagedAxis();
 			if(managerPossibleElements != null) {
-
 				allExistingAxis.addAll(managerPossibleElements);
 			}
 		}
 		return allExistingAxis;
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#isSlave()
+	 * 
+	 * @return
+	 *         <code>true</code> if one of the encapsulated manager is a slave
+	 */
+	public boolean isSlave() {
+		for(final IAxisManager manager : this.subManagers) {
+			if(manager.isSlave()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#isDynamic()
+	 * 
+	 * @return
+	 *         <code>true</code> if one of the embedded axis manager is dynamic
+	 */
+	public boolean isDynamic() {
+		for(final IAxisManager manager : this.subManagers) {
+			if(manager.isDynamic()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canDropAxisElement(java.util.Collection)
+	 * 
+	 * @param objectsToAdd
+	 * @return
+	 */
+	@Override
+	public boolean canDropAxisElement(Collection<Object> objectsToAdd) {
+		for(final IAxisManager current : this.subManagers) {
+			if(current.canDropAxisElement(objectsToAdd)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
