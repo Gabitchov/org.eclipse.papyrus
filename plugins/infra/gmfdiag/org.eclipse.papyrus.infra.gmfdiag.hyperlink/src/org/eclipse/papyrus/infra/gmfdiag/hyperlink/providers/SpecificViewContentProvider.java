@@ -18,18 +18,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
-import org.eclipse.papyrus.infra.core.resource.IModel;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 
@@ -40,18 +36,14 @@ public class SpecificViewContentProvider implements IHierarchicContentProvider {
 
 	private EObject[] getRoots(ServicesRegistry context) {
 		try {
-			ModelSet modelSet = context.getService(ModelSet.class);
-			IModel notationModel = modelSet.getModel(NotationModel.MODEL_ID);
-			if(notationModel instanceof AbstractBaseModel) {
-				Resource resource = ((AbstractBaseModel)notationModel).getResource();
-				List<Diagram> result = new LinkedList<Diagram>();
-				for(EObject rootElement : resource.getContents()) {
-					if(rootElement instanceof Diagram) {
-						result.add((Diagram)rootElement);
-					}
+			IPageManager pageManager = context.getService(IPageManager.class);
+			List<Diagram> result = new LinkedList<Diagram>();
+			for(Object page : pageManager.allPages()) {
+				if(page instanceof Diagram) {
+					result.add((Diagram)page);
 				}
-				return result.toArray(new Diagram[0]);
 			}
+			return result.toArray(new Diagram[result.size()]);
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
 		}
