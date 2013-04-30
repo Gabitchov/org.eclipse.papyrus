@@ -33,7 +33,7 @@ public class SynchronizedFeatureValueAxisManager extends AbstractSynchronizedOnF
 	public synchronized void updateAxisContents() {
 
 		EStructuralFeatureValueFillingConfiguration config = null;
-		for(final IAxisConfiguration current : this.rep.getSpecificAxisConfiguration()) {
+		for(final IAxisConfiguration current : this.rep.getSpecificAxisConfigurations()) {
 			if(current instanceof EStructuralFeatureValueFillingConfiguration) {
 				config = (EStructuralFeatureValueFillingConfiguration)current;
 				break;

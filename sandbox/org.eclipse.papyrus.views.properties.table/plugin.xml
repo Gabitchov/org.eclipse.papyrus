@@ -7,12 +7,38 @@
             id="org.eclipse.papyrus.emf.nattable.synchronized.featurevalue.axis.manager"
             manager="org.eclipse.papyrus.views.properties.table.axis.SynchronizedFeatureValueAxisManager">
       </axisManager>
+      <axisManager
+            id="org.eclipse.papyrus.uml.nattable.derived.features.axis.manager"
+            manager="org.eclipse.papyrus.views.properties.table.axis.DerivedUMLPropertiesAxisManager">
+      </axisManager>
    </extension>
    <extension
          point="org.eclipse.papyrus.views.properties.environment">
       <environment
             environmentModel="resources/Environment.xmi">
       </environment>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="10"
+            provider="org.eclipse.papyrus.views.properties.table.providers.DerivedUMLPropertiesLabelProvider">
+      </labelProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
+      <configuration
+            class="org.eclipse.papyrus.views.properties.table.cell.DerivedUMLPropertiesCellEditorConfiguration"
+            order="1">
+      </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.cellmanager">
+      <cellManager
+            id="org.eclipse.papyrus.uml.nattable.derived.features.cell.manager"
+            manager="org.eclipse.papyrus.views.properties.table.cell.DerivedUMLPropertiesCellManager"
+            order="1">
+      </cellManager>
    </extension>
 
 </plugin>
