@@ -72,7 +72,7 @@ public class RemoveControlResourceCommand extends AbstractControlResourceCommand
 		//Save source and target resource
 		Resource targetResource = getTargetResource(objectToControl);
 		if(targetResource == null) {
-			return CommandResult.newErrorCommandResult("unable to retreive the target resource for the extension" + getFileExtension());
+			return CommandResult.newErrorCommandResult("unable to retrieve the target resource for the extension " + getFileExtension());
 		}
 		getRequest().setTargetResource(targetResource, getFileExtension());
 		getRequest().setSourceResource(resource, getFileExtension());
@@ -87,8 +87,8 @@ public class RemoveControlResourceCommand extends AbstractControlResourceCommand
 	 *        get the target resource of uncontrol command
 	 * @return
 	 */
-	protected Resource getTargetResource(EObject objectToControl) {
-		return getRequest().getModelSet().getAssociatedResource(objectToControl, getFileExtension(), false);
+	protected Resource getTargetResource(EObject objectToUncontrol) {
+		return getRequest().getModelSet().getAssociatedResource(objectToUncontrol, getFileExtension(), true);
 	}
 
 	@Override

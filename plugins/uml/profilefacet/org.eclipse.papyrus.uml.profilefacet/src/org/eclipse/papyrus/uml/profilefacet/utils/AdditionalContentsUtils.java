@@ -73,7 +73,7 @@ public class AdditionalContentsUtils {
 	public static EPackage getAdditionalContentsEPackage(final PapyrusTableInstance table) {
 		EPackage ePackage = null;
 		final ModelSet modelSet = (ModelSet)table.eResource().getResourceSet();
-		final Resource resource = modelSet.getAssociatedResource(table.eResource(), NotationModel.NOTATION_FILE_EXTENSION);
+		final Resource resource = modelSet.getAssociatedResource(table.eResource(), NotationModel.NOTATION_FILE_EXTENSION, true);
 		final Iterator<EObject> iter = resource.getContents().iterator();
 		while(iter.hasNext() && ePackage == null) {
 			final EObject current = iter.next();

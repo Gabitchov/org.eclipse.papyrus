@@ -78,7 +78,7 @@ public class SashControlParticipant implements IControlCommandParticipant, IUnco
 
 	private ICommand getClearDiCommand(final ControlModeRequest request) {
 		ModelSet modelSet = request.getModelSet();
-		IFile affectedFiles = WorkspaceSynchronizer.getFile(modelSet.getAssociatedResource(request.getTargetObject(), SashModel.MODEL_FILE_EXTENSION, false));
+		IFile affectedFiles = WorkspaceSynchronizer.getFile(modelSet.getAssociatedResource(request.getTargetObject(), SashModel.MODEL_FILE_EXTENSION, true));
 		return new ClearDiCommand(Collections.singletonList(affectedFiles), request);
 	}
 
@@ -94,7 +94,7 @@ public class SashControlParticipant implements IControlCommandParticipant, IUnco
 			if (modelSet == null){
 				return CommandResult.newErrorCommandResult("Unable to retrieve resource set");
 			}
-			Resource oldDiresource = modelSet.getAssociatedResource(getRequest().getTargetObject(), SashModel.MODEL_FILE_EXTENSION, false);
+			Resource oldDiresource = modelSet.getAssociatedResource(getRequest().getTargetObject(), SashModel.MODEL_FILE_EXTENSION, true);
 			if (oldDiresource == null){
 				return CommandResult.newErrorCommandResult("Unable to retrieve old di resource");
 			}
