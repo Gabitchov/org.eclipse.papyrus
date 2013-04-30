@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+   <extension-point id="alfcompiler" name="AlfCompiler" schema="schema/alfcompiler.exsd"/>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/papyrus/alf/Alf" 
+       class = "org.eclipse.papyrus.alf.alf.AlfPackage"
+       genModel = "org/eclipse/papyrus/alf/Alf.genmodel" /> 
+	
+  </extension>
+  <extension
+        point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+     <profile
+           name="ActionLanguage"
+           path="platform:/plugin/org.eclipse.papyrus.alf/resources/ActionLanguage-Profile.profile.uml">
+     </profile>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.uri_mapping">
+     <mapping
+           source="pathmap://PAPYRUS_ALF_LIBRARY/"
+           target="platform:/plugin/org.eclipse.papyrus.alf/resources/">
+     </mapping>
+  </extension>
+  <extension
+        point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+     <library
+           description="Alf Standard Library"
+           name="AlfLibrary"
+           path="pathmap://PAPYRUS_ALF_LIBRARY/Alf.library.uml"
+           provider="Model Driven Solutions">
+     </library>
+  </extension>
+
+
+
+
+</plugin>
