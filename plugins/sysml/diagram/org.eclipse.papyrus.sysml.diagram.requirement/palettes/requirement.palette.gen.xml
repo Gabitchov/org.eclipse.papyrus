@@ -4,20 +4,44 @@
 		<drawer
 			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 			id="org.eclipse.papyrus.sysml.diagram.requirement.SYSML_Requirement__Tools" name="Tools">
+			<aspectTool description="Create a new NamedElement" id="requirement.tool.namedelement"
+				name="NamedElement" refToolId=>
+			</aspectTool>
+			<aspectTool description="Create a new Package" id="requirement.tool.package"
+				name="Package" refToolId="clazz.tool.package">
+			</aspectTool>
 			<aspectTool description="Create a new Class" id="requirement.tool.class"
-				name="Class" refToolId=>
+				name="Class" refToolId="clazz.tool.class">
 			</aspectTool>
-			<aspectTool description="Create a new Comment" id="requirement.tool.comment"
-				name="Comment" refToolId=>
+			<aspectTool description="Create a new DataType" id="requirement.tool.datatype"
+				name="DataType" refToolId="clazz.tool.datatype">
 			</aspectTool>
-			<aspectTool description="Create a new CommentLink" id="requirement.tool.commentlink"
-				name="CommentLink" refToolId=>
+			<aspectTool description="Create a new Enumeration" id="requirement.tool.enumeration"
+				name="Enumeration" refToolId="clazz.tool.enumeration">
 			</aspectTool>
-			<aspectTool description="Create a new Dependency" id="requirement.tool.dependency"
-				name="Dependency" refToolId=>
+			<aspectTool description="Create a new Interface" id="requirement.tool.interface"
+				name="Interface" refToolId="clazz.tool.interface">
 			</aspectTool>
-			<aspectTool description="Create a new PackageImport" id="requirement.tool.packageimport"
-				name="PackageImport" refToolId=>
+			<aspectTool description="Create a new Operation" id="requirement.tool.operation"
+				name="Operation" refToolId="clazz.tool.operation">
+			</aspectTool>
+			<aspectTool description="Create a new PrimitiveType" id="requirement.tool.primitivetype"
+				name="PrimitiveType" refToolId="clazz.tool.primitivetype">
+			</aspectTool>
+			<aspectTool description="Create a new Property" id="requirement.tool.property"
+				name="Property" refToolId="clazz.tool.property">
+			</aspectTool>
+			<aspectTool description="Create a new Reception" id="requirement.tool.reception"
+				name="Reception" refToolId="clazz.tool.reception">
+			</aspectTool>
+			<aspectTool description="Create a new Signal" id="requirement.tool.signal"
+				name="Signal" refToolId="clazz.tool.signal">
+			</aspectTool>
+			<aspectTool description="Create a new Abstraction" id="requirement.tool.abstraction"
+				name="Abstraction" refToolId="clazz.tool.abstraction">
+			</aspectTool>
+			<aspectTool description="Create a new ContainmentLink" id="requirement.tool.containmentlink"
+				name="ContainmentLink" refToolId="clazz.tool.containmentlink">
 			</aspectTool>
 						
 		</drawer>

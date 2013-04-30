@@ -1,47 +1,84 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><paletteDefinition><content><drawer iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" id="requirement.drawer.nodes" name="Nodes"><aspectTool description="Create a new Package" id="requirement.tool.package" name="Package" refToolId="clazz.tool.package"></aspectTool><aspectTool description="Create a new Requirement" id="requirement.tool.class" name="Requirement" refToolId="clazz.tool.class" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Requirement.gif"><postAction id="org.eclipse.papyrus.applystereotypeactionprovider"><stereotypesToApply><stereotype stereotypeName="SysML::Requirements::Requirement"/></stereotypesToApply></postAction></aspectTool></drawer><drawer iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" id="requirement.drawer.edges" name="Edges">
-	<aspectTool description="Create a Copy Link"
-		id="requirement.tool.copy" name="Copy"
-		refToolId="clazz.tool.abstraction" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Copy.gif">
-		<postAction
-			id="org.eclipse.papyrus.applystereotypeactionprovider">
-			<stereotypesToApply>
-				<stereotype stereotypeName="SysML::Requirements::Copy" />
-			</stereotypesToApply>
-		</postAction>
-	</aspectTool>
-	<aspectTool description="Create a Derive Link"
-		id="requirement.tool.derive" name="Derive"
-		refToolId="clazz.tool.abstraction" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/DeriveReqt.gif">
-		<postAction
-			id="org.eclipse.papyrus.applystereotypeactionprovider">
-			<stereotypesToApply>
-				<stereotype
-					stereotypeName="SysML::Requirements::DeriveReqt" />
-			</stereotypesToApply>
-		</postAction>
-	</aspectTool>
-	<aspectTool description="Create a Decompose Link"
-		id="requirement.tool.decompose" name="Decompose"
-		refToolId="clazz.tool.containmentlink"/>
-	<aspectTool description="Create a Satisfy Link"
-		id="requirement.tool.satisfy" name="Satisfy"
-		refToolId="clazz.tool.abstraction" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif">
-		<postAction
-			id="org.eclipse.papyrus.applystereotypeactionprovider">
-			<stereotypesToApply>
-				<stereotype
-					stereotypeName="SysML::Requirements::Satisfy" />
-			</stereotypesToApply>
-		</postAction>
-	</aspectTool>
-	<aspectTool description="Create a Verify Link"
-		id="requirement.tool.verify" name="Verify"
-		refToolId="clazz.tool.abstraction" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Verify.gif">
-		<postAction
-			id="org.eclipse.papyrus.applystereotypeactionprovider">
-			<stereotypesToApply>
-				<stereotype
-					stereotypeName="SysML::Requirements::Verify" />
-			</stereotypesToApply>
-		</postAction>
-	</aspectTool></drawer></content></paletteDefinition>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<paletteDefinition>
+		<content>
+			<drawer iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" id="requirement.drawer.nodes" name="Nodes">
+		
+				<aspectTool description="Create a new Package" 
+					id="requirement.tool.package" 
+					name="Package" refToolId="clazz.tool.package">
+				</aspectTool>
+		
+				<aspectTool description="Create a new Requirement"
+					 id="requirement.tool.class" name="Requirement" 
+					 refToolId="clazz.tool.class" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Requirement.gif">
+					 	<postAction id="org.eclipse.papyrus.postaction.displayAppliedStereotypePropertiesInCompartmentactionprovider">
+					 		<propertiesToDisplay>
+					 			<propertyToDisplay name="SysML::Requirements::Requirement.id"/>
+					 			<propertyToDisplay name="SysML::Requirements::Requirement.text"/>
+					 		</propertiesToDisplay>
+					 	</postAction>
+					 	
+					 	<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					 		<stereotypesToApply>
+					 			<stereotype stereotypeName="SysML::Requirements::Requirement"/>	
+					 		</stereotypesToApply>
+					 	</postAction>
+				 </aspectTool>
+			
+				</drawer>
+				 	
+			<drawer iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" id="requirement.drawer.edges" name="Edges">
+			
+				<aspectTool description="Create a Copy Link"
+					id="requirement.tool.copy" name="Copy"
+					refToolId="clazz.tool.abstraction" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Copy.gif">
+					<postAction
+						id="org.eclipse.papyrus.applystereotypeactionprovider">
+						<stereotypesToApply>
+							<stereotype stereotypeName="SysML::Requirements::Copy" />
+						</stereotypesToApply>
+					</postAction>
+				</aspectTool>
+				
+				<aspectTool description="Create a Derive Link"
+					id="requirement.tool.derive" name="Derive"
+					refToolId="clazz.tool.abstraction" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/DeriveReqt.gif">
+					<postAction
+						id="org.eclipse.papyrus.applystereotypeactionprovider">
+						<stereotypesToApply>
+							<stereotype
+								stereotypeName="SysML::Requirements::DeriveReqt" />
+						</stereotypesToApply>
+					</postAction>
+				</aspectTool>
+				
+				<aspectTool description="Create a Decompose Link"
+					id="requirement.tool.decompose" name="Decompose"
+					refToolId="clazz.tool.containmentlink"/>
+				<aspectTool description="Create a Satisfy Link"
+					id="requirement.tool.satisfy" name="Satisfy"
+					refToolId="clazz.tool.abstraction" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif">
+					<postAction
+						id="org.eclipse.papyrus.applystereotypeactionprovider">
+						<stereotypesToApply>
+							<stereotype
+								stereotypeName="SysML::Requirements::Satisfy" />
+						</stereotypesToApply>
+					</postAction>
+				</aspectTool>
+				
+				<aspectTool description="Create a Verify Link"
+					id="requirement.tool.verify" name="Verify"
+					refToolId="clazz.tool.abstraction" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Verify.gif">
+					<postAction
+						id="org.eclipse.papyrus.applystereotypeactionprovider">
+						<stereotypesToApply>
+							<stereotype
+								stereotypeName="SysML::Requirements::Verify" />
+						</stereotypesToApply>
+					</postAction>
+				</aspectTool>
+			
+			</drawer>
+		</content>
+</paletteDefinition>

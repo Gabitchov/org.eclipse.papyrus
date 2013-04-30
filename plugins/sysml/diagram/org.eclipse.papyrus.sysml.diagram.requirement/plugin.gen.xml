@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Diagram declaration -->
+<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+	<creationCommand
+		creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
+		icon="icons/obj16/Diagram_Requirement.gif"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+		language="sysml"
+		label="SysML Requirement Diagram"/>
+	<editorDiagram
+		actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
+		factoryClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory"
+		icon="icons/obj16/Diagram_Requirement.gif" />
+</extension>
+
+<!-- Diagram creation command and handler -->
+<extension point="org.eclipse.ui.commands">
+	<command id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+		name="Create a new Requirement Diagram"
+		description="Create a new Requirement Diagram"
+		categoryId="org.eclipse.papyrus.editor.category"/>
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
+		commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand">
+		<activeWhen>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor" />
+			</with>
+		</activeWhen>
+	</handler>
+</extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams" label="Diagrams">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+			icon="icons/obj16/Diagram_Requirement.gif" label="Create a new Requirement Diagram"
+			style="push" tooltip="Create a new Requirement Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+			</visibleWhen>
+					
+		</command>
+	</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+			icon="icons/obj16/Diagram_Requirement.gif" label="Create a new Requirement Diagram"
+			style="push" tooltip="Create a new Requirement Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+			</visibleWhen>
+				
+		</command>
+	</toolbar>
+	</menuContribution>
+	
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+			icon="icons/obj16/Diagram_Requirement.gif"
+			label="Create a new Requirement Diagram"
+			style="push"
+			tooltip="Create a new Requirement Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+			</visibleWhen>
+			
+		</command>
+	</menuContribution>
+		
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+	name="SYSML_Requirement">
+	
+	<paletteDefinition ID="SYSML_Requirement"
+		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+		name="SYSML_Requirement" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/requirement.palette.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+		
+		<!-- Specify diagram this palette tools relate to -->						
+		<editor id="org.eclipse.papyrus.sysml.diagram.requirement"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Diagram view providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+	<!-- Diagram view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.requirement.provider.RequirementDiagramViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Requirement"/>
+	</viewProvider>
+	
+	<!-- ViewProvider for inherited elements (from ClassDiagram ViewProvider) -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.requirement.provider.InheritedClassDiagramViewProvider">
+		<Priority name="Low"/>
+		
+		<!-- 
+			"2007" = PACKAGE
+			"3009" = PACKAGE_CN
+			"2008" = CLASS
+			"3010" = CLASS_CN
+			"2097" = DEFAULT_NAMED_ELEMENT
+			"3032" = CONTAINMENT_CIRCLE_CN
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2008, 3010, 2097, 3032"/>
+		
+		<!-- 
+			"3012" = CLASS_PROPERTY_CLN
+			"3011" = CLASS_RECEPTION_CLN
+			"3013" = CLASS_OPERATION_CLN
+			"3014" = CLASS_CLASS_CLN
+			"3036" = CLASS_INTERFACE_CLN
+			"3052" = CLASS_ENUMERATION_CLN
+			"3047" = CLASS_PRIMITIVE_TYPE_CLN
+			"3044" = CLASS_DATA_TYPE_CLN
+			"3050" = CLASS_SIGNAL_CLN
+		  -->	  
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3012, 3011, 3013, 3014, 3036, 3052, 3047, 3044, 3050"/>
+		
+		<!-- 
+			"4006" = ABSTRACTION
+			"4023" = CONTAINMENT_LINK
+			"4022" = CONTAINMENT_SUB_LINK
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4006, 4023, 4022"/>
+		
+		<object id="elementtype.node"
+	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+	       
+	     <method
+	        name="getSemanticHint()"
+			value="2007, 3009, 2008, 3010, 2097, 3032">
+		</method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" elements="elementtype.node"/>
+	
+		<object id="elementtype.edge"
+	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+	       
+	     <method
+	        name="getSemanticHint()"
+			value="4006, 4023, 4022">
+		</method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="elementtype.edge"/>
+	
+		
+		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
+		
+		<!-- "uml.Package" -->
+		<object id="uml.Package" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Package"/>
+		</object>
+		
+		<!-- "uml.Class" -->
+		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Class"/>
+		</object>
+		
+		<!-- "uml.NamedElement" -->
+		<object id="uml.NamedElement" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.NamedElement"/>
+		</object>
+		
+		<!-- "uml.Property" -->
+		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Property"/>
+		</object>
+		
+		<!-- "uml.Reception" -->
+		<object id="uml.Reception" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Reception"/>
+		</object>
+		
+		<!-- "uml.Operation" -->
+		<object id="uml.Operation" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Operation"/>
+		</object>
+		
+		<!-- "uml.Interface" -->
+		<object id="uml.Interface" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Interface"/>
+		</object>
+		
+		<!-- "uml.Enumeration" -->
+		<object id="uml.Enumeration" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Enumeration"/>
+		</object>
+		
+		<!-- "uml.PrimitiveType" -->
+		<object id="uml.PrimitiveType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.PrimitiveType"/>
+		</object>
+		
+		<!-- "uml.DataType" -->
+		<object id="uml.DataType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.DataType"/>
+		</object>
+		
+		<!-- "uml.Signal" -->
+		<object id="uml.Signal" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Signal"/>
+		</object>
+		
+		<!-- "uml.Abstraction" -->
+		<object id="uml.Abstraction" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Abstraction"/>
+		</object>
+		
+		<!-- Additional activation contexts for nodes semantic objects -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
+			elements="uml.Package, uml.Class, uml.NamedElement, uml.Property, uml.Reception, uml.Operation, uml.Interface, uml.Enumeration, uml.PrimitiveType, uml.DataType, uml.Signal"/>
+		
+		<!-- Additional activation contexts for edges semantic objects -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge"
+			elements="uml.Abstraction"/>
+			
+	</viewProvider>	
+</extension>
+
+<!-- Diagram edit part providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+	
+	<!-- Diagram edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.requirement.provider.RequirementDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<object 
+			id="org.eclipse.papyrus.sysml.diagram.requirement.Diagram"
+			class="org.eclipse.gmf.runtime.notation.Diagram">
+			<method name="getType()" value="Requirement"/>
+		</object>
+		<context views="org.eclipse.papyrus.sysml.diagram.requirement.Diagram"/>	
+	</editpartProvider>
+	
+	<!-- EditPartProvider for inherited elements (from ClassDiagram) -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.requirement.provider.InheritedClassDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<!-- 
+			The semantic hints given here are used in case the provider is not already loaded.
+			As soon as the provider is loaded its provides method is used.		
+			"2007" = PACKAGE
+			"5026" = PACKAGE_LABEL_NAME_HINT
+			"7016" = PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"3009" = PACKAGE_CN
+			"5017" = PACKAGE_CN_LABEL_NAME_HINT
+			"7010" = PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"2008" = CLASS
+			"5029" = CLASS_LABEL_NAME_HINT
+			"7017" = CLASS_COMPARTMENT_ATTRIBUTE_HINT
+			"7018" = CLASS_COMPARTMENT_OPERATION_HINT
+			"7019" = CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT
+			"3010" = CLASS_CN
+			"5014" = CLASS_CN_LABEL_NAME_HINT
+			"7011" = CLASS_CN_COMPARTMENT_ATTRIBUTE_HINT
+			"7012" = CLASS_CN_COMPARTMENT_OPERATION_HINT
+			"7013" = CLASS_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT
+			"2097" = DEFAULT_NAMED_ELEMENT
+			"5157" = DEFAULT_NAMED_ELEMENT_LABEL_NAME_HINT
+			"3032" = CONTAINMENT_CIRCLE_CN
+		  -->
+		<object
+			id="PACKAGE"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2007, 5026, 7016"/>
+		</object>
+		<object
+			id="PACKAGE_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3009, 5017, 7010"/>
+		</object>
+		<object
+			id="CLASS"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2008, 5029, 7017, 7018, 7019"/>
+		</object>
+		<object
+			id="CLASS_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3010, 5014, 7011, 7012, 7013"/>
+		</object>
+		<object
+			id="DEFAULT_NAMED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2097, 5157"/>
+		</object>
+		<object
+			id="CONTAINMENT_CIRCLE_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3032"/>
+		</object>
+		
+		<!-- 	
+			"3012" = CLASS_PROPERTY_CLN
+			"3011" = CLASS_RECEPTION_CLN
+			"3013" = CLASS_OPERATION_CLN
+			"3014" = CLASS_CLASS_CLN
+			"3036" = CLASS_INTERFACE_CLN
+			"3052" = CLASS_ENUMERATION_CLN
+			"3047" = CLASS_PRIMITIVE_TYPE_CLN
+			"3044" = CLASS_DATA_TYPE_CLN
+			"3050" = CLASS_SIGNAL_CLN
+		  -->
+		<object
+			id="CLASS_PROPERTY_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3012"/>
+		</object>
+		<object
+			id="CLASS_RECEPTION_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3011"/>
+		</object>
+		<object
+			id="CLASS_OPERATION_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3013"/>
+		</object>
+		<object
+			id="CLASS_CLASS_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3014"/>
+		</object>
+		<object
+			id="CLASS_INTERFACE_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3036"/>
+		</object>
+		<object
+			id="CLASS_ENUMERATION_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3052"/>
+		</object>
+		<object
+			id="CLASS_PRIMITIVE_TYPE_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3047"/>
+		</object>
+		<object
+			id="CLASS_DATA_TYPE_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3044"/>
+		</object>
+		<object
+			id="CLASS_SIGNAL_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3050"/>
+		</object>
+		
+		<!-- 	
+			"4006" = ABSTRACTION
+			"6014" = ABSTRACTION_LABEL_NAME_HINT
+			"6015" = ABSTRACTION_LABEL_APPLIED_STEREOTYPE_HINT
+			"4023" = CONTAINMENT_LINK
+			"4022" = CONTAINMENT_SUB_LINK
+		  -->
+		<object
+			id="ABSTRACTION"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4006, 6014, 6015"/>
+		</object>
+		<object
+			id="CONTAINMENT_LINK"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4023"/>
+		</object>
+		<object
+			id="CONTAINMENT_SUB_LINK"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4022"/>
+		</object>
+		
+		<context views="PACKAGE, PACKAGE_CN, CLASS, CLASS_CN, NAMED_ELEMENT, CONTAINMENT_CIRCLE_CN"/>
+		<context views="CLASS_PROPERTY_CLN, CLASS_RECEPTION_CLN, CLASS_OPERATION_CLN, CLASS_CLASS_CLN, CLASS_INTERFACE_CLN, CLASS_ENUMERATION_CLN, CLASS_PRIMITIVE_TYPE_CLN, CLASS_DATA_TYPE_CLN, CLASS_SIGNAL_CLN"/>
+		<context views="ABSTRACTION, CONTAINMENT_LINK, CONTAINMENT_SUB_LINK"/>
+		
+	</editpartProvider>
+</extension>
+
+<!-- Diagram edit policy provider -->	
+<extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.sysml.diagram.requirement.provider.CustomEditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
+
+<!-- Preference pages declaration -->
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+
+	<!-- Diagram Preference pages declaration -->
+	<page
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		name="Requirement Diagram"
+		category="org.eclipse.papyrus.preferences.diagrams"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.RequirementDiagramGeneralPreferencePage">
+	</page>
+
+	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackagePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackagePreferencePage"
+		name="Package">
+	</page>
+	
+	
+	
+	
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.NamedElementPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.NamedElementPreferencePage"
+		name="NamedElement">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage"
+		name="Abstraction">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ContainmentLinkPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ContainmentLinkPreferencePage"
+		name="ContainmentLink">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PropertyPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PropertyPreferencePage"
+		name="Property">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ReceptionPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ReceptionPreferencePage"
+		name="Reception">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.OperationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.OperationPreferencePage"
+		name="Operation">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.InterfacePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.InterfacePreferencePage"
+		name="Interface">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.EnumerationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.EnumerationPreferencePage"
+		name="Enumeration">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PrimitiveTypePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PrimitiveTypePreferencePage"
+		name="PrimitiveType">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.DataTypePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.DataTypePreferencePage"
+		name="DataType">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.SignalPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.SignalPreferencePage"
+		name="Signal">
+	</page>
+			
+
+</extension>
+
+<!-- // Start of user code custom extensions 
+  -->
+
+<!-- Insert custom extensions here. -->
+  
+<!-- // End of user code 
+  -->
+
+</plugin>
