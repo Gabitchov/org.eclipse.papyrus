@@ -37,6 +37,7 @@ import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.validation.Sema
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
@@ -81,7 +82,7 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 			final AppliedStereotypeProperty appliedStereotypeProperty = (AppliedStereotypeProperty)((IAdaptable)editPart).getAdapter(AppliedStereotypeProperty.class);
 			
 			//this pop up for the moment cannot manage Datatype
-			if(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof DataType){
+			if((!(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof PrimitiveType)) &&(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof DataType)){
 				return null;
 			}
 			
