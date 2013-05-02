@@ -5,10 +5,14 @@ import java.util.Iterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper;
 import org.eclipse.papyrus.uml.tools.Activator;
+import org.eclipse.papyrus.uml.tools.namereferences.NameReferencesHelper;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.ClassifierTemplateParameter;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -98,6 +102,21 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 		return inputElement;
 	}
 
+	@Override
+	public String getText(Object element) {
+		//For comments, we want to use hard coded labels. Do not use the EMF Facet label Provider
+		EObject eObject = EMFHelper.getEObject(element);
+		if(eObject instanceof Comment) {
+			return getText(eObject);
+		}
+
+		if(UMLUtil.getBaseElement(eObject) instanceof Comment) {
+			return getText(eObject);
+		}
+
+		return super.getText(element);
+	}
+
 	/**
 	 * 
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
@@ -185,6 +204,16 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			} else {
 				return ((NamedElement)element).getName();
 			}
+		} else if(element instanceof Comment) {
+			Comment comment = (Comment)element;
+			TextReferencesHelper helper = new NameReferencesHelper(comment.eResource()) {
+
+				@Override
+				protected String decorate(String text) {
+					return text; //Do not decorate the string. Html is not supported in most cases
+				}
+			};
+			return helper.replaceReferences(comment.getBody());
 		}
 		// TODO: Temporary solution for template parameters
 		// Note: In the class diagram, for template parameters, 
