@@ -130,7 +130,14 @@ public abstract class TextReferencesHelper {
 		}
 
 		//Use a Javadoc-like @link tag
-		String reference = "{@link " + EcoreUtil.getURI(toElement) + "}"; //The URI is already encoded 
+		URI elementURI = EcoreUtil.getURI(toElement);
+		if(baseResource != null) {
+			URI baseURI = baseResource.getURI();
+			if(baseURI != null) {
+				elementURI = elementURI.deresolve(baseURI);
+			}
+		}
+		String reference = "{@link " + elementURI + "}"; //The URI is already encoded 
 
 		if(atPosition == 0) {
 			return reference + result; //At the beginning
