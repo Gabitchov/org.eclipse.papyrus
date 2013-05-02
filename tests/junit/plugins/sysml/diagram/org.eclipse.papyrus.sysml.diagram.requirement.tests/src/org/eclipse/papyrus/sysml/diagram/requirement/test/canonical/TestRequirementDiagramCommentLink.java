@@ -14,15 +14,21 @@ package org.eclipse.papyrus.sysml.diagram.requirement.test.canonical;
 
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand;
+import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
+import org.junit.Test;
 
-/**
- * The Class AbstractPapyrusTestCase.
- */
-public abstract class AbstractPapyrusTestCase extends org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase {
+public class TestRequirementDiagramCommentLink extends TestCommentLink {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new RequirementDiagramCreateCommand();
 	}
 
+	/**
+	 * Test to manage Comment
+	 */
+	@Test
+	public void testToManageComment() {
+		testToManageLink(ElementTypes.COMMENT, ElementTypes.CLASS, ElementTypes.COMMENT_ANNOTATED_ELEMENT, ElementTypes.PACKAGE, true);
+	}
 }

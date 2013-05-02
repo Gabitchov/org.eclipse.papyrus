@@ -4,6 +4,12 @@
 		<drawer
 			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 			id="org.eclipse.papyrus.sysml.diagram.requirement.SYSML_Requirement__Tools" name="Tools">
+			<aspectTool description="Create a new Comment" id="requirement.tool.comment"
+				name="Comment" refToolId="clazz.tool.comment">
+			</aspectTool>
+			<aspectTool description="Create a new Constraint" id="requirement.tool.constraint"
+				name="Constraint" refToolId="clazz.tool.constraint">
+			</aspectTool>
 			<aspectTool description="Create a new NamedElement" id="requirement.tool.namedelement"
 				name="NamedElement" refToolId=>
 			</aspectTool>
@@ -42,6 +48,9 @@
 			</aspectTool>
 			<aspectTool description="Create a new ContainmentLink" id="requirement.tool.containmentlink"
 				name="ContainmentLink" refToolId="clazz.tool.containmentlink">
+			</aspectTool>
+			<aspectTool description="Create a new Dependency" id="requirement.tool.dependency"
+				name="Dependency" refToolId="clazz.tool.dependency">
 			</aspectTool>
 						
 		</drawer>

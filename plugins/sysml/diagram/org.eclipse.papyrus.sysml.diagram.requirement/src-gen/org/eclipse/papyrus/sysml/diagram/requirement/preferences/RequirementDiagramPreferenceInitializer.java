@@ -28,7 +28,10 @@ public class RequirementDiagramPreferenceInitializer extends AbstractPreferenceI
 
 		org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackagePreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.requirement.preferences.NamedElementPreferencePage.initDefaults(store);
+		org.eclipse.papyrus.sysml.diagram.requirement.preferences.CommentPreferencePage.initDefaults(store);
+		org.eclipse.papyrus.sysml.diagram.requirement.preferences.ConstraintPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.requirement.preferences.ContainmentLinkPreferencePage.initDefaults(store);
+		org.eclipse.papyrus.sysml.diagram.requirement.preferences.DependencyPreferencePage.initDefaults(store);
 	}
 }

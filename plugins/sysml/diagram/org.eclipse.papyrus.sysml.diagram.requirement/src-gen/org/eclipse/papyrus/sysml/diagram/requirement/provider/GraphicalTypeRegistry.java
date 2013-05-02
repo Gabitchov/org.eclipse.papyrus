@@ -39,6 +39,9 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 
 		// Fill known edges set
 		knownEdges.add(ElementTypes.ABSTRACTION.getSemanticHint());
+		knownEdges.add(ElementTypes.DEPENDENCY.getSemanticHint());
+		knownEdges.add(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint());
+		knownEdges.add(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint());
 
 		// Fill known nodes set (primary nodes)
 		knownNodes.add(ElementTypes.PACKAGE.getSemanticHint());
@@ -47,6 +50,10 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		knownNodes.add(ElementTypes.CLASS_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.DEFAULT_NAMED_ELEMENT.getSemanticHint());
 		knownNodes.add(ElementTypes.CONTAINMENT_CIRCLE_CN.getSemanticHint());
+		knownNodes.add(ElementTypes.COMMENT.getSemanticHint());
+		knownNodes.add(ElementTypes.COMMENT_CN.getSemanticHint());
+		knownNodes.add(ElementTypes.CONSTRAINT.getSemanticHint());
+		knownNodes.add(ElementTypes.CONSTRAINT_CN.getSemanticHint());
 
 		// Fill known nodes set (child label nodes)
 		knownNodes.add(ElementTypes.CLASS_PROPERTY_CLN.getSemanticHint());
@@ -71,6 +78,9 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		}
 		if(domainElement instanceof org.eclipse.uml2.uml.Abstraction) {
 			graphicalType = ElementTypes.ABSTRACTION.getSemanticHint();
+		}
+		if(domainElement instanceof org.eclipse.uml2.uml.Dependency) {
+			graphicalType = ElementTypes.DEPENDENCY.getSemanticHint();
 		}
 		return graphicalType;
 	}
@@ -143,6 +153,32 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		if(domainElement instanceof org.eclipse.uml2.uml.NamedElement) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // NamedElement TopNode
 				graphicalType = ElementTypes.DEFAULT_NAMED_ELEMENT.getSemanticHint();
+			}
+
+		}
+
+		if(domainElement instanceof org.eclipse.uml2.uml.Comment) {
+			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Comment TopNode
+				graphicalType = ElementTypes.COMMENT.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Comment ChildNode
+				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Comment ChildNode
+				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
+			}
+
+		}
+
+		if(domainElement instanceof org.eclipse.uml2.uml.Constraint) {
+			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
+				graphicalType = ElementTypes.CONSTRAINT.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				graphicalType = ElementTypes.CONSTRAINT_CN.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				graphicalType = ElementTypes.CONSTRAINT_CN.getSemanticHint();
 			}
 
 		}

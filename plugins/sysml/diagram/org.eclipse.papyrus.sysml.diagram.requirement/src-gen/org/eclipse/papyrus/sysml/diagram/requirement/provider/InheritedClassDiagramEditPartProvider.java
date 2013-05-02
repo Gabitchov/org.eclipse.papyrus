@@ -44,6 +44,12 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 			if(eobject instanceof org.eclipse.uml2.uml.NamedElement) {
 				return true;
 			}
+			if(eobject instanceof org.eclipse.uml2.uml.Comment) {
+				return true;
+			}
+			if(eobject instanceof org.eclipse.uml2.uml.Constraint) {
+				return true;
+			}
 			if(eobject instanceof org.eclipse.uml2.uml.Property) {
 				return true;
 			}
@@ -71,6 +77,38 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 
 			/** Edges *********** */
 			if(eobject instanceof org.eclipse.uml2.uml.Abstraction) {
+				return true;
+			}
+			if(eobject instanceof org.eclipse.uml2.uml.Dependency) {
+				return true;
+			}
+
+			// Additional test needed here to decide whether to support Feature type links.
+			// As feature type link are not related to a MetaClass from the domain model
+			// they are not already handled by previous tests.
+			// Also concerns NotationType.
+			String hint = view.getType();
+
+			/** Edges (Feature) : COMMENT_ANNOTATED_ELEMENT *********** */
+			if(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(hint)) {
+				return true;
+			}
+			/** Edges (Feature) : CONSTRAINT_CONSTRAINED_ELEMENT *********** */
+			if(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(hint)) {
+				return true;
+			}
+
+			/** Edges (NotationType) : CONTAINMENT_LINK *********** */
+			if(ElementTypes.CONTAINMENT_LINK.getSemanticHint().equals(hint)) {
+				return true;
+			}
+			/** Edges (NotationType) : CONTAINMENT_SUB_LINK *********** */
+			if(ElementTypes.CONTAINMENT_SUB_LINK.getSemanticHint().equals(hint)) {
+				return true;
+			}
+
+			/** Nodes (NotationType) : CONTAINMENT_CIRCLE_CN *********** */
+			if(ElementTypes.CONTAINMENT_CIRCLE_CN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 

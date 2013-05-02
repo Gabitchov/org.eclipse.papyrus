@@ -25,6 +25,38 @@
 					 	</postAction>
 				 </aspectTool>
 			
+			<aspectTool description="Create a new Problem"
+					 id="requirement.tool.comment" name="Problem" 
+					 refToolId="clazz.tool.comment" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Problem.gif">
+					 					 	
+					 	<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					 		<stereotypesToApply>
+					 			<stereotype stereotypeName="SysML::ModelElements::Problem"/>	
+					 		</stereotypesToApply>
+					 	</postAction>
+					 	
+				 </aspectTool>
+				 
+				 <aspectTool description="Create a new Rationale"
+					 id="requirement.tool.comment" name="Rationale" 
+					 refToolId="clazz.tool.comment" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Rationale.gif">
+					 					 	
+					 	<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					 		<stereotypesToApply>
+					 			<stereotype stereotypeName="SysML::ModelElements::Rationale"/>	
+					 		</stereotypesToApply>
+					 	</postAction>
+					 	
+				 </aspectTool>
+				 
+			<aspectTool description="Create a new Comment" id="requirement.tool.comment"
+				name="Comment" refToolId="clazz.tool.comment">
+			</aspectTool>
+			
+			<aspectTool description="Create a new Constraint" id="requirement.tool.constraint"
+				name="Constraint" refToolId="clazz.tool.constraint">
+			</aspectTool>
+			
 				</drawer>
 				 	
 			<drawer iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" id="requirement.drawer.edges" name="Edges">
@@ -78,6 +110,15 @@
 						</stereotypesToApply>
 					</postAction>
 				</aspectTool>
+			
+			<aspectTool description="Create a new Dependency" id="requirement.tool.dependency"
+				name="Dependency" refToolId="clazz.tool.dependency">
+			</aspectTool>
+			
+			<!-- Attention : The element is added manually, can combine the two links comment and constraint, and therefore is not deleted -->
+			<aspectTool description="Create a new Link" id="package.tool.link"
+				name="Link" refToolId="clazz.tool.link">
+			</aspectTool>
 			
 			</drawer>
 		</content>

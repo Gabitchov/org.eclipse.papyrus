@@ -115,8 +115,12 @@
 			"3010" = CLASS_CN
 			"2097" = DEFAULT_NAMED_ELEMENT
 			"3032" = CONTAINMENT_CIRCLE_CN
+			"2012" = COMMENT
+			"3028" = COMMENT_CN
+			"2011" = CONSTRAINT
+			"3029" = CONSTRAINT_CN
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2008, 3010, 2097, 3032"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2008, 3010, 2097, 3032, 2012, 3028, 2011, 3029"/>
 		
 		<!-- 
 			"3012" = CLASS_PROPERTY_CLN
@@ -135,15 +139,18 @@
 			"4006" = ABSTRACTION
 			"4023" = CONTAINMENT_LINK
 			"4022" = CONTAINMENT_SUB_LINK
+			"4008" = DEPENDENCY
+			"4013" = COMMENT_ANNOTATED_ELEMENT
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4006, 4023, 4022"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4006, 4023, 4022, 4008, 4013, 4014"/>
 		
 		<object id="elementtype.node"
 	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
 	       
 	     <method
 	        name="getSemanticHint()"
-			value="2007, 3009, 2008, 3010, 2097, 3032">
+			value="2007, 3009, 2008, 3010, 2097, 3032, 2012, 3028, 2011, 3029">
 		</method>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" elements="elementtype.node"/>
@@ -153,7 +160,7 @@
 	       
 	     <method
 	        name="getSemanticHint()"
-			value="4006, 4023, 4022">
+			value="4006, 4023, 4022, 4008, 4013, 4014">
 		</method>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="elementtype.edge"/>
@@ -174,6 +181,16 @@
 		<!-- "uml.NamedElement" -->
 		<object id="uml.NamedElement" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.NamedElement"/>
+		</object>
+		
+		<!-- "uml.Comment" -->
+		<object id="uml.Comment" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Comment"/>
+		</object>
+		
+		<!-- "uml.Constraint" -->
+		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Constraint"/>
 		</object>
 		
 		<!-- "uml.Property" -->
@@ -221,13 +238,18 @@
 			<method name="getProxyClassID()" value="uml.Abstraction"/>
 		</object>
 		
+		<!-- "uml.Dependency" -->
+		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Dependency"/>
+		</object>
+		
 		<!-- Additional activation contexts for nodes semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
-			elements="uml.Package, uml.Class, uml.NamedElement, uml.Property, uml.Reception, uml.Operation, uml.Interface, uml.Enumeration, uml.PrimitiveType, uml.DataType, uml.Signal"/>
+			elements="uml.Package, uml.Class, uml.NamedElement, uml.Comment, uml.Constraint, uml.Property, uml.Reception, uml.Operation, uml.Interface, uml.Enumeration, uml.PrimitiveType, uml.DataType, uml.Signal"/>
 		
 		<!-- Additional activation contexts for edges semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge"
-			elements="uml.Abstraction"/>
+			elements="uml.Abstraction, uml.Dependency"/>
 			
 	</viewProvider>	
 </extension>
@@ -271,6 +293,16 @@
 			"2097" = DEFAULT_NAMED_ELEMENT
 			"5157" = DEFAULT_NAMED_ELEMENT_LABEL_NAME_HINT
 			"3032" = CONTAINMENT_CIRCLE_CN
+			"2012" = COMMENT
+			"5038" = COMMENT_LABEL_BODY_HINT
+			"3028" = COMMENT_CN
+			"5063" = COMMENT_CN_LABEL_BODY_HINT
+			"2011" = CONSTRAINT
+			"5037" = CONSTRAINT_LABEL_NAME_HINT
+			"5159" = CONSTRAINT_LABEL_BODY_HINT
+			"3029" = CONSTRAINT_CN
+			"5064" = CONSTRAINT_CN_LABEL_NAME_HINT
+			"5160" = CONSTRAINT_CN_LABEL_BODY_HINT
 		  -->
 		<object
 			id="PACKAGE"
@@ -301,6 +333,26 @@
 			id="CONTAINMENT_CIRCLE_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="3032"/>
+		</object>
+		<object
+			id="COMMENT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2012, 5038"/>
+		</object>
+		<object
+			id="COMMENT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3028, 5063"/>
+		</object>
+		<object
+			id="CONSTRAINT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2011, 5037, 5159"/>
+		</object>
+		<object
+			id="CONSTRAINT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3029, 5064, 5160"/>
 		</object>
 		
 		<!-- 	
@@ -366,6 +418,11 @@
 			"6015" = ABSTRACTION_LABEL_APPLIED_STEREOTYPE_HINT
 			"4023" = CONTAINMENT_LINK
 			"4022" = CONTAINMENT_SUB_LINK
+			"4008" = DEPENDENCY
+			"6026" = DEPENDENCY_LABEL_NAME_HINT
+			"6027" = DEPENDENCY_LABEL_APPLIED_STEREOTYPE_HINT
+			"4013" = COMMENT_ANNOTATED_ELEMENT
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
 		  -->
 		<object
 			id="ABSTRACTION"
@@ -382,10 +439,25 @@
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4022"/>
 		</object>
+		<object
+			id="DEPENDENCY"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4008, 6026, 6027"/>
+		</object>
+		<object
+			id="COMMENT_ANNOTATED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4013"/>
+		</object>
+		<object
+			id="CONSTRAINT_CONSTRAINED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4014"/>
+		</object>
 		
-		<context views="PACKAGE, PACKAGE_CN, CLASS, CLASS_CN, NAMED_ELEMENT, CONTAINMENT_CIRCLE_CN"/>
+		<context views="PACKAGE, PACKAGE_CN, CLASS, CLASS_CN, NAMED_ELEMENT, CONTAINMENT_CIRCLE_CN, COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN"/>
 		<context views="CLASS_PROPERTY_CLN, CLASS_RECEPTION_CLN, CLASS_OPERATION_CLN, CLASS_CLASS_CLN, CLASS_INTERFACE_CLN, CLASS_ENUMERATION_CLN, CLASS_PRIMITIVE_TYPE_CLN, CLASS_DATA_TYPE_CLN, CLASS_SIGNAL_CLN"/>
-		<context views="ABSTRACTION, CONTAINMENT_LINK, CONTAINMENT_SUB_LINK"/>
+		<context views="ABSTRACTION, CONTAINMENT_LINK, CONTAINMENT_SUB_LINK, DEPENDENCY, COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"/>
 		
 	</editpartProvider>
 </extension>
@@ -434,6 +506,24 @@
 	
 	
 	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.CommentPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.CommentPreferencePage"
+		name="Comment">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ConstraintPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ConstraintPreferencePage"
+		name="Constraint">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage"
 		name="Abstraction">
@@ -445,6 +535,17 @@
 		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ContainmentLinkPreferencePage"
 		name="ContainmentLink">
 	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.DependencyPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.DependencyPreferencePage"
+		name="Dependency">
+	</page>
+	
+	
 	
 	
 	

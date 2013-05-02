@@ -77,6 +77,18 @@ public class RequirementDiagramEditPolicyProvider extends AbstractProvider imple
 		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentCircleEditPart) {
 			return true;
 		}
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart) {
+			return true;
+		}
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPartCN) {
+			return true;
+		}
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart) {
+			return true;
+		}
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPartCN) {
+			return true;
+		}
 
 		return false;
 	}
