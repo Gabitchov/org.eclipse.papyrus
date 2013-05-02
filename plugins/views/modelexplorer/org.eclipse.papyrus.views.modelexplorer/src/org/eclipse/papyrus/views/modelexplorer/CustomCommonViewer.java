@@ -15,6 +15,7 @@ package org.eclipse.papyrus.views.modelexplorer;
 
 import org.eclipse.jface.viewers.IElementComparer;
 import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
+import org.eclipse.papyrus.views.modelexplorer.matching.IReferencable;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.internal.navigator.dnd.NavigatorDnDService;
