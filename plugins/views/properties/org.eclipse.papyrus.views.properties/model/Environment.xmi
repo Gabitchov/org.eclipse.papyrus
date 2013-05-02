@@ -149,6 +149,10 @@
       label="InvalidWidget"
       widgetClass="InvalidWidget"
       namespace="//@namespaces.3"/>
+  <propertyEditorTypes
+      label="StringMultiline with References"
+      widgetClass="StringMultilineWithReferences"
+      namespace="//@namespaces.3"/>
   <compositeWidgetTypes
       label="Composite"
       widgetClass="Composite"/>

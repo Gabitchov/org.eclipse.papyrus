@@ -334,4 +334,8 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 		}
 		super.dispose();
 	}
+
+	public Text getText() {
+		return text;
+	}
 }

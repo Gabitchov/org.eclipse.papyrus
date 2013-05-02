@@ -12,6 +12,9 @@
   <constraintTypes
       label="IsDataType"
       constraintClass="org.eclipse.papyrus.uml.properties.datatype.IsDataTypeConstraint"/>
+  <constraintTypes
+      label="Is UML Datatype Instance"
+      constraintClass="org.eclipse.papyrus.uml.properties.constraints.IsUMLDatatypeInstance"/>
   <modelElementFactories
       name="UML Specific Factory"
       factoryClass="org.eclipse.papyrus.uml.properties.modelelement.UMLEditorFactory"/>
@@ -68,6 +71,10 @@
       namespace="//@namespaces.0"
       type="Reference"
       multiplicity="-1"/>
+  <propertyEditorTypes
+      label="Comment Body Editor"
+      widgetClass="CommentBodyEditor"
+      namespace="//@namespaces.0"/>
   <namespaces
       name="uml"
       value="org.eclipse.papyrus.uml.properties.widgets"/>

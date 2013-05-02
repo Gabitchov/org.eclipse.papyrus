@@ -206,14 +206,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			}
 		} else if(element instanceof Comment) {
 			Comment comment = (Comment)element;
-			TextReferencesHelper helper = new NameReferencesHelper(comment.eResource()) {
-
-				@Override
-				protected String decorate(String text) {
-					return text; //Do not decorate the string. Html is not supported in most cases
-				}
-			};
-			return helper.replaceReferences(comment.getBody());
+			return getText(comment);
 		}
 		// TODO: Temporary solution for template parameters
 		// Note: In the class diagram, for template parameters, 
@@ -277,6 +270,72 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 		}
 
 		return super.getText(element);
+	}
+
+	/**
+	 * Returns a truncated string representing the body of the comment
+	 * 
+	 * @param comment
+	 * @return
+	 */
+	protected String getText(Comment comment) {
+		TextReferencesHelper helper = new NameReferencesHelper(comment.eResource()) {
+
+			@Override
+			protected String decorate(String text) {
+				return text; //Do not decorate the string. Html is not supported in most cases
+			}
+		};
+
+		String body = comment.getBody();
+
+		//Truncate extra lines
+		int nIndex = body.indexOf('\n');
+		int rIndex = body.indexOf('\r');
+
+		int minIndex = -1;
+
+		if(nIndex > -1) { //Multiline
+			if(rIndex > -1) {
+				minIndex = Math.min(nIndex, rIndex);
+			} else {
+				minIndex = nIndex;
+			}
+		} else if(rIndex > -1) {
+			minIndex = rIndex;
+		}
+
+		boolean isTruncated = false;
+
+		String singleLineText;
+		if(minIndex > -1) { //Multiline
+			singleLineText = body.substring(0, minIndex);
+			isTruncated = true;
+		} else {
+			singleLineText = body;
+		}
+
+		//Replace references
+
+		singleLineText = helper.replaceReferences(singleLineText);
+
+		//Truncate long texts
+
+		String truncatedText;
+		int maxLength = 60;
+		if(singleLineText.length() > maxLength) {
+			truncatedText = singleLineText.substring(0, maxLength);
+			isTruncated = true;
+		} else {
+			truncatedText = singleLineText;
+		}
+
+		//Append truncated marker
+		if(isTruncated) {
+			truncatedText += "...";
+		}
+
+		return truncatedText;
 	}
 
 	private boolean isEmptyString(String s) {
