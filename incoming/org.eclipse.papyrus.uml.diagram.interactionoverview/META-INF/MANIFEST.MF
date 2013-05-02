@@ -33,3 +33,15 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
+Export-Package: org.eclipse.papyrus.uml.diagram.interactionoverview,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.dialogs,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policy,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.factory,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.figures,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.parser,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.part,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.preferences,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.provider
