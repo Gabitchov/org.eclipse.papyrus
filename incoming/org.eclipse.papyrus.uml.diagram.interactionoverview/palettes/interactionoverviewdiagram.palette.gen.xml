@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.uml.diagram.interactionoverview.UML_InteractionOverviewDiagram__Tools" name="Tools">
+			<aspectTool description="Create a new Activity" id="interactionoverviewdiagram.tool.activity"
+				name="Activity" refToolId="createActivity1CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new ActivityFinalNode" id="interactionoverviewdiagram.tool.activityfinalnode"
+				name="ActivityFinalNode" refToolId="createActivityfinal2CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new CallBehaviorAction" id="interactionoverviewdiagram.tool.callbehavioraction"
+				name="CallBehaviorAction" refToolId="createCallBehaviorAction2CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new Comment" id="interactionoverviewdiagram.tool.comment"
+				name="Comment" refToolId="createComment5CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new ConditionalNode" id="interactionoverviewdiagram.tool.conditionalnode"
+				name="ConditionalNode" refToolId="createConditionalNode4CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new Constraint" id="interactionoverviewdiagram.tool.constraint"
+				name="Constraint" refToolId="createConstraint6CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new DecisionNode" id="interactionoverviewdiagram.tool.decisionnode"
+				name="DecisionNode" refToolId="createDecisionnode4CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new FlowFinalNode" id="interactionoverviewdiagram.tool.flowfinalnode"
+				name="FlowFinalNode" refToolId="createFlowfinal3CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new ForkNode" id="interactionoverviewdiagram.tool.forknode"
+				name="ForkNode" refToolId="createForknode7CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new InitialNode" id="interactionoverviewdiagram.tool.initialnode"
+				name="InitialNode" refToolId="createInitialnode1CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new JoinNode" id="interactionoverviewdiagram.tool.joinnode"
+				name="JoinNode" refToolId="createJoinnode6CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new LoopNode" id="interactionoverviewdiagram.tool.loopnode"
+				name="LoopNode" refToolId="createLoopNode2CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new MergeNode" id="interactionoverviewdiagram.tool.mergenode"
+				name="MergeNode" refToolId="createMergenode5CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new NamedElement" id="interactionoverviewdiagram.tool.namedelement"
+				name="NamedElement" refToolId="">
+			</aspectTool>
+			<aspectTool description="Create a new SequenceNode" id="interactionoverviewdiagram.tool.sequencenode"
+				name="SequenceNode" refToolId="createSequenceNode3CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new CommentAnnotatedElement" id="interactionoverviewdiagram.tool.commentannotatedelement"
+				name="CommentAnnotatedElement" refToolId="createLink4CreationTool">
+			</aspectTool>
+			<aspectTool description="Create a new ControlFlow" id="interactionoverviewdiagram.tool.controlflow"
+				name="ControlFlow" refToolId="createControlFlow1CreationTool">
+			</aspectTool>
+						
+		</drawer>
+	</content>
+</paletteDefinition>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idgen:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" xmlns:idgen="http://www.eclipse.org/papyrus/0.7.0/idgen" name="InteractionOverviewDiagram" type="" icon="" label="Interaction Overview Diagram" language="uml" javaPackagePrefix="org.eclipse.papyrus.uml.diagram.interactionoverview" javaClassPrefix="InteractionOverviewDiagram" createCommandLabel="Create a new Interaction Overview Diagram">
+  <diagramEditPart name="InteractionOverviewDiagramEditPart">
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy" key="DuplicatePasteEditPolicy.PASTE_ROLE"/>
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomInteractionOverviewDiagramCreationEditPolicy" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"/>
+  </diagramEditPart>
+  <inheritedDiagrams name="ActivityDiagram" viewProviderClassQualifiedName="org.eclipse.papyrus.uml.diagram.activity.providers.CustomUMLViewProvider" editPartProviderClassQualifiedName="org.eclipse.papyrus.uml.diagram.activity.providers.CustomUMLEditPartProvider" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy">
+    <genInheritedEditor href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#PapyrusUMLActivityDiagram"/>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.4"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.11"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.69"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.56"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.32"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.5"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.34"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.3"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.35"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.60"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.33"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.75"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@topLevelNodes.0"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.64"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@childNodes.93"/>
+    </genNodes>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@links.5"/>
+    </genLinks>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#/0/@diagram/@links.3"/>
+    </genLinks>
+  </inheritedDiagrams>
+  <customJavaClasses name="" customEditPolicyProvider="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomEditPolicyProvider" customViewProvider="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomViewProvider" customEditPartProvider="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomEditPartProvider" customPreferenceInitializer=""/>
+</idgen:Diagram>

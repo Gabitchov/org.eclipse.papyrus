@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+    <!-- Diagram declaration -->
+    <extension point="org.eclipse.papyrus.core.papyrusDiagram">
+        <creationCommand
+            creationCommandClass="org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramCreateCommand"
+            icon=""
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand"
+            language="uml"
+            label="Interaction Overview Diagram"/>
+        <editorDiagram
+            actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
+            factoryClass="org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramEditorFactory"
+            icon=""/>
+    </extension>
+
+    <!-- Diagram creation command and handler -->
+    <extension point="org.eclipse.ui.commands">
+        <command
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand"
+            name="Create a new Interaction Overview Diagram"
+            description="Create a new Interaction Overview Diagram"
+            categoryId="org.eclipse.papyrus.editor.category"/>
+    </extension>
+
+    <extension point="org.eclipse.ui.handlers">
+        <handler
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramCreateCommand"
+            commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand">
+            <activeWhen>
+                <with variable="activeEditorId">
+                    <equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+                </with>
+            </activeWhen>
+        </handler>
+    </extension>
+
+    <!-- Diagram creation command registration in menu and toolbar -->
+    <extension point="org.eclipse.ui.menus">
+
+        <menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+            <menu
+                id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+                label="Diagrams">
+                <command
+                    commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand"
+                    icon=""
+                    label="Create a new Interaction Overview Diagram"
+                    style="push"
+                    tooltip="Create a new Interaction Overview Diagram">
+                    <visibleWhen>
+                        <reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
+                    </visibleWhen>
+
+                </command>
+            </menu>
+        </menuContribution>
+
+        <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+            <toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+                <command
+                    commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand"
+                    icon=""
+                    label="Create a new Interaction Overview Diagram"
+                    style="push"
+                    tooltip="Create a new Interaction Overview Diagram">
+                    <visibleWhen>
+                        <reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
+                    </visibleWhen>
+
+                </command>
+            </toolbar>
+        </menuContribution>
+
+        <menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+            <command
+                commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand"
+                icon=""
+                label="Create a new Interaction Overview Diagram"
+                style="push"
+                tooltip="Create a new Interaction Overview Diagram">
+                <visibleWhen>
+                    <reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
+                </visibleWhen>
+
+            </command>
+        </menuContribution>
+
+    </extension>
+
+    <!-- Palette tool declaration (declares the real palette containment) -->
+    <extension
+        point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+        name="UML_InteractionOverviewDiagram">
+
+        <paletteDefinition
+            ID="UML_InteractionOverviewDiagram"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+            name="UML_InteractionOverviewDiagram"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            path="palettes/interactionoverviewdiagram.palette.xml"
+            provider="CEA LIST">
+            <Priority name="Low"/>
+
+            <!-- Specify diagram this palette tools relate to -->
+            <editor id="org.eclipse.papyrus.uml.diagram.interactionoverview"/>
+        </paletteDefinition>
+    </extension>
+
+    <!-- Diagram view providers declaration -->
+    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+        <!-- Diagram view provider -->
+        <viewProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomViewProvider">
+            <Priority name="Low"/>
+            <context
+                viewClass="org.eclipse.gmf.runtime.notation.Diagram"
+                semanticHints=""/>
+        </viewProvider>
+
+        <!-- ViewProvider for inherited elements (from ActivityDiagram ViewProvider) -->
+        <viewProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.InheritedActivityDiagramViewProvider">
+            <Priority name="Low"/>
+
+            <!-- "3005" = ACTIVITY_FINAL_NODE_CN "3008" = CALL_BEHAVIOR_ACTION_CN "3080" = COMMENT_CN "3069" = CONDITIONAL_NODE_CN "3038" = DECISION_NODE_CN "3006" 
+                = FLOW_FINAL_NODE_CN "3040" = FORK_NODE_CN "3004" = INITIAL_NODE_CN "3041" = JOIN_NODE_CN "3071" = LOOP_NODE_CN "3039" = MERGE_NODE_CN "3085" = SHAPE_NAMED_ELEMENT_CN 
+                "2001" = ACTIVITY "3073" = SEQUENCE_NODE_CN "3112" = CONSTRAINT_CN -->
+            <context
+                viewClass="org.eclipse.gmf.runtime.notation.Node"
+                semanticHints="3005, 3008, 3080, 3069, 3038, 3006, 3040, 3004, 3041, 3071, 3039, 3085, 2001, 3073, 3112"/>
+
+            <!-- "3001" = ACTIVITY_PARAMETER_CLN "3002" = ACTIVITY_CONSTRAINT_CLN "3003" = ACTIVITY_CONSTRAINT_CLN -->
+            <context
+                viewClass="org.eclipse.gmf.runtime.notation.Node"
+                semanticHints="3001, 3002, 3003"/>
+
+            <!-- "4006" = COMMENT_ANNOTATED_ELEMENT "4004" = CONTROL_FLOW -->
+            <context
+                viewClass="org.eclipse.gmf.runtime.notation.Edge"
+                semanticHints="4006, 4004"/>
+
+            <object
+                id="elementtype.node"
+                class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+
+                <method
+                    name="getSemanticHint()"
+                    value="3005, 3008, 3080, 3069, 3038, 3006, 3040, 3004, 3041, 3071, 3039, 3085, 2001, 3073, 3112">
+                </method>
+            </object>
+            <context
+                viewClass="org.eclipse.gmf.runtime.notation.Node"
+                elements="elementtype.node"/>
+
+            <object
+                id="elementtype.edge"
+                class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+
+                <method
+                    name="getSemanticHint()"
+                    value="4006, 4004">
+                </method>
+            </object>
+            <context
+                viewClass="org.eclipse.gmf.runtime.notation.Edge"
+                elements="elementtype.edge"/>
+
+
+            <!-- Additional descriptors provided in case the semantic hint is is not provided -->
+
+            <!-- "uml.ActivityFinalNode" -->
+            <object
+                id="uml.ActivityFinalNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.ActivityFinalNode"/>
+            </object>
+
+            <!-- "uml.CallBehaviorAction" -->
+            <object
+                id="uml.CallBehaviorAction"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.CallBehaviorAction"/>
+            </object>
+
+            <!-- "uml.Comment" -->
+            <object
+                id="uml.Comment"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.Comment"/>
+            </object>
+
+            <!-- "uml.ConditionalNode" -->
+            <object
+                id="uml.ConditionalNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.ConditionalNode"/>
+            </object>
+
+            <!-- "uml.DecisionNode" -->
+            <object
+                id="uml.DecisionNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.DecisionNode"/>
+            </object>
+
+            <!-- "uml.FlowFinalNode" -->
+            <object
+                id="uml.FlowFinalNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.FlowFinalNode"/>
+            </object>
+
+            <!-- "uml.ForkNode" -->
+            <object
+                id="uml.ForkNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.ForkNode"/>
+            </object>
+
+            <!-- "uml.InitialNode" -->
+            <object
+                id="uml.InitialNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.InitialNode"/>
+            </object>
+
+            <!-- "uml.JoinNode" -->
+            <object
+                id="uml.JoinNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.JoinNode"/>
+            </object>
+
+            <!-- "uml.LoopNode" -->
+            <object
+                id="uml.LoopNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.LoopNode"/>
+            </object>
+
+            <!-- "uml.MergeNode" -->
+            <object
+                id="uml.MergeNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.MergeNode"/>
+            </object>
+
+            <!-- "uml.NamedElement" -->
+            <object
+                id="uml.NamedElement"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.NamedElement"/>
+            </object>
+
+            <!-- "uml.Activity" -->
+            <object
+                id="uml.Activity"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.Activity"/>
+            </object>
+
+            <!-- "uml.SequenceNode" -->
+            <object
+                id="uml.SequenceNode"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.SequenceNode"/>
+            </object>
+
+            <!-- "uml.Constraint" -->
+            <object
+                id="uml.Constraint"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.Constraint"/>
+            </object>
+
+            <!-- "uml.Parameter" -->
+            <object
+                id="uml.Parameter"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.Parameter"/>
+            </object>
+
+            <!-- "uml.ControlFlow" -->
+            <object
+                id="uml.ControlFlow"
+                class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+                <method
+                    name="getProxyClassID()"
+                    value="uml.ControlFlow"/>
+            </object>
+
+            <!-- Additional activation contexts for nodes semantic objects -->
+            <context
+                viewClass="org.eclipse.gmf.runtime.notation.Node"
+                elements="uml.ActivityFinalNode, uml.CallBehaviorAction, uml.Comment, uml.ConditionalNode, uml.DecisionNode, uml.FlowFinalNode, uml.ForkNode, uml.InitialNode, uml.JoinNode, uml.LoopNode, uml.MergeNode, uml.NamedElement, uml.Activity, uml.SequenceNode, uml.Constraint, uml.Parameter"/>
+
+            <!-- Additional activation contexts for edges semantic objects -->
+            <context
+                viewClass="org.eclipse.gmf.runtime.notation.Edge"
+                elements="uml.ControlFlow"/>
+
+        </viewProvider>
+    </extension>
+
+    <!-- Diagram edit part providers declaration -->
+    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+
+        <!-- Diagram edit part provider -->
+        <editpartProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomEditPartProvider">
+            <Priority name="Low"/>
+            <object
+                id="org.eclipse.papyrus.uml.diagram.interactionoverview.Diagram"
+                class="org.eclipse.gmf.runtime.notation.Diagram">
+                <method
+                    name="getType()"
+                    value=""/>
+            </object>
+            <context views="org.eclipse.papyrus.uml.diagram.interactionoverview.Diagram"/>
+        </editpartProvider>
+
+        <!-- EditPartProvider for inherited elements (from ActivityDiagram) -->
+        <editpartProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.InheritedActivityDiagramEditPartProvider">
+            <Priority name="Low"/>
+            <!-- The semantic hints given here are used in case the provider is not already loaded. As soon as the provider is loaded its provides method is used. 
+                "3005" = ACTIVITY_FINAL_NODE_CN "5081" = ACTIVITY_FINAL_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3008" = CALL_BEHAVIOR_ACTION_CN "5004" = CALL_BEHAVIOR_ACTION_CN_LABEL_NAME_HINT 
+                "3080" = COMMENT_CN "5138" = COMMENT_CN_LABEL_BODY_LABEL_HINT "3069" = CONDITIONAL_NODE_CN "5119" = CONDITIONAL_NODE_CN_LABEL_KEYWORD_HINT "7008" = CONDITIONAL_NODE_CN_COMPARTMENT_STRUCTURED_ACTIVITY_NODE_CONTENT_HINT 
+                "3038" = DECISION_NODE_CN "5043" = DECISION_NODE_CN_LABEL_DECISION_INPUT_HINT "5098" = DECISION_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3006" = FLOW_FINAL_NODE_CN 
+                "5082" = FLOW_FINAL_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3040" = FORK_NODE_CN "5100" = FORK_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3004" = INITIAL_NODE_CN "5080" 
+                = INITIAL_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3041" = JOIN_NODE_CN "5042" = JOIN_NODE_CN_LABEL_JOIN_SPEC_HINT "5101" = JOIN_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT 
+                "3071" = LOOP_NODE_CN "5121" = LOOP_NODE_CN_LABEL_KEYWORD_HINT "7010" = LOOP_NODE_CN_COMPARTMENT_STRUCTURED_ACTIVITY_NODE_CONTENT_HINT "3039" = MERGE_NODE_CN "5099" 
+                = MERGE_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3085" = SHAPE_NAMED_ELEMENT_CN "5129" = SHAPE_NAMED_ELEMENT_CN_LABEL_NAME_HINT "2001" = ACTIVITY "5001" = ACTIVITY_LABEL_NAME_HINT 
+                "5002" = ACTIVITY_LABEL_IS_SINGLE_EXECUTION_HINT "7001" = ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_PARAMETER_HINT "7002" = ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_PRECONDITION_HINT 
+                "7003" = ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_POST_CONDTION_HINT "7004" = ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_CONTENT_HINT "3073" = SEQUENCE_NODE_CN "5123" = SEQUENCE_NODE_CN_LABEL_KEYWORD_HINT 
+                "7012" = SEQUENCE_NODE_CN_COMPARTMENT_STRUCTURED_ACTIVITY_NODE_CONTENT_HINT "3112" = CONSTRAINT_CN "5189" = CONSTRAINT_CN_LABEL_NAME_HINT "5190" = CONSTRAINT_CN_LABEL_BODY_HINT -->
+            <object
+                id="ACTIVITY_FINAL_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3005, 5081"/>
+            </object>
+            <object
+                id="CALL_BEHAVIOR_ACTION_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3008, 5004"/>
+            </object>
+            <object
+                id="COMMENT_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3080, 5138"/>
+            </object>
+            <object
+                id="CONDITIONAL_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3069, 5119, 7008"/>
+            </object>
+            <object
+                id="DECISION_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3038, 5043, 5098"/>
+            </object>
+            <object
+                id="FLOW_FINAL_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3006, 5082"/>
+            </object>
+            <object
+                id="FORK_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3040, 5100"/>
+            </object>
+            <object
+                id="INITIAL_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3004, 5080"/>
+            </object>
+            <object
+                id="JOIN_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3041, 5042, 5101"/>
+            </object>
+            <object
+                id="LOOP_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3071, 5121, 7010"/>
+            </object>
+            <object
+                id="MERGE_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3039, 5099"/>
+            </object>
+            <object
+                id="SHAPE_NAMED_ELEMENT_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3085, 5129"/>
+            </object>
+            <object
+                id="ACTIVITY"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="2001, 5001, 5002, 7001, 7002, 7003, 7004"/>
+            </object>
+            <object
+                id="SEQUENCE_NODE_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3073, 5123, 7012"/>
+            </object>
+            <object
+                id="CONSTRAINT_CN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3112, 5189, 5190"/>
+            </object>
+
+            <!-- "3001" = ACTIVITY_PARAMETER_CLN "3002" = ACTIVITY_CONSTRAINT_CLN "3003" = ACTIVITY_CONSTRAINT_CLN -->
+            <object
+                id="ACTIVITY_PARAMETER_CLN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3001"/>
+            </object>
+            <object
+                id="ACTIVITY_CONSTRAINT_CLN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3002"/>
+            </object>
+            <object
+                id="ACTIVITY_CONSTRAINT_CLN"
+                class="org.eclipse.gmf.runtime.notation.Node">
+                <method
+                    name="getType()"
+                    value="3003"/>
+            </object>
+
+            <!-- "4006" = COMMENT_ANNOTATED_ELEMENT "4004" = CONTROL_FLOW "6003" = CONTROL_FLOW_LABEL_NAME_HINT "6004" = CONTROL_FLOW_LABEL_WEIGHT_HINT "6009" = 
+                CONTROL_FLOW_LABEL_GUARD_HINT "6011" = CONTROL_FLOW_LABEL_APPLIED_STEREOTYPE_HINT "6013" = CONTROL_FLOW_LABEL_INTERRUPTIBLE_ICON_HINT -->
+            <object
+                id="COMMENT_ANNOTATED_ELEMENT"
+                class="org.eclipse.gmf.runtime.notation.Edge">
+                <method
+                    name="getType()"
+                    value="4006"/>
+            </object>
+            <object
+                id="CONTROL_FLOW"
+                class="org.eclipse.gmf.runtime.notation.Edge">
+                <method
+                    name="getType()"
+                    value="4004, 6003, 6004, 6009, 6011, 6013"/>
+            </object>
+
+            <context
+                views="ACTIVITY_FINAL_NODE_CN, CALL_BEHAVIOR_ACTION_CN, COMMENT_CN, CONDITIONAL_NODE_CN, DECISION_NODE_CN, FLOW_FINAL_NODE_CN, FORK_NODE_CN, INITIAL_NODE_CN, JOIN_NODE_CN, LOOP_NODE_CN, MERGE_NODE_CN, NAMED_ELEMENT_CN, ACTIVITY, SEQUENCE_NODE_CN, CONSTRAINT_CN"/>
+            <context views="ACTIVITY_PARAMETER_CLN, ACTIVITY_CONSTRAINT_CLN, ACTIVITY_CONSTRAINT_CLN"/>
+            <context views="COMMENT_ANNOTATED_ELEMENT, CONTROL_FLOW"/>
+
+        </editpartProvider>
+    </extension>
+
+    <!-- Diagram edit policy provider -->
+    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+        <editpolicyProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomEditPolicyProvider">
+            <Priority name="Low"/>
+        </editpolicyProvider>
+    </extension>
+
+    <!-- Preference pages declaration -->
+    <extension
+        point="org.eclipse.ui.preferencePages"
+        id="prefpages">
+
+        <!-- Diagram Preference pages declaration -->
+        <page
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            name="InteractionOverviewDiagram Diagram"
+            category="org.eclipse.papyrus.preferences.diagrams"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.InteractionOverviewDiagramGeneralPreferencePage">
+        </page>
+
+        <!-- Element Preference pages declaration -->
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ActivityFinalNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ActivityFinalNodePreferencePage"
+            name="ActivityFinalNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.CallBehaviorActionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.CallBehaviorActionPreferencePage"
+            name="CallBehaviorAction">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.CommentPreferencePage"
+            name="Comment">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ConditionalNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ConditionalNodePreferencePage"
+            name="ConditionalNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.DecisionNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.DecisionNodePreferencePage"
+            name="DecisionNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.FlowFinalNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.FlowFinalNodePreferencePage"
+            name="FlowFinalNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ForkNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ForkNodePreferencePage"
+            name="ForkNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.InitialNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.InitialNodePreferencePage"
+            name="InitialNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.JoinNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.JoinNodePreferencePage"
+            name="JoinNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.LoopNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.LoopNodePreferencePage"
+            name="LoopNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.MergeNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.MergeNodePreferencePage"
+            name="MergeNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.NamedElementPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.NamedElementPreferencePage"
+            name="NamedElement">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ActivityPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ActivityPreferencePage"
+            name="Activity">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.SequenceNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.SequenceNodePreferencePage"
+            name="SequenceNode">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ConstraintPreferencePage"
+            name="Constraint">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.CommentAnnotatedElementPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.CommentAnnotatedElementPreferencePage"
+            name="CommentAnnotatedElement">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ControlFlowPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ControlFlowPreferencePage"
+            name="ControlFlow">
+        </page>
+
+
+        <page
+            category="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences"
+            class="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ParameterPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.ParameterPreferencePage"
+            name="Parameter">
+        </page>
+
+
+    </extension>
+
+    <!-- // Start of user code custom extensions -->
+
+    <!-- Insert custom extensions here. -->
+
+    <!-- // End of user code -->
+
+</plugin>
