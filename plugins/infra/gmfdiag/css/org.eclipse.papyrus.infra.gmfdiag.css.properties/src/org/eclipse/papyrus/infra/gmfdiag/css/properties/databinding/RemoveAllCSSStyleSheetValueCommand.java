@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom.RemoveAllCustomStyleListValueCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.RemoveAllCustomStyleListValueCommand;
 
 
 public class RemoveAllCSSStyleSheetValueCommand extends RemoveAllCustomStyleListValueCommand {

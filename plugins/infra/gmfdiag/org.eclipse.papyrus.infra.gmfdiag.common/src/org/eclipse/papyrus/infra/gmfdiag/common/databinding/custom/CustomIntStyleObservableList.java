@@ -9,17 +9,16 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom;
+package org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
-public class CustomEObjectStyleObservableList extends CustomStyleObservableList {
+public class CustomIntStyleObservableList extends CustomStyleObservableList {
 
-	//TODO: The super class is probably powerful enough to handle EObjects.
-	public CustomEObjectStyleObservableList(View view, EditingDomain domain, String styleName) {
-		super(view, styleName, domain, NotationPackage.eINSTANCE.getEObjectListValueStyle(), NotationPackage.eINSTANCE.getEObjectListValueStyle_EObjectListValue());
+	public CustomIntStyleObservableList(View view, EditingDomain domain, String styleName) {
+		super(view, styleName, domain, NotationPackage.eINSTANCE.getIntListValueStyle(), NotationPackage.eINSTANCE.getIntListValueStyle_IntListValue());
 	}
 
 }

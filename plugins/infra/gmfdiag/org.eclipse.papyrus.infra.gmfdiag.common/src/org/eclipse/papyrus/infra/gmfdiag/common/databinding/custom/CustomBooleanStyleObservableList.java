@@ -9,16 +9,16 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom;
+package org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
-public class CustomIntStyleObservableList extends CustomStyleObservableList {
+public class CustomBooleanStyleObservableList extends CustomStyleObservableList {
 
-	public CustomIntStyleObservableList(View view, EditingDomain domain, String styleName) {
-		super(view, styleName, domain, NotationPackage.eINSTANCE.getIntListValueStyle(), NotationPackage.eINSTANCE.getIntListValueStyle_IntListValue());
+	public CustomBooleanStyleObservableList(View view, EditingDomain domain, String styleName) {
+		super(view, styleName, domain, NotationPackage.eINSTANCE.getBooleanListValueStyle(), NotationPackage.eINSTANCE.getBooleanListValueStyle_BooleanListValue());
 	}
 
 }

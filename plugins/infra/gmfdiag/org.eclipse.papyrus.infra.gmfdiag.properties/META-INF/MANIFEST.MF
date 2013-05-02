@@ -20,8 +20,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools;bundle-version="0.10.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0"
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom,
- org.eclipse.papyrus.infra.gmfdiag.properties.extension,
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.properties.extension,
  org.eclipse.papyrus.infra.gmfdiag.properties.modelelement
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy

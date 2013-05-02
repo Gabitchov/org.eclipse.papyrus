@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom;
+package org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -17,32 +17,32 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
 
-public class CustomStringStyleObservableValue extends AbstractCustomStyleObservableValue {
+public class CustomBooleanStyleObservableValue extends AbstractCustomStyleObservableValue {
 
-	public CustomStringStyleObservableValue(View source, EditingDomain domain, String styleName) {
-		super(source, domain, styleName, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue());
+	public CustomBooleanStyleObservableValue(View source, EditingDomain domain, String styleName) {
+		super(source, domain, styleName, NotationPackage.eINSTANCE.getBooleanValueStyle(), NotationPackage.eINSTANCE.getBooleanValueStyle_BooleanValue());
 	}
 
 	public Object getValueType() {
-		return String.class;
+		return Boolean.class;
 	}
 
 	/**
 	 * Gets the default value when this style is not set.
 	 * Subclasses may override
 	 * 
-	 * @return The default value for this StringStyleValue
+	 * @return The default value for this BooleanStyleValue
 	 */
 	@Override
-	protected String getDefaultValue() {
-		return ""; //$NON-NLS-1$
+	protected Boolean getDefaultValue() {
+		return false;
 	}
 
 	@Override
 	public Command getCommand(Object value) {
-		if(value instanceof String) {
+		if(value instanceof Boolean) {
 			return super.getCommand(value);
 		}
-		throw new IllegalArgumentException("The value " + value + " is not a valid String Value");
+		throw new IllegalArgumentException("The value " + value + " is not a valid Boolean Value");
 	}
 }

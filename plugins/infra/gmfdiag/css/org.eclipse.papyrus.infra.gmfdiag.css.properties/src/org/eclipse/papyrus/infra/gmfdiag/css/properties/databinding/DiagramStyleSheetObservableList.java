@@ -16,7 +16,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom.CustomEObjectStyleObservableList;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomEObjectStyleObservableList;
 
 /**
  * An ObservableList for manipulating CSS StyleSheets in a Diagram. The styleSheets

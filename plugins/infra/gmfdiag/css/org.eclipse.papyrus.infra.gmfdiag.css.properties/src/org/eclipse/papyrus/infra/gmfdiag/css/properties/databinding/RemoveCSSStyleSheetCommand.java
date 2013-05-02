@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom.RemoveCustomStyleListValueCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.RemoveCustomStyleListValueCommand;
 
 
 public class RemoveCSSStyleSheetCommand extends RemoveCustomStyleListValueCommand {
