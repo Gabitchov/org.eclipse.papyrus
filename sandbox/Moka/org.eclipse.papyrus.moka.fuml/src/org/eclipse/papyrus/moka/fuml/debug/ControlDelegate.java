@@ -24,7 +24,9 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities.ActivityNodeActivation;
 import org.eclipse.papyrus.moka.fuml.presentation.FUMLPresentationUtils;
 import org.eclipse.papyrus.moka.ui.presentation.AnimationUtils;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Pin;
 
 public class ControlDelegate {
@@ -250,7 +252,7 @@ public class ControlDelegate {
 			if (element instanceof ActivityEdge) {
 				ActivityEdge edge = (ActivityEdge)element ;
 				if (edge.getSource() instanceof Pin) {
-					if (AnimationUtils.getInstance().diagramsExistFor(edge.getSource())) {
+					if (this.diagramsExistFor(edge.getSource())) {
 						AnimationUtils.getInstance().addAnimationMarker(edge.getSource()) ;
 						Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
 						AnimationUtils.getInstance().removeAnimationMarker(edge.getSource()) ;
@@ -258,7 +260,7 @@ public class ControlDelegate {
 				}
 			}
 			// Animates the element
-			if (AnimationUtils.getInstance().diagramsExistFor(element)) {
+			if (this.diagramsExistFor((Element)element)) {
 				AnimationUtils.getInstance().addAnimationMarker(element) ;
 				Thread.sleep(MokaConstants.MOKA_ANIMATION_DELAY) ;
 				AnimationUtils.getInstance().removeAnimationMarker(element) ;
@@ -272,4 +274,17 @@ public class ControlDelegate {
 		// Nothing to do
 	}
 
+	protected boolean diagramsExistFor(Element element) {
+		Activity activity = null ;
+		Element tmp = element ;
+		while (activity == null) {
+			tmp = tmp.getOwner() ;
+			if (tmp instanceof Activity) {
+				activity = (Activity)tmp ;
+			}
+		}
+		if (activity != null && !AnimationUtils.getInstance().diagramsExistFor(activity))
+			return false ;
+		return AnimationUtils.getInstance().diagramsExistFor(element) ;
+	}
 }
