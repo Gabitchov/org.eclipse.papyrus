@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -29,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.uml.tools.namereferences.NameReferencesHelper;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -73,7 +75,7 @@ public class CommentParser implements IParser {
 		} catch (Exception e) {
 			return comment.getBody();
 		}
-		
+
 	}
 
 	/**
@@ -109,9 +111,15 @@ public class CommentParser implements IParser {
 			return "";//$NON-NLS-1$
 		}
 
+		Resource resource = comment.eResource();
+
+		NameReferencesHelper helper = new NameReferencesHelper(resource);
+
+		String displayText = helper.replaceReferences(roughBody);
+
 		// comment not null, comment not empty, do the parse...
 
-		return roughBody;
+		return displayText;
 	}
 
 	/**

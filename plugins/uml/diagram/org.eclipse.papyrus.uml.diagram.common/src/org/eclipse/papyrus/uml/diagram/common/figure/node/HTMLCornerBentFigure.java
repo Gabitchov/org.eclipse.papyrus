@@ -66,6 +66,8 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	/** font used for the figure */
 	private FontData currentFontData;
 
+	private String text = ""; //Used as the default text (instead of null)
+
 	/**
 	 * set of font datas used by this comment. It will be cleaned juste after
 	 * the creation of the comment
@@ -107,6 +109,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 * 
 	 * @return <code>true</code> if this Figure uses local coordinates
 	 */
+	@Override
 	protected boolean useLocalCoordinates() {
 		return useLocalCoordinates;
 	}
@@ -137,7 +140,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 */
 
 	public String getText() {
-		return "";
+		return text;
 	}
 
 	/**
@@ -158,6 +161,12 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 */
 
 	public void setText(String text) {
+		if(equals(text, this.text)) {
+			return;
+		}
+
+		this.text = text;
+
 		// remove all children from page.
 		page.removeAll();
 
@@ -166,7 +175,18 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 
 		// generates new ones
 		generateBlockForText(text, page);
+	}
 
+	private static boolean equals(String s1, String s2) {
+		if(s1 == null && s2 == null) {
+			return true;
+		}
+
+		if(s1 != null) {
+			return s1.equals(s2);
+		} else {
+			return s2.equals(s1);
+		}
 	}
 
 	/**

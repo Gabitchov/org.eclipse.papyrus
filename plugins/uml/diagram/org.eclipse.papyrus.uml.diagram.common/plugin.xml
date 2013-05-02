@@ -675,4 +675,13 @@
          tabId="org.eclipse.papyrus.uml.diagram.common.heuristictab">
    </hyperlinktab>
 </extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.common.providers.CommentEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
+</extension>
 </plugin>
