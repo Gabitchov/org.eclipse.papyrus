@@ -2,7 +2,7 @@
 [import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::preferences::CppCodeGenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::Constants/]
-[import org::eclipse::papyrus::cpp::codegen::acceleo::IncludeUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::CppIncludeUtils/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeClassDeclaration/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassTypeAndEnum/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassFriendDeclaration/]
@@ -37,7 +37,7 @@
 #include <[getFullPath()/]/Pkg_[name/].[getHeaderSuffix()/]>
 [/for]
 
-[IncludeHeader()/]
+[CppIncludeHeader()/]
 
 [openNS()/]
 [packageTypes()/]

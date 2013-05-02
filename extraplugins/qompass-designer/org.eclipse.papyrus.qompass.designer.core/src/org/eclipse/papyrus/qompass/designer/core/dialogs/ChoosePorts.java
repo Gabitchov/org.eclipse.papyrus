@@ -21,9 +21,7 @@ import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
-
-import FCM.InterceptionRule;
-
+import org.eclipse.papyrus.FCM.InterceptionRule;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 
 

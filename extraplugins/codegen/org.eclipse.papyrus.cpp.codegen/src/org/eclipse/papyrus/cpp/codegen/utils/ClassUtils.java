@@ -13,10 +13,9 @@ package org.eclipse.papyrus.cpp.codegen.utils;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-
-import C_Cpp.Include;
 
 /**
  * A set of utility functions related to classes.

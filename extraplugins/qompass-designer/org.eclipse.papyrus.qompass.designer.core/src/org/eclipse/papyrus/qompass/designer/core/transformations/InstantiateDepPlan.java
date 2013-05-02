@@ -31,11 +31,9 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
-
-import FCM.Configuration;
-import FCM.DeploymentPlan;
-import FCM.util.MapUtil;
-
+import org.eclipse.papyrus.FCM.Configuration;
+import org.eclipse.papyrus.FCM.DeploymentPlan;
+import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
 import org.eclipse.papyrus.qompass.designer.core.ProjectManagement;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;

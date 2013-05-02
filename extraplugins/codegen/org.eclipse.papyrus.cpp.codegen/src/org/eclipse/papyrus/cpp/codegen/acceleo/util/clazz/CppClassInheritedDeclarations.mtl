@@ -1,4 +1,4 @@
-[module CppClassInheritedDeclarations('http://www.eclipse.org/uml2/4.0.0/UML', 'http://papyrus/C_CppProfile/1')/]
+[module CppClassInheritedDeclarations('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/papyrus/C_Cpp/1')/]
 [import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
 
 [comment

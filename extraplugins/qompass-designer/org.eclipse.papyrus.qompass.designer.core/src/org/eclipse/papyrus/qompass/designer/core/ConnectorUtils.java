@@ -46,16 +46,21 @@ public class ConnectorUtils {
 	/**
 	 * check if a connector connects the port that is passed
 	 * as parameter
+	 * TODO: why is that name based???
 	 */
 	public static boolean connectsPort(Connector connection, Port port) {
 		// check roles of end points
-		String qPortName = port.getQualifiedName();
+		// String qPortName = port.getQualifiedName();
 		for(ConnectorEnd end : connection.getEnds()) {
 			if(end.getRole() == port) {
 				return true;
 			}
 			if(end.getRole() != null) {
-				if(end.getRole().getQualifiedName().equals(qPortName)) {
+				if(end.getRole().getQualifiedName() == null) {
+					System.err.println("sowas");
+				}
+
+				if(end.getRole() == port) {
 					Log.log(Log.ERROR_MSG, Log.TRAFO_CONNECTOR,
 						"ConnectorUtls.connectsPort: qualified names match, but not the ID - should not happen");
 					return true;

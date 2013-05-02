@@ -14,9 +14,7 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
-
-import FCM.ConfigurationProperty;
-
+import org.eclipse.papyrus.FCM.ConfigurationProperty;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 
 /**

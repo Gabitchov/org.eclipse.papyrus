@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
+import org.eclipse.papyrus.FCM.util.IMappingRule;
+import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
@@ -16,9 +18,6 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
-
-import FCM.util.IMappingRule;
-import FCM.util.MapUtil;
 
 
 /**
@@ -43,17 +42,17 @@ public class ExtendedPort implements IMappingRule {
 		return IMappingRule.BOTH;
 	}
 
-	public Interface getProvided(FCM.Port p, InstanceSpecification config)
+	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
 	{
 		return getDerived(p, p.isConjugated(), config);
 	}
 
-	public Interface getRequired(FCM.Port p, InstanceSpecification config)
+	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
 	{
 		return getDerived(p, !p.isConjugated(), config);
 	}
 
-	public Interface getDerived(FCM.Port extPort, boolean isConjugated, InstanceSpecification config)
+	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isConjugated, InstanceSpecification config)
 	{
 		Type type = extPort.getBase_Port().getType();
 		if(!(type instanceof Classifier)) {

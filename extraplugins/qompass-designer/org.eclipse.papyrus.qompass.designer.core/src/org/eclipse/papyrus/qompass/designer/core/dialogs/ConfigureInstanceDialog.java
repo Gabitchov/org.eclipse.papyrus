@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -50,8 +51,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
-
-import FCM.ContainerRule;
 
 /**
  * Select container rules, either from a list of globally defined rules or from
@@ -127,8 +126,8 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		m_model = Utils.getUserModel();
 		m_instance = null;
 		if(feature instanceof Connector) {
-			FCM.Connector fcmConn = StUtils.getApplication(feature,
-				FCM.Connector.class);
+			org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getApplication(feature,
+				org.eclipse.papyrus.FCM.Connector.class);
 			if((fcmConn != null) && (fcmConn.getIc() != null)) {
 				m_component = fcmConn.getIc().getBase_Class();
 				return checkAndGetInstances();

@@ -11,18 +11,18 @@
 
 package org.eclipse.papyrus.cpp.codegen.utils;
 
+import org.eclipse.papyrus.C_Cpp.Array;
+import org.eclipse.papyrus.C_Cpp.Const;
+import org.eclipse.papyrus.C_Cpp.Ptr;
+import org.eclipse.papyrus.C_Cpp.Ref;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.MultiplicityElement;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Property;
-
-import C_Cpp.Array;
-import C_Cpp.Const;
-import C_Cpp.Ptr;
-import C_Cpp.Ref;
 
 
 /**
@@ -65,66 +65,73 @@ public class Modifier {
 	/**
 	 * Create instance and initialize the ptr/ref/array/isConst attributes.
 	 * 
-	 * @param propertyOrParameter
+	 * @param propertyOperationOrParameter
 	 */
-	public static void update(Element propertyOrParameter) {
+	public static void update(Element propertyOperationOrParameter) {
 
 		// Pointer
-		Ptr cppPtr = GenUtils.getApplication(propertyOrParameter, Ptr.class);
+		Ptr cppPtr = GenUtils.getApplication(propertyOperationOrParameter, Ptr.class);
 		if(cppPtr != null) {
-			ptr = (cppPtr.getDeclaration() != null) ? cppPtr.getDeclaration() : "*";
+			ptr = (cppPtr.getDeclaration() != null) ? cppPtr.getDeclaration() : "*"; //$NON-NLS-1$
 		} else {
-			ptr = "";
+			ptr = ""; //$NON-NLS-1$
 		}
-		if (propertyOrParameter instanceof Property) {
-			if (((Property) propertyOrParameter).getAggregation() == AggregationKind.SHARED_LITERAL) {
-				ptr += "*";
+		if (propertyOperationOrParameter instanceof Property) {
+			if (((Property) propertyOperationOrParameter).getAggregation() == AggregationKind.SHARED_LITERAL) {
+				ptr += "*"; //$NON-NLS-1$
 			}
 		}
 		// Ref
-		ref = GenUtils.hasStereotype(propertyOrParameter, Ref.class) ? "&" : "";
-		boolean ptrOrRef = GenUtils.hasStereotype(propertyOrParameter, Ref.class) ||
-			GenUtils.hasStereotype(propertyOrParameter, Ptr.class);
+		ref = GenUtils.hasStereotype(propertyOperationOrParameter, Ref.class) ? "&" : ""; //$NON-NLS-1$ //$NON-NLS-2$
+		boolean ptrOrRef = GenUtils.hasStereotype(propertyOperationOrParameter, Ref.class) ||
+			GenUtils.hasStereotype(propertyOperationOrParameter, Ptr.class);
 
 		// Array
-		Array cppArray = GenUtils.getApplication(propertyOrParameter, Array.class);
+		Array cppArray = GenUtils.getApplication(propertyOperationOrParameter, Array.class);
 		if(cppArray != null) {
 			// explicit array definition
-			array = (cppArray.getDefinition() != null) ? cppArray.getDefinition() : "[]";
+			array = (cppArray.getDefinition() != null) ? cppArray.getDefinition() : "[]"; //$NON-NLS-1$
 		} else {
 			// calculate array from multiplicity definition
 			int multiplicity = 1;
-			if(propertyOrParameter instanceof MultiplicityElement) {
-				multiplicity = ((MultiplicityElement)propertyOrParameter).getUpper();
+			if(propertyOperationOrParameter instanceof MultiplicityElement) {
+				multiplicity = ((MultiplicityElement)propertyOperationOrParameter).getUpper();
 			}
-			array = "";
+			array = ""; //$NON-NLS-1$
 			if(multiplicity == -1) {
-				ptr += "*";
+				ptr += "*"; //$NON-NLS-1$
 			} else if(multiplicity > 1) {
-				array = "[" + multiplicity + "]";
+				array = "[" + multiplicity + "]"; //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 
 		// out an inout parameter are realized by means of a pointer 
-		if(propertyOrParameter instanceof Parameter) {
-			ParameterDirectionKind directionKind = ((Parameter)propertyOrParameter).getDirection();
+		if(propertyOperationOrParameter instanceof Parameter) {
+			ParameterDirectionKind directionKind = ((Parameter)propertyOperationOrParameter).getDirection();
 			if(directionKind == ParameterDirectionKind.IN_LITERAL) {
-				ptr += " _IN_";
+				ptr += " _IN_"; //$NON-NLS-1$
 			}
 			else if(directionKind == ParameterDirectionKind.OUT_LITERAL) {
-				ptr += " _OUT_";
+				ptr += " _OUT_"; //$NON-NLS-1$
 				if(!ptrOrRef) {
 					ptr += CppCodeGenUtils.getOutInoutOp();
 				}
 			}
 			else if(directionKind == ParameterDirectionKind.INOUT_LITERAL) {
-				ptr += " _INOUT_";
+				ptr += " _INOUT_"; //$NON-NLS-1$
 				if(!ptrOrRef) {
 					ptr += CppCodeGenUtils.getOutInoutOp();
 				}
 			}
 		}
 		// Const
-		isConst = GenUtils.hasStereotype(propertyOrParameter, Const.class) ? "const " : "";
+		if (GenUtils.hasStereotype(propertyOperationOrParameter, Const.class)) {
+			isConst = (propertyOperationOrParameter instanceof Operation) ?
+				" const" :	// added at the end of operation, prefix with " " //$NON-NLS-1$
+				"const ";	// before operation or parameter, postfix with " " //$NON-NLS-1$
+		}
+		else {
+			isConst = ""; //$NON-NLS-1$
+		}
 	}
 }

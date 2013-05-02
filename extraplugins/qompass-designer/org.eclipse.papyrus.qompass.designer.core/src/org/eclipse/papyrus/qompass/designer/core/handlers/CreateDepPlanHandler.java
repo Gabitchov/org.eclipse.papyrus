@@ -98,7 +98,7 @@ public class CreateDepPlanHandler extends CmdHandler {
 
 				public CommandResult run() {
 					Package cdp = depPlans.createNestedPackage(depPlanName);
-					Stereotype st = StUtils.apply(cdp, FCM.DeploymentPlan.class);
+					Stereotype st = StUtils.apply(cdp, org.eclipse.papyrus.FCM.DeploymentPlan.class);
 					if(st == null) {
 						MessageDialog.openInformation(new Shell(), "Cannot create deployment plan",
 							"Application of stereotype \"FCM::DeploymentPlan\" failed. Check, if FCM profile is applied");

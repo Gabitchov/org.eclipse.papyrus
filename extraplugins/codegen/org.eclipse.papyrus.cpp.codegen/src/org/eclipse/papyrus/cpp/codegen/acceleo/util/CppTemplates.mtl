@@ -17,10 +17,22 @@ endif
 
 [template public templateSignature(class : Classifier)]
 [if isTemplate()]
-template<[for (getTemplateParameters()) separator(', ')][getType()/][/for]> [/if]
+template<[for (getTemplateParameters()) separator(', ')][getType()/][/for]>
+[/if]
+[/template]
+
+
+[template public templateShortSignature(class : Classifier)]
+[if isTemplate()]
+<[for (getTemplateParameters()) separator(', ')][getName()/][/for]> [/if]
 [/template]
 
 
 [template public templateSignature(operation : Operation)]
 [owner.oclAsType(Classifier).templateSignature()/]
+[/template]
+
+
+[template public templateShortSignature(operation : Operation)]
+[owner.oclAsType(Classifier).templateShortSignature()/]
 [/template]

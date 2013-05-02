@@ -2,11 +2,11 @@
 [import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::utils::ClassUtils/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::Constants/]
-[import org::eclipse::papyrus::cpp::codegen::acceleo::IncludeUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::CppIncludeUtils/]
 [import org::eclipse::papyrus::cpp::codegen::preferences::CppCodeGenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeClassDeclaration/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassOperationsImplementation/]
-[import org::eclipse::papyrus::cpp::codegen::acceleo::util::property::CppAttributeImplementation/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppAttribute/]
 
 
 [template public CppClassBody(class : Classifier)]
@@ -16,19 +16,21 @@
               [class.name/] class body
  ************************************************************/
 
-[IncludePreBody()/]
+[CppIncludePreBody()/]
 
-[includeHFile()/]
+[constIncludeHFile()/]
 #include <[_package.getFullPath()/]/[class.name/].[getHeaderSuffix()/]>
 
-[IncludeBody()/]
+[CppIncludeBody()/]
 
-[derivedIncludes()/]
-[CppClassAllIncludesDeclaration()/]
+[constDerivedIncludes()/]
+[CppClassAllIncludesDeclarationBody()/]
 
 [openNS(class)/]
 [CppStaticAttributes(class)/]
+[if not isTemplate()]
 [CppClassOperationsImplementation(false)/]
+[/if]
 [closeNS(class)/]
 
 /************************************************************

@@ -1,0 +1,47 @@
+[module CppAttribute('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::Modifier/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::Constants/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppDocumentation/]
+
+
+[template public defaultValue(attribute : Property)]
+[if (defaultValue <> null) and isStatic] = [attribute.defaultValue.stringValue()/][/if]
+[/template]
+
+
+[template public staticValue(attribute : Property)]
+[if (attribute.isStatic)]static [/if]
+[/template]
+
+
+[template public CppAttributeDeclaration(attribute : Property)]
+[CppElementDoc()/]
+[staticValue()/][modConst()/][attribute.type.qualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/];
+[/template]
+
+
+[template public CppAttributeImplementation(attribute : Property)]
+	[CppElementDoc()/]
+	[modConst()/][attribute.type.qualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/];
+[/template]
+
+[template public CppStaticAttributeImplementation(attribute : Property)]
+[CppElementDoc()/]
+[type.qualifiedName()/][modPtr()/][modRef()/] [attribute.class.name/]::[attribute.name/][modArray()/][defaultValue()/];
+[/template]
+
+
+[comment
+Loop over attributes. Check that the attribute is not a static const.
+Constant static attributes are declared within the class declaration/] 
+[template public CppStaticAttributes(classifier : Classifier)]
+[constStaticAttributes()/]
+[for (classifier.attribute)]
+	[if(isStatic and (not hasStereotype(C_Cpp::Const)))]
+[CppStaticAttributeImplementation()/]
+
+	[/if]
+[/for]
+[/template]
+

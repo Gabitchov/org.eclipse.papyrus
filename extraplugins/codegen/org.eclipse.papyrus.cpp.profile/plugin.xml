@@ -4,26 +4,26 @@
 	<extension
 			point="org.eclipse.emf.ecore.uri_mapping">
 		<mapping
-			source="pathmap://PapyrusCpp_LIBRARIES/"
+			source="pathmap://PapyrusC_Cpp_LIBRARIES/"
 			target="platform:/plugin/org.eclipse.papyrus.cpp.profile/libraries/"/>
 		<mapping
-			source="pathmap://PapyrusCpp_PROFILES/"
+			source="pathmap://PapyrusC_Cpp_PROFILES/"
 			target="platform:/plugin/org.eclipse.papyrus.cpp.profile/profiles/"/>
 	</extension>
   
 	<extension
 			point="org.eclipse.emf.ecore.generated_package">
 		<package 
-			uri="http://papyrus/C_CppProfile/1"
-			class = "C_Cpp.C_CppPackage"
+			uri="http://www.eclipse.org/papyrus/C_Cpp/1"
+			class = "org.eclipse.papyrus.C_Cpp.C_CppPackage"
 			genModel = "profile/C_Cpp.genmodel"/> 
 	</extension>
   
 	<extension 
 			point="org.eclipse.uml2.uml.generated_package">
 		<profile
-			uri="http://papyrus/C_CppProfile/1"
-			location="pathmap://PapyrusCpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+			uri="http://www.eclipse.org/papyrus/C_Cpp/1"
+			location="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
 	</extension>
 
 	<extension
@@ -32,7 +32,7 @@
 			description="Standard C Ansi types"
 			iconpath="icons/transfo_cpp.gif"
 			name="AnsiCLibrary"
-			path="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml"
+			path="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml"
 			provider="CEA LIST"/>
 	</extension>
    
@@ -41,8 +41,8 @@
 		<profile
 			description="C/C++ profile used for code generation"
 			iconpath="icons/transfo_cpp.gif"
-			name="PapyrusCpp"
-			path="pathmap://PapyrusCpp_PROFILES/C_Cpp.profile.uml"
+			name="C/C++ profile"
+			path="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml"
 			provider="CEA LIST"/>
 	</extension>
 </plugin>

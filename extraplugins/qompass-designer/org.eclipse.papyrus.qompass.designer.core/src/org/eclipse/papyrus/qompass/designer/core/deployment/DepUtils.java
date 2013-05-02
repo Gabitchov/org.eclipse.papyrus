@@ -29,13 +29,11 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
-
-import FCM.DeploymentPlan;
-import FCM.ImplementationGroup;
-import FCM.ImplementationProperties;
-import FCM.InteractionComponent;
-import FCM.Target;
-
+import org.eclipse.papyrus.FCM.DeploymentPlan;
+import org.eclipse.papyrus.FCM.ImplementationGroup;
+import org.eclipse.papyrus.FCM.ImplementationProperties;
+import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.FCM.Target;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 

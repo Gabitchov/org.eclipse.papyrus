@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Cpp="http://papyrus/CppProfile/1" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Model xmi:id="_H-ZqYDKeEd-WprEKTCaiMA" name="Tracing">
     <packageImport xmi:id="_H-ZqYTKeEd-WprEKTCaiMA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -640,7 +640,7 @@ return processID;</body>
     </profileApplication>
     <profileApplication xmi:id="_-DLL0DKnEd-WprEKTCaiMA">
       <eAnnotations xmi:id="_-DXZEDKnEd-WprEKTCaiMA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/FCMProfile/1#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/FCM/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
     </profileApplication>
@@ -648,7 +648,7 @@ return processID;</body>
       <eAnnotations xmi:id="_N6vH4DguEd-9wq2wHPy3lw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://PapyrusCpp_PROFILES/PapyrusCpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+      <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
   </uml:Model>
   <l2:ModelLibrary xmi:id="_ICaAoDKeEd-WprEKTCaiMA" base_Package="_H-ZqYDKeEd-WprEKTCaiMA"/>
@@ -660,17 +660,17 @@ return processID;</body>
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/SystemInterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
   </FCM:DerivedElement>
   <FCM:Singleton xmi:id="_AdBwIDgvEd-9wq2wHPy3lw" base_Class="_apuYoDNwEd-1k-POY2IaLg"/>
-  <Cpp:CppInclude xmi:id="_ZWEQwDj0Ed-nsvkE2JvSTg" body="#include &lt;otflib/otf.h>" base_class="_aF1w4DKeEd-WprEKTCaiMA"/>
-  <Cpp:CppExternClass xmi:id="_ZVArYDj1Ed-nsvkE2JvSTg" name="otflib/OTF_Writer.h" base_class="_W0t44Dj1Ed-nsvkE2JvSTg"/>
-  <Cpp:CppPtr xmi:id="_9n7OYDj2Ed-nsvkE2JvSTg" base_parameter="_v6J20Dj2Ed-nsvkE2JvSTg"/>
+  <C_Cpp:Include xmi:id="_ZWEQwDj0Ed-nsvkE2JvSTg" body="#include &lt;otflib/otf.h>" base_class="_aF1w4DKeEd-WprEKTCaiMA"/>
+  <C_Cpp:ExternClass xmi:id="_ZVArYDj1Ed-nsvkE2JvSTg" name="otflib/OTF_Writer.h" base_class="_W0t44Dj1Ed-nsvkE2JvSTg"/>
+  <C_Cpp:Ptr xmi:id="_9n7OYDj2Ed-nsvkE2JvSTg" base_parameter="_v6J20Dj2Ed-nsvkE2JvSTg"/>
   <FCM:DerivedElement xmi:id="_UdG9MD1nEd-Bk-AHd6yyoA" base_Element="_Ucl_0D1nEd-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/SystemInterfaces.uml#_WHyq4Dz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
   <FCM:DerivedElement xmi:id="_UeZ9sD1nEd-Bk-AHd6yyoA" base_Element="_UdpIsD1nEd-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/SystemInterfaces.uml#_W7YrADz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
-  <Cpp:CppVirtual xmi:id="___fNAD1nEd-Bk-AHd6yyoA" base_operation="_UdpIsD1nEd-Bk-AHd6yyoA"/>
-  <Cpp:CppVirtual xmi:id="_AHNwMD1pEd-Bk-AHd6yyoA" base_operation="_Ucl_0D1nEd-Bk-AHd6yyoA"/>
+  <C_Cpp:Virtual xmi:id="___fNAD1nEd-Bk-AHd6yyoA" base_operation="_UdpIsD1nEd-Bk-AHd6yyoA"/>
+  <C_Cpp:Virtual xmi:id="_AHNwMD1pEd-Bk-AHd6yyoA" base_operation="_Ucl_0D1nEd-Bk-AHd6yyoA"/>
   <FCM:DerivedElement xmi:id="_Q44J0EI7Ed-BYfDlJlYJUQ" base_Element="_Ucl_0D1nEd-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/SystemInterfaces.uml#_WHyq4Dz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
@@ -722,8 +722,8 @@ return processID;</body>
   <FCM:ContainerRule xmi:id="_ISo6gLdwEd-CtfrGQre34Q" base_Class="_GVZxwLdwEd-CtfrGQre34Q" extensionKind="InterceptAllPorts" interceptor="_35od4DKrEd-z5o2wSoJ16A">
     <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
-  <Cpp:CppExternClass xmi:id="_AGg3EPT8Ed-jjdbo8hMhwA" name="otflib/OTF_FileManager.h" base_class="_LjsBkDwLEd-CbfVdCYNz6Q"/>
-  <Cpp:CppInclude xmi:id="_mk_ccD5sEeC-VMxjm_qUAg" body="#include &lt;OS_AL/Sets/SetOf.h>&#xA;OS_AL::Sets::SetOf &lt;int> processSet;" base_class="_apuYoDNwEd-1k-POY2IaLg"/>
+  <C_Cpp:ExternClass xmi:id="_AGg3EPT8Ed-jjdbo8hMhwA" name="otflib/OTF_FileManager.h" base_class="_LjsBkDwLEd-CbfVdCYNz6Q"/>
+  <C_Cpp:Include xmi:id="_mk_ccD5sEeC-VMxjm_qUAg" body="#include &lt;OS_AL/Sets/SetOf.h>&#xA;OS_AL::Sets::SetOf &lt;int> processSet;" base_class="_apuYoDNwEd-1k-POY2IaLg"/>
   <FCM:ContainerRule xmi:id="_6FqQoKAdEeCF0uoVQbVQRg" base_Class="_wHuA0KAdEeCF0uoVQbVQRg" extensionKind="InterceptAllPorts" interceptor="_JvP0oKAeEeCF0uoVQbVQRg" propagate="true">
     <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
@@ -740,13 +740,13 @@ return processID;</body>
     <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
   <FCM:InterceptionRule xmi:id="_m-L0sPwkEeGWn-a9PUOYcA" interceptionKind="InterceptAll" base_Property="_d7If0PwkEeGWn-a9PUOYcA"/>
-  <Cpp:CppInclude xmi:id="__rP4oPxWEeGOK9t90vpALA" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(clazz : Class)]&#xA;[clazz.declareTP()/]&#xA;[/template]" base_class="_rGPjgPxWEeGOK9t90vpALA" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE"/>
+  <C_Cpp:Include xmi:id="__rP4oPxWEeGOK9t90vpALA" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(clazz : Class)]&#xA;[clazz.declareTP()/]&#xA;[/template]" base_class="_rGPjgPxWEeGOK9t90vpALA" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE"/>
   <FCM:Template xmi:id="_bKW5IPxXEeGOK9t90vpALA" base_Element="_YU5H4PxXEeGOK9t90vpALA" kind="LoopOperations"/>
   <FCM:CppLibrary xmi:id="_t_sHUPzOEeGKDvxFM1SZ_g" base_Package="_nAkZEPzOEeGKDvxFM1SZ_g">
     <libs>lttng-ust</libs>
     <libs>dl</libs>
   </FCM:CppLibrary>
-  <Cpp:CppExternClass xmi:id="_1PAQ4PzSEeGKDvxFM1SZ_g" name="lttng/tracepoint.h" base_class="_v-VBcPzSEeGKDvxFM1SZ_g"/>
+  <C_Cpp:ExternClass xmi:id="_1PAQ4PzSEeGKDvxFM1SZ_g" name="lttng/tracepoint.h" base_class="_v-VBcPzSEeGKDvxFM1SZ_g"/>
   <FCM:Template xmi:id="_flfM8PzhEeGe5LUTfvP5hQ" base_Element="_rGPjgPxWEeGOK9t90vpALA"/>
   <FCM:InteractionComponent xmi:id="__yL98PzhEeGe5LUTfvP5hQ" base_Class="_pwl_MPxWEeGOK9t90vpALA"/>
   <Cpp:ManualGeneration xmi:id="_KSTlgCdaEeKGdt7FoegMYA" extensionBody="c" base_Class="_rGPjgPxWEeGOK9t90vpALA"/>
@@ -762,10 +762,10 @@ return processID;</body>
   <FCM:UseInstanceConfigurator xmi:id="_5FYwcC8CEeKwPrQVP28AQw" base_Class="_I2OioPwkEeGWn-a9PUOYcA" configurator="_nTMOYKbnEeC0_qP7CUZIiQ"/>
   <FCM:UseInstanceConfigurator xmi:id="_gH1RQC8DEeKwPrQVP28AQw" base_Class="_If04ACqLEeKGrchWittz_g" configurator="_nTMOYKbnEeC0_qP7CUZIiQ"/>
   <FCM:InstanceConfigurator xmi:id="_nUB1YC8HEeKwPrQVP28AQw" base_Class="_nUAnQC8HEeKwPrQVP28AQw"/>
-  <Cpp:CppInclude xmi:id="_gvf4IDHKEeKt1a2SZnJmwg" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(intf : Interface)]&#xA;[intf.declareTP()/]&#xA;[/template]" base_class="_gveqADHKEeKt1a2SZnJmwg" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE"/>
+  <C_Cpp:Include xmi:id="_gvf4IDHKEeKt1a2SZnJmwg" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(intf : Interface)]&#xA;[intf.declareTP()/]&#xA;[/template]" base_class="_gveqADHKEeKt1a2SZnJmwg" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE"/>
   <FCM:Template xmi:id="_gvnM4DHKEeKt1a2SZnJmwg" base_Element="_gveqADHKEeKt1a2SZnJmwg"/>
   <Cpp:ManualGeneration xmi:id="_gvnz8DHKEeKt1a2SZnJmwg" extensionBody="c" base_Class="_gveqADHKEeKt1a2SZnJmwg"/>
   <Cpp:ManualGeneration xmi:id="_WUbVADV7EeKGAYOVxzQeAg" extensionBody="c" base_Class="_C4FREDV7EeKGAYOVxzQeAg"/>
-  <Cpp:CppInclude xmi:id="_ZdHkQDV7EeKGAYOVxzQeAg" header="[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]&#xA;[import org::eclipse::papyrus::qompass::designer::core::acceleo::TransformationContext/]&#xA;&#xA;[template public LTTngTP(cl : Classifier)]&#xA;#include &lt;lttng/tracepoint.h>&#xA;&#xA;TRACEPOINT_MODEL_EMF_URI(UMLmodel, starting, &quot;[getSourceRoot().getURI()/]&quot;)&#xA;[/template]&#xA;" base_class="_C4FREDV7EeKGAYOVxzQeAg" preBody=""/>
+  <C_Cpp:Include xmi:id="_ZdHkQDV7EeKGAYOVxzQeAg" header="[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]&#xA;[import org::eclipse::papyrus::qompass::designer::core::acceleo::TransformationContext/]&#xA;&#xA;[template public LTTngTP(cl : Classifier)]&#xA;#include &lt;lttng/tracepoint.h>&#xA;&#xA;TRACEPOINT_MODEL_EMF_URI(UMLmodel, starting, &quot;[getSourceRoot().getURI()/]&quot;)&#xA;[/template]&#xA;" base_class="_C4FREDV7EeKGAYOVxzQeAg" preBody=""/>
   <FCM:Template xmi:id="_HOvQ0DWSEeKGAYOVxzQeAg" base_Element="_C4FREDV7EeKGAYOVxzQeAg" kind="PassClassifier"/>
 </xmi:XMI>

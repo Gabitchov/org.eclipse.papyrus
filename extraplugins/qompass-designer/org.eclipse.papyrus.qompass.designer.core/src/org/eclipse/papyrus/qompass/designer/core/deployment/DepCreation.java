@@ -5,6 +5,20 @@ import java.util.Map;
 import java.util.Stack;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.papyrus.FCM.AutoIndex;
+import org.eclipse.papyrus.FCM.AutoIndexPerNode;
+import org.eclipse.papyrus.FCM.ConfigurationProperty;
+import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.CopyAttributeValue;
+import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.FCM.RuleApplication;
+import org.eclipse.papyrus.qompass.designer.core.CORBAtypeNames;
+import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
+import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Stereotypes;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -21,21 +35,6 @@ import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
-
-import FCM.AutoIndex;
-import FCM.AutoIndexPerNode;
-import FCM.ConfigurationProperty;
-import FCM.ContainerRule;
-import FCM.CopyAttributeValue;
-import FCM.InteractionComponent;
-import FCM.RuleApplication;
-
-import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
-import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Stereotypes;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 
 public class DepCreation {
 
@@ -99,11 +98,11 @@ public class DepCreation {
 		if(type != null) {
 			String name = type.getName();
 			String qname = type.getQualifiedName();
-			if(name.equals("Integer") || qname.equals("CORBA::Octet")
-				|| qname.equals("CORBA::Long")
-				|| qname.equals("CORBA::UnsignedLong")
-				|| qname.equals("CORBA::Short")
-				|| qname.equals("CORBA::UnsignedShort")) {
+			if(name.equals("Integer") || qname.equals(CORBAtypeNames.Octet)
+				|| qname.equals(CORBAtypeNames.Long)
+				|| qname.equals(CORBAtypeNames.UnsignedLong)
+				|| qname.equals(CORBAtypeNames.Short)
+				|| qname.equals(CORBAtypeNames.UnsignedShort)) {
 				slot.createValue("value for " + attribute.getName(), type,
 					UMLPackage.eINSTANCE.getLiteralInteger());
 			} else if(name.equals("Boolean")) {
@@ -222,7 +221,7 @@ public class DepCreation {
 		}
 
 		for(Connector connector : implementation.getOwnedConnectors()) {
-			FCM.Connector fcmConn = StUtils.getApplication(connector, FCM.Connector.class);
+			org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
 			if(fcmConn != null) {
 				String partName = name + "." + connector.getName();
 				InteractionComponent connectorComp = fcmConn.getIc();

@@ -8,6 +8,8 @@ import java.util.Stack;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.C_Cpp.Include;
+import org.eclipse.papyrus.FCM.InitPrecedence;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -30,9 +32,6 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
-
-import Cpp.CppInclude;
-import FCM.InitPrecedence;
 
 /**
  * The task of the boot-loader is twofold: create the instances of all
@@ -83,7 +82,7 @@ public class BootLoaderGen {
 		 * numberOfNodes.setDefault ("2");
 		 * }
 		 */
-		CppInclude cppInclude = StUtils.applyApp(m_bootLoader, CppInclude.class);
+		Include cppInclude = StUtils.applyApp(m_bootLoader, Include.class);
 		Object existingBody = cppInclude.getBody();
 		String existingBodyStr = "";
 		if(existingBody instanceof String) {

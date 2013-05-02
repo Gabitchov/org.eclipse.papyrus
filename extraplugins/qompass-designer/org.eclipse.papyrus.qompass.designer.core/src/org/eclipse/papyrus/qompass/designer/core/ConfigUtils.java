@@ -8,10 +8,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
-
-import FCM.ConfigurationProperty;
-import FCM.ContainerRule;
-
+import org.eclipse.papyrus.FCM.ConfigurationProperty;
+import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 
 public class ConfigUtils {

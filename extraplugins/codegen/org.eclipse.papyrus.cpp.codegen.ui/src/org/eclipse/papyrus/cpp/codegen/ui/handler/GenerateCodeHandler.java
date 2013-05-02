@@ -76,6 +76,7 @@ public class GenerateCodeHandler extends AbstractHandler {
 		if(selectedEObj instanceof Classifier) {
 			Classifier classifier = (Classifier)selectedEObj;
 
+			
 			URI uri = classifier.eResource().getURI();
 
 			// URIConverter uriConverter = resource.getResourceSet().getURIConverter();

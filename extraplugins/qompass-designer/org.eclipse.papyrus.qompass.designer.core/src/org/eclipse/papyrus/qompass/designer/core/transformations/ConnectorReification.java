@@ -10,6 +10,7 @@ package org.eclipse.papyrus.qompass.designer.core.transformations;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
@@ -30,8 +31,6 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.TemplateBinding;
-
-import FCM.InteractionComponent;
 
 /**
  * This class provides model information around connectors ... Many classes are
@@ -177,7 +176,7 @@ public class ConnectorReification {
 		String name, Connector smConnector, InstanceSpecification tmIS, Object[] args)
 		throws TransformationException {
 
-		FCM.Connector fcmConn = StUtils.getApplication(smConnector, FCM.Connector.class);
+		org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getApplication(smConnector, org.eclipse.papyrus.FCM.Connector.class);
 
 		InteractionComponent connType = fcmConn.getIc();
 		if(connType == null) {

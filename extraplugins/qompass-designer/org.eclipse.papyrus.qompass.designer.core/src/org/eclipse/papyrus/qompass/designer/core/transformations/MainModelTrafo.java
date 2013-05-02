@@ -28,15 +28,13 @@ import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
-
-import FCM.ConfigOption;
-import FCM.Configuration;
-import FCM.ContainerRule;
-import FCM.ContainerRuleKind;
-import FCM.DeploymentPlan;
-import FCM.InteractionComponent;
-import FCM.util.FCMUtil;
-
+import org.eclipse.papyrus.FCM.ConfigOption;
+import org.eclipse.papyrus.FCM.Configuration;
+import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.ContainerRuleKind;
+import org.eclipse.papyrus.FCM.DeploymentPlan;
+import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.FCM.util.FCMUtil;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -379,7 +377,7 @@ public class MainModelTrafo {
 		// TODO: check, if true (no instance specification exists for these - unlike a connector which is explicitly specified via a part)
 		for(Connector smConnector : smComponent.getOwnedConnectors()) {
 			if(StUtils.isConnector(smConnector)) {
-				FCM.Connector fcmConn = StUtils.getConnector(smConnector);
+				org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getConnector(smConnector);
 				if(fcmConn != null) {
 					// found an Qompass connector, connector type is specified.
 					// => Reify the connector within the target component, i.e. create a new part and

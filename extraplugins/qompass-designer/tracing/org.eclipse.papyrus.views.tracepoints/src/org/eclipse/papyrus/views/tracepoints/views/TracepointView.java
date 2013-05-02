@@ -52,6 +52,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 import org.eclipse.papyrus.infra.services.tracepoints.MarkerUtils;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceFunctions;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceState;
@@ -173,8 +174,8 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 			if(TraceState.skipAllTracepoints) {
 				return TraceViewImages.getSkipAllImage();
 			}
-			if(obj instanceof IMarker) {
-				IMarker marker = (IMarker)obj;
+			if(obj instanceof IPapyrusMarker) {
+				IPapyrusMarker marker = (IPapyrusMarker)obj;
 				ImageDescriptor id = traceImage.getImageDescriptorForGE(marker);
 				if(id != null) {
 					// TODO: leaks!

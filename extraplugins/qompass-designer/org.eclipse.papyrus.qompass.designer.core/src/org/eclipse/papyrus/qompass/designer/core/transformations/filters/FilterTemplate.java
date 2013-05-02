@@ -3,10 +3,8 @@ package org.eclipse.papyrus.qompass.designer.core.transformations.filters;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
-
-import FCM.Connector;
-import FCM.InteractionComponent;
-
+import org.eclipse.papyrus.FCM.Connector;
+import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;

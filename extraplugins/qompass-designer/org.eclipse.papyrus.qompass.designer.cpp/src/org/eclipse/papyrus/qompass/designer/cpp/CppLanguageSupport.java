@@ -27,7 +27,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.cpp.codegen.transformation.ModelElementsCreator;
+import org.eclipse.papyrus.FCM.CppLibrary;
+import org.eclipse.papyrus.FCM.OperatingSystem;
+import org.eclipse.papyrus.FCM.Target;
+import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
@@ -43,10 +46,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
-
-import FCM.CppLibrary;
-import FCM.OperatingSystem;
-import FCM.Target;
 
 /**
  * C/C++ language support
@@ -101,7 +100,7 @@ public class CppLanguageSupport implements ILangSupport {
 		m_project = project;
 		IPreferenceStore store = org.eclipse.papyrus.qompass.designer.core.Activator.getDefault().getPreferenceStore();
 		String prefix = store.getString(QompassPreferenceConstants.P_CODE_GEN_PREFIX) + "\n\n";
-		creator = new ModelElementsCreator(project, "h", "cpp", prefix);
+		creator = new CppModelElementsCreator(project, prefix);
 	}
 
 	public void setSettings(InstanceSpecification node) throws TransformationException
@@ -258,7 +257,7 @@ public class CppLanguageSupport implements ILangSupport {
 
 	static EList<String> macros;
 
-	static ModelElementsCreator creator;
+	static CppModelElementsCreator creator;
 
 	static IProject m_project;
 }

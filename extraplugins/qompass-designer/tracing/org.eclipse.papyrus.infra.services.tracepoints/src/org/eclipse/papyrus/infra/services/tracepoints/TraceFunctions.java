@@ -19,6 +19,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.services.decoration.IDecorationSpecificFunctions;
 import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
+import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 
 
 public class TraceFunctions implements IDecorationSpecificFunctions {
@@ -42,7 +43,7 @@ public class TraceFunctions implements IDecorationSpecificFunctions {
 	/**
 	 * Return the image descriptor associated with a trace or breakpoint marker
 	 */
-	public ImageDescriptor getImageDescriptorForGE(IMarker marker) {
+	public ImageDescriptor getImageDescriptorForGE(IPapyrusMarker marker) {
 
 
 		org.eclipse.papyrus.infra.widgets.Activator widgetsActivator =
@@ -67,7 +68,7 @@ public class TraceFunctions implements IDecorationSpecificFunctions {
 	/**
 	 * Return the image descriptor associated with a trace or breakpoint marker
 	 */
-	public ImageDescriptor getImageDescriptorForME(IMarker marker) {
+	public ImageDescriptor getImageDescriptorForME(IPapyrusMarker marker) {
 		org.eclipse.papyrus.infra.widgets.Activator widgetsActivator =
 			org.eclipse.papyrus.infra.widgets.Activator.getDefault();
 		ImageDescriptor overlay = null;
@@ -87,11 +88,11 @@ public class TraceFunctions implements IDecorationSpecificFunctions {
 		return overlay;
 	}
 
-	public PreferedPosition getPreferedPosition(IMarker marker) {
+	public PreferedPosition getPreferedPosition(IPapyrusMarker marker) {
 		return PreferedPosition.SOUTH_EAST;
 	}
 
-	public String getMessage(IMarker marker) {
+	public String getMessage(IPapyrusMarker marker) {
 		boolean isActive = marker.getAttribute(TracepointConstants.isActive, false);
 		boolean isTracepoint = marker.getAttribute(TracepointConstants.isTracepoint, false);
 		return (isActive ? "active" : "inactive") + " " +
@@ -108,5 +109,11 @@ public class TraceFunctions implements IDecorationSpecificFunctions {
 
 	public MarkChildren supportsMarkerPropagation() {
 		return MarkChildren.NO;
+	}
+
+	@Override
+	public int getPriority(IPapyrusMarker marker) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

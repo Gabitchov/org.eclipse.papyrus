@@ -12,9 +12,7 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
-
-import Cpp.CppPtr;
-
+import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
@@ -34,6 +32,8 @@ import org.eclipse.papyrus.qompass.designer.core.Utils;
  */
 public class CompTypeTrafos {
 
+	public static final String INDEX_TYPE_FOR_MULTI_RECEPTACLE = "corba::Long";
+	
 	/**
 	 * Complete access operations recursively, i.e. traverse all packageable
 	 * elements and apply the completeAccessOps operation on classes
@@ -75,7 +75,7 @@ public class CompTypeTrafos {
 					op.setIsAbstract(true);
 					Parameter retParam = op.createOwnedParameter("ret", providedIntf);
 					retParam.setDirection(ParameterDirectionKind.RETURN_LITERAL);
-					StUtils.apply(retParam, CppPtr.class);
+					StUtils.apply(retParam, Ptr.class);
 					// StUtils.apply(op, CppVirtual.class);
 				}
 			}
@@ -91,14 +91,18 @@ public class CompTypeTrafos {
 					boolean multiPort = (port.getUpper() > 1) || (port.getUpper() == -1); // -1 indicates "*"
 					if(multiPort) {
 						// add index parameter
-						Element eLong = Utils.getQualifiedElement(Utils.getTop(component), "CORBA::Long");
+						Element eLong = Utils.getQualifiedElement(Utils.getTop(component), INDEX_TYPE_FOR_MULTI_RECEPTACLE);
 						if(eLong instanceof Type) {
 							op.createOwnedParameter("index", (Type)eLong);
+						}
+						else {
+							throw new RuntimeException("Can not find type " + INDEX_TYPE_FOR_MULTI_RECEPTACLE +
+									". Thus, unable to create suitable connect operation in component to OO transformation");
 						}
 					}
 					Parameter refParam = op.createOwnedParameter("ref", requiredIntf);
 					refParam.setDirection(ParameterDirectionKind.IN_LITERAL);
-					StUtils.apply(refParam, CppPtr.class);
+					StUtils.apply(refParam, Ptr.class);
 					// StUtils.apply(op, CppVirtual.class);
 				}
 			}

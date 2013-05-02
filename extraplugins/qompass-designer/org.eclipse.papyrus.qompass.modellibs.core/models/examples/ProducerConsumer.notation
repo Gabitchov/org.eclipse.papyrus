@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Cpp="http://papyrus/CppProfile/1" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <notation:Diagram xmi:id="_UstOsM__Ed-TP80eVS-2Rg" type="CompositeStructure" name="PushConsumer" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_VT2HMM__Ed-TP80eVS-2Rg" type="2073" fontName="" fontHeight="10" fillColor="8905185" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VT2HMs__Ed-TP80eVS-2Rg" source="ShadowFigure">
@@ -174,16 +174,6 @@
         </children>
         <element xmi:type="uml:Port" href="ProducerConsumer.uml#_tyiqs8__Ed-TP80eVS-2Rg"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_t6X3UZaMEeCbgbUO5qahhA" x="-10" y="72"/>
-      </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_JxylQFZ0EeK5f41mmHszag" visible="false" type="AppliedStereotypeCompartement">
-        <styles xmi:type="notation:TitleStyle" xmi:id="_JxylQVZ0EeK5f41mmHszag" showTitle="true"/>
-        <element xmi:type="Cpp:CppInclude" href="ProducerConsumer.uml#_11OtwPcaEd-KM6l7lmIPkw"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JxylQlZ0EeK5f41mmHszag"/>
-      </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_JxzMUFZ0EeK5f41mmHszag" visible="false" type="AppliedStereotypeCompartement">
-        <styles xmi:type="notation:TitleStyle" xmi:id="_JxzMUVZ0EeK5f41mmHszag" showTitle="true"/>
-        <element xmi:type="FCM:RuleApplication" href="ProducerConsumer.uml#_FeS3AF7zEeGA7qTe7UD05A"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JxzMUlZ0EeK5f41mmHszag"/>
       </children>
       <element xmi:type="uml:Class" href="ProducerConsumer.uml#_tyiqsc__Ed-TP80eVS-2Rg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8LSR4c__Ed-TP80eVS-2Rg" x="162" y="162" width="254" height="109"/>
@@ -819,7 +809,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7qNCOTefEeGPyrZ5I3hMlA"/>
       </children>
       <element xmi:type="uml:Node" href="ProducerConsumer.uml#_zY9vMDLiEd2RVeNawwNNzg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7qMbITefEeGPyrZ5I3hMlA" x="441" y="63" width="154" height="100"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7qMbITefEeGPyrZ5I3hMlA" x="441" y="63" width="163" height="100"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_jhQ20DegEeGPyrZ5I3hMlA" type="2109" fontName="" fontHeight="10" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jhQ20jegEeGPyrZ5I3hMlA" source="ShadowFigure">
@@ -842,7 +832,7 @@
       <element xsi:nil="true"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ugb6IjegEeGPyrZ5I3hMlA" points="[-11, -6, 7, 38]$[-11, -26, 7, 18]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ugs_4DegEeGPyrZ5I3hMlA" id="(0.33212996389891697,0.1)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ugs_4TegEeGPyrZ5I3hMlA" id="(0.4420289855072464,0.8266666666666667)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ugs_4TegEeGPyrZ5I3hMlA" id="(0.5460122699386503,0.98)"/>
     </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_HvdK0FZYEeKKZs15rvNNjA" type="CompositeStructure" name="System Push" measurementUnit="Pixel">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Cpp="http://papyrus/CppProfile/1" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Model xmi:id="_ago_QOUTEd-P08Bciq_LqQ" name="statemachine">
     <ownedComment xmi:id="_9BpKIOuLEeCTfOY57pgE3w" annotatedElement="_u-qioOUTEd-P08Bciq_LqQ">
       <body>Call event interceptor, interacts with state-machine. It will handle in particular call events that are intercepted by the port operations</body>
@@ -366,7 +366,7 @@ out->writeEvent (event);
     </packagedElement>
     <profileApplication xmi:id="_e8kikOUUEd-P08Bciq_LqQ">
       <eAnnotations xmi:id="_fAD7cOUUEd-P08Bciq_LqQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/FCMProfile/1#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/FCM/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
     </profileApplication>
@@ -374,7 +374,7 @@ out->writeEvent (event);
       <eAnnotations xmi:id="_cz4J0BE1EeG3cfLoiI6G7g" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://PapyrusCpp_PROFILES/PapyrusCpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+      <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
   </uml:Model>
   <FCM:InteractionComponent xmi:id="_hanSUOUUEd-P08Bciq_LqQ" base_Class="_u-qioOUTEd-P08Bciq_LqQ"/>
@@ -389,7 +389,7 @@ out->writeEvent (event);
   </FCM:Port>
   <FCM:ContainerRule xmi:id="_RmD0YPTXEeCn1-FCrfecFg" base_Class="_18qdsO67EeCZ9MjsZTV1zw"/>
   <FCM:InterceptionRule xmi:id="_Z5CnUPUQEeCn1-FCrfecFg" interceptionKind="InterceptAllIn" base_Property="_LyxAEPTXEeCn1-FCrfecFg"/>
-  <Cpp:CppInclude xmi:id="_eGpZQBE1EeG3cfLoiI6G7g" body="#include &lt;OS_AL/Tracing/Trace.h>&#xA;" base_class="_ens7QOUTEd-P08Bciq_LqQ"/>
+  <C_Cpp:Include xmi:id="_eGpZQBE1EeG3cfLoiI6G7g" body="#include &lt;OS_AL/Tracing/Trace.h>&#xA;" base_class="_ens7QOUTEd-P08Bciq_LqQ"/>
   <FCM:InstanceConfigurator xmi:id="_QQYfQCNYEeGj_4swHBbKwg" base_Class="_KEMp0CNYEeGj_4swHBbKwg"/>
   <FCM:UseInstanceConfigurator xmi:id="_StgB8CNYEeGj_4swHBbKwg" base_Class="_u-qioOUTEd-P08Bciq_LqQ" configurator="_QQYfQCNYEeGj_4swHBbKwg"/>
   <FCM:ConfigurationProperty xmi:id="_uhdD8CVvEeGaL60JjVj19Q" base_Property="_bL0sACVvEeGaL60JjVj19Q"/>

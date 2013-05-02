@@ -13,15 +13,15 @@
 	<extension-point id="fcmEmbeddingRule" name="Connector embedding rule" schema="schema/fcmPortMappingRule.exsd"/>
 
 	<extension point="org.eclipse.emf.ecore.generated_package">
-		<package 
-			uri = "http://papyrus/FCMProfile/1" 
-			class = "FCM.FCMPackage"
+		<package
+			uri = "http://www.eclipse.org/papyrus/FCM/1" 
+			class = "org.eclipse.papyrus.FCM.FCMPackage"
 			genModel = "model/FCM.genmodel"/> 
 	</extension>
   
 	<extension point="org.eclipse.uml2.uml.generated_package">
 		<profile
-			uri="http://papyrus/FCMProfile/1"
+			uri="http://www.eclipse.org/papyrus/FCM/1"
 			location="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
 	</extension>
 

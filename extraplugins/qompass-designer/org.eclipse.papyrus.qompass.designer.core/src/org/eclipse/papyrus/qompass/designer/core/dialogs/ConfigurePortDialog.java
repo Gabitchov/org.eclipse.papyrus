@@ -15,6 +15,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
@@ -39,9 +40,6 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import FCM.PortKind;
-
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -193,7 +191,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 
 			public void widgetSelected(SelectionEvent e) {
 				// changePortKind
-				FCM.Port fcmPort = StUtils.applyApp(m_currentPort, FCM.Port.class);
+				org.eclipse.papyrus.FCM.Port fcmPort = StUtils.applyApp(m_currentPort, org.eclipse.papyrus.FCM.Port.class);
 				if(fcmPort != null)
 				{
 					int index = fKindCombo.getSelectionIndex();
@@ -203,7 +201,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 						selectPort(m_currentPort);
 					}
 					else {
-						StUtils.unapply(m_currentPort, FCM.Port.class);
+						StUtils.unapply(m_currentPort, org.eclipse.papyrus.FCM.Port.class);
 						selectPort(m_currentPort);
 					}
 				}
@@ -301,7 +299,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 			return;
 		}
 		setEnabled(true);
-		FCM.Port fcmPort = StUtils.getApplication(port, FCM.Port.class);
+		org.eclipse.papyrus.FCM.Port fcmPort = StUtils.getApplication(port, org.eclipse.papyrus.FCM.Port.class);
 		if(port.getType() != null) {
 			fType.setText(port.getType().getQualifiedName());
 		}

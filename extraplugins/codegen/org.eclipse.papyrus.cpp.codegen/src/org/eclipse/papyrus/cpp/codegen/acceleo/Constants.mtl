@@ -2,35 +2,35 @@
 [module Constants('http://www.eclipse.org/uml2/4.0.0/UML')]
 
 
-[template public includeHFile(dummy : Element)]
+[template public constIncludeHFile(dummy : Element)]
 // include associated header file
 [/template]
 
-[template public IncludeHeaderStart(dummy : Element)]
+[template public constIncludeHeaderStart(dummy : Element)]
 // Include from Include stereotype (header)
 [/template]
 
-[template public IncludePreBodyStart(dummy : Element)]
+[template public constIncludePreBodyStart(dummy : Element)]
 // Include from Include stereotype (pre-body)
 [/template]
 
-[template public IncludePreBodyEnd(dummy : Element)]
+[template public constIncludePreBodyEnd(dummy : Element)]
 // End of Include stereotype (pre-body)
 [/template]
 
-[template public IncludeBodyStart(dummy : Element)]
+[template public constIncludeBodyStart(dummy : Element)]
 // Include from Include declaration (body)
 [/template]
 
-[template public IncludeHeaderEnd(dummy : Element)]
+[template public constIncludeHeaderEnd(dummy : Element)]
 // End of Include stereotype (header)
 [/template]
 
-[template public IncludeBodyEnd(dummy : Element)]
+[template public constIncludeBodyEnd(dummy : Element)]
 // End of Include stereotype (body)
 [/template]
 
-[template public derivedIncludes(dummy : Element)]
+[template public constDerivedIncludes(dummy : Element)]
 // Derived includes directives
 [/template]
 
@@ -38,7 +38,7 @@
 // forward declarations
 [/template]
 
-[template public staticAttributes(dummy : Element)]
+[template public constStaticAttributes(dummy : Element)]
 // static attributes (if any)
 [/template]
 

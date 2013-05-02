@@ -2,7 +2,7 @@
 [import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::utils::ClassUtils/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::Constants/]
-[import org::eclipse::papyrus::cpp::codegen::acceleo::IncludeUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::CppIncludeUtils/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeClassDeclaration/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassTypeAndEnum/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassFriendDeclaration/]
@@ -51,10 +51,10 @@ in C++ 011/]
 
 [CppClassAllIncludesDeclaration()/]
 
-[IncludeHeader()/]
+[CppIncludeHeader()/]
 
 [openNS()/] 
-[_package.CppClassTypeAndEnumPackage()/]
+
 /************************************************************/
 [CppElementDoc()/]
 [templateSignature()/][classUnionOrStruct()/] [class.name/][CppClassInheritedDeclarations()/] {
@@ -76,7 +76,7 @@ in C++ 011/]
 [CppClassOperationsDeclaration(VisibilityKind::_package)/]
 /************************************************************/
 
-[if (isTemplate())]
+[if isTemplate()]
 /************************************************************/
 /* Template functions                                       */
 [CppClassOperationsImplementation(false)/]

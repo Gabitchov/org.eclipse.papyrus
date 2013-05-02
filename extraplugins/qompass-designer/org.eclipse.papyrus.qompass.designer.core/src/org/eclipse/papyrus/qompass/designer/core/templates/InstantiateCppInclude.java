@@ -3,11 +3,9 @@ package org.eclipse.papyrus.qompass.designer.core.templates;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.TemplateBinding;
-
-import Cpp.CppInclude;
-
+import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriver;
+import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
@@ -44,11 +42,11 @@ public class InstantiateCppInclude implements CopyListener {
 			try {
 				Classifier actual = TemplateInstantiationListener.getFirstActualFromBinding(binding, targetCl);
 				if(actual != null) {
-					CppInclude cppInclude = StUtils.getApplication(targetCl, CppInclude.class);
+					Include cppInclude = StUtils.getApplication(targetCl, Include.class);
 					TransformationContext.classifier = targetCl;
-					String newBody = AcceleoDriver.evaluate(cppInclude.getBody(), actual, null);
-					String newPreBody = AcceleoDriver.evaluate(cppInclude.getPreBody(), actual, null);
-					String newHeader = AcceleoDriver.evaluate(cppInclude.getHeader(), actual, null);
+					String newBody = AcceleoDriverWrapper.evaluate(cppInclude.getBody(), actual, null);
+					String newPreBody = AcceleoDriverWrapper.evaluate(cppInclude.getPreBody(), actual, null);
+					String newHeader = AcceleoDriverWrapper.evaluate(cppInclude.getHeader(), actual, null);
 					cppInclude.setBody(newBody);
 					cppInclude.setPreBody(newPreBody);
 					cppInclude.setHeader(newHeader);

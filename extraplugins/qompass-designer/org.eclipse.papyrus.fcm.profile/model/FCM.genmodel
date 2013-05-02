@@ -4,7 +4,8 @@
     modelName="FCM" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types">
   <foreignModel>FCM.ecore</foreignModel>
-  <genPackages prefix="FCM" resource="XML" disposableProviderFactory="true" ecorePackage="FCM.ecore#/">
+  <genPackages prefix="FCM" basePackage="org.eclipse.papyrus" resource="XML" disposableProviderFactory="true"
+      ecorePackage="FCM.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="FCM.ecore#//TemplateKind">
       <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/PassFormal"/>
       <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/LoopOperations"/>

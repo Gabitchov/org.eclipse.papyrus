@@ -12,6 +12,9 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.RuleApplication;
+import org.eclipse.papyrus.FCM.Singleton;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferenceConstants;
@@ -29,10 +32,6 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
-
-import FCM.ContainerRule;
-import FCM.RuleApplication;
-import FCM.Singleton;
 
 public class Utils {
 

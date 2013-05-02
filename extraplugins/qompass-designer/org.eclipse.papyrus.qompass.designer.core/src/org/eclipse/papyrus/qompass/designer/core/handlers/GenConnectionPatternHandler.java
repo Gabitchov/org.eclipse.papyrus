@@ -3,10 +3,8 @@ package org.eclipse.papyrus.qompass.designer.core.handlers;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.uml2.uml.Class;
-
-import FCM.InteractionComponent;
-import FCM.util.FCMUtil;
-
+import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.FCM.util.FCMUtil;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 

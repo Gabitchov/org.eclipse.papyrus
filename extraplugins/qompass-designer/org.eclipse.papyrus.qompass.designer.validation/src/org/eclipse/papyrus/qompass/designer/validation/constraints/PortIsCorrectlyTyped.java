@@ -22,7 +22,7 @@ public class PortIsCorrectlyTyped  extends AbstractModelConstraint {
 	public IStatus validate (IValidationContext ctx)
 	{
 		Port port = (Port) ctx.getTarget ();
-		FCM.Port fcmPort = StUtils.getApplication(port, FCM.Port.class);
+		org.eclipse.papyrus.FCM.Port fcmPort = StUtils.getApplication(port, org.eclipse.papyrus.FCM.Port.class);
 		if (fcmPort != null) {
 			
 			if ((fcmPort.getProvidedInterface() == null) && (fcmPort.getRequiredInterface() == null)) {

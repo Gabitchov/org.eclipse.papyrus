@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="FCM" nsURI="http://papyrus/FCMProfile/1" nsPrefix="FCM">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="FCM" nsURI="http://www.eclipse.org/papyrus/FCM/1" nsPrefix="FCM">
   <eClassifiers xsi:type="ecore:EClass" name="Template">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The template parameters list defines the parameters that are passed to the Acceleo template. If empty, the formal parameter list of the package template is used."/>

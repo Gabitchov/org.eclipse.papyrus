@@ -119,7 +119,7 @@ public class CppTemplateBindingPanel extends CppAbstractPanel {
 					if(newB.equals("")) {
 						StUtils.unapply(selectedTB, TemplateBinding.class);
 					} else {
-						C_Cpp.TemplateBinding templateBinding = StUtils.applyApp(selectedTB, C_Cpp.TemplateBinding.class);
+						org.eclipse.papyrus.C_Cpp.TemplateBinding templateBinding = StUtils.applyApp(selectedTB, org.eclipse.papyrus.C_Cpp.TemplateBinding.class);
 						// TODO: use UML template bindings?
 						templateBinding.setBinding(newB);
 					}
@@ -136,7 +136,7 @@ public class CppTemplateBindingPanel extends CppAbstractPanel {
 	@Override
 	protected void refreshPanel() {
 		if(selectedTB != null) {
-			C_Cpp.TemplateBinding templateBinding = StUtils.getApplication(selectedTB, C_Cpp.TemplateBinding.class);
+			org.eclipse.papyrus.C_Cpp.TemplateBinding templateBinding = StUtils.getApplication(selectedTB, org.eclipse.papyrus.C_Cpp.TemplateBinding.class);
 			// TODO: use UML template bindings?
 			docBinding.set(templateBinding != null ? templateBinding.getBinding() : "");
 		}
@@ -160,7 +160,7 @@ public class CppTemplateBindingPanel extends CppAbstractPanel {
 	 */
 	@Override
 	public boolean checkModifications() {
-		C_Cpp.TemplateBinding templateBinding = StUtils.getApplication(selectedTB, C_Cpp.TemplateBinding.class);
+		org.eclipse.papyrus.C_Cpp.TemplateBinding templateBinding = StUtils.getApplication(selectedTB, org.eclipse.papyrus.C_Cpp.TemplateBinding.class);
 		// TODO: use UML template bindings?
 		String bindingValue = templateBinding != null ? templateBinding.getBinding() : "";
 		if(!docBinding.get().equals(bindingValue)) {

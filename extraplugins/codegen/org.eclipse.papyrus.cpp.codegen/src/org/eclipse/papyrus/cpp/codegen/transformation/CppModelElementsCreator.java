@@ -15,6 +15,12 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.papyrus.C_Cpp.CppRoot;
+import org.eclipse.papyrus.C_Cpp.ExternClass;
+import org.eclipse.papyrus.C_Cpp.Include;
+import org.eclipse.papyrus.C_Cpp.ManualGeneration;
+import org.eclipse.papyrus.C_Cpp.NoCodeGen;
+import org.eclipse.papyrus.C_Cpp.Template;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.acceleo.ModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
@@ -25,13 +31,6 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
-
-import C_Cpp.CppRoot;
-import C_Cpp.ExternClass;
-import C_Cpp.Include;
-import C_Cpp.ManualGeneration;
-import C_Cpp.NoCodeGen;
-import C_Cpp.Template;
 
 
 
@@ -120,6 +119,7 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 
 			// Template Bound Class
 			if(GenUtils.isTemplateBoundElement(classifier)) {
+				// TODO: Acceleo template is only defined for class (not for all classifiers)
 				String fileContent = commentHeader + AcceleoDriver.evaluateURI(CppBindHeader, classifier);
 				createFile(container, classifier.getName() + "." + hppExt, fileContent, true);
 

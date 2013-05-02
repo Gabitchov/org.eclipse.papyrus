@@ -13,9 +13,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
-
-import Cpp.CppPtr;
-
+import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
@@ -62,7 +60,7 @@ public class Composite {
 		Class implementation = DepUtils.getImplementation(composite);
 		// assure that part is a pointer
 		for(Property part : Utils.getParts(implementation)) {
-			StUtils.apply(part, CppPtr.class);
+			StUtils.apply(part, Ptr.class);
 		}
 		// create function
 		String body = "";

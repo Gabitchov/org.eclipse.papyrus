@@ -20,6 +20,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.C_Cpp.ExternClass;
+import org.eclipse.papyrus.C_Cpp.NoCodeGen;
+import org.eclipse.papyrus.C_Cpp.Typedef;
+import org.eclipse.papyrus.C_Cpp.Visibility;
 import org.eclipse.papyrus.cpp.codegen.Constants;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Behavior;
@@ -52,11 +56,6 @@ import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 
-import C_Cpp.ExternClass;
-import C_Cpp.NoCodeGen;
-import C_Cpp.Typedef;
-import C_Cpp.Visibility;
-
 
 
 /**
@@ -88,14 +87,19 @@ public class GenUtils {
 		return binding;
 	}
 
+	/**
+	 * Check whether the passed classifier has a template binding with itself as bound element
+	 *
+	 * @param cl
+	 * @return
+	 */
 	public static boolean isTemplateBoundElement(Classifier cl) {
 		boolean result = false;
-		EList<TemplateBinding> tb = cl.getTemplateBindings();
-		if(tb != null) {
-			Iterator<TemplateBinding> itb = tb.iterator();
-			while(itb.hasNext()) {
-				TemplateBinding currentTb = itb.next();
-				result = currentTb.getBoundElement() == cl;
+		EList<TemplateBinding> tbs = cl.getTemplateBindings();
+		if(tbs.size() > 0) {
+			for (TemplateBinding tb : tbs) {
+				// TODO: will only work for single element in template binding list
+				result = tb.getBoundElement() == cl;
 			}
 		}
 		return result;
@@ -525,7 +529,7 @@ public class GenUtils {
 		String commentText = "";
 		for(Comment comment : element.getOwnedComments()) {
 			// remove eventual CRs (avoid confusion in Acceleo template which adds " *" after line breaks)
-			commentText += comment.getBody().replace("\r", "");
+			commentText += cleanCR(comment.getBody());
 		}
 		return commentText;
 	}
@@ -735,13 +739,22 @@ public class GenUtils {
 				for(String language : ob.getLanguages()) {
 					String body = bodies.next();
 					if(language.equals(selectedLanguage)) {
-						// additional "\r" confuse Acceleo
-						return body.replace("\r", "");
+						// additional "\r" confuses Acceleo
+						return cleanCR(body);
 					}
 				}
 			}
 		}
 		return "";
+	}
+	
+	/**
+	 * Remove <CR> from a String. These confuse Acceleo's indentation
+	 * @param str
+	 * @return
+	 */
+	public static String cleanCR(String str) {
+		return str.replace("\r", "");
 	}
 	
 	/**

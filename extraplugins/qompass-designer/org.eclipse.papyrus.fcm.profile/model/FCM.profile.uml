@@ -687,7 +687,7 @@ of a particular PortKind). Further experiments are still needed to confirm that 
       <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
   </uml:Profile>
-  <Ecore:EPackage xmi:id="_bIrl8C27Ed6q9cO948d5Fw" base_Package="_5mvT0MtjEd2H_o0jIC6qDQ" packageName="FCM" nsPrefix="FCM" nsURI="http://papyrus/FCMProfile/1" prefix="FCM"/>
+  <Ecore:EPackage xmi:id="_bIrl8C27Ed6q9cO948d5Fw" base_Package="_5mvT0MtjEd2H_o0jIC6qDQ" packageName="FCM" nsPrefix="FCM" nsURI="http://www.eclipse.org/papyrus/FCM/1" prefix="FCM"/>
   <Ecore:EReference xmi:id="_VMBfsJjPEd-YabZhJFlJ9g" isTransient="true" isVolatile="true" isUnsettable="true" base_Property="_nZNicMweEd2H_o0jIC6qDQ"/>
   <Ecore:EReference xmi:id="_ZTbZ8JjPEd-YabZhJFlJ9g" isTransient="true" isVolatile="true" isUnsettable="true" base_Property="_ml85gMweEd2H_o0jIC6qDQ"/>
   <Ecore:EAttribute xmi:id="_yiNMoOSBEeCPMMwBhvVAnA" isTransient="true" isVolatile="true" isUnsettable="true" base_Property="_nkb3gOSBEeCPMMwBhvVAnA"/>

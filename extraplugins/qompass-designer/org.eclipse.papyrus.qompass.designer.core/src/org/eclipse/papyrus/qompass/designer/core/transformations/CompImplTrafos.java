@@ -24,10 +24,8 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import Cpp.CppPtr;
-import FCM.InteractionComponent;
-
+import org.eclipse.papyrus.C_Cpp.Ptr;
+import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -93,7 +91,7 @@ public class CompImplTrafos {
 				Operation op = implementation.createOwnedOperation(opName, null, null, providedIntf);
 				Parameter retParam = op.getOwnedParameters().get(0);
 				retParam.setName("ret");
-				StUtils.apply(retParam, CppPtr.class);
+				StUtils.apply(retParam, Ptr.class);
 
 				OpaqueBehavior behavior = (OpaqueBehavior)
 					implementation.createOwnedBehavior(opName,
@@ -115,7 +113,7 @@ public class CompImplTrafos {
 						// due to partially copied composites).
 						// Check is based on names, since the connector points to elements within another
 						// model (copyClassifier does not make a proper connector copy)
-						body += part.getName() + refOp(part) + PrefixConstants.getP_Prefix + role.getName() + " ();";
+						body += part.getName() + refOp(part) + PrefixConstants.getP_Prefix + role.getName() + "();";
 					} else {
 						// role is not a port: connector connects directly to a structural feature
 						// without passing via a port
@@ -165,7 +163,7 @@ public class CompImplTrafos {
 				// => requires adaptations of boot-loader which is then only responsible for creating instances
 				//    corresponding to types
 				if(instantiateViaBootloader(cl)) {
-					StUtils.apply(attribute, CppPtr.class);
+					StUtils.apply(attribute, Ptr.class);
 				}
 			}
 		}
@@ -193,13 +191,17 @@ public class CompImplTrafos {
 				boolean multiPort = (port.getUpper() > 1) || (port.getUpper() == -1); // -1 indicates "*"
 				if(multiPort) {
 					// add index parameter
-					Element eLong = Utils.getQualifiedElement(Utils.getTop(implementation), "CORBA::Long");
+					Element eLong = Utils.getQualifiedElement(Utils.getTop(implementation), CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE);
 					if(eLong instanceof Type) {
 						op.createOwnedParameter("index", (Type)eLong);
 					}
+					else {
+						throw new RuntimeException("Can not find type " + CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE +
+								". Thus, unable to create suitable connect operation in component to OO transformation");
+					}
 				}
 				Parameter refParam = op.createOwnedParameter("ref", requiredIntf);
-				StUtils.apply(refParam, CppPtr.class);
+				StUtils.apply(refParam, Ptr.class);
 
 				OpaqueBehavior behavior = (OpaqueBehavior)
 					implementation.createOwnedBehavior(opName,
@@ -255,7 +257,7 @@ public class CompImplTrafos {
 						op = implementation.createOwnedOperation(opName, null, null, requiredIntf);
 						Parameter retParam = op.getOwnedParameters().get(0);
 						retParam.setName("ret");
-						StUtils.apply(retParam, CppPtr.class);
+						StUtils.apply(retParam, Ptr.class);
 					}
 					behavior = (OpaqueBehavior)
 						implementation.createOwnedBehavior(opName,

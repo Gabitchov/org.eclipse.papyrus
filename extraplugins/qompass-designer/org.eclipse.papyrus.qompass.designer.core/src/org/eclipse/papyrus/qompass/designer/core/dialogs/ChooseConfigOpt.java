@@ -19,10 +19,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
-
-import FCM.ConfigOption;
-import FCM.ContainerRule;
-
+import org.eclipse.papyrus.FCM.ConfigOption;
+import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 
 

@@ -2,16 +2,15 @@ package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
 import java.util.Iterator;
 
+import org.eclipse.papyrus.FCM.Port;
+import org.eclipse.papyrus.FCM.util.IMappingRule;
+import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Type;
-
-import FCM.Port;
-import FCM.util.IMappingRule;
-import FCM.util.MapUtil;
 
 
 /**

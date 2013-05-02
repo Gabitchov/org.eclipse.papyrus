@@ -19,9 +19,7 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
-
-import FCM.InteractionComponent;
-
+import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.dialogs.ConnectorSelectionDialog;
@@ -75,7 +73,7 @@ public class SelectConnectorHandler extends CmdHandler {
 				CommandSupport.exec("Select connector", new Runnable() {
 
 					public void run() {
-						FCM.Connector fcmSelectedConnector = StUtils.applyApp(selectedConnector, FCM.Connector.class);
+						org.eclipse.papyrus.FCM.Connector fcmSelectedConnector = StUtils.applyApp(selectedConnector, org.eclipse.papyrus.FCM.Connector.class);
 						InteractionComponent newConnType = StUtils.getApplication((Class)result[0], InteractionComponent.class);
 						fcmSelectedConnector.setIc(newConnType);
 					}

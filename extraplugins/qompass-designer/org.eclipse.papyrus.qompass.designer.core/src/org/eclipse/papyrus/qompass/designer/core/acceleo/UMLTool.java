@@ -13,6 +13,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.papyrus.C_Cpp.ExternClass;
+import org.eclipse.papyrus.C_Cpp.NoCodeGen;
+import org.eclipse.papyrus.C_Cpp.Typedef;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -35,10 +38,6 @@ import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import Cpp.CppExternClass;
-import Cpp.CppNoCodeGen;
-import Cpp.CppType;
 
 
 /**
@@ -260,7 +259,7 @@ public class UMLTool {
 	 * @return
 	 */
 	public static String cppQName(NamedElement ne) {
-		if((StUtils.isApplied(ne, CppExternClass.class)) || (StUtils.isApplied(ne, CppNoCodeGen.class))) {
+		if((StUtils.isApplied(ne, ExternClass.class)) || (StUtils.isApplied(ne, NoCodeGen.class))) {
 			return ne.getName();
 		} else {
 			String qName = ne.getName();
@@ -402,7 +401,7 @@ public class UMLTool {
 	 */
 	public static String dereferenceTypedef(Type type) {
 		if(type instanceof PrimitiveType) {
-			CppType cppType = StUtils.getApplication(type, CppType.class);
+			Typedef cppType = StUtils.getApplication(type, Typedef.class);
 			if(cppType != null) {
 				return cppType.getDefinition();
 			}

@@ -1,12 +1,10 @@
 package org.eclipse.papyrus.qompass.designer.core.listeners;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
-
-import FCM.DeploymentPlan;
-
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 
 /**

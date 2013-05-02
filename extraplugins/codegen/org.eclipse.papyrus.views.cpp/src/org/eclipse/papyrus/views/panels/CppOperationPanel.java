@@ -14,6 +14,11 @@ package org.eclipse.papyrus.views.panels;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.papyrus.C_Cpp.Const;
+import org.eclipse.papyrus.C_Cpp.ConstInit;
+import org.eclipse.papyrus.C_Cpp.Friend;
+import org.eclipse.papyrus.C_Cpp.Inline;
+import org.eclipse.papyrus.C_Cpp.Virtual;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.acceleo.AcceleoException;
 import org.eclipse.papyrus.cpp.profile.StUtils;
@@ -37,12 +42,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import C_Cpp.Const;
-import C_Cpp.ConstInit;
-import C_Cpp.Friend;
-import C_Cpp.Inline;
-import C_Cpp.Virtual;
 
 
 /**

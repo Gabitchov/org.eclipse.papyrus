@@ -11,6 +11,7 @@
 
 package org.eclipse.papyrus.views.panels;
 
+import org.eclipse.papyrus.C_Cpp.Visibility;
 import org.eclipse.papyrus.cpp.profile.StUtils;
 import org.eclipse.papyrus.views.cpp.Activator;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
@@ -25,8 +26,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
-
-import C_Cpp.Visibility;
 
 
 

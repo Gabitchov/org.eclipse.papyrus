@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Cpp="http://papyrus/CppProfile/1" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Model xmi:id="_O6TiIDLUEd26WNosUASSSw" name="core" viewpoint="">
     <packageImport xmi:id="_O6TiITLUEd26WNosUASSSw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -11,7 +11,7 @@
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
     <packageImport xmi:id="_K9IBUP-FEd6628OhKk_dpg">
-      <importedPackage xmi:type="uml:Model" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_DV8nkBv8EduZN5aJJITI5w"/>
+      <importedPackage xmi:type="uml:Model" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_DV8nkBv8EduZN5aJJITI5w"/>
     </packageImport>
     <packageImport xmi:id="_mXnzUPQdEeCIC-7tA9lfzA">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/osal.uml#_ROTQYC-OEdySSa8YESkO2w"/>
@@ -103,12 +103,12 @@ TODO: configurable buffer size, use data structure (CppParameterStorage)</body>
           </ownedComment>
           <generalization xmi:id="_lYOSkClzEd-eoo60eNyGlg" general="_KxQBELuXEd2TTr3gJIvazw"/>
           <ownedAttribute xmi:id="_1XeLIED5Ed-_DOja_sRgWA" name="buffer" isUnique="false" aggregation="composite">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8wC7MED5Ed-_DOja_sRgWA" value="500"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8wLeEED5Ed-_DOja_sRgWA" value="500"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_2fcqYED6Ed-_DOja_sRgWA" name="pBuffer" isUnique="false" aggregation="composite">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
           </ownedAttribute>
           <interfaceRealization xmi:id="_nBpugClzEd-eoo60eNyGlg" name="derived realization of I" client="_Whe8EClYEd-eoo60eNyGlg" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_WhfjIilYEd-eoo60eNyGlg" name="[name/]" specification="_2bwsEClzEd-eoo60eNyGlg">
@@ -173,7 +173,7 @@ switch (operationID)
           </ownedBehavior>
           <ownedOperation xmi:id="_WhfjJSlYEd-eoo60eNyGlg" name="staticDispatch" isStatic="true" method="_WhfjIylYEd-eoo60eNyGlg">
             <ownedParameter xmi:id="_WhfjJilYEd-eoo60eNyGlg" name="arg">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WhfjKClYEd-eoo60eNyGlg" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WhfjJylYEd-eoo60eNyGlg" value="1"/>
               <defaultValue xmi:type="uml:LiteralString" xmi:id="_WhfjKSlYEd-eoo60eNyGlg">
@@ -181,7 +181,7 @@ switch (operationID)
               </defaultValue>
             </ownedParameter>
             <ownedParameter xmi:id="_WhfjKilYEd-eoo60eNyGlg" name="ret" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:id="_2bwsEClzEd-eoo60eNyGlg" name="[name/]" method="_WhfjIilYEd-eoo60eNyGlg"/>
@@ -194,12 +194,12 @@ spawning new requests</body>
           </ownedComment>
           <generalization xmi:id="_pXzKcUJ1Ed-Ps4Bfh0j9LQ" general="_KxQBELuXEd2TTr3gJIvazw"/>
           <ownedAttribute xmi:id="_pXzxgEJ1Ed-Ps4Bfh0j9LQ" name="buffer" isUnique="false" aggregation="composite">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pXzxgkJ1Ed-Ps4Bfh0j9LQ" value="500"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pXzxgUJ1Ed-Ps4Bfh0j9LQ" value="500"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_pXzxg0J1Ed-Ps4Bfh0j9LQ" name="pBuffer" isUnique="false" aggregation="composite">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
           </ownedAttribute>
           <interfaceRealization xmi:id="_pXzxh0J1Ed-Ps4Bfh0j9LQ" name="derived realization of I" client="_pXzKcEJ1Ed-Ps4Bfh0j9LQ" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pXzxhEJ1Ed-Ps4Bfh0j9LQ" name="[name/]" specification="_pXzxjkJ1Ed-Ps4Bfh0j9LQ">
@@ -272,7 +272,7 @@ switch (operationID)
           </ownedBehavior>
           <ownedOperation xmi:id="_pXzxiEJ1Ed-Ps4Bfh0j9LQ" name="staticDispatch" isStatic="true" method="_pXzxhUJ1Ed-Ps4Bfh0j9LQ">
             <ownedParameter xmi:id="_pXzxiUJ1Ed-Ps4Bfh0j9LQ" name="arg">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pXzxi0J1Ed-Ps4Bfh0j9LQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pXzxikJ1Ed-Ps4Bfh0j9LQ" value="1"/>
               <defaultValue xmi:type="uml:LiteralString" xmi:id="_pXzxjEJ1Ed-Ps4Bfh0j9LQ">
@@ -280,7 +280,7 @@ switch (operationID)
               </defaultValue>
             </ownedParameter>
             <ownedParameter xmi:id="_pXzxjUJ1Ed-Ps4Bfh0j9LQ" name="ret" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:id="_pXzxjkJ1Ed-Ps4Bfh0j9LQ" name="[name/]" method="_pXzxhEJ1Ed-Ps4Bfh0j9LQ"/>
@@ -299,12 +299,12 @@ TODO: complete, move into model of Qompass AMI plugin</body>
           </ownedComment>
           <generalization xmi:id="_3itBktdwEd-ZnqCk2P2ZKg" general="_KxQBELuXEd2TTr3gJIvazw"/>
           <ownedAttribute xmi:id="_3itBk9dwEd-ZnqCk2P2ZKg" name="buffer" isUnique="false" aggregation="composite">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3itBlddwEd-ZnqCk2P2ZKg" value="500"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3itBlNdwEd-ZnqCk2P2ZKg" value="500"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_3itBltdwEd-ZnqCk2P2ZKg" name="pBuffer" isUnique="false" aggregation="composite">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
           </ownedAttribute>
           <interfaceRealization xmi:id="_3itBmtdwEd-ZnqCk2P2ZKg" name="derived realization of I" client="_3itBkNdwEd-ZnqCk2P2ZKg" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_3itBl9dwEd-ZnqCk2P2ZKg" name="[name/]" specification="_3itBoddwEd-ZnqCk2P2ZKg">
@@ -398,7 +398,7 @@ switch (operationID)
           </ownedBehavior>
           <ownedOperation xmi:id="_3itBm9dwEd-ZnqCk2P2ZKg" name="staticDispatch" isStatic="true" method="_3itBmNdwEd-ZnqCk2P2ZKg">
             <ownedParameter xmi:id="_3itBnNdwEd-ZnqCk2P2ZKg" name="arg">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3itBntdwEd-ZnqCk2P2ZKg" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3itBnddwEd-ZnqCk2P2ZKg" value="1"/>
               <defaultValue xmi:type="uml:LiteralString" xmi:id="_3itBn9dwEd-ZnqCk2P2ZKg">
@@ -406,7 +406,7 @@ switch (operationID)
               </defaultValue>
             </ownedParameter>
             <ownedParameter xmi:id="_3itBoNdwEd-ZnqCk2P2ZKg" name="ret" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:id="_3itBoddwEd-ZnqCk2P2ZKg" name="[name/]" method="_3itBl9dwEd-ZnqCk2P2ZKg"/>
@@ -605,7 +605,7 @@ cout &lt;&lt; &quot;this is a sample post-call interception&quot; &lt;&lt; endl;
           </ownedAttribute>
           <ownedAttribute xmi:id="_xukAICvDEd-uZPFNCty7PQ" name="m_tID" type="_5KatsCvDEd-uZPFNCty7PQ" isUnique="false" aggregation="composite"/>
           <ownedAttribute xmi:id="_Xq00oCvHEd-uZPFNCty7PQ" name="POOL_SIZE" isStatic="true" isUnique="false" aggregation="composite">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
             <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_ZmFncCvHEd-uZPFNCty7PQ" value="20"/>
           </ownedAttribute>
           <interfaceRealization xmi:id="_cWjrYCsAEd-uZPFNCty7PQ" name="derived realization of I" client="_qgzokChYEd-eoo60eNyGlg" supplier="_ZzlzMPfBEd2TbIfwytOyPA" contract="_ZzlzMPfBEd2TbIfwytOyPA"/>
@@ -659,10 +659,10 @@ m_state = FOLLOWER;</body>
           <ownedOperation xmi:id="_6cImgCu-Ed-uZPFNCty7PQ" name="init" isStatic="true" method="_OyEk4Cu_Ed-uZPFNCty7PQ"/>
           <ownedOperation xmi:id="_z-laoCvGEd-uZPFNCty7PQ" name="runStatic" method="_AGUogCvHEd-uZPFNCty7PQ">
             <ownedParameter xmi:id="_Dn-xYCvHEd-uZPFNCty7PQ" name="arg">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
             </ownedParameter>
             <ownedParameter xmi:id="_IdnDkCvHEd-uZPFNCty7PQ" name="ret" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
@@ -896,7 +896,7 @@ pthread_setschedparam (pt, SCHED_RR, &amp;schedParam);
         </ownedBehavior>
         <ownedOperation xmi:id="_yv198P-EEd6628OhKk_dpg" name="staticAct" isStatic="true" method="_MWW4MAQyEd--t-uhRn9OBA">
           <ownedParameter xmi:id="_1TXqoP-EEd6628OhKk_dpg" name="arg">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3MCccP-EEd6628OhKk_dpg" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3MDDgP-EEd6628OhKk_dpg" value="1"/>
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_3MDqkP-EEd6628OhKk_dpg">
@@ -904,7 +904,7 @@ pthread_setschedparam (pt, SCHED_RR, &amp;schedParam);
             </defaultValue>
           </ownedParameter>
           <ownedParameter xmi:id="_BywjgP-FEd6628OhKk_dpg" name="ret" direction="return">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
           </ownedParameter>
         </ownedOperation>
         <ownedOperation xmi:id="_JmxyMD16Ed-Bk-AHd6yyoA" name="activate" method="_oP6UcED4Ed-_DOja_sRgWA"/>
@@ -1314,11 +1314,11 @@ Be aware that the number of instantiated template packages will be considerably 
       <eAnnotations xmi:id="_ugztsAHIEd6pm-KfUZMnnQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://PapyrusCpp_PROFILES/PapyrusCpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+      <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
     <profileApplication xmi:id="_u03PkFRxEd6GqrP6fkWBoQ">
       <eAnnotations xmi:id="_u1sWAFRxEd6GqrP6fkWBoQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/FCMProfile/1#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/FCM/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
     </profileApplication>
@@ -1336,18 +1336,18 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:InteractionComponent xmi:id="_vEYVcFR1Ed6GqrP6fkWBoQ" base_Class="_Zx2ZUA1jEd6tvthBDl600Q"/>
   <FCM:InteractionComponent xmi:id="_wT-8IFR1Ed6GqrP6fkWBoQ" base_Class="_jOU60A1jEd6tvthBDl600Q"/>
   <l2:ModelLibrary xmi:id="_CQiMQFtQEd6p9KQoJ8hRoA" base_Package="_O6TiIDLUEd26WNosUASSSw"/>
-  <Cpp:CppInclude xmi:id="_sJry0JsqEd61Eo3nmu3JhQ" body="BootLoader bootloader;&#xA;&#xA;int main (int argc, char* argv[])&#xA;{&#xA;    bootloader.init ();&#xA;    return 0;&#xA;}&#xA;" base_class="_1RehUAGpEd6eR-dxi5su4Q"/>
+  <C_Cpp:Include xmi:id="_sJry0JsqEd61Eo3nmu3JhQ" body="BootLoader bootloader;&#xA;&#xA;int main (int argc, char* argv[])&#xA;{&#xA;    bootloader.init ();&#xA;    return 0;&#xA;}&#xA;" base_class="_1RehUAGpEd6eR-dxi5su4Q"/>
   <FCM:Port xmi:id="_OfjPwJsrEd61Eo3nmu3JhQ" base_Port="_OfiosJsrEd61Eo3nmu3JhQ" kind="_wySlkFRxEd6GqrP6fkWBoQ"/>
   <FCM:Port xmi:id="__SL-kNtxEd6nqsBVkgJEEA" base_Port="__SLXgNtxEd6nqsBVkgJEEA" kind="_wySlkFRxEd6GqrP6fkWBoQ"/>
   <FCM:Port xmi:id="_Zjd1EP-EEd6628OhKk_dpg" base_Port="_ZjdOAP-EEd6628OhKk_dpg" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
-  <Cpp:CppPtr xmi:id="_Aw8hMP-FEd6628OhKk_dpg" base_parameter="_1TXqoP-EEd6628OhKk_dpg"/>
-  <Cpp:CppPtr xmi:id="_NjCToP-FEd6628OhKk_dpg" base_parameter="_BywjgP-FEd6628OhKk_dpg"/>
+  <C_Cpp:Ptr xmi:id="_Aw8hMP-FEd6628OhKk_dpg" base_parameter="_1TXqoP-EEd6628OhKk_dpg"/>
+  <C_Cpp:Ptr xmi:id="_NjCToP-FEd6628OhKk_dpg" base_parameter="_BywjgP-FEd6628OhKk_dpg"/>
   <FCM:DerivedElement xmi:id="_u9zyYARIEd--t-uhRn9OBA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
   </FCM:DerivedElement>
   <FCM:InteractionComponent xmi:id="_5hzVkARIEd--t-uhRn9OBA" base_Class="_cxVEsK-iEd6DndT7kDY1-A"/>
   <FCM:ContainerRule xmi:id="_3Jq5MARLEd-OidZzGKCpzg" base_Class="_14WtMARJEd--t-uhRn9OBA" portSet="__SL-kNtxEd6nqsBVkgJEEA" interceptor="_u9ykQARIEd--t-uhRn9OBA" interceptorImpl="_u9ykQARIEd--t-uhRn9OBA"/>
-  <Cpp:CppInclude xmi:id="_Q7TVYBJcEd-QgZm_R1AKbA" body="#include &lt;pthread.h>" base_class="_SiY_AP-EEd6628OhKk_dpg"/>
+  <C_Cpp:Include xmi:id="_Q7TVYBJcEd-QgZm_R1AKbA" body="#include &lt;pthread.h>" base_class="_SiY_AP-EEd6628OhKk_dpg"/>
   <FCM:Port xmi:id="_WhfjKylYEd-eoo60eNyGlg"/>
   <FCM:DerivedElement xmi:id="_CvwokClZEd-eoo60eNyGlg">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
@@ -1376,11 +1376,11 @@ Be aware that the number of instantiated template packages will be considerably 
   </FCM:DerivedElement>
   <FCM:Port xmi:id="_N0to8Cu4Ed-uZPFNCty7PQ" base_Port="_N0tB4Cu4Ed-uZPFNCty7PQ" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
   <l2:Create xmi:id="_WFy8ECu9Ed-uZPFNCty7PQ" base_BehavioralFeature="_JM4I4Cu9Ed-uZPFNCty7PQ"/>
-  <Cpp:CppExternClass xmi:id="_EbeZ8Cu-Ed-uZPFNCty7PQ" name="semaphore.h" base_class="_BY-fwCnxEd-eoo60eNyGlg"/>
-  <Cpp:CppExternClass xmi:id="_7tUvUCvDEd-uZPFNCty7PQ" name="pthread.h" base_class="_5KatsCvDEd-uZPFNCty7PQ"/>
-  <Cpp:CppPtr xmi:id="_G6PMUCvHEd-uZPFNCty7PQ" base_parameter="_Dn-xYCvHEd-uZPFNCty7PQ"/>
-  <Cpp:CppPtr xmi:id="_NPp2QCvHEd-uZPFNCty7PQ" base_parameter="_IdnDkCvHEd-uZPFNCty7PQ"/>
-  <Cpp:CppConst xmi:id="_dtZbECvHEd-uZPFNCty7PQ" base_property="_Xq00oCvHEd-uZPFNCty7PQ"/>
+  <C_Cpp:ExternClass xmi:id="_EbeZ8Cu-Ed-uZPFNCty7PQ" name="semaphore.h" base_class="_BY-fwCnxEd-eoo60eNyGlg"/>
+  <C_Cpp:ExternClass xmi:id="_7tUvUCvDEd-uZPFNCty7PQ" name="pthread.h" base_class="_5KatsCvDEd-uZPFNCty7PQ"/>
+  <C_Cpp:Ptr xmi:id="_G6PMUCvHEd-uZPFNCty7PQ" base_parameter="_Dn-xYCvHEd-uZPFNCty7PQ"/>
+  <C_Cpp:Ptr xmi:id="_NPp2QCvHEd-uZPFNCty7PQ" base_parameter="_IdnDkCvHEd-uZPFNCty7PQ"/>
+  <C_Cpp:Const xmi:id="_dtZbECvHEd-uZPFNCty7PQ" base_property="_Xq00oCvHEd-uZPFNCty7PQ"/>
   <FCM:DerivedElement xmi:id="_uCGF8DAXEd-lz72LqmDbzA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
   </FCM:DerivedElement>
@@ -1404,7 +1404,7 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:DerivedElement xmi:id="_RUIAEED2Ed-_DOja_sRgWA" base_Element="_JqB6gD16Ed-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_W7YrADz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
-  <Cpp:CppPtr xmi:id="_5048MED6Ed-_DOja_sRgWA" base_property="_2fcqYED6Ed-_DOja_sRgWA"/>
+  <C_Cpp:Ptr xmi:id="_5048MED6Ed-_DOja_sRgWA" base_property="_2fcqYED6Ed-_DOja_sRgWA"/>
   <FCM:DerivedElement xmi:id="_xsrykEJFEd-Ps4Bfh0j9LQ" base_Element="_JmxyMD16Ed-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_WHyq4Dz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
@@ -1459,10 +1459,10 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:CppLibrary xmi:id="_OQ81ENYGEd-CgJIavLpOxQ" base_Package="_I19MANYGEd-CgJIavLpOxQ">
     <libs>pthread</libs>
   </FCM:CppLibrary>
-  <Cpp:CppExternClass xmi:id="_p8NbMNYGEd-CgJIavLpOxQ" name="pthread.h" base_class="_ea234NYGEd-CgJIavLpOxQ"/>
+  <C_Cpp:ExternClass xmi:id="_p8NbMNYGEd-CgJIavLpOxQ" name="pthread.h" base_class="_ea234NYGEd-CgJIavLpOxQ"/>
   <FCM:InteractionComponent xmi:id="_8BUh8NdwEd-ZnqCk2P2ZKg" base_Class="_3itBkNdwEd-ZnqCk2P2ZKg"/>
   <FCM:Template xmi:id="_CTIeQNdxEd-ZnqCk2P2ZKg" base_Element="_3itBoddwEd-ZnqCk2P2ZKg" kind="LoopOperations"/>
-  <Cpp:CppType xmi:id="_68Aa4No9Ed-wvpj-p-V_QQ" definition="union {&#xA;&lt;%for (ownedOperations) {%>&#xA;struct Op_&lt;%name%> {&#xA;&lt;%for (ownedParameters) {%>&#xA;&lt;%cppType%> &lt;%name%>;&#xA;&lt;%}%>&#xA;} op_&lt;%name%>;&#xA;&lt;%}%>&#xA;};" base_primitivetype="_xOqL0No9Ed-wvpj-p-V_QQ"/>
+  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_68Aa4No9Ed-wvpj-p-V_QQ" definition="union {&#xA;&lt;%for (ownedOperations) {%>&#xA;struct Op_&lt;%name%> {&#xA;&lt;%for (ownedParameters) {%>&#xA;&lt;%cppType%> &lt;%name%>;&#xA;&lt;%}%>&#xA;} op_&lt;%name%>;&#xA;&lt;%}%>&#xA;};" base_primitivetype="_xOqL0No9Ed-wvpj-p-V_QQ"/>
   <FCM:InteractionComponent xmi:id="_xaHRQDJKEeCAhMtIsY9HwA" base_Class="_pXzKcEJ1Ed-Ps4Bfh0j9LQ"/>
   <FCM:Port xmi:id="_wz4-ULaaEeCj_-LEBuGpmA" base_Port="__SLXgNtxEd6nqsBVkgJEEA"/>
   <FCM:Port xmi:id="_xdIvoLaaEeCj_-LEBuGpmA" base_Port="_OfiosJsrEd61Eo3nmu3JhQ"/>
@@ -1476,8 +1476,8 @@ Be aware that the number of instantiated template packages will be considerably 
   <l2:Create xmi:id="_o4VNAPRTEeCUGrV0Hl4JwQ" base_BehavioralFeature="_lrF08PRTEeCUGrV0Hl4JwQ"/>
   <FCM:InterceptionRule xmi:id="_qlcF8AJzEeG0Lb1KYG16fA" interceptionSet="__SLXgNtxEd6nqsBVkgJEEA" base_Property="_mvN04PTWEeCn1-FCrfecFg" portSet="__SL-kNtxEd6nqsBVkgJEEA"/>
   <FCM:Template xmi:id="_QUZxoCQeEeGj_4swHBbKwg" base_Element="_QQPDUSQeEeGj_4swHBbKwg" kind="LoopPorts"/>
-  <Cpp:CppConst xmi:id="_MGjk0CSlEeG6GJ4vU06VYQ" base_property="_Ig_MUCSlEeG6GJ4vU06VYQ"/>
-  <Cpp:CppInclude xmi:id="_Yx49gCaeEeG4fZdVXNtoOQ" body="#include &lt;errno.h>" base_class="_JRmo0PNAEeCovO8AYZymZQ"/>
+  <C_Cpp:Const xmi:id="_MGjk0CSlEeG6GJ4vU06VYQ" base_property="_Ig_MUCSlEeG6GJ4vU06VYQ"/>
+  <C_Cpp:Include xmi:id="_Yx49gCaeEeG4fZdVXNtoOQ" body="#include &lt;errno.h>" base_class="_JRmo0PNAEeCovO8AYZymZQ"/>
   <FCM:InteractionComponent xmi:id="_OXit8CfwEeG6iME5Q8XPKw" base_Class="_5J9coCXQEeGX6PuSE-DJlQ"/>
   <FCM:Port xmi:id="_ATRiESjZEeGFbebITJYb9g" base_Port="_ATRiECjZEeGFbebITJYb9g" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
   <FCM:ContainerRule xmi:id="_MS45QCjaEeGFbebITJYb9g" base_Class="_1sCBICjZEeGFbebITJYb9g"/>

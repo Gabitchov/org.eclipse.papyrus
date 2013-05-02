@@ -3,6 +3,7 @@
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeClassDeclaration/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppTemplates/]
 [import org::eclipse::papyrus::cpp::codegen::preferences::CppCodeGenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::CppIncludeUtils/]
 
 
 [template public CppBindHeader(class : Class)] 
@@ -17,15 +18,15 @@
 
 [CppClassAllIncludesDeclaration()/]
 
-[getApplication(C_Cpp::Include).oclAsType(C_Cpp::Include).header/]
+[CppIncludeHeader()/]
 
 [let tb : TemplateBinding = getTemplateBindings()]
-[let templateElement : Classifier = tb.target->asSequence()->first()]
+[let templateElement : Element = tb.target->asSequence()->first()]
 #include <[_package.getFullPath()/]/[templateElement.owner.oclAsType(NamedElement).name/].[getHeaderSuffix()/]>
 
 [openNS()/] 
 /************************************************************/
-typedef [templateElement.name/] <[for (tb.parameterSubstitution)][CppTemplateBindingParameter()/][/for]> [class.name/];
+typedef [templateElement.owner.oclAsType(NamedElement).name/]<[for (tb.parameterSubstitution)][CppTemplateBindingParameter()/][/for]> [class.name/];
 
 [closeNS()/]
 [/let][/let]

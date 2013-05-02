@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Cpp="http://papyrus/CppProfile/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <notation:Diagram xmi:id="_7kc7YM__Ed-TP80eVS-2Rg" type="CompositeStructure" name="HelloWorldComponent" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_8LSR4M__Ed-TP80eVS-2Rg" type="2073" fontName="" fontHeight="10" fillColor="8905185" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8LSR4s__Ed-TP80eVS-2Rg" source="ShadowFigure">
@@ -53,7 +53,7 @@
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_O7kMQFWUEeKdxoQIVxFNNg" visible="false" type="AppliedStereotypeCompartement">
         <styles xmi:type="notation:TitleStyle" xmi:id="_O7kMQVWUEeKdxoQIVxFNNg" showTitle="true"/>
-        <element xmi:type="Cpp:CppInclude" href="HelloWorld.uml#_11OtwPcaEd-KM6l7lmIPkw"/>
+        <element xmi:type="C_Cpp:Include" href="HelloWorld.uml#_11OtwPcaEd-KM6l7lmIPkw"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_O7kMQlWUEeKdxoQIVxFNNg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_6UeXAFWUEeKdxoQIVxFNNg" type="3069" fontName="Sans Serif" lineColor="0">

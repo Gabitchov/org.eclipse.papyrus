@@ -3,11 +3,10 @@ package org.eclipse.papyrus.qompass.designer.core.transformations;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
-
-import FCM.ContainerRule;
 
 
 public abstract class AbstractContainerTrafo {

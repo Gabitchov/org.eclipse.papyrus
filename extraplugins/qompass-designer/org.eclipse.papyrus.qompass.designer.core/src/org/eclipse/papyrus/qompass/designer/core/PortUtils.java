@@ -2,13 +2,12 @@ package org.eclipse.papyrus.qompass.designer.core;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
-
-import FCM.PortKind;
 
 public class PortUtils {
 
@@ -21,7 +20,7 @@ public class PortUtils {
 	 * @return the provided interface
 	 */
 	public static Interface getProvided(Port port) {
-		FCM.Port fcmPort = getFCMport(port);
+		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
 		if(fcmPort != null) {
 			return fcmPort.getProvidedInterface();
 		} else if(port.getProvideds().size() > 0) {
@@ -40,7 +39,7 @@ public class PortUtils {
 	 * @return the required interface
 	 */
 	public static Interface getRequired(Port port) {
-		FCM.Port fcmPort = getFCMport(port);
+		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
 		if(fcmPort != null) {
 			return fcmPort.getRequiredInterface();
 		} else if(port.getRequireds().size() > 0) {
@@ -56,8 +55,8 @@ public class PortUtils {
 	 * @param port
 	 * @return
 	 */
-	public static FCM.Port getFCMport(Port port) {
-		return StUtils.getApplication(port, FCM.Port.class);
+	public static org.eclipse.papyrus.FCM.Port getFCMport(Port port) {
+		return StUtils.getApplication(port, org.eclipse.papyrus.FCM.Port.class);
 	}
 
 	/**
@@ -69,7 +68,7 @@ public class PortUtils {
 	 * @return
 	 */
 	public static boolean isConjugated(Port port) {
-		FCM.Port fcmPort = getFCMport(port);
+		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
 		if(fcmPort != null) {
 			return fcmPort.isConjugated();
 		}
@@ -134,7 +133,7 @@ public class PortUtils {
 	 * @return
 	 */
 	public static PortKind getKind(Port port) {
-		FCM.Port fcmPort = getFCMport(port);
+		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
 		if(fcmPort != null) {
 			return fcmPort.getKind();
 		}

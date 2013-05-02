@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Model xmi:id="__brzMGmXEd-z7r5RKMpEpA" name="Qompassmodel">
     <packageImport xmi:id="_8AZ5IGnZEd-Ptdbbm65sVA">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/core.uml#_O6TiIDLUEd26WNosUASSSw"/>
@@ -26,7 +26,7 @@
     <packagedElement xmi:type="uml:Package" xmi:id="_P1nJAGnaEd-Ptdbbm65sVA" name="deployment"/>
     <profileApplication xmi:id="_8AagMWnZEd-Ptdbbm65sVA">
       <eAnnotations xmi:id="_8AbHQGnZEd-Ptdbbm65sVA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/FCMProfile/1#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/FCM/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
     </profileApplication>
@@ -46,7 +46,7 @@
       <eAnnotations xmi:id="_-ASxQCgbEeC4DoMvE4KnsQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://PapyrusCpp_PROFILES/PapyrusCpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+      <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
     <profileApplication xmi:id="_AqXK0CgcEeC4DoMvE4KnsQ">
       <eAnnotations xmi:id="_AukVYCgcEeC4DoMvE4KnsQ" source="http://www.eclipse.org/uml2/2.0.0/UML">

@@ -22,12 +22,10 @@ import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import FCM.ContainerRule;
-import FCM.InteractionComponent;
-import FCM.InterceptionKind;
-import FCM.InterceptionRule;
-
+import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.FCM.InterceptionKind;
+import org.eclipse.papyrus.FCM.InterceptionRule;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
@@ -301,7 +299,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			}
 			else {
 				// check whether FCM connector
-				FCM.Connector fcmConn = StUtils.getConnector(connector);
+				org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getConnector(connector);
 				if(fcmConn != null) {
 					Property connectorPart = ConnectorReification.reifyConnector(copy, tmContainerImpl,
 						UMLTool.varName(connector), connector, containerIS, null);
@@ -424,7 +422,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				}
 
 				interceptionConnector.setName(interceptorName + port.getName() + counter);
-				FCM.Connector fcmConn = StUtils.applyApp(interceptionConnector, FCM.Connector.class);
+				org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.applyApp(interceptionConnector, org.eclipse.papyrus.FCM.Connector.class);
 				InteractionComponent fcmConnType = StUtils.getApplication(smContainerConnImpl, InteractionComponent.class);
 				fcmConn.setIc(fcmConnType);
 

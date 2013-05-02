@@ -8,11 +8,13 @@
 [if (hasStereotype(C_Cpp::Default))] = [getApplication(C_Cpp::Default).oclAsType(C_Cpp::Default).value/][/if]
 [/template]
 
-[template public CppParameter(parameter : Parameter)]
-[modConst()/][parameter.type.qualifiedName()/][modPtr()/][modRef()/] [parameter.name/][modArray()/][defaultValue()/]
+[comment C++ parameter. Default values are added, if parameter showDefault is true (implementation signature
+	may not repeat default value)/]
+[template public CppParameter(parameter : Parameter, showDefault : Boolean)]
+[modConst()/][parameter.type.qualifiedName()/][modPtr()/][modRef()/] [parameter.name/][modArray()/][if (showDefault)][defaultValue()/][/if]
 [/template]
 
 
-[template public CppOperationParameters(operation : Operation)]
-[for (ownedParameter->select(direction <> ParameterDirectionKind::return)) separator(', ')][CppParameter()/][/for]
+[template public CppOperationParameters(operation : Operation, showDefault : Boolean)]
+[for (ownedParameter->select(direction <> ParameterDirectionKind::return)) separator(', ')][CppParameter(showDefault)/][/for]
 [/template]

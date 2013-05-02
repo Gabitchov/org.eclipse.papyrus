@@ -22,10 +22,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
-
-import FCM.Configuration;
-import FCM.DeploymentPlan;
-
+import org.eclipse.papyrus.FCM.Configuration;
+import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.ProjectManagement;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.dialogs.GenerationOptionsDialog;

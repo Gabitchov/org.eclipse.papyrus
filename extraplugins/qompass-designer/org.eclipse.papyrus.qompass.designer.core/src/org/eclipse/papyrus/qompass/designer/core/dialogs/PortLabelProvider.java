@@ -20,8 +20,8 @@ public class PortLabelProvider extends LabelProvider implements ITableLabelProvi
 	 * @return
 	 */
 	private Port getUMLport(Object element) {
-		if(element instanceof FCM.Port) {
-			FCM.Port port = (FCM.Port)element;
+		if(element instanceof org.eclipse.papyrus.FCM.Port) {
+			org.eclipse.papyrus.FCM.Port port = (org.eclipse.papyrus.FCM.Port)element;
 			if(port != null) {
 				return port.getBase_Port();
 			}

@@ -394,5 +394,5 @@
       <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
   </uml:Profile>
-  <Ecore:EPackage xmi:id="_RRUXwMogEeGKstsYRuxdvw" base_Package="_j9REUByGEduN1bTiWJ0lyw" packageName="C_Cpp" nsPrefix="C_Cpp" nsURI="http://papyrus/C_CppProfile/1" prefix="C_Cpp"/>
+  <Ecore:EPackage xmi:id="_RRUXwMogEeGKstsYRuxdvw" base_Package="_j9REUByGEduN1bTiWJ0lyw" packageName="C_Cpp" nsPrefix="C_Cpp" nsURI="http://www.eclipse.org/papyrus/C_Cpp/1" prefix="C_Cpp"/>
 </xmi:XMI>

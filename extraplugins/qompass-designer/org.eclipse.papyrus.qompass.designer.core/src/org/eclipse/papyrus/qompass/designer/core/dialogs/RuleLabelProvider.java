@@ -1,8 +1,7 @@
 package org.eclipse.papyrus.qompass.designer.core.dialogs;
 
 import org.eclipse.jface.viewers.LabelProvider;
-
-import FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.ContainerRule;
 
 /**
  * Return a label for ContainerRules. Since the name of the rule itself, is not

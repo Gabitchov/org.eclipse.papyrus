@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Cpp="http://papyrus/CppProfile/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <notation:Diagram xmi:id="_3LurYB6SEeCkz5PP4vZT5g" type="PapyrusUMLClassDiagram" name="OS AL package overview" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_b2yOAFjgEeKWlJhcyT0hJA" type="2007" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_b2y1EFjgEeKWlJhcyT0hJA" source="ShadowFigure">
@@ -2696,7 +2696,7 @@
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_aTOi0FjbEeKWlJhcyT0hJA" visible="false" type="AppliedStereotypeCompartement">
         <styles xmi:type="notation:TitleStyle" xmi:id="_aTOi0VjbEeKWlJhcyT0hJA" showTitle="true"/>
-        <element xmi:type="Cpp:CppInclude" href="osal.uml#_PSuiAE_vEdy2tpS719xBwQ"/>
+        <element xmi:type="C_Cpp:Include" href="osal.uml#_PSuiAE_vEdy2tpS719xBwQ"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aTOi0ljbEeKWlJhcyT0hJA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_Jd8V0FjdEeKWlJhcyT0hJA" type="3015" fontName="Sans Serif" lineColor="0">

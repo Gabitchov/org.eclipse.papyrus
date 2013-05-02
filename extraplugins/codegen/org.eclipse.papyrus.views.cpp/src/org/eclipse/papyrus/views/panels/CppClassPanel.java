@@ -13,6 +13,7 @@ package org.eclipse.papyrus.views.panels;
 
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.SourceViewer;
+import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.cpp.profile.StUtils;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.widgets.Composite;
@@ -20,8 +21,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
-
-import C_Cpp.Include;
 
 
 

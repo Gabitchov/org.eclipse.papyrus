@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Cpp="http://papyrus/CppProfile/1" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Model xmi:id="_RodVAAweEd6it_RkGhz_AA" name="sysinterfaces">
     <packageImport xmi:id="_RodVAQweEd6it_RkGhz_AA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -74,9 +74,9 @@
       <eAnnotations xmi:id="_-PN8QF_LEd6vU6EJjexEKQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://PapyrusCpp_PROFILES/PapyrusCpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+      <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
   </uml:Model>
-  <Cpp:CppPtr xmi:id="__cCUsF_LEd6vU6EJjexEKQ" base_parameter="_y4XwwC3vEd6OqY3qskOtLQ"/>
+  <C_Cpp:Ptr xmi:id="__cCUsF_LEd6vU6EJjexEKQ" base_parameter="_y4XwwC3vEd6OqY3qskOtLQ"/>
   <FCM:Port xmi:id="_PlNFsJsqEd61Eo3nmu3JhQ"/>
 </xmi:XMI>

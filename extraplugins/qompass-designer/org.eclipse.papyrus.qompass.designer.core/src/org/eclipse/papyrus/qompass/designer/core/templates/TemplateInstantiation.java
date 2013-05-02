@@ -1,6 +1,8 @@
 package org.eclipse.papyrus.qompass.designer.core.templates;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.FCM.Template;
+import org.eclipse.papyrus.FCM.TemplateKind;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
@@ -18,9 +20,6 @@ import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.TemplateableElement;
-
-import FCM.Template;
-import FCM.TemplateKind;
 
 /**
  * This class encapsulated functions around template instantiation.

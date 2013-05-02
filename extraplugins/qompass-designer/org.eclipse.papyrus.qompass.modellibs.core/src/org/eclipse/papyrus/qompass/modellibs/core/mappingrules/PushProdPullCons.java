@@ -8,11 +8,9 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
-
-import FCM.Port;
-import FCM.util.IMappingRule;
-import FCM.util.MapUtil;
-
+import org.eclipse.papyrus.FCM.Port;
+import org.eclipse.papyrus.FCM.util.IMappingRule;
+import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 
 /**

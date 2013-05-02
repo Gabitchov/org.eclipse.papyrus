@@ -250,7 +250,7 @@ public class AllocUtils {
 			for(Slot slot : slots) {
 				Property containedProperty = (Property)slot.getDefiningFeature();
 
-				FCM.Part fcmPart = StUtils.getApplication(containedProperty, FCM.Part.class);
+				org.eclipse.papyrus.FCM.Part fcmPart = StUtils.getApplication(containedProperty, org.eclipse.papyrus.FCM.Part.class);
 				if(fcmPart != null) {
 					EList<Port> colocateWithPort = fcmPart.getColocateWithPort();
 					// is the port within the list?

@@ -185,7 +185,7 @@ public class AcceleoDriver {
 	 * @return the evaluated template
 	 */
 	public static String evaluate(String templateStr, Element element, Object args[]) throws AcceleoException {
-		return evaluate(templateStr, "", element, args);
+		return evaluate(templateStr, "dummy", element, args);
 	}
 
 	/**
@@ -273,16 +273,19 @@ public class AcceleoDriver {
 						"\n\nTemplate: " + templateName + "\n" + templateStr);
 				}
 			}
-			String result = evaulateResource(resource, element, templateName, templateStr);
+			String result = evaluateResource(resource, element, templateName, templateStr);
 			if(result != null) {
 				return result;
 			}
+		
 		} catch (AcceleoEvaluationException e) {
 			String elementStr = (element instanceof NamedElement ? ((NamedElement)element).getQualifiedName() : element.toString());
 			throw new AcceleoException("Acceleo EvaluationException" + e + "\n\nPassed element: " + elementStr +
 				"\n\nTemplate: " + templateName + "\n" + templateStr);
 		}
-		return "";
+		String elementStr = (element instanceof NamedElement ? ((NamedElement)element).getQualifiedName() : element.toString());
+		throw new AcceleoException("Acceleo evaluation error\n\nPassed element: " + elementStr +
+				"\n\nTemplate: " + templateName + "\n" + templateStr);
 	}
 
 	/**
@@ -322,12 +325,23 @@ public class AcceleoDriver {
 
 		Resource resource = acceleoResourceSet.getResource(uri, true);
 		if(resource != null) {
-			return evaulateResource(resource, element, templateName, "");
+			return evaluateResource(resource, element, templateName, "");
 		}
 		return null;
 	}
 
-	protected static String evaulateResource(Resource resource, Element element, String templateName, String templateStr) throws AcceleoException {
+	/**
+	 * Evaluate an Acceleo template when given a resource, template name
+	 * 
+	 * @param resource The resource of an Acceleo module
+	 * @param element the UML model element that is passed (
+	 * @param templateName the name of the template
+	 * @param templateStr the contents of the template. May be empty (only used for
+	 *        error messages
+	 * @return the evaluated template
+	 * @throws AcceleoException
+	 */
+	protected static String evaluateResource(Resource resource, Element element, String templateName, String templateStr) throws AcceleoException {
 		if(resource.getContents().size() > 0) {
 			EObject result = resource.getContents().get(0);
 			List<Object> arguments = new ArrayList<Object>();
@@ -335,8 +349,10 @@ public class AcceleoDriver {
 			arguments.add(element);
 			if(result instanceof Module) {
 				Module module = (Module)result;
+				// do not check the template name, if there is only one. 
+				boolean dontCheck = (module.getOwnedModuleElement().size() == 1);
 				for(ModuleElement me : module.getOwnedModuleElement()) {
-					if((me instanceof Template) && me.getName().equals(templateName)) {
+					if((me instanceof Template) && (dontCheck || me.getName().equals(templateName))) {
 						logEntries.clear();
 						Object stringResult = engine.evaluate((Template)me, arguments, new PreviewStrategy(), null);
 						// System.err.println("result: " + stringResult);
@@ -362,7 +378,7 @@ public class AcceleoDriver {
 				}
 			}
 		}
-		return null;
+		throw new AcceleoEvaluationException("Template " + templateName + " not found");
 	}
 
 	protected static EList<IStatus> logEntries = new BasicEList<IStatus>();

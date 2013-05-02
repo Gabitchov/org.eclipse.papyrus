@@ -118,10 +118,10 @@ public class CppTemplateParameterPanel extends CppAbstractPanel {
 					// Treat Parameter name
 					String newB = docParameter.get();
 					if(newB.equals("")) {
-						StUtils.unapply(selectedTP, C_Cpp.TemplateParameter.class);
+						StUtils.unapply(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
 					}
 					else {
-						C_Cpp.TemplateParameter templateParameter = StUtils.applyApp(selectedTP, C_Cpp.TemplateParameter.class);
+						org.eclipse.papyrus.C_Cpp.TemplateParameter templateParameter = StUtils.applyApp(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
 						templateParameter.setName(newB);
 					}
 				}
@@ -140,7 +140,7 @@ public class CppTemplateParameterPanel extends CppAbstractPanel {
 			/* Log.debug("resetBody : selectedProperty is null"); */
 		} else {
 
-			C_Cpp.TemplateParameter templateParameter = StUtils.getApplication(selectedTP, C_Cpp.TemplateParameter.class);
+			org.eclipse.papyrus.C_Cpp.TemplateParameter templateParameter = StUtils.getApplication(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
 			String parameterName = templateParameter != null ? templateParameter.getName() : "";
 			docParameter.set(parameterName);
 		}
@@ -163,7 +163,7 @@ public class CppTemplateParameterPanel extends CppAbstractPanel {
 	 */
 	@Override
 	public boolean checkModifications() {
-		C_Cpp.TemplateParameter templateParameter = StUtils.getApplication(selectedTP, C_Cpp.TemplateParameter.class);
+		org.eclipse.papyrus.C_Cpp.TemplateParameter templateParameter = StUtils.getApplication(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
 		// TODO: use UML template bindings?
 		String parameterName = templateParameter != null ? templateParameter.getName() : "";
 		if(!docParameter.get().equals(parameterName)) {

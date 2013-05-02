@@ -21,13 +21,11 @@ import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import FCM.ContainerRule;
-import FCM.InterceptionRule;
-import FCM.Template;
-
+import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.InterceptionRule;
+import org.eclipse.papyrus.FCM.Template;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriver;
+import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
@@ -133,7 +131,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		// create interception code
 		// TODO: this is Java/C++ specific!
 		OpaqueBehavior b = (OpaqueBehavior)tmClass.createOwnedBehavior(operation.getName(), UMLPackage.eINSTANCE.getOpaqueBehavior());
-		String body = AcceleoDriver.bind(interceptor, copiedOperation);
+		String body = AcceleoDriverWrapper.bind(interceptor, copiedOperation);
 		// TODO: solution is specific to C++
 		b.getLanguages().add("C/C++");
 		b.getBodies().add(body);
@@ -316,7 +314,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 			if(StUtils.isApplied(interceptionOperationInRule, Template.class)) {
 				// pass operation in source model, since this enables acceleo code to check
 				// for markers on model
-				interceptionBody = AcceleoDriver.evaluate(interceptionBody, smOperation, null);
+				interceptionBody = AcceleoDriverWrapper.evaluate(interceptionBody, smOperation, null);
 			}
 			if(interceptionBody.length() > 0) {
 				// only add interception operation, if the interception is not empty

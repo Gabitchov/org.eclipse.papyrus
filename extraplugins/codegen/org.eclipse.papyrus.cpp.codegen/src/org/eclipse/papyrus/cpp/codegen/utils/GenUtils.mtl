@@ -52,7 +52,7 @@
 [query public getComments(arg0 : Element) : String
 	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getComments(org.eclipse.uml2.uml.Element)', Sequence{arg0}) /]
 
-[query public getDependencies(arg0 : Classifier) : Sequence(Dependency)
+[query public getDependencies(arg0 : Classifier) : Sequence(Classifier)
 	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getDependencies(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
 
 [query public setStereotype(arg0 : Element, arg1 : String, arg2 : Boolean) : OclVoid
@@ -102,3 +102,6 @@
 
 [query public getUsedClassifiers(arg0 : Classifier) : Sequence(Classifier)
 	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getUsedClassifiers(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public cleanCR(arg0 : String) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'cleanCR(java.lang.String)', Sequence{arg0}) /]

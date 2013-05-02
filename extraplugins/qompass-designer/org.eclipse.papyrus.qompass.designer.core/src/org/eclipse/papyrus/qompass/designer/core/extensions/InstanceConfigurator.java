@@ -18,10 +18,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
-
-import FCM.ContainerRule;
-import FCM.UseInstanceConfigurator;
-
+import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.UseInstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.Activator;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
@@ -74,7 +72,7 @@ public class InstanceConfigurator {
 
 	public static void configureInstance(UseInstanceConfigurator useInstanceConfigurator, InstanceSpecification instance, Property componentPart, ContainerContext containerContext) {
 		if(useInstanceConfigurator != null) {
-			FCM.InstanceConfigurator instanceConfigurator = useInstanceConfigurator.getConfigurator();
+			org.eclipse.papyrus.FCM.InstanceConfigurator instanceConfigurator = useInstanceConfigurator.getConfigurator();
 			if(instanceConfigurator != null) {
 				String id = instanceConfigurator.getBase_Class().getName();
 				IInstanceConfigurator iConfigurator = getInstanceConfigurator(id);

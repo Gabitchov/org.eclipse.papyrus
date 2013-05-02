@@ -19,15 +19,13 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.Type;
-
-import Cpp.CppConstInit;
-import FCM.ActualChoice;
-import FCM.Template;
-import FCM.TemplateKind;
-
+import org.eclipse.papyrus.C_Cpp.ConstInit;
+import org.eclipse.papyrus.FCM.ActualChoice;
+import org.eclipse.papyrus.FCM.Template;
+import org.eclipse.papyrus.FCM.TemplateKind;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriver;
+import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
@@ -160,7 +158,7 @@ public class TemplateInstantiationListener implements CopyListener {
 								for(Operation intfOperation : passedActualIntf.getAllOperations()) {
 									copy.removeForCopy(literal);
 									newLiteral = copy.getCopy(literal);
-									String newName = AcceleoDriver.evaluate(literal.getName(), intfOperation, args);
+									String newName = AcceleoDriverWrapper.evaluate(literal.getName(), intfOperation, args);
 									newLiteral.setName(newName);
 								}
 								return newLiteral;
@@ -191,7 +189,7 @@ public class TemplateInstantiationListener implements CopyListener {
 			if(actual instanceof Classifier) {
 				bindOperation(newOperation, (Classifier)actual);
 			}
-			String newName = AcceleoDriver.evaluate(operation.getName(), actual, args);
+			String newName = AcceleoDriverWrapper.evaluate(operation.getName(), actual, args);
 			newOperation.setName(newName);
 
 			return newOperation;
@@ -204,14 +202,15 @@ public class TemplateInstantiationListener implements CopyListener {
 	public OpaqueBehavior instantiateBehavior(Element actual, Template template, OpaqueBehavior opaqueBehavior) throws TransformationException {
 		OpaqueBehavior newBehavior = copy.getCopy(opaqueBehavior);
 		if(actual instanceof NamedElement) {
-			String newName = AcceleoDriver.evaluate(opaqueBehavior.getName(), actual, args);
+			String newName = AcceleoDriverWrapper.evaluate(opaqueBehavior.getName(), actual, args);
 			newBehavior.setName(newName);
 		}
 		EList<String> bodyList = newBehavior.getBodies();
 		for(int i = 0; i < bodyList.size(); i++) {
 			String body = bodyList.get(i);
 			TransformationContext.classifier = (Classifier)newBehavior.getOwner();
-			String newBody = AcceleoDriver.evaluate(body, newBehavior.getQualifiedName(), actual, args);
+			// pass qualified operation name as template name. Used to identify script in case of an error
+			String newBody = AcceleoDriverWrapper.evaluate(body, newBehavior.getQualifiedName(), actual, args);
 			bodyList.set(i, newBody);
 		}
 		return newBehavior;
@@ -282,11 +281,11 @@ public class TemplateInstantiationListener implements CopyListener {
 	 */
 	public void bindOperation(Operation operation, Classifier actual) throws TransformationException {
 		// perform binding in case of C++ initializer
-		CppConstInit cppConstInit = StUtils.getApplication(operation, CppConstInit.class);
+		ConstInit cppConstInit = StUtils.getApplication(operation, ConstInit.class);
 		if(cppConstInit != null) {
 			// TODO: specific to C++
 			String init = cppConstInit.getInitialisation();
-			String newInit = AcceleoDriver.bind(init, actual);
+			String newInit = AcceleoDriverWrapper.bind(init, actual);
 			cppConstInit.setInitialisation(newInit);
 		}
 	}

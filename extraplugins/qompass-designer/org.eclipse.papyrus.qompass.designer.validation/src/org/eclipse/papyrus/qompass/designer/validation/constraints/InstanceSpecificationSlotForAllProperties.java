@@ -17,9 +17,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
-
-import FCM.ConfigurationProperty;
-
+import org.eclipse.papyrus.FCM.ConfigurationProperty;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 
 public class InstanceSpecificationSlotForAllProperties extends AbstractModelConstraint {

@@ -22,7 +22,7 @@
 		'getPort()',
 		Sequence{}) /]
 
-[query public pkgTemplateParameter(formalName : String) : String =
+[query public pkgTemplateParameter(dummy : Element, formalName : String) : String =
 	invoke('org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext',
 		'pkgTemplateParameter(java.lang.String)',
 		Sequence{formalName}) /]
