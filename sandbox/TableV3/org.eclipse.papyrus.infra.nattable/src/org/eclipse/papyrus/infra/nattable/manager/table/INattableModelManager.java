@@ -22,7 +22,6 @@ import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.swt.graphics.Point;
@@ -60,13 +59,13 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 
 	public IAxisManager getLineDataProvider();
 
-	public boolean canReorderColumns();
+	public boolean canMoveColumns();
 
-	public boolean canReoderRows();
+	public boolean canMoveRows();
 
-	public void reorderColumnsElements(final IAxis axisToMove, final int newIndex);
+	public void moveColumnElement(final Object axisToMove, final int newIndex);
 
-	public void reorderRowElements(final IAxis axisToMove, final int newIndex);
+	public void moveRowElement(final Object axisToMove, final int newIndex);
 
 	public void invertAxis();
 

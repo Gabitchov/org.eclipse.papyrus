@@ -51,7 +51,6 @@ import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
@@ -491,28 +490,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 	}
 
-	//	/**
-	//	 * 
-	//	 * @param obj
-	//	 *        an eobject linked to the model
-	//	 * @return the editing domain to use
-	//	 * 
-	//	 * @deprecated Use getTableEditingDomain() or getContextEditingDomain() instead
-	//	 */
-	//	//FIXME Use either getTableEditingDomain() or getContextEditingDomain()
-	//	@Deprecated
-	//	private EditingDomain getEditingDomain(EObject eobject) {
-	//		ServicesRegistry registry = null;
-	//		try {
-	//			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(eobject);
-	//			return registry.getService(EditingDomain.class);
-	//		} catch (final ServiceException e) {
-	//			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
-	//		}
-	//
-	//		return null;
-	//	}
-
 	/**
 	 * Returns the EditingDomain associated to the table
 	 * 
@@ -737,26 +714,21 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return null;
 	}
 
-	public boolean canReoderRows() {
-		return this.rowManager.canReoderElements();
+	public boolean canMoveRows() {
+		return this.rowManager.canMoveAxis();
 	}
 
-	public boolean canReorderColumns() {
-		return this.columnManager.canReoderElements();
+	public boolean canMoveColumns() {
+		return this.columnManager.canMoveAxis();
 	}
 
-	public void reorderColumnsElements(final IAxis axisToMove, final int newIndex) {
-		final EditingDomain domain = getContextEditingDomain();
-		//FIXME
-		//		final Command cmd = MoveCommand.create(getEditingDomain(getTable().getContext()), this.columnProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
-		//		domain.getCommandStack().execute(cmd);
+	public void moveColumnElement(final Object axisToMove, final int newIndex) {
+		this.columnManager.moveAxis(axisToMove, newIndex);
 	}
 
 	// not tested
-	public void reorderRowElements(final IAxis axisToMove, final int newIndex) {
-		final EditingDomain domain = getContextEditingDomain();
-		//		final Command cmd = MoveCommand.create(getEditingDomain(getTable().getContext()), this.rowProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
-		//		domain.getCommandStack().execute(cmd);
+	public void moveRowElement(final Object axisToMove, final int newIndex) {
+		this.rowManager.moveAxis(axisToMove, newIndex);
 	}
 
 	/**
@@ -928,4 +900,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			return getTable().getCurrentRowAxisProvider();
 		}
 	}
+
+
+
 }

@@ -206,12 +206,12 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canReoderElements()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canMoveAxis()
 	 * 
 	 * @return
 	 */
 	@Override
-	public boolean canReoderElements() {
+	public boolean canMoveAxis() {
 		return false;
 	}
 
@@ -228,4 +228,5 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	public boolean isSlave() {
 		return false;
 	}
+
 }

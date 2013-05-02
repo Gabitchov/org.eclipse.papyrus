@@ -45,4 +45,6 @@ public interface ICompositeAxisManager extends IAxisManager {
 	 *        the config registry used to find the label provider
 	 */
 	public void sortAxisByName(final boolean alpabeticOrder, IConfigRegistry iConfigRegistry);
+
+
 }

@@ -22,8 +22,14 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
+import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
@@ -224,11 +230,11 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canReoderElements()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canMoveAxis()
 	 * 
 	 * @return
 	 */
-	public boolean canReoderElements() {
+	public boolean canMoveAxis() {
 		return true;
 	}
 
@@ -281,5 +287,41 @@ public abstract class AbstractAxisManager implements IAxisManager {
 			}
 		}
 		return eObjects;
+	}
+
+	/**
+	 * Returns the EditingDomain associated to the table
+	 * 
+	 * @return
+	 */
+	protected EditingDomain getTableEditingDomain() {//Duplicated from NatTableModelManager
+		ServicesRegistry registry = null;
+		try {
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableManager().getTable());
+			return registry.getService(EditingDomain.class);
+		} catch (final ServiceException e) {
+			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the EditingDomain associated to the context
+	 * 
+	 * @return
+	 */
+	protected EditingDomain getContextEditingDomain() { //Duplicated from NatTableModelManager
+		ServicesRegistry registry = null;
+		try {
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableContext());
+			return registry.getService(TransactionalEditingDomain.class);
+		} catch (final ServiceException e) {
+			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
+		}
+		return null;
+	}
+
+	public void moveAxis(Object elementToMove, int newIndex) {
 	}
 }

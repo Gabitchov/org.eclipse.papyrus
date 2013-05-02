@@ -50,7 +50,7 @@ public class CustomColumnReorderDragMode extends ColumnReorderDragMode {
 	 * @param event
 	 */
 	public void mouseDown(NatTable natTable, MouseEvent event) {
-		if(this.manager.canReorderColumns()) {
+		if(this.manager.canMoveColumns()) {
 			super.mouseDown(natTable, event);
 		}
 	}
@@ -64,7 +64,7 @@ public class CustomColumnReorderDragMode extends ColumnReorderDragMode {
 	 * @param event
 	 */
 	public void mouseMove(NatTable natTable, MouseEvent event) {
-		if(this.manager.canReorderColumns()) {
+		if(this.manager.canMoveColumns()) {
 			super.mouseMove(natTable, event);
 		}
 	}
@@ -78,7 +78,7 @@ public class CustomColumnReorderDragMode extends ColumnReorderDragMode {
 	 * @param event
 	 */
 	public void mouseUp(NatTable natTable, MouseEvent event) {
-		if(this.manager.canReorderColumns()) {
+		if(this.manager.canMoveColumns()) {
 			super.mouseUp(natTable, event);
 		}
 	}

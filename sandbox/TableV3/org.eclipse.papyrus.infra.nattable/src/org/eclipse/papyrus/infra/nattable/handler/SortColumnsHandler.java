@@ -53,7 +53,7 @@ public class SortColumnsHandler extends AbstractTableHandler {
 	public void setEnabled(Object evaluationContext) {
 		INattableModelManager manager = getCurrentNattableModelManager();
 		if(manager != null) {
-			setBaseEnabled(manager.canReorderColumns());
+			setBaseEnabled(manager.canMoveColumns());
 		}
 		setBaseEnabled(false);
 	}

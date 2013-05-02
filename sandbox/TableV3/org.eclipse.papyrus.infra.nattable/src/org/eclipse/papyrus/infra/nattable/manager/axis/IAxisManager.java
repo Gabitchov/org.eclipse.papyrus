@@ -120,9 +120,9 @@ public interface IAxisManager extends IDisposable {
 
 	/**
 	 * 
-	 * @return <code>true</code> if we can reorder the elements on the axis
+	 * @return <code>true</code> if we can move elements on the axis
 	 */
-	public boolean canReoderElements();
+	public boolean canMoveAxis();
 
 	/**
 	 * 
@@ -154,5 +154,10 @@ public interface IAxisManager extends IDisposable {
 	 */
 	public boolean isDynamic();
 
-
+	/**
+	 * 
+	 * @param newIndex
+	 * @param axisToMove
+	 */
+	public void moveAxis(final Object elementToMove, final int newIndex);
 }

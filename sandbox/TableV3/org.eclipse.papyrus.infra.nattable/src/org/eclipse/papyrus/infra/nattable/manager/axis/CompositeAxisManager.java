@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -46,7 +47,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	/**
 	 * the id of this manager
 	 */
-	public static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.composite.axis.manager"; //$NON-NLS-1$
+	private static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.composite.axis.manager"; //$NON-NLS-1$
 
 	/**
 	 * the sub managers
@@ -197,14 +198,14 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canReoderElements()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canMoveAxis()
 	 * 
 	 * @return
 	 */
 	@Override
-	public boolean canReoderElements() {
+	public boolean canMoveAxis() {
 		for(final IAxisManager current : this.subManagers) {
-			if(!current.canReoderElements() || current.isDynamic()) {
+			if(!current.canMoveAxis() || current.isDynamic()) {
 				return false;
 			}
 		}
@@ -220,7 +221,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @param configRegistry
 	 */
 	public void sortAxisByName(boolean alphabeticOrder, final IConfigRegistry configRegistry) {
-		if(canReoderElements()) {
+		if(canMoveAxis()) {
 			final List<IAxis> axis = new ArrayList<IAxis>(getRepresentedContentProvider().getAxis());
 			Collections.sort(axis, new AxisComparator(alphabeticOrder, configRegistry));
 			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getRepresentedContentProvider());
@@ -342,4 +343,18 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		return false;
 	}
 
+
+	/**
+	 * 
+	 * @param elementToMove
+	 * @param newIndex
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#moveAxis(java.lang.Object, int)
+	 */
+	public void moveAxis(Object elementToMove, int newIndex) {
+		if(!isDynamic() && elementToMove instanceof IAxis) {
+			EditingDomain domain = getTableEditingDomain();
+			final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
+			domain.getCommandStack().execute(command);
+		};
+	}
 }
