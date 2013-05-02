@@ -16,9 +16,7 @@ package org.eclipse.papyrus.infra.table.controlmode;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
-import org.eclipse.papyrus.infra.services.controlmode.commands.CreateControlResource;
 import org.eclipse.papyrus.infra.services.controlmode.participants.IControlCommandParticipant;
 import org.eclipse.papyrus.infra.services.controlmode.participants.IUncontrolCommandParticipant;
 import org.eclipse.papyrus.infra.table.instance.util.TableContentsUtils;

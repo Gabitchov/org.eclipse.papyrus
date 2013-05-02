@@ -180,11 +180,16 @@ public abstract class AbstractSatelliteResourceParticipant implements IControlCo
 		URI satelliteResourceURI = request.getNewURI().trimFileExtension().appendFileExtension(getResourceFileExtension());
 		ModelSet modelSet = request.getModelSet();
 		if(modelSet != null) {
-			Resource diResource = modelSet.getResource(satelliteResourceURI, false);
-			if(diResource == null) {
+			Resource satelliteResource = null;
+			try {
+				satelliteResource = modelSet.getResource(satelliteResourceURI, true);
+			} catch (Exception e) {
+				satelliteResource = null;
+			}
+			if(satelliteResource == null) {
 				return false;
 			}
-			request.setTargetResource(diResource, getResourceFileExtension());
+			request.setTargetResource(satelliteResource, getResourceFileExtension());
 			//Nothing to do but everything went fine
 			return true;
 		}

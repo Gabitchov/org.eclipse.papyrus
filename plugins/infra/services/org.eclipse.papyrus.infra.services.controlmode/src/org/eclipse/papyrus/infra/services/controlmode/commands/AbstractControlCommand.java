@@ -31,7 +31,7 @@ public abstract class AbstractControlCommand extends AbstractTransactionalComman
 	/**
 	 * {@link ControlModeRequest} used to compute the command
 	 */
-	private ControlModeRequest request;
+	protected ControlModeRequest request;
 
 	@SuppressWarnings("rawtypes")
 	public AbstractControlCommand(String label, List affectedFiles, ControlModeRequest request) {

@@ -47,7 +47,7 @@ public class IsControlledFragmentTester extends org.eclipse.core.expressions.Pro
 	 * @param receiver
 	 * @return true the container of an element is loaded
 	 */
-	private Object isParentLoaded(Object receiver) {
+	protected Object isParentLoaded(Object receiver) {
 		if(receiver instanceof IStructuredSelection) {
 			EObject eObject = getSemanticObject(((IStructuredSelection)receiver).getFirstElement());
 			if(eObject != null) {
@@ -61,7 +61,7 @@ public class IsControlledFragmentTester extends org.eclipse.core.expressions.Pro
 	 * @param receiver
 	 * @return true if the model is a model fragment root
 	 */
-	private Object isModelFragment(Object receiver) {
+	protected Object isModelFragment(Object receiver) {
 		if(receiver instanceof IStructuredSelection) {
 			EObject eObject = getSemanticObject(((IStructuredSelection)receiver).getFirstElement());
 			if(eObject != null) {

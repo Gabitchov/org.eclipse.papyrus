@@ -68,12 +68,12 @@ public class ControlModeManager implements IControlModeManager {
 	/**
 	 * Extension if for registering participants
 	 */
-	private static String EXTENSION_ID = "org.eclipse.papyrus.infra.services.controlmode.participant";////$NON-NLS-0$
+	protected static String EXTENSION_ID = "org.eclipse.papyrus.infra.services.controlmode.participant";////$NON-NLS-0$
 
 	/**
 	 * Extension propertyy refering to the participant implementaion class
 	 */
-	private static String PARTICPANT_ATTRIBUTE = "class";
+	protected static String PARTICPANT_ATTRIBUTE = "class";
 
 	/**
 	 * @return the unique instance of the manager
@@ -85,12 +85,12 @@ public class ControlModeManager implements IControlModeManager {
 	/**
 	 * Hold all the {@link IControlCommandParticipant}
 	 */
-	private ArrayList<IControlCommandParticipant> controlCommandParticipants = new ArrayList<IControlCommandParticipant>();
+	protected ArrayList<IControlCommandParticipant> controlCommandParticipants = new ArrayList<IControlCommandParticipant>();
 
 	/**
 	 * Hold all the {@link IUncontrolCommandParticipant}
 	 */
-	private ArrayList<IUncontrolCommandParticipant> uncontrolCommandParticipants = new ArrayList<IUncontrolCommandParticipant>();
+	protected ArrayList<IUncontrolCommandParticipant> uncontrolCommandParticipants = new ArrayList<IUncontrolCommandParticipant>();
 
 	/**
 	 * 
@@ -166,7 +166,7 @@ public class ControlModeManager implements IControlModeManager {
 	 * @param cc
 	 *        new command will be composoed in it
 	 */
-	private void getPostControlCommand(ControlModeRequest request, CompositeTransactionalCommand cc) {
+	protected void getPostControlCommand(ControlModeRequest request, CompositeTransactionalCommand cc) {
 		ListIterator<IControlCommandParticipant> participantIterator = getControlCommandParticipants().listIterator(getControlCommandParticipants().size());
 		while(participantIterator.hasPrevious()) {
 			IControlCommandParticipant iControlCommandParticipant = (IControlCommandParticipant)participantIterator.previous();
@@ -186,7 +186,7 @@ public class ControlModeManager implements IControlModeManager {
 	 * @param cc
 	 *        new command will be composoed in it
 	 */
-	private void getPostUncontrolMethod(ControlModeRequest request, CompositeTransactionalCommand cc) {
+	protected void getPostUncontrolMethod(ControlModeRequest request, CompositeTransactionalCommand cc) {
 		ListIterator<IUncontrolCommandParticipant> participantIterator = getUncontrolCommandParticipants().listIterator(getUncontrolCommandParticipants().size());
 		while(participantIterator.hasPrevious()) {
 			IUncontrolCommandParticipant iControlCommandParticipant = (IUncontrolCommandParticipant)participantIterator.previous();
@@ -223,7 +223,7 @@ public class ControlModeManager implements IControlModeManager {
 	 * @param cc
 	 *        new command will be composoed in it
 	 */
-	private void getPreControlCommand(ControlModeRequest request, CompositeTransactionalCommand cc) {
+	protected void getPreControlCommand(ControlModeRequest request, CompositeTransactionalCommand cc) {
 		Iterator<IControlCommandParticipant> participantIterator = getControlCommandParticipants().iterator();
 		while(participantIterator.hasNext()) {
 			IControlCommandParticipant iControlCommandParticipant = (IControlCommandParticipant)participantIterator.next();
@@ -243,7 +243,7 @@ public class ControlModeManager implements IControlModeManager {
 	 * @param cc
 	 *        new command will be composoed in it
 	 */
-	private void getPreUncontrolCommand(ControlModeRequest request, CompositeTransactionalCommand cc) {
+	protected void getPreUncontrolCommand(ControlModeRequest request, CompositeTransactionalCommand cc) {
 		Iterator<IUncontrolCommandParticipant> participantIterator = getUncontrolCommandParticipants().iterator();
 		while(participantIterator.hasNext()) {
 			IUncontrolCommandParticipant iControlCommandParticipant = (IUncontrolCommandParticipant)participantIterator.next();

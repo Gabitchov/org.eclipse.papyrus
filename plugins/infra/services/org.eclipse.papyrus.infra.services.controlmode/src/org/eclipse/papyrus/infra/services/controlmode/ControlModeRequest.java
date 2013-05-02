@@ -29,34 +29,27 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 	/**
 	 * Object to control or uncontrol
 	 */
-	private EObject targetObject;
+	protected EObject targetObject;
 
 	/**
 	 * New target {@link URI}.
 	 * In the case of control command. This point to the new created resource.
 	 * In the case of uncontrol command. This point to the container resource
 	 */
-	private URI newURI;
+	protected URI newURI;
 
 	/**
 	 * Old source {@link URI}.
 	 * In the case of control command. This point to the new created resource.
 	 * In the case of uncontrol command. This point to the container resource
 	 */
-	private URI sourceURI;
-
-	/**
-	 * @return {@link ControlModeRequest#sourceURI}
-	 */
-	public URI getSourceURI() {
-		return sourceURI;
-	}
+	protected URI sourceURI;
 
 	/**
 	 * True if the request aim to control an element
 	 * False otherwise
 	 */
-	private boolean isControlRequest;
+	protected boolean isControlRequest;
 
 
 	/**
@@ -70,30 +63,6 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 	public ControlModeRequest(TransactionalEditingDomain editingDomain, EObject targetObject) {
 		this(editingDomain, targetObject, getTargetURI(targetObject));
 		this.isControlRequest = false;
-	}
-
-	private static URI getTargetURI(EObject targetObject) {
-		EObject eContainer = targetObject.eContainer();
-		if(eContainer != null) {
-			return eContainer.eResource().getURI();
-		}
-		return null;
-	}
-
-	/**
-	 * @return {@link ControlModeRequest#isControlRequest}
-	 */
-	public boolean isControlRequest() {
-		return isControlRequest;
-	}
-
-	/**
-	 * Set the {@link ControlModeRequest#isControlRequest}
-	 * 
-	 * @param isControlRequest
-	 */
-	public void setControlRequest(boolean isControlRequest) {
-		this.isControlRequest = isControlRequest;
 	}
 
 	/**
@@ -112,12 +81,35 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 		this.targetObject = objectToControl;
 		this.newURI = newURI;
 		if(newURI != null) {
+			
 			setTargetResource(editingDomain.getResourceSet().getResource(newURI, false), newURI.fileExtension());
 		}
 		Resource r = objectToControl.eResource();
 		Assert.isNotNull(r);
 		this.sourceURI = r.getURI();
 		this.isControlRequest = true;
+	}
+
+	/**
+	 * @return {@link ControlModeRequest#sourceURI}
+	 */
+	public URI getSourceURI() {
+		return sourceURI;
+	}
+
+	private static URI getTargetURI(EObject targetObject) {
+		EObject eContainer = targetObject.eContainer();
+		if(eContainer != null) {
+			return eContainer.eResource().getURI();
+		}
+		return null;
+	}
+
+	/**
+	 * @return {@link ControlModeRequest#isControlRequest}
+	 */
+	public boolean isControlRequest() {
+		return isControlRequest;
 	}
 
 	public Object getEditHelperContext() {
@@ -137,7 +129,6 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 	public URI getNewURI() {
 		return newURI;
 	}
-
 
 	/**
 	 * See {@link ControlModeRequest#isUIAction()}
@@ -228,7 +219,7 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 	}
 
 	protected String getResourceKey(String key, String extension) {
-		return TARGET_RESOURCE + extension;
+		return TARGET_RESOURCE + "." + extension;
 	}
 
 	/**
@@ -237,7 +228,7 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 	public ModelSet getModelSet() {
 		return (ModelSet)getEditingDomain().getResourceSet();
 	}
-	
+
 	/**
 	 * Create a request for creating a request for controlling a EObject. This request is aware that the action is User Interface action
 	 * 

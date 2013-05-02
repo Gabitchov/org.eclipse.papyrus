@@ -36,15 +36,20 @@ public class GMFDiagramControlParticipant implements IControlCommandParticipant,
 	 * 
 	 * @param request
 	 */
-	private boolean setNotationTargetRequest(ControlModeRequest request) {
+	protected boolean setNotationTargetRequest(ControlModeRequest request) {
 		URI notationURI = request.getNewURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
 		ModelSet modelSet = request.getModelSet();
 		if(modelSet != null) {
-			Resource diResource = modelSet.getResource(notationURI, false);
-			if(diResource == null) {
+			Resource notationResource = null;
+			try {
+				notationResource = modelSet.getResource(notationURI, true);
+			} catch (Exception e) {
+				notationResource = null;
+			}
+			if(notationResource == null) {
 				return false;
 			}
-			request.setTargetResource(diResource, NotationModel.NOTATION_FILE_EXTENSION);
+			request.setTargetResource(notationResource, NotationModel.NOTATION_FILE_EXTENSION);
 			//Nothing to do but everything is ok
 			return true;
 		}

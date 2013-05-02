@@ -76,7 +76,7 @@ public class SashControlParticipant implements IControlCommandParticipant, IUnco
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	private ICommand getClearDiCommand(final ControlModeRequest request) {
+	protected ICommand getClearDiCommand(final ControlModeRequest request) {
 		ModelSet modelSet = request.getModelSet();
 		IFile affectedFiles = WorkspaceSynchronizer.getFile(modelSet.getAssociatedResource(request.getTargetObject(), SashModel.MODEL_FILE_EXTENSION, true));
 		return new ClearDiCommand(Collections.singletonList(affectedFiles), request);
@@ -95,7 +95,7 @@ public class SashControlParticipant implements IControlCommandParticipant, IUnco
 				return CommandResult.newErrorCommandResult("Unable to retrieve resource set");
 			}
 			Resource oldDiresource = modelSet.getAssociatedResource(getRequest().getTargetObject(), SashModel.MODEL_FILE_EXTENSION, true);
-			if (oldDiresource == null){
+			if (oldDiresource == null) {
 				return CommandResult.newErrorCommandResult("Unable to retrieve old di resource");
 			}
 			oldDiresource.getContents().clear();
@@ -103,11 +103,16 @@ public class SashControlParticipant implements IControlCommandParticipant, IUnco
 		}
 	}
 
-	private boolean setDiTargetRequest(ControlModeRequest request) {
+	protected boolean setDiTargetRequest(ControlModeRequest request) {
 		URI diURI = request.getNewURI().trimFileExtension().appendFileExtension(SashModel.MODEL_FILE_EXTENSION);
 		ModelSet modelSet = request.getModelSet();
 		if(modelSet != null) {
-			Resource diResource = modelSet.getResource(diURI, false);
+			Resource diResource = null;
+			try {
+				diResource = modelSet.getResource(diURI, true);
+			} catch (Exception e) {
+				diResource = null;
+			}
 			if(diResource == null) {
 				return false;
 			}

@@ -41,6 +41,6 @@ public interface ControlModeRequestParameters {
 	/**
 	 * Key used to store moved diagrams into the request
 	 */
-	public static String MOVED_OPENABLES = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.MOVED_OPENABLES";////$NON-NLS-0$
+	public static String MOVED_OPENABLES = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.MovedOpenables";////$NON-NLS-0$
 
 }

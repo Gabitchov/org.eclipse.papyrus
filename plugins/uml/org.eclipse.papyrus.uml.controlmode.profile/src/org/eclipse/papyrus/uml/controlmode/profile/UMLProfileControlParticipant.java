@@ -98,7 +98,7 @@ public class UMLProfileControlParticipant implements IControlCommandParticipant,
 	 * @param request
 	 * @return
 	 */
-	private ICommand getMoveProfileAppliationCommand(ControlModeRequest request) {
+	protected ICommand getMoveProfileAppliationCommand(ControlModeRequest request) {
 		return new MoveProfileApplicationCommand(request);
 	}
 
@@ -134,7 +134,7 @@ public class UMLProfileControlParticipant implements IControlCommandParticipant,
 		return 100;
 	}
 
-	private String getPreControlCommandDialogTitle(Element elem) {
+	protected String getPreControlCommandDialogTitle(Element elem) {
 		return "Warning not a package element";
 	}
 

@@ -42,5 +42,13 @@
             class="org.eclipse.papyrus.uml.controlmode.profile.UMLProfileControlParticipant">
       </participant>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
+      <readOnlyHandler
+            class="org.eclipse.papyrus.uml.controlmode.profile.ControlledElementReadOnlyHandler"
+            id="org.eclipse.papyrus.uml.controlmode.profile.ControlledElementReadOnlyHandler"
+            priority="50">
+      </readOnlyHandler>
+   </extension>
 
 </plugin>

@@ -43,7 +43,7 @@ public class ControlTableCommand extends AbstractTransactionalCommand {
 	/**
 	 * Control request used to control tabs
 	 */
-	private ControlModeRequest request;
+	protected ControlModeRequest request;
 
 	/**
 	 * @param request
@@ -89,7 +89,7 @@ public class ControlTableCommand extends AbstractTransactionalCommand {
 	 * 
 	 * @return
 	 */
-	private Resource getTargetDiResource() {
+	protected Resource getTargetDiResource() {
 		return request.getTargetResource(SashModel.MODEL_FILE_EXTENSION);
 	}
 

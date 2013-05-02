@@ -9,9 +9,6 @@
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.ui;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -91,16 +88,7 @@ public class ControlResourceDialog extends ResourceDialog {
 			return false;
 		}
 
-		boolean resourceExists = false;
-		try {
-			InputStream stream = resourceSet.getURIConverter().createInputStream(uri);
-			if(stream != null) {
-				resourceExists = true;
-				stream.close();
-			}
-		} catch (IOException exception) {
-			// Do nothing
-		}
+		boolean resourceExists = resourceSet.getURIConverter().exists(uri, null);
 
 		boolean resourceBad = false;
 		if(!resourceInSet) {
@@ -127,7 +115,7 @@ public class ControlResourceDialog extends ResourceDialog {
 			result = MessageDialog.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_ExistingResource_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_AddToResource"));
 		}
 
-		if(!result && !resourceInSet) {
+		if(!result && !resourceInSet && resource != null) {
 			resource.unload();
 			resourceSet.getResources().remove(resource);
 		} else {

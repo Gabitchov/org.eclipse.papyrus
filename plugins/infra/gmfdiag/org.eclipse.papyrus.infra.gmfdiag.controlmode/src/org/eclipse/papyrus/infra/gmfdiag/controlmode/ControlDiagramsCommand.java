@@ -58,7 +58,7 @@ public class ControlDiagramsCommand extends AbstractControlCommand {
 	 * @param diags
 	 */
 	@SuppressWarnings("unchecked")
-	public void addMovedDiagramToRequest(List<Diagram> diags) {
+	protected void addMovedDiagramToRequest(List<Diagram> diags) {
 		Collection<EObject> openables = (Collection<EObject>)getRequest().getParameter(ControlModeRequestParameters.MOVED_OPENABLES);
 		if(openables == null) {
 			openables = new ArrayList<EObject>();
@@ -90,9 +90,14 @@ public class ControlDiagramsCommand extends AbstractControlCommand {
 	 * @throws ExecutionException
 	 */
 	protected List<Diagram> getDiagrams() throws ExecutionException {
-		Resource notationResource = getRequest().getModelSet().getResource(getOldNotationURI(), false);
+		Resource notationResource = null;
+		try {
+			notationResource = getRequest().getModelSet().getResource(getOldNotationURI(), true);
+		} catch (Exception e) {
+			notationResource = null;
+		}
 		if(notationResource == null) {
-			throw new ExecutionException("unable to retreive old notation resource");
+			throw new ExecutionException("unable to retrieve old notation resource");
 		}
 		return NotationUtils.getAllDescendantDiagramsInResource(getRequest().getTargetObject(), notationResource);
 	}
@@ -102,7 +107,7 @@ public class ControlDiagramsCommand extends AbstractControlCommand {
 	 * @return
 	 * @throws ExecutionException
 	 */
-	public URI getOldNotationURI() throws ExecutionException {
+	protected URI getOldNotationURI() throws ExecutionException {
 		URI uri = getRequest().getSourceURI();
 		if(uri != null) {
 			return uri.trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
