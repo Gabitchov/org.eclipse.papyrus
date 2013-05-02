@@ -8,10 +8,6 @@
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetContainedTables" description="Get the collection of all contained tables" upperBound="-1" implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.GetContainedTables">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/nattable/model#//Table"/>
-    <scope href="http://www.eclipse.org/emf/2002/Ecore#//EObject"></scope>
-  </queries>
-  <queries xsi:type="query:JavaModelQuery" name="GetTableIcon" description="Return the path to the icon of the corresponding table" implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.GetTableIcon">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <scope href="http://www.eclipse.org/papyrus/nattable/model#//Table"/>
+    <scope href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </queries>
 </query:ModelQuerySet>

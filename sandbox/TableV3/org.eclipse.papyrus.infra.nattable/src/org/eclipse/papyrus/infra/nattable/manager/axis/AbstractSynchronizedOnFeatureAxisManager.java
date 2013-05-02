@@ -77,7 +77,8 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 				}
 			};
 		};
-		getTableManager().getTable().getContext().eAdapters().add(this.featureListener);
+
+		getTableContext().eAdapters().add(this.featureListener);
 	}
 
 	/**
@@ -123,7 +124,7 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 */
 	@Override
 	public void dispose() {
-		getTableManager().getTable().getContext().eAdapters().remove(this.featureListener);
+		getTableContext().eAdapters().remove(this.featureListener);
 		super.dispose();
 	}
 

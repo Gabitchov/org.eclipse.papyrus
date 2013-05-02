@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.manager.table;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
@@ -92,7 +93,12 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 * the managed table
 	 */
-	protected Table table;
+	private Table table;
+
+	/**
+	 * we need to keep it, to be able to remove the listener on it, when the table is destroying
+	 */
+	private EObject tableContext;
 
 	/**
 	 * the nattable widget
@@ -139,6 +145,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	public AbstractNattableWidgetManager(final Table table) {
 		this.table = table;
+		this.tableContext = table.getContext();
 	}
 
 	/**
@@ -233,7 +240,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	protected void configureNatTable() {
-		if(!this.natTable.isDisposed()) {
+		if(this.natTable != null && !this.natTable.isDisposed()) {
 			this.natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
 			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 			this.natTable.configure();
@@ -439,5 +446,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.bodyDataProvider.dispose();
 		this.rowHeaderDataProvider.dispose();
 		this.columnHeaderDataProvider.dispose();
+		this.tableContext = null;
+	}
+
+	public EObject getTableContext() {
+		return this.tableContext;
+	}
+
+	public Table getTable() {
+		return this.table;
 	}
 }

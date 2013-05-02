@@ -52,6 +52,11 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	protected Adapter axisListener;
 
 	/**
+	 * the context of the table. We need to keep it, to be able to remove listeners on it, when the table is destroying
+	 */
+	private EObject tableContext;
+
+	/**
 	 * 
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
@@ -68,7 +73,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		this.tableManager = manager;
 		this.representedAxisManager = rep;
 		this.representedContentProvider = provider;
-
+		this.tableContext = manager.getTable().getContext();
 		this.axisListener = new AdapterImpl() {
 
 			@Override
@@ -123,6 +128,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 			this.representedContentProvider.eAdapters().remove(this.axisListener);
 			this.axisListener = null;
 		}
+		this.tableContext = null;
 	}
 
 	/**
@@ -258,7 +264,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 *         the context of the managed table
 	 */
 	protected final EObject getTableContext() {
-		return getTableManager().getTable().getContext();
+		return this.tableContext;
 	}
 
 	/**

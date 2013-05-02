@@ -112,7 +112,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	private FocusListener focusListener;
 
-
 	/**
 	 * 
 	 * Constructor.
@@ -123,7 +122,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	public NattableModelManager(final Table rawModel) {
 		super(rawModel);
-		// this.table = rawModel;
 		this.rowProvider = rawModel.getCurrentRowAxisProvider();
 		this.columnProvider = rawModel.getCurrentColumnAxisProvider();
 		this.verticalElements = Collections.synchronizedList(new ArrayList<Object>());
@@ -176,7 +174,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		};
 
-		getEditingDomain(this.table.getContext()).getCommandStack().addCommandStackListener(this.refreshListener);
+		getEditingDomain(getTableContext()).getCommandStack().addCommandStackListener(this.refreshListener);
 
 		this.focusListener = new FocusListener() {
 
@@ -200,8 +198,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		final ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
 		if(commandService != null) {
 
-			final AbstractHeaderAxisConfiguration columnAxisConfiguration = HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisUsedInTable(this.table);
-			final AbstractHeaderAxisConfiguration rowAxisConfiguration = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisUsedInTable(this.table);
+			final AbstractHeaderAxisConfiguration columnAxisConfiguration = HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisUsedInTable(getTable());
+			final AbstractHeaderAxisConfiguration rowAxisConfiguration = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisUsedInTable(getTable());
 			//update the header configuration
 			org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_INDEX_ID);
 			if(command != null) {
@@ -387,8 +385,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * create the line and the columns managers
 	 */
 	protected void init() {
-		this.columnManager = createAxisManager(getTable().getTableConfiguration().getColumnHeaderAxisConfiguration().getAxisManagers(), this.table.getCurrentColumnAxisProvider());
-		this.rowManager = createAxisManager(getTable().getTableConfiguration().getRowHeaderAxisConfiguration().getAxisManagers(), this.table.getCurrentRowAxisProvider());
+		this.columnManager = createAxisManager(getTable().getTableConfiguration().getColumnHeaderAxisConfiguration().getAxisManagers(), getTable().getCurrentColumnAxisProvider());
+		this.rowManager = createAxisManager(getTable().getTableConfiguration().getRowHeaderAxisConfiguration().getAxisManagers(), getTable().getCurrentRowAxisProvider());
 		boolean allIsSlave = this.columnManager.isSlave() && this.rowManager.isSlave();
 		Assert.isTrue(!allIsSlave, Messages.NattableModelManager_AtLeastOfOneTheAxisManagerMustBeAMaster);
 	}
@@ -425,7 +423,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public void dispose() {
 		this.columnManager.dispose();
 		this.rowManager.dispose();
-		getEditingDomain(this.table.getContext()).getCommandStack().removeCommandStackListener(this.refreshListener);
+		getEditingDomain(getTableContext()).getCommandStack().removeCommandStackListener(this.refreshListener);
 	}
 
 	/**
@@ -436,7 +434,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *        the list of the objects to add in rows
 	 */
 	public void addRows(final Collection<Object> objectToAdd) {
-		final EditingDomain domain = getEditingDomain(this.table.getContext());
+		final EditingDomain domain = getEditingDomain(getTableContext());
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddRowCommand);
 		Command tmp = this.rowManager.getAddAxisCommand(domain, objectToAdd);
 		if(tmp != null) {
@@ -474,7 +472,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *        the list of the objects to add in columns
 	 */
 	public void addColumns(final Collection<Object> objectToAdd) {
-		final EditingDomain domain = getEditingDomain(this.table.getContext());
+		final EditingDomain domain = getEditingDomain(getTableContext());
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
 		Command tmp = this.columnManager.getAddAxisCommand(domain, objectToAdd);
 		if(tmp != null) {
@@ -519,7 +517,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	private EditingDomain getTableEditingDomain() {
 		ServicesRegistry registry = null;
 		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table);
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTable());
 			return registry.getService(EditingDomain.class);
 		} catch (final ServiceException e) {
 			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
@@ -536,7 +534,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	private EditingDomain getContextEditingDomain() {
 		ServicesRegistry registry = null;
 		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableContext());
 			return registry.getService(EditingDomain.class);
 		} catch (final ServiceException e) {
 			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
@@ -575,7 +573,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		final Object obj1 = this.verticalElements.get(columnIndex);
 		final Object obj2 = this.horizontalElements.get(rowIndex);
-		CellManagerFactory.INSTANCE.setCellValue(getEditingDomain(this.table.getContext()), obj1, obj2, newValue);
+		CellManagerFactory.INSTANCE.setCellValue(getEditingDomain(getTableContext()), obj1, obj2, newValue);
 	}
 
 	/**
@@ -624,10 +622,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		Display.getDefault().asyncExec(new Runnable() {//required, because we get the event before the changes
 
 			public void run() {
-				if(axis == NattableModelManager.this.columnProvider) {
-					updateColumnContents();
-				} else {
-					updateRowContents();
+				if(NattableModelManager.this.natTable != null && !NattableModelManager.this.natTable.isDisposed()) {
+					if(axis == NattableModelManager.this.columnProvider) {
+						updateColumnContents();
+					} else {
+						updateRowContents();
+					}
 				}
 			}
 		});
@@ -638,7 +638,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	private void updateRowContents() {
 		NattableModelManager.this.rowManager.updateAxisContents();
-		CellEditorDeclaration declaration = getCellEditorDeclarationToUse(this.table);
+		CellEditorDeclaration declaration = getCellEditorDeclarationToUse(getTable());
 		if(declaration.equals(CellEditorDeclaration.ROW)) {
 			configureNatTable();
 			refreshNatTable();
@@ -654,7 +654,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	private void updateColumnContents() {
 		NattableModelManager.this.columnManager.updateAxisContents();
-		CellEditorDeclaration declaration = getCellEditorDeclarationToUse(this.table);
+		CellEditorDeclaration declaration = getCellEditorDeclarationToUse(getTable());
 		if(declaration.equals(CellEditorDeclaration.COLUMN)) {
 			configureNatTable();
 			refreshNatTable();
@@ -672,7 +672,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	private CellEditorDeclaration getCellEditorDeclarationToUse(final Table table) {
 		CellEditorDeclaration declaration = table.getTableConfiguration().getCellEditorDeclaration();
-		if(this.table.isInvertAxis()) {
+		if(getTable().isInvertAxis()) {
 			if(declaration.equals(CellEditorDeclaration.COLUMN)) {
 				declaration = CellEditorDeclaration.ROW;
 			} else if(declaration.equals(CellEditorDeclaration.ROW)) {
@@ -741,16 +741,16 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public void reorderColumnsElements(final IAxis axisToMove, final int newIndex) {
-		final EditingDomain domain = getEditingDomain(this.table.getContext());
+		final EditingDomain domain = getEditingDomain(getTableContext());
 		//FIXME
-		//		final Command cmd = MoveCommand.create(getEditingDomain(this.table.getContext()), this.columnProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
+		//		final Command cmd = MoveCommand.create(getEditingDomain(getTable().getContext()), this.columnProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
 		//		domain.getCommandStack().execute(cmd);
 	}
 
 	// not tested
 	public void reorderRowElements(final IAxis axisToMove, final int newIndex) {
-		final EditingDomain domain = getEditingDomain(this.table.getContext());
-		//		final Command cmd = MoveCommand.create(getEditingDomain(this.table.getContext()), this.rowProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
+		final EditingDomain domain = getEditingDomain(getTableContext());
+		//		final Command cmd = MoveCommand.create(getEditingDomain(getTable().getContext()), this.rowProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
 		//		domain.getCommandStack().execute(cmd);
 	}
 
@@ -761,10 +761,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	public void invertAxis() {
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_SwitchLinesAndColumns);
-		final EditingDomain domain = getEditingDomain(this.table.getContext());
-		boolean oldValue = this.table.isInvertAxis();
+		final EditingDomain domain = getEditingDomain(getTableContext());
+		boolean oldValue = getTable().isInvertAxis();
 		if(canInvertAxis()) {
-			Command tmp = new SetCommand(domain, this.table, NattablePackage.eINSTANCE.getTable_InvertAxis(), !oldValue);
+			Command tmp = new SetCommand(domain, getTable(), NattablePackage.eINSTANCE.getTable_InvertAxis(), !oldValue);
 			cmd.append(tmp);
 			domain.getCommandStack().execute(cmd);
 		}
@@ -785,7 +785,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public Command getAddRowElementCommand(Collection<Object> objectsToAdd) {
-		final EditingDomain domain = getEditingDomain(this.table.getContext());
+		final EditingDomain domain = getEditingDomain(getTableContext());
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddRowCommand);
 		Command tmp = this.rowManager.getAddAxisCommand(domain, objectsToAdd);
 		if(tmp != null) {
@@ -799,7 +799,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd) {
-		final EditingDomain domain = getEditingDomain(this.table.getContext());
+		final EditingDomain domain = getEditingDomain(getTableContext());
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
 		Command tmp = this.columnManager.getAddAxisCommand(domain, objectsToAdd);
 		if(tmp != null) {
@@ -813,7 +813,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public Command getDestroyColumnElementCommand(Collection<Object> objectsToDestroy) {
-		final EditingDomain domain = getEditingDomain(this.table.getContext());
+		final EditingDomain domain = getEditingDomain(getTableContext());
 		final Command cmd = this.columnManager.getDestroyAxisCommand(domain, objectsToDestroy);
 		return cmd;
 	}
@@ -824,10 +824,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	public boolean declareEditorsOnRows() {
 		return false;
-	}
-
-	public Table getTable() {
-		return this.table;
 	}
 
 	public ITableAxisElementProvider getTableAxisElementProvider() {// FIXME :
@@ -865,7 +861,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				Collection<Object> existingColumns = this.columnManager.getAllManagedAxis();
 				ArrayList<Object> checkedColumns = new ArrayList<Object>();
 				checkedColumns.addAll(Arrays.asList(dialog.getResult()));
-				CommandStack commandStack = getEditingDomain(this.table.getContext()).getCommandStack();
+				CommandStack commandStack = getEditingDomain(getTableContext()).getCommandStack();
 
 				ArrayList<Object> columnsToAdd = new ArrayList<Object>(checkedColumns);
 				columnsToAdd.removeAll(existingColumns);
@@ -908,10 +904,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 */
 	public AbstractAxisProvider getVerticalAxisProvider() {
-		if(this.table.isInvertAxis()) {
-			return this.table.getCurrentRowAxisProvider();
+		if(getTable().isInvertAxis()) {
+			return getTable().getCurrentRowAxisProvider();
 		} else {
-			return this.table.getCurrentColumnAxisProvider();
+			return getTable().getCurrentColumnAxisProvider();
 		}
 	}
 
@@ -922,10 +918,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 */
 	public AbstractAxisProvider getHorizontalAxisProvider() {
-		if(this.table.isInvertAxis()) {
-			return this.table.getCurrentColumnAxisProvider();
+		if(getTable().isInvertAxis()) {
+			return getTable().getCurrentColumnAxisProvider();
 		} else {
-			return this.table.getCurrentRowAxisProvider();
+			return getTable().getCurrentRowAxisProvider();
 		}
 	}
 }

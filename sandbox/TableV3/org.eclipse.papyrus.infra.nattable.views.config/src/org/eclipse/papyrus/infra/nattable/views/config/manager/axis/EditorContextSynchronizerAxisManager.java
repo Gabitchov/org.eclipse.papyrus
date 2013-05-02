@@ -25,6 +25,9 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 
 /**
@@ -33,6 +36,26 @@ import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
  * 
  */
 public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOnFeatureAxisManager {
+
+	/**
+	 * we keep it to be able to remove the listener during the destruction of the table
+	 */
+	private PageList pageList;
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
+	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation,
+	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider)
+	 * 
+	 * @param manager
+	 * @param rep
+	 * @param provider
+	 */
+	@Override
+	public void init(INattableModelManager manager, AxisManagerRepresentation rep, AbstractAxisProvider provider) {
+		super.init(manager, rep, provider);
+	}
 
 	/**
 	 * 
@@ -50,8 +73,14 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 				}
 			}
 		};
-		final PageList pageList = Utils.getPageList(getTableManager().getTable());
-		pageList.eAdapters().add(this.featureListener);
+		getPageList().eAdapters().add(this.featureListener);
+	}
+
+	private PageList getPageList() {
+		if(this.pageList == null) {
+			this.pageList = Utils.getPageList(getTableManager().getTable());
+		}
+		return this.pageList;
 	}
 
 	/**
@@ -94,8 +123,10 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	 */
 	@Override
 	public void dispose() {
-		final PageList pageList = Utils.getPageList(getTableManager().getTable());
-		pageList.eAdapters().remove(this.featureListener);
+		if(getPageList() != null) {
+			getPageList().eAdapters().remove(this.featureListener);
+		}
+		this.pageList = null;
 		super.dispose();
 	}
 
