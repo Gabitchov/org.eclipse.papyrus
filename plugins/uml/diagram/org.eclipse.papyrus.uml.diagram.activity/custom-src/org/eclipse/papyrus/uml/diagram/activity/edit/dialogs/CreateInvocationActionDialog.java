@@ -74,13 +74,13 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public abstract class CreateInvocationActionDialog extends FormDialog {
 
-	private static final String MAP_FORMAT = "%s|%s";
+	protected static final String MAP_FORMAT = "%s|%s";
 
 	private static final Pattern MAP_PATTERN = Pattern.compile("(.*?)\\|(.*)");
 
 	private Button creationRadio;
 
-	private Button selectionRadio;
+	protected Button selectionRadio;
 
 	private Text selectionText;
 
@@ -92,15 +92,15 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 
 	private Button creationParentButton;
 
-	private EObject selectedInvoked = null;
+	protected EObject selectedInvoked = null;
 
-	private EObject selectedParent = null;
+	protected EObject selectedParent = null;
 
 	private Activity actionParent;
 
 	private EClass selectedType = null;
 
-	private String selectedName = null;
+	protected String selectedName = null;
 
 	private ComboViewer typeComboViewer = null;
 
