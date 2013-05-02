@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -93,6 +94,36 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 	 *        the container type
 	 */
 	public void testToManageNode(IElementType type, EClass eClass, IElementType containerType, boolean containerMove) {
+		// create a node
+		testToCreateANode(type);
+		// creates a second one
+		testToCreateANode(type, 1, 1, 1, 1);
+		// destroy the first element
+		testDestroy(type, 2, 2, 1, 1);
+		// destroy the second one 
+		testDestroy(type, 1, 1, 1, 1);
+		// the node has been destroyed, the UML element also. restore one element
+		undoOnUIThread();
+
+		// the node and the UML element are present
+		testViewDeletion(type);
+		// The node has been deleted, the uml element is still present
+		testDrop(type, eClass);
+		// the node and element are present
+		if(containerMove) {
+			testChangeContainer(type, containerType);
+		}
+	}
+	
+	/**
+	 * Test to manage child node.
+	 * 
+	 * @param type
+	 *        the type
+	 * @param containerType
+	 *        the container type
+	 */
+	public void testToManageNode(IElementType type, EClass eClass, IElementType containerType, boolean containerMove, EReference containmentFeature) {
 		// create a node
 		testToCreateANode(type);
 		// creates a second one

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -40,12 +41,8 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowCreateC
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.InputPinInLoopNodeAsVariableCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.OutputPinInLoopNodeAsBodyOutputVariableCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.OutputPinInLoopNodeAsLoopVariableCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.OutputPinInLoopNodeAsResultCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
@@ -54,6 +51,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -88,28 +86,40 @@ public class LoopNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			}
 		}
 		if(UMLElementTypes.InputPin_3105 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new InputPinInLoopNodeAsVariableCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		if(UMLElementTypes.OutputPin_3111 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getLoopNode_Result();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new OutputPinInLoopNodeAsResultCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		if(UMLElementTypes.OutputPin_3109 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getLoopNode_BodyOutput();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new OutputPinInLoopNodeAsBodyOutputVariableCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		if(UMLElementTypes.OutputPin_3110 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getLoopNode_LoopVariable();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new OutputPinInLoopNodeAsLoopVariableCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

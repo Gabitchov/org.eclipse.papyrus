@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -28,7 +29,6 @@ import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionInputPinInOpaqueActCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPostconditionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPostconditionReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPreconditionCreateCommand;
@@ -41,11 +41,8 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowCreateC
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.InputPinInOpaqueActCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.OutputPinInOpaqueActCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ValuePinInOpaqueActCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
@@ -54,6 +51,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -88,28 +86,40 @@ public class OpaqueActionItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 			}
 		}
 		if(UMLElementTypes.ValuePin_3015 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getOpaqueAction_InputValue();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ValuePinInOpaqueActCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		if(UMLElementTypes.ActionInputPin_3016 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getOpaqueAction_InputValue();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ActionInputPinInOpaqueActCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		if(UMLElementTypes.InputPin_3013 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getOpaqueAction_InputValue();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new InputPinInOpaqueActCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		if(UMLElementTypes.OutputPin_3014 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getOpaqueAction_OutputValue();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new OutputPinInOpaqueActCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

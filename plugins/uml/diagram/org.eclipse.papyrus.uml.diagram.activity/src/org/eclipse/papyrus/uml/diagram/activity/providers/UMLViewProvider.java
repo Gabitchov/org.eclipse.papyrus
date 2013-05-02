@@ -99,10 +99,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 * if (op.getViewKind() == Node.class)
-		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 * if (op.getViewKind() == Edge.class)
-		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 if (op.getViewKind() == Node.class)
+		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 if (op.getViewKind() == Edge.class)
+		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
 		// check Diagram Type should be the class diagram
 		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
@@ -181,6 +181,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ActivityEditPart.VISUAL_ID:
 				case ParameterEditPart.VISUAL_ID:
 				case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
+				case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
 				case InitialNodeEditPart.VISUAL_ID:
 				case ActivityFinalNodeEditPart.VISUAL_ID:
 				case FlowFinalNodeEditPart.VISUAL_ID:
@@ -190,45 +191,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case InputPinInOpaqueActEditPart.VISUAL_ID:
 				case OutputPinInOpaqueActEditPart.VISUAL_ID:
 				case CallBehaviorActionEditPart.VISUAL_ID:
-				case CallOperationActionEditPart.VISUAL_ID:
-				case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
-				case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
-				case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
-				case DecisionNodeEditPart.VISUAL_ID:
-				case MergeNodeEditPart.VISUAL_ID:
-				case ForkNodeEditPart.VISUAL_ID:
-				case JoinNodeEditPart.VISUAL_ID:
-				case DataStoreNodeEditPart.VISUAL_ID:
-				case SendObjectActionEditPart.VISUAL_ID:
-				case SendSignalActionEditPart.VISUAL_ID:
-				case ActivityParameterNodeEditPart.VISUAL_ID:
-				case AcceptEventActionEditPart.VISUAL_ID:
-				case ValueSpecificationActionEditPart.VISUAL_ID:
-				case ConditionalNodeEditPart.VISUAL_ID:
-				case ExpansionRegionEditPart.VISUAL_ID:
-				case ExpansionNodeAsInEditPart.VISUAL_ID:
-				case LoopNodeEditPart.VISUAL_ID:
-				case SequenceNodeEditPart.VISUAL_ID:
-				case StructuredActivityNodeEditPart.VISUAL_ID:
-				case ActivityPartitionEditPart.VISUAL_ID:
-				case InterruptibleActivityRegionEditPart.VISUAL_ID:
-				case CommentEditPartCN.VISUAL_ID:
-				case ReadSelfActionEditPart.VISUAL_ID:
-				case CreateObjectActionEditPart.VISUAL_ID:
-				case ShapeNamedElementEditPart.VISUAL_ID:
-				case ReadStructuralFeatureActionEditPart.VISUAL_ID:
-				case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
-				case DestroyObjectActionEditPart.VISUAL_ID:
-				case ReadVariableActionEditPart.VISUAL_ID:
-				case AddVariableValueActionEditPart.VISUAL_ID:
-				case BroadcastSignalActionEditPart.VISUAL_ID:
-				case CentralBufferNodeEditPart.VISUAL_ID:
-				case ConstraintEditPartCN.VISUAL_ID:
-				case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
 				case ValuePinInCallBeActEditPart.VISUAL_ID:
 				case ActionInputPinInCallBeActEditPart.VISUAL_ID:
 				case InputPinInCallBeActEditPart.VISUAL_ID:
 				case OutputPinInCallBeActEditPart.VISUAL_ID:
+				case CallOperationActionEditPart.VISUAL_ID:
 				case ActionInputPinInCallOpActEditPart.VISUAL_ID:
 				case ValuePinInCallOpActEditPart.VISUAL_ID:
 				case InputPinInCallOpActEditPart.VISUAL_ID:
@@ -236,43 +203,76 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
 				case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 				case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+				case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
 				case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				case DecisionNodeEditPart.VISUAL_ID:
+				case MergeNodeEditPart.VISUAL_ID:
+				case ForkNodeEditPart.VISUAL_ID:
+				case JoinNodeEditPart.VISUAL_ID:
+				case DataStoreNodeEditPart.VISUAL_ID:
+				case SendObjectActionEditPart.VISUAL_ID:
 				case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
 				case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
 				case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
 				case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
 				case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
 				case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+				case SendSignalActionEditPart.VISUAL_ID:
 				case ActionInputPinInSendSigActEditPart.VISUAL_ID:
 				case ValuePinInSendSigActEditPart.VISUAL_ID:
 				case InputPinInSendSigActEditPart.VISUAL_ID:
 				case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
 				case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
 				case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+				case ActivityParameterNodeEditPart.VISUAL_ID:
+				case AcceptEventActionEditPart.VISUAL_ID:
 				case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
+				case ValueSpecificationActionEditPart.VISUAL_ID:
 				case OutputPinInValSpecActEditPart.VISUAL_ID:
+				case ConditionalNodeEditPart.VISUAL_ID:
+				case ExpansionRegionEditPart.VISUAL_ID:
+				case ExpansionNodeAsInEditPart.VISUAL_ID:
 				case ExpansionNodeAsOutEditPart.VISUAL_ID:
+				case LoopNodeEditPart.VISUAL_ID:
 				case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
 				case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
 				case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
+				case SequenceNodeEditPart.VISUAL_ID:
+				case StructuredActivityNodeEditPart.VISUAL_ID:
 				case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+				case ActivityPartitionEditPart.VISUAL_ID:
+				case InterruptibleActivityRegionEditPart.VISUAL_ID:
+				case CommentEditPartCN.VISUAL_ID:
+				case ReadSelfActionEditPart.VISUAL_ID:
 				case ReadSelfActionOutputPinEditPart.VISUAL_ID:
 				case ActivityEditPartCN.VISUAL_ID:
+				case CreateObjectActionEditPart.VISUAL_ID:
 				case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
+				case ShapeNamedElementEditPart.VISUAL_ID:
+				case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 				case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 				case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
+				case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
 				case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
 				case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
 				case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+				case DestroyObjectActionEditPart.VISUAL_ID:
 				case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
+				case ReadVariableActionEditPart.VISUAL_ID:
 				case OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID:
+				case AddVariableValueActionEditPart.VISUAL_ID:
 				case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
 				case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
+				case BroadcastSignalActionEditPart.VISUAL_ID:
 				case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
+				case CentralBufferNodeEditPart.VISUAL_ID:
+				case ConstraintEditPartCN.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}

@@ -38,7 +38,6 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.JoinNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
-import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;

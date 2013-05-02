@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.codegen.gmfgen.GMFGenPackage;
+import org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage;
 import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
@@ -25,8 +26,11 @@ import org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartm
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExternalElementTypesLibrary;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExternalMetamodelType;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
+import org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand;
 import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference;
 import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
@@ -181,6 +185,27 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	private EClass constrainedByReferenceCompartmentItemSemanticEditPolicyEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass externalElementTypesLibraryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass externalMetamodelTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass generateUsingElementTypeCreationCommandEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -224,6 +249,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		isInited = true;
 
 		// Initialize simple dependencies
+		DomaincontextcodegenPackage.eINSTANCE.eClass();
 		GMFGenPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -767,6 +793,42 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExternalElementTypesLibrary() {
+		return externalElementTypesLibraryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExternalMetamodelType() {
+		return externalMetamodelTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExternalMetamodelType_ElementTypeRef() {
+		return (EReference)externalMetamodelTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGenerateUsingElementTypeCreationCommand() {
+		return generateUsingElementTypeCreationCommandEClass;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -873,6 +935,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		constrainedByReferenceCompartmentItemSemanticEditPolicyEClass = createEClass(CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY);
 		createEReference(constrainedByReferenceCompartmentItemSemanticEditPolicyEClass, CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY__GEN_VIEW);
+
+		externalElementTypesLibraryEClass = createEClass(EXTERNAL_ELEMENT_TYPES_LIBRARY);
+
+		externalMetamodelTypeEClass = createEClass(EXTERNAL_METAMODEL_TYPE);
+		createEReference(externalMetamodelTypeEClass, EXTERNAL_METAMODEL_TYPE__ELEMENT_TYPE_REF);
+
+		generateUsingElementTypeCreationCommandEClass = createEClass(GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND);
 	}
 
 	/**
@@ -900,6 +969,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		GMFGenPackage theGMFGenPackage = (GMFGenPackage)EPackage.Registry.INSTANCE.getEPackage(GMFGenPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		GenModelPackage theGenModelPackage = (GenModelPackage)EPackage.Registry.INSTANCE.getEPackage(GenModelPackage.eNS_URI);
+		DomaincontextcodegenPackage theDomaincontextcodegenPackage = (DomaincontextcodegenPackage)EPackage.Registry.INSTANCE.getEPackage(DomaincontextcodegenPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -926,6 +996,10 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		compartmentVisibilityPreferenceEClass.getESuperTypes().add(this.getCommentedElement());
 		compartmentTitleVisibilityPreferenceEClass.getESuperTypes().add(this.getCommentedElement());
 		constrainedByReferenceCompartmentItemSemanticEditPolicyEClass.getESuperTypes().add(this.getCommentedElement());
+		externalElementTypesLibraryEClass.getESuperTypes().add(theGMFGenPackage.getGenNode());
+		externalElementTypesLibraryEClass.getESuperTypes().add(this.getCommentedElement());
+		externalMetamodelTypeEClass.getESuperTypes().add(theGMFGenPackage.getMetamodelType());
+		generateUsingElementTypeCreationCommandEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1010,6 +1084,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		initEClass(constrainedByReferenceCompartmentItemSemanticEditPolicyEClass, ConstrainedByReferenceCompartmentItemSemanticEditPolicy.class, "ConstrainedByReferenceCompartmentItemSemanticEditPolicy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConstrainedByReferenceCompartmentItemSemanticEditPolicy_GenView(), theGMFGenPackage.getGenCommonBase(), null, "genView", null, 0, -1, ConstrainedByReferenceCompartmentItemSemanticEditPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(externalElementTypesLibraryEClass, ExternalElementTypesLibrary.class, "ExternalElementTypesLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(externalMetamodelTypeEClass, ExternalMetamodelType.class, "ExternalMetamodelType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExternalMetamodelType_ElementTypeRef(), theDomaincontextcodegenPackage.getElementType(), null, "elementTypeRef", null, 0, 1, ExternalMetamodelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(generateUsingElementTypeCreationCommandEClass, GenerateUsingElementTypeCreationCommand.class, "GenerateUsingElementTypeCreationCommand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

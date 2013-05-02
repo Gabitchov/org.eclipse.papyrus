@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -29,7 +30,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerCr
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ReadSelfActionOutputPinCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
@@ -38,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -72,10 +73,13 @@ public class ReadSelfActionItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 			}
 		}
 		if(UMLElementTypes.OutputPin_3084 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getReadSelfAction_Result();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ReadSelfActionOutputPinCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

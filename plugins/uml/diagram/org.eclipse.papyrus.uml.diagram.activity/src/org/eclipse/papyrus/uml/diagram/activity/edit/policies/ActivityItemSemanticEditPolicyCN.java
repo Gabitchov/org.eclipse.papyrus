@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -14,7 +15,6 @@ import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActivityParameterNodeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.CommentLinkCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.CommentLinkReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintConstrainedElementCreateCommand;
@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintConstrai
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -56,10 +57,13 @@ public class ActivityItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 			}
 		}
 		if(UMLElementTypes.ActivityParameterNode_3059 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

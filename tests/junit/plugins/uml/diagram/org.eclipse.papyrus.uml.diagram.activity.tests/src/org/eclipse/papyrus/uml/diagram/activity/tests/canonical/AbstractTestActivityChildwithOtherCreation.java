@@ -36,7 +36,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Before;
 
-
+/**
+ * Set as deprecated. 
+ * @use {@link AbstractTestActivityChildNode}
+ */
+@Deprecated
 public abstract class AbstractTestActivityChildwithOtherCreation extends org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase {
 
 	/** The root compartment. */

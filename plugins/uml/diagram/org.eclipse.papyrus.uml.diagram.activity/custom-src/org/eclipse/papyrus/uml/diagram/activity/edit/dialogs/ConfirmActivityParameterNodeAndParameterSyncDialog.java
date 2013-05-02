@@ -21,7 +21,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
-import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.swt.SWT;

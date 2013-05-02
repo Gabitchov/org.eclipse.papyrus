@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -27,11 +28,8 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowCreateC
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.InputPinInAddStructuralFeatureValueActionAsValueCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.OutputPinInAddStructuralFeatureValueActionAsResultCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
@@ -40,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -74,22 +73,31 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 			}
 		}
 		if(UMLElementTypes.InputPin_3092 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuralFeatureAction_Object();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new InputPinInAddStructuralFeatureValueActionAsObjectCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		if(UMLElementTypes.InputPin_3093 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new InputPinInAddStructuralFeatureValueActionAsValueCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		if(UMLElementTypes.OutputPin_3094 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Result();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new OutputPinInAddStructuralFeatureValueActionAsResultCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

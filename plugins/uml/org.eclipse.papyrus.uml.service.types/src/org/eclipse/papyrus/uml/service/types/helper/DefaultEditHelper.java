@@ -15,19 +15,51 @@
 package org.eclipse.papyrus.uml.service.types.helper;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.AbstractOperation;
+import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.command.CreateChildCommand;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.emf.workspace.CompositeEMFOperation;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.internal.EMFTypePlugin;
+import org.eclipse.gmf.runtime.emf.type.core.internal.l10n.EMFTypeCoreMessages;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
+import org.eclipse.papyrus.uml.service.types.Activator;
+import org.eclipse.papyrus.uml.service.types.command.CreateEditBasedElementCommand;
 
 /**
  * <pre>
@@ -123,6 +155,14 @@ public class DefaultEditHelper extends AbstractEditHelper {
 		}
 
 		return result;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getCreateCommand(CreateElementRequest req) {
+		return new CreateEditBasedElementCommand(req);
 	}
 
 	/**
@@ -243,12 +283,12 @@ public class DefaultEditHelper extends AbstractEditHelper {
 
 		return advices;
 	}
-	
+
 	@Override
 	protected ICommand getBasicDestroyElementCommand(DestroyElementRequest req) {
 		ICommand result = req.getBasicDestroyCommand();
 
-		if (result == null) {
+		if(result == null) {
 			result = new DestroyElementPapyrusCommand(req);
 		} else {
 			// ensure that re-use of this request will not accidentally
@@ -258,5 +298,6 @@ public class DefaultEditHelper extends AbstractEditHelper {
 
 		return result;
 	}
+
 	
 }

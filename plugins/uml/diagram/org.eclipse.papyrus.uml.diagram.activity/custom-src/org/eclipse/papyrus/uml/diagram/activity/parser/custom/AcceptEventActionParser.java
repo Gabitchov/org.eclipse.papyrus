@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.AcceptEventActionEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.helper.CustomAcceptEventActionEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.parsers.MessageFormatParser;
 import org.eclipse.uml2.uml.AcceptEventAction;

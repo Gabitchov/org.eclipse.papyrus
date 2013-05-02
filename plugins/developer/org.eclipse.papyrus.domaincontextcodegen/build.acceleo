@@ -19,7 +19,8 @@
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
             dependencies=""
-            binaryResource="false">
+            binaryResource="false"
+            packagesToRegister="">
         </acceleoCompiler>
     </target>    
 </project>

@@ -14,8 +14,6 @@ import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.OpaqueAction;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * initialize  the emf command  that will add the child element

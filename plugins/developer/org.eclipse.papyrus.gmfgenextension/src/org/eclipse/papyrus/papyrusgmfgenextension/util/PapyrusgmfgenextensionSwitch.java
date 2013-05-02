@@ -12,6 +12,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.gmf.codegen.gmfgen.ElementType;
+import org.eclipse.gmf.codegen.gmfgen.GenChildContainer;
+import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.gmf.codegen.gmfgen.GenContainerBase;
+import org.eclipse.gmf.codegen.gmfgen.GenLinkEnd;
+import org.eclipse.gmf.codegen.gmfgen.GenNode;
+import org.eclipse.gmf.codegen.gmfgen.MetamodelType;
 import org.eclipse.papyrus.papyrusgmfgenextension.*;
 import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
@@ -236,6 +243,33 @@ public class PapyrusgmfgenextensionSwitch<T> extends Switch<T> {
 				ConstrainedByReferenceCompartmentItemSemanticEditPolicy constrainedByReferenceCompartmentItemSemanticEditPolicy = (ConstrainedByReferenceCompartmentItemSemanticEditPolicy)theEObject;
 				T result = caseConstrainedByReferenceCompartmentItemSemanticEditPolicy(constrainedByReferenceCompartmentItemSemanticEditPolicy);
 				if (result == null) result = caseCommentedElement(constrainedByReferenceCompartmentItemSemanticEditPolicy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PapyrusgmfgenextensionPackage.EXTERNAL_ELEMENT_TYPES_LIBRARY: {
+				ExternalElementTypesLibrary externalElementTypesLibrary = (ExternalElementTypesLibrary)theEObject;
+				T result = caseExternalElementTypesLibrary(externalElementTypesLibrary);
+				if (result == null) result = caseGenNode(externalElementTypesLibrary);
+				if (result == null) result = caseCommentedElement(externalElementTypesLibrary);
+				if (result == null) result = caseGenChildContainer(externalElementTypesLibrary);
+				if (result == null) result = caseGenLinkEnd(externalElementTypesLibrary);
+				if (result == null) result = caseGenContainerBase(externalElementTypesLibrary);
+				if (result == null) result = caseGenCommonBase(externalElementTypesLibrary);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PapyrusgmfgenextensionPackage.EXTERNAL_METAMODEL_TYPE: {
+				ExternalMetamodelType externalMetamodelType = (ExternalMetamodelType)theEObject;
+				T result = caseExternalMetamodelType(externalMetamodelType);
+				if (result == null) result = caseMetamodelType(externalMetamodelType);
+				if (result == null) result = caseElementType(externalMetamodelType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PapyrusgmfgenextensionPackage.GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND: {
+				GenerateUsingElementTypeCreationCommand generateUsingElementTypeCreationCommand = (GenerateUsingElementTypeCreationCommand)theEObject;
+				T result = caseGenerateUsingElementTypeCreationCommand(generateUsingElementTypeCreationCommand);
+				if (result == null) result = caseCommentedElement(generateUsingElementTypeCreationCommand);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -555,6 +589,156 @@ public class PapyrusgmfgenextensionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConstrainedByReferenceCompartmentItemSemanticEditPolicy(ConstrainedByReferenceCompartmentItemSemanticEditPolicy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Element Types Library</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Element Types Library</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternalElementTypesLibrary(ExternalElementTypesLibrary object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Metamodel Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Metamodel Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternalMetamodelType(ExternalMetamodelType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generate Using Element Type Creation Command</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generate Using Element Type Creation Command</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenerateUsingElementTypeCreationCommand(GenerateUsingElementTypeCreationCommand object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Common Base</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Common Base</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenCommonBase(GenCommonBase object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Container Base</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Container Base</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenContainerBase(GenContainerBase object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Child Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Child Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenChildContainer(GenChildContainer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Link End</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Link End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenLinkEnd(GenLinkEnd object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenNode(GenNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Element Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Element Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseElementType(ElementType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Metamodel Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Metamodel Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMetamodelType(MetamodelType object) {
 		return null;
 	}
 

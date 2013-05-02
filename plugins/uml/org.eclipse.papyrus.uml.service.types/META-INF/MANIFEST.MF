@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.0",
  org.eclipse.gmf.runtime.diagram.core;bundle-version="1.6.0",
  org.eclipse.ui.workbench,
  org.eclipse.core.expressions,
- org.eclipse.jface
+ org.eclipse.jface,
+ org.eclipse.uml2.uml.edit;bundle-version="4.0.100"
 Export-Package: org.eclipse.papyrus.uml.service.types,
  org.eclipse.papyrus.uml.service.types.command,
  org.eclipse.papyrus.uml.service.types.element,

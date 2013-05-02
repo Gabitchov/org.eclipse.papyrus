@@ -13,10 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.dialogs;
 
-import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
-import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;

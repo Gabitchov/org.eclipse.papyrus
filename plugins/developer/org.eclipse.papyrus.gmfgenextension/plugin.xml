@@ -223,6 +223,40 @@
                                 </or>
                              </enablement>
                           </action>
+                          
+                           <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddSemanticElementTypeInGenericTopNode"
+                                icon="icons/GenerateMetamodelType.gif"
+                                id="org.eclipse.papyrus.gmfgenextension.addSemanticElementTypeInGenericTopNode"
+                                label="Add Semantic Element Type In Generic Top Node"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddSemanticElementTypeInGenericTopNode"
+                                tooltip="Generate Sermantic Metamodel types for UML metamodel">
+                                <enablement>
+                                <or>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                   </objectClass>
+                                </or>
+                             </enablement>
+                          </action>
+                           <action
+                                 class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.UpdateElementTypeToMatchGenericType"
+                                 icon="icons/updateElementType.gif"
+                                 id="org.eclipse.papyrus.gmfgenextension.updateElementTypeToMatchGenericType"
+                                 label="Update ElementType To Match Generic Type"
+                                 menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/UpdateElementTypeToMatchGenericType"
+                                 tooltip="Update ElementType To Match Generic Type">
+                              <enablement>
+                                 <or>
+                                    <objectClass
+                                          name="org.eclipse.gmf.codegen.gmfgen.MetamodelType">
+                                    </objectClass>
+                                    <objectClass
+                                          name="org.eclipse.gmf.codegen.gmfgen.SpecializationType">
+                                    </objectClass>
+                                 </or>
+                              </enablement>
+                           </action>
       </objectContribution>
    </extension>
 

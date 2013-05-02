@@ -1228,8 +1228,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ParameterEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Parameter_3001"
+            displayName="Parameter">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.44/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
@@ -1270,8 +1274,10 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ConstraintEditHelper"/>
+            xsi:type="gmfgen:SpecializationType">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
@@ -1319,8 +1325,10 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.1/@elementType"/>
+            xsi:type="gmfgen:SpecializationType">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
@@ -1367,8 +1375,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="InitialNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InitialNode_3004"
+            displayName="InitialNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.150/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.InitialNode"/>
@@ -1428,8 +1440,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ActivityFinalNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActivityFinalNode_3005"
+            displayName="ActivityFinalNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.92/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.FinalNode">
@@ -1494,8 +1510,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="FlowFinalNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.FlowFinalNode_3006"
+            displayName="FlowFinalNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.144/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.FlowFinalNode">
@@ -1561,8 +1581,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="OpaqueActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007"
+            displayName="OpaqueAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.161/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -1642,8 +1666,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ValuePinEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"
+            displayName="ValuePin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
@@ -1733,8 +1761,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ActionInputPinEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"
+            displayName="ActionInputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -1824,8 +1856,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="InputPinEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -1901,8 +1937,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="OutputPinEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -1977,8 +2017,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="CallBehaviorActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008"
+            displayName="CallBehaviorAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.100/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.CallBehaviorActionFigure"/>
@@ -2055,7 +2099,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3017"
+            displayName="ValuePin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
@@ -2150,7 +2198,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3018"
+            displayName="ActionInputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -2245,7 +2297,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3019"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -2326,7 +2382,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3020"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -2405,8 +2465,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="CallOperationActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010"
+            displayName="CallOperationAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.102/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -2483,7 +2547,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3021"
+            displayName="ActionInputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -2579,7 +2647,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3022"
+            displayName="ValuePin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
@@ -2675,7 +2747,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3023"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -2757,7 +2833,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3024"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -2838,7 +2918,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3025"
+            displayName="ValuePin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
@@ -2934,7 +3018,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3026"
+            displayName="ActionInputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -3030,7 +3118,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3027"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -3109,8 +3201,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="DurationConstraintEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034"
+            displayName="DurationConstraint">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.134/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LocalPreconditionConstraintFigure"/>
@@ -3206,7 +3302,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.24/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035"
+            displayName="DurationConstraint">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.134/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LocalPostconditionConstraintFigure"/>
@@ -3301,8 +3401,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="TimeConstraintEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036"
+            displayName="TimeConstraint">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.185/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LocalPreconditionConstraintFigure"/>
@@ -3398,7 +3502,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.26/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037"
+            displayName="TimeConstraint">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.185/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LocalPostconditionConstraintFigure"/>
@@ -3493,8 +3601,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="IntervalConstraintEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032"
+            displayName="IntervalConstraint">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.135/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LocalPreconditionConstraintFigure"/>
@@ -3590,7 +3702,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.28/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033"
+            displayName="IntervalConstraint">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.135/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LocalPostconditionConstraintFigure"/>
@@ -3685,8 +3801,10 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.1/@elementType"/>
+            xsi:type="gmfgen:SpecializationType">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LocalPreconditionConstraintFigure"/>
@@ -3781,8 +3899,10 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.1/@elementType"/>
+            xsi:type="gmfgen:SpecializationType">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LocalPostconditionConstraintFigure"/>
@@ -3877,8 +3997,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="DecisionNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DecisionNode_3038"
+            displayName="DecisionNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.124/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.DiamondNode"/>
@@ -3961,8 +4085,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="MergeNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.MergeNode_3039"
+            displayName="MergeNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.160/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.DiamondNode"/>
@@ -4022,8 +4150,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ForkNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ForkNode_3040"
+            displayName="ForkNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.145/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ForkNode">
@@ -4088,8 +4220,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="JoinNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041"
+            displayName="JoinNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.152/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ForkNode">
@@ -4168,8 +4304,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="DataStoreNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078"
+            displayName="DataStoreNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.123/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="ObjectNodeDescriptor"
@@ -4248,8 +4388,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="SendObjectActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.SendObjectAction_3042"
+            displayName="SendObjectAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.177/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -4334,7 +4478,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3046"
+            displayName="ValuePin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
@@ -4426,7 +4574,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3047"
+            displayName="ActionInputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -4518,7 +4670,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3048"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -4596,7 +4752,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3049"
+            displayName="ValuePin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
@@ -4688,7 +4848,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3050"
+            displayName="ActionInputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -4780,7 +4944,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3051"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -4856,8 +5024,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="SendSignalActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052"
+            displayName="SendSignalAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.178/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusSendNodeFigure"/>
@@ -4938,7 +5110,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3053"
+            displayName="ActionInputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -5030,7 +5206,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3054"
+            displayName="ValuePin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
@@ -5122,7 +5302,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3055"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -5200,7 +5384,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3060"
+            displayName="ValuePin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
@@ -5292,7 +5480,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3061"
+            displayName="ActionInputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -5384,7 +5576,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3062"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -5461,8 +5657,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ActivityParameterNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActivityParameterNode_3059"
+            displayName="ActivityParameterNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.93/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure"/>
@@ -5527,8 +5727,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="AcceptEventActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.AcceptEventAction_3063"
+            displayName="AcceptEventAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.71/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.AcceptEventActionFigure"/>
@@ -5639,7 +5843,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3064"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -5714,8 +5922,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ValueSpecificationActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076"
+            displayName="ValueSpecificationAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.192/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -5800,7 +6012,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3077"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -5875,8 +6091,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ConditionalNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ConditionalNode_3069"
+            displayName="ConditionalNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.113/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.StructuredActivityNodeFigure"/>
@@ -5937,8 +6157,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ExpansionRegionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionRegion_3070"
+            displayName="ExpansionRegion">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.142/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.StructuredActivityNodeFigure"/>
@@ -5999,8 +6223,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ExpansionNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074"
+            displayName="ExpansionNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.141/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="ExpansionNodeDescriptor"
@@ -6050,7 +6278,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.58/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075"
+            displayName="ExpansionNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.141/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="ExpansionNodeDescriptor"
@@ -6099,8 +6331,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="LoopNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071"
+            displayName="LoopNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.159/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.StructuredActivityNodeFigure"/>
@@ -6161,7 +6397,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -6237,7 +6477,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -6313,7 +6557,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -6388,8 +6636,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="SequenceNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.SequenceNode_3073"
+            displayName="SequenceNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.179/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.StructuredActivityNodeFigure"/>
@@ -6449,8 +6701,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="StructuredActivityNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.StructuredActivityNode_3065"
+            displayName="StructuredActivityNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.74/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.StructuredActivityNodeFigure"/>
@@ -6511,7 +6767,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3105"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -6586,8 +6846,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ActivityPartitionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067"
+            displayName="ActivityPartition">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.73/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.ActivityPartitionFigure"/>
@@ -6650,8 +6914,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="InterruptibleActivityRegionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InterruptibleActivityRegion_3068"
+            displayName="InterruptibleActivityRegion">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.78/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InterruptibleActivityRegionFigure"/>
@@ -6682,8 +6950,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="CommentEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Comment_3080"
+            displayName="Comment">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.4/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.HTMLCornerBentFigure"/>
@@ -6748,8 +7020,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ReadSelfActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ReadSelfAction_3081"
+            displayName="ReadSelfAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.169/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -6833,8 +7109,10 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            xsi:type="gmfgen:SpecializationType">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -6910,8 +7188,10 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@topLevelNodes.0/@elementType"/>
+            xsi:type="gmfgen:SpecializationType">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.72/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.ActivityFigure">
@@ -7015,8 +7295,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="CreateObjectActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086"
+            displayName="CreateObjectAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.122/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -7101,7 +7385,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3087"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -7169,10 +7457,9 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
+            xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.NamedElement_3085"
-            displayName="ShapeNamedElement"
-            editHelperClassName="ShapeNamedElementEditHelper"/>
+            displayName="ShapeNamedElement"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ShapeNamedElementFigure"/>
@@ -7230,8 +7517,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ReadStructuralFeatureActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ReadStructuralFeatureAction_3088"
+            displayName="ReadStructuralFeatureAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.170/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -7316,7 +7607,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3089"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -7389,7 +7684,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -7460,8 +7759,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="AddStructuralFeatureValueActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.AddStructuralFeatureValueAction_3091"
+            displayName="AddStructuralFeatureValueAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.95/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -7546,7 +7849,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3092"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -7620,7 +7927,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3093"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -7694,7 +8005,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -7765,8 +8080,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="DestroyObjectActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DestroyObjectAction_3095"
+            displayName="DestroyObjectAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.128/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -7851,7 +8170,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3096"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -7921,8 +8244,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ReadVariableActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ReadVariableAction_3097"
+            displayName="ReadVariableAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.171/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -8006,7 +8333,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3098"
+            displayName="OutputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
@@ -8078,8 +8409,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="AddVariableValueActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.AddVariableValueAction_3099"
+            displayName="AddVariableValueAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.1/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -8164,7 +8499,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3100"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -8238,7 +8577,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3101"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -8310,8 +8653,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="BroadcastSignalActionEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.BroadcastSignalAction_3102"
+            displayName="BroadcastSignalAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.99/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
@@ -8396,7 +8743,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3103"
+            displayName="InputPin">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
@@ -8480,8 +8831,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="CentralBufferNodeEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CentralBufferNode_3104"
+            displayName="CentralBufferNode">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.103/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="ObjectNodeDescriptor"
@@ -8552,8 +8907,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ConstraintEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3112"
+            displayName="Constraint">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure"/>
@@ -8648,8 +9007,12 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ActivityEditHelper"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Activity_2001"
+            displayName="Activity">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.72/@elementType"/>
+        </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.ActivityFigure">
@@ -9696,7 +10059,8 @@
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy"/>
       </compartments>
-      <palette>
+      <palette
+          packageName="org.eclipse.papyrus.uml.diagram.activity.part">
         <groups
             title="ActivityGroup"
             description="ActivityGroup"
@@ -17560,5 +17924,7 @@
         comment="locator for external label of pins"
         classpath="org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"
         genExternalNodeLabel="/0/@diagram/@childNodes.75/@labels.0 /0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.4/@labels.0 /0/@diagram/@childNodes.5/@labels.0 /0/@diagram/@childNodes.7/@labels.2 /0/@diagram/@childNodes.8/@labels.2 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.12/@labels.2 /0/@diagram/@childNodes.13/@labels.2 /0/@diagram/@childNodes.14/@labels.1 /0/@diagram/@childNodes.15/@labels.1 /0/@diagram/@childNodes.17/@labels.2 /0/@diagram/@childNodes.18/@labels.2 /0/@diagram/@childNodes.19/@labels.1 /0/@diagram/@childNodes.20/@labels.1 /0/@diagram/@childNodes.21/@labels.2 /0/@diagram/@childNodes.22/@labels.2 /0/@diagram/@childNodes.23/@labels.1 /0/@diagram/@childNodes.32/@labels.1 /0/@diagram/@childNodes.33/@labels.0 /0/@diagram/@childNodes.34/@labels.0 /0/@diagram/@childNodes.35/@labels.1 /0/@diagram/@childNodes.38/@labels.2 /0/@diagram/@childNodes.39/@labels.2 /0/@diagram/@childNodes.40/@labels.1 /0/@diagram/@childNodes.41/@labels.2 /0/@diagram/@childNodes.42/@labels.2 /0/@diagram/@childNodes.43/@labels.1 /0/@diagram/@childNodes.45/@labels.2 /0/@diagram/@childNodes.46/@labels.2 /0/@diagram/@childNodes.47/@labels.1 /0/@diagram/@childNodes.48/@labels.2 /0/@diagram/@childNodes.49/@labels.2 /0/@diagram/@childNodes.50/@labels.1 /0/@diagram/@childNodes.52/@labels.2 /0/@diagram/@childNodes.53/@labels.1 /0/@diagram/@childNodes.55/@labels.1 /0/@diagram/@childNodes.71/@labels.1 /0/@diagram/@childNodes.74/@labels.1 /0/@diagram/@childNodes.77/@labels.1 /0/@diagram/@childNodes.80/@labels.1 /0/@diagram/@childNodes.81/@labels.1 /0/@diagram/@childNodes.82/@labels.1 /0/@diagram/@childNodes.84/@labels.1 /0/@diagram/@childNodes.86/@labels.1 /0/@diagram/@childNodes.88/@labels.1 /0/@diagram/@childNodes.89/@labels.1 /0/@diagram/@childNodes.91/@labels.2 /0/@diagram/@childNodes.63/@labels.0 /0/@diagram/@childNodes.61/@labels.1 /0/@diagram/@childNodes.62/@labels.1 /0/@diagram/@childNodes.63/@labels.1 /0/@diagram/@childNodes.66/@labels.1 /0/@diagram/@childNodes.53/@labels.0 /0/@diagram/@childNodes.7/@labels.0 /0/@diagram/@childNodes.7/@labels.1 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.9/@labels.0 /0/@diagram/@childNodes.10/@labels.0 /0/@diagram/@childNodes.12/@labels.0 /0/@diagram/@childNodes.12/@labels.1 /0/@diagram/@childNodes.13/@labels.0 /0/@diagram/@childNodes.13/@labels.1 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.15/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.17/@labels.1 /0/@diagram/@childNodes.18/@labels.0 /0/@diagram/@childNodes.18/@labels.1 /0/@diagram/@childNodes.19/@labels.0 /0/@diagram/@childNodes.20/@labels.0 /0/@diagram/@childNodes.21/@labels.0 /0/@diagram/@childNodes.21/@labels.1 /0/@diagram/@childNodes.22/@labels.0 /0/@diagram/@childNodes.22/@labels.1 /0/@diagram/@childNodes.23/@labels.0 /0/@diagram/@childNodes.32/@labels.0 /0/@diagram/@childNodes.35/@labels.0 /0/@diagram/@childNodes.36/@labels.1 /0/@diagram/@childNodes.38/@labels.0 /0/@diagram/@childNodes.38/@labels.1 /0/@diagram/@childNodes.39/@labels.0 /0/@diagram/@childNodes.39/@labels.1 /0/@diagram/@childNodes.40/@labels.0 /0/@diagram/@childNodes.41/@labels.0 /0/@diagram/@childNodes.41/@labels.1 /0/@diagram/@childNodes.42/@labels.0 /0/@diagram/@childNodes.42/@labels.1 /0/@diagram/@childNodes.43/@labels.0 /0/@diagram/@childNodes.45/@labels.0 /0/@diagram/@childNodes.45/@labels.1 /0/@diagram/@childNodes.46/@labels.0 /0/@diagram/@childNodes.46/@labels.1 /0/@diagram/@childNodes.47/@labels.0 /0/@diagram/@childNodes.48/@labels.0 /0/@diagram/@childNodes.48/@labels.1 /0/@diagram/@childNodes.49/@labels.0 /0/@diagram/@childNodes.49/@labels.1 /0/@diagram/@childNodes.50/@labels.0 /0/@diagram/@childNodes.52/@labels.1 /0/@diagram/@childNodes.55/@labels.0 /0/@diagram/@childNodes.61/@labels.0 /0/@diagram/@childNodes.62/@labels.0 /0/@diagram/@childNodes.66/@labels.0 /0/@diagram/@childNodes.71/@labels.0 /0/@diagram/@childNodes.74/@labels.0 /0/@diagram/@childNodes.77/@labels.0 /0/@diagram/@childNodes.78/@labels.0 /0/@diagram/@childNodes.78/@labels.1 /0/@diagram/@childNodes.80/@labels.0 /0/@diagram/@childNodes.81/@labels.0 /0/@diagram/@childNodes.82/@labels.0 /0/@diagram/@childNodes.84/@labels.0 /0/@diagram/@childNodes.86/@labels.0 /0/@diagram/@childNodes.88/@labels.0 /0/@diagram/@childNodes.89/@labels.0 /0/@diagram/@childNodes.91/@labels.0 /0/@diagram/@childNodes.91/@labels.1 /0/@diagram/@childNodes.92/@labels.1"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:GenerateUsingElementTypeCreationCommand"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

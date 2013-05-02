@@ -23,7 +23,6 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.draw2d.CenteredColumnConstraint;
 import org.eclipse.papyrus.uml.diagram.activity.draw2d.CenteredColumnLayout;

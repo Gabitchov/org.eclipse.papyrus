@@ -10,6 +10,13 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.codegen.gmfgen.ElementType;
+import org.eclipse.gmf.codegen.gmfgen.GenChildContainer;
+import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.gmf.codegen.gmfgen.GenContainerBase;
+import org.eclipse.gmf.codegen.gmfgen.GenLinkEnd;
+import org.eclipse.gmf.codegen.gmfgen.GenNode;
+import org.eclipse.gmf.codegen.gmfgen.MetamodelType;
 import org.eclipse.papyrus.papyrusgmfgenextension.*;
 import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
@@ -168,6 +175,46 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseConstrainedByReferenceCompartmentItemSemanticEditPolicy(ConstrainedByReferenceCompartmentItemSemanticEditPolicy object) {
 				return createConstrainedByReferenceCompartmentItemSemanticEditPolicyAdapter();
+			}
+			@Override
+			public Adapter caseExternalElementTypesLibrary(ExternalElementTypesLibrary object) {
+				return createExternalElementTypesLibraryAdapter();
+			}
+			@Override
+			public Adapter caseExternalMetamodelType(ExternalMetamodelType object) {
+				return createExternalMetamodelTypeAdapter();
+			}
+			@Override
+			public Adapter caseGenerateUsingElementTypeCreationCommand(GenerateUsingElementTypeCreationCommand object) {
+				return createGenerateUsingElementTypeCreationCommandAdapter();
+			}
+			@Override
+			public Adapter caseGenCommonBase(GenCommonBase object) {
+				return createGenCommonBaseAdapter();
+			}
+			@Override
+			public Adapter caseGenContainerBase(GenContainerBase object) {
+				return createGenContainerBaseAdapter();
+			}
+			@Override
+			public Adapter caseGenChildContainer(GenChildContainer object) {
+				return createGenChildContainerAdapter();
+			}
+			@Override
+			public Adapter caseGenLinkEnd(GenLinkEnd object) {
+				return createGenLinkEndAdapter();
+			}
+			@Override
+			public Adapter caseGenNode(GenNode object) {
+				return createGenNodeAdapter();
+			}
+			@Override
+			public Adapter caseElementType(ElementType object) {
+				return createElementTypeAdapter();
+			}
+			@Override
+			public Adapter caseMetamodelType(MetamodelType object) {
+				return createMetamodelTypeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -480,6 +527,146 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConstrainedByReferenceCompartmentItemSemanticEditPolicyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalElementTypesLibrary <em>External Element Types Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExternalElementTypesLibrary
+	 * @generated
+	 */
+	public Adapter createExternalElementTypesLibraryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalMetamodelType <em>External Metamodel Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExternalMetamodelType
+	 * @generated
+	 */
+	public Adapter createExternalMetamodelTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand <em>Generate Using Element Type Creation Command</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand
+	 * @generated
+	 */
+	public Adapter createGenerateUsingElementTypeCreationCommandAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.gmf.codegen.gmfgen.GenCommonBase <em>Gen Common Base</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.gmf.codegen.gmfgen.GenCommonBase
+	 * @generated
+	 */
+	public Adapter createGenCommonBaseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.gmf.codegen.gmfgen.GenContainerBase <em>Gen Container Base</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.gmf.codegen.gmfgen.GenContainerBase
+	 * @generated
+	 */
+	public Adapter createGenContainerBaseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.gmf.codegen.gmfgen.GenChildContainer <em>Gen Child Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.gmf.codegen.gmfgen.GenChildContainer
+	 * @generated
+	 */
+	public Adapter createGenChildContainerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.gmf.codegen.gmfgen.GenLinkEnd <em>Gen Link End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.gmf.codegen.gmfgen.GenLinkEnd
+	 * @generated
+	 */
+	public Adapter createGenLinkEndAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.gmf.codegen.gmfgen.GenNode <em>Gen Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.gmf.codegen.gmfgen.GenNode
+	 * @generated
+	 */
+	public Adapter createGenNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.gmf.codegen.gmfgen.ElementType <em>Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.gmf.codegen.gmfgen.ElementType
+	 * @generated
+	 */
+	public Adapter createElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.gmf.codegen.gmfgen.MetamodelType <em>Metamodel Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.gmf.codegen.gmfgen.MetamodelType
+	 * @generated
+	 */
+	public Adapter createMetamodelTypeAdapter() {
 		return null;
 	}
 

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gmf.codegen.gmfgen.GMFGenPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -1065,6 +1066,335 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalElementTypesLibraryImpl <em>External Element Types Library</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalElementTypesLibraryImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExternalElementTypesLibrary()
+	 * @generated
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY = 21;
+
+	/**
+	 * The feature id for the '<em><b>Diagram Run Time Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__DIAGRAM_RUN_TIME_CLASS = GMFGenPackage.GEN_NODE__DIAGRAM_RUN_TIME_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__VISUAL_ID = GMFGenPackage.GEN_NODE__VISUAL_ID;
+
+	/**
+	 * The feature id for the '<em><b>Element Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__ELEMENT_TYPE = GMFGenPackage.GEN_NODE__ELEMENT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Edit Part Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__EDIT_PART_CLASS_NAME = GMFGenPackage.GEN_NODE__EDIT_PART_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Item Semantic Edit Policy Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__ITEM_SEMANTIC_EDIT_POLICY_CLASS_NAME = GMFGenPackage.GEN_NODE__ITEM_SEMANTIC_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Notation View Factory Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__NOTATION_VIEW_FACTORY_CLASS_NAME = GMFGenPackage.GEN_NODE__NOTATION_VIEW_FACTORY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Viewmap</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__VIEWMAP = GMFGenPackage.GEN_NODE__VIEWMAP;
+
+	/**
+	 * The feature id for the '<em><b>Styles</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__STYLES = GMFGenPackage.GEN_NODE__STYLES;
+
+	/**
+	 * The feature id for the '<em><b>Behaviour</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__BEHAVIOUR = GMFGenPackage.GEN_NODE__BEHAVIOUR;
+
+	/**
+	 * The feature id for the '<em><b>Sans Domain</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__SANS_DOMAIN = GMFGenPackage.GEN_NODE__SANS_DOMAIN;
+
+	/**
+	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__CONTAINED_NODES = GMFGenPackage.GEN_NODE__CONTAINED_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Canonical Edit Policy Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__CANONICAL_EDIT_POLICY_CLASS_NAME = GMFGenPackage.GEN_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Child Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__CHILD_NODES = GMFGenPackage.GEN_NODE__CHILD_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Gen Outgoing Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__GEN_OUTGOING_LINKS = GMFGenPackage.GEN_NODE__GEN_OUTGOING_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Gen Incoming Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__GEN_INCOMING_LINKS = GMFGenPackage.GEN_NODE__GEN_INCOMING_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Model Facet</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__MODEL_FACET = GMFGenPackage.GEN_NODE__MODEL_FACET;
+
+	/**
+	 * The feature id for the '<em><b>Labels</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__LABELS = GMFGenPackage.GEN_NODE__LABELS;
+
+	/**
+	 * The feature id for the '<em><b>Compartments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__COMPARTMENTS = GMFGenPackage.GEN_NODE__COMPARTMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Drag Edit Policy Qualified Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__PRIMARY_DRAG_EDIT_POLICY_QUALIFIED_CLASS_NAME = GMFGenPackage.GEN_NODE__PRIMARY_DRAG_EDIT_POLICY_QUALIFIED_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Graphical Node Edit Policy Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__GRAPHICAL_NODE_EDIT_POLICY_CLASS_NAME = GMFGenPackage.GEN_NODE__GRAPHICAL_NODE_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Create Command Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__CREATE_COMMAND_CLASS_NAME = GMFGenPackage.GEN_NODE__CREATE_COMMAND_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reoriented Incoming Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__REORIENTED_INCOMING_LINKS = GMFGenPackage.GEN_NODE__REORIENTED_INCOMING_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY__COMMENT = GMFGenPackage.GEN_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>External Element Types Library</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_ELEMENT_TYPES_LIBRARY_FEATURE_COUNT = GMFGenPackage.GEN_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalMetamodelTypeImpl <em>External Metamodel Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalMetamodelTypeImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExternalMetamodelType()
+	 * @generated
+	 */
+	int EXTERNAL_METAMODEL_TYPE = 22;
+
+	/**
+	 * The feature id for the '<em><b>Diagram Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_METAMODEL_TYPE__DIAGRAM_ELEMENT = GMFGenPackage.METAMODEL_TYPE__DIAGRAM_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Unique Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_METAMODEL_TYPE__UNIQUE_IDENTIFIER = GMFGenPackage.METAMODEL_TYPE__UNIQUE_IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_METAMODEL_TYPE__DISPLAY_NAME = GMFGenPackage.METAMODEL_TYPE__DISPLAY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Defined Externally</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_METAMODEL_TYPE__DEFINED_EXTERNALLY = GMFGenPackage.METAMODEL_TYPE__DEFINED_EXTERNALLY;
+
+	/**
+	 * The feature id for the '<em><b>Edit Helper Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_METAMODEL_TYPE__EDIT_HELPER_CLASS_NAME = GMFGenPackage.METAMODEL_TYPE__EDIT_HELPER_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Element Type Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_METAMODEL_TYPE__ELEMENT_TYPE_REF = GMFGenPackage.METAMODEL_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>External Metamodel Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_METAMODEL_TYPE_FEATURE_COUNT = GMFGenPackage.METAMODEL_TYPE_FEATURE_COUNT + 1;
+
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenerateUsingElementTypeCreationCommandImpl <em>Generate Using Element Type Creation Command</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenerateUsingElementTypeCreationCommandImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenerateUsingElementTypeCreationCommand()
+	 * @generated
+	 */
+	int GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND = 23;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND__COMMENT = COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The number of structural features of the '<em>Generate Using Element Type Creation Command</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1726,6 +2056,47 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EReference getConstrainedByReferenceCompartmentItemSemanticEditPolicy_GenView();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalElementTypesLibrary <em>External Element Types Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>External Element Types Library</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExternalElementTypesLibrary
+	 * @generated
+	 */
+	EClass getExternalElementTypesLibrary();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalMetamodelType <em>External Metamodel Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>External Metamodel Type</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExternalMetamodelType
+	 * @generated
+	 */
+	EClass getExternalMetamodelType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalMetamodelType#getElementTypeRef <em>Element Type Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Element Type Ref</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExternalMetamodelType#getElementTypeRef()
+	 * @see #getExternalMetamodelType()
+	 * @generated
+	 */
+	EReference getExternalMetamodelType_ElementTypeRef();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand <em>Generate Using Element Type Creation Command</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generate Using Element Type Creation Command</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand
+	 * @generated
+	 */
+	EClass getGenerateUsingElementTypeCreationCommand();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2285,6 +2656,44 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY__GEN_VIEW = eINSTANCE.getConstrainedByReferenceCompartmentItemSemanticEditPolicy_GenView();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalElementTypesLibraryImpl <em>External Element Types Library</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalElementTypesLibraryImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExternalElementTypesLibrary()
+		 * @generated
+		 */
+		EClass EXTERNAL_ELEMENT_TYPES_LIBRARY = eINSTANCE.getExternalElementTypesLibrary();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalMetamodelTypeImpl <em>External Metamodel Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalMetamodelTypeImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExternalMetamodelType()
+		 * @generated
+		 */
+		EClass EXTERNAL_METAMODEL_TYPE = eINSTANCE.getExternalMetamodelType();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Type Ref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTERNAL_METAMODEL_TYPE__ELEMENT_TYPE_REF = eINSTANCE.getExternalMetamodelType_ElementTypeRef();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenerateUsingElementTypeCreationCommandImpl <em>Generate Using Element Type Creation Command</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenerateUsingElementTypeCreationCommandImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenerateUsingElementTypeCreationCommand()
+		 * @generated
+		 */
+		EClass GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND = eINSTANCE.getGenerateUsingElementTypeCreationCommand();
 
 	}
 

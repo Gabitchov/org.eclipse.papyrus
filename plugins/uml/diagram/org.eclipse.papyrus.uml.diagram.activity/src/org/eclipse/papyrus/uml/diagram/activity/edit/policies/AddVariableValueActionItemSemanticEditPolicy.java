@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -27,8 +28,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowCreateC
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.InputPinInAddVariableValueActionAsInsertAtCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.InputPinInAddVariableValueActionAsValueCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
@@ -39,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -73,16 +73,22 @@ public class AddVariableValueActionItemSemanticEditPolicy extends UMLBaseItemSem
 			}
 		}
 		if(UMLElementTypes.InputPin_3100 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getAddVariableValueAction_InsertAt();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new InputPinInAddVariableValueActionAsInsertAtCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		if(UMLElementTypes.InputPin_3101 == baseElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteVariableAction_Value();
+			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new InputPinInAddVariableValueActionAsValueCreateCommand(req));
+			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

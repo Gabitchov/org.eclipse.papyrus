@@ -39,7 +39,6 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.ConfirmActivityParameterNodeAndParameterSyncDialog;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.WarningAndLinkDialog;
 import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
-import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;

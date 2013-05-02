@@ -11,6 +11,7 @@
          <action
                class="org.eclipse.papyrus.codegen.actions.PapyrusExecuteTemplateAction"
                enablesFor="1"
+               icon="resource/PapyrusLogo16x16.gif"
                id="org.eclipse.papyrus.codegen.executeTemplateAction"
                label="Generate Papyrus diagram"
                menubarPath="additions">

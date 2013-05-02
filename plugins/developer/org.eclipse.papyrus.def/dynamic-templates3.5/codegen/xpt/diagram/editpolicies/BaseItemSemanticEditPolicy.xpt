@@ -13,6 +13,7 @@
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
 «IMPORT 'http://www.eclipse.org/emf/2002/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
 «EXTENSION xpt::diagram::editpolicies::Utils»
 «EXTENSION xpt::diagram::Utils»
 «EXTENSION xpt::GenModelUtils»
@@ -118,6 +119,7 @@ public class «baseItemSemanticEditPolicyClassName» extends org.eclipse.gmf.run
 	«EXPAND getExtendedStartCreateRelationshipCommand-»
 	«EXPAND getExtendedCompleteCreateRelationshipCommand-»
 	// RS: End of add code for extended types
+	«EXPAND getCreateSemanticServiceEditCommand-»
 	«EXPAND getSetCommand-»
 	«EXPAND getEditContextCommand-»
 	«EXPAND getDestroyElementCommand-»
@@ -554,4 +556,20 @@ if (target != null && («EXPAND featureBoundsConditionClause('target', getTarget
 		«ERROR 'No element type in the passed node. Only diagram, node or link are supported in this template: ' + self.repr()-»
 	«ENDIF-»
 	super(«EXPAND xpt::providers::ElementTypes::accessElementType»);
+«ENDDEFINE»
+
+«REM»
+	Generate generic method if using semantic creation command based on element types framework.
+«ENDREM»
+«DEFINE getCreateSemanticServiceEditCommand FOR gmfgen::GenDiagram-»
+«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.common.core.command.ICommand getSemanticCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
+		if(commandService == null) {
+			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+		}
+		return commandService.getEditCommand(req);
+	}
+«ENDIF-»	
 «ENDDEFINE»

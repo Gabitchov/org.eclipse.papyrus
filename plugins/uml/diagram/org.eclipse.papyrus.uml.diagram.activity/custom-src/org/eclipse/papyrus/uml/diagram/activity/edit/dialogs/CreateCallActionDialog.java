@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.dialogs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
-import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;

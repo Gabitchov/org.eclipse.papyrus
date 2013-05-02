@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.ValueType;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
+import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
@@ -69,7 +70,8 @@ public class FlowPropertyEditHelperAdvice extends AbstractStereotypedElementEdit
 				Element contextElement = (Element)editContextRequest.getEditContext();
 
 				IElementMatcher matcher = new FlowSpecificationMatcher();
-				if(!matcher.matches(contextElement)) {
+				IElementMatcher blockMatcher = new BlockMatcher();
+				if(!matcher.matches(contextElement) && !blockMatcher.matches(contextElement)) {
 					isApproved = false;
 				}
 			}

@@ -11,6 +11,9 @@
  */
  
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+
+«EXTENSION xpt::diagram::updater::Utils»
 
 «DEFINE childContainerCreateCommand FOR Sequence(gmfgen::GenNode)-»
 «IF not self->isEmpty()-»
@@ -33,9 +36,9 @@
 				isExtendedType = true;
 			}
 		}
-«FOREACH self AS n-»
-		«EXPAND childNodeCreateCommand(n) FOR n.modelFacet-»
-«ENDFOREACH-»
+	«FOREACH self AS n-»
+			«EXPAND childNodeCreateCommand(n) FOR n.modelFacet-»
+	«ENDFOREACH-»
 		return super.getCreateCommand(req);
 	}
 «ENDIF-»
@@ -43,9 +46,19 @@
 
 «DEFINE childNodeCreateCommand(node : gmfgen::GenNode) FOR gmfgen::TypeModelFacet-»
 if («EXPAND xpt::providers::ElementTypes::accessElementType FOR node» == baseElementType) {
+	«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0-»
+	// adjust the containment feature
+	org.eclipse.emf.ecore.EReference containmentFeature = «EXPAND MetaModel::MetaFeature FOR self.childMetaFeature»;
+	req.setContainmentFeature(containmentFeature);
+	«ENDIF»
 	if(isExtendedType) {
 		return getExtendedTypeCreationCommand(req, (org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType)requestElementType);
 	}
+	«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0»
+	return getGEFWrapper(getSemanticCreationCommand(req));
+	«ELSE-»
 	return getGEFWrapper(new «node.getCreateCommandQualifiedClassName()»(req));
+	«ENDIF»
+	
 }
 «ENDDEFINE»

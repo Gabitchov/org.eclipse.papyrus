@@ -216,6 +216,33 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	ConstrainedByReferenceCompartmentItemSemanticEditPolicy createConstrainedByReferenceCompartmentItemSemanticEditPolicy();
 
 	/**
+	 * Returns a new object of class '<em>External Element Types Library</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Element Types Library</em>'.
+	 * @generated
+	 */
+	ExternalElementTypesLibrary createExternalElementTypesLibrary();
+
+	/**
+	 * Returns a new object of class '<em>External Metamodel Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Metamodel Type</em>'.
+	 * @generated
+	 */
+	ExternalMetamodelType createExternalMetamodelType();
+
+	/**
+	 * Returns a new object of class '<em>Generate Using Element Type Creation Command</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generate Using Element Type Creation Command</em>'.
+	 * @generated
+	 */
+	GenerateUsingElementTypeCreationCommand createGenerateUsingElementTypeCreationCommand();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

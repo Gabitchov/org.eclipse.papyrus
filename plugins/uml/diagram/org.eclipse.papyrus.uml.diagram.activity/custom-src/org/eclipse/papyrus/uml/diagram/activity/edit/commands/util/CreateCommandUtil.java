@@ -13,21 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands.util;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.uml2.common.edit.command.SubsetAddCommand;
-import org.eclipse.uml2.common.edit.command.SubsetSetCommand;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.StructuredActivityNode;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This class provides utility methods shared by numerous create commands

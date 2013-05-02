@@ -388,140 +388,128 @@
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.Activity_2001"
                name="%metatype.name.Activity_2001"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Activity"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActivityEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.Activity"/>
             <param name="semanticHint" value="2001"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.Parameter_3001"
                name="%metatype.name.Parameter_3001"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Parameter"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ParameterEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.Parameter"/>
             <param name="semanticHint" value="3001"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3002"
                name="%metatype.name.Constraint_3002"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Constraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ConstraintEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.Constraint"/>
             <param name="semanticHint" value="3002"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3003"
                name="%metatype.name.Constraint_3003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3002"/>
+            <specializes id="org.eclipse.papyrus.uml.Constraint"/>
             <param name="semanticHint" value="3003"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.InitialNode_3004"
                name="%metatype.name.InitialNode_3004"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InitialNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.InitialNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.InitialNode"/>
             <param name="semanticHint" value="3004"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ActivityFinalNode_3005"
                name="%metatype.name.ActivityFinalNode_3005"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ActivityFinalNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActivityFinalNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ActivityFinalNode"/>
             <param name="semanticHint" value="3005"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.FlowFinalNode_3006"
                name="%metatype.name.FlowFinalNode_3006"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="FlowFinalNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.FlowFinalNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.FlowFinalNode"/>
             <param name="semanticHint" value="3006"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007"
                name="%metatype.name.OpaqueAction_3007"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="OpaqueAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.OpaqueActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.OpaqueAction"/>
             <param name="semanticHint" value="3007"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"
                name="%metatype.name.ValuePin_3015"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ValuePin"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ValuePinEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ValuePin"/>
             <param name="semanticHint" value="3015"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"
                name="%metatype.name.ActionInputPin_3016"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ActionInputPin"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActionInputPinEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ActionInputPin"/>
             <param name="semanticHint" value="3016"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"
                name="%metatype.name.InputPin_3013"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InputPin"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.InputPinEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3013"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"
                name="%metatype.name.OutputPin_3014"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="OutputPin"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.OutputPinEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3014"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008"
                name="%metatype.name.CallBehaviorAction_3008"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="CallBehaviorAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CallBehaviorActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.CallBehaviorAction"/>
             <param name="semanticHint" value="3008"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3017"
                name="%metatype.name.ValuePin_3017"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"/>
+            <specializes id="org.eclipse.papyrus.uml.ValuePin"/>
             <param name="semanticHint" value="3017"/>
          </specializationType>
       </metamodel>
@@ -530,7 +518,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3018"
                name="%metatype.name.ActionInputPin_3018"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"/>
+            <specializes id="org.eclipse.papyrus.uml.ActionInputPin"/>
             <param name="semanticHint" value="3018"/>
          </specializationType>
       </metamodel>
@@ -539,7 +527,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3019"
                name="%metatype.name.InputPin_3019"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3019"/>
          </specializationType>
       </metamodel>
@@ -548,26 +536,25 @@
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3020"
                name="%metatype.name.OutputPin_3020"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3020"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010"
                name="%metatype.name.CallOperationAction_3010"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="CallOperationAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CallOperationActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.CallOperationAction"/>
             <param name="semanticHint" value="3010"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3021"
                name="%metatype.name.ActionInputPin_3021"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"/>
+            <specializes id="org.eclipse.papyrus.uml.ActionInputPin"/>
             <param name="semanticHint" value="3021"/>
          </specializationType>
       </metamodel>
@@ -576,7 +563,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3022"
                name="%metatype.name.ValuePin_3022"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"/>
+            <specializes id="org.eclipse.papyrus.uml.ValuePin"/>
             <param name="semanticHint" value="3022"/>
          </specializationType>
       </metamodel>
@@ -585,7 +572,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3023"
                name="%metatype.name.InputPin_3023"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3023"/>
          </specializationType>
       </metamodel>
@@ -594,7 +581,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3024"
                name="%metatype.name.OutputPin_3024"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3024"/>
          </specializationType>
       </metamodel>
@@ -603,7 +590,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3025"
                name="%metatype.name.ValuePin_3025"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"/>
+            <specializes id="org.eclipse.papyrus.uml.ValuePin"/>
             <param name="semanticHint" value="3025"/>
          </specializationType>
       </metamodel>
@@ -612,7 +599,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3026"
                name="%metatype.name.ActionInputPin_3026"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"/>
+            <specializes id="org.eclipse.papyrus.uml.ActionInputPin"/>
             <param name="semanticHint" value="3026"/>
          </specializationType>
       </metamodel>
@@ -621,64 +608,61 @@
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3027"
                name="%metatype.name.InputPin_3027"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3027"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034"
                name="%metatype.name.DurationConstraint_3034"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DurationConstraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.DurationConstraintEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.DurationConstraint"/>
             <param name="semanticHint" value="3034"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035"
                name="%metatype.name.DurationConstraint_3035"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034"/>
+            <specializes id="org.eclipse.papyrus.uml.DurationConstraint"/>
             <param name="semanticHint" value="3035"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036"
                name="%metatype.name.TimeConstraint_3036"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="TimeConstraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.TimeConstraintEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.TimeConstraint"/>
             <param name="semanticHint" value="3036"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037"
                name="%metatype.name.TimeConstraint_3037"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036"/>
+            <specializes id="org.eclipse.papyrus.uml.TimeConstraint"/>
             <param name="semanticHint" value="3037"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032"
                name="%metatype.name.IntervalConstraint_3032"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="IntervalConstraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.IntervalConstraintEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.IntervalConstraint"/>
             <param name="semanticHint" value="3032"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033"
                name="%metatype.name.IntervalConstraint_3033"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032"/>
+            <specializes id="org.eclipse.papyrus.uml.IntervalConstraint"/>
             <param name="semanticHint" value="3033"/>
          </specializationType>
       </metamodel>
@@ -687,7 +671,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3011"
                name="%metatype.name.Constraint_3011"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3002"/>
+            <specializes id="org.eclipse.papyrus.uml.Constraint"/>
             <param name="semanticHint" value="3011"/>
          </specializationType>
       </metamodel>
@@ -696,76 +680,70 @@
                id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3012"
                name="%metatype.name.Constraint_3012"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3002"/>
+            <specializes id="org.eclipse.papyrus.uml.Constraint"/>
             <param name="semanticHint" value="3012"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.DecisionNode_3038"
                name="%metatype.name.DecisionNode_3038"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DecisionNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.DecisionNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.DecisionNode"/>
             <param name="semanticHint" value="3038"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.MergeNode_3039"
                name="%metatype.name.MergeNode_3039"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="MergeNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.MergeNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.MergeNode"/>
             <param name="semanticHint" value="3039"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ForkNode_3040"
                name="%metatype.name.ForkNode_3040"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ForkNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ForkNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ForkNode"/>
             <param name="semanticHint" value="3040"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041"
                name="%metatype.name.JoinNode_3041"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="JoinNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.JoinNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.JoinNode"/>
             <param name="semanticHint" value="3041"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078"
                name="%metatype.name.DataStoreNode_3078"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DataStoreNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.DataStoreNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.DataStoreNode"/>
             <param name="semanticHint" value="3078"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.SendObjectAction_3042"
                name="%metatype.name.SendObjectAction_3042"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="SendObjectAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.SendObjectActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.SendObjectAction"/>
             <param name="semanticHint" value="3042"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3046"
                name="%metatype.name.ValuePin_3046"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"/>
+            <specializes id="org.eclipse.papyrus.uml.ValuePin"/>
             <param name="semanticHint" value="3046"/>
          </specializationType>
       </metamodel>
@@ -774,7 +752,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3047"
                name="%metatype.name.ActionInputPin_3047"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"/>
+            <specializes id="org.eclipse.papyrus.uml.ActionInputPin"/>
             <param name="semanticHint" value="3047"/>
          </specializationType>
       </metamodel>
@@ -783,7 +761,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3048"
                name="%metatype.name.InputPin_3048"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3048"/>
          </specializationType>
       </metamodel>
@@ -792,7 +770,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3049"
                name="%metatype.name.ValuePin_3049"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"/>
+            <specializes id="org.eclipse.papyrus.uml.ValuePin"/>
             <param name="semanticHint" value="3049"/>
          </specializationType>
       </metamodel>
@@ -801,7 +779,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3050"
                name="%metatype.name.ActionInputPin_3050"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"/>
+            <specializes id="org.eclipse.papyrus.uml.ActionInputPin"/>
             <param name="semanticHint" value="3050"/>
          </specializationType>
       </metamodel>
@@ -810,26 +788,25 @@
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3051"
                name="%metatype.name.InputPin_3051"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3051"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052"
                name="%metatype.name.SendSignalAction_3052"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="SendSignalAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.SendSignalActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.SendSignalAction"/>
             <param name="semanticHint" value="3052"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3053"
                name="%metatype.name.ActionInputPin_3053"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"/>
+            <specializes id="org.eclipse.papyrus.uml.ActionInputPin"/>
             <param name="semanticHint" value="3053"/>
          </specializationType>
       </metamodel>
@@ -838,7 +815,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3054"
                name="%metatype.name.ValuePin_3054"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"/>
+            <specializes id="org.eclipse.papyrus.uml.ValuePin"/>
             <param name="semanticHint" value="3054"/>
          </specializationType>
       </metamodel>
@@ -847,7 +824,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3055"
                name="%metatype.name.InputPin_3055"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3055"/>
          </specializationType>
       </metamodel>
@@ -856,7 +833,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3060"
                name="%metatype.name.ValuePin_3060"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"/>
+            <specializes id="org.eclipse.papyrus.uml.ValuePin"/>
             <param name="semanticHint" value="3060"/>
          </specializationType>
       </metamodel>
@@ -865,7 +842,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3061"
                name="%metatype.name.ActionInputPin_3061"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"/>
+            <specializes id="org.eclipse.papyrus.uml.ActionInputPin"/>
             <param name="semanticHint" value="3061"/>
          </specializationType>
       </metamodel>
@@ -874,113 +851,106 @@
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3062"
                name="%metatype.name.InputPin_3062"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3062"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ActivityParameterNode_3059"
                name="%metatype.name.ActivityParameterNode_3059"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ActivityParameterNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActivityParameterNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ActivityParameterNode"/>
             <param name="semanticHint" value="3059"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.AcceptEventAction_3063"
                name="%metatype.name.AcceptEventAction_3063"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="AcceptEventAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.AcceptEventActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.AcceptEventAction"/>
             <param name="semanticHint" value="3063"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3064"
                name="%metatype.name.OutputPin_3064"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3064"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076"
                name="%metatype.name.ValueSpecificationAction_3076"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ValueSpecificationAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ValueSpecificationActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ValueSpecificationAction"/>
             <param name="semanticHint" value="3076"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3077"
                name="%metatype.name.OutputPin_3077"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3077"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ConditionalNode_3069"
                name="%metatype.name.ConditionalNode_3069"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ConditionalNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ConditionalNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ConditionalNode"/>
             <param name="semanticHint" value="3069"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ExpansionRegion_3070"
                name="%metatype.name.ExpansionRegion_3070"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ExpansionRegion"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ExpansionRegionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ExpansionRegion"/>
             <param name="semanticHint" value="3070"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074"
                name="%metatype.name.ExpansionNode_3074"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ExpansionNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ExpansionNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ExpansionNode"/>
             <param name="semanticHint" value="3074"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075"
                name="%metatype.name.ExpansionNode_3075"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074"/>
+            <specializes id="org.eclipse.papyrus.uml.ExpansionNode"/>
             <param name="semanticHint" value="3075"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071"
                name="%metatype.name.LoopNode_3071"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="LoopNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.LoopNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.LoopNode"/>
             <param name="semanticHint" value="3071"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109"
                name="%metatype.name.OutputPin_3109"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3109"/>
          </specializationType>
       </metamodel>
@@ -989,7 +959,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110"
                name="%metatype.name.OutputPin_3110"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3110"/>
          </specializationType>
       </metamodel>
@@ -998,85 +968,79 @@
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111"
                name="%metatype.name.OutputPin_3111"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3111"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.SequenceNode_3073"
                name="%metatype.name.SequenceNode_3073"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="SequenceNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.SequenceNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.SequenceNode"/>
             <param name="semanticHint" value="3073"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.StructuredActivityNode_3065"
                name="%metatype.name.StructuredActivityNode_3065"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="StructuredActivityNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.StructuredActivityNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.StructuredActivityNode"/>
             <param name="semanticHint" value="3065"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3105"
                name="%metatype.name.InputPin_3105"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3105"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067"
                name="%metatype.name.ActivityPartition_3067"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ActivityPartition"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActivityPartitionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ActivityPartition"/>
             <param name="semanticHint" value="3067"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.InterruptibleActivityRegion_3068"
                name="%metatype.name.InterruptibleActivityRegion_3068"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InterruptibleActivityRegion"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.InterruptibleActivityRegionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.InterruptibleActivityRegion"/>
             <param name="semanticHint" value="3068"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.Comment_3080"
                name="%metatype.name.Comment_3080"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Comment"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CommentEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.Comment"/>
             <param name="semanticHint" value="3080"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ReadSelfAction_3081"
                name="%metatype.name.ReadSelfAction_3081"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ReadSelfAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ReadSelfActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ReadSelfAction"/>
             <param name="semanticHint" value="3081"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3084"
                name="%metatype.name.OutputPin_3084"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3084"/>
          </specializationType>
       </metamodel>
@@ -1085,55 +1049,50 @@
                id="org.eclipse.papyrus.uml.diagram.activity.Activity_3083"
                name="%metatype.name.Activity_3083"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.Activity_2001"/>
+            <specializes id="org.eclipse.papyrus.uml.Activity"/>
             <param name="semanticHint" value="3083"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086"
                name="%metatype.name.CreateObjectAction_3086"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="CreateObjectAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CreateObjectActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.CreateObjectAction"/>
             <param name="semanticHint" value="3086"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3087"
                name="%metatype.name.OutputPin_3087"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3087"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.NamedElement_3085"
                name="%metatype.name.NamedElement_3085"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="NamedElement"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ShapeNamedElementEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="3085"/>
-         </metamodelType>
-      </metamodel>
+         </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ReadStructuralFeatureAction_3088"
                name="%metatype.name.ReadStructuralFeatureAction_3088"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ReadStructuralFeatureAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ReadStructuralFeatureActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ReadStructuralFeatureAction"/>
             <param name="semanticHint" value="3088"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3089"
                name="%metatype.name.InputPin_3089"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3089"/>
          </specializationType>
       </metamodel>
@@ -1142,26 +1101,25 @@
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090"
                name="%metatype.name.OutputPin_3090"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3090"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.AddStructuralFeatureValueAction_3091"
                name="%metatype.name.AddStructuralFeatureValueAction_3091"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="AddStructuralFeatureValueAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.AddStructuralFeatureValueActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.AddStructuralFeatureValueAction"/>
             <param name="semanticHint" value="3091"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3092"
                name="%metatype.name.InputPin_3092"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3092"/>
          </specializationType>
       </metamodel>
@@ -1170,7 +1128,7 @@
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3093"
                name="%metatype.name.InputPin_3093"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3093"/>
          </specializationType>
       </metamodel>
@@ -1179,64 +1137,61 @@
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094"
                name="%metatype.name.OutputPin_3094"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3094"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.DestroyObjectAction_3095"
                name="%metatype.name.DestroyObjectAction_3095"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DestroyObjectAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.DestroyObjectActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.DestroyObjectAction"/>
             <param name="semanticHint" value="3095"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3096"
                name="%metatype.name.InputPin_3096"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3096"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ReadVariableAction_3097"
                name="%metatype.name.ReadVariableAction_3097"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ReadVariableAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ReadVariableActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ReadVariableAction"/>
             <param name="semanticHint" value="3097"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3098"
                name="%metatype.name.OutputPin_3098"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
+            <specializes id="org.eclipse.papyrus.uml.OutputPin"/>
             <param name="semanticHint" value="3098"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.AddVariableValueAction_3099"
                name="%metatype.name.AddVariableValueAction_3099"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="AddVariableValueAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.AddVariableValueActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.AddVariableValueAction"/>
             <param name="semanticHint" value="3099"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3100"
                name="%metatype.name.InputPin_3100"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3100"/>
          </specializationType>
       </metamodel>
@@ -1245,48 +1200,45 @@
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3101"
                name="%metatype.name.InputPin_3101"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3101"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.BroadcastSignalAction_3102"
                name="%metatype.name.BroadcastSignalAction_3102"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="BroadcastSignalAction"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.BroadcastSignalActionEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.BroadcastSignalAction"/>
             <param name="semanticHint" value="3102"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3103"
                name="%metatype.name.InputPin_3103"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
+            <specializes id="org.eclipse.papyrus.uml.InputPin"/>
             <param name="semanticHint" value="3103"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.CentralBufferNode_3104"
                name="%metatype.name.CentralBufferNode_3104"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="CentralBufferNode"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CentralBufferNodeEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.CentralBufferNode"/>
             <param name="semanticHint" value="3104"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3112"
                name="%metatype.name.Constraint_3112"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Constraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ConstraintEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.Constraint"/>
             <param name="semanticHint" value="3112"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
@@ -3927,44 +3879,13 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-    <entry
-          id="createNodes3Group"
-          kind="drawer"
-          label="Nodes"
-          large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-          path="/"
-          small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-       <expand
-             force="true">
-       </expand>
-    </entry>
-    <predefinedEntry
-          id="createActivity1CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
-    <predefinedEntry
-          id="createActivityParameterNode2CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
-    <predefinedEntry
-          id="createCentralBufferNode3CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
-    <predefinedEntry
-          id="createDataStoreNode4CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
-    <predefinedEntry
-          id="createComment5CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
 					<entry
        description="ActivityGroup"
        id="createActivityGroupGroup"
-       kind="stack"
+       kind="drawer"
        label="ActivityGroup"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -3973,20 +3894,20 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createActivityPartition1CreationTool"
-          path="/createNodes3Group/createActivityGroupGroup">
+          path="/createActivityGroupGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createInterruptibleActivityRegion2CreationTool"
-          path="/createNodes3Group/createActivityGroupGroup">
+          path="/createActivityGroupGroup">
     </predefinedEntry>
 
 	<entry
        description="ControlNodes"
        id="createControlNodesGroup"
-       kind="stack"
+       kind="drawer"
        label="ControlNodes"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -3995,34 +3916,70 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createInitialnode1CreationTool"
-          path="/createNodes3Group/createControlNodesGroup">
+          path="/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createActivityfinal2CreationTool"
-          path="/createNodes3Group/createControlNodesGroup">
+          path="/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createFlowfinal3CreationTool"
-          path="/createNodes3Group/createControlNodesGroup">
+          path="/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createDecisionnode4CreationTool"
-          path="/createNodes3Group/createControlNodesGroup">
+          path="/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createMergenode5CreationTool"
-          path="/createNodes3Group/createControlNodesGroup">
+          path="/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createJoinnode6CreationTool"
-          path="/createNodes3Group/createControlNodesGroup">
+          path="/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createForknode7CreationTool"
-          path="/createNodes3Group/createControlNodesGroup">
+          path="/createControlNodesGroup">
     </predefinedEntry>
 
+	<entry
+       description=""
+       id="createNodes3Group"
+       kind="drawer"
+       label="Nodes"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
+ 	</entry>
  	 
+ 	 	<predefinedEntry
+          id="createActivity1CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createActivityParameterNode2CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createCentralBufferNode3CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createDataStoreNode4CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createComment5CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createConstraint6CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
 
 	<entry
        description=""
@@ -4057,22 +4014,64 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	<entry
        description="Constraints"
        id="createConstraintsGroup"
-       kind="stack"
+       kind="drawer"
        label="Constraints"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
-              force="false">
+              force="true">
        </expand>
  	</entry>
- 	<entry
+ 	 
+ 	 	<predefinedEntry
+          id="createLocalPreconditionConstraint1CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionInteractionConstraint2CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionIntervalConstraint3CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionDurationConstraint4CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionTimeConstraint5CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionConstraint6CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionInteractionConstraint7CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionIntervalConstraint8CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionDurationConstraint9CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionTimeConstraint10CreationTool"
+          path="/createConstraintsGroup">
+    </predefinedEntry>
+
+	<entry
        description="Pins"
        id="createPinsGroup"
-       kind="stack"
+       kind="drawer"
        label="Pins"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4081,28 +4080,28 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createOutputPin1CreationTool"
-          path="/createNodes3Group/createPinsGroup">
+          path="/createPinsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createInputPin2CreationTool"
-          path="/createNodes3Group/createPinsGroup">
+          path="/createPinsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createActionInputPin3CreationTool"
-          path="/createNodes3Group/createPinsGroup">
+          path="/createPinsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createValuePin4CreationTool"
-          path="/createNodes3Group/createPinsGroup">
+          path="/createPinsGroup">
     </predefinedEntry>
 
 	<entry
        description="ExpansionRegions"
        id="createExpansionRegionsGroup"
-       kind="stack"
+       kind="drawer"
        label="ExpansionRegions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4111,24 +4110,24 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createExpansionRegion1CreationTool"
-          path="/createNodes3Group/createExpansionRegionsGroup">
+          path="/createExpansionRegionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createInputExpansionNode2CreationTool"
-          path="/createNodes3Group/createExpansionRegionsGroup">
+          path="/createExpansionRegionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createOutputExpansionNode3CreationTool"
-          path="/createNodes3Group/createExpansionRegionsGroup">
+          path="/createExpansionRegionsGroup">
     </predefinedEntry>
 
 	<entry
        description="InvocationActions"
        id="InvocationActionsGroup"
-       kind="stack"
+       kind="drawer"
        label="InvocationActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4137,32 +4136,32 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createBroadcastSignalAction1CreationTool"
-          path="/createNodes3Group/InvocationActionsGroup">
+          path="/InvocationActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createCallBehaviorAction2CreationTool"
-          path="/createNodes3Group/InvocationActionsGroup">
+          path="/InvocationActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createCallOperationAction3CreationTool"
-          path="/createNodes3Group/InvocationActionsGroup">
+          path="/InvocationActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createSendObjectAction4CreationTool"
-          path="/createNodes3Group/InvocationActionsGroup">
+          path="/InvocationActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createSendSignalAction5CreationTool"
-          path="/createNodes3Group/InvocationActionsGroup">
+          path="/InvocationActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="ObjectActions"
        id="createObjectActionsGroup"
-       kind="stack"
+       kind="drawer"
        label="ObjectActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4171,24 +4170,24 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createCreateObjectAction1CreationTool"
-          path="/createNodes3Group/createObjectActionsGroup">
+          path="/createObjectActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createDestroyObjectAction2CreationTool"
-          path="/createNodes3Group/createObjectActionsGroup">
+          path="/createObjectActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createReadSelfAction3CreationTool"
-          path="/createNodes3Group/createObjectActionsGroup">
+          path="/createObjectActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="StructuredActions"
        id="createStructuredActionsGroup"
-       kind="stack"
+       kind="drawer"
        label="StructuredActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4197,28 +4196,28 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createStructuredActivityNode1CreationTool"
-          path="/createNodes3Group/createStructuredActionsGroup">
+          path="/createStructuredActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createLoopNode2CreationTool"
-          path="/createNodes3Group/createStructuredActionsGroup">
+          path="/createStructuredActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createSequenceNode3CreationTool"
-          path="/createNodes3Group/createStructuredActionsGroup">
+          path="/createStructuredActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createConditionalNode4CreationTool"
-          path="/createNodes3Group/createStructuredActionsGroup">
+          path="/createStructuredActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="StructuralFeatureActions"
        id="createStructuralFeatureActionsGroup"
-       kind="stack"
+       kind="drawer"
        label="StructuralFeatureActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4227,28 +4226,28 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createReadStructuralFeatureAction1CreationTool"
-          path="/createNodes3Group/createStructuralFeatureActionsGroup">
+          path="/createStructuralFeatureActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createAddStructuralFeatureValueAction2CreationTool"
-          path="/createNodes3Group/createStructuralFeatureActionsGroup">
+          path="/createStructuralFeatureActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createAddStructuralFeatureValueAction3CreationTool"
-          path="/createNodes3Group/createStructuralFeatureActionsGroup">
+          path="/createStructuralFeatureActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createReadStructuralFeatureAction4CreationTool"
-          path="/createNodes3Group/createStructuralFeatureActionsGroup">
+          path="/createStructuralFeatureActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="VariableActions"
        id="createVariableActionsGroup"
-       kind="stack"
+       kind="drawer"
        label="VariableActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4257,20 +4256,20 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createAddVariableValueAction1CreationTool"
-          path="/createNodes3Group/createVariableActionsGroup">
+          path="/createVariableActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createReadVariableAction2CreationTool"
-          path="/createNodes3Group/createVariableActionsGroup">
+          path="/createVariableActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="MiscellaneousActions"
        id="createOtherActionsGroup"
-       kind="stack"
+       kind="drawer"
        label="MiscellaneousActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4279,20 +4278,20 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createOpaqueAction1CreationTool"
-          path="/createNodes3Group/createOtherActionsGroup">
+          path="/createOtherActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createValueSpecificationAction2CreationTool"
-          path="/createNodes3Group/createOtherActionsGroup">
+          path="/createOtherActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="AcceptEventActions"
        id="createAcceptEventActions14Group"
-       kind="stack"
+       kind="drawer"
        label="AcceptEventActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/createNodes3Group"
+       path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4301,55 +4300,8 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createAcceptEventAction1CreationTool"
-          path="/createNodes3Group/createAcceptEventActions14Group">
+          path="/createAcceptEventActions14Group">
     </predefinedEntry>
- <predefinedEntry
-       id="createConstraint6CreationTool"
-       path="/createNodes3Group/createConstraintsGroup">
- </predefinedEntry>
- 	 
- 	 	<predefinedEntry
-          id="createLocalPreconditionConstraint1CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPreconditionInteractionConstraint2CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPreconditionIntervalConstraint3CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPreconditionDurationConstraint4CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPreconditionTimeConstraint5CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionConstraint6CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionInteractionConstraint7CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionIntervalConstraint8CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionDurationConstraint9CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionTimeConstraint10CreationTool"
-          path="/createNodes3Group/createConstraintsGroup">
-    </predefinedEntry>
-
-	
 
 
 			</contribution>
@@ -4357,4 +4309,30 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		</paletteProvider>	
 			
 	</extension>
+	
+	
+	<!-- Diagram specific advices -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+
+	<!-- specific advices (pop up on creation) -->		
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice" class="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice" inheritance="all" typeId="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008"/>
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallOperationActionEditHelperAdvice" class="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallOperationActionEditHelperAdvice" inheritance="all" typeId="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010"/>
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.activity.edit.advices.SendSignalActionEditHelperAdvice" class="org.eclipse.papyrus.uml.diagram.activity.edit.advices.SendSignalActionEditHelperAdvice" inheritance="all" typeId="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052"/>
+				
+	</metamodel>
+</extension>
+
+<!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration to shared IClientContext -->
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
+		<elementType ref="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice"></elementType>
+		<elementType ref="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallOperationActionEditHelperAdvice"></elementType>
+		<elementType ref="org.eclipse.papyrus.uml.diagram.activity.edit.advices.SendSignalActionEditHelperAdvice"></elementType>
+	</binding>
+		
+</extension>
 </plugin>

@@ -43,12 +43,14 @@ public abstract class TestChildNode extends AbstractTestNode {
 	protected void setUp() throws Exception {
 		super.setUp();
 		CreateViewRequest requestcreation = createViewRequestShapeContainer();
-		requestcreation.setSize(new Dimension(500, 500));
-		Command command = getDiagramEditPart().getCommand(requestcreation);
-		assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
-		assertNotSame(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, UnexecutableCommand.INSTANCE, command);
-		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
-		executeOnUIThread(command);
+		if(requestcreation !=null) {
+			requestcreation.setSize(new Dimension(500, 500));
+			Command command = getDiagramEditPart().getCommand(requestcreation);
+			assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
+			assertNotSame(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, UnexecutableCommand.INSTANCE, command);
+			assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
+			executeOnUIThread(command);	
+		}
 		assertEquals(CREATION + INITIALIZATION_TEST, 1, getDiagramEditPart().getChildren().size());
 		
 		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);

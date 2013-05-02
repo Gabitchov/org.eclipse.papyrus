@@ -2,7 +2,7 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.gmfgenextension/src" modelPluginID="org.eclipse.papyrus.gmfgenextension"
     modelName="PapyrusGmfgenExtension" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.genmodel#//gmfgen">
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.papyrus.domaincontextcodegen/resource/DomainContext.genmodel#//domaincontextcodegen platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.genmodel#//gmfgen">
   <foreignModel>papyrusGmfgenExtension.ecore</foreignModel>
   <genPackages prefix="Papyrusgmfgenextension" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
       ecorePackage="papyrusGmfgenExtension.ecore#/">
@@ -89,5 +89,10 @@
     <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//ConstrainedByReferenceCompartmentItemSemanticEditPolicy">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//ConstrainedByReferenceCompartmentItemSemanticEditPolicy/genView"/>
     </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//ExternalElementTypesLibrary"/>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//ExternalMetamodelType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//ExternalMetamodelType/elementTypeRef"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//GenerateUsingElementTypeCreationCommand"/>
   </genPackages>
 </genmodel:GenModel>

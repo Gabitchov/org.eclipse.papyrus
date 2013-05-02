@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_05JHMJLTEeK-Fomwlc5mQg" name="TestModel">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_61hmEJLTEeK-Fomwlc5mQg" name="TestActivity"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_l6hf4JLgEeKQTaIG2N8aVQ" name="TestClass"/>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_n84ZMJLgEeKQTaIG2N8aVQ" name="TestActivityWithNode" node="_zKYzcJLgEeKQTaIG2N8aVQ">
+    <node xmi:type="uml:CentralBufferNode" xmi:id="_zKYzcJLgEeKQTaIG2N8aVQ" name="CentralBufferNode1">
+      <upperBound xmi:type="uml:LiteralInteger" xmi:id="_zKhWUJLgEeKQTaIG2N8aVQ" value="1"/>
+    </node>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_Nsk64KjpEeK-PI9mVkoyCA" name="TestActivityDelete" node="_YadZ4KjpEeK-PI9mVkoyCA _YuwO4KjpEeK-PI9mVkoyCA _kjcvgKjqEeKyBfPA9htSew _mpfO8KjqEeKyBfPA9htSew">
+    <node xmi:type="uml:CentralBufferNode" xmi:id="_YadZ4KjpEeK-PI9mVkoyCA" name="CentralBufferNode1">
+      <upperBound xmi:type="uml:LiteralInteger" xmi:id="_YadZ4ajpEeK-PI9mVkoyCA" value="1"/>
+    </node>
+    <node xmi:type="uml:CentralBufferNode" xmi:id="_YuwO4KjpEeK-PI9mVkoyCA" name="CentralBufferNode2">
+      <upperBound xmi:type="uml:LiteralInteger" xmi:id="_YuwO4ajpEeK-PI9mVkoyCA" value="1"/>
+    </node>
+    <node xmi:type="uml:AddVariableValueAction" xmi:id="_kjcvgKjqEeKyBfPA9htSew" name="AddVariableValueAction1">
+      <value xmi:id="_klBc0KjqEeKyBfPA9htSew" name="value">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_klCD4KjqEeKyBfPA9htSew" value="1"/>
+      </value>
+      <insertAt xmi:id="_klNqEKjqEeKyBfPA9htSew" name="insertAt">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_klNqEajqEeKyBfPA9htSew" value="1"/>
+      </insertAt>
+    </node>
+    <node xmi:type="uml:AddVariableValueAction" xmi:id="_mpfO8KjqEeKyBfPA9htSew" name="AddVariableValueAction2">
+      <value xmi:id="_mp3pcKjqEeKyBfPA9htSew" name="value">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_mp3pcajqEeKyBfPA9htSew" value="1"/>
+      </value>
+      <insertAt xmi:id="_mqG6AKjqEeKyBfPA9htSew" name="insertAt">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_mqG6AajqEeKyBfPA9htSew" value="1"/>
+      </insertAt>
+    </node>
+  </packagedElement>
+</uml:Model>

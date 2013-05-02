@@ -25,35 +25,29 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
-import org.junit.Before;
+import org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand;
+import org.eclipse.swt.widgets.Display;
 
 
 public abstract class AbstractTestActivityChildNode extends TestChildNode {
 
-	@Before
-	@Override
-	protected void setUp() throws Exception {
-		projectCreation();
+	private Command createContainercommand;
 
-		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
-		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
-		rootCompartment = null;
-		int index = 0;
-		while(rootCompartment == null && index < containerEditPart.getChildren().size()) {
-			if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
-				rootCompartment = (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
-			}
-			index++;
-		}
-	}
-	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected boolean isSemanticTest() {
 		return true;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	protected ICreationCommand getDiagramCommandCreation() {
+		return  new CreateActivityDiagramCommand();
 	}
 	
 	/**
@@ -71,12 +65,19 @@ public abstract class AbstractTestActivityChildNode extends TestChildNode {
 		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 1);
 
 
-		Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(containerType, getContainerEditPart().getDiagramPreferencesHint());
-		Command command = getContainerEditPart().getCommand(requestcreation);
-		assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
-		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+		final Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(containerType, getContainerEditPart().getDiagramPreferencesHint());
+		
+		createContainercommand = null;
+		Display.getDefault().syncExec( new Runnable() {
+			
+			public void run() {
+				createContainercommand = getContainerEditPart().getCommand(requestcreation);
+			}
+		});
+		assertNotNull(CONTAINER_CREATION + COMMAND_NULL, createContainercommand);
+		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, createContainercommand != UnexecutableCommand.INSTANCE);
+		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, createContainercommand.canExecute() == true);
+		executeOnUIThread(createContainercommand);
 		assertTrue(CONTAINER_CREATION + TEST_THE_EXECUTION, getRootView().getChildren().size() == 2);
 		GraphicalEditPart containerEditPart = (GraphicalEditPart)getContainerEditPart().getChildren().get(1);
 		ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_ADD);
@@ -93,19 +94,19 @@ public abstract class AbstractTestActivityChildNode extends TestChildNode {
 		assertTrue("Container not found", compartment != null);
 
 
-		command = compartment.getCommand(changeBoundsRequest);
+		Command command = compartment.getCommand(changeBoundsRequest);
 		assertNotNull(CHANGE_CONTAINER, command);
 		assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+		executeOnUIThread(command);
 		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, getRootView().getChildren().size() == 1);
 		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 1);
 		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, compartment.getChildren().size() == 1);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		undoOnUIThread();
 		assertTrue(CHANGE_CONTAINER + TEST_THE_UNDO, getRootView().getChildren().size() == 2);
 		assertTrue(CHANGE_CONTAINER + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 2);
 		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, compartment.getChildren().size() == 0);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
+		redoOnUIThread();
 		assertTrue(CHANGE_CONTAINER + TEST_THE_REDO, getRootView().getChildren().size() == 1);
 		//Here there is a problem for activity diagram it is not clear 
 		//assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==1);

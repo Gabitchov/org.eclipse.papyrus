@@ -1,732 +1,732 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <domaincontextcodegen:DomainContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:domaincontextcodegen="http://www.eclipse.org/papyrus/2010/domaincontextcodegen" typeProjectName="org.eclipse.papyrus.uml.service.types" handlerProjectName="org.eclipse.papyrus.uml.modelexplorer" IClientContextID="org.eclipse.papyrus.service.creation.TypeContext" elementTypeIDPrefix="org.eclipse.papyrus.uml" elementTypeNamePrefix="UML" defaultHelperPath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" generatedSourceFolder="src-gen">
-  <metamodel href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/"/>
+  <metamodel href="../../org.eclipse.uml2.uml/model/UML.ecore#/"/>
   <elementTypes>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Abstraction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="AcceptCallAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptCallAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AcceptCallAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//AcceptCallAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="AcceptEventAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AcceptEventAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//AcceptEventAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Action" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Action.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ActionExecutionSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActionExecutionSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ActionExecutionSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ActionInputPin" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActionInputPin"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ActionInputPin"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Activity" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityEdge" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityEdge.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityEdge"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityEdge"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityFinalNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityFinalNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityFinalNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityGroup" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityGroup.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityGroup"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityGroup"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityParameterNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityParameterNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityParameterNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityParameterNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityPartition" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Actor" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="AddStructuralFeatureValueAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="AddVariableValueAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="AnyReceiveEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AnyReceiveEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AnyReceiveEvent"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//AnyReceiveEvent"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Artifact" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="AssociationBase" helper="org.eclipse.papyrus.uml.service.types.helper.AssociationBaseEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="AssociationClass" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AssociationClass"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//AssociationClass"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Behavior" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="BehaviorExecutionSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehaviorExecutionSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//BehaviorExecutionSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="BehavioralFeature" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehavioralFeature.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="BehavioredClassifier" helper="org.eclipse.papyrus.uml.service.types.helper.BehavioredClassifierEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehavioredClassifier.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="BroadcastSignalAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BroadcastSignalAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//BroadcastSignalAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CallAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CallAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CallBehaviorAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallBehaviorAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CallBehaviorAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CallEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallEvent"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CallEvent"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CallOperationAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallOperationAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CallOperationAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CentralBufferNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CentralBufferNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CentralBufferNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CentralBufferNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ChangeEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ChangeEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ChangeEvent"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ChangeEvent"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Class" helper="org.eclipse.papyrus.uml.service.types.helper.ClassEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Classifier" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Classifier.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ClassifierTemplateParameter" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClassifierTemplateParameter"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ClassifierTemplateParameter"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Clause" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Clause.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Clause"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Clause"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ClearAssociationAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearAssociationAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClearAssociationAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ClearAssociationAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ClearStructuralFeatureAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClearStructuralFeatureAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ClearStructuralFeatureAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ClearVariableAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearVariableAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClearVariableAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ClearVariableAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Collaboration" helper="org.eclipse.papyrus.uml.service.types.helper.CollaborationEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Collaboration"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Collaboration"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CollaborationUse" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CollaborationUse"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CollaborationUse"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CombinedFragment" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Comment" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CommunicationPath" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CommunicationPath"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CommunicationPath"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Component" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ComponentRealization" helper="org.eclipse.papyrus.uml.service.types.helper.ComponentRealizationEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ComponentRealization"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ComponentRealization"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ConditionalNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConditionalNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConditionalNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ConditionalNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ConnectableElement" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElement.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectableElement"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ConnectableElement"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ConnectableElementTemplateParameter" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectableElementTemplateParameter"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ConnectableElementTemplateParameter"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ConnectionPointReference" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectionPointReference"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ConnectionPointReference"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Connector" helper="org.eclipse.papyrus.uml.service.types.helper.ConnectorEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Connector"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Connector"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ConnectorEnd" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectorEnd.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectorEnd"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ConnectorEnd"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ConsiderIgnoreFragment" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConsiderIgnoreFragment"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ConsiderIgnoreFragment"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Constraint" helper="org.eclipse.papyrus.uml.service.types.helper.ConstraintEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Constraint"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Continuation" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ControlFlow" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ControlFlow"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ControlFlow"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ControlNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ControlNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ControlNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CreateLinkAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateLinkAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CreateLinkAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CreateLinkObjectAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateLinkObjectAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CreateLinkObjectAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CreateObjectAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DataStoreNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DataType" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DecisionNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Dependency" helper="org.eclipse.papyrus.uml.service.types.helper.DependencyEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DeployedArtifact" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeployedArtifact.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeployedArtifact"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DeployedArtifact"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Deployment" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Deployment"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Deployment"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DeploymentSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DeploymentSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DeploymentTarget" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentTarget.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentTarget"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DeploymentTarget"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DestroyLinkAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyLinkAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DestroyLinkAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DestroyObjectAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DestructionOccurrenceSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionOccurrenceSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestructionOccurrenceSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DestructionOccurrenceSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Device" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Device"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Device"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DirectedRelationship" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DirectedRelationship.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DirectedRelationship"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DirectedRelationship"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Duration" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Duration.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Duration"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Duration"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DurationConstraint" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationConstraint"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DurationConstraint"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DurationInterval" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationInterval.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationInterval"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DurationInterval"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DurationObservation" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationObservation"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//DurationObservation"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Element" helper="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Element.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ElementImport" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ElementImport"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ElementImport"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="EncapsulatedClassifier" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EncapsulatedClassifier.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//EncapsulatedClassifier"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//EncapsulatedClassifier"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Enumeration" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Enumeration"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Enumeration"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="EnumerationLiteral" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//EnumerationLiteral"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//EnumerationLiteral"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Event" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Event.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Event"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Event"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExceptionHandler" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExceptionHandler"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExceptionHandler"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutableNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutableNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutableNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExecutableNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionEnvironment" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionEnvironment"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExecutionEnvironment"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionOccurrenceSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionOccurrenceSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionOccurrenceSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExecutionOccurrenceSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExecutionSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExpansionNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExpansionNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExpansionRegion" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionRegion"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExpansionRegion"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Expression" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Expression.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Expression"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Expression"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Extend" helper="org.eclipse.papyrus.uml.service.types.helper.ExtendEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extend.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Extension" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extension.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extension"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Extension"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExtensionEnd" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionEnd.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExtensionEnd"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExtensionEnd"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExtensionPoint" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExtensionPoint"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExtensionPoint"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Feature" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Feature.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Feature"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Feature"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="FinalNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FinalNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//FinalNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="FinalState" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FinalState"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//FinalState"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="FlowFinalNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FlowFinalNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//FlowFinalNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ForkNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ForkNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ForkNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="FunctionBehavior" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FunctionBehavior"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//FunctionBehavior"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Gate" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Gate"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Gate"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="GeneralOrdering" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Generalization" helper="org.eclipse.papyrus.uml.service.types.helper.GeneralizationEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="GeneralizationSet" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralizationSet"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//GeneralizationSet"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Image" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Image.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Image"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Image"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Include" helper="org.eclipse.papyrus.uml.service.types.helper.IncludeEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Include.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InformationFlow" helper="org.eclipse.papyrus.uml.service.types.helper.InformationFlowEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InformationFlow"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InformationFlow"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InformationItem" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InformationItem"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InformationItem"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InitialNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InitialNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InitialNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InputPin" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InstanceSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InstanceValue" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceValue.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceValue"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InstanceValue"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Interaction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InteractionConstraint" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionConstraint"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InteractionConstraint"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InteractionFragment" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionFragment.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InteractionOperand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InteractionUse" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionUse"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InteractionUse"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Interface" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InterfaceRealization" helper="org.eclipse.papyrus.uml.service.types.helper.InterfaceRealizationEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InterruptibleActivityRegion" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterruptibleActivityRegion"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InterruptibleActivityRegion"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Interval" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interval.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interval"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Interval"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="IntervalConstraint" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//IntervalConstraint"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//IntervalConstraint"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="InvocationAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InvocationAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InvocationAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//InvocationAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="JoinNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Lifeline" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LinkAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LinkAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LinkEndCreationData" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndCreationData.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndCreationData"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LinkEndCreationData"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LinkEndData" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndData.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndData"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LinkEndData"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LinkEndDestructionData" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndDestructionData.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndDestructionData"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LinkEndDestructionData"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralBoolean" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralBoolean.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralBoolean"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LiteralBoolean"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralInteger" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralInteger.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralInteger"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LiteralInteger"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralNull" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralNull.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralNull"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LiteralNull"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralReal" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralReal.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralReal"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LiteralReal"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LiteralSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralString" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralString.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralString"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LiteralString"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralUnlimitedNatural" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralUnlimitedNatural.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralUnlimitedNatural"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LiteralUnlimitedNatural"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LoopNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LoopNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LoopNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//LoopNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Manifestation" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Manifestation"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Manifestation"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="MergeNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MergeNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//MergeNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Message" helper="org.eclipse.papyrus.uml.service.types.helper.MessageEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="MessageEnd" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MessageEnd.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageEnd"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//MessageEnd"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="MessageEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MessageEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageEvent"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//MessageEvent"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="MessageOccurrenceSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MessageOccurrenceSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Model" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Model"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="MultiplicityElement" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MultiplicityElement.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="NamedElement" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/NamedElement.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Namespace" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Namespace.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Namespace"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Node" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ObjectFlow" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ObjectNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Observation" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Observation.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Observation"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Observation"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="OccurrenceSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OccurrenceSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OccurrenceSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//OccurrenceSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="OpaqueAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//OpaqueAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="OpaqueBehavior" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueBehavior"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//OpaqueBehavior"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="OpaqueExpression" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueExpression.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Operation" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="OperationTemplateParameter" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OperationTemplateParameter"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//OperationTemplateParameter"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="OutputPin" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Package" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="PackageImport" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="PackageMerge" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="PackageableElement" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageableElement.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageableElement"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//PackageableElement"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Parameter" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ParameterSet" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ParameterSet.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ParameterSet"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ParameterSet"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ParameterableElement" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ParameterableElement.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ParameterableElement"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ParameterableElement"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="PartDecomposition" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PartDecomposition.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PartDecomposition"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//PartDecomposition"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Pin" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pin.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Port" helper="org.eclipse.papyrus.uml.service.types.helper.PortEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Port"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Port"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="PrimitiveType" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PrimitiveType"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//PrimitiveType"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Profile" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Profile"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Profile"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ProfileApplication" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProfileApplication"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ProfileApplication"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Property" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ProtocolConformance" helper="org.eclipse.papyrus.uml.service.types.helper.ProtocolConformanceEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolConformance.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProtocolConformance"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ProtocolConformance"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ProtocolStateMachine" helper="org.eclipse.papyrus.uml.service.types.helper.ProtocolStateMachineEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProtocolStateMachine"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ProtocolStateMachine"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ProtocolTransition" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolTransition.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProtocolTransition"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ProtocolTransition"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Pseudostate" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pseudostate"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Pseudostate"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="QualifierValue" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/QualifierValue.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//QualifierValue"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//QualifierValue"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="RaiseExceptionAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RaiseExceptionAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RaiseExceptionAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//RaiseExceptionAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadExtentAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadExtentAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadExtentAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReadExtentAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadIsClassifiedObjectAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadIsClassifiedObjectAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadIsClassifiedObjectAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReadIsClassifiedObjectAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadLinkAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadLinkObjectEndAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkObjectEndAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkObjectEndAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadLinkObjectEndQualifierAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndQualifierAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkObjectEndQualifierAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkObjectEndQualifierAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadSelfAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadSelfAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReadSelfAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadStructuralFeatureAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadStructuralFeatureAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReadStructuralFeatureAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadVariableAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadVariableAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReadVariableAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Realization" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Realization"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Realization"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Reception" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Reception"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Reception"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReclassifyObjectAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReclassifyObjectAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReclassifyObjectAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReclassifyObjectAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="RedefinableElement" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableElement.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RedefinableElement"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//RedefinableElement"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="RedefinableTemplateSignature" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RedefinableTemplateSignature"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//RedefinableTemplateSignature"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReduceAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReduceAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReduceAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReduceAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Region" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Region"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Region"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Relationship" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Relationship.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Relationship"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Relationship"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="RemoveStructuralFeatureValueAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveStructuralFeatureValueAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveStructuralFeatureValueAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//RemoveStructuralFeatureValueAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="RemoveVariableValueAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveVariableValueAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveVariableValueAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//RemoveVariableValueAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ReplyAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReplyAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReplyAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ReplyAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="SendObjectAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendObjectAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//SendObjectAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="SendSignalAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendSignalAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//SendSignalAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="SequenceNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SequenceNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//SequenceNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Signal" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Signal"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Signal"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="SignalEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SignalEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SignalEvent"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//SignalEvent"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Slot" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Slot"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Slot"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="StartClassifierBehaviorAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartClassifierBehaviorAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StartClassifierBehaviorAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//StartClassifierBehaviorAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="StartObjectBehaviorAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartObjectBehaviorAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StartObjectBehaviorAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//StartObjectBehaviorAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="State" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//State"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//State"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="StateInvariant" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StateInvariant"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//StateInvariant"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="StateMachine" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StateMachine"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//StateMachine"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Stereotype" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="StringExpression" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StringExpression.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StringExpression"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//StringExpression"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="StructuralFeature" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuralFeature.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeature"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeature"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="StructuralFeatureAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuralFeatureAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="StructuredActivityNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="StructuredClassifier" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredClassifier.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredClassifier"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//StructuredClassifier"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Substitution" helper="org.eclipse.papyrus.uml.service.types.helper.SubstitutionEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Substitution"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Substitution"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateBinding" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateBinding"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TemplateBinding"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateParameter" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateParameter"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TemplateParameter"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateParameterSubstitution" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameterSubstitution.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateParameterSubstitution"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TemplateParameterSubstitution"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateSignature" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateSignature"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TemplateSignature"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateableElement" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateableElement.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateableElement"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TemplateableElement"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TestIdentityAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TestIdentityAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TestIdentityAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeConstraint" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeConstraint"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TimeConstraint"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeEvent"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TimeEvent"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeExpression" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeExpression.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeExpression"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TimeExpression"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeInterval" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeInterval.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeInterval"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TimeInterval"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeObservation" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeObservation"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TimeObservation"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Transition" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Transition"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Transition"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Trigger" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Trigger.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Trigger"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Trigger"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Type" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Type.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Type"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="TypedElement" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TypedElement.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TypedElement"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//TypedElement"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="UnmarshallAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UnmarshallAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//UnmarshallAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//UnmarshallAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Usage" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="UseCase" helper="org.eclipse.papyrus.uml.service.types.helper.UseCaseEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ValuePin" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValuePin"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ValuePin"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ValueSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecification.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecification"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ValueSpecificationAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecificationAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecificationAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Variable" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Variable.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Variable"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Variable"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="VariableAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/VariableAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//VariableAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//VariableAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Vertex" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Vertex.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Vertex"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Vertex"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="WriteLinkAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/WriteLinkAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteLinkAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//WriteLinkAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="WriteStructuralFeatureAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/WriteStructuralFeatureAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteStructuralFeatureAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//WriteStructuralFeatureAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="WriteVariableAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/WriteVariableAction.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteVariableAction"/>
+      <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//WriteVariableAction"/>
     </types>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Association" helper="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice" ref="//@elementTypes/@types.18" matcher="org.eclipse.papyrus.uml.service.types.matcher.AssociationMatcher"/>
     <types xsi:type="domaincontextcodegen:SpecializationType" name="Trace" helper="org.eclipse.papyrus.uml.service.types.helper.advice.TraceEditHelperAdvice" ref="//@elementTypes/@types.0" matcher="org.eclipse.papyrus.uml.service.types.matcher.TraceMatcher"/>

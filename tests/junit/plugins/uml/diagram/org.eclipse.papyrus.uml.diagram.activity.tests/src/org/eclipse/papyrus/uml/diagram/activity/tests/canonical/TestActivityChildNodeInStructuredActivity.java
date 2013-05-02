@@ -16,28 +16,26 @@ package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
-import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
 
-public  class TestActivityChildNodeInStructuredActivity extends AbstractTestActivityChildwithOtherCreation {
+public  class TestActivityChildNodeInStructuredActivity extends AbstractTestActivityChildNode {
 
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.StructuredActivityNode_3065, getDiagramEditPart().getDiagramPreferencesHint());
 	}
-	@Override
-	protected ICreationCommand getDiagramCommandCreation() {
-		return  new CreateActivityDiagramCommand();
-	}
+	
 	/**
-	 * Test to manage component.
+	 * Test to manage opaque action.
 	 */
 	@Test
 	public void testToManageOpaqueAction() {
-		testToManageChildNode(UMLElementTypes.OpaqueAction_3007, UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.OpaqueAction_3007, UMLPackage.eINSTANCE.getOpaqueAction(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
 }

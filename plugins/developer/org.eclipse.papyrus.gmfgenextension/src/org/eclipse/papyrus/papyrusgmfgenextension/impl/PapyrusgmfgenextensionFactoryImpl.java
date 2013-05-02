@@ -47,7 +47,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	 */
 	public static PapyrusgmfgenextensionFactory init() {
 		try {
-			PapyrusgmfgenextensionFactory thePapyrusgmfgenextensionFactory = (PapyrusgmfgenextensionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"); 
+			PapyrusgmfgenextensionFactory thePapyrusgmfgenextensionFactory = (PapyrusgmfgenextensionFactory)EPackage.Registry.INSTANCE.getEFactory(PapyrusgmfgenextensionPackage.eNS_URI);
 			if (thePapyrusgmfgenextensionFactory != null) {
 				return thePapyrusgmfgenextensionFactory;
 			}
@@ -97,6 +97,9 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			case PapyrusgmfgenextensionPackage.COMPARTMENT_VISIBILITY_PREFERENCE: return createCompartmentVisibilityPreference();
 			case PapyrusgmfgenextensionPackage.COMPARTMENT_TITLE_VISIBILITY_PREFERENCE: return createCompartmentTitleVisibilityPreference();
 			case PapyrusgmfgenextensionPackage.CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY: return createConstrainedByReferenceCompartmentItemSemanticEditPolicy();
+			case PapyrusgmfgenextensionPackage.EXTERNAL_ELEMENT_TYPES_LIBRARY: return createExternalElementTypesLibrary();
+			case PapyrusgmfgenextensionPackage.EXTERNAL_METAMODEL_TYPE: return createExternalMetamodelType();
+			case PapyrusgmfgenextensionPackage.GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND: return createGenerateUsingElementTypeCreationCommand();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -310,6 +313,36 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public ConstrainedByReferenceCompartmentItemSemanticEditPolicy createConstrainedByReferenceCompartmentItemSemanticEditPolicy() {
 		ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl constrainedByReferenceCompartmentItemSemanticEditPolicy = new ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl();
 		return constrainedByReferenceCompartmentItemSemanticEditPolicy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalElementTypesLibrary createExternalElementTypesLibrary() {
+		ExternalElementTypesLibraryImpl externalElementTypesLibrary = new ExternalElementTypesLibraryImpl();
+		return externalElementTypesLibrary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalMetamodelType createExternalMetamodelType() {
+		ExternalMetamodelTypeImpl externalMetamodelType = new ExternalMetamodelTypeImpl();
+		return externalMetamodelType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenerateUsingElementTypeCreationCommand createGenerateUsingElementTypeCreationCommand() {
+		GenerateUsingElementTypeCreationCommandImpl generateUsingElementTypeCreationCommand = new GenerateUsingElementTypeCreationCommandImpl();
+		return generateUsingElementTypeCreationCommand;
 	}
 
 	/**

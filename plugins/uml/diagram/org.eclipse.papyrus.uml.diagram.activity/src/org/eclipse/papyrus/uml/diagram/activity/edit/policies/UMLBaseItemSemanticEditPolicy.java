@@ -46,6 +46,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -306,6 +307,17 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		// Retrieve create command from the Element Edit service
 		ICommand createGMFCommand = provider.getEditCommand(request);
 		return getGEFWrapper(createGMFCommand);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected ICommand getSemanticCreationCommand(CreateElementRequest req) {
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(req.getContainer());
+		if(commandService == null) {
+			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+		}
+		return commandService.getEditCommand(req);
 	}
 
 	/**

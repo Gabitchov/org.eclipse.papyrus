@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmfgen:GenEditorGenerator
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
+    templateDirectory="">
+  <diagram>
+    <diagramRunTimeClass
+        href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
+    <topLevelNodes>
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          uniqueIdentifier="org.eclipse.papyrus.uml.Constraint"
+          displayName="Constraint_Semantic"
+          definedExternally="true"/>
+      <modelFacet>
+        <metaClass
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
+        <containmentMetaFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+      </modelFacet>
+    </topLevelNodes>
+    <topLevelNodes>
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          uniqueIdentifier="org.eclipse.papyrus.uml.AddVariableValueAction"
+          displayName="AddVariableValueAction_Semantic"
+          definedExternally="true"/>
+      <modelFacet>
+        <metaClass
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/AddVariableValueAction"/>
+      </modelFacet>
+    </topLevelNodes>
+  </diagram>
+  <domainGenModel
+      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#/"/>
+</gmfgen:GenEditorGenerator>

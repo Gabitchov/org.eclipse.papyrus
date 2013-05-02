@@ -14,17 +14,15 @@
 package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.junit.Ignore;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
 
 /**
  * The Class TestClassDiagramChildNode.
  */
-public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestActivityChildwithOtherCreation {
+public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestActivityChildNode {
 
 	
 	/**
@@ -32,32 +30,36 @@ public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestA
 	 */
 	@Test
 	public void testToManageCallbehaviorAction() {
-		testToManageChildNode(UMLElementTypes.CallBehaviorAction_3008, UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.CallBehaviorAction_3008, UMLPackage.eINSTANCE.getCallBehaviorAction(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
 	/**
 	 * Test to manage callOperationAction
 	 */
 	@Test
 	public void testToManageCallOperationAction() {
-		testToManageChildNode(UMLElementTypes.CallOperationAction_3010, UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.CallOperationAction_3010, UMLPackage.eINSTANCE.getCallOperationAction(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
 	
 	/**
-	 * Test to manageDecision Node.
+	 * Test to manage SendSignalAction Node.
 	 */
 	@Test
 	public void testToManageSendSignalAction() {
-		testToManageChildNode(UMLElementTypes.SendSignalAction_3052, UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.SendSignalAction_3052, UMLPackage.eINSTANCE.getSendSignalAction(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
 	
-	@Override
-	protected ICreationCommand getDiagramCommandCreation() {
-		return  new CreateActivityDiagramCommand();
+	/**
+	 * Test to SendObjectAction Node.
+	 */
+	@Test
+	public void testToManageSendObjectAction() {
+		testToManageNode(UMLElementTypes.SendObjectAction_3042, UMLPackage.eINSTANCE.getSendObjectAction(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
-
-	@Override
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

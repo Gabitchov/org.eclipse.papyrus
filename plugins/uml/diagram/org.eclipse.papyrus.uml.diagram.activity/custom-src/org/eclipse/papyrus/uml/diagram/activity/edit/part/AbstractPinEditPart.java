@@ -1,8 +1,6 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
 import org.eclipse.draw2d.AbstractPointListShape;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.notation.View;

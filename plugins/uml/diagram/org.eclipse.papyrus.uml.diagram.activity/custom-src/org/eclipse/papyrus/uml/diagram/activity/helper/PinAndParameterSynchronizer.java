@@ -71,7 +71,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalAction
 import org.eclipse.papyrus.uml.diagram.activity.handlers.SynchronizePinsParametersHandler;
 import org.eclipse.papyrus.uml.diagram.activity.helper.datastructure.LinkPinToParameter;
 import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
-import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -2503,13 +2502,25 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		List<? extends TypedElement> parameters = Collections.emptyList();
 		if(action instanceof CallBehaviorAction) {
 			behaviorStructural = ((CallBehaviorAction)action).getBehavior();
-			parameters = ((Behavior)behaviorStructural).getOwnedParameters();
+			if(behaviorStructural!=null) {
+				parameters = ((Behavior)behaviorStructural).getOwnedParameters();
+			} else {
+				return globalCmd;
+			}
 		} else if(action instanceof CallOperationAction) {
 			behaviorStructural = ((CallOperationAction)action).getOperation();
-			parameters = ((Operation)behaviorStructural).getOwnedParameters();
+			if(behaviorStructural!=null) {
+				parameters = ((Operation)behaviorStructural).getOwnedParameters();	
+			} else {
+				return globalCmd;
+			}
 		} else if(action instanceof SendSignalAction) {
 			behaviorStructural = ((SendSignalAction)action).getSignal();
-			parameters = ((Signal)behaviorStructural).getOwnedAttributes();
+			if(behaviorStructural!=null) {
+				parameters = ((Signal)behaviorStructural).getOwnedAttributes();	
+			} else {
+				return globalCmd;
+			}
 		} else if(action instanceof BroadcastSignalAction) {
 			Signal signal = ((BroadcastSignalAction)action).getSignal();
 			if(signal != null) {

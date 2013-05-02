@@ -220,9 +220,11 @@
 	</metamodelType>
 	
 	<!-- IMetamodelType for CentralBufferNode -->
-	<metamodelType id="org.eclipse.papyrus.uml.CentralBufferNode" name="UML::CentralBufferNode"
-		eclass="CentralBufferNode"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+	<metamodelType
+       eclass="CentralBufferNode"
+       id="org.eclipse.papyrus.uml.CentralBufferNode"
+       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+       name="UML::CentralBufferNode">
 			<param name="semanticHint" value="UML::CentralBufferNode"/>
 	</metamodelType>
 	
