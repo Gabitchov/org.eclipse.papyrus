@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.fcm.profile;
+package org.eclipse.papyrus.FCM;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
