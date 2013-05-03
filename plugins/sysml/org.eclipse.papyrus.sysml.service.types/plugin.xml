@@ -936,6 +936,173 @@
 	</binding>
 	
 </extension>
+<extension point="org.eclipse.ui.commands">
 
+	<!-- Creation command for ActorPart -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ActorPart" id="org.eclipse.papyrus.sysml.service.types.ActorPartCreateCommand" name="Create a new ActorPart">
+	</command>
+	
+	<!-- Creation command for Allocate -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Allocate" id="org.eclipse.papyrus.sysml.service.types.AllocateCreateCommand" name="Create a new Allocate">
+	</command>
+	
+	<!-- Creation command for Association -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Association" id="org.eclipse.papyrus.sysml.service.types.AssociationCreateCommand" name="Create a new Association">
+	</command>
+	
+	<!-- Creation command for AssociationComposite -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new AssociationComposite" id="org.eclipse.papyrus.sysml.service.types.AssociationCompositeCreateCommand" name="Create a new AssociationComposite">
+	</command>
+	
+	<!-- Creation command for AssociationCompositeDirected -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new AssociationCompositeDirected" id="org.eclipse.papyrus.sysml.service.types.AssociationCompositeDirectedCreateCommand" name="Create a new AssociationCompositeDirected">
+	</command>
+	
+	<!-- Creation command for AssociationNone -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new AssociationNone" id="org.eclipse.papyrus.sysml.service.types.AssociationNoneCreateCommand" name="Create a new AssociationNone">
+	</command>
+	
+	<!-- Creation command for AssociationNoneDirected -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new AssociationNoneDirected" id="org.eclipse.papyrus.sysml.service.types.AssociationNoneDirectedCreateCommand" name="Create a new AssociationNoneDirected">
+	</command>
+	
+	<!-- Creation command for AssociationShared -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new AssociationShared" id="org.eclipse.papyrus.sysml.service.types.AssociationSharedCreateCommand" name="Create a new AssociationShared">
+	</command>
+	
+	<!-- Creation command for AssociationSharedDirected -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new AssociationSharedDirected" id="org.eclipse.papyrus.sysml.service.types.AssociationSharedDirectedCreateCommand" name="Create a new AssociationSharedDirected">
+	</command>
+	
+	<!-- Creation command for Block -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Block" id="org.eclipse.papyrus.sysml.service.types.BlockCreateCommand" name="Create a new Block">
+	</command>
+	
+	<!-- Creation command for Conform -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Conform" id="org.eclipse.papyrus.sysml.service.types.ConformCreateCommand" name="Create a new Conform">
+	</command>
+		
+	<!-- Creation command for ConstraintBlock -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ConstraintBlock" id="org.eclipse.papyrus.sysml.service.types.ConstraintBlockCreateCommand" name="Create a new ConstraintBlock">
+	</command>
+
+	<!-- Creation command for ConstraintBlockParameter -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Parameter" id="org.eclipse.papyrus.sysml.service.types.ConstraintBlockParameterCreateCommand" name="Create a new Parameter">
+	</command>
+
+	<!-- Creation command for ConstraintProperty -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ConstraintProperty" id="org.eclipse.papyrus.sysml.service.types.ConstraintPropertyCreateCommand" name="Create a new ConstraintProperty">
+	</command>
+	
+	<!-- Creation command for Copy -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Copy" id="org.eclipse.papyrus.sysml.service.types.CopyCreateCommand" name="Create a new Copy">
+	</command>
+	
+	<!-- Creation command for DeriveReqt -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new DeriveReqt" id="org.eclipse.papyrus.sysml.service.types.DeriveReqtCreateCommand" name="Create a new DeriveReqt">
+	</command>
+	
+	<!-- Creation command for Dimension -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Dimension" id="org.eclipse.papyrus.sysml.service.types.DimensionCreateCommand" name="Create a new Dimension">
+	</command>
+	
+	<!-- Creation command for FlowPort -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new FlowPort" id="org.eclipse.papyrus.sysml.service.types.FlowPortCreateCommand" name="Create a new FlowPort">
+	</command>
+	  
+	<!-- Creation command for FlowPort_InOut -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new FlowPort_InOut" id="org.eclipse.papyrus.sysml.service.types.FlowPort_InOutCreateCommand" name="Create a new FlowPort_InOut">
+	</command>
+	
+	<!-- Creation command for FlowPort_In -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new FlowPort_In" id="org.eclipse.papyrus.sysml.service.types.FlowPort_InCreateCommand" name="Create a new FlowPort_In">
+	</command>
+	
+	<!-- Creation command for FlowPort_Out -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new FlowPort_Out" id="org.eclipse.papyrus.sysml.service.types.FlowPort_OutCreateCommand" name="Create a new FlowPort_Out">
+	</command>
+
+	<!-- Creation command for FlowPort_NA -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new FlowPort (non atomic)" id="org.eclipse.papyrus.sysml.service.types.FlowPort_NACreateCommand" name="Create a new FlowPort (non atomic)">
+	</command>
+
+	<!-- Creation command for FlowProperty -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new FlowProperty" id="org.eclipse.papyrus.sysml.service.types.FlowPropertyCreateCommand" name="Create a new FlowProperty">
+	</command>
+	
+	<!-- Creation command for FlowSpecification -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new FlowSpecification" id="org.eclipse.papyrus.sysml.service.types.FlowSpecificationCreateCommand" name="Create a new FlowSpecification">
+	</command>
+	
+	<!-- Creation command for ItemFlow -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ItemFlow" id="org.eclipse.papyrus.sysml.service.types.ItemFlowCreateCommand" name="Create a new ItemFlow">
+	</command>
+
+	<!-- Creation command for PartProperty -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new PartProperty" id="org.eclipse.papyrus.sysml.service.types.PartPropertyCreateCommand" name="Create a new PartProperty">
+	</command>
+		
+	<!-- Creation command for Problem -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Problem" id="org.eclipse.papyrus.sysml.service.types.ProblemCreateCommand" name="Create a new Problem">
+	</command>
+	
+	<!-- Creation command for Rationale -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Rationale" id="org.eclipse.papyrus.sysml.service.types.RationaleCreateCommand" name="Create a new Rationale">
+	</command>
+	
+	<!-- Creation command for ReferenceProperty -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ReferenceProperty" id="org.eclipse.papyrus.sysml.service.types.ReferencePropertyCreateCommand" name="Create a new ReferenceProperty">
+	</command>
+	
+	<!-- Creation command for Requirement -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Requirement" id="org.eclipse.papyrus.sysml.service.types.RequirementCreateCommand" name="Create a new Requirement">
+	</command>
+	
+	<!-- Creation command for Satisfy -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Satisfy" id="org.eclipse.papyrus.sysml.service.types.SatisfyCreateCommand" name="Create a new Satisfy">
+	</command>
+	
+	<!-- Creation command for Unit -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Unit" id="org.eclipse.papyrus.sysml.service.types.UnitCreateCommand" name="Create a new Unit">
+	</command>
+	
+	<!-- Creation command for ValueProperty -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ValueProperty" id="org.eclipse.papyrus.sysml.service.types.ValuePropertyCreateCommand" name="Create a new ValueProperty">
+	</command>
+	
+	<!-- Creation command for ValueType -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ValueType" id="org.eclipse.papyrus.sysml.service.types.ValueTypeCreateCommand" name="Create a new ValueType">
+	</command>
+	
+	<!-- Creation command for ValueType_Enumeration -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ValueType_Enumeration" id="org.eclipse.papyrus.sysml.service.types.ValueType_EnumerationCreateCommand" name="Create a new ValueType_Enumeration">
+	</command>
+	
+	<!-- Creation command for ValueType_PrimitiveType -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ValueType_PrimitiveType" id="org.eclipse.papyrus.sysml.service.types.ValueType_PrimitiveTypeCreateCommand" name="Create a new ValueType_PrimitiveType">
+	</command>
+	
+	<!-- Creation command for Verify -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new Verify" id="org.eclipse.papyrus.sysml.service.types.VerifyCreateCommand" name="Create a new Verify">
+	</command>
+	
+	<!-- Creation command for View -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new View" id="org.eclipse.papyrus.sysml.service.types.ViewCreateCommand" name="Create a new View">
+	</command>
+	
+	<!-- Creation command for ViewPoint -->
+	<command categoryId="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands" description="Create a new ViewPoint" id="org.eclipse.papyrus.sysml.service.types.ViewPointCreateCommand" name="Create a new ViewPoint">
+	</command>
+	
+	<!-- Category for the creation of Sysml elements-->
+	
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <category
+         id="org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands"
+         name="Commands for the creation of Sysml elements">
+   </category>
+</extension>
 </plugin>
 

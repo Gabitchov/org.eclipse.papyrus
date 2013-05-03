@@ -115,6 +115,18 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canCreateAxisElement(java.lang.String)
+	 * 
+	 * @param elementId
+	 * @return
+	 */
+	@Override
+	public boolean canCreateAxisElement(String elementId) {
+		return false;
+	}
+
+	/**
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDropAxisElement(java.util.Collection)
 	 * 
 	 * @param objectsToAdd

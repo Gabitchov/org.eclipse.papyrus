@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
-public class UmlElementCommandFilter implements IUmlElementCommandFilter {
+public class UmlElementCommandFilter implements ICommandFilter {
 
 	private List<IElementType> visibleCommands;
 

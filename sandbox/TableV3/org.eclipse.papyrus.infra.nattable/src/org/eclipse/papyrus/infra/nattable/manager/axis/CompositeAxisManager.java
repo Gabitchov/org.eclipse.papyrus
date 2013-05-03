@@ -111,6 +111,14 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		return answer;
 	}
 
+	@Override
+	public boolean canCreateAxisElement(String elementId) {
+		boolean canCreateAxisElement = false;
+		for(IAxisManager manager : subManagers) {
+			canCreateAxisElement |= manager.canCreateAxisElement(elementId);
+		}
+		return canCreateAxisElement;
+	}
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,

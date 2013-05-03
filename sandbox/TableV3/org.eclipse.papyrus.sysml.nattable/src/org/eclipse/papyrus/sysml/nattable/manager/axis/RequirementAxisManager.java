@@ -62,6 +62,12 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 		super.dispose();
 	}
 
+
+	@Override
+	public boolean canCreateAxisElement(String elementId) {
+		return "org.eclipse.papyrus.sysml.Requirement".equals(elementId); //$NON-NLS-1$
+	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#filterObject(java.util.List)

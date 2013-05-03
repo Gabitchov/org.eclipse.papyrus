@@ -72,13 +72,15 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 
 	/**
 	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
+	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
 	 * 
-	 * @return true (enabled) when the command can be executed.
+	 * @param evaluationContext
 	 */
 	@Override
-	public boolean isEnabled() {
-		return getCommand().canExecute();
+	public void setEnabled(Object evaluationContext) {
+		Command command = getCommand();
+		super.setEnabled(command.canExecute());
+
 	}
 
 	/**
@@ -89,6 +91,11 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 		return getCommand().canExecute();
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the editing domain to use
+	 */
 	protected TransactionalEditingDomain getEditingDomain() {
 		ICommandContext cmdContext = getCommandContext();
 		if(cmdContext != null) {

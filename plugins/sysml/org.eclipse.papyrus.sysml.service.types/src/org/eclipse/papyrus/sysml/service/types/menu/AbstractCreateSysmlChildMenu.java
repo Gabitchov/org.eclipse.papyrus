@@ -9,7 +9,7 @@
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.service.types.menu;
+package org.eclipse.papyrus.sysml.service.types.menu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,8 +17,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.Category;
 import org.eclipse.core.commands.Command;
+import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.expressions.EvaluationResult;
 import org.eclipse.core.expressions.Expression;
@@ -26,7 +28,7 @@ import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.commands.Activator;
+import org.eclipse.papyrus.sysml.service.types.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
@@ -38,19 +40,19 @@ import org.eclipse.ui.menus.ExtensionContributionFactory;
 import org.eclipse.ui.menus.IContributionRoot;
 import org.eclipse.ui.services.IServiceLocator;
 
+
 /**
  * Abstract menu for the creation of Sysml elements
  */
-public abstract class AbstractCreateUmlChildMenu extends ExtensionContributionFactory {
+public abstract class AbstractCreateSysmlChildMenu extends ExtensionContributionFactory {
 
 	/**
+	 * Constructor.
 	 * 
-	 * @see org.eclipse.ui.menus.AbstractContributionFactory#createContributionItems(org.eclipse.ui.services.IServiceLocator,
-	 *      org.eclipse.ui.menus.IContributionRoot)
-	 * 
-	 * @param serviceLocator
-	 * @param additions
 	 */
+	public AbstractCreateSysmlChildMenu() {
+	}
+
 	@Override
 	public void createContributionItems(IServiceLocator serviceLocator, IContributionRoot additions) {
 		//test to know if we can create elements if it is possible...
@@ -67,35 +69,40 @@ public abstract class AbstractCreateUmlChildMenu extends ExtensionContributionFa
 
 	}
 
-	/**
-	 * 
-	 * @param serviceLocator
-	 * @param additions
-	 * @param parent
-	 * @return
-	 */
 	private List<CommandContributionItem> addCreationItems(IServiceLocator serviceLocator, IContributionRoot additions, IContributionManager parent) {
 		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
-		String categoryId = "org.eclipse.papyrus.uml.service.types.umlElementCreationCommands"; //$NON-NLS-1$
+		String categoryId = "org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands"; //$NON-NLS-1$
 		List<CommandContributionItem> items = new ArrayList<CommandContributionItem>();
-		Category category = commandService.getCategory(categoryId);
+		Category sysmlCategory = commandService.getCategory(categoryId);
 		Set<Command> commands = new TreeSet<Command>();
 		commands.addAll(Arrays.asList(commandService.getDefinedCommands()));
-		for(Command command : commands) {
+		ArrayList<Command> commandsForMenuItems = new ArrayList<Command>();
+		try {
+			for(Command command : commands) {
 
-			String commandId = command.getId();
-			boolean isEnabled = commandService.getCommand(commandId).getHandler().isEnabled();
-			CommandContributionItemParameter p = new CommandContributionItemParameter(serviceLocator, "", commandId, SWT.PUSH); //$NON-NLS-1$
-			try {
-				if(command.isDefined() && command.getCategory().equals(category) && isEnabled) {
-					p.label = command.getDescription();
-					p.icon = getCommandIcon(command);
-					CommandContributionItem item = new CommandContributionItem(p);
-					items.add(item);
+				IHandler handler = command.getHandler();
+				if(handler == null) {
+					continue;
 				}
-			} catch (NotDefinedException e) {
-				Activator.log.debug(e.getLocalizedMessage());
+				if(command.getCategory().equals(sysmlCategory)) {
+					//FIXME : verify utility of setEnabled(null)
+					((AbstractHandler)handler).setEnabled(null);
+					boolean isEnabled = handler.isEnabled();
+					if(isEnabled) {
+						commandsForMenuItems.add(command);
+					}
+				}
 			}
+			for(Command command : commandsForMenuItems) {
+				String commandId = command.getId();
+				CommandContributionItemParameter p = new CommandContributionItemParameter(serviceLocator, "", commandId, SWT.PUSH); //$NON-NLS-1$
+				p.label = command.getDescription();
+				p.icon = getCommandIcon(command);
+				CommandContributionItem item = new CommandContributionItem(p);
+				items.add(item);
+			}
+		} catch (NotDefinedException e) {
+			Activator.log.error(e.getLocalizedMessage(), e);
 		}
 		return items;
 

@@ -752,8 +752,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public boolean canCreateRowElement(String elementType) {
-		// TODO Auto-generated method stub
-		return true;
+		return this.rowManager.canCreateAxisElement(elementType);
 	}
 
 	public boolean canCreateColumnElement(String elementType) {

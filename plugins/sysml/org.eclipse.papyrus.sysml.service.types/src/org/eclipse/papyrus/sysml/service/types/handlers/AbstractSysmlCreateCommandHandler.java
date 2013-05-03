@@ -9,22 +9,25 @@
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.service.types.filter;
+package org.eclipse.papyrus.sysml.service.types.handlers;
 
-import java.util.List;
+import org.eclipse.papyrus.sysml.service.types.filter.SysmlCommandFilter;
+import org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler;
 
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+
 
 /**
- * Interface for creation command filter.
+ * 
+ * Abstract handler for every creation command for Sysml elements
+ * used in the ModelExplorer contextual ("Create new child") menu
+ * 
  */
-public interface IUmlElementCommandFilter {
+public abstract class AbstractSysmlCreateCommandHandler extends AbstractCreateCommandHandler {
 
-	/**
-	 * Get the list of element type for which the creation command is visible.
-	 * 
-	 * @return the list of allowed element types.
-	 */
-	public List<IElementType> getVisibleCommands();
+	@Override
+	protected void initFilter() {
+		filter = new SysmlCommandFilter();
+	}
+
 
 }

@@ -160,4 +160,13 @@ public interface IAxisManager extends IDisposable {
 	 * @param axisToMove
 	 */
 	public void moveAxis(final Object elementToMove, final int newIndex);
+
+	/**
+	 * 
+	 * @param elementId
+	 *        the id of the element to create
+	 * @return
+	 *         <code>true</code> if the element can be created
+	 */
+	public boolean canCreateAxisElement(final String elementId);
 }

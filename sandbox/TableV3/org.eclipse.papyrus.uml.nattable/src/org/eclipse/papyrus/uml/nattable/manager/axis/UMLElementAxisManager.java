@@ -38,4 +38,9 @@ public class UMLElementAxisManager extends EObjectAxisManager {
 		}
 		return value;
 	}
+
+	@Override
+	public boolean canCreateAxisElement(String elementId) {
+		return true;//FIXME : must be true only for uml elements
+	}
 }
