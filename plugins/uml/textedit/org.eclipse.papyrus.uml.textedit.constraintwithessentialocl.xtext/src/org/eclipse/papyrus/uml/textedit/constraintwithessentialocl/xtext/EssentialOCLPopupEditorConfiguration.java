@@ -32,14 +32,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLPlugin;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.DefaultXtextSemanticValidator;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXTextSemanticValidator;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.partialEditing.SourceViewerHandle;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.xtext.gmf.glue.edit.part.DefaultXtextSemanticValidator;
-import org.eclipse.xtext.gmf.glue.edit.part.IXTextSemanticValidator;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
-import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
-import org.eclipse.xtext.gmf.glue.partialEditing.SourceViewerHandle;
 import org.eclipse.xtext.resource.XtextResource;
 
 import com.google.inject.Injector;
@@ -49,7 +49,7 @@ import com.google.inject.Injector;
  * this plugin is the configuration of the essential editor
  *
  */
-public class EssentialOCLPopupEditorConfiguration extends org.eclipse.xtext.gmf.glue.PopupEditorConfiguration
+public class EssentialOCLPopupEditorConfiguration extends org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration
 {
 	
 	/**

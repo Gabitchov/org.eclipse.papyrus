@@ -124,7 +124,7 @@ public class UmlCommonScopeProvider extends AbstractDeclarativeScopeProvider {
 	 */
 	protected IScope create___TypeRule_type___Scope(org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule ctx) {
 		if(ctx.getPath() == null) {
-			Iterator<EObject> i = org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper.context.eResource().getAllContents();
+			Iterator<EObject> i = org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper.context.eResource().getAllContents();
 			List<EObject> allContent = new ArrayList<EObject>();
 			while(i.hasNext()) {
 				EObject object = i.next();

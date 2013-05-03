@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.internal.UmlParameterActivator;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ParameterRule;
@@ -35,13 +36,12 @@ import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.ParameterEffectKind;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
 import com.google.inject.Injector;
 
 
 
-public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditorConfiguration {
+public class ParameterPopupEditor extends org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration {
 
 	/** the new name for the {@link Parameter} */
 	private String newName;

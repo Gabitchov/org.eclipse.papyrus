@@ -14,7 +14,7 @@
 
 package org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.validation;
 
-import org.eclipse.xtext.gmf.glue.edit.part.IXTextSemanticValidator;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXTextSemanticValidator;
 
 /**
  * Custom implementation for IXtextSemanticValidator in the context of the textual editor for constraints coupled with VSL

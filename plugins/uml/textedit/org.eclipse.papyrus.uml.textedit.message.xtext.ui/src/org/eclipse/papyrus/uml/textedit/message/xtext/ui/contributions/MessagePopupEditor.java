@@ -27,13 +27,13 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.DefaultXtextSemanticValidator;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.papyrus.uml.textedit.message.xtext.ui.internal.UmlMessageActivator;
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
-import org.eclipse.xtext.gmf.glue.edit.part.DefaultXtextSemanticValidator;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
 import com.google.inject.Injector;
 

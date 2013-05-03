@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.xtext.gmf.glue,
- org.eclipse.xtext.gmf.glue.concurrency,
- org.eclipse.xtext.gmf.glue.contentassist,
- org.eclipse.xtext.gmf.glue.edit.part,
- org.eclipse.xtext.gmf.glue.editingdomain,
- org.eclipse.xtext.gmf.glue.partialEditing
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.xtext.glue,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.concurrency,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.editingdomain,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.partialEditing
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.common;bundle-version="2.5.0",
@@ -25,8 +25,8 @@ Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.0.qualifier
 Bundle-Name: XText GMF Glue (Incubation)
-Bundle-Activator: org.eclipse.xtext.gmf.glue.Activator
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.xtext.glue.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.xtext.gmf.glue;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.xtext.glue;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

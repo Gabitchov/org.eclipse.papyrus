@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.papyrus.infra.widgets.providers.HierarchicToFlatContentProvider;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
@@ -33,8 +35,6 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.gmf.glue.contentassist.CompletionProposalUtils;
-import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 

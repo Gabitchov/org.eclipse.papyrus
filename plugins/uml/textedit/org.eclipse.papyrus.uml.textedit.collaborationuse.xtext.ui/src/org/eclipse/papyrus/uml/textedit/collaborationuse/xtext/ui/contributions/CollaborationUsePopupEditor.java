@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.internal.UmlCollaborationUseActivator;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.CollaborationUseRule;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.TypeRule;
@@ -33,7 +34,6 @@ import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.validation.Semant
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
 import com.google.inject.Injector;
 
@@ -42,7 +42,7 @@ import com.google.inject.Injector;
  * Editor for the {@link CollaborationUse}
  * 
  */
-public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditorConfiguration {
+public class CollaborationUsePopupEditor extends org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration {
 
 	/** the new name for the {@link CollaborationUse} */
 	private String newName;

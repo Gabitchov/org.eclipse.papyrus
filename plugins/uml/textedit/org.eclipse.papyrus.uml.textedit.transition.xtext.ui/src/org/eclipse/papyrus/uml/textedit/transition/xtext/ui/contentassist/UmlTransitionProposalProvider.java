@@ -9,6 +9,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.scoping.UmlTransitionScopeProvider;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.CallOrSignalEventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EventRule;
@@ -16,7 +17,6 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.Transitio
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 /**

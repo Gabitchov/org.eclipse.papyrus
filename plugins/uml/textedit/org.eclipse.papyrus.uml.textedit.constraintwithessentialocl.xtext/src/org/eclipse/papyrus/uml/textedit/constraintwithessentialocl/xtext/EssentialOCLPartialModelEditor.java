@@ -20,9 +20,9 @@ import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.source.SourceViewer;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
-import org.eclipse.xtext.gmf.glue.partialEditing.ISyntheticResourceProvider;
-import org.eclipse.xtext.gmf.glue.partialEditing.PartialModelEditor;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.partialEditing.ISyntheticResourceProvider;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.partialEditing.PartialModelEditor;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.StringInputStream;
 

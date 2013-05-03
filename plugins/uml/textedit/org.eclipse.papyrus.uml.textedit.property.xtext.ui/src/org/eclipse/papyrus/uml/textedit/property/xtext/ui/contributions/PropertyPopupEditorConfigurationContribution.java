@@ -24,6 +24,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.textedit.property.xtext.ui.internal.UmlPropertyActivator;
@@ -35,8 +37,6 @@ import org.eclipse.papyrus.uml.textedit.property.xtext.validation.UmlPropertyJav
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
 import com.google.inject.Injector;
 //import org.eclipse.papyrus.views.properties.runtime.modelhandler.emf.EMFUtils;

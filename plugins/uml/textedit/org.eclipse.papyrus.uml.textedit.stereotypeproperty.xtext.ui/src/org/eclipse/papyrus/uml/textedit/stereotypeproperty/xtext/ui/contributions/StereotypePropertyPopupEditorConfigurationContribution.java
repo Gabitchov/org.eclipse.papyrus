@@ -25,6 +25,8 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.papyrus.uml.alf.alf.BOOLEAN_LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.INTEGER_LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.NameExpression;
@@ -38,8 +40,6 @@ import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.PrimitiveType;
-import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
 import com.google.inject.Injector;
 //import org.eclipse.papyrus.views.properties.runtime.modelhandler.emf.EMFUtils;

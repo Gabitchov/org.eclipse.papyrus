@@ -19,6 +19,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CustomCompletionProposal;
 import org.eclipse.papyrus.uml.textedit.property.xtext.scoping.UmlPropertyScopeProvider;
 import org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions.UMLPropertyEditorPropertyUtil;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.ModifierSpecification;
@@ -37,8 +39,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.gmf.glue.contentassist.CompletionProposalUtils;
-import org.eclipse.xtext.gmf.glue.contentassist.CustomCompletionProposal;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 

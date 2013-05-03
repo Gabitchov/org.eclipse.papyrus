@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.textedit.state.xtext.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.DoRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.EntryRule;
@@ -30,7 +31,6 @@ import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Vertex;
-import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.xtext.validation.Check;
  
 

@@ -14,7 +14,7 @@
 
 package org.eclipse.papyrus.uml.textedit.state.xtext.validation;
 
-import org.eclipse.xtext.gmf.glue.edit.part.IXTextSemanticValidator;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXTextSemanticValidator;
 
 public class SemanticValidator implements IXTextSemanticValidator {
 

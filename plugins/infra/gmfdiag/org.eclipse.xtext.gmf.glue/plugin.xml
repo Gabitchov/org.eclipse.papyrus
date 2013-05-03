@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.startup">
       <startup
-            class="org.eclipse.xtext.gmf.glue.concurrency.ConcurrentModificationObserver$Initializer">
+            class="org.eclipse.papyrus.infra.gmfdiag.xtext.glue.concurrency.ConcurrentModificationObserver$Initializer">
       </startup>
    </extension>
 

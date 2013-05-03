@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.xtext.resource.XtextResource;
 
 /**
