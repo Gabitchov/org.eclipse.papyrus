@@ -29,7 +29,7 @@ unwished behaviors, related to the base implementation (GMF, Papyrus...)
  * For standard nodes (OpaqueAction, ...), they are not implemented at all, 
  * so a global selector will not have side effects (yet). 
  */
-ActivityDiagram Activity * {
+ActivityDiagram Activity *,InteractionOverviewDiagram Activity * {
 	elementIcon:false; 
 }
 
