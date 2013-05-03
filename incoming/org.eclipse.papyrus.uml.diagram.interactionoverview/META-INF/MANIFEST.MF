@@ -45,3 +45,4 @@ Export-Package: org.eclipse.papyrus.uml.diagram.interactionoverview,
  org.eclipse.papyrus.uml.diagram.interactionoverview.part,
  org.eclipse.papyrus.uml.diagram.interactionoverview.preferences,
  org.eclipse.papyrus.uml.diagram.interactionoverview.provider
+Bundle-Localization: plugin
