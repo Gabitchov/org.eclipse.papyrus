@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SubCompartmentLayoutManager;
 
 /**
  * A rectangular figure that supports compartment.
@@ -46,7 +47,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 		super(taggedLabelValue);
 
 		setLayoutManager(new AutomaticCompartmentLayoutManager());
-		setOpaque(true);
+		setOpaque(false);
 		createContentPane(compartmentFigure);
 
 	}
@@ -65,6 +66,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 			newFigure.setFill(false);
 			newFigure.setBorder(null);
 			newFigure.setOutline(false);
+			newFigure.setOpaque(false);
 			this.add(newFigure);
 			containerFigures.put(id, newFigure);
 		}

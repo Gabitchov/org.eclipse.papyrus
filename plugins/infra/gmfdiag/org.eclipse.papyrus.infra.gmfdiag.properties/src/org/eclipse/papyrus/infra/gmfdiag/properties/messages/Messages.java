@@ -17,6 +17,24 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.gmfdiag.properties.messages.messages"; //$NON-NLS-1$
 
+	public static String DecoratedModelElement_CENTER;
+
+	public static String DecoratedModelElement_EAST;
+
+	public static String DecoratedModelElement_NORTH;
+
+	public static String DecoratedModelElement_NORTH_EAST;
+
+	public static String DecoratedModelElement_NORTH_WEST;
+
+	public static String DecoratedModelElement_SOUTH;
+
+	public static String DecoratedModelElement_SOUTH_EAST;
+
+	public static String DecoratedModelElement_SOUTH_WEST;
+
+	public static String DecoratedModelElement_WEST;
+
 	public static String GradientDataModelElement_Horizontal;
 
 	public static String GradientDataModelElement_Vertical;

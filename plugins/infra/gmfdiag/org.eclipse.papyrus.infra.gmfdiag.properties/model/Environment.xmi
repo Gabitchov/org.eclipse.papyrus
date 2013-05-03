@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="ASCII"?>
-<environment:Environment
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
-  <constraintTypes
-      label="GMF Appearance Constraint"
-      constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.AppearanceConstraint"/>
-  <constraintTypes
-      label="HasEditPolicy"
-      constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.HasEditPolicy"/>
-  <constraintTypes
-      label="isGMFEditPart"
-      constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.IsEditPartConstraint"/>
-  <constraintTypes
-      label="GMF Notation Constraint"
-      constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.GMFNotationConstraint"/>
-  <modelElementFactories
-      name="GMF Appearance Factory"
-      factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.AppearanceModelElementFactory"/>
-  <modelElementFactories
-      name="GMF Custom Style"
-      factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.CustomStyleModelElementFactory"/>
-  <modelElementFactories
-      name="GMF Notation Factory"
-      factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.NotationModelElementFactory"/>
+<environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
+  <constraintTypes label="GMF Appearance Constraint" constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.AppearanceConstraint"/>
+  <constraintTypes label="HasEditPolicy" constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.HasEditPolicy"/>
+  <constraintTypes label="isGMFEditPart" constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.IsEditPartConstraint"/>
+  <constraintTypes label="GMF Notation Constraint" constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.GMFNotationConstraint"/>
+  <constraintTypes label="isDecorableElementConstraint" constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.IsDecorableElementConstraint"/>
+  <modelElementFactories name="GMF Appearance Factory" factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.AppearanceModelElementFactory"/>
+  <modelElementFactories name="GMF Custom Style" factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.CustomStyleModelElementFactory"/>
+  <modelElementFactories name="GMF Notation Factory" factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.NotationModelElementFactory"/>
+  <modelElementFactories name="Decorated Element Factory" factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.DecoratedModelElementFactory"/>
 </environment:Environment>
