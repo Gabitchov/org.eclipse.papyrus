@@ -289,6 +289,10 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 
 		String body = comment.getBody();
 
+		if(body == null) {
+			return "<Empty Comment>";
+		}
+
 		//Truncate extra lines
 		int nIndex = body.indexOf('\n');
 		int rIndex = body.indexOf('\r');
