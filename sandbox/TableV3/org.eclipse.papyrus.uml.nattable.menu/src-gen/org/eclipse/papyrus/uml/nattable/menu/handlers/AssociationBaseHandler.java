@@ -23,11 +23,11 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class AssociationBaseHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class AssociationBaseHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>
-	 * @see org.eclipse.papyrus.uml.AbstractCreateCommandHandler.handler.CreateCommandHandler#getElementTypeToCreate()
+	 * @see org.eclipse.papyrus.uml.AbstractUmlCreateCommandHandler.handler.CreateCommandHandler#getElementTypeToCreate()
 	 * 
 	 * @return the IElementType this handler is supposed to create
 	 * 

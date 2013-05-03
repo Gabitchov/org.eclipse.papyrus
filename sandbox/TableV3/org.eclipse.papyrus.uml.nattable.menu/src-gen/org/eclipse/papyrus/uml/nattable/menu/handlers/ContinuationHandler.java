@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class ContinuationHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class ContinuationHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>

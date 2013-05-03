@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class LinkEndDestructionDataHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class LinkEndDestructionDataHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>

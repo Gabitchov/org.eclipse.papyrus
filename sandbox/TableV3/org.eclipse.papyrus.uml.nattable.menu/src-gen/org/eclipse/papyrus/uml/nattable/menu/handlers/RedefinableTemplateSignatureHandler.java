@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class RedefinableTemplateSignatureHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class RedefinableTemplateSignatureHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>

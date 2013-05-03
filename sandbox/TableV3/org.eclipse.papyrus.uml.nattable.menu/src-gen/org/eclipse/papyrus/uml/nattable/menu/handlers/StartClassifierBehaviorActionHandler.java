@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class StartClassifierBehaviorActionHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class StartClassifierBehaviorActionHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>

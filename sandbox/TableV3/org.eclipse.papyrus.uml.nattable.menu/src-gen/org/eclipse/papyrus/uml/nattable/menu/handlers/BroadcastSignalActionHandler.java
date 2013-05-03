@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class BroadcastSignalActionHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class BroadcastSignalActionHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>

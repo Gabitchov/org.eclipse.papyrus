@@ -3,8 +3,7 @@
 <plugin>
 
 <extension point= "org.eclipse.ui.handlers">
-<handler class= "org.eclipse.papyrus.uml.nattable.menu.handlers.AbstractionHandler" commandId="org.eclipse.papyrus.uml.service.types.AbstractionCreateCommand">
-   </handler>
+<handler class= "org.eclipse.papyrus.uml.nattable.menu.handlers.AbstractionHandler" commandId="org.eclipse.papyrus.uml.service.types.AbstractionCreateCommand"></handler>
 <handler class= "org.eclipse.papyrus.uml.nattable.menu.handlers.AcceptCallActionHandler" commandId="org.eclipse.papyrus.uml.service.types.AcceptCallActionCreateCommand"></handler>
 <handler class= "org.eclipse.papyrus.uml.nattable.menu.handlers.AcceptEventActionHandler" commandId="org.eclipse.papyrus.uml.service.types.AcceptEventActionCreateCommand"></handler>
 <handler class= "org.eclipse.papyrus.uml.nattable.menu.handlers.ActionExecutionSpecificationHandler" commandId="org.eclipse.papyrus.uml.service.types.ActionExecutionSpecificationCreateCommand"></handler>
@@ -273,7 +272,7 @@
    </menuContribution>
       <menuContribution
             allPopups="false"
-            class="org.eclipse.papyrus.uml.nattable.menu.handlers.UMLNattableCreateMenu"
+            class="org.eclipse.papyrus.uml.nattable.menu.handlers.UmlNattableCreateMenu"
             locationURI="popup:org.eclipse.papyrus.uml.nattable.create.uml.menu">
       </menuContribution>
       

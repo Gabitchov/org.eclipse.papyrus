@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class OccurrenceSpecificationHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class OccurrenceSpecificationHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>

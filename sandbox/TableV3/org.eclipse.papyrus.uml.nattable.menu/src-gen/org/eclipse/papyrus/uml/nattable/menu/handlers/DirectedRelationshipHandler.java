@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class DirectedRelationshipHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class DirectedRelationshipHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>

@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.nattable.menu.handlers;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -26,35 +27,22 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.nattable.menu.messages.Messages;
-import org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler;
-import org.eclipse.papyrus.uml.service.types.utils.CommandContext;
+import org.eclipse.papyrus.uml.nattable.menu.util.TableMenuUtils;
+import org.eclipse.papyrus.uml.service.types.handlers.AbstractUmlCreateCommandHandler;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
-import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * Default handler for Create command used in the ModelExplorer contextual ("Create new child") menu.
+ * Abstract handler for the creation commands of UML elements in the Nattable editor
  * 
  */
-public abstract class AbstractNattableCreateCommandHandler extends AbstractCreateCommandHandler {
+public abstract class AbstractUmlNattableCreateCommandHandler extends AbstractUmlCreateCommandHandler {
 
 	@Override
 	protected abstract IElementType getElementTypeToCreate();
 
-	/** Current createCommand for selection (updated in {@link AbstractNattableCreateCommandHandler#isEnabled()}) */
-	protected INattableModelManager getTableManager() {
-		IWorkbenchPart activePart = getActiveWorkbenchPart();
-		if(activePart instanceof AbstractMultiPageSashEditor) {
-			activePart = ((AbstractMultiPageSashEditor)activePart).getActiveEditor();
-			if(activePart != null) {
-				return (INattableModelManager)activePart.getAdapter(INattableModelManager.class);
-			}
-
-		}
-		return null;
-	}
 
 	/**
 	 * <pre>
@@ -71,8 +59,8 @@ public abstract class AbstractNattableCreateCommandHandler extends AbstractCreat
 	protected Command buildCommand() {
 		Command createCmd = super.buildCommand();
 
-		final INattableModelManager natTable = getTableManager();
-		if(natTable != null) {
+		final INattableModelManager nattableModelManager = TableMenuUtils.getTableManager(getActiveWorkbenchPart());
+		if(nattableModelManager != null) {
 			CompositeCommand cmd = new CompositeCommand(""); //$NON-NLS-1$
 			cmd.add(new EMFtoGMFCommandWrapper(createCmd));
 
@@ -85,7 +73,7 @@ public abstract class AbstractNattableCreateCommandHandler extends AbstractCreat
 					EObject newElement = request.getNewElement();
 					Collection<Object> toAdd = new ArrayList<Object>();
 					toAdd.add(newElement);
-					Command tmp = natTable.getAddRowElementCommand(toAdd);
+					Command tmp = nattableModelManager.getAddRowElementCommand(toAdd);
 					if(tmp != null) {
 						tmp.execute();
 					}
@@ -101,18 +89,27 @@ public abstract class AbstractNattableCreateCommandHandler extends AbstractCreat
 
 	@Override
 	protected ICommandContext getCommandContext() {
-		INattableModelManager manager = getTableManager();
-		if(manager != null) {
-			final EObject container = manager.getTable().getContext();
-			ICommandContext context = null;
-			if(container != null) {
-				context = new CommandContext(container);
-			}
-
-			return context;
-		}
-		return null;
+		return TableMenuUtils.getTableCommandContext(TableMenuUtils.getTableManager(getActiveWorkbenchPart()));
 
 	}
 
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		Command command = getCommand();
+		boolean isEnabled = command.canExecute();
+		if(isEnabled) {
+			IElementType newElementType = getElementTypeToCreate();
+			INattableModelManager tableManager = TableMenuUtils.getTableManager(getActiveWorkbenchPart());
+			String id = newElementType.getId();
+			Set<String> visibleCommands = getFilterIds();
+			isEnabled = tableManager.canCreateRowElement(id);
+			isEnabled &= visibleCommands.contains(id);
+		}
+		setBaseEnabled(isEnabled);
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+	}
 }

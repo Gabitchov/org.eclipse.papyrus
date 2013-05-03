@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class RemoveVariableValueActionHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class RemoveVariableValueActionHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>

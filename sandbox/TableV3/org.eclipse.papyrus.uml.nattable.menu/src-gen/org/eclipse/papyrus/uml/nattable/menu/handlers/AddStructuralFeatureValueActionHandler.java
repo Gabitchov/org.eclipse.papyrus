@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class AddStructuralFeatureValueActionHandler extends AbstractNattableCreateCommandHandler implements IHandler {
+public class AddStructuralFeatureValueActionHandler extends AbstractUmlNattableCreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>
