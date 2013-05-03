@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider">
+      <shapeProvider
+            class="org.eclipse.papyrus.uml.diagram.symbols.provider.TypedElementShapeProvider"
+            description="Provides the shapes based on the type for a typed element, based on a stereotype description of the stereotype"
+            id="org.eclipse.papyrus.uml.diagram.symbols.typedelementshapeprovider"
+            name="Typed Element Shape Provider">
+         <Priority
+               name="Lowest"></Priority>
+      </shapeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://PAPYRUS_INTERNAL_PROFILES/"
+            target="platform:/plugin/org.eclipse.papyrus.uml.diagram.symbols/resources/"/>
+            </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="Profile that provides annotations for the tool itself (Decorations, etc.)"
+            iconpath="icons/symbols.gif"
+            name="Papyrus Internal"
+            path="pathmap://PAPYRUS_INTERNAL_PROFILES/PapyrusInternal.profile.uml"
+            provider="CEA LIST">
+      </profile>
+   </extension>
+    <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider">
+      <shapeProvider
+            class="org.eclipse.papyrus.uml.diagram.symbols.provider.ActorShapeProvider"
+            description="Provides the shapes for UML::Actors or elements typed by an Actor"
+            id="org.eclipse.papyrus.uml.diagram.symbols.actorshapeprovider"
+            name="Actor Shape Provider">
+         <Priority
+               name="Lowest"></Priority>
+      </shapeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider">
+      <shapeProvider
+            class="org.eclipse.papyrus.uml.diagram.symbols.provider.StereotypedElementShapeProvider"
+            description="Provides the shapes based on symbols defined on stereotypes"
+            id="org.eclipse.papyrus.uml.diagram.symbols.stereotypedelementshapeprovider"
+            name="Stereotyped Element Shape Provider">
+         <Priority
+               name="Lowest"></Priority>
+      </shapeProvider>
+   </extension>
+   <extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+   <editpartProvider
+         class="org.eclipse.papyrus.uml.diagram.symbols.provider.ShapeCompartmentEditPartProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+            id="org.eclipse.papyrus.sysml.diagram.internalblock.editpart.ShapeCompartmentDisplay">
+         <method
+               name="getType()"
+               value="compartment_shape_display">
+         </method>
+      </object>
+   </editpartProvider>
+</extension>
+
+<!-- edit policy provider for shape compartments -->	
+<extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.uml.diagram.symbols.provider.ShapeEditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
+</plugin>

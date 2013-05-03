@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_dL4lkPXAEeGSQON-DQ-5eg" name="PapyrusInternal" metaclassReference="_ikJDsPXAEeGSQON-DQ-5eg" metamodelReference="_dL4lkfXAEeGSQON-DQ-5eg">
+  <eAnnotations xmi:id="_eijPgEBcEeKj6r7ThQagKA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_eijPgUBcEeKj6r7ThQagKA" name="PapyrusInternal" nsURI="http:///schemas/PapyrusInternal/_eiiocEBcEeKj6r7ThQagKA/0" nsPrefix="PapyrusInternal">
+      <eAnnotations xmi:id="_eijPgkBcEeKj6r7ThQagKA" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_16oYAD-SEeKj6r7ThQagKA"/>
+      <eAnnotations xmi:id="_eikdp0BcEeKj6r7ThQagKA" source="PapyrusVersion">
+        <details xmi:id="_eikdqEBcEeKj6r7ThQagKA" key="Version" value="0.0.1"/>
+        <details xmi:id="_eikdqUBcEeKj6r7ThQagKA" key="Comment" value=""/>
+        <details xmi:id="_eikdqkBcEeKj6r7ThQagKA" key="Copyright" value="CEA LIST - Initial API and Implementation&#xD;&#xA;"/>
+        <details xmi:id="_eikdq0BcEeKj6r7ThQagKA" key="Date" value="2012-12-07"/>
+        <details xmi:id="_eikdrEBcEeKj6r7ThQagKA" key="Author" value=""/>
+      </eAnnotations>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_ikJDsPXAEeGSQON-DQ-5eg" alias="Type">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Type"/>
+  </elementImport>
+  <packageImport xmi:id="_dL4lkfXAEeGSQON-DQ-5eg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_dL4lkvXAEeGSQON-DQ-5eg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Profile" xmi:id="_16oYAD-SEeKj6r7ThQagKA" name="Symbols" metaclassReference="_ILVOwD_AEeKj6r7ThQagKA">
+    <eAnnotations xmi:id="_b9G6sD_BEeKj6r7ThQagKA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_eikdoEBcEeKj6r7ThQagKA" name="Symbols" nsURI="http://PapyrusInternal/schemas/Symbols/_eij2kEBcEeKj6r7ThQagKA/2" nsPrefix="Symbols">
+        <eAnnotations xmi:id="_eilEsUBcEeKj6r7ThQagKA" source="PapyrusVersion">
+          <details xmi:id="_eilEskBcEeKj6r7ThQagKA" key="Version" value="0.0.1"/>
+          <details xmi:id="_eilEs0BcEeKj6r7ThQagKA" key="Comment" value=""/>
+          <details xmi:id="_eilEtEBcEeKj6r7ThQagKA" key="Copyright" value="CEA LIST - Initial API and Implementation&#xD;&#xA;"/>
+          <details xmi:id="_eilEtUBcEeKj6r7ThQagKA" key="Date" value="2012-12-07"/>
+          <details xmi:id="_eilEtkBcEeKj6r7ThQagKA" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_eikdoUBcEeKj6r7ThQagKA" name="TypeSymbolDefinition">
+          <eAnnotations xmi:id="_eikdokBcEeKj6r7ThQagKA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_k3fmYPXAEeGSQON-DQ-5eg"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_eikdo0BcEeKj6r7ThQagKA" name="base_Type" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_eikdpUBcEeKj6r7ThQagKA" name="symbolPath" ordered="false" lowerBound="1" defaultValueLiteral="">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="__uWigUBbEeKj6r7ThQagKA" name="Symbols" nsURI="http://PapyrusInternal/schemas/Symbols/__uWigEBbEeKj6r7ThQagKA/1" nsPrefix="Symbols">
+        <eAnnotations xmi:id="__uXwoEBbEeKj6r7ThQagKA" source="PapyrusVersion">
+          <details xmi:id="__uXwoUBbEeKj6r7ThQagKA" key="Version" value="0.0.2"/>
+          <details xmi:id="__uXwokBbEeKj6r7ThQagKA" key="Comment" value="First version of the Papyrus Internal profile. It contains first version of the Type Symbol support in Papyrus."/>
+          <details xmi:id="__uXwo0BbEeKj6r7ThQagKA" key="Copyright" value="CEA LIST - Initial API and Implementation&#xD;&#xA;"/>
+          <details xmi:id="__uXwpEBbEeKj6r7ThQagKA" key="Date" value="2012-12-07"/>
+          <details xmi:id="__uXwpUBbEeKj6r7ThQagKA" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="__uWigkBbEeKj6r7ThQagKA" name="TypeSymbolDefinition">
+          <eAnnotations xmi:id="__uWig0BbEeKj6r7ThQagKA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_k3fmYPXAEeGSQON-DQ-5eg"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="__uWihEBbEeKj6r7ThQagKA" name="base_Type" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="__uWihkBbEeKj6r7ThQagKA" name="symbolPath" ordered="false" lowerBound="1" defaultValueLiteral="">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_b9HhwD_BEeKj6r7ThQagKA" name="Symbols" nsURI="http://PapyrusInternal/schemas/Symbols/_b9ANAD_BEeKj6r7ThQagKA/0" nsPrefix="Symbols">
+        <eAnnotations xmi:id="_b9MaQD_BEeKj6r7ThQagKA" source="PapyrusVersion">
+          <details xmi:id="_b9MaQT_BEeKj6r7ThQagKA" key="Version" value="0.0.1"/>
+          <details xmi:id="_b9MaQj_BEeKj6r7ThQagKA" key="Comment" value="First version of the Papyrus Internal profile. It contains first version of the Type Symbol support in Papyrus."/>
+          <details xmi:id="_b9MaQz_BEeKj6r7ThQagKA" key="Copyright" value="CEA LIST - Initial API and Implementation&#xD;&#xA;"/>
+          <details xmi:id="_b9MaRD_BEeKj6r7ThQagKA" key="Date" value="2012-12-06"/>
+          <details xmi:id="_b9MaRT_BEeKj6r7ThQagKA" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_b9HhwT_BEeKj6r7ThQagKA" name="TypeSymbolDefinition">
+          <eAnnotations xmi:id="_b9Hhwj_BEeKj6r7ThQagKA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_k3fmYPXAEeGSQON-DQ-5eg"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_b9Hhwz_BEeKj6r7ThQagKA" name="base_Type" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_b9HhxT_BEeKj6r7ThQagKA" name="symbolPath" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+    </eAnnotations>
+    <ownedComment xmi:id="_cDnn0D_AEeKj6r7ThQagKA" annotatedElement="_k3fmYPXAEeGSQON-DQ-5eg">
+      <body>Stereotype associated to Types.&#xD;
+&#xD;
+It will be available to display for the stereotyped Type and the TypedElement that have this Type.</body>
+    </ownedComment>
+    <elementImport xmi:id="_ILVOwD_AEeKj6r7ThQagKA" alias="Type">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Type"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_k3fmYPXAEeGSQON-DQ-5eg" name="TypeSymbolDefinition">
+      <ownedAttribute xmi:id="_qLTCUPXAEeGSQON-DQ-5eg" name="base_Type" association="_qLTCUfXAEeGSQON-DQ-5eg">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Type"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_FVWY0PXBEeGSQON-DQ-5eg" name="symbolPath" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JkaaQPXBEeGSQON-DQ-5eg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JkaaQfXBEeGSQON-DQ-5eg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_JkaaQvXBEeGSQON-DQ-5eg" name="defaultValue" value=""/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_qLTCUfXAEeGSQON-DQ-5eg" name="E_TypeSymbolDefinition_Type1" memberEnd="_qLTCUvXAEeGSQON-DQ-5eg _qLTCUPXAEeGSQON-DQ-5eg">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_qLTCUvXAEeGSQON-DQ-5eg" name="extension_TypeSymbolDefinition" type="_k3fmYPXAEeGSQON-DQ-5eg" aggregation="composite" association="_qLTCUfXAEeGSQON-DQ-5eg"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_Z27N4EBcEeKj6r7ThQagKA" name="Path"/>
+</uml:Profile>
