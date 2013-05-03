@@ -28,3 +28,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui.internal.ConstraintWithVSLlActivator
 Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j
+Bundle-Localization: plugin

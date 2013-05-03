@@ -27,3 +27,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator
 Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j
+Bundle-Localization: plugin
