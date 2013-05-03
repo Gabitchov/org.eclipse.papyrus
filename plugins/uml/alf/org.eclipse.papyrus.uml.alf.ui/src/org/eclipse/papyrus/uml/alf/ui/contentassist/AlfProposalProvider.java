@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
 import org.eclipse.papyrus.uml.alf.alf.SuffixExpression;
 import org.eclipse.papyrus.uml.alf.scoping.AlfPartialScope;
 import org.eclipse.papyrus.uml.alf.scoping.AlfScopeProvider;
@@ -31,7 +32,6 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.gmf.glue.contentassist.CompletionProposalUtils;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 /**
