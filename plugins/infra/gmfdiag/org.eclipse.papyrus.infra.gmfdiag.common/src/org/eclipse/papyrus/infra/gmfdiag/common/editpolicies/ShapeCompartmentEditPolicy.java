@@ -13,9 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.InternalTransaction;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
@@ -128,7 +134,16 @@ public class ShapeCompartmentEditPolicy extends GraphicalEditPolicy implements N
 						public void run() {
 							//boolean isVisible = hasToDisplayCompartment(editPart.getNotationView());
 							CreateShapeCompartmentViewCommand command = new CreateShapeCompartmentViewCommand(getEditingDomain(editPart), "Create Compartment", "Command that creates the compartment displaying shapes", editPart.getNotationView(), /*isVisible*/ false);
-							editPart.getEditingDomain().getCommandStack().execute(command);
+							 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+							try{
+								InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+								command.execute();
+								it.commit();
+							} catch(Exception e){
+								Activator.log.error(e);
+							}
+							// editPart.getEditingDomain().getCommandStack().execute(command);
 						}
 					});
 				}
@@ -217,7 +232,16 @@ public class ShapeCompartmentEditPolicy extends GraphicalEditPolicy implements N
 
 						public void run() {
 							SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
-							editPart.getEditingDomain().getCommandStack().execute(setCommand);
+							//use to avoid to put it in the command stack
+							 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+							try {
+								InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+								setCommand.execute();
+								it.commit();
+							} catch(Exception e){
+								Activator.log.error(e);
+							}
 						}
 					});
 				}
