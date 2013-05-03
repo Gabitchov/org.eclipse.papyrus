@@ -14,13 +14,14 @@
 
 package org.eclipse.papyrus.uml.textedit.port.xtext.validation;
 
-import org.eclipse.xtext.gmf.glue.edit.part.IXTextSemanticValidator;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXTextSemanticValidator;
+
 
 /**
  * Custom implementation for IXtextSemanticValidator in the context of the textual editor for states
- *
+ * 
  * @author CEA LIST
- *
+ * 
  */
 public class SemanticValidator implements IXTextSemanticValidator {
 

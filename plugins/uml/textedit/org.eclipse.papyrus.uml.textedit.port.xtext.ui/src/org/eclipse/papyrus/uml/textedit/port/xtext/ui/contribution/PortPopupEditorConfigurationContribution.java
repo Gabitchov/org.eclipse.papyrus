@@ -24,6 +24,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.textedit.port.xtext.ui.internal.UmlPortActivator;
@@ -34,10 +36,7 @@ import org.eclipse.papyrus.uml.textedit.port.xtext.validation.SemanticValidator;
 import org.eclipse.papyrus.uml.textedit.port.xtext.validation.UmlPortJavaValidator;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
 import com.google.inject.Injector;
 //import org.eclipse.papyrus.views.properties.runtime.modelhandler.emf.EMFUtils;
@@ -56,7 +55,7 @@ public class PortPopupEditorConfigurationContribution extends PopupEditorConfigu
 	private Port port;
 
 	private boolean newIsDerived;
-	
+
 	private boolean isConjugated;
 
 	private boolean newIsReadOnly;
@@ -71,7 +70,7 @@ public class PortPopupEditorConfigurationContribution extends PopupEditorConfigu
 
 	private int newUpperBound;
 
-	private String newDefault ;
+	private String newDefault;
 
 	private String newName;
 
@@ -79,9 +78,9 @@ public class PortPopupEditorConfigurationContribution extends PopupEditorConfigu
 
 	private org.eclipse.uml2.uml.VisibilityKind newVisibility;
 
-	private List<Port> newRedefines = new ArrayList<Port>() ;
+	private List<Port> newRedefines = new ArrayList<Port>();
 
-	private List<Port> newSubsets = new ArrayList<Port>() ;
+	private List<Port> newSubsets = new ArrayList<Port>();
 
 	/**
 	 * Default implementation of the constructor for this class
@@ -140,16 +139,16 @@ public class PortPopupEditorConfigurationContribution extends PopupEditorConfigu
 
 				// Retrieves the information to be populated in modelObject
 				newIsDerived = portRuleObject.getIsDerived() != null && portRuleObject.getIsDerived().equals("/");
-				isConjugated=portRuleObject.getIsConjugated() !=null && portRuleObject.getIsConjugated().equals("~");
+				isConjugated = portRuleObject.getIsConjugated() != null && portRuleObject.getIsConjugated().equals("~");
 				newIsReadOnly = false;
 				newIsUnique = false;
 				newIsUnion = false;
 				newIsOrdered = false;
-				newRedefines = new ArrayList<Port>() ;
-				newSubsets = new ArrayList<Port>() ;
+				newRedefines = new ArrayList<Port>();
+				newSubsets = new ArrayList<Port>();
 				if(portRuleObject.getModifiers() != null) {
 					for(ModifierSpecification modifier : portRuleObject.getModifiers().getValues()) {
-						if (modifier.getRedefines() == null && modifier.getSubsets()==null) {
+						if(modifier.getRedefines() == null && modifier.getSubsets() == null) {
 							switch(modifier.getValue()) {
 							case ORDERED:
 								newIsOrdered = true;
@@ -168,11 +167,11 @@ public class PortPopupEditorConfigurationContribution extends PopupEditorConfigu
 							}
 						}
 					}
-					for (ModifierSpecification modifier : portRuleObject.getModifiers().getValues()) {
-						if (modifier.getRedefines() != null) {
-							newRedefines.add(modifier.getRedefines().getPort()) ;
-						} else if (modifier.getSubsets() != null) {
-							newSubsets.add(modifier.getSubsets().getPort()) ;
+					for(ModifierSpecification modifier : portRuleObject.getModifiers().getValues()) {
+						if(modifier.getRedefines() != null) {
+							newRedefines.add(modifier.getRedefines().getPort());
+						} else if(modifier.getSubsets() != null) {
+							newSubsets.add(modifier.getSubsets().getPort());
 						}
 					}
 				}
@@ -200,11 +199,10 @@ public class PortPopupEditorConfigurationContribution extends PopupEditorConfigu
 					}
 				}
 
-				if (portRuleObject.getDefault() != null) {
-					newDefault = portRuleObject.getDefault().getDefault() ;
-				}
-				else {
-					newDefault = null ;
+				if(portRuleObject.getDefault() != null) {
+					newDefault = portRuleObject.getDefault().getDefault();
+				} else {
+					newDefault = null;
 				}
 
 				newName = "" + portRuleObject.getName();
@@ -238,10 +236,10 @@ public class PortPopupEditorConfigurationContribution extends PopupEditorConfigu
 				org.eclipse.gmf.runtime.common.core.command.CompositeCommand updateCommand = getUpdateCommand(port);
 				List<Port> editedObjects = new ArrayList<Port>();
 				editedObjects.add(port);
-				
-				TransactionalEditingDomain editingDomain =org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain(port);
 
-				
+				TransactionalEditingDomain editingDomain = org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain(port);
+
+
 				if(updateCommand.canExecute()) {// && !(TransactionUtil.isReadTransactionInProgress(editingDomain, true, true))
 					editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 					return;
@@ -298,17 +296,17 @@ public class PortPopupEditorConfigurationContribution extends PopupEditorConfigu
 		ICommand setVisibilityCommand = provider.getEditCommand(setVisibilityRequest);
 		updateCommand.add(setVisibilityCommand);
 
-		SetRequest setDefaultValueRequest = new SetRequest (editedObject, UMLPackage.eINSTANCE.getProperty_Default(), newDefault) ;
-		ICommand setDefaultValueCommand = provider.getEditCommand(setDefaultValueRequest) ;
-		updateCommand.add(setDefaultValueCommand) ;
+		SetRequest setDefaultValueRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getProperty_Default(), newDefault);
+		ICommand setDefaultValueCommand = provider.getEditCommand(setDefaultValueRequest);
+		updateCommand.add(setDefaultValueCommand);
 
-		SetRequest setRedefinedPropertiesRequest = new SetRequest (editedObject, UMLPackage.eINSTANCE.getProperty_RedefinedProperty(), newRedefines) ;
-		ICommand setRedefinedPropertiesCommand = provider.getEditCommand(setRedefinedPropertiesRequest) ;
-		updateCommand.add(setRedefinedPropertiesCommand) ;
+		SetRequest setRedefinedPropertiesRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getProperty_RedefinedProperty(), newRedefines);
+		ICommand setRedefinedPropertiesCommand = provider.getEditCommand(setRedefinedPropertiesRequest);
+		updateCommand.add(setRedefinedPropertiesCommand);
 
-		SetRequest setSubsettedPropertiesRequest = new SetRequest (editedObject, UMLPackage.eINSTANCE.getProperty_SubsettedProperty(), newSubsets) ;
-		ICommand setSubsettedPropertiesCommand = provider.getEditCommand(setSubsettedPropertiesRequest) ;
-		updateCommand.add(setSubsettedPropertiesCommand) ;
+		SetRequest setSubsettedPropertiesRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getProperty_SubsettedProperty(), newSubsets);
+		ICommand setSubsettedPropertiesCommand = provider.getEditCommand(setSubsettedPropertiesRequest);
+		updateCommand.add(setSubsettedPropertiesCommand);
 
 		return updateCommand;
 	}

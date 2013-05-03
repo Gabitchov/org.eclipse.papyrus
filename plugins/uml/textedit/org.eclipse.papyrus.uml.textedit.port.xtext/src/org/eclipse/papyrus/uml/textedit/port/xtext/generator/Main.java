@@ -30,9 +30,9 @@ import com.google.inject.Injector;
 import com.google.inject.Provider;
 
 public class Main {
-	
+
 	public static void main(String[] args) {
-		if (args.length==0) {
+		if(args.length == 0) {
 			System.err.println("Aborting: no path to EMF resource provided!");
 			return;
 		}
@@ -40,37 +40,37 @@ public class Main {
 		Main main = injector.getInstance(Main.class);
 		main.runGenerator(args[0]);
 	}
-	
-	@Inject 
+
+	@Inject
 	private Provider<ResourceSet> resourceSetProvider;
-	
+
 	@Inject
 	private IResourceValidator validator;
-	
+
 	@Inject
 	private IGenerator generator;
-	
-	@Inject 
+
+	@Inject
 	private JavaIoFileSystemAccess fileAccess;
 
 	protected void runGenerator(String string) {
 		// load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createURI(string), true);
-		
+
 		// validate the resource
 		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
-		if (!list.isEmpty()) {
-			for (Issue issue : list) {
+		if(!list.isEmpty()) {
+			for(Issue issue : list) {
 				System.err.println(issue);
 			}
 			return;
 		}
-		
+
 		// configure and start the generator
 		fileAccess.setOutputPath("src-gen/");
 		generator.doGenerate(resource, fileAccess);
-		
+
 		System.out.println("Code generation finished.");
 	}
 }

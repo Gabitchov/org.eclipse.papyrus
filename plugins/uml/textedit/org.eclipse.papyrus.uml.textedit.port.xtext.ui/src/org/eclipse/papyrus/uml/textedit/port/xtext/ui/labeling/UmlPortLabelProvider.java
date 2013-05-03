@@ -28,12 +28,12 @@ public class UmlPortLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObj
 	}
 
 	// Labels and icons can be computed like this:
-	
-//	String text(Greeting ele) {
-//		return "A greeting to " + ele.getName();
-//	}
-//
-//	String image(Greeting ele) {
-//		return "Greeting.gif";
-//	}
+
+	//	String text(Greeting ele) {
+	//		return "A greeting to " + ele.getName();
+	//	}
+	//
+	//	String image(Greeting ele) {
+	//		return "Greeting.gif";
+	//	}
 }

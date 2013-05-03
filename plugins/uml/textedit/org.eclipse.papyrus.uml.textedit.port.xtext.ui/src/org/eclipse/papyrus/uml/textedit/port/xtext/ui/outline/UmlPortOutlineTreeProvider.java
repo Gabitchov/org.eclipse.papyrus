@@ -15,9 +15,9 @@ package org.eclipse.papyrus.uml.textedit.port.xtext.ui.outline;
 
 /**
  * Customization of the default outline structure.
- *
+ * 
  * see http://www.eclipse.org/Xtext/documentation.html#outline
  */
 public class UmlPortOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
-	
+
 }

@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.port.xtext.ui.contribution;
 
+import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
 import org.eclipse.papyrus.uml.textedit.port.xtext.validation.UmlPortJavaValidator;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PortUtil;
@@ -22,7 +22,6 @@ import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.xtext.gmf.glue.contentassist.CompletionProposalUtils;
 
 public class UMLPortEditorPropertyUtil extends PortUtil {
 
@@ -41,13 +40,12 @@ public class UMLPortEditorPropertyUtil extends PortUtil {
 
 		// type
 		if(property.getType() != null) {
-				if( ((Port)property).isConjugated()){
-					buffer.append(": ~");
-				}
-				else{
-					buffer.append(": ");
-				}
-			buffer.append( CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(property.getType(), UmlPortJavaValidator.getModel()));
+			if(((Port)property).isConjugated()) {
+				buffer.append(": ~");
+			} else {
+				buffer.append(": ");
+			}
+			buffer.append(CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(property.getType(), UmlPortJavaValidator.getModel()));
 		} else {
 			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME);
 		}
@@ -59,17 +57,17 @@ public class UMLPortEditorPropertyUtil extends PortUtil {
 		}
 
 		// property modifiers
-		buffer.append(" ") ;
+		buffer.append(" ");
 		buffer.append(PropertyUtil.getModifiersAsString(property, false));
-		
+
 		// default value
 		if(property.getDefault() != null) {
 			buffer.append(" = ");
 			buffer.append("\"" + property.getDefault() + "\"");
 		}
-		
-		
+
+
 		return buffer.toString();
 	}
-	
+
 }

@@ -14,13 +14,12 @@
 package org.eclipse.papyrus.uml.textedit.port.xtext;
 
 /**
- * Initialization support for running Xtext languages 
+ * Initialization support for running Xtext languages
  * without equinox extension registry
  */
-public class UmlPortStandaloneSetup extends UmlPortStandaloneSetupGenerated{
+public class UmlPortStandaloneSetup extends UmlPortStandaloneSetupGenerated {
 
 	public static void doSetup() {
 		new UmlPortStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
 }
-
