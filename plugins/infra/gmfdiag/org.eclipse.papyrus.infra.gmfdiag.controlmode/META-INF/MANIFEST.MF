@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GMF-specific control mode behavior
+Bundle-Name: GMF-specific control mode behavior (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.controlmode;singleton:=true
 Bundle-Version: 0.10.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.controlmode.Activator
@@ -16,3 +16,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Eclipse Modeling Project
