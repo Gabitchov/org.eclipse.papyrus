@@ -6,8 +6,8 @@ Bundle-Version: 0.10.0.qualifier
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.port.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.xtext;visibility:=reexport,
- org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase;resolution:=optional,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
@@ -19,9 +19,8 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.0"
-Import-Package: org.apache.log4j,
- org.eclipse.xtext.xbase.lib
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.0",
+ org.apache.log4j;bundle-version="1.2.15"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.uml.textedit.port.xtext,
  org.eclipse.papyrus.uml.textedit.port.xtext.services,
