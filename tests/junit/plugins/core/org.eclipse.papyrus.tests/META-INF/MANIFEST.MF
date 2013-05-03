@@ -32,7 +32,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.diagram.timing.tests;bundle-version="0.10.0",
  org.eclipse.papyrus.editor.integration.tests;bundle-version="0.10.0",
  org.eclipse.papyrus.search.tests;bundle-version="0.10.0",
- org.junit;bundle-version="4.10.0"
+ org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.uml.diagram.interactionoverview.tests;bundle-version="0.10.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.0.qualifier
