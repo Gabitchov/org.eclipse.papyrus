@@ -6,6 +6,7 @@
 <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<creationCommand
 		creationCommandClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
+       creationCondition="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreationCondition"
 		icon="icons/obj16/Diagram_Package.gif"
 		id="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 		language="uml"
@@ -26,7 +27,7 @@
 
 <extension point="org.eclipse.ui.handlers">
 	<handler
-		class="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
+		class="org.eclipse.papyrus.uml.diagram.pkg.CreatePackageDiagramWithNavigationHandler"
 		commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
@@ -343,7 +344,7 @@
 	<page
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		name="Package Diagram"
-		category="org.eclipse.papyrus.preferences.diagrams"
+		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
 		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageDiagramGeneralPreferencePage">
 	</page>
 
@@ -430,7 +431,7 @@
             id="generated-diagram">
          <method
                name="getType()"
-               value="Requirement">
+               value="Package">
          </method>
       </object>
       <object
