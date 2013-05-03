@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: IODiagram Tests
+Bundle-Name: IODiagram Tests (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.interactionoverview.tests
 Bundle-Version: 0.10.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.interactionoverview.tests.Activator
@@ -20,3 +20,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.uml.diagram.interactionoverview.tests
+Bundle-Vendor: Eclipse Modeling Project
