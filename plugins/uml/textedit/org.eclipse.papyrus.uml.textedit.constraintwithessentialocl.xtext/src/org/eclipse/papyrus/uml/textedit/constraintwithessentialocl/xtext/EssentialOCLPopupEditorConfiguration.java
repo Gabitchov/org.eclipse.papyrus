@@ -76,7 +76,7 @@ public class EssentialOCLPopupEditorConfiguration extends org.eclipse.papyrus.in
 		
 		/**
 		 * 
-		 * @see org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler#reconcile(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject)
+		 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler#reconcile(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject)
 		 *
 		 * @param modelObject the uml element to modify
 		 * @param xtextObject the xtext structure

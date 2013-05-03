@@ -58,7 +58,7 @@ public class CollaborationUsePopupEditor extends org.eclipse.papyrus.infra.gmfdi
 
 	/**
 	 * 
-	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#createPopupEditorHelper(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#createPopupEditorHelper(java.lang.Object)
 	 * 
 	 * @param editPart
 	 * @return
@@ -186,7 +186,7 @@ public class CollaborationUsePopupEditor extends org.eclipse.papyrus.infra.gmfdi
 
 	/**
 	 * 
-	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
 	 * 
 	 * @param editedObject
 	 * @return

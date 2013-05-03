@@ -25,7 +25,7 @@ public class SemanticValidator implements IXTextSemanticValidator {
 
 	/**
 	 * 
-	 * @see org.eclipse.xtext.gmf.glue.edit.part.IXTextSemanticValidator#validate()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXTextSemanticValidator#validate()
 	 * 
 	 * @return
 	 */

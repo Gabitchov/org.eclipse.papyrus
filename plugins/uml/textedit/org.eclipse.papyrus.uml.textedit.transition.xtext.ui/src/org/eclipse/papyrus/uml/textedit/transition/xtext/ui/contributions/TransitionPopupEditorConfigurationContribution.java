@@ -82,7 +82,7 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#createPopupEditorHelper(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	 * org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#createPopupEditorHelper(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
 	 */
 	@Override
 	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
@@ -144,7 +144,7 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
 	 */
 	@Override
 	public String getTextToEdit(Object editedObject) {

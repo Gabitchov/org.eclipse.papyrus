@@ -69,7 +69,7 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#createPopupEditorHelper(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	 * org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#createPopupEditorHelper(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
 	 */
 
 	@Override
@@ -133,7 +133,7 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
 	 */
 
 	@Override

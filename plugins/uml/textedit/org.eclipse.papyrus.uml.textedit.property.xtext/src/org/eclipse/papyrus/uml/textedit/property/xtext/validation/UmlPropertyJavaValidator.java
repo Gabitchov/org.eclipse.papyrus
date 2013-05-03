@@ -36,7 +36,7 @@ public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 	private static Namespace model ;
 	private static Element contextElement ;
 	
-	// private variables for semantic error management (See IXtextSemanticValidator from org.eclipse.xtext.gmf.glue)
+	// private variables for semantic error management (See IXtextSemanticValidator from org.eclipse.papyrus.infra.gmfdiag.xtext.glue)
 	private static boolean valid_MultiplicityRule = true ;
 	private static boolean valid_RedefinesRule = true ;
 	private static boolean valid_SubsetsRule = true ;

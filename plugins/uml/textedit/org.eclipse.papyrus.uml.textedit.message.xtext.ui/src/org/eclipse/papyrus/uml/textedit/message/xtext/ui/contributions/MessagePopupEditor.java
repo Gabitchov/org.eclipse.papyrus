@@ -66,7 +66,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 
 
 	/**
-	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
 	 * 
 	 * @param editedObject
 	 * @return the text to edit
@@ -101,7 +101,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 
 
 	/**
-	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#createPopupEditorHelper(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#createPopupEditorHelper(java.lang.Object)
 	 * 
 	 * @param editPart
 	 * @return the popup editor helper
