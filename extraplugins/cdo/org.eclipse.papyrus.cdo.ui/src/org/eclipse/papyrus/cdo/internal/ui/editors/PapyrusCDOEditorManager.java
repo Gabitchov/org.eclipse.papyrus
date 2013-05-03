@@ -107,12 +107,21 @@ public class PapyrusCDOEditorManager {
 		return (IInternalPapyrusRepository)PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
 	}
 
-	void add(CDOView view, IEditorPart editor) {
+	void add(CDOView view, final IEditorPart editor) {
 		editors.put(editor, view);
 
 		view.addListener(new CDOViewListener(editor));
 		try {
-			editorListeners.get(editor.getSite().getPage()).addEditor(editor);
+			editorListeners.get(editor.getSite().getPage(), new Callable<EditorListener>() {
+
+				public EditorListener call() throws Exception {
+					//Probably not necessary. But the previous API is deprecated. It is probably safer
+					//to return a non-null EditorListener, but we're not supposed to enter this method anyway
+					EditorListener listener = new EditorListener();
+					editor.getSite().getPage().addPartListener(listener);
+					return listener;
+				}
+			}).addEditor(editor);
 		} catch (Exception e) {
 			// this should be impossible with our cache loader
 			Activator.log.error(e);
