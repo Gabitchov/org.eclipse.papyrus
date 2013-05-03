@@ -6,7 +6,6 @@
 <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<creationCommand
 		creationCommandClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
-       creationCondition="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreationCondition"
 		icon="icons/obj16/Diagram_Package.gif"
 		id="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 		language="uml"
@@ -27,7 +26,7 @@
 
 <extension point="org.eclipse.ui.handlers">
 	<handler
-		class="org.eclipse.papyrus.uml.diagram.pkg.CreatePackageDiagramWithNavigationHandler"
+		class="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
 		commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
@@ -119,22 +118,23 @@
 			"2005" = MODEL
 			"3024" = MODEL_CN
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2012, 3028, 2011, 3029, 2005,3024"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2012, 3028, 2011, 3029, 2005, 3024"/>
 		
 		<!-- 
 			"4008" = DEPENDENCY
 			"4010" = PACKAGE_IMPORT
 			"4013" = COMMENT_ANNOTATED_ELEMENT
 			"4006" = ABSTRACTION
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010, 4013, 4006"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010, 4013, 4006, 4014"/>
 		
 		<object id="elementtype.node"
 	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
 	       
 	     <method
 	        name="getSemanticHint()"
-			value="2007, 3009, 2012, 3028, 2011, 3029, 2005,3024">
+			value="2007, 3009, 2012, 3028, 2011, 3029, 2005, 3024">
 		</method>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" elements="elementtype.node"/>
@@ -144,7 +144,7 @@
 	       
 	     <method
 	        name="getSemanticHint()"
-			value="4008, 4010, 4013, 4006">
+			value="4008, 4010, 4013, 4006, 4014">
 		</method>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="elementtype.edge"/>
@@ -282,16 +282,18 @@
 			<method name="getType()" value="3024, 5052, 7030"/>
 		</object>
 		
+		
 		<!-- 	
 			"4008" = DEPENDENCY
-			"6026" = DEPENDENCY_LABEL_DEPENDENCY_NAME_HINT
-			"6027" = DEPENDENCY_LABEL_APPLIED_STEREOTYPE_DEPENDENCY_HINT
+			"6026" = DEPENDENCY_LABEL_NAME_HINT
+			"6027" = DEPENDENCY_LABEL_APPLIED_STEREOTYPE_HINT
 			"4010" = PACKAGE_IMPORT
 			"6022" = PACKAGE_IMPORT_LABEL_APPLIED_STEREOTYPE_HINT
 			"4013" = COMMENT_ANNOTATED_ELEMENT
 			"4006" = ABSTRACTION
 			"6014" = ABSTRACTION_LABEL_NAME_HINT
 			"6015" = ABSTRACTION_LABEL_APPLIED_STEREOTYPE_HINT
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
 		  -->
 		<object
 			id="DEPENDENCY"
@@ -313,9 +315,14 @@
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4006, 6014, 6015"/>
 		</object>
+		<object
+			id="CONSTRAINT_CONSTRAINED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4014"/>
+		</object>
 		
 		<context views="PACKAGE, PACKAGE_CN, COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN, MODEL, MODEL_CN"/>
-		<context views="DEPENDENCY, PACKAGE_IMPORT, COMMENT_ANNOTATED_ELEMENT, ABSTRACTION"/>
+		<context views="DEPENDENCY, PACKAGE_IMPORT, COMMENT_ANNOTATED_ELEMENT, ABSTRACTION, CONSTRAINT_CONSTRAINED_ELEMENT"/>
 		
 	</editpartProvider>
 </extension>
@@ -336,7 +343,7 @@
 	<page
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		name="Package Diagram"
-		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
+		category="org.eclipse.papyrus.preferences.diagrams"
 		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageDiagramGeneralPreferencePage">
 	</page>
 
@@ -375,6 +382,8 @@
 	</page>
 	
 	
+	
+	
 	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DependencyPreferencePage"
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.DependencyPreferencePage"
@@ -398,9 +407,17 @@
 	</page>
 	
 	
+	
+	
 
 </extension>
-<extension
+
+<!-- // Start of user code custom extensions 
+  -->
+
+<!-- Insert custom extensions here. -->
+ 
+  <extension
       id="ep-provider"
       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
    <editpartProvider
@@ -413,7 +430,7 @@
             id="generated-diagram">
          <method
                name="getType()"
-               value="Package">
+               value="Requirement">
          </method>
       </object>
       <object
@@ -448,17 +465,12 @@
                value="7034,7001,7002,7003,7004,7014,7005,7006,7007,7008,7009,7023,7024,7025,7026,7027,7028,7029,7030,7031,7010,7011,7012,7013,7032,7033,7015,7016,7017,7018,7019,7020,7021,7035">
          </method>
       </object>
-      <context
-            views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments">
-      </context>
+      <object
+            id="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments">
+      </object>
    </editpartProvider>
 </extension>
 
-<!-- // Start of user code custom extensions 
-  -->
-
-<!-- Insert custom extensions here. -->
-  
 <!-- // End of user code 
   -->
 

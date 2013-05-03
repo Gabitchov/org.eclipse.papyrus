@@ -70,6 +70,10 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 			if(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(hint)) {
 				return true;
 			}
+			/** Edges (Feature) : CONSTRAINT_CONSTRAINED_ELEMENT *********** */
+			if(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(hint)) {
+				return true;
+			}
 
 		}
 		return false;

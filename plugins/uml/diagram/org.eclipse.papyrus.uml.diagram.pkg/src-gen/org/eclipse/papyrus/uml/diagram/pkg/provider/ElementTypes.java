@@ -103,4 +103,7 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String ABSTRACTION_LABEL_APPLIED_STEREOTYPE_HINT = "6015"; //$NON-NLS-1$
 
+	/** ClassDiagram :: CONSTRAINT_CONSTRAINED_ELEMENT */
+	public static final IHintedType CONSTRAINT_CONSTRAINED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.ConstraintConstrainedElement_4014"); //$NON-NLS-1$
+
 }

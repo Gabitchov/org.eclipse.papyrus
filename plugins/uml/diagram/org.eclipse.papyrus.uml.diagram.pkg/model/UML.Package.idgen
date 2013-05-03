@@ -44,6 +44,9 @@
     <genLinks>
       <genLink href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.8"/>
     </genLinks>
+    <genLinks generatePreferencePage="false" generateTool="false">
+      <genLink href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.17"/>
+    </genLinks>
   </inheritedDiagrams>
   <customJavaClasses customEditPolicyProvider="org.eclipse.papyrus.uml.diagram.pkg.provider.CustomEditPolicyProvider"/>
 </idgen:Diagram>

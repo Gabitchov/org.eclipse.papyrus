@@ -30,7 +30,7 @@
 		commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
-				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor" />
 			</with>
 		</activeWhen>
 	</handler>
@@ -40,7 +40,7 @@
 <extension point="org.eclipse.ui.menus">
 
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams" label="Diagrams">
 		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 			icon="icons/obj16/Diagram_Package.gif" label="Create a new Package Diagram"
 			style="push" tooltip="Create a new Package Diagram">
@@ -53,7 +53,7 @@
 	</menuContribution>
 	
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 			icon="icons/obj16/Diagram_Package.gif" label="Create a new Package Diagram"
 			style="push" tooltip="Create a new Package Diagram">
@@ -65,7 +65,7 @@
 	</toolbar>
 	</menuContribution>
 	
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
 		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 			icon="icons/obj16/Diagram_Package.gif"
 			label="Create a new Package Diagram"
@@ -125,8 +125,9 @@
 			"4010" = PACKAGE_IMPORT
 			"4013" = COMMENT_ANNOTATED_ELEMENT
 			"4006" = ABSTRACTION
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010, 4013, 4006"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010, 4013, 4006, 4014"/>
 		
 		<object id="elementtype.node"
 	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
@@ -143,7 +144,7 @@
 	       
 	     <method
 	        name="getSemanticHint()"
-			value="4008, 4010, 4013, 4006">
+			value="4008, 4010, 4013, 4006, 4014">
 		</method>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="elementtype.edge"/>
@@ -292,6 +293,7 @@
 			"4006" = ABSTRACTION
 			"6014" = ABSTRACTION_LABEL_NAME_HINT
 			"6015" = ABSTRACTION_LABEL_APPLIED_STEREOTYPE_HINT
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
 		  -->
 		<object
 			id="DEPENDENCY"
@@ -313,9 +315,14 @@
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4006, 6014, 6015"/>
 		</object>
+		<object
+			id="CONSTRAINT_CONSTRAINED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4014"/>
+		</object>
 		
 		<context views="PACKAGE, PACKAGE_CN, COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN, MODEL, MODEL_CN"/>
-		<context views="DEPENDENCY, PACKAGE_IMPORT, COMMENT_ANNOTATED_ELEMENT, ABSTRACTION"/>
+		<context views="DEPENDENCY, PACKAGE_IMPORT, COMMENT_ANNOTATED_ELEMENT, ABSTRACTION, CONSTRAINT_CONSTRAINED_ELEMENT"/>
 		
 	</editpartProvider>
 </extension>
@@ -398,6 +405,8 @@
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.AbstractionPreferencePage"
 		name="Abstraction">
 	</page>
+	
+	
 	
 	
 

@@ -27,7 +27,7 @@ public class PackageDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagram
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return "PkgDiagram"; // //$NON-NLS-1$
+		return "PackageDiagram"; // //$NON-NLS-1$
 	}
 
 	/**
