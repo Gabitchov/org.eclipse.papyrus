@@ -404,6 +404,7 @@
 	<!-- IMetamodelType for ControlFlow -->
 	<metamodelType id="org.eclipse.papyrus.uml.ControlFlow" name="UML::ControlFlow"
 		eclass="ControlFlow"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ControlFlowEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::ControlFlow"/>
 	</metamodelType>
@@ -602,6 +603,7 @@
 	<!-- IMetamodelType for ExceptionHandler -->
 	<metamodelType id="org.eclipse.papyrus.uml.ExceptionHandler" name="UML::ExceptionHandler"
 		eclass="ExceptionHandler"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ExceptionHandlerEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::ExceptionHandler"/>
 	</metamodelType>
@@ -1073,6 +1075,7 @@
 	<!-- IMetamodelType for ObjectFlow -->
 	<metamodelType id="org.eclipse.papyrus.uml.ObjectFlow" name="UML::ObjectFlow"
 		eclass="ObjectFlow"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ObjectFlowEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::ObjectFlow"/>
 	</metamodelType>

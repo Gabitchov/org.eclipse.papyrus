@@ -164,7 +164,7 @@
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Continuation" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif">
       <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
     </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="ControlFlow" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ControlFlow" helper="org.eclipse.papyrus.uml.service.types.helper.ControlFlowEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif">
       <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ControlFlow"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ControlNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlNode.gif">
@@ -248,7 +248,7 @@
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Event" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Event.gif">
       <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Event"/>
     </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExceptionHandler" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExceptionHandler" helper="org.eclipse.papyrus.uml.service.types.helper.ExceptionHandlerEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif">
       <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ExceptionHandler"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutableNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutableNode.gif">
@@ -446,7 +446,7 @@
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Node" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif">
       <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
     </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="ObjectFlow" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ObjectFlow" helper="org.eclipse.papyrus.uml.service.types.helper.ObjectFlowEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif">
       <metaClass href="../../org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ObjectNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectNode.gif">

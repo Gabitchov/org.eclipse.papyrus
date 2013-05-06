@@ -1259,34 +1259,31 @@
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ObjectFlow_4003"
                name="%metatype.name.ObjectFlow_4003"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ObjectFlow"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ObjectFlow"/>
             <param name="semanticHint" value="4003"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ControlFlow_4004"
                name="%metatype.name.ControlFlow_4004"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ControlFlow"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ControlFlowEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ControlFlow"/>
             <param name="semanticHint" value="4004"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.ExceptionHandler_4005"
                name="%metatype.name.ExceptionHandler_4005"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ExceptionHandler"
-               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ExceptionHandlerEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.ExceptionHandler"/>
             <param name="semanticHint" value="4005"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
@@ -1310,14 +1307,10 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
-      <clientContext id="org.eclipse.papyrus.uml.diagram.activity.TypeContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.eclipse.papyrus.uml.diagram.activity.EditingDomain"/>
-         </enablement>
-      </clientContext> 
-      <binding context="org.eclipse.papyrus.uml.diagram.activity.TypeContext">
+      
+      
+       <binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+      
          <elementType ref="org.eclipse.papyrus.uml.diagram.activity.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.activity.Activity_2001"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.activity.Parameter_3001"/>
