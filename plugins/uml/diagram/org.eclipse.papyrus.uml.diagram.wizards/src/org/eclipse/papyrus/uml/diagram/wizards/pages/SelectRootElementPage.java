@@ -35,6 +35,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
@@ -67,8 +68,9 @@ public class SelectRootElementPage extends WizardPage {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param selection the initial selection from which to get the resource for root element
+	 * 
+	 * @param selection
+	 *        the initial selection from which to get the resource for root element
 	 */
 	public SelectRootElementPage(IStructuredSelection selection) {
 		super(PAGE_ID);
@@ -76,11 +78,11 @@ public class SelectRootElementPage extends WizardPage {
 		setDescription(Messages.SelectRootElementPage_select_root_element_desc);
 
 		Resource resource = null;
-		if (!selection.isEmpty()) {
+		if(!selection.isEmpty()) {
 			resource = adapt(selection.getFirstElement(), Resource.class);
-			if (resource == null) {
+			if(resource == null) {
 				URI uri = getSelectedResourceURI(selection);
-				if (uri != null) {
+				if(uri != null) {
 					resource = getResourceForURI(uri);
 				}
 			}
@@ -90,7 +92,7 @@ public class SelectRootElementPage extends WizardPage {
 
 	/**
 	 * Gets the model element.
-	 *
+	 * 
 	 * @return the selected model element
 	 */
 	public EObject getModelElement() {
@@ -99,8 +101,9 @@ public class SelectRootElementPage extends WizardPage {
 
 	/**
 	 * Creates the control.
-	 *
-	 * @param parent the parent
+	 * 
+	 * @param parent
+	 *        the parent
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 
@@ -131,7 +134,7 @@ public class SelectRootElementPage extends WizardPage {
 		modelViewer.setInput(myDomainModelResource);
 
 		selectedModelElement = getModelRoot(myDomainModelResource);
-		modelViewer.setSelection(selectedModelElement == null ? new StructuredSelection() :  new StructuredSelection(selectedModelElement));
+		modelViewer.setSelection(selectedModelElement == null ? new StructuredSelection() : new StructuredSelection(selectedModelElement));
 
 		modelViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -145,12 +148,13 @@ public class SelectRootElementPage extends WizardPage {
 
 	/**
 	 * Gets the model root.
-	 *
-	 * @param modelResource the model resource
+	 * 
+	 * @param modelResource
+	 *        the model resource
 	 * @return the model root
 	 */
 	private EObject getModelRoot(Resource modelResource) {
-		if (modelResource == null) {
+		if(modelResource == null) {
 			//log
 			return null;
 		}
@@ -159,34 +163,38 @@ public class SelectRootElementPage extends WizardPage {
 
 	/**
 	 * Gets the resource for a URI.
-	 *
-	 * @param uri the URI of the resource
+	 * 
+	 * @param uri
+	 *        the URI of the resource
 	 * @return the resource
 	 */
 	private Resource getResourceForURI(URI uri) {
-		if (uri == null) {
+		if(uri == null) {
 			// log
 			return null;
 		}
 		ModelSet modelSet = new ModelSet();
-		Resource resource = null ;
+		Resource resource = null;
 		try {
 			resource = modelSet.getResource(uri, true);
-		}
-		catch (WrappedException e) {
-			if (ModelUtils.isDegradedModeAllowed(e.getCause())){
+		} catch (WrappedException e) {
+			if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
 				resource = modelSet.getResource(uri, true);
-				if (resource == null){
+				if(resource == null) {
+					error(e.getMessage());
 					throw e;
 				}
+			} else {
+				error(e.getMessage());
+				throw e;
 			}
 		}
-		if (!resource.getErrors().isEmpty()){
+		if(!resource.getErrors().isEmpty()) {
 			StringBuilder builder = new StringBuilder();
-			for (Diagnostic d : resource.getErrors()){
-				builder.append(String.format("<li>%s</li>", d.getMessage()));
+			for(Diagnostic d : resource.getErrors()) {
+				builder.append(String.format("<li>%s</li>", d.getMessage().replaceAll("\\<.*?\\>", ""))); //Basic strip tags to avoid breaking the NotificationBuilder with invalid HTML
 			}
-			error(resource, builder.toString());
+			error(builder.toString());
 		}
 		return resource;
 	}
@@ -195,8 +203,12 @@ public class SelectRootElementPage extends WizardPage {
 	 * @param resource
 	 * @param e
 	 */
-	private void error(Resource resource, String message) {
-		NotificationBuilder.createWarningPopup(String.format("<form>Problems encountered in your input model, after the save you could lose data :%s</form>",message)).setHTML(true).setType(Type.WARNING).run();
+	private void error(String message) {
+		try {
+			NotificationBuilder.createWarningPopup(String.format("<form>Problems encountered in your input model, after the save you could lose data :%s</form>", message)).setHTML(true).setType(Type.WARNING).run();
+		} catch (Exception ex) {
+			Activator.log.error(message, ex);
+		}
 	}
 
 	/**
