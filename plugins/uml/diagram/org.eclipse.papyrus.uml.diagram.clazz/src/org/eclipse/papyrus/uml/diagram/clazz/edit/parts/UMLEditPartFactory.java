@@ -466,6 +466,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InformationFlowConveyedLabelEditPart(view);
 			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return new InformationFlowAppliedStereotypeEditPart(view);
+			case ContextLinkEditPart.VISUAL_ID:
+				return new ContextLinkEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

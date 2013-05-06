@@ -1770,7 +1770,7 @@ public class InterfaceEditPartCN extends ClassifierEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(18);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(19);
 		types.add(UMLElementTypes.AssociationClass_4017);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
@@ -1789,6 +1789,7 @@ public class InterfaceEditPartCN extends ClassifierEditPart {
 		types.add(UMLElementTypes.TimeObservationEvent_4024);
 		types.add(UMLElementTypes.DurationObservationEvent_4025);
 		types.add(UMLElementTypes.InformationFlow_4026);
+		types.add(UMLElementTypes.ConstraintContext_4028);
 		return types;
 	}
 
@@ -2151,6 +2152,9 @@ public class InterfaceEditPartCN extends ClassifierEditPart {
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
+			types.add(UMLElementTypes.Constraint_3029);
+		} else if(relationshipType == UMLElementTypes.ConstraintContext_4028) {
+			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.Constraint_3029);
 		}
 		return types;

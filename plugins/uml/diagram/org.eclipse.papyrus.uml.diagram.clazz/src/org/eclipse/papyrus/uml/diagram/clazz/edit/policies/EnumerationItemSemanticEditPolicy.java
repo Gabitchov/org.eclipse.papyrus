@@ -42,6 +42,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConnectorTimeObservat
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConnectorTimeObservationReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ContextLinkCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ContextLinkReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.Dependency2ReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.Dependency3CreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.DependencyCreateCommand;
@@ -69,6 +71,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentAnnotatedElementE
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ElementImportEditPart;
@@ -233,6 +236,9 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			}
 			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.ConstraintContext_4028 == baseElementType) {
+			return null;
+		}
 		return null;
 	}
 
@@ -361,6 +367,12 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			}
 			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.ConstraintContext_4028 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new ContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -429,6 +441,8 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			return getGEFWrapper(new ConnectorTimeObservationReorientCommand(req));
 		case ConnectorDurationObservationEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConnectorDurationObservationReorientCommand(req));
+		case ContextLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new ContextLinkReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

@@ -566,6 +566,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType ConstraintContext_4028 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.ConstraintContext_4028"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -765,6 +770,7 @@ public class UMLElementTypes {
 			elements.put(TimeObservationEvent_4024, UMLPackage.eINSTANCE.getTimeObservation_Event());
 			elements.put(DurationObservationEvent_4025, UMLPackage.eINSTANCE.getDurationObservation_Event());
 			elements.put(InformationFlow_4026, UMLPackage.eINSTANCE.getInformationFlow());
+			elements.put(ConstraintContext_4028, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -883,6 +889,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(TimeObservationEvent_4024);
 			KNOWN_ELEMENT_TYPES.add(DurationObservationEvent_4025);
 			KNOWN_ELEMENT_TYPES.add(InformationFlow_4026);
+			KNOWN_ELEMENT_TYPES.add(ConstraintContext_4028);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -1094,6 +1101,8 @@ public class UMLElementTypes {
 			return DurationObservationEvent_4025;
 		case InformationFlowEditPart.VISUAL_ID:
 			return InformationFlow_4026;
+		case ContextLinkEditPart.VISUAL_ID:
+			return ConstraintContext_4028;
 		}
 		return null;
 	}
