@@ -17,10 +17,13 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper;
+import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.DropTargetEvent;
@@ -37,17 +40,34 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @see {@link org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper}
  */
-public class StringMultilineWithReferences extends StringMultiline {
+public class StringMultilineWithReferences extends AbstractPropertyEditor {
 
 	protected TextReferencesHelper textReferencesHelper;
 
+	protected StringEditorWithReferences editor;
+
 	public void setTextReferencesHelper(TextReferencesHelper helper) {
 		this.textReferencesHelper = helper;
+		editor.setTextReferencesHelper(helper);
 		installDropListener();
 	}
 
+	@Override
+	protected void doBinding() {
+		super.doBinding();
+		IStaticContentProvider provider = input.getContentProvider(propertyPath);
+		if(provider != null) {
+			editor.setReferenceBrowserContentProvider(provider);
+		}
+
+		if(getInputObservableValue() instanceof ICommitListener) {
+			editor.addCommitListener((ICommitListener)getInputObservableValue());
+		}
+	}
+
 	public StringMultilineWithReferences(Composite parent, int style) {
-		super(parent, style);
+		super();
+		setEditor(editor = new StringEditorWithReferences(parent, style));
 	}
 
 	protected void installDropListener() {
@@ -151,5 +171,13 @@ public class StringMultilineWithReferences extends StringMultiline {
 
 	protected org.eclipse.papyrus.infra.widgets.editors.StringEditor getStringEditor() {
 		return (org.eclipse.papyrus.infra.widgets.editors.StringEditor)valueEditor;
+	}
+
+	protected void setContentProvider(IStaticContentProvider provider) {
+		editor.setReferenceBrowserContentProvider(provider);
+	}
+
+	protected void setLabelProvider(ILabelProvider labelProvider) {
+		editor.setLabelProvider(labelProvider);
 	}
 }

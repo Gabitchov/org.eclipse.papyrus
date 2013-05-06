@@ -13,13 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
+import java.util.Collections;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.uml.tools.namereferences.NameReferencesHelper;
+import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
+import org.eclipse.papyrus.uml.tools.util.UMLProviderHelper;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.widgets.StringMultilineWithReferences;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A Widget for editing the Body of Comments
@@ -44,9 +50,18 @@ public class CommentBodyEditor extends StringMultilineWithReferences {
 			if(editedElement != null) {
 				baseResource = editedElement.eResource();
 			}
+
+			if(baseResource != null) {
+				SemanticUMLContentProvider semanticProvider = new SemanticUMLContentProvider(editedElement, UMLPackage.eINSTANCE.getComment_Body());
+				semanticProvider.setWantedMetaclasses(Collections.singletonList(UMLPackage.eINSTANCE.getNamedElement()));
+
+				EMFGraphicalContentProvider provider = UMLProviderHelper.encapsulateProvider(semanticProvider, editedElement, UMLPackage.eINSTANCE.getComment_Body(), baseResource.getResourceSet());
+				setContentProvider(provider);
+
+				setLabelProvider(element.getLabelProvider(propertyPath));
+			}
 		}
 
 		setTextReferencesHelper(new NameReferencesHelper(baseResource));
 	}
-
 }
