@@ -55,10 +55,13 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	/**
 	 * Instantiates a new new model file page.
-	 *
-	 * @param pageId the page id
-	 * @param selection the selection
-	 * @param modelKindName the kind of model to be created (translatable)
+	 * 
+	 * @param pageId
+	 *        the page id
+	 * @param selection
+	 *        the selection
+	 * @param modelKindName
+	 *        the kind of model to be created (translatable)
 	 */
 	public NewModelFilePage(String pageId, IStructuredSelection selection, String modelKindName) {
 		super(pageId, selection);
@@ -69,9 +72,9 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	/**
 	 * Creates the control.
-	 *
-	 * @param parent the parent
-	 * {@inheritDoc}
+	 * 
+	 * @param parent
+	 *        the parent {@inheritDoc}
 	 */
 	@Override
 	public void createControl(Composite parent) {
@@ -82,8 +85,9 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	/**
 	 * Diagram extension changed.
-	 *
-	 * @param newExtension the new extension
+	 * 
+	 * @param newExtension
+	 *        the new extension
 	 * @return the i status
 	 */
 	public IStatus diagramExtensionChanged(String newExtension) {
@@ -151,6 +155,22 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 			}
 		}
 		return filePath.lastSegment();
+	}
+
+	@Override
+	protected void createAdvancedControls(Composite parent) {
+		//Nothing: the standard "createAdvancedControls" method adds an option to "Link to file in the file system".
+		//It is not properly integrated with Papyrus (Which creates 3 different files, and only one of them is actually linked to the file system)
+	}
+
+	@Override
+	protected IStatus validateLinkedResource() {
+		return Status.OK_STATUS; //Disable this method to avoid NPE (Because we override #createAdvancedControls)
+	}
+
+	@Override
+	protected void createLinkTarget() {
+		//Disable this method to avoid NPE (Because we override #createAdvancedControls)
 	}
 
 }
