@@ -88,6 +88,7 @@ public class StandardOutputChannelImpl extends Object_ {
 			try {
 				String message = ((StringValue)inputParameters.get(0).values.get(0)).value;
 				out.write(message + "\n");
+				out.flush() ;
 				// This implementation does not produce errorStatus information.
 			} catch (Exception e) {
 				Debug.println("An error occured during the execution of writeLine " + e.getMessage());
@@ -123,6 +124,7 @@ public class StandardOutputChannelImpl extends Object_ {
 			try {
 				String message = inputParameters.get(0).values.get(0).toString();
 				out.write(message);
+				out.flush() ;
 				// This implementation does not produce errorStatus information.
 			} catch (Exception e) {
 				Debug.println("An error occured during the execution of write " + e.getMessage());
