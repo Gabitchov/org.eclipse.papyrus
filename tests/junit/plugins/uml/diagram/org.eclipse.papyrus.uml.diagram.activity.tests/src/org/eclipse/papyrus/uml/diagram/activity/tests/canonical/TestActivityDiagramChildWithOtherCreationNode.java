@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -29,12 +30,14 @@ public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestA
 	 * Test to manage callbehaviorAction
 	 */
 	@Test
+	@Ignore
 	public void testToManageCallbehaviorAction() {
 		testToManageNode(UMLElementTypes.CallBehaviorAction_3008, UMLPackage.eINSTANCE.getCallBehaviorAction(), UMLElementTypes.StructuredActivityNode_3065, false);
 	}
 	/**
 	 * Test to manage callOperationAction
 	 */
+	@Ignore
 	@Test
 	public void testToManageCallOperationAction() {
 		testToManageNode(UMLElementTypes.CallOperationAction_3010, UMLPackage.eINSTANCE.getCallOperationAction(), UMLElementTypes.StructuredActivityNode_3065, false);
@@ -43,6 +46,7 @@ public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestA
 	/**
 	 * Test to manage SendSignalAction Node.
 	 */
+	@Ignore
 	@Test
 	public void testToManageSendSignalAction() {
 		testToManageNode(UMLElementTypes.SendSignalAction_3052, UMLPackage.eINSTANCE.getSendSignalAction(), UMLElementTypes.StructuredActivityNode_3065, false);
