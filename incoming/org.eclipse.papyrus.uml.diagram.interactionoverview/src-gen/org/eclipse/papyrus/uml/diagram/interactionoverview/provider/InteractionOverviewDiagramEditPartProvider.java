@@ -26,9 +26,9 @@ public class InteractionOverviewDiagramEditPartProvider extends UMLEditPartProvi
 			final View view = ((IEditPartOperation)operation).getView();
 
 			// Ensure current diagram is InteractionOverviewDiagram Diagram
-			// if(ElementTypes.DIAGRAM_ID.equals(view.getType())) {
-			return true;
-			// }
+			if(ElementTypes.DIAGRAM_ID.equals(view.getType())) {
+				return true;
+			 }
 		}
 
 		return false;
