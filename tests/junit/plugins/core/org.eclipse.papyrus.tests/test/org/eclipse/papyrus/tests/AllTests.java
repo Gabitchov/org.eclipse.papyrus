@@ -75,7 +75,7 @@ public class AllTests {
 		//suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.dnd.tests.tests.AllTests.class)); //Temporarily disabled as they do not run on Hudson
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.tools.tests.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.stereotypeproperty.AllTests.class));
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.interactionoverview.tests.AllTests.class));
+		//suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.interactionoverview.tests.AllTests.class)); //Disabled. They currently do not run on Hudson
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.usecase.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.timing.tests.AllTests.class));
