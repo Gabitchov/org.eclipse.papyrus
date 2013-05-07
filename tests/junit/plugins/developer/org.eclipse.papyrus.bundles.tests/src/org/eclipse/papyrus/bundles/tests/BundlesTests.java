@@ -20,23 +20,17 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 
-import org.eclipse.core.internal.runtime.InternalPlatform;
-import org.eclipse.core.runtime.IBundleGroup;
-import org.eclipse.core.runtime.IBundleGroupProvider;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.osgi.framework.internal.core.BundleFragment;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.junit.Assert;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.eclipse.update.internal.configurator.FeatureEntry;
 
 public class BundlesTests {
 
 	private static final String REGEX_VERSION_NUMBER = "0\\.10\\.0\\..*";
-	
+
 	private static final String REGEX_INCUBATION = ".*\\(Incubation\\)";
 
 	@Test
@@ -45,16 +39,16 @@ public class BundlesTests {
 		int nbProblem = 0;
 		final List<Feature> features = BundleTestsUtils.getPapyrusFeature();
 		for(final Feature feature : features) {
-				String version = feature.getVersion();
-				if(!version.matches(REGEX_VERSION_NUMBER)) {
-					if(message == null) {
-						message = "Wrong version number for the features:";
-					}
-					message += "\n" + feature.getId();
-					nbProblem++;
+			String version = feature.getVersion();
+			if(!version.matches(REGEX_VERSION_NUMBER)) {
+				if(message == null) {
+					message = "Wrong version number for the features:";
 				}
+				message += "\n" + feature.getId();
+				nbProblem++;
 			}
-		Assert.assertNull(nbProblem + "problems!\n"+message, message);
+		}
+		Assert.assertNull(nbProblem + "problems!\n" + message, message);
 	}
 
 	/**
@@ -78,7 +72,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void versionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, REGEX_VERSION_NUMBER, false, false); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, REGEX_VERSION_NUMBER, false, false);
 	}
 
 	/**
@@ -277,7 +271,7 @@ public class BundlesTests {
 	 * verify that the field PLUGIN_ID is equals to the plugin name
 	 */
 	@Test
-	public void PLUGIN_ID_Test() {
+	public void pluginIDTest() {
 		String errorMessage = ""; //$NON-NLS-1$.
 		String warningMessage = "";//$NON-NLS-1$ 
 		final Collection<String> possibleIds = new ArrayList<String>();
@@ -318,8 +312,10 @@ public class BundlesTests {
 			}
 
 		}
-		Assert.assertTrue(nbError + " problems! " + errorMessage, nbError == 0); //$NON-NLS-1$ 
-		Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$ 
+		Assert.assertTrue(nbError + " problems! " + errorMessage, nbError == 0); //$NON-NLS-1$
+
+		//Do not fail on warnings
+		//Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$ 
 	}
 
 
