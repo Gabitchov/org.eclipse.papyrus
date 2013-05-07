@@ -162,7 +162,7 @@
     <!-- EMFT MWE -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMFT MWE",0) -->
-      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones/S201303191413/mwe/">
+      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones/S201305070714/mwe/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -233,7 +233,7 @@
     <!-- M2T Xpand -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("M2T XPAND",0) -->
-      <rm:uri format="{0}/modeling/m2t/xpand/updates/releases/R201302260541/">
+      <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones/S201305070723/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -241,7 +241,7 @@
     <!-- TMF Xtext, Xtend -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("TMF Xtext, Tools Xtend",0) -->
-      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/head/R201304180855/">
+      <rm:uri format="{0}/modeling/tmf/xtext/updates/milestones/head/S201305071052/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -311,7 +311,7 @@
     <!-- WST -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("WebTools",0) -->
-      <rm:uri format="{0}/webtools/downloads/drops/R3.5.0/S-3.5.0M6-20130315194337/repository/">
+      <rm:uri format="{0}/webtools/downloads/drops/R3.5.0/S-3.5.0M7-20130507050119/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
