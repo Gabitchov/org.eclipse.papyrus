@@ -38,11 +38,5 @@
             name="Create validation plugin for this DSML">
       </command>
    </extension>
-   <extension
-         point="org.eclipse.ui.startup">
-      <startup
-            class="org.eclipse.papyrus.dsml.validation.generation.ui.Activator">
-      </startup>
-   </extension>
 
 </plugin>

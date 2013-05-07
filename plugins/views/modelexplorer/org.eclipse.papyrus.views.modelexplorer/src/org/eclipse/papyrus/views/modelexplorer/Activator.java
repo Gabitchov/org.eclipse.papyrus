@@ -47,7 +47,7 @@ import org.osgi.framework.BundleContext;
  * The activator class controls the plug-in life cycle
  */
 @SuppressWarnings("restriction")
-public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStartup {
+public class Activator extends AbstractUIPlugin {
 
 	/** The plug-in ID */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.views.modelexplorer"; //$NON-NLS-1$
@@ -236,15 +236,6 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 		builder.append(eClass.getName());
 
 		return builder.toString();
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.ui.IStartup#earlyStartup()
-	 * 
-	 */
-	public void earlyStartup() {
-
 	}
 
 }

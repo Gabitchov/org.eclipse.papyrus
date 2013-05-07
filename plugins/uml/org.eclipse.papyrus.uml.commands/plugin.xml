@@ -83,12 +83,6 @@
     </handler>
 </extension>
 <extension
-      point="org.eclipse.ui.startup">
-   <startup
-         class="org.eclipse.papyrus.uml.commands.Activator">
-   </startup>
-</extension>
-<extension
       point="org.eclipse.core.expressions.propertyTesters">
    <propertyTester
          class="org.eclipse.papyrus.uml.commands.handler.tester.UMLPropertyTester"

@@ -221,9 +221,6 @@
      verified (isVisible and isEnabled) before any attempt to execute the command, 
      and to mask the command in case it is not supported or executable.
   -->
-<extension point="org.eclipse.ui.startup">
-	<startup class="org.eclipse.papyrus.views.modelexplorer.Activator"/>
-</extension>
 <extension point="org.eclipse.ui.navigator.linkHelper">
    <linkHelper class="org.eclipse.papyrus.views.modelexplorer.LinkHelper" id="org.eclipse.papyrus.views.modelexplorer.linkHelper">
        <selectionEnablement>
