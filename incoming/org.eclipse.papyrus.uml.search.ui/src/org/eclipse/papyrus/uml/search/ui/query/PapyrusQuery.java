@@ -141,12 +141,13 @@ public class PapyrusQuery implements ISearchQuery {
 		Matcher m = pattern.matcher(value);
 
 		if(isRegularExpression) {
-			m.matches();
-			int start = m.start();
-			int end = m.end();
-			ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute);
+			if(m.matches()) {
+				int start = m.start();
+				int end = m.end();
+				ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute);
 
-			fResults.add(match);
+				fResults.add(match);
+			}
 		} else {
 			while(m.find()) {
 				int start = m.start();
@@ -207,11 +208,15 @@ public class PapyrusQuery implements ISearchQuery {
 						EList<Stereotype> stereotypes = ((Element)participant).getAppliedStereotypes();
 						for(Stereotype stereotype : stereotypes) {
 							for(Property stereotypeProperty : stereotype.getAllAttributes()) {
-								Object value = ((Element)participant).getValue(stereotype, stereotypeProperty.getName());
+								if(!stereotypeProperty.getName().startsWith("base_")) {
+									Object value = ((Element)participant).getValue(stereotype, stereotypeProperty.getName());
+									if(value != null) {
 
-								if(value instanceof String) {
-									String stringValue = (String)value;
-									evaluateAndAddToResult(stringValue, stereotypeProperty, pattern, participant, scopeEntry);
+										if(value instanceof String) {
+											String stringValue = (String)value;
+											evaluateAndAddToResult(stringValue, stereotypeProperty, pattern, participant, scopeEntry);
+										}
+									}
 								}
 							}
 
