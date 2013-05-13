@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -59,26 +58,26 @@ public class CustomViewProvider extends UMLViewProvider {
 			return false;
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
-		if(visualID == DurationConstraintEditPart.VISUAL_ID){ // avoid to modify UMLVisualIDRegistry.getNodeVisualID(View, EObject)
+		if(visualID == DurationConstraintEditPart.VISUAL_ID) { // avoid to modify UMLVisualIDRegistry.getNodeVisualID(View, EObject)
 			if(InteractionInteractionCompartmentEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(op.getContainerView()))
 				return true;
 		}
 		return super.provides(op);
 	}
-	
+
 	protected boolean provides(CreateViewForKindOperation op) {
 		if(op.getContainerView() == null) {
 			return false;
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
-		if(visualID == DurationConstraintEditPart.VISUAL_ID){ // avoid to modify UMLVisualIDRegistry.getNodeVisualID(View, EObject)
+		if(visualID == DurationConstraintEditPart.VISUAL_ID) { // avoid to modify UMLVisualIDRegistry.getNodeVisualID(View, EObject)
 			if(InteractionInteractionCompartmentEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(op.getContainerView()))
 				return true;
 		}
 		return super.provides(op);
 	}
-	
-	
+
+
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);

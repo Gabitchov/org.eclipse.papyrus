@@ -56,7 +56,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
-import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -217,14 +216,14 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 			return ((DurationObservation)hostSemanticElement).getEvents().size() >= 2;
 		} else if(hostSemanticElement instanceof TimeConstraint) {
 			return ((TimeConstraint)hostSemanticElement).getConstrainedElements().size() > 0;
-		} 
-//		else if(hostSemanticElement instanceof DurationConstraint) {
-//			/*
-//			 * Note that DurationConstraint may have only one ConstrainedElement.
-//			 * But in such a case, we suppose it has not been created as one of the concerned edit parts.
-//			 */
-//			return ((DurationConstraint)hostSemanticElement).getConstrainedElements().size() >= 2;
-//		}
+		}
+		//		else if(hostSemanticElement instanceof DurationConstraint) {
+		//			/*
+		//			 * Note that DurationConstraint may have only one ConstrainedElement.
+		//			 * But in such a case, we suppose it has not been created as one of the concerned edit parts.
+		//			 */
+		//			return ((DurationConstraint)hostSemanticElement).getConstrainedElements().size() >= 2;
+		//		}
 		return true;
 	}
 
@@ -295,15 +294,15 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 				return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0)) == null;
 			}
 			return true;
-		} 
-//		else if(getHost() instanceof DurationConstraintEditPart && hostSemanticElement instanceof DurationConstraint) {
-//			LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
-//			List<Element> occs = ((DurationConstraint)hostSemanticElement).getConstrainedElements();
-//			if(occs.size() >= 2 && occs.get(0) instanceof OccurrenceSpecification && occs.get(1) instanceof OccurrenceSpecification) {
-//				return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0)) == null || SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(1)) == null;
-//			}
-//			return true;
-//		}
+		}
+		//		else if(getHost() instanceof DurationConstraintEditPart && hostSemanticElement instanceof DurationConstraint) {
+		//			LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
+		//			List<Element> occs = ((DurationConstraint)hostSemanticElement).getConstrainedElements();
+		//			if(occs.size() >= 2 && occs.get(0) instanceof OccurrenceSpecification && occs.get(1) instanceof OccurrenceSpecification) {
+		//				return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0)) == null || SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(1)) == null;
+		//			}
+		//			return true;
+		//		}
 		// a label on a message always has its parent message
 		return false;
 	}

@@ -61,7 +61,7 @@ public class CustomInteractionInteractionCompartmentItemSemanticEditPolicy exten
 		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationObservationCreateCommand(req));
 		}
-		if(UMLElementTypes.DurationConstraint_3021 ==  req.getElementType()) {
+		if(UMLElementTypes.DurationConstraint_3021 == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

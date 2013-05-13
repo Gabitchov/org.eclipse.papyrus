@@ -158,7 +158,7 @@ public class AnchorHelper {
 
 	public static class FixedAnchorEx extends SlidableAnchor {
 
-		private int position;
+		protected int position;
 
 		public FixedAnchorEx(IFigure f, int location) {
 			super(f, location == PositionConstants.TOP ? new PrecisionPoint(0.0, 0.0) : new PrecisionPoint(0.0, 1.0));

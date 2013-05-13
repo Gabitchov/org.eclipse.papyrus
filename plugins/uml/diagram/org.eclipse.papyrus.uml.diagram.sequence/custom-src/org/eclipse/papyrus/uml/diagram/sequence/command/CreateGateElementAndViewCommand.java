@@ -19,7 +19,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.util.ObjectAdapter;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.uml2.uml.Element;

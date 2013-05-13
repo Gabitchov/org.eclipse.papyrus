@@ -13,41 +13,31 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartListener;
 import org.eclipse.gef.EditPartViewer;
-import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gef.tools.AbstractConnectionCreationTool;
-import org.eclipse.gef.tools.AbstractTool;
 import org.eclipse.gef.tools.TargetingTool;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 
@@ -127,6 +117,15 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 		if(isInState(STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
 			return handleMove();
 		}
+
+		{ // ----------- add for drag creation size -----
+			if(isInState(STATE_DRAG_IN_PROGRESS)) {
+				updateTargetRequest();
+				setCurrentCommand(getCommand());
+				showTargetFeedback();
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -148,8 +147,9 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	 */
 	@Override
 	protected void updateTargetRequest() {
-		CreateRequest req = getCreateRequest();
-		req.setLocation(getLocation());
+		//		CreateRequest req = getCreateRequest();
+		//		req.setLocation(getLocation());
+		super.updateTargetRequest(); // ----------- add for drag creation size 
 	}
 
 	/**
@@ -224,6 +224,12 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 			updateTargetRequest();
 			updateTargetUnderMouse();
 			setConnectionSource(getTargetEditPart());
+
+			{ // ----------- add for drag creation size 
+				if(getTargetEditPart() instanceof InteractionInteractionCompartmentEditPart)
+					return super.handleButtonDown(button);
+			}
+
 			Command command = getCommand();
 			Request request = getTargetRequest();
 			//target elements of request have been set
@@ -353,6 +359,14 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 		if(isInState(STATE_CONNECTION_STARTED)) {
 			handleCreateConnection();
 		}
+
+		{ // ----------- add for drag creation size ------
+			if(stateTransition(STATE_DRAG | STATE_DRAG_IN_PROGRESS, STATE_TERMINAL)) {
+				eraseTargetFeedback();
+				unlockTargetEditPart();
+				performCreation(button);
+			}
+		}
 		setState(STATE_TERMINAL);
 		if(isInState(STATE_TERMINAL | STATE_INVALID)) {
 			handleFinished();
@@ -444,55 +458,57 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 				return null;
 			}
 			Request req = getTargetRequest();
-			/*if(targetPart instanceof ConnectionNodeEditPart) {
-				// a message part is targeted. Instead, we must take the nearby lifeline part.
-				// redirect to the message part will be performed later in case we really want to draw a duration on a message
-				ConnectionNodeEditPart conn = (ConnectionNodeEditPart)targetPart;
-				EditPart source = ((ConnectionNodeEditPart)targetPart).getSource();
-				EditPart target = ((ConnectionNodeEditPart)targetPart).getTarget();
-				if(source instanceof NodeEditPart && target instanceof NodeEditPart) {
-					ConnectionAnchor sourceAnch = ((NodeEditPart)source).getSourceConnectionAnchor(conn);
-					ConnectionAnchor targetAnch = ((NodeEditPart)target).getSourceConnectionAnchor(conn);
-					double sourceDist = getLocation().getDistance(sourceAnch.getReferencePoint());
-					double targetDist = getLocation().getDistance(targetAnch.getReferencePoint());
-					if(sourceDist > targetDist) {
-						targetPart = target;
-					} else {
-						targetPart = source;
-					}
-				}
-			}
-			LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(targetPart);
-			if(lifelinePart instanceof LifelineEditPart) {
-				Object paramOcc1 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-				List<OccurrenceSpecification> occ1List = SequenceUtil.getAsOccSpecList(paramOcc1);
-				Object paramOcc2 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
-				List<OccurrenceSpecification> occ2List = SequenceUtil.getAsOccSpecList(paramOcc2);
-				if(!occ1List.isEmpty() && !occ2List.isEmpty() && Collections.disjoint(occ1List, occ2List)) {
-					OccurrenceSpecification[] pair = SequenceUtil.getPairOfCorrespondingOccSpec(occ1List, occ2List);
-					if(pair != null && pair.length > 1) {
-						OccurrenceSpecification occ1 = pair[0];
-						OccurrenceSpecification occ2 = pair[1];
-						if(DurationConstraintHelper.endsOfSameMessage(occ1, occ2)) {
-							// call request on the link
-							EditPart part = SequenceUtil.getLinkedEditPart(lifelinePart, occ2);
-							if(part != null) {
-								return part.getCommand(req);
-							}
-						}
-					}
-				}
-			}*/
-			if(targetPart instanceof InteractionInteractionCompartmentEditPart || targetPart instanceof ConnectionNodeEditPart) 
+			/*
+			 * if(targetPart instanceof ConnectionNodeEditPart) {
+			 * // a message part is targeted. Instead, we must take the nearby lifeline part.
+			 * // redirect to the message part will be performed later in case we really want to draw a duration on a message
+			 * ConnectionNodeEditPart conn = (ConnectionNodeEditPart)targetPart;
+			 * EditPart source = ((ConnectionNodeEditPart)targetPart).getSource();
+			 * EditPart target = ((ConnectionNodeEditPart)targetPart).getTarget();
+			 * if(source instanceof NodeEditPart && target instanceof NodeEditPart) {
+			 * ConnectionAnchor sourceAnch = ((NodeEditPart)source).getSourceConnectionAnchor(conn);
+			 * ConnectionAnchor targetAnch = ((NodeEditPart)target).getSourceConnectionAnchor(conn);
+			 * double sourceDist = getLocation().getDistance(sourceAnch.getReferencePoint());
+			 * double targetDist = getLocation().getDistance(targetAnch.getReferencePoint());
+			 * if(sourceDist > targetDist) {
+			 * targetPart = target;
+			 * } else {
+			 * targetPart = source;
+			 * }
+			 * }
+			 * }
+			 * LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(targetPart);
+			 * if(lifelinePart instanceof LifelineEditPart) {
+			 * Object paramOcc1 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+			 * List<OccurrenceSpecification> occ1List = SequenceUtil.getAsOccSpecList(paramOcc1);
+			 * Object paramOcc2 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
+			 * List<OccurrenceSpecification> occ2List = SequenceUtil.getAsOccSpecList(paramOcc2);
+			 * if(!occ1List.isEmpty() && !occ2List.isEmpty() && Collections.disjoint(occ1List, occ2List)) {
+			 * OccurrenceSpecification[] pair = SequenceUtil.getPairOfCorrespondingOccSpec(occ1List, occ2List);
+			 * if(pair != null && pair.length > 1) {
+			 * OccurrenceSpecification occ1 = pair[0];
+			 * OccurrenceSpecification occ2 = pair[1];
+			 * if(DurationConstraintHelper.endsOfSameMessage(occ1, occ2)) {
+			 * // call request on the link
+			 * EditPart part = SequenceUtil.getLinkedEditPart(lifelinePart, occ2);
+			 * if(part != null) {
+			 * return part.getCommand(req);
+			 * }
+			 * }
+			 * }
+			 * }
+			 * }
+			 */
+			if(targetPart instanceof InteractionInteractionCompartmentEditPart || targetPart instanceof ConnectionNodeEditPart)
 				return targetPart.getCommand(req);
 			targetPart = getInteractionEditPart(targetPart);
-			if(targetPart != null){
+			if(targetPart != null) {
 				return targetPart.getCommand(req);
 			}
 		}
 		return null;
 	}
-	
+
 	private EditPart getInteractionEditPart(EditPart editPart) {
 		if(editPart == null) {
 			return null;

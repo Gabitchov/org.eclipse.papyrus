@@ -71,7 +71,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
@@ -108,11 +107,11 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 		this.messageEnd = end;
 		addToResource(parent.getNotationView(), this.getNotationView());
 	}
-	
-	public MessageEndEditPart(View view){
+
+	public MessageEndEditPart(View view) {
 		super(view);
 		if(view.getElement() instanceof MessageEnd)
-			this.messageEnd = (MessageEnd) view.getElement();
+			this.messageEnd = (MessageEnd)view.getElement();
 	}
 
 	public void setParent(EditPart parent) {
@@ -121,15 +120,15 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 	}
 
 	private void initLocator() {
-		if(locator == null && messageEnd != null){
+		if(locator == null && messageEnd != null) {
 			Message message = messageEnd.getMessage();
 			if(message.getSendEvent() == messageEnd)
-				locator = new ConnectionLocator( ((AbstractConnectionEditPart) getParent()).getConnectionFigure(), ConnectionLocator.SOURCE);
+				locator = new ConnectionLocator(((AbstractConnectionEditPart)getParent()).getConnectionFigure(), ConnectionLocator.SOURCE);
 			else
-				locator = new ConnectionLocator( ((AbstractConnectionEditPart) getParent()).getConnectionFigure(), ConnectionLocator.TARGET);
+				locator = new ConnectionLocator(((AbstractConnectionEditPart)getParent()).getConnectionFigure(), ConnectionLocator.TARGET);
 		}
 	}
-	
+
 	@Override
 	protected void addNotationalListeners() {
 		if(hasNotationView()) {

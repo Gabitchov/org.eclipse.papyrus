@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineShape;
@@ -24,10 +23,13 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -39,31 +41,34 @@ import org.eclipse.gef.handles.HandleBounds;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.common.core.util.StringStatics;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder;
+import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper.FixedAnchorEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.TimeRelatedSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDurationConstraintItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
@@ -72,6 +77,14 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class CustomDurationConstraintEditPart extends DurationConstraintEditPart {
+
+	private static final String ARROW = "Arrow";
+
+	private static final String DIRECTION = "Direction";
+
+	private static final String VERTICAL = "vertical";
+
+	private static final String HORIZONTAL = "horizontal";
 
 	/**
 	 * Constructor.
@@ -90,7 +103,7 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDurationConstraintItemSemanticEditPolicy());
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
 	 * 
@@ -101,88 +114,97 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
 		IHintedType type = (IHintedType)UMLElementTypes.CommentAnnotatedElement_4010;
-		if(request instanceof CreateConnectionViewRequest){
-			String hint = ((CreateConnectionViewRequest) request).getConnectionViewDescriptor().getSemanticHint();
-			if(hint.equals( type.getSemanticHint() )){
-				return new AnchorHelper.FixedAnchorEx(getFigure(), computeAnchorLocation( ((CreateConnectionViewRequest) request).getLocation()) );  
+		if(request instanceof CreateConnectionViewRequest) {
+			String hint = ((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint();
+			if(hint.equals(type.getSemanticHint())) {
+				return new RotateAnchor(getFigure(), computeAnchorLocation(((CreateConnectionViewRequest)request).getLocation()));
+			}
+		} else if(request instanceof ReconnectRequest) {
+			ConnectionEditPart linkPart = ((ReconnectRequest)request).getConnectionEditPart();
+			if(linkPart instanceof CommentAnnotatedElementEditPart) {
+				return new RotateAnchor(getFigure(), computeAnchorLocation(((ReconnectRequest)request).getLocation()));
 			}
 		}
 		return super.getSourceConnectionAnchor(request);
 	}
-	
+
 	protected int computeAnchorLocation(Point location) {
 		Rectangle box = getBox();
-		if(location.getDistance2( box.getTop()) > location.getDistance2(box.getBottom()))
-			return PositionConstants.BOTTOM;
-		return PositionConstants.TOP;
+		if(isArrowVertical()) {
+			if(location.getDistance2(box.getTop()) > location.getDistance2(box.getBottom()))
+				return PositionConstants.BOTTOM;
+			return PositionConstants.TOP;
+		} else {
+			if(location.getDistance2(box.getLeft()) > location.getDistance2(box.getRight()))
+				return PositionConstants.RIGHT;
+			return PositionConstants.LEFT;
+		}
 	}
 
 	protected Rectangle getBox() {
-		Rectangle rBox = getFigure() instanceof HandleBounds ? new PrecisionRectangle(
-				((HandleBounds) getFigure()).getHandleBounds())
-				: new PrecisionRectangle(getFigure().getBounds());
-			getFigure().translateToAbsolute(rBox);
+		Rectangle rBox = getFigure() instanceof HandleBounds ? new PrecisionRectangle(((HandleBounds)getFigure()).getHandleBounds()) : new PrecisionRectangle(getFigure().getBounds());
+		getFigure().translateToAbsolute(rBox);
 		return rBox;
 	}
-	
-	public boolean canCreateLink(Point point){
-		DurationConstraint dc = (DurationConstraint) this.resolveSemanticElement();
-		
-		int count = 0;  // link counts
+
+	public boolean canCreateLink(Point point) {
+		DurationConstraint dc = (DurationConstraint)this.resolveSemanticElement();
+
+		int count = 0; // link counts
 		List list = this.getSourceConnections();
-		for(Object o :list)
-			if(o instanceof CustomCommentAnnotatedElementEditPart){
-				count ++;
+		for(Object o : list)
+			if(o instanceof CustomCommentAnnotatedElementEditPart) {
+				count++;
 			}
 		if(count >= 2)
 			return false;
-		
+
 		if(count < 1)
 			return true;
-		
-		int targetPosition = computeAnchorLocation( point );
+
+		int targetPosition = computeAnchorLocation(point);
 		if(findLinkAtPosition(targetPosition))
 			return false;
 		return true;
 	}
-	
-//	protected void refreshSourceConnections() {
-//		super.refreshSourceConnections();
-//		Display.getDefault().asyncExec(new Runnable(){
-//			public void run() {
-//				refreshBorder();
-//			}
-//		});
-//	}
-//	
-//	public void refresh(){
-//		super.refresh();
-//		refreshBorder();
-//	}
-//
-//	private void refreshBorder() {
-//		if(getPrimaryShape() instanceof CustomDurationConstraintFigure){
-//			CustomDurationConstraintFigure fig = (CustomDurationConstraintFigure)getPrimaryShape();
-//			fig.setBorderVisible(hasTopLink(), hasBottomLink());
-//		}
-//	}
-	
-	public boolean hasTopLink(){
-		return findLinkAtPosition(PositionConstants.TOP);	 
+
+	//	protected void refreshSourceConnections() {
+	//		super.refreshSourceConnections();
+	//		Display.getDefault().asyncExec(new Runnable(){
+	//			public void run() {
+	//				refreshBorder();
+	//			}
+	//		});
+	//	}
+	//	
+	//	public void refresh(){
+	//		super.refresh();
+	//		refreshBorder();
+	//	}
+	//
+	//	private void refreshBorder() {
+	//		if(getPrimaryShape() instanceof CustomDurationConstraintFigure){
+	//			CustomDurationConstraintFigure fig = (CustomDurationConstraintFigure)getPrimaryShape();
+	//			fig.setBorderVisible(hasTopLink(), hasBottomLink());
+	//		}
+	//	}
+
+	public boolean hasTopLink() {
+		return findLinkAtPosition(PositionConstants.TOP);
 	}
-	
-	public boolean hasBottomLink(){
+
+	public boolean hasBottomLink() {
 		return findLinkAtPosition(PositionConstants.BOTTOM);
 	}
-	
-	protected boolean findLinkAtPosition(int targetPos){
+
+	protected boolean findLinkAtPosition(int targetPos) {
 		List list = this.getSourceConnections();
-		for(Object o :list)
-			if(o instanceof CustomCommentAnnotatedElementEditPart){
-				CustomCommentAnnotatedElementEditPart connPart = (CustomCommentAnnotatedElementEditPart) o;
+		for(Object o : list)
+			if(o instanceof CustomCommentAnnotatedElementEditPart) {
+				CustomCommentAnnotatedElementEditPart connPart = (CustomCommentAnnotatedElementEditPart)o;
 				if((targetPos & getSourceAnchorPosition(connPart)) > 0)
-						return true;
-				
+					return true;
+
 			}
 		return false;
 	}
@@ -196,41 +218,42 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
+		ConnectionAnchor anchor = null;
 		if(connEditPart instanceof CommentAnnotatedElementEditPart) {
-			return new AnchorHelper.FixedAnchorEx(getFigure(),getSourceAnchorPosition(connEditPart));
+			anchor = new RotateAnchor(getFigure(), getSourceAnchorPosition((CommentAnnotatedElementEditPart)connEditPart));
+		} else {
+			anchor = super.getSourceConnectionAnchor(connEditPart);
 		}
-		return super.getSourceConnectionAnchor(connEditPart);
+
+		return anchor;
 	}
 
-	private int getSourceAnchorPosition(ConnectionEditPart connEditPart) {
+	private int getSourceAnchorPosition(CommentAnnotatedElementEditPart connEditPart) {
 		String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, true);
 		if(terminal.length() > 0) {
-			PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(terminal);
-			if(pt.y < 0.5)
-				 return PositionConstants.TOP  ;
-			else
-				return PositionConstants.BOTTOM ;
+			return RotateAnchor.parseLocation(terminal);
 		}
-		return PositionConstants.NONE ;
+		return PositionConstants.TOP;
 	}
 
 	@Override
 	protected void refreshBounds() {
 		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
 		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-		if(width == -1 && height == -1) {  // restore to default size
-			Dimension size = getFigure().getPreferredSize(); 
-			width = size.width;
-			height = size.height;
-		}
-		if(width != -1 && height != -1) {  
+		// restore to default size
+		if(width == -1)
+			width = getFigure().getPreferredSize().width;
+		if(height == -1)
+			height = getFigure().getPreferredSize().height;
+
+		if(width != -1 && height != -1) {
 			Dimension size = primaryShape.getBounds().getSize();
-			if(size.width != width || size.height != height){ // if resize bounds
+			if(size.width != width || size.height != height) { // if resize bounds
 				primaryShape.setBounds(new Rectangle(primaryShape.getBounds().getLocation(), new Dimension(width, height)));
 			}
 		}
 		super.refreshBounds();
-		
+
 		//fix combined fragment move
 		this.getFigure().getParent().getLayoutManager().layout(this.getFigure().getParent());
 		relocateLabelEditPart();
@@ -252,7 +275,8 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy policy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		return policy != null ? policy : new ResizableShapeEditPolicy(){
+		return policy != null ? policy : new ResizableShapeEditPolicy() {
+
 			protected Command getResizeCommand(ChangeBoundsRequest request) {
 				ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_RESIZE_CHILDREN);
 				req.setEditParts(getHost());
@@ -264,31 +288,31 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 				req.setResizeDirection(request.getResizeDirection());
 				return getHost().getParent().getCommand(req);
 			}
-			
-			 protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
-			        IFigure feedback = getDragSourceFeedbackFigure();
-			        
-			        PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-			        getHostFigure().translateToAbsolute(rect);
-			        rect.translate(request.getMoveDelta());
-			        rect.resize(request.getSizeDelta());
-			        
-			        IFigure f = getHostFigure();
-			        Dimension max = f.getMaximumSize().getCopy();
-			        IMapMode mmode = MapModeUtil.getMapMode(f);
-			        max.height = mmode.LPtoDP(max.height);
-			        max.width = mmode.LPtoDP(max.width);
-			        
-			        // no minimal size
-			        if (max.width < rect.width)
-			            rect.width = max.width;
 
-			        if (max.height < rect.height)
-			            rect.height = max.height;
-			        
-			        feedback.translateToRelative(rect);
-			        feedback.setBounds(rect);
-			    }
+			protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
+				IFigure feedback = getDragSourceFeedbackFigure();
+
+				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
+				getHostFigure().translateToAbsolute(rect);
+				rect.translate(request.getMoveDelta());
+				rect.resize(request.getSizeDelta());
+
+				IFigure f = getHostFigure();
+				Dimension max = f.getMaximumSize().getCopy();
+				IMapMode mmode = MapModeUtil.getMapMode(f);
+				max.height = mmode.LPtoDP(max.height);
+				max.width = mmode.LPtoDP(max.width);
+
+				// no minimal size
+				if(max.width < rect.width)
+					rect.width = max.width;
+
+				if(max.height < rect.height)
+					rect.height = max.height;
+
+				feedback.translateToRelative(rect);
+				feedback.setBounds(rect);
+			}
 		};
 	}
 
@@ -388,11 +412,18 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 				refreshLineWidth();
 			}
 		}
+
+		if(notification.getNewValue() instanceof EAnnotation && ARROW.equals(((EAnnotation)notification.getNewValue()).getSource())) {
+			refreshArrowDirection((EAnnotation)notification.getNewValue());
+		} else if(notification.getNotifier() instanceof EAnnotation && ARROW.equals(((EAnnotation)notification.getNotifier()).getSource())) {
+			refreshArrowDirection((EAnnotation)notification.getNotifier()); //notification.getEventType() == 
+		}
 	}
 
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
+		refreshArrowDirection(null);
 		refreshLineWidth();
 	}
 
@@ -438,31 +469,45 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 		 * 
 		 */
 		private static final int ARROW_SEMI_WIDTH = 7;
-		
-		public CustomDurationConstraintFigure(){
+
+		boolean vertical = true;
+
+		public CustomDurationConstraintFigure() {
 			setDashBorder();
 		}
-		
+
 		protected void setDashBorder() {
-			if(this.getBorder() instanceof LinesBorder){
-				LinesBorder lb = (LinesBorder) this.getBorder();
+			if(this.getBorder() instanceof LinesBorder) {
+				LinesBorder lb = (LinesBorder)this.getBorder();
 				lb.setStyle(Graphics.LINE_DASH);
+				if(vertical)
+					lb.setSides(PositionConstants.TOP | PositionConstants.BOTTOM);
+				else
+					lb.setSides(PositionConstants.LEFT | PositionConstants.RIGHT);
 			}
 		}
-		
-		public void setBorderVisible(boolean top, boolean bottom){
-			if(this.getBorder() instanceof LinesBorder){
-				LinesBorder lb = (LinesBorder) this.getBorder();
-				if(top){
-					int value = bottom ? PositionConstants.TOP | PositionConstants.BOTTOM : PositionConstants.TOP;
-					lb.setSides(value);
-				}else{
-					int value = bottom ? PositionConstants.BOTTOM : PositionConstants.NONE;
-					lb.setSides(value);
-				}
-				this.repaint();
+
+		public void setVertical(boolean val) {
+			if(val != vertical) {
+				vertical = val;
+				setDashBorder();
+				revalidate();
 			}
 		}
+
+		//		public void setBorderVisible(boolean top, boolean bottom){
+		//			if(this.getBorder() instanceof LinesBorder){
+		//				LinesBorder lb = (LinesBorder) this.getBorder();
+		//				if(top){
+		//					int value = bottom ? PositionConstants.TOP | PositionConstants.BOTTOM : PositionConstants.TOP;
+		//					lb.setSides(value);
+		//				}else{
+		//					int value = bottom ? PositionConstants.BOTTOM : PositionConstants.NONE;
+		//					lb.setSides(value);
+		//				}
+		//				this.repaint();
+		//			}
+		//		}
 
 		/**
 		 * Sets the bounds of this Figure to the Rectangle <i>rect</i>.
@@ -491,18 +536,38 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 			figureWidth -= getInsets().left + getInsets().right;
 			figureHeight -= getInsets().top + getInsets().bottom;
 			if(getDurationArrow() != null) {
-				PointList points = new PointList(8);
-				points.addPoint(figureWidth / 2 - ARROW_SEMI_WIDTH, getLineWidth() / 2 + ARROW_HEIGHT);
-				points.addPoint(figureWidth / 2, getLineWidth() / 2);
-				points.addPoint(figureWidth / 2 + ARROW_SEMI_WIDTH, getLineWidth() / 2 + ARROW_HEIGHT);
-				points.addPoint(figureWidth / 2, getLineWidth() / 2);
-				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() / 2);
-				points.addPoint(figureWidth / 2 - ARROW_SEMI_WIDTH, figureHeight - getLineWidth() / 2 - ARROW_HEIGHT);
-				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() / 2);
-				points.addPoint(figureWidth / 2 + ARROW_SEMI_WIDTH, figureHeight - getLineWidth() / 2 - ARROW_HEIGHT);
-				getDurationArrow().setPoints(points);
-				Point topLeft = getLocation().getTranslated(getInsets().left, getInsets().top);
-				getDurationArrow().setBounds(new Rectangle(topLeft, new Dimension(figureWidth, figureHeight)));
+				int halfLineWidth = getLineWidth() / 2;
+				if(vertical) {
+					PointList points = new PointList(8);
+					int centerX = figureWidth / 2;
+					points.addPoint(centerX - ARROW_SEMI_WIDTH, halfLineWidth + ARROW_HEIGHT);
+					points.addPoint(centerX, halfLineWidth);
+					points.addPoint(centerX + ARROW_SEMI_WIDTH, halfLineWidth + ARROW_HEIGHT);
+					points.addPoint(centerX, halfLineWidth);
+					points.addPoint(centerX, figureHeight - halfLineWidth);
+					points.addPoint(centerX - ARROW_SEMI_WIDTH, figureHeight - halfLineWidth - ARROW_HEIGHT);
+					points.addPoint(centerX, figureHeight - halfLineWidth);
+					points.addPoint(centerX + ARROW_SEMI_WIDTH, figureHeight - halfLineWidth - ARROW_HEIGHT);
+					getDurationArrow().setPoints(points);
+					Point topLeft = getLocation().getTranslated(getInsets().left, getInsets().top);
+					getDurationArrow().setBounds(new Rectangle(topLeft, new Dimension(figureWidth, figureHeight)));
+				} else {
+					PointList points = new PointList(8);
+					int centerY = figureHeight / 2;
+					points.addPoint(halfLineWidth + ARROW_HEIGHT, centerY - ARROW_SEMI_WIDTH);
+					points.addPoint(halfLineWidth, centerY);
+					points.addPoint(halfLineWidth + ARROW_HEIGHT, centerY + ARROW_SEMI_WIDTH);
+					points.addPoint(halfLineWidth, centerY);
+					points.addPoint(figureWidth - halfLineWidth, centerY);
+
+					points.addPoint(figureWidth - halfLineWidth - ARROW_HEIGHT, centerY - ARROW_SEMI_WIDTH);
+					points.addPoint(figureWidth - halfLineWidth, centerY);
+					points.addPoint(figureWidth - halfLineWidth - ARROW_HEIGHT, centerY + ARROW_SEMI_WIDTH);
+
+					getDurationArrow().setPoints(points);
+					Point topLeft = getLocation().getTranslated(getInsets().left, getInsets().top);
+					getDurationArrow().setBounds(new Rectangle(topLeft, new Dimension(figureWidth, figureHeight)));
+				}
 			}
 		}
 
@@ -598,5 +663,152 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 			}
 		}
 		return null;
+	}
+
+
+	protected void refreshArrowDirection(EAnnotation newValue) {
+		CustomDurationConstraintFigure dc = (CustomDurationConstraintFigure)getPrimaryShape();
+		dc.setVertical(isArrowVertical());
+	}
+
+	public void setArrowDirection(String dir) {
+		View view = this.getNotationView();
+		if(view == null)
+			return;
+
+		EAnnotation ea = view.getEAnnotation(ARROW);
+		if(ea == null) {
+			ea = EcoreFactory.eINSTANCE.createEAnnotation();
+			ea.setSource(ARROW);
+			ea.getDetails().put(DIRECTION, dir);
+			view.getEAnnotations().add(ea);
+		} else {
+			ea.getDetails().clear();
+			ea.getDetails().put(DIRECTION, dir);
+		}
+	}
+
+	public String getArrowDirection() {
+		View view = this.getNotationView();
+		if(view == null)
+			return "";
+		EAnnotation ea = view.getEAnnotation(ARROW);
+		if(ea != null) {
+			String pos = ea.getDetails().get(DIRECTION);
+			if(pos != null) {
+				return pos;
+			}
+		}
+		return VERTICAL;
+	}
+
+	public boolean isArrowVertical() {
+		return VERTICAL.equals(getArrowDirection());
+	}
+
+	public void rotateArrow() {
+		if(isArrowVertical()) {
+			setArrowDirection(HORIZONTAL);
+		} else {
+			setArrowDirection(VERTICAL);
+		}
+	}
+
+	private Object getStructuralFeatureValue(View view, EStructuralFeature feature) {
+		return ViewUtil.getPropertyValue(view, feature, feature.getEContainingClass());
+	}
+
+	public Rectangle getBounds() {
+		View view = this.getNotationView();
+		int width = ((Integer)getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer)getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		int x = ((Integer)getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer)getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		String prefElementId = ViewUtil.resolveSemanticElement(view).eClass().getName();
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(view, prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(view, prefElementId, PreferenceConstantHelper.HEIGHT);
+		if(width <= 0) {
+			width = store.getInt(preferenceConstantWitdh);
+		}
+		if(height <= 0) {
+			height = store.getInt(preferenceConstantHeight);
+		}
+		return new Rectangle(x, y, width, height);
+	}
+
+	public static class RotateArrowCommand extends org.eclipse.emf.transaction.RecordingCommand {
+
+		private CustomDurationConstraintEditPart part;
+
+		public RotateArrowCommand(TransactionalEditingDomain domain, CustomDurationConstraintEditPart part) {
+			super(domain);
+			this.part = part;
+		}
+
+		@Override
+		protected void doExecute() {
+			List list = part.getSourceConnections();
+			if(part.isArrowVertical()) {
+				part.setArrowDirection(HORIZONTAL);
+			} else {
+				part.setArrowDirection(VERTICAL);
+			}
+		}
+	}
+
+	static class RotateAnchor extends FixedAnchorEx {
+
+		public RotateAnchor(IFigure f, int location) {
+			super(f, location);
+		}
+
+		public Point getLocation(Point reference) {
+			if(position == PositionConstants.TOP) {
+				return getBox().getTop();
+			} else if(position == PositionConstants.BOTTOM) {
+				return getBox().getBottom();
+			} else if(position == PositionConstants.LEFT) {
+				return getBox().getLeft();
+			} else if(position == PositionConstants.RIGHT) {
+				return getBox().getRight();
+			}
+			return super.getLocation(reference);
+		}
+
+		public String getTerminal() {
+			if(isDefaultAnchor())
+				return StringStatics.BLANK;
+			if(position == PositionConstants.TOP) {
+				return "(0.5,0){T}";
+			} else if(position == PositionConstants.BOTTOM) {
+				return "(0.5,1){D}";
+			} else if(position == PositionConstants.LEFT) {
+				return "(0,0.5){L}";
+			} else if(position == PositionConstants.RIGHT) {
+				return "(1,0.5){R}";
+			}
+			return "(0.5,0){T}";
+		}
+
+		public static int parseLocation(String terminal) {
+			if(terminal.length() > 0) {
+				int start = terminal.indexOf("{") + 1;
+				if(start > 0) {
+					char ch = Character.toUpperCase(terminal.charAt(start));
+					switch(ch) {
+					case 'L':
+						return PositionConstants.LEFT;
+					case 'R':
+						return PositionConstants.RIGHT;
+					case 'D':
+						return PositionConstants.BOTTOM;
+					default:
+						return PositionConstants.TOP;
+					}
+				}
+			}
+			return PositionConstants.TOP;
+		}
 	}
 }

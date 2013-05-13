@@ -152,8 +152,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 		case MessageEndEditPart.VISUAL_ID:
 			return new MessageEndEditPart(view);
 		}
-		
-		
+
+
 		return null;
 	}
 }

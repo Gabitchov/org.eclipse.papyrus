@@ -1996,7 +1996,17 @@
 </extension>
 
 
-
+    <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <dynamic
+               class="org.eclipse.papyrus.uml.diagram.sequence.providers.DurationConstraintContributionItem"
+               id="org.eclipse.papyrus.sequence.duraitonconstraint.DynamicMenu">
+         </dynamic>
+      </menuContribution>
+   </extension>          
+   
 
 
 

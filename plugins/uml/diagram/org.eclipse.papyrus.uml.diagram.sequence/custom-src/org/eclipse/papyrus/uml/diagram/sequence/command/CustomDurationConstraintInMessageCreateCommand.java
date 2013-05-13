@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.command;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationConstraintCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationConstraintInMessageCreateCommand;
 
 /**

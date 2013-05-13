@@ -61,7 +61,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;

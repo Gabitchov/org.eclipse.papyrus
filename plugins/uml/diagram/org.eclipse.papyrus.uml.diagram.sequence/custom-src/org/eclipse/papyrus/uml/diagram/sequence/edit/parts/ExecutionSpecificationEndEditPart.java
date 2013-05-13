@@ -82,6 +82,7 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 public class ExecutionSpecificationEndEditPart extends GraphicalEditPart implements INodeEditPart {
+
 	public static final int VISUAL_ID = 999998;
 
 	private static final int DEFAULT_SIZE = 16;
@@ -101,8 +102,8 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 	public ExecutionSpecificationEndEditPart(View view) {
 		super(view);
 		if(view.getElement() instanceof OccurrenceSpecification)
-			this.executionSpecificationEnd = (OccurrenceSpecification) view.getElement();
-		
+			this.executionSpecificationEnd = (OccurrenceSpecification)view.getElement();
+
 	}
 
 	public void setParent(EditPart parent) {
@@ -590,19 +591,18 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 			super.validate();
 		}
 	}
-	
+
 	private void initLocator() {
-		if(locator == null && executionSpecificationEnd instanceof ExecutionOccurrenceSpecification){
-			ExecutionSpecification es = ((ExecutionOccurrenceSpecification) executionSpecificationEnd ).getExecution();
+		if(locator == null && executionSpecificationEnd instanceof ExecutionOccurrenceSpecification) {
+			ExecutionSpecification es = ((ExecutionOccurrenceSpecification)executionSpecificationEnd).getExecution();
 			if(es.getStart() == executionSpecificationEnd)
-				locator = new RelativeLocator(((org.eclipse.gef.GraphicalEditPart) getParent()).getFigure(), PositionConstants.NORTH);
+				locator = new RelativeLocator(((org.eclipse.gef.GraphicalEditPart)getParent()).getFigure(), PositionConstants.NORTH);
 			else
-				locator = new RelativeLocator(((org.eclipse.gef.GraphicalEditPart) getParent()).getFigure(), PositionConstants.SOUTH);
+				locator = new RelativeLocator(((org.eclipse.gef.GraphicalEditPart)getParent()).getFigure(), PositionConstants.SOUTH);
 		}
 	}
 
-	public void relocateFigure(
-			ExecutionSpecificationEndFigure fig) {
+	public void relocateFigure(ExecutionSpecificationEndFigure fig) {
 		if(locator == null)
 			initLocator();
 		if(locator != null)

@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.locator;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
 

@@ -378,7 +378,7 @@ public class GatesHolderGraphicalNodeEditPolicy extends SequenceGraphicalNodeEdi
 			if(null == view) {
 				return CommandResult.newCancelledCommandResult();
 			}
-			if (request instanceof CreateConnectionViewRequest){
+			if(request instanceof CreateConnectionViewRequest) {
 				((CreateConnectionViewRequest)request).getConnectionViewDescriptor().setView(view);
 			}
 			return CommandResult.newOKCommandResult(req.getNewObject());

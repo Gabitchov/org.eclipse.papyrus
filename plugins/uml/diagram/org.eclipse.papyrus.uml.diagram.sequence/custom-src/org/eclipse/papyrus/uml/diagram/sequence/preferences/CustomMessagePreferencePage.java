@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Group;
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class CustomMessagePreferencePage extends MessagePreferencePage {
+
 	public static final String LABEL_DISPLAY_PREFERENCE = PackageEditPart.MODEL_ID + "_Message.label.display";
 
 	public static final int DEFAULT_LABEL_DISPLAY = ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_PARAMETER_NAME | ICustomAppearence.DISP_PARAMETER_TYPE | ICustomAppearence.DISP_RT_TYPE;

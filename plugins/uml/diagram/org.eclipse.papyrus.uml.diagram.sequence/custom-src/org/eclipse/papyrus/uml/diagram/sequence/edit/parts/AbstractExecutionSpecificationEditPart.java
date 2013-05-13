@@ -69,16 +69,16 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 
 	protected void initExecutionSpecificationEndEditPart() {
 		executionSpecificationEndParts = new ArrayList();
-		
-		String id = String.valueOf( ExecutionSpecificationEndEditPart.VISUAL_ID);
+
+		String id = String.valueOf(ExecutionSpecificationEndEditPart.VISUAL_ID);
 		List list = this.getModelChildren();
 		for(Object o : list)
-			if(o instanceof Shape ){
-				Shape s = (Shape) o;
-				if(s.getType().equals(id ))
-					return;  // if the model already persist, do not create it again
+			if(o instanceof Shape) {
+				Shape s = (Shape)o;
+				if(s.getType().equals(id))
+					return; // if the model already persist, do not create it again
 			}
-		
+
 		EObject element = this.resolveSemanticElement();
 		if(!(element instanceof ExecutionSpecification)) {
 			return;
