@@ -1930,6 +1930,70 @@
       </editor>
    </paletteProvider>
 </extension>
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         commandId="org.eclipse.papyrus.uml.diagram.menu.command.sameSize.both">
+      <class
+            class="org.eclipse.papyrus.uml.diagram.sequence.handlers.CustomSizeHandler">
+         <parameter
+               name="org.eclipse.papyrus.uml.diagram.menu.commandSizeParameter"
+               value="parameter_both">
+         </parameter>
+      </class>
+      <activeWhen>
+         <reference
+               definitionId="org.eclipse.papyrus.uml.diagram.sequence.customHandlerActivation">
+         </reference>
+      </activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.uml.diagram.menu.command.sameSize.height">
+      <class
+            class="org.eclipse.papyrus.uml.diagram.sequence.handlers.CustomSizeHandler">
+         <parameter
+               name="org.eclipse.papyrus.uml.diagram.menu.commandSizeParameter"
+               value="parameter_height">
+         </parameter>
+      </class>
+      <activeWhen>
+         <reference
+               definitionId="org.eclipse.papyrus.uml.diagram.sequence.customHandlerActivation">
+         </reference>
+      </activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.uml.diagram.menu.command.sameSize.width">
+      <class
+            class="org.eclipse.papyrus.uml.diagram.sequence.handlers.CustomSizeHandler">
+         <parameter
+               name="org.eclipse.papyrus.uml.diagram.menu.commandSizeParameter"
+               value="parameter_width">
+         </parameter>
+      </class>
+      <activeWhen>
+         <reference
+               definitionId="org.eclipse.papyrus.uml.diagram.sequence.customHandlerActivation">
+         </reference>
+      </activeWhen>
+   </handler>
+</extension>
+<extension
+      point="org.eclipse.core.expressions.definitions">
+   <definition
+         id="org.eclipse.papyrus.uml.diagram.sequence.customHandlerActivation">
+      <with
+            variable="activeContexts">
+         <iterate
+               ifEmpty="true"
+               operator="or">
+            <equals
+                  value="org.eclipse.papyrus.uml.diagram.sequence.ui.diagramContext">
+            </equals>
+         </iterate>
+      </with>
+   </definition>
+</extension>
 
 
 
