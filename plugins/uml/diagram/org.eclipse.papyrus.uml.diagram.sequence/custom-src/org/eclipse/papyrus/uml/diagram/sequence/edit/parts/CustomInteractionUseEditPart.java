@@ -179,7 +179,7 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().add(((GateEditPart)childEditPart).getFigure(), new GateLocator(getFigure()));
+			getBorderedFigure().getBorderItemContainer().add(((GateEditPart)childEditPart).getFigure(), new GateLocator((GateEditPart)childEditPart, getFigure()));
 			return true;
 		}
 		return super.addFixedChild(childEditPart);
@@ -284,25 +284,25 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 		} else if(UMLPackage.eINSTANCE.getInteractionUse_ActualGate().equals(feature)) {
 			if(notification.getEventType() == Notification.ADD) {
 				// Block manual creation of actual gate
-				if(notification.getNewValue() instanceof Gate) {
-					Gate newActualGate = (Gate)notification.getNewValue();
-					if(!checkActualGateExistence(newActualGate)) {
-						MessageDialog.openError(Display.getCurrent().getActiveShell(), NO_ACTUAL_GATE_MANUAL_CREATION_DLG_TITLE, NO_ACTUAL_GATE_MANUAL_CREATION_DLG_MSG);
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), newActualGate), true);
-					}
-				}
+				//				if(notification.getNewValue() instanceof Gate) {
+				//					Gate newActualGate = (Gate)notification.getNewValue();
+				//					if(!checkActualGateExistence(newActualGate)) {
+				//						MessageDialog.openError(Display.getCurrent().getActiveShell(), NO_ACTUAL_GATE_MANUAL_CREATION_DLG_TITLE, NO_ACTUAL_GATE_MANUAL_CREATION_DLG_MSG);
+				//						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), newActualGate), true);
+				//					}
+				//				}
 			} else if(notification.getEventType() == Notification.REMOVE) {
 				// Block manual deletion of actual gate
-				if(notification.getOldValue() instanceof Gate) {
-					Gate oldActualGate = (Gate)notification.getOldValue();
-					//There are some issues in redo progress, check if there is other one with same time firstly.
-					InteractionUse interactionUse = (InteractionUse)notification.getNotifier();
-					Gate otherOne = interactionUse.getActualGate(oldActualGate.getName());
-					if(otherOne == null && checkActualGateExistence(oldActualGate)) {
-						MessageDialog.openError(Display.getCurrent().getActiveShell(), NO_ACTUAL_GATE_MANUAL_DELETION_DLG_TITLE, NO_ACTUAL_GATE_MANUAL_DELETION_DLG_MSG);
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), oldActualGate), true);
-					}
-				}
+				//				if(notification.getOldValue() instanceof Gate) {
+				//					Gate oldActualGate = (Gate)notification.getOldValue();
+				//					//There are some issues in redo progress, check if there is other one with same time firstly.
+				//					InteractionUse interactionUse = (InteractionUse)notification.getNotifier();
+				//					Gate otherOne = interactionUse.getActualGate(oldActualGate.getName());
+				//					if(otherOne == null && checkActualGateExistence(oldActualGate)) {
+				//						MessageDialog.openError(Display.getCurrent().getActiveShell(), NO_ACTUAL_GATE_MANUAL_DELETION_DLG_TITLE, NO_ACTUAL_GATE_MANUAL_DELETION_DLG_MSG);
+				//						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), oldActualGate), true);
+				//					}
+				//				}
 			}
 		} else if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) && notification.getNotifier() instanceof Gate) {
 			Gate gate = (Gate)notification.getNotifier();

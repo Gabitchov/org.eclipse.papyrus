@@ -442,12 +442,12 @@ public class TooltipUtil {
 				}
 				Lifeline lifeline = (Lifeline)semanticElement;
 				ConnectableElement represents = lifeline.getRepresents();
-				if (represents != null) {
+				if(represents != null) {
 					descBuf.append("represent: ");
 					descBuf.append(represents.getLabel());
 					descBuf.append("\n");
 					Type type = represents.getType();
-					if (type != null) {
+					if(type != null) {
 						descBuf.append("represent type: ");
 						descBuf.append(type.getLabel());
 						descBuf.append("\n");

@@ -13,12 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomMessage2CreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomMessage2ReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomMessage3CreateCommand;
@@ -39,6 +46,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Gate;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -69,7 +77,29 @@ public class GateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		} else if(request instanceof ReorientRelationshipRequest) {
 			return getReorientRelationshipCommand((ReorientRelationshipRequest)request);
 		}
-		return super.getSemanticCommand(request);
+		IEditCommandRequest completedRequest = completeRequest(request);
+		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
+		if(completedRequest instanceof DestroyRequest) {
+			DestroyRequest destroyRequest = (DestroyRequest)completedRequest;
+			return shouldProceed(destroyRequest) ? addDeleteViewCommand(semanticCommand, destroyRequest) : null;
+		}
+		return semanticCommand;
+	}
+
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		EObject selectedEObject = req.getElementToDestroy();
+		if(selectedEObject instanceof Gate && ((Gate)selectedEObject).getMessage() != null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		if(provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand deleteCommand = provider.getEditCommand(req);
+			if(deleteCommand != null) {
+				return new ICommandProxy(deleteCommand);
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**

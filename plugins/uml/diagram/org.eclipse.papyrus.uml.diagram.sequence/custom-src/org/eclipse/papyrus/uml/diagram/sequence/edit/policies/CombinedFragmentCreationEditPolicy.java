@@ -191,4 +191,19 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 			return false;
 		}
 	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#understandsRequest(org.eclipse.gef.Request)
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@Override
+	public boolean understandsRequest(Request request) {
+		//Fixed bug when creating Gate, take care of CustomizableDropEditPolicy.
+		if(isCreatingGate(request)) {
+			return getCombinedFragmentEditPart() != null;
+		}
+		return super.understandsRequest(request);
+	}
 }

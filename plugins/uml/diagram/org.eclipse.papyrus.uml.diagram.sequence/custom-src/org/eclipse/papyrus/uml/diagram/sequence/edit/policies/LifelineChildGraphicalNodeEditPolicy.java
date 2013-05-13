@@ -278,7 +278,12 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 					Point location = null;
 					IGraphicalEditPart adapter = (IGraphicalEditPart)sourceEP.getAdapter(IGraphicalEditPart.class);
 					if(adapter != null) {
-						location = GateHelper.computeGateLocation(request.getLocation(), adapter.getFigure(), null);
+						Point sourceLocation = request.getLocation();
+						Object object = request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
+						if(object instanceof Point) {
+							sourceLocation = (Point)object;
+						}
+						location = GateHelper.computeGateLocation(sourceLocation, adapter.getFigure(), null);
 					}
 					ConnectionViewDescriptor edgeAdapter = viewRequest.getConnectionViewDescriptor();
 					final IAdaptable elementAdapter = edgeAdapter.getElementAdapter();

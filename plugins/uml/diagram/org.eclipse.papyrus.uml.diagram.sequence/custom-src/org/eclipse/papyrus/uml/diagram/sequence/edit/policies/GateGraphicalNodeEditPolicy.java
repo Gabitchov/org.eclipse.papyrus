@@ -18,6 +18,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.Request;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Message;
 
 /**
@@ -50,7 +52,7 @@ public class GateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 */
 	@Override
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
-		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, getInteractionFragment());
+		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, getInteractionFragment(request.getLocation()));
 		return super.getConnectionCompleteCommand(request);
 	}
 
@@ -58,13 +60,25 @@ public class GateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return (Gate)((GateEditPart)getHost()).resolveSemanticElement();
 	}
 
-	private InteractionFragment getInteractionFragment() {
+	/**
+	 * Fix bug to find a correct InteractionOperand when connecting on CombinedFragment.
+	 * 
+	 * @param location
+	 * @return
+	 */
+	private InteractionFragment getInteractionFragment(Point location) {
 		Gate gate = resolveSemanticElement();
 		if(gate != null) {
 			InteractionFragment fragment = (InteractionFragment)gate.eContainer();
 			if(fragment instanceof CombinedFragment) {
-				Rectangle rect = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)getHost());
-				fragment = SequenceUtil.findInteractionFragmentContainerAt(rect.getCenter(), getHost());
+				fragment = SequenceUtil.findInteractionFragmentContainerAt(location, getHost());
+				if(!(fragment instanceof InteractionOperand)) {
+					Rectangle rect = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)getHost());
+					fragment = SequenceUtil.findInteractionFragmentContainerAt(rect.getRight(), getHost());
+					if(!(fragment instanceof InteractionOperand)) {
+						fragment = SequenceUtil.findInteractionFragmentContainerAt(rect.getLeft(), getHost());
+					}
+				}
 			}
 			return fragment;
 		}
@@ -79,7 +93,7 @@ public class GateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 */
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
-		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, getInteractionFragment());
+		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, getInteractionFragment(request.getLocation()));
 		return super.getConnectionAndRelationshipCompleteCommand(request);
 	}
 
@@ -94,7 +108,7 @@ public class GateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		if(request.getSourceEditPart() != null && request.getSourceEditPart() != getHost()) {
 			return null;
 		}
-		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, getInteractionFragment());
+		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, getInteractionFragment(request.getLocation()));
 		Rectangle rect = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)getHost());
 		request.getExtendedData().put(SequenceRequestConstant.SOURCE_LOCATION_DATA, rect.getLocation());
 		return super.getConnectionCreateCommand(request);
@@ -111,7 +125,7 @@ public class GateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		if(request.getSourceEditPart() != null && request.getSourceEditPart() != getHost()) {
 			return null;
 		}
-		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, getInteractionFragment());
+		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, getInteractionFragment(request.getLocation()));
 		Rectangle rect = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)getHost());
 		request.getExtendedData().put(SequenceRequestConstant.SOURCE_LOCATION_DATA, rect.getLocation());
 		return super.getConnectionAndRelationshipCreateCommand(request);

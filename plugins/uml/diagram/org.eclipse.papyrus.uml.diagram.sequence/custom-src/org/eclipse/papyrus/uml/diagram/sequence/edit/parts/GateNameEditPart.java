@@ -7,6 +7,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
@@ -17,6 +19,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.AccessibleEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.DirectEditRequest;
@@ -59,8 +62,8 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
-import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -125,6 +128,36 @@ public class GateNameEditPart extends LabelEditPart implements ITextAwareEditPar
 		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
 		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		if(x == 0 && y == 0) {
+			EditPart parent = getParent();
+			if(parent instanceof GateEditPart) {
+				GateEditPart gateEditPart = ((GateEditPart)parent);
+				Dimension preferredSize = getFigure().getPreferredSize(width, height);
+				IBorderItemLocator locator = gateEditPart.getBorderItemLocator();
+				if(locator instanceof GateLocator) {
+					int alignment = ((GateLocator)locator).getAlignment(((GateLocator)locator).getConstraint());
+					if(PositionConstants.LEFT == alignment) {
+						if(gateEditPart.getTargetConnections().isEmpty()) {
+							x = -preferredSize.width - 1;
+						} else {
+							x = GateEditPart.DEFAULT_SIZE.width + 1;
+						}
+					} else if(PositionConstants.RIGHT == alignment) {
+						if(gateEditPart.getSourceConnections().isEmpty()) {
+							x = GateEditPart.DEFAULT_SIZE.width + 1;
+						} else {
+							x = -preferredSize.width - 1;
+						}
+					} else if(PositionConstants.TOP == alignment) {
+						y = -GateEditPart.DEFAULT_SIZE.height - 1;
+					} else if(PositionConstants.BOTTOM == alignment) {
+						y = GateEditPart.DEFAULT_SIZE.height + 1;
+					}
+				}
+				//				SetBoundsCommand cmd = new SetBoundsCommand(getEditingDomain(), "", new EObjectAdapter(getNotationView()), new Point(x, y));
+				//				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new GMFtoEMFCommandWrapper(cmd));
+			}
+		}
 		IBorderItemLocator borderItemLocator = getBorderItemLocator();
 		if(borderItemLocator != null) {
 			borderItemLocator.setConstraint(new Rectangle(x, y, width, height));
@@ -398,6 +431,7 @@ public class GateNameEditPart extends LabelEditPart implements ITextAwareEditPar
 		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
 		}
+		refreshBounds();
 	}
 
 	protected void refreshUnderline() {
@@ -593,25 +627,25 @@ public class GateNameEditPart extends LabelEditPart implements ITextAwareEditPar
 		 */
 		@Override
 		public String getPrintString(IAdaptable adapter, int flags) {
-			Object element = adapter.getAdapter(EObject.class);
-			if(element instanceof Gate) {
-				Gate gate = (Gate)element;
-				if(gate.eContainer() instanceof CombinedFragment) {
-					Gate outerGate = GateHelper.getOuterCFGate(gate);
-					if(outerGate != null) {
-						gate = outerGate;
-					}
-				} else if(gate.eContainer() instanceof Interaction) {
-					Gate actualGate = GateHelper.getActualGate(gate);
-					if(actualGate != null) {
-						gate = actualGate;
-					}
-				}
-				String printString = getPrintString(gate);
-				if(printString != null) {
-					return printString;
-				}
-			}
+			//			Object element = adapter.getAdapter(EObject.class);
+			//			if(element instanceof Gate) {
+			//				Gate gate = (Gate)element;
+			//				if(gate.eContainer() instanceof CombinedFragment) {
+			//					Gate outerGate = GateHelper.getOuterCFGate(gate);
+			//					if(outerGate != null) {
+			//						gate = outerGate;
+			//					}
+			//				} else if(gate.eContainer() instanceof Interaction) {
+			//					Gate actualGate = GateHelper.getActualGate(gate);
+			//					if(actualGate != null) {
+			//						gate = actualGate;
+			//					}
+			//				}
+			//				String printString = getPrintString(gate);
+			//				if(printString != null) {
+			//					return printString;
+			//				}
+			//			}
 			return super.getPrintString(adapter, flags);
 		}
 

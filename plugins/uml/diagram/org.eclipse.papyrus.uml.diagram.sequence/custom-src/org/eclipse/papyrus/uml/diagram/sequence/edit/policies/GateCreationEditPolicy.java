@@ -17,10 +17,10 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -30,9 +30,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateElementAndViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
-import org.eclipse.uml2.uml.InteractionUse;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -58,7 +58,27 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		return super.getTargetEditPart(request);
+		//Fixed bug when creating Gate, take care of CustomizableDropEditPolicy.
+		if(isGateCreation(request)) {
+			if(getHost() instanceof InteractionEditPart && !touchesInteractionBounds((GraphicalEditPart)getHost(), ((CreateRequest)request).getLocation())) {
+				return null;
+			}
+			return getHost();
+		}
+		return null;
+	}
+
+	private boolean touchesInteractionBounds(GraphicalEditPart interaction, Point location) {
+		Point p = location.getCopy();
+		IFigure figure = interaction.getFigure();
+		figure.translateToRelative(p);
+		// if mouse location is far from border, do not handle connection event 
+		Rectangle r = figure.getBounds().getCopy();
+		Rectangle innerRetangle = r.getShrinked(20, 20);
+		if(innerRetangle.contains(p)) {
+			return false;
+		}
+		return r.getExpanded(1, 1).contains(p);
 	}
 
 	/**
@@ -80,6 +100,7 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 	private void showCreateGateFeedback(CreateRequest request) {
 		if(gateFeedback == null) {
 			gateFeedback = new RectangleFigure();
+			((RectangleFigure)gateFeedback).setLineWidth(2);
 			gateFeedback.setSize(GateEditPart.DEFAULT_SIZE);
 			getFeedbackLayer().add(gateFeedback);
 		}
@@ -146,11 +167,20 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
 		if(isGateCreation(request)) {
+			EditPart targetEditPart = getTargetEditPart(request);
+			if(targetEditPart == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
 			//Disable creation when there's no refersTo set for InteractionUse.
-			IGraphicalEditPart adapter = (IGraphicalEditPart)getHost().getAdapter(IGraphicalEditPart.class);
-			if(adapter != null) {
-				EObject semanticElement = adapter.resolveSemanticElement();
-				if(semanticElement instanceof InteractionUse && ((InteractionUse)semanticElement).getRefersTo() == null) {
+			//			IGraphicalEditPart adapter = (IGraphicalEditPart)targetEditPart.getAdapter(IGraphicalEditPart.class);
+			//			if(adapter != null) {
+			//				EObject semanticElement = adapter.resolveSemanticElement();
+			//				if(semanticElement instanceof InteractionUse && ((InteractionUse)semanticElement).getRefersTo() == null) {
+			//					return UnexecutableCommand.INSTANCE;
+			//				}
+			//			}
+			if(targetEditPart instanceof InteractionEditPart) {
+				if(!touchesInteractionBounds((InteractionEditPart)targetEditPart, ((CreateRequest)request).getLocation())) {
 					return UnexecutableCommand.INSTANCE;
 				}
 			}
@@ -183,5 +213,24 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 	@Override
 	protected Command getMoveChildrenCommand(Request request) {
 		return null;
+	}
+
+	/**
+	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#understandsRequest(org.eclipse.gef.Request)
+	 * 
+	 * @param req
+	 * @return
+	 */
+	@Override
+	public boolean understandsRequest(Request req) {
+		//Fixed bug when creating Gate, take care of CustomizableDropEditPolicy.
+		if(isGateCreation(req)) {
+			EditPart targetEditPart = getTargetEditPart(req);
+			if(targetEditPart == null) {
+				return false;
+			}
+			return true;
+		}
+		return false;
 	}
 }

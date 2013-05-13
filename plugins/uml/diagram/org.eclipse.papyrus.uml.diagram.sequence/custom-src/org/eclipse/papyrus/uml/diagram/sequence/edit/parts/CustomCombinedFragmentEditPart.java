@@ -244,7 +244,7 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().add(((GateEditPart)childEditPart).getFigure(), new GateLocator(getFigure()));
+			getBorderedFigure().getBorderItemContainer().add(((GateEditPart)childEditPart).getFigure(), new GateLocator((GateEditPart)childEditPart, getFigure()));
 			return true;
 		}
 		return super.addFixedChild(childEditPart);

@@ -17,20 +17,32 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
@@ -40,8 +52,10 @@ import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionUse;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -82,6 +96,8 @@ public class GateHelper {
 		//label
 		DecorationNode label = NotationFactory.eINSTANCE.createDecorationNode();
 		label.setType(GateNameEditPart.GATE_NAME_TYPE);
+		//Add possible to move the label.
+		label.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		ViewUtil.insertChildView(node, label, ViewUtil.APPEND, true);
 		return node;
 	}
@@ -115,8 +131,8 @@ public class GateHelper {
 			Interaction refersTo = interactionUse.getRefersTo();
 			if(refersTo != null) {
 				refersTo.getFormalGate(name, false, true);
-				gate = interactionUse.getActualGate(name, false, true);
 			}
+			gate = interactionUse.getActualGate(name, false, true);
 		}
 		return gate;
 	}
@@ -279,39 +295,55 @@ public class GateHelper {
 	 * @return
 	 */
 	public static String generateGateName(EObject container, String suffix) {
+		//Update gate name to hold a global sequence number.
+		int index = getTotalGatesNumber(container.eResource());
 		String name = suffix;
 		if(container instanceof Interaction) {
 			Interaction interaction = (Interaction)container;
-			if(interaction.getFormalGate(name) != null) {
-				int index = 0;
-				String gateName = name + index;
-				while(interaction.getFormalGate(gateName = name + index) != null) {
-					index++;
-				}
-				name = gateName;
+			if(!"gate".equals(suffix) && interaction.getFormalGate(suffix) == null) {
+				return suffix;
 			}
+			String gateName = name + index;
+			while(interaction.getFormalGate(gateName = name + index) != null) {
+				index++;
+			}
+			name = gateName;
 		} else if(container instanceof InteractionUse) {
 			InteractionUse iUse = (InteractionUse)container;
-			if(iUse.getActualGate(name) != null) {
-				int index = 0;
-				String gateName = name + index;
-				while(iUse.getActualGate(gateName = name + index) != null) {
-					index++;
-				}
-				name = gateName;
+			if(!"gate".equals(suffix) && iUse.getActualGate(suffix) == null) {
+				return suffix;
 			}
+			String gateName = name + index;
+			while(iUse.getActualGate(gateName = name + index) != null) {
+				index++;
+			}
+			name = gateName;
 		} else if(container instanceof CombinedFragment) {
 			CombinedFragment cf = (CombinedFragment)container;
-			if(cf.getCfragmentGate(name) != null) {
-				int index = 0;
-				String gateName = name + index;
-				while(cf.getCfragmentGate(gateName = name + index) != null) {
-					index++;
-				}
-				name = gateName;
+			if(!"gate".equals(suffix) && cf.getCfragmentGate(suffix) == null) {
+				return suffix;
 			}
+			String gateName = name + index;
+			while(cf.getCfragmentGate(gateName = name + index) != null) {
+				index++;
+			}
+			name = gateName;
 		}
 		return name;
+	}
+
+	private static int getTotalGatesNumber(Resource res) {
+		if(res == null) {
+			return 0;
+		}
+		int size = 0;
+		TreeIterator<EObject> allContents = res.getAllContents();
+		while(allContents.hasNext()) {
+			if(allContents.next() instanceof Gate) {
+				size++;
+			}
+		}
+		return size;
 	}
 
 	public static Point computeGateLocation(Point pt, IFigure hostFigure, IFigure gateFigure) {
@@ -322,7 +354,99 @@ public class GateHelper {
 		Rectangle bounds = new Rectangle(location, GateEditPart.DEFAULT_SIZE);
 		hostFigure.translateToRelative(bounds);
 		GateLocator locator = new GateLocator(hostFigure);
-		locator.getValidLocation(bounds, gateFigure);
-		return bounds.getLocation().getTranslated(0, -GateEditPart.DEFAULT_SIZE.height / 2 - 1);
+		Rectangle validLocation = locator.getValidLocation(bounds, gateFigure);
+		return validLocation.getLocation().getTranslated(0, -GateEditPart.DEFAULT_SIZE.height / 2 - 1);
+	}
+
+	public static void updateGateName(TransactionalEditingDomain editingDomain, final Gate gate, final String newName) {
+		if(gate == null) {
+			return;
+		}
+		String name = gate.getName();
+		if(name == null && newName == null) {
+			return;
+		} else if(name != null && name.equals(newName)) {
+			return;
+		} else {
+			AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "", null) {
+
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					gate.setName(newName);
+					return CommandResult.newOKCommandResult();
+				}
+			};
+			CommandStack commandStack = editingDomain.getCommandStack();
+			GMFtoEMFCommandWrapper command = new GMFtoEMFCommandWrapper(cmd);
+			if(commandStack instanceof TransactionalCommandStack) {
+				try {
+					((TransactionalCommandStack)commandStack).execute(command, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} catch (RollbackException e) {
+					e.printStackTrace();
+				}
+			} else {
+				commandStack.execute(command);
+			}
+		}
+	}
+
+	public static String getGateLabel(Gate gate) {
+		Message message = gate.getMessage();
+		if(message != null) {
+			MessageDirection direction = null;
+			EObject parent = gate.eContainer();
+			if(parent instanceof CombinedFragment) {
+				CombinedFragment cf = ((CombinedFragment)parent);
+				if(gate == message.getSendEvent()) {
+					MessageEnd receiveEvent = message.getReceiveEvent();
+					Lifeline lifeline = getCoveredBy(receiveEvent);
+					if(!cf.getCovereds().contains(lifeline)) {
+						direction = MessageDirection.OUT;
+					} else {
+						direction = MessageDirection.IN;
+					}
+				} else {
+					MessageEnd sendEvent = message.getSendEvent();
+					Lifeline coveredBy = getCoveredBy(sendEvent);
+					if(!cf.getCovereds().contains(coveredBy)) {
+						direction = MessageDirection.IN;
+					} else {
+						direction = MessageDirection.OUT;
+					}
+				}
+			} else if(parent instanceof Interaction) {
+				if(gate == message.getSendEvent()) {
+					direction = MessageDirection.IN;
+				} else if(gate == message.getReceiveEvent()) {
+					direction = MessageDirection.OUT;
+				}
+			}
+			if(direction == null) {
+				if(gate == message.getSendEvent()) {
+					direction = MessageDirection.OUT;
+				} else if(gate == message.getReceiveEvent()) {
+					direction = MessageDirection.IN;
+				}
+			}
+			if(direction != null) {
+				StringBuffer buf = new StringBuffer();
+				buf.append(direction.getName() + "_");
+				buf.append(message.getName());
+				return new String(buf);
+			}
+		}
+		return gate.getLabel();
+	}
+
+	private static Lifeline getCoveredBy(MessageEnd messageEnd) {
+		if(messageEnd == null) {
+			return null;
+		}
+		if(messageEnd instanceof OccurrenceSpecification) {
+			return ((OccurrenceSpecification)messageEnd).getCovered();
+		}
+		return null;
 	}
 }

@@ -59,6 +59,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateElementAndView
 import org.eclipse.papyrus.uml.diagram.sequence.command.ReconnectToGateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
@@ -179,13 +181,30 @@ public class GatesHolderGraphicalNodeEditPolicy extends SequenceGraphicalNodeEdi
 	 */
 	protected Command getConnectionEndWithGateCommand(CreateConnectionRequest request) {
 		CompoundCommand cc = new CompoundCommand(DiagramUIMessages.Command_CreateRelationship_Label);
-		//1. Create Gate
-		Point location = GateHelper.computeGateLocation(request.getLocation(), getHostFigure(), null);
-		CreateGateElementAndViewCommand createGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), getHost(), location);
-		createGateCommand.setCreateInnerCFGate(true);
-		cc.add(new ICommandProxy(createGateCommand));
-		//2. Create Message.
-		ICommand createMessageCommand = createCreateMessageWithGateCommand(request, request.getSourceEditPart(), createGateCommand.getResult());
+		//1. Create Target Gate
+		Point targetLocation = GateHelper.computeGateLocation(request.getLocation(), getHostFigure(), null);
+		CreateGateElementAndViewCommand createTargetGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), getHost(), targetLocation);
+		createTargetGateCommand.setCreateInnerCFGate(true);
+		cc.add(new ICommandProxy(createTargetGateCommand));
+		IAdaptable targetViewAdapter = createTargetGateCommand.getResult();
+		//2. Create Source Gate if needed.
+		EditPart sourceEditPart = request.getSourceEditPart();
+		IAdaptable sourceViewAdapter = sourceEditPart;
+		if(sourceEditPart instanceof CombinedFragmentEditPart || sourceEditPart instanceof InteractionEditPart || sourceEditPart instanceof InteractionUseEditPart) {
+			IGraphicalEditPart ep = (IGraphicalEditPart)sourceEditPart;
+			Point location = request.getLocation();
+			Object locationData = request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
+			if(locationData instanceof Point) {
+				location = (Point)locationData;
+			}
+			Point sourceLocation = GateHelper.computeGateLocation(location, ep.getFigure(), null);
+			CreateGateElementAndViewCommand createSourceGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), sourceViewAdapter, sourceLocation);
+			createSourceGateCommand.setCreateInnerCFGate(true);
+			cc.add(new ICommandProxy(createSourceGateCommand));
+			sourceViewAdapter = createSourceGateCommand.getResult();
+		}
+		//3. Create Message.
+		ICommand createMessageCommand = createCreateMessageWithGateCommand(request, sourceViewAdapter, targetViewAdapter);
 		cc.add(new ICommandProxy(createMessageCommand));
 		return cc;
 	}

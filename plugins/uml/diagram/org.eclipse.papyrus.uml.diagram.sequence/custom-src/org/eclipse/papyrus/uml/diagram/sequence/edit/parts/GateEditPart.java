@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.LineBorder;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -27,6 +26,7 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -41,9 +41,9 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
@@ -55,6 +55,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
+import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.GateItemSemanticEditPolicy;
@@ -108,7 +109,11 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	 * CombinedFragment.
 	 */
 	protected void hookExternalGates() {
-		Gate gate = (Gate)resolveSemanticElement();
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if(!(resolveSemanticElement instanceof Gate)) {
+			return;
+		}
+		Gate gate = (Gate)resolveSemanticElement;
 		if(gate.eContainer() instanceof CombinedFragment) {
 			if(!GateHelper.isInnerCFGate(gate)) {
 				Message message = gate.getMessage();
@@ -232,8 +237,9 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if(childEditPart instanceof GateNameEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
-			locator.setBorderItemOffset(new Dimension(-20, 0));
+			//			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			//			locator.setBorderItemOffset(new Dimension(-20, 0));
+			ExternalLabelPositionLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			getContentPaneFor((GateNameEditPart)childEditPart).add(((GateNameEditPart)childEditPart).getFigure(), locator);
 			return;
 		}
@@ -275,6 +281,10 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 			int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 			Point loc = new Point(x, y);
 			getBorderItemLocator().setConstraint(new Rectangle(loc, DEFAULT_SIZE));
+			GateNameEditPart labelEditPart = getLabelEditPart();
+			if(labelEditPart != null) {
+				labelEditPart.refreshBounds();
+			}
 		}
 	}
 
@@ -308,8 +318,38 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 		}
 	}
 
+	/**
+	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#refreshSourceConnections()
+	 * 
+	 */
+	@Override
+	protected void refreshSourceConnections() {
+		super.refreshSourceConnections();
+		GateNameEditPart labelEditPart = getLabelEditPart();
+		if(labelEditPart != null) {
+			labelEditPart.refreshBounds();
+		}
+	}
+
+	/**
+	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#refreshTargetConnections()
+	 * 
+	 */
+	@Override
+	protected void refreshTargetConnections() {
+		super.refreshTargetConnections();
+		GateNameEditPart labelEditPart = getLabelEditPart();
+		if(labelEditPart != null) {
+			labelEditPart.refreshBounds();
+		}
+	}
+
 	public GateNameEditPart getLabelEditPart() {
-		return (GateNameEditPart)getChildBySemanticHint(GateNameEditPart.GATE_NAME_TYPE);
+		IGraphicalEditPart labelEditPart = getChildBySemanticHint(GateNameEditPart.GATE_NAME_TYPE);
+		if(labelEditPart instanceof GateNameEditPart) {
+			return (GateNameEditPart)labelEditPart;
+		}
+		return null;
 	}
 
 	public class GateFigure extends NodeNamedElementFigure {
