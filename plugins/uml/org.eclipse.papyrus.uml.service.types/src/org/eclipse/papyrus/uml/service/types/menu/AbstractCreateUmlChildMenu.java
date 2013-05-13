@@ -19,6 +19,7 @@ import java.util.TreeSet;
 
 import org.eclipse.core.commands.Category;
 import org.eclipse.core.commands.Command;
+import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.expressions.EvaluationResult;
 import org.eclipse.core.expressions.Expression;
@@ -82,19 +83,30 @@ public abstract class AbstractCreateUmlChildMenu extends ExtensionContributionFa
 		Set<Command> commands = new TreeSet<Command>();
 		commands.addAll(Arrays.asList(commandService.getDefinedCommands()));
 		for(Command command : commands) {
-
-			String commandId = command.getId();
-			boolean isEnabled = commandService.getCommand(commandId).getHandler().isEnabled();
-			CommandContributionItemParameter p = new CommandContributionItemParameter(serviceLocator, "", commandId, SWT.PUSH); //$NON-NLS-1$
+			Category currentCategory = null;
 			try {
-				if(command.isDefined() && command.getCategory().equals(category) && isEnabled) {
-					p.label = command.getDescription();
-					p.icon = getCommandIcon(command);
-					CommandContributionItem item = new CommandContributionItem(p);
-					items.add(item);
-				}
+				currentCategory = command.getCategory();
 			} catch (NotDefinedException e) {
 				Activator.log.debug(e.getLocalizedMessage());
+				continue;
+			}
+			if(command.isDefined() && category.equals(currentCategory)) {
+				String commandId = command.getId();
+				IHandler handler = commandService.getCommand(commandId).getHandler();
+				if(handler != null) {
+					boolean isEnabled = handler.isEnabled();
+					try {
+						CommandContributionItemParameter p = new CommandContributionItemParameter(serviceLocator, "", commandId, SWT.PUSH); //$NON-NLS-1$
+						if(isEnabled) {
+							p.label = command.getDescription();
+							p.icon = getCommandIcon(command);
+							CommandContributionItem item = new CommandContributionItem(p);
+							items.add(item);
+						}
+					} catch (NotDefinedException e) {
+						Activator.log.debug(e.getLocalizedMessage());
+					}
+				}
 			}
 		}
 		return items;
