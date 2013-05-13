@@ -126,7 +126,7 @@
     <!-- CDO -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 	  <!-- updateFrom("EMF CDO",0) -->
-      <rm:uri format="{0}/modeling/emf/cdo/drops/I20130418-0209">
+      <rm:uri format="{0}/modeling/emf/cdo/drops/S20130507-1005">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -166,7 +166,7 @@
     <!-- MDT OCL -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MDT OCL 4.1",0) -->
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/interim">
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
