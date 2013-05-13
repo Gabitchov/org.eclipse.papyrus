@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionHandleEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.handles.ConnectionHandle;
 import org.eclipse.gmf.runtime.diagram.ui.handles.ConnectionHandle.HandleDirection;
 import org.eclipse.gmf.runtime.diagram.ui.internal.tools.ConnectionHandleTool;
@@ -33,7 +32,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 @SuppressWarnings("restriction")
-public class AnnotatedConnectionHandleEditPolicy extends ConnectionHandleEditPolicy {
+public class AnnotatedConnectionHandleEditPolicy extends SequenceConnectionHandleEditPolicy {
 
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })

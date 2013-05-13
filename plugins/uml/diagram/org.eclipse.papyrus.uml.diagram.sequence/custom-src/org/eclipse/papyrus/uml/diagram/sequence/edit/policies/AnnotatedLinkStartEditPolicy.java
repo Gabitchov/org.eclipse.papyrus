@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.AnnotatedLinkEditCommand;
@@ -53,7 +54,36 @@ public class AnnotatedLinkStartEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		if(REQ_ANNOTATED_LINK_START.equals(request.getType()) || REQ_ANNOTATED_LINK_REORIENT_START.equals(request.getType())) {
-			return getHost();
+			return getConnectableEditPart();
+		}
+		return null;
+	}
+
+	/**
+	 * Get connectable INodeEditPart safely for Constraint Label, Comment body and so on.
+	 */
+	@Override
+	protected INodeEditPart getConnectableEditPart() {
+		EditPart host = getHost();
+		if(host instanceof INodeEditPart) {
+			return (INodeEditPart)host;
+		} else {
+			IGraphicalEditPart hostGraphical = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
+			if(hostGraphical == null) {
+				return null;
+			}
+			EObject element = hostGraphical.resolveSemanticElement();
+			if(element == null) {
+				return null;
+			}
+			EditPart parent = host.getParent();
+			if(!(parent instanceof INodeEditPart)) {
+				return null;
+			}
+			IGraphicalEditPart parentGraphical = (IGraphicalEditPart)parent.getAdapter(IGraphicalEditPart.class);
+			if(parentGraphical != null && element == parentGraphical.resolveSemanticElement()) {
+				return (INodeEditPart)parent;
+			}
 		}
 		return null;
 	}
@@ -131,8 +161,9 @@ public class AnnotatedLinkStartEditPolicy extends GraphicalNodeEditPolicy {
 			}
 			if(host instanceof CustomDurationConstraintEditPart) {
 				boolean can = ((CustomDurationConstraintEditPart)host).canCreateLink(request.getLocation());
-				if(!can)
+				if(!can) {
 					return UnexecutableCommand.INSTANCE;
+				}
 			}
 		}
 		Command command = super.getConnectionCreateCommand(request);

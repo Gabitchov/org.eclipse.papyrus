@@ -1379,7 +1379,7 @@
 <extension
       point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
    <modelingAssistantProvider
-         class="org.eclipse.papyrus.uml.diagram.sequence.providers.UMLModelingAssistantProvider">
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomModelingAssistantProvider">
       <Priority
             name="Lowest">
       </Priority>

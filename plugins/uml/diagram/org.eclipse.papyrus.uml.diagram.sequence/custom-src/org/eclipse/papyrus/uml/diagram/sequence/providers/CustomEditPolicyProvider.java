@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
@@ -31,6 +31,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedConnectio
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.TooltipUtil;
 import org.eclipse.uml2.uml.Comment;
@@ -56,10 +57,16 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(final EditPart editPart) {
+		EditPolicy editPolicy = editPart.getEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		if(editPolicy != null) {
+			editPart.removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+			//fixed bug about display Connection Handles.
+			editPart.installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new SequenceConnectionHandleEditPolicy());
+		}
 		installHighlightPolicy(editPart);
 		SequenceUtil.installObservationLinkPolicy(editPart);
 		//install annotated link edit policy.
-		if(editPart instanceof INodeEditPart) {
+		if(editPart instanceof IGraphicalEditPart) {
 			Object model = editPart.getModel();
 			if(model instanceof View) {
 				EObject element = ViewUtil.resolveSemanticElement((View)model);
