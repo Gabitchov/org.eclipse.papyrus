@@ -27,6 +27,9 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.draw2d.text.TextFlow;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -35,9 +38,14 @@ import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorLabelProvider;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomLifelinePreferencePage;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
@@ -49,6 +57,7 @@ import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.StateInvariant;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -132,9 +141,11 @@ public class TooltipUtil {
 			return null;
 		}
 		View containerView = ViewUtil.getContainerView(view);
-		EObject containerElement = ViewUtil.resolveSemanticElement(containerView);
-		if(containerElement == null || containerElement != semanticElement) {
-			return view;
+		if(containerView != null) {
+			EObject containerElement = ViewUtil.resolveSemanticElement(containerView);
+			if(containerElement == null || containerElement != semanticElement) {
+				return view;
+			}
 		}
 		return getTopNodeView(containerView, semanticElement);
 	}
@@ -144,6 +155,8 @@ public class TooltipUtil {
 		private TooltipUpdater updater;
 
 		private MouseMotionListener updateListener;
+
+		private Adapter modelListener;
 
 		/**
 		 * Constructor.
@@ -166,12 +179,27 @@ public class TooltipUtil {
 					tooltipFigure.update();
 				}
 			});
+			if(getHost() instanceof LifelineEditPart) {
+				((LifelineEditPart)getHost()).getPrimaryView().eAdapters().add(modelListener = new AdapterImpl() {
+
+					@Override
+					public void notifyChanged(Notification msg) {
+						if(msg.isTouch()) {
+							return;
+						}
+						tooltipFigure.update();
+					}
+				});
+			}
 		}
 
 		@Override
 		public void deactivate() {
 			super.deactivate();
 			getHostFigure().removeMouseMotionListener(updateListener);
+			if(getHost() instanceof LifelineEditPart) {
+				((LifelineEditPart)getHost()).getPrimaryView().eAdapters().remove(modelListener);
+			}
 		}
 	}
 
@@ -218,8 +246,8 @@ public class TooltipUtil {
 		@Override
 		public Dimension getPreferredSize(int wHint, int hHint) {
 			Dimension d = super.getPreferredSize(-1, -1);
-			if(d.width > 150)
-				d = super.getPreferredSize(150, -1);
+			//			if(d.width > 150)
+			//				d = super.getPreferredSize(150, -1);
 			return d;
 		}
 
@@ -345,11 +373,11 @@ public class TooltipUtil {
 				return null;
 			}
 			StringBuffer descBuf = new StringBuffer();
-			if(semanticElement instanceof Lifeline) {
-				descBuf.append("label: ");
-			} else {
-				descBuf.append("name: ");
-			}
+			//			if(semanticElement instanceof Lifeline) {
+			//				descBuf.append("label: ");
+			//			} else {
+			descBuf.append("name: ");
+			//			}
 			UMLNavigatorLabelProvider labelProvider = new UMLNavigatorLabelProvider();
 			Object model = editPart.getModel();
 			String label = null;
@@ -363,6 +391,8 @@ public class TooltipUtil {
 			//Try to use the real name of InteractionUse.
 			if(semanticElement instanceof InteractionUse) {
 				label = ((InteractionUse)semanticElement).getLabel();
+			} else if(semanticElement instanceof Lifeline) {
+				label = ((Lifeline)semanticElement).getLabel();
 			}
 			if((label == null) && semanticElement instanceof NamedElement) {
 				label = ((NamedElement)semanticElement).getLabel();
@@ -399,7 +429,32 @@ public class TooltipUtil {
 					descBuf.append("\n");
 				}
 			}
-			return new String(descBuf);
+			if(semanticElement instanceof Lifeline) {
+				int displayValue = CustomLifelinePreferencePage.DEFAULT_LABEL_DISPLAY;
+				IMaskManagedLabelEditPolicy policy = null;
+				if(editPart instanceof LifelineEditPart) {
+					policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+				} else if(editPart instanceof LifelineNameEditPart) {
+					policy = (IMaskManagedLabelEditPolicy)editPart.getParent().getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+				}
+				if(policy != null) {
+					displayValue = policy.getCurrentDisplayValue();
+				}
+				Lifeline lifeline = (Lifeline)semanticElement;
+				ConnectableElement represents = lifeline.getRepresents();
+				if (represents != null) {
+					descBuf.append("represent: ");
+					descBuf.append(represents.getLabel());
+					descBuf.append("\n");
+					Type type = represents.getType();
+					if (type != null) {
+						descBuf.append("represent type: ");
+						descBuf.append(type.getLabel());
+						descBuf.append("\n");
+					}
+				}
+			}
+			return new String(descBuf).trim();
 		}
 	}
 }
