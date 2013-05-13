@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.service;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.ProfileApplication;
 
@@ -39,7 +40,12 @@ public class PaletteProfileApplicationListener implements IPapyrusListener {
 		// reload the palette
 		if(notification.getNotifier() instanceof ProfileApplication) {
 			if(Notification.SET == notification.getEventType()) {
-				PapyrusPaletteService.getInstance().providerChanged(new ProviderChangeEvent(PapyrusPaletteService.getInstance()));
+				try {
+					PapyrusPaletteService.getInstance().providerChanged(new ProviderChangeEvent(PapyrusPaletteService.getInstance()));
+				} catch (Exception ex) {
+					//Bug 407849: If a listener throws an exception, the operation is rolled back. In this case, we simply want to update the palettes and exceptions should only be logged
+					Activator.log.error(ex);
+				}
 			}
 		}
 	}
