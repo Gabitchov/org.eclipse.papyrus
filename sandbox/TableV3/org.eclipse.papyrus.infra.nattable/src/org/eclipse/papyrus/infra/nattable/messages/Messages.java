@@ -33,8 +33,6 @@ public class Messages extends NLS {
 
 	public static String CompositeAxisManager_AddAxisCommand;
 
-	public static String CornerDataProvider_InvertAxis;
-
 	public static String DeleteNatTableContextAdvice_DestroyNattableCommand;
 
 	public static String EditConfiguration_ConfigurationFactoryNotFound;

@@ -33,6 +33,7 @@ import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.export.command.ExportCommand;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
+import org.eclipse.nebula.widgets.nattable.grid.data.DefaultCornerDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
@@ -54,11 +55,10 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
-import org.eclipse.papyrus.infra.nattable.configuration.InvertAxisOnCornerConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.AbstractDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnHeaderDataProvider;
-import org.eclipse.papyrus.infra.nattable.dataprovider.CornerDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.RowHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.formatter.ExportFormatter;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
@@ -171,9 +171,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.rowHeaderLayerStack = new RowHeaderLayerStack(this.rowHeaderDataProvider, this.bodyLayerStack);
 
 
-		final IDataProvider cornerDataProvider = new CornerDataProvider(this.columnHeaderDataProvider, this.rowHeaderDataProvider);
+		final IDataProvider cornerDataProvider = new DefaultCornerDataProvider(this.columnHeaderDataProvider, this.rowHeaderDataProvider);
 		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), this.rowHeaderLayerStack, this.columnHeaderLayerStack);
-		cornerLayer.addConfiguration(new InvertAxisOnCornerConfiguration(this));
+		cornerLayer.addConfiguration(new CornerConfiguration(this));
 		this.gridLayer = new PapyrusGridLayer(this.bodyLayerStack, this.columnHeaderLayerStack, this.rowHeaderLayerStack, cornerLayer);
 		this.gridLayer.addConfiguration(new DefaultPrintBindings());
 		//		gridLayer.addConfiguration(new StyleConfiguration());

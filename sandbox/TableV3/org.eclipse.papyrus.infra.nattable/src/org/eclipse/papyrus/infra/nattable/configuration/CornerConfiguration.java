@@ -25,10 +25,10 @@ import org.eclipse.swt.events.MouseEvent;
 
 /**
  * 
- * This configuration allows to invert axis clicking on the top left corner of the table
+ * This configuration allows to add action clicking on the top left corner of the table
  * 
  */
-public class InvertAxisOnCornerConfiguration extends AbstractRegistryConfiguration {
+public class CornerConfiguration extends AbstractRegistryConfiguration {
 
 	/**
 	 * the manager of the table
@@ -42,7 +42,7 @@ public class InvertAxisOnCornerConfiguration extends AbstractRegistryConfigurati
 	 * @param manager
 	 *        the manager of the table
 	 */
-	public InvertAxisOnCornerConfiguration(final INattableModelManager manager) {
+	public CornerConfiguration(final INattableModelManager manager) {
 		this.manager = manager;
 	}
 
@@ -58,7 +58,7 @@ public class InvertAxisOnCornerConfiguration extends AbstractRegistryConfigurati
 		uiBindingRegistry.registerSingleClickBinding(new MouseEventMatcher(GridRegion.CORNER), new IMouseAction() {
 
 			public void run(final NatTable natTable, final MouseEvent event) {
-				manager.invertAxis();
+				manager.selectAll();
 			}
 		});
 	}
