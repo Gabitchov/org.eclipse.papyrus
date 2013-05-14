@@ -52,7 +52,7 @@ public class TestElementEditServiceProvider extends AbstractTestElementEditServi
 			IElementEditService attService = provider.getEditService(EcorePackage.eINSTANCE.getEAttribute());
 			assertNotNull("No IElementEditService found for EAttribute.", attService);
 			String attServiceDisplayName = attService.getDisplayName();
-			assertEquals("Default IElementEditService should match EAttribute.", "Generic Element", attServiceDisplayName);
+			assertEquals("Default IElementEditService should match EAttribute.", "EObject", attServiceDisplayName); //There is an EObject element type introduced in infra.emf
 
 			IElementEditService packService = provider.getEditService(EcorePackage.eINSTANCE.getEPackage());
 			assertNotNull("No IElementEditService found for EPackage.", packService);
@@ -74,7 +74,7 @@ public class TestElementEditServiceProvider extends AbstractTestElementEditServi
 			IElementEditService attService = provider.getEditService(att);
 			assertNotNull("No IElementEditService found for EAttribute.", attService);
 			String attServiceDisplayName = attService.getDisplayName();
-			assertEquals("Default IElementEditService should match EAttribute.", "Generic Element", attServiceDisplayName);
+			assertEquals("Default IElementEditService should match EAttribute.", "EObject", attServiceDisplayName); //There is an EObject element type introduced in infra.emf
 
 			IElementEditService packService = provider.getEditService(pack);
 			assertNotNull("No IElementEditService found for EPackage.", packService);
@@ -142,7 +142,8 @@ public class TestElementEditServiceProvider extends AbstractTestElementEditServi
 			assertTrue("The IElementEditService should be EPackage related.", service.getDisplayName().equals("EPACKG"));
 
 			List<IElementEditService> class_EOperations = provider.getContainedTypeEditServices(aClass, EcorePackage.eINSTANCE.getEClass_EOperations());
-			assertEquals("No IElementEditService should match EcorePackage.eINSTANCE.getEClass_EOperations()", 0, class_EOperations.size());
+			assertEquals("The default IElementEditService should match EcorePackage.eINSTANCE.getEClass_EOperations()", 1, class_EOperations.size());
+			assertEquals("The default IElementEditService should match EcorePackage.eINSTANCE.getEClass_EOperations()", "EObject", class_EOperations.get(0).getDisplayName());
 
 		} catch (ServiceException e) {
 			fail("Test aborted - Service exception in ElementEditServiceProvider::getContainedTypeEditServices.");
