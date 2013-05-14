@@ -223,48 +223,23 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			final AbstractHeaderAxisConfiguration rowAxisConfiguration = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisUsedInTable(getTable());
 			//update the header configuration
 			org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_INDEX_ID);
-			if(command != null) {
-				final State state = command.getState(CommandIds.TOGGLE_STATE);
-				if(state != null) {
-					state.setValue(columnAxisConfiguration.isDisplayIndex());
-				}
-			}
+			updateToggleCommandState(command, columnAxisConfiguration.isDisplayIndex());
+
 			command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_LABEL_ID);
-			if(command != null) {
-				final State state = command.getState(CommandIds.TOGGLE_STATE);
-				if(state != null) {
-					state.setValue(columnAxisConfiguration.isDisplayLabel());
-				}
-			}
+			updateToggleCommandState(command, columnAxisConfiguration.isDisplayLabel());
+
 			command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_INDEX_STYLE_ID);
-			if(command != null) {
-				final State state = command.getState(CommandIds.RADIO_STATE);
-				if(state != null) {
-					state.setValue(columnAxisConfiguration.getIndexStyle().getLiteral());
-				}
-			}
+			updateRadioCommandState(command, columnAxisConfiguration.getIndexStyle().getLiteral());
 
 			command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_INDEX_ID);
-			if(command != null) {
-				final State state = command.getState(CommandIds.TOGGLE_STATE);
-				if(state != null) {
-					state.setValue(rowAxisConfiguration.isDisplayIndex());
-				}
-			}
+			updateToggleCommandState(command, rowAxisConfiguration.isDisplayIndex());
+
 			command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_LABEL_ID);
-			if(command != null) {
-				final State state = command.getState(CommandIds.TOGGLE_STATE);
-				if(state != null) {
-					state.setValue(rowAxisConfiguration.isDisplayLabel());
-				}
-			}
+			updateToggleCommandState(command, rowAxisConfiguration.isDisplayLabel());
+
 			command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_INDEX_STYLE_ID);
-			if(command != null) {
-				final State state = command.getState(CommandIds.RADIO_STATE);
-				if(state != null) {
-					state.setValue(rowAxisConfiguration.getIndexStyle().getLiteral());
-				}
-			}
+			updateRadioCommandState(command, rowAxisConfiguration.getIndexStyle().getLiteral());
+
 
 			//update the label header configuration
 			final List<ILabelProviderConfiguration> columnLabelConfigurations = columnAxisConfiguration.getOwnedLabelConfigurations();
@@ -273,51 +248,25 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				if(current instanceof ObjectLabelProviderConfiguration) {
 					final ObjectLabelProviderConfiguration labelConfig = (ObjectLabelProviderConfiguration)current;
 					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_DISPLAY_ICON);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelConfig.isDisplayIcon());
-						}
-					}
+					updateToggleCommandState(command, labelConfig.isDisplayIcon());
 
 					command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_DISPLAY_LABEL);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelConfig.isDisplayLabel());
-						}
-					}
+					updateToggleCommandState(command, labelConfig.isDisplayLabel());
+
 					if(labelConfig instanceof FeatureLabelProviderConfiguration) {
 						final FeatureLabelProviderConfiguration labelFeatureConf = (FeatureLabelProviderConfiguration)labelConfig;
 						command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_IS_DERIVED);
-						if(command != null) {
-							final State state = command.getState(CommandIds.TOGGLE_STATE);
-							if(state != null) {
-								state.setValue(labelFeatureConf.isDisplayIsDerived());
-							}
-						}
+						updateToggleCommandState(command, labelFeatureConf.isDisplayIsDerived());
+
 						command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_MULTIPLICITY);
-						if(command != null) {
-							final State state = command.getState(CommandIds.TOGGLE_STATE);
-							if(state != null) {
-								state.setValue(labelFeatureConf.isDisplayMultiplicity());
-							}
-						}
+						updateToggleCommandState(command, labelFeatureConf.isDisplayMultiplicity());
+
 						command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_TYPE);
-						if(command != null) {
-							final State state = command.getState(CommandIds.TOGGLE_STATE);
-							if(state != null) {
-								state.setValue(labelFeatureConf.isDisplayType());
-							}
-						}
+						updateToggleCommandState(command, labelFeatureConf.isDisplayType());
+
 
 						command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_NAME);
-						if(command != null) {
-							final State state = command.getState(CommandIds.TOGGLE_STATE);
-							if(state != null) {
-								state.setValue(labelFeatureConf.isDisplayName());
-							}
-						}
+						updateToggleCommandState(command, labelFeatureConf.isDisplayName());
 					}
 				}
 			}
@@ -325,52 +274,26 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			for(final ILabelProviderConfiguration current : rowLabelConfigurations) {
 				if(current instanceof ObjectLabelProviderConfiguration) {
 					final ObjectLabelProviderConfiguration labelConfig = (ObjectLabelProviderConfiguration)current;
+
 					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_DISPLAY_ICON);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelConfig.isDisplayIcon());
-						}
-					}
+					updateToggleCommandState(command, labelConfig.isDisplayIcon());
 
 					command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_DISPLAY_LABEL);
-					if(command != null) {
-						final State state = command.getState(CommandIds.TOGGLE_STATE);
-						if(state != null) {
-							state.setValue(labelConfig.isDisplayLabel());
-						}
-					}
+					updateToggleCommandState(command, labelConfig.isDisplayLabel());
+
 					if(labelConfig instanceof FeatureLabelProviderConfiguration) {
 						final FeatureLabelProviderConfiguration labelFeatureConf = (FeatureLabelProviderConfiguration)labelConfig;
 						command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_IS_DERIVED);
-						if(command != null) {
-							final State state = command.getState(CommandIds.TOGGLE_STATE);
-							if(state != null) {
-								state.setValue(labelFeatureConf.isDisplayIsDerived());
-							}
-						}
+						updateToggleCommandState(command, labelFeatureConf.isDisplayIsDerived());
+
 						command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_MULTIPLICITY);
-						if(command != null) {
-							final State state = command.getState(CommandIds.TOGGLE_STATE);
-							if(state != null) {
-								state.setValue(labelFeatureConf.isDisplayMultiplicity());
-							}
-						}
+						updateToggleCommandState(command, labelFeatureConf.isDisplayMultiplicity());
+
 						command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_TYPE);
-						if(command != null) {
-							final State state = command.getState(CommandIds.TOGGLE_STATE);
-							if(state != null) {
-								state.setValue(labelFeatureConf.isDisplayType());
-							}
-						}
+						updateToggleCommandState(command, labelFeatureConf.isDisplayType());
 
 						command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_FEATURE_DISPLAY_NAME);
-						if(command != null) {
-							final State state = command.getState(CommandIds.TOGGLE_STATE);
-							if(state != null) {
-								state.setValue(labelFeatureConf.isDisplayName());
-							}
-						}
+						updateToggleCommandState(command, labelFeatureConf.isDisplayName());
 					}
 				}
 			}
@@ -378,22 +301,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			//update the property IMasterObjectAxisProvider#disconnectslave
 			if(columnProvider instanceof ISlaveAxisProvider) {
 				command = commandService.getCommand(CommandIds.COMMAND_ROW_DISCONNECT_SLAVE);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(((IMasterAxisProvider)rowProvider).isDisconnectSlave());
-					}
-				}
+				updateToggleCommandState(command, ((IMasterAxisProvider)rowProvider).isDisconnectSlave());
 			}
 
 			if(rowProvider instanceof ISlaveAxisProvider) {
 				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISCONNECT_SLAVE);
-				if(command != null) {
-					final State state = command.getState(CommandIds.TOGGLE_STATE);
-					if(state != null) {
-						state.setValue(((IMasterAxisProvider)columnProvider).isDisconnectSlave());
-					}
-				}
+				updateToggleCommandState(command, ((IMasterAxisProvider)columnProvider).isDisconnectSlave());
 			}
 
 			//we update the state for the invert axis command
@@ -413,9 +326,25 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @param newValue
 	 *        the new boolean value to set to the state of this command
 	 */
-	private void updateToggleCommandState(final org.eclipse.core.commands.Command command, final boolean newValue) {//FIXME : refactore the code to always use this method
+	private void updateToggleCommandState(final org.eclipse.core.commands.Command command, final boolean newValue) {
 		if(command != null) {
 			final State state = command.getState(CommandIds.TOGGLE_STATE);
+			if(state != null) {
+				state.setValue(newValue);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param command
+	 *        an eclispe command
+	 * @param newValue
+	 *        the new value to set to the state of this command
+	 */
+	private void updateRadioCommandState(final org.eclipse.core.commands.Command command, final Object newValue) {
+		if(command != null) {
+			final State state = command.getState(CommandIds.RADIO_STATE);
 			if(state != null) {
 				state.setValue(newValue);
 			}
