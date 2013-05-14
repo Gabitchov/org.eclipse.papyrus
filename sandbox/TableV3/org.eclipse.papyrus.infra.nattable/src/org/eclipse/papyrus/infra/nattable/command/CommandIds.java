@@ -65,4 +65,6 @@ public class CommandIds {
 
 	public static final String COMMAND_COLUMN_DISCONNECT_SLAVE = "org.eclipse.papyrus.infra.nattable.column.disconnect.slave";
 
+	public static final String COMMAND_INVERT_AXIS = "org.eclipse.papyrus.infra.nattable.invert.axis";
+
 }

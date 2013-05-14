@@ -32,6 +32,8 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 
 	private static final String HAS_SLAVE_COLUMNS_AXIS_PROVIDER = "hasSlaveColumnAxisProvider"; //$NON-NLS-1$
 
+	private static final String CAN_INVERT_AXIS = "canInvertAxis";//$NON-NLS-1$
+
 	public boolean test(final Object receiver, final String property, final Object[] args, final Object expectedValue) {
 		final IWorkbenchPart current = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().getActivePart();
 		if(current != null) {
@@ -47,6 +49,8 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 				return expectedValue.equals(AxisUtils.getAxisProviderUsedForColumns(manager) instanceof ISlaveAxisProvider);
 			} else if(HAS_SLAVE_ROWS_AXIS_PROVIDER.equals(property) && expectedValue instanceof Boolean) {
 				return expectedValue.equals(AxisUtils.getAxisProviderUsedForRows(manager) instanceof ISlaveAxisProvider);
+			} else if(CAN_INVERT_AXIS.equals(property) && expectedValue instanceof Boolean) {
+				return expectedValue.equals(manager.canInvertAxis());
 			}
 		}
 		return false;

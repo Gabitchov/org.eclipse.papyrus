@@ -12,6 +12,30 @@
           allPopups="true"
           locationURI="popup:org.eclipse.ui.popup.any">
        <command
+             commandId="org.eclipse.papyrus.infra.nattable.invert.axis"
+             style="toggle">
+          <visibleWhen>
+             <and>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                         value="true">
+                   </test>
+                </with>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.canInvertAxis"
+                         value="true">
+                   </test>
+                </with>
+             </and>
+          </visibleWhen>
+       </command>
+       <command
              commandId="org.eclipse.ui.file.print"
              label="Print Table"
              mnemonic="&amp;P"
@@ -476,7 +500,7 @@
           class="org.eclipse.papyrus.infra.nattable.utils.NattableWidgetPropertyTester"
           id="org.eclipse.papyrus.infra.nattable.tester"
           namespace="org.eclipse.papyrus.infra.nattable.tester"
-          properties="isNattableWidget, hasFeatureRowHeaderConfiguration, hasFeatureColumnHeaderConfiguration, hasSlaveRowAxisProvider, hasSlaveColumnAxisProvider"
+          properties="isNattableWidget, hasFeatureRowHeaderConfiguration, hasFeatureColumnHeaderConfiguration, hasSlaveRowAxisProvider, hasSlaveColumnAxisProvider, canInvertAxis"
           type="org.eclipse.jface.viewers.IStructuredSelection">
     </propertyTester>
  </extension>
@@ -671,6 +695,16 @@
             id="org.eclipse.ui.commands.toggleState">
       </state>
    </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.InvertAxisHandler"
+         description="This command allows to invert rows and columns"
+         id="org.eclipse.papyrus.infra.nattable.invert.axis"
+         name="Invert Axis">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
 </extension>
 <extension
       point="org.eclipse.ui.commands">
@@ -822,6 +856,13 @@
                ref="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableAdvice">
          </elementType>
       </binding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.invert.axis.command"
+            icon="icons/invertAxis.gif">
+      </image>
    </extension>
 </plugin>
 

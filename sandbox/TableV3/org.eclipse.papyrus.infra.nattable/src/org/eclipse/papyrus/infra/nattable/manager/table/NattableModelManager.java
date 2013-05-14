@@ -396,11 +396,30 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				}
 			}
 
+			//we update the state for the invert axis command
+			command = commandService.getCommand(CommandIds.COMMAND_INVERT_AXIS);
+			updateToggleCommandState(command, getTable().isInvertAxis());
 
 		} else {
 			throw new RuntimeException(String.format("The Eclipse service {0} has not been found", ICommandService.class)); //$NON-NLS-1$
 		}
 
+	}
+
+	/**
+	 * 
+	 * @param command
+	 *        an eclipse command
+	 * @param newValue
+	 *        the new boolean value to set to the state of this command
+	 */
+	private void updateToggleCommandState(final org.eclipse.core.commands.Command command, final boolean newValue) {//FIXME : refactore the code to always use this method
+		if(command != null) {
+			final State state = command.getState(CommandIds.TOGGLE_STATE);
+			if(state != null) {
+				state.setValue(newValue);
+			}
+		}
 	}
 
 	public void invertJavaObject() {
