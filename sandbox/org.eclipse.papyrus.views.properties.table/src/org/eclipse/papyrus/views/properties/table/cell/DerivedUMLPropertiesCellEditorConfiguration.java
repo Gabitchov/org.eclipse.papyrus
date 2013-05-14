@@ -28,7 +28,6 @@ import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvide
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.uml.tools.util.MultiplicityParser;
 import org.eclipse.papyrus.views.properties.table.axis.DerivedUMLPropertiesAxisManager;
-import org.eclipse.papyrus.views.properties.table.custom.MultiplicityHandler;
 
 /**
  * Specific CellEditorConfiguration for UML Multiplicities (And derived UML properties in general)
@@ -76,7 +75,7 @@ public class DerivedUMLPropertiesCellEditorConfiguration extends AbstractCellEdi
 	}
 
 	public boolean handles(Table table, Object object) {
-		return object == MultiplicityHandler.getInstance();
+		return DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(object);
 	}
 
 	@Override

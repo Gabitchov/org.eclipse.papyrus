@@ -172,7 +172,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 
 		TableHeaderAxisConfiguration rowHeaderAxisconfig = tableConfiguration.getRowHeaderAxisConfiguration();
-		for(IAxisConfiguration axisConfig : rowHeaderAxisconfig.getOwnedAxisConfiguration()) {
+		for(IAxisConfiguration axisConfig : rowHeaderAxisconfig.getOwnedAxisConfigurations()) {
 			if(axisConfig instanceof EStructuralFeatureValueFillingConfiguration) {
 				((EStructuralFeatureValueFillingConfiguration)axisConfig).setListenFeature(synchronizedFeature);
 			}

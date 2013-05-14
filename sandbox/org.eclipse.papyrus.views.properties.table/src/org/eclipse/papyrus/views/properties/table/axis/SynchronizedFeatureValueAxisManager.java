@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.table.axis;
 
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -30,10 +32,11 @@ public class SynchronizedFeatureValueAxisManager extends AbstractSynchronizedOnF
 	public static final String AXIS_MANAGER_ID = "org.eclipse.papyrus.emf.nattable.synchronized.featurevalue.axis.manager"; //$NON-NLS-1$
 
 	@Override
-	public synchronized void updateAxisContents() {
+	public Collection<Object> getAllManagedAxis() {
+		Collection<Object> result = new LinkedList<Object>();
 
 		EStructuralFeatureValueFillingConfiguration config = null;
-		for(final IAxisConfiguration current : this.rep.getSpecificAxisConfigurations()) {
+		for(final IAxisConfiguration current : this.representedAxisManager.getSpecificAxisConfigurations()) {
 			if(current instanceof EStructuralFeatureValueFillingConfiguration) {
 				config = (EStructuralFeatureValueFillingConfiguration)current;
 				break;
@@ -42,9 +45,9 @@ public class SynchronizedFeatureValueAxisManager extends AbstractSynchronizedOnF
 
 		EStructuralFeature synchronizedFeature = config.getListenFeature();
 
-		List<Object> theList = getTableManager().getElementsList(getRepresentedContentProvider());
-		theList.clear();
-		theList.addAll((List<?>)this.getTable().getContext().eGet(synchronizedFeature));
+		result.addAll((List<?>)this.getTableManager().getTable().getContext().eGet(synchronizedFeature));
+
+		return result;
 	}
 
 }

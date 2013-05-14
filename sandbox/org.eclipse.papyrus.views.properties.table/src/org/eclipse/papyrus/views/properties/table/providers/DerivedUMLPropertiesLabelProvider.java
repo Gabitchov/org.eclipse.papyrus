@@ -14,16 +14,23 @@
 package org.eclipse.papyrus.views.properties.table.providers;
 
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
-import org.eclipse.papyrus.views.properties.table.custom.MultiplicityHandler;
+import org.eclipse.papyrus.views.properties.table.axis.DerivedUMLPropertiesAxisManager;
+import org.eclipse.swt.graphics.Image;
 
 
 public class DerivedUMLPropertiesLabelProvider extends LabelProvider implements IFilteredLabelProvider {
 
 	public boolean accept(Object element) {
 		if(element instanceof LabelProviderCellContextElement) {
-			return ((LabelProviderCellContextElement)element).getObject() == MultiplicityHandler.getInstance();
+			Object object = ((LabelProviderCellContextElement)element).getObject();
+			if(object instanceof IdAxis) {
+				String id = ((IdAxis)object).getElement();
+				return DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(id);
+			}
+
 		}
 		return false;
 	}
@@ -31,6 +38,13 @@ public class DerivedUMLPropertiesLabelProvider extends LabelProvider implements 
 	@Override
 	public String getText(Object element) {
 		return "multiplicity : String [0..1]";
+	}
+
+	@Override
+	public Image getImage(Object element) {
+		org.eclipse.papyrus.infra.widgets.Activator widgetActivator = org.eclipse.papyrus.infra.widgets.Activator.getDefault();
+		String emtNattablePluginID = org.eclipse.papyrus.infra.emf.nattable.Activator.PLUGIN_ID;
+		return widgetActivator.getImage(emtNattablePluginID, "icons/attributes.gif");
 	}
 
 }

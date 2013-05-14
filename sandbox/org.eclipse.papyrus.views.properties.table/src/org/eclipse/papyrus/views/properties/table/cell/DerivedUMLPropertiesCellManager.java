@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.uml.tools.commands.SetMultiplicityCommand;
 import org.eclipse.papyrus.uml.tools.util.MultiplicityParser;
-import org.eclipse.papyrus.views.properties.table.custom.MultiplicityHandler;
+import org.eclipse.papyrus.views.properties.table.axis.DerivedUMLPropertiesAxisManager;
 import org.eclipse.uml2.uml.MultiplicityElement;
 
 
@@ -37,8 +37,8 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean handlersAxisElement(Object obj) {
-		return obj == MultiplicityHandler.getInstance();
+	public boolean handlesAxisElement(Object obj) {
+		return DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(obj);
 	}
 
 	/**
@@ -94,12 +94,12 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 		return null;
 	}
 
-	private MultiplicityHandler getMultiplicityHandler(Object obj1, Object obj2) {
-		if(obj1 == MultiplicityHandler.getInstance()) {
-			return (MultiplicityHandler)obj1;
+	private String getMultiplicityHandler(Object obj1, Object obj2) {
+		if(DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(obj1)) {
+			return (String)obj1;
 		}
-		if(obj2 == MultiplicityHandler.getInstance()) {
-			return (MultiplicityHandler)obj2;
+		if(DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(obj2)) {
+			return (String)obj2;
 		}
 
 		return null;
