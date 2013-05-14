@@ -424,7 +424,7 @@ public class StUtils {
 			if (index == -1) {
 				return null;
 			}
-			name = name.substring(index + 1);
+			name = name.substring(index + 2);
 		}
 		return name;
 	}
