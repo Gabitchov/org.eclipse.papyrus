@@ -13,15 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
-import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 /**
@@ -178,24 +174,4 @@ public class MultipleValueSelectorDialogWithCheckBox extends MultipleValueSelect
 	public boolean isChecked() {
 		return this.isChecked;
 	}
-
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog#okPressed()
-	 * 
-	 */
-	@Override
-	protected void okPressed() {
-		boolean mustContinue = true;;
-		if(displayCheckBox && !isChecked) {
-			final String title = "Axis Selection Question";
-			final String message = String.format("The checkbox '%s' has not been checked, so the next row addition could be followed by a column addition, ignoring your current column selection. \n \n Do you want to continue?", this.text);
-			mustContinue = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), title, message);
-		}
-		if(mustContinue) {
-			super.okPressed();
-		}
-	}
-
 }
