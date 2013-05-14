@@ -1314,12 +1314,31 @@
 	</extension>
 
 
-
-
-
-
-
-
-
    <!-- optionally, specify keybindings -->
+   
+   <!-- Diagram specific advices -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+
+	<!-- Region specific advice (eventually adapt other regions, if a region gets deleted -->		
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.RegionHelperAdvice"
+		class="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.RegionHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Region">
+	</adviceBinding>
+		
+	</metamodel>
+</extension>
+
+<!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration to shared IClientContext -->
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
+		<elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.RegionHelperAdvice"/>
+	</binding>
+		
+</extension>
+
+
 </plugin>
