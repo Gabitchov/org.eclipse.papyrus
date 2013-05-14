@@ -60,22 +60,6 @@ public class PortUtils {
 	}
 
 	/**
-	 * true, if the port is conjugated
-	 * -- with UML 2.3, UML itself will have an isConjugated attribute
-	 * => remove FCM isConjugated attribute
-	 * 
-	 * @param port
-	 * @return
-	 */
-	public static boolean isConjugated(Port port) {
-		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
-		if(fcmPort != null) {
-			return fcmPort.isConjugated();
-		}
-		return false;
-	}
-
-	/**
 	 * Returns all ports (including inherited ones) for an encapsulated classifier
 	 * 
 	 * @param ec
@@ -184,10 +168,10 @@ public class PortUtils {
 	 */
 	public static boolean matches(Port portA, Port portB, boolean isAssembly) {
 		if(isAssembly) {
-			return (sameKinds(portA, portB) && (isConjugated(portA) != isConjugated(portB)));
+			return (sameKinds(portA, portB) && (portA.isConjugated() != portB.isConjugated()));
 		} else {
 			// delegation
-			return (sameKinds(portA, portB) && (isConjugated(portA) == isConjugated(portB)));
+			return (sameKinds(portA, portB) && (portA.isConjugated() == portB.isConjugated()));
 		}
 	}
 

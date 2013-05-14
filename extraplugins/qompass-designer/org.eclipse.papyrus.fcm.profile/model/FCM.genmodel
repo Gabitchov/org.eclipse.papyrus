@@ -75,7 +75,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Port/kind"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference FCM.ecore#//Port/providedInterface"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference FCM.ecore#//Port/requiredInterface"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//Port/conjugated"/>
     </genClasses>
     <genClasses image="false" ecoreClass="FCM.ecore#//ConfigurableElementInstance">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ConfigurableElementInstance/configuration"/>

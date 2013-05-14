@@ -143,8 +143,8 @@ public class MapUtil
 	 * Get a derived interface for a port using the convention that the interface name
 	 * is a concatenation (separated by parameter separation) of the port kind name and the type name.
 	 * 
-	 * @param kind
-	 *        the port kind
+	 * @param port
+	 *        the port, for which we create the interface. Port (its kind attribute) is used to determine name  
 	 * @param separation
 	 *        separation string between kind and type name
 	 * @param type
@@ -167,6 +167,8 @@ public class MapUtil
 	 * Get or create a derived interface for a port using a fixed prefix
 	 * type name
 	 * 
+	 * @param port
+	 * 			The port??
 	 * @param prefix
 	 *        prefix string
 	 * @param type
@@ -297,7 +299,7 @@ public class MapUtil
 		else if(portKind.getBase_Class() != null) {
 			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName();
 			final IMappingRule mappingRule = getMappingRule(ruleName);
-			if(mappingRule != null) {
+			if((mappingRule != null) && (!calcRunning)) {
 				// EList<Interface> temp = new EObjectEList<Interface>(Interface.class, (PortImpl) port,
 				// 		FCMPackage.PORT__PROVIDED_INTERFACE);
 				Runnable rule = new Runnable() {
@@ -306,6 +308,8 @@ public class MapUtil
 						intf = mappingRule.getProvided(port, port.getConfiguration());
 					}
 				};
+				calcRunning = true;
+				
 				if((mappingRule.needsTransaction() == IMappingRule.BOTH) ||
 					(mappingRule.needsTransaction() == IMappingRule.PROVIDED)) {
 					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(port);
@@ -326,6 +330,8 @@ public class MapUtil
 				else {
 					rule.run();
 				}
+				calcRunning = false;
+				
 				return intf;
 			}
 		}
@@ -333,6 +339,11 @@ public class MapUtil
 	}
 
 	private static Interface intf;
+	
+	/**
+	 * avoid loops in calculation of derived interface
+	 */
+	private static boolean calcRunning = false;
 
 	public static Interface getRequiredInterface(final Port port)
 	{
@@ -347,15 +358,18 @@ public class MapUtil
 			}
 		}
 		else if(portKind.getBase_Class() != null) {
-			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName();
+			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
 			final IMappingRule mappingRule = getMappingRule(ruleName);
-			if(mappingRule != null) {
+			if((mappingRule != null) && (!calcRunning)) {
+				
 				Runnable rule = new Runnable() {
 
 					public void run() {
 						intf = mappingRule.getRequired(port, port.getConfiguration());
 					}
 				};
+				calcRunning = true;
+				
 				if((mappingRule.needsTransaction() == IMappingRule.BOTH) ||
 					(mappingRule.needsTransaction() == IMappingRule.REQUIRED)) {
 					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(port);
@@ -376,6 +390,7 @@ public class MapUtil
 				else {
 					rule.run();
 				}
+				calcRunning = false;
 				return intf;
 			}
 		}

@@ -634,22 +634,13 @@ public interface FCMPackage extends EPackage {
 	int PORT__REQUIRED_INTERFACE = CONFIGURABLE_ELEMENT_INSTANCE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Conjugated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT__CONJUGATED = CONFIGURABLE_ELEMENT_INSTANCE_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>Port</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORT_FEATURE_COUNT = CONFIGURABLE_ELEMENT_INSTANCE_FEATURE_COUNT + 5;
+	int PORT_FEATURE_COUNT = CONFIGURABLE_ELEMENT_INSTANCE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' reference.
@@ -1425,15 +1416,6 @@ public interface FCMPackage extends EPackage {
 	int CONTAINER_PORT__REQUIRED_INTERFACE = PORT__REQUIRED_INTERFACE;
 
 	/**
-	 * The feature id for the '<em><b>Conjugated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_PORT__CONJUGATED = PORT__CONJUGATED;
-
-	/**
 	 * The number of structural features of the '<em>Container Port</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1697,17 +1679,6 @@ public interface FCMPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPort_RequiredInterface();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.Port#isConjugated <em>Conjugated</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Conjugated</em>'.
-	 * @see org.eclipse.papyrus.FCM.Port#isConjugated()
-	 * @see #getPort()
-	 * @generated
-	 */
-	EAttribute getPort_Conjugated();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ConfigurableElementInstance <em>Configurable Element Instance</em>}'.
@@ -2924,14 +2895,6 @@ public interface FCMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PORT__REQUIRED_INTERFACE = eINSTANCE.getPort_RequiredInterface();
-
-		/**
-		 * The meta object literal for the '<em><b>Conjugated</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PORT__CONJUGATED = eINSTANCE.getPort_Conjugated();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurableElementInstanceImpl <em>Configurable Element Instance</em>}' class.

@@ -4,6 +4,12 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.CreationUtils;
+import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.PortUtils;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -22,13 +28,6 @@ import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
-
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
-import org.eclipse.papyrus.qompass.designer.core.CreationUtils;
-import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 
 public class ConnectorBinding {
 
@@ -262,7 +261,7 @@ public class ConnectorBinding {
 			// must be conjugated  
 			// TODO: isAssembly check will wrongly return false, if no port is connected [well, in this case, the role is not a port but a part]
 			boolean isAssembly = (connEnd.getPartWithPort() != null);
-			boolean sameConjugation = (PortUtils.isConjugated(otherPort) == PortUtils.isConjugated(port));
+			boolean sameConjugation = (otherPort.isConjugated() == port.isConjugated());
 			// if assembly connection, conjugations must be different.
 			if(isAssembly == sameConjugation) {
 				return actual; // was: continue

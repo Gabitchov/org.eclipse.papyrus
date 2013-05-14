@@ -18,6 +18,13 @@
 			class = "org.eclipse.papyrus.FCM.FCMPackage"
 			genModel = "model/FCM.genmodel"/> 
 	</extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated FCM -->
+      <parser
+            type="fcm"
+            class="org.eclipse.papyrus.FCM.util.FCMResourceFactoryImpl"/>
+   </extension>
   
 	<extension point="org.eclipse.uml2.uml.generated_package">
 		<profile

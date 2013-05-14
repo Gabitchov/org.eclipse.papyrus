@@ -20,7 +20,6 @@ import org.eclipse.uml2.uml.Interface;
  *   <li>{@link org.eclipse.papyrus.FCM.Port#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.Port#getProvidedInterface <em>Provided Interface</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.Port#getRequiredInterface <em>Required Interface</em>}</li>
- *   <li>{@link org.eclipse.papyrus.FCM.Port#isConjugated <em>Conjugated</em>}</li>
  * </ul>
  * </p>
  *
@@ -132,31 +131,5 @@ public interface Port extends ConfigurableElementInstance {
 	 * @generated
 	 */
 	boolean isSetRequiredInterface();
-
-	/**
-	 * Returns the value of the '<em><b>Conjugated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Conjugated</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Conjugated</em>' attribute.
-	 * @see #setConjugated(boolean)
-	 * @see org.eclipse.papyrus.FCM.FCMPackage#getPort_Conjugated()
-	 * @model unique="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isConjugated();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Port#isConjugated <em>Conjugated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Conjugated</em>' attribute.
-	 * @see #isConjugated()
-	 * @generated
-	 */
-	void setConjugated(boolean value);
 
 } // Port

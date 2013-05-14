@@ -32,7 +32,6 @@ import org.eclipse.uml2.uml.Stereotype;
  *   <li>{@link org.eclipse.papyrus.FCM.impl.PortImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.impl.PortImpl#getProvidedInterface <em>Provided Interface</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.impl.PortImpl#getRequiredInterface <em>Required Interface</em>}</li>
- *   <li>{@link org.eclipse.papyrus.FCM.impl.PortImpl#isConjugated <em>Conjugated</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,26 +58,6 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 	 * @ordered
 	 */
 	protected PortKind kind;
-
-	/**
-	 * The default value of the '{@link #isConjugated() <em>Conjugated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isConjugated()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean CONJUGATED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isConjugated() <em>Conjugated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isConjugated()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean conjugated = CONJUGATED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -192,7 +171,7 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 	 * @generated NOT
 	 */
 	public Interface basicGetProvidedInterface() {
-		if(conjugated) {
+		if(base_Port.isConjugated()) {
 			return MapUtil.getRequiredInterface(this);
 		}
 		else {
@@ -227,7 +206,7 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 	 * @generated NOT
 	 */
 	public Interface basicGetRequiredInterface() {
-		if(!conjugated) {
+		if(!base_Port.isConjugated()) {
 			return MapUtil.getRequiredInterface(this);
 		}
 		else {
@@ -250,27 +229,6 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isConjugated() {
-		return conjugated;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConjugated(boolean newConjugated) {
-		boolean oldConjugated = conjugated;
-		conjugated = newConjugated;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.PORT__CONJUGATED, oldConjugated, conjugated));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -286,8 +244,6 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 			case FCMPackage.PORT__REQUIRED_INTERFACE:
 				if (resolve) return getRequiredInterface();
 				return basicGetRequiredInterface();
-			case FCMPackage.PORT__CONJUGATED:
-				return isConjugated();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -306,9 +262,6 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 			case FCMPackage.PORT__KIND:
 				setKind((PortKind)newValue);
 				return;
-			case FCMPackage.PORT__CONJUGATED:
-				setConjugated((Boolean)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -326,9 +279,6 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 				return;
 			case FCMPackage.PORT__KIND:
 				setKind((PortKind)null);
-				return;
-			case FCMPackage.PORT__CONJUGATED:
-				setConjugated(CONJUGATED_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -350,26 +300,8 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 				return isSetProvidedInterface();
 			case FCMPackage.PORT__REQUIRED_INTERFACE:
 				return isSetRequiredInterface();
-			case FCMPackage.PORT__CONJUGATED:
-				return conjugated != CONJUGATED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (conjugated: ");
-		result.append(conjugated);
-		result.append(')');
-		return result.toString();
 	}
 
 	/**
@@ -390,7 +322,7 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 
 			if(clazz instanceof Stereotype) {
 				EList<Image> icons = ((Stereotype)clazz).getIcons();
-				if(isConjugated()) {
+				if(base_Port.isConjugated()) {
 					if(icons.size() > 1) {
 						// standard position for conjugated icon
 						return icons.get(1);

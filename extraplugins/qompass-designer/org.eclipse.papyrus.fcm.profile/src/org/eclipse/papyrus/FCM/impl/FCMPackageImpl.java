@@ -522,15 +522,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPort_Conjugated() {
-		return (EAttribute)portEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getConfigurableElementInstance() {
 		return configurableElementInstanceEClass;
 	}
@@ -1507,7 +1498,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		createEReference(portEClass, PORT__KIND);
 		createEReference(portEClass, PORT__PROVIDED_INTERFACE);
 		createEReference(portEClass, PORT__REQUIRED_INTERFACE);
-		createEAttribute(portEClass, PORT__CONJUGATED);
 
 		configurableElementInstanceEClass = createEClass(CONFIGURABLE_ELEMENT_INSTANCE);
 		createEReference(configurableElementInstanceEClass, CONFIGURABLE_ELEMENT_INSTANCE__CONFIGURATION);
@@ -1700,7 +1690,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEReference(getPort_Kind(), this.getPortKind(), null, "kind", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPort_ProvidedInterface(), theUMLPackage.getInterface(), null, "providedInterface", null, 0, 1, Port.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getPort_RequiredInterface(), theUMLPackage.getInterface(), null, "requiredInterface", null, 0, 1, Port.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPort_Conjugated(), theTypesPackage.getBoolean(), "conjugated", null, 1, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(configurableElementInstanceEClass, ConfigurableElementInstance.class, "ConfigurableElementInstance", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfigurableElementInstance_Configuration(), theUMLPackage.getInstanceSpecification(), null, "configuration", null, 0, 1, ConfigurableElementInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
