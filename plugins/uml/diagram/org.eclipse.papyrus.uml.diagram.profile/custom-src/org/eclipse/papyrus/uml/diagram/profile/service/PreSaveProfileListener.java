@@ -115,7 +115,7 @@ public class PreSaveProfileListener implements ISaveEventListener {
 				diagnostician.validate(rootProfile, diagnostic, context);
 				int severity = diagnostic.getSeverity();
 				if(severity != Diagnostic.ERROR) {
-					DefineProfileCommand cmd = new DefineProfileCommand(domain, papyrusAnnotation, rootProfile);
+					DefineProfileCommand cmd = new DefineProfileCommand(domain, papyrusAnnotation, rootProfile, dialog.saveConstraintInDefinition());
 					try {
 						domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 					} catch (Exception e) {

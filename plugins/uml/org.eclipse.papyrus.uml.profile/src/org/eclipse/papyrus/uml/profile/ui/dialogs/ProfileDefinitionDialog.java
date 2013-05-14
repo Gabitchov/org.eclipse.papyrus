@@ -108,6 +108,7 @@ public class ProfileDefinitionDialog extends TitleAreaDialog {
 
 	/** check button for preference store */
 	private Button savePreferencesButton;
+	protected boolean saveConstraint=false;
 
 	/** list of previous definition annotations */
 	List<PapyrusDefinitionAnnotation> oldVersionAnnotations = new ArrayList<PapyrusDefinitionAnnotation>();
@@ -117,6 +118,8 @@ public class ProfileDefinitionDialog extends TitleAreaDialog {
 
 	/** list of comments history */
 	final List<String> availableComments = new ArrayList<String>();
+
+	private Button constraintCheck;
 
 
 	/**
@@ -154,9 +157,16 @@ public class ProfileDefinitionDialog extends TitleAreaDialog {
 
 		// creates the new Papyrus Definition Annotation
 		papyrusDefinitionAnnotation = new PapyrusDefinitionAnnotation(newVersionValue, commentText.getText(), copyrightText.getText(), dateText.getText(), authorText.getText());
+		if(constraintCheck!=null){
+			saveConstraint= constraintCheck.getSelection();
+		}
+		
 		super.okPressed();
 	}
 
+	public boolean saveConstraintInDefinition(){
+		return saveConstraint;
+	}
 	/**
 	 * {@inheritDoc}
 	 */
@@ -188,6 +198,8 @@ public class ProfileDefinitionDialog extends TitleAreaDialog {
 		// 3. comment
 		// 4. date
 		// 5. copyright
+		// 6. save constraint into the definition
+		
 		GridData gd;
 
 		Composite versionArea = createVersionArea(composite);
@@ -209,6 +221,9 @@ public class ProfileDefinitionDialog extends TitleAreaDialog {
 		Composite advancedArea = createAdvancedArea(composite);
 		gd = new GridData(SWT.FILL, SWT.CENTER, true, true, 2, 1);
 		advancedArea.setLayoutData(gd);
+		Composite constraintArea = createSaveConstraintAera(composite);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, true, 2, 1);
+		constraintArea.setLayoutData(gd);
 
 		applyDialogFont(parentComposite);
 		return parentComposite;
@@ -232,6 +247,27 @@ public class ProfileDefinitionDialog extends TitleAreaDialog {
 		return parent;
 	}
 
+	/**
+	 * Creates and returns the content of the copyright area.
+	 * 
+	 * @param composite
+	 *        The parent composite to contain the copyright area
+	 */
+	private Composite createSaveConstraintAera(Composite composite) {
+		Group group = new Group(composite, SWT.CENTER);
+		group.setText("Constraint");
+		GridLayout layout = new GridLayout();
+		group.setLayout(layout);
+
+		// new copyright area
+		constraintCheck=new Button(group, SWT.CHECK);
+		// should look 
+		constraintCheck.setText("Save OCL constraints into the definition");////$NON-NLS-N$
+		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, true);
+		gd.heightHint = 60;
+		constraintCheck.setLayoutData(gd);
+		return group;
+	}
 	/**
 	 * Creates and returns the content of the copyright area.
 	 * 

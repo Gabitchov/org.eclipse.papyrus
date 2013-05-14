@@ -56,6 +56,8 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 	 */
 	private Profile rootProfile;
 
+	private boolean saveConstraint;
+
 	/**
 	 * 
 	 * Constructor.
@@ -65,20 +67,21 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 	 * @param rootProfile
 	 * @param viewer
 	 */
-	public DefineProfileCommand(TransactionalEditingDomain domain, PapyrusDefinitionAnnotation papyrusAnnotation, Profile rootProfile) {
+	public DefineProfileCommand(TransactionalEditingDomain domain, PapyrusDefinitionAnnotation papyrusAnnotation, Profile rootProfile, boolean saveConstraint) {
 		super(domain, "DefineProfileCommand", null); //$NON-NLS-1$
 		this.rootProfile = rootProfile;
 		this.papyrusAnnotation = papyrusAnnotation;
+		this.saveConstraint=saveConstraint;
 	}
-	
-	
+
+
 	/**
 	 * Define this package if it is a profile and its sub-profiles
 	 * 
 	 * @param thePackage
 	 *        the package to define (if it is a profile)
 	 */
-	public static void defineProfiles(Package thePackage) {
+	public static void defineProfiles(Package thePackage,boolean saveConstraintInDef) {
 		Map<String, String> options = new HashMap<String, String>();
 
 		options.put(Profile2EPackageConverter.OPTION__ECORE_TAGGED_VALUES, 				UMLUtil.OPTION__PROCESS);
@@ -93,16 +96,16 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		options.put(Profile2EPackageConverter.OPTION__UNION_PROPERTIES,					UMLUtil.OPTION__PROCESS);
 		options.put(UML2EcoreConverter.OPTION__SUPER_CLASS_ORDER,						UMLUtil.OPTION__REPORT);
 		options.put(Profile2EPackageConverter.OPTION__ANNOTATION_DETAILS,				UMLUtil.OPTION__REPORT);
-//		
-//		//for the validation
-		options.put(Profile2EPackageConverter.OPTION__INVARIANT_CONSTRAINTS,		UMLUtil.OPTION__PROCESS);
-		options.put(Profile2EPackageConverter.OPTION__VALIDATION_DELEGATES,			UMLUtil.OPTION__PROCESS);
-		options.put(Profile2EPackageConverter.OPTION__INVOCATION_DELEGATES,			UMLUtil.OPTION__PROCESS);
-		options.put(UML2EcoreConverter.OPTION__OPERATION_BODIES, 					UMLUtil.OPTION__PROCESS);
-		
+		if(saveConstraintInDef==true){
+			//		//for the validation
+			options.put(Profile2EPackageConverter.OPTION__INVARIANT_CONSTRAINTS,		UMLUtil.OPTION__PROCESS);
+			options.put(Profile2EPackageConverter.OPTION__VALIDATION_DELEGATES,			UMLUtil.OPTION__PROCESS);
+			options.put(Profile2EPackageConverter.OPTION__INVOCATION_DELEGATES,			UMLUtil.OPTION__PROCESS);
+			options.put(UML2EcoreConverter.OPTION__OPERATION_BODIES, 					UMLUtil.OPTION__PROCESS);
+		}
 		options.put(Profile2EPackageConverter.OPTION__COMMENTS, 					UMLUtil.OPTION__IGNORE);
 		options.put(Profile2EPackageConverter.OPTION__FOREIGN_DEFINITIONS, 			UMLUtil.OPTION__IGNORE);
-		
+
 		// we wants to define
 		if(thePackage instanceof Profile) {
 			((Profile)thePackage).define(options, null, null);
@@ -110,7 +113,7 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		Iterator<Package> it = thePackage.getNestedPackages().iterator();
 		while(it.hasNext()) {
 			Package p = it.next();
-			defineProfiles(p);
+			defineProfiles(p, saveConstraintInDef);
 		}
 	}
 
@@ -127,8 +130,8 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		
-		defineProfiles(rootProfile);
+
+		defineProfiles(rootProfile, saveConstraint);
 		//PackageUtil.defineProfiles(rootProfile);
 		try {
 			ProfileRedefinition.redefineProfile(rootProfile, papyrusAnnotation);
