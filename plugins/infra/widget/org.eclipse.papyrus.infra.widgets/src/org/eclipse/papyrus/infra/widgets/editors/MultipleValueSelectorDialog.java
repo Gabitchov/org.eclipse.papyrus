@@ -261,7 +261,16 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	@Override
 	public void create() {
 		super.create();
+		createDialogContents();
+		getShell().pack();
 
+		updateControls();
+	}
+
+	/**
+	 * Create the contents of the dialog
+	 */
+	protected void createDialogContents() {
 		Composite parent = getDialogArea();
 		GridLayout layout = (GridLayout)parent.getLayout();
 		layout.numColumns = 2;
@@ -279,10 +288,6 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 		createControlsSection(selectorPane);
 		createListSection(selectedPane);
 		createRightButtonsSection(selectedPane);
-
-		getShell().pack();
-
-		updateControls();
 	}
 
 	/**

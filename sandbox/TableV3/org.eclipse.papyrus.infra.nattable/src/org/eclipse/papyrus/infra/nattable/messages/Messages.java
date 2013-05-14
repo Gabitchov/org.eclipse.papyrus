@@ -73,6 +73,14 @@ public class Messages extends NLS {
 
 	public static String NattableModelManager_CreateDestroyAxis;
 
+	public static String NattableModelManager_DisconnectAxisManagerCheckBoxMessage;
+
+	public static String NattableModelManager_DisconnectAxisManagerCheckBoxTooltip;
+
+	public static String NattableModelManager_DisconnectAxisManagerInformationDialogMessage;
+
+	public static String NattableModelManager_DisconnectAxisManagerInformationDialogTitle;
+
 	public static String NattableModelManager_EditingDomainNotFound;
 
 	public static String NattableModelManager_SelectColumns;

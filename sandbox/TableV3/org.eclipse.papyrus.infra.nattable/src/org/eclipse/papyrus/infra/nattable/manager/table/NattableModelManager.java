@@ -31,6 +31,8 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
@@ -38,11 +40,13 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
+import org.eclipse.papyrus.infra.nattable.dialog.DisplayedAxisSelectorDialog;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AxisManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.axis.CompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
@@ -56,6 +60,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
@@ -64,8 +69,9 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.FlattenableRestrictedFilteredContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -114,9 +120,18 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	private FocusListener focusListener;
 
 	/**
-	 * we need to keep it to be able to remove listener (required when we destory the context of the table)
+	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
 	 */
 	private TransactionalEditingDomain contextEditingDomain;
+
+	/** message used in the Add/Remove axis dialog */
+	private static final String AXIS_MANAGER_DIALOG_CHECKBOX_TEXT = Messages.NattableModelManager_DisconnectAxisManagerCheckBoxMessage;
+
+	private static final String AXIS_MANAGER_ROW_DIALOG_CHECKBOX_TOOLTIP = Messages.NattableModelManager_DisconnectAxisManagerCheckBoxTooltip;
+
+	private static final String AXIS_MANAGER_INFORMATION_DIALOG_TITLE = Messages.NattableModelManager_DisconnectAxisManagerInformationDialogTitle;
+
+	private static final String AXIS_MANAGER_COLUMN_INFORMATION_DIALOG_MESSAGE = String.format(Messages.NattableModelManager_DisconnectAxisManagerInformationDialogMessage, AXIS_MANAGER_DIALOG_CHECKBOX_TEXT);
 
 	/**
 	 * 
@@ -847,7 +862,15 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if(provider != null) {//FIXME : the action must be hidden when it is not possible to select the columns
 			selector.setContentProvider(new FlattenableRestrictedFilteredContentProvider((IRestrictedContentProvider)provider, selector));
 
-			MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(Display.getDefault().getActiveShell(), selector, Messages.NattableModelManager_SelectColumns, true, false, -1);
+			final DisplayedAxisSelectorDialog dialog = new DisplayedAxisSelectorDialog(Display.getDefault().getActiveShell(), selector, Messages.NattableModelManager_SelectColumns, true, false, -1);
+			boolean displayCheckBox = columnProvider instanceof ISlaveAxisProvider;
+			boolean checkboxValue = ((IMasterAxisProvider)rowProvider).isDisconnectSlave();
+			dialog.setDisplayCheckBox(displayCheckBox);
+			if(displayCheckBox) {
+				dialog.setCheckBoxValues(AXIS_MANAGER_DIALOG_CHECKBOX_TEXT, AXIS_MANAGER_ROW_DIALOG_CHECKBOX_TOOLTIP, checkboxValue);
+			}
+
+			dialog.setInformationDialogValues(AXIS_MANAGER_INFORMATION_DIALOG_TITLE, AXIS_MANAGER_COLUMN_INFORMATION_DIALOG_MESSAGE);
 			dialog.setLabelProvider(serv.getLabelProvider());
 			dialog.setInitialElementSelections(new ArrayList<Object>(this.columnManager.getAllManagedAxis()));
 
@@ -872,8 +895,18 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 					Command destroyColumnElementCommand = getDestroyColumnElementCommand(columnsToDelete);
 					compoundCommand.append(destroyColumnElementCommand);
 				}
+
+				final boolean newState = dialog.isChecked();
+				if(displayCheckBox && checkboxValue != newState) {
+					final TransactionalEditingDomain domain = (TransactionalEditingDomain)getTableEditingDomain();
+					final IEditCommandRequest request = new SetRequest(domain, rowProvider, NattableaxisproviderPackage.eINSTANCE.getIMasterAxisProvider_DisconnectSlave(), newState);
+					final IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(rowProvider);
+					compoundCommand.append(new GMFtoEMFCommandWrapper(commandProvider.getEditCommand(request)));
+				}
+
 				if(!compoundCommand.isEmpty()) {
 					getContextEditingDomain().getCommandStack().execute(compoundCommand);
+					updateToggleActionState();
 				}
 			}
 		} else {
