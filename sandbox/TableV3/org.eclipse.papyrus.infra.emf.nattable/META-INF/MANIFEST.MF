@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.type.core
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.infra.emf.nattable.celleditor.config,
+Export-Package: org.eclipse.papyrus.infra.emf.nattable,
+ org.eclipse.papyrus.infra.emf.nattable.celleditor.config,
  org.eclipse.papyrus.infra.emf.nattable.manager.axis,
  org.eclipse.papyrus.infra.emf.nattable.manager.cell,
  org.eclipse.papyrus.infra.emf.nattable.provider,
