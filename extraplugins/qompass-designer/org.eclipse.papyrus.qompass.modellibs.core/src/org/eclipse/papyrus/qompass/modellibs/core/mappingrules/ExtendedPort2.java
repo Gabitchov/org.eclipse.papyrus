@@ -14,7 +14,8 @@ import org.eclipse.uml2.uml.Type;
 
 /**
  * An extended Port in the sense of the DDS4CCM standard: a port typed with a component
- * type. Since the component typing the port can have multiple provided and required
+ * type (the extended port, not the data type that is transported). Since the component typing
+ * the port can have multiple provided and required
  * ports, the ports are implicitly owned by the port. Conjugation on the level of an extended
  * port level will conjugate all ports of the component typing the port.
  * 
@@ -37,12 +38,12 @@ public class ExtendedPort2 implements IMappingRule {
 
 	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
 	{
-		return getDerived(p, p.isConjugated(), config);
+		return getDerived(p, p.getBase_Port().isConjugated(), config);
 	}
 
 	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
 	{
-		return getDerived(p, !p.isConjugated(), config);
+		return getDerived(p, !p.getBase_Port().isConjugated(), config);
 	}
 
 	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isConjugated, InstanceSpecification config)

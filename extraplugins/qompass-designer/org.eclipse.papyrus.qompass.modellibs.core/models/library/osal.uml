@@ -9873,7 +9873,7 @@ Show: output the whole line immediately and reset the output string</body>
     </profileApplication>
     <profileApplication xmi:id="_8kttUDRbEdyDwaY3iUxzzA">
       <eAnnotations xmi:id="_8k23QDRbEdyDwaY3iUxzzA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
@@ -10514,7 +10514,7 @@ Show: output the whole line immediately and reset the output string</body>
   <C_Cpp:Ref xmi:id="_4wbsAFIFEd-OfYmxqPWG5g" base_parameter="_o4Q9YDRGEdyG-pUz-bb-Lg"/>
   <C_Cpp:ExternClass xmi:id="_z-g9QFKWEd-OfYmxqPWG5g" name="time.h" base_class="_vZD1EFKWEd-OfYmxqPWG5g"/>
   <C_Cpp:Default xmi:id="_Yy4zUFRgEd-mj-y6sW0V8w" value="false" base_parameter="_VQVI4DUUEdyDReAOQiyvOg"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_pTNvoFdhEd-9TNLvplUFDQ" definition="void (*typeName) (void*)" base_primitivetype="_kor6MFdhEd-9TNLvplUFDQ"/>
+  <C_Cpp:Typedef xmi:id="_pTNvoFdhEd-9TNLvplUFDQ" definition="void (*typeName) (void*)" base_primitivetype="_kor6MFdhEd-9TNLvplUFDQ"/>
   <C_Cpp:Const xmi:id="_ecbxIFnDEd-9TNLvplUFDQ" base_property="_WG7s4DRoEdypGbuyt3_DaA"/>
   <C_Cpp:Ptr xmi:id="_XZvckFnmEd-9TNLvplUFDQ" base_parameter="_FeNrIFnmEd-9TNLvplUFDQ"/>
   <C_Cpp:Array xmi:id="_jwJS4F2nEd-12d_h0i1xhQ" definition="[maxSize]" base_property="_jwCk4DR-Edy0feurbW0fyQ"/>

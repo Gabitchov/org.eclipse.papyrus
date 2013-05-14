@@ -114,12 +114,9 @@ if (m_filled &lt; m_size) {
       <packagedElement xmi:type="uml:Class" xmi:id="_zc4voHLmEd6R5tffIPrlPg" name="PushPush" isAbstract="true">
         <generalization xmi:type="uml:Generalization" xmi:id="_Dc1vwHLoEd6R5tffIPrlPg" general="_yqYfMHLnEd6R5tffIPrlPg"/>
         <generalization xmi:type="uml:Generalization" xmi:id="_ELTYQHLoEd6R5tffIPrlPg" general="_unqQoHLnEd6R5tffIPrlPg"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_ln-VcBkbEeC-d8-mSUonDQ" general="_unqQoHLnEd6R5tffIPrlPg"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_minYwBkbEeC-d8-mSUonDQ" general="_yqYfMHLnEd6R5tffIPrlPg"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_SYuK8BkeEeC-d8-mSUonDQ" general="_yqYfMHLnEd6R5tffIPrlPg"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unqQoHLnEd6R5tffIPrlPg" name="PushP" isAbstract="true">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_xHb7MHLmEd6R5tffIPrlPg" name="pushP" visibility="public" type="_j_050HLoEd6R5tffIPrlPg" aggregation="composite">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_xHb7MHLmEd6R5tffIPrlPg" name="pushP" visibility="public" type="_j_050HLoEd6R5tffIPrlPg" aggregation="composite" isConjugated="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SJlB4DFrEeCz5-DK9j5azg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SLJvMDFrEeCz5-DK9j5azg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_iRXR8P3IEeC1YdT2qA0bjA">
@@ -128,7 +125,7 @@ if (m_filled &lt; m_size) {
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_wtZ1IHLnEd6R5tffIPrlPg" name="PullC" isAbstract="true">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_xcu1wHLmEd6R5tffIPrlPg" name="pullC" visibility="public" type="_j_050HLoEd6R5tffIPrlPg" aggregation="composite">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_xcu1wHLmEd6R5tffIPrlPg" name="pullC" visibility="public" type="_j_050HLoEd6R5tffIPrlPg" aggregation="composite" isConjugated="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VhIMgDFrEeCz5-DK9j5azg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ViKuUDFrEeCz5-DK9j5azg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_2az3IC_fEeKl_vDGXh-OPw">
@@ -137,7 +134,7 @@ if (m_filled &lt; m_size) {
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_yqYfMHLnEd6R5tffIPrlPg" name="PushC" isAbstract="true">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_TRsvoHLoEd6R5tffIPrlPg" name="pushC" visibility="public" type="_j_050HLoEd6R5tffIPrlPg" aggregation="composite">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_TRsvoHLoEd6R5tffIPrlPg" name="pushC" visibility="public" type="_j_050HLoEd6R5tffIPrlPg" aggregation="composite" isConjugated="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QQVBQDFrEeCz5-DK9j5azg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QR2rQDFrEeCz5-DK9j5azg" value="1"/>
         </ownedAttribute>
@@ -406,19 +403,13 @@ return true;</body>
     </profileApplication>
   </uml:Model>
   <l2:ModelLibrary xmi:id="_eex-AHLmEd6R5tffIPrlPg" base_Package="_ePwqkHLmEd6R5tffIPrlPg"/>
-  <FCM:Port xmi:id="_6vCHkHLmEd6R5tffIPrlPg" conjugated="true">
+  <FCM:Port xmi:id="_42zlMHLnEd6R5tffIPrlPg" base_Port="_xHb7MHLmEd6R5tffIPrlPg">
     <kind xmi:type="FCM:PortKind" href="core.uml#_qOK0cFR1Ed6GqrP6fkWBoQ"/>
   </FCM:Port>
-  <FCM:Port xmi:id="_6vCHkXLmEd6R5tffIPrlPg" conjugated="true">
+  <FCM:Port xmi:id="_57KlMHLnEd6R5tffIPrlPg" base_Port="_xcu1wHLmEd6R5tffIPrlPg">
     <kind xmi:type="FCM:PortKind" href="core.uml#_x5mL4FRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
-  <FCM:Port xmi:id="_42zlMHLnEd6R5tffIPrlPg" base_Port="_xHb7MHLmEd6R5tffIPrlPg" conjugated="true">
-    <kind xmi:type="FCM:PortKind" href="core.uml#_qOK0cFR1Ed6GqrP6fkWBoQ"/>
-  </FCM:Port>
-  <FCM:Port xmi:id="_57KlMHLnEd6R5tffIPrlPg" base_Port="_xcu1wHLmEd6R5tffIPrlPg" conjugated="true">
-    <kind xmi:type="FCM:PortKind" href="core.uml#_x5mL4FRxEd6GqrP6fkWBoQ"/>
-  </FCM:Port>
-  <FCM:Port xmi:id="_TRtWsHLoEd6R5tffIPrlPg" base_Port="_TRsvoHLoEd6R5tffIPrlPg" conjugated="true">
+  <FCM:Port xmi:id="_TRtWsHLoEd6R5tffIPrlPg" base_Port="_TRsvoHLoEd6R5tffIPrlPg">
     <kind xmi:type="FCM:PortKind" href="core.uml#_pE6GUFR1Ed6GqrP6fkWBoQ"/>
   </FCM:Port>
   <FCM:InteractionComponent xmi:id="_xQ_ccHUuEd6R5tffIPrlPg" base_Class="_Y1jF8HPpEd6R5tffIPrlPg"/>

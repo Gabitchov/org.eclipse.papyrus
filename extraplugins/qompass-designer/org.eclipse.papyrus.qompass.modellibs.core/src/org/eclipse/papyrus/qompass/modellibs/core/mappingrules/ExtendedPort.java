@@ -33,6 +33,12 @@ import org.eclipse.uml2.uml.Type;
  * 
  * Creates a fixed template binding that binds T (of the extended Port) to the used data type
  * 
+ * Here, the idea is that the port type is a classifier, e.g. the data type that is
+ * transported by a DDS port. The port kind is the extended port, e.g. DDSWrite.
+ * 
+ * The derived property isExtended of FCM port-kind is true, if the class representing the port-kind owns at least one
+ * port
+ * 
  * @author ansgar
  * 
  */
@@ -44,12 +50,12 @@ public class ExtendedPort implements IMappingRule {
 
 	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
 	{
-		return getDerived(p, p.isConjugated(), config);
+		return getDerived(p, p.getBase_Port().isConjugated(), config);
 	}
 
 	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
 	{
-		return getDerived(p, !p.isConjugated(), config);
+		return getDerived(p, !p.getBase_Port().isConjugated(), config);
 	}
 
 	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isConjugated, InstanceSpecification config)

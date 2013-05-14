@@ -44,7 +44,7 @@
     </profileApplication>
     <profileApplication xmi:id="_98SbACgbEeC4DoMvE4KnsQ">
       <eAnnotations xmi:id="_-ASxQCgbEeC4DoMvE4KnsQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>

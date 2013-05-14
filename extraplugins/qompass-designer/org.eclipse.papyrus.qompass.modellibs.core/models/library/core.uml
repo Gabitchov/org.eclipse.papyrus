@@ -439,10 +439,10 @@ for (int i=0; i&lt;9; i++) {
         <ownedLiteral xmi:id="_KOvHsPiREd2UhpY2Y3WUyg" name="ID_[name/]"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_j29X4NttEd2eM5kqcby5ZA" name="OPC_useI" isAbstract="true">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_P4xVsNtuEd2eM5kqcby5ZA" name="fconn" type="_ZzlzMPfBEd2TbIfwytOyPA" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_P4xVsNtuEd2eM5kqcby5ZA" name="fconn" type="_ZzlzMPfBEd2TbIfwytOyPA" aggregation="composite" isConjugated="true"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_mIpj8Ns8Ed2eM5kqcby5ZA" name="OPC_provideI" isAbstract="true">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_Qk0jYNtuEd2eM5kqcby5ZA" name="rconn" visibility="public" type="_ZzlzMPfBEd2TbIfwytOyPA" aggregation="composite">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_Qk0jYNtuEd2eM5kqcby5ZA" name="rconn" visibility="public" type="_ZzlzMPfBEd2TbIfwytOyPA" aggregation="composite" isConjugated="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rftH8ENwEeGoAtSeIK7WLg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rfxZYENwEeGoAtSeIK7WLg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_rf3gAENwEeGoAtSeIK7WLg">
@@ -696,7 +696,7 @@ m_state = FOLLOWER;</body>
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_xOqL0No9Ed-wvpj-p-V_QQ" name="CppParameterStorage"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_0KYOQF7pEeGEmrrwB1vhPg" name="OPC_provideMultI" isAbstract="true">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_0KY1UF7pEeGEmrrwB1vhPg" name="rconn" visibility="public" type="_ZzlzMPfBEd2TbIfwytOyPA" aggregation="composite">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_0KY1UF7pEeGEmrrwB1vhPg" name="rconn" visibility="public" type="_ZzlzMPfBEd2TbIfwytOyPA" aggregation="composite" isConjugated="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0KY1Ul7pEeGEmrrwB1vhPg"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0KY1UV7pEeGEmrrwB1vhPg" value="10"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_0KY1U17pEeGEmrrwB1vhPg">
@@ -1312,7 +1312,7 @@ Be aware that the number of instantiated template packages will be considerably 
     </profileApplication>
     <profileApplication xmi:id="_ugrx4AHIEd6pm-KfUZMnnQ">
       <eAnnotations xmi:id="_ugztsAHIEd6pm-KfUZMnnQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
@@ -1323,8 +1323,8 @@ Be aware that the number of instantiated template packages will be considerably 
       <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
     </profileApplication>
   </uml:Model>
-  <FCM:Port xmi:id="_u1uLMFRxEd6GqrP6fkWBoQ" base_Port="_P4xVsNtuEd2eM5kqcby5ZA" kind="_9Fif4FRxEd6GqrP6fkWBoQ" conjugated="true"/>
-  <FCM:Port xmi:id="_u1uLMVRxEd6GqrP6fkWBoQ" base_Port="_Qk0jYNtuEd2eM5kqcby5ZA" kind="_wySlkFRxEd6GqrP6fkWBoQ" conjugated="true"/>
+  <FCM:Port xmi:id="_u1uLMFRxEd6GqrP6fkWBoQ" base_Port="_P4xVsNtuEd2eM5kqcby5ZA" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
+  <FCM:Port xmi:id="_u1uLMVRxEd6GqrP6fkWBoQ" base_Port="_Qk0jYNtuEd2eM5kqcby5ZA" kind="_wySlkFRxEd6GqrP6fkWBoQ"/>
   <FCM:Port xmi:id="_u1uLM1RxEd6GqrP6fkWBoQ" base_Port="_rSCxUAytEd6it_RkGhz_AA" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
   <FCM:Port xmi:id="_u1uyQFRxEd6GqrP6fkWBoQ" base_Port="_r5Va0AytEd6it_RkGhz_AA" kind="_wySlkFRxEd6GqrP6fkWBoQ"/>
   <FCM:PortKind xmi:id="_wySlkFRxEd6GqrP6fkWBoQ" base_Class="_Wtq4sFDlEd6cwecVIgl9nw" providedInterface="_ZzlzMPfBEd2TbIfwytOyPA" providedMappingRule="_nh0TwFdmEd6EBOtlOYpqKw"/>
@@ -1462,7 +1462,7 @@ Be aware that the number of instantiated template packages will be considerably 
   <C_Cpp:ExternClass xmi:id="_p8NbMNYGEd-CgJIavLpOxQ" name="pthread.h" base_class="_ea234NYGEd-CgJIavLpOxQ"/>
   <FCM:InteractionComponent xmi:id="_8BUh8NdwEd-ZnqCk2P2ZKg" base_Class="_3itBkNdwEd-ZnqCk2P2ZKg"/>
   <FCM:Template xmi:id="_CTIeQNdxEd-ZnqCk2P2ZKg" base_Element="_3itBoddwEd-ZnqCk2P2ZKg" kind="LoopOperations"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_68Aa4No9Ed-wvpj-p-V_QQ" definition="union {&#xA;&lt;%for (ownedOperations) {%>&#xA;struct Op_&lt;%name%> {&#xA;&lt;%for (ownedParameters) {%>&#xA;&lt;%cppType%> &lt;%name%>;&#xA;&lt;%}%>&#xA;} op_&lt;%name%>;&#xA;&lt;%}%>&#xA;};" base_primitivetype="_xOqL0No9Ed-wvpj-p-V_QQ"/>
+  <C_Cpp:Typedef xmi:id="_68Aa4No9Ed-wvpj-p-V_QQ" definition="union {&#xA;&lt;%for (ownedOperations) {%>&#xA;struct Op_&lt;%name%> {&#xA;&lt;%for (ownedParameters) {%>&#xA;&lt;%cppType%> &lt;%name%>;&#xA;&lt;%}%>&#xA;} op_&lt;%name%>;&#xA;&lt;%}%>&#xA;};" base_primitivetype="_xOqL0No9Ed-wvpj-p-V_QQ"/>
   <FCM:InteractionComponent xmi:id="_xaHRQDJKEeCAhMtIsY9HwA" base_Class="_pXzKcEJ1Ed-Ps4Bfh0j9LQ"/>
   <FCM:Port xmi:id="_wz4-ULaaEeCj_-LEBuGpmA" base_Port="__SLXgNtxEd6nqsBVkgJEEA"/>
   <FCM:Port xmi:id="_xdIvoLaaEeCj_-LEBuGpmA" base_Port="_OfiosJsrEd61Eo3nmu3JhQ"/>
@@ -1495,7 +1495,7 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:Port xmi:id="_MhIhgENxEeGoAtSeIK7WLg" base_Port="_MhH6cENxEeGoAtSeIK7WLg" kind="_pE6GUFR1Ed6GqrP6fkWBoQ"/>
   <FCM:Port xmi:id="_Zd6hAENxEeGoAtSeIK7WLg" base_Port="_Zd558ENxEeGoAtSeIK7WLg" kind="_qOK0cFR1Ed6GqrP6fkWBoQ"/>
   <FCM:Port xmi:id="_i6QeoEN8EeGfhclnRyNzoA" base_Port="_i5SOQEN8EeGfhclnRyNzoA" kind="_qOK0cFR1Ed6GqrP6fkWBoQ"/>
-  <FCM:Port xmi:id="_0KaqgF7pEeGEmrrwB1vhPg" base_Port="_0KY1UF7pEeGEmrrwB1vhPg" kind="_wySlkFRxEd6GqrP6fkWBoQ" conjugated="true"/>
+  <FCM:Port xmi:id="_0KaqgF7pEeGEmrrwB1vhPg" base_Port="_0KY1UF7pEeGEmrrwB1vhPg" kind="_wySlkFRxEd6GqrP6fkWBoQ"/>
   <FCM:Template xmi:id="_GNBM8F7tEeGEmrrwB1vhPg" base_Element="_ChD4kF7tEeGEmrrwB1vhPg" kind="LoopOperations"/>
   <FCM:InteractionComponent xmi:id="_UBcmIF7tEeGEmrrwB1vhPg" base_Class="_Mo2kwF7pEeGEmrrwB1vhPg"/>
   <FCM:InteractionComponent xmi:id="_Z3Zs4F7tEeGEmrrwB1vhPg" base_Class="_TLShkF7qEeGEmrrwB1vhPg"/>

@@ -52,24 +52,24 @@
     </profileApplication>
     <profileApplication xmi:id="_JV5UgB6LEd6Nj_33Eb_pxw">
       <eAnnotations xmi:id="_JWB3YB6LEd6Nj_33Eb_pxw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
   </uml:Model>
   <l2:ModelLibrary xmi:id="_FrmAwDLdEd2_U4efLnjQIw" base_Package="_DtQEwDLdEd2_U4efLnjQIw"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_DpdTQB-VEd6nGq8wpI2tjg" definition="bool" base_primitivetype="_Bv7l0B-VEd6nGq8wpI2tjg"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_LlZPEB-VEd6nGq8wpI2tjg" definition="unsigned char" base_primitivetype="_IYEXcB-VEd6nGq8wpI2tjg"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_RegXgB-VEd6nGq8wpI2tjg" definition="unsigned short" base_primitivetype="_Pf0dQB-VEd6nGq8wpI2tjg"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_6hF5AMMFEd6DF55s2oWakw" definition="int" base_primitivetype="_FxVBkB6LEd6Nj_33Eb_pxw"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_QwNhYMMYEd6DF55s2oWakw" definition="char" base_primitivetype="_GPceEB-VEd6nGq8wpI2tjg"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_ZSqqoMMYEd6DF55s2oWakw" definition="double" base_primitivetype="_qgMSAB6SEd6ITtm_FH3jRw"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_bJ-xkMMYEd6DF55s2oWakw" definition="float" base_primitivetype="_wbw4kB6SEd6ITtm_FH3jRw"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_dglckMMYEd6DF55s2oWakw" definition="long double" base_primitivetype="_wzSnwB6SEd6ITtm_FH3jRw"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_grG30MMYEd6DF55s2oWakw" definition="int64_t" base_primitivetype="_7CL6IB6REd6ITtm_FH3jRw"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_ikBhQMMYEd6DF55s2oWakw" definition="int16_t" base_primitivetype="_9XvcQB6REd6ITtm_FH3jRw"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_kltFIMMYEd6DF55s2oWakw" definition="uint32_t" base_primitivetype="_-5FTMB6REd6ITtm_FH3jRw"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_nW5aYMMYEd6DF55s2oWakw" definition="uint16_t" base_primitivetype="_CTLbgB6SEd6ITtm_FH3jRw"/>
-  <C_Cpp:Typedefdefdefdefdefdefdef xmi:id="_plbHcMMYEd6DF55s2oWakw" definition="uint64_t" base_primitivetype="_Wx0C4B6SEd6ITtm_FH3jRw"/>
+  <C_Cpp:Typedef xmi:id="_DpdTQB-VEd6nGq8wpI2tjg" definition="bool" base_primitivetype="_Bv7l0B-VEd6nGq8wpI2tjg"/>
+  <C_Cpp:Typedef xmi:id="_LlZPEB-VEd6nGq8wpI2tjg" definition="unsigned char" base_primitivetype="_IYEXcB-VEd6nGq8wpI2tjg"/>
+  <C_Cpp:Typedef xmi:id="_RegXgB-VEd6nGq8wpI2tjg" definition="unsigned short" base_primitivetype="_Pf0dQB-VEd6nGq8wpI2tjg"/>
+  <C_Cpp:Typedef xmi:id="_6hF5AMMFEd6DF55s2oWakw" definition="int" base_primitivetype="_FxVBkB6LEd6Nj_33Eb_pxw"/>
+  <C_Cpp:Typedef xmi:id="_QwNhYMMYEd6DF55s2oWakw" definition="char" base_primitivetype="_GPceEB-VEd6nGq8wpI2tjg"/>
+  <C_Cpp:Typedef xmi:id="_ZSqqoMMYEd6DF55s2oWakw" definition="double" base_primitivetype="_qgMSAB6SEd6ITtm_FH3jRw"/>
+  <C_Cpp:Typedef xmi:id="_bJ-xkMMYEd6DF55s2oWakw" definition="float" base_primitivetype="_wbw4kB6SEd6ITtm_FH3jRw"/>
+  <C_Cpp:Typedef xmi:id="_dglckMMYEd6DF55s2oWakw" definition="long double" base_primitivetype="_wzSnwB6SEd6ITtm_FH3jRw"/>
+  <C_Cpp:Typedef xmi:id="_grG30MMYEd6DF55s2oWakw" definition="int64_t" base_primitivetype="_7CL6IB6REd6ITtm_FH3jRw"/>
+  <C_Cpp:Typedef xmi:id="_ikBhQMMYEd6DF55s2oWakw" definition="int16_t" base_primitivetype="_9XvcQB6REd6ITtm_FH3jRw"/>
+  <C_Cpp:Typedef xmi:id="_kltFIMMYEd6DF55s2oWakw" definition="uint32_t" base_primitivetype="_-5FTMB6REd6ITtm_FH3jRw"/>
+  <C_Cpp:Typedef xmi:id="_nW5aYMMYEd6DF55s2oWakw" definition="uint16_t" base_primitivetype="_CTLbgB6SEd6ITtm_FH3jRw"/>
+  <C_Cpp:Typedef xmi:id="_plbHcMMYEd6DF55s2oWakw" definition="uint64_t" base_primitivetype="_Wx0C4B6SEd6ITtm_FH3jRw"/>
   <C_Cpp:Include xmi:id="_L7vsoGJWEeG3qIU2KF8MuA" header="#include &lt;stdint.h>" base_package="_DtQEwDLdEd2_U4efLnjQIw"/>
 </xmi:XMI>

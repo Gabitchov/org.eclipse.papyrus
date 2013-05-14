@@ -372,7 +372,7 @@ out->writeEvent (event);
     </profileApplication>
     <profileApplication xmi:id="_cnmBUBE1EeG3cfLoiI6G7g">
       <eAnnotations xmi:id="_cz4J0BE1EeG3cfLoiI6G7g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
