@@ -222,6 +222,20 @@
                    style="toggle">
              </command>
           </menu>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.column.disconnect.slave"
+                style="toggle">
+             <visibleWhen>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.hasSlaveRowAxisProvider"
+                         value="true">
+                   </test>
+                </with>
+             </visibleWhen>
+          </command>
        </menu>
       
        <menu
@@ -361,6 +375,20 @@
                    style="toggle">
              </command>
           </menu>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.row.disconnect.slave"
+                style="toggle">
+             <visibleWhen>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.hasSlaveColumnAxisProvider"
+                         value="true">
+                   </test>
+                </with>
+             </visibleWhen>
+          </command>
        </menu> 
     </menuContribution>
   </extension>
@@ -448,7 +476,7 @@
           class="org.eclipse.papyrus.infra.nattable.utils.NattableWidgetPropertyTester"
           id="org.eclipse.papyrus.infra.nattable.tester"
           namespace="org.eclipse.papyrus.infra.nattable.tester"
-          properties="isNattableWidget, hasFeatureRowHeaderConfiguration, hasFeatureColumnHeaderConfiguration"
+          properties="isNattableWidget, hasFeatureRowHeaderConfiguration, hasFeatureColumnHeaderConfiguration, hasSlaveRowAxisProvider, hasSlaveColumnAxisProvider"
           type="org.eclipse.jface.viewers.IStructuredSelection">
     </propertyTester>
  </extension>
@@ -623,6 +651,24 @@
       <state
             class="org.eclipse.ui.handlers.RadioState:Alphabetic"
             id="org.eclipse.ui.commands.radioState">
+      </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowMasterDisconnectColumnSlaveHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.disconnect.slave"
+         name="Disconnect Column Axis">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnMasterDisconnectRowSlaveHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.disconnect.slave"
+         name="Disconnect Rows Axis">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
       </state>
    </command>
 </extension>

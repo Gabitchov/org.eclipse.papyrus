@@ -13,7 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
 /**
  * Common methods for axis management
@@ -49,6 +52,58 @@ public class AxisUtils {
 			id = (String)axisElement;
 		}
 		return id;
+	}
+
+	/**
+	 * 
+	 * @param table
+	 *        a table
+	 * @return
+	 *         the axismanager used for rows, managing the invert axis
+	 */
+	public static final AbstractAxisProvider getAxisProviderUsedForRows(final Table table) {
+		AbstractAxisProvider provider = table.getCurrentRowAxisProvider();
+		if(table.isInvertAxis()) {
+			provider = table.getCurrentColumnAxisProvider();
+		}
+		return provider;
+	}
+
+	/**
+	 * 
+	 * @param table
+	 *        a table
+	 * @return
+	 *         the axismanager used for columns, managing the invert axis
+	 */
+	public static final AbstractAxisProvider getAxisProviderUsedForColumns(final Table table) {
+		AbstractAxisProvider provider = table.getCurrentColumnAxisProvider();
+		if(table.isInvertAxis()) {
+			provider = table.getCurrentRowAxisProvider();
+		}
+		return provider;
+	}
+
+	/**
+	 * 
+	 * @param manager
+	 *        a table manager
+	 * @return
+	 *         the axismanager used for rows, managing the invert axis
+	 */
+	public static final AbstractAxisProvider getAxisProviderUsedForRows(final INattableModelManager manager) {
+		return getAxisProviderUsedForRows(manager.getTable());
+	}
+
+	/**
+	 * 
+	 * @param manager
+	 *        a table manager
+	 * @return
+	 *         the axismanager used for columns, managing the invert axis
+	 */
+	public static final AbstractAxisProvider getAxisProviderUsedForColumns(final INattableModelManager manager) {
+		return getAxisProviderUsedForColumns(manager.getTable());
 	}
 
 }

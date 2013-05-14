@@ -54,10 +54,13 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
@@ -357,6 +360,28 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				}
 			}
 
+			//update the property IMasterObjectAxisProvider#disconnectslave
+			if(columnProvider instanceof ISlaveAxisProvider) {
+				command = commandService.getCommand(CommandIds.COMMAND_ROW_DISCONNECT_SLAVE);
+				if(command != null) {
+					final State state = command.getState(CommandIds.TOGGLE_STATE);
+					if(state != null) {
+						state.setValue(((IMasterAxisProvider)rowProvider).isDisconnectSlave());
+					}
+				}
+			}
+
+			if(rowProvider instanceof ISlaveAxisProvider) {
+				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISCONNECT_SLAVE);
+				if(command != null) {
+					final State state = command.getState(CommandIds.TOGGLE_STATE);
+					if(state != null) {
+						state.setValue(((IMasterAxisProvider)columnProvider).isDisconnectSlave());
+					}
+				}
+			}
+
+
 		} else {
 			throw new RuntimeException(String.format("The Eclipse service {0} has not been found", ICommandService.class)); //$NON-NLS-1$
 		}
@@ -433,21 +458,13 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#addRows(java.util.Collection)
 	 * 
-	 * @param objectToAdd
+	 * @param objectsToAdd
 	 *        the list of the objects to add in rows
 	 */
-	public void addRows(final Collection<Object> objectToAdd) {
+	public void addRows(final Collection<Object> objectsToAdd) {
 		final EditingDomain domain = getContextEditingDomain();
-		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddRowCommand);
-		Command tmp = this.rowManager.getAddAxisCommand(domain, objectToAdd);
-		if(tmp != null) {
-			cmd.append(tmp);
-		}
-		tmp = this.columnManager.getComplementaryAddAxisCommand(domain, objectToAdd);
-		if(tmp != null) {
-			cmd.append(tmp);
-		}
-		if(!cmd.isEmpty()) {
+		final Command cmd = getAddRowElementCommand(objectsToAdd);
+		if(cmd != null && cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
 		}
 	}
@@ -471,21 +488,13 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#addColumns(java.util.Collection)
 	 * 
-	 * @param objectToAdd
+	 * @param objectsToAdd
 	 *        the list of the objects to add in columns
 	 */
-	public void addColumns(final Collection<Object> objectToAdd) {
+	public void addColumns(final Collection<Object> objectsToAdd) {
 		final EditingDomain domain = getContextEditingDomain();
-		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
-		Command tmp = this.columnManager.getAddAxisCommand(domain, objectToAdd);
-		if(tmp != null) {
-			cmd.append(tmp);
-		}
-		tmp = this.rowManager.getComplementaryAddAxisCommand(domain, objectToAdd);
-		if(tmp != null) {
-			cmd.append(tmp);
-		}
-		if(!cmd.isEmpty()) {
+		final Command cmd = getAddColumnElementCommand(objectsToAdd);
+		if(cmd != null && cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
 		}
 	}
@@ -767,9 +776,14 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if(tmp != null) {
 			cmd.append(tmp);
 		}
-		tmp = this.columnManager.getComplementaryAddAxisCommand(domain, objectsToAdd);
-		if(tmp != null) {
-			cmd.append(tmp);
+		final AbstractAxisProvider rowsProvider = AxisUtils.getAxisProviderUsedForRows(this);
+		final AbstractAxisProvider columnsProvider = AxisUtils.getAxisProviderUsedForColumns(this);
+		boolean addComplementaryAxis = rowsProvider instanceof IMasterAxisProvider && columnsProvider instanceof ISlaveAxisProvider && !((IMasterAxisProvider)rowsProvider).isDisconnectSlave();
+		if(addComplementaryAxis) {
+			tmp = this.columnManager.getComplementaryAddAxisCommand(domain, objectsToAdd);
+			if(tmp != null) {
+				cmd.append(tmp);
+			}
 		}
 		return cmd;
 	}
@@ -781,9 +795,14 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if(tmp != null) {
 			cmd.append(tmp);
 		}
-		tmp = this.rowManager.getComplementaryAddAxisCommand(domain, objectsToAdd);
-		if(tmp != null) {
-			cmd.append(tmp);
+		final AbstractAxisProvider rowsProvider = AxisUtils.getAxisProviderUsedForRows(this);
+		final AbstractAxisProvider columnsProvider = AxisUtils.getAxisProviderUsedForColumns(this);
+		boolean addComplementaryAxis = columnsProvider instanceof IMasterAxisProvider && rowsProvider instanceof ISlaveAxisProvider && !((IMasterAxisProvider)columnsProvider).isDisconnectSlave();
+		if(addComplementaryAxis) {
+			tmp = this.rowManager.getComplementaryAddAxisCommand(domain, objectsToAdd);
+			if(tmp != null) {
+				cmd.append(tmp);
+			}
 		}
 		return cmd;
 	}

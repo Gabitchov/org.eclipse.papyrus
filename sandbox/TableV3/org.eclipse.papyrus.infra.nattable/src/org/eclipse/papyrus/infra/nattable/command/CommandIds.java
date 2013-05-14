@@ -61,4 +61,8 @@ public class CommandIds {
 
 	public static final String COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_NAME = "org.eclipse.papyrus.infra.nattable.column.label.feature.display.name";
 
+	public static final String COMMAND_ROW_DISCONNECT_SLAVE = "org.eclipse.papyrus.infra.nattable.row.disconnect.slave";
+
+	public static final String COMMAND_COLUMN_DISCONNECT_SLAVE = "org.eclipse.papyrus.infra.nattable.column.disconnect.slave";
+
 }
