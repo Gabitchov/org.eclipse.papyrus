@@ -152,12 +152,10 @@ public class MultipleValueSelectorDialogWithCheckBox extends MultipleValueSelect
 			button.setSelection(true);
 			final SelectionListener listener = new SelectionListener() {
 
-				@Override
 				public void widgetSelected(SelectionEvent e) {
 					isChecked = button.getSelection();
 				}
 
-				@Override
 				public void widgetDefaultSelected(SelectionEvent e) {
 				}
 			};
