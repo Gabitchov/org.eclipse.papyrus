@@ -983,4 +983,22 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			providerChanged(new ProviderChangeEvent(this));
 		}
 	}
+	
+	/**
+	 * Notifies the listeners for this abstract provider that the specified
+	 * event has occurred.
+	 * 
+	 * @param event
+	 *            The provider change event to be fired.
+	 */
+	@Override
+	protected void fireProviderChange(ProviderChangeEvent event) {
+		//Bug 407849: If a listener throws an exception, the operation is rolled back. This could have bad side effects, as explained in the bug 
+		try {
+			super.fireProviderChange(event);
+		} catch (Exception e) {
+			Activator.log.error(e);
+		}
+		
+	}
 }

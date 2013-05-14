@@ -120,7 +120,11 @@ public class ModelListenerManager extends EContentAdapter {
 		super.notifyChanged(notification);
 		Enumeration<IPapyrusListener> papyrusListenersEnum = listenerRegistry.elements();
 		while(papyrusListenersEnum.hasMoreElements()) {
-			papyrusListenersEnum.nextElement().notifyChanged(notification);
+			try {
+				papyrusListenersEnum.nextElement().notifyChanged(notification);	
+			} catch (Exception e) {
+				Activator.log.error(e);
+			}
 		}
 	}
 }
