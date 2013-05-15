@@ -16,3 +16,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Export-Package: org.eclipse.papyrus.gmf.editpartview,
+ org.eclipse.papyrus.gmf.editpartview.view
