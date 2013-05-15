@@ -101,4 +101,21 @@
          </elementType>
       </binding>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance"
+            class="org.eclipse.papyrus.infra.table.common.adapters.TableAdapterFactory">
+         <adapter
+               type="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2"
+            class="org.eclipse.papyrus.infra.table.common.adapters.TableAdapterFactory">
+         <adapter
+               type="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable">
+         </adapter>
+      </factory>
+   </extension>
 </plugin>

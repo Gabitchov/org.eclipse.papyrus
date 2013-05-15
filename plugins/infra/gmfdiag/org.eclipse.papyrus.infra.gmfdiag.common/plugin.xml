@@ -118,5 +118,14 @@
       </Priority>
    </decoratorProvider>
 </extension>
-
+<extension
+      point="org.eclipse.core.runtime.adapters">
+   <factory
+         adaptableType="org.eclipse.gmf.runtime.notation.Diagram"
+         class="org.eclipse.papyrus.infra.gmfdiag.common.adapter.DiagramAdapterFactory">
+      <adapter
+            type="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable">
+      </adapter>
+   </factory>
+</extension>
 </plugin>
