@@ -1104,5 +1104,201 @@
          name="Commands for the creation of Sysml elements">
    </category>
 </extension>
+<extension
+      point="org.eclipse.ui.commandImages">
+   
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ActorPartCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+
+		</image>
+
+		<image commandId="org.eclipse.papyrus.sysml.service.types.AllocateCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.AssociationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeDirectedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneDirectedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedDirectedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.BlockCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ConformCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Conform.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif">
+
+		</image>
+
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockParameterCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+
+		</image>
+
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ConstraintPropertyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.CopyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Copy.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.DeriveReqtCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/DeriveReqt.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.DimensionCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Dimension.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.FlowPortCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif">
+
+		</image>
+		  
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InOutCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_OutCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif">
+
+		</image>
+
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_NACreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif">
+
+		</image>
+
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.FlowPropertyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.FlowSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowSpecification.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ItemFlowCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/ItemFlow.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.PartPropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+
+		</image>
+				
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ProblemCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Problem.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.RationaleCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Rationale.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ReferencePropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+
+		</image>
+				
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.RequirementCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Requirement.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.SatisfyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.UnitCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ValuePropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+
+		</image>
+				
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ValueTypeCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ValueType_EnumerationCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ValueType_PrimitiveTypeCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.VerifyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Verify.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ViewCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/View.gif">
+
+		</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.sysml.service.types.ViewPointCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Viewpoint.gif">
+
+		</image>
+</extension>
 </plugin>
 
