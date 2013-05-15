@@ -76,30 +76,25 @@ public abstract class AbstractCreateSysmlChildMenu extends ExtensionContribution
 		Category sysmlCategory = commandService.getCategory(categoryId);
 		Set<Command> commands = new TreeSet<Command>();
 		commands.addAll(Arrays.asList(commandService.getDefinedCommands()));
-		ArrayList<Command> commandsForMenuItems = new ArrayList<Command>();
 		try {
 			for(Command command : commands) {
-
-				IHandler handler = command.getHandler();
-				if(handler == null) {
-					continue;
-				}
 				if(command.getCategory().equals(sysmlCategory)) {
-					//FIXME : verify utility of setEnabled(null)
+					IHandler handler = command.getHandler();
+					if(handler == null) {
+						continue;
+					}
+
 					((AbstractHandler)handler).setEnabled(null);
 					boolean isEnabled = handler.isEnabled();
 					if(isEnabled) {
-						commandsForMenuItems.add(command);
+						String commandId = command.getId();
+						CommandContributionItemParameter p = new CommandContributionItemParameter(serviceLocator, "", commandId, SWT.PUSH); //$NON-NLS-1$
+						p.label = command.getDescription();
+						p.icon = getCommandIcon(command);
+						CommandContributionItem item = new CommandContributionItem(p);
+						items.add(item);
 					}
 				}
-			}
-			for(Command command : commandsForMenuItems) {
-				String commandId = command.getId();
-				CommandContributionItemParameter p = new CommandContributionItemParameter(serviceLocator, "", commandId, SWT.PUSH); //$NON-NLS-1$
-				p.label = command.getDescription();
-				p.icon = getCommandIcon(command);
-				CommandContributionItem item = new CommandContributionItem(p);
-				items.add(item);
 			}
 		} catch (NotDefinedException e) {
 			Activator.log.error(e.getLocalizedMessage(), e);

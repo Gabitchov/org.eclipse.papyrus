@@ -860,7 +860,7 @@
    <extension
          point="org.eclipse.ui.commandImages">
       <image
-            commandId="org.eclipse.papyrus.infra.nattable.invert.axis.command"
+            commandId="org.eclipse.papyrus.infra.nattable.invert.axis"
             icon="icons/invertAxis.gif">
       </image>
    </extension>

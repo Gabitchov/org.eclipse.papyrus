@@ -26,5 +26,4 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.nattable.menu,
  org.eclipse.papyrus.uml.nattable.menu.handlers,
  org.eclipse.papyrus.uml.nattable.menu.messages,
- org.eclipse.papyrus.uml.nattable.menu.tester,
  org.eclipse.papyrus.uml.nattable.menu.util

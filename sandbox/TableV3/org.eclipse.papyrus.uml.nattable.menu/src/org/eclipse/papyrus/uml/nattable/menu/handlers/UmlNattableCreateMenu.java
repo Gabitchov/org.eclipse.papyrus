@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.menu.handlers;
 
-import org.eclipse.papyrus.uml.nattable.menu.tester.TableEditorPropertyTester;
+import org.eclipse.papyrus.infra.nattable.utils.NattableWidgetPropertyTester;
 import org.eclipse.papyrus.uml.service.types.menu.AbstractCreateUmlChildMenu;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
@@ -23,13 +23,12 @@ import org.eclipse.ui.services.IServiceLocator;
  */
 public class UmlNattableCreateMenu extends AbstractCreateUmlChildMenu {
 
-	//FIXME : use the same property tester than in oep.infra.nattable.modelexplorer
-	private TableEditorPropertyTester tester = new TableEditorPropertyTester();
+	private NattableWidgetPropertyTester tester = new NattableWidgetPropertyTester();
 
 	@Override
 	public void createContributionItems(IServiceLocator serviceLocator, IContributionRoot additions) {
 		IWorkbenchPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
-		if(tester.test(part, TableEditorPropertyTester.IS_TABLE, null, Boolean.TRUE)) {
+		if(tester.test(part, NattableWidgetPropertyTester.IS_NATTABLE_WIDGET, null, Boolean.TRUE)) {
 			super.createContributionItems(serviceLocator, additions);
 		}
 	}

@@ -261,9 +261,9 @@
          <visibleWhen
                checkEnabled="false">
             <with
-                  variable="activePart">
+                  variable="selection">
                <test
-                     property="org.eclipse.papyrus.uml.nattable.menu.tester.isTable"
+                     property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
                      value="true">
                </test>
             </with>
@@ -275,17 +275,5 @@
             class="org.eclipse.papyrus.uml.nattable.menu.handlers.UmlNattableCreateMenu"
             locationURI="popup:org.eclipse.papyrus.uml.nattable.create.uml.menu">
       </menuContribution>
-      
-      
    </extension>
- <extension
-       point="org.eclipse.core.expressions.propertyTesters">
-    <propertyTester
-          class="org.eclipse.papyrus.uml.nattable.menu.tester.TableEditorPropertyTester"
-          id="org.eclipse.papyrus.uml.nattable.menu.tester"
-          namespace="org.eclipse.papyrus.uml.nattable.menu.tester"
-          properties="isTable"
-          type="org.eclipse.ui.IWorkbenchPart">
-    </propertyTester>
- </extension>
 </plugin>

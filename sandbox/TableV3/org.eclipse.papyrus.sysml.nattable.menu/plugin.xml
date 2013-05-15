@@ -54,9 +54,9 @@
          <visibleWhen
                checkEnabled="false">
             <with
-                  variable="activePart">
+                  variable="selection">
                <test
-                     property="org.eclipse.papyrus.uml.nattable.menu.tester.isTable"
+                     property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
                      value="true">
                </test>
             </with>
