@@ -238,6 +238,7 @@ public class PortAppliedStereotypeEditPart extends AbstractLabelEditPart impleme
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

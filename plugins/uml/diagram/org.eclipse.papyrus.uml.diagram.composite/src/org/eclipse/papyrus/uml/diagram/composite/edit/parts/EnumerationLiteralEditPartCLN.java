@@ -228,6 +228,7 @@ public class EnumerationLiteralEditPartCLN extends CompartmentEditPart implement
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

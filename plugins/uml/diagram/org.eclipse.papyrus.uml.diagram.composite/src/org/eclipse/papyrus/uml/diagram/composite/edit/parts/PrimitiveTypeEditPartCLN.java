@@ -226,6 +226,7 @@ public class PrimitiveTypeEditPartCLN extends CompartmentEditPart implements ITe
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

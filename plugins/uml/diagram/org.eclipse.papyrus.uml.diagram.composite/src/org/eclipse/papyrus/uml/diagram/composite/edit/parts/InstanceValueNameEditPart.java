@@ -206,6 +206,7 @@ public class InstanceValueNameEditPart extends PapyrusCompartmentEditPart implem
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

@@ -217,6 +217,7 @@ public class UsageAppliedStereotypeEditPart extends PapyrusLabelEditPart impleme
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

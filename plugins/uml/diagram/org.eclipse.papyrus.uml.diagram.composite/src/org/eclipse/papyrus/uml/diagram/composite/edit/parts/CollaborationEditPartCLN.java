@@ -226,6 +226,7 @@ public class CollaborationEditPartCLN extends CompartmentEditPart implements ITe
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

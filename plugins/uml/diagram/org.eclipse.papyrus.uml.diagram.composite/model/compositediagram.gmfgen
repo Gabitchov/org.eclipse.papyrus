@@ -64,6 +64,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorSymbolEditPolicy.BEHAVIOR_SYMBOL"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorSymbolEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoConnectableEditPolicy"/>
       </childNodes>
       <childNodes
           xsi:type="gmfgen:GenChildSideAffixedNode"

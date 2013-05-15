@@ -206,6 +206,7 @@ public class StringExpressionNameEditPart extends PapyrusCompartmentEditPart imp
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

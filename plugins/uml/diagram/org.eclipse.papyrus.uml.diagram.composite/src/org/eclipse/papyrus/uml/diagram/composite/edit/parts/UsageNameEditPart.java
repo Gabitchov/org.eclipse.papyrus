@@ -217,6 +217,7 @@ public class UsageNameEditPart extends PapyrusLabelEditPart implements ITextAwar
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

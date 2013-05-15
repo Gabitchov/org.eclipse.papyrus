@@ -226,6 +226,7 @@ public class InterfaceEditPartCLN extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

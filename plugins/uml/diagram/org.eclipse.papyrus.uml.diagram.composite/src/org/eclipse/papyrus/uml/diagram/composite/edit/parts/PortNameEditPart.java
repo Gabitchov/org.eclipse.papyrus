@@ -69,7 +69,6 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.PortLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.PropertyLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
@@ -147,7 +146,7 @@ public class PortNameEditPart extends LabelEditPart implements ITextAwareEditPar
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new PortLabelEditPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new PropertyLabelEditPolicy());
 	}
 
 	/**
@@ -239,6 +238,7 @@ public class PortNameEditPart extends LabelEditPart implements ITextAwareEditPar
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

@@ -226,6 +226,7 @@ public class EnumerationEditPartCLN extends CompartmentEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

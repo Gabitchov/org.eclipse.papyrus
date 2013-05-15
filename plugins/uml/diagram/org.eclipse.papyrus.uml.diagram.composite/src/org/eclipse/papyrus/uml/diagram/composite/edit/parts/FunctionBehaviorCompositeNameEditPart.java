@@ -206,6 +206,7 @@ public class FunctionBehaviorCompositeNameEditPart extends PapyrusCompartmentEdi
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

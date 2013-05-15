@@ -217,6 +217,7 @@ public class RoleBindingRoleNameEditPart extends PapyrusLabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

@@ -226,6 +226,7 @@ public class StateMachineEditPartCLN extends CompartmentEditPart implements ITex
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

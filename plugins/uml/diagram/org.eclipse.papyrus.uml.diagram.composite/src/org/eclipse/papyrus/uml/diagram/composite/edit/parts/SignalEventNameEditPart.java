@@ -206,6 +206,7 @@ public class SignalEventNameEditPart extends PapyrusCompartmentEditPart implemen
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

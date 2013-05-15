@@ -122,7 +122,6 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IPreferenceStore getPreferenceStore() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		return store;

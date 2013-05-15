@@ -234,6 +234,7 @@ public class TimeObservationNameEditPart extends LabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

@@ -203,6 +203,7 @@ public class InteractionConstraintSpecificationEditPartCN extends PapyrusCompart
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

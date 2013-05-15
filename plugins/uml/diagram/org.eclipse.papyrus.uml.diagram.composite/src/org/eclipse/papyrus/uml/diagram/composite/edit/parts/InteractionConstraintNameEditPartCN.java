@@ -206,6 +206,7 @@ public class InteractionConstraintNameEditPartCN extends PapyrusCompartmentEditP
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

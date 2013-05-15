@@ -206,6 +206,7 @@ public class ExecutionEnvironmentCompositeNameEditPartCN extends PapyrusCompartm
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

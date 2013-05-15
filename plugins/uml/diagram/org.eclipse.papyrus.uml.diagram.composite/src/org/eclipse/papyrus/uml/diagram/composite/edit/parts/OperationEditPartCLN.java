@@ -228,6 +228,7 @@ public class OperationEditPartCLN extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

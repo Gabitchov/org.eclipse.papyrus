@@ -206,6 +206,7 @@ public class DurationConstraintNameEditPartCN extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

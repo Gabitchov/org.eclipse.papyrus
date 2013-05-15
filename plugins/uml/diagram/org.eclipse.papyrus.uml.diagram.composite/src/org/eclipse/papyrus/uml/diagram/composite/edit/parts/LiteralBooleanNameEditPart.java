@@ -206,6 +206,7 @@ public class LiteralBooleanNameEditPart extends PapyrusCompartmentEditPart imple
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

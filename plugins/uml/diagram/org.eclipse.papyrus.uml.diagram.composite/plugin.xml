@@ -1670,551 +1670,6 @@
       <?gmfgen generated="true"?>
    </extension>
 
-<extension point="org.eclipse.ui.preferencePages">
-
-
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ExecutionEnvironmentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ExecutionEnvironmentPreferencePage"
-            name="ExecutionEnvironment Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DataTypePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DataTypePreferencePage"
-            name="DataType Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationItemPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationItemPreferencePage"
-            name="InformationItem Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.PropertyPreferencePage"
-            name="Property Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InstanceValuePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InstanceValuePreferencePage"
-            name="InstanceValue Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueExpressionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueExpressionPreferencePage"
-            name="OpaqueExpression Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalPreferencePage"
-            name="Signal Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentPreferencePage"
-            name="Comment Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.PortPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.PortPreferencePage"
-            name="Port Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ActivityPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ActivityPreferencePage"
-            name="Activity Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.NodePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.NodePreferencePage"
-            name="Node Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ClassPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ClassPreferencePage"
-            name="Class Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralStringPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralStringPreferencePage"
-            name="LiteralString Node" />
-	
-			
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.FunctionBehaviorPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.FunctionBehaviorPreferencePage"
-            name="FunctionBehavior Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalPreferencePage"
-            name="Interval Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.UseCasePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.UseCasePreferencePage"
-            name="UseCase Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ProtocolStateMachinePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ProtocolStateMachinePreferencePage"
-            name="ProtocolStateMachine Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ConstraintPreferencePage"
-            name="Constraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeIntervalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeIntervalPreferencePage"
-            name="TimeInterval Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueBehaviorPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueBehaviorPreferencePage"
-            name="OpaqueBehavior Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.PrimitiveTypePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.PrimitiveTypePreferencePage"
-            name="PrimitiveType Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalConstraintPreferencePage"
-            name="IntervalConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ExpressionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ExpressionPreferencePage"
-            name="Expression Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeEventPreferencePage"
-            name="TimeEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ChangeEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ChangeEventPreferencePage"
-            name="ChangeEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentSpecificationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentSpecificationPreferencePage"
-            name="DeploymentSpecification Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ReceptionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ReceptionPreferencePage"
-            name="Reception Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalEventPreferencePage"
-            name="SignalEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.OperationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.OperationPreferencePage"
-            name="Operation Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeConstraintPreferencePage"
-            name="TimeConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ActorPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ActorPreferencePage"
-            name="Actor Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentPreferencePage"
-            name="Component Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralBooleanPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralBooleanPreferencePage"
-            name="LiteralBoolean Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionPreferencePage"
-            name="Interaction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralIntegerPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralIntegerPreferencePage"
-            name="LiteralInteger Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationUsePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationUsePreferencePage"
-            name="CollaborationUse Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralNullPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralNullPreferencePage"
-            name="LiteralNull Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationConstraintPreferencePage"
-            name="DurationConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationObservationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationObservationPreferencePage"
-            name="DurationObservation Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfacePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfacePreferencePage"
-            name="Interface Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ArtifactPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ArtifactPreferencePage"
-            name="Artifact Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.StateMachinePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.StateMachinePreferencePage"
-            name="StateMachine Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationPreferencePage"
-            name="Collaboration Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.StringExpressionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.StringExpressionPreferencePage"
-            name="StringExpression Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeObservationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeObservationPreferencePage"
-            name="TimeObservation Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.AnyReceiveEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.AnyReceiveEventPreferencePage"
-            name="AnyReceiveEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DevicePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DevicePreferencePage"
-            name="Device Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CallEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CallEventPreferencePage"
-            name="CallEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationLiteralPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationLiteralPreferencePage"
-            name="EnumerationLiteral Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionConstraintPreferencePage"
-            name="InteractionConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationPreferencePage"
-            name="Duration Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ParameterPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ParameterPreferencePage"
-            name="Parameter Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationIntervalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationIntervalPreferencePage"
-            name="DurationInterval Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralUnlimitedNaturalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralUnlimitedNaturalPreferencePage"
-            name="LiteralUnlimitedNatural Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationPreferencePage"
-            name="Enumeration Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationRolePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationRolePreferencePage"
-            name="CollaborationRole Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeExpressionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeExpressionPreferencePage"
-            name="TimeExpression Node" />
-	
-
-
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ConstraintConstrainedElementPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ConstraintConstrainedElementPreferencePage"
-            name="ConstraintConstrainedElement Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.AbstractionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.AbstractionPreferencePage"
-            name="Abstraction Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationObservationEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationObservationEventPreferencePage"
-            name="DurationObservationEvent Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationFlowPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationFlowPreferencePage"
-            name="InformationFlow Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.GeneralizationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.GeneralizationPreferencePage"
-            name="Generalization Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ConnectorPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ConnectorPreferencePage"
-            name="Connector Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ManifestationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ManifestationPreferencePage"
-            name="Manifestation Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeObservationEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeObservationEventPreferencePage"
-            name="TimeObservationEvent Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DependencyPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DependencyPreferencePage"
-            name="Dependency Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.RealizationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.RealizationPreferencePage"
-            name="Realization Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.UsagePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.UsagePreferencePage"
-            name="Usage Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfaceRealizationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfaceRealizationPreferencePage"
-            name="InterfaceRealization Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentRealizationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentRealizationPreferencePage"
-            name="ComponentRealization Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SubstitutionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SubstitutionPreferencePage"
-            name="Substitution Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentAnnotatedElementPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentAnnotatedElementPreferencePage"
-            name="CommentAnnotatedElement Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.RoleBindingPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.RoleBindingPreferencePage"
-            name="RoleBinding Link" />
-		
-		
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentPreferencePage"
-            name="Deployment Link" />
-		
-
-</extension>
 
 <!-- added by Remi Schnekenburger-->
 <extension
@@ -2238,6 +1693,190 @@
  </page>
 
 </extension>
+
+
+
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.composite.custom.actions.ShowHideRelatedContentsHandler"
+         description="Call the Show/Hide Related Contents Command"
+         id="org.eclipse.papyrus.uml.diagram.composite.commands.ShowHideRelatedContentsCommand"
+         name="Show/Hide Related Contents Command">
+   </command>
+</extension>
+
+<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLMarkerNavigationProvider">
+         <MarkerType name="org.eclipse.papyrus.uml.diagram.composite.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+<extension id="diagnostic" name="Papyrus Composite Structure Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+   
+<!-- Diagram specific advices -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+
+	<!-- Generalizarion specific advices (remove inconsistent views when a Generalization is deleted -->		
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"
+		class="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.GeneralizationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Generalization">
+	</adviceBinding>
+
+	<!-- Property specific advices (remove inconsistent views when a Property type is set -->		
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"
+		class="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.PropertyHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
+	</adviceBinding>
+		
+	<!-- Collaboration specific advices (remove inconsistent views when a CollaborationRole is removed -->		
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice"
+		class="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.CollaborationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Collaboration">
+	</adviceBinding>
+			
+	</metamodel>
+</extension>
+	
+<!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration to shared IClientContext -->
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
+		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"/>
+		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"/>		
+		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice"/>			
+	</binding>
+		
+</extension>
+
+<extension
+      point="org.eclipse.ui.services">
+   <sourceProvider
+         provider="org.eclipse.papyrus.uml.diagram.composite.custom.providers.ActionStateSourceProvider">
+      <variable
+            name="showHideRelatedContents"
+            priorityLevel="workbench">
+      </variable>
+   </sourceProvider>
+</extension>
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.uml.diagram.composite.custom.actions.ShowHideRelatedContentsHandler"
+         commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand">
+      <activeWhen>
+         <and>
+            <with
+                  variable="showHideRelatedContents">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+            <with
+                  variable="selection">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartEditPartCN">
+                  </instanceof>
+               </iterate>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+</extension>
+
+<!-- The Command to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Allows to manage easily provided Interfaces for a Port"
+         id="org.eclipse.papyrus.uml.diagram.composite.command.manage.interfaces"
+         name="Manage Provided Interfaces">
+   </command>
+</extension>
+
+<!-- The Handler to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.uml.diagram.composite.custom.actions.ManageProvidedInterfacesHandler"
+         commandId="org.eclipse.papyrus.uml.diagram.composite.command.manage.interfaces">
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <iterate>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart">
+                  </instanceof>
+               </iterate>
+            </with>
+            <with
+                  variable="activeEditor">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.uml.diagram.common.diagram.tester.diagramType"
+                     value="CompositeStructure">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+</extension>
+
+<!-- Add the Menu to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=editMenu">
+      <command
+            commandId="org.eclipse.papyrus.uml.diagram.composite.command.manage.interfaces"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+            id="org.eclipse.papyrus.uml.diagram.composite.popup.interface.manage.interface"
+            label="Manage Interfaces"
+            mnemonic="&amp;I"
+            style="push"
+            tooltip="The command to manage the interfaces provided and required by a Port">
+            <!-- The action is visible only if there is an active handler for it  -->
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+      </menuContribution>
+</extension>
+
+<!-- Override generated parser -->
+<extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
+	<ParserProvider class="org.eclipse.papyrus.uml.diagram.composite.custom.providers.CustomParserProvider">
+		<Priority name="Low"/>
+	</ParserProvider>
+</extension>
+
+
+
+
 
 <extension
 		id="Papyrus Composite Structure Diagram (Incubation).palettedefinition"
@@ -2712,182 +2351,6 @@
 			
 	</extension>
 
-<extension
-      point="org.eclipse.ui.commands">
-   <command
-         categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.uml.diagram.composite.custom.actions.ShowHideRelatedContentsHandler"
-         description="Call the Show/Hide Related Contents Command"
-         id="org.eclipse.papyrus.uml.diagram.composite.commands.ShowHideRelatedContentsCommand"
-         name="Show/Hide Related Contents Command">
-   </command>
-</extension>
 
-<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
-      <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLMarkerNavigationProvider">
-         <MarkerType name="org.eclipse.papyrus.uml.diagram.composite.diagnostic"/>
-         <Priority name="Lowest"/>
-      </MarkerNavigationProvider>
-   </extension>
-
-<extension id="diagnostic" name="Papyrus Composite Structure Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
-      <?gmfgen generated="true"?>
-      <super type="org.eclipse.core.resources.problemmarker"/>
-      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
-      <persistent value="true"/>
-   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
-      <?gmfgen generated="true"?>
-      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLValidationDecoratorProvider">
-         <Priority name="Lowest"/>
-         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
-         <context decoratorTargets="PRIMARY_VIEW"/>
-      </decoratorProvider>
-   </extension>
-   
-<!-- Diagram specific advices -->
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-
-	<!-- Generalizarion specific advices (remove inconsistent views when a Generalization is deleted -->		
-	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"
-		class="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.GeneralizationHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Generalization">
-	</adviceBinding>
-
-	<!-- Property specific advices (remove inconsistent views when a Property type is set -->		
-	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"
-		class="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.PropertyHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
-	</adviceBinding>
-		
-	<!-- Collaboration specific advices (remove inconsistent views when a CollaborationRole is removed -->		
-	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice"
-		class="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.CollaborationHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Collaboration">
-	</adviceBinding>
-			
-	</metamodel>
-</extension>
-	
-<!-- UML ElementType bindings to Papyrus shared IClientContext -->
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-
-	<!-- Bindings declaration to shared IClientContext -->
-	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
-		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"/>
-		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"/>		
-		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice"/>			
-	</binding>
-		
-</extension>
-
-<extension
-      point="org.eclipse.ui.services">
-   <sourceProvider
-         provider="org.eclipse.papyrus.uml.diagram.composite.custom.providers.ActionStateSourceProvider">
-      <variable
-            name="showHideRelatedContents"
-            priorityLevel="workbench">
-      </variable>
-   </sourceProvider>
-</extension>
-<extension
-      point="org.eclipse.ui.handlers">
-   <handler
-         class="org.eclipse.papyrus.uml.diagram.composite.custom.actions.ShowHideRelatedContentsHandler"
-         commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand">
-      <activeWhen>
-         <and>
-            <with
-                  variable="showHideRelatedContents">
-               <equals
-                     value="enabled">
-               </equals>
-            </with>
-            <with
-                  variable="selection">
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartEditPartCN">
-                  </instanceof>
-               </iterate>
-            </with>
-         </and>
-      </activeWhen>
-   </handler>
-</extension>
-
-<!-- The Command to manages the Provided and Required Interfaces for a Port-->
-<extension
-      point="org.eclipse.ui.commands">
-   <command
-         categoryId="org.eclipse.papyrus.editor.category"
-         description="Allows to manage easily provided Interfaces for a Port"
-         id="org.eclipse.papyrus.uml.diagram.composite.command.manage.interfaces"
-         name="Manage Provided Interfaces">
-   </command>
-</extension>
-
-<!-- The Handler to manages the Provided and Required Interfaces for a Port-->
-<extension
-      point="org.eclipse.ui.handlers">
-   <handler
-         class="org.eclipse.papyrus.uml.diagram.composite.custom.actions.ManageProvidedInterfacesHandler"
-         commandId="org.eclipse.papyrus.uml.diagram.composite.command.manage.interfaces">
-      <activeWhen>
-         <and>
-            <with
-                  variable="selection">
-               <iterate>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart">
-                  </instanceof>
-               </iterate>
-            </with>
-            <with
-                  variable="activeEditor">
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.uml.diagram.common.diagram.tester.diagramType"
-                     value="CompositeStructure">
-               </test>
-            </with>
-         </and>
-      </activeWhen>
-   </handler>
-</extension>
-
-<!-- Add the Menu to manages the Provided and Required Interfaces for a Port-->
-<extension
-      point="org.eclipse.ui.menus">
-   <menuContribution
-         allPopups="false"
-         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=editMenu">
-      <command
-            commandId="org.eclipse.papyrus.uml.diagram.composite.command.manage.interfaces"
-            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
-            id="org.eclipse.papyrus.uml.diagram.composite.popup.interface.manage.interface"
-            label="Manage Interfaces"
-            mnemonic="&amp;I"
-            style="push"
-            tooltip="The command to manage the interfaces provided and required by a Port">
-            <!-- The action is visible only if there is an active handler for it  -->
-         <visibleWhen
-               checkEnabled="true">
-         </visibleWhen>
-      </command>
-      </menuContribution>
-</extension>
-
-<!-- Override generated parser -->
-<extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
-	<ParserProvider class="org.eclipse.papyrus.uml.diagram.composite.custom.providers.CustomParserProvider">
-		<Priority name="Low"/>
-	</ParserProvider>
-</extension>
 
 </plugin>

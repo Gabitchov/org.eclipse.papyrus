@@ -29,6 +29,4 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
 		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID);
 	}
-	
-	
 }

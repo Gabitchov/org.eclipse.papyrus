@@ -217,6 +217,7 @@ public class SubstitutionNameEditPart extends PapyrusLabelEditPart implements IT
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

@@ -206,6 +206,7 @@ public class PrimitiveTypeNameEditPartCN extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

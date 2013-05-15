@@ -229,7 +229,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
-	@Override
 	protected TransactionalEditingDomain createEditingDomain() {
 		// Already configured
 		return editingDomain;
@@ -238,7 +237,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void configureDiagramEditDomain() {
 		super.configureDiagramEditDomain();
 		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new CommandStackListener() {
@@ -252,7 +250,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
-	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
 		savedOperation = getOperationHistory().getUndoOperation(getUndoContext());
@@ -261,7 +258,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean isDirty() {
 		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
 		return savedOperation != op;
@@ -280,7 +276,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
-	@Override
 	public void dispose() {
 		// remove palette service listener
 		// remove preference listener
@@ -298,7 +293,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
-	@Override
 	protected PaletteViewer constructPaletteViewer() {
 		return new PapyrusPaletteViewer();
 	}
@@ -306,7 +300,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
-	@Override
 	protected PaletteViewerProvider createPaletteViewerProvider() {
 		getEditDomain().setPaletteRoot(createPaletteRoot(null));
 		return new PaletteViewerProvider(getEditDomain()) {

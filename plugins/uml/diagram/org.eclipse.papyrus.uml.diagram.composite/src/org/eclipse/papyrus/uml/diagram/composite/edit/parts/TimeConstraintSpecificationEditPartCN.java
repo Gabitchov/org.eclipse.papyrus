@@ -203,6 +203,7 @@ public class TimeConstraintSpecificationEditPartCN extends PapyrusCompartmentEdi
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

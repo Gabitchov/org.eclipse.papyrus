@@ -206,6 +206,7 @@ public class ActorNameEditPart extends PapyrusCompartmentEditPart implements ITe
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

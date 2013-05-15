@@ -206,6 +206,7 @@ public class ProtocolStateMachineCompositeNameEditPart extends PapyrusCompartmen
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

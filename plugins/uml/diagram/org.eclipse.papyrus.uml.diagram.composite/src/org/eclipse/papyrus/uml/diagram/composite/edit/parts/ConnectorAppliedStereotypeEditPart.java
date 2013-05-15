@@ -217,6 +217,7 @@ public class ConnectorAppliedStereotypeEditPart extends PapyrusLabelEditPart imp
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

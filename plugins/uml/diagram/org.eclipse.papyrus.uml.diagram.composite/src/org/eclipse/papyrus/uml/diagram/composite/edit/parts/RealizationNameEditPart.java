@@ -217,6 +217,7 @@ public class RealizationNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

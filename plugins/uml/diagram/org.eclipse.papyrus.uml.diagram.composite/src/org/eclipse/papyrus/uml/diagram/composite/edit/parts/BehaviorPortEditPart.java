@@ -39,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigu
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts.AbstractBehaviorPortEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorSymbolEditPolicy;
+import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoConnectableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Color;
 
@@ -77,6 +78,7 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(BehaviorSymbolEditPolicy.BEHAVIOR_SYMBOL, new BehaviorSymbolEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new NoConnectableEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

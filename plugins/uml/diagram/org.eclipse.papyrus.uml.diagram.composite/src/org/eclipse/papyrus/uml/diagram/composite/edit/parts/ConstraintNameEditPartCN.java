@@ -206,6 +206,7 @@ public class ConstraintNameEditPartCN extends PapyrusCompartmentEditPart impleme
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

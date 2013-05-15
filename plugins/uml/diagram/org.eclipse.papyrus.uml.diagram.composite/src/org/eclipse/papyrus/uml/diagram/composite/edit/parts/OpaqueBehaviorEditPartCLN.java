@@ -226,6 +226,7 @@ public class OpaqueBehaviorEditPartCLN extends CompartmentEditPart implements IT
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

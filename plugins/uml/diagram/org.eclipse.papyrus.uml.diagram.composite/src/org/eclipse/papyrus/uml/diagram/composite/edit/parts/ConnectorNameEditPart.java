@@ -221,6 +221,7 @@ public class ConnectorNameEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

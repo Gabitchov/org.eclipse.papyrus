@@ -217,6 +217,7 @@ public class InterfaceRealizationNameEditPart extends PapyrusLabelEditPart imple
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

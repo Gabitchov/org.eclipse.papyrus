@@ -217,6 +217,7 @@ public class ManifestationNameEditPart extends PapyrusLabelEditPart implements I
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}

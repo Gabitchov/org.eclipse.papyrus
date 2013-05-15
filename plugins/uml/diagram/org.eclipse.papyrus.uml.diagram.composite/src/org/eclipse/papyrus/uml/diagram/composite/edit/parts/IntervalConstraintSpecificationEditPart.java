@@ -203,6 +203,7 @@ public class IntervalConstraintSpecificationEditPart extends PapyrusCompartmentE
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
