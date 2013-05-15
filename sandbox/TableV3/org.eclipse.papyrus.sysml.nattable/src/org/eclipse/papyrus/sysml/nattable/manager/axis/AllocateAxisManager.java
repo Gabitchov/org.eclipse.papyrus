@@ -22,17 +22,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
+import org.eclipse.papyrus.sysml.service.types.matcher.AllocateMatcher;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
-/**
- * AxisManager for SysML Requirements
- * 
- * @author Vincent Lorenzo
- * 
- */
-public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisManager {
+public class AllocateAxisManager extends AbstractSynchronizedOnFeatureAxisManager {
 
 	/**
 	 * 
@@ -45,7 +38,7 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if(msg.getFeature() == RequirementAxisManager.this.currentListenFeature || msg.getFeature() == UMLPackage.eINSTANCE.getPackage_PackagedElement()) {
+				if(msg.getFeature() == AllocateAxisManager.this.currentListenFeature || msg.getFeature() == UMLPackage.eINSTANCE.getPackage_PackagedElement()) {
 					getTableManager().updateAxisContents(getRepresentedContentProvider());
 				}
 			}
@@ -67,7 +60,8 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 
 	@Override
 	public boolean canCreateAxisElement(String elementId) {
-		return ((ISpecializationType)SysMLElementTypes.REQUIREMENT).getId().equals(elementId);
+		//FIXME : use the same tricks in others AxisManager
+		return ((ISpecializationType)SysMLElementTypes.ALLOCATE).getId().equals(elementId);
 	}
 
 	/**
@@ -80,7 +74,7 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 	@Override
 	protected List<Object> filterObject(final List<?> objects) {
 		final List<Object> interestingObjects = new ArrayList<Object>();
-		final RequirementMatcher matcher = new RequirementMatcher();
+		final AllocateMatcher matcher = new AllocateMatcher();
 		for(Object object : objects) {
 			if(object instanceof EObject) {
 				if(matcher.matches((EObject)object)) {

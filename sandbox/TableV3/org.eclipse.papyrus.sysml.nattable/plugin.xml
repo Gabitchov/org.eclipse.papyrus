@@ -25,5 +25,9 @@
             id="org.eclipse.papyrus.sysml.nattable.requirement.axis.manager"
             manager="org.eclipse.papyrus.sysml.nattable.manager.axis.RequirementAxisManager">
       </axisManager>
+      <axisManager
+            id="org.eclipse.papyrus.sysml.nattable.allocate.axis.manager"
+            manager="org.eclipse.papyrus.sysml.nattable.manager.axis.AllocateAxisManager">
+      </axisManager>
    </extension>
 </plugin>
