@@ -24,9 +24,7 @@ import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidation
  * 
  * 
  */
-public class ConstraintCategoryImpl implements IConstraintsCategory {
-
-	private List<Category> categories = new ArrayList<Category>();
+public class ConstraintCategoryImpl  extends CategoryImpl implements IConstraintsCategory {
 
 	private List<IValidationRule> constraints = new ArrayList<IValidationRule>();
 
@@ -39,11 +37,8 @@ public class ConstraintCategoryImpl implements IConstraintsCategory {
 	 *
 	 * @param category
 	 */
-	public ConstraintCategoryImpl(Category category) {
-
-		this.categories.add(category);
-		this.categoriesList = this.createCategoriesString(category);
-
+	public ConstraintCategoryImpl(String name, Category parentCategory) {
+		super(name, parentCategory);
 	}
 
 	/**
@@ -53,18 +48,6 @@ public class ConstraintCategoryImpl implements IConstraintsCategory {
 	 */
 	public String getCategoriesList() {
 		return this.categoriesList;
-	}
-
-
-	private String createCategoriesString(Category category) {
-
-		if (category.getParentCategory() == null) {
-			return category.getID();
-		}
-
-		return createCategoriesString(category.getParentCategory()) + ", "
-		+ category.getID();
-
 	}
 
 	/**

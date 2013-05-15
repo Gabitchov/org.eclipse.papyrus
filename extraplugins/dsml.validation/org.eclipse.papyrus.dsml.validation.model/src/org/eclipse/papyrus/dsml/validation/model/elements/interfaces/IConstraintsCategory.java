@@ -19,7 +19,7 @@ import java.util.List;
  * 
  * 
  */
-public interface IConstraintsCategory {
+public interface IConstraintsCategory extends Category{
 	/**
 	 * 
 	 * @return constraints

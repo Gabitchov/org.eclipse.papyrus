@@ -85,11 +85,11 @@ public class ValidationRuleImpl implements IValidationRule {
 		 * value will be assigned and saved in the model.
 		 */
 		if (constraint.getValue(stereotype, "id") == null||constraint.getValue(stereotype, "id").equals("")) {
-
-			this.id = parentCategory.getID() + "." + this.getName();
+			String qname= constraint.getQualifiedName().replace("::", ".");
+			this.id = qname;
 
 		} else {
-
+			
 			this.id = (String) constraint.getValue(stereotype, "id");
 		}
 

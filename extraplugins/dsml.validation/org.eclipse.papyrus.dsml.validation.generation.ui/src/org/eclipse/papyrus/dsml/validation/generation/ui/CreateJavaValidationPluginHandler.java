@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.dsml.validation.generation.wizard.CreateEMFValidationProject;
 import org.eclipse.papyrus.dsml.validation.model.elements.impl.ConstraintManagerImpl;
+import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsCategory;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;

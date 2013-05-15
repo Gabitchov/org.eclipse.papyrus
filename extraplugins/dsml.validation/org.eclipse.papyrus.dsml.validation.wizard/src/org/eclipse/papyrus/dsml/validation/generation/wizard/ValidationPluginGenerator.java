@@ -62,7 +62,6 @@ public class ValidationPluginGenerator {
 
 	private static final String UML_URL = "http://www.eclipse.org/uml2/4.0.0/UML";
 
-	//	private final static String contextPrefix = "org.eclipse.papyrus.validation.generation.context";
 
 	/**
 	 * singleton
@@ -87,13 +86,13 @@ public class ValidationPluginGenerator {
 	IOException, SAXException, ParserConfigurationException {
 		PluginEditor editor;
 
-		String packageName= "org.eclipse.papyrus.validation";
+		
 		this.constraintsManager = constraintsManager;
 
 		//prepare the plugin
 		editor = new PluginEditor(project);
 		editor.setBundleName(editor.getSymbolicBundleName()+SINGLETON_TRUE);
-
+		String projectName= editor.getBundleName();
 		Set<String> natures = new HashSet<String>();
 		natures.add(PLUGIN_NATURE_ID);
 		editor.addNatures(natures);
@@ -105,7 +104,7 @@ public class ValidationPluginGenerator {
 
 		//creation of categories extension point
 		//that correspond to sub-profiles and stereotypes
-		this.createHierarchyOfCategories(packageName,this.constraintsManager.getPrimeCategory(), extension, editor);
+		this.createHierarchyOfCategories(projectName,this.constraintsManager.getPrimeCategory(), extension, editor);
 
 		//add the constraint provider extension point, normally it exist only one
 		for (IConstraintProvider constraintProvider : constraintsManager.getConstraintsProviders()) {
@@ -115,14 +114,13 @@ public class ValidationPluginGenerator {
 			for (IConstraintsCategory constraintCategory : constraintProvider.getConstraintsCategories()) {
 
 				//create the extension point validationRule for category
-				Element extElForConstraintsCategory = createExtensionForConstraintsCategory(packageName,
-					constraintCategory, extElForConstraintsProvider, editor);
+				Element extElForConstraintsCategory = createExtensionForConstraintsCategory(projectName, constraintCategory, extElForConstraintsProvider, editor, constraintsManager);
 
 				for (IValidationRule constraint : constraintCategory.getConstraints()) {
 
 					//this is a java constraint?
 					if (Utils.hasSpecificationForJava(constraint.getConstraint())) {
-						createExtensionForConstraint(packageName,constraint,extElForConstraintsCategory, editor);
+						createExtensionForConstraint(projectName,constraint,extElForConstraintsCategory, editor);
 					}
 
 					//this is an OCL constraint?
@@ -136,7 +134,7 @@ public class ValidationPluginGenerator {
 			}
 		}
 
-		generateCommonExtension2(packageName,editor);
+		generateCommonExtension2(projectName,editor);
 
 		editor.getProject().refreshLocal(0, null);
 
@@ -304,11 +302,11 @@ public class ValidationPluginGenerator {
 
 		Element pcg = editor.addChild(extElForConstraintsProvider, "package");
 		
-		if(definition==null){
+		if(constraintProvider.getEPackage()==null){
 			pcg.setAttribute("namespaceUri",UML_URL);
 		}
 		else{
-			pcg.setAttribute("namespaceUri",definition.getNsURI());
+			pcg.setAttribute("namespaceUri",constraintProvider.getEPackage().getNsURI());
 			
 		}
 
@@ -316,18 +314,10 @@ public class ValidationPluginGenerator {
 
 	}
 
-	private Element createExtensionForConstraintsCategory(
-		String projectName,IConstraintsCategory constraintsCategory, Element parentElement,
-		PluginEditor editor) {
+	private Element createExtensionForConstraintsCategory(String projectName,IConstraintsCategory constraintsCategory, Element parentElement,PluginEditor editor, IConstraintsManager constraintManager) {
 
-		Element extElForConstraintsCategory = editor.getPluginEditor()
-			.addChild(parentElement, "constraints");
-		String list=constraintsCategory.getCategoriesList();
-		list= list.replace(", " , ", "+projectName+SEPARATOR);
-		list= list.trim();
-		list= projectName+SEPARATOR+list;
-		extElForConstraintsCategory.setAttribute("categories",list);
-
+		Element extElForConstraintsCategory = editor.getPluginEditor().addChild(parentElement, "constraints");
+		extElForConstraintsCategory.setAttribute("categories",projectName+SEPARATOR+constraintManager.getPrimeCategory().getName());
 		return extElForConstraintsCategory;
 
 	}
@@ -343,7 +333,7 @@ public class ValidationPluginGenerator {
 		element.setAttribute(ID,ValidationPluginGenerator.getContextprefix());
 
 		element = editor.getPluginEditor().addChild(element, "selector");
-		element.setAttribute("class",projectName+SEPARATOR+"ValidationDelegateClientSelector");
+		element.setAttribute("class","org.eclipse.papyrus.validation"+SEPARATOR+"ValidationDelegateClientSelector");
 
 		element = editor.getPluginEditor().addChild(extension, "binding");
 		element.setAttribute("context",	ValidationPluginGenerator.getContextprefix());
@@ -361,11 +351,8 @@ public class ValidationPluginGenerator {
 	 */
 	private void createHierarchyOfCategories(String projectName, Category category,Element parentElement, PluginEditor editor) {
 
-		Element subElement = this.createExtensionForCategory(projectName, category,parentElement, editor);
+		this.createExtensionForCategory(projectName, category,parentElement, editor);
 
-		for (Category subCategory : category.getSubcategories()) {
-			this.createHierarchyOfCategories(projectName,subCategory, subElement, editor);
-		}
 
 	}
 
@@ -373,10 +360,6 @@ public class ValidationPluginGenerator {
 
 		Element subElement = editor.addChild(parentElement, "category");
 		subElement.setAttribute("ref",projectName+SEPARATOR+ category.getID());
-
-		for (Category subCategory : category.getSubcategories()) {
-			this.createCategoriesForBinding(projectName,subCategory, parentElement, editor);
-		}
 
 	}
 

@@ -14,6 +14,8 @@ package org.eclipse.papyrus.dsml.validation.model.elements.interfaces;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EPackage;
+
 /**
  * Interface representing constraint provider from the EMF Validation Framework
  */
@@ -29,6 +31,11 @@ public interface IConstraintProvider {
 	 * @return the cache of the provider
 	 */
 	public boolean getCache();
+	
+	
+	public EPackage getEPackage();
+	
+	public void setEPackage(EPackage ePackage);
 
 	/**
 	 * 

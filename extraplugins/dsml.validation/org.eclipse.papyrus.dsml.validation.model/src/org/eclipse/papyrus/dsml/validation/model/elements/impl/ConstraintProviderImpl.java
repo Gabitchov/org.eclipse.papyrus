@@ -15,6 +15,7 @@ package org.eclipse.papyrus.dsml.validation.model.elements.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsCategory;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Mode;
@@ -25,12 +26,10 @@ import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Mode;
  */
 public class ConstraintProviderImpl implements IConstraintProvider {
 
-
 	private List<IConstraintsCategory> constraintsCategories = new ArrayList<IConstraintsCategory>();
-
 	private Mode mode;
-
 	private boolean cache;
+	private EPackage ePackage=null;
 
 
 /**
@@ -69,4 +68,11 @@ public class ConstraintProviderImpl implements IConstraintProvider {
 		this.constraintsCategories.addAll(constraintCategories);
 	}
 
+	public EPackage getEPackage() {
+		return ePackage;
+	}
+
+	public void setEPackage(EPackage ePackage){
+		this.ePackage=ePackage;
+	}
 }

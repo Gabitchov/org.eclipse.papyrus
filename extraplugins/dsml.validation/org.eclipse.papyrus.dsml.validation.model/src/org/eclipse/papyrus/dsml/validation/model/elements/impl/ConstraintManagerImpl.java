@@ -35,17 +35,8 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  */
 public class ConstraintManagerImpl implements IConstraintsManager {
-	
-	
-	private List<Category> categories = new ArrayList<Category>();
 
 	private List<IConstraintProvider> constraintsProviders = new ArrayList<IConstraintProvider>();
-
-	private List<IConstraintsCategory> constraintsCategories = new ArrayList<IConstraintsCategory>();
-
-	private Map<Category, List<Category>> categoryToCategories = new HashMap<Category, List<Category>>();
-
-	private Map<Category, List<IValidationRule>> categoryToValidationRules = new HashMap<Category, List<IValidationRule>>();
 
 	private Map<Stereotype, List<Constraint>> constraintsOfStereotype = new HashMap<Stereotype, List<Constraint>>();
 
@@ -84,12 +75,6 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 
 		//construct all sub categories
 		relateCategoriesWithConstraints(root, primeCategory);
-		
-		//construct one constraint provider
-		constraintProvider = new ConstraintProviderImpl();
-		// associate validation to category to provider
-		constraintProvider.addConstraintCategories(createConstraintCategories());
-		constraintsProviders.add(constraintProvider);
 	}
 
 	/**
@@ -109,48 +94,43 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 
 		if (element instanceof Profile) {
 
-			Category subCategory;
-			//creation of the list of subcategory
-			List<Category> subCategories = new ArrayList<Category>();
-			List<IValidationRule> subValidationRules;
+			//creation of a category
+			ConstraintCategoryImpl subCategory =new ConstraintCategoryImpl(((Profile)element).getName(), category );
+			// add the category to the list of category
+			category.getSubcategories().add(subCategory);
+			//creation of a provider
+			//construct one constraint provider
+			constraintProvider = new ConstraintProviderImpl();
+			// associate validation to category to provider
+			constraintProvider.getConstraintsCategories().add(subCategory);
+			constraintsProviders.add(constraintProvider);
+			if (((Profile)element).getDefinition()!=null){
+				constraintProvider.setEPackage(((Profile)element).getDefinition());
+			}
 
 			//iterate on all direct element of the profile
 			for (NamedElement subElement : ((Profile) element).getOwnedMembers()) {
 
 				//this a profile
 				if (subElement instanceof Profile) {
-					//creation of a new sub categorie
-					subCategory = createCategory(category, subElement);
-					subCategories.add(subCategory);
 					this.relateCategoriesWithConstraints(subElement,subCategory);
 				} 
 				else if (subElement instanceof Stereotype) {
-					subCategory = createCategory(category, subElement);
-					subCategories.add(subCategory);
-					this.categories.add(subCategory);
 
 					//create validation rules
-					subValidationRules = new ArrayList<IValidationRule>();
 					if (this.constraintsOfStereotype.get(subElement) != null) {
 						for (Constraint constraint : this.constraintsOfStereotype.get(subElement)) {
 							try {
-								subValidationRules.add(new ValidationRuleImpl(constraint, subCategory));
+								subCategory.getConstraints().add(new ValidationRuleImpl(constraint, subCategory));
 							} catch (WrongStereotypeException e) {
 								e.printStackTrace();
 							}
 						}
 					}
 					
-					//associate rules with the sub category
-					this.categoryToValidationRules.put(subCategory, subValidationRules);
 				}
 			}
-			// associate the subcategories to the category
-			this.categoryToCategories.put(category, subCategories);
-			//add the sub category  of the category owner
-			category.addSubcategories(subCategories);
-			// add the category to the list of category
-			this.categories.add(category);
+		
 		}
 	}
 
@@ -202,24 +182,6 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 				}
 			} 
 		}
-	}
-
-	/**
-	 * Definition of a list of constraint categories in regards to the profile
-	 * model.
-	 * 
-	 * @return list of constraint categories
-	 */
-	private List<IConstraintsCategory> createConstraintCategories() {
-
-		for (Category category : this.categoryToValidationRules.keySet()) {
-			IConstraintsCategory constraintCategory = new ConstraintCategoryImpl(category);
-			constraintCategory.addConstraints(this.categoryToValidationRules.get(category));
-			this.constraintsCategories.add(constraintCategory);
-		}
-
-		return this.constraintsCategories;
-
 	}
 
 	/**
