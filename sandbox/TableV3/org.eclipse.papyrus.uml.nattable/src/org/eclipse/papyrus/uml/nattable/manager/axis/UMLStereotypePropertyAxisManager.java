@@ -165,7 +165,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	 * return the content provider for the stereotypes properties
 	 */
 	@Override
-	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted) {
+	public IRestrictedContentProvider createPossibleAxisContentProvider(boolean isRestricted) {
 		AbstractAxisProvider secondAxis = ((INattableModelManager)getTableManager()).getHorizontalAxisProvider();
 		if(secondAxis == getRepresentedContentProvider()) {
 			secondAxis = ((INattableModelManager)getTableManager()).getVerticalAxisProvider();

@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractRestrictedContentProvider;
 import org.eclipse.papyrus.uml.nattable.manager.axis.UMLFeatureAxisManager;
@@ -41,6 +42,18 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 		Collection<Object> elementsToShow;
 		elementsToShow = this.umlFeatureAxisManager.getAllPossibleAxis();
 		return elementsToShow.toArray();
+	}
+
+	protected AbstractAxisProvider getManagedAxisProvider() {
+		return this.umlFeatureAxisManager.getRepresentedContentProvider();
+	}
+
+	protected AbstractAxisProvider getSecondAxisProvider() {
+		AbstractAxisProvider secondAxisProvider = this.umlFeatureAxisManager.getTableManager().getVerticalAxisProvider();
+		if(secondAxisProvider == this.umlFeatureAxisManager) {
+			secondAxisProvider = this.umlFeatureAxisManager.getTableManager().getHorizontalAxisProvider();
+		}
+		return secondAxisProvider;
 	}
 
 	public Object[] getChildren(Object parentElement) {
@@ -62,6 +75,9 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 				for(Object object : elementsList) {
 					if(object instanceof EObject) {
 						EObject eObject = (EObject)object;
+						if(eObject instanceof EObjectAxis) {
+							eObject = ((EObjectAxis)eObject).getElement();
+						}
 						EClass eClass = eObject.eClass();
 						eClassifiers.add(eClass);
 						eClassifiers.addAll(eClass.getEAllSuperTypes());

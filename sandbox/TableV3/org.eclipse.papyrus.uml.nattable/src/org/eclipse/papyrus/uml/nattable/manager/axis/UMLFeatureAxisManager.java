@@ -33,7 +33,7 @@ public class UMLFeatureAxisManager extends EStructuralFeatureAxisManager {
 	}
 
 	@Override
-	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted) {
+	public IRestrictedContentProvider createPossibleAxisContentProvider(boolean isRestricted) {
 		return new UMLFeatureRestrictedContentProvider(this, isRestricted);
 	}
 }
