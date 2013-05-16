@@ -1,60 +1,30 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
- *
- *    
+ * Copyright (c) 2013 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
- * 		Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.sysml.modelexplorer.handler;
+package org.eclipse.papyrus.uml.modelexplorer.util;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
-import org.eclipse.papyrus.sysml.modelexplorer.Activator;
-import org.eclipse.papyrus.views.modelexplorer.CommandContext;
-import org.eclipse.papyrus.views.modelexplorer.ICommandContext;
+import org.eclipse.papyrus.uml.service.types.utils.CommandContext;
+import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * <pre>
- * 
- * This abstract command handler manages:
- * - current selection in order to build a list of the selected {@link EObject}
- * - execute the command (returned by children) in Papyrus {@link TransactionalEditingDomain}
- * - calculate the command enablement and visibility regarding the command executability
- * (the command is now shown in menu if not executable).
- * 
- * </pre>
+ * Utilities for capturing elements in the model explorer.
  */
-public abstract class AbstractCommandHandler extends AbstractHandler {
-
-	/**
-	 * <pre>
-	 * 
-	 * Returns the command to execute (to be implemented 
-	 * in children implementing this class)
-	 * 
-	 * @return the command to execute
-	 * 
-	 * </pre>
-	 */
-	protected abstract Command getCommand();
+public class ModelExplorerUtils {
 
 	/**
 	 * <pre>
@@ -63,8 +33,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * @return the command context based on current selection
 	 * </pre>
 	 */
-	protected ICommandContext getCommandContext() {
-
+	public static ICommandContext getSelectionCommandContext() {
 		// Get current selection from workbench
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
@@ -114,54 +83,4 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 		return context;
 	}
 
-
-
-	/**
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 * 
-	 * @param event
-	 * @return null
-	 * @throws ExecutionException
-	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-
-		Command creationcommand = null;
-
-		try {
-
-			ServiceUtilsForHandlers util = ServiceUtilsForHandlers.getInstance();
-			creationcommand = getCommand();
-
-			util.getTransactionalEditingDomain(event).getCommandStack().execute(creationcommand);
-
-			return creationcommand.getResult();
-
-		} catch (ServiceException e) {
-
-			Activator.log.error("Unexpected error while executing command.", e);
-
-		}
-
-		return null;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return true (enabled) when the command can be executed.
-	 */
-	@Override
-	public boolean isEnabled() {
-		return getCommand().canExecute();
-	}
-
-	/**
-	 * 
-	 * @return true (visible) when the command can be executed.
-	 */
-	public boolean isVisible() {
-		return getCommand().canExecute();
-	}
 }

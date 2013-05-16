@@ -11,12 +11,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.menu.util;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.uml.nattable.menu.messages.Messages;
 import org.eclipse.papyrus.uml.service.types.utils.CommandContext;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * Utilities for the creation of contextual menus from the Nattable editor
@@ -61,6 +76,33 @@ public class TableMenuUtils {
 
 		}
 		return null;
+	}
+
+	public static Command buildNattableCreationCommand(Command createCmd, final CreateElementRequest createElementRequest) {
+		final INattableModelManager nattableModelManager = getTableManager(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart());
+		if(nattableModelManager != null) {
+			CompositeCommand cmd = new CompositeCommand(""); //$NON-NLS-1$
+			cmd.add(new EMFtoGMFCommandWrapper(createCmd));
+
+			//		depends on the synchronization of the axis manager
+			cmd.add(new AbstractTransactionalCommand(createElementRequest.getEditingDomain(), Messages.AbstractNattableCreateCommandHandler_AddElementCommand, null) {
+
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					EObject newElement = createElementRequest.getNewElement();
+					Collection<Object> toAdd = new ArrayList<Object>();
+					toAdd.add(newElement);
+					Command tmp = nattableModelManager.getAddRowElementCommand(toAdd);
+					if(tmp != null) {
+						tmp.execute();
+					}
+					return CommandResult.newOKCommandResult();
+				}
+			});
+			return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(cmd);
+
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.uml.modelexplorer.handler;
 
-import org.eclipse.core.commands.IHandler;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
@@ -15,11 +14,11 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class AssociationBaseHandler extends CreateCommandHandler implements IHandler {
+public class AssociationBaseHandler extends AbstractUmlModelExplorerCreateCommandHandler {
 
 	/**
 	 * <pre>
-	 * @see org.eclipse.papyrus.uml.modelexplorer.handler.CreateCommandHandler#getElementTypeToCreate()
+	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler#getElementTypeToCreate()
 	 * 
 	 * @return the IElementType this handler is supposed to create
 	 * 

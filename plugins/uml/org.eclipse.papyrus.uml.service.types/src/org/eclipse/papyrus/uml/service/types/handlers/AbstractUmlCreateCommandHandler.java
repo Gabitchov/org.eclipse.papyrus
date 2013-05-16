@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.handlers;
 
+import org.eclipse.papyrus.uml.service.types.filter.ICommandFilter;
 import org.eclipse.papyrus.uml.service.types.filter.UmlElementCommandFilter;
 
 
@@ -21,9 +22,16 @@ import org.eclipse.papyrus.uml.service.types.filter.UmlElementCommandFilter;
  */
 public abstract class AbstractUmlCreateCommandHandler extends AbstractCreateCommandHandler {
 
-	@Override
-	protected void initFilter() {
-		filter = new UmlElementCommandFilter();
-	}
+	private static final ICommandFilter filter = UmlElementCommandFilter.INSTANCE;
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler#getCommandFilter()
+	 * 
+	 * @return
+	 */
+	@Override
+	public ICommandFilter getCommandFilter() {
+		return filter;
+	}
 }

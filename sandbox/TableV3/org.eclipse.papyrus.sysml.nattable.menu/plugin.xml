@@ -2,45 +2,396 @@
 <?eclipse version="3.4"?>
 <plugin>
 <extension point="org.eclipse.ui.handlers">
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ActorPartPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ActorPartCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AllocateHandler" commandId="org.eclipse.papyrus.sysml.service.types.AllocateCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationCompositeHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationCompositeDirectedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeDirectedCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationNoneHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationNoneDirectedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneDirectedCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationSharedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationSharedDirectedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedDirectedCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.BlockHandler" commandId="org.eclipse.papyrus.sysml.service.types.BlockCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConformHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConformCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConstraintBlockHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConstraintBlockParameterHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockParameterCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConstraintPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintPropertyCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.CopyHandler" commandId="org.eclipse.papyrus.sysml.service.types.CopyCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.DeriveReqtHandler" commandId="org.eclipse.papyrus.sysml.service.types.DeriveReqtCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.DimensionHandler" commandId="org.eclipse.papyrus.sysml.service.types.DimensionCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPortHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPortCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPort_InOutHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InOutCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPort_InHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPort_OutHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_OutCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPort_NAHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_NACreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPropertyCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowSpecificationHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowSpecificationCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ItemFlowHandler" commandId="org.eclipse.papyrus.sysml.service.types.ItemFlowCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.PartPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.PartPropertyCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ProblemHandler" commandId="org.eclipse.papyrus.sysml.service.types.ProblemCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.RationaleHandler" commandId="org.eclipse.papyrus.sysml.service.types.RationaleCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ReferencePropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ReferencePropertyCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.RequirementHandler" commandId="org.eclipse.papyrus.sysml.service.types.RequirementCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.SatisfyHandler" commandId="org.eclipse.papyrus.sysml.service.types.SatisfyCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.UnitHandler" commandId="org.eclipse.papyrus.sysml.service.types.UnitCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ValuePropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValuePropertyCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ValueTypeHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueTypeCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ValueType_EnumerationHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueType_EnumerationCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ValueType_PrimitiveTypeHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueType_PrimitiveTypeCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.VerifyHandler" commandId="org.eclipse.papyrus.sysml.service.types.VerifyCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ViewHandler" commandId="org.eclipse.papyrus.sysml.service.types.ViewCreateCommand" ></handler>
-	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ViewPointHandler" commandId="org.eclipse.papyrus.sysml.service.types.ViewPointCreateCommand" ></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ActorPartPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ActorPartCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AllocateHandler" commandId="org.eclipse.papyrus.sysml.service.types.AllocateCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationCompositeHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationCompositeDirectedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeDirectedCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationNoneHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationNoneDirectedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneDirectedCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationSharedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationSharedDirectedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedDirectedCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.BlockHandler" commandId="org.eclipse.papyrus.sysml.service.types.BlockCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConformHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConformCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConstraintBlockHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConstraintBlockParameterHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockParameterCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConstraintPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintPropertyCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.CopyHandler" commandId="org.eclipse.papyrus.sysml.service.types.CopyCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.DeriveReqtHandler" commandId="org.eclipse.papyrus.sysml.service.types.DeriveReqtCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.DimensionHandler" commandId="org.eclipse.papyrus.sysml.service.types.DimensionCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPortHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPortCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPort_InOutHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InOutCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPort_InHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPort_OutHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_OutCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPort_NAHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_NACreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPropertyCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.FlowSpecificationHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowSpecificationCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ItemFlowHandler" commandId="org.eclipse.papyrus.sysml.service.types.ItemFlowCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.PartPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.PartPropertyCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ProblemHandler" commandId="org.eclipse.papyrus.sysml.service.types.ProblemCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.RationaleHandler" commandId="org.eclipse.papyrus.sysml.service.types.RationaleCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ReferencePropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ReferencePropertyCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.RequirementHandler" commandId="org.eclipse.papyrus.sysml.service.types.RequirementCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.SatisfyHandler" commandId="org.eclipse.papyrus.sysml.service.types.SatisfyCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.UnitHandler" commandId="org.eclipse.papyrus.sysml.service.types.UnitCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ValuePropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValuePropertyCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ValueTypeHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueTypeCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ValueType_EnumerationHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueType_EnumerationCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ValueType_PrimitiveTypeHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueType_PrimitiveTypeCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.VerifyHandler" commandId="org.eclipse.papyrus.sysml.service.types.VerifyCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ViewHandler" commandId="org.eclipse.papyrus.sysml.service.types.ViewCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
+	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ViewPointHandler" commandId="org.eclipse.papyrus.sysml.service.types.ViewPointCreateCommand" >
+    <activeWhen>
+       <with
+             variable="selection">
+          <test
+                property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                value="true">
+          </test>
+       </with>
+    </activeWhen></handler>
 </extension>
 
 <extension
@@ -50,7 +401,7 @@
          locationURI="popup:org.eclipse.ui.popup.any">
       <menu
             id="org.eclipse.papyrus.sysml.nattable.create.sysml.menu"
-            label="Create Sysml Element">
+            label="Create SysML Element">
          <visibleWhen
                checkEnabled="false">
             <with

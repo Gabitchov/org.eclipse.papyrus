@@ -11,26 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.nattable.menu.handlers;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Set;
-
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.handlers.AbstractSysmlCreateCommandHandler;
-import org.eclipse.papyrus.uml.nattable.menu.messages.Messages;
 import org.eclipse.papyrus.uml.nattable.menu.util.TableMenuUtils;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 
@@ -39,9 +23,6 @@ import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
  * 
  */
 public abstract class AbstractSysmlNattableCreateCommandHandler extends AbstractSysmlCreateCommandHandler {
-
-	@Override
-	protected abstract IElementType getElementTypeToCreate();
 
 	/**
 	 * <pre>
@@ -54,57 +35,37 @@ public abstract class AbstractSysmlNattableCreateCommandHandler extends Abstract
 	 * 
 	 * </pre>
 	 */
-	@Override
 	protected Command buildCommand() {
 		Command createCmd = super.buildCommand();
-
-		final INattableModelManager nattableModelManager = TableMenuUtils.getTableManager(getActiveWorkbenchPart());
-		if(nattableModelManager != null) {
-			CompositeCommand cmd = new CompositeCommand(""); //$NON-NLS-1$
-			cmd.add(new EMFtoGMFCommandWrapper(createCmd));
-
-			final CreateElementRequest request = this.createRequest;
-			//		depends on the synchronization of the axis manager
-			cmd.add(new AbstractTransactionalCommand(getEditingDomain(), Messages.AbstractNattableCreateCommandHandler_AddElementCommand, null) {
-
-				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					EObject newElement = request.getNewElement();
-					Collection<Object> toAdd = new ArrayList<Object>();
-					toAdd.add(newElement);
-					Command tmp = nattableModelManager.getAddRowElementCommand(toAdd);
-					if(tmp != null) {
-						tmp.execute();
-					}
-					return CommandResult.newOKCommandResult();
-				}
-			});
-			return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(cmd);
-
-		}
-		return UnexecutableCommand.INSTANCE;
-
+		return TableMenuUtils.buildNattableCreationCommand(createCmd, this.createRequest);
 	}
 
-	@Override
+	/**
+	 * Obtain the context of the active table editor.
+	 * 
+	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCommandHandler#getCommandContext()
+	 * 
+	 * @return
+	 */
 	protected ICommandContext getCommandContext() {
 		return TableMenuUtils.getTableCommandContext(TableMenuUtils.getTableManager(getActiveWorkbenchPart()));
 
 	}
 
-	@Override
+	/**
+	 * Verify if this handler is currently active and the command can execute. Additionally, verify if this table can add this type of element.
+	 * 
+	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler#setEnabled(java.lang.Object)
+	 * 
+	 * @param evaluationContext
+	 */
 	public void setEnabled(Object evaluationContext) {
-		Command command = getCommand();
-		boolean isEnabled = command.canExecute();
+		INattableModelManager tableManager = TableMenuUtils.getTableManager(getActiveWorkbenchPart());
+		boolean isEnabled = tableManager.canCreateRowElement(getElementTypeToCreate().getId());
 		if(isEnabled) {
-			IElementType newElementType = getElementTypeToCreate();
-			INattableModelManager tableManager = TableMenuUtils.getTableManager(getActiveWorkbenchPart());
-			String id = newElementType.getId();
-
-			isEnabled = tableManager.canCreateRowElement(id);
-			Set<String> visibleCommands = getFilterIds();
-			isEnabled &= visibleCommands.contains(id);
-
+			//we test the enable of the super implementation
+			super.setEnabled(evaluationContext);
+			isEnabled = super.isEnabled();
 		}
 		setBaseEnabled(isEnabled);
 

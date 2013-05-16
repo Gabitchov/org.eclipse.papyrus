@@ -1,6 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.handler;
 
-import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
@@ -25,11 +35,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class ConstraintBlockParameterHandler extends CreateCommandHandler implements IHandler {
+public class ConstraintBlockParameterHandler extends AbstractSysmlModelExplorerCreateCommandHandler {
 
 	/**
 	 * <pre>
-	 * @see org.eclipse.papyrus.sysml.modelexplorer.handler.CreateCommandHandler#getElementTypeToCreate()
+	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler#getElementTypeToCreate()
 	 * 
 	 * @return the IElementType this handler is supposed to create
 	 * 
@@ -65,7 +75,7 @@ public class ConstraintBlockParameterHandler extends CreateCommandHandler implem
 		} else {
 			createRequest = new CreateElementRequest(container, getElementTypeToCreate(), reference);
 		}
-		
+
 		String name = NamedElementUtil.getDefaultNameWithIncrementFromBase("parameter", ((Element)container).eContents()); //$NON-NLS-1$
 		createRequest.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getNamedElement_Name(), name));
 

@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.uml.modelexplorer.handler;
 
-import org.eclipse.core.commands.IHandler;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
@@ -15,7 +14,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
  * 
  * @generated
  */
-public class ReadIsClassifiedObjectActionHandler extends CreateCommandHandler implements IHandler {
+public class ReadIsClassifiedObjectActionHandler extends AbstractUmlModelExplorerCreateCommandHandler {
 
 	/**
 	 * <pre>

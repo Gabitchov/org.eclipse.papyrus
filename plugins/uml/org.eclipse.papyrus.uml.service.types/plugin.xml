@@ -2209,6 +2209,14 @@
 	</binding>
 	
 </extension>
+
+ <extension point="org.eclipse.ui.commands">
+ <category
+       id="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands"
+       name="Commands for the creation of UML elements">
+ </category>
+</extension>
+
  <extension point="org.eclipse.ui.commands">
 	
 	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Abstraction" id="org.eclipse.papyrus.uml.service.types.AbstractionCreateCommand" name="Create a new Abstraction">
@@ -2997,10 +3005,7 @@
 	
 	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Refine" id="org.eclipse.papyrus.uml.service.types.RefineCreateCommand" name="Create a new Refine">
 	</command>
- <category
-       id="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands"
-       name="Commands for the creation of UML elements">
- </category>
+
 	
 </extension>
  <extension

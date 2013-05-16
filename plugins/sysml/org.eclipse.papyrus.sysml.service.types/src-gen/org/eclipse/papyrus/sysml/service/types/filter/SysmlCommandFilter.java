@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.service.types.filter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -29,53 +30,66 @@ import org.eclipse.papyrus.uml.service.types.filter.ICommandFilter;
  */
 public class SysmlCommandFilter implements ICommandFilter {
 
+	/**
+	 * Singleton instance
+	 */
+	public static final SysmlCommandFilter INSTANCE = new SysmlCommandFilter();
+
+	private SysmlCommandFilter() {
+		//to prevent instantiation
+	}
+
 	private List<IElementType> visibleCommands;
 
 	public List<IElementType> getVisibleCommands() {
 		if(visibleCommands == null) {
-			visibleCommands = new ArrayList<IElementType>();
+			List<IElementType> localVisibleCommands = new ArrayList<IElementType>();
 
-			visibleCommands.add(SysMLElementTypes.ACTOR_PART_PROPERTY);
-			// visibleCommands.add(SysMLElementTypes.ALLOCATE);
-			// visibleCommands.add(SysMLElementTypes.ASSOCIATION);
-			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_COMPOSITE);
-			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED);
-			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_NONE);
-			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_NONE_DIRECTED);
-			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_SHARED);
-			// visibleCommands.add(SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED);
-			visibleCommands.add(SysMLElementTypes.BLOCK);
-			// visibleCommands.add(SysMLElementTypes.CONFORM);
-			visibleCommands.add(SysMLElementTypes.CONSTRAINT_BLOCK);
-			visibleCommands.add(SysMLElementTypes.CONSTRAINT_PROPERTY);
-			// visibleCommands.add(SysMLElementTypes.COPY);
-			// visibleCommands.add(SysMLElementTypes.DERIVE_REQT);
-			visibleCommands.add(SysMLElementTypes.DIMENSION);
-			visibleCommands.add(SysMLElementTypes.FLOW_PORT);
-			visibleCommands.add(SysMLElementTypes.FLOW_PORT_IN_OUT);
-			visibleCommands.add(SysMLElementTypes.FLOW_PORT_IN);
-			visibleCommands.add(SysMLElementTypes.FLOW_PORT_OUT);
-			// visibleCommands.add(SysMLElementTypes.FLOW_PORT_NA);
-			visibleCommands.add(SysMLElementTypes.FLOW_PROPERTY);
-			visibleCommands.add(SysMLElementTypes.FLOW_SPECIFICATION);
-			// visibleCommands.add(SysMLElementTypes.ITEM_FLOW);
-			visibleCommands.add(SysMLElementTypes.PART_PROPERTY);
-			visibleCommands.add(SysMLElementTypes.PROBLEM);
-			visibleCommands.add(SysMLElementTypes.RATIONALE);
-			visibleCommands.add(SysMLElementTypes.REFERENCE_PROPERTY);
-			visibleCommands.add(SysMLElementTypes.REQUIREMENT);
-			// visibleCommands.add(SysMLElementTypes.SATISFY);
-			visibleCommands.add(SysMLElementTypes.UNIT);
-			visibleCommands.add(SysMLElementTypes.VALUE_PROPERTY);
-			visibleCommands.add(SysMLElementTypes.VALUE_TYPE);
-			// visibleCommands.add(SysMLElementTypes.VALUE_TYPE_ENUMERATION);
-			// visibleCommands.add(SysMLElementTypes.VALUE_TYPE_PRIMITIVE_TYPE);
-			// visibleCommands.add(SysMLElementTypes.VERIFY);
-			visibleCommands.add(SysMLElementTypes.VIEW);
-			visibleCommands.add(SysMLElementTypes.VIEW_POINT);
+			localVisibleCommands = new ArrayList<IElementType>();
+
+			localVisibleCommands.add(SysMLElementTypes.ACTOR_PART_PROPERTY);
+			// localVisibleCommands.add(SysMLElementTypes.ALLOCATE);
+			// localVisibleCommands.add(SysMLElementTypes.ASSOCIATION);
+			// localVisibleCommands.add(SysMLElementTypes.ASSOCIATION_COMPOSITE);
+			// localVisibleCommands.add(SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED);
+			// localVisibleCommands.add(SysMLElementTypes.ASSOCIATION_NONE);
+			// localVisibleCommands.add(SysMLElementTypes.ASSOCIATION_NONE_DIRECTED);
+			// localVisibleCommands.add(SysMLElementTypes.ASSOCIATION_SHARED);
+			// localVisibleCommands.add(SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED);
+			localVisibleCommands.add(SysMLElementTypes.BLOCK);
+			// localVisibleCommands.add(SysMLElementTypes.CONFORM);
+			localVisibleCommands.add(SysMLElementTypes.CONSTRAINT_BLOCK);
+			localVisibleCommands.add(SysMLElementTypes.CONSTRAINT_PROPERTY);
+			// localVisibleCommands.add(SysMLElementTypes.COPY);
+			// localVisibleCommands.add(SysMLElementTypes.DERIVE_REQT);
+			localVisibleCommands.add(SysMLElementTypes.DIMENSION);
+			localVisibleCommands.add(SysMLElementTypes.FLOW_PORT);
+			localVisibleCommands.add(SysMLElementTypes.FLOW_PORT_IN_OUT);
+			localVisibleCommands.add(SysMLElementTypes.FLOW_PORT_IN);
+			localVisibleCommands.add(SysMLElementTypes.FLOW_PORT_OUT);
+			// localVisibleCommands.add(SysMLElementTypes.FLOW_PORT_NA);
+			localVisibleCommands.add(SysMLElementTypes.FLOW_PROPERTY);
+			localVisibleCommands.add(SysMLElementTypes.FLOW_SPECIFICATION);
+			// localVisibleCommands.add(SysMLElementTypes.ITEM_FLOW);
+			localVisibleCommands.add(SysMLElementTypes.PART_PROPERTY);
+			localVisibleCommands.add(SysMLElementTypes.PROBLEM);
+			localVisibleCommands.add(SysMLElementTypes.RATIONALE);
+			localVisibleCommands.add(SysMLElementTypes.REFERENCE_PROPERTY);
+			localVisibleCommands.add(SysMLElementTypes.REQUIREMENT);
+			// localVisibleCommands.add(SysMLElementTypes.SATISFY);
+			localVisibleCommands.add(SysMLElementTypes.UNIT);
+			localVisibleCommands.add(SysMLElementTypes.VALUE_PROPERTY);
+			localVisibleCommands.add(SysMLElementTypes.VALUE_TYPE);
+			// localVisibleCommands.add(SysMLElementTypes.VALUE_TYPE_ENUMERATION);
+			// localVisibleCommands.add(SysMLElementTypes.VALUE_TYPE_PRIMITIVE_TYPE);
+			// localVisibleCommands.add(SysMLElementTypes.VERIFY);
+			localVisibleCommands.add(SysMLElementTypes.VIEW);
+			localVisibleCommands.add(SysMLElementTypes.VIEW_POINT);
 
 			// UMLElementTypes.PROPERTY is required by ConstraintBlock Parameter 
-			visibleCommands.add(UMLElementTypes.PROPERTY);
+			localVisibleCommands.add(UMLElementTypes.PROPERTY);
+
+			this.visibleCommands = Collections.unmodifiableList(localVisibleCommands);
 
 		}
 

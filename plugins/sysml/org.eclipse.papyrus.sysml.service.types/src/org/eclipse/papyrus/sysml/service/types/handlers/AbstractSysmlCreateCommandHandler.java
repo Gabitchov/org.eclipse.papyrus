@@ -12,9 +12,8 @@
 package org.eclipse.papyrus.sysml.service.types.handlers;
 
 import org.eclipse.papyrus.sysml.service.types.filter.SysmlCommandFilter;
+import org.eclipse.papyrus.uml.service.types.filter.ICommandFilter;
 import org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler;
-
-
 
 /**
  * 
@@ -24,10 +23,10 @@ import org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandl
  */
 public abstract class AbstractSysmlCreateCommandHandler extends AbstractCreateCommandHandler {
 
-	@Override
-	protected void initFilter() {
-		filter = new SysmlCommandFilter();
-	}
+	private static final ICommandFilter filter = SysmlCommandFilter.INSTANCE;
 
+	public ICommandFilter getCommandFilter() {
+		return filter;
+	}
 
 }

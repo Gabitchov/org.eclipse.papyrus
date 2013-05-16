@@ -11,10 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.handlers;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
@@ -25,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.service.types.filter.ICommandFilter;
+import org.eclipse.papyrus.uml.service.types.filter.UmlElementCommandFilter;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
@@ -39,8 +36,6 @@ public abstract class AbstractCreateCommandHandler extends AbstractCommandHandle
 	protected Command createCommand;
 
 	protected CreateElementRequest createRequest;
-
-	protected ICommandFilter filter = null;
 
 	protected abstract IElementType getElementTypeToCreate();
 
@@ -95,17 +90,9 @@ public abstract class AbstractCreateCommandHandler extends AbstractCommandHandle
 	 * 
 	 * @return current command
 	 */
-	@Override
 	protected Command getCommand() {
-		//we create request and command each time, to be sure to call the good advice helper in the commands
-
-		//if(createRequest == null) {
 		createRequest = buildRequest();
-		//		}
-		//
-		//		if(createCommand == null) {
 		createCommand = buildCommand();
-		//	}
 		return createCommand;
 	}
 
@@ -114,27 +101,28 @@ public abstract class AbstractCreateCommandHandler extends AbstractCommandHandle
 		return activePart;
 	}
 
+
 	/**
+	 * This method is called by the commands service to validate if this particular handler is active.
+	 * By default, the creation of UML handlers only verify that the element to be created is allowed by the applied filter (
+	 * {@link UmlElementCommandFilter}, ...)
 	 * 
-	 * @return
-	 *         the ids of the elements which can be created for the context of the handler (UML or SysML or others)
+	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCommandHandler#setEnabled(java.lang.Object)
+	 * 
+	 * 
+	 * @param evaluationContext
 	 */
-	protected Set<String> getFilterIds() {
-		initFilter();
-		if(filter != null) {
-			Set<String> filterIds = new HashSet<String>();
-			List<IElementType> visibleCommands = filter.getVisibleCommands();
-			for(IElementType iElementType : visibleCommands) {
-				filterIds.add(iElementType.getId());
-			}
-			return filterIds;
+	public void setEnabled(Object evaluationContext) {
+		IElementType newElementType = getElementTypeToCreate();
+		boolean isEnabled = getCommandFilter().getVisibleCommands().contains(newElementType);
+
+		if(isEnabled) {
+			Command command = getCommand();
+			isEnabled = command.canExecute();
 		}
-		return null;
+		setBaseEnabled(isEnabled);
 	}
 
-	/**
-	 * initialize the field {@link AbstractCreateCommandHandler#filter}
-	 */
-	protected abstract void initFilter();
-
+	/** returns the command filter to use for this handler */
+	public abstract ICommandFilter getCommandFilter();
 }

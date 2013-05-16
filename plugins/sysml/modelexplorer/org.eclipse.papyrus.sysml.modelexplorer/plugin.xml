@@ -22,163 +22,475 @@
 </extension>
 
 <!-- Creation command declarations -->
-<extension point="org.eclipse.ui.commands">
+<extension point="org.eclipse.ui.handlers">
 
-	<!-- Creation command for ActorPart -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ActorPartPropertyHandler" description="Create a new ActorPart" id="org.eclipse.papyrus.sysml.modelexplorer.ActorPartCreateCommand" name="Create a new ActorPart">
-	</command>
+	<!-- Handler for ActorPart -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ActorPartPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ActorPartCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Allocate -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AllocateHandler" description="Create a new Allocate" id="org.eclipse.papyrus.sysml.modelexplorer.AllocateCreateCommand" name="Create a new Allocate">
-	</command>
+	<!-- Handler for Allocate -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.AllocateHandler" commandId="org.eclipse.papyrus.sysml.service.types.AllocateCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Association -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationHandler" description="Create a new Association" id="org.eclipse.papyrus.sysml.modelexplorer.AssociationCreateCommand" name="Create a new Association">
-	</command>
+	<!-- Handler for Association -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for AssociationComposite -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationCompositeHandler" description="Create a new AssociationComposite" id="org.eclipse.papyrus.sysml.modelexplorer.AssociationCompositeCreateCommand" name="Create a new AssociationComposite">
-	</command>
+	<!-- Handler for AssociationComposite -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationCompositeHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for AssociationCompositeDirected -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationCompositeDirectedHandler" description="Create a new AssociationCompositeDirected" id="org.eclipse.papyrus.sysml.modelexplorer.AssociationCompositeDirectedCreateCommand" name="Create a new AssociationCompositeDirected">
-	</command>
+	<!-- Handler for AssociationCompositeDirected -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationCompositeDirectedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeDirectedCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for AssociationNone -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationNoneHandler" description="Create a new AssociationNone" id="org.eclipse.papyrus.sysml.modelexplorer.AssociationNoneCreateCommand" name="Create a new AssociationNone">
-	</command>
+	<!-- Handler for AssociationNone -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationNoneHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for AssociationNoneDirected -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationNoneDirectedHandler" description="Create a new AssociationNoneDirected" id="org.eclipse.papyrus.sysml.modelexplorer.AssociationNoneDirectedCreateCommand" name="Create a new AssociationNoneDirected">
-	</command>
+	<!-- Handler for AssociationNoneDirected -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationNoneDirectedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneDirectedCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for AssociationShared -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationSharedHandler" description="Create a new AssociationShared" id="org.eclipse.papyrus.sysml.modelexplorer.AssociationSharedCreateCommand" name="Create a new AssociationShared">
-	</command>
+	<!-- Handler for AssociationShared -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationSharedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for AssociationSharedDirected -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationSharedDirectedHandler" description="Create a new AssociationSharedDirected" id="org.eclipse.papyrus.sysml.modelexplorer.AssociationSharedDirectedCreateCommand" name="Create a new AssociationSharedDirected">
-	</command>
+	<!-- Handler for AssociationSharedDirected -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.AssociationSharedDirectedHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedDirectedCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Block -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.BlockHandler" description="Create a new Block" id="org.eclipse.papyrus.sysml.modelexplorer.BlockCreateCommand" name="Create a new Block">
-	</command>
+	<!-- Handler for Block -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.BlockHandler" commandId="org.eclipse.papyrus.sysml.service.types.BlockCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Conform -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ConformHandler" description="Create a new Conform" id="org.eclipse.papyrus.sysml.modelexplorer.ConformCreateCommand" name="Create a new Conform">
-	</command>
+	<!-- Handler for Conform -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ConformHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConformCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 		
-	<!-- Creation command for ConstraintBlock -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ConstraintBlockHandler" description="Create a new ConstraintBlock" id="org.eclipse.papyrus.sysml.modelexplorer.ConstraintBlockCreateCommand" name="Create a new ConstraintBlock">
-	</command>
+	<!-- Handler for ConstraintBlock -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ConstraintBlockHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 
-	<!-- Creation command for ConstraintBlockParameter -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ConstraintBlockParameterHandler" description="Create a new Parameter" id="org.eclipse.papyrus.sysml.modelexplorer.ConstraintBlockParameterCreateCommand" name="Create a new Parameter">
-	</command>
+	<!-- Handler for ConstraintBlockParameter -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ConstraintBlockParameterHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockParameterCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 
-	<!-- Creation command for ConstraintProperty -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ConstraintPropertyHandler" description="Create a new ConstraintProperty" id="org.eclipse.papyrus.sysml.modelexplorer.ConstraintPropertyCreateCommand" name="Create a new ConstraintProperty">
-	</command>
+	<!-- Handler for ConstraintProperty -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ConstraintPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintPropertyCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Copy -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.CopyHandler" description="Create a new Copy" id="org.eclipse.papyrus.sysml.modelexplorer.CopyCreateCommand" name="Create a new Copy">
-	</command>
+	<!-- Handler for Copy -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.CopyHandler" commandId="org.eclipse.papyrus.sysml.service.types.CopyCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for DeriveReqt -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.DeriveReqtHandler" description="Create a new DeriveReqt" id="org.eclipse.papyrus.sysml.modelexplorer.DeriveReqtCreateCommand" name="Create a new DeriveReqt">
-	</command>
+	<!-- Handler for DeriveReqt -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.DeriveReqtHandler" commandId="org.eclipse.papyrus.sysml.service.types.DeriveReqtCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Dimension -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.DimensionHandler" description="Create a new Dimension" id="org.eclipse.papyrus.sysml.modelexplorer.DimensionCreateCommand" name="Create a new Dimension">
-	</command>
+	<!-- Handler for Dimension -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.DimensionHandler" commandId="org.eclipse.papyrus.sysml.service.types.DimensionCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for FlowPort -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPortHandler" description="Create a new FlowPort" id="org.eclipse.papyrus.sysml.modelexplorer.FlowPortCreateCommand" name="Create a new FlowPort">
-	</command>
+	<!-- Handler for FlowPort -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPortHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPortCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	  
-	<!-- Creation command for FlowPort_InOut -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_InOutHandler" description="Create a new FlowPort_InOut" id="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_InOutCreateCommand" name="Create a new FlowPort_InOut">
-	</command>
+	<!-- Handler for FlowPort_InOut -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_InOutHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InOutCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for FlowPort_In -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_InHandler" description="Create a new FlowPort_In" id="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_InCreateCommand" name="Create a new FlowPort_In">
-	</command>
+	<!-- Handler for FlowPort_In -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_InHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for FlowPort_Out -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_OutHandler" description="Create a new FlowPort_Out" id="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_OutCreateCommand" name="Create a new FlowPort_Out">
-	</command>
+	<!-- Handler for FlowPort_Out -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_OutHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_OutCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 
-	<!-- Creation command for FlowPort_NA -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_NAHandler" description="Create a new FlowPort (non atomic)" id="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_NACreateCommand" name="Create a new FlowPort (non atomic)">
-	</command>
+	<!-- Handler for FlowPort_NA -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_NAHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_NACreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 
-	<!-- Creation command for FlowProperty -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPropertyHandler" description="Create a new FlowProperty" id="org.eclipse.papyrus.sysml.modelexplorer.FlowPropertyCreateCommand" name="Create a new FlowProperty">
-	</command>
+	<!-- Handler for FlowProperty -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowPropertyCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for FlowSpecification -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowSpecificationHandler" description="Create a new FlowSpecification" id="org.eclipse.papyrus.sysml.modelexplorer.FlowSpecificationCreateCommand" name="Create a new FlowSpecification">
-	</command>
+	<!-- Handler for FlowSpecification -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowSpecificationHandler" commandId="org.eclipse.papyrus.sysml.service.types.FlowSpecificationCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for ItemFlow -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ItemFlowHandler" description="Create a new ItemFlow" id="org.eclipse.papyrus.sysml.modelexplorer.ItemFlowCreateCommand" name="Create a new ItemFlow">
-	</command>
+	<!-- Handler for ItemFlow -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ItemFlowHandler" commandId="org.eclipse.papyrus.sysml.service.types.ItemFlowCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 
-	<!-- Creation command for PartProperty -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.PartPropertyHandler" description="Create a new PartProperty" id="org.eclipse.papyrus.sysml.modelexplorer.PartPropertyCreateCommand" name="Create a new PartProperty">
-	</command>
+	<!-- Handler for PartProperty -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.PartPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.PartPropertyCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 		
-	<!-- Creation command for Problem -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ProblemHandler" description="Create a new Problem" id="org.eclipse.papyrus.sysml.modelexplorer.ProblemCreateCommand" name="Create a new Problem">
-	</command>
+	<!-- Handler for Problem -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ProblemHandler" commandId="org.eclipse.papyrus.sysml.service.types.ProblemCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Rationale -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.RationaleHandler" description="Create a new Rationale" id="org.eclipse.papyrus.sysml.modelexplorer.RationaleCreateCommand" name="Create a new Rationale">
-	</command>
+	<!-- Handler for Rationale -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.RationaleHandler" commandId="org.eclipse.papyrus.sysml.service.types.RationaleCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for ReferenceProperty -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ReferencePropertyHandler" description="Create a new ReferenceProperty" id="org.eclipse.papyrus.sysml.modelexplorer.ReferencePropertyCreateCommand" name="Create a new ReferenceProperty">
-	</command>
+	<!-- Handler for ReferenceProperty -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ReferencePropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ReferencePropertyCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Requirement -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.RequirementHandler" description="Create a new Requirement" id="org.eclipse.papyrus.sysml.modelexplorer.RequirementCreateCommand" name="Create a new Requirement">
-	</command>
+	<!-- Handler for Requirement -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.RequirementHandler" commandId="org.eclipse.papyrus.sysml.service.types.RequirementCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Satisfy -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.SatisfyHandler" description="Create a new Satisfy" id="org.eclipse.papyrus.sysml.modelexplorer.SatisfyCreateCommand" name="Create a new Satisfy">
-	</command>
+	<!-- Handler for Satisfy -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.SatisfyHandler" commandId="org.eclipse.papyrus.sysml.service.types.SatisfyCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Unit -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.UnitHandler" description="Create a new Unit" id="org.eclipse.papyrus.sysml.modelexplorer.UnitCreateCommand" name="Create a new Unit">
-	</command>
+	<!-- Handler for Unit -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.UnitHandler" commandId="org.eclipse.papyrus.sysml.service.types.UnitCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for ValueProperty -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ValuePropertyHandler" description="Create a new ValueProperty" id="org.eclipse.papyrus.sysml.modelexplorer.ValuePropertyCreateCommand" name="Create a new ValueProperty">
-	</command>
+	<!-- Handler for ValueProperty -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ValuePropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValuePropertyCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for ValueType -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ValueTypeHandler" description="Create a new ValueType" id="org.eclipse.papyrus.sysml.modelexplorer.ValueTypeCreateCommand" name="Create a new ValueType">
-	</command>
+	<!-- Handler for ValueType -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ValueTypeHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueTypeCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for ValueType_Enumeration -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ValueType_EnumerationHandler" description="Create a new ValueType_Enumeration" id="org.eclipse.papyrus.sysml.modelexplorer.ValueType_EnumerationCreateCommand" name="Create a new ValueType_Enumeration">
-	</command>
+	<!-- Handler for ValueType_Enumeration -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ValueType_EnumerationHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueType_EnumerationCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for ValueType_PrimitiveType -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ValueType_PrimitiveTypeHandler" description="Create a new ValueType_PrimitiveType" id="org.eclipse.papyrus.sysml.modelexplorer.ValueType_PrimitiveTypeCreateCommand" name="Create a new ValueType_PrimitiveType">
-	</command>
+	<!-- Handler for ValueType_PrimitiveType -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ValueType_PrimitiveTypeHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueType_PrimitiveTypeCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for Verify -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.VerifyHandler" description="Create a new Verify" id="org.eclipse.papyrus.sysml.modelexplorer.VerifyCreateCommand" name="Create a new Verify">
-	</command>
+	<!-- Handler for Verify -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.VerifyHandler" commandId="org.eclipse.papyrus.sysml.service.types.VerifyCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for View -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ViewHandler" description="Create a new View" id="org.eclipse.papyrus.sysml.modelexplorer.ViewCreateCommand" name="Create a new View">
-	</command>
+	<!-- Handler for View -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ViewHandler" commandId="org.eclipse.papyrus.sysml.service.types.ViewCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
-	<!-- Creation command for ViewPoint -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ViewPointHandler" description="Create a new ViewPoint" id="org.eclipse.papyrus.sysml.modelexplorer.ViewPointCreateCommand" name="Create a new ViewPoint">
-	</command>
+	<!-- Handler for ViewPoint -->
+	<handler class="org.eclipse.papyrus.sysml.modelexplorer.handler.ViewPointHandler" commandId="org.eclipse.papyrus.sysml.service.types.ViewPointCreateCommand">
+    <activeWhen>
+       <with
+             variable="activePartId">
+          <equals
+                value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+          </equals>
+       </with>
+    </activeWhen>
+	</handler>
 	
 </extension>
 
@@ -197,197 +509,197 @@
 	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createsysmlchild" allPopups="false">
 
 		<!-- Creation menu action for ActorPart -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ActorPartCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new ActorPart" style="push" tooltip="Create a new ActorPart">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ActorPartCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new ActorPart" style="push" tooltip="Create a new ActorPart">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Allocate -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AllocateCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" label="Create a new Allocate" style="push" tooltip="Create a new Allocate">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.AllocateCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" label="Create a new Allocate" style="push" tooltip="Create a new Allocate">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Association -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new Association" style="push" tooltip="Create a new Association">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.AssociationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new Association" style="push" tooltip="Create a new Association">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for AssociationComposite -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationCompositeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationComposite" style="push" tooltip="Create a new AssociationComposite">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationComposite" style="push" tooltip="Create a new AssociationComposite">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for AssociationCompositeDirected -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationCompositeDirectedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationCompositeDirected" style="push" tooltip="Create a new AssociationCompositeDirected">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.AssociationCompositeDirectedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationCompositeDirected" style="push" tooltip="Create a new AssociationCompositeDirected">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for AssociationNone -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationNoneCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationNone" style="push" tooltip="Create a new AssociationNone">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationNone" style="push" tooltip="Create a new AssociationNone">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for AssociationNoneDirected -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationNoneDirectedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationNoneDirected" style="push" tooltip="Create a new AssociationNoneDirected">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.AssociationNoneDirectedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationNoneDirected" style="push" tooltip="Create a new AssociationNoneDirected">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for AssociationShared -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationSharedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationShared" style="push" tooltip="Create a new AssociationShared">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationShared" style="push" tooltip="Create a new AssociationShared">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for AssociationSharedDirected -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AssociationSharedDirectedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationSharedDirected" style="push" tooltip="Create a new AssociationSharedDirected">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.AssociationSharedDirectedCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new AssociationSharedDirected" style="push" tooltip="Create a new AssociationSharedDirected">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Block -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.BlockCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" label="Create a new Block" style="push" tooltip="Create a new Block">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.BlockCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" label="Create a new Block" style="push" tooltip="Create a new Block">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Conform -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ConformCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Conform.gif" label="Create a new Conform" style="push" tooltip="Create a new Conform">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ConformCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Conform.gif" label="Create a new Conform" style="push" tooltip="Create a new Conform">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for ConstraintBlock -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ConstraintBlockCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif" label="Create a new ConstraintBlock" style="push" tooltip="Create a new ConstraintBlock">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif" label="Create a new ConstraintBlock" style="push" tooltip="Create a new ConstraintBlock">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 
 		<!-- Creation menu action for ConstraintBlock Parameter -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ConstraintBlockParameterCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new Parameter" style="push" tooltip="Create a new Parameter">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockParameterCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new Parameter" style="push" tooltip="Create a new Parameter">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 
 		<!-- Creation menu action for ConstraintProperty -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ConstraintPropertyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif" label="Create a new ConstraintProperty" style="push" tooltip="Create a new ConstraintProperty">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ConstraintPropertyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif" label="Create a new ConstraintProperty" style="push" tooltip="Create a new ConstraintProperty">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Copy -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.CopyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Copy.gif" label="Create a new Copy" style="push" tooltip="Create a new Copy">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.CopyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Copy.gif" label="Create a new Copy" style="push" tooltip="Create a new Copy">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for DeriveReqt -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.DeriveReqtCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/DeriveReqt.gif" label="Create a new DeriveReqt" style="push" tooltip="Create a new DeriveReqt">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.DeriveReqtCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/DeriveReqt.gif" label="Create a new DeriveReqt" style="push" tooltip="Create a new DeriveReqt">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Dimension -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.DimensionCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Dimension.gif" label="Create a new Dimension" style="push" tooltip="Create a new Dimension">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.DimensionCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Dimension.gif" label="Create a new Dimension" style="push" tooltip="Create a new Dimension">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for FlowPort -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPortCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif" label="Create a new FlowPort" style="push" tooltip="Create a new FlowPort">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.FlowPortCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif" label="Create a new FlowPort" style="push" tooltip="Create a new FlowPort">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		  
 		<!-- Creation menu action for FlowPort_InOut -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_InOutCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif" label="Create a new FlowPort_InOut" style="push" tooltip="Create a new FlowPort_InOut">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InOutCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif" label="Create a new FlowPort_InOut" style="push" tooltip="Create a new FlowPort_InOut">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for FlowPort_In -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_InCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif" label="Create a new FlowPort_In" style="push" tooltip="Create a new FlowPort_In">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif" label="Create a new FlowPort_In" style="push" tooltip="Create a new FlowPort_In">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for FlowPort_Out -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_OutCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif" label="Create a new FlowPort_Out" style="push" tooltip="Create a new FlowPort_Out">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_OutCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif" label="Create a new FlowPort_Out" style="push" tooltip="Create a new FlowPort_Out">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 
 		<!-- Creation menu action for FlowPort_NA -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_NACreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif" label="Create a new FlowPort (non atomic)" style="push" tooltip="Create a new FlowPort (non atomic)">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_NACreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif" label="Create a new FlowPort (non atomic)" style="push" tooltip="Create a new FlowPort (non atomic)">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 
 		<!-- Creation menu action for FlowProperty -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPropertyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty.gif" label="Create a new FlowProperty" style="push" tooltip="Create a new FlowProperty">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.FlowPropertyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty.gif" label="Create a new FlowProperty" style="push" tooltip="Create a new FlowProperty">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for FlowSpecification -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowSpecification.gif" label="Create a new FlowSpecification" style="push" tooltip="Create a new FlowSpecification">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.FlowSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowSpecification.gif" label="Create a new FlowSpecification" style="push" tooltip="Create a new FlowSpecification">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for ItemFlow -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ItemFlowCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/ItemFlow.gif" label="Create a new ItemFlow" style="push" tooltip="Create a new ItemFlow">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ItemFlowCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/ItemFlow.gif" label="Create a new ItemFlow" style="push" tooltip="Create a new ItemFlow">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for PartProperty -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.PartPropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new Part" style="push" tooltip="Create a new Part">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.PartPropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new Part" style="push" tooltip="Create a new Part">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 				
 		<!-- Creation menu action for Problem -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ProblemCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Problem.gif" label="Create a new Problem" style="push" tooltip="Create a new Problem">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ProblemCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Problem.gif" label="Create a new Problem" style="push" tooltip="Create a new Problem">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Rationale -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.RationaleCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Rationale.gif" label="Create a new Rationale" style="push" tooltip="Create a new Rationale">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.RationaleCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Rationale.gif" label="Create a new Rationale" style="push" tooltip="Create a new Rationale">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for ReferenceProperty -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ReferencePropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new Reference" style="push" tooltip="Create a new Reference">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ReferencePropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new Reference" style="push" tooltip="Create a new Reference">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 				
 		<!-- Creation menu action for Requirement -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.RequirementCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Requirement.gif" label="Create a new Requirement" style="push" tooltip="Create a new Requirement">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.RequirementCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Requirement.gif" label="Create a new Requirement" style="push" tooltip="Create a new Requirement">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Satisfy -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.SatisfyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif" label="Create a new Satisfy" style="push" tooltip="Create a new Satisfy">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.SatisfyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif" label="Create a new Satisfy" style="push" tooltip="Create a new Satisfy">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Unit -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.UnitCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif" label="Create a new Unit" style="push" tooltip="Create a new Unit">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.UnitCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif" label="Create a new Unit" style="push" tooltip="Create a new Unit">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for ValueProperty -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ValuePropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new Value" style="push" tooltip="Create a new Value">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ValuePropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new Value" style="push" tooltip="Create a new Value">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 				
 		<!-- Creation menu action for ValueType -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ValueTypeCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif" label="Create a new ValueType" style="push" tooltip="Create a new ValueType">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ValueTypeCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif" label="Create a new ValueType" style="push" tooltip="Create a new ValueType">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for ValueType_Enumeration -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ValueType_EnumerationCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif" label="Create a new ValueType_Enumeration" style="push" tooltip="Create a new ValueType_Enumeration">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ValueType_EnumerationCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif" label="Create a new ValueType_Enumeration" style="push" tooltip="Create a new ValueType_Enumeration">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for ValueType_PrimitiveType -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ValueType_PrimitiveTypeCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif" label="Create a new ValueType_PrimitiveType" style="push" tooltip="Create a new ValueType_PrimitiveType">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ValueType_PrimitiveTypeCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif" label="Create a new ValueType_PrimitiveType" style="push" tooltip="Create a new ValueType_PrimitiveType">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Verify -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.VerifyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Verify.gif" label="Create a new Verify" style="push" tooltip="Create a new Verify">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.VerifyCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Verify.gif" label="Create a new Verify" style="push" tooltip="Create a new Verify">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for View -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ViewCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/View.gif" label="Create a new View" style="push" tooltip="Create a new View">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ViewCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/View.gif" label="Create a new View" style="push" tooltip="Create a new View">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for ViewPoint -->
-		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ViewPointCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Viewpoint.gif" label="Create a new ViewPoint" style="push" tooltip="Create a new ViewPoint">
+		<command commandId="org.eclipse.papyrus.sysml.service.types.ViewPointCreateCommand" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Viewpoint.gif" label="Create a new ViewPoint" style="push" tooltip="Create a new ViewPoint">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -399,13 +711,13 @@
 <extension point="org.eclipse.ui.bindings">
 
 	<!-- "CTRL+I" : Create In FlowPort -->
-	<key commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_InCreateCommand"
+	<key commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_InCreateCommand"
 		schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
 		sequence="CTRL+I">
 	</key>
 
 	<!-- "CTRL+O" : Create Out FlowPort -->	
-	<key commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_OutCreateCommand"
+	<key commandId="org.eclipse.papyrus.sysml.service.types.FlowPort_OutCreateCommand"
 		schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
 		sequence="CTRL+O">
    </key>
