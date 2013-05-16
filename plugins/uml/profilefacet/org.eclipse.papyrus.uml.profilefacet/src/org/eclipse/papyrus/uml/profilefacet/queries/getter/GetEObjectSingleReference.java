@@ -14,8 +14,21 @@
 package org.eclipse.papyrus.uml.profilefacet.queries.getter;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
+import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 public class GetEObjectSingleReference extends GetGenericSingleValue<EObject> {
 
+	@Override
+	public EObject evaluate(final Element source, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
+		EObject obj = super.evaluate(source, parameterValues);
+
+		if(UMLUtil.getStereotype(obj) != null) {
+			obj = UMLUtil.getBaseElement(obj);
+		}
+		return obj;
+	}
 }
