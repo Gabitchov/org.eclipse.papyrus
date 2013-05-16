@@ -46,5 +46,4 @@ public interface ICompositeAxisManager extends IAxisManager {
 	 */
 	public void sortAxisByName(final boolean alpabeticOrder, IConfigRegistry iConfigRegistry);
 
-
 }

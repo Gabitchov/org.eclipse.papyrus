@@ -119,6 +119,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		}
 		return canCreateAxisElement;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
@@ -243,18 +244,23 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#createDestroyColumnsContentProvider(boolean)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#createPossibleAxisContentProvider(boolean)
 	 * 
 	 * @param isRestricted
-	 * @return
+	 * @return a contents provider for this axis or <code>null</code> if it is not allowed
 	 */
 	@Override
-	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted) {
+	public IRestrictedContentProvider createPossibleAxisContentProvider(boolean isRestricted) {
 
-		CompoundFilteredRestrictedContentProvider compoundContentProvider = new CompoundFilteredRestrictedContentProvider();
+		CompoundFilteredRestrictedContentProvider compoundContentProvider = null;
 		for(final IAxisManager current : this.subManagers) {
-			IRestrictedContentProvider contentProvider = current.createDestroyColumnsContentProvider(isRestricted);
-			compoundContentProvider.add(contentProvider);
+			IRestrictedContentProvider contentProvider = current.createPossibleAxisContentProvider(isRestricted);
+			if(contentProvider != null) {
+				if(compoundContentProvider == null) {
+					compoundContentProvider = new CompoundFilteredRestrictedContentProvider();
+				}
+				compoundContentProvider.add(contentProvider);
+			}
 		}
 		return compoundContentProvider;
 	}
@@ -365,4 +371,5 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 			domain.getCommandStack().execute(command);
 		};
 	}
+
 }

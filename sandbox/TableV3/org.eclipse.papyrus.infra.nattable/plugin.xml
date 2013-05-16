@@ -93,8 +93,7 @@
              </with>
           </visibleWhen>
           <command
-                commandId="org.eclipse.papyrus.infra.nattable.selectvisiblecolumns"
-                icon="icons/select_columns_to_show.png"
+                commandId="org.eclipse.papyrus.infra.nattable.createdestroycolumns"
                 label="Create/Destroy columns"
                 style="push"
                 tooltip="Open a dialog to choose the visible columns">
@@ -276,6 +275,15 @@
              </with>
           </visibleWhen>
           <command
+                commandId="org.eclipse.papyrus.infra.nattable.createdestroyrows"
+                label="Create/Destroy rows"
+                style="push"
+                tooltip="Open a dialog to choose the visible rows">
+             <visibleWhen
+                   checkEnabled="true">
+             </visibleWhen>
+          </command>
+          <command
                 commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
                 icon="icons/sort_columns_by_name_A_to_Z.gif"
                 label="Sort Rows (A-&gt;Z)"
@@ -402,7 +410,8 @@
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.row.disconnect.slave"
                 style="toggle">
-             <visibleWhen>
+             <visibleWhen
+                   checkEnabled="true">
                 <with
                       variable="selection">
                    <test
@@ -466,17 +475,6 @@
           </and>
        </activeWhen>
     </handler>
-    <handler
-            class="org.eclipse.papyrus.infra.nattable.handler.SelectColumnsHandler"
-            commandId="org.eclipse.papyrus.infra.nattable.selectvisiblecolumns">
-         <activeWhen>
-             <with variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.infra.core.papyrusEditor">
-                     </equals>
-                  </with>
-         </activeWhen>
-      </handler>
           <handler
           class="org.eclipse.papyrus.infra.nattable.copy.CopySelectionToClipboardAction"
           commandId="org.eclipse.ui.edit.copy">
@@ -585,11 +583,19 @@
    </command>
 
    <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            description="Open a dialog to select the columns to display"
-            id="org.eclipse.papyrus.infra.nattable.selectvisiblecolumns"
-            name="Select the columns to Show">
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SelectColumnsHandler"
+         description="Open a dialog to select the columns to display"
+         id="org.eclipse.papyrus.infra.nattable.createdestroycolumns"
+         name="Select the columns to Show">
       </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SelectRowsHandler"
+         description="Open a dialog to select the rows to display"
+         id="org.eclipse.papyrus.infra.nattable.createdestroyrows"
+         name="Select the rows to Show">
+   </command>
 
    <command
          categoryId="org.eclipse.papyrus.editor.category"
@@ -856,6 +862,17 @@
                ref="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableAdvice">
          </elementType>
       </binding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.createdestroycolumns"
+            icon="icons/CreateDestroyColumn.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.createdestroyrows"
+            icon="icons/CreateDestroyRow.gif">
+      </image>
    </extension>
 </plugin>
 

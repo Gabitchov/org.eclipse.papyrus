@@ -124,14 +124,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	private TransactionalEditingDomain contextEditingDomain;
 
-	/** message used in the Add/Remove axis dialog */
-	private static final String AXIS_MANAGER_DIALOG_CHECKBOX_TEXT = Messages.NattableModelManager_DisconnectAxisManagerCheckBoxMessage;
-
-	private static final String AXIS_MANAGER_ROW_DIALOG_CHECKBOX_TOOLTIP = Messages.NattableModelManager_DisconnectAxisManagerCheckBoxTooltip;
-
-	private static final String AXIS_MANAGER_INFORMATION_DIALOG_TITLE = Messages.NattableModelManager_DisconnectAxisManagerInformationDialogTitle;
-
-	private static final String AXIS_MANAGER_COLUMN_INFORMATION_DIALOG_MESSAGE = String.format(Messages.NattableModelManager_DisconnectAxisManagerInformationDialogMessage, AXIS_MANAGER_DIALOG_CHECKBOX_TEXT);
 
 	/**
 	 * 
@@ -776,6 +768,13 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return cmd;
 	}
 
+	public Command getDestroyRowElementCommand(Collection<Object> objectsToDestroy) {
+		final EditingDomain domain = getContextEditingDomain();
+		final Command cmd = this.rowManager.getDestroyAxisCommand(domain, objectsToDestroy);
+		return cmd;
+	}
+
+
 	public boolean declareEditorsOnColumns() {
 		return true;
 	}
@@ -791,11 +790,70 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 
-	public void openColumnsManagerDialog() {
 
+
+	/**
+	 * When the axis manager is dynamic, we can't destroy axis
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#canCreateDestroyColumnsAxis()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean canCreateDestroyColumnsAxis() {
+		return !this.columnManager.isDynamic() && this.columnManager.createPossibleAxisContentProvider(true) != null;
+	}
+
+	/**
+	 * When the axis manager is dynamic, we can't destroy axis
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#canCreateDestroyRowsAxis()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean canCreateDestroyRowsAxis() {
+		return !this.rowManager.isDynamic() && this.rowManager.createPossibleAxisContentProvider(true) != null;
+	}
+
+	/**
+	 * 
+	 * @param serv
+	 *        the label provider service
+	 * @param editedAxisManager
+	 *        the manager used for the edited axis
+	 * @param secondAxisManager
+	 *        the manager used for the other axis
+	 * @param isEditingColumns
+	 *        boolean indicating if we are editing columns or rows
+	 */
+	private final void openCreateDestroyAxisManagerDialog(boolean isEditingColumns) {
+		final String dialogTitle;
+		final String dialogCheckBoxTootip;
+		final String dialogQuestion;
+
+		final IAxisManager editedAxisManager;
+		final IAxisManager secondAxisManager;
+		final String checkBoxMessage = Messages.NattableModelManager_DisconnectThisAxisManager;
+		if(isEditingColumns) {
+			dialogTitle = Messages.NattableModelManager_SelectColumns;
+			dialogCheckBoxTootip = Messages.NattableModelManager_DisableTheAutomaticAdditionOfColumnsWhenARowIsAdded;
+			dialogQuestion = String.format(Messages.NattableModelManager_TheCheckBoxHasNotBeenCheckedToAvoidAutomaticColumnAddition, checkBoxMessage);
+
+			editedAxisManager = columnManager;
+			secondAxisManager = rowManager;
+		} else {
+			dialogTitle = Messages.NattableModelManager_SelectRows;
+			dialogCheckBoxTootip = Messages.NattableModelManager_DisableTheAutomaticAdditionOfRowsWhenAColumnIsAdded;
+			dialogQuestion = String.format(Messages.NattableModelManager_TheCheckBoxHasNotBeenCheckedToAvoidAutomaticRowAddition, checkBoxMessage);
+
+			editedAxisManager = rowManager;
+			secondAxisManager = columnManager;
+		}
 		final LabelProviderService serv = this.natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 		final ILabelProvider labelProvider = serv.getLabelProvider();
-
+		final AbstractAxisProvider editedAxisProvider = editedAxisManager.getRepresentedContentProvider();
+		final AbstractAxisProvider secondAxisProvider = secondAxisManager.getRepresentedContentProvider();
 		ReferenceSelector selector = new ReferenceSelector(true) {
 
 			@Override
@@ -806,25 +864,25 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		};
 		selector.setLabelProvider(labelProvider);
 
-		IStaticContentProvider provider = this.columnManager.createDestroyColumnsContentProvider(true);
-		if(provider != null) {//FIXME : the action must be hidden when it is not possible to select the columns
+		IStaticContentProvider provider = editedAxisManager.createPossibleAxisContentProvider(true);
+		if(provider != null) {
 			selector.setContentProvider(new FlattenableRestrictedFilteredContentProvider((IRestrictedContentProvider)provider, selector));
 
-			final DisplayedAxisSelectorDialog dialog = new DisplayedAxisSelectorDialog(Display.getDefault().getActiveShell(), selector, Messages.NattableModelManager_SelectColumns, true, false, -1);
-			boolean displayCheckBox = columnProvider instanceof ISlaveAxisProvider;
-			boolean checkboxValue = ((IMasterAxisProvider)rowProvider).isDisconnectSlave();
+			final DisplayedAxisSelectorDialog dialog = new DisplayedAxisSelectorDialog(Display.getDefault().getActiveShell(), selector, dialogTitle, true, false, -1);
+			boolean displayCheckBox = editedAxisProvider instanceof ISlaveAxisProvider;
 			dialog.setDisplayCheckBox(displayCheckBox);
+			boolean checkboxValue = secondAxisProvider instanceof IMasterAxisProvider && ((IMasterAxisProvider)secondAxisProvider).isDisconnectSlave();
 			if(displayCheckBox) {
-				dialog.setCheckBoxValues(AXIS_MANAGER_DIALOG_CHECKBOX_TEXT, AXIS_MANAGER_ROW_DIALOG_CHECKBOX_TOOLTIP, checkboxValue);
+				dialog.setCheckBoxValues(checkBoxMessage, dialogCheckBoxTootip, checkboxValue);
 			}
 
-			dialog.setInformationDialogValues(AXIS_MANAGER_INFORMATION_DIALOG_TITLE, AXIS_MANAGER_COLUMN_INFORMATION_DIALOG_MESSAGE);
-			dialog.setLabelProvider(serv.getLabelProvider());
-			dialog.setInitialElementSelections(new ArrayList<Object>(this.columnManager.getAllManagedAxis()));
+			dialog.setInformationDialogValues(Messages.NattableModelManager_DisconnectAxisManagerInformationDialogTitle, dialogQuestion);
+			dialog.setLabelProvider(labelProvider);
+			dialog.setInitialElementSelections(new ArrayList<Object>(editedAxisManager.getAllManagedAxis()));
 
 			int open = dialog.open();
 			if(open == Window.OK) {
-				Collection<Object> existingColumns = this.columnManager.getAllManagedAxis();
+				Collection<Object> existingColumns = editedAxisManager.getAllManagedAxis();
 				ArrayList<Object> checkedColumns = new ArrayList<Object>();
 				checkedColumns.addAll(Arrays.asList(dialog.getResult()));
 
@@ -832,23 +890,32 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				columnsToAdd.removeAll(existingColumns);
 				CompoundCommand compoundCommand = new CompoundCommand("Update Existing Axis Command"); //$NON-NLS-1$
 				if(columnsToAdd.size() > 0) {
-					Command addColumnElementCommand = getAddColumnElementCommand(columnsToAdd);
-					compoundCommand.append(addColumnElementCommand);
+					Command addAxisElementCommand = null;
+					if(isEditingColumns) {
+						addAxisElementCommand = getAddColumnElementCommand(columnsToAdd);
+					} else {
+						addAxisElementCommand = getAddRowElementCommand(columnsToAdd);
+					}
+					compoundCommand.append(addAxisElementCommand);
 				}
 
-
-				ArrayList<Object> columnsToDelete = new ArrayList<Object>(existingColumns);
-				columnsToDelete.removeAll(checkedColumns);
-				if(columnsToDelete.size() > 0) {
-					Command destroyColumnElementCommand = getDestroyColumnElementCommand(columnsToDelete);
-					compoundCommand.append(destroyColumnElementCommand);
+				ArrayList<Object> axisToDestroy = new ArrayList<Object>(existingColumns);
+				axisToDestroy.removeAll(checkedColumns);
+				if(axisToDestroy.size() > 0) {
+					Command destroyAxisElementCommand = null;
+					if(isEditingColumns) {
+						destroyAxisElementCommand = getDestroyColumnElementCommand(axisToDestroy);
+					} else {
+						destroyAxisElementCommand = getDestroyRowElementCommand(axisToDestroy);
+					}
+					compoundCommand.append(destroyAxisElementCommand);
 				}
 
 				final boolean newState = dialog.isChecked();
 				if(displayCheckBox && checkboxValue != newState) {
 					final TransactionalEditingDomain domain = (TransactionalEditingDomain)getTableEditingDomain();
-					final IEditCommandRequest request = new SetRequest(domain, rowProvider, NattableaxisproviderPackage.eINSTANCE.getIMasterAxisProvider_DisconnectSlave(), newState);
-					final IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(rowProvider);
+					final IEditCommandRequest request = new SetRequest(domain, secondAxisProvider, NattableaxisproviderPackage.eINSTANCE.getIMasterAxisProvider_DisconnectSlave(), newState);
+					final IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(secondAxisProvider);
 					compoundCommand.append(new GMFtoEMFCommandWrapper(commandProvider.getEditCommand(request)));
 				}
 
@@ -860,7 +927,25 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		} else {
 			MessageDialog.openInformation(Display.getDefault().getActiveShell(), Messages.NattableModelManager_CreateDestroyAxis, Messages.NattableModelManager_ActionNotYetSupported);
 		}
+	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#openCreateDestroyRowsManagerDialog()
+	 * 
+	 */
+	@Override
+	public void openCreateDestroyRowsManagerDialog() {
+		openCreateDestroyAxisManagerDialog(false);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#openCreateDestroyColumnsManagerDialog()
+	 * 
+	 */
+	public void openCreateDestroyColumnsManagerDialog() {
+		openCreateDestroyAxisManagerDialog(true);
 	}
 
 	public void sortColumnsByName(final boolean alphabeticOrder) {
@@ -899,6 +984,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			return getTable().getCurrentRowAxisProvider();
 		}
 	}
+
+
 
 
 

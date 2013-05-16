@@ -252,12 +252,12 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#createDestroyColumnsContentProvider(boolean)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#createPossibleAxisContentProvider(boolean)
 	 * 
 	 * @param isRestricted
 	 * @return
 	 */
-	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted) {
+	public IRestrictedContentProvider createPossibleAxisContentProvider(boolean isRestricted) {
 		return null;
 	}
 

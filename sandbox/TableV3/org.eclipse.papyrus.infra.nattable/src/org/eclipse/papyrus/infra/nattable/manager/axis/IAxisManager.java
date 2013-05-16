@@ -128,8 +128,9 @@ public interface IAxisManager extends IDisposable {
 	 * 
 	 * @param isRestricted
 	 * @return
+	 *         a content provider or <code>null</code> if the dialog to add/destroy axis is not supported
 	 */
-	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted);
+	public IRestrictedContentProvider createPossibleAxisContentProvider(boolean isRestricted);
 
 
 	/**
@@ -169,4 +170,6 @@ public interface IAxisManager extends IDisposable {
 	 *         <code>true</code> if the element can be created
 	 */
 	public boolean canCreateAxisElement(final String elementId);
+
+
 }

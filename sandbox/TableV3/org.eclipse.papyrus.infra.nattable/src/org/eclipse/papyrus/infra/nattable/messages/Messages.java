@@ -71,6 +71,10 @@ public class Messages extends NLS {
 
 	public static String NattableModelManager_CreateDestroyAxis;
 
+	public static String NattableModelManager_DisableTheAutomaticAdditionOfColumnsWhenARowIsAdded;
+
+	public static String NattableModelManager_DisableTheAutomaticAdditionOfRowsWhenAColumnIsAdded;
+
 	public static String NattableModelManager_DisconnectAxisManagerCheckBoxMessage;
 
 	public static String NattableModelManager_DisconnectAxisManagerCheckBoxTooltip;
@@ -79,13 +83,25 @@ public class Messages extends NLS {
 
 	public static String NattableModelManager_DisconnectAxisManagerInformationDialogTitle;
 
+	public static String NattableModelManager_DisconnectColumnAxisManager;
+
+	public static String NattableModelManager_DisconnectColumnAxisManagerMessageInInformationDialog;
+
+	public static String NattableModelManager_DisconnectThisAxisManager;
+
 	public static String NattableModelManager_EditingDomainNotFound;
 
 	public static String NattableModelManager_SelectColumns;
 
+	public static String NattableModelManager_SelectRows;
+
 	public static String NattableModelManager_ServiceRegistryNotFound;
 
 	public static String NattableModelManager_SwitchLinesAndColumns;
+
+	public static String NattableModelManager_TheCheckBoxHasNotBeenCheckedToAvoidAutomaticColumnAddition;
+
+	public static String NattableModelManager_TheCheckBoxHasNotBeenCheckedToAvoidAutomaticRowAddition;
 
 	public static String PrintTableHandler_PrintCantBeDone;
 

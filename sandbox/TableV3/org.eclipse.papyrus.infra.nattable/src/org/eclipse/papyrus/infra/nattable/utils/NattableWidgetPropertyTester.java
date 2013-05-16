@@ -39,17 +39,17 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 		if(IS_NATTABLE_WIDGET.equals(property) && expectedValue instanceof Boolean) {
 			return expectedValue.equals(manager != null);
 		}
-		if(manager != null) {
-			if(HAS_FEATURE_ROW_HEADER_CONFIGURATION.equals(property) && expectedValue instanceof Boolean) {
+		if(manager != null && expectedValue instanceof Boolean) {
+			if(HAS_FEATURE_ROW_HEADER_CONFIGURATION.equals(property)) {
 				LabelConfigurationManagementUtils.getRowFeatureLabelConfigurationInTable(manager.getTable());
 				return expectedValue.equals(LabelConfigurationManagementUtils.hasRowFeatureLabelConfiguration(manager.getTable()));
-			} else if(HAS_FEATURE_COLUMN_HEADER_CONFIGURATION.equals(property) && expectedValue instanceof Boolean) {
+			} else if(HAS_FEATURE_COLUMN_HEADER_CONFIGURATION.equals(property)) {
 				return expectedValue.equals(LabelConfigurationManagementUtils.hasColumnFeatureLabelConfiguration(manager.getTable()));
-			} else if(HAS_SLAVE_COLUMNS_AXIS_PROVIDER.equals(property) && expectedValue instanceof Boolean) {
+			} else if(HAS_SLAVE_COLUMNS_AXIS_PROVIDER.equals(property)) {
 				return expectedValue.equals(AxisUtils.getAxisProviderUsedForColumns(manager) instanceof ISlaveAxisProvider);
-			} else if(HAS_SLAVE_ROWS_AXIS_PROVIDER.equals(property) && expectedValue instanceof Boolean) {
+			} else if(HAS_SLAVE_ROWS_AXIS_PROVIDER.equals(property)) {
 				return expectedValue.equals(AxisUtils.getAxisProviderUsedForRows(manager) instanceof ISlaveAxisProvider);
-			} else if(CAN_INVERT_AXIS.equals(property) && expectedValue instanceof Boolean) {
+			} else if(CAN_INVERT_AXIS.equals(property)) {
 				return expectedValue.equals(manager.canInvertAxis());
 			}
 		}

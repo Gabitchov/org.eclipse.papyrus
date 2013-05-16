@@ -99,7 +99,31 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 
 	public void exportToXLS();
 
-	public void openColumnsManagerDialog();
+	/**
+	 * Opens a dialog to choose the columns to display or to destroy. This action doesn't create or destroy model element. It can only create/destroy
+	 * axis
+	 */
+	public void openCreateDestroyColumnsManagerDialog();
+
+	/**
+	 * Opens a dialog to choose the columns to display or to destroy. This action doesn't create or destroy model element. It can only create/destroy
+	 * axis
+	 */
+	public void openCreateDestroyRowsManagerDialog();
+
+	/**
+	 * Returns <code>true</code> if columns axis can be destroyed (only are will be destroyed, the model element won't be destroyed)
+	 * 
+	 * @return
+	 */
+	public boolean canCreateDestroyColumnsAxis();
+
+	/**
+	 * Returns <code>true</code> if columns axis can be destroyed (only are will be destroyed, the model element won't be destroyed)
+	 * 
+	 * @return
+	 */
+	public boolean canCreateDestroyRowsAxis();
 
 	public void sortColumnsByName(final boolean alphabeticOrder);
 

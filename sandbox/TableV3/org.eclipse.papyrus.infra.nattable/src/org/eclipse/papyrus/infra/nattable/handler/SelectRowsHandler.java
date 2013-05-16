@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
  * Handler for the Create/Destroy columns Papyrus version
  * 
  */
-public class SelectColumnsHandler extends AbstractTableHandler {
+public class SelectRowsHandler extends AbstractTableHandler {
 
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class SelectColumnsHandler extends AbstractTableHandler {
 	 */
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final INattableModelManager currentNattableModelManager = this.getCurrentNattableModelManager();
-		currentNattableModelManager.openCreateDestroyColumnsManagerDialog();
+		currentNattableModelManager.openCreateDestroyRowsManagerDialog();
 		return event;
 	}
 
@@ -49,6 +49,6 @@ public class SelectColumnsHandler extends AbstractTableHandler {
 	@Override
 	public void setEnabled(Object evaluationContext) {
 		final INattableModelManager currentNattableModelManager = getCurrentNattableModelManager();
-		setBaseEnabled(currentNattableModelManager.canCreateDestroyColumnsAxis());
+		setBaseEnabled(currentNattableModelManager.canCreateDestroyRowsAxis());
 	}
 }
