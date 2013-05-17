@@ -20,7 +20,7 @@ import org.eclipse.papyrus.sysml.util.SysmlResource;
 /**
  * RequirementDiagramCondition to set conditions for the diagram creation
  */
-public class CustomRequirementDiagramCondition extends PerspectiveContextDependence {
+public class RequirementDiagramCreationCondition extends PerspectiveContextDependence {
 
 	/**
 	 * {@inheritDoc}

@@ -6,6 +6,7 @@
 <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<creationCommand
 		creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
+		creationCondition="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreationCondition"
 		icon="icons/obj16/Diagram_Requirement.gif"
 		id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
 		language="sysml"
@@ -26,7 +27,7 @@
 
 <extension point="org.eclipse.ui.handlers">
 	<handler
-		class="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.CreateRequirementDiagramWithNavigationHandler"
 		commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
@@ -101,7 +102,7 @@
 	<!-- Diagram view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.requirement.provider.RequirementDiagramViewProvider">
 		<Priority name="Low"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Requirement"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="RequirementDiagram"/>
 	</viewProvider>
 	
 	<!-- ViewProvider for inherited elements (from ClassDiagram ViewProvider) -->
@@ -263,7 +264,7 @@
 		<object 
 			id="org.eclipse.papyrus.sysml.diagram.requirement.Diagram"
 			class="org.eclipse.gmf.runtime.notation.Diagram">
-			<method name="getType()" value="Requirement"/>
+			<method name="getType()" value="RequirementDiagram"/>
 		</object>
 		<context views="org.eclipse.papyrus.sysml.diagram.requirement.Diagram"/>	
 	</editpartProvider>
@@ -478,7 +479,7 @@
 	<page
 		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
 		name="Requirement Diagram"
-		category="org.eclipse.papyrus.preferences.diagrams"
+		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
 		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.RequirementDiagramGeneralPreferencePage">
 	</page>
 

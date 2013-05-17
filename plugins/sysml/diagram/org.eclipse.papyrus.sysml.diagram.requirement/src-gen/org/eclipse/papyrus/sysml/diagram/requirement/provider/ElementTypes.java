@@ -22,7 +22,7 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	/** ********************************************************* */
 
 	/** SysML Requirement Diagram :: Diagram */
-	public static final String DIAGRAM_ID = "Requirement"; //$NON-NLS-1$
+	public static final String DIAGRAM_ID = "RequirementDiagram"; //$NON-NLS-1$
 
 	/** ********************************************************* */
 	/** SysML Requirement Diagram - ClassDiagram related elements */

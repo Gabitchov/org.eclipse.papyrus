@@ -15,10 +15,10 @@ package org.eclipse.papyrus.sysml.diagram.requirement;
 
 import org.eclipse.papyrus.infra.gmfdiag.navigation.CreateDiagramWithNavigationHandler;
 
-public class CustomCreateRequirementDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
+public class CreateRequirementDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
 
-	public CustomCreateRequirementDiagramWithNavigationHandler() {
-		super(new RequirementDiagramCreateCommand(), new CustomRequirementDiagramCondition());
+	public CreateRequirementDiagramWithNavigationHandler() {
+		super(new RequirementDiagramCreateCommand(), new RequirementDiagramCreationCondition());
 	}
 
 }
