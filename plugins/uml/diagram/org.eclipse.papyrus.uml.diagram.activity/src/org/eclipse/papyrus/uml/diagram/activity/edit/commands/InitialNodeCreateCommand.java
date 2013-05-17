@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Atos Origin and CEA LIST.
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,8 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *	 Patrick Tessier (CEA LIST)- Modification
+ *   Patrick Tessier (CEA LIST ) - modification
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
 
@@ -21,18 +22,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated NOT
+ * @generated
  */
-public class InitialNodeCreateCommand extends ActivityNodeCreateCommand {
+public class InitialNodeCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -84,19 +86,19 @@ public class InitialNodeCreateCommand extends ActivityNodeCreateCommand {
 	}
 
 	/**
-	 * @generated NOT check that there is a correct model container.
+	 * @generated
 	 */
 	public boolean canExecute() {
-		//check that there is a correct model container
-		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
+		return true;
 	}
 
 	/**
-	 * @generated NOT set appropriate parents
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InitialNode newElement = UMLFactory.eINSTANCE.createInitialNode();
-		initAndExecuteEmfCommand(newElement);
+		Activity owner = (Activity)getElementToEdit();
+		owner.getOwnedNodes().add(newElement);
 		ElementInitializers.getInstance().init_InitialNode_3004(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Atos Origin and CEA LIST
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *   Patrick Tessier (CEA LIST) - modification
+ *   Patrick Tessier (CEA LIST ) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -26,16 +26,15 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.LoopNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated not
+ * @generated
  */
-public class LoopNodeCreateCommand extends ActivityNodeCreateCommand {
+public class LoopNodeCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -87,19 +86,19 @@ public class LoopNodeCreateCommand extends ActivityNodeCreateCommand {
 	}
 
 	/**
-	 * @generated NOT check that there is a correct model container.
+	 * @generated
 	 */
 	public boolean canExecute() {
-		//check that there is a correct model container
-		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
+		return true;
 	}
 
 	/**
-	 * @generated NOT set appropriate parents
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		LoopNode newElement = UMLFactory.eINSTANCE.createLoopNode();
-		initAndExecuteEmfCommand(newElement);
+		Activity owner = (Activity)getElementToEdit();
+		owner.getOwnedGroups().add(newElement);
 		ElementInitializers.getInstance().init_LoopNode_3071(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

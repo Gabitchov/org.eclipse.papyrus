@@ -279,6 +279,12 @@ public class GroupCreationEditPolicy extends CreationEditPolicy {
 		// create the semantic create wrapper command
 		SemanticCreateCommand semanticCommand = new SemanticCreateCommand(requestAdapter, createElementCommand);
 		Command viewCommand = getCreateCommand(request);
+		if(viewCommand == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		if(!viewCommand.canExecute()) {
+			return UnexecutableCommand.INSTANCE;
+		}
 		Command refreshConnectionCommand = getHost().getCommand(new RefreshConnectionsRequest(((List)request.getNewObject())));
 		// form the compound command and return
 		CompositeCommand cc = new CompositeCommand(semanticCommand.getLabel());

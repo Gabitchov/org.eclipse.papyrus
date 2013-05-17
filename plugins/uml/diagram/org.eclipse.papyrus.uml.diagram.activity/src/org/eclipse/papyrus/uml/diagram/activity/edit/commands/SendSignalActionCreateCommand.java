@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Atos Origin and CEA LIST
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *   Patrick Tessier (CEA LIST) - modification
+ *   Patrick Tessier (CEA LIST ) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -26,20 +26,15 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.CreateCommandUtil;
-import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.CreateSendSignalActionDialog;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.SendSignalAction;
-import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated not
+ * @generated
  */
-public class SendSignalActionCreateCommand extends ActivityNodeCreateCommand {
+public class SendSignalActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -91,44 +86,20 @@ public class SendSignalActionCreateCommand extends ActivityNodeCreateCommand {
 	}
 
 	/**
-	 * @generated NOT check that there is a correct model container.
+	 * @generated
 	 */
 	public boolean canExecute() {
-		//check that there is a correct model container
-		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
+		return true;
 	}
 
 	/**
-	 * @generated NOT use the initialization popup, set appropriate parents
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// get the activity containing the new element
-		Activity parentActivity = null;
-		EObject parent = getElementToEdit();
-		while(parent != null && parentActivity == null) {
-			if(parent instanceof Activity) {
-				parentActivity = (Activity)parent;
-			}
-			parent = parent.eContainer();
-		}
 		SendSignalAction newElement = UMLFactory.eINSTANCE.createSendSignalAction();
-		CreateSendSignalActionDialog dialog = new CreateSendSignalActionDialog(Display.getDefault().getActiveShell(), parentActivity, newElement);
-		if(IDialogConstants.OK_ID == dialog.open()) {
-			// initialize the invoked element (no need to use a command, since action is being created)
-			EObject signal = dialog.getSelectedInvoked();
-			if(signal instanceof Signal) {
-				newElement.setSignal((Signal)signal);
-				// initialize the action name with the signal
-				newElement.setName("Send".concat(((Signal)signal).getName()));
-			}
-		} else {
-			return CommandResult.newCancelledCommandResult();
-		}
-		initAndExecuteEmfCommand(newElement);
-		if(newElement.getName() == null || newElement.getName().length() == 0) {
-			// initialize name if it is not yet 
-			ElementInitializers.getInstance().init_SendSignalAction_3052(newElement);
-		}
+		Activity owner = (Activity)getElementToEdit();
+		owner.getOwnedNodes().add(newElement);
+		ElementInitializers.getInstance().init_SendSignalAction_3052(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

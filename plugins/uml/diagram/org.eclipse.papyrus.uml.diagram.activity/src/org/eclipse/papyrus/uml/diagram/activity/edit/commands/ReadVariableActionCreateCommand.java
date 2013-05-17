@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Atos Origin and CEA LIST
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *   Patrick Tessier (CEA LIST) - modification
+ *   Patrick Tessier (CEA LIST ) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -32,9 +32,9 @@ import org.eclipse.uml2.uml.ReadVariableAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated not
+ * @generated
  */
-public class ReadVariableActionCreateCommand extends ActivityNodeCreateCommand {
+public class ReadVariableActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -93,11 +93,12 @@ public class ReadVariableActionCreateCommand extends ActivityNodeCreateCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ReadVariableAction newElement = UMLFactory.eINSTANCE.createReadVariableAction();
-		initAndExecuteEmfCommand(newElement);
+		Activity owner = (Activity)getElementToEdit();
+		owner.getOwnedNodes().add(newElement);
 		ElementInitializers.getInstance().init_ReadVariableAction_3097(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

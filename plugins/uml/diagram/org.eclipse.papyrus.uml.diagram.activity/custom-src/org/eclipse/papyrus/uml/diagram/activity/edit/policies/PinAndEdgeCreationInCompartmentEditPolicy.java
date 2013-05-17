@@ -22,12 +22,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
 /**
  * Aim to redirect pin and edge creation to parent element
  * WARNING : NOT WORKING FOR NOW
  */
-public abstract class PinAndEdgeCreationInCompartmentEditPolicy extends CreationEditPolicy {
+public abstract class PinAndEdgeCreationInCompartmentEditPolicy extends PapyrusCreationEditPolicy {
 
 	@Override
 	public EditPart getTargetEditPart(Request request) {

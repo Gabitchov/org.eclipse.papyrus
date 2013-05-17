@@ -30,10 +30,7 @@ import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand;
 import org.eclipse.swt.widgets.Display;
 
-
 public abstract class AbstractTestActivityChildNode extends TestChildNode {
-
-	private Command createContainercommand;
 
 	/**
 	 * {@inheritDoc}
@@ -61,56 +58,59 @@ public abstract class AbstractTestActivityChildNode extends TestChildNode {
 	@Override
 	public void testChangeContainer(IElementType type, IElementType containerType) {
 		//CHANGE CONTAINER
-		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, getContainerEditPart().getChildren().size() == 1);
-		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 1);
+				assertEquals(CHANGE_CONTAINER + INITIALIZATION_TEST, 1, getContainerEditPart().getChildren().size());
+				assertEquals(CHANGE_CONTAINER + INITIALIZATION_TEST, 1, getRootSemanticModel().getOwnedElements().size());
 
+				final Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(containerType, getContainerEditPart().getDiagramPreferencesHint());
+				
+				command = null;
+				Display.getDefault().syncExec( new Runnable() {
+					
+					public void run() {
+						command = getContainerEditPart().getCommand(requestcreation);
+					}
+				});
+				assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
+				assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+				assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
+				executeOnUIThread(command);
+				assertEquals(CONTAINER_CREATION + TEST_THE_EXECUTION, 2, getRootView().getChildren().size());
+				GraphicalEditPart containerEditPart = (GraphicalEditPart)getContainerEditPart().getChildren().get(1);
+				ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_ADD);
+				changeBoundsRequest.setEditParts((EditPart)getContainerEditPart().getChildren().get(0));
+				changeBoundsRequest.setLocation(new Point(30, 30));
+				ShapeCompartmentEditPart compartment = null;
+				int index = 0;
+				while(compartment == null && index < containerEditPart.getChildren().size()) {
+					if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
+						compartment = (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
+					}
+					index++;
+				}
+				assertTrue("Container not found", compartment != null);
 
-		final Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(containerType, getContainerEditPart().getDiagramPreferencesHint());
-		
-		createContainercommand = null;
-		Display.getDefault().syncExec( new Runnable() {
-			
-			public void run() {
-				createContainercommand = getContainerEditPart().getCommand(requestcreation);
-			}
-		});
-		assertNotNull(CONTAINER_CREATION + COMMAND_NULL, createContainercommand);
-		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, createContainercommand != UnexecutableCommand.INSTANCE);
-		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, createContainercommand.canExecute() == true);
-		executeOnUIThread(createContainercommand);
-		assertTrue(CONTAINER_CREATION + TEST_THE_EXECUTION, getRootView().getChildren().size() == 2);
-		GraphicalEditPart containerEditPart = (GraphicalEditPart)getContainerEditPart().getChildren().get(1);
-		ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_ADD);
-		changeBoundsRequest.setEditParts((EditPart)getContainerEditPart().getChildren().get(0));
-		changeBoundsRequest.setLocation(new Point(30, 30));
-		ShapeCompartmentEditPart compartment = null;
-		int index = 0;
-		while(compartment == null && index < containerEditPart.getChildren().size()) {
-			if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
-				compartment = (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
-			}
-			index++;
-		}
-		assertTrue("Container not found", compartment != null);
+				command = compartment.getCommand(changeBoundsRequest);
+				assertNotNull(CHANGE_CONTAINER, command);
+				assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+				assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 
+				// execute change container
+				executeOnUIThread(command);
+				assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 1, getRootView().getChildren().size());
+				assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 1, getRootSemanticModel().getOwnedElements().size());
+				assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 1, compartment.getChildren().size());
 
-		Command command = compartment.getCommand(changeBoundsRequest);
-		assertNotNull(CHANGE_CONTAINER, command);
-		assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
-		executeOnUIThread(command);
-		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, getRootView().getChildren().size() == 1);
-		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 1);
-		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, compartment.getChildren().size() == 1);
-		undoOnUIThread();
-		assertTrue(CHANGE_CONTAINER + TEST_THE_UNDO, getRootView().getChildren().size() == 2);
-		assertTrue(CHANGE_CONTAINER + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 2);
-		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, compartment.getChildren().size() == 0);
-		redoOnUIThread();
-		assertTrue(CHANGE_CONTAINER + TEST_THE_REDO, getRootView().getChildren().size() == 1);
-		//Here there is a problem for activity diagram it is not clear 
-		//assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==1);
-		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, compartment.getChildren().size() == 1);
+				// undo change container
+				undoOnUIThread();
+				assertEquals(CHANGE_CONTAINER + TEST_THE_UNDO, 2, getRootView().getChildren().size());
+				assertEquals(CHANGE_CONTAINER + TEST_THE_UNDO, 2, getRootSemanticModel().getOwnedElements().size());
+				assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 0, compartment.getChildren().size());
+
+				// redo change container
+				redoOnUIThread();
+				assertEquals(CHANGE_CONTAINER + TEST_THE_REDO, 1, getRootView().getChildren().size());
+				// assertEquals(CHANGE_CONTAINER + TEST_THE_REDO, 1, getRootSemanticModel().getOwnedElements().size());
+				assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 1, compartment.getChildren().size());
 	}
 
 }

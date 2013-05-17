@@ -244,13 +244,14 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 */
 	@Test
 	public void testToManageAddVariableValueAction() {
-		testToManageNode(UMLElementTypes.AddVariableValueAction_3099, UMLPackage.eINSTANCE.getAddVariableValueAction(), UMLElementTypes.Activity_3083, true);
+		testToManageNode(UMLElementTypes.AddVariableValueAction_3099, UMLPackage.eINSTANCE.getAddVariableValueAction(), UMLElementTypes.StructuredActivityNode_3065, true);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected CreateViewRequest createViewRequestShapeContainer() {
+		// no container, it should be created on the main activity, not the diagram edit part
 		return null;
 	}
 

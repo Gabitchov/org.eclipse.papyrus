@@ -49,8 +49,8 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 	private boolean testSemantic;
 
 	/** command computed on the ui thread */
-	private Command command;
-
+	protected Command command;
+	
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#setUp()
 	 * 
@@ -261,15 +261,22 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 	public void testChangeContainer(IElementType type, IElementType containerType) {
 		//CHANGE CONTAINER
 		assertEquals(CHANGE_CONTAINER + INITIALIZATION_TEST, 1, getContainerEditPart().getChildren().size());
-		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 1);
+		assertEquals(CHANGE_CONTAINER + INITIALIZATION_TEST, 1, getRootSemanticModel().getOwnedElements().size());
 
-		Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(containerType, getContainerEditPart().getDiagramPreferencesHint());
-		Command command = getContainerEditPart().getCommand(requestcreation);
+		final Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(containerType, getContainerEditPart().getDiagramPreferencesHint());
+		
+		command = null;
+		Display.getDefault().syncExec( new Runnable() {
+			
+			public void run() {
+				command = getContainerEditPart().getCommand(requestcreation);
+			}
+		});
 		assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		executeOnUIThread(command);
-		assertTrue(CONTAINER_CREATION + TEST_THE_EXECUTION, getRootView().getChildren().size() == 2);
+		assertEquals(CONTAINER_CREATION + TEST_THE_EXECUTION, 2, getRootView().getChildren().size());
 		GraphicalEditPart containerEditPart = (GraphicalEditPart)getContainerEditPart().getChildren().get(1);
 		ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_ADD);
 		changeBoundsRequest.setEditParts((EditPart)getContainerEditPart().getChildren().get(0));

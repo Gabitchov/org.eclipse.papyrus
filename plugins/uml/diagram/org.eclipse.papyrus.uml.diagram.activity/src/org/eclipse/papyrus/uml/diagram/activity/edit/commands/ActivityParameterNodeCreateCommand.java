@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Atos Origin and CEA LIST
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,9 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *  Patrick Tessier (CEA LIST)           - Modification
- * 
+ *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST ) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -27,19 +26,15 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.CreateActivityParameterNodeDialog;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityParameterNode;
-import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated Not
+ * @generated
  */
-public class ActivityParameterNodeCreateCommand extends ActivityNodeCreateCommand {
+public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -98,29 +93,13 @@ public class ActivityParameterNodeCreateCommand extends ActivityNodeCreateComman
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ActivityParameterNode newElement = UMLFactory.eINSTANCE.createActivityParameterNode();
 		Activity owner = (Activity)getElementToEdit();
-		CreateActivityParameterNodeDialog dialog = new CreateActivityParameterNodeDialog(Display.getDefault().getActiveShell(), owner);
-		if(IDialogConstants.OK_ID == dialog.open()) {
-			// initialize the invoked element (no need to use a command, since action is being created)
-			EObject parameter = dialog.getSelectedInvoked();
-			if(parameter instanceof Parameter) {
-				newElement.setParameter((Parameter)parameter);
-				// initialize the parameter node name
-				newElement.setName(((Parameter)parameter).getName());
-			}
-		} else {
-			return CommandResult.newCancelledCommandResult();
-		}
-		newElement.setIsControlType(true);
-		initAndExecuteEmfCommand(newElement);
-		if(newElement.getName() == null || newElement.getName().length() == 0) {
-			// initialize name if it is not yet 
-			ElementInitializers.getInstance().init_ActivityParameterNode_3059(newElement);
-		}
+		owner.getOwnedNodes().add(newElement);
+		ElementInitializers.getInstance().init_ActivityParameterNode_3059(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin and CEA LIST
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *   Patrick Tessier (CEA LIST) - modiciation
+ *   Patrick Tessier (CEA LIST ) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -31,9 +31,9 @@ import org.eclipse.uml2.uml.InterruptibleActivityRegion;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated not
+ * @generated
  */
-public class InterruptibleActivityRegionCreateCommand extends ActivityNodeCreateCommand {
+public class InterruptibleActivityRegionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -92,11 +92,12 @@ public class InterruptibleActivityRegionCreateCommand extends ActivityNodeCreate
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InterruptibleActivityRegion newElement = UMLFactory.eINSTANCE.createInterruptibleActivityRegion();
-		initAndExecuteEmfCommand(newElement);
+		Activity owner = (Activity)getElementToEdit();
+		owner.getOwnedGroups().add(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Atos Origin and CEA LIST
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -22,17 +22,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.CentralBufferNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated NOT
+ * @generated
  */
-public class CentralBufferNodeCreateCommand extends ActivityNodeCreateCommand {
+public class CentralBufferNodeCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -91,11 +93,12 @@ public class CentralBufferNodeCreateCommand extends ActivityNodeCreateCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		CentralBufferNode newElement = UMLFactory.eINSTANCE.createCentralBufferNode();
-		initAndExecuteEmfCommand(newElement);
+		Activity owner = (Activity)getElementToEdit();
+		owner.getOwnedNodes().add(newElement);
 		ElementInitializers.getInstance().init_CentralBufferNode_3104(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

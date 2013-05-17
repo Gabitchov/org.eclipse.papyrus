@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -47,11 +46,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.CommentLinkCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.UMLBaseEditHelper;
@@ -180,14 +177,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		if(request instanceof ReorientRelationshipRequest) {
 			return editPolicyCommand;
 		}
-		
 		// check the command for constraint/comment links
 		if(request instanceof CreateRelationshipRequest) {
 			CreateRelationshipRequest createRelationshipRequest = ((CreateRelationshipRequest)request);
 			IElementType type = createRelationshipRequest.getElementType();
 			EObject source = createRelationshipRequest.getSource();
 			EObject target = createRelationshipRequest.getTarget();
-			if(source !=null && target !=null) {
+			if(source != null && target != null) {
 				if(UMLElementTypes.CommentAnnotatedElement_4006 == type) {
 					return getGEFWrapper(new CommentLinkCreateCommand(createRelationshipRequest, source, target));
 				}
@@ -195,7 +191,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(createRelationshipRequest, source, target));
 				}
 			}
-			
 			// disable default abstract edit helper system, where identity command is returned when source is not null and target is not
 			if(target == null && source != null) {
 				if(UMLElementTypes.CommentAnnotatedElement_4006 != type && UMLElementTypes.ConstraintConstrainedElement_4007 != type) {
@@ -203,22 +198,23 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 			}
 		}
-		
 		// generated code
 		if(editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
-		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, requestContextElementType);
-		ICommand command = requestContextElementType.getEditCommand(request);
-		request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, null);
-		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
-		if(command != null) {
-			if(!(command instanceof CompositeTransactionalCommand)) {
-				command = new CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);
+		if(requestContextElementType != null) {
+			request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, requestContextElementType);
+			ICommand command = requestContextElementType.getEditCommand(request);
+			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, null);
+			request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
+			if(command != null) {
+				if(!(command instanceof CompositeTransactionalCommand)) {
+					command = new CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);
+				}
+				return new ICommandProxy(command);
 			}
-			return new ICommandProxy(command);
 		}
 		return editPolicyCommand;
 	}
@@ -292,10 +288,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(req.getElementType()==null) {
-			return UnexecutableCommand.INSTANCE;
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart)getHost()).resolveSemanticElement());
+		if(req.getElementType() != null) {
+			commandService = ElementEditServiceUtils.getCommandProvider(req.getElementType());
 		}
-		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(req.getElementType());
 		if(commandService == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -429,20 +425,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
-		if(commandService == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-
-		// Add new graphical end in request parameters
-		View newView = (View)getHost().getModel();
-		req.setParameter(RequestParameterConstants.EDGE_REORIENT_REQUEST_END_VIEW, newView);
-
-		ICommand semanticCommand = commandService.getEditCommand(req);
-
-		if((semanticCommand != null) && (semanticCommand.canExecute())) {
-			return getGEFWrapper(semanticCommand);
-		}
 		return UnexecutableCommand.INSTANCE;
 	}
 

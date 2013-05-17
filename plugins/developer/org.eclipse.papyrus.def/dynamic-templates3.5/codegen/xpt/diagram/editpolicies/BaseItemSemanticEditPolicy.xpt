@@ -218,7 +218,26 @@ protected org.eclipse.gef.commands.Command getConfigureCommand(org.eclipse.gmf.r
 «DEFINE getCreateRelationshipCommand FOR gmfgen::GenDiagram-»
 «EXPAND xpt::Common::generatedMemberComment»
 protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest req) {
+	«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()<1-»
 	return null;
+	«ENDIF»
+	«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0-»
+	org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)getHost()).resolveSemanticElement());
+	if(req.getElementType() != null) {
+		commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getElementType());
+	}
+
+	if(commandService == null) {
+		return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+	}
+
+	org.eclipse.gmf.runtime.common.core.command.ICommand semanticCommand = commandService.getEditCommand(req);
+
+	if((semanticCommand != null) && (semanticCommand.canExecute())) {
+		return getGEFWrapper(semanticCommand);
+	} 
+	return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+	«ENDIF»
 }
 «ENDDEFINE»
 «DEFINE getCreateCommand FOR gmfgen::GenDiagram-»
@@ -561,6 +580,19 @@ if (target != null && («EXPAND featureBoundsConditionClause('target', getTarget
 «REM»
 	Generate generic method if using semantic creation command based on element types framework.
 «ENDREM»
+«DEFINE getCreateSemanticServiceEditCommand FOR gmfgen::GenDiagram-»
+«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.common.core.command.ICommand getSemanticCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
+		if(commandService == null) {
+			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+		}
+		return commandService.getEditCommand(req);
+	}
+«ENDIF-»	
+«ENDDEFINE»
+
 «DEFINE getCreateSemanticServiceEditCommand FOR gmfgen::GenDiagram-»
 «IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0-»
 	«EXPAND xpt::Common::generatedMemberComment»

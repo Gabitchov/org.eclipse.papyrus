@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST ) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -24,12 +25,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.CreatePinsForObjectFlowDialog;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ObjectFlow;
@@ -41,14 +38,14 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class ObjectFlowCreateCommand extends EditElementCommand {
 
 	/**
-	 * @generated NOT removed the final to allow pin creation
+	 * @generated
 	 */
-	private EObject source;
+	protected final EObject source;
 
 	/**
-	 * @generated NOT removed the final to allow pin creation
+	 * @generated
 	 */
-	private EObject target;
+	protected final EObject target;
 
 	/**
 	 * @generated
@@ -89,22 +86,11 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT handling addition of pins when creating an object flow on actions
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
-		}
-		// arrange source and target to add pins if there is an opaque action
-		if(CustomObjectFlowEditHelper.insertPinForStartingNewObjectFlow(getSource()) || CustomObjectFlowEditHelper.insertPinForEndingNewObjectFlow(getTarget())) {
-			CreatePinsForObjectFlowDialog dialog = new CreatePinsForObjectFlowDialog(Display.getDefault().getActiveShell(), getSource(), getTarget());
-			if(IDialogConstants.OK_ID == dialog.open()) {
-				// replace adequate source and target
-				source = dialog.getSource();
-				target = dialog.getTarget();
-			} else {
-				return CommandResult.newCancelledCommandResult();
-			}
 		}
 		ObjectFlow newElement = UMLFactory.eINSTANCE.createObjectFlow();
 		getContainer().getEdges().add(newElement);

@@ -23,7 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 // child nodes
 TestActivityDiagramChildNode.class, 
-TestActivityDiagramChildWithOtherCreationNode.class, 
+// TestActivityDiagramChildWithOtherCreationNode.class, 
 TestActivityChildNodeInStructuredActivity.class
 })
 public class AllCanonicalTests {

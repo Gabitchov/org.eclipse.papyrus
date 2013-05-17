@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Atos Origin ant  CEA LIST.
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,12 +9,10 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *   Patrick Tessier (CEA LIST) - modification
+ *   Patrick Tessier (CEA LIST ) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
-
-import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -24,26 +22,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.CreateCommandUtil;
-import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.CreateCallOperationActionDialog;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IFeatureSetterAspectAction.IFeatureSetterAspectActionUtil;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.CallOperationAction;
-import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * @generated NOT
+ * @generated
  */
-public class CallOperationActionCreateCommand extends ActivityNodeCreateCommand {
+public class CallOperationActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -95,55 +86,23 @@ public class CallOperationActionCreateCommand extends ActivityNodeCreateCommand 
 	}
 
 	/**
-	 * @generated NOT check that there is a correct model container.
+	 * @generated
 	 */
 	public boolean canExecute() {
-		//check that there is a correct model container
-		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
+		return true;
 	}
 
 	/**
-	 * @generated NOT use the initialization popup, set appropriate parents
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// get the activity containing the new element
-		Activity parentActivity = null;
-		EObject parent = getElementToEdit();
-		while(parent != null && parentActivity == null) {
-			if(parent instanceof Activity) {
-				parentActivity = (Activity)parent;
-			}
-			parent = parent.eContainer();
-		}
 		CallOperationAction newElement = UMLFactory.eINSTANCE.createCallOperationAction();
-		if(isOperationAlreadyManaged()) {
-			CreateCallOperationActionDialog dialog = new CreateCallOperationActionDialog(Display.getDefault().getActiveShell(), parentActivity, newElement);
-			getRequest();
-			if(IDialogConstants.OK_ID == dialog.open()) {
-				// initialize the invoked element (no need to use a command, since action is being created)
-				EObject operation = dialog.getSelectedInvoked();
-				if(operation instanceof Operation) {
-					newElement.setOperation((Operation)operation);
-				}
-				// initialize synchronous
-				newElement.setIsSynchronous(dialog.getIsSynchronous());
-			} else {
-				return CommandResult.newCancelledCommandResult();
-			}
-		}
-		initAndExecuteEmfCommand(newElement);
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		Activity owner = (Activity)getElementToEdit();
+		owner.getOwnedNodes().add(newElement);
 		ElementInitializers.getInstance().init_CallOperationAction_3010(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-	}
-
-	private boolean isOperationAlreadyManaged() {
-		IEditCommandRequest aRequest = getRequest();
-		Map map = aRequest.getParameters();
-		return !IFeatureSetterAspectActionUtil.areFeaturesManaged(getRequest(), UMLPackage.Literals.CALL_OPERATION_ACTION__OPERATION);
 	}
 
 	/**

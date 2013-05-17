@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST ) - modification
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;

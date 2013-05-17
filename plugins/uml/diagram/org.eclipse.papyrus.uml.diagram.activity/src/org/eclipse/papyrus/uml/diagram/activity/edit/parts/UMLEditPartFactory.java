@@ -22,7 +22,6 @@ import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
 import org.eclipse.gmf.tooling.runtime.directedit.locator.LabelCellEditorLocator;
 import org.eclipse.gmf.tooling.runtime.directedit.locator.TextCellEditorLocator;
 import org.eclipse.jface.viewers.CellEditor;

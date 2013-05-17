@@ -158,7 +158,11 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 «ENDIF-»
 			}
 		}
+		«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0-»
+		return «EXPAND xpt::editor::VisualIDRegistry::canCreateNodeMethodCall»(op.getContainerView(), visualID);
+		«ELSE-»
 		return «FOREACH getAllNodes() AS n SEPARATOR '||'»«EXPAND xpt::editor::VisualIDRegistry::visualID FOR n» == visualID«ENDFOREACH»;
+		«ENDIF»
 	}
 
 	«EXPAND xpt::Common::generatedMemberComment»«REM»XXX: unlike createNode, we don't check op.containerView() for null here. On purpose?«ENDREM»

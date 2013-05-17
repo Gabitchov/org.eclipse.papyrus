@@ -13,6 +13,7 @@
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
 «EXTENSION xpt::diagram::editpolicies::Utils»
 
 «REM»
@@ -51,6 +52,7 @@
 
 «DEFINE createLinkCommands FOR gmfgen::GenLinkEnd-»
 
+«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()<1»
 «EXPAND xpt::Common::generatedMemberComment»
 protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(
 		org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest req) {
@@ -58,6 +60,7 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(
 			getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 	return command != null ? command : super.getCreateRelationshipCommand(req);
 }
+«ENDIF»
 
 «EXPAND xpt::Common::generatedMemberComment»
 protected org.eclipse.gef.commands.Command getStartCreateRelationshipCommand(

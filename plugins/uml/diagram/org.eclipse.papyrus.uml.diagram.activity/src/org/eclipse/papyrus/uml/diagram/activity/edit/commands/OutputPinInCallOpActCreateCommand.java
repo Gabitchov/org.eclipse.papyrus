@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST ) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -92,7 +93,7 @@ public class OutputPinInCallOpActCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT do not set new element which may change after validation
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		OutputPin newElement = UMLFactory.eINSTANCE.createOutputPin();
@@ -100,9 +101,8 @@ public class OutputPinInCallOpActCreateCommand extends EditElementCommand {
 		owner.getResults().add(newElement);
 		ElementInitializers.getInstance().init_OutputPin_3024(newElement);
 		doConfigure(newElement, monitor, info);
-		// do not set new element which may change after validation
-		//((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult();//newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
