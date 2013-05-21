@@ -32,6 +32,7 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.CheckBoxCellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ComboBoxCellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
+import org.eclipse.nebula.widgets.nattable.edit.editor.MultiLineTextCellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.TextCellEditor;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ComboBoxPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
@@ -97,6 +98,8 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 		ICellEditor editor = null;
 		switch(editorKind) {
 		case SINGLE_STRING:
+			editor = new MultiLineTextCellEditor(true);
+			break;
 		case SINGLE_INTEGER:
 			editor = new TextCellEditor();
 			break;
@@ -208,7 +211,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 			cellPainter = new ComboBoxPainter();
 			break;
 		default:
-			cellPainter = new TextPainter();
+			cellPainter = new TextPainter();//FIXME : seems overriden by the CustomizedCellPainter... -> the result is correct, but our code is maybe incorrect
 			break;
 		}
 		return cellPainter;
