@@ -12,6 +12,7 @@
  /*****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
@@ -70,6 +71,12 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 				if(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
 					createdEdge = createConstraintConstrainedElement_4014(containerView, index, persisted, preferencesHint);
 				}
+				if(ElementTypes.REALIZATION.getSemanticHint().equals(domainElementGraphicalType)) {
+					createdEdge = createRealization_4005(domainElement, containerView, index, persisted, preferencesHint);
+				}
+				if(ElementTypes.PACKAGE_IMPORT.getSemanticHint().equals(domainElementGraphicalType)) {
+					createdEdge = createPackageImport_4010(domainElement, containerView, index, persisted, preferencesHint);
+				}
 			}
 		}
 
@@ -123,6 +130,12 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 			return true;
 		}
 		if(elementType == ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT) {
+			return true;
+		}
+		if(elementType == ElementTypes.REALIZATION) {
+			return true;
+		}
+		if(elementType == ElementTypes.PACKAGE_IMPORT) {
 			return true;
 		}
 
@@ -189,9 +202,9 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 			}
 		}
 		if(elementType == ElementTypes.CLASS_CN) {
-			// node: org.eclipse.gmf.codegen.gmfgen.impl.GenChildNodeImpl@60215074 (visualID: 3010, editPartClassName: ClassEditPartCN, itemSemanticEditPolicyClassName: ClassItemSemanticEditPolicyCN, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: ClassCanonicalEditPolicyCN) (primaryDragEditPolicyQualifiedClassName: null, graphicalNodeEditPolicyClassName: ClassGraphicalNodeEditPolicyCN, createCommandClassName: ClassCreateCommandCN)
-			// containers: org.eclipse.gmf.codegen.gmfgen.impl.GenCompartmentImpl@57c5b15d (visualID: 7010, editPartClassName: PackagePackageableElementCompartmentEditPartCN, itemSemanticEditPolicyClassName: PackagePackageableElementCompartmentItemSemanticEditPolicyCN, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: PackagePackageableElementCompartmentCanonicalEditPolicyCN) (title: PackageableElementCompartment, canCollapse: false, hideIfEmpty: true, needsTitle: true, listLayout: false)org.eclipse.gmf.codegen.gmfgen.impl.GenCompartmentImpl@7e5004f1 (visualID: 7009, editPartClassName: ModelPackageableElementCompartmentEditPartTN, itemSemanticEditPolicyClassName: ModelPackageableElementCompartmentItemSemanticEditPolicyTN, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: ModelPackageableElementCompartmentCanonicalEditPolicyTN) (title: PackageableElementCompartment, canCollapse: false, hideIfEmpty: true, needsTitle: true, listLayout: false)org.eclipse.gmf.codegen.gmfgen.impl.GenCompartmentImpl@3774ab00 (visualID: 7030, editPartClassName: ModelPackageableElementCompartmentEditPartCN, itemSemanticEditPolicyClassName: ModelPackageableElementCompartmentItemSemanticEditPolicyCN, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: ModelPackageableElementCompartmentCanonicalEditPolicyCN) (title: PackageableElementCompartment, canCollapse: false, hideIfEmpty: true, needsTitle: true, listLayout: false)org.eclipse.gmf.codegen.gmfgen.impl.GenCompartmentImpl@f0f45e2 (visualID: 7016, editPartClassName: PackagePackageableElementCompartmentEditPart, itemSemanticEditPolicyClassName: PackagePackageableElementCompartmentItemSemanticEditPolicy, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: PackagePackageableElementCompartmentCanonicalEditPolicy) (title: PackageableElementCompartment, canCollapse: false, hideIfEmpty: true, needsTitle: true, listLayout: false)
-			// nodeRef: org.eclipse.papyrus.generation.diagram.idgen.impl.GenNodeRefImpl@70bdde19 (name: null) (customPreferencePage: null, generatePreferencePage: false, generateTool: false)
+			// node: org.eclipse.gmf.codegen.gmfgen.impl.GenChildNodeImpl@49e8801d (visualID: 3010, editPartClassName: ClassEditPartCN, itemSemanticEditPolicyClassName: ClassItemSemanticEditPolicyCN, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: ClassCanonicalEditPolicyCN) (primaryDragEditPolicyQualifiedClassName: null, graphicalNodeEditPolicyClassName: ClassGraphicalNodeEditPolicyCN, createCommandClassName: ClassCreateCommandCN)
+			// containers: org.eclipse.gmf.codegen.gmfgen.impl.GenCompartmentImpl@7615ece4 (visualID: 7010, editPartClassName: PackagePackageableElementCompartmentEditPartCN, itemSemanticEditPolicyClassName: PackagePackageableElementCompartmentItemSemanticEditPolicyCN, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: PackagePackageableElementCompartmentCanonicalEditPolicyCN) (title: PackageableElementCompartment, canCollapse: false, hideIfEmpty: true, needsTitle: true, listLayout: false)org.eclipse.gmf.codegen.gmfgen.impl.GenCompartmentImpl@49766b48 (visualID: 7009, editPartClassName: ModelPackageableElementCompartmentEditPartTN, itemSemanticEditPolicyClassName: ModelPackageableElementCompartmentItemSemanticEditPolicyTN, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: ModelPackageableElementCompartmentCanonicalEditPolicyTN) (title: PackageableElementCompartment, canCollapse: false, hideIfEmpty: true, needsTitle: true, listLayout: false)org.eclipse.gmf.codegen.gmfgen.impl.GenCompartmentImpl@7d7d69a5 (visualID: 7030, editPartClassName: ModelPackageableElementCompartmentEditPartCN, itemSemanticEditPolicyClassName: ModelPackageableElementCompartmentItemSemanticEditPolicyCN, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: ModelPackageableElementCompartmentCanonicalEditPolicyCN) (title: PackageableElementCompartment, canCollapse: false, hideIfEmpty: true, needsTitle: true, listLayout: false)org.eclipse.gmf.codegen.gmfgen.impl.GenCompartmentImpl@45f05c4d (visualID: 7016, editPartClassName: PackagePackageableElementCompartmentEditPart, itemSemanticEditPolicyClassName: PackagePackageableElementCompartmentItemSemanticEditPolicy, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: PackagePackageableElementCompartmentCanonicalEditPolicy) (title: PackageableElementCompartment, canCollapse: false, hideIfEmpty: true, needsTitle: true, listLayout: false)
+			// nodeRef: org.eclipse.papyrus.generation.diagram.idgen.impl.GenNodeRefImpl@42242af9 (name: null) (customPreferencePage: null, generatePreferencePage: false, generateTool: false)
 			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerGraphicalType)) {
 				return true;
 			}
@@ -205,7 +218,7 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 			}
 		}
 		if(elementType == ElementTypes.CONTAINMENT_CIRCLE_CN) {
-			// node: org.eclipse.gmf.codegen.gmfgen.impl.GenChildSideAffixedNodeImpl@6585f639 (visualID: 3032, editPartClassName: ContainmentCircleEditPart, itemSemanticEditPolicyClassName: ContainmentCircleItemSemanticEditPolicy, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: ContainmentCircleCanonicalEditPolicy) (primaryDragEditPolicyQualifiedClassName: null, graphicalNodeEditPolicyClassName: ContainmentCircleGraphicalNodeEditPolicy, createCommandClassName: ContainmentCircleCreateCommand) (preferredSideName: NORTH)
+            // node: org.eclipse.gmf.codegen.gmfgen.impl.GenChildSideAffixedNodeImpl@6585f639 (visualID: 3032, editPartClassName: ContainmentCircleEditPart, itemSemanticEditPolicyClassName: ContainmentCircleItemSemanticEditPolicy, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: ContainmentCircleCanonicalEditPolicy) (primaryDragEditPolicyQualifiedClassName: null, graphicalNodeEditPolicyClassName: ContainmentCircleGraphicalNodeEditPolicy, createCommandClassName: ContainmentCircleCreateCommand) (preferredSideName: NORTH)
 			// containers: org.eclipse.gmf.codegen.gmfgen.impl.GenTopLevelNodeImpl@a94a7a8 (visualID: 2008, editPartClassName: ClassEditPart, itemSemanticEditPolicyClassName: ClassItemSemanticEditPolicy, notationViewFactoryClassName: null) (canonicalEditPolicyClassName: ClassCanonicalEditPolicy) (primaryDragEditPolicyQualifiedClassName: null, graphicalNodeEditPolicyClassName: ClassGraphicalNodeEditPolicy, createCommandClassName: ClassCreateCommand)
 			// nodeRef: org.eclipse.papyrus.generation.diagram.idgen.impl.GenNodeRefImpl@6eca2ca5 (name: ) (customPreferencePage: null, generatePreferencePage: false, generateTool: false)
 			if(ElementTypes.CLASS.getSemanticHint().equals(containerGraphicalType)) {

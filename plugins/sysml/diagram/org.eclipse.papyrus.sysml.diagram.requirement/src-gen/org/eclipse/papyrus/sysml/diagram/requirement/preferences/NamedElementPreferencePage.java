@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ * CEA LIST- Initial API and implementation
+ * Nizar GUEDIDI (CEA LIST)- modification
+ *
+ ****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -20,6 +22,7 @@ public class NamedElementPreferencePage extends RequirementDiagramNodePreference
 
 	/** Constant key to access preferences */
 	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_DefaultNamedElement"; //$NON-NLS-1$
+
 
 	/** Default constructor */
 	public NamedElementPreferencePage() {
@@ -40,5 +43,6 @@ public class NamedElementPreferencePage extends RequirementDiagramNodePreference
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 100);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 50);
 	}
+
 
 }

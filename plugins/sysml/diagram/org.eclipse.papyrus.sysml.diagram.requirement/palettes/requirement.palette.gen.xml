@@ -10,9 +10,7 @@
 			<aspectTool description="Create a new Constraint" id="requirement.tool.constraint"
 				name="Constraint" refToolId="clazz.tool.constraint">
 			</aspectTool>
-			<aspectTool description="Create a new NamedElement" id="requirement.tool.namedelement"
-				name="NamedElement" refToolId=>
-			</aspectTool>
+			
 			<aspectTool description="Create a new Package" id="requirement.tool.package"
 				name="Package" refToolId="clazz.tool.package">
 			</aspectTool>
@@ -52,7 +50,14 @@
 			<aspectTool description="Create a new Dependency" id="requirement.tool.dependency"
 				name="Dependency" refToolId="clazz.tool.dependency">
 			</aspectTool>
+			<aspectTool description="Create a new PackageImport" id="requirement.tool.packageimport"
+				name="PackageImport" refToolId="clazz.tool.packageimport">
+			</aspectTool>
+			<aspectTool description="Create a new Realization" id="requirement.tool.realization"
+				name="Realization" refToolId="clazz.tool.realization">
+			</aspectTool>
 						
 		</drawer>
 	</content>
 </paletteDefinition>
+

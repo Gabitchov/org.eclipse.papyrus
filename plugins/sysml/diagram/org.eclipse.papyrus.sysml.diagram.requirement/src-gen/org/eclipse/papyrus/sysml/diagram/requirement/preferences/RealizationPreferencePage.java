@@ -22,10 +22,10 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
 
-public class DependencyPreferencePage extends RequirementDiagramLinkPreferencePage {
+public class RealizationPreferencePage extends RequirementDiagramLinkPreferencePage {
 
 	/** Constant key to access preferences */
-	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_DependencyLink"; //$NON-NLS-1$
+	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Realization"; //$NON-NLS-1$
 
 	/** The compartments default visibility for preferences */
 	public static final Map<String, Boolean> labelDefaultVisibilityMap;
@@ -33,8 +33,8 @@ public class DependencyPreferencePage extends RequirementDiagramLinkPreferencePa
 	/** Static attribute initialization */
 	static {
 		labelDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
-		labelDefaultVisibilityMap.put("Name", Boolean.TRUE); //$NON-NLS-1$	
 		labelDefaultVisibilityMap.put("Stereotype", Boolean.TRUE); //$NON-NLS-1$	
+		labelDefaultVisibilityMap.put("Name", Boolean.TRUE); //$NON-NLS-1$	
 
 		// Start of user code custom static initializations
 		// End of user code
@@ -43,9 +43,9 @@ public class DependencyPreferencePage extends RequirementDiagramLinkPreferencePa
 	}
 
 	/** Default constructor */
-	public DependencyPreferencePage() {
+	public RealizationPreferencePage() {
 		super();
-		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_DependencyLink"); //$NON-NLS-1$
+		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_Realization"); //$NON-NLS-1$
 	}
 
 	/**

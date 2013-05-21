@@ -143,8 +143,10 @@
 			"4008" = DEPENDENCY
 			"4013" = COMMENT_ANNOTATED_ELEMENT
 			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
+			"4005" = REALIZATION
+			"4010" = PACKAGE_IMPORT
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4006, 4023, 4022, 4008, 4013, 4014"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4006, 4023, 4022, 4008, 4013, 4014, 4005, 4010"/>
 		
 		<object id="elementtype.node"
 	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
@@ -161,7 +163,7 @@
 	       
 	     <method
 	        name="getSemanticHint()"
-			value="4006, 4023, 4022, 4008, 4013, 4014">
+			value="4006, 4023, 4022, 4008, 4013, 4014, 4005, 4010">
 		</method>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="elementtype.edge"/>
@@ -244,13 +246,23 @@
 			<method name="getProxyClassID()" value="uml.Dependency"/>
 		</object>
 		
+		<!-- "uml.Realization" -->
+		<object id="uml.Realization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Realization"/>
+		</object>
+		
+		<!-- "uml.PackageImport" -->
+		<object id="uml.PackageImport" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.PackageImport"/>
+		</object>
+		
 		<!-- Additional activation contexts for nodes semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
 			elements="uml.Package, uml.Class, uml.NamedElement, uml.Comment, uml.Constraint, uml.Property, uml.Reception, uml.Operation, uml.Interface, uml.Enumeration, uml.PrimitiveType, uml.DataType, uml.Signal"/>
 		
 		<!-- Additional activation contexts for edges semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge"
-			elements="uml.Abstraction, uml.Dependency"/>
+			elements="uml.Abstraction, uml.Dependency, uml.Realization, uml.PackageImport"/>
 			
 	</viewProvider>	
 </extension>
@@ -424,6 +436,11 @@
 			"6027" = DEPENDENCY_LABEL_APPLIED_STEREOTYPE_HINT
 			"4013" = COMMENT_ANNOTATED_ELEMENT
 			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
+			"4005" = REALIZATION
+			"6012" = REALIZATION_LABEL_APPLIED_STEREOTYPE_HINT
+			"6013" = REALIZATION_LABEL_NAME_HINT
+			"4010" = PACKAGE_IMPORT
+			"6022" = PACKAGE_IMPORT_LABEL_APPLIED_STEREOTYPE_HINT
 		  -->
 		<object
 			id="ABSTRACTION"
@@ -455,10 +472,20 @@
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4014"/>
 		</object>
+		<object
+			id="REALIZATION"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4005, 6012, 6013"/>
+		</object>
+		<object
+			id="PACKAGE_IMPORT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4010, 6022"/>
+		</object>
 		
 		<context views="PACKAGE, PACKAGE_CN, CLASS, CLASS_CN, NAMED_ELEMENT, CONTAINMENT_CIRCLE_CN, COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN"/>
 		<context views="CLASS_PROPERTY_CLN, CLASS_RECEPTION_CLN, CLASS_OPERATION_CLN, CLASS_CLASS_CLN, CLASS_INTERFACE_CLN, CLASS_ENUMERATION_CLN, CLASS_PRIMITIVE_TYPE_CLN, CLASS_DATA_TYPE_CLN, CLASS_SIGNAL_CLN"/>
-		<context views="ABSTRACTION, CONTAINMENT_LINK, CONTAINMENT_SUB_LINK, DEPENDENCY, COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"/>
+		<context views="ABSTRACTION, CONTAINMENT_LINK, CONTAINMENT_SUB_LINK, DEPENDENCY, COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT, REALIZATION, PACKAGE_IMPORT"/>
 		
 	</editpartProvider>
 </extension>
@@ -549,6 +576,20 @@
 	
 	
 	
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.RealizationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.RealizationPreferencePage"
+		name="Realization">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackageImportPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackageImportPreferencePage"
+		name="PackageImport">
+	</page>
 	
 	
 	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"

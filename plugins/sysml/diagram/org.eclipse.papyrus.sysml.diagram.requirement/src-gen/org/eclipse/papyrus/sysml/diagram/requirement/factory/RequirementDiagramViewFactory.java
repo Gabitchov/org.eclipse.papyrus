@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ * CEA LIST- Initial API and implementation
+ * Nizar GUEDIDI (CEA LIST)- modification
+ *
+ ****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.factory;
 
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.DiagramViewFactory;

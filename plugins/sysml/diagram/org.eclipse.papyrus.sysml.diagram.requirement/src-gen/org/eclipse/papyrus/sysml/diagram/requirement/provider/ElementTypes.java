@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ * CEA LIST- Initial API and implementation
+ * Nizar GUEDIDI (CEA LIST)- modification
+ *
+ ****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
 import org.eclipse.gmf.runtime.emf.type.core.AbstractElementTypeEnumerator;
@@ -24,9 +26,13 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	/** SysML Requirement Diagram :: Diagram */
 	public static final String DIAGRAM_ID = "RequirementDiagram"; //$NON-NLS-1$
 
+
+
+
 	/** ********************************************************* */
 	/** SysML Requirement Diagram - ClassDiagram related elements */
 	/** ********************************************************* */
+
 
 	/** ClassDiagram :: PACKAGE */
 	public static final IHintedType PACKAGE = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Package_2007"); //$NON-NLS-1$
@@ -96,6 +102,7 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String CONSTRAINT_CN_LABEL_BODY_HINT = "5160"; //$NON-NLS-1$
 
+
 	/** ClassDiagram :: ABSTRACTION */
 	public static final IHintedType ABSTRACTION = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006"); //$NON-NLS-1$
 
@@ -121,6 +128,18 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	/** ClassDiagram :: CONSTRAINT_CONSTRAINED_ELEMENT */
 	public static final IHintedType CONSTRAINT_CONSTRAINED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.ConstraintConstrainedElement_4014"); //$NON-NLS-1$
+
+	/** ClassDiagram :: REALIZATION */
+	public static final IHintedType REALIZATION = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Realization_4005"); //$NON-NLS-1$
+
+	public static final String REALIZATION_LABEL_APPLIED_STEREOTYPE_HINT = "6012"; //$NON-NLS-1$
+
+	public static final String REALIZATION_LABEL_NAME_HINT = "6013"; //$NON-NLS-1$
+
+	/** ClassDiagram :: PACKAGE_IMPORT */
+	public static final IHintedType PACKAGE_IMPORT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.PackageImport_4010"); //$NON-NLS-1$
+
+	public static final String PACKAGE_IMPORT_LABEL_APPLIED_STEREOTYPE_HINT = "6022"; //$NON-NLS-1$
 
 	/** ClassDiagram :: ChildLabelNodes */
 	public static final IHintedType CLASS_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Property_3012"); //$NON-NLS-1$

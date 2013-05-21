@@ -8,17 +8,21 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ * CEA LIST- Initial API and implementation
+ * Nizar GUEDIDI (CEA LIST)- modification
+ *
+ ****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.edit.part;
 
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.sysml.diagram.requirement.edit.policy.CustomDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ModelItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;		
+import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ModelItemSemanticEditPolicy;		
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;		
+import org.eclipse.papyrus.sysml.diagram.requirement.edit.policy.CustomDragDropEditPolicy;		
 
 public class RequirementDiagramEditPart extends DiagramEditPart {
 

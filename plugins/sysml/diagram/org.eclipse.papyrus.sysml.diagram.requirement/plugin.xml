@@ -97,6 +97,21 @@
 	</paletteDefinition>
 </extension>
 
+<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+	name="SYSML_Requirement_Addition">
+
+	<paletteDefinition ID="SYSML_Requirement_Addition"
+		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+		name="Addition" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/Addition.palette.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+		
+		<!-- Specify diagram this palette tools relate to -->						
+		<editor id="org.eclipse.papyrus.sysml.diagram.requirement"/>
+	</paletteDefinition>
+</extension>
+
 <!-- Diagram view providers declaration -->
 <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
 	<!-- Diagram view provider -->

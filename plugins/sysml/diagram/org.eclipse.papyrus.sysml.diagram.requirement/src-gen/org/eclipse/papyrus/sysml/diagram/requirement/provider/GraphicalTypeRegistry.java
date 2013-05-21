@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ * CEA LIST- Initial API and implementation
+ * Nizar GUEDIDI (CEA LIST)- modification
+ *
+ ****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
 import java.util.HashSet;
@@ -40,6 +42,8 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		// Fill known edges set
 		knownEdges.add(ElementTypes.ABSTRACTION.getSemanticHint());
 		knownEdges.add(ElementTypes.DEPENDENCY.getSemanticHint());
+		knownEdges.add(ElementTypes.REALIZATION.getSemanticHint());
+		knownEdges.add(ElementTypes.PACKAGE_IMPORT.getSemanticHint());
 		knownEdges.add(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint());
 		knownEdges.add(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint());
 
@@ -81,6 +85,12 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		}
 		if(domainElement instanceof org.eclipse.uml2.uml.Dependency) {
 			graphicalType = ElementTypes.DEPENDENCY.getSemanticHint();
+		}
+		if(domainElement instanceof org.eclipse.uml2.uml.Realization) {
+			graphicalType = ElementTypes.REALIZATION.getSemanticHint();
+		}
+		if(domainElement instanceof org.eclipse.uml2.uml.PackageImport) {
+			graphicalType = ElementTypes.PACKAGE_IMPORT.getSemanticHint();
 		}
 		return graphicalType;
 	}

@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ * CEA LIST- Initial API and implementation
+ * Nizar GUEDIDI (CEA LIST)- modification
+ *
+ ****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
@@ -33,5 +35,7 @@ public class RequirementDiagramPreferenceInitializer extends AbstractPreferenceI
 		org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.requirement.preferences.ContainmentLinkPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.requirement.preferences.DependencyPreferencePage.initDefaults(store);
+		org.eclipse.papyrus.sysml.diagram.requirement.preferences.RealizationPreferencePage.initDefaults(store);
+		org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackageImportPreferencePage.initDefaults(store);
 	}
 }

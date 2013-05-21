@@ -12,14 +12,16 @@
  * Nizar GUEDIDI (CEA LIST)- modification
  *
  ****************************************************************************/
-package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
+package org.eclipse.papyrus.sysml.diagram.requirement.utils;
 
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
-import org.eclipse.papyrus.sysml.diagram.requirement.Activator;
+public class RequirementDiagramGraphicalTypes {
 
-public class RequirementDiagramGeneralPreferencePage extends DiagramPreferencePage {
+	/** ********************************************************* */
+	/** Diagram custom graphical types id *********************** */
+	/** ********************************************************* */
 
-	public RequirementDiagramGeneralPreferencePage() {
-		setPreferenceStore(Activator.getInstance().getPreferenceStore());
-	}
+
+
+
+
 }

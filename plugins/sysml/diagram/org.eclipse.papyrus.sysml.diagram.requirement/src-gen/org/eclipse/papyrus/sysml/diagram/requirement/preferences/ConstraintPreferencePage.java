@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+ * CEA LIST- Initial API and implementation
+ * Nizar GUEDIDI (CEA LIST)- modification
+ *
+ ****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -19,6 +21,7 @@ public class ConstraintPreferencePage extends RequirementDiagramNodePreferencePa
 
 	/** Constant key to access preferences */
 	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Constraint"; //$NON-NLS-1$
+
 
 	/** Default constructor */
 	public ConstraintPreferencePage() {
@@ -37,5 +40,6 @@ public class ConstraintPreferencePage extends RequirementDiagramNodePreferencePa
 		// End of user code
 
 	}
+
 
 }

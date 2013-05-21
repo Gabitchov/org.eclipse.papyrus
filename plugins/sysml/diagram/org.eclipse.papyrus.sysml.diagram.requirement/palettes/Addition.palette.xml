@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+   <content>
+      <drawer iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" id="requirement.drawer.Addition" name="Addition">
+         <aspectTool description="Create a refinement"  id="requirement.tool.refine" name="Refine" refToolId="clazz.tool.abstraction">
+            <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+               <stereotypesToApply>
+                  <stereotype stereotypeName="StandardProfileL2::Refine"/>
+               </stereotypesToApply>
+            </postAction>
+         </aspectTool>
+      </drawer>
+   </content>
+</paletteDefinition>

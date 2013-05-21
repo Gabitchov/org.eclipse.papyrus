@@ -71,6 +71,9 @@
 						</stereotypesToApply>
 					</postAction>
 				</aspectTool>
+					<aspectTool description="Create a new Dependency" id="requirement.tool.dependency"
+				name="Dependency" refToolId="clazz.tool.dependency">
+			</aspectTool>
 				
 				<aspectTool description="Create a Derive Link"
 					id="requirement.tool.derive" name="Derive"
@@ -87,6 +90,12 @@
 				<aspectTool description="Create a Decompose Link"
 					id="requirement.tool.decompose" name="Decompose"
 					refToolId="clazz.tool.containmentlink"/>
+				<aspectTool description="Create a new PackageImport" id="requirement.tool.packageimport"
+				name="PackageImport" refToolId="clazz.tool.packageimport">
+				</aspectTool>
+					<aspectTool description="Create a new Realization" id="requirement.tool.realization"
+				name="Realization" refToolId="clazz.tool.realization">
+			</aspectTool>	
 				<aspectTool description="Create a Satisfy Link"
 					id="requirement.tool.satisfy" name="Satisfy"
 					refToolId="clazz.tool.abstraction" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif">
@@ -111,10 +120,8 @@
 					</postAction>
 				</aspectTool>
 			
-			<aspectTool description="Create a new Dependency" id="requirement.tool.dependency"
-				name="Dependency" refToolId="clazz.tool.dependency">
-			</aspectTool>
-			
+		
+		
 			<!-- Attention : The element is added manually, can combine the two links comment and constraint, and therefore is not deleted -->
 			<aspectTool description="Create a new Link" id="package.tool.link"
 				name="Link" refToolId="clazz.tool.link">
