@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.helper;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
@@ -107,17 +108,19 @@ public class RotationHelper {
 		transform.translate(-w/2, -h/2);		// old center
 		
 		ImageData newImageData = new ImageData(neww, newh, imageData.depth, imageData.palette);
-		// make all pixel transparent (is there a better way to do that?)
-		for (int y = 0; y <newh ; y++) {
-			for (int x = 0; x < neww ; x++) {
-				newImageData.setAlpha(x, y, 0);
-			}
-		}
+		// Use "white" as transparent pixel instead of real transparency. The latter would raise cross platform
+		// issues, since the same image file leads to an image with alpha data on Linux (32 bit depth, 8 for alpha)
+		// and one without alpha on windows (8 bit depth only).
+		newImageData.transparentPixel = newImageData.palette.getPixel(new RGB(
+				Color.white.getRed(),
+				Color.white.getGreen(),
+				Color.white.getBlue()));
 		final Image newImage = new Image(PlatformUI.getWorkbench().getDisplay(), newImageData);
 		GC gc = new GC(newImage);
+		gc.fillRectangle(0, 0, neww, newh);
 		gc.setTransform(transform);
 		gc.drawImage(image, 0, 0);
-		
+	
 		gc.dispose();
 		
 		return newImage;
