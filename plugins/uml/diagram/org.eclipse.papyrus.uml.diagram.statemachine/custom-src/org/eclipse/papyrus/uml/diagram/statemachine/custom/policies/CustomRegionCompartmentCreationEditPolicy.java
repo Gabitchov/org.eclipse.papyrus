@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.LayerConstants;
@@ -22,23 +22,30 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.LayerManager;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GroupEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomRegionCreateElementCommand;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.EMFCustomTransitionRetargetContainerCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.RegionFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.Transition;
 
 public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolicy {
 
@@ -54,6 +61,50 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 		}
 	}
 
+	@Override
+	protected Command getReparentCommand(ChangeBoundsRequest changeBoundsRequest) {
+		View container = (View)getHost().getAdapter(View.class);
+		EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
+		
+		CompositeCommand cc = new CompositeCommand("move (re-parent) state");
+		Iterator<EditPart> it = changeBoundsRequest.getEditParts().iterator();
+		while(it.hasNext()) {
+			EditPart ep = it.next();
+			if (ep instanceof LabelEditPart) {
+				continue;
+			}
+			if (ep instanceof GroupEditPart) {
+                cc.compose(getReparentGroupCommand((GroupEditPart) ep));
+            }		
+			View view = (View)ep.getAdapter(View.class);
+			if (view == null) {
+				continue;
+			}
+			
+			EObject semantic = ViewUtil.resolveSemanticElement(view);
+			if (semantic == null) {
+				cc.compose(getReparentViewCommand((IGraphicalEditPart)ep));
+			}
+			else if (context != null && shouldReparent(semantic, context)) {
+				cc.compose(getReparentCommand((IGraphicalEditPart)ep));
+				if (semantic instanceof State) {
+					State state = (State) semantic;
+					// correct container of transitions
+					for (Transition transition : state.getOutgoings()) {
+						cc.compose(new EMFtoGMFCommandWrapper(
+							new EMFCustomTransitionRetargetContainerCommand(transition)));
+					}
+					for (Transition transition : state.getIncomings()) {
+						cc.compose(new EMFtoGMFCommandWrapper(
+							new EMFCustomTransitionRetargetContainerCommand(transition)));
+					}
+				}
+			}
+		}
+		return cc.isEmpty() ? null : new ICommandProxy(cc.reduce());
+		// return super.getReparentCommand(request);
+	}
+	
 	@Override
 	public Command getCommand(Request request) {
 
@@ -86,6 +137,8 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 					}
 				}
 			} else if(request instanceof ChangeBoundsRequest) {
+				return getReparentCommand((ChangeBoundsRequest) request);
+				/*
 				ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest)request;
 				Point mouseLocation = changeBoundsRequest.getLocation();
 
@@ -101,8 +154,11 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 						list.add(regionToDrag);
 					}
 				}
+				View container = (View)getHost().getAdapter(View.class);
+				EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
 				dropRequest.setObjects(list);
 				return getHost().getCommand(dropRequest);
+				*/
 			}
 
 			return super.getCommand(request);

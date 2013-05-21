@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomTransitionReorientCommand;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.EMFCustomTransitionRetargetContainerCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.Transition;
@@ -71,7 +71,7 @@ public class TransitionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		// TODO: avoid modifications here. Not done due to many required changes
-		if (!CustomTransitionReorientCommand.isValid(newEnd, target)) {
+		if (!EMFCustomTransitionRetargetContainerCommand.isValid(newEnd, target)) {
 			return false;
 		}
 		Region container = (Region)getLink().eContainer();
@@ -90,7 +90,7 @@ public class TransitionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		// TODO: avoid modifications here. Not done due to many required changes
-		if (!CustomTransitionReorientCommand.isValid(source, newEnd)) {
+		if (!EMFCustomTransitionRetargetContainerCommand.isValid(source, newEnd)) {
 			return false;
 		}
 		Region container = (Region)getLink().eContainer();
@@ -154,7 +154,7 @@ public class TransitionReorientCommand extends EditElementCommand {
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().setSource(getNewSource());
 		// TODO: avoid modifications here. Not done due to many required changes
-		CustomTransitionReorientCommand.changeContainer(getLink());
+		EMFCustomTransitionRetargetContainerCommand.changeContainer(getLink());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -163,7 +163,7 @@ public class TransitionReorientCommand extends EditElementCommand {
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setTarget(getNewTarget());
-		CustomTransitionReorientCommand.changeContainer(getLink());
+		EMFCustomTransitionRetargetContainerCommand.changeContainer(getLink());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 }

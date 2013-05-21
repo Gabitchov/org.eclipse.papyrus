@@ -37,7 +37,6 @@ public class CustomRegionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolic
 	 * 
 	 * @return
 	 */
-
 	@Override
 	public Command createChangeConstraintCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
 		// precautionary test
@@ -81,10 +80,22 @@ public class CustomRegionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolic
 			ResizableEditPolicy policy = new ResizableEditPolicy() {
 
 				public void eraseSourceFeedback(Request request) {
-					if(RequestConstants.REQ_DROP.equals(request.getType()))
+					if(RequestConstants.REQ_DROP.equals(request.getType())) {
 						eraseChangeBoundsFeedback((ChangeBoundsRequest)request);
-					else
+					}
+					else {
 						super.eraseSourceFeedback(request);
+					}
+				}
+				
+				public void showSourceFeedback(Request request) {
+					if(RequestConstants.REQ_DROP.equals(request.getType())) {
+						// also show feedback in case of a drop request
+						showChangeBoundsFeedback((ChangeBoundsRequest) request);
+					}
+					else {
+						super.showSourceFeedback(request);
+					}	
 				}
 			};
 			return policy;
@@ -105,5 +116,4 @@ public class CustomRegionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolic
 		else
 			return super.getTargetEditPart(request);
 	}
-
 }

@@ -11,7 +11,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomTransitionReorientCommand;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.EMFCustomTransitionRetargetContainerCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Region;
@@ -32,7 +32,7 @@ public class TransitionCreateCommand extends EditElementCommand {
 	 */
 	protected Region deduceContainer(EObject source, EObject target) {
 		// TODO: avoid modification of generated code, problem is that model needs to be changed at many places ... 
-		return CustomTransitionReorientCommand.deduceContainer (source, target);
+		return EMFCustomTransitionRetargetContainerCommand.deduceContainer (source, target);
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class TransitionCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		if(!CustomTransitionReorientCommand.isValid(source, target)) {
+		if(!EMFCustomTransitionRetargetContainerCommand.isValid(source, target)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateTransition_7000(getContainer(), getSource(), getTarget());
