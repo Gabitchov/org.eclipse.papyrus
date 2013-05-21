@@ -143,8 +143,10 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	public String getText(Object element) {
 		final Object object = ((ILabelProviderContextElement)element).getObject();
 		EStructuralFeature feature = null;
+		String alias = "";
 		if(object instanceof EStructuralFeatureAxis) {
 			feature = ((EStructuralFeatureAxis)object).getElement();
+			alias = ((EStructuralFeatureAxis)object).getAlias();
 		} else if(feature instanceof EStructuralFeature) {
 			feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
 		}
@@ -158,7 +160,11 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 			return ""; //$NON-NLS-1$
 		}
 		if(conf instanceof FeatureLabelProviderConfiguration) {
-			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, feature.getName(), feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
+			String nameToDisplay = feature.getName();
+			if(alias != null && !alias.equals("")) {
+				nameToDisplay = alias;
+			}
+			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, nameToDisplay, feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
 		} else {
 			return super.getText(element);
 		}

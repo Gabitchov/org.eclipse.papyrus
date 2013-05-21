@@ -40,6 +40,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -985,8 +986,47 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#canEditColumnHeader(int)
+	 * 
+	 * @param evaluationContext
+	 * @return
+	 */
+	public boolean canEditColumnHeader(final NatEventData evaluationContext) {
+		return this.columnManager.canEditAxisHeader(evaluationContext);
+	}
 
+	/***
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#canEditRowHeader(org.eclipse.nebula.widgets.nattable.ui.NatEventData)
+	 * 
+	 * @param eventData
+	 * @return
+	 */
+	@Override
+	public boolean canEditRowHeader(NatEventData evaluationContext) {
+		return this.rowManager.canEditAxisHeader(evaluationContext);
+	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#openEditRowAliasDialog(org.eclipse.nebula.widgets.nattable.ui.NatEventData)
+	 * 
+	 * @param event
+	 */
+	public void openEditRowAliasDialog(NatEventData event) {
+		this.rowManager.openEditAxisAliasDialog(event, event.getNatTable().getRowIndexByPosition(event.getRowPosition()));
+	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#openEditColumnAliasDialog(org.eclipse.nebula.widgets.nattable.ui.NatEventData)
+	 * 
+	 * @param event
+	 */
+	public void openEditColumnAliasDialog(NatEventData event) {
+		this.columnManager.openEditAxisAliasDialog(event, event.getNatTable().getColumnIndexByPosition(event.getColumnPosition()));
+	}
 
 }

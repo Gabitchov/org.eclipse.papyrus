@@ -874,5 +874,43 @@
             icon="icons/CreateDestroyRow.gif">
       </image>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="This category is used for all rows commands"
+            id="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            name="NatTable Rows Catgerory">
+      </category>
+      <category
+            description="This category is used for all columns Commands"
+            id="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            name="NatTable Columns Category">
+      </category>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnEditAliasHeaderHandler"
+            description="Allows to Edit the name of the column header"
+            id="org.eclipse.papyrus.infra.nattable.edit.column.header"
+            name="Rename Header">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowEditAliasHeaderHandler"
+            description="Allows to Edit the name of the row header"
+            id="org.eclipse.papyrus.infra.nattable.edit.row.header"
+            name="Rename Header">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.edit.column.header"
+            icon="icons/rename.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.edit.row.header"
+            icon="icons/rename.gif">
+      </image>
+   </extension>
 </plugin>
 

@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -93,6 +94,8 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd);
 
+
+
 	public void print();
 
 	public void selectAll();
@@ -148,4 +151,21 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 
 	public BodyLayerStack getBodyLayerStack();
 
+	/**
+	 * Opens a dialog to edit the alias of the row
+	 * 
+	 * @param event
+	 */
+	public void openEditRowAliasDialog(final NatEventData event);
+
+	/**
+	 * Opens a dialog to edit the alias of the column
+	 * 
+	 * @param event
+	 */
+	public void openEditColumnAliasDialog(final NatEventData event);
+
+	public boolean canEditColumnHeader(final NatEventData eventData);
+
+	public boolean canEditRowHeader(final NatEventData eventData);
 }

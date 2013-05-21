@@ -150,4 +150,15 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 		return elements;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canEditAxisHeader()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean canEditAxisHeader() {
+		return false;
+	}
+
 }

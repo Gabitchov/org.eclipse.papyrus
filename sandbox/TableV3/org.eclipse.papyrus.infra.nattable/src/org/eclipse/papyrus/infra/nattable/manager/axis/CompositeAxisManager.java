@@ -31,9 +31,11 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.utils.AxisComparator;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -372,4 +374,44 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		};
 	}
 
+	@Override
+	public boolean canEditAxisHeader(final NatEventData axisIndex) {
+		axisIndex.getColumnPosition();//FIXME
+		if(canEditAxisHeader()) {//FIXME
+			return true;
+		} else {
+			return false;//FIXME : we need to iterate on the contents to know if it is possible or not
+		}
+	}
+
+	@Override
+	public boolean canEditAxisHeader() {
+		for(final IAxisManager current : this.subManagers) {
+			if(!current.canEditAxisHeader()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getElementAxisName(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis)
+	 * 
+	 * @param axis
+	 * @return
+	 */
+	public String getElementAxisName(final IAxis axis) {
+		final AxisManagerRepresentation manager = axis.getManager();
+		for(final IAxisManager man : this.subManagers) {
+			if(man.getAxisManagerRepresentation() == manager) {
+				return man.getElementAxisName(axis);
+			}
+		}
+		if(canEditAxisHeader()) {
+			return null;
+		} else {
+			throw new UnsupportedOperationException();
+		}
+	}
 }

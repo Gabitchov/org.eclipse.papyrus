@@ -56,6 +56,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.PapyrusHeaderMenuConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.AbstractDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnHeaderDataProvider;
@@ -188,7 +189,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 		//for the edition
 		//		configureEdition(this.natTable, this.bodyLayerStack);
-
+		this.natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
 		this.natTable.addConfiguration(new IConfiguration() {
 
 

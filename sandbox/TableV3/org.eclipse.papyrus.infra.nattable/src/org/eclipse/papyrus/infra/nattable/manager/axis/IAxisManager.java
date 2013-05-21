@@ -17,8 +17,10 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
@@ -171,5 +173,36 @@ public interface IAxisManager extends IDisposable {
 	 */
 	public boolean canCreateAxisElement(final String elementId);
 
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> if we allows to edit the string of all axis headers.
+	 */
+	public boolean canEditAxisHeader();
 
+	/**
+	 * Open a dialog to edit the alias of an axis and set the value
+	 * 
+	 * @param event
+	 *        the event
+	 * @param axisIndex
+	 *        the position of the axis
+	 */
+	public void openEditAxisAliasDialog(final NatEventData event, int axisIndex);
+
+	/**
+	 * 
+	 * @return
+	 *         the axis manager representation
+	 */
+	public AxisManagerRepresentation getAxisManagerRepresentation();
+
+	/**
+	 * 
+	 * @param axis
+	 *        an axis
+	 * @return
+	 *         the name used for this axis
+	 */
+	public String getElementAxisName(final IAxis axis);//FIXME pb if the axisManager returns Object and not IAxis...
 }

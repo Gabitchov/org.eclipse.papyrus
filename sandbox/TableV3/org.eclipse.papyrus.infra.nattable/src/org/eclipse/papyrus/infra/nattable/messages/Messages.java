@@ -21,6 +21,10 @@ public class Messages extends NLS {
 
 	public static String CompositeAxisManager_DestroyAxisCommand;
 
+	public static String AbstractAxisManager_InputDialogMessage;
+
+	public static String AbstractAxisManager_InputDialogTitle;
+
 	public static String AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable;
 
 	public static String AbstractCreateNattableEditorHandler_PapyrusTableCreation;

@@ -205,4 +205,29 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canEditAxisHeader()
+	 * 
+	 * @return
+	 */
+	public boolean canEditAxisHeader() {
+		return true;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getElementAxisName(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis)
+	 * 
+	 * @param axis
+	 * @return
+	 */
+	@Override
+	public String getElementAxisName(IAxis axis) {
+		if(axis instanceof EStructuralFeatureAxis) {
+			return ((EStructuralFeatureAxis)axis).getElement().getName();
+		}
+		return null;
+	}
+
 }

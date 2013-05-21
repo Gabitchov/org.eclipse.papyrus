@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 import java.util.List;
 
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 
 
 /**
@@ -45,5 +46,7 @@ public interface ICompositeAxisManager extends IAxisManager {
 	 *        the config registry used to find the label provider
 	 */
 	public void sortAxisByName(final boolean alpabeticOrder, IConfigRegistry iConfigRegistry);
+
+	public boolean canEditAxisHeader(NatEventData evaluationContext);
 
 }

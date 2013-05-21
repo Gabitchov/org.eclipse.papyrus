@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
@@ -128,6 +129,22 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	 */
 	public boolean isSlave() {
 		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canEditAxisHeader()
+	 * 
+	 * @return
+	 */
+	public boolean canEditAxisHeader() {
+		return false;
+	}
+
+
+	@Override
+	public String getElementAxisName(IAxis axis) {
+		throw new UnsupportedOperationException();
 	}
 
 }

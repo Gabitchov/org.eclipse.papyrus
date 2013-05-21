@@ -229,4 +229,14 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 		return false;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canEditAxisHeader()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean canEditAxisHeader() {
+		return false;
+	}
 }

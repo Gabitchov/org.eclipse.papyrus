@@ -23,6 +23,11 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -31,9 +36,16 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.widgets.editors.InputDialog;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 
 public abstract class AbstractAxisManager implements IAxisManager {
 
@@ -336,4 +348,67 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	public void moveAxis(Object elementToMove, int newIndex) {
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#openEditAxisAliasDialog(org.eclipse.nebula.widgets.nattable.ui.NatEventData,
+	 *      int)
+	 * 
+	 * @param event
+	 * @param axisPosition
+	 */
+	@Override
+	public void openEditAxisAliasDialog(final NatEventData event, int axisPosition) {
+		final IAxis axis = this.representedContentProvider.getAxis().get(axisPosition);
+		String alias = axis.getAlias();
+		if(alias == null) {
+			alias = ""; //$NON-NLS-1$
+		}
+
+		final String dialogMessage = String.format(Messages.AbstractAxisManager_InputDialogMessage, getElementAxisName(axis));
+		Point location = new Point(event.getOriginalEvent().x, event.getOriginalEvent().y);
+		Control natTable = event.getNatTable();
+		location = natTable.toDisplay(location);
+		final InputDialog dialog = new InputDialogWithLocation(Display.getDefault().getActiveShell(), Messages.AbstractAxisManager_InputDialogTitle, dialogMessage, alias, null, location);
+		int result = dialog.open();
+		if(result == IDialogConstants.OK_ID) {
+			String newAlias = dialog.getText();
+			if("".equals(newAlias)) { //$NON-NLS-1$
+				newAlias = null;
+			}
+			final TransactionalEditingDomain domain = (TransactionalEditingDomain)getTableEditingDomain();
+			final SetRequest request = new SetRequest(domain, axis, NattableaxisPackage.eINSTANCE.getIAxis_Alias(), newAlias);
+			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(axis);
+			final ICommand cmd = provider.getEditCommand(request);
+			domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
+		}
+	}
+
+	/**
+	 * This method mustt be overriden by the children classes
+	 * 
+	 * @param axis
+	 *        an axis
+	 * @return
+	 *         <code>null</code> or an {@link UnsupportedOperationException} when the method {@link #canEditAxisHeader()} returns <code>false</code>
+	 */
+	public String getElementAxisName(final IAxis axis) {
+		if(canEditAxisHeader()) {
+			return null;
+		} else {
+			throw new UnsupportedOperationException();
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getAxisManagerRepresentation()
+	 * 
+	 * @return
+	 */
+	@Override
+	public AxisManagerRepresentation getAxisManagerRepresentation() {
+		return this.representedAxisManager;
+	}
+
 }

@@ -291,4 +291,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 		return true;
 	}
 
+	public boolean canEditAxisHeader() {
+		return true;
+	}
 }

@@ -14,13 +14,21 @@
 package org.eclipse.papyrus.infra.nattable.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 
@@ -31,6 +39,9 @@ import org.eclipse.ui.PlatformUI;
  * 
  */
 public abstract class AbstractTableHandler extends AbstractHandler {
+
+	/** the id used to find the NatEvent in the EclipseContext */
+	public static final String NAT_EVENT_DATA_PARAMETER_ID = "natEventParameterId";
 
 	/**
 	 * 
@@ -87,6 +98,40 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		}
 
 		return null;
+	}
+
+	/**
+	 * 
+	 * @param evaluationContext
+	 *        the evaluation context
+	 * @return
+	 *         the NatEventData from this evaluation context
+	 */
+	protected NatEventData getNatEventData(final Object evaluationContext) {
+		NatEventData eventData = null;
+		if(evaluationContext instanceof IEvaluationContext) {
+			Object value = ((IEvaluationContext)evaluationContext).getVariable(NAT_EVENT_DATA_PARAMETER_ID);
+			if(value instanceof NatEventData) {
+				eventData = (NatEventData)value;
+			}
+		}
+		//FIXME : currently we can't have dependency on org.eclipse.e4.... 
+		//that's why we can't add the variable NAT_EVENT_DATA_PARAMETER_ID and we need to create a NatEventData instead of to get it in evaluationContext
+		if(eventData == null) {
+			Point cursorLocation = Display.getDefault().getCursorLocation();
+			Control control = Display.getDefault().getCursorControl();
+			if(control instanceof NatTable) {//FIXME : not nice, but required
+				cursorLocation = control.toControl(cursorLocation);
+				Event e = new Event();
+				e.x = cursorLocation.x;
+				e.y = cursorLocation.y;
+				e.display = Display.getDefault();
+				e.widget = control;
+				MouseEvent event = new MouseEvent(e);
+				eventData = NatEventData.createInstanceFromEvent(event);
+			}
+		}
+		return eventData;
 	}
 
 }

@@ -43,4 +43,14 @@ public class EditorFeatureAxisManager extends AbstractAxisManager {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canEditAxisHeader()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean canEditAxisHeader() {
+		return true;
+	}
 }
