@@ -455,7 +455,7 @@
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="5001, 5002, 7001, 7002, 7003, 7004"/>
+                    value="5001, 5002, 7001, 7002, 7003, 7004, 2001"/>
             </object>
             <object
                 id="SEQUENCE_NODE_CN"
@@ -513,7 +513,7 @@
             </object>
 
             <context
-                views="ACTIVITY_FINAL_NODE_CN, CALL_BEHAVIOR_ACTION_CN, COMMENT_CN, CONDITIONAL_NODE_CN, DECISION_NODE_CN, FLOW_FINAL_NODE_CN, FORK_NODE_CN, INITIAL_NODE_CN, JOIN_NODE_CN, LOOP_NODE_CN, MERGE_NODE_CN, SEQUENCE_NODE_CN, CONSTRAINT_CN"/>
+                views="ACTIVITY_FINAL_NODE_CN, CALL_BEHAVIOR_ACTION_CN, COMMENT_CN, CONDITIONAL_NODE_CN, DECISION_NODE_CN, FLOW_FINAL_NODE_CN, FORK_NODE_CN, INITIAL_NODE_CN, JOIN_NODE_CN, LOOP_NODE_CN, MERGE_NODE_CN, SEQUENCE_NODE_CN, CONSTRAINT_CN, ACTIVITY"/>
             <context views="ACTIVITY_PARAMETER_CLN, ACTIVITY_CONSTRAINT_CLN, ACTIVITY_CONSTRAINT_CLN"/>
             <context views="COMMENT_ANNOTATED_ELEMENT, CONTROL_FLOW"/>
 
