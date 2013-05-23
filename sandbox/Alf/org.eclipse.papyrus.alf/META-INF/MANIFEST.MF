@@ -19,8 +19,6 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.common.types,
  org.eclipse.papyrus.uml.extensionpoints,
  org.eclipse.uml2.uml;bundle-version="4.0.1"
-Import-Package: org.apache.log4j,
- org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.papyrus.alf,
  org.eclipse.papyrus.alf.alf,

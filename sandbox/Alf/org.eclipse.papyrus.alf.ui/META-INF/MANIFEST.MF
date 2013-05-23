@@ -33,4 +33,3 @@ Export-Package: org.eclipse.papyrus.alf.ui.contentassist,
  org.eclipse.papyrus.alf.ui.internal,
  org.eclipse.papyrus.alf.ui.quickfix
 Bundle-Activator: org.eclipse.papyrus.alf.ui.internal.AlfActivator
-Import-Package: org.apache.log4j
