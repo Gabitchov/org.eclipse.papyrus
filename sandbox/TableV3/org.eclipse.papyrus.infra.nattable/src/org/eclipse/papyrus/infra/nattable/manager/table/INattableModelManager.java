@@ -56,10 +56,6 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 
 	public IDataProvider getBodyDataProvider();
 
-	public IAxisManager getColumnDataProvider();
-
-	public IAxisManager getLineDataProvider();
-
 	public boolean canMoveColumns();
 
 	public boolean canMoveRows();
@@ -168,4 +164,18 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public boolean canEditColumnHeader(final NatEventData eventData);
 
 	public boolean canEditRowHeader(final NatEventData eventData);
+
+	/**
+	 * 
+	 * @return
+	 *         the column axis manager, managing the axis inversion
+	 */
+	public IAxisManager getColumnAxisManager();
+
+	/**
+	 * 
+	 * @return
+	 *         the row axis manager, managing the axis inversion
+	 */
+	public IAxisManager getRowAxisManager();
 }

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -204,5 +205,65 @@ public interface IAxisManager extends IDisposable {
 	 * @return
 	 *         the name used for this axis
 	 */
-	public String getElementAxisName(final IAxis axis);//FIXME pb if the axisManager returns Object and not IAxis...
+	public String getElementAxisName(final IAxis axis);//FIXME pb if the axisManager returns Object and not IAxis... -> use the index!
+
+	/**
+	 * 
+	 * @param axisIndex
+	 *        axis index
+	 * @return
+	 *         <code>true</code> if ALL axis identified by the axisIndex can be destroyed
+	 */
+	public boolean canDestroyAxis(final List<Integer> axisIndex);
+
+	/**
+	 * 
+	 * @param axisIndex
+	 * @return
+	 *         <code>true</code> if the axis identified by the axisIndex can be destroyed
+	 */
+	public boolean canDestroyAxis(final Integer axisIndex);
+
+	/**
+	 * Destroy all axis represented by their index
+	 * 
+	 * @param axisIndex
+	 *        a list of axis index
+	 */
+	public void destroyAxis(final List<Integer> axisIndex);
+
+	/**
+	 * 
+	 * @param axisIndex
+	 *        a list of axis index
+	 * @return
+	 *         <code>true</code> if ALL elements represented by the axis located to these index can be destroyed
+	 */
+	public boolean canDestroyAxisElement(final List<Integer> axisIndex);
+
+	/**
+	 * 
+	 * @param axisIndex
+	 *        the index of an element
+	 * @return
+	 *         <code>true</code> if we can destroy the element represented by the axis located to this index
+	 */
+	public boolean canDestroyAxisElement(final Integer axisIndex);
+
+	/**
+	 * 
+	 * @param axisIndex
+	 *        the list of the index of the elements to destroy
+	 */
+	public void destroyAxisElement(final List<Integer> axisIndex);
+
+	/**
+	 * 
+	 * @param domain
+	 * @param axisPosition
+	 * @return
+	 */
+	public Command getDestroyAxisElementCommand(final EditingDomain domain, final Integer axisPosition);
+
+
 }

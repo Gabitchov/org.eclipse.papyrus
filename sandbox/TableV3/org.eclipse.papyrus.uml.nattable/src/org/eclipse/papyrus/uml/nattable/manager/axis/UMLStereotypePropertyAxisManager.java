@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -293,5 +294,24 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 
 	public boolean canEditAxisHeader() {
 		return true;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis)
+	 * 
+	 * @param axis
+	 * @return
+	 */
+	public boolean canDestroyAxisElement(IAxis axis) {
+		return false;
+	}
+
+	public boolean canDestroyAxisElement(Integer axisPosition) {
+		return false;
+	}
+
+	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+		return UnexecutableCommand.INSTANCE;
 	}
 }

@@ -17,9 +17,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
@@ -159,6 +162,16 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	@Override
 	public boolean canEditAxisHeader() {
 		return false;
+	}
+
+	@Override
+	public boolean canDestroyAxisElement(Integer axisPosition) {
+		return false;
+	}
+
+	@Override
+	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

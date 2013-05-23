@@ -13,15 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.swt.events.MouseEvent;
@@ -42,6 +48,14 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 
 	/** the id used to find the NatEvent in the EclipseContext */
 	public static final String NAT_EVENT_DATA_PARAMETER_ID = "natEventParameterId";
+
+	/**
+	 * the event which have declenched the call to setEnable(Object evaluationContext. This event contains the location of the mouse pointer when
+	 * the popup menu for this handler have been created
+	 */
+	//FIXME : should maybe be remove with the future usage of e4 and the Eclispe Context
+	protected NatEventData eventData;
+
 
 	/**
 	 * 
@@ -108,6 +122,9 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 *         the NatEventData from this evaluation context
 	 */
 	protected NatEventData getNatEventData(final Object evaluationContext) {
+		if(evaluationContext instanceof NatEventData) {
+			return (NatEventData)evaluationContext;
+		}
 		NatEventData eventData = null;
 		if(evaluationContext instanceof IEvaluationContext) {
 			Object value = ((IEvaluationContext)evaluationContext).getVariable(NAT_EVENT_DATA_PARAMETER_ID);
@@ -134,4 +151,75 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		return eventData;
 	}
 
+	/**
+	 * 
+	 * @param evaluationContext
+	 * @return
+	 *         the index of the rows which are fully selected
+	 */
+	protected List<Integer> getFullSelectedRows(Object evaluationContext) {
+		final INattableModelManager manager = getCurrentNattableModelManager();
+		if(manager != null) {
+			final NatEventData data = getNatEventData(evaluationContext);
+			if(data != null) {
+				final SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
+				int[] fullSelectedColumnsPosition = layer.getFullySelectedRowPositions();
+				List<Integer> positions = new ArrayList<Integer>();
+				for(int i : fullSelectedColumnsPosition) {
+					positions.add(layer.getRowIndexByPosition(i));
+				}
+				return positions;
+			}
+		}
+		return Collections.emptyList();
+	}
+
+	/**
+	 * 
+	 * @param evaluationContext
+	 * @return
+	 *         the index of the columns which are fully selected
+	 */
+	protected List<Integer> getFullSelectedColumns(Object evaluationContext) {
+		final INattableModelManager manager = getCurrentNattableModelManager();
+		if(manager != null) {
+			final NatEventData data = getNatEventData(evaluationContext);
+			if(data != null) {
+				final SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
+				int[] fullSelectedColumnsPosition = layer.getFullySelectedColumnPositions();
+				List<Integer> positions = new ArrayList<Integer>();
+				for(int i : fullSelectedColumnsPosition) {
+					positions.add(layer.getColumnIndexByPosition(i));
+				}
+				return positions;
+			}
+		}
+		return Collections.emptyList();
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the row axis manager
+	 */
+	protected IAxisManager getRowAxisManager() {
+		final INattableModelManager manager = getCurrentNattableModelManager();
+		if(manager != null) {
+			return manager.getRowAxisManager();
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the column axis manager
+	 */
+	protected IAxisManager getColumnAxisManager() {
+		final INattableModelManager manager = getCurrentNattableModelManager();
+		if(manager != null) {
+			return manager.getColumnAxisManager();
+		}
+		return null;
+	}
 }

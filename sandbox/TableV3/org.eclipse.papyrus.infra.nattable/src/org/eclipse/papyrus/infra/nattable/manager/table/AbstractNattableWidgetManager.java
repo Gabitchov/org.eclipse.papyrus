@@ -190,6 +190,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		//for the edition
 		//		configureEdition(this.natTable, this.bodyLayerStack);
 		this.natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
+		//		this.natTable.addConfiguration(new HeaderMenuConfiguration(this.natTable));
 		this.natTable.addConfiguration(new IConfiguration() {
 
 

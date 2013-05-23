@@ -524,30 +524,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * this method returns the column data provider and is able to manage
-	 * inversion in the axis
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getColumnDataProvider()
-	 * 
-	 * @return the column data provider
-	 */
-	public IAxisManager getColumnDataProvider() {
-		return this.columnManager;
-	}
-
-	/**
-	 * this method returns the row data provider and is able to manage inversion
-	 * in the axis
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getLineDataProvider()
-	 * 
-	 * @return the row data provider
-	 */
-	public IAxisManager getLineDataProvider() {
-		return this.rowManager;
-	}
-
-	/**
 	 * refresh NatTable (asyncExec)
 	 */
 	public void refreshNatTable() {
@@ -1027,6 +1003,29 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	public void openEditColumnAliasDialog(NatEventData event) {
 		this.columnManager.openEditAxisAliasDialog(event, event.getNatTable().getColumnIndexByPosition(event.getColumnPosition()));
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getColumnAxisManager()
+	 * 
+	 * @return
+	 */
+	@Override
+	public IAxisManager getColumnAxisManager() {
+		return this.columnManager;
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getRowAxisManager()
+	 * 
+	 * @return
+	 */
+	@Override
+	public IAxisManager getRowAxisManager() {
+		return this.rowManager;
 	}
 
 }

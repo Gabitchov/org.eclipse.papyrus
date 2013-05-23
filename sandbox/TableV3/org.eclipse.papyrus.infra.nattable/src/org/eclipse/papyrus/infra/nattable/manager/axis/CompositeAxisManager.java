@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -414,4 +415,88 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 			throw new UnsupportedOperationException();
 		}
 	}
+
+	/**
+	 * 
+	 * @param axis
+	 *        an axis
+	 * @return
+	 *         the axis manager managing this axis
+	 */
+	protected IAxisManager getAxisManager(final IAxis axis) {
+		final AxisManagerRepresentation rep = axis.getManager();
+		for(final IAxisManager man : this.subManagers) {
+			if(man.getAxisManagerRepresentation() == rep) {
+				return man;
+			}
+		}
+		return null;//must be impossible
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canDestroyAxis(java.lang.Integer)
+	 * 
+	 * @param axisPosition
+	 * @return
+	 */
+	@Override
+	public boolean canDestroyAxis(final Integer axisPosition) {
+		final List<Object> elements = tableManager.getElementsList(getRepresentedContentProvider());//FIXME create a util method for that
+		final Object element = elements.get(axisPosition);
+		if(element instanceof IAxis) {
+			return getAxisManager((IAxis)element).canDestroyAxis(axisPosition);
+		}
+		//not yet managed
+		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.lang.Integer)
+	 * 
+	 * @param axisPosition
+	 * @return
+	 */
+	@Override
+	public boolean canDestroyAxisElement(Integer axisPosition) {
+		final List<Object> elements = tableManager.getElementsList(getRepresentedContentProvider());//FIXME create a util method for that
+		final Object element = elements.get(axisPosition);
+		if(element instanceof IAxis) {
+			return getAxisManager((IAxis)element).canDestroyAxisElement(axisPosition);
+		} else if(subManagers.size() == 1) {
+			return subManagers.get(0).canDestroyAxisElement(axisPosition);
+		}
+		//not yet managed
+		return false;
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.lang.Integer)
+	 * 
+	 * @param domain
+	 * @param axisPosition
+	 * @return
+	 */
+	@Override
+	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+		final List<Object> elements = tableManager.getElementsList(getRepresentedContentProvider());//FIXME create a util method for that
+		final Object element = elements.get(axisPosition);
+		if(element instanceof IAxis) {
+			return getAxisManager((IAxis)element).getDestroyAxisElementCommand(domain, axisPosition);
+		} else if(subManagers.size() == 1) {
+			return subManagers.get(0).getDestroyAxisElementCommand(domain, axisPosition);
+		}
+		//not yet managed
+		return UnexecutableCommand.INSTANCE;
+	}
+
+
+
+
+
 }

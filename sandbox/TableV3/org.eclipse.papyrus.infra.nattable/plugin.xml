@@ -900,6 +900,30 @@
             id="org.eclipse.papyrus.infra.nattable.edit.row.header"
             name="Rename Header">
       </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDestroyAxisHandler"
+            id="org.eclipse.papyrus.infra.nattable.destroy.row"
+            name="Destroy Row">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDestroyAxisElementHandler"
+            id="org.eclipse.papyrus.infra.nattable.destroy.row.element"
+            name="Destroy Row Element">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDestroyAxisHandler"
+            id="org.eclipse.papyrus.infra.nattable.destroy.column"
+            name="Destroy Column">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDestroyAxisElementHandler"
+            id="org.eclipse.papyrus.infra.nattable.destroy.column.element"
+            name="Destroy Column Element">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.commandImages">
@@ -910,6 +934,22 @@
       <image
             commandId="org.eclipse.papyrus.infra.nattable.edit.row.header"
             icon="icons/rename.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.destroy.column.element"
+            icon="icons/delete_obj.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.destroy.row.element"
+            icon="icons/delete_obj.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.destroy.row"
+            icon="icons/remove_row.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.destroy.column"
+            icon="icons/remove_column.gif">
       </image>
    </extension>
 </plugin>

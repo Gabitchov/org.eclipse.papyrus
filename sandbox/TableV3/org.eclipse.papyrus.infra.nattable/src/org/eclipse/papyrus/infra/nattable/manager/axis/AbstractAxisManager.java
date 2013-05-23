@@ -15,9 +15,11 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
@@ -411,4 +413,101 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		return this.representedAxisManager;
 	}
 
+	/**
+	 * 
+	 * @param axisPositions
+	 * @return
+	 */
+	@Override
+	public boolean canDestroyAxis(final List<Integer> axisPositions) {
+		if(axisPositions.isEmpty()) {
+			return false;
+		}
+		for(final Integer integer : axisPositions) {
+			if(!canDestroyAxis(integer)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean canDestroyAxisElement(List<Integer> axisPositions) {
+		if(axisPositions.isEmpty()) {
+			return false;
+		}
+		for(final Integer integer : axisPositions) {
+			if(!canDestroyAxisElement(integer)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param axisPositions
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#destroyAxis(java.util.List)
+	 */
+	@Override
+	public void destroyAxis(final List<Integer> axisPositions) {
+		final List<Object> toDestroy = getElements(axisPositions);
+		EditingDomain domain = getTableEditingDomain();
+		final Command cmd = getDestroyAxisCommand(domain, toDestroy);
+		domain.getCommandStack().execute(cmd);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxis(java.lang.Integer)
+	 * 
+	 * @param axisPosition
+	 * @return
+	 */
+	public boolean canDestroyAxis(final Integer axisPosition) {
+		return !isDynamic();
+	}
+
+
+	/**
+	 * 
+	 * @param axisPositions
+	 *        axis positions
+	 * @return
+	 *         the elements located at these axis position
+	 */
+	protected List<Object> getElements(final List<Integer> axisPositions) {
+		final List<Object> elements = getElements();
+		for(final Integer position : axisPositions) {
+			final Object element = elements.get(position);
+			elements.add(element);
+		}
+		return elements;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#destroyAxisElement(java.util.List)
+	 * 
+	 * @param axisPosition
+	 */
+	@Override
+	public void destroyAxisElement(final List<Integer> axisPosition) {
+		final CompoundCommand cmd = new CompoundCommand("Destroy Axis Element Command");
+		EditingDomain domain = getContextEditingDomain();
+		for(Integer integer : axisPosition) {
+			cmd.append(getDestroyAxisElementCommand(domain, integer));
+		}
+
+		domain.getCommandStack().execute(cmd);
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the list owning the elements displayed on the managed axis
+	 */
+	protected List<Object> getElements() {
+		return this.tableManager.getElementsList(getRepresentedContentProvider());
+	}
 }

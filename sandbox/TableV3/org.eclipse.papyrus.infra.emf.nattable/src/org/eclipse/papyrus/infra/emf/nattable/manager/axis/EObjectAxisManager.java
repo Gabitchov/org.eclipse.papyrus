@@ -20,12 +20,18 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 /**
  * 
@@ -146,5 +152,53 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	public String getElementAxisName(IAxis axis) {
 		throw new UnsupportedOperationException();
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis)
+	 * 
+	 * @param axis
+	 * @return
+	 */
+	public boolean canDestroyAxisElement(final IAxis axis) {
+		final EObject object = (EObject)axis.getElement();
+		return !EMFHelper.isReadOnly(object);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.lang.Integer)
+	 * 
+	 * @param axisPosition
+	 * @return
+	 */
+	public boolean canDestroyAxisElement(Integer axisPosition) {
+		final Object current = getElements().get(axisPosition);
+		if(current instanceof EObjectAxis) {
+			return !EMFHelper.isReadOnly(((EObjectAxis)current).getElement());
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.lang.Integer)
+	 * 
+	 * @param domain
+	 * @param axisPosition
+	 * @return
+	 */
+	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+		final Object current = getElements().get(axisPosition);
+		if(current instanceof EObjectAxis) {
+			final EObject element = ((EObjectAxis)current).getElement();
+			final DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)getContextEditingDomain(), element, false);
+			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(element);
+			return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+		}
+		return null;
+	}
+
 
 }

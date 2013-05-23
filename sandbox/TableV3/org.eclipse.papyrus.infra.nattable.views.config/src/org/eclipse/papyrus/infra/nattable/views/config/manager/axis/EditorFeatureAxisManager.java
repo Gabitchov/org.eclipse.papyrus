@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.config.manager.axis;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 
 /**
@@ -52,5 +55,31 @@ public class EditorFeatureAxisManager extends AbstractAxisManager {
 	@Override
 	public boolean canEditAxisHeader() {
 		return true;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.lang.Integer)
+	 * 
+	 * @param axisPosition
+	 * @return
+	 */
+	@Override
+	public boolean canDestroyAxisElement(Integer axisPosition) {
+		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.lang.Integer)
+	 * 
+	 * @param domain
+	 * @param axisPosition
+	 * @return
+	 */
+	@Override
+	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+		return UnexecutableCommand.INSTANCE;
 	}
 }

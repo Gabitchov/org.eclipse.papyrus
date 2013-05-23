@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -29,6 +30,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
@@ -230,4 +232,23 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis)
+	 * 
+	 * @param axis
+	 * @return
+	 */
+	public boolean canDestroyAxisElement(final IAxis axis) {
+		final EObject object = (EObject)axis.getElement();
+		return !EMFHelper.isReadOnly(object);
+	}
+
+	public boolean canDestroyAxisElement(Integer axisPosition) {
+		return false;
+	}
+
+	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+		return UnexecutableCommand.INSTANCE;
+	}
 }

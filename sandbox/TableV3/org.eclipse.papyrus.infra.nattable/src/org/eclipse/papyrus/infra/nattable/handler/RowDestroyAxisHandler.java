@@ -13,16 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 
 /**
- * The handler for the invert axis action
+ * The handler used to destroy the element represented by the selected rows
  * 
- * @author vl222926
+ * @author VL222926
  * 
  */
-public class InvertAxisHandler extends AbstractTableHandler {
+public class RowDestroyAxisHandler extends AbstractTableHandler {
 
 	/**
 	 * 
@@ -34,8 +37,27 @@ public class InvertAxisHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		getCurrentNattableModelManager().invertAxis();
+		final IAxisManager axisManager = getRowAxisManager();
+		if(axisManager != null) {
+			axisManager.destroyAxis(getFullSelectedRows(this.eventData));
+		}
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
+	 * 
+	 * @param evaluationContext
+	 */
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		final IAxisManager axisManager = getRowAxisManager();
+		if(axisManager != null) {
+			this.eventData = getNatEventData(evaluationContext);
+			final List<Integer> rows = getFullSelectedRows(this.eventData);
+			setBaseEnabled(axisManager.canDestroyAxis(rows));
+		}
+		super.setBaseEnabled(false);
+	}
 }
