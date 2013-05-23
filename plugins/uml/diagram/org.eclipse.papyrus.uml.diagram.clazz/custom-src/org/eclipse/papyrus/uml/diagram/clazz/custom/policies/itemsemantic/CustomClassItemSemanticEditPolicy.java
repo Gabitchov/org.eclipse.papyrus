@@ -31,6 +31,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationReorient
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CTemplateBindingCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.ContainmentLinkReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CustomAssociationBranchReorientCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CustomContextLinkCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.ContainmentHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
@@ -63,6 +64,9 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 		}
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.ConstraintContext_4028 == req.getElementType()) {
+			return getGEFWrapper(new CustomContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
