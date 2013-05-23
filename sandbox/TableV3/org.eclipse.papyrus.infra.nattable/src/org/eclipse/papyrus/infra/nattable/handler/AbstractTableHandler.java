@@ -157,7 +157,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 * @return
 	 *         the index of the rows which are fully selected
 	 */
-	protected List<Integer> getFullSelectedRows(Object evaluationContext) {
+	protected List<Integer> getFullSelectedRowsIndex(Object evaluationContext) {
 		final INattableModelManager manager = getCurrentNattableModelManager();
 		if(manager != null) {
 			final NatEventData data = getNatEventData(evaluationContext);
@@ -180,7 +180,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 * @return
 	 *         the index of the columns which are fully selected
 	 */
-	protected List<Integer> getFullSelectedColumns(Object evaluationContext) {
+	protected List<Integer> getFullSelectedColumnsIndex(Object evaluationContext) {
 		final INattableModelManager manager = getCurrentNattableModelManager();
 		if(manager != null) {
 			final NatEventData data = getNatEventData(evaluationContext);
@@ -196,6 +196,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		}
 		return Collections.emptyList();
 	}
+
 
 	/**
 	 * 
@@ -221,5 +222,17 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 			return manager.getColumnAxisManager();
 		}
 		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
+	 * 
+	 * @param evaluationContext
+	 */
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		this.eventData = getNatEventData(evaluationContext);
+		setBaseEnabled(getCurrentNattableModelManager() != null);
 	}
 }

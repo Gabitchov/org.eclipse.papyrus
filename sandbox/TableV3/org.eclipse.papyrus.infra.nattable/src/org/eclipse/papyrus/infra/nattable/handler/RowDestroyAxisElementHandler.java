@@ -39,7 +39,7 @@ public class RowDestroyAxisElementHandler extends AbstractTableHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final IAxisManager axisManager = getRowAxisManager();
 		if(axisManager != null) {
-			axisManager.destroyAxisElement(getFullSelectedRows(this.eventData));
+			axisManager.destroyAxisElement(getFullSelectedRowsIndex(this.eventData));
 		}
 		return null;
 	}
@@ -55,7 +55,7 @@ public class RowDestroyAxisElementHandler extends AbstractTableHandler {
 		final IAxisManager axisManager = getRowAxisManager();
 		if(axisManager != null) {
 			this.eventData = getNatEventData(evaluationContext);
-			final List<Integer> col = getFullSelectedRows(this.eventData);
+			final List<Integer> col = getFullSelectedRowsIndex(this.eventData);
 			setBaseEnabled(axisManager.canDestroyAxisElement(col));
 		} else {
 			setBaseEnabled(false);

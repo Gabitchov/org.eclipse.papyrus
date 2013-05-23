@@ -13,51 +13,32 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
+import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.resize.command.InitializeAutoResizeColumnsCommand;
+import org.eclipse.nebula.widgets.nattable.util.GCFactory;
 
 /**
- * The handler used to destroy the selected columns
+ * Handler to resize columns
  * 
  * @author VL222926
  * 
  */
-public class ColumnDestroyAxisHandler extends AbstractTableHandler {
+public class ColumnAutoResizeHandler extends AbstractTableHandler {
 
 	/**
-	 * @Override
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 * 
 	 * @param event
 	 * @return
 	 * @throws ExecutionException
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final IAxisManager axisManager = getColumnAxisManager();
-		if(axisManager != null) {
-			axisManager.destroyAxis(getFullSelectedColumnsIndex(this.eventData));
-		}
-		return null;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
-	 * 
-	 * @param evaluationContext
-	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		final IAxisManager axisManager = getColumnAxisManager();
-		if(axisManager != null) {
-			this.eventData = getNatEventData(evaluationContext);
-			final List<Integer> col = getFullSelectedColumnsIndex(this.eventData);
-			setBaseEnabled(axisManager.canDestroyAxis(col));
-		} else {
-			setBaseEnabled(false);
-		}
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		final NatTable natTable = this.eventData.getNatTable();
+		natTable.doCommand(new InitializeAutoResizeColumnsCommand(natTable, this.eventData.getColumnPosition(), natTable.getConfigRegistry(), new GCFactory(natTable)));
+		return null;
 	}
 }
