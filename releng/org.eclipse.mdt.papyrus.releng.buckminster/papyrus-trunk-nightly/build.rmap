@@ -512,7 +512,7 @@
       </rm:uri>
     </rm:provider>
     
-    <!-- GMF-Notation -->
+    <!-- GMF Notation -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GMF Runtime",0) -->
       <rm:uri format="{0}/modeling/gmp/gmf-notation/updates/milestones">
