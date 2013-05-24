@@ -1,0 +1,80 @@
+=Metamodel Description= 
+==CellEditorDeclaration==
+This enumeration allows to describe the way to declare the cell editor in the table : 
+<li>by column </li>
+<li>by row </li>
+<li>by cell </li>
+
+==AxisIndexStyle==
+This enumeration allows to describe how to display the index of the axis : 
+<li>Alphabetic : A, B, C ... Y, Z, AA, AB, ... </li>
+<li>Numeric : 1, 2, 3 </li>
+
+==TableNamedElement==
+abstract object used when an element need to have a name and a description
+
+==TableConfiguration==
+this object is used to configure the table
+
+===Fields=== 
+ <li>type : the type of the table</li>
+ <li>iconPath : the icon associated to the table</li>
+ <li>cellEditorDeclaration : describe how the cell editor will be declared in the table : They can be declared by row, by column or by cells</li>
+ <li>rowAxisProviders : the possible axis providers used for rows for this configuration</li>
+ <li>columnAxisProviders : the possible axis providers used for the columns for this configuration</li>
+ <li>defaultRowAxisProvider : the axis provider used for row just after the table creation </li>
+ <li>defaultColumnAxisProvider : the axis provider used for column just after the table creation </li>
+ 
+ 
+ ????rowAxisProviderConfiguration -> a la bonne place ? -> peut-être sur un (local)AbstractAxisProvider?
+ ????columnAxisProviderConfiguration -> à la bonne place? -> peut-être sur un (local)AbstractAxisProvider?
+ 
+ ===Constraints===
+ the field defaultRowAxisProvider must references an axis owned by rowAxisProviders
+ the field defaultColumnAxisProvider must references an axis owned by columnAxisProviders
+  
+
+==Table==
+This object represents the model of the table used in Papyrus
+===Fields===
+<li>invertAxis : indicates if the rows and the columns are inverted</li>
+<li>tableConfiguration : the configuration used for the table</li>
+<li>currentColumnAxisProvider : the current axis provider used for columns</li>
+<li>currentRowAxisProvider : the current axis provider used for rows</li>
+<li>rowAxisProvidersHistory : an history of the axis provider used for rows</li>
+<li>columnAxisProvidersHistory : an history of the axis provider used for columns</li>
+ 
+===Constraints===
+<li>the field currentRowAxisProvider must references an axis owned by rowAxisProviderHistory</li>
+<li>The field currentColumnAxisProvider must references one of axis provider referenced by columnAxisProviderHistory </li>
+<li>the field rowAxisProviderHistory will contains only 1 axisProvider just after the table creation even if the config provides several row axis providers in rowAxisProviders</li>
+<li>the field columnAxisProviderHistory will contains only 1 axisProvider just after the table creation even if the config provides several column axis providers in columnAxisProviders</li>
+<li> the axis providers owned by columnAxisProviderHistory and rowAxisProviderHistory contains only the axis provider already used by the user. </li>
+
+
+??? localTableConfiguration : must be here?
+
+??? add header in the name of the label configuration????
+==AbstractLabelConfiguration==
+This object allows to store the configuration for the label provider.
+===Fields===
+<li>labelProviderContext : the context to use to find the label provider to use</li>
+
+
+==ObjectLabelProviderConfiguration==
+This label provider can be used for all element displayed in a table
+===Fields===
+<li>displayIcon : indicates if we want display the icon of the object in the header</li>
+<li>displayLabel : indicates if we want display the label of the object in the header</li>
+
+==FeatureLabelProviderConfiguration==
+The label provider used for object representing properties/features of others objects
+===Fields===
+<li>displayIsDerived: indicates if we want display the "/" for the derived feature</li>
+<li>displayType: indicates if we want display the type of the feature</li>
+<li>displayMultiplicity: : indicates if we want display the multiplicity of the feature</li>
+<li>displayName:indicates if the want display the name of the feature</li>
+
+
+==AbstractAxisProvider==
+This class stores in an ordered list the IAxis displayed in rows or in columns

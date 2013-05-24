@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plugin provides the generic uml tabular editor.">
+  <referent firstName="Vincent" lastName="LORENZO" eMail="vincent.lorenzo@cea.fr" currentCompany="CEA LIST"/>
+</doc:Documentation>
