@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.Category;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.IHandler;
@@ -105,13 +106,19 @@ public abstract class AbstractCreateMenuFromCommandCategory extends ExtensionCon
 				continue;
 			}
 			if(command.isDefined() && category.equals(currentCategory)) {
-				String commandId = command.getId();
-				IHandler handler = commandService.getCommand(commandId).getHandler();
-				if(handler != null) {
+				final IHandler handler = command.getHandler();
+				if(handler instanceof AbstractHandler) {
+
+					//required!?!?! in some case can avoid the message for handler conflicting (ex : Allocate in SysML NatTable Allocation
+					((AbstractHandler)handler).setEnabled(null);
 					boolean isEnabled = handler.isEnabled();
+					command.setEnabled(null);
+					((AbstractHandler)handler).setEnabled(null);
+
+					isEnabled = handler.isEnabled();
 					try {
-						CommandContributionItemParameter p = new CommandContributionItemParameter(serviceLocator, "", commandId, SWT.PUSH); //$NON-NLS-1$
 						if(isEnabled) {
+							CommandContributionItemParameter p = new CommandContributionItemParameter(serviceLocator, "", command.getId(), SWT.PUSH); //$NON-NLS-1$
 							p.label = command.getDescription();
 							p.icon = EclipseCommandUtils.getCommandIcon(command);
 							CommandContributionItem item = new CommandContributionItem(p);
@@ -125,6 +132,5 @@ public abstract class AbstractCreateMenuFromCommandCategory extends ExtensionCon
 		}
 		return items;
 	}
-
 
 }
