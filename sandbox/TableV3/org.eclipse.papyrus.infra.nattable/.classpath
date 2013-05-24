@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry excluding="org/eclipse/papyrus/infra/nattable/row/reorder/DefaultReorderBindings.java|org/eclipse/papyrus/infra/nattable/row/reorder/DefaultRowReorderLayerConfiguration.java|org/eclipse/papyrus/infra/nattable/row/reorder/MultiRowReorderCommand.java|org/eclipse/papyrus/infra/nattable/row/reorder/MultiRowReorderCommandHandler.java|org/eclipse/papyrus/infra/nattable/row/reorder/RowReorderCommand.java|org/eclipse/papyrus/infra/nattable/row/reorder/RowReorderCommandHandler.java|org/eclipse/papyrus/infra/nattable/row/reorder/RowReorderDragMode.java|org/eclipse/papyrus/infra/nattable/row/reorder/RowReorderEndCommand.java|org/eclipse/papyrus/infra/nattable/row/reorder/RowReorderEndCommandHandler.java|org/eclipse/papyrus/infra/nattable/row/reorder/RowReorderEvent.java|org/eclipse/papyrus/infra/nattable/row/reorder/RowReorderLayer.java|org/eclipse/papyrus/infra/nattable/row/reorder/RowReorderStartCommand.java|org/eclipse/papyrus/infra/nattable/row/reorder/RowReorderStartCommandHandler.java|org/eclipse/papyrus/infra/nattable/celleditor/configs/IAxisEStructuralFeatureCellEditorConfiguration.java" kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
