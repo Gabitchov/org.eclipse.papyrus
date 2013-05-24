@@ -11,102 +11,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.menu;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.Category;
-import org.eclipse.core.commands.Command;
-import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.commands.common.NotDefinedException;
-import org.eclipse.core.expressions.EvaluationResult;
-import org.eclipse.core.expressions.Expression;
-import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.action.IContributionManager;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.sysml.service.types.Activator;
-import org.eclipse.swt.SWT;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommandImageService;
-import org.eclipse.ui.commands.ICommandService;
-import org.eclipse.ui.menus.CommandContributionItem;
-import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.eclipse.ui.menus.ExtensionContributionFactory;
-import org.eclipse.ui.menus.IContributionRoot;
-import org.eclipse.ui.services.IServiceLocator;
+import org.eclipse.papyrus.infra.tools.util.AbstractCreateMenuFromCommandCategory;
 
 
 /**
  * Abstract menu for the creation of Sysml elements
  */
-public abstract class AbstractCreateSysmlChildMenu extends ExtensionContributionFactory {
+public abstract class AbstractCreateSysmlChildMenu extends AbstractCreateMenuFromCommandCategory {
+
+	/** the cateogory of the command used to create SysML elements */
+	public static final String SYSML_CREATION_COMMAND_CATEGORY = "org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands"; //$NON-NLS-1$
 
 	/**
 	 * Constructor.
 	 * 
 	 */
 	public AbstractCreateSysmlChildMenu() {
-	}
-
-	@Override
-	public void createContributionItems(IServiceLocator serviceLocator, IContributionRoot additions) {
-		//test to know if we can create elements if it is possible...
-		Expression visibleWhen = new Expression() {
-
-			@Override
-			public EvaluationResult evaluate(IEvaluationContext context) throws CoreException {
-				return EvaluationResult.TRUE;
-			}
-		};
-		for(CommandContributionItem item : addCreationItems(serviceLocator, additions, null)) {
-			additions.addContributionItem(item, visibleWhen);
-		}
-
-	}
-
-	private List<CommandContributionItem> addCreationItems(IServiceLocator serviceLocator, IContributionRoot additions, IContributionManager parent) {
-		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
-		String categoryId = "org.eclipse.papyrus.sysml.service.types.sysmlElementCreationCommands"; //$NON-NLS-1$
-		List<CommandContributionItem> items = new ArrayList<CommandContributionItem>();
-		Category sysmlCategory = commandService.getCategory(categoryId);
-		Set<Command> commands = new TreeSet<Command>();
-		commands.addAll(Arrays.asList(commandService.getDefinedCommands()));
-		try {
-			for(Command command : commands) {
-				if(command.getCategory().equals(sysmlCategory)) {
-					IHandler handler = command.getHandler();
-					if(handler == null) {
-						continue;
-					}
-
-					((AbstractHandler)handler).setEnabled(null);
-					boolean isEnabled = handler.isEnabled();
-					if(isEnabled) {
-						String commandId = command.getId();
-						CommandContributionItemParameter p = new CommandContributionItemParameter(serviceLocator, "", commandId, SWT.PUSH); //$NON-NLS-1$
-						p.label = command.getDescription();
-						p.icon = getCommandIcon(command);
-						CommandContributionItem item = new CommandContributionItem(p);
-						items.add(item);
-					}
-				}
-			}
-		} catch (NotDefinedException e) {
-			Activator.log.error(e.getLocalizedMessage(), e);
-		}
-		return items;
-
-	}
-
-	private ImageDescriptor getCommandIcon(Command command) {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		ICommandImageService service = (ICommandImageService)workbench.getService(ICommandImageService.class);
-		ImageDescriptor imageDescriptor = service.getImageDescriptor(command.getId());
-		return imageDescriptor;
+		super(SYSML_CREATION_COMMAND_CATEGORY);
 	}
 }
