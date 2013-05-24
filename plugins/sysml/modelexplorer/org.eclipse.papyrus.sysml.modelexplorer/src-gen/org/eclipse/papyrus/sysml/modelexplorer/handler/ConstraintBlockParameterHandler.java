@@ -64,6 +64,10 @@ public class ConstraintBlockParameterHandler extends AbstractSysmlModelExplorerC
 		EObject container = getCommandContext().getContainer();
 		EReference reference = getCommandContext().getReference();
 
+		if(!(container instanceof Element)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
 		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
