@@ -12,6 +12,7 @@
           </test>
        </with>
     </activeWhen></handler>
+    <!-- commented because unactivated by the filter see bug 408984
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AllocateHandler" commandId="org.eclipse.papyrus.sysml.service.types.AllocateCreateCommand" >
     <activeWhen>
        <with
@@ -21,7 +22,9 @@
                 value="true">
           </test>
        </with>
-    </activeWhen></handler>
+    </activeWhen></handler> 
+    -->
+      <!-- commented because unactivated by the filter see bug 408984
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.AssociationHandler" commandId="org.eclipse.papyrus.sysml.service.types.AssociationCreateCommand" >
     <activeWhen>
        <with
@@ -92,6 +95,7 @@
           </test>
        </with>
     </activeWhen></handler>
+    -->
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.BlockHandler" commandId="org.eclipse.papyrus.sysml.service.types.BlockCreateCommand" >
     <activeWhen>
        <with
@@ -102,6 +106,7 @@
           </test>
        </with>
     </activeWhen></handler>
+      <!-- commented because unactivated by the filter see bug 408984
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConformHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConformCreateCommand" >
     <activeWhen>
        <with
@@ -112,6 +117,7 @@
           </test>
        </with>
     </activeWhen></handler>
+    -->
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ConstraintBlockHandler" commandId="org.eclipse.papyrus.sysml.service.types.ConstraintBlockCreateCommand" >
     <activeWhen>
        <with
@@ -142,6 +148,7 @@
           </test>
        </with>
     </activeWhen></handler>
+      <!-- commented because unactivated by the filter see bug 408984
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.CopyHandler" commandId="org.eclipse.papyrus.sysml.service.types.CopyCreateCommand" >
     <activeWhen>
        <with
@@ -162,6 +169,7 @@
           </test>
        </with>
     </activeWhen></handler>
+    -->
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.DimensionHandler" commandId="org.eclipse.papyrus.sysml.service.types.DimensionCreateCommand" >
     <activeWhen>
        <with
@@ -242,6 +250,7 @@
           </test>
        </with>
     </activeWhen></handler>
+      <!-- commented because unactivated by the filter see bug 408984
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ItemFlowHandler" commandId="org.eclipse.papyrus.sysml.service.types.ItemFlowCreateCommand" >
     <activeWhen>
        <with
@@ -252,6 +261,7 @@
           </test>
        </with>
     </activeWhen></handler>
+    -->
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.PartPropertyHandler" commandId="org.eclipse.papyrus.sysml.service.types.PartPropertyCreateCommand" >
     <activeWhen>
        <with
@@ -302,6 +312,7 @@
           </test>
        </with>
     </activeWhen></handler>
+      <!-- commented because unactivated by the filter see bug 408984
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.SatisfyHandler" commandId="org.eclipse.papyrus.sysml.service.types.SatisfyCreateCommand" >
     <activeWhen>
        <with
@@ -312,6 +323,7 @@
           </test>
        </with>
     </activeWhen></handler>
+    -->
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.UnitHandler" commandId="org.eclipse.papyrus.sysml.service.types.UnitCreateCommand" >
     <activeWhen>
        <with
@@ -342,6 +354,7 @@
           </test>
        </with>
     </activeWhen></handler>
+      <!-- commented because unactivated by the filter see bug 408984
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ValueType_EnumerationHandler" commandId="org.eclipse.papyrus.sysml.service.types.ValueType_EnumerationCreateCommand" >
     <activeWhen>
        <with
@@ -372,6 +385,7 @@
           </test>
        </with>
     </activeWhen></handler>
+    -->
 	<handler class= "org.eclipse.papyrus.sysml.nattable.menu.handlers.ViewHandler" commandId="org.eclipse.papyrus.sysml.service.types.ViewCreateCommand" >
     <activeWhen>
        <with
