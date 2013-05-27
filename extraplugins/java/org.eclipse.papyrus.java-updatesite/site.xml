@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipse.papyrus.java.reverse.feature_0.10.0.201301311719.jar" id="org.eclipse.papyrus.java.reverse.feature" version="0.10.0.201301311719">
-      <category name="org.eclipse.papyrus.java"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.java.profile.feature_0.10.0.201301311719.jar" id="org.eclipse.papyrus.java.profile.feature" version="0.10.0.201301311719">
-      <category name="org.eclipse.papyrus.java"/>
-      <category name="org.eclipse.papyrus.java.profile"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.java.generator.feature_0.10.0.201301311719.jar" id="org.eclipse.papyrus.java.generator.feature" version="0.10.0.201301311719">
-      <category name="org.eclipse.papyrus.java"/>
+   <feature url="features/org.eclipse.papyrus.java.generator.feature_0.10.0.201305271555.jar" id="org.eclipse.papyrus.java.generator.feature" version="0.10.0.201305271555">
       <category name="org.eclipse.papyrus.java.generator"/>
+      <category name="org.eclipse.papyrus.java"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.java.reverse.feature_0.10.0.201305271555.jar" id="org.eclipse.papyrus.java.reverse.feature" version="0.10.0.201305271555">
+      <category name="org.eclipse.papyrus.java"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.java.profile.feature_0.10.0.201305271555.jar" id="org.eclipse.papyrus.java.profile.feature" version="0.10.0.201305271555">
+      <category name="org.eclipse.papyrus.java.profile"/>
+      <category name="org.eclipse.papyrus.java"/>
    </feature>
    <category-def name="org.eclipse.papyrus.java.generator" label="Java Generator">
       <description>
@@ -21,9 +21,9 @@
          This profile is used by the Java generator and the Java reverse to add additional properties to the UML model. These properties allows to change the names, specify  project target, source targets, ...
       </description>
    </category-def>
-   <category-def name="org.eclipse.papyrus.java" label="Java Tools For Ppyrus">
+   <category-def name="org.eclipse.papyrus.java" label="Java Tools For Papyrus">
       <description>
-         Tools related to the Java language.
+         Tools related to the Java language. This set of plugins allows to reverse java code to a Papyrus model, and to generate  Java code from a Papyrus model.
       </description>
    </category-def>
 </site>

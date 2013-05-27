@@ -8,7 +8,8 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: japa.parser,
  japa.parser.ast,
- javagen.umlparser
+ javagen.umlparser,
+ org.eclipse.papyrus.java.reverse.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.uml2.uml;visibility:=reexport

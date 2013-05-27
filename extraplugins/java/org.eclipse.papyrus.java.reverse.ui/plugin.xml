@@ -7,6 +7,10 @@
             class="org.eclipse.papyrus.java.reverse.ui.ReverseCodeHandler"
             commandId="org.eclipse.papyrus.java.reverse.ui.reverseCodeCommand">
       </handler>
+      <handler
+            class="org.eclipse.papyrus.java.reverse.ui.handlers.CreateAssociationFromPropertyHandler"
+            commandId="org.eclipse.papyrus.java.reverse.ui.commands.CreateAssociationFromPropertyCommand">
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -21,15 +25,31 @@
                   style="push"
                   tooltip="Reverse Java code into current model">
             </command>
+            <command
+                  commandId="org.eclipse.papyrus.java.reverse.ui.commands.CreateAssociationFromPropertyCommand"
+                  icon="icons/associationFromProperty.gif"
+                  label="Create Association From Property"
+                  style="push">
+            </command>
          </toolbar>
       </menuContribution>
       <menuContribution
             locationURI="menu:org.eclipse.papyrus.ui.menu">
          <menu
                id="org.eclipse.papyrus.java.ui.menu"
-               label="java">
+               label="Java">
             <command
                   commandId="org.eclipse.papyrus.java.reverse.ui.reverseCodeCommand"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+               id="org.eclipse.papyrus.ui.menu.misc"
+               label="Utils">
+            <command
+                  commandId="org.eclipse.papyrus.java.reverse.ui.commands.CreateAssociationFromPropertyCommand"
+                  icon="icons/associationFromProperty.gif"
+                  label="Create Association From Property"
                   style="push">
             </command>
          </menu>
@@ -38,9 +58,35 @@
             locationURI="popup:org.eclipse.sash.ui.folder">
          <menu
                id="org.eclipse.papyrus.java.ui.sash.menu"
-               label="java">
+               label="Java">
             <command
                   commandId="org.eclipse.papyrus.java.reverse.ui.reverseCodeCommand"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+         <menu
+               id="org.eclipse.papyrus.ui.popupmenu.modelexplorer.misc"
+               label="Utils">
+            <command
+                  commandId="org.eclipse.papyrus.java.reverse.ui.commands.CreateAssociationFromPropertyCommand"
+                  icon="icons/associationFromProperty.gif"
+                  label="Create Association From Property"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <menu
+               id="org.eclipse.papyrus.ui.popupmenu.diagram.misc"
+               label="Utils">
+            <command
+                  commandId="org.eclipse.papyrus.java.reverse.ui.commands.CreateAssociationFromPropertyCommand"
+                  icon="icons/associationFromProperty.gif"
+                  label="Create Association From Property"
                   style="push">
             </command>
          </menu>
@@ -52,6 +98,11 @@
             description="Reverse Java code into current model"
             id="org.eclipse.papyrus.java.reverse.ui.reverseCodeCommand"
             name="Java Reverse">
+      </command>
+      <command
+            description="Create a New association from the Property."
+            id="org.eclipse.papyrus.java.reverse.ui.commands.CreateAssociationFromPropertyCommand"
+            name="Create Association From Property">
       </command>
    </extension>
 
