@@ -399,6 +399,7 @@ public class ConvertOldTableHandler extends AbstractHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
+		this.oldPapyrusTableInstance = new ArrayList<PapyrusTableInstance>();
 		if(evaluationContext instanceof IEvaluationContext) {
 			Object selection = ((IEvaluationContext)evaluationContext).getDefaultVariable();
 			if(selection instanceof Collection<?>) {
@@ -408,7 +409,7 @@ public class ConvertOldTableHandler extends AbstractHandler {
 					if(current instanceof IAdaptable) {
 						EObject eobject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
 						if(eobject instanceof PapyrusTableInstance) {
-							this.oldPapyrusTableInstance = new ArrayList<PapyrusTableInstance>();
+
 							this.oldPapyrusTableInstance.add((PapyrusTableInstance)eobject);
 						}
 						setBaseEnabled(this.oldPapyrusTableInstance != null && this.oldPapyrusTableInstance.size() == 1);
