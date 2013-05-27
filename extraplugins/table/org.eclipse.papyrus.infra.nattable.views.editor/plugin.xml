@@ -28,7 +28,7 @@
                class="org.eclipse.papyrus.infra.nattable.common.handlers.CreateNatTableEditorHandler">
             <parameter
                   name="tableType"
-                  value="PapyrusTableViewsEditor">
+                  value="PapyrusViewsTable">
             </parameter>
          </class>
       </handler>
