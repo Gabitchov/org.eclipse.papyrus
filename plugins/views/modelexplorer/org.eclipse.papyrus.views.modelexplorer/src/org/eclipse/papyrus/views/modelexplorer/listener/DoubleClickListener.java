@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,6 +26,7 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -60,6 +62,7 @@ public class DoubleClickListener implements IDoubleClickListener {
 			Activator.log.error(Messages.DoubleClickListener_Error_NoLoadManagerToOpen, e);
 			return;
 		}
+
 		if(pageManager != null) {
 			if(selection instanceof IStructuredSelection) {
 				Iterator<?> iter = ((IStructuredSelection)selection).iterator();
@@ -69,7 +72,7 @@ public class DoubleClickListener implements IDoubleClickListener {
 					Object currentObject = iter.next();
 					EObject diag = EMFHelper.getEObject(currentObject);
 
-					if(pageManager.allPages().contains(diag)) {
+					if(isPage(diag, pageManager)) {
 						if(pageManager.isOpen(diag)) {
 							pageToSelect = diag;
 						} else {
@@ -99,5 +102,14 @@ public class DoubleClickListener implements IDoubleClickListener {
 			}
 
 		}
+	}
+
+	protected boolean isPage(EObject element, IPageManager pageManager) {
+		if(pageManager.allPages().contains(element)) {
+			return true;
+		}
+
+		Object openable = Platform.getAdapterManager().getAdapter(element, IOpenable.class);
+		return openable instanceof IOpenable;
 	}
 }

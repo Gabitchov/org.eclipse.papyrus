@@ -113,41 +113,6 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 
 	/**
 	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return
-	 */
-	//	@Override
-	//	public boolean isEnabled() {
-	//		IPageMngr pageMngr = getPageManager();
-	//		if(pageMngr == null) {
-	//			return false;
-	//		}
-	//		
-	//		// Try to close each selected editor.
-	//		// There is no common type for object representing an editor. So,
-	//		// We try to get the EObject, and try to close it as an Editor.
-	//		List<EObject> selectedProperties = getCurrentSelectionAdaptedToType( event, EObject.class );
-	//		if( selectedProperties == null) {
-	//			// nothing to do
-	//			return false;
-	//		}
-	//		
-	//		// Check each selected object
-	//		// Return true if one of them is enabled
-	//		for( EObject selected : selectedProperties) {
-	//			
-	//			if( isDuplicateDiagramAllowed || !pageMngr.isOpen(selected) ) {
-	//				return true;
-	//			}
-	//		}
-	//		
-	//		
-	//		return false;
-	//	}
-
-	/**
-	 * 
 	 * @see org.eclipse.core.runtime.IExecutableExtension#setInitializationData(org.eclipse.core.runtime.IConfigurationElement, java.lang.String,
 	 *      java.lang.Object)
 	 * 

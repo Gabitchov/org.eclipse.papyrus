@@ -15,10 +15,11 @@ package org.eclipse.papyrus.views.modelexplorer.provider;
 
 import java.util.Iterator;
 
-import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -79,25 +80,30 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	 *         <code>true</code> if all selected elements are pages
 	 */
 	private boolean isPage(IStructuredSelection selection) {
-		IPageManager pageMngr = getPageManager();
-		if(pageMngr != null) {
+		IPageManager pageManager = getPageManager();
+		if(pageManager != null) {
 			if(!selection.isEmpty()) {
 				Iterator<?> iter = selection.iterator();
 				while(iter.hasNext()) {
-					Object current = iter.next();
-					if(current instanceof IAdaptable) {
-						EObject eObject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
-						if(!pageMngr.allPages().contains(eObject)) {
-							return false;
-						}
-					} else if(!pageMngr.allPages().contains(current)) {//table of diagram!
+					EObject current = EMFHelper.getEObject(iter.next());
+					if(!isPage(current, pageManager)) {
 						return false;
 					}
 				}
+
 				return true;
 			}
 		}
 		return false;
+	}
+
+	protected boolean isPage(EObject element, IPageManager pageManager) {
+		if(pageManager.allPages().contains(element)) {
+			return true;
+		}
+
+		Object openable = Platform.getAdapterManager().getAdapter(element, IOpenable.class);
+		return openable instanceof IOpenable;
 	}
 
 	/**
