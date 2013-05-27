@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.uml.services.decoration.UMLDecorationService"
+            id="org.eclipse.papyrus.infra.services.decoration.DecorationService"
+            priority="2"
+            startKind="lazy"
+            useClassTypeAsKey="true">
+      </service>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.markerlistener.markereventlistener">
+      <listener
+            class="org.eclipse.papyrus.uml.services.decoration.UMLDecorationService">
+      </listener>
+   </extension>
+</plugin>
