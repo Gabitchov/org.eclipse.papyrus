@@ -20,11 +20,13 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.jface.viewers.IFontProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -36,7 +38,7 @@ import org.eclipse.swt.graphics.Image;
  * @author Camille Letavernier
  * 
  */
-public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelProvider, ILabelProviderListener, IColorProvider {
+public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelProvider, ILabelProviderListener, IColorProvider, IFontProvider {
 
 	private final Set<ILabelProviderListener> listeners;
 
@@ -90,6 +92,14 @@ public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelP
 		IColorProvider provider = getProvider(element, IColorProvider.class);
 		if(provider != null) {
 			return provider.getBackground(element);
+		}
+		return null;
+	}
+
+	public Font getFont(Object element) {
+		IFontProvider provider = getProvider(element, IFontProvider.class);
+		if(provider != null) {
+			return provider.getFont(element);
 		}
 		return null;
 	}
