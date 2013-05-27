@@ -120,6 +120,7 @@
          point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
       <readOnlyHandler
             class="org.eclipse.papyrus.uml.profile.readonly.AppliedProfileReadOnlyHandler"
+            id="org.eclipse.papyrus.uml.profile.readonly.AppliedProfileReadOnlyHandler"
             priority="15">
       </readOnlyHandler>
    </extension>

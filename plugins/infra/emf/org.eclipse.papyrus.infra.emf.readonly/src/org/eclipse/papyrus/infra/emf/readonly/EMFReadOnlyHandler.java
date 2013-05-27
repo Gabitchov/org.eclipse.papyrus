@@ -19,7 +19,7 @@ import com.google.common.base.Optional;
 
 public class EMFReadOnlyHandler extends AbstractReadOnlyHandler {
 
-	EMFReadOnlyHandler(EditingDomain editingDomain) {
+	public EMFReadOnlyHandler(EditingDomain editingDomain) {
 		super(editingDomain);
 	}
 
