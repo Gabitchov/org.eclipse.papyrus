@@ -8,20 +8,20 @@
    </extension>
  <extension id="papyrus.table.menuspapyrus.table.menu" name="Papyrus Table Menus" point="org.eclipse.ui.menus">
       <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
-         <menu icon="icons/table.gif" id="org.eclipse.papyrus.infra.nattable.popupmenu.createnattable" label="New Papyrus Table (New version)" mnemonic="&amp;T" tooltip="The Papyrus Table Menu">
+         <menu icon="icons/table.gif" id="org.eclipse.papyrus.infra.nattable.popupmenu.createnattable" label="New Table (New version)" mnemonic="&amp;T" tooltip="The Papyrus Table Menu">
          </menu>
       </menuContribution>
       <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.ui.menu?after=org.eclipse.papyrus.uml.diagram.ui.menu.diagrams">
          <menu
                icon="icons/table.gif"
                id="org.eclipse.papyrus.infra.nattable.menu.createnattable"
-               label="New Papyrus Table (New version)"
+               label="New Table (New version)"
                mnemonic="&amp;T"
                tooltip="The Papyrus Table Menu">
          </menu>
       </menuContribution>
       <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?endof=org.eclipse.papyrus.uml.diagram.ui.toolbar">
-         <toolbar id="org.eclipse.papyrus.infra.nattable.toolbar.createnattable" label="New Papyrus Table Toolbar (New Version)">
+         <toolbar id="org.eclipse.papyrus.infra.nattable.toolbar.createnattable" label="New Table Toolbar (New Version)">
          </toolbar>
       </menuContribution>
    </extension>
