@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
  com.google.guava,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
 Export-Package: org.eclipse.papyrus.infra.nattable.controlmode,
