@@ -19,10 +19,12 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -34,7 +36,7 @@ import org.eclipse.swt.graphics.Image;
  * @author Camille Letavernier
  * 
  */
-public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelProvider, ILabelProviderListener {
+public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelProvider, ILabelProviderListener, IColorProvider {
 
 	private final Set<ILabelProviderListener> listeners;
 
@@ -74,6 +76,22 @@ public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelP
 	public void registerProvider(int priority, IFilteredLabelProvider provider) {
 		getProviders(priority).add(provider);
 		provider.addListener(this);
+	}
+
+	public Color getForeground(Object element) {
+		IColorProvider provider = getProvider(element, IColorProvider.class);
+		if(provider != null) {
+			return provider.getForeground(element);
+		}
+		return null;
+	}
+
+	public Color getBackground(Object element) {
+		IColorProvider provider = getProvider(element, IColorProvider.class);
+		if(provider != null) {
+			return provider.getBackground(element);
+		}
+		return null;
 	}
 
 	public Image getImage(Object element) {
