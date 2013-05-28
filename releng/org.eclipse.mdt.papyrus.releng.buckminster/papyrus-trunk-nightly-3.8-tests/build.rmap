@@ -311,8 +311,8 @@
     
     <!-- GMF Notation -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <!-- updateFrom("GMF Runtime",0) -->
-      <rm:uri format="{0}/modeling/gmp/gmf-runtime/updates/milestones">
+      <!-- updateFrom("GMF Notation",0) -->
+      <rm:uri format="{0}/modeling/gmp/gmf-notation/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
