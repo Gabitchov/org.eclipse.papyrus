@@ -1096,7 +1096,7 @@
       </browserCustomization>
       <browserCustomization
             file="resource/SimpleUML.uiCustom"
-            loadByDefault="false">
+            loadByDefault="true">
       </browserCustomization>
    </extension>
    <extension point= "org.eclipse.ui.handlers">
