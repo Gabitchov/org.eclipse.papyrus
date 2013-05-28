@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.infra.services.openelement.service.impl;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -41,9 +40,9 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
 import org.eclipse.papyrus.infra.services.openelement.Activator;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
-import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
@@ -88,25 +87,41 @@ public class OpenElementServiceImpl implements OpenElementService {
 			return null;
 		}
 
-		IMultiDiagramEditor editor = openURI(pageURI);
-		if(editor != null) {
-			if(editor.getActiveEditor() instanceof IRevealSemanticElement) {
-				final IRevealSemanticElement revealElement = (IRevealSemanticElement)editor.getActiveEditor();
-				final EObject semanticElement = EMFHelper.getEObject(viewElement);
-				Display.getDefault().syncExec(new Runnable() {
+		final IMultiDiagramEditor editor = openURI(pageURI);
 
-					public void run() {
-						revealElement.revealSemanticElement(Collections.singletonList(semanticElement));
-					}
-				});
-
-			}
-		}
+		reveal(editor, viewElement);
 
 		if(editor != null) {
 			editor.getEditorSite().getPage().activate(editor);
 		}
 		return editor;
+	}
+
+	protected void reveal(final IMultiDiagramEditor editor, final EObject element) {
+		if(editor != null) {
+			Display.getDefault().syncExec(new Runnable() {
+
+				public void run() {
+					try {
+						URI elementURI = EcoreUtil.getURI(element);
+						ModelSet modelSet = editor.getServicesRegistry().getService(ModelSet.class);
+						EObject elementToReveal = modelSet.getEObject(elementURI, false);
+
+						if(elementToReveal == null) {
+							return;
+						}
+
+						NavigationService navigationService = editor.getServicesRegistry().getService(NavigationService.class);
+						if(navigationService != null) {
+							navigationService.navigate(elementToReveal);
+						}
+					} catch (ServiceException ex) {
+						Activator.log.error(ex);
+					}
+				}
+			});
+
+		}
 	}
 
 	/**
@@ -137,9 +152,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 		}
 
 		IMultiDiagramEditor editor = openSemanticElement(semanticElement, pageURIs);
-		if(editor != null) {
-			editor.getEditorSite().getPage().activate(editor);
-		}
+
 		return editor;
 	}
 
@@ -189,15 +202,10 @@ public class OpenElementServiceImpl implements OpenElementService {
 			}
 		}
 
-		if(editor != null && editor.getActiveEditor() instanceof IRevealSemanticElement) {
-			final IRevealSemanticElement revealElement = (IRevealSemanticElement)editor.getActiveEditor();
-			Display.getDefault().syncExec(new Runnable() {
+		reveal(editor, semanticElement);
 
-				public void run() {
-					revealElement.revealSemanticElement(Collections.singletonList(semanticElement));
-				}
-			});
-
+		if(editor != null) {
+			editor.getEditorSite().getPage().activate(editor);
 		}
 
 		return editor;

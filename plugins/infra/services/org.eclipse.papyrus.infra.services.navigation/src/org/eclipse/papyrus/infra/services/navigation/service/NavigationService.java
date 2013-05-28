@@ -29,7 +29,26 @@ import org.eclipse.swt.widgets.Control;
  */
 public interface NavigationService extends IService, NavigationContributor {
 
-	public SelectionMenu createNavigationList(Object data, Control parent);
+	/**
+	 * Creates a Selection Menu to display all the NavigableElement which can be reached from an element
+	 * 
+	 * @param fromElement
+	 * @param parent
+	 * @return
+	 */
+	public SelectionMenu createNavigationList(Object fromElement, Control parent);
 
+	/**
+	 * Navigate to the target of the given NavigableElement (e.g. To the type of a TypedElement)
+	 * 
+	 * @param navigableElement
+	 */
 	public void navigate(NavigableElement navigableElement);
+
+	/**
+	 * Navigate directly to the given element (e.g. a UML Element)
+	 * 
+	 * @param element
+	 */
+	public void navigate(Object element);
 }

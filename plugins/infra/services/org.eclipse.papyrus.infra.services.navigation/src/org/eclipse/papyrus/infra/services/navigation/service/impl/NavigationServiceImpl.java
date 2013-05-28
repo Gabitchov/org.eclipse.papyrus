@@ -361,4 +361,25 @@ public class NavigationServiceImpl implements NavigationService {
 			}
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void navigate(Object element) {
+		if(registry == null) {
+			throw new IllegalStateException("The navigation service is not initialized");
+		}
+
+		for(NavigationTargetProvider provider : getNavigationTargetProviders()) {
+			NavigationTarget target = provider.getNavigationTarget(registry);
+
+			if(target == null) {
+				continue;
+			}
+
+			if(target.revealElement(element)) {
+				return;
+			}
+		}
+	}
 }
