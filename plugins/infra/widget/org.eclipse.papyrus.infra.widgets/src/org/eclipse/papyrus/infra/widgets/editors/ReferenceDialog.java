@@ -191,6 +191,10 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		int result = dialog.open();
 		if(result == Window.OK) {
 			Object[] newValue = dialog.getResult();
+			if(newValue == null) {
+				return;
+			}
+
 			if(newValue.length == 0) {
 				setValue(null);
 			} else {

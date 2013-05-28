@@ -92,7 +92,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 
 	private static final int HISTORY_MAX_SIZE = 5;
 
-	private String currentFilterPattern = ""; //$NON-NLS-1$
+	private String currentFilterPattern;
 
 	private TableViewer historyViewer;
 
@@ -123,6 +123,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 		editor.setToolTipText("Enter the name of the element you're looking for. You can use * as a wildcard");
 		editor.setValidateOnDelay(true);
 		patternFilter = new PatternViewerFilter();
+		currentFilterPattern = ""; //$NON-NLS-1$
 		((PatternViewerFilter)patternFilter).setPattern(currentFilterPattern);
 
 		editor.addCommitListener(new ICommitListener() {
@@ -132,10 +133,13 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 				((PatternViewerFilter)patternFilter).setPattern(filterPattern);
 				viewer.refresh();
 				if(!("".equals(filterPattern) || currentFilterPattern.equals(filterPattern))) {
-					Object firstMatch = getFirstMatchingElement(null);
-					if(firstMatch != null) {
-						revealSemanticElement(Collections.singletonList(firstMatch));
-					}
+
+					//FIXME: The reveal first match algorithm is not compatible with infinite trees and had bad performances
+					//Object firstMatch = getFirstMatchingElement(null);
+					//if(firstMatch != null) {
+					//		revealSemanticElement(Collections.singletonList(firstMatch));
+					//}
+
 					currentFilterPattern = filterPattern;
 				}
 			}

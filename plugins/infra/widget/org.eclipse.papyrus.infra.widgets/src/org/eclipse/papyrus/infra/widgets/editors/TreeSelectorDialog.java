@@ -26,7 +26,6 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider;
@@ -38,7 +37,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.dialogs.PatternFilter;
 import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
@@ -107,14 +105,6 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		if(treeViewer.getInput() == null) {
 			doSetInput();
 		}
-		List<?> initialSelection = getInitialElementSelections();
-		if(contentProvider instanceof IRevealSemanticElement) {
-			((IRevealSemanticElement)contentProvider).revealSemanticElement(initialSelection);
-		} else if(!initialSelection.isEmpty()) {
-			//FIXME : When we use an EncapsulatedContentProvider, we'll not get into this case,
-			//even if the encapsulated provider is not a IRevealSemanticElement
-			treeViewer.setSelection(new StructuredSelection(initialSelection.get(0)), true);
-		}
 	}
 
 	@Override
@@ -130,7 +120,8 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 		treeViewer = new TreeViewer(getDialogArea(), SWT.BORDER);
-		treeViewer.setFilters(new ViewerFilter[]{ new PatternFilter() });
+		//		treeViewer.setFilters(new ViewerFilter[]{ new PatternFilter() });
+
 		if(labelProvider != null) {
 			treeViewer.setLabelProvider(labelProvider);
 		}
@@ -195,6 +186,15 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 			graphicalContentProvider.createAfter(afterTreeComposite);
 		}
 
+		List<?> initialSelection = getInitialElementSelections();
+		if(contentProvider instanceof IRevealSemanticElement) {
+			((IRevealSemanticElement)contentProvider).revealSemanticElement(initialSelection);
+		} else if(!initialSelection.isEmpty()) {
+			//FIXME : When we use an EncapsulatedContentProvider, we'll not get into this case,
+			//even if the encapsulated provider is not a IRevealSemanticElement
+			treeViewer.setSelection(new StructuredSelection(initialSelection.get(0)), true);
+		}
+
 		getShell().setDefaultButton(null);
 		getButton(OK).setFocus();
 		getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
@@ -230,20 +230,6 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	public void setInput(Object input) {
 		this.input = input;
 	}
-
-	//	@Deprecated
-	//	//Unused
-	//	public List<Object> getAdaptedInitialSelection() {
-	//		if(contentProvider instanceof IAdaptableContentProvider) {
-	//			List<Object> result = new LinkedList<Object>();
-	//			for(Object object : getInitialElementSelections()) {
-	//				result.add(((IAdaptableContentProvider)contentProvider).getContainerValue(object));
-	//			}
-	//			return result;
-	//		} else {
-	//			return super.getInitialElementSelections();
-	//		}
-	//	}
 
 	private void doSetInput() {
 		if(input == null) {

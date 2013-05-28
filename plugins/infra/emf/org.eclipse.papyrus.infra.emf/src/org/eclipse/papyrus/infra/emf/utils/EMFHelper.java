@@ -722,4 +722,23 @@ public class EMFHelper {
 
 		return false;
 	}
+
+	/**
+	 * Computes the path from the root EObject to the given element, as a List of EObjects
+	 * 
+	 * @param element
+	 * @return
+	 */
+	public static List<EObject> getContainmentPath(EObject element) {
+		List<EObject> result;
+		if(element.eContainer() == null) {
+			result = new LinkedList<EObject>();
+			result.add(element);
+			return result;
+		} else {
+			result = getContainmentPath(element.eContainer());
+			result.add(element);
+		}
+		return result;
+	}
 }

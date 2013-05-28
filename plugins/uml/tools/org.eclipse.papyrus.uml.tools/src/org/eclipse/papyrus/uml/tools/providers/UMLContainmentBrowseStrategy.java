@@ -35,6 +35,7 @@ public class UMLContainmentBrowseStrategy extends ContainmentBrowseStrategy {
 		Object semanticElement = adaptableProvider.getAdaptedValue(containerElement);
 
 		if(semanticElement == UMLPackage.eINSTANCE.getPackageImport_ImportedPackage()) {
+			//FIXME: Only return true for the closest PackageImport
 			return true;
 		}
 
@@ -48,6 +49,11 @@ public class UMLContainmentBrowseStrategy extends ContainmentBrowseStrategy {
 	public TreePath findPath(Object semanticElement, Object[] rootElements) {
 		//If element is a stereotype application, search for the base element instead
 		EObject source = EMFHelper.getEObject(semanticElement);
+
+		if(source instanceof Element) {
+			return super.findPath(semanticElement, rootElements);
+		}
+
 		Element baseElement = UMLUtil.getBaseElement(source);
 		if(baseElement == null) {
 			return super.findPath(semanticElement, rootElements);
@@ -62,7 +68,14 @@ public class UMLContainmentBrowseStrategy extends ContainmentBrowseStrategy {
 		List<Object> umlElementsList = new LinkedList<Object>();
 		for(Object semanticElement : elementsList) {
 			EObject source = EMFHelper.getEObject(semanticElement);
-			Element baseElement = UMLUtil.getBaseElement(source);
+
+			Element baseElement;
+			if(source instanceof Element) {
+				baseElement = (Element)source;
+			} else {
+				baseElement = UMLUtil.getBaseElement(source);
+			}
+
 			if(baseElement == null) {
 				umlElementsList.add(semanticElement);
 			} else {

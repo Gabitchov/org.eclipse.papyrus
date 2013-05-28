@@ -13,10 +13,10 @@ package org.eclipse.papyrus.infra.emf.providers.strategy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.facet.infra.facet.FacetReference;
@@ -64,9 +64,13 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy {
 	protected boolean browseElement(Object containerElement) {
 		Object semanticElement = adaptableProvider.getAdaptedValue(containerElement);
 
-		if(semanticElement instanceof EReference && !(semanticElement instanceof FacetReference)) {
-			//Only browse Containment references and Facet references
-			return ((EReference)semanticElement).isContainment();
+		//Only browse Containment references and Facet references
+		if(semanticElement instanceof EReference) {
+			if(semanticElement instanceof FacetReference) {
+				return true;
+			}
+
+			return ((EReference)semanticElement).isContainment() && !((EReference)semanticElement).isDerived();
 		}
 
 		return true;
@@ -206,10 +210,11 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy {
 
 	public void expandItems(List<Object> treeElementList, TreeItem[] list) {
 		//the treeElement has more tan one element
+		viewer.getTree().setRedraw(false);
 		if(treeElementList.size() > 0) {
 			for(int i = 0; i < list.length; i++) {
 				if(list[i].getData() != null && list[i].getData().equals(treeElementList.get(0))) {
-					if(treeElementList.size() > 1) {//Do no expand the last
+					if(treeElementList.size() > 1) {//Do no expand the last element
 						Object[] toexpand = { treeElementList.get(0) };
 						viewer.setExpandedElements(toexpand);
 					}
@@ -220,6 +225,7 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy {
 				}
 			}
 		}
+		viewer.getTree().setRedraw(true);
 	}
 
 	public void selectReveal(ISelection selection) {
@@ -228,23 +234,79 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy {
 		}
 	}
 
+	/**
+	 * Simple search, based on containment references
+	 * 
+	 * @param eobject
+	 * @param objects
+	 * @return
+	 */
+	protected List<Object> searchDirectContainmentPath(EObject eobject, List<Object> wrappedElements) {
+		List<Object> path = new ArrayList<Object>();
+
+		List<EObject> emfPath = EMFHelper.getContainmentPath(eobject);
+
+		for(Object wrappedElement : wrappedElements) {
+			EObject element = EMFHelper.getEObject(wrappedElement);
+
+			if(eobject.equals(element)) {
+				//We found the leaf element
+				return Collections.singletonList(wrappedElement);
+			}
+
+			if(browseElementForDirectContainment(emfPath, element)) {
+				List<Object> wrappedChildren = Arrays.asList(provider.getChildren(wrappedElement));
+				List<Object> childPath = searchDirectContainmentPath(eobject, wrappedChildren);
+				if(!childPath.isEmpty()) {
+					//We (indirectly) found the leaf element
+					path.add(wrappedElement);
+					path.addAll(childPath);
+					break;
+				}
+			} //Else: dead end
+		}
+
+		return path;
+	}
+
+	protected boolean browseElementForDirectContainment(List<EObject> emfPath, EObject element) {
+		if(emfPath.contains(element)) {
+			return true;
+		}
+
+		if(element instanceof EReference) {
+			EReference reference = (EReference)element;
+			if(reference.isContainment() && !reference.isDerived()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	/**
-	 * look for the path the list of element (comes from the content provider) to go the eObject
+	 * look for the path the list of element (from the content provider) to go the eObject
 	 * 
 	 * @param eobject
 	 *        that we look for.
 	 * @param objects
 	 *        a list of elements where eobject can be wrapped.
-	 * @return the list of modelElementItem ( from the root to the element that wrap the eobject)
+	 * @return the list of modelElementItem (from the root to the element that wrap the eobject)
 	 */
 	protected List<Object> searchPath(EObject eobject, List<Object> objects) {
-		List<Object> path = new ArrayList<Object>();
+		//Simple/quick search (Based on containment)
+		List<Object> path = searchDirectContainmentPath(eobject, objects);
+		if(!path.isEmpty()) {
+			return path;
+		}
+
+		//Advanced search
+		path = new ArrayList<Object>();
 
 		for(Object o : objects) {
 			// Search matches in this level
-			if(!(o instanceof Diagram) && o instanceof IAdaptable) {
-				if(eobject.equals(((IAdaptable)o).getAdapter(EObject.class))) {
+			if(!(o instanceof Diagram)) {
+				if(eobject.equals(EMFHelper.getEObject(o))) {
 					path.add(o);
 					return path;
 				}
@@ -256,32 +318,21 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy {
 
 				List<Object> tmppath = new ArrayList<Object>();
 				Object element = EMFHelper.getEObject(treeItem);
-				if(element != null) {
-					if(element instanceof EReference) {
-						if(((EReference)element).isContainment() && (!((EReference)element).isDerived())) {
-							List<Object> childs = new ArrayList<Object>();
-							childs.add(treeItem);
-							tmppath = searchPath(eobject, childs);
-						}
-					}
 
-					else {
-						if(element instanceof EObject) {
-							List<Object> childs = new ArrayList<Object>();
-							childs.add(treeItem);
-							tmppath = searchPath(eobject, childs);
-						}
-					}
+				if(browseElement(element)) {
+					List<Object> childs = new ArrayList<Object>();
+					childs.add(treeItem);
+					tmppath = searchPath(eobject, childs);
 				}
 
-				// if tmppath contains the wrapped eobject we have find the good path
+				// if tmppath contains the wrapped eobject we have found the good path
 				if(tmppath.size() > 0) {
-					if(tmppath.get(tmppath.size() - 1) instanceof IAdaptable) {
-						if(eobject.equals(((IAdaptable)(tmppath.get(tmppath.size() - 1))).getAdapter(EObject.class))) {
-							path.add(o);
-							path.addAll(tmppath);
-							return path;
-						}
+					Object last = tmppath.get(tmppath.size() - 1);
+					EObject lastEObject = EMFHelper.getEObject(last);
+					if(eobject.equals(lastEObject)) {
+						path.add(o);
+						path.addAll(tmppath);
+						return path;
 					}
 				}
 			}

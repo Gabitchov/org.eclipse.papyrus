@@ -110,7 +110,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			return getText(eObject);
 		}
 
-		if(UMLUtil.getBaseElement(eObject) instanceof Comment) {
+		if((!(eObject instanceof Element)) && UMLUtil.getBaseElement(eObject) instanceof Comment) {
 			return getText(eObject);
 		}
 
