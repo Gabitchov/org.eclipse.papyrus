@@ -540,8 +540,8 @@
       </customizedFeatures>
     </references>
     <references referenceName="defaultValue">
-      <customizedFeatures customizedFeature="collapseLink">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
     <references referenceName="opposite">
@@ -572,13 +572,13 @@
   </types>
   <types metaclassName="uml.MultiplicityElement">
     <references referenceName="lowerValue">
-      <customizedFeatures customizedFeature="collapseLink">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
     <references referenceName="upperValue">
-      <customizedFeatures customizedFeature="collapseLink">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
   </types>

@@ -1064,6 +1064,15 @@
 		</command>
 		
 	</menuContribution>
+ <menuContribution
+       allPopups="false"
+       locationURI="toolbar:org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+    <command
+          commandId="org.eclipse.papyrus.uml.modelexplorer.customization.advanced"
+          icon="icons/advanced.gif"
+          style="toggle">
+    </command>
+ </menuContribution>
 </extension>
 
 <!-- This declaration is added in order command (DeleteCommandHandler) status to be
@@ -3297,5 +3306,18 @@
       </with>
    </activeWhen></handler>
 </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ToggleAdvancedModelExplorerHandler"
+            description="Toggle the advanced ModelExplorer view"
+            id="org.eclipse.papyrus.uml.modelexplorer.customization.advanced"
+            name="Toggle advanced ModelExplorer">
+         <state
+               class="org.eclipse.papyrus.uml.modelexplorer.handler.ToggleAdvancedModelExplorerState"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+   </extension>
    
 </plugin>
