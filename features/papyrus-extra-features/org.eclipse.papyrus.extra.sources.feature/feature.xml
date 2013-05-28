@@ -43,6 +43,9 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.papyrus.extra.marte.source.feature" />
       <import feature="org.eclipse.papyrus.extra.marte.properties.source.feature" />
       <import feature="org.eclipse.papyrus.extra.marte.textedit.source.feature" />
+      <import feature="org.eclipse.papyrus.infra.nattable.source.feature"/>
+      <import feature="org.eclipse.papyrus.sysml.nattable.source.feature"/>
+      <import feature="org.eclipse.papyrus.uml.nattable.source.feature"/>
    </requires>
 
 </feature>

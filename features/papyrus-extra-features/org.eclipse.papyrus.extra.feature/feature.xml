@@ -33,12 +33,15 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <requires>
-      <import feature="org.eclipse.papyrus.extra.diagramtemplate.feature" />
-      <import feature="org.eclipse.papyrus.extra.infra.gmfdiag.css.feature" />
-      <import feature="org.eclipse.papyrus.extra.layout.feature" />
-      <import feature="org.eclipse.papyrus.extra.marte.feature" />
-      <import feature="org.eclipse.papyrus.extra.marte.properties.feature" />
-      <import feature="org.eclipse.papyrus.extra.marte.textedit.feature" />
+      <import feature="org.eclipse.papyrus.extra.diagramtemplate.feature"/>
+      <import feature="org.eclipse.papyrus.extra.infra.gmfdiag.css.feature"/>
+      <import feature="org.eclipse.papyrus.extra.layout.feature"/>
+      <import feature="org.eclipse.papyrus.extra.marte.feature"/>
+      <import feature="org.eclipse.papyrus.extra.marte.properties.feature"/>
+      <import feature="org.eclipse.papyrus.extra.marte.textedit.feature"/>
+      <import feature="org.eclipse.papyrus.infra.nattable.feature"/>
+      <import feature="org.eclipse.papyrus.sysml.nattable.feature"/>
+      <import feature="org.eclipse.papyrus.uml.nattable.feature"/>
    </requires>
 
 </feature>
