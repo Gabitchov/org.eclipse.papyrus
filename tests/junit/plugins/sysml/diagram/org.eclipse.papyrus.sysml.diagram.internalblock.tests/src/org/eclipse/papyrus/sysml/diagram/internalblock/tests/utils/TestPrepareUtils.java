@@ -19,7 +19,7 @@ import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.Editor
 import java.util.ArrayList;
 import java.util.Collection;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -219,6 +219,7 @@ public class TestPrepareUtils {
 		// Add view
 		ViewDescriptor viewDescriptor = new ViewDescriptor(new SemanticAdapter(newObject, null), Node.class, graphicalType, ViewUtil.APPEND, true, Activator.DIAGRAM_PREFERENCES_HINT);
 		CreateCommand createViewCommand = new CreateCommand(getTransactionalEditingDomain(), viewDescriptor, containerView);
+		Assert.assertTrue("Command should be executable", createViewCommand.canExecute());
 		EditorUtils.getDiagramCommandStack().execute(new ICommandProxy(createViewCommand));
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };

@@ -97,8 +97,8 @@ public class TestLinkCreationConnectorFromPortOnBlock extends AbstractLinkCreati
 		}
 
 		expectedTargetNestedPath.put(nestedActorPartTargetView, nestedPath);
-		expectedTargetNestedPath.put(portOnNestedPartTargetView, nestedPath);
-		expectedTargetNestedPath.put(flowportOnNestedPartTargetView, nestedPath);
+		expectedTargetNestedPath.put(portOnNestedPartTargetView, subNestedPath2_1);
+		expectedTargetNestedPath.put(flowportOnNestedPartTargetView, subNestedPath2_1);
 		expectedTargetNestedPath.put(nestedPartTargetView, nestedPath);
 		expectedTargetNestedPath.put(subNestedPartContainer1_1_1TargetView, subNestedPath1_1);
 		expectedTargetNestedPath.put(subNestedPartContainer1_2_1TargetView, subNestedPath2_1);

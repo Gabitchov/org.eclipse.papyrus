@@ -97,8 +97,8 @@ public class TestLinkCreationConnectorFromActorPart extends AbstractLinkCreation
 		}
 
 		expectedTargetNestedPath.put(nestedActorPartTargetView, nestedPath);
-		expectedTargetNestedPath.put(portOnNestedPartTargetView, nestedPath);
-		expectedTargetNestedPath.put(flowportOnNestedPartTargetView, nestedPath);
+		expectedTargetNestedPath.put(portOnNestedPartTargetView, subNestedPath2_1);
+		expectedTargetNestedPath.put(flowportOnNestedPartTargetView, subNestedPath2_1);
 		expectedTargetNestedPath.put(nestedPartTargetView, nestedPath);
 		expectedTargetNestedPath.put(nestedPropertyTargetView, nestedPath);
 		expectedTargetNestedPath.put(nestedReferenceTargetView, nestedPath);

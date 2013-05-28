@@ -80,10 +80,12 @@ public class TestLinkCreationConnectorFromPortOnSubNestedPart extends AbstractLi
 		Property part = (Property)partContainer1.getElement();
 		Property part2 = (Property)partContainer2.getElement();
 		Property nestedPart = (Property)nestedPartContainer1_1.getElement();
+		Property subNestedPart = (Property)subNestedPartContainer1_1_1SourceView.getElement();
 		Property nestedPart1_2 = (Property)nestedPartContainer1_2.getElement();
 		Property nestedPart2_1 = (Property)nestedPartContainer2_1.getElement();
-		List<Property> subNestedPath = Arrays.asList(new Property[] {part, nestedPart});
-		List<Property> nestedPath = Arrays.asList(new Property[]{ nestedPart }); 
+		List<Property> subNestedPath = Arrays.asList(new Property[] {part, nestedPart, });
+		List<Property> deepNestedPath = Arrays.asList(new Property[] {part, nestedPart, subNestedPart});
+		List<Property> nestedPath = Arrays.asList(new Property[]{ nestedPart, subNestedPart}); 
 		List<Property> nestedContainer1_2Path = Arrays.asList(new Property[]{ part2, nestedPart1_2 }); 
 		List<Property> nestedContainer2_1Path = Arrays.asList(new Property[]{ nestedPart2_1 });
 		List<Property> emptyPath = Collections.emptyList();
@@ -97,15 +99,15 @@ public class TestLinkCreationConnectorFromPortOnSubNestedPart extends AbstractLi
 		}
 
 		expectedSourceNestedPath.put(blockTargetView, subNestedPath);
-		expectedSourceNestedPath.put(actorPartTargetView, subNestedPath);
-		expectedSourceNestedPath.put(portOnBlockTargetView, subNestedPath);
-		expectedSourceNestedPath.put(portOnPartTargetView, subNestedPath);
-		expectedSourceNestedPath.put(flowportOnBlockTargetView, subNestedPath);
-		expectedSourceNestedPath.put(flowportOnPartTargetView, subNestedPath);
-		expectedSourceNestedPath.put(partTargetView, subNestedPath);
-		expectedSourceNestedPath.put(propertyTargetView, subNestedPath);
-		expectedSourceNestedPath.put(referenceTargetView, subNestedPath);
-		expectedSourceNestedPath.put(valueTargetView, subNestedPath);
+		expectedSourceNestedPath.put(actorPartTargetView, deepNestedPath);
+		expectedSourceNestedPath.put(portOnBlockTargetView, deepNestedPath);
+		expectedSourceNestedPath.put(portOnPartTargetView, deepNestedPath);
+		expectedSourceNestedPath.put(flowportOnBlockTargetView, deepNestedPath);
+		expectedSourceNestedPath.put(flowportOnPartTargetView, deepNestedPath);
+		expectedSourceNestedPath.put(partTargetView, deepNestedPath);
+		expectedSourceNestedPath.put(propertyTargetView, deepNestedPath);
+		expectedSourceNestedPath.put(referenceTargetView, deepNestedPath);
+		expectedSourceNestedPath.put(valueTargetView, deepNestedPath);
 		
 		expectedSourceNestedPath.put(nestedActorPartTargetView, nestedPath);
 		expectedSourceNestedPath.put(nestedPartTargetView, nestedPath);
@@ -116,9 +118,9 @@ public class TestLinkCreationConnectorFromPortOnSubNestedPart extends AbstractLi
 		expectedSourceNestedPath.put(portOnNestedPartTargetView, nestedPath);
 		expectedSourceNestedPath.put(flowportOnNestedPartTargetView, nestedPath);
 		
-		expectedSourceNestedPath.put(subNestedPartContainer1_1_2TargetView, subNestedPath);
+		expectedSourceNestedPath.put(subNestedPartContainer1_1_2TargetView, deepNestedPath);
 		expectedTargetNestedPath.put(subNestedPartContainer1_1_2TargetView, nestedContainer1_2Path);
-		expectedSourceNestedPath.put(subNestedPartContainer1_2_1TargetView, Arrays.asList(nestedPart));
+		expectedSourceNestedPath.put(subNestedPartContainer1_2_1TargetView, nestedPath);
 		expectedTargetNestedPath.put(subNestedPartContainer1_2_1TargetView, nestedContainer2_1Path);
 		
 		

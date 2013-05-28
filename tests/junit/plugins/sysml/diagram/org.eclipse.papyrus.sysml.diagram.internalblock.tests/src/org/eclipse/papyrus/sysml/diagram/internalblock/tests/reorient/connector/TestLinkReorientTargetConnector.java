@@ -17,6 +17,7 @@ import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.Editor
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.TestPrepareUtils.createGraphicalNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +63,9 @@ public class TestLinkReorientTargetConnector extends AbstractLinkReorientTargetC
 		List<Property> nestedPath = new ArrayList<Property>();
 		nestedPath.add(part);
 				
+		Property nestedPart = (Property)nestedPartContainer2.getElement();
+		List<Property> deepNestedPath = Arrays.asList(part, nestedPart);
+		
 		// Initialize source creation results
 		isReorientAllowed = new HashMap<View, Boolean>();
 		
@@ -104,8 +108,8 @@ public class TestLinkReorientTargetConnector extends AbstractLinkReorientTargetC
 		}
 		
 		expectedNestedPath.put(nestedActorPartTargetView, nestedPath);
-		expectedNestedPath.put(portOnNestedPartTargetView, nestedPath);
-		expectedNestedPath.put(flowportOnNestedPartTargetView, nestedPath);
+		expectedNestedPath.put(portOnNestedPartTargetView, deepNestedPath);
+		expectedNestedPath.put(flowportOnNestedPartTargetView, deepNestedPath);
 		expectedNestedPath.put(nestedPartTargetView, nestedPath);
 		expectedNestedPath.put(nestedPropertyTargetView, nestedPath);
 		expectedNestedPath.put(nestedReferenceTargetView, nestedPath);

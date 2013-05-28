@@ -23,11 +23,10 @@ import static org.junit.Assert.fail;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import junit.framework.Assert;
 
 import org.eclipse.core.commands.ParameterizedCommand;
 import org.eclipse.core.commands.operations.IOperationHistory;
@@ -86,6 +85,7 @@ import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLUtil;
+import org.junit.Assert;
 
 public class TestUtils {
 
@@ -213,6 +213,7 @@ public class TestUtils {
 						defaultExecutionTest(command);
 						// Test the results then
 						// fail("Result tests not implemented.");
+						EditorUtils.getCommandStack().undo();
 					} else {
 						fail("The expected kind of command was {" + expectedCommandNames.get(0) + "}, but was {" + command.getLabel() + "}");
 					}
@@ -239,7 +240,7 @@ public class TestUtils {
 							// Ok the command can be executed.
 							defaultExecutionTest(subCommand);
 							// Add one more undo to go back in initial state before testing next command
-							EditorUtils.getDiagramCommandStack().undo();
+							EditorUtils.getCommandStack().undo();;
 							// Test the results then
 							// fail("Result tests not implemented.");
 						} else {
@@ -525,9 +526,7 @@ public class TestUtils {
 			Assert.assertNull("No nested connector end stereotype should be applied.", nestedConnectorEnd);
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied.", nestedConnectorEnd);
-			if(!nestedConnectorEnd.getPropertyPath().equals(nestedPath)) {
-				fail("The nested property path is incorrect.");
-			}
+			Assert.assertEquals("Invalid nested path", nestedPath, nestedConnectorEnd.getPropertyPath()); 
 		}
 	}
 
