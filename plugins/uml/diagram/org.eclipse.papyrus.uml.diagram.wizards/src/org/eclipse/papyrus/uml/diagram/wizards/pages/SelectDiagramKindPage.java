@@ -90,7 +90,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	/**
 	 * Instantiates a new select diagram kind page.
 	 * 
-	 * @param categoryProvider the category provider
+	 * @param categoryProvider
+	 *        the category provider
 	 */
 	public SelectDiagramKindPage(CategoryProvider categoryProvider) {
 		this(true, categoryProvider, DEFAULT_CREATION_COMMAND_REGISTRY);
@@ -98,10 +99,13 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Instantiates a new select diagram kind page.
-	 *
-	 * @param allowTemplates the allow templates
-	 * @param categoryProvider the category provider
-	 * @param creationCommandRegistry the creation command registry
+	 * 
+	 * @param allowTemplates
+	 *        the allow templates
+	 * @param categoryProvider
+	 *        the category provider
+	 * @param creationCommandRegistry
+	 *        the creation command registry
 	 */
 	public SelectDiagramKindPage(boolean allowTemplates, CategoryProvider categoryProvider, ICreationCommandRegistry creationCommandRegistry) {
 		super(PAGE_ID);
@@ -141,7 +145,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.wizard.WizardPage#setWizard(org.eclipse.jface.wizard.IWizard)
 	 */
 	@Override
@@ -162,14 +168,15 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Sets the visible.
-	 *
-	 * @param visible the new visible
+	 * 
+	 * @param visible
+	 *        the new visible
 	 * @see org.eclipse.jface.dialogs.DialogPage#setVisible(boolean)
 	 */
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
-		if (visible) {
+		if(visible) {
 			fillInTables(getDiagramCategories());
 			validatePage();
 			if(!allowTemplates) {
@@ -180,8 +187,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Fill in tables.
-	 *
-	 * @param categories the categories
+	 * 
+	 * @param categories
+	 *        the categories
 	 */
 	private void fillInTables(String[] categories) {
 		if(categories == null || categories.length == 0) {
@@ -196,7 +204,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the uml model template path.
-	 *
+	 * 
 	 * @return the template path
 	 */
 	public String getTemplatePath() {
@@ -205,15 +213,16 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the notation model template path.
-	 *
+	 * 
 	 * @return the notation template path
 	 */
 	public String getNotationTemplatePath() {
 		return selectTemplateComposite.getNotationTemplatePath();
 	}
+
 	/**
 	 * Gets the di model template path.
-	 *
+	 * 
 	 * @return the di template path
 	 */
 	public String getDiTemplatePath() {
@@ -222,7 +231,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the template plugin id.
-	 *
+	 * 
 	 * @return the template plugin id
 	 */
 	public String getTemplatePluginId() {
@@ -241,7 +250,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the diagram name.
-	 *
+	 * 
 	 * @return the new diagram name
 	 */
 	public String getDiagramName() {
@@ -250,7 +259,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Templates enabled.
-	 *
+	 * 
 	 * @return true, if successful
 	 */
 	public boolean templatesEnabled() {
@@ -259,7 +268,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the creation commands.
-	 *
+	 * 
 	 * @return the creation command
 	 */
 	public List<ICreationCommand> getCreationCommands() {
@@ -280,8 +289,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the creation commands.
-	 *
-	 * @param categoryId the category id
+	 * 
+	 * @param categoryId
+	 *        the category id
 	 * @return the creation commands
 	 */
 	public List<ICreationCommand> getCreationCommands(String categoryId) {
@@ -301,8 +311,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the selected command descriptors.
-	 *
-	 * @param categoryId the category id
+	 * 
+	 * @param categoryId
+	 *        the category id
 	 * @return the selected command descriptors
 	 */
 	protected List<CreationCommandDescriptor> getSelectedCommandDescriptors(String categoryId) {
@@ -318,8 +329,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Creates the model template composite.
-	 *
-	 * @param composite the composite
+	 * 
+	 * @param composite
+	 *        the composite
 	 */
 	private void createModelTemplateComposite(Composite composite) {
 		Group group = createGroup(composite, Messages.SelectDiagramKindPage_load_template_group);
@@ -374,7 +386,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Creates the diagram kind label provider.
-	 *
+	 * 
 	 * @return the i base label provider
 	 */
 	protected IBaseLabelProvider createDiagramKindLabelProvider() {
@@ -426,8 +438,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Creates the remember current selection form.
-	 *
-	 * @param composite the composite
+	 * 
+	 * @param composite
+	 *        the composite
 	 */
 	private void createRememberCurrentSelectionForm(Composite composite) {
 		Composite plate = new Composite(composite, SWT.NONE);
@@ -476,7 +489,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Checks if is remember current selection.
-	 *
+	 * 
 	 * @return true, if is remember current selection
 	 */
 	public boolean isRememberCurrentSelection() {
@@ -485,8 +498,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the selected diagram kinds.
-	 *
-	 * @param categoryId the category id
+	 * 
+	 * @param categoryId
+	 *        the category id
 	 * @return the selected diagram kinds
 	 */
 	public String[] getSelectedDiagramKinds(String categoryId) {
@@ -500,7 +514,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the selected diagram kind descriptors.
-	 *
+	 * 
 	 * @return the selected diagram kind descriptors
 	 */
 	protected CreationCommandDescriptor[] getSelectedDiagramKindDescriptors() {
@@ -512,8 +526,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Select default diagram kinds.
-	 *
-	 * @param categories the categories
+	 * 
+	 * @param categories
+	 *        the categories
 	 */
 	private void selectDefaultDiagramKinds(String[] categories) {
 		Set<String> kinds = new HashSet<String>();
@@ -526,8 +541,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Find creation command descriptors for.
-	 *
-	 * @param kinds the kinds
+	 * 
+	 * @param kinds
+	 *        the kinds
 	 * @return the creation command descriptor[]
 	 */
 	protected CreationCommandDescriptor[] findCreationCommandDescriptorsFor(Collection<String> kinds) {
@@ -543,16 +559,19 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Select default diagram templates.
-	 *
-	 * @param categories the categories
+	 * 
+	 * @param categories
+	 *        the categories
 	 */
 	private void selectDefaultDiagramTemplates(String[] categories) {
 		List<String> defaultTemplates = new ArrayList<String>();
 		List<Object> availableTemplates = new ArrayList<Object>();
 		for(String category : categories) {
 			defaultTemplates.addAll(mySettingsHelper.getDefaultTemplates(category));
-			availableTemplates.addAll(Arrays.asList(selectTemplateComposite.getContentProvider().getElements(category)));
 		}
+
+		availableTemplates.addAll(Arrays.asList(selectTemplateComposite.getContentProvider().getElements(categories)));
+
 		for(Object next : availableTemplates) {
 			ModelTemplateDescription desc = (ModelTemplateDescription)next;
 
@@ -566,7 +585,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Gets the creation command registry.
-	 *
+	 * 
 	 * @return the creation command registry
 	 */
 	protected final ICreationCommandRegistry getCreationCommandRegistry() {
@@ -580,7 +599,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 		/**
 		 * Gets the current categories.
-		 *
+		 * 
 		 * @return the current categories
 		 */
 		String[] getCurrentCategories();
