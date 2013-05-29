@@ -21,7 +21,6 @@ import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.CustomRequirement
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.CustomRequirementIdLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.CustomRequirementInformationCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.CustomRequirementTextLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CUMLEditPartProvider;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 
 /**

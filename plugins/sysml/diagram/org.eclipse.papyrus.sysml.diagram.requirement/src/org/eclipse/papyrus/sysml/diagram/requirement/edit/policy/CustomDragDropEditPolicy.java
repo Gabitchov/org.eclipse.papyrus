@@ -75,6 +75,15 @@ public class CustomDragDropEditPolicy extends RequirementDiagramDragDropEditPoli
 					semanticHint = ElementTypes.CLASS_CN.getSemanticHint();
 				}
 			}
+			
+			if(domainElement instanceof Comment) {
+				semanticHint = ElementTypes.COMMENT_CN.getSemanticHint();
+			}
+			
+			if(domainElement instanceof Constraint) {
+				semanticHint = ElementTypes.CONSTRAINT_CN.getSemanticHint();
+			}
+			
 		}
 
 		// In the case of we want to Drag and drop something else than a package or a Requirement, if this is a NamedElement, 

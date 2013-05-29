@@ -18,8 +18,8 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.CustomRequirementNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
@@ -31,6 +31,10 @@ import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForEle
  */
 public class CustomInheritedElementViewProvider extends InheritedClassDiagramViewProvider {
 
+	public CustomInheritedElementViewProvider(){
+		super();
+	}
+	
 	@Override
 	public Node createClass_2008(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 
@@ -45,7 +49,12 @@ public class CustomInheritedElementViewProvider extends InheritedClassDiagramVie
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Class");
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Class");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Class");
-		createLabel(node, UMLVisualIDRegistry.getType(ClassNameEditPart.VISUAL_ID));
+		
+		//createLabel(node, UMLVisualIDRegistry.getType(ClassNameEditPart.VISUAL_ID));
+		
+		createLabel(node, UMLVisualIDRegistry.getType(CustomRequirementNameEditPart.VISUAL_ID));
+		
+		
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID), true, true, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID), true, true, true, true);

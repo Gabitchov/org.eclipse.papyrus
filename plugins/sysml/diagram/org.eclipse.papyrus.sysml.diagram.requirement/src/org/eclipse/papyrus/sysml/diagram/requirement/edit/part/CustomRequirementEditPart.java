@@ -21,15 +21,20 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.requirement.figure.CustomRequirementFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideCompartmentRequest;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure;
 import org.eclipse.uml2.uml.NamedElement;
 
 public class CustomRequirementEditPart extends ClassEditPart {
 
+	//protected static final String ICONS_PATH = "/org.eclipse.papyrus.sysml/icons/requirements/Requirement.gif"; //$NON-NLS-1$
+	
 	public CustomRequirementEditPart(View view) {
 		super(view);
 	}
 
+	
 	@Override
 	protected IFigure createNodeShape() {
 		//Showing the information compartment.
@@ -38,7 +43,10 @@ public class CustomRequirementEditPart extends ClassEditPart {
 		request.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
 		Command showCompartmentCommand = this.getCommand(request);
 		getEditDomain().getCommandStack().execute(showCompartmentCommand);
-		return primaryShape = new CustomRequirementFigure(); //$NON-NLS-1$
+		
+		primaryShape = new CustomRequirementFigure(); //$NON-NLS-1$
+		//((CustomRequirementFigure)primaryShape).setTagIcon(Activator.getPluginIconImage(Activator.ID, ICONS_PATH));
+		return primaryShape;
 	}
 
 	public void refreshTitle() {
