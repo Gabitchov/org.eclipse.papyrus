@@ -7,9 +7,12 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * A UML model.
@@ -44,14 +47,18 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 		resource = getResourceSet().createResource(resourceURI, getContentType());
 	}
 
+	@Override
+	public void init(ModelSet modelManager) {
+		super.init(modelManager);
+		UMLUtil.init(modelManager);
+	}
+
 	/**
 	 * 
 	 * @return
 	 */
 	protected String getContentType() {
-		// TODO: use the uml identifier
-		// return UMLPackage.eCONTENT_TYPE;
-		return "org.eclipse.uml2.uml";
+		return UMLPackage.eCONTENT_TYPE;
 	}
 
 	/**
@@ -93,15 +100,15 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 	}
 
 	/**
-	 * Initialize the model if it is empty. Initialize  it with a default uml.Model
+	 * Initialize the model if it is empty. Initialize it with a default uml.Model
 	 */
 	public void initializeEmptyModel() {
-		
+
 		// Skip if the model is not empty
-		if( ! resource.getContents().isEmpty() ) {
+		if(!resource.getContents().isEmpty()) {
 			return;
 		}
-		
+
 		Model model = UMLFactory.eINSTANCE.createModel();
 		model.setName("model");
 		resource.getContents().add(model);
