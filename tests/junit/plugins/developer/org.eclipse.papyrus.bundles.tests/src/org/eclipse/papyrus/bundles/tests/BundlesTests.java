@@ -133,7 +133,7 @@ public class BundlesTests {
 				message += localMessage + "\n"; //$NON-NLS-1$
 			}
 		}
-		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
+		Assert.assertNull(nb + " problems!", message); //$NON-NLS-1$
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class BundlesTests {
 				nb++;
 			}
 		}
-		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
+		Assert.assertNull(nb + " problems!", message); //$NON-NLS-1$
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class BundlesTests {
 				nb++;
 			}
 		}
-		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
+		Assert.assertNull(nb + " problems!", message); //$NON-NLS-1$
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class BundlesTests {
 				message += localMessage + "\n"; //$NON-NLS-1$
 			}
 		}
-		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
+		Assert.assertNull(nb + " problems!", message); //$NON-NLS-1$
 	}
 
 	/**

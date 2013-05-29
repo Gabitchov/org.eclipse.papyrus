@@ -91,7 +91,7 @@ public class BundleTestsUtils {
 		for(IFeatureModel iFeatureModel : models2) {
 			final IFeature feature = iFeatureModel.getFeature();
 			final String id = feature.getId();
-			if(id.contains("papyrus")) { //$NON-NLS-1$
+			if(id.startsWith(PAPYRUS_PREFIX)) { //$NON-NLS-1$
 				features.add((Feature)feature);
 			}
 		}
