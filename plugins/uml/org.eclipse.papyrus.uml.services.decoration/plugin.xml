@@ -11,10 +11,4 @@
             useClassTypeAsKey="true">
       </service>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.services.markerlistener.markereventlistener">
-      <listener
-            class="org.eclipse.papyrus.uml.services.decoration.UMLDecorationService">
-      </listener>
-   </extension>
 </plugin>
