@@ -217,7 +217,7 @@
     <!-- MoDisco -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MoDisco",0) -->
-      <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.11/RC1/">
+      <rm:uri format="{0}/modeling/mdt/modisco/updates/integration/0.11.0/I201305281228/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -327,7 +327,7 @@
     <!-- WST -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("WebTools",0) -->
-      <rm:uri format="{0}/webtools/downloads/drops/R3.5.0/S-3.5.0RC1-20130520223935/repository/">
+      <rm:uri format="{0}/webtools/downloads/drops/R3.5.0/S-3.5.0RC2-20130528141217/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -335,7 +335,7 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.3milestones/S-4.3RC2-201305231400/">
+		<rm:uri format="{0}/eclipse/updates/4.3milestones/S-4.3RC2a-201305262000/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>
