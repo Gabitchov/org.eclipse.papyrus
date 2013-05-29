@@ -1,0 +1,1518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.eastadl/src" modelPluginID="org.eclipse.papyrus.eastadl"
+    modelName="Eastadl" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.uml.profile.l2/model/L2.genmodel#//l2 platform:/plugin/org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+  <foreignModel>eastadl.ecore</foreignModel>
+  <genPackages prefix="eastadl" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
+      ecorePackage="eastadl.ecore#/">
+    <genDataTypes ecoreDataType="eastadl.ecore#//Dummy"/>
+    <nestedGenPackages prefix="Variability" resource="XML" disposableProviderFactory="true"
+        ecorePackage="eastadl.ecore#//variability">
+      <genClasses ecoreClass="eastadl.ecore#//variability/VariationGroup">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//variability/VariationGroup/constraint"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//variability/VariationGroup/kind"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/VariationGroup/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/VariationGroup/variableElement"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/VariableElement">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/VariableElement/requiredBindingTime"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/VariableElement/actualBindingTime"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/VariableElement/reuseMetaInformation"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/VariableElement/optionalElement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/VariableElement/baseClass"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/ReuseMetaInformation">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//variability/ReuseMetaInformation/information"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//variability/ReuseMetaInformation/isReusable"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ReuseMetaInformation/baseClass"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/ConfigurableContainer">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurableContainer/internalBinding"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurableContainer/variationGroup"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurableContainer/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurableContainer/basePackage"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurableContainer/configurableElement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurableContainer/publicFeatureModel"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/InternalBinding"/>
+      <genClasses image="false" ecoreClass="eastadl.ecore#//variability/ConfigurationDecisionModel">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurationDecisionModel/basePackage"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurationDecisionModel/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurationDecisionModel/rootEntry"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="eastadl.ecore#//variability/ConfigurationDecisionModelEntry">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//variability/ConfigurationDecisionModelEntry/isActive"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurationDecisionModelEntry/baseClass"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/Variability">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/Variability/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/Variability/basePackage"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/Variability/configurableContainer"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/Variability/configuration"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/Variability/productFeatureModel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/Variability/decisionModel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/Variability/variableElement"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/FeatureConfiguration">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/FeatureConfiguration/configuredFeatureModel"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/VehicleLevelBinding">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/VehicleLevelBinding/sourceVehicleFeatureModel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/VehicleLevelBinding/targetFeatureModel"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/ConfigurationDecision">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//variability/ConfigurationDecision/effect"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//variability/ConfigurationDecision/criterion"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//variability/ConfigurationDecision/isEquivalence"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurationDecision/target"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurationDecision/selectionCriterion"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/SelectionCriterion">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/SelectionCriterion/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/SelectionCriterion/baseClass"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/ConfigurationDecisionFolder">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ConfigurationDecisionFolder/childEntry"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/ContainerConfiguration">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/ContainerConfiguration/configuredContainer"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//variability/PrivateContent">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/PrivateContent/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//variability/PrivateContent/privateElement"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Infrastructure" disposableProviderFactory="true" ecorePackage="eastadl.ecore#//infrastructure">
+      <genDataTypes ecoreDataType="eastadl.ecore#//infrastructure/Dummy"/>
+      <nestedGenPackages prefix="Datatypes" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//infrastructure/datatypes">
+        <genDataTypes ecoreDataType="eastadl.ecore#//infrastructure/datatypes/javalangFloat"/>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//infrastructure/datatypes/EaDatatype">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/datatypes/EaDatatype/baseDataType"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/EaDatatypePrototype">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/datatypes/EaDatatypePrototype/type"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/datatypes/EaDatatypePrototype/baseProperty"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/datatypes/EaDatatypePrototype/baseParameter"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//infrastructure/datatypes/ValueType">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/ValueType/semantics"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/ValueType/dimension"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/ValueType/unit"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//infrastructure/datatypes/RangeableDatatype"/>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/RangeableValueType">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/RangeableValueType/accuracy"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/RangeableValueType/resolution"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/RangeableValueType/significantDigits"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/EnumerationValueType">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/EnumerationValueType/isMultiValued"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/EnumerationValueType/literalSemantics"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/datatypes/EnumerationValueType/baseEnumeration"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/CompositeDatatype">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/datatypes/CompositeDatatype/datatypePrototype"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/EaString"/>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/EaBoolean"/>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/EaFloat">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/EaFloat/min"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/EaFloat/max"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/EaInteger">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/EaInteger/min"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/datatypes/EaInteger/max"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/EnumerationLiteral"/>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/datatypes/Enumeration">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/datatypes/Enumeration/literal"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Userattributes" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//infrastructure/userattributes">
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/userattributes/UserAttributeElementType">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeElementType/extendedElementType"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeElementType/attribute"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeElementType/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/userattributes/UserAttributeElementType/validFor"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/userattributes/UserAttributeDefinition">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeDefinition/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/userattributes/UserAttributeDefinition/defaultValue"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeDefinition/type"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeDefinition/baseProperty"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/userattributes/UserAttributeableElement">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeableElement/uaValue"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeableElement/uaType"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeableElement/attributedElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeableElement/baseNamedElement"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/userattributes/UserAttributeValue">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeValue/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/userattributes/UserAttributeValue/value"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeValue/baseProperty"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/userattributes/UserAttributeValue/definition"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Elements" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//infrastructure/elements">
+        <genClasses image="false" ecoreClass="eastadl.ecore#//infrastructure/elements/TraceableSpecification">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/elements/TraceableSpecification/note"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//infrastructure/elements/EaPackageableElement">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/EaPackageableElement/basePackageableElement"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/elements/Realization">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/Realization/realized"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/Realization/realizedBy"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/Realization/baseRealization"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/Realization/realizedByPath"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/Realization/realizedPath"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//infrastructure/elements/Relationship"/>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//infrastructure/elements/Context">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/Context/traceableSpecification"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/Context/ownedRelationship"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/elements/MultiLevelReference">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/MultiLevelReference/baseDependency"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/MultiLevelReference/referring"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/MultiLevelReference/reference"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/elements/Rationale"/>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/elements/EaPackage">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/EaPackage/subPackages"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/EaPackage/element"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/EaPackage/basePackage"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//infrastructure/elements/Comment">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/elements/Comment/body"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/Comment/baseComment"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//infrastructure/elements/EaElement">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//infrastructure/elements/EaElement/name"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/EaElement/baseNamedElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//infrastructure/elements/EaElement/ownedComment"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Structure" disposableProviderFactory="true" ecorePackage="eastadl.ecore#//structure">
+      <genDataTypes ecoreDataType="eastadl.ecore#//structure/Dummy"/>
+      <nestedGenPackages prefix="Functionmodeling" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//structure/functionmodeling">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//structure/functionmodeling/ClientServerKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/functionmodeling/ClientServerKind/client"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/functionmodeling/ClientServerKind/server"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//structure/functionmodeling/EaDirectionKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/functionmodeling/EaDirectionKind/in"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/functionmodeling/EaDirectionKind/out"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/functionmodeling/EaDirectionKind/inout"/>
+        </genEnums>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/LocalDeviceManager"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/DesignFunctionType">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/DesignFunctionType/part"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionType">
+          <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/functionmodeling/FunctionType/isElementary"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionType/port"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionType/portGroup"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionType/connector"/>
+          <genOperations ecoreOperation="eastadl.ecore#//structure/functionmodeling/FunctionType/getIcon"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionPort"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/PortGroup">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/PortGroup/port"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/PortGroup/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/PortGroup/basePort"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/PortGroup/portGroup"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionConnector">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionConnector/port"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionConnector/baseConnector"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionConnector/port1Path"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionConnector/port2Path"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//structure/functionmodeling/AllocateableElement"/>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionPrototype">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionPrototype/baseProperty"/>
+          <genOperations ecoreOperation="eastadl.ecore#//structure/functionmodeling/FunctionPrototype/getIcon"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/DesignFunctionPrototype">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/DesignFunctionPrototype/type"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionalDevice"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/AnalysisFunctionType">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/AnalysisFunctionType/part"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/AnalysisFunctionPrototype">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/AnalysisFunctionPrototype/type"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionFlowPort">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionFlowPort/type"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionClientServerPort">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionClientServerPort/type"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionClientServerPort/basePort"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/functionmodeling/FunctionClientServerPort/clientServerType"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionClientServerInterface">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionClientServerInterface/baseInterface"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionClientServerInterface/operation"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/Operation">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/Operation/baseOperation"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/Operation/argument"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/Operation/return"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/BasicSoftwareFunctionType"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/HardwareFunctionType">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/HardwareFunctionType/hardwareComponent"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionAllocation">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionAllocation/target"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionAllocation/allocatedElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionAllocation/baseDependency"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionAllocation/allocatedElementPath"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionAllocation/targetPath"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/Allocation">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/Allocation/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/Allocation/basePackage"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/Allocation/functionAllocation"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/functionmodeling/FunctionPowerPort">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionPowerPort/basePort"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/functionmodeling/FunctionPowerPort/type"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Hardwaremodeling" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//structure/hardwaremodeling">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//structure/hardwaremodeling/IoHardwarePinKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/hardwaremodeling/IoHardwarePinKind/digital"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/hardwaremodeling/IoHardwarePinKind/analog"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/hardwaremodeling/IoHardwarePinKind/pwm"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/hardwaremodeling/IoHardwarePinKind/other"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//structure/hardwaremodeling/LogicalBusKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/hardwaremodeling/LogicalBusKind/timeTriggered"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/hardwaremodeling/LogicalBusKind/eventTriggered"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/hardwaremodeling/LogicalBusKind/timeandEventTriggered"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/hardwaremodeling/LogicalBusKind/other"/>
+        </genEnums>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/HardwareConnector">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareConnector/baseConnector"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareConnector/port"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareConnector/port1Path"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareConnector/port2Path"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//structure/hardwaremodeling/HardwarePin">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwarePin/basePort"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/HardwarePin/isGround"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/HardwarePin/voltage"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/HardwarePin/direction"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/HardwarePin/impedance"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/HardwarePin/power"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/HardwareComponentPrototype">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareComponentPrototype/type"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareComponentPrototype/baseProperty"/>
+          <genOperations ecoreOperation="eastadl.ecore#//structure/hardwaremodeling/HardwareComponentPrototype/getIcon"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//structure/hardwaremodeling/AllocationTarget"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/IoHardwarePin">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/IoHardwarePin/type"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/PowerHardwarePin"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/CommunicationHardwarePin"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/Node">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/Node/executionRate"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/Node/nonVolatileMemory"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/Node/volatileMemory"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/PowerSupply">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/PowerSupply/isActive"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/Sensor"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/Actuator"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/LogicalBus">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/LogicalBus/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/LogicalBus/busSpeed"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/hardwaremodeling/LogicalBus/busType"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/LogicalBus/wire"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/LogicalBus/wirePath"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/HardwarePinGroup">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwarePinGroup/basePort"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwarePinGroup/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwarePinGroup/portGroup"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwarePinGroup/port"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/hardwaremodeling/HardwareComponentType">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareComponentType/connector"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareComponentType/port"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareComponentType/part"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareComponentType/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareComponentType/bus"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/hardwaremodeling/HardwareComponentType/portGroup"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Systemmodeling" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//structure/systemmodeling">
+        <genClasses ecoreClass="eastadl.ecore#//structure/systemmodeling/SystemModel">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/SystemModel/implementationLevel"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/SystemModel/analysisLevel"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/SystemModel/designLevel"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/SystemModel/vehicleLevel"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/SystemModel/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/SystemModel/basePackage"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/systemmodeling/ImplementationLevel">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/ImplementationLevel/autosarSystem"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/ImplementationLevel/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/ImplementationLevel/basePackage"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/systemmodeling/AnalysisLevel">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/AnalysisLevel/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/AnalysisLevel/basePackage"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/AnalysisLevel/functionalAnalysisArchitecture"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/systemmodeling/DesignLevel">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/DesignLevel/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/DesignLevel/basePackage"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/DesignLevel/functionalDesignArchitecture"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/DesignLevel/hardwareDesignArchitecture"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/DesignLevel/allocation"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/systemmodeling/VehicleLevel">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/VehicleLevel/basePackage"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/VehicleLevel/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/systemmodeling/VehicleLevel/technicalFeatureModel"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Vehiclefeaturemodeling" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//structure/vehiclefeaturemodeling">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationPermissionKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationPermissionKind/no"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationPermissionKind/subtree"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationPermissionKind/append"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationPermissionKind/subset"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationPermissionKind/yes"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationPermissionKind/widen"/>
+        </genEnums>
+        <genClasses ecoreClass="eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/allowChangeAttribute"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/allowChangeCardinality"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/allowChangeDescription"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/allowChangeName"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/allowMove"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/allowReduction"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/allowRefinement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/allowRegrouping"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/allowRemoval"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/baseDataType"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/vehiclefeaturemodeling/DeviationAttributeSet/feature"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/vehiclefeaturemodeling/VehicleFeature">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/VehicleFeature/isDesignVariabilityRationale"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/VehicleFeature/isCustomerVisible"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/vehiclefeaturemodeling/VehicleFeature/isRemoved"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/vehiclefeaturemodeling/VehicleFeature/deviationAttributeSet"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Featuremodeling" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//structure/featuremodeling">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//structure/featuremodeling/BindingTimeKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/BindingTimeKind/systemDesignTime"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/BindingTimeKind/codeGenerationTime"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/BindingTimeKind/precompileTime"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/BindingTimeKind/linkTime"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/BindingTimeKind/postBuild"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/BindingTimeKind/runtime"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//structure/featuremodeling/VariabilityDependencyKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/VariabilityDependencyKind/needs"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/VariabilityDependencyKind/optionalAlternative"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/VariabilityDependencyKind/custom"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/VariabilityDependencyKind/mandatoryAlternative"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/VariabilityDependencyKind/suggests"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//structure/featuremodeling/VariabilityDependencyKind/impedes"/>
+        </genEnums>
+        <genClasses ecoreClass="eastadl.ecore#//structure/featuremodeling/FeatureModel">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureModel/basePackage"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureModel/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureModel/rootFeature"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureModel/featureLink"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureModel/featureConstraint"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/featuremodeling/Feature">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/Feature/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/featuremodeling/Feature/cardinality"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/Feature/requiredBindingTime"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/Feature/actualBindingTime"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/Feature/featureParameter"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/Feature/childNode"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//structure/featuremodeling/FeatureTreeNode"/>
+        <genClasses ecoreClass="eastadl.ecore#//structure/featuremodeling/BindingTime">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/featuremodeling/BindingTime/kind"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/BindingTime/baseClass"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/featuremodeling/FeatureLink">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/featuremodeling/FeatureLink/isBidirectional"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/featuremodeling/FeatureLink/customType"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureLink/baseDependency"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureLink/start"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureLink/end"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureLink/baseAssociationClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/featuremodeling/FeatureLink/kind"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/featuremodeling/FeatureConstraint">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/featuremodeling/FeatureConstraint/criterion"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureConstraint/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureConstraint/baseConstraint"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//structure/featuremodeling/FeatureGroup">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureGroup/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//structure/featuremodeling/FeatureGroup/cardinality"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//structure/featuremodeling/FeatureGroup/childFeature"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Behavior" resource="XML" disposableProviderFactory="true"
+        ecorePackage="eastadl.ecore#//behavior">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//behavior/FunctionBehaviorKind">
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/FunctionBehaviorKind/ascet"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/FunctionBehaviorKind/other"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/FunctionBehaviorKind/scade"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/FunctionBehaviorKind/sdl"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/FunctionBehaviorKind/simulink"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/FunctionBehaviorKind/statemate"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/FunctionBehaviorKind/marte"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/FunctionBehaviorKind/uml"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//behavior/TriggerPolicyKind">
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/TriggerPolicyKind/event"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//behavior/TriggerPolicyKind/time"/>
+      </genEnums>
+      <genClasses ecoreClass="eastadl.ecore#//behavior/FunctionBehavior">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/FunctionBehavior/baseBehavior"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//behavior/FunctionBehavior/path"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//behavior/FunctionBehavior/representation"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/FunctionBehavior/mode"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/FunctionBehavior/function"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//behavior/Mode">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//behavior/Mode/condition"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/Mode/baseClass"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//behavior/Behavior">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/Behavior/behavior"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/Behavior/functionTrigger"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/Behavior/modeGroup"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/Behavior/basePackage"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/Behavior/baseClass"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//behavior/FunctionTrigger">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//behavior/FunctionTrigger/triggerCondition"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/FunctionTrigger/baseClass"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//behavior/FunctionTrigger/triggerPolicy"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/FunctionTrigger/mode"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/FunctionTrigger/function"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/FunctionTrigger/port"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/FunctionTrigger/functionPrototype"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//behavior/ModeGroup">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//behavior/ModeGroup/precondition"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/ModeGroup/mode"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//behavior/ModeGroup/baseClass"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Requirements" resource="XML" disposableProviderFactory="true"
+        ecorePackage="eastadl.ecore#//requirements">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//requirements/QualityRequirementKind">
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/ergonomy"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/configurability"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/integrity"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/safety"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/other"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/security"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/humanMachineInterface"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/timing"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/availability"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/reliability"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/confidentiality"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//requirements/QualityRequirementKind/maintainability"/>
+      </genEnums>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/QualityRequirement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//requirements/QualityRequirement/qualityRequirementType"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/Requirement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//requirements/Requirement/formalism"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//requirements/Requirement/url"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Requirement/mode"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="eastadl.ecore#//requirements/RequirementSpecificationObject">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementSpecificationObject/referencingContainer"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/RequirementsContainer">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsContainer/childContainer"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsContainer/parentContainer"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsContainer/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsContainer/basePackage"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsContainer/containedReqSpecObject"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/RequirementsRelatedInformation">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsRelatedInformation/baseClass"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="eastadl.ecore#//requirements/RequirementsRelationship">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsRelationship/baseClass"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/Satisfy">
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Satisfy/satisfiedRequirement"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Satisfy/satisfiedBy"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Satisfy/satisfiedByPath"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Satisfy/satisfiedUseCase"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/UseCase">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/UseCase/baseUseCase"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/UseCase/include"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/UseCase/extend"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/UseCase/extensionPoint"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/Include">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Include/baseInclude"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Include/addition"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/Extend">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Extend/baseExtend"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Extend/extendedCase"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Extend/extensionLocation"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/ExtensionPoint">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/ExtensionPoint/baseExtensionPoint"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="eastadl.ecore#//requirements/RedefinableElement">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RedefinableElement/baseRedefinableElement"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/Refine">
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Refine/refinedRequirement"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Refine/refinedBy"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Refine/baseDependency"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Refine/refinedByPath"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/DeriveRequirement">
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/DeriveRequirement/derived"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/DeriveRequirement/derivedFrom"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/RequirementsRelationGroup">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsRelationGroup/relation"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsRelationGroup/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsRelationGroup/basePackage"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/RequirementsLink">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//requirements/RequirementsLink/isBidirectional"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsLink/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsLink/target"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/RequirementsModel">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsModel/useCase"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsModel/requirement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsModel/requirementContainer"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsModel/operationalSituation"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/RequirementsModel/basePackage"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/OperationalSituation">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/OperationalSituation/baseClass"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//requirements/Actor">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//requirements/Actor/baseActor"/>
+      </genClasses>
+      <nestedGenPackages prefix="Verificationvalidation" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//requirements/verificationvalidation">
+        <genClasses ecoreClass="eastadl.ecore#//requirements/verificationvalidation/VvStimuli">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvStimuli/baseClass"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//requirements/verificationvalidation/VvIntendedOutcome">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvIntendedOutcome/baseClass"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//requirements/verificationvalidation/VvActualOutcome">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvActualOutcome/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvActualOutcome/intendedOutcome"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//requirements/verificationvalidation/VvCase">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvCase/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvCase/vvCase"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvCase/abstractVvCase"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvCase/vvTarget"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvCase/vvSubject"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvCase/vvLog"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvCase/vvProcedure"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//requirements/verificationvalidation/VvTarget">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvTarget/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvTarget/element"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//requirements/verificationvalidation/VvLog">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//requirements/verificationvalidation/VvLog/date"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvLog/vvActualOutcome"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvLog/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvLog/performedVvProcedure"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//requirements/verificationvalidation/VvProcedure">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvProcedure/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvProcedure/abstractVvProcedure"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvProcedure/concreteVvProcedure"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvProcedure/vvIntendedOutcome"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VvProcedure/vvStimuli"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//requirements/verificationvalidation/VerificationValidation">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VerificationValidation/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VerificationValidation/basePackage"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VerificationValidation/verify"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VerificationValidation/vvCase"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/VerificationValidation/vvTarget"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//requirements/verificationvalidation/Verify">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/Verify/verifiedByProcedure"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/Verify/verifiedByCase"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//requirements/verificationvalidation/Verify/verifiedRequirement"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Timing" resource="XML" disposableProviderFactory="true"
+        ecorePackage="eastadl.ecore#//timing">
+      <genClasses image="false" ecoreClass="eastadl.ecore#//timing/TimingDescription">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/TimingDescription/baseClass"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="eastadl.ecore#//timing/TimingConstraint">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/TimingConstraint/mode"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/TimingConstraint/upper"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/TimingConstraint/lower"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/TimingConstraint/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/TimingConstraint/baseConstraint"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//timing/TimeDuration">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/TimeDuration/baseDataType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//timing/TimeDuration/cseCode"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//timing/TimeDuration/cseCodeFactor"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//timing/TimeDuration/value"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//timing/Timing">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/Timing/timingConstraint"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/Timing/timingDescription"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/Timing/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/Timing/basePackage"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//timing/EventChain">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/EventChain/segment"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/EventChain/strand"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/EventChain/response"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/EventChain/stimulus"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="eastadl.ecore#//timing/Event">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//timing/Event/isStateChanged"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//timing/ExecutionTimeConstraint">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/ExecutionTimeConstraint/variation"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/ExecutionTimeConstraint/targetDesignFunctionType"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/ExecutionTimeConstraint/targetDesignFunction"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/ExecutionTimeConstraint/targeDesignFunctionPrototype"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//timing/PrecedenceConstraint">
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//timing/PrecedenceConstraint/successive"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//timing/PrecedenceConstraint/preceding"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/PrecedenceConstraint/baseDependency"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/PrecedenceConstraint/successivePath"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//timing/PrecedenceConstraint/precedingPath"/>
+      </genClasses>
+      <nestedGenPackages prefix="Timingconstraints" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//timing/timingconstraints">
+        <genClasses image="false" ecoreClass="eastadl.ecore#//timing/timingconstraints/DelayConstraint">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/DelayConstraint/jitter"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/DelayConstraint/nominal"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/DelayConstraint/scope"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//timing/timingconstraints/AgeTimingConstraint"/>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//timing/timingconstraints/EventConstraint">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/EventConstraint/event"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/EventConstraint/offset"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//timing/timingconstraints/InputSynchronizationConstraint">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/InputSynchronizationConstraint/width"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//timing/timingconstraints/OutputSynchronizationConstraint">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/OutputSynchronizationConstraint/width"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//timing/timingconstraints/ReactionConstraint"/>
+        <genClasses ecoreClass="eastadl.ecore#//timing/timingconstraints/SporadicEventConstraint">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/SporadicEventConstraint/jitter"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/SporadicEventConstraint/period"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/SporadicEventConstraint/maximumInterArrivalTime"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/SporadicEventConstraint/minimumInterArrivalTime"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//timing/timingconstraints/PeriodicEventConstraint">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/PeriodicEventConstraint/jitter"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/PeriodicEventConstraint/period"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/PeriodicEventConstraint/minimumInterArrivalTime"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//timing/timingconstraints/PatternEventConstraint">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/PatternEventConstraint/period"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/PatternEventConstraint/minimumInterArrivalTime"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/PatternEventConstraint/occurence"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/PatternEventConstraint/jitter"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//timing/timingconstraints/ArbitraryEventConstraint">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/ArbitraryEventConstraint/minimumInterArrivalTime"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/timingconstraints/ArbitraryEventConstraint/maximumInterArrivalTime"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Events" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//timing/events">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//timing/events/EventFunctionClientServerPortKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//timing/events/EventFunctionClientServerPortKind/receivedRequest"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//timing/events/EventFunctionClientServerPortKind/sentResponse"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//timing/events/EventFunctionClientServerPortKind/sentRequest"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//timing/events/EventFunctionClientServerPortKind/receivedResponse"/>
+        </genEnums>
+        <genClasses ecoreClass="eastadl.ecore#//timing/events/EventFunctionFlowPort">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/events/EventFunctionFlowPort/port"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/events/EventFunctionFlowPort/portPath"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//timing/events/EventFunctionClientServerPort">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//timing/events/EventFunctionClientServerPort/eventKind"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/events/EventFunctionClientServerPort/port"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/events/EventFunctionClientServerPort/portPath"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//timing/events/EventFunction">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/events/EventFunction/function"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/events/EventFunction/functionType"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//timing/events/EventFunction/functionPath"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Interchange" resource="XML" disposableProviderFactory="true"
+        ecorePackage="eastadl.ecore#//interchange">
+      <genClasses image="false" ecoreClass="eastadl.ecore#//interchange/RifArea">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//interchange/RifArea/rootRequirementContainer"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//interchange/RifArea/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//interchange/RifArea/interchangeReqSpecObject"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//interchange/RifExportArea"/>
+      <genClasses ecoreClass="eastadl.ecore#//interchange/RifImportArea"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Environment" resource="XML" disposableProviderFactory="true"
+        ecorePackage="eastadl.ecore#//environment">
+      <genClasses ecoreClass="eastadl.ecore#//environment/Environment">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//environment/Environment/environmentModel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//environment/Environment/clampConnector"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//environment/Environment/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//environment/Environment/basePackage"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//environment/ClampConnector">
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//environment/ClampConnector/port"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//environment/ClampConnector/baseConnector"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//environment/ClampConnector/port1Path"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//environment/ClampConnector/port2Path"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Dependability" resource="XML" disposableProviderFactory="true"
+        ecorePackage="eastadl.ecore#//dependability">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//dependability/ControllabilityClassKind">
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/ControllabilityClassKind/c1"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/ControllabilityClassKind/c2"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/ControllabilityClassKind/c3"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/ControllabilityClassKind/c0"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//dependability/ExposureClassKind">
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/ExposureClassKind/e1"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/ExposureClassKind/e2"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/ExposureClassKind/e3"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/ExposureClassKind/e4"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//dependability/SeverityClassKind">
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/SeverityClassKind/s0"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/SeverityClassKind/s1"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/SeverityClassKind/s2"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/SeverityClassKind/s3"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//dependability/DevelopmentCategoryKind">
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/DevelopmentCategoryKind/modificationOfExistingItem"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/DevelopmentCategoryKind/newItemDevelopment"/>
+      </genEnums>
+      <genClasses ecoreClass="eastadl.ecore#//dependability/HazardousEvent">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/HazardousEvent/baseClass"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/HazardousEvent/controllability"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/HazardousEvent/exposure"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/HazardousEvent/hazardClassification"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/HazardousEvent/severity"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/HazardousEvent/classificationAssumptions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/HazardousEvent/hazard"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/HazardousEvent/traffic"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/HazardousEvent/environment"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/HazardousEvent/operationalSituationUseCase"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/HazardousEvent/operatingMode"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/HazardousEvent/externalMeasures"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//dependability/Hazard">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Hazard/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Hazard/malfunction"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Hazard/item"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//dependability/FeatureFlaw">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/FeatureFlaw/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/FeatureFlaw/item"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/FeatureFlaw/nonFulfilledRequirement"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//dependability/Item">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Item/baseClass"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/Item/developmentCategory"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Item/vehicleFeature"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//dependability/Dependability">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/basePackage"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/functionalSafetyConcept"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/safetyGoal"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/technicalSafetyConcept"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/hazardousEvent"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/featureFlaw"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/item"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/eaDatatype"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/faultFailure"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/quantitativeSafetyConstraint"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/safetyConstraint"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/safetyCase"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//dependability/Dependability/errorModelType"/>
+      </genClasses>
+      <nestedGenPackages prefix="Errormodel" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//dependability/errormodel">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//dependability/errormodel/ErrorBehaviorKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/errormodel/ErrorBehaviorKind/hipHops"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/errormodel/ErrorBehaviorKind/altarica"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/errormodel/ErrorBehaviorKind/aadl"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/errormodel/ErrorBehaviorKind/other"/>
+        </genEnums>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/errormodel/ErrorBehavior">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorBehavior/baseBehavior"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/errormodel/ErrorBehavior/failureLogic"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/errormodel/ErrorBehavior/type"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorBehavior/internalFault"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorBehavior/owner"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorBehavior/externalFailure"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorBehavior/externalFault"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorBehavior/processFault"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/errormodel/InternalFaultPrototype">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/InternalFaultPrototype/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/InternalFaultPrototype/baseEvent"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/errormodel/Anomaly">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/errormodel/Anomaly/genericDescription"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/Anomaly/baseProperty"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/Anomaly/type"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/errormodel/ErrorModelType">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/errormodel/ErrorModelType/genericDescription"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/faultFailureConnector"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/part"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/failure"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/externalFault"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/internalFault"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/processFault"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/target"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/hwTarget"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelType/errorBehaviorDescription"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/errormodel/FaultFailurePropagationLink">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePropagationLink/baseConnector"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/errormodel/FaultFailurePropagationLink/immediatePropagation"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePropagationLink/toPort"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePropagationLink/fromPort"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePropagationLink/fromPortPath"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePropagationLink/toPortPath"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//dependability/errormodel/FaultFailurePort">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePort/basePort"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePort/functionTarget"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePort/hwTarget"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePort/functionTargetPath"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/FaultFailurePort/hwTargetPath"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/errormodel/ErrorModelPrototype">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelPrototype/baseProperty"/>
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelPrototype/type"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelPrototype/target"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelPrototype/functionTarget"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelPrototype/hwTarget"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelPrototype/functionTargetPath"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ErrorModelPrototype/hwTargetPath"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/errormodel/FailureOutPort"/>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/errormodel/FaultInPort"/>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/errormodel/ProcessFaultPrototype">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/errormodel/ProcessFaultPrototype/baseEvent"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Safetyrequirement" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//dependability/safetyrequirement">
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetyrequirement/FunctionalSafetyConcept">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyrequirement/FunctionalSafetyConcept/functionalSafetyRequirement"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetyrequirement/SafetyGoal">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyrequirement/SafetyGoal/derivedFrom"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/safetyrequirement/SafetyGoal/safeStates"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyrequirement/SafetyGoal/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyrequirement/SafetyGoal/requirement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/safetyrequirement/SafetyGoal/hazardClassification"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyrequirement/SafetyGoal/safeModes"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetyrequirement/TechnicalSafetyConcept">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyrequirement/TechnicalSafetyConcept/technicalSafetyRequirement"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Safetyconstraints" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//dependability/safetyconstraints">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//dependability/safetyconstraints/AsilKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/safetyconstraints/AsilKind/asilA"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/safetyconstraints/AsilKind/asilD"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/safetyconstraints/AsilKind/asilC"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/safetyconstraints/AsilKind/asilB"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/safetyconstraints/AsilKind/qm"/>
+        </genEnums>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetyconstraints/FaultFailure">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyconstraints/FaultFailure/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/safetyconstraints/FaultFailure/faultFailureValue"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyconstraints/FaultFailure/anomaly"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetyconstraints/SafetyConstraint">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/safetyconstraints/SafetyConstraint/asilValue"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyconstraints/SafetyConstraint/constrainedFaultFailure"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyconstraints/SafetyConstraint/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyconstraints/SafetyConstraint/baseConstraint"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetyconstraints/QuantitativeSafetyConstraint">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyconstraints/QuantitativeSafetyConstraint/constrainedFaultFailure"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/safetyconstraints/QuantitativeSafetyConstraint/failureRate"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/safetyconstraints/QuantitativeSafetyConstraint/repairRate"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyconstraints/QuantitativeSafetyConstraint/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetyconstraints/QuantitativeSafetyConstraint/baseConstraint"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Safetycase" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//dependability/safetycase">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//dependability/safetycase/LifecycleStageKind">
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/safetycase/LifecycleStageKind/preliminarySafetyCase"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/safetycase/LifecycleStageKind/interimSafetyCase"/>
+          <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//dependability/safetycase/LifecycleStageKind/operationalSafetyCase"/>
+        </genEnums>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetycase/SafetyCase">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/SafetyCase/safetyCase"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/safetycase/SafetyCase/stage"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//dependability/safetycase/SafetyCase/context"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/SafetyCase/ground"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/SafetyCase/warrant"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/SafetyCase/claim"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/SafetyCase/baseClass"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetycase/Ground">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Ground/safetyEvidence"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Ground/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Ground/justification"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetycase/Warrant">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Warrant/decomposedGoal"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Warrant/evidence"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Warrant/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Warrant/justification"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//dependability/safetycase/Claim">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Claim/safetyRequirement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Claim/supportedArgument"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Claim/goalDecompositionStrategy"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Claim/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Claim/justification"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//dependability/safetycase/Claim/evidence"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Annex" disposableProviderFactory="true" ecorePackage="eastadl.ecore#//annex">
+      <genDataTypes ecoreDataType="eastadl.ecore#//annex/Dummy"/>
+      <nestedGenPackages prefix="Needs" resource="XML" disposableProviderFactory="true"
+          ecorePackage="eastadl.ecore#//annex/needs">
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/Stakeholder">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/Stakeholder/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/Stakeholder/responsibilities"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/Stakeholder/successCriteria"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/StakeholderNeed">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/StakeholderNeed/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/StakeholderNeed/need"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/StakeholderNeed/priority"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/StakeholderNeed/stakeHolder"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/StakeholderNeed/problemStatement"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/ProblemStatement">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/ProblemStatement/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/ProblemStatement/affects"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/ProblemStatement/impact"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/ProblemStatement/problem"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/ProblemStatement/solutionBenefits"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/ProductPositioning">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/ProductPositioning/baseClass"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/ProductPositioning/drivingNeeds"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/ProductPositioning/keyCapabilities"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/ProductPositioning/primaryCompetitiveAlternative"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/ProductPositioning/primaryDifferentiation"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/ProductPositioning/targetCustomers"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/BusinessOpportunity">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/BusinessOpportunity/baseClass"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/BusinessOpportunity/problemStatement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/BusinessOpportunity/productPositioning"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//annex/needs/BusinessOpportunity/businessOpportunity"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="eastadl.ecore#//annex/needs/Concept"/>
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/Mission"/>
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/VehicleSystem">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/VehicleSystem/fulfills"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/VehicleSystem/hasAn"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/VehicleSystem/has"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/Architecture">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/Architecture/describedBy"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/ArchitecturalDescription">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/ArchitecturalDescription/aggregates"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference eastadl.ecore#//annex/needs/ArchitecturalDescription/identifies"/>
+        </genClasses>
+        <genClasses ecoreClass="eastadl.ecore#//annex/needs/ArchitecturalModel"/>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Genericconstraints" resource="XML" disposableProviderFactory="true"
+        ecorePackage="eastadl.ecore#//genericconstraints">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="eastadl.ecore#//genericconstraints/GenericConstraintKind">
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/powerConsumption"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/other"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/pieceCost"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/weight"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/standard"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/cableLength"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/developmentCost"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/functionAllocationDifferentNodes"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/functionAllocationSameNode"/>
+        <genEnumLiterals ecoreEnumLiteral="eastadl.ecore#//genericconstraints/GenericConstraintKind/powerSupplyIndependent"/>
+      </genEnums>
+      <genClasses ecoreClass="eastadl.ecore#//genericconstraints/GenericConstraint">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//genericconstraints/GenericConstraint/designConstraintType"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//genericconstraints/GenericConstraint/baseConstraint"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//genericconstraints/GenericConstraint/genericConstraintValue"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//genericconstraints/GenericConstraint/baseClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//genericconstraints/GenericConstraint/target"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//genericconstraints/GenericConstraint/mode"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//genericconstraints/GenericConstraintSet">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//genericconstraints/GenericConstraintSet/genericConstraint"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//genericconstraints/GenericConstraintSet/basePackage"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//genericconstraints/GenericConstraintSet/baseClass"/>
+      </genClasses>
+      <genClasses ecoreClass="eastadl.ecore#//genericconstraints/TakeRateConstraint">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eastadl.ecore#//genericconstraints/TakeRateConstraint/source"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eastadl.ecore#//genericconstraints/TakeRateConstraint/takeRate"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

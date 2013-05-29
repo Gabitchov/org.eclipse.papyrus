@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+
+
+<plugin>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WJIDxIEdyqfK4bFJstMQ"/>
+	</extension>
+	
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Variability/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WL-TxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Behavior/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WMfjxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Dependability/ErrorModel/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WMfzxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Requirements/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WLPzxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Dependability/SafetyRequirement/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_ZNvgwN4lEdyW6f_GAa5b1w"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Dependability/SafetyCase/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_Tb650N4qEdyW6f_GAa5b1w"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Structure/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WNKzxIEdyqfK4bFJstMQ"/>
+	</extension>
+	
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Structure/FunctionModeling/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WP9DxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Structure/FeatureModeling/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-f62DxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Environment/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-f77zxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Structure/SystemModeling/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-f8CzxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Structure/HardwareModeling/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_V5LXIHJVEdyx6oOkwavytg"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Structure/VehicleFeatureModeling/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_VtDYsNl5EdyxEqZvsyllRw"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Support/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WLITxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Requirements/VerificationValidation/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WKtDxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Infrastructure/UserAttributes/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_2M5XsNu0EdyN-KVwISucrA"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Infrastructure/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WNLDxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Infrastructure/Datatypes/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WNLTxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.uml2.uml.generated_package">
+			<profile
+				uri="http://www.papyrusuml.org/EAST-ADL2/Infrastructure/Elements/1"
+				location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_i-WNZjxIEdyqfK4bFJstMQ"/>
+	</extension>
+
+	<extension
+		point="org.eclipse.emf.ecore.uri_mapping">
+			<mapping
+				source="pathmap://EAST-ADL2_PROFILES/"
+				target="platform:/plugin/org.eclipse.papyrus.eastadl/model/"/>
+	</extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="UML Profile for EAST-ADL2"
+            iconpath="resources/icons/EASTADL.gif"
+            name="EAST-ADL2"
+            path="pathmap://EAST-ADL2_PROFILES/eastadl.profile.uml"
+            provider="CEA LIST"/>
+   </extension>
+	
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/1" 
+       class = "org.eclipse.papyrus.eastadl.EastadlPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="EAST-ADL2" 
+       class="org.eclipse.papyrus.eastadl.util.EastadlResourceFactoryImpl" />
+  </extension>
+  	
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/1"
+            class="org.eclipse.papyrus.eastadl.EastadlPackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Variability/1" 
+       class = "org.eclipse.papyrus.eastadl.variability.VariabilityPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="Variability" 
+       class="org.eclipse.papyrus.eastadl.variability.util.VariabilityResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Infrastructure/1" 
+       class = "org.eclipse.papyrus.eastadl.infrastructure.InfrastructurePackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="Infrastructure" 
+       class="org.eclipse.papyrus.eastadl.infrastructure.util.InfrastructureResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Infrastructure/Datatypes/1" 
+       class = "org.eclipse.papyrus.eastadl.infrastructure.datatypes.DatatypesPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="Datatypes" 
+       class="org.eclipse.papyrus.eastadl.infrastructure.datatypes.util.DatatypesResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Infrastructure/Elements/1" 
+       class = "org.eclipse.papyrus.eastadl.infrastructure.elements.ElementsPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="Elements" 
+       class="org.eclipse.papyrus.eastadl.infrastructure.elements.util.ElementsResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Requirements/VerificationValidation/1" 
+       class = "org.eclipse.papyrus.eastadl.requirements.verificationvalidation.VerificationvalidationPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="VerificationValidation" 
+       class="org.eclipse.papyrus.eastadl.requirements.verificationvalidation.util.VerificationvalidationResourceFactoryImpl" />
+  </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/Timing/1"
+            class="org.eclipse.papyrus.eastadl.timing.TimingPackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated eastadl -->
+      <parser
+            type="timing"
+            class="org.eclipse.papyrus.eastadl.timing.util.TimingResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/Timing/TimingConstraints/1"
+            class="org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated eastadl -->
+      <parser
+            type="timingconstraints"
+            class="org.eclipse.papyrus.eastadl.timing.timingconstraints.util.TimingconstraintsResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/Timing/Events/1"
+            class="org.eclipse.papyrus.eastadl.timing.events.EventsPackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated eastadl -->
+      <parser
+            type="events"
+            class="org.eclipse.papyrus.eastadl.timing.events.util.EventsResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/Interchange/1"
+            class="org.eclipse.papyrus.eastadl.interchange.InterchangePackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated eastadl -->
+      <parser
+            type="interchange"
+            class="org.eclipse.papyrus.eastadl.interchange.util.InterchangeResourceFactoryImpl"/>
+   </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Requirements/1" 
+       class = "org.eclipse.papyrus.eastadl.requirements.RequirementsPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="Requirements" 
+       class="org.eclipse.papyrus.eastadl.requirements.util.RequirementsResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Dependability/SafetyRequirement/1" 
+       class = "org.eclipse.papyrus.eastadl.dependability.safetyrequirement.SafetyrequirementPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="SafetyRequirement" 
+       class="org.eclipse.papyrus.eastadl.dependability.safetyrequirement.util.SafetyrequirementResourceFactoryImpl" />
+  </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/Dependability/SafetyConstraints/1"
+            class="org.eclipse.papyrus.eastadl.dependability.safetyconstraints.SafetyconstraintsPackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated eastadl -->
+      <parser
+            type="safetyconstraints"
+            class="org.eclipse.papyrus.eastadl.dependability.safetyconstraints.util.SafetyconstraintsResourceFactoryImpl"/>
+   </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Dependability/SafetyCase/1" 
+       class = "org.eclipse.papyrus.eastadl.dependability.safetycase.SafetycasePackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="SafetyCase" 
+       class="org.eclipse.papyrus.eastadl.dependability.safetycase.util.SafetycaseResourceFactoryImpl" />
+  </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/Annex/1"
+            class="org.eclipse.papyrus.eastadl.annex.AnnexPackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/Annex/Needs/1"
+            class="org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated eastadl -->
+      <parser
+            type="needs"
+            class="org.eclipse.papyrus.eastadl.annex.needs.util.NeedsResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/GenericConstraints/1"
+            class="org.eclipse.papyrus.eastadl.genericconstraints.GenericconstraintsPackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated eastadl -->
+      <parser
+            type="genericconstraints"
+            class="org.eclipse.papyrus.eastadl.genericconstraints.util.GenericconstraintsResourceFactoryImpl"/>
+   </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Structure/1" 
+       class = "org.eclipse.papyrus.eastadl.structure.StructurePackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="Structure" 
+       class="org.eclipse.papyrus.eastadl.structure.util.StructureResourceFactoryImpl" />
+  </extension>
+  
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Structure/FeatureModeling/1" 
+       class = "org.eclipse.papyrus.eastadl.structure.featuremodeling.FeaturemodelingPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="FeatureModeling" 
+       class="org.eclipse.papyrus.eastadl.structure.featuremodeling.util.FeaturemodelingResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Environment/1" 
+       class = "org.eclipse.papyrus.eastadl.environment.EnvironmentPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="Environment" 
+       class="org.eclipse.papyrus.eastadl.environment.util.EnvironmentResourceFactoryImpl" />
+  </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated eastadl -->
+      <package
+            uri="http://www.papyrusuml.org/EAST-ADL2/Dependability/1"
+            class="org.eclipse.papyrus.eastadl.dependability.DependabilityPackage"
+            genModel="model/eastadl.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated eastadl -->
+      <parser
+            type="dependability"
+            class="org.eclipse.papyrus.eastadl.dependability.util.DependabilityResourceFactoryImpl"/>
+   </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Structure/SystemModeling/1" 
+       class = "org.eclipse.papyrus.eastadl.structure.systemmodeling.SystemmodelingPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="SystemModeling" 
+       class="org.eclipse.papyrus.eastadl.structure.systemmodeling.util.SystemmodelingResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Structure/HardwareModeling/1" 
+       class = "org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="HardwareModeling" 
+       class="org.eclipse.papyrus.eastadl.structure.hardwaremodeling.util.HardwaremodelingResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Structure/VehicleFeatureModeling/1" 
+       class = "org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.VehiclefeaturemodelingPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="VehicleFeatureModeling" 
+       class="org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.util.VehiclefeaturemodelingResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Structure/FunctionModeling/1" 
+       class = "org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="FunctionModeling" 
+       class="org.eclipse.papyrus.eastadl.structure.functionmodeling.util.FunctionmodelingResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Infrastructure/UserAttributes/1" 
+       class = "org.eclipse.papyrus.eastadl.infrastructure.userattributes.UserattributesPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="UserAttributes" 
+       class="org.eclipse.papyrus.eastadl.infrastructure.userattributes.util.UserattributesResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Behavior/1" 
+       class = "org.eclipse.papyrus.eastadl.behavior.BehaviorPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="Behavior" 
+       class="org.eclipse.papyrus.eastadl.behavior.util.BehaviorResourceFactoryImpl" />
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.papyrusuml.org/EAST-ADL2/Dependability/ErrorModel/1" 
+       class = "org.eclipse.papyrus.eastadl.dependability.errormodel.ErrormodelPackage"
+       genModel = "model/eastadl.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+    <parser 
+       type="ErrorModel" 
+       class="org.eclipse.papyrus.eastadl.dependability.errormodel.util.ErrormodelResourceFactoryImpl" />
+  </extension>
+
+  
+ 
+ 
+<extension
+       point="org.eclipse.uml2.uml.generated_package">
+    <profile
+          location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_KfvdINj2Ed6rlulM-6rbhg"
+          uri="http://www.papyrusuml.org/EAST-ADL2/Timing/Events/1">
+    </profile>
+ </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.eastadl.timing.events.util.EventsResourceFactoryImpl"
+           type="Events">
+     </parser>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.eclipse.papyrus.eastadl.timing.events.impl.EventsPackageImpl"
+           uri="http://www.papyrusuml.org/EAST-ADL2/Timing/Events/1">
+     </package>
+  </extension>
+
+<extension
+       point="org.eclipse.uml2.uml.generated_package">
+    <profile
+          location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_f0woANj4Ed6rlulM-6rbhg"
+          uri="http://www.papyrusuml.org/EAST-ADL2/Interchange/1">
+    </profile>
+ </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.eastadl.interchange.util.InterchangeResourceFactoryImpl"
+           type="Interchange">
+     </parser>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.eclipse.papyrus.eastadl.interchange.impl.InterchangePackageImpl"
+           uri="http://www.papyrusuml.org/EAST-ADL2/Interchange/1">
+     </package>
+  </extension>
+
+<extension
+       point="org.eclipse.uml2.uml.generated_package">
+    <profile
+          location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_N7DvcNjgEd6wXIBypQTswA"
+          uri="http://www.papyrusuml.org/EAST-ADL2/Timing/1">
+    </profile>
+ </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.eastadl.timing.util.TimingResourceFactoryImpl"
+           type="Timing">
+     </parser>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.eclipse.papyrus.eastadl.timing.impl.TimingPackageImpl"
+           uri="http://www.papyrusuml.org/EAST-ADL2/Timing/1">
+     </package>
+  </extension>
+
+<extension
+       point="org.eclipse.uml2.uml.generated_package">
+    <profile
+          location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_a_kcsNjiEd6wXIBypQTswA"
+          uri="http://www.papyrusuml.org/EAST-ADL2/Timing/TimingConstraints/1">
+    </profile>
+ </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.eastadl.timing.timingconstraints.util.TimingconstraintsResourceFactoryImpl"
+           type="TimingConstraints">
+     </parser>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.TimingconstraintsPackageImpl"
+           uri="http://www.papyrusuml.org/EAST-ADL2/Timing/TimingConstraints/1">
+     </package>
+  </extension>
+<extension
+       point="org.eclipse.uml2.uml.generated_package">
+    <profile
+          location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_LJxzMEn1Ed-CwvH3DORXbA"
+          uri="http://www.papyrusuml.org/EAST-ADL2/Dependability/1">
+    </profile>
+ </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.eastadl.dependability.util.DependabilityResourceFactoryImpl"
+           type="Dependability">
+     </parser>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.eclipse.papyrus.eastadl.dependability.impl.DependabilityPackageImpl"
+           uri="http://www.papyrusuml.org/EAST-ADL2/Dependability/1">
+     </package>
+  </extension>
+ <extension
+       point="org.eclipse.uml2.uml.generated_package">
+    <profile
+          location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_HR2l4ErmEd-squZ2Pzs1Iw"
+          uri="http://www.papyrusuml.org/EAST-ADL2/Annex/1">
+    </profile>
+ </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.eastadl.annex.impl.AnnexFactoryImpl"
+           type="Annex">
+     </parser>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.eclipse.papyrus.eastadl.annex.impl.AnnexPackageImpl"
+           uri="http://www.papyrusuml.org/EAST-ADL2/Annex/1">
+     </package>
+  </extension>
+<extension
+       point="org.eclipse.uml2.uml.generated_package">
+    <profile
+          location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_OTomkErmEd-squZ2Pzs1Iw"
+          uri="http://www.papyrusuml.org/EAST-ADL2/Annex/Needs/1">
+    </profile>
+ </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.eastadl.annex.needs.util.NeedsResourceFactoryImpl"
+           type="Needs">
+     </parser>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.eclipse.papyrus.eastadl.annex.needs.impl.NeedsPackageImpl"
+           uri="http://www.papyrusuml.org/EAST-ADL2/Annex/Needs/1">
+     </package>
+  </extension>
+<extension
+       point="org.eclipse.uml2.uml.generated_package">
+    <profile
+          location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_tZKz0ErpEd-899EX5XYvlQ"
+          uri="http://www.papyrusuml.org/EAST-ADL2/GenericConstraints/1">
+    </profile>
+ </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.eastadl.genericconstraints.util.GenericconstraintsResourceFactoryImpl"
+           type="GenericConstraints">
+     </parser>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericconstraintsPackageImpl"
+           uri="http://www.papyrusuml.org/EAST-ADL2/GenericConstraints/1">
+     </package>
+  </extension>
+<extension
+       point="org.eclipse.uml2.uml.generated_package">
+    <profile
+          location="platform:/plugin/org.eclipse.papyrus.eastadl/model/eastadl.profile.uml#_bEdtYErpEd-899EX5XYvlQ"
+          uri="http://www.papyrusuml.org/EAST-ADL2/Dependability/SafetyConstraints/1">
+    </profile>
+ </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.eastadl.dependability.safetyconstraints.util.SafetyconstraintsResourceFactoryImpl"
+           type="SafetyConstraints">
+     </parser>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.eclipse.papyrus.eastadl.dependability.safetyconstraints.impl.SafetyconstraintsPackageImpl"
+           uri="http://www.papyrusuml.org/EAST-ADL2/Dependability/SafetyConstraints/1">
+     </package>
+  </extension>
+  
+     <extension
+           id="Eastald_Composite_ErrorModel"
+           name="Eastald_Composite_ErrorModel"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="ErrorModel"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="ErrorModel"
+           path="/resources/palettes/Palette_Composite_ErrorModel.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.composite">
+        </editor>
+     </paletteDefinition>
+  </extension>
+     <extension
+           id="Eastald_Class_ErrorModel"
+           name="Eastald_Class_ErrorModel"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="ErrorModel"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="ErrorModel"
+           path="/resources/palettes/Palette_Class_ErrorModel.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.clazz">
+        </editor>
+     </paletteDefinition>
+  </extension>
+  
+  <extension
+           id="Eastald_Composite_FeatureModeling"
+           name="Eastald_Composite_FeatureModeling"
+        point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="FeatureModeling"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="FeatureModeling"
+           path="/resources/palettes/Palette_Composite_FeatureModeling.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.composite">
+        </editor>
+     </paletteDefinition>
+  </extension>
+ <extension
+           id="Eastald_Class_FeatureModeling"
+           name="Eastald_Class_FeatureModeling"
+        point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="FeatureModeling"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="FeatureModeling"
+           path="/resources/palettes/Palette_Class_FeatureModeling.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.clazz">
+        </editor>
+     </paletteDefinition>
+  </extension>
+  <extension
+        id="Eastald_Composite_FunctionModeling"
+        name="Eastald_Composite_FunctionModeling"
+        point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="FunctionModeling"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="FunctionModeling"
+           path="/resources/palettes/Palette_Composite_FunctionModeling.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.composite">
+        </editor>
+     </paletteDefinition>
+  </extension>
+ <extension
+        id="Eastald_Class_FunctionModeling"
+        name="Eastald_Class_FunctionModeling"
+        point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="FunctionModeling"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="FunctionModeling"
+           path="/resources/palettes/Palette_Class_FunctionModeling.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.clazz">
+        </editor>
+     </paletteDefinition>
+  </extension>
+     <extension
+           id="Eastald_Composite_HardwareModeling"
+           name="Eastald_Composite_HardwareModeling"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="HardwareModeling"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="HardwareModeling"
+           path="/resources/palettes/Palette_Composite_HardwareModeling.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.composite">
+        </editor>
+     </paletteDefinition>
+  </extension>
+      <extension
+           id="Eastald_Class_HardwareModeling"
+           name="Eastald_Class_HardwareModeling"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="HardwareModeling"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="HardwareModeling"
+           path="/resources/palettes/Palette_Class_HardwareModeling.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.clazz">
+        </editor>
+     </paletteDefinition>
+  </extension>
+     <extension
+           id="Eastald_Composite_Requirements"
+           name="Eastald_Composite_Requirements"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="Requirements"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="Requirements"
+           path="/resources/palettes/Palette_Composite_Requirements.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.composite">
+        </editor>
+     </paletteDefinition>
+  </extension>
+      <extension
+           id="Eastald_Class_Requirements"
+           name="Eastald_Class_Requirements"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="Requirements"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="Requirements"
+           path="/resources/palettes/Palette_Class_Requirements.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.clazz">
+        </editor>
+     </paletteDefinition>
+  </extension>
+     <extension
+           id="Eastald_Composite_SystemModeling"
+           name="Eastald_Composite_SystemModeling"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="SystemModeling"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="SystemModeling"
+           path="/resources/palettes/Palette_Composite_SystemModeling.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.composite">
+        </editor>
+     </paletteDefinition>
+  </extension>
+     <extension
+           id="Eastald_Class_SystemModeling"
+           name="Eastald_Class_SystemModeling"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="SystemModeling"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="SystemModeling"
+           path="/resources/palettes/Palette_Class_SystemModeling.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.clazz">
+        </editor>
+     </paletteDefinition>
+  </extension>
+     <extension
+           id="Eastald_Composite_Timing"
+           name="Eastald_Composite_Timing"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="Timing"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="Timing"
+           path="/resources/palettes/Palette_Composite_Timing.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.composite">
+        </editor>
+     </paletteDefinition>
+  </extension>
+      <extension
+           id="Eastald_Class_Timing"
+           name="Eastald_Class_Timing"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="Timing"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="Timing"
+           path="/resources/palettes/Palette_Class_Timing.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.clazz">
+        </editor>
+     </paletteDefinition>
+  </extension>
+     <extension
+           id="Eastald_Composite_VerificationValidation"
+           name="Eastald_Composite_VerificationValidation"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="VerificationValidation"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="VerificationValidation"
+           path="/resources/palettes/Palette_Composite_VerificationValidation.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.composite">
+        </editor>
+     </paletteDefinition>
+  </extension>
+     <extension
+           id="Eastald_Class_VerificationValidation"
+           name="Eastald_Class_VerificationValidation"
+           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+     <paletteDefinition
+           ID="VerificationValidation"
+           class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+           name="VerificationValidation"
+           path="/resources/palettes/Palette_Class_VerificationValidation.xml"
+           provider="CEA LIST">
+        <Priority
+              name="Medium">
+        </Priority>
+        <editor
+              id="org.eclipse.papyrus.uml.diagram.clazz">
+        </editor>
+     </paletteDefinition>
+  </extension>
+     <extension
+           point="org.eclipse.papyrus.uml.diagram.wizards.templates">
+        <template
+              di_file="resources/templates/initialmodel.di"
+              file="resources/templates/initialmodel.uml"
+              id="org.eclipse.papyrus.eastadl.EeastadlModelWithStructure"
+              language="uml"
+              name="An EAST-ADL model with applied profile and system structure"
+              notation_file="resources/templates/initialmodel.notation">
+        </template>
+     </extension>
+  
+  
+</plugin>
