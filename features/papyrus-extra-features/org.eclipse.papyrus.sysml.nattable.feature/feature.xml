@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.sysml.nattable.feature"
-      label="SysML NatTable Feature"
+      label="Papyrus SysML NatTable (Incubation)"
       version="0.10.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
