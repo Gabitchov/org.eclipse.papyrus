@@ -17,10 +17,19 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 /**
  * 
@@ -48,6 +57,26 @@ public class SynchronizedFeatureValueAxisManager extends AbstractSynchronizedOnF
 		result.addAll((List<?>)this.getTableManager().getTable().getContext().eGet(synchronizedFeature));
 
 		return result;
+	}
+
+	public boolean canDestroyAxisElement(Integer axisIndex) {
+		return true;
+	}
+
+	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+		final Object current = getElements().get(axisPosition);
+		EObject elementToDestroy = null;
+		if(current instanceof EObjectAxis) {
+			elementToDestroy = ((EObjectAxis)current).getElement();
+		} else if(current instanceof EObject) {
+			elementToDestroy = (EObject)current;
+		}
+		if(elementToDestroy != null) {
+			final DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)getContextEditingDomain(), elementToDestroy, false);
+			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
+			return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+		}
+		return null;
 	}
 
 }

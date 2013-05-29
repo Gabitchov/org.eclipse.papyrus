@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.table.axis;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 
 /**
@@ -35,6 +37,18 @@ public class DerivedUMLPropertiesAxisManager extends AbstractAxisManager {
 
 	public boolean isDynamic() {
 		return false;
+	}
+
+	public boolean canEditAxisHeader() {
+		return true;
+	}
+
+	public boolean canDestroyAxisElement(Integer axisIndex) {
+		return false;
+	}
+
+	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+		return null;
 	}
 
 }
