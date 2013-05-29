@@ -13,15 +13,12 @@
 package org.eclipse.papyrus.sysml.diagram.requirement.test.canonical;
 
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.diagram.tests.canonical.TestLink;
+import org.eclipse.papyrus.diagram.tests.canonical.TestLinkOwnedBySource;
 import org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
 import org.junit.Test;
 
-/**
- * The Class TestClassDiagramLink.
- */
-public class TestRequirementDiagramLink extends TestLink {
+public class TestRequirementDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
@@ -29,27 +26,11 @@ public class TestRequirementDiagramLink extends TestLink {
 	}
 
 	/**
-	 * Test to manage Abstraction
+	 * Test to manage Package import
 	 */
 	@Test
-	public void testToManageAbstraction() {
-		testToManageLink(ElementTypes.CLASS, ElementTypes.CLASS, ElementTypes.ABSTRACTION, ElementTypes.PACKAGE, true);
-	}
-
-	/**
-	 * Test to manage Dependency
-	 */
-	@Test
-	public void testToManageDependency() {
-		testToManageLink(ElementTypes.CLASS, ElementTypes.CLASS, ElementTypes.DEPENDENCY, ElementTypes.PACKAGE, true);
-	}
-
-	/**
-	 * Test to manage Realization
-	 */
-	@Test
-	public void testToManageRealization() {
-		testToManageLink(ElementTypes.CLASS, ElementTypes.CLASS, ElementTypes.REALIZATION, ElementTypes.PACKAGE, true);
+	public void testToManagePackageImport() {
+		testToManageLink(ElementTypes.PACKAGE, ElementTypes.PACKAGE, ElementTypes.PACKAGE_IMPORT, ElementTypes.PACKAGE, true);
 	}
 
 }

@@ -32,7 +32,9 @@ TestRequirementDiagramCommentLink.class,
 // Constraint Link
 TestRequirementDiagramConstraintLink.class,
 // Containment Link
-TestRequirementDiagramContainment.class, })
+TestRequirementDiagramContainment.class,
+// Link Owned By source
+TestRequirementDiagramLinkOwnedBySource.class })
 public class AllCanonicalTests {
 
 }
