@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -60,6 +62,7 @@ import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.GateItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GateModelElementFactory;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
@@ -295,17 +298,60 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
+		if(GateModelElementFactory.isShowNameChanged(event)) {
+			//refresh name child.
+			refreshChildren();
+			return;
+		}
 		if(!event.isTouch()) {
 			hookExternalGates();
 		}
 		if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(event.getFeature())) {
-			refreshGateLabel();
+			//Update gate name when the name of message is changed.
+			EObject element = resolveSemanticElement();
+			if(element instanceof Gate && event.getNotifier() instanceof Message) {
+				//				Gate gate = (Gate)element;
+				//				String gateLabel = GateHelper.getGateLabel(gate);
+				//				if(gateLabel != null && !gateLabel.equals(gate.getName())) {
+				//					gate.setName(gateLabel);
+				//					Gate innerCFGate = GateHelper.getInnerCFGate(gate);
+				//					if(innerCFGate != null && !gateLabel.equals(innerCFGate.getName())) {
+				//						innerCFGate.setName(gateLabel);
+				//					}
+				//				}
+			} else {
+				refreshGateLabel();
+			}
 		} else if(UMLPackage.eINSTANCE.getMessageEnd_Message().equals(event.getFeature())) {
 			notifier.unlistenObject((Notifier)event.getOldValue());
 			notifier.listenObject((Notifier)event.getNewValue());
 			refreshGateLabel();
 		}
 		super.handleNotificationEvent(event);
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getModelChildren()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected List getModelChildren() {
+		if(GateModelElementFactory.isShowName(getPrimaryView())) {
+			return super.getModelChildren();
+		} else {
+			//Hide name with property changes.
+			List modelChildren = new ArrayList(super.getModelChildren());
+			Iterator iterator = modelChildren.iterator();
+			while(iterator.hasNext()) {
+				View next = (View)iterator.next();
+				if(GateNameEditPart.GATE_NAME_TYPE.equals(next.getType())) {
+					iterator.remove();
+					break;
+				}
+			}
+			return modelChildren;
+		}
 	}
 
 	/**

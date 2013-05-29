@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsOrderingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure;
@@ -219,6 +220,8 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new MessageLabelEditPolicy());
+		//Ordering Message Occurrence Specification. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
+		installEditPolicy(InteractionFragmentsOrderingEditPolicy.ORDERING_ROLE, new InteractionFragmentsOrderingEditPolicy());
 	}
 
 	@Override

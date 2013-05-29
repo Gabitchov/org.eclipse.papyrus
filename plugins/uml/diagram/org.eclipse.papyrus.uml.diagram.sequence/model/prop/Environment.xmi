@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
-<environment:Environment
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
-  <modelElementFactories
-      name="MessageStyle Notation Factory"
-      factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.MessageStyleElementFactory"/>
-  <modelElementFactories
-      name="Sequence preferences Factory"
-      factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.PreferencesModelElementFactory"/>
-  <modelElementFactories
-      name="Interaction Operand Factory"
-      factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperandModelElementFactory"/>
+<environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
+  <modelElementFactories name="MessageStyle Notation Factory" factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.MessageStyleElementFactory"/>
+  <modelElementFactories name="Sequence preferences Factory" factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.PreferencesModelElementFactory"/>
+  <modelElementFactories name="Interaction Operand Factory" factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperandModelElementFactory"/>
+  <modelElementFactories name="Gate Factory" factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.GateModelElementFactory"/>
+  <modelElementFactories name="Link Route Factory" factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.LinkRouteModelElementFactory"/>
+  <constraintTypes label="Duration Link Constraint" constraintClass="org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkConstraint"/>
 </environment:Environment>

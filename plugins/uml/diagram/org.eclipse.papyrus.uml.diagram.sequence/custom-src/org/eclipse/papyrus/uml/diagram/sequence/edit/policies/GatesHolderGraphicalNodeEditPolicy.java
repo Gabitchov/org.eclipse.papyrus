@@ -185,23 +185,28 @@ public class GatesHolderGraphicalNodeEditPolicy extends SequenceGraphicalNodeEdi
 		Point targetLocation = GateHelper.computeGateLocation(request.getLocation(), getHostFigure(), null);
 		CreateGateElementAndViewCommand createTargetGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), getHost(), targetLocation);
 		createTargetGateCommand.setCreateInnerCFGate(true);
+		createTargetGateCommand.setVolatiled(true);
 		cc.add(new ICommandProxy(createTargetGateCommand));
 		IAdaptable targetViewAdapter = createTargetGateCommand.getResult();
 		//2. Create Source Gate if needed.
 		EditPart sourceEditPart = request.getSourceEditPart();
 		IAdaptable sourceViewAdapter = sourceEditPart;
-		if(sourceEditPart instanceof CombinedFragmentEditPart || sourceEditPart instanceof InteractionEditPart || sourceEditPart instanceof InteractionUseEditPart) {
-			IGraphicalEditPart ep = (IGraphicalEditPart)sourceEditPart;
-			Point location = request.getLocation();
-			Object locationData = request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
-			if(locationData instanceof Point) {
-				location = (Point)locationData;
+		//Ignore message found.
+		if(!isCreatingMessage(request, UMLElementTypes.Message_4009)) {
+			if(sourceEditPart instanceof CombinedFragmentEditPart || sourceEditPart instanceof InteractionEditPart || sourceEditPart instanceof InteractionUseEditPart) {
+				IGraphicalEditPart ep = (IGraphicalEditPart)sourceEditPart;
+				Point location = request.getLocation();
+				Object locationData = request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
+				if(locationData instanceof Point) {
+					location = (Point)locationData;
+				}
+				Point sourceLocation = GateHelper.computeGateLocation(location, ep.getFigure(), null);
+				CreateGateElementAndViewCommand createSourceGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), sourceViewAdapter, sourceLocation);
+				createSourceGateCommand.setCreateInnerCFGate(true);
+				createSourceGateCommand.setVolatiled(true);
+				cc.add(new ICommandProxy(createSourceGateCommand));
+				sourceViewAdapter = createSourceGateCommand.getResult();
 			}
-			Point sourceLocation = GateHelper.computeGateLocation(location, ep.getFigure(), null);
-			CreateGateElementAndViewCommand createSourceGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), sourceViewAdapter, sourceLocation);
-			createSourceGateCommand.setCreateInnerCFGate(true);
-			cc.add(new ICommandProxy(createSourceGateCommand));
-			sourceViewAdapter = createSourceGateCommand.getResult();
 		}
 		//3. Create Message.
 		ICommand createMessageCommand = createCreateMessageWithGateCommand(request, sourceViewAdapter, targetViewAdapter);

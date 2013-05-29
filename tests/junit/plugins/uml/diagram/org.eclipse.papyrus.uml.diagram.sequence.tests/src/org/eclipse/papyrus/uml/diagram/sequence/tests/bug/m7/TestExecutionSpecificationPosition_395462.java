@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2013 CEA
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -240,8 +240,12 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 
 			public void handleEvent(Event event) {
 				if(event.widget instanceof Shell) {
-					Shell shell = (Shell)event.widget;
-					ElementListSelectionDialog dialog = (ElementListSelectionDialog)shell.getData();
+					final Shell shell = (Shell)event.widget;
+					Object data = shell.getData();
+					if(!(data instanceof ElementListSelectionDialog)) {
+						return;
+					}
+					ElementListSelectionDialog dialog = (ElementListSelectionDialog)data;
 					dialog.setInitialSelections(new Object[]{ property });
 					dialog.create();
 					waitForComplete();
@@ -267,6 +271,12 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 					waitForComplete();
 					event.doit = false;
 					result.add(dialog);
+					shell.getDisplay().syncExec(new Runnable() {
+
+						public void run() {
+							shell.dispose();
+						}
+					});
 				}
 			}
 		});
@@ -276,6 +286,10 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		while(true) {
 			if(!result.isEmpty()) {
 				result.get(0).close();
+				Shell shell = result.get(0).getShell();
+				if(shell != null) {
+					shell.dispose();
+				}
 				break;
 			}
 		}

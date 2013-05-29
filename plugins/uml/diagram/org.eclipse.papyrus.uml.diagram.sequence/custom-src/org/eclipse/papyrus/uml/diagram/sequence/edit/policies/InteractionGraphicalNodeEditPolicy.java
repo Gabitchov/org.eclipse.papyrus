@@ -108,6 +108,9 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 	public Command getCommand(Request request) {
 		if(REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_4006)) {
 			return getMessageCreateAndLifelineCommands((CreateConnectionRequest)request);
+		} else if(REQ_CONNECTION_START.equals(request.getType()) && request instanceof CreateConnectionRequest) {
+			//Fixed bug about mapping source location for creating a Gate.
+			request.getExtendedData().put(SequenceRequestConstant.SOURCE_LOCATION_DATA, ((CreateConnectionRequest)request).getLocation());
 		}
 		return super.getCommand(request);
 	}

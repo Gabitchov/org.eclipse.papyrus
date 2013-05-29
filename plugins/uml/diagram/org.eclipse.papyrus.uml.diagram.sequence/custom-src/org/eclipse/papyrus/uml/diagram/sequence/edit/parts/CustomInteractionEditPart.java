@@ -51,6 +51,7 @@ import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
@@ -114,6 +115,8 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new InteractionGraphicalNodeEditPolicy());
 		//Create gate: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
 		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
+		//Ordering fragments after creation, See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new InteractionFragmentsCreationEditPolicy());
 	}
 
 	/**

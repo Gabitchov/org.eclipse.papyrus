@@ -19,9 +19,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ReconnectMessageHelper;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -54,6 +59,9 @@ public class CustomMessageReorientCommand extends MessageReorientCommand {
 			return false;
 		}
 		//Fixed bug about reconnect messages.
+		if(!(getNewSource() instanceof ExecutionSpecification)) {
+			return false;
+		}
 		return MessageConnectionHelper.canReorientSource(getLink(), getNewSource());
 	}
 
@@ -73,6 +81,10 @@ public class CustomMessageReorientCommand extends MessageReorientCommand {
 		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4003(container, getLink(), source, getNewTarget())) {
 			return false;
 		}
+		//Fixed bug about reconnect messages.
+		if(!(getNewTarget() instanceof ExecutionSpecification)) {
+			return false;
+		}
 		return MessageConnectionHelper.canReorientTarget(getLink(), getNewTarget());
 	}
 
@@ -81,7 +93,12 @@ public class CustomMessageReorientCommand extends MessageReorientCommand {
 	 */
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
-		ReconnectMessageHelper.updateMessageEnd(getLink().getSendEvent(), getOldSource(), getNewSource());
+		MessageEnd sendEvent = getLink().getSendEvent();
+		ReconnectMessageHelper.updateMessageEnd(sendEvent, getOldSource(), getNewSource());
+		//Update Execution Ends after message reconnecte, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
+		if(getOldSource() instanceof ExecutionSpecification && sendEvent == (((ExecutionSpecification)getOldSource()).getStart())) {
+			OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification)getOldSource(), UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification());
+		}
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -90,8 +107,16 @@ public class CustomMessageReorientCommand extends MessageReorientCommand {
 	 */
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
-		ReconnectMessageHelper.updateMessageEnd(getLink().getReceiveEvent(), getOldTarget(), getNewTarget());
+		MessageEnd receiveEvent = getLink().getReceiveEvent();
+		ReconnectMessageHelper.updateMessageEnd(receiveEvent, getOldTarget(), getNewTarget());
 		ReconnectMessageHelper.updateMessage(getLink());
+		//Update Execution Ends after message reconnecte, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
+		if(getOldTarget() instanceof ExecutionSpecification && receiveEvent == (((ExecutionSpecification)getOldTarget()).getStart())) {
+			OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification)getOldTarget(), UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification());
+		}
+		if(getNewTarget() instanceof ExecutionSpecification && receiveEvent instanceof MessageOccurrenceSpecification) {
+			OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification)getNewTarget(), receiveEvent);
+		}
 		return CommandResult.newOKCommandResult(getLink());
 	}
 }

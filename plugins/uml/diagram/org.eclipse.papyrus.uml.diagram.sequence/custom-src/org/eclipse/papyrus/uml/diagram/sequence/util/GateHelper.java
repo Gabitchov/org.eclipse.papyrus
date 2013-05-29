@@ -68,6 +68,8 @@ public class GateHelper {
 
 	private static final String CF_GATE_OUTSIDE = "outsideCF";
 
+	private static final String GATE_NAME_VOLATILE = "Gate.name.volatile";
+
 	/**
 	 * Constructor.
 	 * 
@@ -448,5 +450,97 @@ public class GateHelper {
 			return ((OccurrenceSpecification)messageEnd).getCovered();
 		}
 		return null;
+	}
+
+	public static void setVolatile(Gate gate, boolean value) {
+		if(gate == null) {
+			return;
+		}
+		EAnnotation annotation = gate.getEAnnotation(GATE_NAME_VOLATILE);
+		if(true == value) {
+			if(annotation == null) {
+				annotation = gate.createEAnnotation(GATE_NAME_VOLATILE);
+			}
+			annotation.getDetails().put(GATE_NAME_VOLATILE, Boolean.toString(value));
+		} else if(annotation != null) {
+			gate.getEAnnotations().remove(annotation);
+		}
+		if(gate.eContainer() instanceof InteractionUse) {
+			Interaction refersTo = ((InteractionUse)gate.eContainer()).getRefersTo();
+			if(refersTo != null) {
+				Gate formalGate = refersTo.getFormalGate(gate.getName());
+				if(formalGate != null) {
+					setVolatile(formalGate, value);
+				}
+			}
+		} else if(!GateHelper.isInnerCFGate(gate)) {
+			Gate innerGate = GateHelper.getInnerCFGate(gate);
+			if(innerGate != null) {
+				setVolatile(innerGate, value);
+			}
+		}
+	}
+
+	public static boolean isVolatile(Gate gate) {
+		if(gate == null) {
+			return false;
+		}
+		EAnnotation ann = gate.getEAnnotation(GATE_NAME_VOLATILE);
+		return ann != null;
+	}
+
+	public static void updateGateWithMessage(Message message, boolean force) {
+		if(message == null) {
+			return;
+		}
+		MessageEnd sendEvent = message.getSendEvent();
+		MessageEnd receiveEvent = message.getReceiveEvent();
+		//Suggest a name for gate with message.
+		if(sendEvent instanceof Gate) {
+			Gate gate = (Gate)sendEvent;
+			updateGateName(gate, force);
+		}
+		if(receiveEvent instanceof Gate) {
+			Gate gate = (Gate)receiveEvent;
+			updateGateName(gate, force);
+		}
+	}
+
+	protected static void updateGateName(Gate gate, boolean force) {
+		if(gate == null) {
+			return;
+		}
+		if(gate.eContainer() instanceof InteractionUse) {
+			Interaction refersTo = ((InteractionUse)gate.eContainer()).getRefersTo();
+			if(refersTo != null) {
+				Gate formalGate = refersTo.getFormalGate(gate.getName());
+				if(formalGate != null && (force || isVolatile(formalGate))) {
+					formalGate.setName(GateHelper.getGateLabel(gate));
+					if(!force) {
+						setVolatile(formalGate, false);
+					}
+				}
+			} else if(force || isVolatile(gate)) {
+				gate.setName(GateHelper.getGateLabel(gate));
+				if(!force) {
+					setVolatile(gate, false);
+				}
+			}
+		} else if(!GateHelper.isInnerCFGate(gate)) {
+			String newName = GateHelper.getGateLabel(gate);
+			if(force || isVolatile(gate)) {
+				gate.setName(newName);
+			}
+			Gate innerGate = GateHelper.getInnerCFGate(gate);
+			if(innerGate != null && (force || isVolatile(innerGate))) {
+				innerGate.setName(newName);
+				if(!force) {
+					setVolatile(innerGate, false);
+				}
+			}
+			if(!force) {
+				setVolatile(gate, false);
+			}
+		}
 	}
 }

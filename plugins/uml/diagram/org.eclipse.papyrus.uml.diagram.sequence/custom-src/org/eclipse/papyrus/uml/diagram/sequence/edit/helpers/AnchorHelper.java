@@ -185,6 +185,27 @@ public class AnchorHelper {
 		public int getPosition() {
 			return position;
 		}
+
+		@Override
+		public String getTerminal() {
+			return super.getTerminal() + "{" + position + "}";
+		}
+
+		public static int parsePosition(String terminal) {
+			if(terminal == null) {
+				return -1;
+			}
+			int start = terminal.indexOf("{");
+			int end = terminal.indexOf("}");
+			if(start != -1 && end != -1 && end > (start + 1)) {
+				String v = terminal.substring(start + 1, end);
+				try {
+					return Integer.parseInt(v);
+				} catch (NumberFormatException e) {
+				}
+			}
+			return -1;
+		}
 	}
 
 	public static class SideAnchor extends SlidableAnchor {

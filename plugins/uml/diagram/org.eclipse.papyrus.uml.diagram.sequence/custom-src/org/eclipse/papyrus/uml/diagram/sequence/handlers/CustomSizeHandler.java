@@ -214,5 +214,78 @@ public class CustomSizeHandler extends SizeHandler {
 				return doResizeCmd.unwrap();
 			}
 		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.menu.actions.SizeAction#getBothCommand()
+		 * 
+		 * @return
+		 */
+		@Override
+		protected Command getBothCommand() {
+			if(!(this.selectedElements.size() > 1)) {
+				return UnexecutableCommand.INSTANCE;
+			} else {
+				// Create a compound command to hold the resize commands
+				CompoundCommand doResizeCmd = new CompoundCommand();
+
+				// Create an iterator for the selection
+				Iterator<IGraphicalEditPart> iter = selectedElements.iterator();
+
+				// Get the Primary Selection
+				int last = selectedElements.size() - 1;
+				IGraphicalEditPart primary = selectedElements.get(last);
+				View primaryView = (View)primary.getModel();
+				Integer width = (Integer)ViewUtil.getStructuralFeatureValue(primaryView, NotationPackage.eINSTANCE.getSize_Width());
+				Integer height = (Integer)ViewUtil.getStructuralFeatureValue(primaryView, NotationPackage.eINSTANCE.getSize_Height());
+
+				Dimension primarySize;
+				if(width.intValue() == -1 || height.intValue() == -1)
+					primarySize = primary.getFigure().getSize().getCopy();
+				else
+					primarySize = new Dimension(width.intValue(), height.intValue());
+
+				while(iter.hasNext()) {
+
+					// For each figure in the selection (to be resize) a request is created for resize to new bounds in the south-east direction.
+					// The command for this resize is contributed by the edit part for the resize request.
+
+					IGraphicalEditPart toResize = iter.next();
+					View resizeView = (View)toResize.getModel();
+					Integer previousWidth = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Width());
+					Integer previousHeight = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height());
+
+					Dimension previousSize;
+					if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1)
+						previousSize = toResize.getFigure().getSize().getCopy();
+					else
+						previousSize = new Dimension(previousWidth.intValue(), previousHeight.intValue());
+
+					// Calculate delta resize
+					Dimension delta = new Dimension(primarySize.width - previousSize.width, primarySize.height - previousSize.height);
+					if(isLifelines()) {
+						//Align all Lifelines at bottom.
+						Rectangle constraint = getLifelineConstraint();
+						Rectangle previousRect = SequenceUtil.getAbsoluteBounds(toResize);
+						delta.height = constraint.bottom() - previousRect.bottom();
+					}
+					// Prepare setBoundRequest
+					ChangeBoundsRequest bRequest = new ChangeBoundsRequest();
+					bRequest.setResizeDirection(PositionConstants.SOUTH_EAST);
+					bRequest.setSizeDelta(delta);
+					bRequest.setType(RequestConstants.REQ_RESIZE);
+
+					Command resizeCommand = toResize.getCommand(bRequest);
+
+					// Previous implementation (following line) forced bounds on view instead of using resize command provided by the edit part.
+					//
+					// doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), primarySize))); //$NON-NLS-1$
+					//
+
+					doResizeCmd.add(resizeCommand); //$NON-NLS-1$
+				}
+
+				return doResizeCmd.unwrap();
+			}
+		}
 	}
 }

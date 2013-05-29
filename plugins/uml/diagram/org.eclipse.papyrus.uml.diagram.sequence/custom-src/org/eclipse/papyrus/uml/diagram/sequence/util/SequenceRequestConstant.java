@@ -51,4 +51,7 @@ public interface SequenceRequestConstant {
 
 	/** update connectable element reference */
 	public static final String CONNECTABLE_ELEMENT = "Connectable Element"; //$NON-NLS-1$
+
+	/** Direct edit request after creation. */
+	public static final String DIRECT_EDIT_AFTER_CREATION = "Direct Edit After Creation"; //$NON-NLS-1$
 }

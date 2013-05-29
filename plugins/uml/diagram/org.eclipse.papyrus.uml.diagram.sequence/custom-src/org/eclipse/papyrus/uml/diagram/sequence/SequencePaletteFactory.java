@@ -14,28 +14,41 @@
 package org.eclipse.papyrus.uml.diagram.sequence;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.Cursors;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreationFactory;
 import org.eclipse.gef.tools.CreationTool;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.service.DurationCreationTool;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -272,49 +285,49 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 	private Tool createMessageSync1CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4003);
-		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
+		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
 	private Tool createMessageAsync2CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4004);
-		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
+		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
 	private Tool createMessageReply3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4005);
-		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
+		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
 	private Tool createMessageCreate4CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4006);
-		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
+		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
 	private Tool createMessageDelete5CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4007);
-		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
+		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
 	private Tool createMessageLost6CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4008);
-		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
+		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
 	private Tool createMessageFound7CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4009);
-		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
+		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
@@ -429,6 +442,75 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 				return editPart;
 			}
 			return getInteractionEditPart(editPart.getParent());
+		}
+	}
+
+	public static class MessageConnectionTool extends AspectUnspecifiedTypeConnectionToolEx {
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param elementTypes
+		 */
+		public MessageConnectionTool(List<IElementType> elementTypes) {
+			super(elementTypes);
+		}
+
+		@Override
+		protected void selectAddedObject(EditPartViewer viewer, Collection objects) {
+			final List editparts = new ArrayList();
+			final EditPart[] primaryEP = new EditPart[1];
+			for(Iterator i = objects.iterator(); i.hasNext();) {
+				Object object = i.next();
+				if(object instanceof IAdaptable) {
+					Object editPart = viewer.getEditPartRegistry().get(((IAdaptable)object).getAdapter(View.class));
+					if(editPart instanceof IPrimaryEditPart) {
+						editparts.add(editPart);
+					}
+					// Priority is to put a shape into direct edit mode.
+					if(editPart instanceof ShapeEditPart) {
+						primaryEP[0] = (ShapeEditPart)editPart;
+					}
+				}
+			}
+			if(!editparts.isEmpty()) {
+				viewer.setSelection(new StructuredSelection(editparts));
+				// automatically put the first shape into edit-mode
+				Display.getCurrent().asyncExec(new Runnable() {
+
+					public void run() {
+						if(primaryEP[0] == null) {
+							primaryEP[0] = (EditPart)editparts.get(0);
+						}
+						//
+						// add active test since test scripts are failing on this
+						// basically, the editpart has been deleted when this
+						// code is being executed. (see RATLC00527114)
+						if(primaryEP[0].isActive()) {
+							Request request = new Request(RequestConstants.REQ_DIRECT_EDIT);
+							//Mark this request as the first direct edit after creation.
+							request.getExtendedData().put(SequenceRequestConstant.DIRECT_EDIT_AFTER_CREATION, true);
+							primaryEP[0].performRequest(request);
+						}
+					}
+				});
+			}
+		}
+
+		/**
+		 * @see org.eclipse.gmf.runtime.diagram.ui.tools.ConnectionCreationTool#deactivate()
+		 * 
+		 */
+		@Override
+		public void deactivate() {
+			EditPart targetEditPart = getTargetEditPart();
+			if(targetEditPart != null) {
+				EditPolicy editPolicy = targetEditPart.getEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE);
+				if(editPolicy != null) {
+					editPolicy.eraseSourceFeedback(getTargetRequest());
+				}
+			}
+			super.deactivate();
 		}
 	}
 }

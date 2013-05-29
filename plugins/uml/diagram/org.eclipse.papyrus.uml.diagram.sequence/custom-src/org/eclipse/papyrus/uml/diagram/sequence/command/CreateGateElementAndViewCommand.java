@@ -32,6 +32,11 @@ public class CreateGateElementAndViewCommand extends CreateGateViewCommand {
 	private boolean createInnerCFGate;
 
 	/**
+	 * Mark the gate as volatiled one, so the name can be changed.
+	 */
+	private boolean volatiled;
+
+	/**
 	 * Constructor.
 	 * 
 	 * @param domain
@@ -56,6 +61,9 @@ public class CreateGateElementAndViewCommand extends CreateGateViewCommand {
 	protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Gate gate = GateHelper.createGate((Element)getParentElement(), isCreateInnerCFGate());
 		((ObjectAdapter)getGateAdapter()).setObject(gate);
+		if(isVolatiled()) {
+			GateHelper.setVolatile(gate, true);
+		}
 		return super.doExecute(monitor, info);
 	}
 
@@ -72,5 +80,20 @@ public class CreateGateElementAndViewCommand extends CreateGateViewCommand {
 	 */
 	public void setCreateInnerCFGate(boolean createInnerCFGate) {
 		this.createInnerCFGate = createInnerCFGate;
+	}
+
+	/**
+	 * @return the volatiled
+	 */
+	public boolean isVolatiled() {
+		return volatiled;
+	}
+
+	/**
+	 * @param volatiled
+	 *        the volatiled to set
+	 */
+	public void setVolatiled(boolean volatiled) {
+		this.volatiled = volatiled;
 	}
 }

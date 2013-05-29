@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite
+    xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+    xmlns="http://www.eclipse.org/xwt/presentation"
+    xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+    xmlns:x="http://www.eclipse.org/xwt">
+    <Composite.layout>
+        <ppel:PropertiesLayout numColumns="1"/>
+    </Composite.layout>
+    <Group text="Routing">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="1"/>
+		</Group.layout>
+		<ppe:EnumRadio numColumns="2" input="{Binding}" property="LinkRoute:Routing:style" showLabel="false"/>
+	</Group>
+
+</Composite>

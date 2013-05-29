@@ -64,6 +64,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -132,6 +133,7 @@ public class GateNameEditPart extends LabelEditPart implements ITextAwareEditPar
 			EditPart parent = getParent();
 			if(parent instanceof GateEditPart) {
 				GateEditPart gateEditPart = ((GateEditPart)parent);
+				EObject elt = gateEditPart.resolveSemanticElement();
 				Dimension preferredSize = getFigure().getPreferredSize(width, height);
 				IBorderItemLocator locator = gateEditPart.getBorderItemLocator();
 				if(locator instanceof GateLocator) {
@@ -142,11 +144,21 @@ public class GateNameEditPart extends LabelEditPart implements ITextAwareEditPar
 						} else {
 							x = GateEditPart.DEFAULT_SIZE.width + 1;
 						}
+						if(elt instanceof Gate && GateHelper.isInnerCFGate((Gate)elt)) {
+							y = GateEditPart.DEFAULT_SIZE.height - 2;//move fown
+						} else {
+							y = -GateEditPart.DEFAULT_SIZE.height + 2;//move up
+						}
 					} else if(PositionConstants.RIGHT == alignment) {
 						if(gateEditPart.getSourceConnections().isEmpty()) {
 							x = GateEditPart.DEFAULT_SIZE.width + 1;
 						} else {
 							x = -preferredSize.width - 1;
+						}
+						if(elt instanceof Gate && GateHelper.isInnerCFGate((Gate)elt)) {
+							y = GateEditPart.DEFAULT_SIZE.height - 2;//move fown
+						} else {
+							y = -GateEditPart.DEFAULT_SIZE.height + 2;//move up
 						}
 					} else if(PositionConstants.TOP == alignment) {
 						y = -GateEditPart.DEFAULT_SIZE.height - 1;

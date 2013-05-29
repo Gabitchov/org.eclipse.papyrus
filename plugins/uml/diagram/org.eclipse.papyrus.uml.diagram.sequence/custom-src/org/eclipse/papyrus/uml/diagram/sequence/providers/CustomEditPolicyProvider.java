@@ -31,11 +31,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedConnectio
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsOrderingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.TooltipUtil;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Observation;
 
@@ -69,6 +71,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 		if(editPart instanceof IGraphicalEditPart) {
 			Object model = editPart.getModel();
 			if(model instanceof View) {
+				View view = (View)model;
 				EObject element = ViewUtil.resolveSemanticElement((View)model);
 				if(element instanceof NamedElement) {
 					installEditPolicy(editPart, new AnnotatedLinkEndEditPolicy(), AnnotatedLinkEndEditPolicy.ANNOTATED_LINK_END_ROLE);
@@ -77,6 +80,10 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 					installEditPolicy(editPart, new AnnotatedLinkStartEditPolicy(), AnnotatedLinkStartEditPolicy.ANNOTATED_LINK_START_ROLE);
 					editPart.removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 					editPart.installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new AnnotatedConnectionHandleEditPolicy());
+				}
+				//Ordering fragments after moving and resizing,  See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
+				if(view.isSetElement() && (view.getElement() instanceof InteractionFragment)) {
+					editPart.installEditPolicy(InteractionFragmentsOrderingEditPolicy.ORDERING_ROLE, new InteractionFragmentsOrderingEditPolicy());
 				}
 			}
 		}

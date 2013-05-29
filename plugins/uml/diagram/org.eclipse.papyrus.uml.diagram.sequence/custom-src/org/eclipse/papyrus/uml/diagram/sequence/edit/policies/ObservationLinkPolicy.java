@@ -55,7 +55,6 @@ import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeObservation;
@@ -441,14 +440,17 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			// assign the occurrence specification
 			if(!occList.isEmpty()) {
 				for(OccurrenceSpecification occurrence : occList) {
-					if(occurrence instanceof MessageOccurrenceSpecification) {
-						Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
-						if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
-							// filter receive event, we prefer the corresponding
-							// start event at the same location
-							continue;
-						}
-					}
+					//Not needed since fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
+					/*
+					 * if(occurrence instanceof MessageOccurrenceSpecification) {
+					 * Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
+					 * if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
+					 * // filter receive event, we prefer the corresponding
+					 * // start event at the same location
+					 * continue;
+					 * }
+					 * }
+					 */
 					// otherwise, first occ is just fine
 					timeObservation.setEvent(occurrence);
 					break;
@@ -495,18 +497,22 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 					occList = eventAndLocation.getValue();
 				}
 				if(!occList.isEmpty()) {
-					for(OccurrenceSpecification occurrence : occList) {
-						if(occurrence instanceof MessageOccurrenceSpecification) {
-							Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
-							if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
-								// filter receive event, we prefer the
-								// corresponding
-								// start event at the same location
-								continue;
-							}
-						}
-						return true;
-					}
+					/*
+					 * for(OccurrenceSpecification occurrence : occList) {
+					 * if(occurrence instanceof MessageOccurrenceSpecification) {
+					 * Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
+					 * if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
+					 * // filter receive event, we prefer the
+					 * // corresponding
+					 * // start event at the same location
+					 * continue;
+					 * }
+					 * }
+					 * return true;
+					 * }
+					 */
+					//Not needed since fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
+					return true;
 				}
 			}
 			return false;

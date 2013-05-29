@@ -72,6 +72,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -168,7 +169,12 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				}
 			}
 		}
-		return super.getConnectionAndRelationshipCompleteCommand(request);
+		//Ordering message occurrence specifications after message creation,  See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
+		Command command = super.getConnectionAndRelationshipCompleteCommand(request);
+		if(command != null && command.canExecute()) {
+			command = command.chain(FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request));
+		}
+		return command;
 	}
 
 	/**
@@ -417,7 +423,12 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		return super.getReconnectSourceCommand(request);
+		Command command = super.getReconnectSourceCommand(request);
+		////Ordering message occurrence specifications after message reconnected,  See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
+		if(command != null && command.canExecute()) {
+			command = command.chain(FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request));
+		}
+		return command;
 	}
 
 	private boolean isLostFoundMessage(ReconnectRequest request) {
@@ -447,7 +458,12 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		return super.getReconnectTargetCommand(request);
+		Command command = super.getReconnectTargetCommand(request);
+		//Ordering message occurrence specifications after message reconnected,  See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
+		if(command != null && command.canExecute()) {
+			command = command.chain(FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request));
+		}
+		return command;
 	}
 
 	/**

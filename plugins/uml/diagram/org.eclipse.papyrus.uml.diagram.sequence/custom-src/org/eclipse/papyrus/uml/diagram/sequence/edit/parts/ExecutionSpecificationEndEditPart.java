@@ -46,7 +46,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
@@ -57,6 +56,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableOvalAnchor;
 import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
 import org.eclipse.gmf.runtime.notation.Anchor;
@@ -69,9 +69,12 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
+import org.eclipse.papyrus.uml.diagram.sequence.command.ExecutionOccurrenceSpecificationMessageCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.ExecutionOccurrenceSpecificationMessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationEndGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
@@ -103,7 +106,6 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 		super(view);
 		if(view.getElement() instanceof OccurrenceSpecification)
 			this.executionSpecificationEnd = (OccurrenceSpecification)view.getElement();
-
 	}
 
 	public void setParent(EditPart parent) {
@@ -177,7 +179,7 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExecutionSpecificationEndSemanticEditPolicy());
 		//The custom Graphical node edit policy for showing feedback has been removed, and this will be finished in HighlightEditPolicy.
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ExecutionSpecificationEndGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy() {
 
 			@Override
@@ -219,6 +221,17 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 				}
 			}
 		}
+	}
+
+	public void removeFromResource() {
+		CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new DummyCommand() {
+
+			@Override
+			public void execute() {
+				View view = getNotationView();
+				ViewUtil.destroy(view);;
+			}
+		}, true);
 	}
 
 	private boolean needRestoreLink(Edge e) {
@@ -332,6 +345,8 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 				return getCreateRelationshipCommand((CreateRelationshipRequest)request);
 			} else if(request instanceof ReorientReferenceRelationshipRequest) {
 				return getGEFWrapper(new ReorientExecutionSpecificationEndCommand((ReorientReferenceRelationshipRequest)request));
+			} else if(request instanceof ReorientRelationshipRequest) {
+				return getGEFWrapper(new ExecutionOccurrenceSpecificationMessageReorientCommand((ReorientRelationshipRequest)request));
 			}
 			Command cmd = super.getSemanticCommand(request);
 			return cmd;
@@ -340,6 +355,8 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 		protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 			if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
 				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
+			} else if(UMLElementTypes.Message_4003 == req.getElementType() || UMLElementTypes.Message_4004 == req.getElementType() || UMLElementTypes.Message_4005 == req.getElementType()) {
+				return getGEFWrapper(new ExecutionOccurrenceSpecificationMessageCreateCommand(req));
 			}
 			return null;
 		}
@@ -349,6 +366,8 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
 			} else if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
 				return getGEFWrapper(new CommentAnnotatedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
+			} else if(UMLElementTypes.Message_4003 == req.getElementType() || UMLElementTypes.Message_4004 == req.getElementType() || UMLElementTypes.Message_4005 == req.getElementType()) {
+				return getGEFWrapper(new ExecutionOccurrenceSpecificationMessageCreateCommand(req));
 			}
 			return null;
 		}
@@ -479,7 +498,12 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 	}
 
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		return null;
+		Point location = getFigure().getBounds().getCenter();
+		getFigure().translateToAbsolute(location);
+		if(!(request instanceof CreateRequest)) {
+			getFigure().translateToRelative(location);
+		}
+		return ((IAnchorableFigure)getFigure()).getSourceConnectionAnchorAt(location);
 	}
 
 	public boolean canAttachNote() {
@@ -511,6 +535,9 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		EditPart targetEditPart = super.getTargetEditPart(request);
+		if(REQ_CONNECTION_START.equals(request.getType()) || REQ_CONNECTION_END.equals(request.getType()) || REQ_RECONNECT_SOURCE.equals(request.getType()) || REQ_RECONNECT_TARGET.equals(request.getType())) {
+			return targetEditPart;
+		}
 		if(AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_END.equals(request.getType()) || AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_REORIENT_END.equals(request.getType())) {
 			return targetEditPart;
 		}

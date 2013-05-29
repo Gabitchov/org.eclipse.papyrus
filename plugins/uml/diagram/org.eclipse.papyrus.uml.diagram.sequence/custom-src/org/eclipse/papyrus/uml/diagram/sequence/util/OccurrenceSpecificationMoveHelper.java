@@ -826,6 +826,20 @@ public class OccurrenceSpecificationMoveHelper {
 			int finishY = newBounds.getBottom().y;
 			List<EditPart> notToMoveEditParts = new ArrayList<EditPart>(1);
 			notToMoveEditParts.add(executionSpecificationEP);
+			//Fixed bug for moving ExecutionSpecification, since fixed bug(https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975)
+			//The start and finish event may be a MessageOccurrenceSpecification, in case, we need ignore the message when moving.
+			if(start instanceof MessageOccurrenceSpecification) {
+				EditPart message = SequenceUtil.getLinkedEditPart(lifelinePart, start);
+				if(message != null) {
+					notToMoveEditParts.add(message);
+				}
+			}
+			if(finish instanceof MessageOccurrenceSpecification) {
+				EditPart message = SequenceUtil.getLinkedEditPart(lifelinePart, finish);
+				if(message != null) {
+					notToMoveEditParts.add(message);
+				}
+			}
 			Command cmd = getMoveOccurrenceSpecificationsCommand(start, finish, startY, finishY, lifelinePart, notToMoveEditParts);
 			if(cmd != null) {
 				compoundCmd.add(cmd);

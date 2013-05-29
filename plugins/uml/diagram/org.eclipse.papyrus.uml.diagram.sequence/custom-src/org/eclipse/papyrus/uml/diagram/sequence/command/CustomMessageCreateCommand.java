@@ -24,8 +24,10 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageCreateComma
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
@@ -94,6 +96,10 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
 		Message message = CommandHelper.doCreateMessage(container, MessageSort.SYNCH_CALL_LITERAL, getSource(), getTarget(), sourceContainer, targetContainer);
 		if(message != null) {
+			//Do reset message end to target ExecutionSpecification. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
+			if(getTarget() instanceof ExecutionSpecification) {
+				OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification)getTarget(), message.getReceiveEvent());
+			}
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
 			return CommandResult.newOKCommandResult(message);

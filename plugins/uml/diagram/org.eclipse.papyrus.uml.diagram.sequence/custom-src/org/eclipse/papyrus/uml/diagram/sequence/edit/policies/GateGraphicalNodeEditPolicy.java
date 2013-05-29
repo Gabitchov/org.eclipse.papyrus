@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionRouter;
@@ -20,23 +21,40 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -53,7 +71,60 @@ public class GateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
 		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, getInteractionFragment(request.getLocation()));
-		return super.getConnectionCompleteCommand(request);
+		Command command = super.getConnectionCompleteCommand(request);
+		if(request instanceof CreateConnectionViewAndElementRequest) {
+			CreateConnectionViewAndElementRequest viewRequest = (CreateConnectionViewAndElementRequest)request;
+			EditPart sourceEP = viewRequest.getSourceEditPart();
+			EObject source = ViewUtil.resolveSemanticElement((View)sourceEP.getModel());
+			/*
+			 * Create Graphical Gate if needed, See: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
+			 */
+			String semanticHint = viewRequest.getConnectionViewAndElementDescriptor().getSemanticHint();
+			//Ignore CoRegion.
+			if(!(sourceEP instanceof CombinedFragment2EditPart) && (((IHintedType)(UMLElementTypes.Message_4004)).getSemanticHint().equals(semanticHint) || ((IHintedType)(UMLElementTypes.Message_4005)).getSemanticHint().equals(semanticHint))) {
+				if(source instanceof CombinedFragment || source instanceof Interaction || source instanceof InteractionUse) {
+					CompoundCommand cc = new CompoundCommand("Redirect to Gate");
+					Point location = null;
+					IGraphicalEditPart adapter = (IGraphicalEditPart)sourceEP.getAdapter(IGraphicalEditPart.class);
+					if(adapter != null) {
+						Point sourceLocation = request.getLocation();
+						Object object = request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
+						if(object instanceof Point) {
+							sourceLocation = (Point)object;
+						}
+						location = GateHelper.computeGateLocation(sourceLocation, adapter.getFigure(), null);
+					}
+					ConnectionViewDescriptor edgeAdapter = viewRequest.getConnectionViewDescriptor();
+					final IAdaptable elementAdapter = edgeAdapter.getElementAdapter();
+					if(elementAdapter != null) {
+						IAdaptable gateAdapter = new IAdaptable() {
+
+							public Object getAdapter(Class adapter) {
+								if(Gate.class == adapter) {
+									Message message = (Message)elementAdapter.getAdapter(Message.class);
+									MessageEnd sendEvent = message.getSendEvent();
+									if(sendEvent instanceof Gate) {
+										return sendEvent;
+									}
+								}
+								return null;
+							}
+						};
+						TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+						CreateGateViewCommand createGateCommand = new CreateGateViewCommand(editingDomain, sourceEP, location, gateAdapter);
+						cc.add(new ICommandProxy(createGateCommand));
+						SetConnectionEndsCommand resetSourceCommand = new SetConnectionEndsCommand(editingDomain, null);
+						resetSourceCommand.setEdgeAdaptor(edgeAdapter);
+						resetSourceCommand.setNewSourceAdaptor(createGateCommand.getResult());
+						cc.add(new ICommandProxy(resetSourceCommand));
+						if(cc.canExecute()) {
+							command = command.chain(cc);
+						}
+					}
+				}
+			}
+		}
+		return command;
 	}
 
 	private Gate resolveSemanticElement() {

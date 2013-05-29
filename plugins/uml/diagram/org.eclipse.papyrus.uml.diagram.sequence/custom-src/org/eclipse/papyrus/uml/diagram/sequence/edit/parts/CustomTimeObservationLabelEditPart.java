@@ -41,6 +41,7 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomConnectionHandleEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -123,6 +124,9 @@ public class CustomTimeObservationLabelEditPart extends TimeObservationLabelEdit
 			refreshSourceConnections();
 		} else if(NotationPackage.eINSTANCE.getView_TargetEdges().equals(feature)) {
 			refreshTargetConnections();
+		}
+		if(ElementIconUtil.isIconNotification(event)) {
+			refreshLabel();
 		}
 		super.handleNotificationEvent(event);
 	}
@@ -247,8 +251,8 @@ public class CustomTimeObservationLabelEditPart extends TimeObservationLabelEdit
 		return true;
 	}
 
-	private View getFontStyleOwnerView() {
-		//return getPrimaryView();
-		return (View)getModel();
+	@Override
+	protected Image getLabelIcon() {
+		return ElementIconUtil.getLabelIcon(this);
 	}
 }

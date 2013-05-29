@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2013 CEA
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -98,7 +98,8 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 		IFigure figure = lifeline.getFigure();
 		assertNotNull(figure);
 		IFigure toolTip = figure.getToolTip();
-		checkTooltip(toolTip, "Lifeline", "label: books : Book");
+		//The tooltip of Lifeline is changed.
+		checkTooltip(toolTip, "Lifeline", "name: Lifeline\nrepresent: books\nrepresent type: Book");
 	}
 
 	@Test

@@ -841,7 +841,7 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.LifelinePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomLifelinePreferencePage"
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.LifelinePreferencePage"
             name="Lifeline Node" />
 	
@@ -855,7 +855,7 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.CombinedFragmentPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomCombinedFragmentPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.CombinedFragmentPreferencePage"
             name="CombinedFragment Node" />
 	
@@ -890,7 +890,7 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionOperandPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomInteractionOperandPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionOperandPreferencePage"
             name="InteractionOperand Node" />
 	
@@ -911,14 +911,14 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.DestructionOccurrenceSpecificationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDestructionOccurrenceSpecificationPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.DestructionOccurrenceSpecificationPreferencePage"
             name="DestructionOccurrenceSpecification Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomConsiderIgnoreFragmentPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
             name="ConsiderIgnoreFragment Node" />
 	
@@ -928,7 +928,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.MessagePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomMessagePreferencePage"
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.MessagePreferencePage"
             name="Message Link" />
 		
@@ -1500,6 +1500,12 @@
             inheritance="all"
             typeId="*">
       </adviceBinding>
+      <adviceBinding
+            class="org.eclipse.papyrus.uml.diagram.sequence.RestoreExecutionEndAdvice"
+            id="org.eclipse.papyrus.uml.diagram.sequence.restoreExecutionEnd"
+            inheritance="all"
+            typeId="*">
+      </adviceBinding>
    </metamodel>
 </extension>
 <extension
@@ -1508,6 +1514,12 @@
          context="org.eclipse.papyrus.infra.services.edit.TypeContext">
       <advice
             ref="org.eclipse.papyrus.uml.diagram.sequence.viewDependences">
+      </advice>
+   </binding>
+   <binding
+         context="org.eclipse.papyrus.uml.diagram.sequence.TypeContext">
+      <advice
+            ref="org.eclipse.papyrus.uml.diagram.sequence.restoreExecutionEnd">
       </advice>
    </binding>
 </extension>

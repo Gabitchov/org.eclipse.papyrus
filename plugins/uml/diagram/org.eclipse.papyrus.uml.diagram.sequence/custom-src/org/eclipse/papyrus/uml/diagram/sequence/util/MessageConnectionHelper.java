@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA
+ * Copyright (c) 2013 CEA
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -176,10 +177,10 @@ public class MessageConnectionHelper {
 	}
 
 	public static boolean canExistSynchMessage(Message message, Element source, Element target) {
-		if(source != null && !(source instanceof ExecutionSpecification || source instanceof Lifeline)) {
+		if(source != null && !(source instanceof ExecutionSpecification || source instanceof Lifeline || source instanceof ExecutionOccurrenceSpecification)) {
 			return false;
 		}
-		if(target != null && !(target instanceof ExecutionSpecification || target instanceof Lifeline)) {
+		if(target != null && !(target instanceof ExecutionSpecification || target instanceof Lifeline || target instanceof ExecutionOccurrenceSpecification)) {
 			return false;
 		}
 		return true;

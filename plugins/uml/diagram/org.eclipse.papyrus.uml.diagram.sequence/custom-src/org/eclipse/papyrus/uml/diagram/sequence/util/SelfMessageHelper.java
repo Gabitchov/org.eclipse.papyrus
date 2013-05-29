@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.SelfMessageLabelLocator;
 
@@ -68,9 +69,20 @@ public class SelfMessageHelper {
 		if(message == null) {
 			return false;
 		}
-		LifelineEditPart sourceLifeline = getLifeline(message.getSource());
-		LifelineEditPart targetLifeline = getLifeline(message.getTarget());
-		return sourceLifeline == null ? targetLifeline == null : sourceLifeline == targetLifeline;
+		EditPart source = message.getSource();
+		EditPart target = message.getTarget();
+		LifelineEditPart sourceLifeline = getLifeline(source);
+		LifelineEditPart targetLifeline = getLifeline(target);
+		if(sourceLifeline != null) {
+			return sourceLifeline == targetLifeline;
+		}
+		//Fixed bug about displaying label for gate to gate messages. 
+		if(source instanceof GateEditPart && target instanceof GateEditPart) {
+			if(source.getParent() == target.getParent() && (source.getParent() instanceof LifelineEditPart)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private static LifelineEditPart getLifeline(EditPart editPart) {

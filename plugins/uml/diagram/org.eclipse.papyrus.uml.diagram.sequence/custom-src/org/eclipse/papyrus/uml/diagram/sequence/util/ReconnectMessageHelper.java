@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -130,8 +131,17 @@ public class ReconnectMessageHelper {
 	 */
 	public static void updateOccurenceSpecification(OccurrenceSpecification os, Lifeline newLifeline) {
 		// An occurrence specification covers a unique lifeline
-		os.getCovereds().clear();
-		os.getCovereds().add(newLifeline);
+		EList<Lifeline> covereds = os.getCovereds();
+		if(covereds.isEmpty()) {
+			covereds.add(newLifeline);
+		} else if(covereds.size() == 1) {
+			if(newLifeline != covereds.get(0)) {
+				os.setCovered(newLifeline);
+			}
+		} else {
+			covereds.clear();
+			covereds.add(newLifeline);
+		}
 	}
 
 	/**

@@ -25,6 +25,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
@@ -41,6 +42,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -127,6 +129,11 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		IHintedType type = (IHintedType)UMLElementTypes.Lifeline_3001;
 		if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
 			setChildLifelineBounds(cc, request, parentPart);
+		}
+		//Ordering fragments after creation,  See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
+		ICommand orderingFragmentsCommand = FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request);
+		if(orderingFragmentsCommand != null && orderingFragmentsCommand.canExecute()) {
+			cc.compose(orderingFragmentsCommand);
 		}
 		return new ICommandProxy(cc);
 	}

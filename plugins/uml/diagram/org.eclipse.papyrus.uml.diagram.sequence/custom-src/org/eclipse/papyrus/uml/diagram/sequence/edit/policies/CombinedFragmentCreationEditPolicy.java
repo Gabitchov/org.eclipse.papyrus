@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -67,6 +68,13 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 							((CompositeCommand)realCmd).add(createUpdateBoundsCmd);
 					}
 				}
+			}
+		}
+		//Ordering fragments
+		if(createElementAndViewCmd != null && createElementAndViewCmd.canExecute()) {
+			ICommand orderingFragmentsCommand = FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request);
+			if(orderingFragmentsCommand != null) {
+				createElementAndViewCmd = createElementAndViewCmd.chain(new ICommandProxy(orderingFragmentsCommand));
 			}
 		}
 		return createElementAndViewCmd;

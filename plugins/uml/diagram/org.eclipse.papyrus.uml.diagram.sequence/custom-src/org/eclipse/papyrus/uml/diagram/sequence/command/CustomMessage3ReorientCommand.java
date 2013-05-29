@@ -19,9 +19,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message3ReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ReconnectMessageHelper;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -80,6 +83,13 @@ public class CustomMessage3ReorientCommand extends Message3ReorientCommand {
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 		ReconnectMessageHelper.updateMessageEnd(getLink().getSendEvent(), getOldSource(), getNewSource());
+		//Update Execution Ends after reconncted, https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
+		if(getOldSource() instanceof ExecutionSpecification) {
+			OccurrenceSpecificationHelper.resetExecutionFinish((ExecutionSpecification)getNewSource(), UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification());
+		}
+		if(getNewSource() instanceof ExecutionSpecification) {
+			OccurrenceSpecificationHelper.resetExecutionFinish((ExecutionSpecification)getNewSource(), getLink().getSendEvent());
+		}
 		return CommandResult.newOKCommandResult(getLink());
 	}
 

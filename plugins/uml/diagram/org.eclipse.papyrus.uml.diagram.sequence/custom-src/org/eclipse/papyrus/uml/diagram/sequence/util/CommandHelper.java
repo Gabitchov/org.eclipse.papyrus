@@ -1059,28 +1059,7 @@ public class CommandHelper {
 			}
 		}
 		//Suggest a name for gate with message.
-		if(sendMessageEnd instanceof Gate) {
-			Gate gate = (Gate)sendMessageEnd;
-			if(!GateHelper.isInnerCFGate(gate)) {
-				String newName = GateHelper.getGateLabel(gate);
-				gate.setName(newName);
-				Gate innerGate = GateHelper.getInnerCFGate(gate);
-				if(innerGate != null) {
-					innerGate.setName(newName);
-				}
-			}
-		}
-		if(receiveMessageEnd instanceof Gate) {
-			Gate gate = (Gate)receiveMessageEnd;
-			if(!GateHelper.isInnerCFGate(gate)) {
-				String newName = GateHelper.getGateLabel(gate);
-				gate.setName(newName);
-				Gate innerGate = GateHelper.getInnerCFGate(gate);
-				if(innerGate != null) {
-					innerGate.setName(newName);
-				}
-			}
-		}
+		GateHelper.updateGateWithMessage(message, true);
 		return message;
 	}
 

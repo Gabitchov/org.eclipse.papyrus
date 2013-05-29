@@ -16,6 +16,7 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -25,18 +26,25 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.handles.HandleBounds;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.common.core.util.Log;
+import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
@@ -53,7 +61,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEditPart {
 
-	private List executionSpecificationEndParts;
+	public static final String EXECUTION_FIX_ANCHOR_POSITION = "Execution Fix Anchor Position";
+
+	private List<ExecutionSpecificationEndEditPart> executionSpecificationEndParts;
 
 	public AbstractExecutionSpecificationEditPart(View view) {
 		super(view);
@@ -68,21 +78,11 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 	}
 
 	protected void initExecutionSpecificationEndEditPart() {
-		executionSpecificationEndParts = new ArrayList();
-
-		String id = String.valueOf(ExecutionSpecificationEndEditPart.VISUAL_ID);
-		List list = this.getModelChildren();
-		for(Object o : list)
-			if(o instanceof Shape) {
-				Shape s = (Shape)o;
-				if(s.getType().equals(id))
-					return; // if the model already persist, do not create it again
-			}
-
 		EObject element = this.resolveSemanticElement();
 		if(!(element instanceof ExecutionSpecification)) {
 			return;
 		}
+		executionSpecificationEndParts = new ArrayList<ExecutionSpecificationEndEditPart>();
 		ExecutionSpecification execution = (ExecutionSpecification)element;
 		final ExecutionSpecificationEndEditPart startPart = new ExecutionSpecificationEndEditPart(execution.getStart(), this, new RelativeLocator(getFigure(), PositionConstants.NORTH));
 		executionSpecificationEndParts.add(startPart);
@@ -271,8 +271,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 			getParent().refresh();
 		} else if(UMLPackage.eINSTANCE.getExecutionSpecification_Finish().equals(feature) || UMLPackage.eINSTANCE.getExecutionSpecification_Start().equals(feature)) {
 			if(executionSpecificationEndParts != null) {
-				for(Object child : executionSpecificationEndParts) {
+				for(ExecutionSpecificationEndEditPart child : executionSpecificationEndParts) {
 					removeChild((EditPart)child);
+					child.removeFromResource();
 				}
 				executionSpecificationEndParts = null;
 			}
@@ -419,6 +420,10 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+		Object fixPos = request.getExtendedData().get(EXECUTION_FIX_ANCHOR_POSITION);
+		if(fixPos != null && (fixPos.equals(PositionConstants.TOP) || fixPos.equals(PositionConstants.BOTTOM))) {
+			return new AnchorHelper.FixedAnchorEx(getFigure(), (Integer)fixPos);
+		}
 		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
@@ -455,6 +460,29 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 			// Sync Message
 			return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 		}
+		final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)connEditPart;
+		String t = null; //$NON-NLS-1$
+		try {
+			t = (String)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+
+				public void run() {
+					Anchor a = ((Edge)connection.getModel()).getTargetAnchor();
+					if(a instanceof IdentityAnchor)
+						setResult(((IdentityAnchor)a).getId());
+					else
+						setResult(""); //$NON-NLS-1$
+				}
+			});
+		} catch (InterruptedException e) {
+			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "getTargetConnectionAnchor", e); //$NON-NLS-1$
+			Log.error(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "getTargetConnectionAnchor", e); //$NON-NLS-1$
+		}
+		if(t != null && !"".equals(t)) {
+			int position = AnchorHelper.FixedAnchorEx.parsePosition(t);
+			if(position != -1) {
+				return new AnchorHelper.FixedAnchorEx(getFigure(), position);
+			}
+		}
 		return super.getTargetConnectionAnchor(connEditPart);
 	}
 
@@ -467,6 +495,10 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+		Object fixPos = request.getExtendedData().get(EXECUTION_FIX_ANCHOR_POSITION);
+		if(fixPos != null && (fixPos.equals(PositionConstants.TOP) || fixPos.equals(PositionConstants.BOTTOM))) {
+			return new AnchorHelper.FixedAnchorEx(getFigure(), (Integer)fixPos);
+		}
 		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
@@ -499,6 +531,29 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		if(connEditPart instanceof Message3EditPart) {
 			// Reply Message
 			return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
+		}
+		final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)connEditPart;
+		String t = null; //$NON-NLS-1$
+		try {
+			t = (String)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+
+				public void run() {
+					Anchor a = ((Edge)connection.getModel()).getSourceAnchor();
+					if(a instanceof IdentityAnchor)
+						setResult(((IdentityAnchor)a).getId());
+					else
+						setResult(""); //$NON-NLS-1$
+				}
+			});
+		} catch (InterruptedException e) {
+			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "getSourceConnectionAnchor", e); //$NON-NLS-1$
+			Log.error(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "getSourceConnectionAnchor", e); //$NON-NLS-1$
+		}
+		if(t != null && !"".equals(t)) {
+			int position = AnchorHelper.FixedAnchorEx.parsePosition(t);
+			if(position != -1) {
+				return new AnchorHelper.FixedAnchorEx(getFigure(), position);
+			}
 		}
 		return super.getSourceConnectionAnchor(connEditPart);
 	}
