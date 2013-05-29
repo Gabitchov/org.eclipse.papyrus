@@ -13,14 +13,13 @@
 
 package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
-import org.eclipse.papyrus.sysml.diagram.requirement.factory.CustomUMLeditPartFactory;
+import org.eclipse.papyrus.sysml.diagram.requirement.factory.CustomRequirementUMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLEditPartProvider;
-
 
 public class CUMLEditPartProvider extends UMLEditPartProvider {
 
 	public CUMLEditPartProvider() {
-		setFactory(new CustomUMLeditPartFactory());
+		setFactory(new CustomRequirementUMLEditPartFactory());
 		setAllowCaching(true);
 	}
 }

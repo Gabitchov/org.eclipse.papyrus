@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.requirement.factory;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.CustomRequirementNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.factory.CustomUMLeditPartFactory;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
@@ -23,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 /**
  * this is custom editpart factory to create our own editpart
  */
-public class CustomUMLeditPartFactory extends UMLEditPartFactory {
+public class CustomRequirementUMLEditPartFactory extends CustomUMLeditPartFactory {
 
 	public EditPart createEditPart(EditPart context, Object model) {
 		if(model instanceof View) {
