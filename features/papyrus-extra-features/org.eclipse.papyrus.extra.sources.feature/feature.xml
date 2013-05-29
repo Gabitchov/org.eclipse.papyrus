@@ -37,6 +37,7 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <requires>
+ 	  <import feature="org.eclipse.papyrus.extra.eastadl.source.feature" />
       <import feature="org.eclipse.papyrus.extra.diagramtemplate.source.feature" />
       <import feature="org.eclipse.papyrus.extra.infra.gmfdiag.css.source.feature" />
       <import feature="org.eclipse.papyrus.extra.layout.source.feature" />
