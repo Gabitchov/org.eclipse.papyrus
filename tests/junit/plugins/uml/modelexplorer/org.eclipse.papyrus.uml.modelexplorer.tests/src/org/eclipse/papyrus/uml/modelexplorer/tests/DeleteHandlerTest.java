@@ -102,6 +102,7 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 	/**
 	 * We test if we can delete other uml elements
 	 */
+	@Ignore("Currently fails on Hudson and freezes the Test Thread (EMF Facet dialog)")
 	@Test
 	public void deleteUMLElementsTest() throws Exception {
 		testIsModelExplorerActivePart();
