@@ -67,6 +67,8 @@ import com.google.common.collect.Lists;
  * 
  * @author cedric dumoulin
  */
+//@Unused
+//The QuickSearch feature is disabled since the new Search feature is available (0.10)
 public class NavigatorSearchDialog extends TrayDialog {
 
 	private ITreeContentProvider contentProvider = null;

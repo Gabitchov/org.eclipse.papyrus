@@ -95,8 +95,6 @@
 		</command>
 
 		<!-- Search element command -->	
-		<command commandId="org.eclipse.papyrus.views.modelexplorer.searchelement" icon="icons/etool16/search.gif" label="Search element" style="push">
-		</command>
 		
 		<!-- Sort elements command -->	
 		<command commandId="org.eclipse.papyrus.views.modelexplorer.sortelement" icon="icons/etool16/sort.gif" label="sort" style="toggle">

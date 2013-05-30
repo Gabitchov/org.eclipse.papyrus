@@ -32,6 +32,8 @@ import org.eclipse.ui.navigator.CommonNavigator;
  * this handler is used to look for element
  * 
  */
+//@Unused 
+//The QuickSearch feature is disabled since the new Search feature is available (0.10)
 public class SearchElementHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -59,8 +61,9 @@ public class SearchElementHandler extends AbstractHandler {
 			activePart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
 		}
 
-		if(activePart instanceof TreeViewer)
+		if(activePart instanceof TreeViewer) {
 			return (TreeViewer)activePart;
+		}
 
 		if(activePart instanceof MultiViewPageBookView) {
 			MultiViewPageBookView pageBookView = (MultiViewPageBookView)activePart;
