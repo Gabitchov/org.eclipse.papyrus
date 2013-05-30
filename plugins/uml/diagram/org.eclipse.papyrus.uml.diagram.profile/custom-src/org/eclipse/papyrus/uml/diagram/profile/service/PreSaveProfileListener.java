@@ -15,9 +15,12 @@ package org.eclipse.papyrus.uml.diagram.profile.service;
 
 import java.util.Map;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -31,7 +34,7 @@ import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
 import org.eclipse.papyrus.infra.core.resource.IModel;
@@ -40,11 +43,13 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.DefineProfileCommand;
+import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileDefinitionDialog;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -96,12 +101,15 @@ public class PreSaveProfileListener implements ISaveEventListener {
 			 */
 			String DEFINE_MSG = "In order to apply this profile, it had to be defined.\nWould you like to define it?";
 			String PAPYRUS_QUESTION = "Papyrus question"; //$NON-NLS-1$
-			boolean result = MessageDialog.openQuestion(Display.getCurrent().getActiveShell(), PAPYRUS_QUESTION, DEFINE_MSG);
+
+			Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+
+			boolean result = MessageDialog.openQuestion(activeShell, PAPYRUS_QUESTION, DEFINE_MSG);
 			if(!result) {
 				return;
 			}
 
-			ProfileDefinitionDialog dialog = new ProfileDefinitionDialog(new Shell(), rootProfile);
+			ProfileDefinitionDialog dialog = new ProfileDefinitionDialog(activeShell, rootProfile);
 			dialog.open();
 			if(dialog.getReturnCode() == Window.OK) {
 				PapyrusDefinitionAnnotation papyrusAnnotation = dialog.getPapyrusDefinitionAnnotation();
@@ -113,22 +121,67 @@ public class PreSaveProfileListener implements ISaveEventListener {
 				diagnostic.getSeverity();
 				Map<Object, Object> context = diagnostician.createDefaultContext();
 				diagnostician.validate(rootProfile, diagnostic, context);
-				int severity = diagnostic.getSeverity();
-				if(severity != Diagnostic.ERROR) {
+				if(canDefine(diagnostic)) {
+
 					DefineProfileCommand cmd = new DefineProfileCommand(domain, papyrusAnnotation, rootProfile, dialog.saveConstraintInDefinition());
 					try {
-						domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
-					} catch (Exception e) {
-						e.printStackTrace();
+						IStatus status = CheckedOperationHistory.getInstance().execute(cmd, new NullProgressMonitor(), null);
+						switch(status.getSeverity()) {
+						case IStatus.OK:
+							MessageDialog.openInformation(activeShell, "The profile has been defined", "The profile has been successfully defined");
+							break;
+						case IStatus.WARNING:
+							Activator.log.warn(status.getMessage());
+							MessageDialog.openWarning(activeShell, "The profile has been defined", status.getMessage());
+							break;
+						case IStatus.ERROR:
+							notifyErrors(activeShell, cmd.getDiagnostic());
+							break;
+						}
+					} catch (ExecutionException e) {
+						Activator.log.error(e);
+						MessageDialog.openError(activeShell, "Uncaught exception", "An exception occurred during the profile definition: \n" + e.getMessage());
 					}
 				} else {
 					handleDiagnostic(diagnostic, rootProfile);
-					MessageDialog.openError(new Shell(), "Profile not Valid", "the profile cannot be defined because it is invalid");
+					MessageDialog.openError(activeShell, "Profile not Valid", "The profile cannot be defined because it is invalid.");
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	protected void notifyErrors(Shell activeShell, Diagnostic diagnostic) {
+		Activator.log.error(diagnostic.getMessage(), diagnostic.getException());
+		DiagnosticDialog.openProblem(activeShell, "Profile definition failed", "The following errors occured during the profile definition", diagnostic);
+	}
+
+	protected boolean canDefine(Diagnostic diagnostic) {
+		int severity = diagnostic.getSeverity();
+		if(severity == Diagnostic.CANCEL) {
+			return false;
+		}
+		if(severity == Diagnostic.ERROR) {
+			//
+			for(Diagnostic childDiagnostic : diagnostic.getChildren()) {
+				if(childDiagnostic.getSeverity() != Diagnostic.ERROR) {
+					continue;
+				}
+
+				if(childDiagnostic.getData().isEmpty()) {
+					continue;
+				}
+
+				//Only fail on validation errors occuring on the UML Profile itself; do not fail on its Ecore definitions
+				if(childDiagnostic.getData().get(0) instanceof Element) {
+					return false;
+				}
+			}
+		}
+
+		//Ok, Warning, Info
+		return true;
 	}
 
 	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {

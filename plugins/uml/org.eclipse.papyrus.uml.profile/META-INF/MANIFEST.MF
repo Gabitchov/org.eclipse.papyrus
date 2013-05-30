@@ -29,6 +29,7 @@ Export-Package: org.eclipse.papyrus.uml.profile,
  org.eclipse.papyrus.uml.profile.ui.dialogs,
  org.eclipse.papyrus.uml.profile.ui.items,
  org.eclipse.papyrus.uml.profile.utils,
+ org.eclipse.papyrus.uml.profile.validation,
  org.eclipse.papyrus.uml.profile.wizard
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

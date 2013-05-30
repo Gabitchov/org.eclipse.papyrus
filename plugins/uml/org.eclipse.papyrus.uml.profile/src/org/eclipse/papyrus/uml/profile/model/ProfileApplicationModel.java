@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.uml.profile.model;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.uml.profile.Activator;
+import org.eclipse.papyrus.uml.profile.validation.ProfileValidationHelper;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
@@ -113,13 +115,23 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 				EditingDomain domain = EMFHelper.resolveEditingDomain(rootPackage);
 
 				if(domain instanceof TransactionalEditingDomain) {
-					CompoundCommand command = new CompoundCommand();
 
-					for(Map.Entry<Package, Collection<Profile>> profiles : profilesToReapply.entrySet()) {
-						command.append(new ApplyProfileCommand(profiles.getKey(), profiles.getValue(), (TransactionalEditingDomain)domain));
+					//Create a flat list of profiles, for validation
+					Collection<Profile> allProfiles = new LinkedList<Profile>();
+					for(Collection<Profile> profiles : profilesToReapply.values()) {
+						allProfiles.addAll(profiles);
 					}
 
-					domain.getCommandStack().execute(command);
+					//Validate and apply
+					if(ProfileValidationHelper.checkApplicableProfiles(Display.getCurrent().getActiveShell(), allProfiles)) {
+						CompoundCommand command = new CompoundCommand();
+						for(Map.Entry<Package, Collection<Profile>> profiles : profilesToReapply.entrySet()) {
+							command.append(new ApplyProfileCommand(profiles.getKey(), profiles.getValue(), (TransactionalEditingDomain)domain));
+						}
+
+						domain.getCommandStack().execute(command);
+					}
+
 				} else {
 					Activator.log.error(new IllegalArgumentException("Cannot reapply profiles on Package " + rootPackage.getQualifiedName() + ". The EditingDomain cannot be found"));
 				}

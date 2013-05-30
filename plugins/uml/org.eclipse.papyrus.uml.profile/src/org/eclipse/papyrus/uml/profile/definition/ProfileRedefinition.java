@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.papyrus.uml.profile.Message;
-import org.eclipse.papyrus.uml.tools.utils.DataTypeUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -74,14 +73,14 @@ public class ProfileRedefinition {
 			// collect all EClassifier of the definition
 			ArrayList<EClassifier> tempList = new ArrayList<EClassifier>();
 			for(int i = 0; i < profileDefinition.getEClassifiers().size(); i++) {
-				tempList.add((EClassifier)profileDefinition.getEClassifiers().get(i));
+				tempList.add(profileDefinition.getEClassifiers().get(i));
 			}
 
 			// for all EClass
 			Iterator<EClassifier> eClassIter = tempList.iterator();
 			while(eClassIter.hasNext()) {
 				EClassifier eclassifier = eClassIter.next();
-				if(eclassifier instanceof EClass ) {
+				if(eclassifier instanceof EClass) {
 					// redefine Eclass
 					redefineEclass((EClass)eclassifier);
 				}
@@ -113,7 +112,7 @@ public class ProfileRedefinition {
 			/* copy in order to avoid concurrent access */
 			ArrayList<EClass> superTypesList = new ArrayList<EClass>();
 			for(int j = 0; j < eSuperTypes.size(); j++) {
-				superTypesList.add((EClass)eSuperTypes.get(j));
+				superTypesList.add(eSuperTypes.get(j));
 			}
 			// for each super types :we test if this is a direct definition
 			// if not we remove the local copy and replace by direct definition
@@ -138,7 +137,7 @@ public class ProfileRedefinition {
 			while(refIterator.hasNext()) {
 				redefineEReference(refIterator.next(), eclass.getEPackage());
 			}
-			
+
 		}
 	}
 
@@ -155,11 +154,12 @@ public class ProfileRedefinition {
 		// 2.1 the type is an EClass
 		if(oldType instanceof EClass) {
 			// redefine type
-			eReference.setEType(lookForDirectDefinitionFrom((EClass)oldType));
-				// redefine the Opposite
-			if(oldEOpposite != null)
-					eReference.setEOpposite(lookForEquivalentEreference((EClass)eReference.getEType(), oldEOpposite));
+			eReference.setEType(lookForDirectDefinitionFrom(oldType));
+			// redefine the Opposite
+			if(oldEOpposite != null) {
+				eReference.setEOpposite(lookForEquivalentEreference((EClass)eReference.getEType(), oldEOpposite));
 			}
+		}
 	}
 
 
@@ -176,16 +176,16 @@ public class ProfileRedefinition {
 			EAnnotation eAnnotation = eclass.getEAnnotations().get(0);
 			if(eAnnotation.getReferences().size() > 0) {
 				if(!(eAnnotation.getReferences().get(0) instanceof org.eclipse.uml2.uml.Classifier)) {
-					String errMsg = "Problem because of the definition of " + eclass.getName() + " in "
-							+ eclass.getEPackage().getNsURI();
+					String errMsg = "Problem because of the definition of " + eclass.getName() + " in " + eclass.getEPackage().getNsURI();
 					Message.error(errMsg);
 				}
 				org.eclipse.uml2.uml.Classifier theClassifier = (org.eclipse.uml2.uml.Classifier)eAnnotation.getReferences().get(0);
-				Package nearestPackage=theClassifier.getNearestPackage();
-			
-			if( nearestPackage instanceof Profile){
-				if(eclass.equals(((Profile)nearestPackage).getDefinition(theClassifier)))
-					return true;
+				Package nearestPackage = theClassifier.getNearestPackage();
+
+				if(nearestPackage instanceof Profile) {
+					if(eclass.equals(((Profile)nearestPackage).getDefinition(theClassifier))) {
+						return true;
+					}
 				}
 			}
 		}
@@ -205,11 +205,10 @@ public class ProfileRedefinition {
 		if(eClassifier.getEAnnotations().size() > 0) {
 			EAnnotation eAnnotation = eClassifier.getEAnnotations().get(0);
 			if(eAnnotation.getReferences().size() > 0) {
-				org.eclipse.uml2.uml.Classifier theClassifier = (org.eclipse.uml2.uml.Classifier)eAnnotation
-						.getReferences().get(0);
-				Package nearestPackage=theClassifier.getNearestPackage();
-				if( nearestPackage instanceof Profile){
-					return (EClassifier) ((Profile)nearestPackage).getDefinition(theClassifier);
+				org.eclipse.uml2.uml.Classifier theClassifier = (org.eclipse.uml2.uml.Classifier)eAnnotation.getReferences().get(0);
+				Package nearestPackage = theClassifier.getNearestPackage();
+				if(nearestPackage instanceof Profile) {
+					return (EClassifier)((Profile)nearestPackage).getDefinition(theClassifier);
 				}
 				return eClassifier;
 			}
@@ -255,7 +254,7 @@ public class ProfileRedefinition {
 			// collect all EClassifier of the definition
 			ArrayList<EClassifier> tempList = new ArrayList<EClassifier>();
 			for(int i = 0; i < profileDefinition.getEClassifiers().size(); i++) {
-				tempList.add((EClassifier)profileDefinition.getEClassifiers().get(i));
+				tempList.add(profileDefinition.getEClassifiers().get(i));
 			}
 
 			// for all EClass
@@ -264,7 +263,7 @@ public class ProfileRedefinition {
 				EClassifier eclassifier = eClassIter.next();
 
 				if(eclassifier instanceof EClass) {
-					
+
 					// this is a direct Definition?
 					if(!isADirectDefinition((EClass)eclassifier)) {
 						// no, so it is removed
@@ -309,7 +308,7 @@ public class ProfileRedefinition {
 		return eAttribute;
 	}
 
-	
+
 
 	/**
 	 * this method is used to obtain the classifier from its definition
@@ -322,8 +321,7 @@ public class ProfileRedefinition {
 		if(eclass.getEAnnotations().size() > 0) {
 			EAnnotation eAnnotation = eclass.getEAnnotations().get(0);
 			if(eAnnotation.getReferences().size() > 0) {
-				org.eclipse.uml2.uml.Classifier theClassifier = (org.eclipse.uml2.uml.Classifier)eAnnotation
-						.getReferences().get(0);
+				org.eclipse.uml2.uml.Classifier theClassifier = (org.eclipse.uml2.uml.Classifier)eAnnotation.getReferences().get(0);
 				return theClassifier;
 			}
 		}

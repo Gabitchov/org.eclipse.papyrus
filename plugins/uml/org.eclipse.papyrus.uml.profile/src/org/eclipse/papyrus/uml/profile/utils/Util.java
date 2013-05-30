@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -53,6 +54,7 @@ import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -173,6 +175,16 @@ public class Util {
 			}
 		}
 		return isMetaclass;
+	}
+
+	/**
+	 * Check if the type is a UML Metaclass
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public static boolean isMetaclass(EClassifier type) {
+		return type.getEPackage() == UMLPackage.eINSTANCE;
 	}
 
 	/**

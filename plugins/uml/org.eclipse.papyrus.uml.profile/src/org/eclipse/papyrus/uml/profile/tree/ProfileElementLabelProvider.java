@@ -36,17 +36,20 @@ import org.eclipse.papyrus.uml.profile.tree.objects.IntegerValueTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.MetaclassValueTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.PrimitiveTypeValueTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypeValueTreeObject;
+import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.StringValueTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.UnlimitedNaturalValueTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.UserPrimitiveTypeValueTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.ValueTreeObject;
 import org.eclipse.papyrus.uml.profile.utils.Util;
+import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
@@ -139,10 +142,19 @@ public class ProfileElementLabelProvider extends LabelProvider {
 		}
 
 		if(object instanceof AppliedStereotypeTreeObject) {
+			AppliedStereotypeTreeObject element = (AppliedStereotypeTreeObject)object;
+			StereotypedElementTreeObject parent = (StereotypedElementTreeObject)element.getParent();
+			Element baseElement = parent.getElement();
+			Package nearestPackage = baseElement.getNearestPackage();
+
 			Stereotype st = ((AppliedStereotypeTreeObject)object).getStereotype();
 			String stName = st.getName();
 			String profileName = st.getProfile().getQualifiedName();
 			String label = stName + TAB + "(from " + profileName + ")";
+
+			if(ProfileUtil.isDirty(nearestPackage, st.getProfile())) {
+				label += TAG_PROFILE_CHANGED;
+			}
 			return label;
 
 		} else if(object instanceof AppliedStereotypePropertyTreeObject) {
@@ -160,6 +172,8 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			return object.toString();
 		}
 	}
+
+	public final static String TAG_PROFILE_CHANGED = TAB + "(has changed, consider re-applying profile)";
 
 	/**
 	 * Returns the label to show for a property.
