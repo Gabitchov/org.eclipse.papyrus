@@ -75,6 +75,11 @@
       label="Comment Body Editor"
       widgetClass="CommentBodyEditor"
       namespace="//@namespaces.0"/>
+  <propertyEditorTypes
+      label="Generic UML DataType Editor (No preview)"
+      widgetClass="GenericUMLDatatypeEditor"
+      namespace="//@namespaces.0"
+      type="Reference"/>
   <namespaces
       name="uml"
       value="org.eclipse.papyrus.uml.properties.widgets"/>

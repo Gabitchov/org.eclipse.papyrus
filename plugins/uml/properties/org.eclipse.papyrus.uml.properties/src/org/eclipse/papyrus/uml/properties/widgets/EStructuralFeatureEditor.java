@@ -20,6 +20,7 @@ import org.eclipse.core.databinding.observable.list.ListChangeEvent;
 import org.eclipse.core.databinding.observable.value.IValueChangeListener;
 import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
@@ -46,6 +47,7 @@ import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.utils.DataTypeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -65,7 +67,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 	protected ILabelProvider labelProvider;
 
 	protected ReferenceValueFactory valueFactory;
-	
+
 	protected IChangeListener changeListener;
 
 	public EStructuralFeatureEditor(Composite parent, int style) {
@@ -74,16 +76,16 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 		currentPage = createEmptyPage();
 		pageBook.showPage(currentPage);
 	}
-	
+
 	public void setProviders(IStaticContentProvider contentProvider, ILabelProvider labelProvider) {
 		this.contentProvider = contentProvider;
 		this.labelProvider = labelProvider;
 	}
-	
+
 	public void setValueFactory(ReferenceValueFactory valueFactory) {
 		this.valueFactory = valueFactory;
 	}
-	
+
 	public void setChangeListener(IChangeListener changeListener) {
 		this.changeListener = changeListener;
 	}
@@ -106,15 +108,22 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 				editor.setFactory(valueFactory);
 				currentPage = editor;
 			} else {
-				ReferenceDialog editor = new ReferenceDialog(pageBook, style);
-				setValueEditorProperties(editor, element, feature);
+				EClassifier featureType = feature.getEType();
+				if(featureType instanceof EClass && DataTypeUtil.isDataTypeDefinition(((EClass)featureType))) {
+					EObjectContentsEditor editor = new EObjectContentsEditor(pageBook, style, (EReference)feature);
+					editor.setValue(new PapyrusObservableValue(element, feature, EMFHelper.resolveEditingDomain(element)));
+					currentPage = editor;
+				} else {
+					ReferenceDialog editor = new ReferenceDialog(pageBook, style);
+					setValueEditorProperties(editor, element, feature);
 
-				editor.setContentProvider(contentProvider);
-				editor.setLabelProvider(labelProvider);
-				editor.setValueFactory(valueFactory);
+					editor.setContentProvider(contentProvider);
+					editor.setLabelProvider(labelProvider);
+					editor.setValueFactory(valueFactory);
 
-				editor.setDirectCreation(((EReference)feature).isContainment());
-				currentPage = editor;
+					editor.setDirectCreation(((EReference)feature).isContainment());
+					currentPage = editor;
+				}
 			}
 		}
 
@@ -128,7 +137,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 					editor.setProviders(contentProvider, labelProvider);
 					editor.setFactory(valueFactory);
 					currentPage = editor;
-						
+
 				} else {
 					EnumCombo editor = new EnumCombo(pageBook, style);
 					setValueEditorProperties(editor, element, feature);
@@ -181,8 +190,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 						setValueEditorProperties(editor, element, feature);
 						currentPage = editor;
 					}
-				}
-				else if("java.lang.Long".equals(instanceClassName) || "long".equalsIgnoreCase(instanceClassName)) {
+				} else if("java.lang.Long".equals(instanceClassName) || "long".equalsIgnoreCase(instanceClassName)) {
 					if(feature.isMany()) {
 						// TODO widget not available
 					} else {
@@ -193,8 +201,8 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 				}
 			}
 		}
-		
-		if (currentPage == null) {
+
+		if(currentPage == null) {
 			currentPage = createEmptyPage();
 		}
 
@@ -220,7 +228,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 		editor.setUnique(feature.isUnique());
 		editor.setOrdered(feature.isOrdered());
 		editor.setUpperBound(feature.getUpperBound());
-		if (feature instanceof EReference) {
+		if(feature instanceof EReference) {
 			editor.setDirectCreation(((EReference)feature).isContainment());
 		}
 
@@ -241,13 +249,13 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 	}
 
 	public void handleValueChange(ValueChangeEvent event) {
-		if (changeListener != null) {
+		if(changeListener != null) {
 			changeListener.handleChange(new ChangeEvent(event.getObservable()));
 		}
 	}
 
 	public void handleListChange(ListChangeEvent event) {
-		if (changeListener != null) {
+		if(changeListener != null) {
 			changeListener.handleChange(new ChangeEvent(event.getObservable()));
 		}
 	}

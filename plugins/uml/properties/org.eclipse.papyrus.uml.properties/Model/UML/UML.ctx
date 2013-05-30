@@ -1372,6 +1372,9 @@
     <sections name="SingleTemplateParameterSubstitution" sectionFile="ui/SingleTemplateParameterSubstitution.xwt">
       <widget href="ui/SingleTemplateParameterSubstitution.xwt#/"/>
     </sections>
+    <sections name="SingleDatatypeInstance" sectionFile="ui/SingleDatatypeInstance.xwt">
+      <widget href="ui/SingleDatatypeInstance.xwt#/"/>
+    </sections>
   </tabs>
   <tabs label="Profile" id="profile" category="org.eclipse.papyrus" priority="50">
     <sections name="SinglePackageProfile" sectionFile="ui/SinglePackageProfile.xwt">
@@ -4126,8 +4129,18 @@
   </views>
   <views name="SingleDestructionOccurrenceSpecification" sections="//@tabs.0/@sections.453"/>
   <views elementMultiplicity="-1" name="MultipleDestructionOccurrenceSpecification" sections="//@tabs.0/@sections.454"/>
-  <views name="SingleRealLiteral" sections="//@tabs.0/@sections.451"/>
-  <views elementMultiplicity="-1" name="MultipleRealLiteral" sections="//@tabs.0/@sections.452"/>
+  <views name="SingleRealLiteral" sections="//@tabs.0/@sections.451">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLiteralReal">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="LiteralReal"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="MultipleRealLiteral" sections="//@tabs.0/@sections.452">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLiteralReal">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="LiteralReal"/>
+    </constraints>
+  </views>
   <views name="SingleTemplateBinding" sections="//@tabs.0/@sections.455" automaticContext="true">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTemplateBinding">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
@@ -4138,6 +4151,11 @@
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTemplateParameterSubstitution">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="TemplateParameterSubstitution"/>
+    </constraints>
+  </views>
+  <views name="SingleDatatypeInstance" sections="//@tabs.0/@sections.457">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isUMLDatatypeInstance">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.3"/>
     </constraints>
   </views>
   <dataContexts name="UML" label="UML">

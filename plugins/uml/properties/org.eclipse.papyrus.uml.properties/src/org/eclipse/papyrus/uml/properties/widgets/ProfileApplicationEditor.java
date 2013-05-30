@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
+import org.eclipse.papyrus.uml.profile.validation.ProfileValidationHelper;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.messages.Messages;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.Message;
@@ -121,18 +123,31 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		}
 
 		if(packages.size() > 0) {
-			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), packages, true);
+			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), packages);
 
 			if(profileDialog.open() != Window.OK) {
 				return;
 			}
 
-			Collection<ImportSpec<Profile>> profilesToApply = profileDialog.getResult();
+			if(profileDialog.getResult().isEmpty()) {
+				return;
+			}
+
+			Collection<ImportSpec<Profile>> profilesImportToApply = profileDialog.getResult();
+
+			Collection<Profile> profilesToApply = new LinkedList<Profile>();
+			for(ImportSpec<Profile> importProfile : profilesImportToApply) {
+				profilesToApply.add(importProfile.getElement());
+			}
+
+			if(!ProfileValidationHelper.checkApplicableProfiles(getShell(), profilesToApply)) {
+				return;
+			}
 
 			Message message = new Message(Messages.ProfileApplicationEditor_WaitMessageTitle, Messages.ProfileApplicationEditor_WaitMessage);
 			message.open();
-			for(ImportSpec<Profile> profile : profilesToApply) {
-				modelProperty.add(profile.getElement());
+			for(Profile profile : profilesToApply) {
+				modelProperty.add(profile);
 			}
 			message.close();
 			commit();
@@ -154,17 +169,29 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 
 	protected void reapplyProfileAction() {
 		ISelection selectedElements = treeViewer.getSelection();
+
+		//Filter profiles
+		List<Profile> profilesToRefresh = new LinkedList<Profile>();
 		if(!selectedElements.isEmpty() && selectedElements instanceof IStructuredSelection) {
 			IStructuredSelection selection = (IStructuredSelection)selectedElements;
 			Iterator<?> iterator = selection.iterator();
 			while(iterator.hasNext()) {
 				Object element = iterator.next();
 				if(element instanceof Profile) {
-					modelProperty.add(element);
+					profilesToRefresh.add((Profile)element);
 				}
 			}
 		}
-		commit();
+
+		//Check validity
+		if(ProfileValidationHelper.checkApplicableProfiles(getShell(), profilesToRefresh)) {
+			//If everything is fine, refresh the profiles
+			for(Profile profile : profilesToRefresh) {
+				modelProperty.add(profile);
+			}
+
+			commit();
+		}
 	}
 
 	@Override

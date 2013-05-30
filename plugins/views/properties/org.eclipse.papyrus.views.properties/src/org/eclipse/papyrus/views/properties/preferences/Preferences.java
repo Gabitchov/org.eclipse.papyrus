@@ -20,7 +20,6 @@ import java.util.Map.Entry;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.PreferencePage;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.messages.Messages;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationConflict;
@@ -67,7 +66,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 		//Only customizable Property view contexts should appear here
 		List<Context> contexts = new java.util.ArrayList<Context>(configurationManager.getCustomizableContexts());
 		contexts.addAll(configurationManager.getMissingContexts());
-		
+
 		for(Context context : contexts) {
 			boolean applied = configurationManager.isApplied(context);
 			Button checkbox = new Button(self, SWT.CHECK);
@@ -120,15 +119,15 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 	private String getLabel(Context context) {
 		String qualifier;
-		
-		if (ConfigurationManager.instance.isPlugin(context)) {
+
+		if(ConfigurationManager.instance.isPlugin(context)) {
 			qualifier = Messages.Preferences_Plugin;
-		} else if (ConfigurationManager.instance.isMissing(context)) {
+		} else if(ConfigurationManager.instance.isMissing(context)) {
 			qualifier = "missing";
 		} else {
 			qualifier = Messages.Preferences_Custom;
 		}
-		
+
 		return String.format("%s (%s)", context.getName(), qualifier); //$NON-NLS-1$
 	}
 

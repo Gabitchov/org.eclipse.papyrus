@@ -39,6 +39,7 @@ public class WorkspaceContextStorageProvider extends AbstractContextStorageProvi
 		super();
 	}
 
+	@Override
 	public void initialize(ResourceSet resourceSet) throws CoreException {
 		this.resourceSet = resourceSet;
 	}

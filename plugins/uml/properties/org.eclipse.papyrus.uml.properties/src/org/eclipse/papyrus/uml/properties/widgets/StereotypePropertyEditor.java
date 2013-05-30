@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -25,6 +26,8 @@ import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
 import org.eclipse.papyrus.infra.emf.utils.ProviderHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.uml.properties.creation.UMLPropertyEditorFactory;
 import org.eclipse.papyrus.uml.properties.profile.ui.compositeforview.AppliedStereotypeCompositeWithView;
@@ -63,13 +66,18 @@ public class StereotypePropertyEditor implements ISelectionChangedListener, ICha
 				EStructuralFeature feature = pTO.getFeature();
 				Stereotype stereotype = pTO.getStereotype();
 
-				eStructuralFeatureEditor.setProviders(
-						new UMLContentProvider(stereotypeApplication, feature, stereotype),
-						new UMLLabelProvider());
-				if (feature instanceof EReference) {
+				ILabelProvider labelProvider;
+				try {
+					labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, stereotypeApplication).getLabelProvider();
+				} catch (Exception ex) {
+					labelProvider = new UMLLabelProvider();
+				}
+
+				eStructuralFeatureEditor.setProviders(new UMLContentProvider(stereotypeApplication, feature, stereotype), labelProvider);
+				if(feature instanceof EReference) {
 					eStructuralFeatureEditor.setValueFactory(getUMLPropertyEditorFactory(stereotypeApplication, (EReference)feature));
 				}
-				
+
 				eStructuralFeatureEditor.setFeatureToEdit(feature, stereotypeApplication);
 			}
 		}
@@ -97,7 +105,7 @@ public class StereotypePropertyEditor implements ISelectionChangedListener, ICha
 	}
 
 	public void handleChange(ChangeEvent event) {
-		if (!stereotypeComposite.isDisposed()) {
+		if(!stereotypeComposite.isDisposed()) {
 			stereotypeComposite.refreshTreeViewer();
 		}
 	}

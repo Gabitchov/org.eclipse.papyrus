@@ -153,6 +153,10 @@
       label="StringMultiline with References"
       widgetClass="StringMultilineWithReferences"
       namespace="//@namespaces.3"/>
+  <propertyEditorTypes
+      label="FloatEditor"
+      widgetClass="FloatEditor"
+      namespace="//@namespaces.3"/>
   <compositeWidgetTypes
       label="Composite"
       widgetClass="Composite"/>
