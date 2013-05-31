@@ -166,6 +166,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		try {
 			resource.save(new HashMap<Object, Object>());
 			BaseCSSEngine.instance.reset();
+			DiagramHelper.setNeedsRefresh();
 			DiagramHelper.refreshDiagrams();
 		} catch (IOException ex) {
 			Activator.log.error(ex);

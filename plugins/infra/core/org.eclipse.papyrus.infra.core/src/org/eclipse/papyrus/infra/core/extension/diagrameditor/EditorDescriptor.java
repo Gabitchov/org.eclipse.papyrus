@@ -40,10 +40,11 @@ public class EditorDescriptor {
 	 * The icon representing the diagram
 	 */
 	private ImageDescriptor icon;
+
 	/**
 	 * Resource path to the icon
 	 */
-	private String inconPath;
+	private String iconPath;
 
 	/**
 	 * Constructor.
@@ -112,6 +113,7 @@ public class EditorDescriptor {
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String toString() {
 		if(editorFactoryClass == null || editorFactoryClass.getName() == null) {
 			return "[nestedEditor  editorFactory:" + editorFactoryClass + "(null)]";
@@ -126,7 +128,7 @@ public class EditorDescriptor {
 	 *        path of the Icon
 	 */
 	public void setIconURL(String iconPath) {
-		inconPath = iconPath;
+		this.iconPath = iconPath;
 	}
 
 	/**
@@ -135,7 +137,7 @@ public class EditorDescriptor {
 	 * @return the path of the mai image. can return null if this property is not set
 	 */
 	public String getIconURL() {
-		return inconPath;
+		return iconPath;
 	}
 
 	/**

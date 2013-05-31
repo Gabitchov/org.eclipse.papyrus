@@ -85,15 +85,27 @@ public class DiagramHelper {
 				}
 			}
 		}
-
 	}
+
+	private static boolean needsRefresh = false;
 
 	/**
 	 * Refreshes all opened diagrams
 	 */
 	public static void refreshDiagrams() {
+		synchronized(DiagramHelper.class) {
+			if(!needsRefresh) {
+				return;
+			}
+			needsRefresh = false;
+		}
+
 		for(IMultiDiagramEditor activeMultiEditor : EditorUtils.getMultiDiagramEditors()) {
 			refresh(activeMultiEditor);
 		}
+	}
+
+	public synchronized static void setNeedsRefresh() {
+		needsRefresh = true;
 	}
 }

@@ -73,6 +73,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 		boolean result = super.performOk();
 		if(needsRefresh) {
 			WorkspaceCSSEngine.instance.reset();
+			DiagramHelper.setNeedsRefresh();
 			DiagramHelper.refreshDiagrams();
 		}
 		return result;

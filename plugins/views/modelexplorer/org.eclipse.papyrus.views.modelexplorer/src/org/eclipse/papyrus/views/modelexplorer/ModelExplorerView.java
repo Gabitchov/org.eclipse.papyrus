@@ -651,16 +651,29 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			return;
 		}
 		lastTrans = curTrans;
+
+		synchronized(this) {
+			needsRefresh = true;
+		}
+
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 
 			/**
 			 * {@inheritDoc}
 			 */
 			public void run() {
+				synchronized(ModelExplorerView.this) {
+					if(!needsRefresh) {
+						return;
+					}
+					needsRefresh = false;
+				}
 				refresh();
 			}
 		});
 	}
+
+	private boolean needsRefresh = false;
 
 	/**
 	 * refresh the view.

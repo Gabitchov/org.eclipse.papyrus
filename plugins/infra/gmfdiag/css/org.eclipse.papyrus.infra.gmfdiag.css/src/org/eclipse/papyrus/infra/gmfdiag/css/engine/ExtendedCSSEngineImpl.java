@@ -353,6 +353,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 
 		//FIXME: It seems the refresh can create a deadlock in some cases
 
+		DiagramHelper.setNeedsRefresh();
 		Display.getDefault().asyncExec(new Runnable() {
 
 			public void run() {

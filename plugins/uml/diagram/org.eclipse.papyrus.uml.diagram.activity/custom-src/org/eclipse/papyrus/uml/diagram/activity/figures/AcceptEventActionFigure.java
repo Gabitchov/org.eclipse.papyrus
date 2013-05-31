@@ -50,21 +50,21 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 	/** The helper which handles stereotype aspects */
 	private StereotypeFigureHelper stereotypeHelper;
 
-	public AcceptEventActionFigure(){
+	public AcceptEventActionFigure() {
 		CenteredColumnLayout layoutThis = new CenteredColumnLayout();
 		this.setLayoutManager(layoutThis);
-		this.addPoint( new Point(0, 0));
+		this.addPoint(new Point(0, 0));
 		this.addPoint(new Point(200, 0));
 		this.addPoint(new Point(200, 50));
 		this.addPoint(new Point(0, 50));
 		this.addPoint(new Point(50, 25));
 		// add time template
-		this.addTimePoint( new Point(0, 0));
-		this.addTimePoint(new Point( 100, 0));
-		this.addTimePoint( new Point(50, 25));
-		this.addTimePoint( new Point(100, 50));
-		this.addTimePoint( new Point(0, 50));
-		this.addTimePoint(new Point( 50, 25));
+		this.addTimePoint(new Point(0, 0));
+		this.addTimePoint(new Point(100, 0));
+		this.addTimePoint(new Point(50, 25));
+		this.addTimePoint(new Point(100, 50));
+		this.addTimePoint(new Point(0, 50));
+		this.addTimePoint(new Point(50, 25));
 		this.setFill(true);
 		this.setLineWidth(1);
 		// make margin border relative
@@ -73,6 +73,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 		createContents();
 		// use StereotypeFigureHelper
 		stereotypeHelper = new StereotypeFigureHelper(this) {
+
 			@Override
 			public Object getStereotypeRectangleConstraint() {
 				CenteredColumnConstraint constraintStereotypeRect0 = new CenteredColumnConstraint(false);
@@ -99,13 +100,14 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 		labelRect0.add(fAcceptEventActionLabel);
 	}
 
-	
+
 	private final PointList myTemplate = new PointList();
 
-	
+
 	private Rectangle myTemplateBounds;
 
-	
+
+	@Override
 	public void addPoint(Point point) {
 		myTemplate.addPoint(point);
 		myTemplateBounds = null;
@@ -186,6 +188,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 	 * @unused
 	 * @deprecated
 	 */
+	@Deprecated
 	public Label getStereotypesLabel() {
 		return null;//fActionStereotypeLabel;
 	}
@@ -239,6 +242,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 		myTemplateTimeBounds = null;
 	}
 
+	@Override
 	protected void fillShape(Graphics graphics) {
 		Rectangle bounds = getBounds();
 		graphics.pushState();
@@ -246,9 +250,13 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 		graphics.fillPolygon(scalePointList());
 		graphics.popState();
 		// refresh relative margin
-		this.setBorder(new MarginBorder(scaleMargin()));
+		Insets newInsets = scaleMargin();
+		if(!newInsets.equals(getBorder().getInsets(this))) {
+			this.setBorder(new MarginBorder(scaleMargin()));
+		}
 	}
 
+	@Override
 	protected void outlineShape(Graphics graphics) {
 		Rectangle bounds = getBounds();
 		graphics.pushState();
@@ -274,7 +282,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 	}
 
 	/**
-	 *  switch between the two templates
+	 * switch between the two templates
 	 */
 	private Rectangle getTemplateBounds() {
 		if(myTemplateBounds == null) {
@@ -322,9 +330,9 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 		// switch between the two templates
 		int[] scaled;
 		if(useTemplateTime) {
-			scaled = (int[])myTemplateTime.toIntArray().clone();
+			scaled = myTemplateTime.toIntArray().clone();
 		} else {
-			scaled = (int[])myTemplate.toIntArray().clone();
+			scaled = myTemplate.toIntArray().clone();
 		}
 		for(int i = 0; i < scaled.length; i += 2) {
 			scaled[i] = (int)Math.floor(scaled[i] * xScale);
@@ -359,6 +367,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 	public void setTransparency(int transparency) {
 
 	}
+
 	public void setGradientData(int gradientColor1, int gradientColor2, int gradientStyle) {
 	}
 

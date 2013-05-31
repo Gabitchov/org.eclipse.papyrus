@@ -106,6 +106,7 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 
 	public void handleChange(ChangeEvent event) {
 		resetCache();
+		DiagramHelper.setNeedsRefresh();
 		DiagramHelper.refreshDiagrams(); //FIXME: Should be contextual. We should only refresh the editor(s) containing this Diagram
 	}
 
