@@ -14,13 +14,15 @@ package org.eclipse.papyrus.customization.properties.generation.wizard;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -154,6 +156,10 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 			try {
 				setNeedsProgressMonitor(true);
 				final Context currentContext = context;
+
+				final Map<String, Object> saveOptions = new HashMap<String, Object>();
+				saveOptions.put(XMIResource.OPTION_PROCESS_DANGLING_HREF, XMIResource.OPTION_PROCESS_DANGLING_HREF_RECORD);
+
 				getContainer().run(true, true, new IRunnableWithProgress() {
 
 					public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
@@ -161,7 +167,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 						monitor.worked(1);
 
 						try {
-							currentContext.eResource().save(Collections.EMPTY_MAP);
+							currentContext.eResource().save(saveOptions);
 
 							monitor.worked(1);
 							for(Tab tab : currentContext.getTabs()) {
@@ -169,7 +175,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 									if(monitor.isCanceled()) {
 										return;
 									}
-									section.getWidget().eResource().save(Collections.EMPTY_MAP);
+									section.getWidget().eResource().save(saveOptions);
 									monitor.worked(1);
 								}
 							}
@@ -232,6 +238,10 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 			String name = propertyPath.get(0);
 			propertyPath.remove(0);
 			currentElement = findByName(currentElement, name);
+		}
+
+		if(currentElement == null) {
+			return null;
 		}
 
 		for(PropertyDefinition definition : currentElement.getProperties()) {
