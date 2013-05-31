@@ -8,7 +8,7 @@ import org.eclipse.uml2.uml.NamedElement;
 /** Create a basic label based on element name */
 public class GetLabelQuery implements IJavaModelQuery<NamedElement, String> {
 
-	public static final String UNNAMED = "unnamed";
+	public static final String UNNAMED = "";
 
 	public String evaluate(final NamedElement context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 
