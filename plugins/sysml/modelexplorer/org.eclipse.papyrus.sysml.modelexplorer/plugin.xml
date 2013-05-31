@@ -17,9 +17,6 @@
      verified (isVisible and isEnabled) before any attempt to execute the command, 
      and to mask the command in case it is not supported or executable.
   -->
-<extension point="org.eclipse.ui.startup">
-	<startup class="org.eclipse.papyrus.sysml.modelexplorer.Activator"/>
-</extension>
 
 <!-- Creation command declarations -->
 <extension point="org.eclipse.ui.handlers">
