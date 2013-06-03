@@ -38,16 +38,18 @@ public class UMLPortEditorPropertyUtil extends PortUtil {
 		buffer.append(" ");
 		buffer.append(getName(property));
 
+		//is conjugated
+		if(((Port)property).isConjugated()) {
+			buffer.append(": ~");
+		} else {
+			buffer.append(": ");
+		}
 		// type
 		if(property.getType() != null) {
-			if(((Port)property).isConjugated()) {
-				buffer.append(": ~");
-			} else {
-				buffer.append(": ");
-			}
+			
 			buffer.append(CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(property.getType(), UmlPortJavaValidator.getModel()));
 		} else {
-			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME);
+			buffer.append( TypeUtil.UNDEFINED_TYPE_NAME);
 		}
 
 		// multiplicity -> do not display [1]
