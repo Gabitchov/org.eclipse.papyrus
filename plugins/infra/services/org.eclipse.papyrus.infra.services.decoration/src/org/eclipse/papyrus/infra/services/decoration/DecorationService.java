@@ -25,7 +25,6 @@ import java.util.Observer;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -43,9 +42,6 @@ import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
  */
 public class DecorationService extends Observable implements IDecorationService {
 
-	/** The services registry. */
-	private ServicesRegistry servicesRegistry;
-
 	/** The decorations. */
 	private final Map<String, Decoration> decorations = new HashMap<String, Decoration>();
 
@@ -60,7 +56,6 @@ public class DecorationService extends Observable implements IDecorationService 
 	 */
 
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
-		this.servicesRegistry = servicesRegistry;
 	}
 
 	/**
@@ -90,27 +85,6 @@ public class DecorationService extends Observable implements IDecorationService 
 
 	public void disposeService() throws ServiceException {
 	}
-
-	/**
-	 * Gets the services registry.
-	 * 
-	 * @return the services registry
-	 */
-	public ServicesRegistry getServicesRegistry() {
-		return servicesRegistry;
-	}
-
-
-	/**
-	 * Sets the services registry.
-	 * 
-	 * @param servicesRegistry
-	 *        the new services registry
-	 */
-	public void setServicesRegistry(ServicesRegistry servicesRegistry) {
-		this.servicesRegistry = servicesRegistry;
-	}
-
 
 	/**
 	 * Gets the decorations.
@@ -258,19 +232,23 @@ public class DecorationService extends Observable implements IDecorationService 
 		return tool.getDecorations(this, navigateToParents);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener#notifyMarkerChange(org.eclipse.emf.ecore.EObject, org.eclipse.core.resources.IMarker, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener#notifyMarkerChange(org.eclipse.emf.ecore.EObject,
+	 * org.eclipse.core.resources.IMarker, int)
 	 */
 	public void notifyMarkerChange(EObject eObjectOfMarker, IPapyrusMarker marker, int addedOrRemoved) {
-		if (addedOrRemoved == IMarkerEventListener.MARKER_ADDED) {
-			this.addDecoration(marker, eObjectOfMarker) ;
-		}
-		else { // IMarkerEventListener.MARKER_REMOVED
-			this.removeDecoration(marker.toString()) ;
+		if(addedOrRemoved == IMarkerEventListener.MARKER_ADDED) {
+			this.addDecoration(marker, eObjectOfMarker);
+		} else { // IMarkerEventListener.MARKER_REMOVED
+			this.removeDecoration(marker.toString());
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener#isNotifiedOnInitialMarkerCheck()
 	 */
 	public boolean isNotifiedOnInitialMarkerCheck() {

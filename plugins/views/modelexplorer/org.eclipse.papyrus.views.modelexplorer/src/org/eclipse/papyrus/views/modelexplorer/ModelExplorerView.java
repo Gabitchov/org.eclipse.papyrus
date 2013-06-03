@@ -99,8 +99,6 @@ import org.eclipse.ui.internal.navigator.NavigatorContentService;
 import org.eclipse.ui.internal.navigator.extensions.NavigatorContentDescriptor;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
-import org.eclipse.ui.operations.RedoActionHandler;
-import org.eclipse.ui.operations.UndoActionHandler;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
@@ -188,14 +186,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
 	};
-
-
-	/** Undo action handler */
-	UndoActionHandler undoHandler;
-
-	/** Redo action handler */
-	RedoActionHandler redoHandler;
-
 
 	/** The {@link IPropertySheetPage} this model explorer will use. */
 	private final List<IPropertySheetPage> propertySheetPages = new LinkedList<IPropertySheetPage>();
@@ -783,12 +773,17 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		saveAndDirtyService = null;
 		undoContext = null;
 		editingDomain = null;
+		pageSelectionListener = null;
+		editingDomain = null;
+		lastTrans = null;
 
 		for(IPropertySheetPage propertySheetPage : this.propertySheetPages) {
 			propertySheetPage.dispose();
 		}
 
 		propertySheetPages.clear();
+
+
 
 		super.dispose();
 

@@ -26,10 +26,9 @@ import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtil
 
 
 /**
- * This is the WorkspaceMarkerMonitor type.  Enjoy.
+ * This is the WorkspaceMarkerMonitor type. Enjoy.
  */
-public class WorkspaceMarkerMonitor
-		extends AbstractMarkerMonitor {
+public class WorkspaceMarkerMonitor extends AbstractMarkerMonitor {
 
 	/** The file observer. */
 	private MarkerObserver fileObserver;
@@ -41,9 +40,9 @@ public class WorkspaceMarkerMonitor
 	@Override
 	public void initialize(ModelSet modelSet) {
 		super.initialize(modelSet);
-		
+
 		this.fileObserver = new MarkerObserver(modelSet.getTransactionalEditingDomain());
-		
+
 		//Start Listening
 		FileChangeManager.getInstance().addFileObserver(this.fileObserver);
 	}
@@ -52,7 +51,8 @@ public class WorkspaceMarkerMonitor
 	public void dispose() {
 		//Stop Listening
 		FileChangeManager.getInstance().removeFileObserver(this.fileObserver);
-		
+		this.fileObserver = null;
+
 		super.dispose();
 	}
 
@@ -66,7 +66,7 @@ public class WorkspaceMarkerMonitor
 
 		/** The domain. */
 		private final TransactionalEditingDomain domain;
-		
+
 		/**
 		 * This method is called when information about an Marker
 		 * which was previously requested using an asynchronous

@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -36,11 +35,16 @@ import com.google.common.base.Optional;
 @SuppressWarnings("deprecation")
 public class ReadOnlyManager implements IReadOnlyHandler {
 
-	protected static WeakHashMap<EditingDomain, IReadOnlyHandler> roHandlers = new WeakHashMap<EditingDomain, IReadOnlyHandler>();
+	//Using a WeakHashMap leads to a Memory Leak, because only the Key is weak. 
+	//The IReadOnlyHandler typically has a reference to its editingDomain, 
+	//which prevents garbage collection of the EditingDomain
+	//Workaround: when the (Papyrus) editing domain is disposed, it removes itself from this map
+	//This won't work for non-papyrus editing domains, which are still leaked (But we do not use non-papyrus editing domains which this ReadOnlyManager)
+	protected static Map<EditingDomain, IReadOnlyHandler> roHandlers = new HashMap<EditingDomain, IReadOnlyHandler>();
 
 	public static IReadOnlyHandler getReadOnlyHandler(EditingDomain editingDomain) {
 		IReadOnlyHandler roHandler = roHandlers.get(editingDomain);
-		if (roHandler == null) {
+		if(roHandler == null) {
 			roHandler = new ReadOnlyManager(editingDomain);
 			roHandlers.put(editingDomain, roHandler);
 		}
@@ -81,19 +85,19 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 
 					handlerPriorityPair.priority = Integer.parseInt(elem.getAttribute("priority"));
 					String id = elem.getAttribute("id");
-					if (id != null) {
+					if(id != null) {
 						//if any then the handler could be overrided by another registration
 						HandlerPriorityPair oldHandler = idMap.get(id);
 						if(oldHandler == null) {
 							idMap.put(id, handlerPriorityPair);
 							handlerPriorityPairs.add(handlerPriorityPair);
 						} else {
-							if (oldHandler.priority < handlerPriorityPair.priority) {
+							if(oldHandler.priority < handlerPriorityPair.priority) {
 								handlerPriorityPairs.remove(oldHandler);
 								handlerPriorityPairs.add(handlerPriorityPair);
 							}
 						}
-					}else {
+					} else {
 						//If none the handler can not be overrided
 						handlerPriorityPairs.add(handlerPriorityPair);
 					}
@@ -109,7 +113,7 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 
 		orderedHandlerClassesArray = new Class<?>[handlerPriorityPairs.size()];
 
-		for (int i = 0; i < orderedHandlerClassesArray.length; i++) {
+		for(int i = 0; i < orderedHandlerClassesArray.length; i++) {
 			orderedHandlerClassesArray[i] = handlerPriorityPairs.get(i).handlerClass;
 		}
 	}
@@ -120,21 +124,22 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 		Constructor<?> constructor = null;
 		try {
 			constructor = handlerClass.getConstructor(EditingDomain.class);
-			if (constructor == null) {
+			if(constructor == null) {
 				isEditingDomainConstructor = false;
 				constructor = handlerClass.getConstructor();
 			}
 
-			if (IReadOnlyHandler.class.isAssignableFrom(constructor.getDeclaringClass())) {
-				if (isEditingDomainConstructor) {
-					return (IReadOnlyHandler) constructor.newInstance(editingDomain);
+			if(IReadOnlyHandler.class.isAssignableFrom(constructor.getDeclaringClass())) {
+				if(isEditingDomainConstructor) {
+					return (IReadOnlyHandler)constructor.newInstance(editingDomain);
 				} else {
-					return (IReadOnlyHandler) constructor.newInstance();
+					return (IReadOnlyHandler)constructor.newInstance();
 				}
-			} else if (org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler.class.isAssignableFrom(constructor.getDeclaringClass())) {
-				return new HandlerAdapter((org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler) constructor.newInstance(), editingDomain) ;
+			} else if(org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler.class.isAssignableFrom(constructor.getDeclaringClass())) {
+				return new HandlerAdapter((org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler)constructor.newInstance(), editingDomain);
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 
 		return null;
 	}
@@ -143,9 +148,9 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 
 	public ReadOnlyManager(EditingDomain editingDomain) {
 		ArrayList<IReadOnlyHandler> handlers = new ArrayList<IReadOnlyHandler>();
-		for (Class<?> roClass : orderedHandlerClassesArray) {
+		for(Class<?> roClass : orderedHandlerClassesArray) {
 			IReadOnlyHandler h = create(roClass, editingDomain);
-			if (h != null) {
+			if(h != null) {
 				handlers.add(h);
 			}
 		}
@@ -155,7 +160,7 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 	public Optional<Boolean> anyReadOnly(URI[] uris) {
 		Optional<Boolean> result = Optional.absent();
 
-		for (int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
+		for(int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
 			result = orderedHandlersArray[i].anyReadOnly(uris);
 		}
 
@@ -165,7 +170,7 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 	public Optional<Boolean> isReadOnly(EObject eObject) {
 		Optional<Boolean> result = Optional.absent();
 
-		for (int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
+		for(int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
 			result = orderedHandlersArray[i].isReadOnly(eObject);
 		}
 
@@ -175,13 +180,13 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 	public Optional<Boolean> makeWritable(URI[] uris) {
 		Boolean finalResult = true;
 
-		for (int i = 0; (i < orderedHandlersArray.length); i++) {
+		for(int i = 0; (i < orderedHandlersArray.length); i++) {
 			Optional<Boolean> isRO = orderedHandlersArray[i].anyReadOnly(uris);
-			if (isRO.isPresent() && isRO.get()) {
+			if(isRO.isPresent() && isRO.get()) {
 				Optional<Boolean> result = orderedHandlersArray[i].makeWritable(uris);
 				// makeWritable should provide an answer since anyReadOnly returned a positive value
 				// if no answer consider it fails
-				if (!result.isPresent() || !result.get()) {
+				if(!result.isPresent() || !result.get()) {
 					finalResult = false;
 				}
 			}
@@ -193,13 +198,13 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 	public Optional<Boolean> makeWritable(EObject eObject) {
 		Boolean finalResult = true;
 
-		for (int i = 0; (i < orderedHandlersArray.length); i++) {
+		for(int i = 0; (i < orderedHandlersArray.length); i++) {
 			Optional<Boolean> isRO = orderedHandlersArray[i].isReadOnly(eObject);
-			if (isRO.isPresent() && isRO.get()) {
+			if(isRO.isPresent() && isRO.get()) {
 				Optional<Boolean> result = orderedHandlersArray[i].makeWritable(eObject);
 				// makeWritable should provide an answer since anyReadOnly returned a positive value
 				// if no answer consider it fails
-				if (result.isPresent() && !result.get()) {
+				if(result.isPresent() && !result.get()) {
 					finalResult = false;
 				}
 			}
@@ -224,9 +229,7 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 			// know it to be true, because the manager takes the first positive
 			// answer
 			boolean delegateResult = delegate.isReadOnly(uris, getEditingDomain());
-			return delegateResult
-				? Optional.of(Boolean.TRUE)
-					: Optional.<Boolean> absent();
+			return delegateResult ? Optional.of(Boolean.TRUE) : Optional.<Boolean> absent();
 		}
 
 		public Optional<Boolean> makeWritable(URI[] uris) {
@@ -236,9 +239,7 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 			// manager takes the first negative answer (this is opposite to the
 			// isReadOnly logic)
 			boolean delegateResult = delegate.enableWrite(uris, getEditingDomain());
-			return delegateResult
-				? Optional.<Boolean> absent()
-					: Optional.of(Boolean.FALSE);
+			return delegateResult ? Optional.<Boolean> absent() : Optional.of(Boolean.FALSE);
 		}
 	}
 }

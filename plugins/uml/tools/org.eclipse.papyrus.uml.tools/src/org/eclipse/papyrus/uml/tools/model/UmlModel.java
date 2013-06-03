@@ -9,6 +9,7 @@ import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -112,5 +113,13 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 		Model model = UMLFactory.eINSTANCE.createModel();
 		model.setName("model");
 		resource.getContents().add(model);
+	}
+
+	@Override
+	public void unload() {
+		if(resource != null) {
+			CacheAdapter.INSTANCE.clear(resource);
+		}
+		super.unload();
 	}
 }

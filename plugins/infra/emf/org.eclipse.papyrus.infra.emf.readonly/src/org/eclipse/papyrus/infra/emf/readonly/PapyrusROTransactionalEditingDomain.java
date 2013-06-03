@@ -23,8 +23,7 @@ import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 
 
-public class PapyrusROTransactionalEditingDomain
-		extends TransactionalEditingDomainImpl {
+public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDomainImpl {
 
 	public PapyrusROTransactionalEditingDomain(AdapterFactory adapterFactory, TransactionalCommandStack stack, ResourceSet resourceSet) {
 		super(adapterFactory, stack, resourceSet);
@@ -32,20 +31,21 @@ public class PapyrusROTransactionalEditingDomain
 
 	@Override
 	public boolean isReadOnly(Resource resource) {
-		if (resource != null && resource.getURI() != null) {
-			return ReadOnlyManager.getReadOnlyHandler(this).anyReadOnly(new URI[] {resource.getURI()}).get();
+		if(resource != null && resource.getURI() != null) {
+			return ReadOnlyManager.getReadOnlyHandler(this).anyReadOnly(new URI[]{ resource.getURI() }).get();
 		}
 		return false;
 	}
-	
+
 	public boolean isReadOnly(EObject eObject) {
 		return ReadOnlyManager.getReadOnlyHandler(this).isReadOnly(eObject).get();
 	}
-	
+
 	@Override
-	public void dispose(){
+	public void dispose() {
 		super.dispose();
 		resourceSet = null;
 		adapterFactory = null;
+		ReadOnlyManager.roHandlers.remove(this);
 	}
 }

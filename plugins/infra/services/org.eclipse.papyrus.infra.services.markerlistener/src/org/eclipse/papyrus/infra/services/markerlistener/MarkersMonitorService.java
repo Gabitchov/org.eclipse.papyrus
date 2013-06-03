@@ -49,7 +49,7 @@ public class MarkersMonitorService implements IService {
 	/**
 	 * The list of registered Marker Event Listeners
 	 */
-	protected List<IMarkerEventListener> registeredMarkerEventListeners ;
+	protected List<IMarkerEventListener> registeredMarkerEventListeners;
 
 	private List<IMarkerMonitor> monitorExtensions;
 
@@ -91,29 +91,29 @@ public class MarkersMonitorService implements IService {
 
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 		this.servicesRegistry = servicesRegistry;
-		this.registeredMarkerEventListeners = this.getRegisteredMarkerEventListeners() ;
+		this.registeredMarkerEventListeners = this.getRegisteredMarkerEventListeners();
 		this.monitorExtensions = new MarkerMonitorRegistry().getMarkerMonitors();
 
-		checkMarkers() ;
+		checkMarkers();
 	}
 
 	protected List<IMarkerEventListener> getRegisteredMarkerEventListeners() {
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
-		IConfigurationElement[] config = registry.getConfigurationElementsFor(IMarkerEventListener.MARKER_EVENT_LISTENER_EXTENSION_POINT_ID) ;
-		this.registeredMarkerEventListeners = new ArrayList<IMarkerEventListener>() ;
+		IConfigurationElement[] config = registry.getConfigurationElementsFor(IMarkerEventListener.MARKER_EVENT_LISTENER_EXTENSION_POINT_ID);
+		this.registeredMarkerEventListeners = new ArrayList<IMarkerEventListener>();
 		try {
-			for (int i = 0 ; i < config.length ; i++) {
-				Object o = config[i].createExecutableExtension("class") ;
+			for(int i = 0; i < config.length; i++) {
+				Object o = config[i].createExecutableExtension("class");
 				try {
-					this.registeredMarkerEventListeners.add((IMarkerEventListener)servicesRegistry.getService(o.getClass())) ;
+					this.registeredMarkerEventListeners.add((IMarkerEventListener)servicesRegistry.getService(o.getClass()));
 				} catch (ServiceException e) {
 					e.printStackTrace();
 				}
 			}
 		} catch (CoreException e) {
 			e.printStackTrace();
-		}  
-		return this.registeredMarkerEventListeners ;
+		}
+		return this.registeredMarkerEventListeners;
 	}
 
 	/**
@@ -122,17 +122,14 @@ public class MarkersMonitorService implements IService {
 	 * @throws ServiceException
 	 */
 	public void startService() throws ServiceException {
-		ModelSet modelSet = ServiceUtils.getInstance().getModelSet(
-				servicesRegistry);
+		ModelSet modelSet = ServiceUtils.getInstance().getModelSet(servicesRegistry);
 
-		for (IMarkerMonitor next : monitorExtensions) {
+		for(IMarkerMonitor next : monitorExtensions) {
 			try {
 				next.initialize(modelSet);
 				next.addMarkerEventListener(relay);
 			} catch (Exception e) {
-				Activator.log.error(
-						"Uncaught exception in initialization of marker monitor.",
-						e);
+				Activator.log.error("Uncaught exception in initialization of marker monitor.", e);
 			}
 		}
 	}
@@ -143,14 +140,12 @@ public class MarkersMonitorService implements IService {
 	 * @throws ServiceException
 	 */
 	public void disposeService() throws ServiceException {
-		for (IMarkerMonitor next : monitorExtensions) {
+		for(IMarkerMonitor next : monitorExtensions) {
 			try {
 				next.removeMarkerEventListener(relay);
 				next.dispose();
 			} catch (Exception e) {
-				Activator.log.error(
-						"Uncaught exception in initialization of marker monitor.",
-						e);
+				Activator.log.error("Uncaught exception in initialization of marker monitor.", e);
 			}
 		}
 	}
@@ -164,15 +159,15 @@ public class MarkersMonitorService implements IService {
 			// create a copy of the list, see bug 392194 (avoid concurrent modification exceptions)
 			EList<Resource> resourcesCopy = new BasicEList<Resource>(resources);
 			// loop over all resources (e.g. error markers are on notation, breakpoints on UML model)
-			for (Resource resource : resourcesCopy) {
+			for(Resource resource : resourcesCopy) {
 				try {
 					Collection<? extends IPapyrusMarker> markers = getMarkers(resource, null /* all markers */, true);
-					for (IPapyrusMarker next : markers) {
+					for(IPapyrusMarker next : markers) {
 						EObject eObjectFromMarker = next.getEObject();
-						if (eObjectFromMarker != null && this.registeredMarkerEventListeners != null) {
-							for (IMarkerEventListener listener : this.registeredMarkerEventListeners) {
-								if (listener.isNotifiedOnInitialMarkerCheck()) {
-									listener.notifyMarkerChange(eObjectFromMarker, next, IMarkerEventListener.MARKER_ADDED) ;
+						if(eObjectFromMarker != null && this.registeredMarkerEventListeners != null) {
+							for(IMarkerEventListener listener : this.registeredMarkerEventListeners) {
+								if(listener.isNotifiedOnInitialMarkerCheck()) {
+									listener.notifyMarkerChange(eObjectFromMarker, next, IMarkerEventListener.MARKER_ADDED);
 								}
 							}
 						}
@@ -186,21 +181,17 @@ public class MarkersMonitorService implements IService {
 		}
 	}
 
-	public Collection<? extends IPapyrusMarker> getMarkers(Resource resource,
-			String type, boolean includeSubtypes)
-					throws CoreException {
+	public Collection<? extends IPapyrusMarker> getMarkers(Resource resource, String type, boolean includeSubtypes) throws CoreException {
 
-		return MarkerListenerUtils.getMarkerProvider(resource).getMarkers(
-				resource, type, includeSubtypes);
+		return MarkerListenerUtils.getMarkerProvider(resource).getMarkers(resource, type, includeSubtypes);
 	}
 
 	private IMarkerEventListener createRelayListener() {
 		return new IMarkerEventListener() {
 
-			public void notifyMarkerChange(EObject eObjectOfMarker,
-					IPapyrusMarker marker, int addedOrRemoved) {
+			public void notifyMarkerChange(EObject eObjectOfMarker, IPapyrusMarker marker, int addedOrRemoved) {
 
-				for (IMarkerEventListener next : registeredMarkerEventListeners) {
+				for(IMarkerEventListener next : registeredMarkerEventListeners) {
 					try {
 						next.notifyMarkerChange(eObjectOfMarker, marker, addedOrRemoved);
 					} catch (Exception e) {
