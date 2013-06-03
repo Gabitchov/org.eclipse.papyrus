@@ -67,7 +67,7 @@ public class ExtendedPort implements IMappingRule {
 		Class extendedPort = extPort.getKind().getBase_Class();
 
 		TemplateSignature signature = TemplateUtils.getSignature(type.getNearestPackage());
-		String prefix = isConjugated ? "C_" : "N_";
+		String prefix = extendedPort.getName() + "_" + (isConjugated ? "C_" : "N_");
 		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type);
 		if(derivedInterface == null) {
 			return null;
