@@ -45,16 +45,20 @@ public class ExecutionEnvironmentCompositeCompartmentItemSemanticEditPolicy exte
 			}
 		}
 		if(UMLElementTypes.ExecutionEnvironment_21 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ExecutionEnvironmentCreateCommandCN(req));
+
 		}
 		if(UMLElementTypes.Artifact_25 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ArtifactCreateCommandCN(req));
+
 		}
 		return super.getCreateCommand(req);
 	}

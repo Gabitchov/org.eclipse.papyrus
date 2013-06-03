@@ -44,10 +44,12 @@ public class ArtifactCompositeCompartmentItemSemanticEditPolicy extends UMLBaseI
 			}
 		}
 		if(UMLElementTypes.Artifact_28 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ArtifactCreateCommandACN(req));
+
 		}
 		return super.getCreateCommand(req);
 	}

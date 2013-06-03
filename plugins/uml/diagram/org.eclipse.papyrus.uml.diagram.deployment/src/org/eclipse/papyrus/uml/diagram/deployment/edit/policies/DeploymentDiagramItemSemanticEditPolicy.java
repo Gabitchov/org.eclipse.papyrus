@@ -54,40 +54,52 @@ public class DeploymentDiagramItemSemanticEditPolicy extends UMLBaseItemSemantic
 			}
 		}
 		if(UMLElementTypes.Comment_2001 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new CommentCreateCommand(req));
+
 		}
 		if(UMLElementTypes.Constraint_2005 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ConstraintCreateCommand(req));
+
 		}
 		if(UMLElementTypes.ExecutionEnvironment_2002 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ExecutionEnvironmentCreateCommand(req));
+
 		}
 		if(UMLElementTypes.Device_2003 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new DeviceCreateCommand(req));
+
 		}
 		if(UMLElementTypes.Artifact_2006 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ArtifactCreateCommand(req));
+
 		}
 		if(UMLElementTypes.Node_2008 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new NodeCreateCommand(req));
+
 		}
 		return super.getCreateCommand(req);
 	}

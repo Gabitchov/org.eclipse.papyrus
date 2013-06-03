@@ -47,28 +47,36 @@ public class NodeCompositeCompartmentItemSemanticEditPolicy extends UMLBaseItemS
 			}
 		}
 		if(UMLElementTypes.Device_16 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new DeviceCreateCommandCN(req));
+
 		}
 		if(UMLElementTypes.ExecutionEnvironment_21 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ExecutionEnvironmentCreateCommandCN(req));
+
 		}
 		if(UMLElementTypes.Artifact_25 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ArtifactCreateCommandCN(req));
+
 		}
 		if(UMLElementTypes.Node_23 == baseElementType) {
+
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new NodeCreateCommandCN(req));
+
 		}
 		return super.getCreateCommand(req);
 	}
