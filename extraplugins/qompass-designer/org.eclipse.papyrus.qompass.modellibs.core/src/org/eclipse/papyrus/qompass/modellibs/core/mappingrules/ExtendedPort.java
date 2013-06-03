@@ -91,7 +91,7 @@ public class ExtendedPort implements IMappingRule {
 				PortUtils.getProvided(port);
 
 			if(derivedIntf != null) {
-				for(Operation op : derivedIntf.getOperations()) {
+				for(Operation op : derivedIntf.getAllOperations()) {
 					String name = port.getName() + "_" + op.getName();
 
 					// check whether operation already exists. Create, if not
