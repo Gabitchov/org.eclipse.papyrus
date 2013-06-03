@@ -12,17 +12,22 @@
 package org.eclipse.papyrus.uml.nattable.provider;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypePropertyAxisManager;
 import org.eclipse.papyrus.uml.tools.providers.UMLStereotypePropertyContentProvider;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -70,48 +75,43 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	 */
 	@Override
 	public Object[] getChildren(Object parentElement) {
-		if(parentElement instanceof Profile) {
-			Profile profile = (Profile)parentElement;
-			Set<Stereotype> restrictedStereotypes = new HashSet<Stereotype>();
-			if(this.isRestricted && !profile.getOwnedStereotypes().isEmpty()) {
-				AbstractAxisProvider otherAxisProvider = getOtherAxisProvider();
-				final List<Object> elementsList = this.umlStereotypePropertyManager.getTableManager().getElementsList(otherAxisProvider);
-				for(Object object : elementsList) {
-					if(object instanceof Element) {
-						Element typedElement = (Element)object;
-						EList<Stereotype> appliedStereotypes = typedElement.getAppliedStereotypes();
-						restrictedStereotypes.addAll(appliedStereotypes);
-					}
-				}
-				Set<Stereotype> superSte = new HashSet<Stereotype>();
-				for(Stereotype ste : restrictedStereotypes) {
-					for(final Classifier classifier : ste.getGenerals()) {
-						if(classifier instanceof Stereotype) {
-							superSte.add((Stereotype)classifier);
-						}
-					}
-				}
-				restrictedStereotypes.addAll(superSte);
-				List<Stereotype> toReturn = new ArrayList<Stereotype>(profile.getOwnedStereotypes());
-				List<Stereotype> toRemove = new ArrayList<Stereotype>();
-				for(Object object : toReturn) {
-					if(object instanceof Stereotype) {
-						Stereotype stereotype = (Stereotype)object;
-						if(!restrictedStereotypes.contains(stereotype)) {
-							toRemove.add(stereotype);
-						}
-
-					}
-				}
-				toReturn.removeAll(toRemove);
-				return toReturn.toArray();
-			}
-			Object[] children = super.getChildren(parentElement);
-			return children;
+		if(!(parentElement instanceof Package || parentElement instanceof Stereotype)) {
+			return new Object[0];
 		}
-		Object[] children = super.getChildren(parentElement);
-		return children;
+		final Object[] children = super.getChildren(parentElement);
+		if(!isRestricted || !(parentElement instanceof Package)) {
+			return children;
+		} else {
+			//we are restricted so we show only the elements available for the current contents of the table
+			final Set<Stereotype> restrictedStereotypes = new HashSet<Stereotype>();
+			final AbstractAxisProvider otherAxisProvider = getOtherAxisProvider();
+			final List<Object> elementsList = this.umlStereotypePropertyManager.getTableManager().getElementsList(otherAxisProvider);
+			for(Object object : elementsList) {
+				Object representedElement = AxisUtils.getRepresentedElement(object);
+				if(representedElement instanceof Element) {
+					restrictedStereotypes.addAll(((Element)representedElement).getAppliedStereotypes());
+				}
+			}
+			final Set<Stereotype> superSte = new HashSet<Stereotype>();
+			for(Stereotype ste : restrictedStereotypes) {
+				for(final Classifier classifier : ste.getGenerals()) {
+					if(classifier instanceof Stereotype) {
+						superSte.add((Stereotype)classifier);
+					}
+				}
+			}
+			restrictedStereotypes.addAll(superSte);
 
+			final Collection<EObject> toKeep = new HashSet<EObject>();
+			toKeep.addAll(restrictedStereotypes);
+			for(Stereotype stereotype : restrictedStereotypes) {
+				toKeep.addAll(EMFHelper.getContainmentPath(stereotype));
+			}
+			Collection<Object> returnedValues = new ArrayList<Object>();
+			returnedValues.addAll(Arrays.asList(children));
+			returnedValues.retainAll(toKeep);
+			return returnedValues.toArray();
+		}
 	}
 
 }

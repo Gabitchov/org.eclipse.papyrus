@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
@@ -52,6 +53,23 @@ public class AxisUtils {
 			id = (String)axisElement;
 		}
 		return id;
+	}
+
+	/**
+	 * 
+	 * @param axisElement
+	 *        an axis element
+	 * @return
+	 *         if axisElement is an IAxis, we return the element represented by the IAxis using IAxis.getElement() else we return the element itself
+	 */
+	public static final Object getRepresentedElement(final Object axisElement) {
+		Object representedElement;
+		if(axisElement instanceof IAxis) {
+			representedElement = ((IAxis)axisElement).getElement();
+		} else {
+			representedElement = axisElement;
+		}
+		return representedElement;
 	}
 
 	/**
