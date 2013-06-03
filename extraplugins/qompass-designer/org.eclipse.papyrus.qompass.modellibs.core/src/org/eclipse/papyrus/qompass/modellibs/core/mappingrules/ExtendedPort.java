@@ -43,15 +43,15 @@ public class ExtendedPort implements IMappingRule {
 
 	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
 	{
-		return getDerived(p, p.getBase_Port().isConjugated(), config);
+		return getDerived(p, false, config);
 	}
 
 	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
 	{
-		return getDerived(p, !p.getBase_Port().isConjugated(), config);
+		return getDerived(p, true, config);
 	}
 
-	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isConjugated, InstanceSpecification config)
+	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isRequired, InstanceSpecification config)
 	{
 		Type type = extPort.getBase_Port().getType();
 		if(!(type instanceof Classifier)) {
@@ -59,7 +59,7 @@ public class ExtendedPort implements IMappingRule {
 		}
 		Class extendedPort = extPort.getKind().getBase_Class();
 
-		String prefix = extendedPort.getName() + "_" + (isConjugated ? "C_" : "N_");
+		String prefix = extendedPort.getName() + "_" + (isRequired ? "R_" : "P_");
 		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type);
 		if(derivedInterface == null) {
 			return null;
@@ -86,12 +86,12 @@ public class ExtendedPort implements IMappingRule {
 		// kind.getBase_Class().getNearestPackage().getTemplateParameter();
 
 		for(Port port : extendedPort.getOwnedPorts()) {
-			Interface provIntf = (isConjugated) ?
+			Interface derivedIntf = (isRequired) ?
 				PortUtils.getRequired(port) :
 				PortUtils.getProvided(port);
 
-			if(provIntf != null) {
-				for(Operation op : provIntf.getOperations()) {
+			if(derivedIntf != null) {
+				for(Operation op : derivedIntf.getOperations()) {
 					String name = port.getName() + "_" + op.getName();
 
 					// check whether operation already exists. Create, if not
