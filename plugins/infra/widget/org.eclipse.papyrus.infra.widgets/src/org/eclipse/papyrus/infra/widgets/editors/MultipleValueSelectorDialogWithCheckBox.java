@@ -149,7 +149,7 @@ public class MultipleValueSelectorDialogWithCheckBox extends MultipleValueSelect
 			final Button button = new Button(parent, SWT.CHECK);
 			button.setText(this.text);
 			button.setToolTipText(this.tooltip);
-			button.setSelection(true);
+			button.setSelection(this.isChecked);
 			final SelectionListener listener = new SelectionListener() {
 
 				public void widgetSelected(SelectionEvent e) {
