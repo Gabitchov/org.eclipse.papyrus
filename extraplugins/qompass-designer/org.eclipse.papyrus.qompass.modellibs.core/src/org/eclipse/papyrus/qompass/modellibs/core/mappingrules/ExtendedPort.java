@@ -2,21 +2,14 @@ package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
 import org.eclipse.papyrus.FCM.util.IMappingRule;
 import org.eclipse.papyrus.FCM.util.MapUtil;
+import org.eclipse.papyrus.qompass.designer.core.OperationUtils;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
-import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.TemplateBinding;
-import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 
 
@@ -66,12 +59,13 @@ public class ExtendedPort implements IMappingRule {
 		}
 		Class extendedPort = extPort.getKind().getBase_Class();
 
-		TemplateSignature signature = TemplateUtils.getSignature(type.getNearestPackage());
 		String prefix = extendedPort.getName() + "_" + (isConjugated ? "C_" : "N_");
 		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type);
 		if(derivedInterface == null) {
 			return null;
 		}
+		/*
+		TemplateSignature signature = TemplateUtils.getSignature(type.getNearestPackage());
 		if(signature != null) {
 			Package model = Utils.getTop(derivedInterface);
 			try {
@@ -87,6 +81,7 @@ public class ExtendedPort implements IMappingRule {
 				return null;
 			}
 		}
+		*/
 		// obtain first template parameter = port type
 		// kind.getBase_Class().getNearestPackage().getTemplateParameter();
 
@@ -103,6 +98,14 @@ public class ExtendedPort implements IMappingRule {
 					Operation derivedOperation = derivedInterface.getOperation(name, null, null);
 					if(derivedOperation == null) {
 						derivedOperation = derivedInterface.createOwnedOperation(name, null, null);
+						OperationUtils.syncOperation(op, derivedOperation);
+						derivedOperation.setName(name);
+					}
+					else {
+						if (!OperationUtils.isSameOperation(derivedOperation, op, false)) {
+							OperationUtils.syncOperation(op, derivedOperation);
+							derivedOperation.setName(name);
+						}
 					}
 				}
 			}

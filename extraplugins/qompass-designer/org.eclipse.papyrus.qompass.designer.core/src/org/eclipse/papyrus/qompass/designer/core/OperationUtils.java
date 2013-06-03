@@ -2,12 +2,11 @@ package org.eclipse.papyrus.qompass.designer.core;
 
 import java.util.Iterator;
 
+import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Type;
-
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 
 public class OperationUtils {
 
@@ -35,20 +34,39 @@ public class OperationUtils {
 	 * parameter names and types are equal. Type equality is checked via names only, to
 	 * avoid that identical types within a source and a copy model would yield false.
 	 * 
-	 * @param op1
-	 * @param op2
+	 * @param op1 first operation
+	 * @param op2 second operation
 	 * @return true, if operations are identical
 	 */
 	public static boolean isSameOperation(Operation op1, Operation op2) {
-		String op1Name = op1.getName();
-		String op2Name = op2.getName();
-		// one of the names might be null
-		if(op1Name == null) {
-			if(op2Name != null) {
+		return isSameOperation(op1, op2, true);
+	}
+	
+	
+	/**
+	 * Returns true, if two operations are identical with optional name check.
+	 * An operation is considered identical, if the operation name (optional) as well as all
+	 * parameter names and types are equal. Type equality is checked via names only, to
+	 * avoid that identical types within a source and a copy model would yield false.
+	 * 
+	 * @param op1 first operation
+	 * @param op2 second operation
+	 * @param checkName if true, require that operation names are identical
+	 * @return true, if operations are identical
+	 */
+	public static boolean isSameOperation(Operation op1, Operation op2, boolean checkName) {
+
+		if (checkName) {
+			String op1Name = op1.getName();
+			String op2Name = op2.getName();
+			// 	one of the names might be null
+			if(op1Name == null) {
+				if(op2Name != null) {
+					return false;
+				}
+			} else if(!op1Name.equals(op2Name)) {
 				return false;
 			}
-		} else if(!op1Name.equals(op2Name)) {
-			return false;
 		}
 		Iterator<Parameter> parameters1 = op1.getOwnedParameters().iterator();
 		Iterator<Parameter> parameters2 = op2.getOwnedParameters().iterator();
