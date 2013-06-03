@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated papyrusCompare -->
+      <package
+            uri="http://www.eclipse.org/emf/compare/papyrus"
+            class="extensions.ExtensionsPackage"
+            genModel="model/papyrusCompare.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.compare.rcp.postProcessor">
+      <processor
+            class="org.eclipse.papyrus.compare.postprocessor.PapyrusPostProcessor"
+            ordinal="31">
+         <nsURI
+               value="http://www.eclipse.org/gmf/runtime/\d.\d.\d/notation">
+         </nsURI>
+      </processor>
+   </extension>
+   <extension
+         point="org.eclipse.emf.compare.rcp.merger">
+      <merger
+            class="merge.PapyrusMerger"
+            ranking="21">
+      </merger>
+   </extension>
+
+</plugin>
