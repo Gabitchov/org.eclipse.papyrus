@@ -883,6 +883,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
+      
       <clientContext id="org.eclipse.papyrus.uml.diagram.profile.TypeContext">
          <enablement>
             <test
@@ -891,6 +892,8 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.profile.TypeContext">
+      
+      
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Profile_1000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Dependency_2014"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.profile.Association_2015"/>
