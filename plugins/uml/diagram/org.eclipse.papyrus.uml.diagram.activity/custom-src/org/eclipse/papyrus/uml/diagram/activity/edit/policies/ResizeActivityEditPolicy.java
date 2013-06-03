@@ -37,7 +37,6 @@ public class ResizeActivityEditPolicy extends ResizableShapeEditPolicy {
 	 */
 	@Override
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
-		System.err.println(request);
 		return UnexecutableCommand.INSTANCE;
 	}
 

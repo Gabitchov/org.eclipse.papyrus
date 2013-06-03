@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
@@ -355,7 +356,7 @@ public class SWTResourceManager {
 						}
 					}
 				} catch (Throwable e) {
-					System.err.println("Unable to set underline or strikeout" + " (probably on a non-Windows platform). " + e); //$NON-NLS-1$ //$NON-NLS-2$
+					Activator.log.error("Unable to set underline or strikeout" + " (probably on a non-Windows platform). ", e); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 			font = new Font(Display.getCurrent(), fontData);

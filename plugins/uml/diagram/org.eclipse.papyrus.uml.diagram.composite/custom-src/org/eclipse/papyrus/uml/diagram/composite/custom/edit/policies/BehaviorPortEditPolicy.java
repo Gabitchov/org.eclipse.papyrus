@@ -43,6 +43,7 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.command.CreateBehaviorPortCommand;
 import org.eclipse.papyrus.uml.diagram.composite.custom.locators.BehaviorPortLocator;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -104,7 +105,7 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 									warpperCmd.execute();
 									it.commit();
 								}catch(Exception e){
-									System.err.println(e);
+									Activator.log.error(e);
 								}
 							}
 						}
@@ -169,7 +170,7 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 								command.execute();
 								it.commit();
 							}catch(Exception e){
-								System.err.println(e);
+								Activator.log.error(e);
 							}
 						}
 					}

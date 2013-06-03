@@ -115,7 +115,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 									warpperCmd.execute();
 									it.commit();
 								}catch(Exception e){
-									System.err.println(e);
+									Activator.log.error(e);
 								}
 								}
 						}

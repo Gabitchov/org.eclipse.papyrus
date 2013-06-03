@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.command.CreateAppliedStereotypePropertyViewCommand;
@@ -125,7 +126,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 										command.execute();
 										it.commit();
 									}catch(Exception e){
-										System.err.println(e);
+										Activator.log.error(e);
 									}
 									}
 								}
@@ -136,7 +137,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.log.error(e);
 		}
 	}
 	/**
@@ -180,7 +181,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.log.error(e);
 		}
 	}
 	protected void refreshStereotypeDisplay() {}

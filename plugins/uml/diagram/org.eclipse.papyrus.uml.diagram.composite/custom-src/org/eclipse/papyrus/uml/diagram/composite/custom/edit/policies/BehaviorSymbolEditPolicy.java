@@ -36,6 +36,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 /**
@@ -171,7 +172,7 @@ public class BehaviorSymbolEditPolicy extends GraphicalEditPolicy implements Not
 										warpperCmd.execute();
 										it.commit();
 									}catch(Exception e){
-										System.err.println(e);
+										Activator.log.error(e);
 									}
 								}
 							}

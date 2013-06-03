@@ -116,7 +116,6 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 				return false;
 			}
 			if(!(((View)req.getTargetEditPart().getModel()).getElement() instanceof InstanceSpecification)) {
-				System.err.println();
 				return false;
 			}
 			this.source = (InstanceSpecification)((View)req.getSourceEditPart().getModel()).getElement();

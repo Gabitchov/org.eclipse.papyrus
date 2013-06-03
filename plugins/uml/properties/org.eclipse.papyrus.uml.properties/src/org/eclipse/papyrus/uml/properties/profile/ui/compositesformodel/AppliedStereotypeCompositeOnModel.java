@@ -456,7 +456,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.log.error(e);
 		}
 
 	}
@@ -495,7 +495,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.log.error(e);
 		}
 
 	}
@@ -532,7 +532,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.log.error(e);
 		}
 
 	}

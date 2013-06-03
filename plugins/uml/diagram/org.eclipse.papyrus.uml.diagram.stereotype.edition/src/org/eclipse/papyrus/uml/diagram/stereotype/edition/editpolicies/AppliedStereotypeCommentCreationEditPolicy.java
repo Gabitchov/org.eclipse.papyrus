@@ -136,7 +136,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 									cmd.execute();
 									it.commit();
 								}catch(Exception e){
-									System.err.println(e);
+									Activator.log.error(e);
 								}
 							}
 						});
@@ -224,7 +224,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 									command.execute();
 									it.commit();
 								}catch(Exception e){
-									System.err.println(e);
+									Activator.log.error(e);
 								}
 							}
 						}
@@ -257,7 +257,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 									warpperCmd.execute();
 									it.commit();
 								}catch(Exception e){
-									System.err.println(e);
+									Activator.log.error(e);
 								}
 							}
 						}

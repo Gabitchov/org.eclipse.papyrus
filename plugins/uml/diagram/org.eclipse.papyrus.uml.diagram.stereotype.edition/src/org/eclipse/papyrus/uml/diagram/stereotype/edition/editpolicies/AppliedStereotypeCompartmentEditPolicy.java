@@ -144,7 +144,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 								command.execute();
 								it.commit();
 							}catch(Exception e){
-								System.err.println(e);
+								Activator.log.error(e);
 							}
 							
 						}
@@ -242,14 +242,14 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 								setCommand.execute();
 								it.commit();
 							}catch(Exception e){
-								System.err.println(e);
+								Activator.log.error(e);
 							}
 						}
 					});
 				}
 			});
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.log.error(e);
 		}
 	}
 
@@ -315,7 +315,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 											warpperCmd.execute();
 											it.commit();
 										}catch(Exception e){
-											System.err.println(e);
+											Activator.log.error(e);
 										}
 									}
 								});
@@ -342,7 +342,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 												warpperCmd.execute();
 												it.commit();
 											}catch(Exception e){
-												System.err.println(e);
+												Activator.log.error(e);
 											}
 										}
 									}
@@ -354,7 +354,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 				i++;
 			}
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.log.error(e);
 		}
 	}
 
