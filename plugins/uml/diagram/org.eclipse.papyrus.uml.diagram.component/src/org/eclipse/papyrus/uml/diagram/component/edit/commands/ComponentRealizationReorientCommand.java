@@ -35,7 +35,8 @@ public class ComponentRealizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ComponentRealizationReorientCommand(ReorientRelationshipRequest request) {
+	public ComponentRealizationReorientCommand(
+			ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -46,13 +47,13 @@ public class ComponentRealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(false == getElementToEdit() instanceof ComponentRealization) {
+		if (false == getElementToEdit() instanceof ComponentRealization) {
 			return false;
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -62,49 +63,55 @@ public class ComponentRealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		if(getLink().getSuppliers().size() != 1) {
+		if (getLink().getSuppliers().size() != 1) {
 			return false;
 		}
-		NamedElement target = (NamedElement)getLink().getSuppliers().get(0);
-		if(!(getLink().eContainer() instanceof Package)) {
+		NamedElement target = (NamedElement) getLink().getSuppliers().get(0);
+		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistComponentRealization_4007(container, getLink(), getNewSource(), target);
+		Package container = (Package) getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistComponentRealization_4007(container, getLink(),
+						getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		if(getLink().getClients().size() != 1) {
+		if (getLink().getClients().size() != 1) {
 			return false;
 		}
-		NamedElement source = (NamedElement)getLink().getClients().get(0);
-		if(!(getLink().eContainer() instanceof Package)) {
+		NamedElement source = (NamedElement) getLink().getClients().get(0);
+		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistComponentRealization_4007(container, getLink(), source, getNewTarget());
+		Package container = (Package) getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistComponentRealization_4007(container, getLink(),
+						source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		if (!canExecute()) {
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -132,34 +139,34 @@ public class ComponentRealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected ComponentRealization getLink() {
-		return (ComponentRealization)getElementToEdit();
+		return (ComponentRealization) getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getOldSource() {
-		return (NamedElement)oldEnd;
+		return (NamedElement) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getNewSource() {
-		return (NamedElement)newEnd;
+		return (NamedElement) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getOldTarget() {
-		return (NamedElement)oldEnd;
+		return (NamedElement) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getNewTarget() {
-		return (NamedElement)newEnd;
+		return (NamedElement) newEnd;
 	}
 }

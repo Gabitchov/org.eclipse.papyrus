@@ -58,7 +58,8 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
  * 
  * @generated
  */
-public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ComponentItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new component item semantic edit policy.
@@ -73,32 +74,38 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	 * Gets the creates the command.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the creates the command
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if(requestElementType == null) {
+		if (requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
 		IElementType baseElementType = requestElementType;
 		boolean isExtendedType = false;
-		if(requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
+		if (requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils
+					.getClosestDiagramType(requestElementType);
+			if (baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				// no reference element type ID. using the closest super element
+				// type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils
+						.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
 				isExtendedType = true;
 			}
 		}
-		if(UMLElementTypes.Port_3069 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Port_3069 == baseElementType) {
+
+			if (isExtendedType) {
+				return getExtendedTypeCreationCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new PortCreateCommand(req));
+
 		}
 		return super.getCreateCommand(req);
 	}
@@ -107,17 +114,19 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	 * Gets the destroy element command.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the destroy element command
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		EObject selectedEObject = req.getElementToDestroy();
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
-		if(provider != null) {
+		IElementEditService provider = ElementEditServiceUtils
+				.getCommandProvider(selectedEObject);
+		if (provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-			if(deleteCommand != null) {
+
+			if (deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
@@ -128,93 +137,115 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	 * Gets the creates the relationship command.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the creates the relationship command
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * Gets the start create relationship command.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the start create relationship command
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if(requestElementType == null) {
+		if (requestElementType == null) {
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
 		boolean isExtendedType = false;
-		if(requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
+		if (requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils
+					.getClosestDiagramType(requestElementType);
+			if (baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				// no reference element type ID. using the closest super element
+				// type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils
+						.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
 				isExtendedType = true;
 			}
 		}
-		if(UMLElementTypes.Usage_4001 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Usage_4001 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
-		if(UMLElementTypes.InterfaceRealization_4006 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.InterfaceRealization_4006 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new InterfaceRealizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new InterfaceRealizationCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Generalization_4003 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Generalization_4003 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new GeneralizationCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Substitution_4012 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Substitution_4012 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new SubstitutionCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new SubstitutionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Manifestation_4014 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Manifestation_4014 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new ManifestationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ManifestationCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ComponentRealization_4007 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.ComponentRealization_4007 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new ComponentRealizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ComponentRealizationCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Abstraction_4013 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Abstraction_4013 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AbstractionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4015 == baseElementType) {
+		if (UMLElementTypes.CommentAnnotatedElement_4015 == baseElementType) {
 			return null;
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4009 == baseElementType) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4009 == baseElementType) {
 			return null;
 		}
-		if(UMLElementTypes.Dependency_4010 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Dependency_4010 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new DependencyCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -223,83 +254,105 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	 * Gets the complete create relationship command.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the complete create relationship command
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if(requestElementType == null) {
+		if (requestElementType == null) {
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
 		boolean isExtendedType = false;
-		if(requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
+		if (requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils
+					.getClosestDiagramType(requestElementType);
+			if (baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				// no reference element type ID. using the closest super element
+				// type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils
+						.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
 				isExtendedType = true;
 			}
 		}
-		if(UMLElementTypes.Usage_4001 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Usage_4001 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
-		if(UMLElementTypes.InterfaceRealization_4006 == baseElementType) {
+		if (UMLElementTypes.InterfaceRealization_4006 == baseElementType) {
 			return null;
 		}
-		if(UMLElementTypes.Generalization_4003 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Generalization_4003 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new GeneralizationCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Substitution_4012 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Substitution_4012 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new SubstitutionCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new SubstitutionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Manifestation_4014 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Manifestation_4014 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new ManifestationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ManifestationCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ComponentRealization_4007 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.ComponentRealization_4007 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new ComponentRealizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ComponentRealizationCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Abstraction_4013 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Abstraction_4013 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new AbstractionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4015 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.CommentAnnotatedElement_4015 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4009 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.ConstraintConstrainedElement_4009 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Dependency_4010 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Dependency_4010 == baseElementType) {
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new DependencyCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -309,12 +362,13 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	 * should be the domain model element associated with this node.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the reorient relationship command
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch(getVisualID(req)) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
 		case UsageEditPart.VISUAL_ID:
 		case InterfaceRealizationEditPart.VISUAL_ID:
 		case GeneralizationEditPart.VISUAL_ID:
@@ -323,13 +377,14 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		case ComponentRealizationEditPart.VISUAL_ID:
 		case AbstractionEditPart.VISUAL_ID:
 		case DependencyEditPart.VISUAL_ID:
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
-			if(provider == null) {
+			IElementEditService provider = ElementEditServiceUtils
+					.getCommandProvider(req.getRelationship());
+			if (provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			// Retrieve re-orient command from the Element Edit service
 			ICommand reorientCommand = provider.getEditCommand(req);
-			if(reorientCommand == null) {
+			if (reorientCommand == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
@@ -338,20 +393,22 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or
+	 * source should be the domain model element associated with this node.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the reorient reference relationship command
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
-		switch(getVisualID(req)) {
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		switch (getVisualID(req)) {
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(
+					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

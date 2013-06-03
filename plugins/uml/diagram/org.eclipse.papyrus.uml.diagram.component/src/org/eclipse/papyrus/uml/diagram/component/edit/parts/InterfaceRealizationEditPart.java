@@ -12,7 +12,8 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceRealizat
 /**
  * @generated
  */
-public class InterfaceRealizationEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class InterfaceRealizationEditPart extends ConnectionEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -31,14 +32,15 @@ public class InterfaceRealizationEditPart extends ConnectionEditPart implements 
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceRealizationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new InterfaceRealizationItemSemanticEditPolicy());
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -50,7 +52,7 @@ public class InterfaceRealizationEditPart extends ConnectionEditPart implements 
 	 * @generated
 	 */
 	public SimpleDependency getPrimaryShape() {
-		return (SimpleDependency)getFigure();
+		return (SimpleDependency) getFigure();
 	}
 
 	/**
@@ -63,6 +65,7 @@ public class InterfaceRealizationEditPart extends ConnectionEditPart implements 
 		 */
 		public SimpleDependency() {
 			this.setForegroundColor(ColorConstants.black);
+
 		}
 	}
 }

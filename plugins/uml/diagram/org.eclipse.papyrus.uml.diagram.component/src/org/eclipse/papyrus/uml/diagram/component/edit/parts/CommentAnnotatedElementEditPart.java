@@ -12,7 +12,8 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.CommentAnnotatedE
 /**
  * @generated
  */
-public class CommentAnnotatedElementEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class CommentAnnotatedElementEditPart extends ConnectionEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -31,14 +32,15 @@ public class CommentAnnotatedElementEditPart extends ConnectionEditPart implemen
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentAnnotatedElementItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new CommentAnnotatedElementItemSemanticEditPolicy());
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -50,7 +52,7 @@ public class CommentAnnotatedElementEditPart extends ConnectionEditPart implemen
 	 * @generated
 	 */
 	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor)getFigure();
+		return (CommentLinkDescriptor) getFigure();
 	}
 
 	/**
@@ -63,6 +65,7 @@ public class CommentAnnotatedElementEditPart extends ConnectionEditPart implemen
 		 */
 		public CommentLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
+
 		}
 	}
 }

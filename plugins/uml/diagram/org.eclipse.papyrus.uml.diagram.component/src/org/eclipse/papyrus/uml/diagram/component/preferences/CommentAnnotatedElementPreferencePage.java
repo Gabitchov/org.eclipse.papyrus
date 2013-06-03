@@ -8,14 +8,16 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 /**
  * @generated
  */
-public class CommentAnnotatedElementPreferencePage extends AbstractPapyrusLinkPreferencePage {
+public class CommentAnnotatedElementPreferencePage extends
+		AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * @generated
 	 */
 	public CommentAnnotatedElementPreferencePage() {
 		super();
-		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID + "_CommentAnnotatedElement");
+		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID
+				+ "_CommentAnnotatedElement");
 	}
 
 	/**
@@ -30,5 +32,6 @@ public class CommentAnnotatedElementPreferencePage extends AbstractPapyrusLinkPr
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
+
 	}
 }

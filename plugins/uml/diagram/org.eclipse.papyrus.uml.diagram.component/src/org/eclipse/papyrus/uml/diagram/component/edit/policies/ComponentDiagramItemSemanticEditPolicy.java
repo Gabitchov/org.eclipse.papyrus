@@ -35,7 +35,8 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
  * 
  * @generated
  */
-public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ComponentDiagramItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new component diagram item semantic edit policy.
@@ -50,56 +51,74 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 * Gets the creates the command.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the creates the command
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if(requestElementType == null) {
+		if (requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
 		IElementType baseElementType = requestElementType;
 		boolean isExtendedType = false;
-		if(requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if(baseElementType != null) {
+		if (requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils
+					.getClosestDiagramType(requestElementType);
+			if (baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				// no reference element type ID. using the closest super element
+				// type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils
+						.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
 				isExtendedType = true;
 			}
 		}
-		if(UMLElementTypes.Component_2002 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Component_2002 == baseElementType) {
+
+			if (isExtendedType) {
+				return getExtendedTypeCreationCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new ComponentCreateCommand(req));
+
 		}
-		if(UMLElementTypes.Interface_2003 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Interface_2003 == baseElementType) {
+
+			if (isExtendedType) {
+				return getExtendedTypeCreationCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new InterfaceCreateCommand(req));
+
 		}
-		if(UMLElementTypes.Package_3200 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Package_3200 == baseElementType) {
+
+			if (isExtendedType) {
+				return getExtendedTypeCreationCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new PackageCreateCommand(req));
+
 		}
-		if(UMLElementTypes.Comment_3201 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Comment_3201 == baseElementType) {
+
+			if (isExtendedType) {
+				return getExtendedTypeCreationCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new CommentCreateCommand(req));
+
 		}
-		if(UMLElementTypes.Constraint_3199 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+		if (UMLElementTypes.Constraint_3199 == baseElementType) {
+
+			if (isExtendedType) {
+				return getExtendedTypeCreationCommand(req,
+						(IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new ConstraintCreateCommand(req));
+
 		}
 		return super.getCreateCommand(req);
 	}
@@ -108,17 +127,20 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 * Gets the duplicate command.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the duplicate command
 	 * @generated
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+				.getEditingDomain();
 		Diagram currentDiagram = null;
-		if(getHost() instanceof IGraphicalEditPart) {
-			currentDiagram = ((IGraphicalEditPart)getHost()).getNotationView().getDiagram();
+		if (getHost() instanceof IGraphicalEditPart) {
+			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView()
+					.getDiagram();
 		}
-		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
+		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req,
+				currentDiagram));
 	}
 
 	/**
@@ -126,7 +148,8 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 * 
 	 * @generated
 	 */
-	private static class DuplicateAnythingCommand extends DuplicateNamedElementCommand {
+	private static class DuplicateAnythingCommand extends
+			DuplicateNamedElementCommand {
 
 		/** The diagram. @generated */
 		private Diagram diagram;
@@ -135,15 +158,19 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		 * Instantiates a new duplicate anything command.
 		 * 
 		 * @param editingDomain
-		 *        the editing domain
+		 *            the editing domain
 		 * @param req
-		 *        the req
+		 *            the req
 		 * @param currentDiagram
-		 *        the current diagram
+		 *            the current diagram
 		 * @generated
 		 */
-		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req, Diagram currentDiagram) {
-			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap(), currentDiagram);
+		public DuplicateAnythingCommand(
+				TransactionalEditingDomain editingDomain,
+				DuplicateElementsRequest req, Diagram currentDiagram) {
+			super(editingDomain, req.getLabel(), req
+					.getElementsToBeDuplicated(), req
+					.getAllDuplicatedElementsMap(), currentDiagram);
 			this.diagram = currentDiagram;
 		}
 	}

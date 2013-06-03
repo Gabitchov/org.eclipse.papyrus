@@ -8,14 +8,16 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 /**
  * @generated
  */
-public class ConstraintConstrainedElementPreferencePage extends AbstractPapyrusLinkPreferencePage {
+public class ConstraintConstrainedElementPreferencePage extends
+		AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * @generated
 	 */
 	public ConstraintConstrainedElementPreferencePage() {
 		super();
-		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID + "_ConstraintConstrainedElement");
+		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID
+				+ "_ConstraintConstrainedElement");
 	}
 
 	/**
@@ -30,5 +32,6 @@ public class ConstraintConstrainedElementPreferencePage extends AbstractPapyrusL
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
+
 	}
 }

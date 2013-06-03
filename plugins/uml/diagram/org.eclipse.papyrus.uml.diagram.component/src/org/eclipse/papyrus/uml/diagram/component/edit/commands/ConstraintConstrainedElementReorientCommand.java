@@ -15,7 +15,8 @@ import org.eclipse.uml2.uml.Element;
 /**
  * @generated
  */
-public class ConstraintConstrainedElementReorientCommand extends EditElementCommand {
+public class ConstraintConstrainedElementReorientCommand extends
+		EditElementCommand {
 
 	/**
 	 * @generated
@@ -40,7 +41,8 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	/**
 	 * @generated
 	 */
-	public ConstraintConstrainedElementReorientCommand(ReorientReferenceRelationshipRequest request) {
+	public ConstraintConstrainedElementReorientCommand(
+			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -52,13 +54,13 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(false == referenceOwner instanceof Constraint) {
+		if (false == referenceOwner instanceof Constraint) {
 			return false;
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -68,33 +70,39 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof Element && newEnd instanceof Constraint)) {
+		if (!(oldEnd instanceof Element && newEnd instanceof Constraint)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintConstrainedElement_4009(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistConstraintConstrainedElement_4009(getNewSource(),
+						getOldTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintConstrainedElement_4009(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistConstraintConstrainedElement_4009(getOldSource(),
+						getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		if (!canExecute()) {
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -122,27 +130,27 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	 * @generated
 	 */
 	protected Constraint getOldSource() {
-		return (Constraint)referenceOwner;
+		return (Constraint) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Constraint getNewSource() {
-		return (Constraint)newEnd;
+		return (Constraint) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getOldTarget() {
-		return (Element)oldEnd;
+		return (Element) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewTarget() {
-		return (Element)newEnd;
+		return (Element) newEnd;
 	}
 }

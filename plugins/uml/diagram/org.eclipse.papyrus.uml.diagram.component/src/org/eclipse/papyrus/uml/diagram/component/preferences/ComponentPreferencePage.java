@@ -57,31 +57,56 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * Inits the defaults.
 	 * 
 	 * @param store
-	 *        the store
+	 *            the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
+
 		String key = ComponentDiagramEditPart.MODEL_ID + "_Component";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 150);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 70);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
+				PreferenceConstantHelper.WIDTH), 150);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
+				PreferenceConstantHelper.HEIGHT), 70);
+
 		Map<String, Boolean> map = getStaticCompartmentVisibilityPreferences();
-		for(String name : map.keySet()) {
-			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+		for (String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper
+					.getLabelElementConstant(key, name,
+							PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
+
 		map = getStaticCompartmentTitleVisibilityPreferences();
-		for(String name : map.keySet()) {
-			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+		for (String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper
+					.getLabelElementConstant(
+							key,
+							name,
+							PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
-		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
+
+		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
+		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL),
+		// new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
+		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE),
+		// new org.eclipse.swt.graphics.RGB(0, 0, 0));
+
 		// Set the default for the gradient
-		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
-		//org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new  org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
-		//		new org.eclipse.swt.graphics.RGB(255, 255, 255),
-		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
-		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+		// store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
+		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter
+		// gradientPreferenceConverter = new
+		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
+		// new org.eclipse.swt.graphics.RGB(255, 255, 255),
+		// new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
+		// store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT),
+		// gradientPreferenceConverter.getPreferenceValue());
+
 	}
 
 	/**
@@ -91,7 +116,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	@Override
 	protected void initializeCompartmentsList() {
-		for(String name : compartments) {
+		for (String name : compartments) {
 			this.compartmentsList.add(name);
 		}
 	}
@@ -116,6 +141,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+
 		map.put("CompositeCompartment", Boolean.FALSE);
 		return map;
 	}

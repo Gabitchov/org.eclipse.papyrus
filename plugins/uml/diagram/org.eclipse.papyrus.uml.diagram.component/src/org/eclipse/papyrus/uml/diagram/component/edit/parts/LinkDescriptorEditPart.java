@@ -13,7 +13,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 /**
  * @generated
  */
-public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class LinkDescriptorEditPart extends ConnectionEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -32,15 +33,16 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new ViewComponentEditPolicy());
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -52,7 +54,7 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 	 * @generated
 	 */
 	public LinkDescriptor getPrimaryShape() {
-		return (LinkDescriptor)getFigure();
+		return (LinkDescriptor) getFigure();
 	}
 
 	/**
@@ -66,6 +68,7 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 		public LinkDescriptor() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
+
 		}
 	}
 }

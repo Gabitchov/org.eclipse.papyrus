@@ -23,7 +23,8 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
  * 
  * @generated
  */
-public class CommentAnnotatedElementItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class CommentAnnotatedElementItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new comment annotated element item semantic edit policy.
@@ -38,7 +39,7 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends UMLBaseItemSe
 	 * Gets the destroy reference command.
 	 * 
 	 * @param req
-	 *        the req
+	 *            the req
 	 * @return the destroy reference command
 	 * @generated
 	 */

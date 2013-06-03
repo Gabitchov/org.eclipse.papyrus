@@ -13,7 +13,8 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
+public class UMLSheetLabelProvider extends BaseLabelProvider implements
+		ILabelProvider {
 
 	/**
 	 * @generated
@@ -36,8 +37,8 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 * @generated
 	 */
 	private Object unwrap(Object element) {
-		if(element instanceof IStructuredSelection) {
-			return ((IStructuredSelection)element).getFirstElement();
+		if (element instanceof IStructuredSelection) {
+			return ((IStructuredSelection) element).getFirstElement();
 		}
 		return element;
 	}
@@ -46,11 +47,11 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 * @generated
 	 */
 	private View getView(Object element) {
-		if(element instanceof View) {
-			return (View)element;
+		if (element instanceof View) {
+			return (View) element;
 		}
-		if(element instanceof IAdaptable) {
-			return (View)((IAdaptable)element).getAdapter(View.class);
+		if (element instanceof IAdaptable) {
+			return (View) ((IAdaptable) element).getAdapter(View.class);
 		}
 		return null;
 	}
@@ -59,14 +60,16 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 * @generated
 	 */
 	private IElementType getElementType(View view) {
-		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
-		while(view != null) {
+		// For intermediate views climb up the containment hierarchy to find the
+		// one associated with an element type.
+		while (view != null) {
 			int vid = UMLVisualIDRegistry.getVisualID(view);
 			IElementType etype = UMLElementTypes.getElementType(vid);
-			if(etype != null) {
+			if (etype != null) {
 				return etype;
 			}
-			view = view.eContainer() instanceof View ? (View)view.eContainer() : null;
+			view = view.eContainer() instanceof View ? (View) view.eContainer()
+					: null;
 		}
 		return null;
 	}

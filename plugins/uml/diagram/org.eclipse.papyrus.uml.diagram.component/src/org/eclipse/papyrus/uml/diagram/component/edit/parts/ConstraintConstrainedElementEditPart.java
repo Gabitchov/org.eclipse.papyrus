@@ -12,7 +12,8 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.ConstraintConstra
 /**
  * @generated
  */
-public class ConstraintConstrainedElementEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class ConstraintConstrainedElementEditPart extends ConnectionEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -31,14 +32,15 @@ public class ConstraintConstrainedElementEditPart extends ConnectionEditPart imp
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new ConstraintConstrainedElementItemSemanticEditPolicy());
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -50,7 +52,7 @@ public class ConstraintConstrainedElementEditPart extends ConnectionEditPart imp
 	 * @generated
 	 */
 	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor)getFigure();
+		return (CommentLinkDescriptor) getFigure();
 	}
 
 	/**
@@ -63,6 +65,7 @@ public class ConstraintConstrainedElementEditPart extends ConnectionEditPart imp
 		 */
 		public CommentLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
+
 		}
 	}
 }
