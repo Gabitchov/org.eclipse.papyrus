@@ -30,6 +30,7 @@ import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
 import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
 import org.eclipse.nebula.widgets.nattable.viewport.action.ViewportSelectColumnAction;
+import org.eclipse.papyrus.infra.nattable.configuration.PapyrusColumnResizeBindingsConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusColumnHeaderStyleConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.swt.SWT;
@@ -56,9 +57,8 @@ public class ColumnHeaderLayerStack extends AbstractLayerTransform {
 		final SelectionLayer selectionLayer = new SelectionLayer(new DataLayer(bodyDataProvider));
 		final ViewportLayer viewportLayer = new ViewportLayer(selectionLayer);
 		this.selectionLayer = bodyLayer.getSelectionLayer();
-		this.colHeaderLayer = new ColumnHeaderLayer(this.dataLayer, bodyLayer.getViewportLayer(), bodyLayer.getSelectionLayer());
-
-
+		this.colHeaderLayer = new ColumnHeaderLayer(this.dataLayer, bodyLayer.getViewportLayer(), bodyLayer.getSelectionLayer(), false);//FIXME : set default configuration to false?!
+		this.colHeaderLayer.addConfiguration(new PapyrusColumnResizeBindingsConfiguration());
 
 		final IConfiguration configuration = new CustomConfig();
 		//		setUnderlyingLayer(sortHeaderLayer);

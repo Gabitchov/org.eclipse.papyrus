@@ -28,6 +28,7 @@ import org.eclipse.nebula.widgets.nattable.ui.action.CellDragMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusRowHeaderStyleConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.PapyrusRowResizeBindingsConfiguration;
 import org.eclipse.swt.SWT;
 
 
@@ -40,8 +41,8 @@ public class RowHeaderLayerStack extends AbstractLayerTransform {
 	public RowHeaderLayerStack(final IDataProvider dataProvider, final BodyLayerStack bodyLayer) {
 		final DataLayer dataLayer = new DataLayer(dataProvider, RowHeaderLayerStack.DEFAULT_COLUMN_WIDTH, RowHeaderLayerStack.DEFAULT_ROW_HEIGHT);
 		//I know that selection layer is probably false
-		final RowHeaderLayer rowHeaderLayer = new RowHeaderLayer(dataLayer, bodyLayer, /* bodyLayer.getSelectionLayer() */new SelectionLayer(dataLayer));
-
+		final RowHeaderLayer rowHeaderLayer = new RowHeaderLayer(dataLayer, bodyLayer, /* bodyLayer.getSelectionLayer() */new SelectionLayer(dataLayer), false);
+		rowHeaderLayer.addConfiguration(new PapyrusRowResizeBindingsConfiguration());
 		//ne marche pas! but : avoir le même type de cellule dans les headers des lignes et des colonnes
 		rowHeaderLayer.addConfiguration(new PapyrusRowHeaderStyleConfiguration());
 		//		final IConfiguration configuration = new CustomConfig();
