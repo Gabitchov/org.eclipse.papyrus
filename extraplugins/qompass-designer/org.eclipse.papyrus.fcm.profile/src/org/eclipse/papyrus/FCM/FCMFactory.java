@@ -215,13 +215,13 @@ public interface FCMFactory extends EFactory {
 	Target createTarget();
 
 	/**
-	 * Returns a new object of class '<em>Part</em>'.
+	 * Returns a new object of class '<em>Fragment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Part</em>'.
+	 * @return a new object of class '<em>Fragment</em>'.
 	 * @generated
 	 */
-	Part createPart();
+	Fragment createFragment();
 
 	/**
 	 * Returns a new object of class '<em>Copy Attribute Value</em>'.

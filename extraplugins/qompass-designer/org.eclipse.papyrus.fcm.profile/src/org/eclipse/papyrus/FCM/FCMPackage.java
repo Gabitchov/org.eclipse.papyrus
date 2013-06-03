@@ -1111,41 +1111,32 @@ public interface FCMPackage extends EPackage {
 	int TARGET_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.PartImpl <em>Part</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.FragmentImpl <em>Fragment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.PartImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPart()
+	 * @see org.eclipse.papyrus.FCM.impl.FragmentImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getFragment()
 	 * @generated
 	 */
-	int PART = 24;
+	int FRAGMENT = 24;
 
 	/**
-	 * The feature id for the '<em><b>Base Property</b></em>' reference.
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART__BASE_PROPERTY = 0;
+	int FRAGMENT__BASE_CLASS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Colocate With Port</b></em>' reference list.
+	 * The number of structural features of the '<em>Fragment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART__COLOCATE_WITH_PORT = 1;
-
-	/**
-	 * The number of structural features of the '<em>Part</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART_FEATURE_COUNT = 2;
+	int FRAGMENT_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.CopyAttributeValueImpl <em>Copy Attribute Value</em>}' class.
@@ -2355,36 +2346,25 @@ public interface FCMPackage extends EPackage {
 	EAttribute getTarget_AvailROM();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Part <em>Part</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Fragment <em>Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Part</em>'.
-	 * @see org.eclipse.papyrus.FCM.Part
+	 * @return the meta object for class '<em>Fragment</em>'.
+	 * @see org.eclipse.papyrus.FCM.Fragment
 	 * @generated
 	 */
-	EClass getPart();
+	EClass getFragment();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Part#getBase_Property <em>Base Property</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Fragment#getBase_Class <em>Base Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Property</em>'.
-	 * @see org.eclipse.papyrus.FCM.Part#getBase_Property()
-	 * @see #getPart()
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.Fragment#getBase_Class()
+	 * @see #getFragment()
 	 * @generated
 	 */
-	EReference getPart_Base_Property();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.FCM.Part#getColocateWithPort <em>Colocate With Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Colocate With Port</em>'.
-	 * @see org.eclipse.papyrus.FCM.Part#getColocateWithPort()
-	 * @see #getPart()
-	 * @generated
-	 */
-	EReference getPart_ColocateWithPort();
+	EReference getFragment_Base_Class();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.CopyAttributeValue <em>Copy Attribute Value</em>}'.
@@ -3439,30 +3419,22 @@ public interface FCMPackage extends EPackage {
 		EAttribute TARGET__AVAIL_ROM = eINSTANCE.getTarget_AvailROM();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.PartImpl <em>Part</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.FragmentImpl <em>Fragment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.PartImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPart()
+		 * @see org.eclipse.papyrus.FCM.impl.FragmentImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getFragment()
 		 * @generated
 		 */
-		EClass PART = eINSTANCE.getPart();
+		EClass FRAGMENT = eINSTANCE.getFragment();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Property</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PART__BASE_PROPERTY = eINSTANCE.getPart_Base_Property();
-
-		/**
-		 * The meta object literal for the '<em><b>Colocate With Port</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PART__COLOCATE_WITH_PORT = eINSTANCE.getPart_ColocateWithPort();
+		EReference FRAGMENT__BASE_CLASS = eINSTANCE.getFragment_Base_Class();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.CopyAttributeValueImpl <em>Copy Attribute Value</em>}' class.

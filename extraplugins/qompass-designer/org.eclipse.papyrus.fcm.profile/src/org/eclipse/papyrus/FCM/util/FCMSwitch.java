@@ -216,9 +216,9 @@ public class FCMSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FCMPackage.PART: {
-				Part part = (Part)theEObject;
-				T result = casePart(part);
+			case FCMPackage.FRAGMENT: {
+				Fragment fragment = (Fragment)theEObject;
+				T result = caseFragment(fragment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -644,17 +644,17 @@ public class FCMSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Part</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Fragment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Part</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Fragment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePart(Part object) {
+	public T caseFragment(Fragment object) {
 		return null;
 	}
 

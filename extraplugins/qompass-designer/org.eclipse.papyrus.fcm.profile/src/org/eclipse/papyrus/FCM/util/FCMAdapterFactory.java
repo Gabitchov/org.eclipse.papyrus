@@ -165,8 +165,8 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 				return createTargetAdapter();
 			}
 			@Override
-			public Adapter casePart(Part object) {
-				return createPartAdapter();
+			public Adapter caseFragment(Fragment object) {
+				return createFragmentAdapter();
 			}
 			@Override
 			public Adapter caseCopyAttributeValue(CopyAttributeValue object) {
@@ -561,16 +561,16 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.Part <em>Part</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.Fragment <em>Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.FCM.Part
+	 * @see org.eclipse.papyrus.FCM.Fragment
 	 * @generated
 	 */
-	public Adapter createPartAdapter() {
+	public Adapter createFragmentAdapter() {
 		return null;
 	}
 

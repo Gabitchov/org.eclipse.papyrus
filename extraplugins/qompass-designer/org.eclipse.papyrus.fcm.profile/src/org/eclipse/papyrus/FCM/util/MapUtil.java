@@ -308,10 +308,14 @@ public class MapUtil
 						intf = mappingRule.getProvided(port, port.getConfiguration());
 					}
 				};
-				calcRunning = true;
 				
 				if((mappingRule.needsTransaction() == IMappingRule.BOTH) ||
 					(mappingRule.needsTransaction() == IMappingRule.PROVIDED)) {
+					
+					// do not allow recursive calculation of modifying rules
+					if (calcRunning) return null;
+
+					calcRunning = true;
 					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(port);
 					if(CommandSupport.isWriteTransactionActive(domain) || (domain == null)) {
 						// don't start a new transaction, if there is already an active write transition
@@ -326,6 +330,7 @@ public class MapUtil
 					else {
 						CommandSupport.exec(domain, "calculate derived interface", rule);
 					}
+					calcRunning = false;
 				}
 				else {
 					rule.run();
@@ -360,7 +365,7 @@ public class MapUtil
 		else if(portKind.getBase_Class() != null) {
 			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
 			final IMappingRule mappingRule = getMappingRule(ruleName);
-			if((mappingRule != null) && (!calcRunning)) {
+			if(mappingRule != null) {
 				
 				Runnable rule = new Runnable() {
 
@@ -368,10 +373,14 @@ public class MapUtil
 						intf = mappingRule.getRequired(port, port.getConfiguration());
 					}
 				};
-				calcRunning = true;
 				
 				if((mappingRule.needsTransaction() == IMappingRule.BOTH) ||
 					(mappingRule.needsTransaction() == IMappingRule.REQUIRED)) {
+					
+					// do not allow recursive calculation of modifying rules
+					if (calcRunning) return null;
+	
+					calcRunning = true;
 					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(port);
 					if(CommandSupport.isWriteTransactionActive(domain) || (domain == null)) {
 						// don't start a new transaction, if there is already an active write transition
@@ -386,11 +395,11 @@ public class MapUtil
 					else {
 						CommandSupport.exec(domain, "calculate derived interface", rule);
 					}
+					calcRunning = false;
 				}
 				else {
 					rule.run();
 				}
-				calcRunning = false;
 				return intf;
 			}
 		}

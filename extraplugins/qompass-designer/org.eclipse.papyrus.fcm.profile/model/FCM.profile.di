@@ -23,6 +23,9 @@
       <availablePage>
         <emfPageIdentifier href="FCM.profile.notation#_w-KvwMniEeCWXsgs0yuyKQ"/>
       </availablePage>
+      <availablePage>
+        <emfPageIdentifier href="FCM.profile.notation#_hbTVgMnpEeK-j9yGRHQ3Jw"/>
+      </availablePage>
     </pageList>
     <sashModel currentSelection="/0/@sashModel/@windows.0/@children.0">
       <windows>
@@ -44,6 +47,9 @@
           </children>
           <children>
             <emfPageIdentifier href="FCM.profile.notation#_w-KvwMniEeCWXsgs0yuyKQ"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="FCM.profile.notation#_hbTVgMnpEeK-j9yGRHQ3Jw"/>
           </children>
         </children>
       </windows>

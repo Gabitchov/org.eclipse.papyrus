@@ -33,6 +33,7 @@ import org.eclipse.papyrus.FCM.ExtendedSignature;
 import org.eclipse.papyrus.FCM.ExternalLibrary;
 import org.eclipse.papyrus.FCM.FCMFactory;
 import org.eclipse.papyrus.FCM.FCMPackage;
+import org.eclipse.papyrus.FCM.Fragment;
 import org.eclipse.papyrus.FCM.ImplementationGroup;
 import org.eclipse.papyrus.FCM.ImplementationProperties;
 import org.eclipse.papyrus.FCM.InitPrecedence;
@@ -42,7 +43,6 @@ import org.eclipse.papyrus.FCM.InterceptionKind;
 import org.eclipse.papyrus.FCM.InterceptionRule;
 import org.eclipse.papyrus.FCM.JavaLibrary;
 import org.eclipse.papyrus.FCM.OperatingSystem;
-import org.eclipse.papyrus.FCM.Part;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.FCM.RuleApplication;
@@ -222,7 +222,7 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass partEClass = null;
+	private EClass fragmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1089,8 +1089,8 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPart() {
-		return partEClass;
+	public EClass getFragment() {
+		return fragmentEClass;
 	}
 
 	/**
@@ -1098,17 +1098,8 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPart_Base_Property() {
-		return (EReference)partEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPart_ColocateWithPort() {
-		return (EReference)partEClass.getEStructuralFeatures().get(1);
+	public EReference getFragment_Base_Class() {
+		return (EReference)fragmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1564,9 +1555,8 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		createEAttribute(targetEClass, TARGET__AVAIL_RAM);
 		createEAttribute(targetEClass, TARGET__AVAIL_ROM);
 
-		partEClass = createEClass(PART);
-		createEReference(partEClass, PART__BASE_PROPERTY);
-		createEReference(partEClass, PART__COLOCATE_WITH_PORT);
+		fragmentEClass = createEClass(FRAGMENT);
+		createEReference(fragmentEClass, FRAGMENT__BASE_CLASS);
 
 		copyAttributeValueEClass = createEClass(COPY_ATTRIBUTE_VALUE);
 		createEReference(copyAttributeValueEClass, COPY_ATTRIBUTE_VALUE__SOURCE);
@@ -1756,9 +1746,8 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEAttribute(getTarget_AvailRAM(), theTypesPackage.getInteger(), "availRAM", null, 1, 1, Target.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getTarget_AvailROM(), theTypesPackage.getInteger(), "availROM", null, 1, 1, Target.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(partEClass, Part.class, "Part", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPart_Base_Property(), theUMLPackage.getProperty(), null, "base_Property", null, 1, 1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getPart_ColocateWithPort(), theUMLPackage.getPort(), null, "colocateWithPort", null, 0, -1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFragment_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, Fragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(copyAttributeValueEClass, CopyAttributeValue.class, "CopyAttributeValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCopyAttributeValue_Source(), theUMLPackage.getProperty(), null, "source", null, 1, 1, CopyAttributeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

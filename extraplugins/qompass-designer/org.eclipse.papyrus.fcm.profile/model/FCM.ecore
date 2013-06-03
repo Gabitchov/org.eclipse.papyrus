@@ -215,11 +215,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="availROM" ordered="false"
         lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Integer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Part">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Property" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="colocateWithPort" ordered="false"
-        upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Port"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
+        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CopyAttributeValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"

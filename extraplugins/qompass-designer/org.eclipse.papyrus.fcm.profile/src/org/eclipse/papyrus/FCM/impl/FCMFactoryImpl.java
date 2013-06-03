@@ -82,7 +82,7 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.CONFIGURATION: return createConfiguration();
 			case FCMPackage.INTERCEPTION_RULE: return createInterceptionRule();
 			case FCMPackage.TARGET: return createTarget();
-			case FCMPackage.PART: return createPart();
+			case FCMPackage.FRAGMENT: return createFragment();
 			case FCMPackage.COPY_ATTRIBUTE_VALUE: return createCopyAttributeValue();
 			case FCMPackage.AUTO_INDEX: return createAutoIndex();
 			case FCMPackage.AUTO_INDEX_PER_NODE: return createAutoIndexPerNode();
@@ -354,9 +354,9 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Part createPart() {
-		PartImpl part = new PartImpl();
-		return part;
+	public Fragment createFragment() {
+		FragmentImpl fragment = new FragmentImpl();
+		return fragment;
 	}
 
 	/**
