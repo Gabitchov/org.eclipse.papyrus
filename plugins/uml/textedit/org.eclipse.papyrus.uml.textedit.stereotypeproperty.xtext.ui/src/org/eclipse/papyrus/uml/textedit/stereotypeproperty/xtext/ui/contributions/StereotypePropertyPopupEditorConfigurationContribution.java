@@ -184,6 +184,39 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 							}
 						}
 					}
+					//cardinality *
+					else {
+						if(eObjects.size() == 0) {
+							updateProperties(appliedStereotypeProperty, new ArrayList());
+							return;
+						} else {
+							//iterate on NameExpression
+							ArrayList<Object> stereotypeApplicationList = new ArrayList<Object>();
+							Iterator<NameExpression> iterator = eObjects.iterator();
+							while(iterator.hasNext()) {
+								NameExpression nameExpression = iterator.next();
+								String id = nameExpression.getId();
+								Object foundStereotypeApplication = null;
+								//look for object
+								for(int i = 0; i < possibleElement.length; i++) {
+									if(possibleElement[i] instanceof EEnumLiteral && ((EEnumLiteral)possibleElement[i]).getName().equals(id)) {
+										foundStereotypeApplication = (EEnumLiteral)possibleElement[i];
+									}
+									if(possibleElement[i] instanceof Enumerator && ((Enumerator)possibleElement[i]).getName().equals(id)) {
+										foundStereotypeApplication = (Enumerator)possibleElement[i];
+									}
+								}
+								
+								if(foundStereotypeApplication != null) {
+									stereotypeApplicationList.add(foundStereotypeApplication);
+								}
+							}
+							updateProperties(appliedStereotypeProperty, stereotypeApplicationList);
+							return;
+						}
+
+
+					}
 				}
 
 				/**
@@ -250,6 +283,7 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 				@SuppressWarnings({ "rawtypes", "unchecked" })
 				protected void reconcileInteger(final AppliedStereotypeProperty appliedStereotypeProperty, EObject xtextObject) {
 					ArrayList<INTEGER_LITERAL> intList = AppliedStereotypePropertyEditorUtil.get_INTEGER(xtextObject);
+					//cardinality 1
 					if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
 						if(intList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, null);
@@ -260,14 +294,16 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 							updateProperties(appliedStereotypeProperty, value.intValue());
 							return;
 						}
-					} else {
+					}
+					//cardinality *
+					else {
 						if(intList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, new ArrayList());
 							return;
 						} else {
 							//iterate on NameExpression
 							ArrayList resultList = new ArrayList();
-							Iterator<INTEGER_LITERAL> iterator = resultList.iterator();
+							Iterator<INTEGER_LITERAL> iterator = intList.iterator();
 							while(iterator.hasNext()) {
 								INTEGER_LITERAL theint = iterator.next();
 								Integer value = new Integer(theint.getValue());
@@ -291,6 +327,7 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 				@SuppressWarnings("rawtypes")
 				protected void reconcileBoolean(final AppliedStereotypeProperty appliedStereotypeProperty, EObject xtextObject) {
 					ArrayList<BOOLEAN_LITERAL> booleanList = AppliedStereotypePropertyEditorUtil.get_BOOLEAN(xtextObject);
+					//cardinality 1
 					if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
 						if(booleanList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, null);
@@ -301,7 +338,9 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 							updateProperties(appliedStereotypeProperty, value.booleanValue());
 							return;
 						}
-					} else {
+					} 
+					//cardinality *
+					else {
 						if(booleanList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, new ArrayList());
 							return;
@@ -386,6 +425,7 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 				@SuppressWarnings("rawtypes")
 				protected void reconcileString(final AppliedStereotypeProperty appliedStereotypeProperty, EObject xtextObject) {
 					ArrayList<STRING_LITERAL> theStringList = AppliedStereotypePropertyEditorUtil.get_STRING(xtextObject);
+					//cardinality 1
 					if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
 						if(theStringList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, null);
@@ -395,7 +435,10 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 							updateProperties(appliedStereotypeProperty, theString.getValue());
 							return;
 						}
-					} else {
+					} 
+					
+					//cardinality *
+					else {
 						if(theStringList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, new ArrayList());
 							return;
