@@ -82,7 +82,9 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 			final AppliedStereotypeProperty appliedStereotypeProperty = (AppliedStereotypeProperty)((IAdaptable)editPart).getAdapter(AppliedStereotypeProperty.class);
 			
 			//this pop up for the moment cannot manage Datatype
-			if((!(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof PrimitiveType)) &&(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof DataType)){
+			if((!(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof PrimitiveType))&& 
+				(!(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof Enumeration))&&
+				(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof DataType)){
 				return null;
 			}
 			
