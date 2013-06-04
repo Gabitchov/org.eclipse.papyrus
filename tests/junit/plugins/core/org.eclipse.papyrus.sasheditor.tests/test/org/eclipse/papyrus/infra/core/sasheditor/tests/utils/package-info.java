@@ -12,17 +12,8 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.core.sasheditor.pagesmodel;
-
 /**
- * A Model Expression represent an expression used to describe a PagesModel.
- * Term implementing this interface can be used as starting point of expression.
- * <br>
- * Following classses are expressions: {@link PanelTerm}, {@link WindowTerm}, {@link PagesModel}.
- * 
- * @author cedric dumoulin
- * TODO Rename to IModelExp
+ * @author dumoulin
+ *
  */
-public interface IModelExp extends IModelObject {
-
-}
+package org.eclipse.papyrus.infra.core.sasheditor.tests.utils;

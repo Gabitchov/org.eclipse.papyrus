@@ -30,15 +30,19 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowContainerTestFacade;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowContentProviderUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IComponentPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IFolder;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.MessagePartModel;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IModelExp;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PagesModelException;
+import org.eclipse.papyrus.infra.core.sasheditor.utils.FakeObservableListener;
+import org.eclipse.papyrus.infra.core.sasheditor.utils.IObservableList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
@@ -543,4 +547,109 @@ public class SashWindowsContainerTest {
 		container.visit(visitor);
 		return visitor.result();
 	}
+
+	/**
+	 * Test If the FolderList is properly populated.
+	 * 
+	 * 	 * @throws PagesModelException 
+	 */
+	@Test
+	public void testFolderList() throws PagesModelException {
+		// Create populated content provider
+		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
+		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
+		
+		// define how to populate contentProvider
+		IModelExp expr = vSash( folder( "f1", page("p11"), page("p12")), folder( "f2", page("p21"), page("p22")));
+		// Try to create the model
+		helper.createModel(expr);
+		// Get the references
+		Map<String, Object> models = helper.queryModel(expr);
+	
+		// Create the container
+		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
+
+		// Check the folder list
+		IObservableList<IFolder> list = container.getIFolderList();
+		// Listener on the list
+		FakeObservableListener<IFolder> listener =  new FakeObservableListener<IFolder>();
+		list.addListener(listener);
+		
+		// Check list before 
+		assertNotNull("List exist", list );
+		assertEquals("list size", 2, list.size() );
+		
+		// create a folder
+		ITabFolderModel folder = (ITabFolderModel)models.get("f2");
+		assertNotNull( "folder found", folder);
+		contentProvider.createFolder(folder, 0, folder, SWT.UP);
+		// Refresh tabs, so that tabfolder is created.
+		container.refreshTabs();
+
+		// Check if the list contains the new folder
+		assertEquals("list size", 3, list.size() );
+		// check event fired
+		assertNotNull( "event sent", listener.getLastAddEvents() );
+//		assertEquals( "event sent", folder, listener.getLastAddEvents().getRawModel() );
+		
+	}
+	
+	/**
+	 * Test If the FolderList is properly populated.
+	 * 
+	 * 	 * @throws PagesModelException 
+	 */
+	@Test
+	public void testFolderList2() throws PagesModelException {
+		
+		SimpleSashWindowContainerTestFacade containerFacade = new SimpleSashWindowContainerTestFacade();
+		
+		// define how to populate contentProvider
+		IModelExp expr = vSash( folder( "f1", page("p11"), page("p12")), folder( "f2", page("p21"), page("p22")));
+		// Try to create the model
+		containerFacade.createModel(expr);
+	
+		// Create the container
+		SashWindowsContainer container = containerFacade.getSashContainer();
+
+		// Refresh container, so that pages are created.
+		container.refreshTabs();
+
+		// Check the folder list
+		IObservableList<IFolder> list = container.getIFolderList();
+		// Listener on the list
+		FakeObservableListener<IFolder> listener =  new FakeObservableListener<IFolder>();
+		list.addListener(listener);
+		
+		// Check list before 
+		assertNotNull("List exist", list );
+		assertEquals("list size", 2, list.size() );
+		
+		// create a folder
+		containerFacade.createFolder("f2", 0, "f2", SWT.UP);
+		// Refresh tabs, so that tabfolder is created.
+		container.refreshTabs();
+
+		// build expr corresponding to new configuration
+		IModelExp newExpr = vSash( 
+				folder( "f1", page("p11"), page("p12")), 
+				vSash(
+				  folder( "f3", page("p21")),
+				  folder( "f2", page("p22"))
+				)
+				);
+		// Reset facade names to correspond to new configuration.
+		containerFacade.resetNamesContext(newExpr);
+		ITabFolderModel folder = containerFacade.getITabFolderModel("f3");
+		
+		// Check if the list contains the new folder
+		assertEquals("list size", 3, list.size() );
+		
+		
+		// check event fired
+		assertNotNull( "event sent", listener.getLastAddEvents() );
+		assertEquals( "event sent", folder, listener.getLastAddEvents().getRawModel() );
+		
+	}
+
 }

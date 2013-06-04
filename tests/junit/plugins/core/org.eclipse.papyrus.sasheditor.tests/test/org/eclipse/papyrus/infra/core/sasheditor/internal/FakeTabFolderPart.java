@@ -12,8 +12,25 @@
  *
  *****************************************************************************/
 
+package org.eclipse.papyrus.infra.core.sasheditor.internal;
+
+
 /**
+ * A fake {@link TabFolderPart} for testing purpose.
+ * Do not use in a SashContainer.
+ * This class allows to instanciate a {@link TabFolderPart}.
+ * 
  * @author cedric dumoulin
  *
  */
-package org.eclipse.papyrus.infra.core.sasheditor.pagesmodel;
+public class FakeTabFolderPart extends TabFolderPart {
+
+	/**
+	 * Create a fake {@link TabFolderPart}
+	 * Constructor.
+	 *
+	 */
+	public FakeTabFolderPart() {
+		super( new RootPart(null), null, null);
+	}
+}

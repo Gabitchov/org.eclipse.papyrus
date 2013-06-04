@@ -14,13 +14,13 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.pagesmodel;
 
+
+
 /**
- * Exception thrown when a query part does not match a modelpart.
- * 
  * @author cedric dumoulin
  *
  */
-public class NoMatchException extends PagesModelException {
+public class BadNameException extends PagesModelException {
 
 	/**
 	 * 
@@ -31,7 +31,8 @@ public class NoMatchException extends PagesModelException {
 	 * Constructor.
 	 *
 	 */
-	public NoMatchException() {
+	public BadNameException() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -39,8 +40,9 @@ public class NoMatchException extends PagesModelException {
 	 *
 	 * @param arg0
 	 */
-	public NoMatchException(String arg0) {
+	public BadNameException(String arg0) {
 		super(arg0);
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -48,8 +50,9 @@ public class NoMatchException extends PagesModelException {
 	 *
 	 * @param arg0
 	 */
-	public NoMatchException(Throwable arg0) {
+	public BadNameException(Throwable arg0) {
 		super(arg0);
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -58,8 +61,9 @@ public class NoMatchException extends PagesModelException {
 	 * @param arg0
 	 * @param arg1
 	 */
-	public NoMatchException(String arg0, Throwable arg1) {
+	public BadNameException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -70,8 +74,9 @@ public class NoMatchException extends PagesModelException {
 	 * @param arg2
 	 * @param arg3
 	 */
-	public NoMatchException(String arg0, Throwable arg1, boolean arg2, boolean arg3) {
+	public BadNameException(String arg0, Throwable arg1, boolean arg2, boolean arg3) {
 		super(arg0, arg1, arg2, arg3);
+		// TODO Auto-generated constructor stub
 	}
 
 }

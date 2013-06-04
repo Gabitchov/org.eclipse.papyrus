@@ -12,16 +12,11 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple;
+package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
 import java.util.Iterator;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.AbstractPanelModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.RootModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SashPanelModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.TabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.Folder;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.HSash;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IPagesModelVisitor;
@@ -31,11 +26,17 @@ import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PagesModelException;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.SashPagesModel;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.VSash;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.WindowTerm;
+import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
 import org.eclipse.swt.SWT;
 
 /**
  * A base implementation of {@link IPagesModelVisitor} to visit conjointly SashPagesModel and 
- * SimpleContentProvider.
+ * {@link DiContentProvider}.
  * 
  * This implementation separate the navigation part (walk(term, contentProviderModel)) and 
  * the visit part (visit(term, contentProviderModel)). It implements the navigation part.
@@ -47,7 +48,7 @@ import org.eclipse.swt.SWT;
  * @author cedric dumoulin
  *
  */
-public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Object> {
+public class DiContentProviderBaseVisitor implements IPagesModelVisitor<Object> {
 
 	/**
 	 * @return the isVisitingParentFirst
@@ -57,31 +58,40 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	}
 
 	/**
-	 * Visit the model. Actually, there is no counterpart for {@link SashPagesModel} in {@link SimpleContentProvider}.
-	 *
-	 * @param windowTerm
-	 * @param windowModel
+	 * Visit the model. 
+	 * The second argument should be a SashModel, or one of its container (ex: DiContentProvider).
+	 * 
+	 * @param pagesModel
+	 * @param diPagesModel
 	 * @throws PagesModelException 
 	 */
-	public void walk(SashPagesModel pagesModel, Object contentProviderModel) throws PagesModelException {
+	public void walk(SashPagesModel pagesModel, Object diPagesModel) throws PagesModelException {
 		// Check associated model type
-		if(! (contentProviderModel instanceof SimpleSashWindowsContentProvider) ) {
-			throw new NoMatchException( "ContentProvider type ("+ contentProviderModel.getClass().getName()+ ") does not match to WindowTerm" );
+		// It can be of different type: DiContentProvider or SashModel
+		//
+		SashModel sashModel = null;
+		if( diPagesModel instanceof SashModel) {
+			sashModel = (SashModel)diPagesModel;
+		}
+		else if(diPagesModel instanceof DiContentProvider) {
+			sashModel = ((DiContentProvider)diPagesModel).getDiSashModel();
+		}
+		else  {
+			throw new NoMatchException( "ContentProvider type ("+ diPagesModel.getClass().getName()+ ") does not match to SashModel or one of its container" );
 		}
 		
-		SimpleSashWindowsContentProvider contentProvider = (SimpleSashWindowsContentProvider)contentProviderModel;
 
 		if( isVisitingParentFirst() ) {
-			visit(pagesModel, contentProvider);
+			visit(pagesModel, sashModel);
 		}
 		// visit children
 		for( WindowTerm windowTerm : pagesModel.getWindows() ) {
 			// Only one window
-			RootModel windowModel = (RootModel) ((AbstractPanelModel)contentProvider.getRootModel()).getParent();
+			Window windowModel = sashModel.getWindows().get(0);
 			windowTerm.getPanel().accept(this, windowModel);
 		}
 		if( ! isVisitingParentFirst() ) {
-			visit(pagesModel, contentProvider);
+			visit(pagesModel, sashModel);
 		}
 	}
 
@@ -93,17 +103,18 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 */
 	public void walk(WindowTerm windowTerm, Object windowModel) throws PagesModelException {
 		// Check associated model type
-		if(! (windowModel instanceof RootModel) ) {
-			throw new NoMatchException( "ContentProvider type ("+ windowModel.getClass().getName()+ ") does not match to WindowTerm" );
+		if(! (windowModel instanceof Window) ) {
+			throw new NoMatchException( "ContentProvider type ("+ windowModel.getClass().getName()+ ") does not match to Window" );
 		}
 		
-		RootModel window = (RootModel)windowModel;
+		Window window = (Window)windowModel;
 
 		if( isVisitingParentFirst() ) {
 			visit(windowTerm, window);
 		}
 		// visit children
-		windowTerm.getPanel().accept(this, window.getChild());
+		for( AbstractPanel panel : window.getChildren())
+		windowTerm.getPanel().accept(this, panel);
 		
 		if( ! isVisitingParentFirst() ) {
 			visit(windowTerm, window);
@@ -119,14 +130,14 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 */
 	public void walk(Folder folder, Object model) throws PagesModelException {
 		// Check associated model type
-		if(! (model instanceof TabFolderModel) ) {
+		if(! (model instanceof TabFolder) ) {
 			throw new NoMatchException( this.toString() 
 					+ "\n" + folder
 					+ "\n - Model object type does not match to FolderQueryPart."
-					+ " Expected TabFolderModel, found '" + model.getClass().getSimpleName() + "'."
+					+ " Expected TabFolder, found '" + model.getClass().getSimpleName() + "'."
 		            + " (" + folder.getName() +")" );
 		}
-		TabFolderModel folderModel = (TabFolderModel)model;
+		TabFolder folderModel = (TabFolder)model;
 		
 		// Visit this
 		if( isVisitingParentFirst() ) {
@@ -134,10 +145,10 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 		}
 
 		// visit children
-		Iterator<IPageModel> pageRefs = folderModel.getChildren().iterator();
+		Iterator<PageRef> pageRefs = folderModel.getChildren().iterator();
 		Iterator<Page> pageQueries = folder.getPages().iterator();
 		while (pageRefs.hasNext() && pageQueries.hasNext() ) {
-			IPageModel pageRef = pageRefs.next();
+			PageRef pageRef = pageRefs.next();
 			Page query = pageQueries.next();
 			
 			query.accept(this, pageRef);
@@ -168,18 +179,18 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 */
 	public void walk(HSash sash, Object model) throws PagesModelException {
 		// Check associated model type
-		if(! (model instanceof SashPanelModel) ) {
+		if(! (model instanceof SashPanel) ) {
 			throw new NoMatchException( this.toString() + " - Model object type does not match to SashPanel (found "
 					+ model.getClass() 
 					+ " )");
 		}
 		
-		SashPanelModel sashModel = (SashPanelModel)model;
+		SashPanel sashModel = (SashPanel)model;
 
-		// Check orientation
-		if( sashModel.getSashDirection() != SWT.HORIZONTAL) {
-			throw new NoMatchException( this.toString() + " - SashOrientation does not match 'HORIZONTAL'" );
-		}
+//		// Check orientation
+//		if( sashModel.getDirection() != SWT.HORIZONTAL) {
+//			throw new NoMatchException( this.toString() + " - SashOrientation does not match 'HORIZONTAL'" );
+//		}
 		// Visit this
 		if( isVisitingParentFirst() ) {
 			visit(sash, sashModel);
@@ -203,18 +214,18 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 */
 	public void walk(VSash sash, Object model) throws PagesModelException {
 		// Check associated model type
-		if(! (model instanceof SashPanelModel) ) {
+		if(! (model instanceof SashPanel) ) {
 			throw new NoMatchException( this.toString() + " - Model object type does not match to SashPanel (found "
 					+ model.getClass() 
 					+ " )");
 		}
 		
-		SashPanelModel sashModel = (SashPanelModel)model;
+		SashPanel sashModel = (SashPanel)model;
 
-		// Check orientation
-		if( sashModel.getSashDirection() != SWT.VERTICAL) {
-			throw new NoMatchException( this.toString() + " - SashOrientation does not match 'VERTICAL'" );
-		}
+//		// Check orientation
+//		if( sashModel.getDirection() != SWT.VERTICAL) {
+//			throw new NoMatchException( this.toString() + " - SashOrientation does not match 'VERTICAL'" );
+//		}
 		// Visit this
 		if( isVisitingParentFirst() ) {
 			visit(sash, sashModel);
@@ -230,17 +241,17 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	}
 
 	/**
-	 * Walk the page. Simply call the corresponding {@link SimpleContentProviderBaseVisitor#visit(Page, IPageModel)} method.
+	 * Walk the page. Simply call the corresponding {@link DiContentProviderBaseVisitor#visit(Page, IPageModel)} method.
 	 * @param page
 	 * @param pageModel
 	 * @throws PagesModelException
 	 */
 	public void walk(Page page, Object model) throws PagesModelException {
 		// Check associated model type
-		if(! (model instanceof IPageModel) ) {
+		if(! (model instanceof PageRef) ) {
 			throw new NoMatchException( this.toString() + " - Model object type does not match to PageRef" );
 		}
-		IPageModel pageModel = (IPageModel)model;
+		PageRef pageModel = (PageRef)model;
 		visit(page, pageModel);
 	}
 
@@ -252,7 +263,7 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 * @param windowModel
 	 * @throws PagesModelException 
 	 */
-	public void visit(SashPagesModel pagesModel, Object windowModel) throws PagesModelException {
+	public void visit(SashPagesModel pagesModel, SashModel windowModel) throws PagesModelException {
 
 	}
 
@@ -264,7 +275,7 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 * @param windowTerm
 	 * @param windowModel
 	 */
-	public void visit(WindowTerm windowTerm, RootModel windowModel) throws PagesModelException {
+	public void visit(WindowTerm windowTerm, Window windowModel) throws PagesModelException {
 		// To be implemented by subclass.
 	}
 
@@ -275,7 +286,7 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 * @param folder
 	 * @param folderModel
 	 */
-	public void visit(Folder folder, TabFolderModel folderModel) throws PagesModelException{
+	public void visit(Folder folder, TabFolder folderModel) throws PagesModelException{
 
 	}
 
@@ -286,7 +297,7 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 * @param sashQuery
 	 * @param sashModel
 	 */
-	public void visit(HSash sashQuery, SashPanelModel sashModel) throws PagesModelException {
+	public void visit(HSash sashQuery, SashPanel sashModel) throws PagesModelException {
 		
 	}
 
@@ -298,7 +309,7 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 * @param sash
 	 * @param sashModel
 	 */
-	public void visit(VSash sashQuery, SashPanelModel sashModel) throws PagesModelException{
+	public void visit(VSash sashQuery, SashPanel sashModel) throws PagesModelException{
 	}
 
 	/**
@@ -309,7 +320,7 @@ public class SimpleContentProviderBaseVisitor implements IPagesModelVisitor<Obje
 	 * @param page
 	 * @param pageModel
 	 */
-	public void visit(Page page, IPageModel pageModel) throws PagesModelException {
+	public void visit(Page page, PageRef pageModel) throws PagesModelException {
 
 	}
 

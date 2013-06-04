@@ -16,10 +16,12 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple;
 
 import java.util.Map;
 
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IModelExp;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PagesModelException;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PanelTerm;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.WindowTerm;
+import org.eclipse.papyrus.infra.core.sasheditor.tests.utils.ISashWindowsContentProviderTestUtils;
 
 /**
  * Class providing some utilities to check the {@link SimpleSashWindowsContentProvider} class.
@@ -30,7 +32,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.WindowTerm;
  * @author cedric dumoulin
  *
  */
-public class SimpleSashWindowContentProviderUtils {
+public class SimpleSashWindowContentProviderUtils implements ISashWindowsContentProviderTestUtils {
 
 	/**
 	 * ContentProvider used .
@@ -39,11 +41,29 @@ public class SimpleSashWindowContentProviderUtils {
 	
 	/**
 	 * Constructor.
+	 * Create a default internal {@link SimpleSashWindowsContentProvider};
+	 * @param modelMngr
+	 */
+	public SimpleSashWindowContentProviderUtils() {
+		this.contentProvider = new SimpleSashWindowsContentProvider();
+	}
+
+	/**
+	 * Constructor.
 	 *
 	 * @param modelMngr
 	 */
 	public SimpleSashWindowContentProviderUtils(SimpleSashWindowsContentProvider contentProvider) {
 		this.contentProvider = contentProvider;
+	}
+
+
+	
+	/**
+	 * @return the contentProvider
+	 */
+	public ISashWindowsContentProvider getIContentProvider() {
+		return contentProvider;
 	}
 
 

@@ -14,14 +14,12 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.pagesmodel;
 
+
 /**
- * Root Exception of the pagesmodel package
- * 
  * @author cedric dumoulin
- * 
- * TODO Rename to PagesModelException
+ *
  */
-public class PagesModelException extends Exception {
+public class NotFoundException extends PagesModelException {
 
 	/**
 	 * 
@@ -30,49 +28,55 @@ public class PagesModelException extends Exception {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 */
-	public PagesModelException() {
+	public NotFoundException() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * Constructor.
-	 * 
-	 * @param arg0
-	 */
-	public PagesModelException(String arg0) {
-		super(arg0);
-	}
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param arg0
-	 */
-	public PagesModelException(Throwable arg0) {
-		super(arg0);
-	}
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param arg0
-	 * @param arg1
-	 */
-	public PagesModelException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-	}
-
-	/**
-	 * Constructor.
-	 * 
+	 *
 	 * @param arg0
 	 * @param arg1
 	 * @param arg2
 	 * @param arg3
 	 */
-	public PagesModelException(String arg0, Throwable arg1, boolean arg2, boolean arg3) {
-		super(arg0, arg1);//, arg2, arg3);
+	public NotFoundException(String arg0, Throwable arg1, boolean arg2, boolean arg3) {
+		super(arg0, arg1, arg2, arg3);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param arg0
+	 * @param arg1
+	 */
+	public NotFoundException(String arg0, Throwable arg1) {
+		super(arg0, arg1);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param arg0
+	 */
+	public NotFoundException(String arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param arg0
+	 */
+	public NotFoundException(Throwable arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
 	}
 
 }

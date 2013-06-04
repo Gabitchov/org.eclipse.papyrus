@@ -122,7 +122,9 @@ public class CreateModelInSimpleContentProviderVisitor extends SimpleContentProv
 			return new SashPanelModel(parent, null, null, SWT.VERTICAL);
 		}
 		else /*if (panel instanceof Folder)*/ {
-			return new TabFolderModel(contentProvider);
+			TabFolderModel folder = new TabFolderModel(contentProvider);
+			folder.setParent(parent);
+			return folder;
 		}
 		
 	}

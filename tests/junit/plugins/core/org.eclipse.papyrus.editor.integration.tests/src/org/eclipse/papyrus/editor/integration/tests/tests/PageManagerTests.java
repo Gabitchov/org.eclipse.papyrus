@@ -40,6 +40,8 @@ import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -220,6 +222,11 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, timingDiagram)));
 		Assert.assertTrue(editor.getActiveEditor() instanceof UmlTimingDiagramForMultiEditor);
 
+		
+		// Check type requested by selectPage
+		ISashWindowsContainer container = editor.getServicesRegistry().getService(ISashWindowsContainer.class);
+		IPage selectedPage = container.getActiveSashWindowsPage();
+		
 		//FIXME: Does not work yet. See Bug 401107: [IPageManager] selectPage does not work
 		//TODO: There should be a specific test for selectPage, with a basic and a complex model
 		pageManager.selectPage(classDiagram);

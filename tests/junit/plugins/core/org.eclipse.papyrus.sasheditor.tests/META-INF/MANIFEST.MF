@@ -14,4 +14,5 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor.tests;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Export-Package: org.eclipse.papyrus.infra.core.sasheditor.contentprovider,
+ org.eclipse.papyrus.infra.core.sasheditor.pagesmodel
