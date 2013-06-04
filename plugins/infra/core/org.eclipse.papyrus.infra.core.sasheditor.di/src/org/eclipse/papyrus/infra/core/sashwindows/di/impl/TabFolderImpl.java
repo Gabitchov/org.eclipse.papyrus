@@ -93,6 +93,18 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	 * 
 	 * @generated NOT
 	 */
+	public void addPage(int index, Object pageIdentifier) {
+		PageRef newPage = DiFactory.eINSTANCE.createPageRef();
+		newPage.setPageIdentifier(pageIdentifier);
+		getChildren().add(index, newPage);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
 	public void removePage(int pageIndex) {
 		getChildren().remove(pageIndex);
 	}

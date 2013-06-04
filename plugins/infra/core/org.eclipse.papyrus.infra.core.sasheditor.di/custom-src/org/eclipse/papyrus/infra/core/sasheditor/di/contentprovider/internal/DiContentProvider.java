@@ -95,6 +95,32 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	}
 
 	/**
+	 * Add a page identifier to the SashModel. This page identifier will be added as "child" of the
+	 * specified TabFolder.
+	 * 
+	 * Not use by SashContainer. Used by the tests.
+	 * @param pageIdentifier
+	 */
+	public void addPage(ITabFolderModel tabFolderModel, Object pageIdentifier) {
+		TabFolder folderModel = ((TabFolderModel)tabFolderModel).getTabFolder();
+
+		folderModel.addPage(pageIdentifier);
+	}
+
+	/**
+	 * Add a page identifier to the SashModel. This page identifier will be added as "child" of the
+	 * specified TabFolder.
+	 * 
+	 * Not use by SashContainer. Used by the tests.
+	 * @param pageIdentifier
+	 */
+	public void addPage(ITabFolderModel tabFolderModel, int index, Object pageIdentifier) {
+		TabFolder folderModel = ((TabFolderModel)tabFolderModel).getTabFolder();
+
+		folderModel.addPage(index, pageIdentifier);
+	}
+
+	/**
 	 * Add a page identifier to the SashModel. This page identifier will be added as "child" of the current
 	 * TabFolder.
 	 * 

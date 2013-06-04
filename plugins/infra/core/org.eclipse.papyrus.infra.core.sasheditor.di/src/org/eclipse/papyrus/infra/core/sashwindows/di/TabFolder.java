@@ -62,6 +62,14 @@ public interface TabFolder extends AbstractPanel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
+	 * @generated
+	 */
+	void addPage(int index, Object pageIdentifier);
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model pageIndexDataType="org.eclipse.papyrus.infra.core.sashwindows.di.int" pageIndexRequired="true" pageIndexOrdered="false"
 	 * @generated
 	 */
