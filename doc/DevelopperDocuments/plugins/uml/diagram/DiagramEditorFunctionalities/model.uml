@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements">
+  <uml:Model xmi:id="_v2A68HaMEeKemeMpJaVA3A" name="DiagramEditorFunctionalities">
+    <ownedComment xmi:id="_xpU2MHaNEeKemeMpJaVA3A" annotatedElement="_v2A68HaMEeKemeMpJaVA3A">
+      <body>The purpose of this document is to explain basic functionalities intra diagram, i.e. how element in the diagram can be manipulated without taking in account link with model explorer, and properties view </body>
+    </ownedComment>
+    <packageImport xmi:id="_v2A68XaMEeKemeMpJaVA3A">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_2hdp0HaNEeKemeMpJaVA3A" name="Requirements">
+      <packagedElement xmi:type="uml:Class" xmi:id="_6udOsHaNEeKemeMpJaVA3A" name="DisplayElementAtFirstLevel"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_u6MhAHaOEeKemeMpJaVA3A" name="DisplayElementAtFirstLevel_+1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_4PBJEHaTEeKemeMpJaVA3A" name="MoveElementIntoAnother"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="__iyRoHaTEeKemeMpJaVA3A" name="MoveElementIntoADiagram"/>
+    </packagedElement>
+    <profileApplication xmi:id="_V0CKUHaNEeKemeMpJaVA3A">
+      <eAnnotations xmi:id="_V1EsIHaNEeKemeMpJaVA3A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_6u56oHaNEeKemeMpJaVA3A" text="Papyrus shall let display every elements at first layer even if the namespace is not respected" id="Req_001" base_Class="_6udOsHaNEeKemeMpJaVA3A"/>
+  <Requirements:Requirement xmi:id="_u6MhAXaOEeKemeMpJaVA3A" text="Papyrus shall display element by respected namespace when they are contained graphically by other elements " id="Req_002" base_Class="_u6MhAHaOEeKemeMpJaVA3A"/>
+  <Requirements:Requirement xmi:id="_4PBJEXaTEeKemeMpJaVA3A" text="When an element is moved into another element, the container has to change, i.e. the qualified name change" id="Req_003" base_Class="_4PBJEHaTEeKemeMpJaVA3A"/>
+  <Requirements:Requirement xmi:id="__iyRoXaTEeKemeMpJaVA3A" text="When an element move from an element to the diagram, two options can be applied:&#xD;&#xA;- The container change and the namespace has to be adapted, so a clean into diagrams has to be done to respect Req_002&#xD;&#xA;- The container does not change; this is only a graphical move, as described by the req_001" id="Req_004" base_Class="__iyRoHaTEeKemeMpJaVA3A"/>
+</xmi:XMI>
