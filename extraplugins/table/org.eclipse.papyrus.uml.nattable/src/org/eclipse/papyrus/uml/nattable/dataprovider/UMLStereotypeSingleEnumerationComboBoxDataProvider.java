@@ -73,6 +73,8 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 		final List<Object> literals = new ArrayList<Object>();
 		Object el = this.elementProvider.getColumnElement(columnIndex);
 		Object rowElement = this.elementProvider.getRowElement(rowIndex);
+		el = AxisUtils.getRepresentedElement(el);
+		rowElement = AxisUtils.getRepresentedElement(rowElement);
 		Element modelElement = null;
 		if(rowElement instanceof Element && el == this.axisElement) {
 			modelElement = (Element)rowElement;
