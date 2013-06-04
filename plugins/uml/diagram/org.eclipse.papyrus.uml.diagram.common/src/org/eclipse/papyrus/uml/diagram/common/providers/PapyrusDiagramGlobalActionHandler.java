@@ -57,6 +57,32 @@ import org.eclipse.ui.IWorkbenchPart;
 @SuppressWarnings("restriction")
 public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionHandler {
 
+	@Override
+	public boolean canHandle(IGlobalActionContext cntxt) {
+		/* Check if the active part is a IDiagramWorkbenchPart */
+		IWorkbenchPart part = cntxt.getActivePart();
+		part = (IWorkbenchPart)part.getAdapter(IDiagramWorkbenchPart.class);
+		if(!(part instanceof IDiagramWorkbenchPart)) {
+			return false;
+		}
+
+		/* Check if the selection is a structured selection */
+		if(!(cntxt.getSelection() instanceof IStructuredSelection)) {
+			return false;
+		}
+
+		/* Check the action id */
+		String actionId = cntxt.getActionId();
+		if(actionId.equals(GlobalActionId.COPY)) {
+			return canCopy(cntxt);
+		} else if(actionId.equals(GlobalActionId.CUT)) {
+			return canCut(cntxt);
+		} else if(actionId.equals(GlobalActionId.PASTE)) {
+			return canPaste(cntxt);
+		}
+		return false;
+	}
+
 	protected boolean canPaste(IGlobalActionContext cntxt) {
 		/* Get the selected edit parts */
 		Object[] objectsArray = ((IStructuredSelection)cntxt.getSelection()).toArray();
@@ -85,6 +111,7 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 	public ICommand getCommand(IGlobalActionContext cntxt) {
 		/* Check if the active part is a IDiagramWorkbenchPart */
 		IWorkbenchPart part = cntxt.getActivePart();
+		part = (IWorkbenchPart)part.getAdapter(IDiagramWorkbenchPart.class);
 		if(!(part instanceof IDiagramWorkbenchPart)) {
 			return null;
 		}
