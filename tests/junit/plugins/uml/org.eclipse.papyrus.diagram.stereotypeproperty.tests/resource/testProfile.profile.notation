@@ -66,6 +66,14 @@
         <element xmi:type="uml:Property" href="testProfile.profile.uml#_VDBX4M0jEeKjW9KkdY00_w"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_VEXbsc0jEeKjW9KkdY00_w"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_Si-4gM0tEeKjW9KkdY00_w" type="3002">
+        <element xmi:type="uml:Property" href="testProfile.profile.uml#_SivA4M0tEeKjW9KkdY00_w"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Si-4gc0tEeKjW9KkdY00_w"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_VD9AcM0tEeKjW9KkdY00_w" type="3002">
+        <element xmi:type="uml:Property" href="testProfile.profile.uml#_VDuW8M0tEeKjW9KkdY00_w"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_VD9Acc0tEeKjW9KkdY00_w"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_IkHZcc0eEeKwCqQbxnBb_w"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_IkHZcs0eEeKwCqQbxnBb_w"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_IkHZc80eEeKwCqQbxnBb_w"/>
