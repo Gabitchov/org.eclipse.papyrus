@@ -103,7 +103,7 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	 */
 	public void removeTab(IPageModel tabItem) {
 		doRemoveTab(tabItem);
-		contentProvider.firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, tabItem));
+		contentProvider.firePropertyChanged(new ContentEvent(ContentEvent.REMOVED, this, tabItem));
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	 */
 	protected void doRemoveTab(IPageModel tabItem) {
 		children.remove(tabItem);
-		contentProvider.firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, tabItem));
+//		contentProvider.firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, tabItem));
 	}
 
 	/**

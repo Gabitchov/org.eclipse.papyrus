@@ -18,6 +18,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Widget;
 
 /**
  * This class represent a leaf part that is a part containing an editor or a component.
@@ -52,6 +53,20 @@ public abstract class PagePart extends AbstractPart implements IPage {
 		return parent;
 	}
 
+	
+	/**
+	 * Get the {@link TabItemPart} that is associated to this Page.
+	 * <br>
+	 * The {@link TabItemPart} represents the tab in the folder.
+	 * @return
+	 */
+	protected TabItemPart getAssociatedTabItemPart() {
+		
+		// TabItemPart is not directly accessible. We should ask it to 
+		// the parent.
+		return getParent().lookupAssociatedTabItemPart(this);
+	}
+	
 	/**
 	 * Orphan this node. The parent is set to null, but control is left unchanged.
 	 * The node can be reattached with reparent(). Change garbage state to {@link GarbageState.ORPHANED}.
@@ -132,6 +147,14 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	 */
 	abstract public void reparent(TabFolderPart parent);
 
+	/**
+	 * Return the {@link Widget} of the tab associated to this page.
+	 * @return The {@link Widget} of the tab.
+	 */
+	public Widget getTabWidget() {
+		return getAssociatedTabItemPart().control;
+	}
+	
 	/**
 	 * Add the tree of parts starting from this part.
 	 * As we are a leaf, add itself only.

@@ -12,7 +12,9 @@ Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
+ org.eclipse.core.expressions;bundle-version="3.4.500",
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.0.qualifier

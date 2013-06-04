@@ -2,5 +2,20 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="operationApprover" name="operationApprover" schema="schema/operationApprover.exsd"/>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.commands.RenameDiagramHandler"
+            commandId="org.eclipse.papyrus.infra.core.sasheditor.command.tabdoubleclick">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Rename the current Diagram"
+            id="org.eclipse.papyrus.infra.core.sasheditor.command.tabdoubleclick"
+            name="Rename Diagram">
+      </command>
+   </extension>
 
 </plugin>

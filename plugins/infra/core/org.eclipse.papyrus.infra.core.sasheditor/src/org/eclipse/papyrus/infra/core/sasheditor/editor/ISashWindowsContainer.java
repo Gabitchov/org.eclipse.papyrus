@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.infra.core.sasheditor.utils.IObservableList;
 import org.eclipse.ui.IEditorPart;
 
 public interface ISashWindowsContainer {
@@ -38,6 +39,15 @@ public interface ISashWindowsContainer {
 	 */
 	public List<IPage> getVisiblePages();
 
+	/**
+	 * Return a list of all folders opened in this SashContainer. The list should only
+	 * be used as a 'view' list. It should not be modified or written. The list
+	 * is observable.
+	 * 
+	 * @return a read only and observable list of {@link IFolder}.
+	 */
+	public IObservableList<IFolder> getIFolderList();
+	
 	/**
 	 * Get the list of visible IEditorPart obtain from the pages of type IEditorPage. 
 	 * The visible IPages are the one that have there diagram area 
@@ -94,6 +104,22 @@ public interface ISashWindowsContainer {
 	 * 
 	 */
 	public void removePageLifeCycleListener(IPageLifeCycleEventsListener listener);
+
+	/**
+	 * Add a listener {@link ITabMouseEventsListener} on folder's tabs events.
+	 * @param listener
+	 */
+	public void addFolderTabMouseEventListener(ITabMouseEventsListener listener);
+
+	/**
+	 * Remove a listener on Page LifeCycle events.
+	 * 
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#removePageChangedListener(org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener)
+	 * @param listener
+	 * 
+	 */
+	public void removeFolderTabMouseEventListener(ITabMouseEventsListener listener);
+
 	/**
 	 * Set a {@link MenuManager} used to manage a contextual menu that is shown on the tabs area of the folders.
 	 * @param menuManager The {@link MenuManager} used to create the menu on the tab area.

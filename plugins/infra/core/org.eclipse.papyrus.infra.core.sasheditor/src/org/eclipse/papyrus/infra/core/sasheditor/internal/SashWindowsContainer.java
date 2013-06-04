@@ -27,11 +27,14 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IFolder;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ITabMouseEventsListener;
+import org.eclipse.papyrus.infra.core.sasheditor.utils.IObservableList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -79,6 +82,25 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	private SashContainerEventsProvider lifeCycleEventProvider;
 
+	/**
+	 * Event provider firing Folder life cycle events to registered listeners. Inner parts call the fireXxxEvents
+	 * when appropriate.
+	 */
+	private SashContainerFolderEventsProvider folderLifeCycleEventProvider;
+
+	/**
+	 * Event provider firing mouse events from tabs.
+	 * 
+	 */
+	private TabMouseEventsProvider tabMouseEventsProvider;
+
+	/**
+	 * A manager used to maintain a view list of available {@link TabFolderPart}. This list should 
+	 * only be used in a READ way. It should not be modified by something else than its manager.
+	 * 
+	 */
+	private TabFolderListManager folderListManager;
+	
 	/**
 	 * The part used as root. We use an extra class as root in order to separate the code dedicated to
 	 * ITilePart.
@@ -153,6 +175,12 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// Life cycle event provider
 		lifeCycleEventProvider = new SashContainerEventsProvider();
+
+		// Tab mouve event provider
+		tabMouseEventsProvider = new TabMouseEventsProvider();
+		
+		// Folder list view
+		initTabFolderListManager();
 	}
 
 	/**
@@ -259,7 +287,11 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		container.dispose();
 
 		// dispose part children
-		rootPart.disposeThisAndChildren();
+		if(rootPart!=null) {
+			// rootPart can be null if createPartControl has not been called.
+			// This can happen in tests.
+		    rootPart.disposeThisAndChildren();
+		}
 
 		// clean up properties to help GC
 		activePageTracker = null;
@@ -907,6 +939,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	};
 
+
 	/**
 	 * Create the drop target
 	 */
@@ -1015,6 +1048,46 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
+	 * @return the folderLifeCycleEventProvider
+	 */
+	protected SashContainerFolderEventsProvider getFolderLifeCycleEventProvider() {
+		return folderLifeCycleEventProvider;
+	}
+
+	/**
+	 * Get the event provider used to throw TabMouseEvents.
+	 * @return the TabMouseEventsProvider
+	 */
+	public TabMouseEventsProvider getFolderTabMouseEventProvider() {
+		return tabMouseEventsProvider;
+	}
+
+	/**
+	 * Return a list of all folders opened in this SashContainer. The list should only
+	 * be used as a 'view' list. It should not be modified or written. The list
+	 * is observable.
+	 * <br>
+	 * Actually, the folders are never removed from the list. This is because
+	 * TabFolderPart.dispose() is never called.
+	 * TODO Let TabFolderPart.dispose() be called.
+	 * 
+	 * @return a read only and observable list of {@link IFolder}.
+	 */
+	public IObservableList<IFolder> getIFolderList() {
+		return folderListManager.getFolderList();
+	}
+	
+	/**
+	 * Init the folderListManager and let it listen to folder events.
+	 */
+	private void initTabFolderListManager() {
+		folderLifeCycleEventProvider = new SashContainerFolderEventsProvider();
+		folderListManager = new TabFolderListManager();
+		// Listen to folder events.
+		folderLifeCycleEventProvider.addListener(folderListManager);
+	}
+	
+	/**
 	 * Add a listener on pageChanged event.
 	 * This implementation delegates to the internal PageTracker.
 	 * 
@@ -1049,6 +1122,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		lifeCycleEventProvider.addListener(listener);
 	}
 
+	
 	/**
 	 * Remove a listener on Page LifeCycle events.
 	 * 
@@ -1060,6 +1134,24 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		lifeCycleEventProvider.removeListener(listener);
 	}
 
+	/**
+	 * Add a listener {@link ITabMouseEventsListener} on folder's tabs events.
+	 * 
+	 * @param listener
+	 */
+	public void addFolderTabMouseEventListener(ITabMouseEventsListener listener) {
+		tabMouseEventsProvider.addListener(listener);
+	}
+	
+	/**
+	 * Add a listener {@link ITabMouseEventsListener} on folder's tabs events.
+	 * 
+	 * @param listener
+	 */
+	public void removeFolderTabMouseEventListener(ITabMouseEventsListener listener) {
+		tabMouseEventsProvider.removeListener(listener);
+	}
+	
 	/* ***************************************************** */
 	/* Internal Visitors */
 	/* ***************************************************** */
@@ -1235,6 +1327,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		}
 
 	}
+
 
 
 }

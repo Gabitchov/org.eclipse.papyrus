@@ -22,6 +22,7 @@ import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IFolder;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.AbstractTabFolderPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -60,7 +61,7 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
  *        TODO : Listen to the page change event, and call setActivePage().
  */
 @SuppressWarnings("restriction")
-public class TabFolderPart extends AbstractTabFolderPart {
+public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
@@ -135,6 +136,45 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		public void pageChangeEvent(int newPageIndex) {
 			// User has change the page. Inform the TabFolderPart
 			pageChange(newPageIndex);
+		}
+
+		/**
+		 * A double click is detected.
+		 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.PTabFolder.IPTabFolderListener#mouseDoubleClickEvent(int, org.eclipse.swt.events.MouseEvent)
+		 *
+		 * @param itemIndex
+		 * @param e
+		 */
+		public void mouseDoubleClickEvent(int itemIndex, MouseEvent e) {
+			
+			PagePart page = getPagePart(itemIndex);
+			getSashWindowContainer().getFolderTabMouseEventProvider().fireMouseDoubleClickEvent(page, TabFolderPart.this, e);
+		}
+
+		/**
+		 * A double click is detected.
+		 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.PTabFolder.IPTabFolderListener#mouseDoubleClickEvent(int, org.eclipse.swt.events.MouseEvent)
+		 *
+		 * @param itemIndex
+		 * @param e
+		 */
+		public void mouseUpEvent(int itemIndex, MouseEvent e) {
+			
+			PagePart page = getPagePart(itemIndex);
+			getSashWindowContainer().getFolderTabMouseEventProvider().fireMouseUpEvent(page, TabFolderPart.this, e);
+		}
+
+		/**
+		 * A double click is detected.
+		 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.PTabFolder.IPTabFolderListener#mouseDoubleClickEvent(int, org.eclipse.swt.events.MouseEvent)
+		 *
+		 * @param itemIndex
+		 * @param e
+		 */
+		public void mouseDownEvent(int itemIndex, MouseEvent e) {
+			
+			PagePart page = getPagePart(itemIndex);
+			getSashWindowContainer().getFolderTabMouseEventProvider().fireMouseDownEvent(page, TabFolderPart.this, e);
 		}
 
 	};
@@ -235,6 +275,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		initDrag(res.getControl());
 		// init menu
 		initMenuManager();
+		// throw creation event
+		getSashWindowContainer().getFolderLifeCycleEventProvider().fireFolderCreatedEvent(this);
 	}
 
 	/**
@@ -346,6 +388,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	public void dispose() {
 		// detach menu as it is shared between folders.
 		getControl().setMenu(null);
+		// throw dispose event
+		getSashWindowContainer().getFolderLifeCycleEventProvider().fireFolderDisposedEvent(this);
 
 		deactivate();
 
@@ -481,7 +525,27 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @return
 	 */
 	protected PagePart getPagePart(int index) {
+		if( index < 0) {
+			return null;
+		}
 		return currentTabItems.get(index).getChildPart();
+	}
+
+
+	/**
+	 * Lookup the {@link TabItemPart} associated to the specified {@link PagePart}.
+	 * 
+	 * @param page The page for which the {@link TabItemPart} is lookuped.
+	 * @return The associated {@link TabItemPart} or null if not found.
+	 */
+	protected TabItemPart lookupAssociatedTabItemPart(PagePart page) {
+		for(TabItemPart child : currentTabItems) {
+			if(child.getChildPart() == page) {
+				return child;
+			}
+		}
+		// Not found 
+		return null;
 	}
 
 	/**
@@ -758,7 +822,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * 
 	 * @return
 	 */
-	protected Object getRawModel() {
+	public Object getRawModel() {
 		return rawModel;
 	}
 
@@ -1204,16 +1268,18 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			private int count = 0;
 
 			public void mouseEnter(MouseEvent e) {
-				//				System.out.println("MouseEnter()" + count++);
+//				System.out.println("MouseEnter()" + count++);
 
 			}
 
 			public void mouseExit(MouseEvent e) {
-				//				System.out.println("MouseExit()" + count++);
+//				System.out.println("MouseExit()" + count++);
 				toolTipManager.closeToolTip();
 			}
 
 			public void mouseHover(MouseEvent e) {
+
+//				System.out.println("MouseHover(" + e.x +", "+ e.y +")");
 				CTabFolder folder = getTabFolder();
 				//				Point pt = folder.toDisplay(e.x, e.y);
 				Point pt = new Point(e.x, e.y);
@@ -1225,10 +1291,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				}
 
 				PagePart part = currentTabItems.get(index).getChildPart();
-				//								System.out.println("MouseHover(" + e.widget 
-				//										+ ", part=" + part.getPageTitle()
-				//										+ ", item=" + item
-				//										+ ") - " + count++);
+//				System.out.println("MouseHover(" + e.widget 
+//						+ ", part=" + part.getPageTitle()
+//						+ ", item=" + item
+//						+ ") - " + count++);
 				// TODO move it away 
 				//toolTipManager.showToolTip(item.getBounds(), part.getControl(), pt);
 				toolTipManager.showToolTip(part, item.getBounds(), pt);

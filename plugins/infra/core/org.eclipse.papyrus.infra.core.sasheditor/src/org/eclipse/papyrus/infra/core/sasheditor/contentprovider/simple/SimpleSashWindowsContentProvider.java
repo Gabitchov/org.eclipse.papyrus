@@ -111,8 +111,28 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * 
 	 * {@inheritDoc}
 	 */
+	public void addPage(ITabFolderModel toFolderModel, IPageModel newModel) {
+		TabFolderModel srcFolder = (TabFolderModel)toFolderModel;
+		srcFolder.doAddItem(newModel);
+		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
 	public void addPage(int index, IPageModel newModel) {
 		currentTabFolder.doAddItem(index, newModel);
+		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	public void addPage(ITabFolderModel toFolderModel, int index, IPageModel newModel) {
+		TabFolderModel srcFolder = (TabFolderModel)toFolderModel;
+		srcFolder.doAddItem(index, newModel);
 		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));
 	}
 
@@ -356,8 +376,14 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	public void removePage(IPageModel tabItem) {
 
 		TabFolderModel folder = lookupPageFolder(tabItem);
-		if(folder != null)
-			folder.removeTab(tabItem);
+//		if(folder != null)
+//			folder.removeTab(tabItem);
+		if(folder != null) {
+			folder.doRemoveTab(tabItem);
+			removeEmptyFolder(folder);
+			doSetCurrentFolder(lookupPageFolder());
+			contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.REMOVED, this, tabItem));
+		}
 	}
 
 	/**

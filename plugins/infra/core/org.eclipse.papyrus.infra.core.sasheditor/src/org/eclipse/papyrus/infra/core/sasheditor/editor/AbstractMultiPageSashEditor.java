@@ -49,6 +49,12 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	private SashTabDecorationSynchronizer tabsSynchronizer;
 
 	/**
+	 * Listener on double click events from {@link ISashWindowsContainer}'tabs.
+	 */
+	private TabMouseEventListener tabMouseEventListener;
+	
+
+	/**
 	 * get the contentProvider. Create it if necessary.
 	 * 
 	 * @return
@@ -128,6 +134,10 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		sashContainer = new SashWindowsContainer(this);
 		sashContainer.setContentProvider(getContentProvider());
 		sashContainer.createPartControl(parent);
+		
+		// Add double click menu
+		tabMouseEventListener = new TabMouseEventListener(sashContainer, getSite());
+
 		activate();
 	}
 
@@ -166,6 +176,12 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	@Override
 	public void dispose() {
 		deactivate();
+		
+		if( tabMouseEventListener != null ) {
+			tabMouseEventListener.dispose(sashContainer);
+			tabMouseEventListener = null;
+		}
+		
 		//The selection provider keeps a reference to "this". It is not disposed.
 		getSite().setSelectionProvider(null);
 		if(sashContainer != null) {
