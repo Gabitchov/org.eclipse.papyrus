@@ -94,6 +94,14 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	public String getName() {
 		return name;
 	}
+	
+	/**
+	 * Get the target Editor
+	 * @return
+	 */
+	public EditorDescriptor getEditor() {
+		return editor;
+	}
 
 	/**
 	 * Returns the ID for this configuration
@@ -140,7 +148,7 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	/**
 	 * An descriptor for an editor in XML by a contribution item provider.
 	 */
-	private static class EditorDescriptor extends ObjectDescriptor {
+	protected static class EditorDescriptor extends ObjectDescriptor {
 
 		/** the target id */
 		private final String targetId;
@@ -155,6 +163,14 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 		public EditorDescriptor(IConfigurationElement configElement) {
 			super(configElement);
 			targetId = configElement.getAttribute(ID);
+		}
+		
+		/**
+		 * Get the id of the target editor
+		 * @return
+		 */
+		public String getTargetId() {
+			return targetId;
 		}
 
 		/**

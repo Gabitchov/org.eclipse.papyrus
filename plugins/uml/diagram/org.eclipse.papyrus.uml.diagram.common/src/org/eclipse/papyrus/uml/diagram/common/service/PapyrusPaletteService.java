@@ -67,6 +67,7 @@ import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.IPaletteDescription;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
+import org.eclipse.papyrus.uml.diagram.common.service.XMLPaletteProviderConfiguration.EditorDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.osgi.framework.Bundle;
 
@@ -100,6 +101,20 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				this.providerConfiguration = parseConfiguration(element);
 				Assert.isNotNull(getProviderConfiguration());
 			}
+		}
+		
+		/**
+		 * Return the ID of the target editor for this ProviderDescriptor or null if none
+		 * @return
+		 */
+		public String getTargetEditorID(){
+			if(providerConfiguration != null){
+				EditorDescriptor targetEditor = providerConfiguration.getEditor();
+				if(targetEditor != null){
+					return targetEditor.getTargetId();
+				}
+			}
+			return null;
 		}
 
 		/**
