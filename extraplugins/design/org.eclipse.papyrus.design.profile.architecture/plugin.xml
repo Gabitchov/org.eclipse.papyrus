@@ -31,7 +31,7 @@
       </profile>
    </extension>
    <extension
-         point="org.eclipse.papyrus.extensionpoints.uml2.UMLProfile">
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             description="Profile for software architecture design"
             iconpath="icons/architectureprofile.gif"
