@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocument
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.commands.messages.Messages;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
 import org.eclipse.swt.widgets.Display;
@@ -39,11 +40,6 @@ import org.eclipse.ui.IEditorPart;
  *
  */
 public class RenameDiagramHandler extends AbstractHandler {
-
-	public static String RenameDiagramHandler_NewName = "New name:";
-
-	public static String RenameDiagramHandler_RenameAnExistingDiagram = "Rename an existing diagram";
-
 
 	/**
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
@@ -82,7 +78,7 @@ public class RenameDiagramHandler extends AbstractHandler {
 		// Open the dialog to ask the new name
 		String currentName = notationDiagramHelper.getName();
 		String newName = null;
-		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), RenameDiagramHandler_RenameAnExistingDiagram, RenameDiagramHandler_NewName, currentName, null);
+		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameDiagramHandler_RenameAnExistingDiagram, Messages.RenameDiagramHandler_NewName, currentName, null);
 		if(dialog.open() == Window.OK) {
 			newName = dialog.getValue();
 			if(newName == null || newName.length() <= 0) {
@@ -117,14 +113,14 @@ public class RenameDiagramHandler extends AbstractHandler {
 	 * @return The command name to show.
 	 */
 	public String getCommandName() {
-		return "Rename Diagram";
+		return Messages.RenameDiagramHandler_RenameDiagram;
 	}
 
 		protected IEvaluationContext getIEvaluationContext(ExecutionEvent event) throws NotFoundException {
 			try {
 				return (IEvaluationContext)event.getApplicationContext();
 			} catch (ClassCastException e) {
-				throw new NotFoundException("IEvaluationContext can't be found.");
+				throw new NotFoundException("IEvaluationContext can't be found."); //$NON-NLS-1$
 			}
 			
 		}
@@ -157,13 +153,13 @@ public class RenameDiagramHandler extends AbstractHandler {
 			IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getNestedActiveIEditorPart(context);
 	
 			if( ! (editor instanceof DiagramDocumentEditor) ) {
-				throw new NotFoundException("Selected editor do not contains Diagram");
+				throw new NotFoundException("Selected editor do not contains Diagram"); //$NON-NLS-1$
 			}
 			DiagramDocumentEditor diagramEditor = (DiagramDocumentEditor)editor;
 			
 			Diagram diagram = diagramEditor.getDiagram();
 			if(diagram == null) {
-				throw new NotFoundException("Selected editor do not contains Diagram");			
+				throw new NotFoundException("Selected editor do not contains Diagram");			 //$NON-NLS-1$
 			}
 			
 			// Return a new instance of the Helper
