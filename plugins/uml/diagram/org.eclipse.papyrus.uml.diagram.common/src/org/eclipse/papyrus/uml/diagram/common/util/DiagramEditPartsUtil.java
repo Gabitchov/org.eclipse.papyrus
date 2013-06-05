@@ -124,7 +124,10 @@ public class DiagramEditPartsUtil {
 	 *        the edit part
 	 * 
 	 * @return the diagram edit part
+	 * 
+	 * @deprecated use the same method from org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil
 	 */
+	@Deprecated
 	public static DiagramEditPart getDiagramEditPart(EditPart editPart) {
 		if(editPart == null) {
 			return null;

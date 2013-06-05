@@ -4305,6 +4305,51 @@
                properties="isDiagram"
                type="org.eclipse.jface.viewers.IStructuredSelection">
          </propertyTester>
+      </extension>
+      <extension
+            point="org.eclipse.ui.menus">
+         <menuContribution
+               allPopups="false"
+               locationURI="popup:org.eclipse.papyrus.infra.gmfdiag.menu.editmenu?after=edit_actions_separator">
+            <command
+                  commandId="org.eclipse.papyrus.uml.diagram.menu.pastewithmodel"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.infra.gmfdiag.menu.cleandiagram"
+                  style="push">
+            </command>
+         </menuContribution>
+      </extension>
+      <extension
+            point="org.eclipse.ui.commandImages">
+         <image
+               commandId="org.eclipse.papyrus.uml.diagram.menu.pastewithmodel"
+               icon="icons/paste_edit.gif">
+         </image>
+      </extension>
+      <extension
+            point="org.eclipse.ui.commands">
+         <command
+               categoryId="org.eclipse.papyrus.editor.category"
+               defaultHandler="org.eclipse.papyrus.uml.diagram.menu.handlers.PasteWithModelHandler"
+               id="org.eclipse.papyrus.uml.diagram.menu.pastewithmodel"
+               name="Paste With Model">
+         </command>
+         <command
+               categoryId="org.eclipse.papyrus.editor.category"
+               description="This action remove the invalid views from the diagram"
+               id="org.eclipse.papyrus.infra.gmfdiag.menu.cleandiagram"
+               name="Clean Diagram">
+         </command>
+      </extension>
+      <extension
+            point="org.eclipse.ui.bindings">
+         <key
+               commandId="org.eclipse.papyrus.uml.diagram.menu.pastewithmodel"
+               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+               sequence="M1+M2+V">
+         </key>
       </extension>        
 <!--                                                            -->
 
