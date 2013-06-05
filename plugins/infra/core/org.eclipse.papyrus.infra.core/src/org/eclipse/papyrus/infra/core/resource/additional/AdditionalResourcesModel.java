@@ -22,6 +22,9 @@ import java.util.Set;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.IModelSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -91,7 +94,11 @@ public class AdditionalResourcesModel implements IModel {
 				// only save referenced models not
 				// read-only and either platform or file
 				if(!modelSet.getTransactionalEditingDomain().isReadOnly(r) && (r.getURI().isPlatformResource() || r.getURI().isFile()) && !ModelUtils.resourceFailedOnLoad(r)) {
-					r.save(Collections.EMPTY_MAP);
+					if(r instanceof XMIResource){
+						r.save(Collections.singletonMap(XMLResource.OPTION_URI_HANDLER, new URIHandlerImpl.PlatformSchemeAware()));
+					}else {
+						r.save(Collections.EMPTY_MAP);
+					}
 
 				}
 			}
