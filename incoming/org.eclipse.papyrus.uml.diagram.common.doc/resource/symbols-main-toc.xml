@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc label="Symbols" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
+   <topic href="resource/symbols.html" label="Symbols">
+      <link toc="resource/symbols-toc.xml"/>
+      <anchor id="UMLCommon"/>
+   </topic>	
+</toc>

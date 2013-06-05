@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="resource/symbols.html" label="symbols">
+	<topic href="resource/symbols.html" label="Introduction"></topic>
+	<topic href="resource/symbols.html#Symbol_display_place_in_diagrams" label="Symbol display place in diagrams">
+		<topic href="resource/symbols.html#Symbol_representation_in_compartments" label="Symbol representation in compartments"></topic>
+		<topic href="resource/symbols.html#Symbol_representation_as_a_decorator" label="Symbol representation as a decorator"></topic>
+	</topic>
+	<topic href="resource/symbols.html#Defining_symbols_in_models" label="Defining symbols in models">
+		<topic href="resource/symbols.html#Define_new_symbols_in_profiles" label="Define new symbols in profiles"></topic>
+		<topic href="resource/symbols.html#Symbol_associated_to_Actor_UML_element" label="Symbol associated to Actor UML element"></topic>
+		<topic href="resource/symbols.html#Symbol_associated_to_Type_element" label="Symbol associated to Type element"></topic>
+	</topic>
+	<topic href="resource/symbols.html#FAQ" label="FAQ"></topic>
+</toc>

@@ -1,0 +1,134 @@
+This short documentation will present the support for custom representations available to Papyrus users 
+
+= Introduction  =
+
+The goal of the sympbol support in Papyrus is to give users access to some custom representations. They can use their own representation, i.e. their own svg files, in their diagrams, so the model can be easily read and understood. SVG file format was used, as this vectorial format scales easily. 
+
+[[Image:Symbol Example.png]] 
+
+= Symbol display place in diagrams  =
+
+There are 2 manners to display symbols on the diagrams. 
+
+== Symbol representation in compartments  ==
+
+For all nodes, like Package or Class in a Class diagram, it is possible to display the symbols in a "shape" compartment. This compartment can be displayed/hidden using the context menu on the diagram 
+
+[[Image:Symbol Compartment.png]] 
+
+To display/hide shape compartment:&nbsp; 
+
+*Right click on the node 
+*Filters 
+*Show/Hide Compartments 
+*Select "shape". you can also select if you wish to show/hide the title of the shape compartment. 
+*OK
+
+<br> 
+<pre>Hint: you can also select the node and press 'Ctrl'+'F5' simultaneously to display the Show/hide Compartment dialog
+</pre> 
+== Symbol representation as a decorator  ==
+
+For all Nodes in diagrams, it is possible to display the available symbols as decorators. The decorators are small representations depicted above the figures. for example, validation errors and warnings are displayed as decorators on Papyrus diagrams. 
+
+[[Image:Symbol Decorator.png]] 
+
+The Appearance tab of the properties view allows user to toggle the visibility of decorators, and the location of the display on the figure. There are 9 positions on the figure (north/east/south/west and all valid combinations) 
+
+[[Image:Symbol DecoratorPropertyView.png]] 
+<pre>Hint: if the properties view is not displayed in your Eclipse environnement, you can display it using context menu on a diagram =&gt; show Properties view.
+</pre> 
+= Defining symbols in models  =
+
+This section explains how symbols can be associated to model elements. There are currently 3 ways to define specific symbols for model elements. 
+
+== Define new symbols in profiles  ==
+
+UML offers the possiblity to associate new icons to stereotyped elements, via the ''image'' Property of Stereotypes. In Papyrus, one of this image can be a shape. This shape will be availalbe for any node representation of a steoretyped element. 
+
+On the property view of a Stereotype, you can associate an image to the stereotype 
+
+[[Image:Symbol AddImageToStereotype.png]] 
+
+This shape wil now be available on all elements that are stereotyped by this given Stereotype. 
+<pre>Hint: You can have more documentation about profiles in Papyrus on the website, users corner
+</pre> 
+== Symbol associated to Actor UML element  ==
+
+By default, Actors and TypedElement that are typed by an Actor have a stickman symbol associated. 
+
+[[Image:Symbol ActorAndTypedElementWithTypeActor.png]] 
+
+== Symbol associated to Type element  ==
+
+The last way to associate symbols to model element is to apply the PapryusInternal profile. 
+
+Steps: 
+
+*Select the model in which you want to associate symbols to types. 
+*Go to the property view 
+*Go to the profile Tab 
+*Select the icon for the registered profiles in the Applied Profile section
+
+[[Image:Symbol ApplyRegisteredProfile.png]] 
+
+*In the dialog, select the PapyrusInternal Profile
+
+[[Image:Symbol ProfileSelectionDialog.png]] 
+
+*In the next dialog, select all profiles and subprofiles
+
+[[Image:Symbol ProfileSelectionDialogAllSubProfile.png]] 
+
+*OK
+
+<br> 
+
+As soon as the Internal profile is applied, the user can apply a specific stereotype on Type elements. On this stereotype, a field allows user to define a symbol for the stereotyped Type. Then the symbol will be available for all representations of this Type and the representations of TypedElements typed by it. 
+
+Steps: 
+
+*Select the Type for which you want to associate a symbol 
+*Go to the property view 
+*Go to the profile Tab 
+*Apply the TypeSymbolDefinition stereotype (available on Type elements, as soon as the internal profile is applied on the model)
+
+[[Image:Symbol ApplyTypeSymbolDefinitionStereotype.png]] 
+
+[[Image:Symbol ApplyTypeSymbolDefinitionStereotypeDialog.png]] 
+
+*Select the property symbolPath of the TypeSymbolDefinition stereotype.
+
+*Set the path to the symbol file
+
+[[Image:Symbol TypeSymbolDefinition SymbolPath.png]] 
+
+= FAQ  =
+
+*What is the format supported for the symbols?
+
+Currently, Papyrus supports SVG and PNG files. 
+
+*What are the limitations of the SVG support?
+
+Papyrus relies on a SVG render provided by the GMF project. This renderer do not support all the funny things provided by the SVG format. For example, it is known that the gradients are not supported. If a svg file has some gradient in its definition, it will not be displayed at all by Papryus. 
+
+*What is the syntax for the path to the symbol?
+
+Paths can be expressed as Eclipse URIs (Either absolute or relative to the current model), e.g: 
+<pre>platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/actor.svg
+</pre> 
+=&gt; This is a svg image contained in the plug-in {oep}.uml.diagram.common 
+<pre>Images/logo.svg
+</pre> 
+=&gt; This is a svg image contained in an images/ folder next to my current model 
+<pre>platform:/resource/my-project/images/logo.svg
+</pre> 
+=&gt; This is a svg image contained in the project “my-project”, in the current workspace 
+<pre>file:/home/images/logo.svg
+</pre> 
+=&gt; This is an absolute filesystem URI 
+
+*(Developers) Can I implement my own policy for Symbol support?
+
+Yes. Papyrus relies on the Eclipse extension point framework to associate symbols with elements. It is possible for users to declare new extensions to provide their own symbol associations. See the extension point: org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider for more information.
