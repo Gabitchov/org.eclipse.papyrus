@@ -150,4 +150,14 @@
 		<advice ref="org.eclipse.papyrus.infra.gmfdiag.common.advice.GMFDiagramDuplicateEditHelperAdvice" />
 	</binding>
 </extension>
+<extension
+      point="org.eclipse.core.expressions.propertyTesters">
+   <propertyTester
+         class="org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramPropertyTester"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester"
+         namespace="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester"
+         properties="isDiagramEditor"
+         type="org.eclipse.jface.viewers.IStructuredSelection">
+   </propertyTester>
+</extension>
 </plugin>

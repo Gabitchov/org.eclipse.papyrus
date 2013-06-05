@@ -14,6 +14,9 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -32,9 +35,49 @@ public class DiagramEditPartsUtil {
 	 * @return the edit part that controls the given view or <code>null</code> if none was found
 	 */
 	public static EditPart getEditPartFromView(View view, EditPart anyEditPart) {
-		if(view != null && anyEditPart !=null) {
+		if(view != null && anyEditPart != null) {
 			return (EditPart)anyEditPart.getViewer().getEditPartRegistry().get(view);
 		}
+		return null;
+	}
+
+	/**
+	 * Gets the diagram edit part.
+	 * 
+	 * @param editPart
+	 *        the edit part
+	 * 
+	 * @return the diagram edit part
+	 */
+	public static DiagramEditPart getDiagramEditPart(EditPart editPart) {
+		if(editPart == null) {
+			return null;
+		}
+
+		if(editPart instanceof IGraphicalEditPart) {
+			IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart)editPart;
+			View view = graphicalEditPart.getNotationView();
+			Diagram diagram = view.getDiagram();
+			Object object = graphicalEditPart.getViewer().getEditPartRegistry().get(diagram);
+			if(object instanceof DiagramEditPart) {
+				return (DiagramEditPart)object;
+			}
+		}
+
+		if(editPart instanceof DiagramEditPart) {
+			return (DiagramEditPart)editPart;
+		}
+
+		EditPart actual = editPart;
+		EditPart parent = null;
+		while((parent = actual.getParent()) != null) {
+			if(parent instanceof DiagramEditPart) {
+				return (DiagramEditPart)parent;
+			} else {
+				actual = parent;
+			}
+		}
+
 		return null;
 	}
 
