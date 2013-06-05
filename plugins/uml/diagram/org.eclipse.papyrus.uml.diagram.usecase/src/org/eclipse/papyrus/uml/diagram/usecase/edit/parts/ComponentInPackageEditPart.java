@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -883,7 +882,6 @@ public class ComponentInPackageEditPart extends ShapeNodeEditPart implements IPa
 			// use StereotypeFigureHelper
 			stereotypeHelper = new StereotypeFigureHelper(useCaseSubjectFigure_header0) {
 
-				
 				@Override
 				public Object getStereotypeRectangleConstraint() {
 					GridData constraintStereotypeRect0 = new GridData();

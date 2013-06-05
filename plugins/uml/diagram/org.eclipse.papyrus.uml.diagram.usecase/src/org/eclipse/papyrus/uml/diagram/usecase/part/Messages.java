@@ -506,11 +506,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String PackagePackageableElementCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
 	public static String ComponentUsecases3EditPart_title;
 
 	/**
@@ -521,27 +516,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String PackagePackageableElementCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorActionProvider_OpenDiagramActionName;
-
-	/**
-	 * @generated
-	 */
-	public static String AbstractParser_UnexpectedValueType;
-
-	/**
-	 * @generated
-	 */
-	public static String AbstractParser_WrongStringConversion;
-
-	/**
-	 * @generated
-	 */
-	public static String AbstractParser_UnknownLiteral;
 
 	/**
 	 * @generated
