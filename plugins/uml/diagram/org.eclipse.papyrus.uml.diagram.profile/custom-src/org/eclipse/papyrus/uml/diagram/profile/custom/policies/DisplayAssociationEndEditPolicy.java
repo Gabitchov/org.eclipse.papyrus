@@ -154,18 +154,19 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		}
 
 		//in order to find the role to display we need to now target of the edge, so it is important to have a notification about the change of the target
-		if((notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) || (notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Source()))) {
+		if((NotationPackage.eINSTANCE.getEdge_Target().equals(notification.getFeature()) || NotationPackage.eINSTANCE.getEdge_Source().equals(notification.getFeature()))) {
 			refreshDisplay();
 		}
 
 		if(object == null) {
 			return;
 		}
-		if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralInteger_Value())) {
+		if(UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(notification.getFeature())) {
 			refreshDisplay();
-		} else if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value())) {
+		} else if(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value().equals(notification.getFeature())) {
 			refreshDisplay();
 		}
+
 
 		if(object.equals(property)) {
 			notifyPropertyChanged(property, notification);
