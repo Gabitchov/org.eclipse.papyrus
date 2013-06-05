@@ -37,6 +37,10 @@
                   name="edit_actions_separator"
                   visible="true">
             </separator>
+            <command
+                  commandId="org.eclipse.papyrus.infra.gmfdiag.menu.selectelementswithsametype"
+                  style="push">
+            </command>
          </menu>
       </menuContribution>
    </extension>
@@ -84,6 +88,16 @@
             </with>
          </activeWhen>
       </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.infra.gmfdiag.menu.handlers.SelectElementWithTheSameTypeHandler"
+            description="Select the elements in the current diagram which have the same type"
+            id="org.eclipse.papyrus.infra.gmfdiag.menu.selectelementswithsametype"
+            name="Select Elements With Same Type">
+      </command>
    </extension>
 
 </plugin>

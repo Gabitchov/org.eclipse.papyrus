@@ -13,13 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.ui.action.ActionManager;
 import org.eclipse.gmf.runtime.common.ui.action.IActionWithProgress;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -27,7 +25,7 @@ import org.eclipse.ui.IEditorPart;
  * @author vl222926
  * 
  */
-public abstract class AbstractDiagramActionHandler extends AbstractHandler {
+public abstract class AbstractDiagramActionHandler extends AbstractDiagramHandler {
 
 	/**
 	 * 
@@ -76,18 +74,6 @@ public abstract class AbstractDiagramActionHandler extends AbstractHandler {
 		return null;
 	}
 
-	/**
-	 * 
-	 * @return
-	 *         the current diagram workbench part
-	 */
-	private IDiagramWorkbenchPart getDiagramWorkbenchPart() {
-		final IEditorPart workbench = EditorHelper.getCurrentEditor();
-		if(workbench != null) {
-			return (IDiagramWorkbenchPart)workbench.getAdapter(IDiagramWorkbenchPart.class);
-		}
-		return null;
-	}
 
 	/**
 	 * 
