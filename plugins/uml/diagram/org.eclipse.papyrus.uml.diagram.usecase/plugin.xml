@@ -607,6 +607,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
+      
       <clientContext id="org.eclipse.papyrus.uml.diagram.usecase.TypeContext">
          <enablement>
             <test
@@ -615,6 +616,8 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.usecase.TypeContext">
+      
+      
          <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Actor_2011"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Actor_2012"/>

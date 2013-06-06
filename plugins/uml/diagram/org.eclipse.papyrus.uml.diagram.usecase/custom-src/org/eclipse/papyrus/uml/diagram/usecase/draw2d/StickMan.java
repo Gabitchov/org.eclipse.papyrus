@@ -17,6 +17,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
@@ -25,7 +26,7 @@ import org.eclipse.swt.graphics.Image;
  * The Class StickMan. This class comes from org.eclipse.uml2.diagram.usecase.draw2d provided by
  * Eclipse.org
  */
-public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFigure {
+public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFigure, IPapyrusNodeFigure {
 
 	private static final float BASE_W = 31 - 1;
 
@@ -199,5 +200,40 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 
 	public void setNameLabelIcon(boolean displayNameLabelIcon) {
 		// TODO Auto-generated method stub
+	}
+
+	public Color getBorderColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean isShadow() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void setBorderColor(Color borderColor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setShadow(boolean shadow) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setTransparency(int transparency) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setGradientData(int gradientColor1, int gradientColor2, int gradientStyle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setIsUsingGradient(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
 }

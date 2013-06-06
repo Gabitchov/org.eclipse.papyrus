@@ -27,7 +27,7 @@ public class UMLPropertySection extends DefaultPropertySection implements IPrope
 	 * @generated
 	 */
 	protected Object transformSelection(Object selected) {
-		selected = /*super.*/transformSelectionToDomain(selected);
+		selected = /* super. */transformSelectionToDomain(selected);
 		return selected;
 	}
 }
