@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CommentCreateCommandCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.PortCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.PropertyPartCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
 
@@ -54,12 +53,6 @@ public class PropertyPartCompartmentItemSemanticEditPolicyCN extends UMLBaseItem
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
-		}
-		if(UMLElementTypes.Port_3069 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
-			return getGEFWrapper(new PortCreateCommand(req));
 		}
 		if(UMLElementTypes.Property_3070 == baseElementType) {
 			if(isExtendedType) {

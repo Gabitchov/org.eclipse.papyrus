@@ -250,8 +250,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ActivityCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -286,8 +285,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof InteractionCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -322,8 +320,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ProtocolStateMachineCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -358,8 +355,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof StateMachineCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -394,8 +390,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -430,8 +425,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof OpaqueBehaviorCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -466,8 +460,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ComponentCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(30);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -501,8 +494,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof DeviceCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(30);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -536,8 +528,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(30);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -571,8 +562,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof NodeCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(30);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -606,8 +596,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ClassCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -655,8 +644,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ActivityCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -691,8 +679,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof InteractionCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -727,8 +714,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -763,8 +749,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof StateMachineCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -799,8 +784,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof FunctionBehaviorCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -835,8 +819,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof OpaqueBehaviorCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -871,8 +854,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ComponentCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(30);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -906,8 +888,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof DeviceCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(30);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -941,8 +922,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(30);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -976,8 +956,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof NodeCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(30);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -1011,8 +990,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ClassCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(30);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Activity_3072);
@@ -1059,8 +1037,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof PropertyPartCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-			types.add(UMLElementTypes.Port_3069);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.Comment_3097);
 			return types;

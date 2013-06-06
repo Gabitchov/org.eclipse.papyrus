@@ -41,7 +41,6 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.commands.InterfaceCreateCo
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.IntervalConstraintCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.NodeCompositeCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.OpaqueBehaviorCompositeCreateCommandCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.PortCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.PrimitiveTypeCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.PropertyPartCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ProtocolStateMachineCompositeCreateCommandCN;
@@ -82,12 +81,6 @@ public class ComponentCompositeCompartmentItemSemanticEditPolicyCN extends UMLBa
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
-		}
-		if(UMLElementTypes.Port_3069 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
-			return getGEFWrapper(new PortCreateCommand(req));
 		}
 		if(UMLElementTypes.Property_3070 == baseElementType) {
 			if(isExtendedType) {

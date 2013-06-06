@@ -726,21 +726,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String AbstractParser_UnexpectedValueType;
-
-	/**
-	 * @generated
-	 */
-	public static String AbstractParser_WrongStringConversion;
-
-	/**
-	 * @generated
-	 */
-	public static String AbstractParser_UnknownLiteral;
-
-	/**
-	 * @generated
-	 */
 	public static String MessageFormatParser_InvalidInputError;
 
 	/**
@@ -752,5 +737,4 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String UMLModelingAssistantProviderMessage;
-	//TODO: put accessor fields manually	
 }

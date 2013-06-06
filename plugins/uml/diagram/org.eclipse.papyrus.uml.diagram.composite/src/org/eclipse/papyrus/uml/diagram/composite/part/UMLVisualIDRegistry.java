@@ -467,9 +467,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ActivityCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -565,9 +562,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case InteractionCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -663,9 +657,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -761,9 +752,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case StateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -859,9 +847,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -957,9 +942,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -1055,9 +1037,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -1150,9 +1129,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -1245,9 +1221,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -1340,9 +1313,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case NodeCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -1435,9 +1405,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -1559,9 +1526,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ActivityCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -1657,9 +1621,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case InteractionCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -1755,9 +1716,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -1853,9 +1811,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case StateMachineCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -1951,9 +1906,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -2049,9 +2001,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
@@ -2147,9 +2096,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -2242,9 +2188,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -2337,9 +2280,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -2432,9 +2372,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case NodeCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -2527,9 +2464,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -2651,9 +2585,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case PropertyPartCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
-				return PortEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -3520,9 +3451,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ActivityCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -3618,9 +3546,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case InteractionCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -3716,9 +3641,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -3814,9 +3736,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case StateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -3912,9 +3831,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4010,9 +3926,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4108,9 +4021,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4203,9 +4113,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4298,9 +4205,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4393,9 +4297,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case NodeCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4488,9 +4389,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4615,9 +4513,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ActivityCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4713,9 +4608,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case InteractionCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4811,9 +4703,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4909,9 +4798,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case StateMachineCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5007,9 +4893,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5105,9 +4988,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5203,9 +5083,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5298,9 +5175,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5393,9 +5267,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5488,9 +5359,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case NodeCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5583,9 +5451,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassCompositeCompartmentEditPart.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5707,9 +5572,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case PropertyPartCompartmentEditPartCN.VISUAL_ID:
-			if(PortEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}

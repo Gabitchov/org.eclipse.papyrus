@@ -1396,6 +1396,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
+      
       <clientContext id="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
          <enablement>
             <test
@@ -1404,6 +1405,8 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
+      
+      
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_2060"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"/>
