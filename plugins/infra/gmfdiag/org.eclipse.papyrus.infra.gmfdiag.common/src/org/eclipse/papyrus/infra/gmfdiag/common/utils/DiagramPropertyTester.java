@@ -48,7 +48,10 @@ public class DiagramPropertyTester extends PropertyTester {
 	 */
 	private boolean isDiagramEditor(IStructuredSelection selection) {
 		final IEditorPart activeEditor = EditorHelper.getCurrentEditor();
-		final IDiagramWorkbenchPart part = (IDiagramWorkbenchPart)activeEditor.getAdapter(IDiagramWorkbenchPart.class);
-		return part != null;
+		if (activeEditor !=null){
+			final IDiagramWorkbenchPart part = (IDiagramWorkbenchPart)activeEditor.getAdapter(IDiagramWorkbenchPart.class);
+			return part != null;
+		}
+		return false;
 	}
 }
