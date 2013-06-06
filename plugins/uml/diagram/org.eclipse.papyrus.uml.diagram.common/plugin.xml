@@ -116,43 +116,6 @@
          id="org.eclipse.papyrus.uml.diagram.commands.LoadResourceAction"
          name="Load Resource">
    </command>
-   <command
-         categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.PasteWithModelHandler"
-         description="Paste content in a diagram (graphic+ semantic)"
-         id="org.eclipse.papyrus.uml.diagram.common.commands.PasteWithModelCommand"
-         name="PasteWithModel">
-   </command>
-</extension>
-<extension
-      point="org.eclipse.ui.popupMenus">
-   <objectContribution
-         adaptable="false"
-         id="org.eclipse.papyrus.uml.diagram.clazz.objectContribution.dependencybranchdeletion"
-         objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
-      <action
-            class="org.eclipse.papyrus.uml.diagram.common.commands.CleanDiagram"
-            definitionId="org.eclipse.papyrus.common.cleandiagram"
-            enablesFor="1"
-            id="org.eclipse.papyrus.common.cleandiagram"
-            label="Clean invalid views"
-            menubarPath="editMenu/editGroup">
-      </action>
-   </objectContribution>
-   <objectContribution
-         adaptable="false"
-         id="org.eclipse.papyrus.uml.diagram.common.pastewithmodelaction"
-         objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart">
-      <action
-            class="org.eclipse.papyrus.uml.diagram.common.actions.PasteWithModelAction"
-            definitionId="org.eclipse.papyrus.uml.diagram.common.commands.PasteWithModelCommand"
-            enablesFor="1"
-            icon="icons/paste_edit.gif"
-            id="org.eclipse.papyrus.uml.diagram.common.objectContribution.pastewithmodelaction"
-            label="Paste with model"
-            menubarPath="editMenu/editGroup">
-      </action>
-   </objectContribution>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.core.modelListener">
@@ -258,11 +221,6 @@
 <extension
       id="update-cmd-binding"
       point="org.eclipse.ui.bindings">
-   <key
-         commandId="org.eclipse.papyrus.uml.diagram.common.commands.PasteWithModelCommand"
-         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-         sequence="CTRL+SHIFT+V">
-   </key>
    <key
          commandId="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram"
          contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"

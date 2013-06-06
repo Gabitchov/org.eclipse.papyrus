@@ -15,6 +15,8 @@ package org.eclipse.papyrus.uml.diagram.common.part;
 
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.jface.action.IContributionItem;
+import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchPage;
 
@@ -42,6 +44,12 @@ public class UMLDiagramActionBarContributor extends DiagramActionBarContributor 
 	 */
 	public void init(IActionBars bars, IWorkbenchPage page) {
 		super.init(bars, page);
+		IMenuManager fileMenu = bars.getMenuManager();
+
+		IContributionItem undoAction = bars.getMenuManager().findMenuUsingPath("undoGroup");
+		if(undoAction != null) {
+			fileMenu.remove(undoAction);
+		}
 		// print preview
 		// IMenuManager fileMenu =
 		// bars.getMenuManager().findMenuUsingPath(IWorkbenchActionConstants.M_FILE);

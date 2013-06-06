@@ -99,5 +99,14 @@
             name="Select Elements With Same Type">
       </command>
    </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.eclipse.papyrus.infra.gmfdiag.menu.selectelementswithsametype"
+            contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M3+A">
+      </key>
+   </extension>
 
 </plugin>

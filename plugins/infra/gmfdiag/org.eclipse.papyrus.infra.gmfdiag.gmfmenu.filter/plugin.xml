@@ -727,6 +727,21 @@
                   path="/formatMenu/routerMenu/routerGroup"
                   remove="true">
             </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="cut"
+                  path="/editMenu/copyGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="copy"
+                  path="/editMenu/copyGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="paste"
+                  path="/editMenu/copyGroup"
+                  remove="true">
+            </popupPredefinedItem>
          </popupContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">

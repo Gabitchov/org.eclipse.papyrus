@@ -15,36 +15,28 @@ package org.eclipse.papyrus.uml.diagram.menu.messages;
 
 import org.eclipse.osgi.util.NLS;
 
-public class Messages extends NLS
-{
+public class Messages extends NLS {
 
-    private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.menu.messages.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.menu.messages.messages"; //$NON-NLS-1$
 
-    public static String ShowHideCompartmentAction_Messages;
+	public static String ShowHideCompartmentAction_Messages;
 
-    public static String ShowHideCompartmentAction_No_Name;
+	public static String ShowHideCompartmentAction_No_Name;
 
-    public static String ShowHideCompartmentAction_Title;
+	public static String ShowHideCompartmentAction_Title;
 
-    public static String ShowHideCompartmentAction_PropagateToSameType;
+	public static String ShowHideCompartmentAction_PropagateToSameType;
 
-    public static String ShowHideConnectionLabelsAction_LabelsManager;
+	public static String ShowHideConnectionLabelsAction_LabelsManager;
 
-    public static String ShowHideConnectionLabelsAction_SelectTheLabelToDisplay;
+	public static String ShowHideConnectionLabelsAction_SelectTheLabelToDisplay;
 
-    public static String ZoomToolbar_Zoom;
+	public static String ZoomToolbar_Zoom;
+	static {
+		// initialize resource bundle
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+	}
 
-    public static String SelectTypeAction_SelectActionName;
-
-    public static String SelectTypeAction_SelectionActionTooltype;
-
-    static
-    {
-        // initialize resource bundle
-        NLS.initializeMessages(BUNDLE_NAME, Messages.class);
-    }
-
-    private Messages()
-    {
-    }
+	private Messages() {
+	}
 }
