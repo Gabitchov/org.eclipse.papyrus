@@ -85,10 +85,13 @@ public class ServiceUtilsForIEvaluationContext extends AbstractServiceUtils<IEva
 		//We couldn't retrieve the ServiceRegistry from the current selection.
 
 		//Try to adapt the active part to the ServicesRegistry
-		IWorkbenchPart part = (IWorkbenchPart)evaluationContext.getVariable(ISources.ACTIVE_PART_NAME);
-		registry = (ServicesRegistry)(part).getAdapter(ServicesRegistry.class);
-		if(registry != null) {
-			return registry;
+		Object _part = evaluationContext.getVariable(ISources.ACTIVE_PART_NAME);
+		if (_part instanceof IWorkbenchPart) {
+			IWorkbenchPart part = (IWorkbenchPart)_part;
+			registry = (ServicesRegistry)(part).getAdapter(ServicesRegistry.class);
+			if(registry != null) {
+				return registry;
+			}
 		}
 
 
