@@ -1157,8 +1157,7 @@
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.clazz.ConstraintContext_8500"
                name="%metatype.name.ConstraintContext_8500"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.eclipse.papyrus.uml.diagram.clazz.edit.helpers.">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="8500"/>
          </specializationType>
