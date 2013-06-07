@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.ModelExplorerDecorationAdapter;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.internal.navigator.NavigatorDecoratingLabelProvider;
 
 /**
@@ -66,8 +67,31 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 
 	public void update(Observable o, Object arg) {
 		if((decorationService != null) && (o == decorationService)) {
-			fireLabelProviderChanged(new LabelProviderChangedEvent(this));
+			
+			// fix for bug 409381 - [Validation] Performance issues. Make updates asynchronously so that
+			// most updates are ignored.
+			// TODO: check whether the decoration service should offer a service for listeners that want to
+			//       be notified in this lazy way.
+			if (!asyncUpdateRunning) {
+				asyncUpdateRunning = true;
+
+				Display.getDefault().asyncExec(new Runnable () {
+					public void run() {
+						fireLabelProviderChanged(new LabelProviderChangedEvent(DecoratingLabelProviderWTooltips.this));
+						while (updatePending) {
+							updatePending = false;
+							fireLabelProviderChanged(new LabelProviderChangedEvent(DecoratingLabelProviderWTooltips.this));
+						}
+						asyncUpdateRunning = false;
+					
+					}
+				});
+			}
+			else {
+				updatePending = true;
+			}
 		}
+		
 	}
 
 	@Override
@@ -120,4 +144,9 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 	public int getToolTipTimeDisplayed(Object object) {
 		return 10000;
 	}
+	
+	protected boolean asyncUpdateRunning;
+	
+	protected boolean updatePending;
+
 }
