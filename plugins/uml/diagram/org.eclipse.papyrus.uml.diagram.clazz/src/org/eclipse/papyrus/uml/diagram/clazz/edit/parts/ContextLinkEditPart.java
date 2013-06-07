@@ -31,7 +31,7 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4028;
+	public static final int VISUAL_ID = 8500;
 
 	/**
 	 * @generated

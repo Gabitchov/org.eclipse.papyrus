@@ -236,7 +236,7 @@ public class AssociationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			}
 			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintContext_4028 == baseElementType) {
+		if(UMLElementTypes.ConstraintContext_8500 == baseElementType) {
 			return null;
 		}
 		return null;
@@ -367,7 +367,7 @@ public class AssociationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			}
 			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintContext_4028 == baseElementType) {
+		if(UMLElementTypes.ConstraintContext_8500 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
 			}

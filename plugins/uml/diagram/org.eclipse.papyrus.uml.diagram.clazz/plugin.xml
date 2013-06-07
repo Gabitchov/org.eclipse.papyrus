@@ -82,7 +82,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLClassDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2099,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3012,3002,3005,3006,3041,3018,3014,3004,3008,3013,3003,3007,3042,3019,3034,3035,3031,3016,3017,3011,3039,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3040,3010,3026,3027,3028,3029,3036,3037,3038,3052,3053,3054,3047,3046,3048,3044,3045,3043,3050,3051,3049"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025,4026,4028"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025,4026,8500"/>
       </viewProvider>
    </extension>
 <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
@@ -96,7 +96,7 @@
             <method name="getType()" value="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2099,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3012,3002,3005,3006,3041,3018,3014,3004,3008,3013,3003,3007,3042,3019,3034,3035,3031,3016,3017,3011,3039,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3040,3010,3026,3027,3028,3029,3036,3037,3038,3052,3053,3054,3047,3046,3048,3044,3045,3043,3050,3051,3049"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025,4026,4028"/>
+            <method name="getType()" value="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025,4026,8500"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="1,5066,5002,5005,5008,5011,5020,5023,5026,5161,5029,5032,5035,5037,5159,5038,0,5155,5156,5153,5154,5157,5158,5040,5043,5046,5049,5052,5055,5017,5162,5014,5058,5061,5063,5064,5160"/>
@@ -1155,16 +1155,18 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.clazz.ConstraintContext_4028"
-               name="%metatype.name.ConstraintContext_4028"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+               id="org.eclipse.papyrus.uml.diagram.clazz.ConstraintContext_8500"
+               name="%metatype.name.ConstraintContext_8500"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               edithelperadvice="org.eclipse.papyrus.uml.diagram.clazz.edit.helpers.">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4028"/>
+            <param name="semanticHint" value="8500"/>
          </specializationType>
       </metamodel>
    </extension>
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
+      
       <clientContext id="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
          <enablement>
             <test
@@ -1173,6 +1175,8 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
+      
+      
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.AssociationClass_2013"/>
@@ -1274,7 +1278,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.TimeObservationEvent_4024"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.DurationObservationEvent_4025"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.InformationFlow_4026"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ConstraintContext_4028"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ConstraintContext_8500"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -3029,6 +3033,15 @@
          </popupAction>
       </popupContribution>
    </contributionItemProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CustomNamespaceEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
 </extension>
 
 </plugin>

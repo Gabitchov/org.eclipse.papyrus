@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -302,7 +303,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		types.add(UMLElementTypes.Dependency_4018);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		types.add(UMLElementTypes.InformationFlow_4026);
-		types.add(UMLElementTypes.ConstraintContext_4028);
+		types.add(UMLElementTypes.ConstraintContext_8500);
 		return types;
 	}
 
@@ -993,70 +994,70 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 			types.add(UMLElementTypes.InformationFlow_4026);
 		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof AssociationNodeEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof ComponentEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof SignalEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof InterfaceEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof ModelEditPartTN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof EnumerationEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof InformationItemEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof PrimitiveTypeEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof DataTypeEditPart) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof SignalEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof InterfaceEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof ModelEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof EnumerationEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof PackageEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof InformationItemEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		if(targetEditPart instanceof DataTypeEditPartCN) {
-			types.add(UMLElementTypes.ConstraintContext_4028);
+			types.add(UMLElementTypes.ConstraintContext_8500);
 		}
 		return types;
 	}
@@ -1300,7 +1301,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-		} else if(relationshipType == UMLElementTypes.ConstraintContext_4028) {
+		} else if(relationshipType == UMLElementTypes.ConstraintContext_8500) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
 			types.add(UMLElementTypes.Component_2002);

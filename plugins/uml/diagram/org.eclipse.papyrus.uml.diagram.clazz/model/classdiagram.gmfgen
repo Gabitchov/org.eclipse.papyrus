@@ -2606,7 +2606,7 @@
         </labels>
         <creationConstraints sourceEnd="/0/@expressionProviders/@providers.0/@expressions.2" targetEnd="/0/@expressionProviders/@providers.0/@expressions.3"/>
       </links>
-      <links visualID="4028" editPartClassName="ContextLinkEditPart" itemSemanticEditPolicyClassName="ContextLinkItemSemanticEditPolicy" createCommandClassName="ContextLinkCreateCommand" reorientCommandClassName="ContextLinkReorientCommand">
+      <links visualID="8500" editPartClassName="ContextLinkEditPart" itemSemanticEditPolicyClassName="ContextLinkItemSemanticEditPolicy" createCommandClassName="ContextLinkCreateCommand" reorientCommandClassName="ContextLinkReorientCommand">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType xsi:type="gmfgen:SpecializationType" displayName="Undefined" editHelperAdviceClassName=""/>
         <viewmap xsi:type="gmfgen:InnerClassViewmap" className="ContextLinkDescriptor" classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class ContextLinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public ContextLinkDescriptor() {&#xD;&#xA;&#x9;&#x9;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASHDOT);&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">

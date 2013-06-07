@@ -1751,7 +1751,7 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart {
 		types.add(UMLElementTypes.TimeObservationEvent_4024);
 		types.add(UMLElementTypes.DurationObservationEvent_4025);
 		types.add(UMLElementTypes.InformationFlow_4026);
-		types.add(UMLElementTypes.ConstraintContext_4028);
+		types.add(UMLElementTypes.ConstraintContext_8500);
 		return types;
 	}
 
@@ -2109,7 +2109,7 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-		} else if(relationshipType == UMLElementTypes.ConstraintContext_4028) {
+		} else if(relationshipType == UMLElementTypes.ConstraintContext_8500) {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.Constraint_3029);
 		}

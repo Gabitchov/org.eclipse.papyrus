@@ -121,7 +121,7 @@ public class CustomConstraint2ItemSemanticEditPolicy extends ConstraintItemSeman
 			}
 			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintContext_4028 == baseElementType) {
+		if(UMLElementTypes.ConstraintContext_8500 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
@@ -214,7 +214,7 @@ public class CustomConstraint2ItemSemanticEditPolicy extends ConstraintItemSeman
 			}
 			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintContext_4028 == baseElementType) {
+		if(UMLElementTypes.ConstraintContext_8500 == baseElementType) {
 			getGEFWrapper(new CustomContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;

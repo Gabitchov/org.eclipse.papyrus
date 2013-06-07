@@ -527,7 +527,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case InformationFlowEditPart.VISUAL_ID:
 			return createInformationFlow_4026(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case ContextLinkEditPart.VISUAL_ID:
-			return createConstraintContext_4028(containerView, index, persisted, preferencesHint);
+			return createConstraintContext_8500(containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -2764,7 +2764,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createConstraintContext_4028(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createConstraintContext_8500(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();

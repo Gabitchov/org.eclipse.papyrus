@@ -26,7 +26,7 @@ public class ContextLinkItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	 * @generated
 	 */
 	public ContextLinkItemSemanticEditPolicy() {
-		super(UMLElementTypes.ConstraintContext_4028);
+		super(UMLElementTypes.ConstraintContext_8500);
 	}
 
 	/**

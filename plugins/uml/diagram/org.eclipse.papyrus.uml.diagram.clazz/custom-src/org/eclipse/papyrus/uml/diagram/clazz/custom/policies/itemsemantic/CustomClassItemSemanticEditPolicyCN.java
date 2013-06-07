@@ -61,7 +61,7 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintContext_4028 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintContext_8500 == req.getElementType()) {
 			return getGEFWrapper(new CustomContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);

@@ -636,7 +636,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateConstraintContext_4028(Constraint source, Namespace target) {
+		public boolean canCreateConstraintContext_8500(Constraint source, Namespace target) {
 			if(source != null) {
 				if(source.getContext() != null) {
 					return false;
@@ -645,7 +645,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(target != null && (target.getOwnedRules().contains(target))) {
 				return false;
 			}
-			return canExistConstraintContext_4028(source, target);
+			return canExistConstraintContext_8500(source, target);
 		}
 
 		/**
@@ -866,7 +866,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistConstraintContext_4028(Constraint source, Namespace target) {
+		public boolean canExistConstraintContext_8500(Constraint source, Namespace target) {
 			return true;
 		}
 	}
