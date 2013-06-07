@@ -16,8 +16,11 @@ package org.eclipse.papyrus.infra.nattable.utils;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 
 
 public class NattableWidgetPropertyTester extends PropertyTester {
@@ -62,7 +65,18 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 	 *         the current nattable model manager or <code>null</code> if not found
 	 */
 	protected INattableModelManager getNattableModelManager() {
-		final IWorkbenchPart current = EditorHelper.getCurrentEditor();
+		final IWorkbench workbench = PlatformUI.getWorkbench();
+		IWorkbenchPart current = null;
+		if(workbench != null) {
+			final IWorkbenchWindow activeWorkbench = workbench.getActiveWorkbenchWindow();
+			if(activeWorkbench != null) {
+				final IWorkbenchPage activePage = activeWorkbench.getActivePage();
+				if(activePage != null) {
+					current = activePage.getActivePart();
+				}
+			}
+		}
+
 		if(current != null) {
 			return (INattableModelManager)current.getAdapter(INattableModelManager.class);
 		}
