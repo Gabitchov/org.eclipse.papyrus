@@ -55,9 +55,6 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
  */
 public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusContentOutlinePage, IPageLifeCycleEventsListener {
 
-	/** Reference to the sash editor that is the main editor represented buy this page */
-	private IMultiDiagramEditor multiEditor;
-
 	/** Sash window container to listen for page changes inside the same editor */
 	private ISashWindowsContainer sashWindowsContainer;
 
@@ -85,15 +82,7 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 	 * {@inheritDoc}
 	 */
 	public void init(IMultiDiagramEditor multiEditor) {
-		// Set multi diagram editor.
-		this.multiEditor = multiEditor;
-
 		sashWindowsContainer = (ISashWindowsContainer)multiEditor.getAdapter(ISashWindowsContainer.class);
-		sashWindowsContainer.addPageLifeCycleListener(this);
-	}
-
-	public IMultiDiagramEditor getMultiDiagramEditor() {
-		return multiEditor;
 	}
 
 	/**
@@ -112,6 +101,7 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 	 * The <code>PageBookView</code> implementation of this <code>IWorkbenchPart</code> method cleans up all the pages. Subclasses
 	 * may extend.
 	 */
+	@Override
 	public void dispose() {
 		// Deref all of the pages.
 		activeRec = null;
@@ -132,8 +122,6 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 
 		// remove listener and all refs to editor
 		sashWindowsContainer.removePageLifeCycleListener(this);
-		sashWindowsContainer = null;
-		multiEditor = null;
 
 		// Run super.
 		super.dispose();
@@ -194,6 +182,8 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 	 */
 	@Override
 	public void createControl(Composite parent) {
+		sashWindowsContainer.addPageLifeCycleListener(this);
+
 		sashEditorPageBook = new PageBook(parent, SWT.BORDER);
 
 		// Create the default page rec.
@@ -448,6 +438,7 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public DelegatedPageSite getSite() {
 		return (DelegatedPageSite)super.getSite();
 	}
@@ -457,7 +448,7 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 	 * Method declared on PageBookView.
 	 */
 	protected void doDestroyPage(IPage papyrusPage, OutlinePageRec rec) {
-		IContentOutlinePage contentOutlinePage = (IContentOutlinePage)rec.contentOutlinePage;
+		IContentOutlinePage contentOutlinePage = rec.contentOutlinePage;
 		contentOutlinePage.dispose();
 		rec.dispose();
 	}
@@ -557,7 +548,7 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 	protected OutlinePageRec getPageRec(IContentOutlinePage contentOutlinePage) {
 		Iterator<OutlinePageRec> itr = mapIPapyrusPageToOutlineRec.values().iterator();
 		while(itr.hasNext()) {
-			OutlinePageRec rec = (OutlinePageRec)itr.next();
+			OutlinePageRec rec = itr.next();
 			if(rec.contentOutlinePage == contentOutlinePage) {
 				return rec;
 			}
@@ -594,6 +585,7 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 	/*
 	 * (non-Javadoc) Method declared on IWorkbenchPart.
 	 */
+	@Override
 	public void setFocus() {
 		// first set focus on the page book, in case the page
 		// doesn't properly handle setFocus
@@ -826,7 +818,7 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 			if(activePageSite != null) {
 				activePageSite.deactivate();
 			}
-			
+
 			// deactivate all subcontributions
 			for(OutlinePageRec rec : nestedEditorDelegatedOutlinePage.getAllPages()) {
 				IPageSite site = rec.getPageSite();
