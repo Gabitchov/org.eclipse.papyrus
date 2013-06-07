@@ -225,13 +225,7 @@
          commandId="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram"
          contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-         sequence="DEL">
-   </key>
-   <key
-         commandId="org.eclipse.ui.edit.delete"
-         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
-         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-         sequence="CTRL+DEL">
+         sequence="M2+DEL">
    </key>
 </extension>
    <extension
@@ -423,15 +417,7 @@
 </extension>
 
 <extension point="org.eclipse.ui.commands">
-	
-	<command
-		categoryId="org.eclipse.papyrus.editor.category"
-		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.DeleteFromModelCommandHandler"
-		description="Delete the selection from model"
-		id="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromModel"
-		name="Delete From Model Command">
-	</command>
-	
+
 	<command
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.DeleteFromDiagramCommandHandler"
