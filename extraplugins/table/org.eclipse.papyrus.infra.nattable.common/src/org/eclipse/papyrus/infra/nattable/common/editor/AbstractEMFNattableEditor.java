@@ -139,6 +139,16 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		if(adapter == INattableModelManager.class) {
 			return this.tableManager;
 		}
+
+		//Give direct access to the Table model element
+		//Most actions should be done through the TableManager. 
+		//Be careful when using directly the Table element.
+		if(adapter == Table.class) {
+			if(tableManager != null) {
+				return this.tableManager.getTable();
+			}
+		}
+
 		return super.getAdapter(adapter);
 	}
 

@@ -17,16 +17,13 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
-import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 
@@ -64,23 +61,21 @@ public class RenameTableHandler extends AbstractHandler {
 	private void executeTransaction(ExecutionEvent event) {
 
 		// Get requested objects
-		final Table tableElement;
-		TransactionalEditingDomain editingDomain;
+		final INattableModelManager tableManager;
 		try {
 			IEvaluationContext context = getIEvaluationContext(event);
-			tableElement = lookupTable(context);
-			editingDomain = lookupTransactionalEditingDomain(context);
+			tableManager = lookupTableManager(context);
 		} catch (ServiceException e) {
 			// silently fails
 			return;
 		}
 
-		if(tableElement == null) {
+		if(tableManager == null) {
 			return;
 		}
 
 		// Open the dialog to ask the new name
-		String currentName = tableElement.getName();
+		String currentName = tableManager.getTableName();
 		String newName = null;
 		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), RenameTableHandler_RenameAnExistingTable, RenameTableHandler_NewName, currentName, null);
 		if(dialog.open() == Window.OK) {
@@ -93,18 +88,7 @@ public class RenameTableHandler extends AbstractHandler {
 			return;
 		}
 
-		final String name = newName;
-		Command cmd = new RecordingCommand(editingDomain, getCommandName()) {
-
-			@Override
-			protected void doExecute() {
-				// Rename the table !
-				tableElement.setName(name);
-			}
-
-		};
-
-		editingDomain.getCommandStack().execute(cmd);
+		tableManager.setTableName(newName);
 	}
 
 	/**
@@ -131,18 +115,11 @@ public class RenameTableHandler extends AbstractHandler {
 	 * @return The current table
 	 * @throws ServiceException
 	 */
-	protected Table lookupTable(IEvaluationContext context) throws ServiceException {
-		IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getNestedActiveIEditorPart(context);
+	protected INattableModelManager lookupTableManager(IEvaluationContext context) throws ServiceException {
+		IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getService(IMultiDiagramEditor.class, context);
 
-		if(!(editor instanceof NatTableEditor)) {
-			return null;
-		}
-		NatTableEditor tableEditor = (NatTableEditor)editor;
-
-		Table table = ((INattableModelManager)tableEditor.getAdapter(INattableModelManager.class)).getTable();
-
-		// Return a new instance of the Helper
-		return table;
+		INattableModelManager tableManager = (INattableModelManager)editor.getAdapter(INattableModelManager.class);
+		return tableManager;
 	}
 
 	/**
@@ -179,7 +156,7 @@ public class RenameTableHandler extends AbstractHandler {
 
 		try {
 			// Try to get the Table
-			setBaseEnabled(lookupTable(context) != null);
+			setBaseEnabled(lookupTableManager(context) != null);
 			return;
 		} catch (ServiceException e) {
 			// Can't find ServiceRegistry: disable

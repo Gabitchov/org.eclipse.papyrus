@@ -86,7 +86,7 @@ import org.eclipse.ui.IWorkbenchPartSite;
 
 /**
  * 
- * This class allows to create, configure and manipulate NatTable
+ * This class allows to create, configure and manipulate the NatTable Widget
  * 
  */
 public abstract class AbstractNattableWidgetManager implements INattableModelManager {

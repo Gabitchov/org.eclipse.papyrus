@@ -38,12 +38,15 @@
           class="org.eclipse.papyrus.infra.nattable.common.handlers.RenameTableHandler"
           commandId="org.eclipse.papyrus.infra.core.sasheditor.command.tabdoubleclick">
        <activeWhen>
-          <with
-                variable="activeEditor">
-             <adapt
-                   type="org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager">
-             </adapt>
-          </with>
+          <and>
+             <with
+                   variable="selection">
+                <test
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </and>
        </activeWhen>
     </handler>
  </extension>

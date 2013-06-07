@@ -90,6 +90,9 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd);
 
+	public void setTableName(String name);
+
+	public String getTableName();
 
 
 	public void print();
