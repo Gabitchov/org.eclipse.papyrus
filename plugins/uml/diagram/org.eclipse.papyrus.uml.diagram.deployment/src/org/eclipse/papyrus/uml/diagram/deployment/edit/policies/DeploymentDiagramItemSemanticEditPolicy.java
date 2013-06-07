@@ -16,9 +16,13 @@ import org.eclipse.papyrus.uml.diagram.common.commands.DuplicateNamedElementComm
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ArtifactCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ConstraintCreateCommand;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DefaultNamedElementCreateCommand;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DependencyNodeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DeviceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ExecutionEnvironmentCreateCommand;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ModelCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.NodeCreateCommand;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.PackageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 
 /**
@@ -53,12 +57,28 @@ public class DeploymentDiagramItemSemanticEditPolicy extends UMLBaseItemSemantic
 				isExtendedType = true;
 			}
 		}
-		if(UMLElementTypes.Comment_2001 == baseElementType) {
+		if(UMLElementTypes.Dependency_2011 == baseElementType) {
 
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new CommentCreateCommand(req));
+			return getGEFWrapper(new DependencyNodeCreateCommand(req));
+
+		}
+		if(UMLElementTypes.Model_2010 == baseElementType) {
+
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new ModelCreateCommand(req));
+
+		}
+		if(UMLElementTypes.Package_2009 == baseElementType) {
+
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new PackageCreateCommand(req));
 
 		}
 		if(UMLElementTypes.Constraint_2005 == baseElementType) {
@@ -67,6 +87,14 @@ public class DeploymentDiagramItemSemanticEditPolicy extends UMLBaseItemSemantic
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ConstraintCreateCommand(req));
+
+		}
+		if(UMLElementTypes.Comment_2001 == baseElementType) {
+
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new CommentCreateCommand(req));
 
 		}
 		if(UMLElementTypes.ExecutionEnvironment_2002 == baseElementType) {
@@ -99,6 +127,14 @@ public class DeploymentDiagramItemSemanticEditPolicy extends UMLBaseItemSemantic
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new NodeCreateCommand(req));
+
+		}
+		if(UMLElementTypes.NamedElement_2012 == baseElementType) {
+
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new DefaultNamedElementCreateCommand(req));
 
 		}
 		return super.getCreateCommand(req);

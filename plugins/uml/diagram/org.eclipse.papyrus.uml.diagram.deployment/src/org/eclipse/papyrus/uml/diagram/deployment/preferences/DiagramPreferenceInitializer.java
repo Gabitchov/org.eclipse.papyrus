@@ -41,25 +41,35 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		ExecutionEnvironmentPreferencePage.initDefaults(store);
 
-		ArtifactPreferencePage.initDefaults(store);
+		ModelPreferencePage.initDefaults(store);
 
 		DevicePreferencePage.initDefaults(store);
 
-		NodePreferencePage.initDefaults(store);
+		CommentPreferencePage.initDefaults(store);
 
 		ConstraintPreferencePage.initDefaults(store);
 
-		CommentPreferencePage.initDefaults(store);
+		DependencyNodePreferencePage.initDefaults(store);
+
+		ArtifactPreferencePage.initDefaults(store);
+
+		NodePreferencePage.initDefaults(store);
+
+		PackagePreferencePage.initDefaults(store);
+
+		DefaultNamedElementPreferencePage.initDefaults(store);
 
 		ConstraintConstrainedElementPreferencePage.initDefaults(store);
 
 		CommentAnnotatedElementPreferencePage.initDefaults(store);
 
+		DependencyBranchLinkPreferencePage.initDefaults(store);
+
 		GeneralizationPreferencePage.initDefaults(store);
 
 		ManifestationPreferencePage.initDefaults(store);
 
-		DependencyPreferencePage.initDefaults(store);
+		DependencyLinkPreferencePage.initDefaults(store);
 
 		DeploymentPreferencePage.initDefaults(store);
 

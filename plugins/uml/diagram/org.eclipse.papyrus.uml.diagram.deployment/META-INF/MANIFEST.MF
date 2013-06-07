@@ -1,7 +1,25 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.diagram.deployment.edit.parts,
+Export-Package: org.eclipse.papyrus.uml.diagram.deployment,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.actions,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.edit.command,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.edit.helpers,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.edit.part,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies.itemsemantic,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.factory,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.messages,
+ org.eclipse.papyrus.uml.diagram.deployment.custom.providers,
+ org.eclipse.papyrus.uml.diagram.deployment.edit.commands,
+ org.eclipse.papyrus.uml.diagram.deployment.edit.helpers,
+ org.eclipse.papyrus.uml.diagram.deployment.edit.parts,
+ org.eclipse.papyrus.uml.diagram.deployment.edit.policies,
+ org.eclipse.papyrus.uml.diagram.deployment.expressions,
+ org.eclipse.papyrus.uml.diagram.deployment.parsers,
  org.eclipse.papyrus.uml.diagram.deployment.part,
- org.eclipse.papyrus.uml.diagram.deployment.providers
+ org.eclipse.papyrus.uml.diagram.deployment.preferences,
+ org.eclipse.papyrus.uml.diagram.deployment.providers,
+ org.eclipse.papyrus.uml.diagram.deployment.sheet
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -45,7 +63,8 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.edit,
  org.eclipse.emf.validation,
- org.eclipse.gef
+ org.eclipse.gef,
+ org.eclipse.papyrus.infra.emf.appearance
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 0.10.0.qualifier

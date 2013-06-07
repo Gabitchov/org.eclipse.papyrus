@@ -21,11 +21,13 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.CommentAnnotated
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DependencyBranchCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DependencyCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DeploymentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ManifestationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ManifestationEditPart;
@@ -115,6 +117,12 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 			}
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.Dependency_4010 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new DependencyBranchCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -168,6 +176,12 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 			}
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.Dependency_4010 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new DependencyBranchCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -182,6 +196,7 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		case DeploymentEditPart.VISUAL_ID:
 		case ManifestationEditPart.VISUAL_ID:
 		case DependencyEditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;

@@ -97,8 +97,10 @@ public class ConstraintCreateCommand extends EditElementCommand {
 
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
-		Namespace owner = (Namespace)getElementToEdit();
-		owner.getOwnedRules().add(newElement);
+		Package owner = (Package)getElementToEdit();
+		owner.getPackagedElements().add(newElement);
+		Namespace childHolder = (Namespace)getElementToEdit();
+		childHolder.getOwnedRules().add(newElement);
 
 		ElementInitializers.getInstance().init_Constraint_2005(newElement);
 

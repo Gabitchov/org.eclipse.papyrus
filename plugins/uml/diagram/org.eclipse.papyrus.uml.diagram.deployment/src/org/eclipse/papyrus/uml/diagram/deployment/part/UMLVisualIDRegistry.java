@@ -19,13 +19,22 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactNameEditPar
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactNameEditPartACN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintSpecificationEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DefaultNamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DefaultNamedElementNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentEditPart;
@@ -47,12 +56,33 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.GeneralizationEditP
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ManifestationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ManifestationNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelNameEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelPackageableElementCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelPackageableElementCompartmentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.MultiDependencyLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedArtifactNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedArtifactNodeEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedDeviceEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedDeviceNameEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedExecutionEnvironmentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedExecutionEnvironmentNameEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedNodeEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedNodeNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeCompositeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeCompositeCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeNameEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageNameEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackagePackageableElementCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -155,15 +185,30 @@ public class UMLVisualIDRegistry {
 		}
 		switch(containerVisualID) {
 		case DeploymentDiagramEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return CommentEditPart.VISUAL_ID;
+				return DependencyNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ModelEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PackageEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return ConstraintEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
 
@@ -184,6 +229,95 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return NodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNamedElement().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DefaultNamedElementEditPart.VISUAL_ID;
+			}
+			break;
+		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ModelEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PackageEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedDeviceEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedExecutionEnvironmentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedNodeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedArtifactNodeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintEditPartCN.VISUAL_ID;
+			}
+			break;
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ModelEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PackageEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedArtifactNodeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedDeviceEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedExecutionEnvironmentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedNodeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
@@ -242,6 +376,85 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return ArtifactEditPartACN.VISUAL_ID;
+			}
+			break;
+		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ModelEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PackageEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedDeviceEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedExecutionEnvironmentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedNodeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedArtifactNodeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintEditPartCN.VISUAL_ID;
+			}
+			break;
+		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PackageEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedArtifactNodeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedDeviceEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedExecutionEnvironmentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NestedNodeEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
@@ -333,10 +546,19 @@ public class UMLVisualIDRegistry {
 		}
 		switch(containerVisualID) {
 		case DeploymentDiagramEditPart.VISUAL_ID:
-			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
+			if(DependencyNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ModelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PackageEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(ConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(ExecutionEnvironmentEditPart.VISUAL_ID == nodeVisualID) {
@@ -351,9 +573,28 @@ public class UMLVisualIDRegistry {
 			if(NodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DefaultNamedElementEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
-		case CommentEditPart.VISUAL_ID:
-			if(CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
+		case DependencyNodeEditPart.VISUAL_ID:
+			if(MultiDependencyLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ModelEditPart.VISUAL_ID:
+			if(ModelNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ModelPackageableElementCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PackageEditPart.VISUAL_ID:
+			if(PackageNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PackagePackageableElementCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -362,6 +603,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ConstraintSpecificationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case CommentEditPart.VISUAL_ID:
+			if(CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -397,16 +643,34 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case NodeEditPartCN.VISUAL_ID:
-			if(NodeNameEditPartCN.VISUAL_ID == nodeVisualID) {
+		case DefaultNamedElementEditPart.VISUAL_ID:
+			if(DefaultNamedElementNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(NodeCompositeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+			break;
+		case ModelEditPartCN.VISUAL_ID:
+			if(ModelNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ModelPackageableElementCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PackageEditPartCN.VISUAL_ID:
+			if(PackageNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PackagePackageableElementCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case DeviceEditPartCN.VISUAL_ID:
 			if(DeviceNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case NestedDeviceEditPartCN.VISUAL_ID:
+			if(NestedDeviceNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DeviceCompositeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -417,15 +681,30 @@ public class UMLVisualIDRegistry {
 			if(ExecutionEnvironmentNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			break;
+		case NestedExecutionEnvironmentEditPartCN.VISUAL_ID:
+			if(NestedExecutionEnvironmentNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case NodeEditPartCN.VISUAL_ID:
+			if(NodeNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case NestedNodeEditPartCN.VISUAL_ID:
+			if(NestedNodeNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NodeCompositeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case ArtifactEditPartCN.VISUAL_ID:
 			if(ArtifactNameEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ArtifactCompositeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -434,6 +713,79 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ArtifactCompositeCompartmentEditPartACN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case NestedArtifactNodeEditPartCN.VISUAL_ID:
+			if(NestedArtifactNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ArtifactCompositeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case CommentEditPartCN.VISUAL_ID:
+			if(CommentBodyEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ConstraintEditPartCN.VISUAL_ID:
+			if(ConstraintNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintSpecificationEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
+			if(ModelEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PackageEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedDeviceEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedExecutionEnvironmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedNodeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedArtifactNodeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
+			if(ModelEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PackageEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedArtifactNodeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedDeviceEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedExecutionEnvironmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedNodeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -472,6 +824,55 @@ public class UMLVisualIDRegistry {
 			break;
 		case ArtifactCompositeCompartmentEditPart.VISUAL_ID:
 			if(ArtifactEditPartACN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
+			if(ModelEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PackageEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedDeviceEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedExecutionEnvironmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedNodeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedArtifactNodeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
+			if(PackageEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedArtifactNodeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedDeviceEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedExecutionEnvironmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NestedNodeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -578,6 +979,11 @@ public class UMLVisualIDRegistry {
 		) {
 			return DependencyEditPart.VISUAL_ID;
 		}
+		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
+
+		) {
+			return DependencyBranchEditPart.VISUAL_ID;
+		}
 		return -1;
 	}
 
@@ -608,10 +1014,14 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean isCompartmentVisualID(int visualID) {
 		switch(visualID) {
+		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
 		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
 		case NodeCompositeCompartmentEditPart.VISUAL_ID:
 		case ArtifactCompositeCompartmentEditPart.VISUAL_ID:
+		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
+		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
 		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
 		case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
 		case NodeCompositeCompartmentEditPartCN.VISUAL_ID:
@@ -631,8 +1041,16 @@ public class UMLVisualIDRegistry {
 		switch(visualID) {
 		case DeploymentDiagramEditPart.VISUAL_ID:
 			return false;
+		case DeviceEditPartCN.VISUAL_ID:
+		case ExecutionEnvironmentEditPartCN.VISUAL_ID:
+		case NodeEditPartCN.VISUAL_ID:
+		case ArtifactEditPartCN.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
 		case CommentEditPart.VISUAL_ID:
 		case ConstraintEditPart.VISUAL_ID:
+		case DependencyNodeEditPart.VISUAL_ID:
+		case DefaultNamedElementEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

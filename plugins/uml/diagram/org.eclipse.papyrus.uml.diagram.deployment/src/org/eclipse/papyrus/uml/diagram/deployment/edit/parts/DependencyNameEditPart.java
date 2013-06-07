@@ -125,7 +125,7 @@ public class DependencyNameEditPart extends PapyrusLabelEditPart implements ITex
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNameEditPart.VISUAL_ID), new Point(0, 60));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNameEditPart.VISUAL_ID), new Point(0, 40));
 	}
 
 	/**

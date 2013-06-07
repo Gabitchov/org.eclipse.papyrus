@@ -49,6 +49,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierCon
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes.NodeFigure;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.NodeItemSemanticEditPolicy;
@@ -100,6 +101,7 @@ DeploymentNodeEditPart {
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -310,11 +312,12 @@ DeploymentNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.Deployment_4001);
 		types.add(UMLElementTypes.Manifestation_4002);
 		types.add(UMLElementTypes.Generalization_4003);
 		types.add(UMLElementTypes.Dependency_4004);
+		types.add(UMLElementTypes.Dependency_4010);
 		return types;
 	}
 
@@ -323,37 +326,79 @@ DeploymentNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if(targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Deployment_4001);
 		}
-		if(targetEditPart instanceof ExecutionEnvironmentEditPart) {
+		if(targetEditPart instanceof ModelEditPart) {
 			types.add(UMLElementTypes.Deployment_4001);
 		}
-		if(targetEditPart instanceof DeviceEditPart) {
-			types.add(UMLElementTypes.Deployment_4001);
-		}
-		if(targetEditPart instanceof ArtifactEditPart) {
-			types.add(UMLElementTypes.Deployment_4001);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
-			types.add(UMLElementTypes.Deployment_4001);
-		}
-		if(targetEditPart instanceof NodeEditPartCN) {
-			types.add(UMLElementTypes.Deployment_4001);
-		}
-		if(targetEditPart instanceof DeviceEditPartCN) {
-			types.add(UMLElementTypes.Deployment_4001);
-		}
-		if(targetEditPart instanceof ExecutionEnvironmentEditPartCN) {
-			types.add(UMLElementTypes.Deployment_4001);
-		}
-		if(targetEditPart instanceof ArtifactEditPartCN) {
-			types.add(UMLElementTypes.Deployment_4001);
-		}
-		if(targetEditPart instanceof ArtifactEditPartACN) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Deployment_4001);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof ExecutionEnvironmentEditPart) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof DeviceEditPart) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof ArtifactEditPart) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof ModelEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof DeviceEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof NestedDeviceEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof ExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof NestedExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof NodeEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof NestedNodeEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof ArtifactEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof ArtifactEditPartACN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof NestedArtifactNodeEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4001);
+		}
+		if(targetEditPart instanceof DependencyNodeEditPart) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof ModelEditPart) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
 		if(targetEditPart instanceof ExecutionEnvironmentEditPart) {
@@ -368,19 +413,43 @@ DeploymentNodeEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
-		if(targetEditPart instanceof NodeEditPartCN) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof ModelEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
 		if(targetEditPart instanceof DeviceEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
+		if(targetEditPart instanceof NestedDeviceEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
 		if(targetEditPart instanceof ExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof NestedExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof NodeEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof NestedNodeEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
 		if(targetEditPart instanceof ArtifactEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
 		if(targetEditPart instanceof ArtifactEditPartACN) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof NestedArtifactNodeEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4002);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
 		if(targetEditPart instanceof ExecutionEnvironmentEditPart) {
@@ -395,13 +464,22 @@ DeploymentNodeEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
 			types.add(UMLElementTypes.Generalization_4003);
 		}
-		if(targetEditPart instanceof NodeEditPartCN) {
-			types.add(UMLElementTypes.Generalization_4003);
-		}
 		if(targetEditPart instanceof DeviceEditPartCN) {
 			types.add(UMLElementTypes.Generalization_4003);
 		}
+		if(targetEditPart instanceof NestedDeviceEditPartCN) {
+			types.add(UMLElementTypes.Generalization_4003);
+		}
 		if(targetEditPart instanceof ExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Generalization_4003);
+		}
+		if(targetEditPart instanceof NestedExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Generalization_4003);
+		}
+		if(targetEditPart instanceof NodeEditPartCN) {
+			types.add(UMLElementTypes.Generalization_4003);
+		}
+		if(targetEditPart instanceof NestedNodeEditPartCN) {
 			types.add(UMLElementTypes.Generalization_4003);
 		}
 		if(targetEditPart instanceof ArtifactEditPartCN) {
@@ -409,6 +487,18 @@ DeploymentNodeEditPart {
 		}
 		if(targetEditPart instanceof ArtifactEditPartACN) {
 			types.add(UMLElementTypes.Generalization_4003);
+		}
+		if(targetEditPart instanceof NestedArtifactNodeEditPartCN) {
+			types.add(UMLElementTypes.Generalization_4003);
+		}
+		if(targetEditPart instanceof DependencyNodeEditPart) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof ModelEditPart) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Dependency_4004);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Dependency_4004);
@@ -425,13 +515,31 @@ DeploymentNodeEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4004);
 		}
-		if(targetEditPart instanceof NodeEditPartCN) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof ModelEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4004);
 		}
 		if(targetEditPart instanceof DeviceEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4004);
 		}
+		if(targetEditPart instanceof NestedDeviceEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
 		if(targetEditPart instanceof ExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof NestedExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof NodeEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof NestedNodeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4004);
 		}
 		if(targetEditPart instanceof ArtifactEditPartCN) {
@@ -439,6 +547,75 @@ DeploymentNodeEditPart {
 		}
 		if(targetEditPart instanceof ArtifactEditPartACN) {
 			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof NestedArtifactNodeEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4004);
+		}
+		if(targetEditPart instanceof DependencyNodeEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ModelEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ExecutionEnvironmentEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof DeviceEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ArtifactEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ModelEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof DeviceEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof NestedDeviceEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof NestedExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof NodeEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof NestedNodeEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ArtifactEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ArtifactEditPartACN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof NestedArtifactNodeEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
 		}
 		return types;
 	}
@@ -449,48 +626,107 @@ DeploymentNodeEditPart {
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Deployment_4001) {
+			types.add(UMLElementTypes.Dependency_2011);
+			types.add(UMLElementTypes.Model_2010);
+			types.add(UMLElementTypes.Package_2009);
 			types.add(UMLElementTypes.Constraint_2005);
 			types.add(UMLElementTypes.ExecutionEnvironment_2002);
 			types.add(UMLElementTypes.Device_2003);
 			types.add(UMLElementTypes.Artifact_2006);
 			types.add(UMLElementTypes.Node_2008);
-			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.NamedElement_2012);
+			types.add(UMLElementTypes.Model_49);
+			types.add(UMLElementTypes.Package_36);
 			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
 			types.add(UMLElementTypes.Artifact_25);
 			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
+			types.add(UMLElementTypes.Constraint_56);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4002) {
+			types.add(UMLElementTypes.Dependency_2011);
+			types.add(UMLElementTypes.Model_2010);
+			types.add(UMLElementTypes.Package_2009);
 			types.add(UMLElementTypes.Constraint_2005);
 			types.add(UMLElementTypes.ExecutionEnvironment_2002);
 			types.add(UMLElementTypes.Device_2003);
 			types.add(UMLElementTypes.Artifact_2006);
 			types.add(UMLElementTypes.Node_2008);
-			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.NamedElement_2012);
+			types.add(UMLElementTypes.Model_49);
+			types.add(UMLElementTypes.Package_36);
 			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
 			types.add(UMLElementTypes.Artifact_25);
 			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
+			types.add(UMLElementTypes.Constraint_56);
 		} else if(relationshipType == UMLElementTypes.Generalization_4003) {
 			types.add(UMLElementTypes.ExecutionEnvironment_2002);
 			types.add(UMLElementTypes.Device_2003);
 			types.add(UMLElementTypes.Artifact_2006);
 			types.add(UMLElementTypes.Node_2008);
-			types.add(UMLElementTypes.Node_23);
 			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
 			types.add(UMLElementTypes.Artifact_25);
 			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
 		} else if(relationshipType == UMLElementTypes.Dependency_4004) {
+			types.add(UMLElementTypes.Dependency_2011);
+			types.add(UMLElementTypes.Model_2010);
+			types.add(UMLElementTypes.Package_2009);
 			types.add(UMLElementTypes.Constraint_2005);
 			types.add(UMLElementTypes.ExecutionEnvironment_2002);
 			types.add(UMLElementTypes.Device_2003);
 			types.add(UMLElementTypes.Artifact_2006);
 			types.add(UMLElementTypes.Node_2008);
-			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.NamedElement_2012);
+			types.add(UMLElementTypes.Model_49);
+			types.add(UMLElementTypes.Package_36);
 			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
 			types.add(UMLElementTypes.Artifact_25);
 			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
+			types.add(UMLElementTypes.Constraint_56);
+		} else if(relationshipType == UMLElementTypes.Dependency_4010) {
+			types.add(UMLElementTypes.Dependency_2011);
+			types.add(UMLElementTypes.Model_2010);
+			types.add(UMLElementTypes.Package_2009);
+			types.add(UMLElementTypes.Constraint_2005);
+			types.add(UMLElementTypes.ExecutionEnvironment_2002);
+			types.add(UMLElementTypes.Device_2003);
+			types.add(UMLElementTypes.Artifact_2006);
+			types.add(UMLElementTypes.Node_2008);
+			types.add(UMLElementTypes.NamedElement_2012);
+			types.add(UMLElementTypes.Model_49);
+			types.add(UMLElementTypes.Package_36);
+			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
+			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
+			types.add(UMLElementTypes.Artifact_25);
+			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
+			types.add(UMLElementTypes.Constraint_56);
 		}
 		return types;
 	}
@@ -499,13 +735,14 @@ DeploymentNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(6);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(7);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4008);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4009);
 		types.add(UMLElementTypes.Deployment_4001);
 		types.add(UMLElementTypes.Manifestation_4002);
 		types.add(UMLElementTypes.Generalization_4003);
 		types.add(UMLElementTypes.Dependency_4004);
+		types.add(UMLElementTypes.Dependency_4010);
 		return types;
 	}
 
@@ -516,51 +753,112 @@ DeploymentNodeEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4008) {
 			types.add(UMLElementTypes.Comment_2001);
+			types.add(UMLElementTypes.Comment_54);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4009) {
 			types.add(UMLElementTypes.Constraint_2005);
+			types.add(UMLElementTypes.Constraint_56);
 		} else if(relationshipType == UMLElementTypes.Deployment_4001) {
+			types.add(UMLElementTypes.Dependency_2011);
+			types.add(UMLElementTypes.Model_2010);
+			types.add(UMLElementTypes.Package_2009);
 			types.add(UMLElementTypes.Constraint_2005);
 			types.add(UMLElementTypes.ExecutionEnvironment_2002);
 			types.add(UMLElementTypes.Device_2003);
 			types.add(UMLElementTypes.Artifact_2006);
 			types.add(UMLElementTypes.Node_2008);
-			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.NamedElement_2012);
+			types.add(UMLElementTypes.Model_49);
+			types.add(UMLElementTypes.Package_36);
 			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
 			types.add(UMLElementTypes.Artifact_25);
 			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
+			types.add(UMLElementTypes.Constraint_56);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4002) {
+			types.add(UMLElementTypes.Dependency_2011);
+			types.add(UMLElementTypes.Model_2010);
+			types.add(UMLElementTypes.Package_2009);
 			types.add(UMLElementTypes.Constraint_2005);
 			types.add(UMLElementTypes.ExecutionEnvironment_2002);
 			types.add(UMLElementTypes.Device_2003);
 			types.add(UMLElementTypes.Artifact_2006);
 			types.add(UMLElementTypes.Node_2008);
-			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.NamedElement_2012);
+			types.add(UMLElementTypes.Model_49);
+			types.add(UMLElementTypes.Package_36);
 			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
 			types.add(UMLElementTypes.Artifact_25);
 			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
+			types.add(UMLElementTypes.Constraint_56);
 		} else if(relationshipType == UMLElementTypes.Generalization_4003) {
 			types.add(UMLElementTypes.ExecutionEnvironment_2002);
 			types.add(UMLElementTypes.Device_2003);
 			types.add(UMLElementTypes.Artifact_2006);
 			types.add(UMLElementTypes.Node_2008);
-			types.add(UMLElementTypes.Node_23);
 			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
 			types.add(UMLElementTypes.Artifact_25);
 			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
 		} else if(relationshipType == UMLElementTypes.Dependency_4004) {
+			types.add(UMLElementTypes.Dependency_2011);
+			types.add(UMLElementTypes.Model_2010);
+			types.add(UMLElementTypes.Package_2009);
 			types.add(UMLElementTypes.Constraint_2005);
 			types.add(UMLElementTypes.ExecutionEnvironment_2002);
 			types.add(UMLElementTypes.Device_2003);
 			types.add(UMLElementTypes.Artifact_2006);
 			types.add(UMLElementTypes.Node_2008);
-			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.NamedElement_2012);
+			types.add(UMLElementTypes.Model_49);
+			types.add(UMLElementTypes.Package_36);
 			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
 			types.add(UMLElementTypes.Artifact_25);
 			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
+			types.add(UMLElementTypes.Constraint_56);
+		} else if(relationshipType == UMLElementTypes.Dependency_4010) {
+			types.add(UMLElementTypes.Dependency_2011);
+			types.add(UMLElementTypes.Model_2010);
+			types.add(UMLElementTypes.Package_2009);
+			types.add(UMLElementTypes.Constraint_2005);
+			types.add(UMLElementTypes.ExecutionEnvironment_2002);
+			types.add(UMLElementTypes.Device_2003);
+			types.add(UMLElementTypes.Artifact_2006);
+			types.add(UMLElementTypes.Node_2008);
+			types.add(UMLElementTypes.NamedElement_2012);
+			types.add(UMLElementTypes.Model_49);
+			types.add(UMLElementTypes.Package_36);
+			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.Device_44);
+			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.ExecutionEnvironment_46);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Node_42);
+			types.add(UMLElementTypes.Artifact_25);
+			types.add(UMLElementTypes.Artifact_28);
+			types.add(UMLElementTypes.Artifact_40);
+			types.add(UMLElementTypes.Constraint_56);
 		}
 		return types;
 	}

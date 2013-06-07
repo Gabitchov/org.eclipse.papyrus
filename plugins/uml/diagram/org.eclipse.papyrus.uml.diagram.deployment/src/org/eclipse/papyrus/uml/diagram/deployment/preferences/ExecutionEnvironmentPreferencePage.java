@@ -112,7 +112,6 @@ public class ExecutionEnvironmentPreferencePage extends AbstractPapyrusNodePrefe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}

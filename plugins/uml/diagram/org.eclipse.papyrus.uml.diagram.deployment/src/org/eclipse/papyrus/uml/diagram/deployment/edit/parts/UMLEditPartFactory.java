@@ -42,11 +42,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DeploymentDiagramEditPart.VISUAL_ID:
 				return new DeploymentDiagramEditPart(view);
 
-			case CommentEditPart.VISUAL_ID:
-				return new CommentEditPart(view);
+			case DependencyNodeEditPart.VISUAL_ID:
+				return new DependencyNodeEditPart(view);
 
-			case CommentBodyEditPart.VISUAL_ID:
-				return new CommentBodyEditPart(view);
+			case MultiDependencyLabelEditPart.VISUAL_ID:
+				return new MultiDependencyLabelEditPart(view);
+
+			case ModelEditPart.VISUAL_ID:
+				return new ModelEditPart(view);
+
+			case ModelNameEditPart.VISUAL_ID:
+				return new ModelNameEditPart(view);
+
+			case PackageEditPart.VISUAL_ID:
+				return new PackageEditPart(view);
+
+			case PackageNameEditPart.VISUAL_ID:
+				return new PackageNameEditPart(view);
 
 			case ConstraintEditPart.VISUAL_ID:
 				return new ConstraintEditPart(view);
@@ -56,6 +68,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ConstraintSpecificationEditPart.VISUAL_ID:
 				return new ConstraintSpecificationEditPart(view);
+
+			case CommentEditPart.VISUAL_ID:
+				return new CommentEditPart(view);
+
+			case CommentBodyEditPart.VISUAL_ID:
+				return new CommentBodyEditPart(view);
 
 			case ExecutionEnvironmentEditPart.VISUAL_ID:
 				return new ExecutionEnvironmentEditPart(view);
@@ -81,11 +99,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case NodeNameEditPart.VISUAL_ID:
 				return new NodeNameEditPart(view);
 
-			case NodeEditPartCN.VISUAL_ID:
-				return new NodeEditPartCN(view);
+			case DefaultNamedElementEditPart.VISUAL_ID:
+				return new DefaultNamedElementEditPart(view);
 
-			case NodeNameEditPartCN.VISUAL_ID:
-				return new NodeNameEditPartCN(view);
+			case DefaultNamedElementNameEditPart.VISUAL_ID:
+				return new DefaultNamedElementNameEditPart(view);
+
+			case ModelEditPartCN.VISUAL_ID:
+				return new ModelEditPartCN(view);
+
+			case ModelNameEditPartCN.VISUAL_ID:
+				return new ModelNameEditPartCN(view);
+
+			case PackageEditPartCN.VISUAL_ID:
+				return new PackageEditPartCN(view);
+
+			case PackageNameEditPartCN.VISUAL_ID:
+				return new PackageNameEditPartCN(view);
 
 			case DeviceEditPartCN.VISUAL_ID:
 				return new DeviceEditPartCN(view);
@@ -93,11 +123,35 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DeviceNameEditPartCN.VISUAL_ID:
 				return new DeviceNameEditPartCN(view);
 
+			case NestedDeviceEditPartCN.VISUAL_ID:
+				return new NestedDeviceEditPartCN(view);
+
+			case NestedDeviceNameEditPartCN.VISUAL_ID:
+				return new NestedDeviceNameEditPartCN(view);
+
 			case ExecutionEnvironmentEditPartCN.VISUAL_ID:
 				return new ExecutionEnvironmentEditPartCN(view);
 
 			case ExecutionEnvironmentNameEditPartCN.VISUAL_ID:
 				return new ExecutionEnvironmentNameEditPartCN(view);
+
+			case NestedExecutionEnvironmentEditPartCN.VISUAL_ID:
+				return new NestedExecutionEnvironmentEditPartCN(view);
+
+			case NestedExecutionEnvironmentNameEditPartCN.VISUAL_ID:
+				return new NestedExecutionEnvironmentNameEditPartCN(view);
+
+			case NodeEditPartCN.VISUAL_ID:
+				return new NodeEditPartCN(view);
+
+			case NodeNameEditPartCN.VISUAL_ID:
+				return new NodeNameEditPartCN(view);
+
+			case NestedNodeEditPartCN.VISUAL_ID:
+				return new NestedNodeEditPartCN(view);
+
+			case NestedNodeNameEditPart.VISUAL_ID:
+				return new NestedNodeNameEditPart(view);
 
 			case ArtifactEditPartCN.VISUAL_ID:
 				return new ArtifactEditPartCN(view);
@@ -111,6 +165,33 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ArtifactNameEditPartACN.VISUAL_ID:
 				return new ArtifactNameEditPartACN(view);
 
+			case NestedArtifactNodeEditPartCN.VISUAL_ID:
+				return new NestedArtifactNodeEditPartCN(view);
+
+			case NestedArtifactNameEditPart.VISUAL_ID:
+				return new NestedArtifactNameEditPart(view);
+
+			case CommentEditPartCN.VISUAL_ID:
+				return new CommentEditPartCN(view);
+
+			case CommentBodyEditPartCN.VISUAL_ID:
+				return new CommentBodyEditPartCN(view);
+
+			case ConstraintEditPartCN.VISUAL_ID:
+				return new ConstraintEditPartCN(view);
+
+			case ConstraintNameEditPartCN.VISUAL_ID:
+				return new ConstraintNameEditPartCN(view);
+
+			case ConstraintSpecificationEditPartCN.VISUAL_ID:
+				return new ConstraintSpecificationEditPartCN(view);
+
+			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
+				return new ModelPackageableElementCompartmentEditPart(view);
+
+			case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
+				return new PackagePackageableElementCompartmentEditPart(view);
+
 			case DeviceCompositeCompartmentEditPart.VISUAL_ID:
 				return new DeviceCompositeCompartmentEditPart(view);
 
@@ -122,6 +203,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ArtifactCompositeCompartmentEditPart.VISUAL_ID:
 				return new ArtifactCompositeCompartmentEditPart(view);
+
+			case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
+				return new ModelPackageableElementCompartmentEditPartCN(view);
+
+			case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
+				return new PackagePackageableElementCompartmentEditPartCN(view);
 
 			case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
 				return new DeviceCompositeCompartmentEditPartCN(view);
@@ -179,6 +266,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return new DependencyAppliedStereotypeEditPart(view);
+
+			case DependencyBranchEditPart.VISUAL_ID:
+				return new DependencyBranchEditPart(view);
 
 			}
 		}

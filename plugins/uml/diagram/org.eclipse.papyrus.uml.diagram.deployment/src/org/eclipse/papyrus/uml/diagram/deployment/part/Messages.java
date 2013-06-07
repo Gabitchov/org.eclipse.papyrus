@@ -266,6 +266,26 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createModelCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createModelCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createPackageCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createPackageCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createNodeCreationTool_title;
 
 	/**
@@ -346,6 +366,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createDependencyBranchCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createDependencyBranchCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createGeneralizationCreationTool_title;
 
 	/**
@@ -376,6 +406,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ModelPackageableElementCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PackagePackageableElementCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String DeviceCompositeCompartmentEditPart_title;
 
 	/**
@@ -392,6 +432,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String ArtifactCompositeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ModelPackageableElementCompartmentEditPartCN_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PackagePackageableElementCompartmentEditPartCN_title;
 
 	/**
 	 * @generated

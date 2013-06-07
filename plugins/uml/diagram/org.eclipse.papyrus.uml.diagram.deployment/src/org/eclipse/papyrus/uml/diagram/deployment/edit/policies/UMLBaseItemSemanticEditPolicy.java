@@ -455,6 +455,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateDependency_4010(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_4010(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistLink_4005() {
 			return true;
 		}
@@ -498,6 +505,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistDependency_4004(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistDependency_4010(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 	}

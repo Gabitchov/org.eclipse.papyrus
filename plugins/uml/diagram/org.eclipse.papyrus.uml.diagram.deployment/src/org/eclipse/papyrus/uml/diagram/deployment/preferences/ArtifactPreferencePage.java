@@ -112,7 +112,6 @@ public class ArtifactPreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}

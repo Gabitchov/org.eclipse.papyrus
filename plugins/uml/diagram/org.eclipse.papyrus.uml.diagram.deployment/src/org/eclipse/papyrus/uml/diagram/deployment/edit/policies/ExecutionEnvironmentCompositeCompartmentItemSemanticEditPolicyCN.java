@@ -21,7 +21,7 @@ public class ExecutionEnvironmentCompositeCompartmentItemSemanticEditPolicyCN ex
 	 * @generated
 	 */
 	public ExecutionEnvironmentCompositeCompartmentItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.ExecutionEnvironment_21);
+		super(UMLElementTypes.ExecutionEnvironment_46);
 	}
 
 	/**

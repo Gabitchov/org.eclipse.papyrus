@@ -35,6 +35,7 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.CommentAnnotated
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DependencyBranchCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DependencyCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DeploymentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.GeneralizationCreateCommand;
@@ -43,6 +44,7 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCo
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactEditPartACN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.GeneralizationEditPart;
@@ -113,6 +115,7 @@ public class ArtifactItemSemanticEditPolicyACN extends UMLBaseItemSemanticEditPo
 							case ManifestationEditPart.VISUAL_ID:
 							case GeneralizationEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
+							case DependencyBranchEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
@@ -127,6 +130,7 @@ public class ArtifactItemSemanticEditPolicyACN extends UMLBaseItemSemanticEditPo
 							case ManifestationEditPart.VISUAL_ID:
 							case GeneralizationEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
+							case DependencyBranchEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
@@ -202,6 +206,12 @@ public class ArtifactItemSemanticEditPolicyACN extends UMLBaseItemSemanticEditPo
 			}
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.Dependency_4010 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new DependencyBranchCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -261,6 +271,12 @@ public class ArtifactItemSemanticEditPolicyACN extends UMLBaseItemSemanticEditPo
 			}
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.Dependency_4010 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new DependencyBranchCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -276,6 +292,7 @@ public class ArtifactItemSemanticEditPolicyACN extends UMLBaseItemSemanticEditPo
 		case ManifestationEditPart.VISUAL_ID:
 		case GeneralizationEditPart.VISUAL_ID:
 		case DependencyEditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;

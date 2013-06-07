@@ -40,18 +40,27 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.helpers.DeploymentLinkMappingHelper;
+import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.helpers.MultiDependencyHelper;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactEditPartACN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Class;
@@ -59,6 +68,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
@@ -88,6 +98,10 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	protected Set<Integer> getDroppableElementVisualId() {
 		// TopLevelNodes
 		Set<Integer> droppableElementsVisualId = new HashSet<Integer>();
+		droppableElementsVisualId.add(DependencyNodeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ModelEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PackageEditPart.VISUAL_ID);
+		
 		droppableElementsVisualId.add(NodeEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(DeviceEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(ExecutionEnvironmentEditPart.VISUAL_ID);
@@ -96,11 +110,15 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		droppableElementsVisualId.add(ConstraintEditPart.VISUAL_ID);
 
 		// Class CN
+		droppableElementsVisualId.add(PackageEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(ModelEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(ArtifactEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(ArtifactEditPartACN.VISUAL_ID);
 		droppableElementsVisualId.add(NodeEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(DeviceEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(ExecutionEnvironmentEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(CommentEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(ConstraintEditPartCN.VISUAL_ID);
 
 		return droppableElementsVisualId;
 	}
@@ -161,12 +179,17 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 
 		// Switch test over linkVisualID
 		switch(linkVISUALID) {
-		case DependencyEditPart.VISUAL_ID:
-			return dropDependency(dropRequest, semanticElement, linkVISUALID);
+		/*case DependencyEditPart.VISUAL_ID:
+		case DependencyBranchEditPart.VISUAL_ID:
+			return dropDependency(dropRequest, semanticElement, linkVISUALID);*/
 		default:
 			// Switch test over nodeVISUALID
 			switch(nodeVISUALID) {
 			// Test TopLevelNode... Start
+			case DependencyNodeEditPart.VISUAL_ID:
+				return dropDependencyNode(dropRequest, semanticElement, nodeVISUALID);
+			case PackageEditPart.VISUAL_ID:
+			case ModelEditPart.VISUAL_ID:
 			case NodeEditPart.VISUAL_ID:
 			case DeviceEditPart.VISUAL_ID:
 			case ExecutionEnvironmentEditPart.VISUAL_ID:
@@ -175,11 +198,26 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 				// Test TopLevelNode... End
 			case CommentEditPart.VISUAL_ID:
 			case ConstraintEditPart.VISUAL_ID:
-
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			}
 		}
+	}
+
+	private Command dropDependencyNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
+		Collection sources = DeploymentLinkMappingHelper.getInstance().getSource(semanticElement);
+		Collection targets = DeploymentLinkMappingHelper.getInstance().getTarget(semanticElement);
+		if(sources.size() == 1 && targets.size() == 1) {
+			Element source = (Element)sources.toArray()[0];
+			Element target = (Element)targets.toArray()[0];
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4008, dropRequest.getLocation(), semanticElement));
+		}
+		if(sources.size() > 1 || targets.size() > 1) {
+			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain());
+			return dependencyHelper.dropMutliDependency((Dependency)semanticElement, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
