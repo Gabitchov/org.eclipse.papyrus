@@ -157,6 +157,10 @@
             id="org.eclipse.papyrus.infra.core.commands.dropdowncommand"
             name="dropdown tool">
       </command>
+      <command
+            id="org.eclipse.papyrus.infra.core.sasheditor.command.tabdoubleclick"
+            name="Rename diagram">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">

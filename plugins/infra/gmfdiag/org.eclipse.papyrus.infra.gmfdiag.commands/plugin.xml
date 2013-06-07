@@ -7,15 +7,15 @@
       <handler
             class="org.eclipse.papyrus.commands.RenameDiagramHandler"
             commandId="org.eclipse.papyrus.infra.core.sasheditor.command.tabdoubleclick">
+         <activeWhen>
+            <with
+                  variable="activeEditor">
+               <adapt
+                     type="org.eclipse.gmf.runtime.notation.Diagram">
+               </adapt>
+            </with>
+         </activeWhen>
       </handler>
-   </extension>
-   <extension
-         point="org.eclipse.ui.commands">
-      <command
-            description="Rename the current Diagram"
-            id="org.eclipse.papyrus.infra.core.sasheditor.command.tabdoubleclick"
-            name="Rename Diagram">
-      </command>
    </extension>
 
 </plugin>

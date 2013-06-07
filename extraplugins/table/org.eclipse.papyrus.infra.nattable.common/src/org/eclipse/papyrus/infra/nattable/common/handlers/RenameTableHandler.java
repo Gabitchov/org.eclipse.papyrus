@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Cedric Dumoulin.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,10 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.commands;
+package org.eclipse.papyrus.infra.nattable.common.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -20,28 +20,28 @@ import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.commands.messages.Messages;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
+import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * This handler allows to rename a gmf diagram.
- * The handler is activated when the current selection denote a gmf diagram.
+ * This handler allows to rename a Papyrus Table. The handler is activated when
+ * the active editor is a Papyrus NatTableEditor.
  * 
- * <br>
- * There is another RenameHandler in Papyrus (for modelexplorer):
- * /org.eclipse.papyrus.infra.gmfdiag.modelexplorer/src/org/eclipse/papyrus/infra/gmfdiag/modelexplorer/handlers/RenameDiagramHandler.java
- * 
- * @author cedric dumoulin
+ * @author Camille Letavernier
  * 
  */
-public class RenameDiagramHandler extends AbstractHandler {
+public class RenameTableHandler extends AbstractHandler {
+
+	public static String RenameTableHandler_NewName = "New name:";
+
+	public static String RenameTableHandler_RenameAnExistingTable = "Rename an existing table";
 
 	/**
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
@@ -64,24 +64,25 @@ public class RenameDiagramHandler extends AbstractHandler {
 	private void executeTransaction(ExecutionEvent event) {
 
 		// Get requested objects
-		final Diagram notationDiagramHelper;
+		final Table tableElement;
 		TransactionalEditingDomain editingDomain;
 		try {
 			IEvaluationContext context = getIEvaluationContext(event);
-			notationDiagramHelper = lookupNotationDiagramChecked(context);
+			tableElement = lookupTable(context);
 			editingDomain = lookupTransactionalEditingDomain(context);
-		} catch (NotFoundException e) {
-			// silently fails
-			return;
 		} catch (ServiceException e) {
 			// silently fails
 			return;
 		}
 
+		if(tableElement == null) {
+			return;
+		}
+
 		// Open the dialog to ask the new name
-		String currentName = notationDiagramHelper.getName();
+		String currentName = tableElement.getName();
 		String newName = null;
-		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameDiagramHandler_RenameAnExistingDiagram, Messages.RenameDiagramHandler_NewName, currentName, null);
+		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), RenameTableHandler_RenameAnExistingTable, RenameTableHandler_NewName, currentName, null);
 		if(dialog.open() == Window.OK) {
 			newName = dialog.getValue();
 			if(newName == null || newName.length() <= 0) {
@@ -97,75 +98,51 @@ public class RenameDiagramHandler extends AbstractHandler {
 
 			@Override
 			protected void doExecute() {
-				// Rename the diagram !
-				notationDiagramHelper.setName(name);
+				// Rename the table !
+				tableElement.setName(name);
 			}
-
 
 		};
 
 		editingDomain.getCommandStack().execute(cmd);
-
 	}
 
 	/**
-	 * Get the name used in the {@link RecordingCommand}. This name will be visible in
-	 * undo/redo.
+	 * Get the name used in the {@link RecordingCommand}. This name will be
+	 * visible in undo/redo.
 	 * 
 	 * @return The command name to show.
 	 */
 	public String getCommandName() {
-		return Messages.RenameDiagramHandler_RenameDiagram;
+		return "Rename Table";
 	}
 
-	protected IEvaluationContext getIEvaluationContext(ExecutionEvent event) throws NotFoundException {
-		try {
+	protected IEvaluationContext getIEvaluationContext(ExecutionEvent event) {
+		if(event.getApplicationContext() instanceof IEvaluationContext) {
 			return (IEvaluationContext)event.getApplicationContext();
-		} catch (ClassCastException e) {
-			throw new NotFoundException("IEvaluationContext can't be found."); //$NON-NLS-1$
 		}
+		return null;
 
 	}
-
-	//	/**
-	//	 * 
-	//	 * @return
-	//	 * @throws NotFoundException
-	//	 */
-	//	protected LayerStackMngr lookupLayerStackMngrChecked() throws NotFoundException {
-	//		
-	//		return lookupLayersViewChecked().getLayerStackMngrChecked();
-	//		
-	//	}
 
 	/**
-	 * Get the notation diagram helper.
-	 * This method can be used from {@link #execute(ExecutionEvent)} or {@link #setEnabled(Object)}.
+	 * Get the Table model element. This method can be used from {@link #execute(ExecutionEvent)} or {@link #setEnabled(Object)}.
 	 * 
-	 * @return The
-	 * @throws NotFoundException
+	 * @return The current table
 	 * @throws ServiceException
 	 */
-	protected Diagram lookupNotationDiagramChecked(IEvaluationContext context) throws NotFoundException, ServiceException {
-
-
-		// Get page from the event !
-		//	    IWorkbenchPage page = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
-
+	protected Table lookupTable(IEvaluationContext context) throws ServiceException {
 		IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getNestedActiveIEditorPart(context);
 
-		if(!(editor instanceof DiagramDocumentEditor)) {
-			throw new NotFoundException("Selected editor do not contains Diagram"); //$NON-NLS-1$
+		if(!(editor instanceof NatTableEditor)) {
+			return null;
 		}
-		DiagramDocumentEditor diagramEditor = (DiagramDocumentEditor)editor;
+		NatTableEditor tableEditor = (NatTableEditor)editor;
 
-		Diagram diagram = diagramEditor.getDiagram();
-		if(diagram == null) {
-			throw new NotFoundException("Selected editor do not contains Diagram"); //$NON-NLS-1$
-		}
+		Table table = ((INattableModelManager)tableEditor.getAdapter(INattableModelManager.class)).getTable();
 
 		// Return a new instance of the Helper
-		return diagram;
+		return table;
 	}
 
 	/**
@@ -178,7 +155,8 @@ public class RenameDiagramHandler extends AbstractHandler {
 	protected TransactionalEditingDomain lookupTransactionalEditingDomain(IEvaluationContext context) throws ServiceException {
 
 		// Get page from the event !
-		//	    IWorkbenchPage page = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
+		// IWorkbenchPage page =
+		// HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
 
 		return ServiceUtilsForIEvaluationContext.getInstance().getTransactionalEditingDomain(context);
 	}
@@ -192,7 +170,6 @@ public class RenameDiagramHandler extends AbstractHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-
 		if(!(evaluationContext instanceof IEvaluationContext)) {
 			setBaseEnabled(false);
 			return;
@@ -201,19 +178,14 @@ public class RenameDiagramHandler extends AbstractHandler {
 		IEvaluationContext context = (IEvaluationContext)evaluationContext;
 
 		try {
-			// Try to get the diagram
-			lookupNotationDiagramChecked(context);
-
-			// ok, we got it.
-			setBaseEnabled(true);
-
+			// Try to get the Table
+			setBaseEnabled(lookupTable(context) != null);
+			return;
 		} catch (ServiceException e) {
 			// Can't find ServiceRegistry: disable
-			setBaseEnabled(false);
-		} catch (NotFoundException e) {
-			// Can't find ServiceRegistry: disable
-			setBaseEnabled(false);
 		}
 
+		//In all other cases
+		setBaseEnabled(false);
 	}
 }

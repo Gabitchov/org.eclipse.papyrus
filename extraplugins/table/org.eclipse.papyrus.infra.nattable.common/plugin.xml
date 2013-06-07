@@ -32,5 +32,20 @@
           icon="icons/table.gif">
     </editorDiagram>
  </extension>
+ <extension
+       point="org.eclipse.ui.handlers">
+    <handler
+          class="org.eclipse.papyrus.infra.nattable.common.handlers.RenameTableHandler"
+          commandId="org.eclipse.papyrus.infra.core.sasheditor.command.tabdoubleclick">
+       <activeWhen>
+          <with
+                variable="activeEditor">
+             <adapt
+                   type="org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager">
+             </adapt>
+          </with>
+       </activeWhen>
+    </handler>
+ </extension>
    
 </plugin>
