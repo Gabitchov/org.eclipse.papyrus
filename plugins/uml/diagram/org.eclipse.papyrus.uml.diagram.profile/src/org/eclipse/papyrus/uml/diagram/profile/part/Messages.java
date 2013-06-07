@@ -436,6 +436,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createContextLink6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createContextLink6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createProperty1CreationTool_title;
 
 	/**

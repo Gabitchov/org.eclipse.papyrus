@@ -44,13 +44,13 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		AssociationNodePreferencePage.initDefaults(store);
 		MetaclassPreferencePage.initDefaults(store);
 		AssociationBranchPreferencePage.initDefaults(store);
-		PackageImportPreferencePage.initDefaults(store);
-		ExtensionPreferencePage.initDefaults(store);
 		AssociationPreferencePage.initDefaults(store);
 		GeneralizationPreferencePage.initDefaults(store);
 		ElementImportPreferencePage.initDefaults(store);
-		ProfileApplicationPreferencePage.initDefaults(store);
 		DependencyPreferencePage.initDefaults(store);
+		PackageImportPreferencePage.initDefaults(store);
+		ExtensionPreferencePage.initDefaults(store);
+		ProfileApplicationPreferencePage.initDefaults(store);
 	}
 
 	/**

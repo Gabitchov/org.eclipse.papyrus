@@ -288,10 +288,11 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.Dependency_4008);
 		types.add(UMLElementTypes.Dependency_4018);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+		types.add(UMLElementTypes.ConstraintContext_8500);
 		return types;
 	}
 
@@ -486,6 +487,57 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
+		if(targetEditPart instanceof AssociationNodeEditPart) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof StereotypeEditPart) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof MetaclassEditPart) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof ModelEditPartTN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof ProfileEditPartTN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof EnumerationEditPart) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof StereotypeEditPartCN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof MetaclassEditPartCN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof ModelEditPartCN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof ProfileEditPartCN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof DataTypeEditPartCN) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
 		return types;
 	}
 
@@ -557,6 +609,24 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Profile_1024);
 			types.add(UMLElementTypes.Package_1012);
 			types.add(UMLElementTypes.Constraint_1028);
+			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.DataType_3027);
+		} else if(relationshipType == UMLElementTypes.ConstraintContext_8500) {
+			types.add(UMLElementTypes.Association_2015);
+			types.add(UMLElementTypes.Stereotype_1026);
+			types.add(UMLElementTypes.Class_1031);
+			types.add(UMLElementTypes.Model_2005);
+			types.add(UMLElementTypes.Profile_1030);
+			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
+			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
+			types.add(UMLElementTypes.Stereotype_1023);
+			types.add(UMLElementTypes.Class_3028);
+			types.add(UMLElementTypes.Model_1027);
+			types.add(UMLElementTypes.Profile_1024);
+			types.add(UMLElementTypes.Package_1012);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.DataType_3027);
 		}

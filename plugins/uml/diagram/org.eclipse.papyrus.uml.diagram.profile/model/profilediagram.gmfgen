@@ -1090,6 +1090,17 @@
         </modelFacet>
         <creationConstraints targetEnd="/0/@expressionProviders/@providers.0/@expressions.18"/>
       </links>
+      <links visualID="8500" editPartClassName="ContextLinkEditPart" itemSemanticEditPolicyClassName="ContextLinkItemSemanticEditPolicy" createCommandClassName="ContextLinkCreateCommand" reorientCommandClassName="ContextLinkReorientCommand">
+        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType xsi:type="gmfgen:SpecializationType" displayName="Undefined"/>
+        <viewmap xsi:type="gmfgen:InnerClassViewmap" className="ContextLinkDescriptor" classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class ContextLinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public ContextLinkDescriptor() {&#xD;&#xA;&#x9;&#x9;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASHDOT);&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy"/>
+        <modelFacet xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/context"/>
+        </modelFacet>
+      </links>
       <compartments visualID="1005" editPartClassName="PackagePackageableElementCompartmentEditPart" itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14" title="PackageableElementCompartment" canCollapse="false" node="/0/@diagram/@topLevelNodes.8" listLayout="false">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getPackageableElementFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
@@ -1214,6 +1225,7 @@
           <entries xsi:type="gmfgen:ToolEntry" title="Link" description="Create a link for Comment, Constraint" largeIconPath="icons/obj16/Link.gif" smallIconPath="icons/obj16/Link.gif" genLinks="/0/@diagram/@links.9 /0/@diagram/@links.10"/>
           <entries xsi:type="gmfgen:ToolEntry" title="ProfileApplication" description="Create a ProfileApplication" largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif" smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif" genLinks="/0/@diagram/@links.2"/>
           <entries xsi:type="gmfgen:ToolEntry" title="Association" description="Create an Association" largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" genLinks="/0/@diagram/@links.1"/>
+          <entries xsi:type="gmfgen:ToolEntry" title="ContextLink" description="Creation of a context link for a Constraint" largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" createMethodName="createContextLink6CreationTool" genLinks="/0/@diagram/@links.11"/>
         </groups>
         <groups title="Features" description="Features" largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
           <entries xsi:type="gmfgen:ToolEntry" title="Property" description="Add new property" largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" qualifiedToolName="" genNodes="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.3"/>

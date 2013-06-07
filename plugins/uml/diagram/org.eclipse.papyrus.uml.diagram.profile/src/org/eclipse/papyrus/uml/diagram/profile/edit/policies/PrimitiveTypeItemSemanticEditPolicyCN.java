@@ -38,6 +38,8 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.commands.CommentAnnotatedEle
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ContextLinkCreateCommand;
+import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ContextLinkReorientCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.DependencyBranchCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.DependencyBranchReorientCommand;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.DependencyCreateCommand;
@@ -52,6 +54,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationBranchEditP
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ElementImportEditPart;
@@ -169,6 +172,9 @@ public class PrimitiveTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEd
 		if(UMLElementTypes.ConstraintConstrainedElement_4014 == baseElementType) {
 			return null;
 		}
+		if(UMLElementTypes.ConstraintContext_8500 == baseElementType) {
+			return null;
+		}
 		return null;
 	}
 
@@ -243,6 +249,12 @@ public class PrimitiveTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEd
 			}
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.ConstraintContext_8500 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new ContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -284,6 +296,8 @@ public class PrimitiveTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEd
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+		case ContextLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new ContextLinkReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

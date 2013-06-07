@@ -723,7 +723,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(8);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
 		types.add(UMLElementTypes.Generalization_4002);
@@ -732,6 +732,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 		types.add(UMLElementTypes.ElementImport_1064);
 		types.add(UMLElementTypes.CommentAnnotatedElement_1022);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+		types.add(UMLElementTypes.ConstraintContext_8500);
 		return types;
 	}
 
@@ -840,6 +841,9 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 			types.add(UMLElementTypes.Comment_1002);
 			types.add(UMLElementTypes.Comment_1007);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+			types.add(UMLElementTypes.Constraint_1014);
+			types.add(UMLElementTypes.Constraint_1028);
+		} else if(relationshipType == UMLElementTypes.ConstraintContext_8500) {
 			types.add(UMLElementTypes.Constraint_1014);
 			types.add(UMLElementTypes.Constraint_1028);
 		}

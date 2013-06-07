@@ -497,6 +497,21 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateConstraintContext_8500(Constraint source, Namespace target) {
+			if(source != null) {
+				if(source.getContext() != null) {
+					return false;
+				}
+			}
+			if(target != null && (target.getOwnedRules().contains(target))) {
+				return false;
+			}
+			return canExistConstraintContext_8500(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistExtension_1013(Package container, Extension linkInstance, Property source, Class target) {
 			try {
 				//ExtensionSource
@@ -733,6 +748,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistConstraintContext_8500(Constraint source, Namespace target) {
+			return true;
 		}
 	}
 }
