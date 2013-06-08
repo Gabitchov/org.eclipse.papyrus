@@ -42,7 +42,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Abstract validation command
+ * Abstract validation command. While being abstract (and refined by concrete validation commands)
+ * it contains all validation related code.
+ * 
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
@@ -60,17 +62,13 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	protected IPapyrusDiagnostician diagnostician;
 
 	/**
-	 * Creates a new ImportLibraryFromRepositoryCommand
-	 * 
-	 * @param editingDomain
-	 *        editing domain that manages the changed objects
-	 * @param runnable
-	 *        process that executes the modifications
+	 * Creates a new ValidationCommand
+	 *
 	 * @param label
-	 *        the label of the command
-	 * @param description
-	 *        description of the command
-	 * @deprecated because it initialize with a diagnostician for Ecore by default
+	 *        the command label
+	 * @param domain
+	 *        the editing domain
+	 * @param selectedElement the selected element
 	 */
 	public AbstractValidateCommand(String label, TransactionalEditingDomain domain, EObject selectedElement) {
 		this(label, domain, selectedElement, new EcoreDiagnostician());
@@ -79,12 +77,14 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	/**
 	 * Creates a new ImportLibraryFromRepositoryCommand
 	 * 
-	 * @param domain
-	 *        editing domain that manages the changed objects
 	 * @param label
-	 *        the label of the command
-	 * @param selectedElement the element that we want to validate
-	 * @param diagnostician a diagnocstician adapted to a domain see {@link IPapyrusDiagnostician}
+	 *        the command label
+	 * @param domain
+	 *        the editing domain
+	 * @param selectedElement
+	 *        the selected element
+	 * @param diagnostician
+	 *        a diagnocstician adapted to a domain see {@link IPapyrusDiagnostician}
 	 */
 	public AbstractValidateCommand(String label, TransactionalEditingDomain domain, EObject selectedElement, IPapyrusDiagnostician diagnostician) {
 		super(domain, label, Collections.EMPTY_LIST);
