@@ -32,7 +32,10 @@ import org.eclipse.uml2.uml.Element;
 /**
  * overload the Generic decoration service to take in account validation on stereotyped element
  *
+ * CAVEAT: this class is currently unused, since the validation mechanism already replaces a stereotype application
+ *         by its base element (see org.eclipse.papyurs.uml.service.validation.StereotypeValidatorAdaptor)
  */
+@Deprecated
 public class UMLDecorationUtils extends DecorationUtils {
 
 	public UMLDecorationUtils(Object object) {

@@ -12,19 +12,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.services.decoration;
 
-import java.util.List;
-
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
-import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
-import org.eclipse.papyrus.uml.services.decoration.util.UMLDecorationUtils;
 
 
 /**
  * overload the Generic decoration service to take in account validation on stereotyped element
  *
+ * CAVEAT: this class is currently unused, since the validation mechanism already replaces a stereotype application
+ *         by its base element (see org.eclipse.papyurs.uml.service.validation.StereotypeValidatorAdaptor)
  */
 
 public class UMLDecorationService extends DecorationService {
+	
 	/**
 	 * Gets the decoration.
 	 * use "synchronized" to assure that no decoration modifications are done while this operation is running
@@ -37,9 +36,10 @@ public class UMLDecorationService extends DecorationService {
 	 * @return the decoration
 	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#getDecoration(java.lang.Object, boolean)
 	 */
+	/*
 	public List<IPapyrusDecoration> getDecorations(Object element, boolean navigateToParents) {
 		UMLDecorationUtils tool = new UMLDecorationUtils(element);
 		return tool.getDecorations(this, navigateToParents);
 	}
-
+	*/
 }

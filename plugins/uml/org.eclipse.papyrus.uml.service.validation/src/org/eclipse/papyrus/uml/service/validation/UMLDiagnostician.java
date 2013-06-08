@@ -8,6 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
+ * Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Contribution related to StereotypeValidatorAdaptor
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.validation;
@@ -23,22 +24,31 @@ import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * this is a specific diagnostician use to validate also stereotype application
- * 
+ * This is a specific diagnostician used to validate stereotype applications
+ *k
  */
 public class UMLDiagnostician extends EcoreDiagnostician {
 
 	public UMLDiagnostician() {
+		validatorAdapter = new StereotypeValidatorAdaptor();
 	}
 
 	protected boolean doValidateStereotypeApplications(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		StereotypeValidatorAdaptor va = (StereotypeValidatorAdaptor) validatorAdapter;
+		if (va.validateStereotype) {
+			// this function is called recursively. Avoid trying to obtain stereotype applications, if we are
+			// already examining a stereotype
+			return true;
+		}
 		List<EObject> stereotypeApplications = eObject instanceof Element ? ((Element)eObject).getStereotypeApplications() : Collections.<EObject> emptyList();
 		if(!stereotypeApplications.isEmpty()) {
 			Iterator<EObject> i = stereotypeApplications.iterator();
+			va.validateStereotype = true;
 			boolean result = validate(i.next(), diagnostics, context);
 			while(i.hasNext() && (result || diagnostics != null)) {
 				result &= validate(i.next(), diagnostics, context);
 			}
+			va.validateStereotype = false;
 			return result;
 		} else {
 			return true;
