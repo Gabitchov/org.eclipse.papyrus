@@ -607,16 +607,25 @@ implements IWorkspaceCommandStack {
 		// pass
 	}
 
+
 	@Override
 	public boolean isSaveNeeded() {
+		// Bug 410310 - [core] Model remains dirty after save
+		// seems that super class implementation is good enough
+		// => deactivate implementation below and use the standard from the superclass
+		return super.isSaveNeeded();
 		// We override the execute method and never call the super
 		// implementation
 		// so we have to implement the isSaveNeeded method ourselves.
+		/*
 		IUndoableOperation nextUndoableOperation = history.getUndoOperation(getDefaultUndoContext());
 		if(nextUndoableOperation == null) {
+			// this is the last undoable operation. But the document might have been save
+			// CAVEAT: will trigger 410310, if the model has been saved before
 			return savedContext != null;
 		}
 		return savedContext != null ? !nextUndoableOperation.hasContext(getSavedContext()) : true;
+		*/
 	}
 
 	@Override
