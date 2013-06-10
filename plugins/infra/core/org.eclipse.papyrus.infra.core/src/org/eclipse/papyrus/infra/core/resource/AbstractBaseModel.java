@@ -400,8 +400,8 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 	}
 
 	public Set<URI> getModifiedURIs() {
-		if (getResource() != null) {
-			if (!getResource().isTrackingModification() || getResource().isModified()) {
+		if(getResource() != null) {
+			if(!getResource().isTrackingModification() || getResource().isModified()) {
 				return Collections.singleton(getResource().getURI());
 			}
 		}

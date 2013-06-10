@@ -315,6 +315,11 @@
                serviceKeyRef="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager">
          </dependsOn>
       </serviceFactory>
+      <service
+            classname="org.eclipse.papyrus.infra.core.services.ResourceUpdateService"
+            priority="1"
+            startKind="startup">
+      </service>
    </extension>
    <extension
          point="org.eclipse.ui.exportWizards">

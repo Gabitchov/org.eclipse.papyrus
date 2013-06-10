@@ -518,25 +518,6 @@
       </activeWhen>
    </handler>
 </extension>
-<extension
-         point="org.eclipse.papyrus.infra.core.service">
- 		<service
-            classname="org.eclipse.papyrus.uml.diagram.common.resourceupdate.ResourceUpdateService"
-            description="Service used to update resources that have changed on disk"
-            id="org.eclipse.papyrus.uml.diagram.common.resourceupdate"
-            priority="1"
-            startKind="startup">
-         <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider">
-         </dependsOn>
-         <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor">
-         </dependsOn>
-         <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
-         </dependsOn>
- 		</service>
-</extension>
 <!--Declare a property tester. The tested properties allow to enable/disable handlers which listen these properties   -->
 <extension
       point="org.eclipse.core.expressions.propertyTesters">

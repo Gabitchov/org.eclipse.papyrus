@@ -46,7 +46,10 @@ import org.eclipse.uml2.uml.Profile;
  * underlying resources have been changed.
  * 
  * @author Ansgar Radermacher (CEA LIST)
+ * 
+ * @deprecated The equivalent behavior has been implemented in oep.infra.core
  */
+@Deprecated
 public class ResourceUpdateService implements IService, IResourceChangeListener, IResourceDeltaVisitor {
 
 	public static final String RESOURCE_UPDATE_ID = Activator.ID + ".resourceUpdate";
@@ -106,8 +109,7 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 			return true;
 		}
 		final String changedResourcePath = changedResource.getFullPath().toString();
-		URI changedResourceURIWOExt = URI.createPlatformResourceURI(
-			changedResource.getFullPath().toString(), true).trimFileExtension();
+		URI changedResourceURIWOExt = URI.createPlatformResourceURI(changedResource.getFullPath().toString(), true).trimFileExtension();
 		URIConverter uriConverter = modelSet.getURIConverter();
 
 		for(Resource resource : modelSet.getResources()) {

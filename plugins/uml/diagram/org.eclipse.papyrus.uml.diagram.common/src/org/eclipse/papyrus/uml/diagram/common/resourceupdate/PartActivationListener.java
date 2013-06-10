@@ -57,7 +57,10 @@ import org.eclipse.ui.PlatformUI;
  * update of
  * 
  * @author Ansgar Radermacher (CEA LIST)
+ * 
+ * @deprecated The equivalent behavior has been implemented in oep.infra.core
  */
+@Deprecated
 public class PartActivationListener implements IPartListener {
 
 	/**
@@ -151,7 +154,7 @@ public class PartActivationListener implements IPartListener {
 	 *        true if the resource contains modifications that should conflict with these changes
 	 */
 	public void setModificationData(IPath changedResourcePath, IResourceDelta delta, boolean isMainResource, boolean resourceConflicts) {
-		if(resourceModifications.containsKey(changedResourcePath)){
+		if(resourceModifications.containsKey(changedResourcePath)) {
 			//merge two modifications : 1. merge conflicts the pessimistic way
 			resourceModifications.get(changedResourcePath).conflict |= resourceConflicts;
 			//merge two modifications : 2. take latest delta
