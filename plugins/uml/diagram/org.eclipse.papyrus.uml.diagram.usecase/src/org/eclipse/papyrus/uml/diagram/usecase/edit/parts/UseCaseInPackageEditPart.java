@@ -160,7 +160,7 @@ public class UseCaseInPackageEditPart extends NamedElementEditPart {
 			return true;
 		}
 		if(childEditPart instanceof UseCasePointsInPackageEditPart) {
-			IFigure pane = getPrimaryShape().getNameLabel();
+			IFigure pane = getPrimaryShape().getExtensionPointContainerFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((UseCasePointsInPackageEditPart)childEditPart).getFigure());
 			return true;
@@ -176,7 +176,7 @@ public class UseCaseInPackageEditPart extends NamedElementEditPart {
 			return true;
 		}
 		if(childEditPart instanceof UseCasePointsInPackageEditPart) {
-			IFigure pane = getPrimaryShape().getNameLabel();
+			IFigure pane = getPrimaryShape().getExtensionPointContainerFigure();
 			pane.remove(((UseCasePointsInPackageEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -208,7 +208,7 @@ public class UseCaseInPackageEditPart extends NamedElementEditPart {
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof UseCasePointsInPackageEditPart) {
-			return getPrimaryShape().getNameLabel();
+			return getPrimaryShape().getExtensionPointContainerFigure();
 		}
 		return getContentPane();
 	}

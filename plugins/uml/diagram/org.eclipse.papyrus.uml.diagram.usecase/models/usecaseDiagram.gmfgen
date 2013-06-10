@@ -1033,7 +1033,7 @@
       </compartments>
       <compartments visualID="7014" editPartClassName="UseCasePointsInPackageEditPart" itemSemanticEditPolicyClassName="UseCasePointsInPackageItemSemanticEditPolicy" notationViewFactoryClassName="UseCasePoints3ViewFactory" canonicalEditPolicyClassName="UseCasePointsInPackageCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.0" title="points" canCollapse="false" needsTitle="false" node="/0/@diagram/@childNodes.9">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getNameLabel" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getExtensionPointContainerFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments visualID="7015" editPartClassName="ComponentUsecases3EditPart" itemSemanticEditPolicyClassName="ComponentUsecases3ItemSemanticEditPolicy" notationViewFactoryClassName="ComponentUsecases3ViewFactory" canonicalEditPolicyClassName="ComponentUsecases3CanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6" title="use cases" canCollapse="false" needsTitle="false" node="/0/@diagram/@childNodes.10" listLayout="false">
