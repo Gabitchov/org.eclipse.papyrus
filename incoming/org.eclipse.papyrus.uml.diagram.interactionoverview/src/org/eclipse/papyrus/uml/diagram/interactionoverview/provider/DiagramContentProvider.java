@@ -15,11 +15,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
@@ -61,7 +61,7 @@ public class DiagramContentProvider extends MoDiscoContentProvider implements IH
 			final List<Object> list = pageMngr.allPages();
 			for(int i = 0; i < list.size(); i++) {
 				final Object element = pageMngr.allPages().get(i);
-				if(element instanceof CSSDiagram && isValidDiagram((CSSDiagram)element)) {
+				if(element instanceof Diagram && isValidDiagram((Diagram)element)) {
 					result.add((EObject)pageMngr.allPages().get(i));
 				}
 			}
@@ -76,7 +76,7 @@ public class DiagramContentProvider extends MoDiscoContentProvider implements IH
 		return new EObject[0];
 	}
 
-	private boolean isValidDiagram(final CSSDiagram diagram) {
+	private boolean isValidDiagram(final Diagram diagram) {
 		//seqDiagram or comDiagram
 		if(diagram.getType().equals(PackageEditPart.MODEL_ID) || diagram.getType().equals(ModelEditPart.MODEL_ID)) {
 			if(diagram.getElement().equals(interaction)) {
@@ -99,7 +99,7 @@ public class DiagramContentProvider extends MoDiscoContentProvider implements IH
 	public boolean isValidValue(final Object element) {
 		if(element instanceof ModelElementItem) {
 			final ModelElementItem item = (ModelElementItem)element;
-			return isValidDiagram((CSSDiagram)item.getEObject());
+			return isValidDiagram((Diagram)item.getEObject());
 		} else {
 			return false;
 		}
