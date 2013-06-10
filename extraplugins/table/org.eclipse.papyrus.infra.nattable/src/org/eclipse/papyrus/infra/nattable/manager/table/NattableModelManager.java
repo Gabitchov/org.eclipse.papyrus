@@ -184,9 +184,15 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				//we refresh the table after each command, only when it is visible
 				//its allows to refresh the text and the appearance of the table
 				//this refresh doesn't manage the add/remove axis
-				if(nattable != null && !nattable.isDisposed() && nattable.isVisible()) {
-					nattable.refresh();
-				}
+				Display.getDefault().asyncExec(new Runnable() {
+
+					public void run() {
+						if(nattable != null && !nattable.isDisposed() && nattable.isVisible()) {
+							nattable.refresh();
+						}
+					}
+				});
+
 			}
 		};
 
