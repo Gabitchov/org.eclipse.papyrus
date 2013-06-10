@@ -23,7 +23,6 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 
 	public CustomCallBehaviorActionParser() {
@@ -31,10 +30,10 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 	}
 
 	@Override
-	public String getPrintString(IAdaptable element, int flags) {
-		Object obj = element.getAdapter(EObject.class);
+	public String getPrintString(final IAdaptable element, final int flags) {
+		final Object obj = element.getAdapter(EObject.class);
 		if(obj instanceof CallBehaviorAction) {
-			CallBehaviorAction action = (CallBehaviorAction)obj;
+			final CallBehaviorAction action = (CallBehaviorAction)obj;
 			String behaviorName = "";
 			if(action.getBehavior() != null && action.getBehavior().getName() != null) {
 				behaviorName = action.getBehavior().getName();
@@ -48,10 +47,10 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 	}
 
 	@Override
-	public String getEditString(IAdaptable element, int flags) {
-		Object obj = element.getAdapter(EObject.class);
+	public String getEditString(final IAdaptable element, final int flags) {
+		final Object obj = element.getAdapter(EObject.class);
 		if(obj instanceof CallBehaviorAction) {
-			CallBehaviorAction action = (CallBehaviorAction)obj;
+			final CallBehaviorAction action = (CallBehaviorAction)obj;
 			String behaviorName = "";
 			if(action.getBehavior() != null && action.getBehavior().getName() != null) {
 				behaviorName = action.getBehavior().getName();
@@ -65,18 +64,18 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 	}
 
 	@Override
-	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
+	public ICommand getParseCommand(final IAdaptable adapter, final String newString, final int flags) {
 		if(newString == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		EObject element = (EObject)adapter.getAdapter(EObject.class);
-		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
+		final EObject element = (EObject)adapter.getAdapter(EObject.class);
+		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
 		if(editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Set Values"); //$NON-NLS-1$
+		final CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Set Values"); //$NON-NLS-1$
 		if(element instanceof CallBehaviorAction) {
-			Interaction interactionUse = (Interaction)(((CallBehaviorAction)element).getBehavior());
+			final Interaction interactionUse = (Interaction)(((CallBehaviorAction)element).getBehavior());
 			command.compose(getModificationCommand(interactionUse, UMLPackage.eINSTANCE.getNamedElement_Name(), newString));
 		}
 		return command;

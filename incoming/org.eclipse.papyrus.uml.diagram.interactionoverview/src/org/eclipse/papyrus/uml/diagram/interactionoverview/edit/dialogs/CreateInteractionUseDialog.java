@@ -38,7 +38,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.common.collect.Sets;
 
-
 public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 
 	public CreateInteractionUseDialog(final Shell shell, final Activity owner, final InvocationAction newAction) {
@@ -148,7 +147,7 @@ public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected void okPressed() {
-		boolean isSelectionSelected = selectionRadio.getSelection();
+		final boolean isSelectionSelected = selectionRadio.getSelection();
 		// create element if needed
 		if(!isSelectionSelected) {
 			selectedInvoked = UMLFactory.eINSTANCE.createInteraction();
@@ -158,23 +157,22 @@ public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 			addInvokedInParent(selectedParent, selectedInvoked);
 		}
 
-		//InteractionUse
-		InteractionUse interactionUse = UMLFactory.eINSTANCE.createInteractionUse();
+		// InteractionUse
+		final InteractionUse interactionUse = UMLFactory.eINSTANCE.createInteractionUse();
 		interactionUse.setRefersTo((Interaction)selectedInvoked);
-		interactionUse.setName("InteractionUse_" + ((Interaction)selectedInvoked).getName());
+		interactionUse.setName(Messages.CreateInteractionUseDialog_InteractionUsePrefix + ((Interaction)selectedInvoked).getName());
 
 		addInvokedInParent(selectedInvoked, interactionUse);
 
-
 		// store user choices in preference
-		IPreferenceStore prefStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		final IPreferenceStore prefStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		// store choice between selection and creation
 		prefStore.setValue(getSelectionIsDefaultPreference(), isSelectionSelected);
 		if(!isSelectionSelected) {
 			// store the owner choice
-			String ressUri = selectedParent.eResource().getURI().toString();
-			String parentURI = selectedParent.eResource().getURIFragment(selectedParent);
-			String prefValue = String.format(MAP_FORMAT, ressUri, parentURI);
+			final String ressUri = selectedParent.eResource().getURI().toString();
+			final String parentURI = selectedParent.eResource().getURIFragment(selectedParent);
+			final String prefValue = String.format(MAP_FORMAT, ressUri, parentURI);
 			prefStore.setValue(getCreationDefaultOwnerPreference(), prefValue);
 		}
 		setReturnCode(OK);

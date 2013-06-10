@@ -12,10 +12,7 @@ package org.eclipse.papyrus.uml.diagram.interactionoverview.part;
 
 import org.eclipse.osgi.util.NLS;
 
-
 public class Messages extends NLS {
-
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.interactionoverview.messages"; //$NON-NLS-1$
 
 	static {
 		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
@@ -37,4 +34,26 @@ public class Messages extends NLS {
 	public static String CreateCallActionDialog_CreateBehavior;
 
 	public static String CreateCallActionDialog_SelectBehavior;
+
+	public static String CallBehaviorActionAsInteractionEditHelperAdvice_ConfigureCreatedInteraction;
+
+	public static String CallBehaviorActionAsInteractionUseEditHelperAdvice_ConfigureCreatedInteraction;
+
+	public static String CreateSnapshotForInteractionFromRefreshCommand_CreateSnapshotForRefresh;
+
+	public static String CreateSnapshotForInteractionFromViewDescriptorCommand_CreateSnapshotForRefresh;
+
+	public static String CreateInteractionUseDialog_InteractionUsePrefix;
+
+	public static String ActivityContentCompartmentCreationEditPolicy_CreateCallBehaviorActionAsInteractionCommand;
+
+	public static String CreateDiagramImage_LifelineDialogTitle;
+
+	public static String CreateDiagramImage_LifelineDialogMessage;
+
+	public static String CreateDiagramImage_MultipleValueSelectorDialog;
+
+	public static String CreateSnapshotForInteractionFromViewDescriptorCommand_DiagramSelectorTitle;
+
+	public static String CreateSnapshotForInteractionFromViewDescriptorCommand_DiagramSelectorMessage;
 }

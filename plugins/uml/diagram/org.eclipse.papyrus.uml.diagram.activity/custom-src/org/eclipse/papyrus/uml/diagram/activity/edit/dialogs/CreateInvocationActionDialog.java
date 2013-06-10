@@ -509,7 +509,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * Open the dialog to choose the existing element to select
 	 * 
 	 */
-	private void handleChooseInvoked() {
+	protected void handleChooseInvoked() {
 		TreeSelectorDialog dialog = new TreeSelectorDialog(Display.getDefault().getActiveShell());
 		dialog.setContentProvider(new UMLContentProvider(getInvocationAction(), getInvocationFeature()));
 		dialog.setLabelProvider(new UMLLabelProvider());

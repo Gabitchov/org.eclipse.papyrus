@@ -12,8 +12,6 @@ package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies;
 
 import java.util.List;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -35,7 +33,6 @@ public class CustomInteractionOverviewDiagramCreationEditPolicy extends PapyrusC
 		if(request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
 			final String semanticHint = viewDescriptors.get(0).getSemanticHint();
 			if(Integer.toString(ActivityEditPart.VISUAL_ID).equals(semanticHint)) {
-				final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(getHost().getModel());
 				final CompoundCommand compoundCommand = new CompoundCommand(Messages.CustomInteractionOverviewDiagramCreationEditPolicy_CreateActivity);
 				compoundCommand.add(superCommand);
 

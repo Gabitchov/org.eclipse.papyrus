@@ -19,9 +19,9 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExpansionRegionStr
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.CallBehaviorActionAsInteractionUseCreateCommand;
 
-
 public class CustomExpansionRegionStructuredActivityNodeContentCompartmentItemSemanticEditPolicy extends ExpansionRegionStructuredActivityNodeContentCompartmentItemSemanticEditPolicy {
 
+	@Override
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
@@ -34,7 +34,8 @@ public class CustomExpansionRegionStructuredActivityNodeContentCompartmentItemSe
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				// no reference element type ID. using the closest super element
+				// type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}

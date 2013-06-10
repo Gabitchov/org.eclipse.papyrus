@@ -15,6 +15,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.InteractionOverviewDiagramPreferenceInitializer;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.provider.ElementInitializers;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -106,5 +107,11 @@ public class Activator extends AbstractUIPlugin {
 	public IPreferenceStore getPreferenceStore() {
 		final IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
 		return store;
+	}
+	
+	private ElementInitializers initializers;
+	
+	public ElementInitializers getElementInitializers() {
+		return initializers;
 	}
 }

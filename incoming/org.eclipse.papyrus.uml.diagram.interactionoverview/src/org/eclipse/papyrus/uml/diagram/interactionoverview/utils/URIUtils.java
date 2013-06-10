@@ -8,14 +8,17 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.interactionoverview.provider;
+package org.eclipse.papyrus.uml.diagram.interactionoverview.utils;
 
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomUMLInteractionOverviewEditPartFactory;
 
-public class CustomEditPartProvider extends InheritedActivityDiagramEditPartProvider {
+public class URIUtils {
 
-	public CustomEditPartProvider() {
-		setFactory(new CustomUMLInteractionOverviewEditPartFactory());
-		setAllowCaching(true);
+
+	private static final String PREFIX = "platform:/resource/";
+
+	private static final String SUFFIX = "/model.notation";
+
+	public static String getTimestampedURI() {
+		return PREFIX + System.currentTimeMillis() + SUFFIX;
 	}
 }

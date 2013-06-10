@@ -17,7 +17,6 @@ import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider;
 
-
 public class CustomInteractionUseNameEditPart extends CallBehaviorActionNameEditPart {
 
 	/**
@@ -38,7 +37,6 @@ public class CustomInteractionUseNameEditPart extends CallBehaviorActionNameEdit
 
 	public CustomInteractionUseNameEditPart(final View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
 	}
 
 }

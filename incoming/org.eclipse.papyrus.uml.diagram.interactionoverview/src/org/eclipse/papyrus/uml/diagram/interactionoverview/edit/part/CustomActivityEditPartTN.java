@@ -26,11 +26,4 @@ public class CustomActivityEditPartTN extends ActivityEditPart {
 	protected IFigure createNodeShape() {
 		return primaryShape = new ActivityAsInteractionFigure();
 	}
-
-	@Override
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		//removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
-		//installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityContentCompartmentItemSemanticEditPolicy());
-	}
 }

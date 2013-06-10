@@ -4300,7 +4300,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
 
 	<!-- specific advices (pop up on creation) -->		
-	<adviceBinding id="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice" class="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice" inheritance="all" typeId="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008"/>
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice" class="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice" inheritance="none" typeId="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008"/>
 	<adviceBinding id="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallOperationActionEditHelperAdvice" class="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallOperationActionEditHelperAdvice" inheritance="all" typeId="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010"/>
 	<adviceBinding id="org.eclipse.papyrus.uml.diagram.activity.edit.advices.SendSignalActionEditHelperAdvice" class="org.eclipse.papyrus.uml.diagram.activity.edit.advices.SendSignalActionEditHelperAdvice" inheritance="all" typeId="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052"/>
 				

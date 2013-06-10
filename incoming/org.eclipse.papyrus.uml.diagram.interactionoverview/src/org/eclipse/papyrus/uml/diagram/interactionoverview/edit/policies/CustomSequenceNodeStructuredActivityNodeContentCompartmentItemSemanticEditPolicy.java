@@ -19,9 +19,9 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.SequenceNodeStruct
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.CallBehaviorActionAsInteractionUseCreateCommand;
 
-
 public class CustomSequenceNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy extends SequenceNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy {
 
+	@Override
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
@@ -34,7 +34,8 @@ public class CustomSequenceNodeStructuredActivityNodeContentCompartmentItemSeman
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				// no reference element type ID. using the closest super element
+				// type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}

@@ -20,7 +20,7 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	/** ********************************************************* */
 
 	/** Interaction Overview Diagram :: Diagram */
-	public static final String DIAGRAM_ID = "InteractionOverviewDiagram"; //$NON-NLS-1$
+	public static final String DIAGRAM_ID = "PapyrusUMLInteractionOverviewDiagram"; //$NON-NLS-1$
 
 	/** ********************************************************* */
 	/** Interaction Overview Diagram - ActivityDiagram related elements */

@@ -26,9 +26,7 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
-
 public class CallBehaviorActionAsInteractionUseCreateCommand extends CallBehaviorActionCreateCommand {
-
 
 	public CallBehaviorActionAsInteractionUseCreateCommand(final CreateElementRequest req) {
 		super(req);
@@ -56,7 +54,8 @@ public class CallBehaviorActionAsInteractionUseCreateCommand extends CallBehavio
 		final CallBehaviorAction newElement = UMLFactory.eINSTANCE.createCallBehaviorAction();
 		final CreateInteractionUseDialog dialog = new CreateInteractionUseDialog(Display.getDefault().getActiveShell(), parentActivity, newElement);
 		if(IDialogConstants.OK_ID == dialog.open()) {
-			// initialize the invoked element (no need to use a command, since action is being created)
+			// initialize the invoked element (no need to use a command, since
+			// action is being created)
 			final EObject behavior = dialog.getSelectedInvoked();
 			if(behavior instanceof Behavior) {
 				newElement.setBehavior((Behavior)behavior);
@@ -65,8 +64,6 @@ public class CallBehaviorActionAsInteractionUseCreateCommand extends CallBehavio
 			return CommandResult.newCancelledCommandResult();
 		}
 		initAndExecuteEmfCommand(newElement);
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
 		ElementInitializers.getInstance().init_CallBehaviorAction_3008(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

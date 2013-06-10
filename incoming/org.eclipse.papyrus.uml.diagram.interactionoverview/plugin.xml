@@ -106,18 +106,21 @@
             <Priority name="Low"/>
 
             <!-- Specify diagram this palette tools relate to -->
-            <editor id="org.eclipse.papyrus.uml.diagram.interactionoverview"/>
+            <editor
+                  id="org.eclipse.papyrus.uml.diagram.interactionoverview"/>
         </paletteDefinition>
     </extension>
 
     <!-- Diagram view providers declaration -->
     <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
         <!-- Diagram view provider -->
-        <viewProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomViewProvider">
-            <Priority name="Low"/>
+        <viewProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.InteractionOverviewDiagramViewProvider">
+            <Priority name="Medium"/>
             <context
                 viewClass="org.eclipse.gmf.runtime.notation.Diagram"
                 semanticHints=""/>
+         
+            
         </viewProvider>
 
         <!-- ViewProvider for inherited elements (from ActivityDiagram ViewProvider) -->
@@ -334,6 +337,31 @@
                 elements="uml.ControlFlow"/>
 
         </viewProvider>
+        <viewProvider
+              class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomViewProvider">
+           <Priority
+                 name="High">
+           </Priority>
+           <context
+                viewClass="org.eclipse.gmf.runtime.notation.Node"
+                semanticHints="5000"/>
+
+            <!-- "4006" = COMMENT_ANNOTATED_ELEMENT "4004" = CONTROL_FLOW -->
+            
+            <object
+                id="elementtype.node"
+                class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+
+                <method
+                    name="getSemanticHint()"
+                    value="5000">
+                </method>
+            </object>
+            <context
+                viewClass="org.eclipse.gmf.runtime.notation.Node"
+                elements="elementtype.node"/>
+
+           </viewProvider>
     </extension>
 
     <!-- Diagram edit part providers declaration -->
@@ -455,7 +483,7 @@
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="5001, 5002, 7001, 7002, 7003, 7004, 2001"/>
+                    value="5001, 5002, 7001, 7002, 7003, 7004"/>
             </object>
             <object
                 id="SEQUENCE_NODE_CN"
@@ -513,7 +541,7 @@
             </object>
 
             <context
-                views="ACTIVITY_FINAL_NODE_CN, CALL_BEHAVIOR_ACTION_CN, COMMENT_CN, CONDITIONAL_NODE_CN, DECISION_NODE_CN, FLOW_FINAL_NODE_CN, FORK_NODE_CN, INITIAL_NODE_CN, JOIN_NODE_CN, LOOP_NODE_CN, MERGE_NODE_CN, SEQUENCE_NODE_CN, CONSTRAINT_CN, ACTIVITY"/>
+                views="ACTIVITY_FINAL_NODE_CN, CALL_BEHAVIOR_ACTION_CN, COMMENT_CN, CONDITIONAL_NODE_CN, DECISION_NODE_CN, FLOW_FINAL_NODE_CN, FORK_NODE_CN, INITIAL_NODE_CN, JOIN_NODE_CN, LOOP_NODE_CN, MERGE_NODE_CN, SHAPE_NAMED_ELEMENT_CN, SEQUENCE_NODE_CN, CONSTRAINT_CN"/>
             <context views="ACTIVITY_PARAMETER_CLN, ACTIVITY_CONSTRAINT_CLN, ACTIVITY_CONSTRAINT_CLN"/>
             <context views="COMMENT_ANNOTATED_ELEMENT, CONTROL_FLOW"/>
 
@@ -527,12 +555,12 @@
             class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomEditPartProvider">
             <Priority name="Medium"/>
 			<object
-	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-		    	id="customized-edit-parts">
+	     		class="org.eclipse.gmf.runtime.notation.Node"
+		    	id="ACTIVITY">
 		    	<!-- 2001 = ActivityEditPartTN -->
 			    <method name="getType()" value="2001"/>
 		   </object>
-		   <context views="customized-edit-parts"/>
+		   <context views="ACTIVITY"/>
 	   </editpartProvider>
    </extension>
 
@@ -717,6 +745,78 @@
       <ParserProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomUMLParserProvider">
          <Priority name="Low"/>
       </ParserProvider>
+   </extension>
+   <extension
+		id="org.eclipse.papyrus.uml.diagram.timing.palettedefinition"
+		name="Papyrus Interaction Overview Diagram (Incubation) Predefined Entries"
+          point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
+       <paletteProvider
+             class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+          <Priority
+                name="Medium">
+          </Priority>
+          <contribution
+                factoryClass="org.eclipse.papyrus.uml.diagram.interactionoverview.part.CustomIODPaletteFactory">
+             <entry
+                   defineOnly="false"
+                   description="Create a new Interaction with snapshot"
+                   id="createCallBehaviorActionAsInteractionCreationTool"
+                   kind="tool"
+                   label="Interaction"
+                   large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
+                   path="/interactionoverview.drawer.nodes/"
+                   small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif">
+                   path="/InteractionSnapshotGroup">
+             </entry>
+          </contribution>
+          <editor
+                id="org.eclipse.papyrus.uml.diagram.interactionoverview">
+          </editor>
+       </paletteProvider>
+    </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <specializationType
+               edithelperadvice="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionEditHelperAdvice"
+               id="org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_5000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               name="%metatype.name.CallBehaviorAction_5000">
+            <specializes
+                  id="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008">
+            </specializes>
+            <param
+                  name="semanticHint"
+                  value="5000">
+            </param>
+         </specializationType>
+         <adviceBinding
+               class="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionUseEditHelperAdvice"
+               id="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionUseEditHelperAdvice"
+               inheritance="none"
+               typeId="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.eclipse.papyrus.uml.diagram.activity.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.eclipse.papyrus.uml.diagram.activity.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+         <elementType ref="org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_5000"/>
+         <advice
+               ref="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionEditHelperAdvice">
+         </advice>
+         <advice
+               ref="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionUseEditHelperAdvice">
+         </advice>
+      </binding>
    </extension>
     <!-- Insert custom extensions here. -->
 

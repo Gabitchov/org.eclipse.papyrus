@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
 
 /**
- * PackageDiagramCreationCondition class allows to check if a Class diagram can
+ * PackageDiagramCreationCondition class allows to check if a Interaction Overview diagram can
  * be added to the selected element.
  */
 public class InteractionOverviewDiagramCreationCondition extends PerspectiveContextDependence {

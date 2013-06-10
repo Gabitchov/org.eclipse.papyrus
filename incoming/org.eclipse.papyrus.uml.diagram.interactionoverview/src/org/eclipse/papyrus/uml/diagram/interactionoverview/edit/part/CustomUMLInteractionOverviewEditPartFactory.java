@@ -23,18 +23,29 @@ public class CustomUMLInteractionOverviewEditPartFactory extends CustomUMLEditPa
 	public EditPart createEditPart(final EditPart context, final Object model) {
 		if(model instanceof View) {
 			final View view = (View)model;
-			final int visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
-			switch(visualID) {
-			case ActivityEditPart.VISUAL_ID:// 2001
-				return new CustomActivityEditPartTN(view);
-			case CallBehaviorActionEditPart.VISUAL_ID:// 3008
-				return new CustomInteractionUseEditPartCN(view);
-			case CallBehaviorActionNameEditPart.VISUAL_ID:
-				return new CustomInteractionUseNameEditPart(view);// 5004
-			default:
-				// when adding cases to this switch, also add the corresponding
-				// IDs in the extension
-				// org.eclipse.gmf.runtime.diagram.ui.editpartProviders
+			int visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
+			if(visualID != -1) {
+				switch(visualID) {
+				case ActivityEditPart.VISUAL_ID:// 2001
+					return new CustomActivityEditPartTN(view);
+				case CallBehaviorActionEditPart.VISUAL_ID:// 3008
+					return new CustomInteractionUseEditPartCN(view);
+				case CallBehaviorActionNameEditPart.VISUAL_ID:
+					return new CustomInteractionUseNameEditPart(view);// 5004
+				case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+					return new CallBehaviorActionAsInteractionEditPart(view);//5000
+				default:
+					// when adding cases to this switch, also add the corresponding
+					// IDs in the extension
+					// org.eclipse.gmf.runtime.diagram.ui.editpartProviders
+				}
+			} else {
+				visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
+				switch(visualID) {
+				case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+					return new CallBehaviorActionAsInteractionEditPart(view);//5000
+				default:
+				}
 			}
 		}
 		return super.createEditPart(context, model);

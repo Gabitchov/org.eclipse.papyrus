@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -33,6 +34,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CallBehaviorActionEditHelperAdvice extends AbstractEditHelperAdvice {
 
+	public static String CALL_BEHAVIOR_ACTION = "CallBehaviorAction";
+	public static String POPUP_TYPE = "popupType";
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -47,6 +51,7 @@ public class CallBehaviorActionEditHelperAdvice extends AbstractEditHelperAdvice
 			}
 			parent = parent.eContainer();
 		}
+		if(CALL_BEHAVIOR_ACTION.equals(request.getParameter(POPUP_TYPE))){
 		CreateCallBehaviorActionDialog dialog = new CreateCallBehaviorActionDialog(Display.getDefault().getActiveShell(), parentActivity, (InvocationAction)request.getElementToConfigure());
 		if(IDialogConstants.OK_ID == dialog.open()) {
 			// initialize the invoked element (no need to use a command, since action is being created)
@@ -62,6 +67,12 @@ public class CallBehaviorActionEditHelperAdvice extends AbstractEditHelperAdvice
 			command.add(service.getEditCommand(setSynchronousReqest));
 			return command;
 		} 
+		}
 		return null;
+	}
+	
+	@Override
+	public void configureRequest(IEditCommandRequest request) {
+		request.getParameters().put(POPUP_TYPE, CALL_BEHAVIOR_ACTION);
 	}
 }

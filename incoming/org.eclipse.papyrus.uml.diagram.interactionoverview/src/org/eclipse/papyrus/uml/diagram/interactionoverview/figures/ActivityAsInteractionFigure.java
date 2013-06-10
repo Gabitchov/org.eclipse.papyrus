@@ -42,7 +42,6 @@ public class ActivityAsInteractionFigure extends ActivityFigure {
 	protected void createContents() {
 		add(createInteractionFigureHeader());
 		add(createContentPane());
-		final int childrenSize = getChildren().size();
 		setLayoutManager(new ActivityLayoutManager());
 	}
 
@@ -189,27 +188,6 @@ public class ActivityAsInteractionFigure extends ActivityFigure {
 					pscontainer.y = getPostconditionFigure().getBounds().y + getPostconditionFigure().getBounds().height + GAP_Y;
 				getStereotypePropertiesContent().setBounds(pscontainer);
 			}
-			// // place parameter
-			// // replace compartment stereotype properties
-			// if(getStereotypePropertiesContent() != null) {
-			// Rectangle paramBoundcontainer =
-			// getParameterFigure().getBounds().getCopy();
-			// paramBoundcontainer.y =
-			// getStereotypePropertiesContent().getBounds().getBottomLeft().y;
-			// getParameterFigure().setBounds(paramBoundcontainer);
-			// if(getParameterFigure().getChildren().size() > 0) {
-			// ((IFigure)interactionContentPane.getChildren().get(0)).setBounds(paramBoundcontainer);
-			// }
-			// } else {
-			// Rectangle paramBoundcontainer =
-			// getParameterFigure().getBounds().getCopy();
-			// paramBoundcontainer.y =
-			// getNameLabel().getBounds().getBottomLeft().y;
-			// getParameterFigure().setBounds(paramBoundcontainer);
-			// if(getParameterFigure().getChildren().size() > 0) {
-			// ((IFigure)interactionContentPane.getChildren().get(0)).setBounds(paramBoundcontainer);;
-			// }
-			// }
 		}
 	}
 }

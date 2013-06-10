@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <paletteDefinition>
     <content>
-        <drawer id="internalblock.drawer.nodes" name="Nodes" iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+        <drawer id="interactionoverview.drawer.nodes" name="Nodes" iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
             <aspectTool
                 description="Create a new Activity"
                 id="interactionoverviewdiagram.tool.activity"
@@ -87,7 +87,7 @@
                 refToolId="createConstraint6CreationTool">
             </aspectTool>
             </drawer>
-            <drawer id="internalblock.drawer.edges" name="Edges" iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+            <drawer id="interactionoverview.drawer.edges" name="Edges" iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
             <aspectTool
                 description="Create a new CommentAnnotatedElement"
                 id="interactionoverviewdiagram.tool.commentannotatedelement"

@@ -27,17 +27,17 @@ import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.InteractionFigure;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LeftToolbarLayout;
 
-
 public class InteractionUseFigure extends CallBehaviorActionFigure {
 
+	protected static String HEADER_NAME = "Ref";
 
-	private WrappingLabel interactionHeader;
+	protected WrappingLabel interactionHeader;
 
-	private RectangleFigure interactionLabelContainer;
+	protected RectangleFigure interactionLabelContainer;
 
-	private RectangleFigure interactionContentPane;
+	protected RectangleFigure interactionContentPane;
 
-	private WrappingLabel interactionNameLabel;
+	protected WrappingLabel interactionNameLabel;
 
 	public InteractionUseFigure() {
 		createContents();
@@ -50,7 +50,7 @@ public class InteractionUseFigure extends CallBehaviorActionFigure {
 		setLayoutManager(new InteractionUseLayoutManager());
 	}
 
-	private class InteractionUseLayoutManager extends AbstractLayout {
+	protected class InteractionUseLayoutManager extends AbstractLayout {
 
 		public void layout(final IFigure container) {
 			final List childrenList = container.getChildren();
@@ -61,9 +61,7 @@ public class InteractionUseFigure extends CallBehaviorActionFigure {
 					bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
 					if(i > 0) {
 						bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
-						// bound.x = getBounds().x + GAP_X;
 					} else {
-						// bound.x = getBounds().x + GAP_X;
 						bound.y = getBounds().y;
 					}
 					((IFigure)childrenList.get(i)).setBounds(bound);
@@ -74,8 +72,7 @@ public class InteractionUseFigure extends CallBehaviorActionFigure {
 
 		@Override
 		protected Dimension calculatePreferredSize(final IFigure container, final int wHint, final int hHint) {
-			// TODO Auto-generated method stub
-			return null;
+			return new Dimension(-1, -1);
 		}
 
 	}
@@ -86,7 +83,7 @@ public class InteractionUseFigure extends CallBehaviorActionFigure {
 		interactionContentPane = new RectangleFigure();
 		// Margin allow to add message easily
 		interactionContentPane.setBorder(new MarginBorder(5, 5, 5, 5));
-		interactionContentPane.setFill(true);
+		interactionContentPane.setFill(false);
 		interactionContentPane.setOutline(false);
 		interactionContentPane.setLayoutManager(new CenterLayout());
 		interactionContentPane.add(interactionNameLabel);
@@ -105,7 +102,8 @@ public class InteractionUseFigure extends CallBehaviorActionFigure {
 				return new Dimension(preferredSize.width + 2, preferredSize.height + 2);
 			}
 		};
-		interactionHeader.setText("Ref");
+
+		interactionHeader.setText(HEADER_NAME);
 		final InteractionFigure interactionFigure = new InteractionFigure();
 		interactionFigure.setBorder(new MarginBorder(3, 3, 3, 3));
 		interactionFigure.setLayoutManager(new LeftToolbarLayout());

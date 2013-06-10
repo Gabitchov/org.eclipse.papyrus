@@ -15,7 +15,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.figures.InteractionUseFigure;
 
-
 public class CustomInteractionUseEditPartCN extends CallBehaviorActionEditPart {
 
 	public CustomInteractionUseEditPartCN(final View view) {

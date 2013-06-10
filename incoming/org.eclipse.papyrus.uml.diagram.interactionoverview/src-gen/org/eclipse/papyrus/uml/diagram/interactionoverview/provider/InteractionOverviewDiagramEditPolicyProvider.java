@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policy.InteractionOverviewDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomInteractionOverviewDiagramDragAndDropEditPolicy;
 
 public class InteractionOverviewDiagramEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
@@ -104,7 +104,7 @@ public class InteractionOverviewDiagramEditPolicyProvider extends AbstractProvid
 	}
 
 	public void createEditPolicies(final EditPart editPart) {
-		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new InteractionOverviewDiagramDragDropEditPolicy());
+		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomInteractionOverviewDiagramDragAndDropEditPolicy());
 	}
 
 }

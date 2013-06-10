@@ -10,7 +10,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies;
 
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
@@ -18,10 +20,11 @@ import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCNContentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.CallBehaviorActionAsInteractionUseCreateCommand;
-
+import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForDo;
 
 public class ActivityContentCompartmentItemSemanticEditPolicy extends ActivityCNContentCompartmentItemSemanticEditPolicy {
 
+	@Override
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
@@ -34,7 +37,8 @@ public class ActivityContentCompartmentItemSemanticEditPolicy extends ActivityCN
 			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				// no reference element type ID. using the closest super element
+				// type to give more opportunities, but can lead to bugs.
 				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
@@ -44,6 +48,15 @@ public class ActivityContentCompartmentItemSemanticEditPolicy extends ActivityCN
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new CallBehaviorActionAsInteractionUseCreateCommand(req));
+		}
+		if(org.eclipse.papyrus.uml.diagram.interactionoverview.provider.UMLElementTypes.CallBehaviorAction_5000 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			final CompoundCommand compoundCommand = new CompoundCommand();
+			compoundCommand.add(getGEFWrapper(getSemanticCreationCommand(req)));
+			compoundCommand.add(new RefreshCommandForDo((GraphicalEditPart)getHost()));
+			return compoundCommand;
 		}
 		return super.getCreateCommand(req);
 	}

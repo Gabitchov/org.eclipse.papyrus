@@ -36,7 +36,7 @@ public class InteractionOverviewDiagramForMultiEditor extends InteractionOvervie
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/obj16/interactionOverviewDiagram.gif"; //$NON-NLS-1$
+	private static final String DIAG_IMG_PATH = "";
 
 	/**
 	 * The image descriptor of the diagram icon
