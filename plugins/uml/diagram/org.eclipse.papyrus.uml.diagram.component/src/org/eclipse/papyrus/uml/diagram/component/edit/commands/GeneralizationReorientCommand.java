@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -45,13 +57,13 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Generalization) {
+		if(false == getElementToEdit() instanceof Generalization) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -61,49 +73,43 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
+		if(!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
 			return false;
 		}
 		Classifier target = getLink().getGeneral();
-		if (!(getLink().eContainer() instanceof Classifier)) {
+		if(!(getLink().eContainer() instanceof Classifier)) {
 			return false;
 		}
-		Classifier container = (Classifier) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistGeneralization_4003(container, getLink(),
-						getNewSource(), target);
+		Classifier container = (Classifier)getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralization_4003(container, getLink(), getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
+		if(!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
 			return false;
 		}
 		Classifier source = getLink().getSpecific();
-		if (!(getLink().eContainer() instanceof Classifier)) {
+		if(!(getLink().eContainer() instanceof Classifier)) {
 			return false;
 		}
-		Classifier container = (Classifier) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistGeneralization_4003(container, getLink(), source,
-						getNewTarget());
+		Classifier container = (Classifier)getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralization_4003(container, getLink(), source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -129,34 +135,34 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Generalization getLink() {
-		return (Generalization) getElementToEdit();
+		return (Generalization)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getOldSource() {
-		return (Classifier) oldEnd;
+		return (Classifier)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getNewSource() {
-		return (Classifier) newEnd;
+		return (Classifier)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getOldTarget() {
-		return (Classifier) oldEnd;
+		return (Classifier)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getNewTarget() {
-		return (Classifier) newEnd;
+		return (Classifier)newEnd;
 	}
 }

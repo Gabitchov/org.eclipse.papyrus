@@ -28,8 +28,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
  * 
  * @generated
  */
-public class SubstitutionPreferencePage extends
-		AbstractPapyrusLinkPreferencePage {
+public class SubstitutionPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * Instantiates a new substitution preference page.
@@ -56,20 +55,16 @@ public class SubstitutionPreferencePage extends
 	 * Inits the defaults.
 	 * 
 	 * @param store
-	 *            the store
+	 *        the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = ComponentDiagramEditPart.MODEL_ID + "_Substitution";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
-		for (String role : map.keySet()) {
-			String preferenceName = PreferenceConstantHelper
-					.getLabelElementConstant(key, role,
-							PreferenceConstantHelper.LABEL_VISIBILITY);
+		for(String role : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -79,8 +74,7 @@ public class SubstitutionPreferencePage extends
 	 * @generated
 	 */
 	private static TreeMap<String, String> getStaticLabelRole() {
-		TreeMap<String, String> map = new TreeMap<String, String>(
-				new StringComparator());
+		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
 		map.put("Name", "");//$NON-NLS-1$ //$NON-NLS-2$
 		map.put("Stereotype", "");//$NON-NLS-1$ //$NON-NLS-2$
 		return map;
@@ -95,9 +89,7 @@ public class SubstitutionPreferencePage extends
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Name", Boolean.TRUE);
-
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 

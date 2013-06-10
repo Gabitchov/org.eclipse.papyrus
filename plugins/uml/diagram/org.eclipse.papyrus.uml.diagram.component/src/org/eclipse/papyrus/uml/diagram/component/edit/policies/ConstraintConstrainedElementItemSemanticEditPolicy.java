@@ -23,8 +23,7 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
  * 
  * @generated
  */
-public class ConstraintConstrainedElementItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class ConstraintConstrainedElementItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new constraint constrained element item semantic edit
@@ -40,7 +39,7 @@ public class ConstraintConstrainedElementItemSemanticEditPolicy extends
 	 * Gets the destroy reference command.
 	 * 
 	 * @param req
-	 *            the req
+	 *        the req
 	 * @return the destroy reference command
 	 * @generated
 	 */

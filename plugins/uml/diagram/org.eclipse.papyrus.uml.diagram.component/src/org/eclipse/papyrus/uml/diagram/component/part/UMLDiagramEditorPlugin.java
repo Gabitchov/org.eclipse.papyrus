@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.part;
 
 import java.util.ArrayList;
@@ -41,8 +53,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(
-			ID);
+	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(ID);
 
 	/**
 	 * @generated
@@ -87,8 +98,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
-		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT,
-				getPreferenceStore());
+		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
@@ -154,11 +164,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory
-				.adapt(item, IItemLabelProvider.class);
-		if (labelProvider != null) {
-			return ExtendedImageRegistry.getInstance().getImageDescriptor(
-					labelProvider.getImage(item));
+		IItemLabelProvider labelProvider = (IItemLabelProvider)adapterFactory.adapt(item, IItemLabelProvider.class);
+		if(labelProvider != null) {
+			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
 		}
 		return null;
 	}
@@ -169,7 +177,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path
+	 *        the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
@@ -183,15 +191,14 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path to image, either absolute (with plug-in id as first
-	 *            segment), or relative for bundled images
+	 *        the path to image, either absolute (with plug-in id as first
+	 *        segment), or relative for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
-		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p
-					.removeFirstSegments(1).makeAbsolute().toString());
+		if(p.isAbsolute() && p.segmentCount() > 1) {
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -204,12 +211,12 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path
+	 *        the path
 	 * @return image instance
 	 */
 	public Image getBundledImage(String path) {
 		Image image = getImageRegistry().get(path);
-		if (image == null) {
+		if(image == null) {
 			getImageRegistry().put(path, getBundledImageDescriptor(path));
 			image = getImageRegistry().get(path);
 		}
@@ -229,7 +236,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public UMLDocumentProvider getDocumentProvider() {
-		if (documentProvider == null) {
+		if(documentProvider == null) {
 			documentProvider = new UMLDocumentProvider();
 		}
 		return documentProvider;
@@ -245,8 +252,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public void setLinkConstraints(
-			UMLBaseItemSemanticEditPolicy.LinkConstraints lc) {
+	public void setLinkConstraints(UMLBaseItemSemanticEditPolicy.LinkConstraints lc) {
 		this.linkConstraints = lc;
 	}
 
@@ -289,12 +295,10 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public void logError(String error, Throwable throwable) {
-		if (error == null && throwable != null) {
+		if(error == null && throwable != null) {
 			error = throwable.getMessage();
 		}
-		getLog().log(
-				new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID,
-						IStatus.OK, error, throwable));
+		getLog().log(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, IStatus.OK, error, throwable));
 		debug(error, throwable);
 	}
 
@@ -309,12 +313,10 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public void logInfo(String message, Throwable throwable) {
-		if (message == null && throwable != null) {
+		if(message == null && throwable != null) {
 			message = throwable.getMessage();
 		}
-		getLog().log(
-				new Status(IStatus.INFO, UMLDiagramEditorPlugin.ID, IStatus.OK,
-						message, throwable));
+		getLog().log(new Status(IStatus.INFO, UMLDiagramEditorPlugin.ID, IStatus.OK, message, throwable));
 		debug(message, throwable);
 	}
 
@@ -322,13 +324,13 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	private void debug(String message, Throwable throwable) {
-		if (!isDebugging()) {
+		if(!isDebugging()) {
 			return;
 		}
-		if (message != null) {
+		if(message != null) {
 			System.err.println(message);
 		}
-		if (throwable != null) {
+		if(throwable != null) {
 			throwable.printStackTrace();
 		}
 	}

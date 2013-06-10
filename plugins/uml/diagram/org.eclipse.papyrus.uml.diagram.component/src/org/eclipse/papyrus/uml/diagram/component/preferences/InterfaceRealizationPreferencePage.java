@@ -23,8 +23,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
  * 
  * @generated
  */
-public class InterfaceRealizationPreferencePage extends
-		AbstractPapyrusLinkPreferencePage {
+public class InterfaceRealizationPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * Instantiates a new interface realization preference page.
@@ -33,8 +32,7 @@ public class InterfaceRealizationPreferencePage extends
 	 */
 	public InterfaceRealizationPreferencePage() {
 		super();
-		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID
-				+ "_InterfaceRealization");
+		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID + "_InterfaceRealization");
 	}
 
 	/**
@@ -52,10 +50,9 @@ public class InterfaceRealizationPreferencePage extends
 	 * Inits the defaults.
 	 * 
 	 * @param store
-	 *            the store
+	 *        the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 	}
 }

@@ -1,7 +1,20 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
@@ -10,13 +23,13 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeManifestationLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.ManifestationItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ManifestationEditPart extends UMLConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class ManifestationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -35,27 +48,22 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ManifestationItemSemanticEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeManifestationLabelDisplayEditPolicy());
-		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE,
-				new ShowHideLabelEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ManifestationItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeManifestationLabelDisplayEditPolicy());
+		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ManifestationNameEditPart) {
-			((ManifestationNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof ManifestationNameEditPart) {
+			((ManifestationNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof ManifestationAppliedStereotypeEditPart) {
-			((ManifestationAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof ManifestationAppliedStereotypeEditPart) {
+			((ManifestationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -65,7 +73,7 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -75,10 +83,10 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ManifestationNameEditPart) {
+		if(childEditPart instanceof ManifestationNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof ManifestationAppliedStereotypeEditPart) {
+		if(childEditPart instanceof ManifestationAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -88,7 +96,7 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -110,6 +118,6 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 }

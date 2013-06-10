@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -14,8 +26,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * @generated
  */
-public class ConstraintConstrainedElementCreateCommand extends
-		EditElementCommand {
+public class ConstraintConstrainedElementCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -30,8 +41,7 @@ public class ConstraintConstrainedElementCreateCommand extends
 	/**
 	 * @generated
 	 */
-	public ConstraintConstrainedElementCreateCommand(
-			CreateRelationshipRequest request, EObject source, EObject target) {
+	public ConstraintConstrainedElementCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -41,40 +51,33 @@ public class ConstraintConstrainedElementCreateCommand extends
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Constraint) {
+		if(source != null && false == source instanceof Constraint) {
 			return false;
 		}
-		if (target != null && false == target instanceof Element) {
+		if(target != null && false == target instanceof Element) {
 			return false;
 		}
-		if (getSource() == null) {
-			return true; // link creation is in progress; source is not defined
-							// yet
+		if(getSource() == null) {
+			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateConstraintConstrainedElement_4009(getSource(),
-						getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateConstraintConstrainedElement_4009(getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
-		if (getSource() != null && getTarget() != null) {
+		if(getSource() != null && getTarget() != null) {
 			getSource().getConstrainedElements().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
-
 	}
 
 	/**
@@ -88,13 +91,13 @@ public class ConstraintConstrainedElementCreateCommand extends
 	 * @generated
 	 */
 	protected Constraint getSource() {
-		return (Constraint) source;
+		return (Constraint)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getTarget() {
-		return (Element) target;
+		return (Element)target;
 	}
 }

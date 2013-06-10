@@ -28,8 +28,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
  * 
  * @generated
  */
-public class ComponentRealizationPreferencePage extends
-		AbstractPapyrusLinkPreferencePage {
+public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * Instantiates a new component realization preference page.
@@ -38,8 +37,7 @@ public class ComponentRealizationPreferencePage extends
 	 */
 	public ComponentRealizationPreferencePage() {
 		super();
-		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID
-				+ "_ComponentRealization");
+		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID + "_ComponentRealization");
 	}
 
 	/**
@@ -57,21 +55,16 @@ public class ComponentRealizationPreferencePage extends
 	 * Inits the defaults.
 	 * 
 	 * @param store
-	 *            the store
+	 *        the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
-		String key = ComponentDiagramEditPart.MODEL_ID
-				+ "_ComponentRealization";
+		String key = ComponentDiagramEditPart.MODEL_ID + "_ComponentRealization";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
-		for (String role : map.keySet()) {
-			String preferenceName = PreferenceConstantHelper
-					.getLabelElementConstant(key, role,
-							PreferenceConstantHelper.LABEL_VISIBILITY);
+		for(String role : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -81,8 +74,7 @@ public class ComponentRealizationPreferencePage extends
 	 * @generated
 	 */
 	private static TreeMap<String, String> getStaticLabelRole() {
-		TreeMap<String, String> map = new TreeMap<String, String>(
-				new StringComparator());
+		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
 		map.put("Name", "");//$NON-NLS-1$ //$NON-NLS-2$
 		map.put("Stereotype", "");//$NON-NLS-1$ //$NON-NLS-2$
 		return map;
@@ -97,9 +89,7 @@ public class ComponentRealizationPreferencePage extends
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Name", Boolean.TRUE);
-
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 

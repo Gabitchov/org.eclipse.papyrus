@@ -1,7 +1,20 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
@@ -10,13 +23,13 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeAbst
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.AbstractionItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class AbstractionEditPart extends UMLConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class AbstractionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -35,27 +48,22 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new AbstractionItemSemanticEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeAbstractionLabelDisplayEditPolicy());
-		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE,
-				new ShowHideLabelEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AbstractionItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeAbstractionLabelDisplayEditPolicy());
+		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AbstractionNameEditPart) {
-			((AbstractionNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof AbstractionNameEditPart) {
+			((AbstractionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof AbstractionAppliedStereotypeEditPart) {
-			((AbstractionAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof AbstractionAppliedStereotypeEditPart) {
+			((AbstractionAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -65,7 +73,7 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -75,10 +83,10 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AbstractionNameEditPart) {
+		if(childEditPart instanceof AbstractionNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof AbstractionAppliedStereotypeEditPart) {
+		if(childEditPart instanceof AbstractionAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -88,7 +96,7 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -110,6 +118,6 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 }

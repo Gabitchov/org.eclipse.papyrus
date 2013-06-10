@@ -1,19 +1,32 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceRealizationItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class InterfaceRealizationEditPart extends ConnectionEditPart implements
-		ITreeBranchEditPart {
+public class InterfaceRealizationEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -32,8 +45,8 @@ public class InterfaceRealizationEditPart extends ConnectionEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new InterfaceRealizationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceRealizationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
@@ -52,7 +65,7 @@ public class InterfaceRealizationEditPart extends ConnectionEditPart implements
 	 * @generated
 	 */
 	public SimpleDependency getPrimaryShape() {
-		return (SimpleDependency) getFigure();
+		return (SimpleDependency)getFigure();
 	}
 
 	/**
@@ -65,7 +78,6 @@ public class InterfaceRealizationEditPart extends ConnectionEditPart implements
 		 */
 		public SimpleDependency() {
 			this.setForegroundColor(ColorConstants.black);
-
 		}
 	}
 }

@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.part;
 
 import org.eclipse.osgi.util.NLS;
@@ -263,6 +275,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createModelCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createModelCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createPackageCreationTool_title;
 
 	/**
@@ -343,6 +365,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createDependencyBranchCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createDependencyBranchCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createAbstractionCreationTool_title;
 
 	/**
@@ -418,7 +450,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ModelPackageableElementCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String PackagePackageableElementCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ModelPackageableElementCompartmentEditPartCN_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PackagePackageableElementCompartmentEditPartCN_title;
 
 	/**
 	 * @generated

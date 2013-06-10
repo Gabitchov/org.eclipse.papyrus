@@ -46,6 +46,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ComponentLinkMappingHelper;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.MultiDependencyHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.locators.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.component.custom.log.Log;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPart;
@@ -56,9 +57,13 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartPCN
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
@@ -78,6 +83,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
+import org.eclipse.uml2.uml.Dependency;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -103,6 +109,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	protected Set<Integer> getDroppableElementVisualId() {
 		// TopLevelNodes
 		Set<Integer> droppableElementsVisualId = new HashSet<Integer>();
+		droppableElementsVisualId.add(DependencyNodeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ModelEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(PackageEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(ComponentEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(InterfaceEditPart.VISUAL_ID);
@@ -111,6 +119,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		droppableElementsVisualId.add(PortEditPart.VISUAL_ID);
 
 		// Class CN
+		droppableElementsVisualId.add(ModelEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(PackageEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(ComponentEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(ComponentEditPartPCN.VISUAL_ID);
 		droppableElementsVisualId.add(InterfaceEditPartPCN.VISUAL_ID);
@@ -178,6 +188,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			// Switch test over nodeVISUALID
 			switch(nodeVISUALID) {
 			// Test TopLevelNode... Start
+			case DependencyNodeEditPart.VISUAL_ID:
+				return dropDependencyNode(dropRequest, semanticElement, nodeVISUALID);
 			case PackageEditPart.VISUAL_ID:
 			case ComponentEditPart.VISUAL_ID:
 			case InterfaceEditPart.VISUAL_ID:
@@ -199,6 +211,21 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		}
 	}
 
+	private Command dropDependencyNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
+		Collection sources = ComponentLinkMappingHelper.getInstance().getSource(semanticElement);
+		Collection targets = ComponentLinkMappingHelper.getInstance().getTarget(semanticElement);
+		if(sources.size() == 1 && targets.size() == 1) {
+			Element source = (Element)sources.toArray()[0];
+			Element target = (Element)targets.toArray()[0];
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4008, dropRequest.getLocation(), semanticElement));
+		}
+		if(sources.size() > 1 || targets.size() > 1) {
+			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain());
+			return dependencyHelper.dropMutliDependency((Dependency)semanticElement, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+	
 	/**
 	 * Returns the command to drop the Comment + the link to attach it to its annotated elements.
 	 *

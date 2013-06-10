@@ -299,29 +299,29 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.component.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLComponentDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2002,2003,3200,3201,3199,3069,3070,3071,3072,3074,3075"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3203,2002,3202,3200,2003,3201,3199,3204,3069,3077,3076,3070,3071,3072,3074,3075"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010,4017"/>
       </viewProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="true"?>
-      <editpartProvider class="org.eclipse.papyrus.uml.diagram.component.providers.UMLEditPartProvider">
+      <editpartProvider class="org.eclipse.papyrus.uml.diagram.component.custom.providers.CustomUMLEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
             <method name="getType()" value="PapyrusUMLComponentDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2002,2003,3200,3201,3199,3069,3070,3071,3072,3074,3075"/>
+            <method name="getType()" value="3203,2002,3202,3200,2003,3201,3199,3204,3069,3077,3076,3070,3071,3072,3074,3075"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010"/>
+            <method name="getType()" value="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010,4017"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5004,5005,5254,5255,5252,5253,5006,5007,5256,5257,0,5258,5259,5260"/>
+            <method name="getType()" value="5008,5004,5262,5254,5005,5255,5252,5253,5265,5006,5007,5264,5261,5256,5257,0,5258,5259,5260"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7001,7002,7003,7004"/>
+            <method name="getType()" value="7001,7006,7002,7007,7005,7003,7004"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -332,18 +332,23 @@
       <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.component.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentDiagramEditPart" id="Package_1000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPart" id="Dependency_3203"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPart" id="Component_2002"/>
-         <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart" id="Interface_2003"/>
+         <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPart" id="Model_3202"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart" id="Package_3200"/>
+         <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart" id="Interface_2003"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPart" id="Comment_3201"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPart" id="Constraint_3199"/>
+         <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.DefaultNamedElementEditPart" id="NamedElement_3204"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart" id="Port_3069"/>
+         <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN" id="Model_3077"/>
+         <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN" id="Package_3076"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartCN" id="Component_3070"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartPCN" id="Component_3071"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN" id="Interface_3072"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPartPCN" id="Comment_3074"/>
          <object class="org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPartPCN" id="Constraint_3075"/>
-         <context elements="Package_1000,Component_2002,Interface_2003,Package_3200,Comment_3201,Constraint_3199,Port_3069,Component_3070,Component_3071,Interface_3072,Comment_3074,Constraint_3075"/>
+         <context elements="Package_1000,Dependency_3203,Component_2002,Model_3202,Package_3200,Interface_2003,Comment_3201,Constraint_3199,NamedElement_3204,Port_3069,Model_3077,Package_3076,Component_3070,Component_3071,Interface_3072,Comment_3074,Constraint_3075"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -369,6 +374,16 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.component.DependencyNode_3203"
+               name="%metatype.name.Dependency_3203"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Dependency"
+               edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.DependencyEditHelper">
+            <param name="semanticHint" value="3203"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.uml.diagram.component.Component_2002"
                name="%metatype.name.Component_2002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -379,12 +394,12 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.component.Interface_2003"
-               name="%metatype.name.Interface_2003"
+               id="org.eclipse.papyrus.uml.diagram.component.Model_3202"
+               name="%metatype.name.Model_3202"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Interface"
-               edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.InterfaceEditHelper">
-            <param name="semanticHint" value="2003"/>
+               eclass="Model"
+               edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.ModelEditHelper">
+            <param name="semanticHint" value="3202"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
@@ -395,6 +410,16 @@
                eclass="Package"
                edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.PackageEditHelper">
             <param name="semanticHint" value="3200"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.component.Interface_2003"
+               name="%metatype.name.Interface_2003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Interface"
+               edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.InterfaceEditHelper">
+            <param name="semanticHint" value="2003"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
@@ -419,12 +444,42 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.component.DefaultNamedElement_3204"
+               name="%metatype.name.NamedElement_3204"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="NamedElement"
+               edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.DefaultNamedElementEditHelper">
+            <param name="semanticHint" value="3204"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.uml.diagram.component.Port_3069"
                name="%metatype.name.Port_3069"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Port"
                edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.PortEditHelper">
             <param name="semanticHint" value="3069"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.component.Model_3077"
+               name="%metatype.name.Model_3077"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Model"
+               edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.ModelEditHelper">
+            <param name="semanticHint" value="3077"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.component.Package_3076"
+               name="%metatype.name.Package_3076"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Package"
+               edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.PackageEditHelper">
+            <param name="semanticHint" value="3076"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
@@ -568,14 +623,23 @@
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.component.Dependency_4010"
                name="%metatype.name.Dependency_4010"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Dependency"
-               edithelper="org.eclipse.papyrus.uml.diagram.component.edit.helpers.DependencyEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.component.DependencyNode_3203"/>
             <param name="semanticHint" value="4010"/>
-         </metamodelType>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.component.Dependency_4017"
+               name="%metatype.name.Dependency_4017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               edithelperadvice="org.eclipse.papyrus.uml.diagram.component.edit.helpers.DependencyBranchLink">
+            <specializes id="org.eclipse.papyrus.uml.diagram.component.DependencyNode_3203"/>
+            <param name="semanticHint" value="4017"/>
+         </specializationType>
       </metamodel>
    </extension>
 
@@ -590,12 +654,17 @@
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.component.TypeContext">
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Model_1000"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.component.DependencyNode_3203"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Component_2002"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.component.Interface_2003"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.component.Model_3202"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Package_3200"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.component.Interface_2003"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Comment_3201"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Comment_3199"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.component.DefaultNamedElement_3204"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Port_3069"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.component.Model_3077"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.component.Package_3076"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Component_3070"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Component_3071"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Interface_3072"/>
@@ -612,6 +681,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.CommentAnnotatedElement_4008"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.ConstraintConstrainedElement_4009"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Dependency_4010"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.component.Dependency_4017"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -702,6 +772,16 @@
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 					<entry
        defineOnly="true"
+       description="Create a model"
+       id="component.tool.model"
+       kind="tool"
+       label="Model"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create a Package"
        id="component.tool.package"
        kind="tool"
@@ -776,6 +856,16 @@
        id="component.tool.dependency"
        kind="tool"
        label="Dependency"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a dependency branch"
+       id="component.tool.dependencybranch"
+       kind="tool"
+       label="DependencyBranch"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
@@ -883,6 +973,10 @@
  	</entry>
  	 
  	 	<predefinedEntry
+          id="component.tool.model"
+          path="/component.group.nodes">
+    </predefinedEntry>
+ 	<predefinedEntry
           id="component.tool.package"
           path="/component.group.nodes">
     </predefinedEntry>
@@ -929,6 +1023,10 @@
           path="/component.group.links">
     </predefinedEntry>
  	<predefinedEntry
+          id="component.tool.dependencybranch"
+          path="/component.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
           id="component.tool.abstraction"
           path="/component.group.links">
     </predefinedEntry>
@@ -970,16 +1068,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.component.preferences.InterfacePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.component.preferences.InterfacePreferencePage"
-            name="Interface Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.component.preferences.PortPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.component.preferences.PortPreferencePage"
-            name="Port Node" />
+			class="org.eclipse.papyrus.uml.diagram.component.preferences.ModelPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.component.preferences.ModelPreferencePage"
+            name="Model Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -998,6 +1089,27 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
+			class="org.eclipse.papyrus.uml.diagram.component.preferences.InterfacePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.component.preferences.InterfacePreferencePage"
+            name="Interface Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
+			class="org.eclipse.papyrus.uml.diagram.component.preferences.DependencyNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.component.preferences.DependencyNodePreferencePage"
+            name="DependencyNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
+			class="org.eclipse.papyrus.uml.diagram.component.preferences.PortPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.component.preferences.PortPreferencePage"
+            name="Port Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
 			class="org.eclipse.papyrus.uml.diagram.component.preferences.PackagePreferencePage"
             id="org.eclipse.papyrus.uml.diagram.component.preferences.PackagePreferencePage"
             name="Package Node" />
@@ -1008,6 +1120,13 @@
 			class="org.eclipse.papyrus.uml.diagram.component.preferences.ComponentPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.component.preferences.ComponentPreferencePage"
             name="Component Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
+			class="org.eclipse.papyrus.uml.diagram.component.preferences.DefaultNamedElementPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.component.preferences.DefaultNamedElementPreferencePage"
+            name="DefaultNamedElement Node" />
 	
 
 
@@ -1031,22 +1150,6 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.component.preferences.CommentAnnotatedElementPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.component.preferences.CommentAnnotatedElementPreferencePage"
-            name="CommentAnnotatedElement Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
-			class="org.eclipse.papyrus.uml.diagram.component.preferences.SubstitutionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.component.preferences.SubstitutionPreferencePage"
-            name="Substitution Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
 			class="org.eclipse.papyrus.uml.diagram.component.preferences.ManifestationPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.component.preferences.ManifestationPreferencePage"
             name="Manifestation Link" />
@@ -1060,14 +1163,20 @@
             name="Generalization Link" />
 		
 		
-		
-		
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
 			class="org.eclipse.papyrus.uml.diagram.component.preferences.DependencyPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.component.preferences.DependencyPreferencePage"
             name="Dependency Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
+			class="org.eclipse.papyrus.uml.diagram.component.preferences.DependencyLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.component.preferences.DependencyLinkPreferencePage"
+            name="DependencyLink Link" />
 		
 		
 
@@ -1092,6 +1201,24 @@
 			class="org.eclipse.papyrus.uml.diagram.component.preferences.UsagePreferencePage"
             id="org.eclipse.papyrus.uml.diagram.component.preferences.UsagePreferencePage"
             name="Usage Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
+			class="org.eclipse.papyrus.uml.diagram.component.preferences.CommentAnnotatedElementPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.component.preferences.CommentAnnotatedElementPreferencePage"
+            name="CommentAnnotatedElement Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
+			class="org.eclipse.papyrus.uml.diagram.component.preferences.SubstitutionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.component.preferences.SubstitutionPreferencePage"
+            name="Substitution Link" />
+		
+		
 		
 
 </extension>
