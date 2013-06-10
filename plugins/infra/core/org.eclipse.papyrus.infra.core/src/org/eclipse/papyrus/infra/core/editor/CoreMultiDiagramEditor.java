@@ -59,7 +59,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsCon
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.TabMouseEventListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.gef.MultiDiagramEditorGefDelegate;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -804,6 +803,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public boolean isDirty() {
+		//May happen if the editor has not yet been initialized. In this case, the editor cannot be dirty, so we simply return false.
+		//Bug 410286: The isDirty() method can also be called /after/ the editor has been disposed. Most likely an Eclipse bug?
+		if(saveAndDirtyService == null) {
+			return false;
+		}
 		return saveAndDirtyService.isDirty();
 	}
 
