@@ -80,9 +80,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.uml.textedit.port.xtext.ui.UmlPortExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.port.xtext.UmlPort"
-            name="UmlPort">
+              category="org.eclipse.papyrus.embeddededitors"
+              class="org.eclipse.papyrus.uml.textedit.port.xtext.ui.UmlPortExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.uml.textedit.port.xtext.UmlPort"
+              name="UmlPort">
             <keywordReference id="org.eclipse.papyrus.uml.textedit.port.xtext.ui.keyword_UmlPort"/>
         </page>
         <page
