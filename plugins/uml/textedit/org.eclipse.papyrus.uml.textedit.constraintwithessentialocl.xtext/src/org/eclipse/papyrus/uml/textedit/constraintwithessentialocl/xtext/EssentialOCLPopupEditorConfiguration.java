@@ -175,6 +175,9 @@ public class EssentialOCLPopupEditorConfiguration extends org.eclipse.papyrus.in
 			return null;
 		}
 		org.eclipse.uml2.uml.Constraint constraint = (org.eclipse.uml2.uml.Constraint) element;
+		if( constraint.getContext()==null){
+			return null;
+		}
 		org.eclipse.uml2.uml.ValueSpecification specification = constraint.getSpecification();
 		if (specification == null) {
 			return null;
