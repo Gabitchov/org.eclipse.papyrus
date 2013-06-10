@@ -92,6 +92,8 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		// init nested contributors.
 		for(EditorActionBarContributor contributor : contributors) {
 			contributor.init(bars, page);
+			// remove GMF GlobalSaveAction from bar, fix bug 407854 - [Editor] The save action is disabled in Papyrus
+			bars.setGlobalActionHandler("save", null);	// GMF is not using IWorkbenchCommandConstants.FILE_SAVE as ID //$NON-NLS-1$
 		}
 
 	}
