@@ -14,10 +14,19 @@
 package org.eclipse.papyrus.gmf.diagram.common.factory;
 
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.optimal.DecorationNodeViewFactory;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.ThemeInitializerManager;
 
 /**
  * Default view Factory for Papyrus custom labels.
  */
 public abstract class AbstractLabelViewFactory extends DecorationNodeViewFactory {
 
+	@Override
+	protected void initializeFromPreferences(View view) {
+		//Do not call initializeFromPreferences when the preference initializer is disabled (Typical use case: CSS are installed)
+		if(ThemeInitializerManager.instance.usePreferenceInitializer(view)) {
+			super.initializeFromPreferences(view);
+		}
+	}
 }

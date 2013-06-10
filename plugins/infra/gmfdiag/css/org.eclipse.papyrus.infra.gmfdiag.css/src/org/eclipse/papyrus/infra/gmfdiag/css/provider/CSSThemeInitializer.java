@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.css.provider;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.IThemeInitializer;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 
 /**
@@ -29,8 +30,15 @@ public class CSSThemeInitializer implements IThemeInitializer {
 	 * Return false when the CSS support is enabled
 	 */
 	public boolean usePreferenceInitializer(View view) {
+		//Sometimes, the view is created before its diagram is attached to its resource
+		//This happens in diagrams which are initialized with a root element (Activity, Sequence, StateMachine, IBD, ...)
+		//In this case, it is better to test the CSSDiagram than the resource (As there is no resource yet)
+		if(view.getDiagram() != null) {
+			return !(view.getDiagram() instanceof CSSDiagram);
+		}
+
 		Resource resource = view.eResource();
-		
+
 		return !CSSNotationResource.isCSSEnabled(resource);
 	}
 

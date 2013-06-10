@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.ThemeInitializerManager;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 
 /**
@@ -40,14 +41,17 @@ public class ConnectorViewFactory extends org.eclipse.gmf.runtime.diagram.ui.vie
 	 */
 	@Override
 	protected void initializeFromPreferences(View view) {
-
-		super.initializeFromPreferences(view);
+		//Do not call initializeFromPreferences when the preference initializer is disabled (Typical use case: CSS are installed)
+		if(ThemeInitializerManager.instance.usePreferenceInitializer(view)) {
+			super.initializeFromPreferences(view);
+		}
 
 		IPreferenceStore store = (IPreferenceStore)getPreferencesHint().getPreferenceStore();
 		if(store == null) {
 			return;
 		}
 
+		//The PreferenceInitializerForElementHelper already checks for usePreferenceInitializer() (When required)
 		String elementName = view.getType();
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(view, store, elementName);
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(view, store, elementName);

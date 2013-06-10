@@ -19,8 +19,7 @@
 	/**
 	*	GMF Display
 	*/
-	
-	fontColor: black;
+
 	fillColor:#C3D1D5;
 	
 	/* 	fontHeight:9; */
@@ -64,7 +63,6 @@
 
 Class {
 	fillColor: #C3D7DD;
-	lineColor: black;
 }
 
 Comment {
