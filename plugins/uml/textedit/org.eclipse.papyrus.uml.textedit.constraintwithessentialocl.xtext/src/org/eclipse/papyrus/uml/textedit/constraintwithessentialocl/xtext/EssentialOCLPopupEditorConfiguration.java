@@ -62,7 +62,6 @@ public class EssentialOCLPopupEditorConfiguration extends org.eclipse.papyrus.in
 
 			//to launch the editor, it is important to set the context. if not there is no completion and the constraint can not be validated
 			//thanks to  E.D.Willink
-			System.out.println("configureResource : " + resource + " for " + umlObject);
 			if (resource instanceof BaseResource){
 				try {
 					if (!PivotUtil.setParserContext((BaseResource)resource, umlObject)) {
