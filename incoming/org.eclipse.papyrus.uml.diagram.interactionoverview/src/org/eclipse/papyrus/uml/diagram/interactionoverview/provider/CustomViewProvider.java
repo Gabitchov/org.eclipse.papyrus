@@ -25,7 +25,7 @@ import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CallBehaviorActionAsInteractionEditPart;
 
-public class CustomViewProvider extends InheritedActivityDiagramViewProvider {
+public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.provider.AbstractViewProvider {
 
 	@Override
 	protected boolean provides(final CreateNodeViewOperation op) {

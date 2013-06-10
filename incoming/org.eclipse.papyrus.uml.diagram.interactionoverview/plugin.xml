@@ -375,7 +375,7 @@
                 class="org.eclipse.gmf.runtime.notation.Diagram">
                 <method
                     name="getType()"
-                    value="InteractionOverviewDiagram"/>
+                    value="PapyrusUMLInteractionOverviewDiagram"/>
             </object>
             <context views="org.eclipse.papyrus.uml.diagram.interactionoverview.Diagram"/>
         </editpartProvider>

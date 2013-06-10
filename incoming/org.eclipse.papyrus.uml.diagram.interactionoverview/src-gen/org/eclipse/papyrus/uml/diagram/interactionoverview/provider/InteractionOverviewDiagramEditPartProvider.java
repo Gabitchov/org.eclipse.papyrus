@@ -11,14 +11,14 @@
 package org.eclipse.papyrus.uml.diagram.interactionoverview.provider;
 
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.activity.providers.UMLEditPartProvider;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.InteractionOverviewDiagramEditPart;
 
-public class InteractionOverviewDiagramEditPartProvider extends UMLEditPartProvider {
+public class InteractionOverviewDiagramEditPartProvider extends AbstractEditPartProvider {
 
 	@Override
 	public boolean provides(final IOperation operation) {
