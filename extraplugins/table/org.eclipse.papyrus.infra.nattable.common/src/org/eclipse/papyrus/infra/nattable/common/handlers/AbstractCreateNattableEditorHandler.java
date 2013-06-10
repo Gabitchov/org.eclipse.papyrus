@@ -149,10 +149,11 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 		final TableConfiguration configuration = getDefaultTableEditorConfiguration();
 		assert configuration != null;
 
-		final Table table = TableHelper.createTable(configuration, getTableContext(), name, description);
+		final Table table = TableHelper.createTable(configuration, null, name, description); //context null here, see bug 410357
 		// Save the model in the associated resource
 		final PapyrusNattableModel model = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
 		model.addPapyrusTable(table);
+		table.setContext(getTableContext());
 		return table;
 	}
 
