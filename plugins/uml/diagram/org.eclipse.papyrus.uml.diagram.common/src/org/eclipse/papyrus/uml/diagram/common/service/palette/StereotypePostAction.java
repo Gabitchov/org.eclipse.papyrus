@@ -131,6 +131,9 @@ public class StereotypePostAction extends ModelPostAction {
 	/** integer icon path */
 	protected static final String ICON_LITERALINTEGER = "/icons/LiteralInteger.gif"; //$NON-NLS-1$
 
+	/** integer icon path */
+	protected static final String ICON_LITERALREAL = "/icons/LiteralReal.gif"; //$NON-NLS-1$
+	
 	/** string icon path */
 	protected static final String ICON_LITERALSTRING = "/icons/LiteralString.gif"; //$NON-NLS-1$
 
@@ -193,17 +196,20 @@ public class StereotypePostAction extends ModelPostAction {
 	private Object[] expandedElements = null;
 
 	/** constant to identify the type of a Boolean property */
-	final static public String UMLPrimitiveTypes_BOOLEAN = "UMLPrimitiveTypes::Boolean"; //$NON-NLS-1$
+	final static public String UMLPrimitiveTypes_BOOLEAN = "PrimitiveTypes::Boolean"; //$NON-NLS-1$
 
 	/** constant to identify the type of an Integer property */
-	final static public String UMLPrimitiveTypes_INTEGER = "UMLPrimitiveTypes::Integer"; //$NON-NLS-1$
+	final static public String UMLPrimitiveTypes_INTEGER = "PrimitiveTypes::Integer"; //$NON-NLS-1$
 
 	/** constant to identify the type of a String property */
-	final static public String UMLPrimitiveTypes_STRING = "UMLPrimitiveTypes::String"; //$NON-NLS-1$
+	final static public String UMLPrimitiveTypes_STRING = "PrimitiveTypes::String"; //$NON-NLS-1$
 
 	/** constant to identify the type of an Unlimited Natural property */
-	final static public String UMLPrimitiveTypes_UNLIMITED_NATURAL = "UMLPrimitiveTypes::UnlimitedNatural"; //$NON-NLS-1$
+	final static public String UMLPrimitiveTypes_UNLIMITED_NATURAL = "PrimitiveTypes::UnlimitedNatural"; //$NON-NLS-1$
 
+	/** constant to identify the type of an Unlimited Natural property */
+	final static public String UMLPrimitiveTypes_REAL = "PrimitiveTypes::Real"; //$NON-NLS-1$
+	
 	/** path to the checked box image */
 	protected final static String ICON_CHECKED = "/icons/complete_tsk.gif"; //$NON-NLS-1$
 
@@ -1170,6 +1176,10 @@ public class StereotypePostAction extends ModelPostAction {
 							return Activator.getPluginIconImage(Activator.ID, ICON_LITERALINTEGER);
 
 							// property is an unlimitedNatural
+						}  else if(UMLPrimitiveTypes_REAL.equals(typeName)) {
+							return Activator.getPluginIconImage(Activator.ID, ICON_LITERALREAL);
+
+							// property is an unlimitedNatural
 						} else if(UMLPrimitiveTypes_UNLIMITED_NATURAL.equals(typeName)) {
 							return Activator.getPluginIconImage(Activator.ID, ICON_LITERALUNLIMITEDNATURAL);
 							// property is a user primitive Type
@@ -1392,7 +1402,10 @@ public class StereotypePostAction extends ModelPostAction {
 
 			} else if(UMLPrimitiveTypes_STRING.equals(typeName)) {
 				value = PropertyEditors.StringEditor(property, valueToEdit);
-				// property is an Integer
+				// property is a real
+			} else if(UMLPrimitiveTypes_REAL.equals(typeName)) {
+				value = PropertyEditors.RealEditor(property, valueToEdit);
+				/** property is a user primitive Type */
 			} else if(UMLPrimitiveTypes_INTEGER.equals(typeName)) {
 				value = PropertyEditors.IntegerEditor(property, valueToEdit);
 

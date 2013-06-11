@@ -354,6 +354,9 @@ public class Messages extends NLS {
 
 	/** IntegerEditor Title */
 	public static String PropertyEditors_IntegerTitle;
+	
+	/** RealEditor Title */
+	public static String PropertyEditors_RealTitle;
 
 	/** MetaclassEditor Title */
 	public static String PropertyEditors_MetaclassTitle;

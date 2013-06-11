@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.papyrus.infra.widgets.validator.IntegerInputValidator;
+import org.eclipse.papyrus.infra.widgets.validator.RealInputValidator;
 import org.eclipse.papyrus.infra.widgets.validator.UnlimitedNaturalInputValidator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
@@ -45,7 +46,11 @@ public class PropertyEditors {
 	 */
 	/** IntegerEditor Title */
 	public static final String IntegerEditor_Title = Messages.PropertyEditors_IntegerTitle;
-
+	
+	/** IntegerEditor Title */
+	public static final String RealEditor_Title = Messages.PropertyEditors_RealTitle;
+	
+	
 	/** UnlimitedNaturalEditor Title */
 	public static final String UnlimitedNaturalEditor_Title = Messages.PropertyEditors_UnlimitedNaturalTitle;
 
@@ -118,6 +123,31 @@ public class PropertyEditors {
 		return value;
 	}
 
+	/**
+	 * Editor for the Type Integer.
+	 * 
+	 * @param property
+	 *        : the property to edit
+	 * @param oldValue
+	 *        : the property value to modify (can be null)
+	 * 
+	 * @return String : null if nothing is written
+	 * 
+	 */
+	public static String RealEditor(Property property, Object oldValue) {
+		String value = null;
+		String initialValue = findInitialValue(property, oldValue);
+		InputDialogMessage dialog = new InputDialogMessage(new Shell(), RealEditor_Title, Value, initialValue, new RealInputValidator());
+		if(dialog.open() != InputDialogMessage.CANCEL) {
+			if(!"".equals(dialog.getValue())) { //$NON-NLS-1$
+				value = dialog.getValue();
+			}
+		} else {
+			value = oldValue.toString();
+		}
+		return value;
+	}
+	
 	/**
 	 * 
 	 * @param property
