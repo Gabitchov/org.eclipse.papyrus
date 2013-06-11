@@ -456,7 +456,10 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 	 * @return The workbench page in which this editor site resides.
 	 */
 	public IWorkbenchPage getPage() {
-		return getMainEditorSite().getPage();
+		if(getMainEditorEditorSite() != null) {
+			return getMainEditorSite().getPage();
+		}
+		return null;
 	}
 
 	/*
@@ -550,7 +553,10 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 	 * @return The shell in which this editor site resides.
 	 */
 	public Shell getShell() {
-		return getMainEditorSite().getShell();
+		if(getMainEditorEditorSite() != null) {
+			return getMainEditorSite().getShell();
+		}
+		return null;
 	}
 
 	/**
