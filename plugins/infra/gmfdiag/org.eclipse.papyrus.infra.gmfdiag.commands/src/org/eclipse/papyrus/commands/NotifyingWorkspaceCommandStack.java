@@ -612,27 +612,27 @@ implements IWorkspaceCommandStack {
 	public boolean isSaveNeeded() {
 		// We do not override the execute method any more, this implies that we can use the super class method
 		// => deactivate implementation below and use the standard from the superclass
-		return super.isSaveNeeded();
+		// TODO: super class method does not work, if model has no diagrams. More investigation is required.
+		//       revert to original code.
 		// We override the execute method and never call the super
 		// implementation
 		// so we have to implement the isSaveNeeded method ourselves.
-		/*
 		IUndoableOperation nextUndoableOperation = history.getUndoOperation(getDefaultUndoContext());
 		if(nextUndoableOperation == null) {
 			// this is the last undoable operation. But the document might have been save
-			// CAVEAT: will trigger 410310, if the model has been saved before
-			return savedContext != null;
+			// CAVEAT: will trigger 410310, if the model has been saved before => use superclass method in this case.
+			// return savedContext != null;
+			return super.isSaveNeeded();
 		}
 		return savedContext != null ? !nextUndoableOperation.hasContext(getSavedContext()) : true;
-		*/
 	}
 
 	@Override
 	public void saveIsDone() {
 		// We do not override the execute method any more, this implies that we can use the super class method
 		// => deactivate implementation below and use the standard from the superclass
-		super.saveIsDone();
-		/*
+		// TODO: super class method does not work, if model has no diagrams. More investigation is required.
+		//       revert to original code.
 		// We override the execute method and never call the super
 		// implementation
 		// so we have to implement the saveIsDone method ourselves.
@@ -654,6 +654,5 @@ implements IWorkspaceCommandStack {
 			return;
 		}
 		nextUndoableOperation.addContext(getSavedContext());
-		*/
 	}
 }
