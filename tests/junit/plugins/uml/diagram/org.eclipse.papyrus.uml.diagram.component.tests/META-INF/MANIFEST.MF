@@ -21,6 +21,7 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.uml.diagram.component.test,
  org.eclipse.papyrus.uml.diagram.component.test.canonical,
  org.eclipse.papyrus.uml.diagram.component.test.load
