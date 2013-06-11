@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
  org.eclipse.e4.ui.workbench,
  org.eclipse.e4.core.contexts,
- org.eclipse.core.expressions
+ org.eclipse.core.expressions,
+ org.eclipse.emf.edit.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.nattable.common,
@@ -27,4 +28,5 @@ Export-Package: org.eclipse.papyrus.infra.nattable.common,
  org.eclipse.papyrus.infra.nattable.common.factory,
  org.eclipse.papyrus.infra.nattable.common.handlers,
  org.eclipse.papyrus.infra.nattable.common.modelresource,
- org.eclipse.papyrus.infra.nattable.common.utils
+ org.eclipse.papyrus.infra.nattable.common.utils,
+ org.eclipse.papyrus.infra.nattable.common.wizards

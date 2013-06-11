@@ -51,6 +51,17 @@ public class CreateNatTableEditorHandler extends AbstractCreateNattableEditorHan
 		super();
 	}
 
+
+	/**
+	 * Set the type of table to be created by this handler
+	 * 
+	 * @param type
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.common.handlers.AbstractCreateNattableEditorHandler2#getTableEditorConfigurationURI()

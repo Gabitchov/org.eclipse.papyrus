@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- * 
+ *   Juan Cadavid (CEA-LIST) juan.cadavid@cea.fr - Overloading execution to support creation of multiple tables with an incremental name
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.common.handlers;
@@ -22,6 +22,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -99,23 +100,53 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, nameWithIncrement, null);
 		if(dialog.open() == Dialog.OK) {
 			name = dialog.getValue();
-			final ServicesRegistry serviceRegistry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
-			final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-				@Override
-				protected void doExecute() {
-					try {
-						AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry, name, this.description);
-					} catch (final NotFoundException e) {
-						Activator.log.error(e);
-					} catch (final ServiceException e) {
-						Activator.log.error(e);
-					}
-
-				}
-			});
+			runAsTransaction(event, name);
 		}
+
+	}
+
+	/**
+	 * Create the table creation command and execute it. Unlike {@link this#runAsTransaction(ExecutionEvent)}, this method doesn't display a dialog to
+	 * ask for the name but rather takes it as a parameter.
+	 * 
+	 * @param event
+	 * @param name
+	 * @throws ServiceException
+	 */
+	public void runAsTransaction(final ExecutionEvent event, final String name) throws ServiceException {
+		final ServicesRegistry serviceRegistry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+		final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				try {
+					AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry, name, this.description);
+				} catch (final NotFoundException e) {
+					Activator.log.error(e);
+				} catch (final ServiceException e) {
+					Activator.log.error(e);
+				}
+
+			}
+		});
+	}
+
+	public Command getCreateNattableEditorCommandWithNameInitialization(final TransactionalEditingDomain domain, final ServicesRegistry serviceRegistry, final ExecutionEvent event, final String name) throws ServiceException {
+		return new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				try {
+					AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry, name, this.description);
+				} catch (final NotFoundException e) {
+					Activator.log.error(e);
+				} catch (final ServiceException e) {
+					Activator.log.error(e);
+				}
+
+			}
+		};
 
 	}
 

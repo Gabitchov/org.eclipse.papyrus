@@ -20,11 +20,85 @@
                tooltip="The Papyrus Table Menu">
          </menu>
       </menuContribution>
+      
       <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?endof=org.eclipse.papyrus.uml.diagram.ui.toolbar">
          <toolbar id="org.eclipse.papyrus.infra.nattable.toolbar.createnattable" label="New Table Toolbar (New Version)">
          </toolbar>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.papyrus.infra.nattable.menu.createnattable">
+         <command
+               commandId="org.eclipse.papyrus.infra.nattable.createFromCatalog.command"
+               icon="icons/tableCatalog.gif"
+               mnemonic="&amp;G"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.papyrus.infra.nattable.toolbar.createnattable">
+         <command
+               commandId="org.eclipse.papyrus.infra.nattable.createFromCatalog.command"
+               icon="icons/tableCatalog.gif"
+               mnemonic="&amp;G"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.infra.nattable.popupmenu.createnattable">
+         <command
+               commandId="org.eclipse.papyrus.infra.nattable.createFromCatalog.command"
+               icon="icons/tableCatalog.gif"
+               mnemonic="&amp;G"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Create a NatTable from Configurations Catalog"
+            id="org.eclipse.papyrus.infra.nattable.createFromCatalog.command"
+            name="Create a new Table from the Configurations Catalog">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="org.eclipse.papyrus.infra.nattable.createFromCatalog.command">
+         <class
+               class="org.eclipse.papyrus.infra.nattable.common.handlers.CreateNatTableFromCatalogHandler">
+         </class>
+      </handler>
+   </extension>
+
  <extension
        point="org.eclipse.papyrus.infra.core.papyrusDiagram">
     <editorDiagram

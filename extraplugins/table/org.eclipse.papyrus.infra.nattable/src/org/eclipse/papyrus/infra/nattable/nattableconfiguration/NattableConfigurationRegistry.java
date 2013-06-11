@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.nattableconfiguration;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,8 +52,30 @@ public class NattableConfigurationRegistry {
 	public static final NattableConfigurationRegistry INSTANCE = new NattableConfigurationRegistry();
 
 	private NattableConfigurationRegistry() {
-		//to prevent instanciation
+		//to prevent instantiation
+		initFields();
 	}
+
+
+	/**
+	 * 
+	 * @return
+	 *         the list of the known table configuration
+	 */
+	public Collection<TableConfiguration> getTableConfigurations() {
+		return configsURI.values();
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param newTableConfiguration
+	 * @return
+	 */
+	public void registerTableConfiguration(final TableConfiguration newTableConfiguration) {
+		configsURI.put(newTableConfiguration.getType(), newTableConfiguration);
+	}
+
 
 	/**
 	 * 
@@ -62,10 +85,12 @@ public class NattableConfigurationRegistry {
 	 *         the URI of the configuration to use for this table or <code>null</code> if not found
 	 */
 	public URI getConfigurationURI(final String tableType) {
-		initFields();
 		return this.configsURI.get(tableType).eResource().getURI();
 	}
 
+	/**
+	 * inits the fields of the class
+	 */
 	private void initFields() {
 		if(this.configsURI == null) {
 			this.configsURI = new HashMap<String, TableConfiguration>();
@@ -110,7 +135,6 @@ public class NattableConfigurationRegistry {
 	 *         a status {@link IStatus#OK} when wa can create the table or {@link IStatus#ERROR} if not
 	 */
 	public IStatus canCreateTable(final String tableType, final Object tableContext) {
-		initFields();
 		TableConfiguration config = this.configsURI.get(tableType);
 		if(config != null) {
 			AbstractTableTester tester = config.getCreationTester();
