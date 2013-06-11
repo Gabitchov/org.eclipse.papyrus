@@ -616,7 +616,7 @@ implements IWorkspaceCommandStack {
 		// variables "saveIndex" and "top" which is done in BasicCommandStack::execute. However, this operation is overridden
 		// in method AbstractTransactionalCommandStack::execute which never calls the superclass method BasicCommandStack::execute.
 		// Thus, we cannot rely on the super class method of isSaveNeeded (although it seems to work in some cases).
-		// => so we have to implement the isSaveNeeded method ourselves.
+		// => so we have to implement the isSaveNeeded method here.
 		IUndoableOperation nextUndoableOperation = history.getUndoOperation(getDefaultUndoContext());
 		if(nextUndoableOperation == null) {
 			// this is the last undoable operation. But the document might have been save
@@ -629,7 +629,7 @@ implements IWorkspaceCommandStack {
 
 	@Override
 	public void saveIsDone() {
-		// The commend for isSaveNeeded
+		// See comment for isSaveNeeded
 		if(savedContext != null) {
 			// The save context is only stored on one operation. We must
 			// remove it from any other operation that may have contained it
