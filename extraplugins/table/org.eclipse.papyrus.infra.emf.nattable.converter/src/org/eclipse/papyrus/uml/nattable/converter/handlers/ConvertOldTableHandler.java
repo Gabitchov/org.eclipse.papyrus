@@ -46,6 +46,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
@@ -187,7 +188,7 @@ public class ConvertOldTableHandler extends AbstractHandler {
 				}
 
 
-				final Resource notationResource = ((ModelSet)oldTable.eResource().getResourceSet()).getAssociatedResource(oldTable, NotationModel.NOTATION_FILE_EXTENSION, true);
+				final Resource notationResource = ((ModelSet)oldTable.eResource().getResourceSet()).getAssociatedResource(oldTable, PapyrusNattableModel.TABLE_MODEL_FILE_EXTENSION, true);
 				final IPageManager manager = getPageManager(oldTable);//to be sure to have the correct page manager, we do it each time.
 				convertCommand.append(getAddToResourceCommand(domain, notationResource, newTable));
 				Assert.isNotNull(manager);

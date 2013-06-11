@@ -36,6 +36,10 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 	 */
 	public static final String MODEL_ID = "org.eclipse.papyrus.infra.nattable.resource.NattableModel"; //$NON-NLS-1$
 
+	/**
+	 * the file extension where table are stored
+	 */
+	public static final String TABLE_MODEL_FILE_EXTENSION = NotationModel.NOTATION_FILE_EXTENSION;
 
 	/**
 	 * 
@@ -62,7 +66,7 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 	 */
 	@Override
 	protected String getModelFileExtension() {
-		return NotationModel.NOTATION_FILE_EXTENSION;
+		return TABLE_MODEL_FILE_EXTENSION;
 	}
 
 	/**
