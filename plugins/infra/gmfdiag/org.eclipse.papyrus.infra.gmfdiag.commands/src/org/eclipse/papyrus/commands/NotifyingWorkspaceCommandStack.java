@@ -610,13 +610,13 @@ implements IWorkspaceCommandStack {
 
 	@Override
 	public boolean isSaveNeeded() {
-		// We do not override the execute method any more, this implies that we can use the super class method
-		// => deactivate implementation below and use the standard from the superclass
-		// TODO: super class method does not work, if model has no diagrams. More investigation is required.
-		//       revert to original code.
-		// We override the execute method and never call the super
-		// implementation
-		// so we have to implement the isSaveNeeded method ourselves.
+		// This class inherits from AbstractTransactionalCommandStack which in turn inherits from BasicCommandStack.
+		
+		// The operation isSaveNeeded is defined in BasicCommandStack. In order to work, it requires an update of the
+		// variables "saveIndex" and "top" which is done in BasicCommandStack::execute. However, this operation is overridden
+		// in method AbstractTransactionalCommandStack::execute which never calls the superclass method BasicCommandStack::execute.
+		// Thus, we cannot rely on the super class method of isSaveNeeded (although it seems to work in some cases).
+		// => so we have to implement the isSaveNeeded method ourselves.
 		IUndoableOperation nextUndoableOperation = history.getUndoOperation(getDefaultUndoContext());
 		if(nextUndoableOperation == null) {
 			// this is the last undoable operation. But the document might have been save
@@ -629,13 +629,7 @@ implements IWorkspaceCommandStack {
 
 	@Override
 	public void saveIsDone() {
-		// We do not override the execute method any more, this implies that we can use the super class method
-		// => deactivate implementation below and use the standard from the superclass
-		// TODO: super class method does not work, if model has no diagrams. More investigation is required.
-		//       revert to original code.
-		// We override the execute method and never call the super
-		// implementation
-		// so we have to implement the saveIsDone method ourselves.
+		// The commend for isSaveNeeded
 		if(savedContext != null) {
 			// The save context is only stored on one operation. We must
 			// remove it from any other operation that may have contained it
