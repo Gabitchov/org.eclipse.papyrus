@@ -104,26 +104,28 @@ public class NatTableDropListener implements DropTargetListener {
 		if(data instanceof StructuredSelection) {
 			final IStructuredSelection selection = (IStructuredSelection)data;
 			final List<Object> droppedElements = selection.toList();
-			switch(this.dropKindValue.getKind()) {
-			case AFTER_COLUMN_HEADER:
-				this.manager.addColumns(droppedElements);
-				break;
-			case AFTER_ROW_HEADER:
-				this.manager.addRows(droppedElements);
-				break;
-			case COLUMN_HEADER:
-				this.manager.insertColumns(droppedElements, this.dropKindValue.getColumnIndex());
-				break;
-			case ROW_HEADER:
-				this.manager.insertRows(droppedElements, this.dropKindValue.getRowIndex());
-				break;
-			case CELL:
-				//FIXME
-				break;
-			case UNKNOWN:
-				break;
-			default:
-				break;
+			if(this.dropKindValue != null) {
+				switch(this.dropKindValue.getKind()) {
+				case AFTER_COLUMN_HEADER:
+					this.manager.addColumns(droppedElements);
+					break;
+				case AFTER_ROW_HEADER:
+					this.manager.addRows(droppedElements);
+					break;
+				case COLUMN_HEADER:
+					this.manager.insertColumns(droppedElements, this.dropKindValue.getColumnIndex());
+					break;
+				case ROW_HEADER:
+					this.manager.insertRows(droppedElements, this.dropKindValue.getRowIndex());
+					break;
+				case CELL:
+					//FIXME
+					break;
+				case UNKNOWN:
+					break;
+				default:
+					break;
+				}
 			}
 		}
 		this.dropKindValue = null;
