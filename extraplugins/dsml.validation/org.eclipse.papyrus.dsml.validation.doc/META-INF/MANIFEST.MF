@@ -5,8 +5,9 @@ Bundle-SymbolicName: org.eclipse.papyrus.dsml.validation.doc;singleton:=true
 Bundle-Version: 0.10.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.dsml.validation.doc.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.infra.doc;bundle-version="0.10.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %vendorName
 Bundle-Localization: plugin
