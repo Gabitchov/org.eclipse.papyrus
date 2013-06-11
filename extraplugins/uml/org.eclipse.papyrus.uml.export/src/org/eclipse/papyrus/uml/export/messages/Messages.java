@@ -52,6 +52,24 @@ public class Messages extends NLS {
 
 	public static String ExportProfilesCommand_8;
 
+	public static String ExportProfilesParametersDialog_0;
+
+	public static String ExportProfilesParametersDialog_1;
+
+	public static String ExportProfilesParametersDialog_10;
+
+	public static String ExportProfilesParametersDialog_11;
+
+	public static String ExportProfilesParametersDialog_12;
+
+	public static String ExportProfilesParametersDialog_2;
+
+	public static String ExportProfilesParametersDialog_7;
+
+	public static String ExportProfilesParametersDialog_8;
+
+	public static String ExportProfilesParametersDialog_9;
+
 	/** The Import package from file handler_ select registered model library. */
 	public static String ImportPackageFromFileHandler_SelectRegisteredModelLibrary;
 

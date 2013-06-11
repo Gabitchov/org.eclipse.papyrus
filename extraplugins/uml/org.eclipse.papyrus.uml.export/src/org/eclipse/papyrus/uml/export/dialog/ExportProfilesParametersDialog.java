@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.export.dialog;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
 import org.eclipse.papyrus.infra.widgets.editors.StringFileSelector;
+import org.eclipse.papyrus.uml.export.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
