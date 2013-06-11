@@ -103,5 +103,7 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.extra.eastadl.feature"
          version="0.0.0"/>
+         
+   <import feature="org.eclipse.papyrus.extra.eastadl.source.feature" version="0.0.0"/>
 
 </feature>
