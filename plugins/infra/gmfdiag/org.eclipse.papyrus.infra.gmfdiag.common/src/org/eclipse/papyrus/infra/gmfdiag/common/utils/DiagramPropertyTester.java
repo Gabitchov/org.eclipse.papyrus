@@ -16,8 +16,11 @@ package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
 import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 
 
 public class DiagramPropertyTester extends PropertyTester {
@@ -44,13 +47,13 @@ public class DiagramPropertyTester extends PropertyTester {
 	 * 
 	 * @param selection
 	 * @return
-	 *         <code>true</code> if the current papyrus editor is an active editor
+	 *         <code>true</code> if the current active part is a Papyrus Diagram
 	 */
 	private boolean isDiagramEditor(IStructuredSelection selection) {
-		final IEditorPart activeEditor = EditorHelper.getCurrentEditor();
-		if (activeEditor !=null){
-			final IDiagramWorkbenchPart part = (IDiagramWorkbenchPart)activeEditor.getAdapter(IDiagramWorkbenchPart.class);
-			return part != null;
+		final IWorkbenchPart part = WorkbenchPartHelper.getCurrentActiveWorkbenchPart();
+		if(part != null) {
+			final IDiagramWorkbenchPart diagramPart = (IDiagramWorkbenchPart)part.getAdapter(IDiagramWorkbenchPart.class);
+			return diagramPart != null;
 		}
 		return false;
 	}
