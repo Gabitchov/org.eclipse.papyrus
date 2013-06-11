@@ -98,14 +98,16 @@ public class FixNestedStateAndRegionOnOpening {
 					// don't correct, if multiple regions (in this case, not all coordinates must be 0)
 
 					Bounds regionBounds = (Bounds)regionNode.getLayoutConstraint();
-					final Rectangle newBounds = new Rectangle(0, 0, regionBounds.getWidth(), regionBounds.getHeight());
-
+				
 					// stateNode.getChildren();
 					// Fix when current location is not the valid location (only possible if parent size is set)
-					TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
-					Command fixCommand =
-						new FixLocationCommand(editingDomain, "Fix region position on opening", regionBounds, newBounds); //$NON-NLS-1$
-					editingDomain.getCommandStack().execute(fixCommand);
+					if ((regionBounds.getX() != 0) || (regionBounds.getY() != 0)) {
+						final Rectangle newBounds = new Rectangle(0, 0, regionBounds.getWidth(), regionBounds.getHeight());
+						TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
+						Command fixCommand =
+								new FixLocationCommand(editingDomain, "Fix region position on opening", regionBounds, newBounds); //$NON-NLS-1$
+						editingDomain.getCommandStack().execute(fixCommand);
+					}
 				}
 
 			}
