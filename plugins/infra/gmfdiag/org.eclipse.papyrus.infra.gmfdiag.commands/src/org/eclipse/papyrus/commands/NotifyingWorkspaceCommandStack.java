@@ -610,8 +610,7 @@ implements IWorkspaceCommandStack {
 
 	@Override
 	public boolean isSaveNeeded() {
-		// Bug 410310 - [core] Model remains dirty after save
-		// seems that super class implementation is good enough
+		// We do not override the execute method any more, this implies that we can use the super class method
 		// => deactivate implementation below and use the standard from the superclass
 		return super.isSaveNeeded();
 		// We override the execute method and never call the super
@@ -630,6 +629,10 @@ implements IWorkspaceCommandStack {
 
 	@Override
 	public void saveIsDone() {
+		// We do not override the execute method any more, this implies that we can use the super class method
+		// => deactivate implementation below and use the standard from the superclass
+		super.saveIsDone();
+		/*
 		// We override the execute method and never call the super
 		// implementation
 		// so we have to implement the saveIsDone method ourselves.
@@ -651,5 +654,6 @@ implements IWorkspaceCommandStack {
 			return;
 		}
 		nextUndoableOperation.addContext(getSavedContext());
+		*/
 	}
 }
