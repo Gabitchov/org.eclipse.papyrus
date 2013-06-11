@@ -21,6 +21,8 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -45,6 +47,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAp
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -81,7 +84,6 @@ public class CustomViewProvider extends UMLViewProvider {
 		}
 		return super.provides(op);
 	}
-
 
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
@@ -244,7 +246,6 @@ public class CustomViewProvider extends UMLViewProvider {
 		Edge edge = NotationFactory.eINSTANCE.createEdge(); // override Connector
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
 		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
 		points.add(new RelativeBendpoint());
@@ -262,4 +263,18 @@ public class CustomViewProvider extends UMLViewProvider {
 		return edge;
 	}
 
+	//Add Guard label support. 
+	@Override
+	public Node createInteractionOperand_3005(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = super.createInteractionOperand_3005(domainElement, containerView, index, persisted, preferencesHint);
+		DecorationNode guardNode = NotationFactory.eINSTANCE.createDecorationNode();
+		Bounds b = NotationFactory.eINSTANCE.createBounds();
+		b.setX(5);
+		b.setY(5);
+		guardNode.setLayoutConstraint(b);
+		guardNode.setType(InteractionOperandGuardEditPart.GUARD_TYPE);
+		guardNode.setElement(((InteractionOperand)domainElement).getGuard());
+		ViewUtil.insertChildView(node, guardNode, ViewUtil.APPEND, true);
+		return node;
+	}
 }

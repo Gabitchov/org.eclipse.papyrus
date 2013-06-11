@@ -22,6 +22,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -33,7 +34,9 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
@@ -130,12 +133,18 @@ public class TestGuardEdition_364808 extends TestTopNode {
 	}
 
 	protected WrappingLabel performEditRequest(InteractionOperandEditPart op) {
-		WrappingLabel label = op.getPrimaryShape().getInteractionConstraintLabel();
+		//Introduced a Guard EditPart for displaying operand label.
+		WrappingLabel label = op instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart)op).getInteractionConstraintLabel() : op.getPrimaryShape().getInteractionConstraintLabel();
 		Rectangle b = label.getBounds().getCopy();
 		label.translateToAbsolute(b);
 		DirectEditRequest req = new DirectEditRequest();
 		req.setLocation(b.getCenter());
-		op.performRequest(req);
+		IGraphicalEditPart guardEditPart = op.getChildBySemanticHint(InteractionOperandGuardEditPart.GUARD_TYPE);
+		if(guardEditPart instanceof InteractionOperandGuardEditPart) {
+			((InteractionOperandGuardEditPart)guardEditPart).performRequest(req);
+		} else {
+			op.performRequest(req);
+		}
 		return label;
 	}
 
@@ -175,6 +184,15 @@ public class TestGuardEdition_364808 extends TestTopNode {
 			e = createKeyEvent(widget, 0, c);
 			e.type = SWT.KeyUp;
 			widget.notifyListeners(SWT.KeyUp, e);
+		}
+		waitForComplete();
+		//If editor is not deactivated, send a DefaultSelection.
+		if(!widget.isDisposed()) {
+			Event event = new Event();
+			event.time = (int)System.currentTimeMillis();
+			event.widget = widget;
+			event.display = Display.getDefault();
+			widget.notifyListeners(SWT.DefaultSelection, event);
 		}
 		waitForComplete();
 	}

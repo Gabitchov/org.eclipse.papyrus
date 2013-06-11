@@ -22,7 +22,6 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -316,14 +315,14 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 				((SuppressibleUIRequest)req).setSuppressibleUI(true);
 			EditPart sourceEP = getSourceEditPart();
 			EditPart targetEP = getTargetEditPart();
-			if(targetEP instanceof IGraphicalEditPart) {
-				Rectangle absoluteBounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)targetEP);
-				if(absoluteBounds != null) {
-					req.setLocation(absoluteBounds.getLocation());
-				}
-			} else {
-				req.setLocation(null);
-			}
+			//			if(targetEP instanceof IGraphicalEditPart) {
+			//				Rectangle absoluteBounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)targetEP);
+			//				if(absoluteBounds != null) {
+			//					req.setLocation(absoluteBounds.getLocation());
+			//				}
+			//			} else {
+			//				req.setLocation(null);
+			//			}
 			// There are situations where src or target can be null and we must
 			// check for these
 			// ie. When a Select Existing Dialog is presnetd to the user and the

@@ -174,7 +174,7 @@ public class CustomMessageName2EditPart extends MessageName2EditPart implements 
 	 * Update name of Gate to suggested name with the linked nessage.
 	 */
 	protected void postFirstTimeDirectEdit(Message message) {
-		GateHelper.updateGateWithMessage(message, false);
+		GateHelper.updateGateWithMessage(message, true);
 	}
 
 	/**

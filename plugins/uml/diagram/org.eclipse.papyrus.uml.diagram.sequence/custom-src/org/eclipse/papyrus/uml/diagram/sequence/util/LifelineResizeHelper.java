@@ -13,18 +13,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 
@@ -43,10 +48,24 @@ public class LifelineResizeHelper {
 		}
 		LifelineFigure primaryShape = lp.getPrimaryShape();
 		Dimension namePreSize = primaryShape.getFigureLifelineNameContainerFigure().getPreferredSize();
-		Dimension preferredSize = primaryShape.getFigureExecutionsContainerFigure().getPreferredSize();
-		//This will disable the auto expanding of Lifeline Bordered Figure.
-		if(namePreSize.width < preferredSize.width) {
-			return true;
+		Rectangle childrenRect = null;
+		List<ShapeNodeEditPart> childShapeNodeEditPart = LifelineEditPartUtil.getChildShapeNodeEditPart(lp);
+		for(ShapeNodeEditPart child : childShapeNodeEditPart) {
+			if(!(child instanceof AbstractExecutionSpecificationEditPart)) {
+				continue;
+			}
+			Rectangle rect = SequenceUtil.getAbsoluteBounds(child);
+			if(childrenRect == null) {
+				childrenRect = rect;
+			} else {
+				childrenRect.union(rect);
+			}
+		}
+		if(childrenRect != null) {
+			//This will disable the auto expanding of Lifeline Bordered Figure.
+			if(namePreSize.width / 2 < childrenRect.width - 8) {
+				return true;
+			}
 		}
 		return false;
 	}

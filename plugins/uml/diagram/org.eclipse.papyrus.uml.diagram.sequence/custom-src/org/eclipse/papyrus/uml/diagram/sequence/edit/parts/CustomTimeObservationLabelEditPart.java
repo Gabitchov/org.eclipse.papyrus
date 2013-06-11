@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
@@ -40,7 +41,9 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomConnectionHandleEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.swt.graphics.Image;
 
@@ -253,6 +256,19 @@ public class CustomTimeObservationLabelEditPart extends TimeObservationLabelEdit
 
 	@Override
 	protected Image getLabelIcon() {
-		return ElementIconUtil.getLabelIcon(this);
+		if(AppearanceHelper.showElementIcon(getNotationView())) {
+			return UMLElementTypes.getImage(resolveSemanticElement().eClass());
+		}
+		return null;
+	}
+
+	@Override
+	public void refreshBounds() {
+		super.refreshBounds();
+		//Update location manually.
+		IBorderItemLocator locator = getBorderItemLocator();
+		if(locator != null) {
+			locator.relocate(getFigure());
+		}
 	}
 }

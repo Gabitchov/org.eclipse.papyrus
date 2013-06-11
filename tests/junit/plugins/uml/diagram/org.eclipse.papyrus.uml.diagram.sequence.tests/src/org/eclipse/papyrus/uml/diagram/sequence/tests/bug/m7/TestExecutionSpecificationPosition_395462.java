@@ -107,7 +107,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		//Check width after renamed.
 		assertTrue(CHECK_LIFELINE_WIDTH_AFTER_RENAMED, lifelineBounds.width < newLifelineBounds.width);
 		Rectangle newEsBounds = getAbsoluteBounds(es);
-		assertTrue(CHECK_ES_POSITION, newLifelineBounds.getCenter().x == newEsBounds.getCenter().x);
+		assertTrue(CHECK_ES_POSITION, Math.abs(newLifelineBounds.getCenter().x - newEsBounds.getCenter().x) < 2);
 	}
 
 	/**

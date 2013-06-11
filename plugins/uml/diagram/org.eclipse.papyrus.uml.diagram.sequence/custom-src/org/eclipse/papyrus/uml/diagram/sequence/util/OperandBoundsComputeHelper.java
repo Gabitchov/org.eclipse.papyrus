@@ -1,8 +1,13 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -18,11 +23,14 @@ import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -32,6 +40,8 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
@@ -41,6 +51,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
@@ -48,21 +59,29 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.NamedElement;
 
 public class OperandBoundsComputeHelper {
 
@@ -82,6 +101,8 @@ public class OperandBoundsComputeHelper {
 	 * Border width of CombinedFragmentFigure
 	 */
 	public static final int COMBINED_FRAGMENT_FIGURE_BORDER = 1;
+
+	private static final int EXECUTION_VERTICAL_MARGIN = 3;
 
 	/**
 	 * Find first Interaction Operand EditpPart of CombinedFragmentCombinedFragmentCompartmentEditPart
@@ -518,11 +539,19 @@ public class OperandBoundsComputeHelper {
 			}
 			Rectangle currentIOEPRect = OperandBoundsComputeHelper.fillRectangle(currentIOEPBounds);
 			currentIOEPRect.setHeight(currentIOEPBounds.getHeight() + heightDelta);
+			int minHeight = getMinimumHeightFor(currentIOEP);
+			if(currentIOEPRect.height < minHeight) {
+				return UnexecutableCommand.INSTANCE;
+			}
 			ICommand currentIOEPCommand = OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
 			compositeCommand.add(currentIOEPCommand);
 			ICommand cmd = getShiftEnclosedMessagesCommand(currentIOEP, currentIOEPRect, heightDelta);
 			if(cmd != null && cmd.canExecute()) {
 				compositeCommand.add(cmd);
+			}
+			Command shiftPreviousExecutions = getShiftEnclosedExecutionsCommand(currentIOEP, currentIOEPRect, heightDelta);
+			if(shiftPreviousExecutions != null) {
+				compositeCommand.add(new EMFtoGMFCommandWrapper(new GEFtoEMFCommandWrapper(shiftPreviousExecutions)));
 			}
 			// auto update CombinedFragmentEditPart bounds after resize the last operand
 			if(compartEP.getParent() instanceof CombinedFragmentEditPart) {
@@ -575,21 +604,169 @@ public class OperandBoundsComputeHelper {
 				targetIOEPRect.setY(targetIOEPRect.y() + heightDelta);
 				shiftY = heightDelta;
 			}
+			int minHeightOfTargetOperand = getMinimumHeightFor(targetIOEP);
+			if(targetIOEPRect.height < minHeightOfTargetOperand) {
+				return null;
+			}
 			ICommand previousIOEPCommand = OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(targetIOEP, targetIOEPRect);
 			compositeCommand.add(previousIOEPCommand);
-			ICommand shiftPreviousMessages = getShiftEnclosedMessagesCommand(targetIOEP, targetIOEPRect, shiftY);
-			if(shiftPreviousMessages != null && shiftPreviousMessages.canExecute()) {
-				compositeCommand.add(shiftPreviousMessages);
+			if((shiftY < 0 && targetIOEPRect.y < currentIOEPRect.y) || shiftY > 0 && (targetIOEPRect.y > currentIOEPRect.y)) {
+				ICommand shiftPreviousMessages = getShiftEnclosedMessagesCommand(targetIOEP, targetIOEPRect, shiftY);
+				if(shiftPreviousMessages != null) {
+					compositeCommand.add(shiftPreviousMessages);
+				}
+				Command shiftPreviousExecutions = getShiftEnclosedExecutionsCommand(targetIOEP, targetIOEPRect, shiftY);
+				if(shiftPreviousExecutions != null) {
+					compositeCommand.add(new EMFtoGMFCommandWrapper(new GEFtoEMFCommandWrapper(shiftPreviousExecutions)));
+				}
+			}
+			int minHeughtOfCurrentOperand = getMinimumHeightFor(currentIOEP);
+			if(currentIOEPRect.height < minHeughtOfCurrentOperand) {
+				return null;
 			}
 			ICommand currentIOEPCommand = OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
 			compositeCommand.add(currentIOEPCommand);
-			ICommand shiftCurrentMessages = getShiftEnclosedMessagesCommand(currentIOEP, currentIOEPRect, shiftY);
-			if(shiftCurrentMessages != null && shiftCurrentMessages.canExecute()) {
-				compositeCommand.add(shiftCurrentMessages);
+			if((shiftY < 0 && currentIOEPRect.y < targetIOEPRect.y) || (shiftY > 0 && currentIOEPRect.y > targetIOEPRect.y)) {
+				ICommand shiftCurrentMessages = getShiftEnclosedMessagesCommand(currentIOEP, currentIOEPRect, shiftY);
+				if(shiftCurrentMessages != null) {
+					compositeCommand.add(shiftCurrentMessages);
+				}
+				Command shiftCurrentExecutions = getShiftEnclosedExecutionsCommand(currentIOEP, currentIOEPRect, shiftY);
+				if(shiftCurrentExecutions != null) {
+					compositeCommand.add(new EMFtoGMFCommandWrapper(new GEFtoEMFCommandWrapper(shiftCurrentExecutions)));
+				}
 			}
 		}
 		return new ICommandProxy(compositeCommand);
 	}
+
+	private static int getMinimumHeightFor(InteractionOperandEditPart operand) {
+		if(operand == null) {
+			return MIN_INTERACTION_OPERAND_HEIGHT;
+		}
+		List<OperandBlock> operandBlocks = getOperandBlocks(operand);
+		if(!operandBlocks.isEmpty()) {
+			//1. Sort with y location.
+			Collections.sort(operandBlocks, new Comparator<OperandBlock>() {
+
+				public int compare(OperandBlock o1, OperandBlock o2) {
+					Rectangle r1 = o1.getBounds();
+					Rectangle r2 = o2.getBounds();
+					if(r1.y < r2.y) {
+						return -1;
+					} else if(r1.y > r2.y) {
+						return 1;
+					}
+					return 0;
+				}
+			});
+			//2. Compute max area of all blocks, make sure all blocks will be contained in this area.
+			Rectangle maxArea = null;
+			for(OperandBlock blk : operandBlocks) {
+				Rectangle r = blk.getBounds();
+				if(maxArea == null) {
+					maxArea = r;
+				} else {
+					maxArea.union(r);
+				}
+			}
+			//3. Compute min area for all blocks, this will remove all margins.
+			Map<OperandBlock, Rectangle> constraints = new HashMap<OperandBoundsComputeHelper.OperandBlock, Rectangle>();
+			OperandBlock topBlock = operandBlocks.get(0);
+			Rectangle minArea = new Rectangle(topBlock.getBounds());
+			minArea.height += EXECUTION_VERTICAL_MARGIN;//margin
+			for(int i = 1; i < operandBlocks.size(); i++) {
+				OperandBlock nextBlock = operandBlocks.get(i);
+				Rectangle r = nextBlock.getBounds();
+				if(!minArea.touches(r) && r.y > maxArea.y) {
+					for(int y = r.y; y >= maxArea.y; y--) {
+						Rectangle movedRect = new Rectangle(r).setY(y);
+						if(minArea.touches(movedRect)) {
+							break;
+						} else {
+							constraints.put(nextBlock, movedRect);
+						}
+					}
+				}
+				Rectangle newBounds = constraints.get(nextBlock);
+				if(newBounds == null) {
+					newBounds = r;
+				}
+				minArea.union(newBounds);
+				minArea.height += EXECUTION_VERTICAL_MARGIN;//margin
+			}
+			return minArea.height;
+		}
+		return MIN_INTERACTION_OPERAND_HEIGHT;
+	}
+
+	/**
+	 * Once there are messages between two execution of a Operand, consider them as a group.
+	 * 
+	 * @param currentExecutionPart
+	 * @param toCheckExecutions
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	protected static Rectangle getExecutionGroupBounds(IGraphicalEditPart currentExecutionPart, List<ExecutionSpecification> toCheckExecutions) {
+		Rectangle groupRect = SequenceUtil.getAbsoluteBounds(currentExecutionPart);
+		if(toCheckExecutions.isEmpty()) {
+			return groupRect;
+		}
+		List connections = new ArrayList();
+		connections.addAll(currentExecutionPart.getSourceConnections());
+		connections.addAll(currentExecutionPart.getTargetConnections());
+		for(Object object : connections) {
+			IGraphicalEditPart source = (IGraphicalEditPart)object;
+			View model = (View)source.getModel();
+			EObject element = model.getElement();
+			if(toCheckExecutions.contains(element)) {
+				List<ExecutionSpecification> myCheckingList = new ArrayList<ExecutionSpecification>(toCheckExecutions);
+				myCheckingList.remove(element);
+				Rectangle rect = getExecutionGroupBounds(source, myCheckingList);
+				groupRect.union(rect);
+			}
+		}
+		List<ShapeNodeEditPart> affixedExecutionSpecificationEditParts = LifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts((ShapeNodeEditPart)currentExecutionPart);
+		for(ShapeNodeEditPart shapeNodeEditPart : affixedExecutionSpecificationEditParts) {
+			List<ExecutionSpecification> myCheckingList = new ArrayList<ExecutionSpecification>(toCheckExecutions);
+			myCheckingList.remove(shapeNodeEditPart);
+			Rectangle rect = getExecutionGroupBounds(shapeNodeEditPart, myCheckingList);
+			groupRect.union(rect);
+		}
+		return groupRect;
+	}
+
+	private static Command getShiftEnclosedExecutionsCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY) {
+		if(editPart == null || newBounds == null || movedY == 0) {
+			return null;
+		}
+		List<OperandBlock> operandBlocks = getOperandBlocks(editPart);
+		if(operandBlocks.isEmpty()) {
+			return null;
+		}
+		OperandBlockLayout layout = new OperandBlockLayout(operandBlocks);
+		IFigure figure = editPart.getFigure();
+		Rectangle newArea = newBounds.getCopy();
+		figure.getParent().translateToAbsolute(newArea);
+		newArea.translate(figure.getParent().getBounds().getLocation());
+		layout.layout(newArea, movedY > 0 ? true : false);
+
+		final Map<OperandBlock, Integer> blockToMove = new HashMap<OperandBoundsComputeHelper.OperandBlock, Integer>();
+		for(OperandBlock blk : operandBlocks) {
+			int moveDelta = layout.getMoveDelta(blk);
+			if(moveDelta == 0) {
+				continue;
+			}
+			blockToMove.put(blk, moveDelta);
+		}
+		if(blockToMove.isEmpty()) {
+			return null;
+		}
+		return new ICommandProxy(new MoveOperandBlockCommand(editPart.getEditingDomain(), blockToMove));
+	}
+
+
 
 	private static ICommand getShiftEnclosedMessagesCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY) {
 		if(editPart == null || newBounds == null || movedY == 0) {
@@ -629,12 +806,12 @@ public class OperandBoundsComputeHelper {
 						Point sourcePoint = sourceAnchor.getReferencePoint();
 						Point targetPoint = targetAnchor.getReferencePoint();
 						Edge edge = (Edge)cep.getModel();
-						if(!origCFBounds.contains(sourcePoint)) {
+						if(!(cep.getSource() instanceof AbstractExecutionSpecificationEditPart) && !origCFBounds.contains(sourcePoint)) {
 							IdentityAnchor gmfSourceAnchor = (IdentityAnchor)edge.getSourceAnchor();
 							Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
 							commands.add(getMoveAnchorCommand(movedY, figureBounds, gmfSourceAnchor));
 						}
-						if(!origCFBounds.contains(targetPoint)) {
+						if(!(cep.getTarget() instanceof AbstractExecutionSpecificationEditPart) && !origCFBounds.contains(targetPoint)) {
 							IdentityAnchor gmfTargetAnchor = (IdentityAnchor)edge.getTargetAnchor();
 							Rectangle figureBounds = targetAnchor.getOwner().getBounds();
 							commands.add(getMoveAnchorCommand(movedY, figureBounds, gmfTargetAnchor));
@@ -949,6 +1126,414 @@ public class OperandBoundsComputeHelper {
 				ioEPOriginalBounds.setWidth(ioEPOriginalBounds.getWidth() + sizeDelta.width());
 			}
 			return CommandResult.newOKCommandResult();
+		}
+	}
+
+	private static List<OperandBlock> getOperandBlocks(InteractionOperandEditPart editPart) {
+		List<OperandBlock> blocks = new ArrayList<OperandBoundsComputeHelper.OperandBlock>();
+		if(editPart != null) {
+			InteractionOperand interactionOperand = (InteractionOperand)editPart.resolveSemanticElement();
+			Set<ExecutionSpecification> executions = new HashSet<ExecutionSpecification>();
+			EList<InteractionFragment> fragments = interactionOperand.getFragments();
+			for(InteractionFragment fragment : fragments) {
+				if(fragment instanceof ExecutionSpecification) {
+					executions.add((ExecutionSpecification)fragment);
+				} else if(fragment instanceof ExecutionOccurrenceSpecification) {
+					ExecutionSpecification execution = ((ExecutionOccurrenceSpecification)fragment).getExecution();
+					if(execution != null) {
+						executions.add(execution);
+					}
+				}
+			}
+			if(!executions.isEmpty()) {
+				final EditPartViewer viewer = editPart.getViewer();
+				for(ExecutionSpecification execution : executions) {
+					List<View> existingViews = DiagramEditPartsUtil.findViews(execution, viewer);
+					if(existingViews.isEmpty()) {
+						continue;
+					} else {
+						for(View view : existingViews) {
+							Object object = viewer.getEditPartRegistry().get(view);
+							if(object instanceof ShapeNodeEditPart) {
+								ShapeNodeEditPart child = (ShapeNodeEditPart)object;
+								boolean visited = false;
+								for(OperandBlock blk : blocks) {
+									if(blk.contains(child)) {
+										visited = true;
+										break;
+									}
+								}
+								if(visited) {
+									break;
+								} else {
+									OperandBlock newBlock = new OperandBlock(child, executions);
+									blocks.add(newBlock);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return blocks;
+	}
+
+	/**
+	 * OperandBlock means the a group with ExecutionSpecifications contained in a InteractionOperand.
+	 * 
+	 * 1. All children of an execution should be contained.
+	 * 2. The parent of an execution should be contained.
+	 * 3. All ends of connected links which contained in the operand should be contained.
+	 * 
+	 * 4. All children would be moved together.
+	 * 
+	 * @author Jin Liu (jin.liu@soyatec.com)
+	 */
+	private static class OperandBlock {
+
+		private List<ShapeNodeEditPart> children = new ArrayList<ShapeNodeEditPart>();
+
+		public OperandBlock(ShapeNodeEditPart child, Set<ExecutionSpecification> executions) {
+			fillWith(child, executions);
+		}
+
+		public void fillWith(ShapeNodeEditPart child, Set<ExecutionSpecification> executions) {
+			if(children.contains(child) || child == null || executions == null || executions.isEmpty()) {
+				return;
+			}
+			children.add(child);
+			List<ExecutionSpecification> toCheckExecutions = new ArrayList<ExecutionSpecification>(executions);
+			toCheckExecutions.remove(child.resolveSemanticElement());
+			Set<ShapeNodeEditPart> executionGroups = getExecutionGroups(child, toCheckExecutions);
+			if(executionGroups != null && !executionGroups.isEmpty()) {
+				for(ShapeNodeEditPart group : executionGroups) {
+					fillWith(group, executions);
+				}
+			}
+			LifelineEditPart parent = (LifelineEditPart)child.getParent();
+			//1. parent bar
+			List<ShapeNodeEditPart> childShapeNodeEditPart = LifelineEditPartUtil.getChildShapeNodeEditPart(parent);
+			childShapeNodeEditPart.remove(child);
+			ShapeNodeEditPart parentNode = LifelineXYLayoutEditPolicy.getParent(parent, child.getFigure().getBounds().getCopy(), childShapeNodeEditPart);
+			if(parentNode != null) {
+				fillWith(parentNode, executions);
+			}
+			//2. children
+			List<ShapeNodeEditPart> affixedEditParts = LifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(child);
+			for(ShapeNodeEditPart affixedChild : affixedEditParts) {
+				if(executions.contains(affixedChild.resolveSemanticElement())) {
+					fillWith(affixedChild, executions);
+				}
+			}
+		}
+
+		public boolean contains(ShapeNodeEditPart child) {
+			return children.contains(child);
+		}
+
+		public Rectangle getBounds() {
+			return computeBounds();
+		}
+
+		public List<ShapeNodeEditPart> getChildren() {
+			return new ArrayList<ShapeNodeEditPart>(children);
+		}
+
+		private Rectangle computeBounds() {
+			Rectangle bounds = null;
+			for(ShapeNodeEditPart child : children) {
+				Rectangle rect = SequenceUtil.getAbsoluteBounds(child);
+				if(bounds == null) {
+					bounds = rect;
+				} else {
+					bounds.union(rect);
+				}
+			}
+			return bounds;
+		}
+
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		private Set<ShapeNodeEditPart> getExecutionGroups(ShapeNodeEditPart executionEditPart, List<ExecutionSpecification> toCheckExecutions) {
+			if(toCheckExecutions == null || toCheckExecutions.isEmpty()) {
+				return null;
+			}
+			Set<ShapeNodeEditPart> executionGroups = new HashSet<ShapeNodeEditPart>();
+			List connections = new ArrayList();
+			connections.addAll(executionEditPart.getSourceConnections());
+			connections.addAll(executionEditPart.getTargetConnections());
+			for(Object object : connections) {
+				org.eclipse.gef.ConnectionEditPart conn = (org.eclipse.gef.ConnectionEditPart)object;
+				IGraphicalEditPart source = (IGraphicalEditPart)conn.getSource();
+				if(executionEditPart == conn.getSource()) {
+					source = (IGraphicalEditPart)conn.getTarget();
+				}
+				View model = (View)source.getModel();
+				EObject element = model.getElement();
+				if(toCheckExecutions.contains(element)) {
+					executionGroups.add((ShapeNodeEditPart)source);
+					List<ExecutionSpecification> myCheckingList = new ArrayList<ExecutionSpecification>(toCheckExecutions);
+					myCheckingList.remove(element);
+					Set<ShapeNodeEditPart> myGroups = getExecutionGroups((ShapeNodeEditPart)source, myCheckingList);
+					if(myGroups != null) {
+						executionGroups.addAll(myGroups);
+					}
+				}
+			}
+			return executionGroups;
+		}
+
+	}
+
+	private static class OperandBlockLayout {
+
+		private Map<OperandBlock, Rectangle> constraints = new HashMap<OperandBoundsComputeHelper.OperandBlock, Rectangle>();
+
+		private List<OperandBlock> fBlocks = new ArrayList<OperandBoundsComputeHelper.OperandBlock>();
+
+		private List<Rectangle> validBlocks = new ArrayList<Rectangle>();
+
+		/**
+		 * Constructor.
+		 * 
+		 */
+		public OperandBlockLayout(List<OperandBlock> blocks) {
+			if(blocks != null) {
+				for(OperandBlock blk : blocks) {
+					if(blk.getBounds() != null) {
+						fBlocks.add(blk);
+					}
+				}
+			}
+		}
+
+		/**
+		 * Sort in y location.
+		 */
+		private void sortBlocks() {
+			Collections.sort(fBlocks, new Comparator<OperandBlock>() {
+
+				public int compare(OperandBlock o1, OperandBlock o2) {
+					Rectangle r1 = o1.getBounds();
+					Rectangle r2 = o2.getBounds();
+					if(r1.y < r2.y) {
+						return -1;
+					} else if(r1.y > r2.y) {
+						return 1;
+					}
+					return 0;
+				}
+			});
+		}
+
+		public void layout(Rectangle newArea, boolean moveDown) {
+			constraints.clear();
+			validBlocks.clear();
+			sortBlocks();
+			if(!moveDown) {
+				Collections.reverse(fBlocks);
+			}
+			doLayout(newArea, fBlocks, moveDown);
+		}
+
+		public int getMoveDelta(OperandBlock block) {
+			Rectangle rect = constraints.get(block);
+			if(rect == null) {
+				return 0;
+			}
+			Rectangle bounds = block.getBounds();
+			return rect.y - bounds.y;
+		}
+
+		private Rectangle getConstraint(OperandBlock blk) {
+			Rectangle rect = constraints.get(blk);
+			if(rect == null) {
+				rect = blk.getBounds();
+			}
+			return rect;
+		}
+
+		private boolean doLayout(Rectangle area, List<OperandBlock> blocks, boolean moveDown) {
+			if(blocks.isEmpty()) {
+				return false;
+			}
+			OperandBlock invalidBlock = blocks.get(0);
+			if(isValidBlock(area, invalidBlock)) {
+				return false;
+			}
+			if(invalidBlock == null) {
+				return false;
+			}
+			//layout...
+			//1. Near the full area.
+			Rectangle rect = invalidBlock.getBounds();
+			Rectangle newRect = new Rectangle(rect);
+			if(moveDown) {
+				int start = rect.y > area.y ? rect.y : area.y;
+				for(int y = start; y < area.bottom() - rect.height; y++) {
+					newRect.setY(y);
+					if(isValidBlock(area, newRect.getExpanded(0, EXECUTION_VERTICAL_MARGIN))) {
+						break;
+					}
+				}
+			} else {
+				int start = rect.bottom() < area.bottom() ? rect.y : area.bottom() - rect.height;
+				for(int y = start; y > area.y; y--) {
+					newRect.setY(y);
+					if(isValidBlock(area, newRect.getExpanded(0, EXECUTION_VERTICAL_MARGIN))) {
+						break;
+					}
+				}
+			}
+			constraints.put(invalidBlock, newRect);
+			validBlocks.add(newRect);
+
+			List<OperandBlock> remainBlocks = new ArrayList<OperandBoundsComputeHelper.OperandBlock>(blocks);
+			remainBlocks.remove(invalidBlock);
+			return doLayout(area, remainBlocks, moveDown);
+		}
+
+		private boolean isValidBlock(Rectangle area, OperandBlock blk) {
+			Rectangle rect = getConstraint(blk);
+			return isValidBlock(area, rect);
+		}
+
+		private boolean isValidBlock(Rectangle area, Rectangle block) {
+			if(!area.contains(block)) {
+				return false;
+			}
+			for(Rectangle validRect : validBlocks) {
+				if(block.intersects(validRect)) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+	}
+
+	private static class MoveOperandBlockCommand extends AbstractTransactionalCommand {
+
+		private Map<OperandBlock, Integer> blockToMove;
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param domain
+		 * @param label
+		 * @param affectedFiles
+		 */
+		public MoveOperandBlockCommand(TransactionalEditingDomain domain, Map<OperandBlock, Integer> blockToMove) {
+			super(domain, "move operand blocks", null);
+			this.blockToMove = blockToMove;
+		}
+
+		/**
+		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+		 *      org.eclipse.core.runtime.IAdaptable)
+		 * 
+		 * @param monitor
+		 * @param info
+		 * @return
+		 * @throws ExecutionException
+		 */
+
+		@Override
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			List<OperandBlock> blocks = new ArrayList<OperandBoundsComputeHelper.OperandBlock>(blockToMove.keySet());
+			Collections.sort(blocks, new Comparator<OperandBlock>() {
+
+				public int compare(OperandBlock o1, OperandBlock o2) {
+					int m1 = Math.abs(blockToMove.get(o1).intValue());
+					int m2 = Math.abs(blockToMove.get(o2).intValue());
+					if(m1 < m2) {
+						return -1;
+					} else if(m1 > m2) {
+						return 1;
+					} else if(m1 == m2) {
+						if(m1 > 0) {
+							int y1 = o1.getBounds().y;
+							int y2 = o2.getBounds().y;
+							if(y1 > y2) {
+								return -1;
+							} else if(y1 < y2) {
+								return 1;
+							}
+						}
+					}
+					return 0;
+				}
+			});
+			for(int i = 0; i < blocks.size(); i++) {
+				OperandBlock block = blocks.get(i);
+				int moveDelta = blockToMove.get(block);
+				Command command = getMoveOperandBlockCommand(block, moveDelta);
+				if(command != null && command.canExecute()) {
+					command.execute();
+				}
+			}
+			blockToMove = null;
+			return CommandResult.newOKCommandResult();
+		}
+
+		private Command getMoveOperandBlockCommand(OperandBlock block, int moveDelta) {
+			if(block == null || moveDelta == 0) {
+				return null;
+			}
+			List<ShapeNodeEditPart> children = block.getChildren();
+			CompoundCommand commands = new CompoundCommand();
+			for(ShapeNodeEditPart child : children) {
+				Bounds bounds = getInteractionOperandEPBounds(child);
+				Rectangle newBounds = fillRectangle(bounds);
+				newBounds.y += moveDelta;
+				CompoundCommand moveCommand = new CompoundCommand();
+				SetBoundsCommand cmd = new SetBoundsCommand(getEditingDomain(), getLabel(), child, newBounds);
+				moveCommand.add(new ICommandProxy(cmd));
+				moveCommand = OccurrenceSpecificationMoveHelper.completeMoveExecutionSpecificationCommand(moveCommand, child, newBounds, new ChangeBoundsRequest());
+				List targetConnections = child.getTargetConnections();
+				for(Object object : targetConnections) {
+					if(!(object instanceof AbstractMessageEditPart)) {
+						continue;
+					}
+					AbstractMessageEditPart conn = (AbstractMessageEditPart)object;
+					EditPart source = conn.getSource();
+					if(!(source instanceof AbstractExecutionSpecificationEditPart)) {
+						Edge edge = (Edge)conn.getNotationView();
+						Connection connectionFigure = conn.getConnectionFigure();
+						ConnectionAnchor sourceAnchor = connectionFigure.getSourceAnchor();
+						Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
+						Anchor gmfTargetAnchor = edge.getSourceAnchor();
+						if(gmfTargetAnchor instanceof IdentityAnchor) {
+							ICommand moveAnchorCommand = getMoveAnchorCommand(moveDelta, figureBounds, (IdentityAnchor)gmfTargetAnchor);
+							if(moveAnchorCommand != null && moveAnchorCommand.canExecute()) {
+								commands.add(new ICommandProxy(moveAnchorCommand));
+							}
+						}
+					}
+				}
+				List sourceConnections = child.getSourceConnections();
+				for(Object object : sourceConnections) {
+					if(!(object instanceof AbstractMessageEditPart)) {
+						continue;
+					}
+					AbstractMessageEditPart conn = (AbstractMessageEditPart)object;
+					EditPart target = conn.getTarget();
+					if(!(target instanceof AbstractExecutionSpecificationEditPart)) {
+						Edge edge = (Edge)conn.getNotationView();
+						Connection connectionFigure = conn.getConnectionFigure();
+						ConnectionAnchor targetAnchor = connectionFigure.getTargetAnchor();
+						Rectangle figureBounds = targetAnchor.getOwner().getBounds();
+						Anchor gmfTargetAnchor = edge.getTargetAnchor();
+						if(gmfTargetAnchor instanceof IdentityAnchor) {
+							ICommand moveAnchorCommand = getMoveAnchorCommand(moveDelta, figureBounds, (IdentityAnchor)gmfTargetAnchor);
+							if(moveAnchorCommand != null && moveAnchorCommand.canExecute()) {
+								commands.add(new ICommandProxy(moveAnchorCommand));
+							}
+						}
+					}
+				}
+				commands.add(moveCommand);
+			}
+			return commands.unwrap();
 		}
 	}
 }

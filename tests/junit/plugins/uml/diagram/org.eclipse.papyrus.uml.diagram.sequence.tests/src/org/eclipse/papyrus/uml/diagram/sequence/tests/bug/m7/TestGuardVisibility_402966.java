@@ -24,8 +24,8 @@ import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart.CustomInteractionOperandFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperandModelElementFactory;
 import org.eclipse.swt.SWT;
@@ -35,6 +35,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -112,18 +113,22 @@ public class TestGuardVisibility_402966 extends AbstractNodeTest {
 		try {
 			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			PropertySheet propertySheet = (PropertySheet)activePage.showView(IPageLayout.ID_PROP_SHEET);
+			waitForComplete();
+			IEditorPart activeEditor = activePage.getActiveEditor();
+			propertySheet.partActivated(activeEditor);
+			waitForComplete();
 			IPage currentPage = propertySheet.getCurrentPage();
 			assertTrue(currentPage instanceof TabbedPropertySheetPage);
 			waitForComplete();
 			TabbedPropertySheetPage page = (TabbedPropertySheetPage)currentPage;
+			//force select the operand
+			page.selectionChanged(activePage.getActiveEditor(), new StructuredSelection(operand));
 			page.setSelectedTab("appearance");
 			waitForComplete();
 			ITabDescriptor selectedTab = page.getSelectedTab();
 			assertNotNull(selectedTab);
 			assertEquals("appearance", selectedTab.getId());
 			waitForComplete();
-			//force select the operand
-			page.selectionChanged(activePage.getActiveEditor(), new StructuredSelection(operand));
 			waitForComplete();
 			Control control = page.getControl();
 			assertNotNull(control);
@@ -144,13 +149,12 @@ public class TestGuardVisibility_402966 extends AbstractNodeTest {
 		}
 	}
 
-	public void testGuardVisibility(InteractionOperandEditPart operand, boolean visible) {
-		assertNotNull(operand);
-		CustomInteractionOperandFigure primaryShape = operand.getPrimaryShape();
-		WrappingLabel constraintLabel = primaryShape.getInteractionConstraintLabel();
+	public void testGuardVisibility(InteractionOperandEditPart op, boolean visible) {
+		assertNotNull(op);
+		WrappingLabel constraintLabel = op instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart)op).getInteractionConstraintLabel() : op.getPrimaryShape().getInteractionConstraintLabel();
 		assertNotNull(constraintLabel);
 		if(visible) {
-			String text = ((ITextAwareEditPart)operand).getParser().getPrintString(new EObjectAdapter(operand.resolveSemanticElement()), ParserOptions.NONE.intValue());
+			String text = ((ITextAwareEditPart)op).getParser().getPrintString(new EObjectAdapter(op.resolveSemanticElement()), ParserOptions.NONE.intValue());
 			assertEquals("Show Guard:", text, constraintLabel.getText());
 		} else {
 			assertEquals("Hide Guard:", "", constraintLabel.getText());

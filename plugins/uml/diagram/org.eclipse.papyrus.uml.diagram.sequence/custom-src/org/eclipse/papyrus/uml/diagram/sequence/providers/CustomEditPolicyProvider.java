@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
@@ -37,8 +38,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.TooltipUtil;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InteractionFragment;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Observation;
 
 /**
@@ -73,10 +74,10 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 			if(model instanceof View) {
 				View view = (View)model;
 				EObject element = ViewUtil.resolveSemanticElement((View)model);
-				if(element instanceof NamedElement) {
+				if(element instanceof Element && editPart instanceof INodeEditPart) {
 					installEditPolicy(editPart, new AnnotatedLinkEndEditPolicy(), AnnotatedLinkEndEditPolicy.ANNOTATED_LINK_END_ROLE);
 				}
-				if(element instanceof Constraint || element instanceof Observation || element instanceof Comment) {
+				if(editPart instanceof INodeEditPart && (element instanceof Constraint || element instanceof Observation || element instanceof Comment)) {
 					installEditPolicy(editPart, new AnnotatedLinkStartEditPolicy(), AnnotatedLinkStartEditPolicy.ANNOTATED_LINK_START_ROLE);
 					editPart.removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 					editPart.installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new AnnotatedConnectionHandleEditPolicy());

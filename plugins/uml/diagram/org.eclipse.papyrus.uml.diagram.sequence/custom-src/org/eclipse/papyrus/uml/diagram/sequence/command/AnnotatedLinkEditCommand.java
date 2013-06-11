@@ -75,12 +75,24 @@ public class AnnotatedLinkEditCommand extends AbstractTransactionalCommand {
 				return false;
 			}
 		}
-		if(newTargetElement != null && !(newTargetElement instanceof NamedElement)) {
-			return false;
-		} else if(oldTargetElement != null && !(oldTargetElement instanceof NamedElement)) {
+		Element targetElement = newTargetElement == null ? oldTargetElement : newTargetElement;
+		Element sourceElement = newSourceElement == null ? oldSourceElement : newSourceElement;
+		return checkTargetType(sourceElement, targetElement);
+	}
+
+	/**
+	 * Enables to:
+	 * 1. Create comment to each Element, such as Observations and Constraint.
+	 * 2. Create constraint for each Element.
+	 */
+	private boolean checkTargetType(Element sourceElement, Element targetElement) {
+		if(sourceElement == null || targetElement == null) {
 			return false;
 		}
-		return super.canExecute();
+		if(sourceElement instanceof DurationObservation || sourceElement instanceof TimeObservation) {
+			return targetElement instanceof NamedElement;
+		}
+		return true;
 	}
 
 	/**
@@ -97,7 +109,7 @@ public class AnnotatedLinkEditCommand extends AbstractTransactionalCommand {
 		if(!canExecute()) {
 			return CommandResult.newErrorCommandResult("Unable to create annotated link");
 		}
-		NamedElement targetElement = (NamedElement)(newTargetElement == null ? oldTargetElement : newTargetElement);
+		Element targetElement = newTargetElement == null ? oldTargetElement : newTargetElement;
 		Element sourceElement = newSourceElement == null ? oldSourceElement : newSourceElement;
 		if(targetElement == null || sourceElement == null) {
 			return CommandResult.newErrorCommandResult("Unable to create annotated link");
@@ -115,10 +127,10 @@ public class AnnotatedLinkEditCommand extends AbstractTransactionalCommand {
 		}
 		if(sourceElement instanceof Comment) {
 			((Comment)sourceElement).getAnnotatedElements().add(targetElement);
-		} else if(sourceElement instanceof DurationObservation) {
-			((DurationObservation)sourceElement).getEvents().add(targetElement);
-		} else if(sourceElement instanceof TimeObservation) {
-			((TimeObservation)sourceElement).setEvent(targetElement);
+		} else if(sourceElement instanceof DurationObservation && targetElement instanceof NamedElement) {
+			((DurationObservation)sourceElement).getEvents().add((NamedElement)targetElement);
+		} else if(sourceElement instanceof TimeObservation && targetElement instanceof NamedElement) {
+			((TimeObservation)sourceElement).setEvent((NamedElement)targetElement);
 		} else if(sourceElement instanceof Constraint) {
 			((Constraint)sourceElement).getConstrainedElements().add(targetElement);
 		}

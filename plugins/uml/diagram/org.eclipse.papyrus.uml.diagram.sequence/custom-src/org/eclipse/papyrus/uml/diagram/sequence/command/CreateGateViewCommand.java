@@ -74,6 +74,8 @@ public class CreateGateViewCommand extends AbstractTransactionalCommand {
 		this.containerViewAdapter = containerViewAdapter;
 		this.location = location;
 		this.gateAdapter = gateAdapter;
+		//Set result adapter earlier.
+		setResult(CommandResult.newOKCommandResult(resultAdapter));
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })

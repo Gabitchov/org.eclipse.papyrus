@@ -67,7 +67,10 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.WrapTextCellEditor;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
@@ -76,6 +79,7 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionOperandItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.ContinuationLocator;
@@ -346,7 +350,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 				}
 			}
 		}
-		getPrimaryShape().updateConstraintLabel();
+		updateConstraintLabel();
 		// Manage Continuation constraint on covered lifeline :
 		// Continuations are always global in the enclosing InteractionFragment 
 		//(e.g., it always covers all Lifelines covered by the enclosing InteractionFragment)
@@ -385,6 +389,59 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		if(ElementIconUtil.isIconNotification(notification)) {
 			refreshLabelIcon();
 		}
+		if(InteractionOperandModelElementFactory.isGuardVisibilityChanged(notification)) {
+			refreshChildren();
+		}
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getModelChildren()
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	protected List getModelChildren() {
+		List modelChildren = new ArrayList(super.getModelChildren());
+		if(!isGuardVisible()) {
+			List result = new ArrayList();
+			for(Object object : modelChildren) {
+				if(object instanceof View && InteractionOperandGuardEditPart.GUARD_TYPE.equals(((View)object).getType())) {
+					continue;
+				}
+				result.add(object);
+			}
+			return result;
+		} else {
+			boolean hasGuardChild = false;
+			for(Object object : modelChildren) {
+				if(object instanceof View && InteractionOperandGuardEditPart.GUARD_TYPE.equals(((View)object).getType())) {
+					hasGuardChild = true;
+					break;
+				}
+			}
+			if(!hasGuardChild) {
+				final View view = getNotationView();
+				final DecorationNode guardNode = NotationFactory.eINSTANCE.createDecorationNode();
+				Bounds b = NotationFactory.eINSTANCE.createBounds();
+				b.setX(5);
+				b.setY(5);
+				guardNode.setLayoutConstraint(b);
+				guardNode.setType(InteractionOperandGuardEditPart.GUARD_TYPE);
+				if(view.getElement() instanceof InteractionOperand) {
+					guardNode.setElement(((InteractionOperand)view.getElement()).getGuard());
+				}
+				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new DummyCommand() {
+
+					@Override
+					public void execute() {
+						ViewUtil.insertChildView(view, guardNode, ViewUtil.APPEND, true);
+					}
+				}, true);
+				modelChildren.add(guardNode);
+			}
+		}
+		return modelChildren;
 	}
 
 	/**
@@ -396,7 +453,18 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 
 	protected void refreshLabelIcon() {
 		Image image = ElementIconUtil.getLabelIcon(this);
-		getPrimaryShape().getInteractionConstraintLabel().setIcon(image);
+		getInteractionConstraintLabel().setIcon(image);
+	}
+
+	/**
+	 * @return Guard label
+	 */
+	public WrappingLabel getInteractionConstraintLabel() {
+		IGraphicalEditPart child = getChildBySemanticHint(InteractionOperandGuardEditPart.GUARD_TYPE);
+		if(child instanceof InteractionOperandGuardEditPart) {
+			return (WrappingLabel)((InteractionOperandGuardEditPart)child).getFigure();
+		}
+		return getPrimaryShape().getInteractionConstraintLabel();
 	}
 
 	@Override
@@ -541,7 +609,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 
 	protected DirectEditManager getManager() {
 		if(manager == null) {
-			WrappingLabel label = this.getPrimaryShape().getInteractionConstraintLabel();
+			WrappingLabel label = getInteractionConstraintLabel();
 			manager = new TextDirectEditManager(this, WrapTextCellEditor.class, new TextCellEditorLocator(label));
 		}
 		return manager;
@@ -687,6 +755,16 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		return (CustomCustomInteractionOperandFigure)primaryShape;
 	}
 
+	/**
+	 * Update guard.
+	 */
+	public void updateConstraintLabel() {
+		IGraphicalEditPart child = getChildBySemanticHint(InteractionOperandGuardEditPart.GUARD_TYPE);
+		if(child instanceof InteractionOperandGuardEditPart) {
+			child.refresh();
+		}
+	}
+
 	public class CustomCustomInteractionOperandFigure extends CustomInteractionOperandFigure {
 
 		/**
@@ -696,8 +774,9 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		public CustomCustomInteractionOperandFigure() {
 			super();
 			this.setLineWidth(2);
-			updateConstraintLabel();
 			setLineSeparator(!firstOperand);
+			//Make the label as a child now, see InteractionOperandGuardEditPart.
+			getInteractionConstraintLabel().setVisible(false);
 		}
 
 		/**

@@ -16,14 +16,17 @@ package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -177,7 +180,16 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 		}
 
 		public int getViewChildrenSize() {
-			return getParentEditPart().getNotationView().getChildren().size() - 1; // ignore LifelineNameEditPart view
+			int count = 0;
+			Lifeline lifeline = ((Lifeline)getParentEditPart().getNotationView().getElement());
+			EList children = getParentEditPart().getNotationView().getChildren();
+			for(Object object : children) {
+				View view = (View)object;
+				if(lifeline != ViewUtil.resolveSemanticElement(view)) {
+					count++;
+				}
+			}
+			return count;
 		}
 
 		public Element getDropElement() {

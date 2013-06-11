@@ -196,7 +196,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 *        the hint of object to create
 	 * @return true if creation of a message
 	 */
-	private boolean isMessageHint(String requestHint) {
+	protected boolean isMessageHint(String requestHint) {
 		List<String> messageHints = new ArrayList<String>(7);
 		String messageHint = ((IHintedType)UMLElementTypes.Message_4003).getSemanticHint();
 		messageHints.add(messageHint);

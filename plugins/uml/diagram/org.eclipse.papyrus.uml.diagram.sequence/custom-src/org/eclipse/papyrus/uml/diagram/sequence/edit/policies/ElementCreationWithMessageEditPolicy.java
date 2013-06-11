@@ -13,21 +13,37 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import java.util.List;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.geometry.Insets;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateConnectionRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.PromptCreateElementAndNodeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart.CustomLifelineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -107,5 +123,95 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 
 	private TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart)getHost()).getEditingDomain();
+	}
+
+	//Fixed bugs about creating connections on a PartDecomposition.
+	public EditPart getTargetEditPart(Request request) {
+		EditPart host = getHost();
+		if(host instanceof CustomLifelineEditPart) {
+			CustomLifelineEditPart lifeline = (CustomLifelineEditPart)host;
+			boolean inlineMode = lifeline.isInlineMode();
+			Object type = request.getType();
+			if(REQ_CONNECTION_END.equals(type)) {
+				Point location = ((CreateConnectionRequest)request).getLocation().getCopy();
+				if(inlineMode) {
+					if(isCreateConnectionRequest(request, UMLElementTypes.Message_4006) && isLocatedOnLifelineHeader(lifeline, location)) {
+						return host;
+					}
+					return getTargetEditPart(request, lifeline, location);
+				}
+			} else if(REQ_CONNECTION_START.equals(type)) {
+				Point location = ((CreateConnectionRequest)request).getLocation().getCopy();
+				if(inlineMode) {
+					return getTargetEditPart(request, lifeline, location);
+				}
+			} else if(REQ_RECONNECT_SOURCE.equals(type)) {
+				Point location = ((ReconnectRequest)request).getLocation().getCopy();
+				if(inlineMode) {
+					return getTargetEditPart(request, lifeline, location);
+				}
+			} else if(REQ_RECONNECT_TARGET.equals(type)) {
+				Point location = ((ReconnectRequest)request).getLocation().getCopy();
+				ConnectionEditPart conn = ((ReconnectRequest)request).getConnectionEditPart();
+				View model = (View)conn.getModel();
+				if(inlineMode) {
+					if(4006 == UMLVisualIDRegistry.getVisualID(model) && isLocatedOnLifelineHeader(lifeline, location)) {
+						return host;
+					}
+					return getTargetEditPart(request, lifeline, location);
+				}
+			}
+		}
+		return super.getTargetEditPart(request);
+	}
+
+	private EditPart getTargetEditPart(Request request, CustomLifelineEditPart lifeline, Point location) {
+		EditPart childEditPart = getChildEditPart(lifeline, location);
+		if(childEditPart instanceof CustomLifelineEditPart) {
+			CustomLifelineEditPart childLifeline = (CustomLifelineEditPart)childEditPart;
+			if(isCreateConnectionRequest(request, UMLElementTypes.Message_4006) && isLocatedOnLifelineHeader(childLifeline, location)) {
+				return childEditPart;
+			} else if(request instanceof ReconnectRequest && (4006 == UMLVisualIDRegistry.getVisualID((View)((ReconnectRequest)request).getConnectionEditPart().getModel()) && isLocatedOnLifelineHeader(childLifeline, location))) {
+				return childEditPart;
+			} else if(isLocatedOnLifelineDotLine(childLifeline, location)) {
+				return childEditPart;
+			} else {
+				return null;
+			}
+		}
+		return childEditPart;
+	}
+
+	private EditPart getChildEditPart(CustomLifelineEditPart lifeline, Point location) {
+		List children = lifeline.getChildren();
+		for(Object object : children) {
+			if(!(object instanceof GraphicalEditPart)) {
+				continue;
+			}
+			GraphicalEditPart child = (GraphicalEditPart)object;
+			IFigure figure = child.getFigure();
+			Point pt = location.getCopy();
+			if(figure.containsPoint(pt)) {
+				return child;
+			}
+		}
+		return null;
+	}
+
+	private boolean isLocatedOnLifelineDotLine(CustomLifelineEditPart host, Point location) {
+		CustomLifelineFigure primaryShape = host.getPrimaryShape();
+		LifelineDotLineCustomFigure figureLifelineDotLineFigure = primaryShape.getFigureLifelineDotLineFigure();
+		Point pt = location.getCopy();
+		NodeFigure dashLineRectangle = figureLifelineDotLineFigure.getDashLineRectangle();
+		dashLineRectangle.translateToRelative(pt);
+		Rectangle rect = dashLineRectangle.getBounds().getExpanded(new Insets(0, 2, 0, 2));
+		return rect.contains(pt);
+	}
+
+	private boolean isLocatedOnLifelineHeader(CustomLifelineEditPart host, Point location) {
+		RectangleFigure figureLifelineNameContainerFigure = host.getPrimaryShape().getFigureLifelineNameContainerFigure();
+		Point pt = location.getCopy();
+		figureLifelineNameContainerFigure.translateToRelative(pt);
+		return figureLifelineNameContainerFigure.containsPoint(pt);
 	}
 }

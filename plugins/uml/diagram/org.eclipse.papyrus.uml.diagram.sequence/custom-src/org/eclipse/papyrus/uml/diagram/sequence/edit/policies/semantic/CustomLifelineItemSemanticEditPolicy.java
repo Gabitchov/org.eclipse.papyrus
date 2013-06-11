@@ -16,9 +16,11 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -26,6 +28,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomActionExecutionSpecificationCreateCommand;
@@ -70,6 +73,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
@@ -303,5 +307,28 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 			return getGEFWrapper(new CustomConstraintConstrainedElementReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
+	}
+
+	/**
+	 * Fixed bugs about reconnect Message Found/Lost on a PartDecomposition.
+	 */
+	@Override
+	public boolean understandsRequest(Request request) {
+		if(REQ_RECONNECT_SOURCE.equals(request.getType())) {
+			ReconnectRequest reconnReq = (ReconnectRequest)request;
+			Object model = reconnReq.getConnectionEditPart().getModel();
+			//Source of Message Found should be always located on Interaction.
+			if(model instanceof View && 4009 == UMLVisualIDRegistry.getVisualID((View)model)) {
+				return false;
+			}
+		} else if(REQ_RECONNECT_TARGET.equals(request.getType())) {
+			ReconnectRequest reconnReq = (ReconnectRequest)request;
+			Object model = reconnReq.getConnectionEditPart().getModel();
+			//Target of Message Lost should be always located on Interaction.
+			if(model instanceof View && 4008 == UMLVisualIDRegistry.getVisualID((View)model)) {
+				return false;
+			}
+		}
+		return super.understandsRequest(request);
 	}
 }

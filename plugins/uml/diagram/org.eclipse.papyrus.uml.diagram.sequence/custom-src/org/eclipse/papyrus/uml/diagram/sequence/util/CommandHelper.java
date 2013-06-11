@@ -1059,7 +1059,7 @@ public class CommandHelper {
 			}
 		}
 		//Suggest a name for gate with message.
-		GateHelper.updateGateWithMessage(message, true);
+		GateHelper.updateGateWithMessage(message, false);
 		return message;
 	}
 

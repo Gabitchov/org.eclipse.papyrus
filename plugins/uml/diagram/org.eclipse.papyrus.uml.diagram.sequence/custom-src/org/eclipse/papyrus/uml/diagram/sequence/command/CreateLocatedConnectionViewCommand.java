@@ -118,11 +118,13 @@ public class CreateLocatedConnectionViewCommand extends CommonDeferredCreateConn
 		Assert.isNotNull(newSourceEditPart);
 		Assert.isNotNull(newTargetEditPart);
 		request.setSourceEditPart(sourceEditPart);
-		request.setTargetEditPart(targetEditPart);
+		//We need the same source and target at beginning of connection.
+		request.setTargetEditPart(sourceEditPart);
 		request.setType(RequestConstants.REQ_CONNECTION_START);
 		// set source location
 		request.setLocation(sourceLocation);
 		newSourceEditPart.getCommand(request);
+		request.setTargetEditPart(targetEditPart);
 		request.setType(RequestConstants.REQ_CONNECTION_END);
 		// set target location
 		request.setLocation(targetLocation);

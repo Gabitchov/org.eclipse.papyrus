@@ -504,6 +504,10 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 								if(cmd != null) {
 									composite.add(new CommandProxy(cmd));
 								}
+								if(request.getSizeDelta().height != 0) {
+									//Update message anchors.
+									composite.add(new PreserveAnchorsPositionCommandEx(child, request.getSizeDelta(), PreserveAnchorsPositionCommandEx.PRESERVE_Y, child.getBorderedFigure(), request.getResizeDirection()));
+								}
 							}
 						}
 					}

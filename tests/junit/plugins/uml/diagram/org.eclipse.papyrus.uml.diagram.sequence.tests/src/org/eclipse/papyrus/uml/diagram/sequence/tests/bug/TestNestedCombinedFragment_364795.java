@@ -60,7 +60,8 @@ public class TestNestedCombinedFragment_364795 extends TestTopNode {
 		createNode(UMLElementTypes.CombinedFragment_3004, oep, new Point(90, 90), new Dimension(200, 100));
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(120, 20), new Dimension(62, 240));
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 20), new Dimension(62, 240));
-		CombinedFragmentEditPart childCFP = (CombinedFragmentEditPart)oep.getChildren().get(0);
+		//the first child would be Guard now.
+		CombinedFragmentEditPart childCFP = (CombinedFragmentEditPart)oep.getChildBySemanticHint("3004");
 		final CombinedFragment parentCF = (CombinedFragment)parentCFP.resolveSemanticElement();
 		final CombinedFragment childCF = (CombinedFragment)childCFP.resolveSemanticElement();
 

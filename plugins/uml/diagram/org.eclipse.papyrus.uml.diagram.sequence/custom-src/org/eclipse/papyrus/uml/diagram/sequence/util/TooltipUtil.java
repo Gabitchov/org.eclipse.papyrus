@@ -365,9 +365,9 @@ public class TooltipUtil {
 		 */
 		public String getTooltipDescription() {
 			//CoRegion
-			if(editPart instanceof CombinedFragment2EditPart) {
-				return null;
-			}
+			//			if(editPart instanceof CombinedFragment2EditPart) {
+			//				return null;
+			//			}
 			EObject semanticElement = getSemanticElement(editPart);
 			if(semanticElement instanceof StateInvariant || semanticElement instanceof DestructionOccurrenceSpecification || semanticElement instanceof GeneralOrdering) {
 				return null;
@@ -399,7 +399,7 @@ public class TooltipUtil {
 			}
 			descBuf.append(label);
 			descBuf.append("\n");
-			if(semanticElement instanceof CombinedFragment) {
+			if(semanticElement instanceof CombinedFragment && !(editPart instanceof CombinedFragment2EditPart)) {
 				descBuf.append("operator: ");
 				InteractionOperatorKind operator = ((CombinedFragment)semanticElement).getInteractionOperator();
 				if(operator != null) {

@@ -298,7 +298,7 @@ public class GateHelper {
 	 */
 	public static String generateGateName(EObject container, String suffix) {
 		//Update gate name to hold a global sequence number.
-		int index = getTotalGatesNumber(container.eResource());
+		int index = getTotalGatesNumber(container);
 		String name = suffix;
 		if(container instanceof Interaction) {
 			Interaction interaction = (Interaction)container;
@@ -334,18 +334,29 @@ public class GateHelper {
 		return name;
 	}
 
-	private static int getTotalGatesNumber(Resource res) {
-		if(res == null) {
+	private static int getTotalGatesNumber(EObject parent) {
+		//fixed bug: start count for each Interaction.
+		Interaction interaction = getRootInteraction(parent);
+		if(interaction == null) {
 			return 0;
 		}
 		int size = 0;
-		TreeIterator<EObject> allContents = res.getAllContents();
+		TreeIterator<EObject> allContents = interaction.eAllContents();
 		while(allContents.hasNext()) {
 			if(allContents.next() instanceof Gate) {
 				size++;
 			}
 		}
 		return size;
+	}
+
+	private static Interaction getRootInteraction(EObject eObj) {
+		if(eObj == null) {
+			return null;
+		} else if(eObj instanceof Interaction) {
+			return (Interaction)eObj;
+		}
+		return getRootInteraction(eObj.eContainer());
 	}
 
 	public static Point computeGateLocation(Point pt, IFigure hostFigure, IFigure gateFigure) {
@@ -514,31 +525,31 @@ public class GateHelper {
 			Interaction refersTo = ((InteractionUse)gate.eContainer()).getRefersTo();
 			if(refersTo != null) {
 				Gate formalGate = refersTo.getFormalGate(gate.getName());
-				if(formalGate != null && (force || isVolatile(formalGate))) {
+				if(formalGate != null && isVolatile(formalGate)) {
 					formalGate.setName(GateHelper.getGateLabel(gate));
-					if(!force) {
+					if(force) {
 						setVolatile(formalGate, false);
 					}
 				}
-			} else if(force || isVolatile(gate)) {
+			} else if(isVolatile(gate)) {
 				gate.setName(GateHelper.getGateLabel(gate));
-				if(!force) {
+				if(force) {
 					setVolatile(gate, false);
 				}
 			}
 		} else if(!GateHelper.isInnerCFGate(gate)) {
 			String newName = GateHelper.getGateLabel(gate);
-			if(force || isVolatile(gate)) {
+			if(isVolatile(gate)) {
 				gate.setName(newName);
 			}
 			Gate innerGate = GateHelper.getInnerCFGate(gate);
-			if(innerGate != null && (force || isVolatile(innerGate))) {
+			if(innerGate != null && (isVolatile(innerGate))) {
 				innerGate.setName(newName);
-				if(!force) {
+				if(force) {
 					setVolatile(innerGate, false);
 				}
 			}
-			if(!force) {
+			if(force) {
 				setVolatile(gate, false);
 			}
 		}

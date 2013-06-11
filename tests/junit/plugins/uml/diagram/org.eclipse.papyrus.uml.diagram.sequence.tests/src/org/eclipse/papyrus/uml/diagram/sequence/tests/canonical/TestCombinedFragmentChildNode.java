@@ -87,7 +87,7 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 	IChildTestProvider operandProvider = new IChildTestProvider() {
 
 		public int getEditPartChildrenSize() {
-			return getParentEditPart().getChildren().size();
+			return getParentEditPart().getChildren().size() - 1;//ignore guard editpart.
 		}
 
 		public int getSemanticChildrenSize() {
@@ -96,7 +96,7 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		}
 
 		public int getViewChildrenSize() {
-			return getParentEditPart().getNotationView().getChildren().size();
+			return getParentEditPart().getNotationView().getChildren().size() - 1;//ignore guard editpart.
 		}
 
 		public Element getDropElement() {

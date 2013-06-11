@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
@@ -337,9 +337,9 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 					return createAnchor(createRequest.getLocation().getCopy());
 				}
 			}
-		} else if(request instanceof CreateConnectionViewAndElementRequest) {
-			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest)request;
-			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewAndElementDescriptor();
+		} else if(request instanceof CreateConnectionViewRequest) {
+			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest)request;
+			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewDescriptor();
 			if(connectionViewDescriptor != null) {
 				if(String.valueOf(visualId).equals(connectionViewDescriptor.getSemanticHint())) {
 					return createAnchor(createRequest.getLocation().getCopy());

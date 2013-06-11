@@ -26,7 +26,12 @@ import org.junit.runners.Suite.SuiteClasses;
 																																																																																			 * .
 																																																																																			 * class
 																																																																																			 * ,
-																																																																																			 */TestCombinedFragmentDeletion_364804.class, TestDecompositionCombinedFragment_364813.class, TestDecompositionMove_364812.class, TestAdvancedDragDrop_364696.class, TestGuardEdition_364808.class, TestObservationLink_364826.class })
+																																																																																			 * TestCombinedFragmentDeletion_364804
+																																																																																			 * .
+																																																																																			 * class
+																																																																																			 * ,
+																																																																																			 */
+TestDecompositionCombinedFragment_364813.class, TestDecompositionMove_364812.class, TestAdvancedDragDrop_364696.class, TestGuardEdition_364808.class, TestObservationLink_364826.class })
 public class BugTests {
 
 }

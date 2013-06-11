@@ -103,7 +103,7 @@ public class CustomDurationConstraintCreateCommand extends DurationConstraintCre
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		DurationConstraint newElement = UMLFactory.eINSTANCE.createDurationConstraint();
 		// get the Lifeline parent as owner
-		Namespace owner = getNamespace(getElementToEdit().eContainer());
+		Namespace owner = getNamespace(getElementToEdit());
 		owner.getOwnedRules().add(newElement);
 		ElementInitializers.getInstance().init_DurationConstraint_3021(newElement);
 		// assign the occurrence specification
@@ -128,6 +128,6 @@ public class CustomDurationConstraintCreateCommand extends DurationConstraintCre
 		if(element instanceof CombinedFragment) {
 			return ((CombinedFragment)element).getNamespace();
 		}
-		return null;
+		return getNamespace(element.eContainer());
 	}
 }

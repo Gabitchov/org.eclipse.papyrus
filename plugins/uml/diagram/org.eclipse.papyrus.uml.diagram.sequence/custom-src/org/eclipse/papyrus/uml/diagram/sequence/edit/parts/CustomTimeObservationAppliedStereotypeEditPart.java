@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -36,5 +37,10 @@ public class CustomTimeObservationAppliedStereotypeEditPart extends TimeObservat
 	 */
 	public IFigure getPrimaryShape() {
 		return getFigure();
+	}
+
+	@Override
+	protected Image getLabelIcon() {
+		return null;
 	}
 }

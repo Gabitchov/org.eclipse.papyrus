@@ -39,6 +39,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 			return new GateEditPart(view);
 		} else if(GateNameEditPart.GATE_NAME_TYPE.equals(view.getType())) {
 			return new GateNameEditPart(view);
+		} else if(InteractionOperandGuardEditPart.GUARD_TYPE.equals(view.getType())) {
+			return new InteractionOperandGuardEditPart(view);
 		}
 		if(view instanceof Connector) {
 			if(((Connector)view).getType().equals(SequenceUtil.OBSERVATION_LINK_TYPE))
@@ -152,8 +154,6 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 		case MessageEndEditPart.VISUAL_ID:
 			return new MessageEndEditPart(view);
 		}
-
-
 		return null;
 	}
 }

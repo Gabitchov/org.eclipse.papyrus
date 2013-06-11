@@ -304,7 +304,7 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 			 */
 			// update guards on enclosed operands
 			for(CustomInteractionOperandEditPart ioep : getOperandChildrenEditParts()) {
-				ioep.getPrimaryShape().updateConstraintLabel();
+				ioep.updateConstraintLabel();
 			}
 		} else if(UMLPackage.eINSTANCE.getCombinedFragment_Operand().equals(feature)) {
 			// Case only call by the model explorer

@@ -26,6 +26,7 @@ import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * An helper class to reconnect message.
@@ -55,6 +56,15 @@ public class ReconnectMessageHelper {
 			updateMos((MessageOccurrenceSpecification)messageEnd, oldElement, newElement);
 		} else if(messageEnd instanceof Gate) {
 			updateGate((Gate)messageEnd, oldElement, newElement);
+		}
+		//Update old executions.
+		if(oldElement instanceof ExecutionSpecification && oldElement != newElement) {
+			ExecutionSpecification execution = (ExecutionSpecification)oldElement;
+			if(messageEnd == execution.getStart()) {
+				OccurrenceSpecificationHelper.resetExecutionStart(execution, UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification());
+			} else if(messageEnd == execution.getFinish()) {
+				OccurrenceSpecificationHelper.resetExecutionFinish(execution, UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification());
+			}
 		}
 	}
 

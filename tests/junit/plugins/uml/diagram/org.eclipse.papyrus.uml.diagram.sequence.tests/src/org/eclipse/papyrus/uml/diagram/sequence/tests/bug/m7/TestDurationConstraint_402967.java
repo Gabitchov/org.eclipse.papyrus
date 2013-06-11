@@ -57,6 +57,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -204,18 +205,24 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		try {
 			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			PropertySheet propertySheet = (PropertySheet)activePage.showView(IPageLayout.ID_PROP_SHEET);
+			IEditorPart activeEditor = activePage.getActiveEditor();
+			propertySheet.partActivated(activeEditor);
+			waitForComplete();
+			activeEditor.getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(linkPart));
+			waitForComplete();
 			IPage currentPage = propertySheet.getCurrentPage();
 			assertTrue(currentPage instanceof TabbedPropertySheetPage);
 			waitForComplete();
 			TabbedPropertySheetPage page = (TabbedPropertySheetPage)currentPage;
+			//force select the operand
+			page.selectionChanged(activePage.getActiveEditor(), new StructuredSelection(linkPart));
+			waitForComplete();
 			page.setSelectedTab("appearance");
 			waitForComplete();
 			ITabDescriptor selectedTab = page.getSelectedTab();
 			assertNotNull(selectedTab);
 			assertEquals("appearance", selectedTab.getId());
 			waitForComplete();
-			//force select the operand
-			page.selectionChanged(activePage.getActiveEditor(), new StructuredSelection(linkPart));
 
 			waitForComplete();
 			Control control = page.getControl();

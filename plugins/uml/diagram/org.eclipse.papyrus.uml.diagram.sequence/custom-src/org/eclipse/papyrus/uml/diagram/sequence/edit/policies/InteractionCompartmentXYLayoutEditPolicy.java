@@ -61,9 +61,11 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest;
@@ -224,8 +226,20 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			if(executionSpecificationEP.resolveSemanticElement() instanceof ExecutionSpecification) {
 				// Lifeline's figure where the child is drawn
 				Rectangle rDotLine = lifelineEditPart.getContentPane().getBounds();
-				// The new bounds will be calculated from the current bounds
-				Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+				Rectangle figureBounds = executionSpecificationEP.getFigure().getBounds();
+				Rectangle newBounds = null;
+				View view = executionSpecificationEP.getNotationView();
+				//Perfect to use the model.
+				if(view instanceof Shape && ((Shape)view).getLayoutConstraint() instanceof Bounds) {
+					Bounds bounds = (Bounds)((Shape)view).getLayoutConstraint();
+					newBounds = new Rectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
+				} else {
+					// The new bounds will be calculated from the current bounds
+					newBounds = figureBounds.getCopy();
+					// Convert to relative
+					newBounds.x -= rDotLine.x;
+					newBounds.y -= rDotLine.y;
+				}
 				widthDelta = request.getSizeDelta().width;
 				if(widthDelta != 0) {
 					if(rDotLine.getSize().width + widthDelta < newBounds.width * 2) {
@@ -234,9 +248,6 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					// Apply SizeDelta to the children
 					widthDelta = Math.round(widthDelta / ((float)2 * number));
 					newBounds.x += widthDelta;
-					// Convert to relative
-					newBounds.x -= rDotLine.x;
-					newBounds.y -= rDotLine.y;
 					SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Re-location of a ExecutionSpecification due to a Lifeline movement", executionSpecificationEP, newBounds);
 					compoundCmd.add(new ICommandProxy(setBoundsCmd));
 				}

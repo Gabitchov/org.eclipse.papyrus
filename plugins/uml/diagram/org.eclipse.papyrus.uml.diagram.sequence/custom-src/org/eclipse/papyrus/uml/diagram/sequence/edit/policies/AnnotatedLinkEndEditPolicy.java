@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.lang.reflect.Field;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
@@ -38,6 +39,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.command.AnnotatedLinkEditCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart.CustomLifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.EllipseDecoration;
@@ -66,6 +69,27 @@ public class AnnotatedLinkEndEditPolicy extends GraphicalNodeEditPolicy {
 		if(REQ_ANNOTATED_LINK_END.equals(request.getType()) || REQ_ANNOTATED_LINK_REORIENT_END.equals(request.getType())) {
 			Point location = ((DropRequest)request).getLocation();
 			EditPart host = getHost();
+			//Fixed bugs when link with PartDecomposition.
+			if(host instanceof CustomLifelineEditPart && ((CustomLifelineEditPart)host).isInlineMode()) {
+				List children = ((CustomLifelineEditPart)host).getChildren();
+				for(Object object : children) {
+					if(object instanceof CustomLifelineEditPart) {
+						CustomLifelineFigure figure = ((CustomLifelineEditPart)object).getPrimaryShape();
+						Point pt = location.getCopy();
+						figure.translateToRelative(pt);
+						if(figure.containsPoint(pt)) {
+							return (EditPart)object;
+						}
+					}
+				}
+				IFigure nameFigure = ((CustomLifelineEditPart)host).getPrimaryShape().getFigureLifelineNameContainerFigure();
+				Point pt = location.getCopy();
+				nameFigure.translateToRelative(pt);
+				if(nameFigure.containsPoint(pt)) {
+					return host;
+				}
+				return null;
+			}
 			if(isEnterAnchorArea(host, location)) {
 				return host;
 			}
@@ -139,7 +163,6 @@ public class AnnotatedLinkEndEditPolicy extends GraphicalNodeEditPolicy {
 			return UnexecutableCommand.INSTANCE;
 		}
 		command.setTarget(getHost());
-
 		//update bendpoints 
 		//		if((request.getSourceEditPart() instanceof CustomDurationConstraintEditPart) && !(request.getTargetEditPart() instanceof CustomDurationConstraintEditPart)) {
 		//			updateConnectionBendpoints(request, proxy);
@@ -197,7 +220,6 @@ public class AnnotatedLinkEndEditPolicy extends GraphicalNodeEditPolicy {
 	//			return new PrecisionPoint(x2 + (x - x2) * 0.5, y);
 	//		}
 	//	}
-
 	@Override
 	public void eraseTargetFeedback(Request request) {
 		if(REQ_ANNOTATED_LINK_END.equals(request.getType())) {

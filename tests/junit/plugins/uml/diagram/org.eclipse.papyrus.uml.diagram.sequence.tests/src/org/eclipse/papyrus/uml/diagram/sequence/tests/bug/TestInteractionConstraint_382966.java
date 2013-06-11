@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
@@ -82,8 +83,9 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 			}
 		}, true);
 		waitForComplete();
-
-		WrappingLabel label = op.getPrimaryShape().getInteractionConstraintLabel();
+		
+		//introduced a guard edit part for displaying operand label.
+		WrappingLabel label = op instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart)op).getInteractionConstraintLabel() : op.getPrimaryShape().getInteractionConstraintLabel();
 		assertTrue(TEST_THE_EXECUTION, label.getText().equals(""));
 	}
 
@@ -105,8 +107,8 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 			}
 		}, true);
 		waitForComplete();
-
-		WrappingLabel label = op.getPrimaryShape().getInteractionConstraintLabel();
+		
+		WrappingLabel label = op instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart)op).getInteractionConstraintLabel() : op.getPrimaryShape().getInteractionConstraintLabel();
 		assertTrue(TEST_THE_EXECUTION, label.getText().equals(""));
 	}
 

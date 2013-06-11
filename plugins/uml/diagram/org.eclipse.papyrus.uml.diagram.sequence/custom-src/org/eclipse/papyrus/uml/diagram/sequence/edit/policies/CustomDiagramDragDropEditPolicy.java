@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -29,6 +30,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
@@ -40,6 +42,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
@@ -60,7 +63,9 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDrop
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.RestoreDurationConstraintLinkCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -77,6 +82,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrence
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
@@ -97,6 +103,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -108,7 +115,9 @@ import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -246,8 +255,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	@Override
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
 		Point location = dropRequest.getLocation().getCopy();
+		//handle gate creation
+		if(semanticElement instanceof Gate) {
+			return dropGate((Gate)semanticElement, location);
+		}
 		// handle specifically the case when node is on a message
-		Command cmd = handleNodeOnMessage(semanticElement, nodeVISUALID, linkVISUALID);
+		Command cmd = handleNodeOnMessage(semanticElement, nodeVISUALID, linkVISUALID, location);
 		if(cmd != null) {
 			return cmd;
 		}
@@ -269,6 +282,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return dropCoRegion((CombinedFragment)semanticElement, nodeVISUALID, location);
 			case CommentEditPart.VISUAL_ID:
 			case ConstraintEditPart.VISUAL_ID:
+				if(semanticElement instanceof DurationConstraint) {
+					return dropDurationConstraint((DurationConstraint)semanticElement, location);
+				}
 			case Constraint2EditPart.VISUAL_ID:
 			case InteractionUseEditPart.VISUAL_ID:
 			case LifelineEditPart.VISUAL_ID:
@@ -460,9 +476,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        node visual id or -1
 	 * @param linkVISUALID
 	 *        link visual id or -1
+	 * @param location
 	 * @return the drop command if the element can be dropped as a message label node, or null otherwise
 	 */
-	private Command handleNodeOnMessage(Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+	private Command handleNodeOnMessage(Element semanticElement, int nodeVISUALID, int linkVISUALID, Point location) {
 		if(nodeVISUALID == -1 && linkVISUALID == -1) {
 			// detect duration observation on a message
 			if(semanticElement instanceof DurationObservation) {
@@ -475,13 +492,205 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if(isDurationConstraintHint(nodeVISUALID, linkVISUALID)) {
 			// detect duration constraint on a message
 			if(semanticElement instanceof DurationConstraint) {
-				List<Element> events = ((DurationConstraint)semanticElement).getConstrainedElements();
-				if(events.size() >= 2) {
-					return dropMessageNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
-				}
+				return dropDurationConstraint((DurationConstraint)semanticElement, location);
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Drop DurationConstraint at given location. The constrained elements would also be restored if existed.
+	 * 
+	 * @see dropDurationConstraint(Element durationConstraint, Element event1, Element event2, Point location)
+	 * @param durationConstraint
+	 * @param location
+	 */
+	protected Command dropDurationConstraint(DurationConstraint durationConstraint, Point location) {
+		List<Element> events = durationConstraint.getConstrainedElements();
+		Element event1 = null, event2 = null;
+		if(events.size() >= 2) {
+			event1 = events.get(0);
+			event2 = events.get(1);
+		} else if(events.size() == 1) {
+			event1 = event2 = events.get(0);
+		}
+		return dropDurationConstraint(durationConstraint, event1, event2, location);
+	}
+
+	/**
+	 * Drop DurationConstraint at given location. The constrained elements would also be restored if existed.
+	 * 
+	 * @param durationConstraint
+	 * @param event1
+	 * @param event2
+	 * @param location
+	 * @return
+	 */
+	private Command dropDurationConstraint(Element durationConstraint, Element event1, Element event2, Point location) {
+		List<View> existingViews = DiagramEditPartsUtil.findViews(durationConstraint, getViewer());
+		// only allow one view instance of a single element by diagram
+		if(!existingViews.isEmpty()) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		IAdaptable elementAdapter = new EObjectAdapter(durationConstraint);
+		IHintedType elementType = (IHintedType)UMLElementTypes.getElementType(DurationConstraintEditPart.VISUAL_ID);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
+		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
+		createViewRequest.setLocation(location);
+		// "ask" the host for a command associated with the
+		// CreateViewRequest
+		Command command = getHost().getCommand(createViewRequest);
+		if(command == null || !command.canExecute()) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		//restore links.
+		CompositeCommand result = new CompositeCommand(command.getLabel());
+		result.add(new CommandProxyWithResult(command, descriptor));
+		Point[] constraintLocations = getLocationForDurationConstraint((DurationConstraint)durationConstraint, event1, event2, location);
+		if(constraintLocations[0] != null && constraintLocations[1] != null) {
+			if(constraintLocations[0].y <= constraintLocations[1].y) {
+				result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), true, constraintLocations[0], getDiagramPreferencesHint()));
+				result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), false, constraintLocations[1], getDiagramPreferencesHint()));
+			} else if(constraintLocations[0].y > constraintLocations[1].y) {
+				result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), false, constraintLocations[0], getDiagramPreferencesHint()));
+				result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), true, constraintLocations[1], getDiagramPreferencesHint()));
+			}
+		} else if(constraintLocations[0] != null) {
+			result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), null, constraintLocations[0], getDiagramPreferencesHint()));
+		} else if(constraintLocations[1] != null) {
+			result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), null, constraintLocations[1], getDiagramPreferencesHint()));
+		}
+		// it then can be used as an adaptable to retrieve the View
+		return new ICommandProxy(result);
+	}
+
+	/**
+	 * Collect the locations of constrained elements.
+	 * 
+	 * @param durationConstraint
+	 * @param event1
+	 * @param event2
+	 * @param location
+	 * @return
+	 */
+	private Point[] getLocationForDurationConstraint(DurationConstraint durationConstraint, Element event1, Element event2, Point location) {
+		Point[] constraintLocations = new Point[2];
+		if(event1 instanceof OccurrenceSpecification) {
+			constraintLocations[0] = getLocationForDurationConstraintOnEvent((OccurrenceSpecification)event1);
+		}
+		if(event2 instanceof OccurrenceSpecification) {
+			constraintLocations[1] = getLocationForDurationConstraintOnEvent((OccurrenceSpecification)event2);
+		}
+		if(constraintLocations[0] == null && event1 != null) {
+			EditPart editPart = lookForEditPart(event1);
+			if(editPart instanceof INodeEditPart) {
+				constraintLocations[0] = getLocationForDurationConstraintOnEditPart((INodeEditPart)editPart, location);
+			}
+		}
+		if(constraintLocations[1] == null && event2 != null) {
+			EditPart editPart = lookForEditPart(event2);
+			if(editPart instanceof INodeEditPart) {
+				constraintLocations[1] = getLocationForDurationConstraintOnEditPart((INodeEditPart)editPart, location.getTranslated(0, 40));
+			}
+		}
+		if(event1 != null && event1 == event2 && constraintLocations[0] != null && constraintLocations[0].equals(constraintLocations[1])) {
+			EditPart editPart = lookForEditPart(event1);
+			if(editPart instanceof IGraphicalEditPart) {
+				Rectangle rect = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)editPart);
+				if(rect.contains(constraintLocations[0].getTranslated(0, 40))) {
+					constraintLocations[1] = constraintLocations[0].getTranslated(0, 40);
+				} else if(rect.contains(constraintLocations[0].getTranslated(0, -40))) {
+					constraintLocations[1] = constraintLocations[0].getTranslated(0, -40);
+				}
+			}
+		}
+		return constraintLocations;
+	}
+
+	/**
+	 * Get location from a INodeEditPart.
+	 * 
+	 * @param nodeEditPart
+	 * @param reference
+	 * @return
+	 */
+	private Point getLocationForDurationConstraintOnEditPart(INodeEditPart nodeEditPart, Point reference) {
+		Rectangle rect = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)nodeEditPart);
+		Point location = new Point();
+		if(reference.y < rect.y) {
+			location.y = rect.y + 1;
+		} else if(reference.y > rect.bottom()) {
+			location.y = rect.bottom() - 1;
+		} else {
+			location.y = reference.y;
+		}
+		for(int x = rect.x; x <= rect.right(); x++) {
+			CreateConnectionRequest request = new CreateConnectionRequest();
+			request.setType(REQ_CONNECTION_END);
+			request.setTargetEditPart(nodeEditPart);
+			location.x = x;
+			request.setLocation(location);
+			ConnectionAnchor targetAnchor = nodeEditPart.getTargetConnectionAnchor(request);
+			if(targetAnchor != null) {
+				location = targetAnchor.getLocation(reference);
+				break;
+			}
+		}
+		return location;
+	}
+
+	/**
+	 * Get location of OccurrenceSpecification.
+	 * 
+	 * @param event
+	 * @return
+	 */
+	private Point getLocationForDurationConstraintOnEvent(OccurrenceSpecification event) {
+		Point targetLocation = null;
+		if(event instanceof MessageOccurrenceSpecification) {
+			Message message = ((MessageOccurrenceSpecification)event).getMessage();
+			if(message == null) {
+				return null;
+			}
+			ConnectionNodeEditPart messageEditPart = null;
+			DiagramEditPart diag = DiagramEditPartsUtil.getDiagramEditPart(getHost());
+			for(Object conn : diag.getConnections()) {
+				if(conn instanceof ConnectionNodeEditPart) {
+					EObject connElt = ((ConnectionNodeEditPart)conn).resolveSemanticElement();
+					if(message.equals(connElt)) {
+						messageEditPart = (ConnectionNodeEditPart)conn;
+						break;
+					}
+				}
+			}
+			if(messageEditPart == null) {
+				return null;
+			}
+			if(event == message.getSendEvent()) {
+				targetLocation = SequenceUtil.getAbsoluteEdgeExtremity(messageEditPart, true);
+			} else if(event == message.getReceiveEvent()) {
+				targetLocation = SequenceUtil.getAbsoluteEdgeExtremity(messageEditPart, false);
+			}
+		} else if(event instanceof ExecutionOccurrenceSpecification) {
+			ExecutionSpecification execution = ((ExecutionOccurrenceSpecification)event).getExecution();
+			if(execution != null) {
+				List<View> existingViews = DiagramEditPartsUtil.findViews(execution, getViewer());
+				for(View view : existingViews) {
+					if(ActionExecutionSpecificationEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view) || BehaviorExecutionSpecificationEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view)) {
+						Object object = getViewer().getEditPartRegistry().get(view);
+						if(object instanceof IGraphicalEditPart) {
+							Rectangle bounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)object);
+							if(event == execution.getStart()) {
+								targetLocation = bounds.getTop();
+							} else if(event == execution.getFinish()) {
+								targetLocation = bounds.getBottom();
+							}
+						}
+					}
+				}
+			}
+		}
+		return targetLocation;
 	}
 
 	/**
@@ -718,6 +927,39 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
+	 * Create command for drop a Gate.
+	 * 
+	 * @param gate
+	 * @param location
+	 * @return
+	 */
+	private Command dropGate(Gate gate, Point location) {
+		return new ICommandProxy(getDropGateCommand(gate, location));
+	}
+
+	/**
+	 * Create command for drop a Gate.
+	 * 
+	 * @param gate
+	 * @param location
+	 * @return
+	 */
+	private ICommand getDropGateCommand(Gate gate, Point location) {
+		List<View> existingViews = DiagramEditPartsUtil.findViews(gate, getViewer());
+		if(existingViews.isEmpty()) {
+			EObject owner = gate.eContainer();
+			if(owner != null) {
+				org.eclipse.gef.GraphicalEditPart parent = (org.eclipse.gef.GraphicalEditPart)lookForEditPart(owner);
+				if(parent != null) {
+					Point gateLocation = GateHelper.computeGateLocation(location, parent.getFigure(), null);
+					return new CreateGateViewCommand(getEditingDomain(), parent, gateLocation, new EObjectAdapter(gate));
+				}
+			}
+		}
+		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	}
+
+	/**
 	 * Drop a destructionEvent on a lifeline
 	 * 
 	 * @param destructionOccurence
@@ -919,6 +1161,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the drop command
 	 */
 	private Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+		//Do NOT drop again if existed.
+		List<View> existingViews = DiagramEditPartsUtil.findViews(semanticLink, getViewer());
+		if(!existingViews.isEmpty()) {
+			return UnexecutableCommand.INSTANCE;
+		}
 		Collection<?> sources = SequenceLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targets = SequenceLinkMappingHelper.getInstance().getTarget(semanticLink);
 		if(!sources.isEmpty() && !targets.isEmpty()) {
@@ -981,10 +1228,19 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		}
 		CreateLocatedConnectionViewCommand aLinkCommand = new CreateLocatedConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
 		aLinkCommand.setElement(semanticLink);
-		Point[] sourceAndTarget = getLinkSourceAndTargetLocations(semanticLink, sourceEditPart, targetEditPart);
+		Point[] sourceAndTarget = getLinkSourceAndTargetLocations(semanticLink, sourceEditPart, targetEditPart, dropRequest.getLocation().getCopy());// add default location support.
 		aLinkCommand.setLocations(sourceAndTarget[0], sourceAndTarget[1]);
 		cc.compose(aLinkCommand);
 		return new ICommandProxy(cc);
+	}
+
+	@Override
+	protected ICommand getDefaultDropNodeCommand(Point absoluteLocation, EObject droppedObject) {
+		//Custom command for dropping a gate. 
+		if(droppedObject instanceof Gate) {
+			return getDropGateCommand((Gate)droppedObject, absoluteLocation);
+		}
+		return super.getDefaultDropNodeCommand(absoluteLocation, droppedObject);
 	}
 
 	/**
@@ -996,9 +1252,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        edit part source of the link
 	 * @param targetEditPart
 	 *        edit part target of the link
+	 * @param dropLocation
+	 *        default location if NOT found.
 	 * @return a point array of size 2, with eventually null values (when no point constraint). Index 0 : source location, 1 : target location
 	 */
-	private Point[] getLinkSourceAndTargetLocations(Element semanticLink, GraphicalEditPart sourceEditPart, GraphicalEditPart targetEditPart) {
+	private Point[] getLinkSourceAndTargetLocations(Element semanticLink, GraphicalEditPart sourceEditPart, GraphicalEditPart targetEditPart, Point dropLocation) {
 		// index 0 : source location, 1 : target location
 		Point[] sourceAndTarget = new Point[]{ null, null };
 		// end events of the link
@@ -1008,10 +1266,26 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			MessageEnd sendEvent = ((Message)semanticLink).getSendEvent();
 			if(sendEvent instanceof OccurrenceSpecification) {
 				sourceEvent = (OccurrenceSpecification)sendEvent;
+			} else if(sendEvent instanceof Gate) {//for gate
+				if(sourceEditPart != null) {
+					sourceAndTarget[0] = SequenceUtil.getAbsoluteBounds(sourceEditPart).getCenter();
+				} else {
+					sourceAndTarget[0] = dropLocation;
+				}
+			} else if(sendEvent == null) {//found message
+				sourceAndTarget[0] = dropLocation;
 			}
 			MessageEnd rcvEvent = ((Message)semanticLink).getReceiveEvent();
 			if(rcvEvent instanceof OccurrenceSpecification) {
 				targetEvent = (OccurrenceSpecification)rcvEvent;
+			} else if(rcvEvent instanceof Gate) {//for gate
+				if(targetEditPart != null) {
+					sourceAndTarget[1] = SequenceUtil.getAbsoluteBounds(targetEditPart).getCenter();
+				} else {
+					sourceAndTarget[1] = dropLocation;
+				}
+			} else if(rcvEvent == null) {//lost message
+				sourceAndTarget[1] = dropLocation;
 			}
 		} else if(semanticLink instanceof GeneralOrdering) {
 			sourceEvent = ((GeneralOrdering)semanticLink).getBefore();
@@ -1027,12 +1301,20 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					possibleSourceLocations = SequenceUtil.findPossibleLocationsForEvent((LifelineEditPart)sourceEditPart, sourceEvent);
 				}
 			}
+			//find possible source location on Gate
+			else if(sourceEditPart instanceof GateEditPart) {
+				possibleSourceLocations = SequenceUtil.getAbsoluteBounds(sourceEditPart);
+			}
 			// find location constraints for target
 			if(targetEvent != null && targetEditPart instanceof LifelineEditPart) {
 				sourceAndTarget[1] = SequenceUtil.findLocationOfEvent((LifelineEditPart)targetEditPart, targetEvent);
 				if(sourceAndTarget[1] == null) {
 					possibleTargetLocations = SequenceUtil.findPossibleLocationsForEvent((LifelineEditPart)targetEditPart, targetEvent);
 				}
+			}
+			//find possible target location on Gate
+			else if(targetEditPart instanceof GateEditPart) {
+				possibleTargetLocations = SequenceUtil.getAbsoluteBounds(sourceEditPart);
 			}
 			// deduce a possibility
 			if(sourceAndTarget[0] == null && possibleSourceLocations != null) {
@@ -1102,6 +1384,17 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					sourceAndTarget[1] = possibleTargetLocations.getCenter();
 					sourceAndTarget[1].y = sourceAndTarget[0].y;
 				}
+			}
+		}
+		//repair location for lost/found.
+		if(semanticLink instanceof Message) {
+			MessageEnd sendEvent = ((Message)semanticLink).getSendEvent();
+			if(sendEvent == null && sourceAndTarget[1] != null) {//found message
+				sourceAndTarget[0] = new Point(dropLocation.x, sourceAndTarget[1].y);
+			}
+			MessageEnd rcvEvent = ((Message)semanticLink).getReceiveEvent();
+			if(rcvEvent == null && sourceAndTarget[0] != null) {//lost message
+				sourceAndTarget[1] = new Point(dropLocation.x, sourceAndTarget[0].y);
 			}
 		}
 		return sourceAndTarget;

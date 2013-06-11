@@ -50,6 +50,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Routing;
+import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart;
@@ -64,6 +67,52 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
  */
 @SuppressWarnings("restriction")
 public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
+
+	@Override
+	protected Command getReconnectTargetCommand(ReconnectRequest request) {
+		INodeEditPart node = getConnectableEditPart();
+		if(node == null)
+			return null;
+		TransactionalEditingDomain editingDomain = getEditingDomain();
+		ConnectionAnchor targetAnchor = getTargetConnectionAnchor(request.getTarget(), request);
+		INodeEditPart targetEP = getConnectionCompleteEditPart(request);
+		if(targetEP == null) {
+			return null;
+		}
+		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
+		sceCommand.setEdgeAdaptor(new EObjectAdapter((EObject)request.getConnectionEditPart().getModel()));
+		sceCommand.setNewTargetAdaptor(targetEP);
+		SetConnectionAnchorsCommand scaCommand = new SetConnectionAnchorsCommand(editingDomain, StringStatics.BLANK);
+		scaCommand.setEdgeAdaptor(new EObjectAdapter((EObject)request.getConnectionEditPart().getModel()));
+		scaCommand.setNewTargetTerminal(targetEP.mapConnectionAnchorToTerminal(targetAnchor));
+		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_SetConnectionEndsCommand_Target);
+		cc.compose(sceCommand);
+		cc.compose(scaCommand);
+		Command cmd = new ICommandProxy(cc);
+		EditPart cep = request.getConnectionEditPart();
+		RoutingStyle style = (RoutingStyle)((View)cep.getModel()).getStyle(NotationPackage.eINSTANCE.getRoutingStyle());
+		Routing currentRouter = Routing.MANUAL_LITERAL;
+		if(style != null) {
+			currentRouter = style.getRouting();
+		}
+		Command cmdRouter = getRoutingAdjustment(request.getConnectionEditPart(), getSemanticHint(request), currentRouter, request.getTarget());
+		if(cmdRouter != null) {
+			cmd = cmd == null ? cmdRouter : cmd.chain(cmdRouter);
+			// reset the bendpoints
+			ConnectionAnchor sourceAnchor = node.getSourceConnectionAnchor(request);
+			PointList pointList = new PointList();
+			pointList.addPoint(sourceAnchor.getLocation(targetAnchor.getReferencePoint()));
+			pointList.addPoint(targetAnchor.getLocation(sourceAnchor.getReferencePoint()));
+			SetConnectionBendpointsCommand sbbCommand = new SetConnectionBendpointsCommand(editingDomain);
+			sbbCommand.setEdgeAdapter(request.getConnectionEditPart());
+			sbbCommand.setNewPointList(pointList, sourceAnchor.getReferencePoint(), targetAnchor.getReferencePoint());
+			Command cmdBP = new ICommandProxy(sbbCommand);
+			if(cmdBP != null) {
+				cmd = cmd == null ? cmdBP : cmd.chain(cmdBP);
+			}
+		}
+		return cmd;
+	}
 
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
 		INodeEditPart node = getConnectableEditPart();
@@ -252,7 +301,10 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 					}
 				}
 			}
-			return parent.getSourceConnectionAnchor(request);
+			ConnectionAnchor sourceConnectionAnchor = parent.getSourceConnectionAnchor(request);
+			//Be sure to remove this key after used.
+			request.getExtendedData().remove(AbstractExecutionSpecificationEditPart.EXECUTION_FIX_ANCHOR_POSITION);
+			return sourceConnectionAnchor;
 		}
 		return sourceEditPart instanceof INodeEditPart ? ((INodeEditPart)sourceEditPart).getSourceConnectionAnchor(request) : null;
 	}
@@ -273,7 +325,10 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 					}
 				}
 			}
-			return parent.getTargetConnectionAnchor(request);
+			ConnectionAnchor targetConnectionAnchor = parent.getTargetConnectionAnchor(request);
+			//Be sure to remove this key after used.
+			request.getExtendedData().remove(AbstractExecutionSpecificationEditPart.EXECUTION_FIX_ANCHOR_POSITION);
+			return targetConnectionAnchor;
 		}
 		return targetEditPart instanceof INodeEditPart ? ((INodeEditPart)targetEditPart).getTargetConnectionAnchor(request) : null;
 	}

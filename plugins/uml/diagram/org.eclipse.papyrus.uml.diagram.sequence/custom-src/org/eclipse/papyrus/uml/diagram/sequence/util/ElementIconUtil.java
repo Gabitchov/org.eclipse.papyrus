@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
@@ -22,6 +23,9 @@ public class ElementIconUtil {
 		}
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, part.getViewer());
 		for(View view : views) {
+			if(!(view instanceof Diagram) && !(view.eContainer() instanceof View)) {
+				continue;//there's a bug in SemanticElementHelper.findSemanticElement().
+			}
 			//if(NameLabelIconHelper.showLabelIcon(view)) {
 			if(AppearanceHelper.showElementIcon(view)) {
 				return UMLElementTypes.getImage(parserElement.eClass());

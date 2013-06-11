@@ -355,7 +355,9 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 		Rectangle r = getAbsoluteBounds(lifeline);
 		CombinedFragment2EditPart coRegion = (CombinedFragment2EditPart)createNode(UMLElementTypes.CombinedFragment_3018, lifeline, r.getCenter(), null);
 		assertNotNull(coRegion);
-		checkTooltip(coRegion.getFigure().getToolTip(), "Co Region", "");
+		String name = "Test CoRegion";
+		changeName(getEditingDomain(), (NamedElement)coRegion.resolveSemanticElement(), name);
+		checkTooltip(coRegion.getFigure().getToolTip(), "Co Region", "name: " + name);
 	}
 
 	private void checkTooltip(IFigure figure, String name, String description) {
