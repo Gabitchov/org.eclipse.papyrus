@@ -73,9 +73,11 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	 * @return
 	 */
 	public List<?> getValues(int columnIndex, int rowIndex) {
-		final Object colElement = this.elementProvider.getColumnElement(columnIndex);
-		final Object rowElement = this.elementProvider.getRowElement(rowIndex);
+		Object colElement = this.elementProvider.getColumnElement(columnIndex);
+		Object rowElement = this.elementProvider.getRowElement(rowIndex);
 
+		colElement = AxisUtils.getRepresentedElement(colElement);
+		rowElement = AxisUtils.getRepresentedElement(rowElement);
 		Element editedElement = null;
 		Object axis = null;
 		if(colElement == this.axisElement && rowElement instanceof EObject) {
