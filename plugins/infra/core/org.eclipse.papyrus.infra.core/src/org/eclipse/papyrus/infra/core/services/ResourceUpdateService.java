@@ -107,7 +107,7 @@ public class ResourceUpdateService implements IService, IPartListener {
 		try {
 			final IMultiDiagramEditor editor = registry.getService(IMultiDiagramEditor.class);
 			if(editor != null) {
-				editor.getSite().getShell().getDisplay().syncExec(new Runnable() {
+				Runnable closeEditorRunnable = new Runnable() {
 
 					public void run() {
 						final IWorkbenchPage page = editor.getSite().getPage();
@@ -133,7 +133,10 @@ public class ResourceUpdateService implements IService, IPartListener {
 							});
 						}
 					}
-				});
+				};
+
+				//Async execution to avoid lock conflicts on the Workspace (Probably owned by this thread, and not the UI thread)
+				editor.getSite().getShell().getDisplay().asyncExec(closeEditorRunnable);
 			}
 
 		} catch (ServiceException ex) {
@@ -193,7 +196,6 @@ public class ResourceUpdateService implements IService, IPartListener {
 		for(Resource resource : resources) {
 			EditingDomain domain = TransactionUtil.getEditingDomain(resource);
 			if(domain == null) {
-				System.out.println("Cannot find domain for " + resource.getURI());
 				return false;
 			}
 			if(!domain.isReadOnly(resource)) {
