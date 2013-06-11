@@ -12,9 +12,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.sheet;
 
+import java.util.Collection;
 import java.util.LinkedList;
 
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -71,7 +76,7 @@ public class UMLPropertySource extends PropertySource {
 			}
 
 			CellEditor result = null;
-			Object genericFeature = itemPropertyDescriptor.getFeature(object);
+			final Object genericFeature = itemPropertyDescriptor.getFeature(object);
 
 			// If it is a single reference
 			if(genericFeature instanceof EReference && !((EReference)genericFeature).isMany()) {
@@ -86,8 +91,18 @@ public class UMLPropertySource extends PropertySource {
 						dialog.setMessage("Select a String (* = any string, ? = any char):");
 
 						LinkedList<Object> result = new LinkedList<Object>();
-						result.add("");
-						result.addAll(itemPropertyDescriptor.getChoiceOfValues(object));
+						Collection<?> collection = itemPropertyDescriptor.getChoiceOfValues(object);
+						result.add("");		// TODO: why is there an empty string ?
+						if ((genericFeature instanceof ENamedElement) && ((ENamedElement) genericFeature).getName().equals("classifierBehavior")) {
+							// filter in case of classifierBehavior, see bug 343123
+							// TODO: this rather generic function is probably not the right place to do the filtering. Also need to support filtering for other
+							//       relationships
+							Collection<?> all = itemPropertyDescriptor.getChoiceOfValues(object);
+							result.addAll(filterOwned(object, collection));
+						}
+						else {
+							result.addAll(collection);
+						}
 						result.remove(null);
 
 						dialog.setElements(result.toArray());
@@ -111,4 +126,38 @@ public class UMLPropertySource extends PropertySource {
 		}
 	}
 
+	/**
+	 * Filter available choice: only show owned elements which are owned by the passed parent
+	 * See bug 343123
+	 * 
+	 * @param parent a parent
+	 * @param in a collection of elements
+	 * @return a filtered collection containing only owned elements
+	 */
+	public static Collection<?> filterOwned(Object parent, Collection<?> in) {
+		EList<EObject> list = new BasicEList<EObject>();
+		for (Object obj : in) {
+			if (obj instanceof EObject) {
+				if (isOwned(parent, (EObject) obj)) {
+					list.add((EObject) obj);
+				}
+			}
+		}
+		return list;
+	}
+	
+	/**
+	 * Check whether a child belongs to the given parent, i.e. is owned by it.
+	 * @param parent a parent
+	 * @param child a child
+	 * @return true, if owned
+	 */
+	public static boolean isOwned (Object parent, EObject child) {
+		child = child.eContainer();
+		while (child != null) {
+			if (child == parent) return true;
+			child = child.eContainer();
+		}
+		return false;
+	}
 }
