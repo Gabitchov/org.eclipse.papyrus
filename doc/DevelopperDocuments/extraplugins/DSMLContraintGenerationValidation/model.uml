@@ -6,6 +6,9 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_2d4XAKNTEeKYtpMIQ0VJGQ" name="ConstraintRequirement"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_aRu8QKNREeKYtpMIQ0VJGQ" name="UseCase">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_aejqsNKNEeKWVoUNffjMVg">
+        <body>In order to validate constraints from a profile, first creation of constraint with specific annotations will be explained and then generation of validation will be explained. </body>
+      </ownedComment>
       <packagedElement xmi:type="uml:Component" xmi:id="_9HsZEKNSEeKYtpMIQ0VJGQ" name="ValidationModule" useCase="_D0UpIKNTEeKYtpMIQ0VJGQ _RCkMEKNTEeKYtpMIQ0VJGQ _U89lEKNTEeKYtpMIQ0VJGQ _nSqKAKNTEeKYtpMIQ0VJGQ">
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_D0UpIKNTEeKYtpMIQ0VJGQ" name="Generate constraints directly into the definition" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
           <ownedComment xmi:type="uml:Comment" xmi:id="_r4fLAKNmEeK7_saMR_mmoA" annotatedElement="_D0UpIKNTEeKYtpMIQ0VJGQ">
@@ -22,11 +25,20 @@ The constraint can be generated in Java code, or directly from OCL.&#xD;
           </ownedComment>
           <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_rPSXoaNTEeKYtpMIQ0VJGQ" name="point"/>
         </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_U89lEKNTEeKYtpMIQ0VJGQ" name="Constraint in OCL" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_U89lEKNTEeKYtpMIQ0VJGQ" name="Generation from OCL constraint" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_yAMJANKNEeKWVoUNffjMVg">
+            <body>From OCL constraints, Papyrus can product a EMF validation plugin that can be installed in the platform and used to validate a model&#xD;
+</body>
+          </ownedComment>
           <extend xmi:type="uml:Extend" xmi:id="_rOr6sKNTEeKYtpMIQ0VJGQ" extendedCase="_RCkMEKNTEeKYtpMIQ0VJGQ" extensionLocation="_rPSXoaNTEeKYtpMIQ0VJGQ"/>
+          <include xmi:type="uml:Include" xmi:id="_3nutMNJ1EeKWVoUNffjMVg" addition="_zdHt8NJ1EeKWVoUNffjMVg"/>
         </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_nSqKAKNTEeKYtpMIQ0VJGQ" name="Constraint in Java" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_nSqKAKNTEeKYtpMIQ0VJGQ" name="Generation from Java constraint" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_1n-vENKNEeKWVoUNffjMVg">
+            <body>From Java constraints, Papyrus can product a EMF validation plugin that can be installed in the platform and used to validate a model</body>
+          </ownedComment>
           <extend xmi:type="uml:Extend" xmi:id="_sItS8KNTEeKYtpMIQ0VJGQ" extendedCase="_RCkMEKNTEeKYtpMIQ0VJGQ" extensionLocation="_rPSXoaNTEeKYtpMIQ0VJGQ"/>
+          <include xmi:type="uml:Include" xmi:id="_4hdKgNJ1EeKWVoUNffjMVg" addition="_zdHt8NJ1EeKWVoUNffjMVg"/>
         </ownedUseCase>
       </packagedElement>
       <packagedElement xmi:type="uml:Actor" xmi:id="_DPIRYKNTEeKYtpMIQ0VJGQ" name="User"/>
@@ -50,6 +62,43 @@ The constraint can be generated in Java code, or directly from OCL.&#xD;
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uBhOtqNTEeKYtpMIQ0VJGQ" value="1"/>
         </ownedEnd>
       </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_zdHt8NJ1EeKWVoUNffjMVg" name="Create a constraint">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_fCnEsNKNEeKWVoUNffjMVg">
+          <body>In the context of the construction of a profile, it is possible to add constraints.&#xD;
+A constraint is a condition or restriction expressed in a language for the purpose of declaring some of the semantics of an element.&#xD;
+</body>
+        </ownedComment>
+        <include xmi:type="uml:Include" xmi:id="_BFjSgNJ2EeKWVoUNffjMVg" addition="_6RCRwNJ1EeKWVoUNffjMVg"/>
+        <include xmi:type="uml:Include" xmi:id="_M6OacNJ2EeKWVoUNffjMVg" addition="_CQ-j0NJ2EeKWVoUNffjMVg"/>
+        <include xmi:type="uml:Include" xmi:id="_XW-tMNJ2EeKWVoUNffjMVg" addition="_Up9GQNJ2EeKWVoUNffjMVg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_6RCRwNJ1EeKWVoUNffjMVg" name="Specify the language">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_ll3WUNKNEeKWVoUNffjMVg">
+          <body>It is possible to precise the language of the constraint into Papyrus. The constraint body may be written into OCL, JAVA, or natural language. In order to make constraints usable by the Papyrus, constraint must be written in OCL or JAVA. </body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_CQ-j0NJ2EeKWVoUNffjMVg" name="Specify the behavior of the constraint in the context of validation">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_pbWaINKNEeKWVoUNffjMVg">
+          <body>Into Papyrus, the behavior of the constraint during the validation can be precised.&#xD;
+It is possible to precise:&#xD;
+•	The mode, if the validation of the constraint can be done, in t “batch” or “live” mode.&#xD;
+•	The severity: The severity of the problem if the constraint is violated. This correlates to the severity of tasks in the Tasks view of the Eclipse environment. The default severity (if none specified) is ERROR. The CANCEL severity should be used with caution, as it causes the validation operation to be interrupted, possibly resulting in the loss of valuable diagnostic information from other constraints.&#xD;
+•	The message: the message that will be displayed if the constraints is violated&#xD;
+•	The description: a description of the constraint&#xD;
+•	If it is enable by default: Indicates if this constraint should be enabled by default.&#xD;
+&#xD;
+For advanced user you can also precise:&#xD;
+•	The Id : the constraint id&#xD;
+•	The status code: The plug-in unique status code, useful for logging.&#xD;
+•	the target of validation, the element to be validated&#xD;
+</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_Up9GQNJ2EeKWVoUNffjMVg" name="specify the context">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_iV4MQNKNEeKWVoUNffjMVg">
+          <body>Before editing a constraint, it is important to specify the constraint; it can be a stereotype, an operation.</body>
+        </ownedComment>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_dXgaYKNREeKYtpMIQ0VJGQ" name="SolutionProposal"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_hNWqkKNREeKYtpMIQ0VJGQ" name="TestUseCase"/>
@@ -62,5 +111,5 @@ The constraint can be generated in Java code, or directly from OCL.&#xD;
     </profileApplication>
   </uml:Model>
   <Requirements:Requirement xmi:id="_z2GHUKNREeKYtpMIQ0VJGQ" text="Papyrus shall validate constraints from profiles on models" id="ValidationReq001" base_Class="_z1zMYKNREeKYtpMIQ0VJGQ"/>
-  <Requirements:Requirement xmi:id="_2eBg8KNTEeKYtpMIQ0VJGQ" text="User can precise on constraint if it can be validate live or batch, the associated error message, if it is activated by default" id="ValidationReq002" base_Class="_2d4XAKNTEeKYtpMIQ0VJGQ"/>
+  <Requirements:Requirement xmi:id="_2eBg8KNTEeKYtpMIQ0VJGQ" text="User can precise on constraints if they may be validated live or batch mode, the associated error message and if it is activated by default" id="ValidationReq002" base_Class="_2d4XAKNTEeKYtpMIQ0VJGQ"/>
 </xmi:XMI>
