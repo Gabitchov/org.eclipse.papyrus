@@ -18,7 +18,6 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.export.excel.DefaultExportFormatter;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
-import org.eclipse.papyrus.infra.nattable.converter.GenericDisplayConverter;
 
 /**
  * The export formatter to use to export the same text as the text displayed in the cells
