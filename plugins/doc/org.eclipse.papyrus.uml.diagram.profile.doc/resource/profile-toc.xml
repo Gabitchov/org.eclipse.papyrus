@@ -1,4 +1,24 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <toc topic="resource/profile.html" label="profile">
 	<topic href="resource/profile.html" label="Introduction"></topic>
+	<topic href="resource/profile.html#Profile_Creation_and_Modeling" label="Profile Creation and Modeling">
+		<topic href="resource/profile.html#Profile_Creation" label="Profile Creation"></topic>
+		<topic href="resource/profile.html#Stereotype_Definition" label="Stereotype Definition">
+			<topic href="resource/profile.html#Stereotype_Creation" label="Stereotype Creation"></topic>
+			<topic href="resource/profile.html#Metaclass_Import" label="Metaclass Import"></topic>
+			<topic href="resource/profile.html#Extension_Creation" label="Extension Creation"></topic>
+			<topic href="resource/profile.html#Subprofile_Creation" label="Subprofile Creation"></topic>
+			<topic href="resource/profile.html#Stereotype_Generalization" label="Stereotype Generalization"></topic>
+		</topic>
+		<topic href="resource/profile.html#Stereotype_display_options" label="Stereotype display options"></topic>
+	</topic>
+	<topic href="resource/profile.html#Profile_Definition_and_Export" label="Profile Definition and Export"></topic>
+	<topic href="resource/profile.html#Profile_Application_and_Usage" label="Profile Application and Usage">
+		<topic href="resource/profile.html#Applying_a_Profile" label="Applying a Profile"></topic>
+		<topic href="resource/profile.html#Using_the_Stereotypes_of_a_Profile" label="Using the Stereotypes of a Profile">
+			<topic href="resource/profile.html#Applying_a_Stereotype" label="Applying a Stereotype"></topic>
+			<topic href="resource/profile.html#Assigning_values_to_properties_of_stereotypes" label="Assigning values to properties of stereotypes"></topic>
+			<topic href="resource/profile.html#Display_options_of_a_stereotype_application" label="Display options of a stereotype application"></topic>
+		</topic>
+	</topic>
 </toc>
