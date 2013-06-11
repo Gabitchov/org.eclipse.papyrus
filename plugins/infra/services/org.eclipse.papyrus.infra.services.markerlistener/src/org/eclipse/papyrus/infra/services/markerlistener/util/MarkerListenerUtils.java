@@ -47,17 +47,16 @@ import org.eclipse.papyrus.infra.services.markerlistener.providers.MarkerProvide
  */
 public class MarkerListenerUtils {
 
-	public static EclipseResourcesUtil eclipseResourcesUtil =
-		EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil() : null;
-	
+	public static EclipseResourcesUtil eclipseResourcesUtil = EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil() : null;
+
 	private static final Map<String, String> MARKER_LABELS = new java.util.HashMap<String, String>();
-		
+
 	private static final Map<String, Set<String>> MARKER_HIERARCHY = new java.util.HashMap<String, Set<String>>();
-	
+
 	static {
 		loadMarkerTypes();
 	}
-	
+
 	/**
 	 * E object from marker or map.
 	 * 
@@ -82,7 +81,8 @@ public class MarkerListenerUtils {
 		if(uriAttribute != null) {
 			URI uriOfMarker = URI.createURI(uriAttribute);
 			try {
-				return domain.getResourceSet().getEObject(uriOfMarker, true);
+				//Bug 410461: Do not load external objects in the current resource set!!
+				return domain.getResourceSet().getEObject(uriOfMarker, false);
 			} catch (MissingResourceException e) {
 				// happens after renaming of the file containing the marker (or a parent folder)
 				// try to retrieve eObject via fragment only (assuming that no two elements within resource-set share
@@ -129,32 +129,29 @@ public class MarkerListenerUtils {
 		URI uri = resource.getURI();
 
 		ResourceSet rset = resource.getResourceSet();
-		if (rset != null) {
+		if(rset != null) {
 			uri = rset.getURIConverter().normalize(uri);
 		}
 
-		IFile result = uri.isPlatformResource()
-			? ResourcesPlugin.getWorkspace().getRoot()
-				.getFile(new Path(uri.toPlatformString(true)))
-			: null;
+		IFile result = uri.isPlatformResource() ? ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true))) : null;
 
-		if ((result != null) && !result.exists()) {
+		if((result != null) && !result.exists()) {
 			result = null;
 		}
 
 		return result;
 	}
-	
+
 	public static String getMarkerTypeLabel(String type) {
 		String result = MARKER_LABELS.get(type);
-		
-		if (result == null) {
+
+		if(result == null) {
 			result = type;
 		}
-		
+
 		return result;
 	}
-	
+
 	private static void loadMarkerTypes() {
 		IExtensionPoint point = Platform.getExtensionRegistry().getExtensionPoint(ResourcesPlugin.PI_RESOURCES, ResourcesPlugin.PT_MARKERS);
 
@@ -172,46 +169,46 @@ public class MarkerListenerUtils {
 					}
 				}
 			}
-			
+
 			MARKER_HIERARCHY.put(type, Collections.unmodifiableSet(superTypes));
 		}
 	}
-	
+
 	public static boolean isMarkerTypeSubtypeOf(String subtype, String supertype) {
 		boolean result = false;
-		
+
 		Set<String> supertypes = MARKER_HIERARCHY.get(subtype);
-		if (supertypes != null) {
+		if(supertypes != null) {
 			result = supertypes.contains(supertype);
-			if (!result) {
+			if(!result) {
 				// recursive
 				Set<String> cycleDetect = new java.util.HashSet<String>();
 				cycleDetect.add(subtype);
 				result = isAnyMarkerTypeSubtypeOf(supertypes, supertype, cycleDetect);
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	private static boolean isAnyMarkerTypeSubtypeOf(Set<String> subtypes, String supertype, Set<String> cycleDetect) {
 		boolean result = false;
-		
-		for (String subtype : subtypes) {
-			if (cycleDetect.add(subtype)) {
+
+		for(String subtype : subtypes) {
+			if(cycleDetect.add(subtype)) {
 				Set<String> supertypes = MARKER_HIERARCHY.get(subtype);
-				if (supertypes != null) {
+				if(supertypes != null) {
 					result = supertypes.contains(supertype);
-					if (!result) {
+					if(!result) {
 						result = isAnyMarkerTypeSubtypeOf(supertypes, supertype, cycleDetect);
 					}
-					if (result) {
+					if(result) {
 						break;
 					}
 				}
 			}
 		}
-		
+
 		return result;
 	}
 }

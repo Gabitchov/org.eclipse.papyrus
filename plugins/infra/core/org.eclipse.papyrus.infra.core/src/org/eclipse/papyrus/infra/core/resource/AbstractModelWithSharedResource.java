@@ -95,12 +95,12 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	 * Lookup for the resource in the resourceSet.
 	 * 
 	 * @param uri
-	 *        the URI of the resource to look for
+	 *        the URI (without extension) of the resource to look for
 	 */
-	private void lookupResource(URI uri) {
+	private void lookupResource(URI uriWithoutExtension) {
 
 		// Compute model URI
-		resourceURI = uri.trimFileExtension().appendFileExtension(getModelFileExtension());
+		resourceURI = uriWithoutExtension.appendFileExtension(getModelFileExtension());
 
 		resource = getResourceSet().getResource(resourceURI, false);
 
