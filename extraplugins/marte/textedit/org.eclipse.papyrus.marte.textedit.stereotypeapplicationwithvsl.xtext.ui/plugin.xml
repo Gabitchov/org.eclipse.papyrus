@@ -79,13 +79,14 @@
     <extension
          point="org.eclipse.ui.commands">
       <command
+            categoryId="org.eclipse.papyrus.editor.category"
             description="Trigger expensive validation"
             id="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.StereotypeApplicationWithVSL.validate"
             name="Validate">
       </command>
       <command
             category="Papyrus"
-            categoryId="org.eclipse.papyrus.infra.core.papyrusEditor"
+            categoryId="org.eclipse.papyrus.editor.category"
             defaultHandler="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.contributions.OpenTextualEditorForStereotypeApplications"
             description="Open textual editor for stereotype applications"
             id="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.OpenTextualEditorForStereotypeApplicationsCommand"
@@ -164,9 +165,9 @@
 	<extension
 		point="org.eclipse.ui.commands">
 		<command
-			description="Open the quick outline."
-			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
-			name="Quick Outline">
+        description="Open the quick outline."
+        id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+        name="Quick Outline">
 		</command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
