@@ -67,7 +67,7 @@ public class ConstraintBlockParameterHandler extends AbstractSysmlModelExplorerC
 		if(!(container instanceof Element)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
 		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -85,7 +85,10 @@ public class ConstraintBlockParameterHandler extends AbstractSysmlModelExplorerC
 
 		// Retrieve create command from the Element Edit service
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
-		Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
-		return emfCommand;
+		if(createGMFCommand != null) {
+			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
+			return emfCommand;
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 }

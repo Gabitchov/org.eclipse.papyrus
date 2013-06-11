@@ -64,8 +64,11 @@ public abstract class AbstractCreateCommandHandler extends AbstractCommandHandle
 		}
 
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
-		Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
-		return emfCommand;
+		if(createGMFCommand != null) {
+			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
+			return emfCommand;
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
