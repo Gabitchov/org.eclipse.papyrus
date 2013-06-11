@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc label="Profiles" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
+   <topic href="resource/profile.html" label="Using Profiles">
+      <link toc="resource/profile-toc.xml"/>
+      <anchor id="profiles"/>
+   </topic>	
+</toc>
