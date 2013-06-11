@@ -99,6 +99,8 @@ public class GeneralizationChangesHelper {
 	protected void classifyDiffs() {
 		for (Diff difference : this.comparison.getDifferences()) {
 			if (difference instanceof ReferenceChange) {
+				// TODO Changes may be required in connection with the following bug:
+				// Bug 406405 - A macroscopic change has to be created for UML DirectedRelationship elements 
 				this.evaluateGeneralizationChange((ReferenceChange)difference) ;
 			}
 			else if (difference instanceof NodeChange) {
