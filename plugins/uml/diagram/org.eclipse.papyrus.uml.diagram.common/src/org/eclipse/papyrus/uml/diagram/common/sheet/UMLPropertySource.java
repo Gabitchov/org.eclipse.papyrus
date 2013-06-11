@@ -92,11 +92,11 @@ public class UMLPropertySource extends PropertySource {
 
 						LinkedList<Object> result = new LinkedList<Object>();
 						Collection<?> collection = itemPropertyDescriptor.getChoiceOfValues(object);
-						result.add("");		// TODO: why is there an empty string ?
+						result.add("");		// empty element enables to assign a null value
 						if ((genericFeature instanceof ENamedElement) && ((ENamedElement) genericFeature).getName().equals("classifierBehavior")) {
 							// filter in case of classifierBehavior, see bug 343123
 							// TODO: this rather generic function is probably not the right place to do the filtering. Also need to support filtering for other
-							//       relationships
+							//       attributes
 							Collection<?> all = itemPropertyDescriptor.getChoiceOfValues(object);
 							result.addAll(filterOwned(object, collection));
 						}
