@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.diagram.component.edit.parts,
+Export-Package: org.eclipse.papyrus.uml.diagram.component,
+ org.eclipse.papyrus.uml.diagram.component.edit.parts,
  org.eclipse.papyrus.uml.diagram.component.part,
  org.eclipse.papyrus.uml.diagram.component.providers
 Bundle-ActivationPolicy: lazy
