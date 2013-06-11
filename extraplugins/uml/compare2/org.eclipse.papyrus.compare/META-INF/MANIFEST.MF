@@ -7,11 +7,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: extensions,
- extensions.impl,
- extensions.util,
- merge,
- org.eclipse.papyrus.compare.postprocessor
+Export-Package: org.eclipse.papyrus.compare.postprocessor
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.compare;visibility:=reexport,
