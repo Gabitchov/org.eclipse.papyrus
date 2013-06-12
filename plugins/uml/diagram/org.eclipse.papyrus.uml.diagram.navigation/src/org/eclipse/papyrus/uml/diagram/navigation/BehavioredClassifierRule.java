@@ -18,10 +18,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.IModelLinker;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.INavigationRule;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -50,7 +52,19 @@ public class BehavioredClassifierRule implements INavigationRule {
 		UMLRuleHelper.addBehaviorCreatedNavigableElements(nextPossibleElements, currentNavElement, classifierBehaviorFeature, new IModelLinker() {
 
 			public void linkToModel(EObject toLink) {
-				behavioredClassifier.setClassifierBehavior((Behavior)toLink);
+				Behavior existing = behavioredClassifier.getClassifierBehavior();
+				boolean setCB = true;
+				if (existing != null) {
+					setCB = MessageDialog.openQuestion(new Shell(), "Overwrite classifier behavior",
+						"The classifier <" + behavioredClassifier.getName() + "> already has a classifier behavior (" +
+						existing.getName() + "). Do you want to overwrite it with the behavior of the new diagram?");
+				}
+				if (setCB) {
+					behavioredClassifier.setClassifierBehavior((Behavior)toLink);
+				}
+				else {
+					behavioredClassifier.getOwnedBehaviors().add((Behavior)toLink);		
+				}
 			}
 		});
 
@@ -71,5 +85,4 @@ public class BehavioredClassifierRule implements INavigationRule {
 
 		return nextPossibleElements;
 	}
-
 }
