@@ -162,7 +162,7 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 		private boolean isUnprotected(Transaction transaction) {
 			return !Boolean.TRUE.equals(transaction.getOptions().get(Transaction.OPTION_UNPROTECTED));
 		}
-		
+
 		public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
 			return null;
 		}
@@ -395,6 +395,9 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	public boolean isDirty() {
 		// First, look if the model part (EMF) is dirty, else look at the
 		// Graphical part (GEF/GMF)
+		if(transactionalEditingDomain == null) {
+			return false;
+		}
 		return ((BasicCommandStack)transactionalEditingDomain.getCommandStack()).isSaveNeeded() || registeredIsaveablePart.isDirty();
 	}
 
