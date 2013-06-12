@@ -26,6 +26,7 @@ import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.KeyEventMatcher;
 import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
 import org.eclipse.papyrus.infra.nattable.configuration.StyleConfiguration;
+import org.eclipse.papyrus.infra.nattable.layer.PapyrusSelectionLayer;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.reorder.CustomDefaultColumnReorderBindings;
 import org.eclipse.swt.SWT;
@@ -66,7 +67,7 @@ public class BodyLayerStack extends AbstractLayerTransform {
 
 
 
-		this.selectionLayer = new SelectionLayer(this.columnHideShowLayer);
+		this.selectionLayer = new PapyrusSelectionLayer(this.columnHideShowLayer);
 		//		CopyDataCommandHandler handler = new CopyDataCommandHandler(this.selectionLayer);
 		////		handler.setCopyFormattedText(true);//to do the paste using the label provider
 		//		this.selectionLayer.registerCommandHandler(handler);
