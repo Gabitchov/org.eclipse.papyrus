@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.views.config.celleditor;
 
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 
 
@@ -39,6 +40,7 @@ public class ModelViewsCellEditorConfiguration extends EStructuralFeatureEditorC
 	 */
 	@Override
 	protected int getFeatureIdentifier(Table table, Object axisElement) {
+		axisElement = AxisUtils.getRepresentedElement(axisElement);
 		if(((String)axisElement).equals(Utils.NATTABLE_EDITOR_PAGE_ID + Utils.VIEW_CONTEXT)) {
 			return SINGLE_EMF_REFERENCE;
 		} else if(((String)axisElement).equals(Utils.NATTABLE_EDITOR_PAGE_ID + Utils.VIEW_IS_OPEN)) {
@@ -62,6 +64,7 @@ public class ModelViewsCellEditorConfiguration extends EStructuralFeatureEditorC
 	 */
 	@Override
 	public boolean handles(Table table, Object axisElement) {
+		axisElement = AxisUtils.getRepresentedElement(axisElement);
 		if(table.getTableConfiguration().getType().equals(Utils.TABLE_VIEW_TYPE_VALUE)) {
 			return axisElement instanceof String && ((String)axisElement).startsWith(Utils.NATTABLE_EDITOR_PAGE_ID);
 		}

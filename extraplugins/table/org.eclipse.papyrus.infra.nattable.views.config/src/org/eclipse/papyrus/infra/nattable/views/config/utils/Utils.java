@@ -65,7 +65,7 @@ public class Utils {
 	/**
 	 * the type of the table views
 	 */
-	public static final String TABLE_VIEW_TYPE_VALUE = "PapyrusTableViewsEditor";
+	public static final String TABLE_VIEW_TYPE_VALUE = "PapyrusViewsTable";
 
 	/**
 	 * 
