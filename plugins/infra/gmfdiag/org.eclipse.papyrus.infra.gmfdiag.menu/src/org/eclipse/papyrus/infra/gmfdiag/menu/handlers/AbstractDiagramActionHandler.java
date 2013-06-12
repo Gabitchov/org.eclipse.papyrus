@@ -18,6 +18,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.ui.action.ActionManager;
 import org.eclipse.gmf.runtime.common.ui.action.IActionWithProgress;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -38,10 +39,13 @@ public abstract class AbstractDiagramActionHandler extends AbstractDiagramHandle
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final ActionManager manager = getActionManager();
 		if(manager != null) {
-			final IActionWithProgress globalActionHandler = getGlobalActionHandler();
-			if(globalActionHandler != null) {
-				globalActionHandler.refresh();
-				manager.run(globalActionHandler);
+			final IAction globalActionHandler = getGlobalActionHandler();
+			if(globalActionHandler instanceof IActionWithProgress) {
+				((IActionWithProgress)globalActionHandler).refresh();
+				manager.run(((IActionWithProgress)globalActionHandler));
+			} else if(globalActionHandler !=null){
+				globalActionHandler.runWithEvent(null);
+				
 			}
 		}
 		return null;
@@ -52,11 +56,12 @@ public abstract class AbstractDiagramActionHandler extends AbstractDiagramHandle
 	 * @return
 	 *         the action to execute
 	 */
-	private IActionWithProgress getGlobalActionHandler() {
+	private IAction getGlobalActionHandler() {
 		final IDiagramWorkbenchPart workbenchPart = getDiagramWorkbenchPart();
 		if(workbenchPart instanceof IEditorPart) {
 			final IEditorPart editor = (IEditorPart)workbenchPart;
-			return (IActionWithProgress)editor.getEditorSite().getActionBars().getGlobalActionHandler(getActionId());
+			IAction action = editor.getEditorSite().getActionBars().getGlobalActionHandler(getActionId());
+			return action;
 		}
 		return null;
 	}
@@ -90,8 +95,14 @@ public abstract class AbstractDiagramActionHandler extends AbstractDiagramHandle
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		final IActionWithProgress action = getGlobalActionHandler();
-		action.refresh();
-		setBaseEnabled(action.isRunnable());
+		final IAction action = getGlobalActionHandler();
+		if(action instanceof IActionWithProgress) {
+			((IActionWithProgress)action).refresh();
+			setBaseEnabled(((IActionWithProgress)action).isRunnable());
+		}  else if(action !=null) {
+			setBaseEnabled(action.isEnabled());
+		} else {
+			setBaseEnabled(false);
+		}
 	}
 }
