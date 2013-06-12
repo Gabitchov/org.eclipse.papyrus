@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.views.config.Activator;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -59,8 +60,10 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	 * @param obj2
 	 * @return
 	 */
-	protected List<Object> organizeObject(final Object obj1, final Object obj2) {
+	protected List<Object> organizeObject(Object obj1, Object obj2) {
 		final List<Object> objects = new ArrayList<Object>();
+		obj1 = AxisUtils.getRepresentedElement(obj1);
+		obj2 = AxisUtils.getRepresentedElement(obj2);
 		if(obj1 instanceof String && ((String)obj1).startsWith(Utils.NATTABLE_EDITOR_PAGE_ID)) {
 			objects.add(obj2);
 			objects.add(obj1);
