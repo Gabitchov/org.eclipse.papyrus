@@ -71,10 +71,10 @@ public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		Set<Object> duplicatedObjects = ((Set<Object>)additional);
 		EObject object = getDuplicatedEObject(request);
-		if(object == null) {
+		if(object == null || object.eResource()==null) {
 			return super.getBeforeDuplicateCommand(request);
 		}
-
+		
 		// retrieve the tables linked to the object
 		List<PapyrusTableInstance> tablesToDuplicate = getRelatedTables(object, true);
 
@@ -134,6 +134,9 @@ public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 	 */
 	protected List<PapyrusTableInstance> getRelatedTables(EObject object, boolean lookInChildren) {
 		List<PapyrusTableInstance> tables = new ArrayList<PapyrusTableInstance>();
+		if(object.eResource()==null) {
+			return tables;
+		}
 		ResourceSet resourceSet = object.eResource().getResourceSet();
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
 		if(adapter == null) {

@@ -70,7 +70,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 
 		Set<Object> duplicatedObjects = ((Set<Object>)additional);
 		EObject object = getDuplicatedEObject(request);
-		if(object == null) {
+		if(object == null || object.eResource()==null) {
 			return super.getBeforeDuplicateCommand(request);
 		}
 
