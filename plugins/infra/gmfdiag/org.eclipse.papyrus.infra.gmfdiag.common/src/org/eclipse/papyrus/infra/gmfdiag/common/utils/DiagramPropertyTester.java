@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
+import java.util.Collection;
+
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -29,6 +31,11 @@ public class DiagramPropertyTester extends PropertyTester {
 	public static final String IS_DIAGRAM_EDITOR = "isDiagramEditor"; //$NON-NLS-1$
 
 	/**
+	 * property to test if the GMF Diagram context is active
+	 */
+	public static final String IS_GMF_DIAGRAM_CONTEXT_ACTIVE = "isGmfDiagramContextActive"; //$NON-NLS-1$
+
+	/**
 	 * 
 	 * {@inheritDoc}
 	 */
@@ -38,6 +45,9 @@ public class DiagramPropertyTester extends PropertyTester {
 			// activeWhen -> with -> activeEditor -> adapt -> IDiagramWorkbenchPart.  unfortunately, this method doesn't work, the adapt test is correct, but the Eclipse handler system
 			//find often several handlers actived in the same time and choose one of them (and never the Papyrus handler...)
 			boolean answer = isDiagramEditor((IStructuredSelection)receiver);
+			return new Boolean(answer).equals(expectedValue);
+		} else if(IS_GMF_DIAGRAM_CONTEXT_ACTIVE.equals(property) && receiver instanceof Collection<?>) {
+			boolean answer = isDiagramContextActive((Collection<?>)receiver);
 			return new Boolean(answer).equals(expectedValue);
 		}
 		return false;
@@ -56,5 +66,15 @@ public class DiagramPropertyTester extends PropertyTester {
 			return diagramPart != null;
 		}
 		return false;
+	}
+
+	/**
+	 * 
+	 * @param context
+	 * 
+	 * @return
+	 */
+	private boolean isDiagramContextActive(final Collection<?> activeContextIds) {
+		return activeContextIds.contains("org.eclipse.gmf.runtime.diagram.ui.diagramContext"); //$NON-NLS-1$
 	}
 }

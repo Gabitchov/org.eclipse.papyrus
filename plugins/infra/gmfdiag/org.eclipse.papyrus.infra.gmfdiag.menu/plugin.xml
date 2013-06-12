@@ -50,42 +50,69 @@
             class="org.eclipse.papyrus.infra.gmfdiag.menu.handlers.CutInDiagramHandler"
             commandId="org.eclipse.ui.edit.cut">
          <activeWhen>
-            <with
-                  variable="selection">
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester.isDiagramEditor"
-                     value="true">
-               </test>
-            </with>
+            <and>
+               <with
+                     variable="activeContexts">
+                  <test
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.context.tester.isGmfDiagramContextActive"
+                        value="true">
+                  </test>
+               </with>
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester.isDiagramEditor"
+                        value="true">
+                  </test>
+               </with>
+            </and>
          </activeWhen>
       </handler>
       <handler
             class="org.eclipse.papyrus.infra.gmfdiag.menu.handlers.CopyInDiagramHandler"
             commandId="org.eclipse.ui.edit.copy">
          <activeWhen>
-            <with
-                  variable="selection">
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester.isDiagramEditor"
-                     value="true">
-               </test>
-            </with>
+            <and>
+               <with
+                     variable="activeContexts">
+                  <test
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.context.tester.isGmfDiagramContextActive"
+                        value="true">
+                  </test>
+               </with>
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester.isDiagramEditor"
+                        value="true">
+                  </test>
+               </with>
+            </and>
          </activeWhen>
       </handler>
       <handler
             class="org.eclipse.papyrus.infra.gmfdiag.menu.handlers.PasteInDiagramHandler"
             commandId="org.eclipse.ui.edit.paste">
          <activeWhen>
-            <with
-                  variable="selection">
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester.isDiagramEditor"
-                     value="true">
-               </test>
-            </with>
+            <and>
+               <with
+                     variable="activeContexts">
+                  <test
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.context.tester.isGmfDiagramContextActive"
+                        value="true">
+                  </test>
+               </with>
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.diagram.tester.isDiagramEditor"
+                        value="true">
+                  </test>
+               </with>
+            </and>
          </activeWhen>
       </handler>
    </extension>

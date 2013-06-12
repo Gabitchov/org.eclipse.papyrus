@@ -15,8 +15,8 @@ package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
+import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * Abstract class for the actions done on a diagram editor
@@ -32,7 +32,7 @@ public abstract class AbstractDiagramHandler extends AbstractHandler {
 	 *         the current diagram workbench part
 	 */
 	protected final IDiagramWorkbenchPart getDiagramWorkbenchPart() {
-		final IEditorPart workbench = EditorHelper.getCurrentEditor();
+		final IWorkbenchPart workbench = WorkbenchPartHelper.getCurrentActiveWorkbenchPart();
 		if(workbench != null) {
 			return (IDiagramWorkbenchPart)workbench.getAdapter(IDiagramWorkbenchPart.class);
 		}

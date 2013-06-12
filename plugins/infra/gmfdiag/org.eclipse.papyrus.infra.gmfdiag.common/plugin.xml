@@ -159,5 +159,12 @@
          properties="isDiagramEditor"
          type="org.eclipse.jface.viewers.IStructuredSelection">
    </propertyTester>
+   <propertyTester
+         class="org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramPropertyTester"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.diagram.context.tester"
+         namespace="org.eclipse.papyrus.infra.gmfdiag.common.diagram.context.tester"
+         properties="isGmfDiagramContextActive"
+         type="java.util.Collection">
+   </propertyTester>
 </extension>
 </plugin>
