@@ -162,7 +162,7 @@
     <!-- CDO -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 	  <!-- updateFrom("EMF CDO",0) -->
-      <rm:uri format="{0}/modeling/emf/cdo/drops/S20130603-1126">
+      <rm:uri format="{0}/modeling/emf/cdo/drops/R20130611-1207">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
