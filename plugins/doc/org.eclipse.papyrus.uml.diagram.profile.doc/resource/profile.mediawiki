@@ -2,13 +2,13 @@
 
 The purpose of this chapter is to provide the Papyrus users all the documentation needed in order to be able to use UML profiles. It includes the information for modeling and defining a profile using the Papyrus UML profile editor, but also the information for the usage of a profile within a user application model.
 
-The basic premise of profiles is that all domain-specific concepts are derived as extensions or refinements of existing UML concepts, called UML metaclasses. These extensions are called stereotypes. A stereotype definition must be consistent with the abstract syntax2 and semantics of standard UML meta-classes it extends. Consequently, a profile-based model can be created and manipulated by any tool that supports standard UML. Moreover, because the concepts underlying a profile are specializations of existing UML concepts, it is more easily learned by anyone with knowledge of UML.
+The basic premise of profiles is that all domain-specific concepts are derived as extensions or refinements of existing UML concepts, called UML metaclasses. These extensions are called stereotypes. A stereotype definition must be consistent with the abstract syntax and semantics of standard UML meta-classes it extends. Consequently, a profile-based model can be created and manipulated by any tool that supports standard UML. Moreover, because the concepts underlying a profile are specializations of existing UML concepts, it is more easily learned by anyone with knowledge of UML.
 
 A stereotype is defined either as an extension of a UML base metaclass or as a specialization of an existing stereotype. The extension relationship of UML is not an association but a kind of association directed from the stereotype to the extended metaclass. Consequently, the metadata conveyed by the associated the attributes of the stereotype are associated to the extended metaclass in a transparent manner for the metaclass itself. This allows profiles owning the stereotypes to be applied and removed dynamically without modifying the underlying models — a fundamental feature of the profile mechanism.
 
 A stereotype may have attributes and may be associated with other stereotypes or existing UML metaclasses.
 
-Constraints, such as OCL constraints (3), can also be defined in a profile. They can apply to stereotypes defined in the profile or those imported by the profile. They can also be used to further constrain elements of the UML metamodel. For instance, one could define an OCL constraint that all instances of Class in a model are active, or that all instances of Class must have at least one Operation (regardless of whether the Class is extended by a stereotype or not). However, not all constraints can be written in OCL. In that case, it is common to denote those latter in natural language. The drawback is that such constraints are no more automatically interpretable and need to be first rewritten in some language the UML tool will understand. In the context of Papyrus, it is then usual to use Java.
+Constraints, such as OCL constraints, can also be defined in a profile. They can apply to stereotypes defined in the profile or those imported by the profile. They can also be used to further constrain elements of the UML metamodel. For instance, one could define an OCL constraint that all instances of Class in a model are active, or that all instances of Class must have at least one Operation (regardless of whether the Class is extended by a stereotype or not). However, not all constraints can be written in OCL. In that case, it is common to denote those latter in natural language. The drawback is that such constraints are no more automatically interpretable and need to be first rewritten in some language the UML tool will understand. In the context of Papyrus, it is then usual to use Java.
 
 = Profile Creation and Modeling =
 
@@ -130,15 +130,89 @@ Note: If the profile contains errors (Such as an untyped Property or unnamed Ste
 
 = Profile Application and Usage =
 
+Once a profile has been designed and defined as previously explained, it now times to use it. The first step to process is to apply the profile on your model or a part of the model. This is the purpose of the next section to explain this first step. Then, we will explain how to use the applied profile and mainly how to use its extensions, i.e. its stereotypes.
+
 == Applying a Profile ==
+
+To apply a profile, first you need to open your model.
+
+The first step consists in selecting the part of the model you want to apply the profile on. Profiles can be applied either on Models or Packages. Then to apply the profile on this part, let’s select the profile tab in the property view, and press the [[Image:images/Add.gif|Apply Profile]] button.
+
+[[Image:images/applyProfile.png|Select Package]]<br>
+
+[[Image:images/applyProfile2.png|Profile Tab]]<br>
+
+[[Image:images/applyProfile3.png|Apply Profile]]<br>
+
+Then, Papyrus will ask you firstly to choose the profile to apply from your workspace, and secondly to choose which part of the selected profile you want to apply. It is indeed possible that your profile may be composed of sub-profiles as explained in the previous chapter. It is then possible to apply partially a profile by applying one or more of its sub-profiles.
+
+[[Image:images/selectProfileModel.png|Select Profile]]<br>
+
+[[Image:images/selectProfiles.png|Select Profiles]]<br>
+
+Your model should now look like this:
+
+[[Image:images/appliedProfiles.png|Applied Profiles]]<br>
 
 == Using the Stereotypes of a Profile ==
 
+Once the profile is applied on you model, its extensions, i.e. stereotypes, are available in the modeling tool and can be used in your model to annotate it.
+
 === Applying a Stereotype ===
+
+To annotate a model element, you first need to select it either through the model explorer or in one open diagram. Then, select the tab named “profile” in the properties view, and add your stereotype using the [[Image:images/Add.gif|Apply Profile]] button of the widget named “Applied stereotypes”
+
+[[Image:images/applyStereotype.png|Apply Stereotype]]<br>
+
+[[Image:images/applyStereotype2.png|Apply Stereotype]]<br>
+
+[[Image:images/applyStereotype3.png|Apply Stereotype]]<br>
+
+A dialog box enables you to select the stereotype(s) you want to apply (left part of the dialog box) and using the [[Image:images/arrow_right.gif|Add]] button located in the middle of the dialog box enables to define which stereotypes have to be applied. The list located on the right of the dialog box denotes the list of applied stereotype. If you want to unapply stereotypes, you can select those latter from the right list and use the [[Image:images/arrow_left.gif|Remove]] button to unapply them.
+
+[[Image:images/applyStereotype4.png|Apply Stereotype]]<br>
+
+[[Image:images/applyStereotype5.png|Apply Stereotype]]<br>
+
+At this point, your Papyrus should look like this:
+
+[[Image:images/appliedStereotype.png|Applied Stereotype]]<br>
 
 === Assigning values to properties of stereotypes ===
 
+As already mentioned, Stereotypes may have properties. Consequently, when applying a stereotype to a model element, it may be necessary to set the values of those properties. For that, you will go to the profile tab of the properties view and then you can unfold the stereotype application as shown in following figure:
+
+[[Image:images/stereotypeProperties.png|Stereotype Properties]]<br>
+
+Once you have selected the property to edit, its value (if already set, as for example if there is a default value defined in the profile for the property) appear in the right part of the property view. If the property has not yet been valued, you can add a value by using the [[Image:images/add.gif|Add]] button located on the top right of the widget named “Properties values”. If there is a value, double-click on the value to edit this latter.
+
+[[Image:images/stereotypePropertyEdition.png|Edit Property]]<br>
+
+Ps: If you want to delete a value set to property, let’s use the [[Image:images/Delete.gif|Delete]] button located on the top right of the widget named “Properties values”.
+
 === Display options of a stereotype application ===
 
+Stereotype applications may be graphically rendered under different forms, either textually, or using specific icons. Details to specify those icons associated to a stereotype are given in previous chapters (See [[#Stereotype display options]]).
 
+Let’s remind that in UML, you can apply several stereotypes on a same model element. In Papyrus, it is then possible to select the ones you want to show for each diagram. For showing or hiding a stereotype application, you have to select the tab “appearance” in the properties view. As shown in the next figure, there is one widget named “Applied stereotypes” that denotes the list of stereotypes applied on the current selected model element. On the example illustrated within this figure, you can see on the upper corner of the icon placed in front of the stereotype name “Requirement” an overlay denoting that this stereotype application is shown.
+
+[[Image:images/stereotypeDisplayOptions.png|Stereotype Display]]<br>
+
+''Warning: Let’s notice that the appearance tab of the property view is only visible if you select a model element from one of the open diagram. In other case, if you select the model element from the model explorer, the concept of graphical does not make sense because the information specified within this view are only related to graphical information.''
+
+''Consequently, the values set to the appearance properties of model element are valid only in the context of the diagram where the element is selected. It is then possible to show a stereotype on a diagram and hide it in another diagram depending on the concerns of the view realized by the diagram.''
+
+To hide or show stereotype applications, you have to select them from the list of applied stereotypes available within the appearance tab and then either press the [[Image:images/ConsoleViewQN.gif|Display qualified name]] button or [[Image:images/change_display.gif|Display]].
+
+The former is to be used if you want to display the stereotype application with its qualified name, and the latter is to be used if you want to show it without qualified name. Using one of both depends if you may have ambiguities or not on the origin of the stereotype when as for example applying several profiles defining similar stereotypes. As for example, both profiles, MARTE and SysML, define a stereotype named «FlowPort».
+
+In addition, there are three other widgets dedicated to configure the stereotype display options:
+
+* “Stereotype display” is an enumeration which values may be Text, Icon, Text and Icon or Shape. In UML, as explained previously, a stereotype may be denoted either as a string between a pair of French guillemets (e.g., «Requirement»), or as an icon embedded in the figure or as a shape with a label. In case of the shape option, it substitutes the normal graphical figure used to represent the element and its label denotes the name of the element.
+
+* “Text alignment” is an enumeration which values may be Horizontal or Vertical. When several applied stereotypes are shown, it is rendered as a list of string separated by a comma and enclosed between a pair of French guillemets. By default, this string is shown horizontally. But some times for aesthetic reasons, it may be useful to show it vertically, that is to say showing one stereotype per line.
+
+* “Display place” is an enumeration which values may be Compartment, Comment or With brace. This appearance property is used to set where to show the properties values of the applied stereotypes. In UML, those values can be shown either within a pair of braces located just near (above or on top) the name label of the model element (“With brace” option), or into a dedicated compartment, or in a text note associated with the annotated model element.
+
+''PS: if you display several stereotype applications, and if you select the options to display them with icon or with icon and text, this is the icon of the first stereotype application in the list which is chosen to be displayed.''
 
