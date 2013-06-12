@@ -46,9 +46,14 @@ mapping Package::toDCPackage() : DataContextPackage disjuncts
 	
 abstract mapping Package::toAbstractDCPackage() : DataContextPackage {
 	name := self.name;
-	elements := self.getClassifiers().map toDCElement().element->union(
-		self.packagedElement->select(e | e.oclIsKindOf(Package)).oclAsType(Package)->map toDataContextPackage()
-	);
+	
+	var mappedElements := self.getClassifiers().map toDCElement(); 
+	
+	elements := mappedElements.element
+		->union(
+			self.packagedElement->select(e | e.oclIsKindOf(Package)).oclAsType(Package)->map toDataContextPackage()
+		)
+	;
 }
 
 mapping Package::toDataContextPackage() : DataContextPackage inherits Package::toAbstractDCPackage when {
@@ -148,10 +153,7 @@ query UML::Property::isAttribute(stereo : Stereotype) : Boolean{
 mapping UML::Property::toProperty() : PropertyContext::Property {
 	name := self.name;
 	type := self.type.getType();
-	
-	if self.type.isView() then
-		self.type.oclAsType(Classifier).map toDCElement()
-	endif;
+	multiplicity := if self.upperBound() > 1 or self.upperBound() = -1 then -1 else 1 endif;
 	
 	description := profile.objectsOfType(UML::Comment)->select(comment | comment.annotatedElement->includes(self))->any(comment | true).body
 }
@@ -166,7 +168,9 @@ query UML::Type::getType() : PropertyEnvironment::Type {
 			case (self.name = "String") type := PropertyEnvironment::Type::String; 
 			case (self.name = "Integer") type := PropertyEnvironment::Type::Integer;
 			case (self.name = "Boolean") type := PropertyEnvironment::Type::Boolean;
+			case (self.name = "Real") type := PropertyEnvironment::Type::String;
 		};
+		case (self.oclIsTypeOf(DataType)) type := PropertyEnvironment::Type::Reference;
 	};
 	return type;
 }

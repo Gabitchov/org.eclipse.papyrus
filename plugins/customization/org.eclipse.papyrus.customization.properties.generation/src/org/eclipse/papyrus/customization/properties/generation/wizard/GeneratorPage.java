@@ -70,6 +70,11 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 	}
 
 	@Override
+	public void dispose() {
+		this.generator.removeListener(this);
+	}
+
+	@Override
 	public boolean isPageComplete() {
 		return targetFileChooser.getFilePath() != null && (generator != null && generator.isReady());
 	}

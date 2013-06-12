@@ -80,6 +80,9 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 	 * @return the selected file path
 	 */
 	public String getFilePath() {
+		if(text.isDisposed()) {
+			return null;
+		}
 		String path = text.getText();
 		if(path.trim().equals("")) { //$NON-NLS-1$
 			return null;
@@ -118,8 +121,9 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 
 		if(newFile) {
 			IFile file = WorkspaceResourceDialog.openNewFile(getShell(), null, null, null, filters);
-			if(file != null)
+			if(file != null) {
 				result = new IFile[]{ file };
+			}
 		} else {
 			result = WorkspaceResourceDialog.openFileSelection(getShell(), null, null, false, new Object[]{ currentFile }, filters);
 		}

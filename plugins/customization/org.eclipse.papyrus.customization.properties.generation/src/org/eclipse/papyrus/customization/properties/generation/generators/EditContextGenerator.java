@@ -84,4 +84,9 @@ public class EditContextGenerator implements IGenerator {
 		throw new UnsupportedOperationException();
 	}
 
+	public void removeListener(Listener listener) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

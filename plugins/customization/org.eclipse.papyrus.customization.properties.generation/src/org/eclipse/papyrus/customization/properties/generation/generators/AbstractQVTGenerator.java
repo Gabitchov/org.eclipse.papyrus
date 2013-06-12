@@ -148,6 +148,10 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 		listeners.add(listener);
 	}
 
+	public void removeListener(Listener listener) {
+		listeners.remove(listener);
+	}
+
 	public void handleEvent(Event event) {
 		for(Listener listener : listeners) {
 			listener.handleEvent(event);

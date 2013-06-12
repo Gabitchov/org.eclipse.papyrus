@@ -121,4 +121,11 @@ public interface IGenerator {
 	 * @param listener
 	 */
 	public void addListener(Listener listener);
+
+	/**
+	 * Removes a Change Listener from this generator.
+	 * 
+	 * @param listener
+	 */
+	public void removeListener(Listener listener);
 }
