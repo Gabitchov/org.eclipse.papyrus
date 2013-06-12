@@ -93,8 +93,10 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	public Object createDialogInstance() {
 		int columnIndex = this.layerCell.getColumnIndex();
 		int rowIndex = this.layerCell.getRowIndex();
-		final Object row = this.manager.getRowElement(rowIndex);
-		final Object column = this.manager.getColumnElement(columnIndex);
+		Object row = this.manager.getRowElement(rowIndex);
+		Object column = this.manager.getColumnElement(columnIndex);
+		row = AxisUtils.getRepresentedElement(row);
+		column = AxisUtils.getRepresentedElement(column);
 		Element editedElement = null;
 		Object feature = null;
 		if(row instanceof EObject && column == this.axisElement) {
