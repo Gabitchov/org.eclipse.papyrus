@@ -104,7 +104,7 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 	 * @param evaluationContext
 	 */
 	public void setEnabled(Object evaluationContext) {
-		setBaseEnabled(true);
+		setBaseEnabled(getSelection().size()==1);
 	}
 
 	/**
