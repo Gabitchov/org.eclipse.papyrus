@@ -107,7 +107,7 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
+	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {//FIXME must be done in the abstract class
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
 		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
 		for(final IAxis current : getRepresentedContentProvider().getAxis()) {

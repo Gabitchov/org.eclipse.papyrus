@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +26,9 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
@@ -285,8 +288,32 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param objectToDestroy
 	 * @return
 	 */
-	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.util.Collection)
+	 * 
+	 * @param domain
+	 * @param objectToDestroy
+	 * @return
+	 */
+	@Override
+	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {//FIXME must be done in the abstract class
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
+		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
+		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
+			if(current.getManager() == this.representedAxisManager) {
+				if(objectToDestroy.contains(current) || objectToDestroy.contains(current.getElement())) {
+					final DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)domain, current, false);
+					compositeCommand.add(provider.getEditCommand(request));
+				}
+			}
+		}
+		if(!compositeCommand.isEmpty()) {
+			return new GMFtoEMFCommandWrapper(compositeCommand);
+		}
 		return null;
+
 	}
 
 
@@ -478,11 +505,12 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 */
 	protected List<Object> getElements(final List<Integer> axisPositions) {
 		final List<Object> elements = getElements();
+		final List<Object> toDestroy = new ArrayList<Object>();
 		for(final Integer position : axisPositions) {
 			final Object element = elements.get(position);
-			elements.add(element);
+			toDestroy.add(element);
 		}
-		return elements;
+		return toDestroy;
 	}
 
 	/**
