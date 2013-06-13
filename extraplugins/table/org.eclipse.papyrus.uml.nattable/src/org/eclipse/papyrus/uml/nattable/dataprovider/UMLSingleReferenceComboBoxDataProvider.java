@@ -169,9 +169,10 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	 */
 	//	FIXME : try to remove this method, improving the ComboAction...
 	public EObject getEditedEObject(int columnIndex, int rowIndex) {
-		final Object colElement = this.elementProvider.getColumnElement(columnIndex);
-		final Object rowElement = this.elementProvider.getRowElement(rowIndex);
-
+		Object colElement = this.elementProvider.getColumnElement(columnIndex);
+		Object rowElement = this.elementProvider.getRowElement(rowIndex);
+		colElement= AxisUtils.getRepresentedElement(colElement);
+		rowElement = AxisUtils.getRepresentedElement(rowElement);
 		Element el = (Element)rowElement;
 
 		if(colElement == this.axisElement) {
