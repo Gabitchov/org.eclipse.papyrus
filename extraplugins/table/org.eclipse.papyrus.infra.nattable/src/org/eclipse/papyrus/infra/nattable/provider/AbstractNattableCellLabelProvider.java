@@ -166,9 +166,9 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 		INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		LabelStack labels = element.getCell().getConfigLabels();
 		if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
-			conf = LabelConfigurationManagementUtils.getUsedColumnFeatureLabelConfiguration(manager.getTable());
+			conf = LabelConfigurationManagementUtils.getUsedColumnObjectLabelConfiguration(manager.getTable());
 		} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
-			conf = LabelConfigurationManagementUtils.getUsedRowFeatureLabelConfiguration(manager.getTable());
+			conf = LabelConfigurationManagementUtils.getUsedRowObjectLabelConfiguration(manager.getTable());
 		}
 		return conf;
 	}
