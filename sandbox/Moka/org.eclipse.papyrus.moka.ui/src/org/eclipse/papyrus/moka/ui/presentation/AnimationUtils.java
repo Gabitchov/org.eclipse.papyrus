@@ -284,10 +284,10 @@ public class AnimationUtils {
 	public void removeAnimationMarker(EObject semanticElement) {
 		if (semanticElement.eIsProxy())
 			semanticElement = resolve(semanticElement) ;
-		IPapyrusMarker stackFrameMarker = eObjectToAnimationMarker.get(semanticElement) ;
-		if (stackFrameMarker != null) {
+		IPapyrusMarker animationFrameMarker = eObjectToAnimationMarker.get(semanticElement) ;
+		if (animationFrameMarker != null) {
 			try {
-				stackFrameMarker.delete() ;
+				animationFrameMarker.delete() ;
 				eObjectToAnimationMarker.remove(semanticElement) ;
 			} catch (CoreException e) {
 				Activator.log.error(e) ;
