@@ -219,7 +219,7 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 	}
 
 	protected String getResourceKey(String key, String extension) {
-		return TARGET_RESOURCE + "." + extension;
+		return key + "." + extension;
 	}
 
 	/**
