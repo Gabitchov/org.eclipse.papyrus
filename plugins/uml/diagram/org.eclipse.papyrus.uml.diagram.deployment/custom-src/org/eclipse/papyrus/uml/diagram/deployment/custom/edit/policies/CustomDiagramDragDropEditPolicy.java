@@ -48,15 +48,19 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPartCN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyBranchEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedArtifactNodeEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedDeviceEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedExecutionEnvironmentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NestedNodeEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageEditPart;
@@ -67,7 +71,9 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
@@ -96,18 +102,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	 */
 	@Override
 	protected Set<Integer> getDroppableElementVisualId() {
-		// TopLevelNodes
+
 		Set<Integer> droppableElementsVisualId = new HashSet<Integer>();
-		droppableElementsVisualId.add(DependencyNodeEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(ModelEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(PackageEditPart.VISUAL_ID);
-		
-		droppableElementsVisualId.add(NodeEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(DeviceEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(ExecutionEnvironmentEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(ArtifactEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(CommentEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(ConstraintEditPart.VISUAL_ID);
 
 		// Class CN
 		droppableElementsVisualId.add(PackageEditPartCN.VISUAL_ID);
@@ -119,6 +115,19 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		droppableElementsVisualId.add(ExecutionEnvironmentEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(CommentEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(ConstraintEditPartCN.VISUAL_ID);
+
+		// TopLevelNodes
+		droppableElementsVisualId.add(DependencyNodeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ModelEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PackageEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(NodeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(DeviceEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ExecutionEnvironmentEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ArtifactEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(CommentEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ConstraintEditPart.VISUAL_ID);
+
+
 
 		return droppableElementsVisualId;
 	}
@@ -179,12 +188,17 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 
 		// Switch test over linkVisualID
 		switch(linkVISUALID) {
-		/*case DependencyEditPart.VISUAL_ID:
-		case DependencyBranchEditPart.VISUAL_ID:
-			return dropDependency(dropRequest, semanticElement, linkVISUALID);*/
+
+		case ManifestationEditPart.VISUAL_ID:
+			return dropManifestation(dropRequest, semanticElement, linkVISUALID);
+
+		case DeploymentEditPart.VISUAL_ID:
+			return dropDependencyNode(dropRequest, semanticElement, linkVISUALID);
+
 		default:
 			// Switch test over nodeVISUALID
 			switch(nodeVISUALID) {
+
 			// Test TopLevelNode... Start
 			case DependencyNodeEditPart.VISUAL_ID:
 				return dropDependencyNode(dropRequest, semanticElement, nodeVISUALID);
@@ -196,13 +210,109 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			case ArtifactEditPart.VISUAL_ID:
 				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 				// Test TopLevelNode... End
+
+				// Test ChildNode... Start	
+			case PackageEditPartCN.VISUAL_ID:
+			case ModelEditPartCN.VISUAL_ID:
+			case NestedNodeEditPartCN.VISUAL_ID:
+			case NestedDeviceEditPartCN.VISUAL_ID:
+			case NestedExecutionEnvironmentEditPartCN.VISUAL_ID:
+			case NestedArtifactNodeEditPartCN.VISUAL_ID:
+				return dropChildNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+				// Test ChildNode... End
+
+
 			case CommentEditPart.VISUAL_ID:
+			case CommentEditPartCN.VISUAL_ID:
+				return dropComment(dropRequest, semanticElement, nodeVISUALID);
+
 			case ConstraintEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ConstraintEditPartCN.VISUAL_ID:
+				return dropConstraint(dropRequest, semanticElement, nodeVISUALID);
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			}
 		}
+	}
+
+	/**
+	 * Drop Manifestation.
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the semantic link
+	 * @param linkVISUALID
+	 *        the link visualid
+	 * @return the command
+	 */
+	protected Command dropManifestation(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+		Collection<?> sourceEnds = DeploymentLinkMappingHelper.getInstance().getSource(semanticLink);
+		Collection<?> targetEnds = DeploymentLinkMappingHelper.getInstance().getTarget(semanticLink);
+
+		// Dependency with Unary ends
+		if((sourceEnds != null) && (targetEnds != null) && (sourceEnds.size() == 1) && (targetEnds.size() == 1)) {
+
+			Element source = (Element)sourceEnds.toArray()[0];
+			Element target = (Element)targetEnds.toArray()[0];
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Manifestation"), source, target, //$NON-NLS-1$
+				linkVISUALID, dropRequest.getLocation(), semanticLink));
+		} else {
+			return UnexecutableCommand.INSTANCE;
+		}
+	}
+
+
+	/**
+	 * Returns the command to drop the Constraint + the link to attach it to its contrainted elements.
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the semantic link
+	 * @param nodeVISUALID
+	 *        the node visual id
+	 * @return the command
+	 */
+	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		//		if(!(graphicalParentObject instanceof Package) && !(graphicalParentObject instanceof Class) && !(graphicalParentObject instanceof Interaction) && !(graphicalParentObject instanceof StateMachine) && !(graphicalParentObject instanceof Collaboration) && !(graphicalParentObject instanceof FunctionBehavior) && !(graphicalParentObject instanceof ProtocolStateMachine) && !(graphicalParentObject instanceof ExecutionEnvironment) && !(graphicalParentObject instanceof Device)) {
+		//			return UnexecutableCommand.INSTANCE;
+		//		}
+
+		if(nodeVISUALID == ConstraintEditPart.VISUAL_ID) {
+			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_2005, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_4009);
+		} else if(nodeVISUALID == ConstraintEditPartCN.VISUAL_ID) {
+			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_56, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_4009);
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+
+	/**
+	 * Returns the command to drop the Comment + the link to attach it to its annotated elements.
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the semantic link
+	 * @param nodeVISUALID
+	 *        the node visual id
+	 * @return the command
+	 */
+	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		//		if(!(graphicalParentObject instanceof Package) && !(graphicalParentObject instanceof Class) && !(graphicalParentObject instanceof Property) && !(graphicalParentObject instanceof Interaction) && !(graphicalParentObject instanceof StateMachine) && !(graphicalParentObject instanceof Collaboration) && !(graphicalParentObject instanceof FunctionBehavior) && !(graphicalParentObject instanceof ProtocolStateMachine) && !(graphicalParentObject instanceof ExecutionEnvironment) && !(graphicalParentObject instanceof Device)) {
+		//			return UnexecutableCommand.INSTANCE;
+		//		}
+		if(nodeVISUALID == CommentEditPart.VISUAL_ID) {
+			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_2001, (IHintedType)UMLElementTypes.CommentAnnotatedElement_4008);
+		} else if(nodeVISUALID == CommentEditPartCN.VISUAL_ID) {
+			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_54, (IHintedType)UMLElementTypes.CommentAnnotatedElement_4008);
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	private Command dropDependencyNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
@@ -211,7 +321,7 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		if(sources.size() == 1 && targets.size() == 1) {
 			Element source = (Element)sources.toArray()[0];
 			Element target = (Element)targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4008, dropRequest.getLocation(), semanticElement));
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4004, dropRequest.getLocation(), semanticElement));
 		}
 		if(sources.size() > 1 || targets.size() > 1) {
 			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain());
@@ -309,6 +419,30 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	 * @return the drop command
 	 */
 	protected Command dropTopLevelNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(graphicalParentObject instanceof org.eclipse.uml2.uml.Package) {
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement));
+		}
+
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Drop child node.
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticElement
+	 *        the semantic element
+	 * @param nodeVISUALID
+	 *        the node visualid
+	 * @param linkVISUALID
+	 *        the link visualid
+	 * @return the command
+	 */
+	private Command dropChildNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
 
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();

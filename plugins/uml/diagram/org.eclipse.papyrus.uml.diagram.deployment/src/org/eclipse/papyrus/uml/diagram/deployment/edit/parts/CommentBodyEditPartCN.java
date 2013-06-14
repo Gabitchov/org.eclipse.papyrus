@@ -141,8 +141,8 @@ public class CommentBodyEditPartCN extends PapyrusCompartmentEditPart implements
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getText();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
 		} else {
@@ -154,8 +154,8 @@ public class CommentBodyEditPartCN extends PapyrusCompartmentEditPart implements
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setText(text);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
 		} else {
@@ -167,8 +167,8 @@ public class CommentBodyEditPartCN extends PapyrusCompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getIcon();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
 		} else {
@@ -180,8 +180,8 @@ public class CommentBodyEditPartCN extends PapyrusCompartmentEditPart implements
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setIcon(icon);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
 		} else {
@@ -488,8 +488,8 @@ public class CommentBodyEditPartCN extends PapyrusCompartmentEditPart implements
 	 */
 	protected void refreshUnderline() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
@@ -505,8 +505,8 @@ public class CommentBodyEditPartCN extends PapyrusCompartmentEditPart implements
 	 */
 	protected void refreshStrikeThrough() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 
