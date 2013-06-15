@@ -16,6 +16,7 @@ package org.eclipse.papyrus.moka.ui.presentation;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -135,6 +136,25 @@ public class AnimationUtils {
 					Diagram diagram = ((View)setting.getEObject()).getDiagram();
 					if(! matchingDiagrams.contains(diagram)) {
 						matchingDiagrams.add(diagram) ;
+					}
+					// For optimization purposes,
+					// Add mapping entries for other semantic elements
+					// having a representation in this diagram
+					for (Iterator<EObject> i = diagram.eAllContents() ; i.hasNext() ; ) {
+						EObject cddView = i.next() ;
+						if (cddView instanceof View) {
+							EObject element = ((View) cddView).getElement() ;
+							if (element != modelElement) {
+								List<Diagram> diags = eObjectToDiagrams.get(element) ;
+								if (diags == null) {
+									diags = new ArrayList<Diagram>() ;
+								}
+								else if (! diags.contains(diagram)) {
+									diags.add(diagram) ;
+								}
+								eObjectToDiagrams.put(element, diags) ;
+							}
+						}
 					}
 				}
 			}
