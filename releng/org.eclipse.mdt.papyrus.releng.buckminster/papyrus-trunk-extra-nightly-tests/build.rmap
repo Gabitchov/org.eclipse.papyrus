@@ -3,6 +3,8 @@
   <rm:property key="build.type" mutable="true" value="N"/>
   <rm:locator pattern="^org\.eclipse\.mdt\.papyrus\.releng.*" searchPathRef="releng"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?tests?$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?tests.*?$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?tests?$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.sdk\.feature$" searchPathRef="papyrusBinaries"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.extra\.feature$" searchPathRef="papyrusBinaries"/>
