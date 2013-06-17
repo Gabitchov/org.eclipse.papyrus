@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks">
+  <uml:Model xmi:id="_AfuF1NcsEeK-8MB5BVhuRg" name="Model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_AfuF1dcsEeK-8MB5BVhuRg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_B5R5gNcsEeK-8MB5BVhuRg" name="Class1"/>
+    <packagedElement xmi:type="uml:Model" xmi:id="_IS2qsNcsEeK-8MB5BVhuRg" name="Model1">
+      <packagedElement xmi:type="uml:Class" xmi:id="_NV_NYNcsEeK-8MB5BVhuRg" name="Block1"/>
+      <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_L-XTINcsEeK-8MB5BVhuRg">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L_G6ANcsEeK-8MB5BVhuRg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+        </eAnnotations>
+        <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+      </profileApplication>
+    </packagedElement>
+  </uml:Model>
+  <Blocks:Block xmi:id="_NWI-YNcsEeK-8MB5BVhuRg" base_Class="_NV_NYNcsEeK-8MB5BVhuRg"/>
+</xmi:XMI>
