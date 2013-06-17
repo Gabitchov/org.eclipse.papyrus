@@ -46,7 +46,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.service.DurationCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.swt.widgets.Display;
 
@@ -269,9 +268,11 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 	private Tool createDurationConstraint15CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.DurationConstraint_3021);
-		types.add(UMLElementTypes.DurationConstraint_3023);
+		//		types.add(UMLElementTypes.DurationConstraint_3023);
 		// use DurationCreationTool
-		Tool tool = new DurationCreationTool(types);
+		//		Tool tool = new DurationCreationTool(types);
+		//Disable old DurationConstraint creation.
+		InteractionChildCreationTool tool = new InteractionChildCreationTool(types);
 		return tool;
 	}
 

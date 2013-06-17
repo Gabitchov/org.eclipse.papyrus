@@ -184,7 +184,9 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 					rect.y = parentBounds.bottom() - rect.height;
 				}
 				feedback.translateToRelative(rect);
-				feedback.setBounds(rect);
+				feedback.setBounds(rect.getCopy());
+				//Fixed bug about moving guard.
+				feedback.translateToAbsolute(rect);
 				request.setMoveDelta(new Point(rect.x - initialAbsBounds.x, rect.y - initialAbsBounds.y));
 			}
 		};

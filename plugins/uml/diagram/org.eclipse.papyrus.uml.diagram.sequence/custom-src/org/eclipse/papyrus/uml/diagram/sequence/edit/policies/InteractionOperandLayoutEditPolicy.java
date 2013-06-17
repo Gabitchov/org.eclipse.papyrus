@@ -13,16 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import java.util.List;
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
+import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 
 /**
@@ -77,6 +82,7 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 		return super.getCommand(request);
 	}
+
 	//	/**
 	//	 * Handle combined fragment resize
 	//	 */
@@ -105,4 +111,18 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 	//		}
 	//		return compoundCmd.unwrap();
 	//	}
+
+	@Override
+	protected Command getOrphanChildrenCommand(Request request) {
+		//Do NOT allow orphan Guard.
+		if(request instanceof GroupRequest) {
+			List editParts = ((GroupRequest)request).getEditParts();
+			for(Object object : editParts) {
+				if(object instanceof InteractionOperandGuardEditPart) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
+		}
+		return super.getOrphanChildrenCommand(request);
+	}
 }

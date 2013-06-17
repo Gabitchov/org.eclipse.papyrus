@@ -582,6 +582,10 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					// Create and add the set bounds command to the compound command
 					SetBoundsCommand setBoundsCmd = new SetBoundsCommand(cf2EP.getEditingDomain(), "Resize of a CoRegion", cf2EP, getNewBoundsForCoRegion(lifelineEP, bounds));
 					compoundCmd.add(new ICommandProxy(setBoundsCmd));
+					// keep absolute position of anchors
+					if(sizeDelta != null && sizeDelta.height != 0) {
+						compoundCmd.add(new ICommandProxy(new CustomLifelineEditPart.PreserveAnchorsPositionCommandEx(cf2EP, new Dimension(0, sizeDelta.height), PreserveAnchorsPositionCommand.PRESERVE_Y, cf2EP.getPrimaryShape().getCentralVerticalLine(), request.getResizeDirection())));
+					}
 				}
 			}
 			if(!compoundCmd.isEmpty()) {
