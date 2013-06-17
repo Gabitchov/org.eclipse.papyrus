@@ -17,3 +17,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.nattable.tests,
+ org.eclipse.papyrus.uml.nattable.tests.tests
