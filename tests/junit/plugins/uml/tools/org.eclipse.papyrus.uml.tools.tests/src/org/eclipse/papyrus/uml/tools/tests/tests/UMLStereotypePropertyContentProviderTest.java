@@ -75,34 +75,34 @@ public class UMLStereotypePropertyContentProviderTest {
 	@Before
 	public void init() {
 		try {
-			EObject testModel = EMFHelper.loadEMFModel(new ResourceSetImpl(), URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/uml/profileTest.profile.uml", true));
+			EObject testModel = EMFHelper.loadEMFModel(new ResourceSetImpl(), URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/uml/profileTest.profile.uml", true)); //$NON-NLS-1$
 			Assert.assertTrue(testModel instanceof Profile);
 			rootProfile = (Profile)testModel;
 		} catch (IOException ex) {
 			Activator.log.error(ex);
 		}
-		assertNotNull("Cannot load the EMF Tests model", rootProfile);
+		assertNotNull("Cannot load the EMF Tests model", rootProfile); //$NON-NLS-1$
 
-		subProfile1 = (Profile)rootProfile.getPackagedElement("Profile1");
-		subProfile2 = (Profile)rootProfile.getPackagedElement("Profile2");
+		subProfile1 = (Profile)rootProfile.getPackagedElement("Profile1"); //$NON-NLS-1$
+		subProfile2 = (Profile)rootProfile.getPackagedElement("Profile2"); //$NON-NLS-1$
 
 		Assert.assertNotNull(subProfile1);
 		Assert.assertNotNull(subProfile2);
 
-		ste1 = (Stereotype)subProfile1.getMember("Stereotype1");
-		ste2 = (Stereotype)subProfile2.getMember("Stereotype2");
+		ste1 = (Stereotype)subProfile1.getMember("Stereotype1"); //$NON-NLS-1$
+		ste2 = (Stereotype)subProfile2.getMember("Stereotype2"); //$NON-NLS-1$
 
 		Assert.assertNotNull(ste1);
 		Assert.assertNotNull(ste2);
 
-		prop1 = (Property)ste1.getMember("prop1");
-		prop2 = (Property)ste2.getMember("prop2");
+		prop1 = (Property)ste1.getMember("prop1"); //$NON-NLS-1$
+		prop2 = (Property)ste2.getMember("prop2"); //$NON-NLS-1$
 
 		Assert.assertNotNull(prop1);
 		Assert.assertNotNull(prop2);
 
-		basePropSte1 = (Property)ste1.getMember("base_Activity");
-		basePropSte2 = (Property)ste2.getMember("base_Class");
+		basePropSte1 = (Property)ste1.getMember("base_Activity"); //$NON-NLS-1$
+		basePropSte2 = (Property)ste2.getMember("base_Class"); //$NON-NLS-1$
 
 		Assert.assertNotNull(basePropSte1);
 		Assert.assertNotNull(basePropSte2);
