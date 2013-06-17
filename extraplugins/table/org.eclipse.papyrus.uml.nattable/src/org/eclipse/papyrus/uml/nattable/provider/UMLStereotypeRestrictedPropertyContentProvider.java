@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.nattable.provider;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -79,6 +80,30 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	protected void init() {
 		setProfiles(new ArrayList<Profile>(getAllAvailableProfiles()));
 		this.restrictedElements = calculusOfAllowedElements();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.tools.providers.UMLStereotypePropertyContentProvider#getElements()
+	 * 
+	 * @return
+	 */
+	@Override
+	public Object[] getElements() {
+		if(this.isRestricted) {
+			final AbstractAxisProvider secondAxisProvider = getOtherAxisProvider();
+			final List<?> elements = umlStereotypePropertyManager.getTableManager().getElementsList(secondAxisProvider);
+			if(elements.isEmpty()) {
+				return new Object[0];
+			} else {
+				List<Object> values = Arrays.asList(super.getElements());
+				values = new ArrayList<Object>(values);
+				values.retainAll(restrictedElements);
+				return values.toArray();
+			}
+		} else {
+			return super.getElements();
+		}
 	}
 
 	/**

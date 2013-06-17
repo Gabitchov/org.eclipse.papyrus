@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.nattable.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -39,9 +40,13 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 	}
 
 	public Object[] getElements(Object inputElement) {
-		Collection<Object> elementsToShow;
-		elementsToShow = this.umlFeatureAxisManager.getAllPossibleAxis();
-		return elementsToShow.toArray();
+		final AbstractAxisProvider secondAxisProvider = getSecondAxisProvider();
+		final List<?> elements = umlFeatureAxisManager.getTableManager().getElementsList(secondAxisProvider);
+		if(this.isRestricted && elements.isEmpty()) {//we must returns nothing when the table is empty
+			return new Object[0];
+		} else {
+			return this.umlFeatureAxisManager.getAllPossibleAxis().toArray();
+		}
 	}
 
 	protected AbstractAxisProvider getManagedAxisProvider() {
