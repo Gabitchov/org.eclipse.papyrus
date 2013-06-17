@@ -167,26 +167,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	 */
 	@Override
 	public IRestrictedContentProvider createPossibleAxisContentProvider(boolean isRestricted) {
-		AbstractAxisProvider secondAxis = ((INattableModelManager)getTableManager()).getHorizontalAxisProvider();
-		if(secondAxis == getRepresentedContentProvider()) {
-			secondAxis = ((INattableModelManager)getTableManager()).getVerticalAxisProvider();
-		}
-		final List<Object> allObjectsInTable = getTableManager().getElementsList(secondAxis);
-		final Set<Profile> profiles = new HashSet<Profile>();
-		for(Object object : allObjectsInTable) {
-			final Object representedElement = AxisUtils.getRepresentedElement(object);
-			if(representedElement instanceof Element) {
-				List<Stereotype> appliedStereotypes = ((Element)representedElement).getAppliedStereotypes();
-				for(Stereotype stereotype : appliedStereotypes) {
-					profiles.add((Profile)EcoreUtil.getRootContainer(stereotype));
-				}
-			}
-		}
-
-		IRestrictedContentProvider umlStereotypePropertyContentProvider = new UMLStereotypeRestrictedPropertyContentProvider(this, new ArrayList<Profile>(profiles));
-		umlStereotypePropertyContentProvider.setRestriction(isRestricted);
-		return umlStereotypePropertyContentProvider;
-
+		return new UMLStereotypeRestrictedPropertyContentProvider(this, isRestricted);
 	}
 
 	public Collection<Object> getAllPossibleAxis() {

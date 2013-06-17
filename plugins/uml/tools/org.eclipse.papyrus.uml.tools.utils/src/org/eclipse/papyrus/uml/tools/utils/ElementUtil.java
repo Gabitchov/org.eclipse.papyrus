@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.tools.utils;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -27,7 +28,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Image;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -235,7 +239,7 @@ public class ElementUtil {
 	public static boolean hasShapes(Element element, Stereotype stereotype) {
 		return stereotype != null && !StereotypeUtil.getShapes(stereotype).isEmpty();
 	}
-	
+
 	/**
 	 * look for all metaclasses of the meta model UML2 for a profile.
 	 * 
@@ -257,7 +261,7 @@ public class ElementUtil {
 
 		return metaList;
 	}
-	
+
 	/**
 	 * return all type contained in the metamodel UML2. Elements in the list are the UML2
 	 * representation of the concepts of the metamodel. each element of the list must be casted with
@@ -273,7 +277,7 @@ public class ElementUtil {
 
 		return uml2Metamodel.getOwnedTypes();
 	}
-	
+
 	/**
 	 * Loads content for the given URI, and returns the top package of this content.
 	 * 
@@ -289,12 +293,119 @@ public class ElementUtil {
 		try {
 			Resource resource = resourceSet.getResource(uri, true);
 
-			package_ = (org.eclipse.uml2.uml.Package)EcoreUtil.getObjectByType(resource.getContents(),
-					UMLPackage.eINSTANCE.getPackage());
+			package_ = (org.eclipse.uml2.uml.Package)EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.eINSTANCE.getPackage());
 		} catch (WrappedException we) {
 			Activator.logError("impossible to load content for URI: " + uri);
 		}
 
 		return package_;
 	}
+
+	/**
+	 * Retrieve an list of all instances in the model that are instances of
+	 * the java.lang.Class metaType or with a stereotype applied
+	 * 
+	 * @param <T>
+	 * 
+	 * @param metaType
+	 *        selected classes
+	 * @param model
+	 *        to check
+	 * @param appliedStereotype
+	 *        may be null, metatype is ignored if not null
+	 * @return a list containing the selected instances
+	 */
+	//duplicated code from /org.eclipse.papyrus.uml.diagram.common/src/org/eclipse/papyrus/uml/diagram/common/util/Util.java
+	//+add template to this method
+	@SuppressWarnings("unchecked")
+	public static final <T extends EObject> List<T> getInstancesFilteredByType(final Package topPackage, final java.lang.Class<T> metaType, final Stereotype appliedStereotype) {
+		// retrieve parent element
+		// Package topPackage = Util.topPackage(element);
+		// Assert.isNotNull(topPackage,
+		// "Top package should not be null for element " + element);
+		Iterator<EObject> iter = topPackage.eAllContents();
+		List<T> filteredElements = new ArrayList<T>();
+
+		while(iter.hasNext()) {
+			EObject currentElt = iter.next();
+
+			// If currentElt is an ElementImport, it is replaced by the imported
+			// Element.
+			if(currentElt instanceof ElementImport) {
+				ElementImport elementImport = (ElementImport)currentElt;
+				currentElt = elementImport.getImportedElement();
+			}
+
+			/* package imports treatment */
+			else if(currentElt instanceof PackageImport) {
+				Iterator<EObject> piIter = ((PackageImport)currentElt).getImportedPackage().eAllContents();
+				while(piIter.hasNext()) {
+					EObject piCurrentElt = piIter.next();
+					if(piCurrentElt instanceof Element) {
+						if(appliedStereotype != null) {
+
+							Iterator<Stereotype> appStIter = ((Element)piCurrentElt).getAppliedStereotypes().iterator();
+							while(appStIter.hasNext()) {
+								Stereotype currentSt = (Stereotype)appStIter.next();
+
+								if(currentSt.conformsTo(appliedStereotype)) {
+									filteredElements.add((T)piCurrentElt);
+								}
+							}
+
+						} else { // if (appliedStereotype == null)
+							if(metaType.isInstance(piCurrentElt)) {
+								filteredElements.add((T)piCurrentElt);
+							}
+
+							/** add imported meta elements */
+							else if(piCurrentElt instanceof ElementImport) {
+								Iterator<EObject> eIter = ((ElementImport)piCurrentElt).getImportedElement().eAllContents();
+								while(eIter.hasNext()) {
+									EObject currentEIelt = eIter.next();
+									if(metaType.isInstance(currentEIelt))
+										filteredElements.add((T)currentEIelt);
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+			// Filtering elements
+			if(currentElt instanceof Element) {
+
+				if(appliedStereotype != null) {
+
+					Iterator<Stereotype> appStIter = ((Element)currentElt).getAppliedStereotypes().iterator();
+					while(appStIter.hasNext()) {
+						Stereotype currentSt = (Stereotype)appStIter.next();
+
+						if(currentSt.conformsTo(appliedStereotype)) {
+							filteredElements.add((T)currentElt);
+						}
+					}
+
+				} else { // if (appliedStereotype == null)
+					if(metaType.isInstance(currentElt)) {
+						filteredElements.add((T)currentElt);
+					}
+
+					/** add imported meta elements */
+					else if(currentElt instanceof ElementImport) {
+						Iterator<EObject> eIter = ((ElementImport)currentElt).getImportedElement().eAllContents();
+						while(eIter.hasNext()) {
+							EObject currentEIelt = eIter.next();
+							if(metaType.isInstance(currentEIelt))
+								filteredElements.add((T)currentEIelt);
+						}
+					}
+				}
+			}
+		}
+
+		return filteredElements;
+	}
+
 }

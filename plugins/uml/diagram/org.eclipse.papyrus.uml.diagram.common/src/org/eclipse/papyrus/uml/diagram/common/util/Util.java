@@ -27,6 +27,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
@@ -69,8 +70,10 @@ public class Util {
 	}
 
 	/**
-	 * Retrieve an arraylist of all instances in the model that are instances of
-	 * the java.lang.Class metaType or with a stereotype applied
+	 * @deprecated must be replaced by org.eclipse.papyrus.uml.tools.utils.ElementUtil#getInstancesFilteredByType
+	 * 
+	 *             Retrieve an arraylist of all instances in the model that are instances of
+	 *             the java.lang.Class metaType or with a stereotype applied
 	 * 
 	 * @param metaType
 	 *        selected classes
@@ -81,6 +84,8 @@ public class Util {
 	 * @return an arraylist containing the selected instances
 	 */
 	public static ArrayList getInstancesFilteredByType(Package topPackage, Class metaType, Stereotype appliedStereotype) {
+		//		List<EObject> elements = ElementUtil.getInstancesFilteredByType(topPackage, metaType, appliedStereotype);
+		//		return new ArrayList<EObject>(elements);
 		// retrieve parent element
 		// Package topPackage = Util.topPackage(element);
 		// Assert.isNotNull(topPackage,
@@ -429,10 +434,10 @@ public class Util {
 	 */
 	public static Object retrievesEnumerationLiteralFromString(Property property, ArrayList<String> stringValues, org.eclipse.uml2.uml.Element packageContainer) {
 		Enumeration enume = null;
-		
+
 		Type type = property.getType();
 		Assert.isTrue(type instanceof Enumeration);
-		enume = (Enumeration) type;
+		enume = (Enumeration)type;
 
 		ArrayList<Object> returnedValues = new ArrayList<Object>();
 

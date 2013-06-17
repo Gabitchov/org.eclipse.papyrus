@@ -37,7 +37,7 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	/**
 	 * the profiles
 	 */
-	private List<Profile> profiles;
+	protected List<Profile> profiles;
 
 	/**
 	 * this boolean is used to know if we should returns the Property base_EXTENDED_METACLASS or not
@@ -62,9 +62,21 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	 * @param profiles
 	 *        the profiles to navigate
 	 * @param baseProperty
+	 *        if <code>true</code> the baseProperty of the stereotype will be returned in the list of the properties
 	 */
 	public UMLStereotypePropertyContentProvider(final List<Profile> profiles, final boolean baseProperty) {
 		this.profiles = profiles;
+		this.baseProperty = baseProperty;
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param baseProperty
+	 *        if <code>true</code> the baseProperty of the stereotype will be returned in the list of the properties
+	 */
+	public UMLStereotypePropertyContentProvider(final boolean baseProperty) {
 		this.baseProperty = baseProperty;
 	}
 
@@ -167,7 +179,7 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	public boolean isValidValue(Object element) {
 		if(element instanceof Element) {
 			boolean result = element instanceof Property && ((Element)element).eContainer() instanceof Stereotype;
-			if(result && !baseProperty) {
+			if(result) {
 				return StereotypeUtil.isValidStereotypeProperty((Property)element);
 			}
 			return result;
@@ -175,4 +187,12 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param profiles
+	 *        the list of the profiles to navigate
+	 */
+	public void setProfiles(final List<Profile> profiles) {
+		this.profiles = profiles;
+	}
 }

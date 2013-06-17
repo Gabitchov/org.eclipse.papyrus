@@ -650,6 +650,22 @@ public class StereotypeUtil {
 	}
 
 	/**
+	 *
+	 * @param stereotype
+	 *        a stereotype
+	 * @return
+	 *         the list of the properties of this stereotype, excluding the properties of the extending metaclasses
+	 */
+	public static final List<Property> getAllStereotypePropertiesWithoutBaseProperties(final Stereotype stereotype) {
+		final List<Property> properties = new ArrayList<Property>();
+		for(Property property : stereotype.getAllAttributes()) {
+			if(isValidStereotypeProperty(property)) {
+				properties.add(property);
+			}
+		}
+		return properties;
+	}
+	/**
 	 * 
 	 * @param property
 	 *        a property
