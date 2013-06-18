@@ -58,7 +58,7 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 		Object newValue = notif.getNewValue();
 		Object notifier = notif.getNotifier();
 		if(newValue instanceof TransitionKind && notifier instanceof EObject) {
-			CompositeCommand cc = new CompositeCommand("Modification command triggered by modedication of the kind of the current selected transition");//$NON-NLS-0$
+			CompositeCommand cc = new CompositeCommand("Modification command triggered by modification of the kind of the current selected transition");//$NON-NLS-0$
 			EObject eNotifier = (EObject)notifier;
 			//Handle deletion of the old EditPart
 			boolean becomingInternal = isBecomingInternal(notif);
@@ -67,17 +67,15 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 			if(availableEditPart == null) {
 				return null;
 			}
-			Command deleteCommant = getDeleteCommand(becomingInternal, availableEditPart);
-			if(deleteCommant != null && deleteCommant.canExecute()) {
-				cc.compose(new CommandProxy(deleteCommant));
+			Command deleteCommand = getDeleteCommand(becomingInternal, availableEditPart);
+			Command creationCommand = getCreationCommand(becomingInternal, eNotifier);
+			if(deleteCommand != null && deleteCommand.canExecute() &&
+				creationCommand != null && creationCommand.canExecute()) {
+				// only delete, if addition is possible, see bug 407736
+				cc.compose(new CommandProxy(deleteCommand));
+				//handle addition of the new EditPart
+				cc.compose(new CommandProxy(creationCommand));
 			}
-			//handle addition of the new EditPart
-			Command creationCommaned = getCreationCommand(becomingInternal, eNotifier);
-			if(creationCommaned != null && creationCommaned.canExecute()) {
-				cc.compose(new CommandProxy(creationCommaned));
-			}
-
-
 
 			return cc;
 		}

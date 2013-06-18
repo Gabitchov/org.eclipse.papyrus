@@ -499,6 +499,13 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 		// might be a state machine instead of a region
+
+		// fix for bug 407737 - check internal transition case before verifying that parent is a region
+		// drop is not on owning region. The transition might be a internal transition => drop to internal compartment region
+		if(TransitionKind.INTERNAL == droppedElement.getKind().getValue()) {
+			return dropInternalTransition(dropRequest, droppedElement, getNodeVisualID(graphicalParentEditPart.getNotationView(), droppedElement));
+		}
+
 		if (!(graphicalParentObject instanceof Region)) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -514,10 +521,6 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			transitions = region.getTransitions();
 		}
 		if(!transitions.contains(droppedElement)) {
-			// drop is not on owning region. The transition might be a internal transition => drop to internal compartment region
-			if(TransitionKind.INTERNAL == droppedElement.getKind().getValue()) {
-				return dropInternalTransition(dropRequest, droppedElement, getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedElement));
-			}
 			return UnexecutableCommand.INSTANCE;
 		}
 		Vertex source = droppedElement.getSource();
@@ -590,6 +593,17 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			if(cc != null) {
 				cc.reduce();
 				if(!cc.isEmpty() && cc.canExecute()) {
+					GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+					EditPart compartmentEP = (EditPart) graphicalParentEditPart.getChildBySemanticHint(
+							String.valueOf(StateCompartmentEditPart.VISUAL_ID));
+					if (compartmentEP != null) {
+						// assure visibility of state compartment, otherwise newly added transition is not visible.
+						IAdaptable adaptableForCompartment = (IAdaptable)new SemanticAdapter(null, compartmentEP.getModel());
+
+						SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(),
+								adaptableForCompartment, "notation.View.visible", "Visibility", true); //$NON-NLS-1$ //$NON-NLS-2$
+						cc.compose(showCompartment);
+					}
 					return new ICommandProxy(cc);
 				}
 			}
