@@ -1347,10 +1347,20 @@
                 style="push"
                 tooltip="Switch Lifeline to Compact">
                 <visibleWhen>
-                    <iterate>
-                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullLifelineEditPartCN">
-                        </instanceof>
-                    </iterate>
+	                <and>
+	                    <iterate>
+	                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullLifelineEditPartCN">
+	                        </instanceof>
+	                    </iterate>
+	                    <with
+	                          variable="selection">
+	                       <not>
+	                          <count
+	                                value="0">
+	                          </count>
+	                       </not>
+	                    </with>
+	                </and>
                 </visibleWhen>
             </command>
             <command
@@ -1359,10 +1369,20 @@
                 style="push"
                 tooltip="Toggle time ruler visibility">
                 <visibleWhen>
-                    <iterate>
-                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.LifelineEditPart">
-                        </instanceof>
-                    </iterate>
+                	<and>
+	                    <iterate>
+	                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.LifelineEditPart">
+	                        </instanceof>
+	                    </iterate>
+	                    <with
+	                          variable="selection">
+	                       <not>
+	                          <count
+	                                value="0">
+	                          </count>
+	                       </not>
+	                    </with>
+                    </and>
                 </visibleWhen>
             </command>
             <command
@@ -1371,10 +1391,20 @@
                 style="push"
                 tooltip="Switch Lifeline to Full">
                 <visibleWhen>
-                    <iterate>
-                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.CompactLifelineEditPartCN">
-                        </instanceof>
-                    </iterate>
+                	<and>
+	                    <iterate>
+	                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.CompactLifelineEditPartCN">
+	                        </instanceof>
+	                    </iterate>
+	                    <with
+	                          variable="selection">
+	                       <not>
+	                          <count
+	                                value="0">
+	                          </count>
+	                       </not>
+	                    </with>
+                    </and>
                 </visibleWhen>
             </command>
             <command
@@ -1383,16 +1413,26 @@
                 style="push"
                 tooltip="Attach a tick">
                 <visibleWhen>
-                    <iterate>
-                        <or>
-                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.OccurrenceSpecificationEditPartCN">
-                        </instanceof>
-                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.MessageOccurrenceSpecificationEditPartCN">
-                        </instanceof>
-                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN">
-                        </instanceof>
-                        </or>
-                    </iterate>
+                	<and>
+	                    <iterate>
+	                        <or>
+	                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.OccurrenceSpecificationEditPartCN">
+	                        </instanceof>
+	                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.MessageOccurrenceSpecificationEditPartCN">
+	                        </instanceof>
+	                        <instanceof value="org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN">
+	                        </instanceof>
+	                        </or>
+	                    </iterate>
+	                    <with
+		                          variable="selection">
+		                       <not>
+		                          <count
+		                                value="0">
+		                          </count>
+		                       </not>
+		                </with>
+	            	</and>
                 </visibleWhen>
             </command>
         </menuContribution>
