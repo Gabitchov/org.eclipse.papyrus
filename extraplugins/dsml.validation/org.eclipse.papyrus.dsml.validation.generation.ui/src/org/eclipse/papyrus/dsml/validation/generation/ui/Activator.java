@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/** The Constant PLUGIN_ID. */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.dsml.validation.generation.ui"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.dsml.validation.model.ui"; //$NON-NLS-1$
 
 	// The shared instance
 	/** The plugin. */
