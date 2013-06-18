@@ -9,7 +9,7 @@
  * Contributors:
  *  Ernest Wozniak (CEA LIST) ernest.wozniak@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.dsml.validation.generation.wizard.interfaces;
+package org.eclipse.papyrus.dsml.validation.wizard.interfaces;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;

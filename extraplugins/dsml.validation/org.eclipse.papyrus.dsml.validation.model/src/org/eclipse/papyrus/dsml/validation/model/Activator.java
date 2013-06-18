@@ -22,7 +22,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * PluginID
 	 * */
-	public static final String PLUGIN_ID = "org.eclipse.ccpg.utils_incubation_"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.validation.model"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

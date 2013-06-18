@@ -9,7 +9,7 @@
  * Contributors:
  *  Ernest Wozniak (CEA LIST) ernest.wozniak@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.dsml.validation.generation.wizard;
+package org.eclipse.papyrus.dsml.validation.wizard;
 
 import java.io.IOException;
 import java.util.ArrayList;

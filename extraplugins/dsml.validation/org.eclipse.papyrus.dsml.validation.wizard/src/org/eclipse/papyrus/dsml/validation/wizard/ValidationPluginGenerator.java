@@ -10,7 +10,7 @@
  *  Ernest Wozniak (CEA LIST) ernest.wozniak@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - modification
  *****************************************************************************/
-package org.eclipse.papyrus.dsml.validation.generation.wizard;
+package org.eclipse.papyrus.dsml.validation.wizard;
 
 import java.io.File;
 import java.io.IOException;

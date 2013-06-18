@@ -19,22 +19,21 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.dsml.validation.generation.wizard.CreateEMFValidationProject;
 import org.eclipse.papyrus.dsml.validation.model.elements.impl.ConstraintManagerImpl;
-import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsCategory;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidationRule;
 import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
+import org.eclipse.papyrus.dsml.validation.wizard.CreateEMFValidationProject;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 
 
 /**
  * this handler launch the creation of the plugin to validate contraints of the profile
- *
+ * 
  */
 public class CreateJavaValidationPluginHandler extends AbstractHandler {
 
@@ -83,7 +82,7 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 *
+	 * 
 	 * @param event
 	 * @return null
 	 * @throws ExecutionException
@@ -91,26 +90,26 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		EObject selection = getSelectedElement();
 
-		if( selection instanceof Profile){
-			Profile profileSelection= (Profile)selection;
+		if(selection instanceof Profile) {
+			Profile profileSelection = (Profile)selection;
 
 			constraintsManager = new ConstraintManagerImpl(profileSelection);
-			boolean isOCLConstraint=false;
-			for (IConstraintProvider constraintProvider : constraintsManager.getConstraintsProviders()) {
-				for (IConstraintsCategory constraintCategory : constraintProvider.getConstraintsCategories()) {
-					for (IValidationRule constraint : constraintCategory.getConstraints()) {
+			boolean isOCLConstraint = false;
+			for(IConstraintProvider constraintProvider : constraintsManager.getConstraintsProviders()) {
+				for(IConstraintsCategory constraintCategory : constraintProvider.getConstraintsCategories()) {
+					for(IValidationRule constraint : constraintCategory.getConstraints()) {
 						//this is an OCL constraint?
-						if (Utils.hasSpecificationForOCL(constraint.getConstraint())) {
-							isOCLConstraint=true;
+						if(Utils.hasSpecificationForOCL(constraint.getConstraint())) {
+							isOCLConstraint = true;
 						}
 					}
 				}
 			}
-			EPackage definition=null;
-			if(isOCLConstraint){
-				definition=profileSelection.getDefinition();
-				if(definition==null){
-					NotificationBuilder errorDialog=NotificationBuilder.createErrorPopup("The profile must be defined in order to generate OCL Constraints");
+			EPackage definition = null;
+			if(isOCLConstraint) {
+				definition = profileSelection.getDefinition();
+				if(definition == null) {
+					NotificationBuilder errorDialog = NotificationBuilder.createErrorPopup("The profile must be defined in order to generate OCL Constraints");
 					errorDialog.run();
 					//finish by displaying a message for the user to informa that it need to define it before to launch it.
 					return null;
@@ -124,8 +123,8 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 
 	@Override
 	public boolean isEnabled() {
-		EObject eObject=getSelectedElement();
-		if( eObject instanceof Profile){
+		EObject eObject = getSelectedElement();
+		if(eObject instanceof Profile) {
 			return true;
 		}
 		return false;
