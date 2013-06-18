@@ -22,12 +22,19 @@ package org.eclipse.papyrus.infra.widgets.providers;
  * @author JC236769
  * 
  */
-public interface IRestrictedContentProvider extends IHierarchicContentProvider, IStaticContentProvider {
+public interface IRestrictedContentProvider extends IHierarchicContentProvider, IStaticContentProvider, IInheritedElementContentProvider {
 
 	/**
 	 * 
 	 * @param isRestricted
 	 */
 	public void setRestriction(boolean isRestricted);
+
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> if the content provider is restricted
+	 */
+	public boolean isRestricted();
 
 }

@@ -15,19 +15,35 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.EventObject;
 import java.util.List;
 
+import org.eclipse.core.commands.Category;
+import org.eclipse.core.commands.Command;
+import org.eclipse.core.commands.IExecutionListener;
+import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.commands.ParameterType;
+import org.eclipse.core.commands.ParameterizedCommand;
+import org.eclipse.core.commands.SerializationException;
+import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.ui.commands.ICommandService;
+import org.eclipse.ui.commands.IElementReference;
+import org.eclipse.ui.menus.UIElement;
 
 /**
  * 
@@ -79,6 +95,19 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 		};
 
 		getTableContext().eAdapters().add(this.featureListener);
+		
+	
+		
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getTableContext());
+		domain.getCommandStack().addCommandStackListener(new CommandStackListener() {
+			
+			@Override
+			public void commandStackChanged(EventObject event) {
+				getTableManager().updateAxisContents(getRepresentedContentProvider());
+			}
+		});
+		
+		
 	}
 
 	/**
@@ -183,7 +212,10 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 		assert value instanceof List<?>;
 		List<Object> interestingObject = filterObject((List<?>)value);
 		interestingObject = sortObjects(interestingObject);
-		return interestingObject;
+		List<Object> newList = new ArrayList(interestingObject);
+		newList.addAll(interestingObject);
+		return newList;
+//		return interestingObject;
 	}
 
 	/**

@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ UMLRestrictedContentProviderTest.class
+@SuiteClasses({ UMLRestrictedContentProviderTest.class, UMLRestrictedContentProviderTestCustomProfile.class
 
 })
 public class AllTests {

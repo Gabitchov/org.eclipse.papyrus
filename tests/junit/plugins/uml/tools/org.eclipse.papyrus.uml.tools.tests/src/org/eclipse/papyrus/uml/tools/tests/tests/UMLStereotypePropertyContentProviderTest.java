@@ -119,7 +119,9 @@ public class UMLStereotypePropertyContentProviderTest {
 	 */
 	@Test
 	public void testProfileContentWithoutBaseClassPropertyWithoutInheritedProperties() {
-		UMLStereotypePropertyContentProvider provider = new UMLStereotypePropertyContentProvider(false);
+		UMLStereotypePropertyContentProvider provider = new UMLStereotypePropertyContentProvider();
+		provider.setIgnoreBaseProperty(true);
+		provider.setIgnoreInheritedElements(true);
 		provider.setProfiles(Collections.singletonList(rootProfile));
 		//we test the root
 		Object[] elements = provider.getElements();
@@ -177,7 +179,9 @@ public class UMLStereotypePropertyContentProviderTest {
 	 */
 	@Test
 	public void testProfileContentWithBaseClassPropertyWithoutInheritedProperties() {
-		UMLStereotypePropertyContentProvider provider = new UMLStereotypePropertyContentProvider(true);
+		UMLStereotypePropertyContentProvider provider = new UMLStereotypePropertyContentProvider();
+		provider.setIgnoreBaseProperty(false);
+		provider.setIgnoreInheritedElements(true);
 		provider.setProfiles(Collections.singletonList(rootProfile));
 		//we test the root
 		Object[] elements = provider.getElements();
@@ -226,6 +230,133 @@ public class UMLStereotypePropertyContentProviderTest {
 		//we test the children of the prop2
 		Assert.assertEquals(false, provider.hasChildren(prop2));
 	}
+
+
+	/**
+	 * We test the children of the rootProfile.
+	 * In this test,
+	 * <ul>
+	 * <li>we don't want the properties base_ExtendedClass</li>
+	 * <li>we want the inheritedProperties</li>
+	 * </ul>
+	 */
+	@Test
+	public void testProfileContentWithoutBaseClassPropertyWithInheritedProperties() {
+		UMLStereotypePropertyContentProvider provider = new UMLStereotypePropertyContentProvider();
+		provider.setIgnoreBaseProperty(true);
+		provider.setIgnoreInheritedElements(false);
+		provider.setProfiles(Collections.singletonList(rootProfile));
+		//we test the root
+		Object[] elements = provider.getElements();
+		Assert.assertEquals(1, elements.length);
+		Assert.assertEquals(elements[0], rootProfile);
+
+		//we test the first level of children
+		Assert.assertEquals(true, provider.hasChildren(rootProfile));
+		List<?> children = Arrays.asList(provider.getChildren(rootProfile));
+
+		Assert.assertEquals(2, children.size());
+		Assert.assertTrue(children.contains(subProfile1));
+		Assert.assertTrue(children.contains(subProfile2));
+
+
+		//we test the children of the first subprofile
+		Assert.assertEquals(true, provider.hasChildren(subProfile1));
+		children = Arrays.asList(provider.getChildren(subProfile1));
+		Assert.assertEquals(1, children.size());
+		Assert.assertTrue(children.contains(ste1));
+
+		//we test the children of the ste1
+		Assert.assertEquals(true, provider.hasChildren(ste1));
+		children = Arrays.asList(provider.getChildren(ste1));
+		Assert.assertEquals(1, children.size());
+		Assert.assertTrue(children.contains(prop1));
+
+		//we test the children of the prop1
+		Assert.assertEquals(false, provider.hasChildren(prop1));
+
+
+		//we test the children of the 2nd subprofile
+		Assert.assertEquals(true, provider.hasChildren(subProfile2));
+		children = Arrays.asList(provider.getChildren(subProfile2));
+		Assert.assertEquals(1, children.size());
+		Assert.assertTrue(children.contains(ste2));
+
+		//we test the children of the ste2
+		Assert.assertEquals(true, provider.hasChildren(ste2));
+		children = Arrays.asList(provider.getChildren(ste2));
+		Assert.assertEquals(2, children.size());
+		Assert.assertTrue(children.contains(prop2));
+		Assert.assertTrue(children.contains(prop1));
+
+		//we test the children of the prop2
+		Assert.assertEquals(false, provider.hasChildren(prop2));
+	}
+
+	/**
+	 * We test the children of the rootProfile.
+	 * In this test,
+	 * <ul>
+	 * <li>we want the properties base_ExtendedClass</li>
+	 * <li>we want the inheritedProperties</li>
+	 * </ul>
+	 */
+	@Test
+	public void testProfileContentWithBaseClassPropertyWithInheritedProperties() {
+		UMLStereotypePropertyContentProvider provider = new UMLStereotypePropertyContentProvider();
+		provider.setIgnoreBaseProperty(false);
+		provider.setIgnoreInheritedElements(false);
+		provider.setProfiles(Collections.singletonList(rootProfile));
+		//we test the root
+		Object[] elements = provider.getElements();
+		Assert.assertEquals(1, elements.length);
+		Assert.assertEquals(elements[0], rootProfile);
+
+		//we test the first level of children
+		Assert.assertEquals(true, provider.hasChildren(rootProfile));
+		List<?> children = Arrays.asList(provider.getChildren(rootProfile));
+
+		Assert.assertEquals(2, children.size());
+		Assert.assertTrue(children.contains(subProfile1));
+		Assert.assertTrue(children.contains(subProfile2));
+
+
+		//we test the children of the first subprofile
+		Assert.assertEquals(true, provider.hasChildren(subProfile1));
+		children = Arrays.asList(provider.getChildren(subProfile1));
+		Assert.assertEquals(1, children.size());
+		Assert.assertTrue(children.contains(ste1));
+
+		//we test the children of the ste1
+		Assert.assertEquals(true, provider.hasChildren(ste1));
+		children = Arrays.asList(provider.getChildren(ste1));
+		Assert.assertEquals(2, children.size());
+		Assert.assertTrue(children.contains(prop1));
+		Assert.assertTrue(children.contains(basePropSte1));
+
+		//we test the children of the prop1
+		Assert.assertEquals(false, provider.hasChildren(prop1));
+
+
+		//we test the children of the 2nd subprofile
+		Assert.assertEquals(true, provider.hasChildren(subProfile2));
+		children = Arrays.asList(provider.getChildren(subProfile2));
+		Assert.assertEquals(1, children.size());
+		Assert.assertTrue(children.contains(ste2));
+
+		//we test the children of the ste2
+		Assert.assertEquals(true, provider.hasChildren(ste2));
+		children = Arrays.asList(provider.getChildren(ste2));
+		Assert.assertEquals(4, children.size());
+		Assert.assertTrue(children.contains(prop2));
+		Assert.assertTrue(children.contains(basePropSte2));
+		Assert.assertTrue(children.contains(basePropSte1));
+		Assert.assertTrue(children.contains(prop1));
+
+		//we test the children of the prop2
+		Assert.assertEquals(false, provider.hasChildren(prop2));
+	}
+
 
 	/**
 	 * 

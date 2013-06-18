@@ -155,4 +155,37 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider#setIgnoreInheritedElements(boolean)
+	 *
+	 * @param ignoreInheritedElements
+	 */
+	@Override
+	public void setIgnoreInheritedElements(boolean ignoreInheritedElements) {
+		provider.setIgnoreInheritedElements(ignoreInheritedElements);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider#isIgnoringInheritedElements()
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean isIgnoringInheritedElements() {
+		return provider.isIgnoringInheritedElements();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider#isRestricted()
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean isRestricted() {
+		return provider.isRestricted();
+	}
+
 }

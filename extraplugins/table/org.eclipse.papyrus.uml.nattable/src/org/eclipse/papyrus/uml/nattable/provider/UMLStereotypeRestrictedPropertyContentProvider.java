@@ -14,7 +14,6 @@ package org.eclipse.papyrus.uml.nattable.provider;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -40,6 +39,8 @@ import org.eclipse.uml2.uml.Stereotype;
  * @author JC236769
  * 
  */
+//FIXME we maybe should use the AbstractRestrictedContentProvider
+//of extends a  generic uml content provider?
 public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotypePropertyContentProvider implements IRestrictedContentProvider {
 
 	/**
@@ -68,7 +69,9 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	 *        restrict mode
 	 */
 	public UMLStereotypeRestrictedPropertyContentProvider(final UMLStereotypePropertyAxisManager umlStereotypePropertyManager, final boolean isRestricted) {
-		super(false); //we don't want the base_property
+		super();
+		setIgnoreBaseProperty(true);
+		//		setIgnoreInheritedElements(true);
 		this.isRestricted = isRestricted;
 		this.umlStereotypePropertyManager = umlStereotypePropertyManager;
 		init();
@@ -135,6 +138,21 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		return restrictedElements;
 	}
 
+	protected Profile getTopRootProfile(final Profile profile, final Collection<Profile> availableProfiles) {
+		EObject container = profile.eContainer();
+		Profile topProfile = profile;
+		while(container != null) {
+			if(container instanceof Profile) {
+				if(availableProfiles.contains(container)) {
+					topProfile = (Profile)container;
+				}
+			}
+			container = container.eContainer();
+		}
+
+		return topProfile;
+	}
+
 	/**
 	 * 
 	 * @return
@@ -148,22 +166,29 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 			if(container instanceof Package) {
 				//get the list of all profile applied in the model
 				final Collection<Profile> allAppliedProfiles = getAppliedProfilesInWholePackage((Package)container);
-				//				coll.addAll(allAppliedProfiles);
-				//for each of these profiles, we look for the top profile which is applied in the model
-				//for example, if only SysML::Blocks is applied, we don't want to display SysML as root profile, but only SysML::Blocks 
-				for(final Profile current : allAppliedProfiles) {
-					Profile topPackage = null;
-					for(final Package pack : current.allOwningPackages()) {
-						if(pack instanceof Profile && allAppliedProfiles.contains(pack)) {
-							topPackage = (Profile)pack;
-							break;
-						}
-					}
-					if(topPackage == null) {
-						topPackage = current;
-					}
-					coll.add(topPackage);
+
+
+				for(Profile profile : allAppliedProfiles) {
+					coll.add(getTopRootProfile(profile, allAppliedProfiles));
 				}
+
+
+				//				//				coll.addAll(allAppliedProfiles);
+				//				//for each of these profiles, we look for the top profile which is applied in the model
+				//				//for example, if only SysML::Blocks is applied, we don't want to display SysML as root profile, but only SysML::Blocks 
+				//				for(final Profile current : allAppliedProfiles) {
+				//					Profile topPackage = null;
+				//					for(final Package pack : current.allOwningPackages()) {
+				//						if(pack instanceof Profile && allAppliedProfiles.contains(pack)) {
+				//							topPackage = (Profile)pack;
+				//							break;
+				//						}
+				//					}
+				//					if(topPackage == null) {
+				//						topPackage = current;
+				//					}
+				//					coll.add(topPackage);
+				//				}
 			}
 		}
 		return coll;
@@ -249,6 +274,17 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		super.dispose();
 		this.umlStereotypePropertyManager = null;
 		this.restrictedElements.clear();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider#isRestricted()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isRestricted() {
+		return isRestricted;
 	}
 
 }

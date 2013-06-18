@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -32,7 +33,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * This content providers is used to get the properties of stereotypes
  * 
  */
-public class UMLStereotypePropertyContentProvider implements IHierarchicContentProvider {
+public class UMLStereotypePropertyContentProvider implements IHierarchicContentProvider, IInheritedElementContentProvider, IIgnoreStereotypeBasePropertyContentProvider {
 
 	/**
 	 * the profiles
@@ -42,7 +43,14 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	/**
 	 * this boolean is used to know if we should returns the Property base_EXTENDED_METACLASS or not
 	 */
-	private boolean baseProperty;
+	private boolean ignoreBaseProperty;
+
+
+	/**
+	 * if <code>true</code> we don't return the inherited properties
+	 */
+	private boolean ignoreInheritedProperties;
+
 
 	/**
 	 * 
@@ -50,35 +58,24 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	 * 
 	 * @param profiles
 	 *        the profiles to navigate
+	 * 
+	 *        the boolean fields are initialized to false
 	 */
 	public UMLStereotypePropertyContentProvider(final List<Profile> profiles) {
-		this(profiles, false);
-	}
-
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 * @param profiles
-	 *        the profiles to navigate
-	 * @param baseProperty
-	 *        if <code>true</code> the baseProperty of the stereotype will be returned in the list of the properties
-	 */
-	public UMLStereotypePropertyContentProvider(final List<Profile> profiles, final boolean baseProperty) {
 		this.profiles = profiles;
-		this.baseProperty = baseProperty;
+		this.ignoreBaseProperty = false;
+		this.ignoreInheritedProperties = false;
 	}
 
 	/**
 	 * 
 	 * Constructor.
 	 * 
-	 * @param baseProperty
-	 *        if <code>true</code> the baseProperty of the stereotype will be returned in the list of the properties
 	 */
-	public UMLStereotypePropertyContentProvider(final boolean baseProperty) {
-		this.baseProperty = baseProperty;
+	public UMLStereotypePropertyContentProvider() {
+		this(null);
 	}
+
 
 	/**
 	 * 
@@ -116,10 +113,20 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 					}
 				}
 			} else if(parentElement instanceof Stereotype) {
-				if(this.baseProperty) {
-					children.addAll((((Stereotype)parentElement).getOwnedAttributes()));
+				if(ignoreInheritedProperties) {
+					if(this.ignoreBaseProperty) {
+						children.addAll(StereotypeUtil.getStereotypePropertiesWithoutBaseProperties((Stereotype)parentElement));
+					} else {
+						children.addAll((((Stereotype)parentElement).getOwnedAttributes()));
+					}
+
 				} else {
-					children.addAll(StereotypeUtil.getStereotypePropertiesWithoutBaseProperties((Stereotype)parentElement));
+					if(this.ignoreBaseProperty) {
+						children.addAll(StereotypeUtil.getAllStereotypePropertiesWithoutBaseProperties((Stereotype)parentElement));
+
+					} else {
+						children.addAll((((Stereotype)parentElement).getAllAttributes()));
+					}
 				}
 			}
 		}
@@ -162,6 +169,7 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	}
 
 	public void dispose() {
+		profiles.clear();
 	}
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
@@ -194,5 +202,45 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	 */
 	public void setProfiles(final List<Profile> profiles) {
 		this.profiles = profiles;
+	}
+
+	/**
+	 * Setter for {@link #ignoreBaseProperty}
+	 * 
+	 * @param ignoreBaseProperty
+	 */
+	public void setIgnoreBaseProperty(boolean ignoreBaseProperty) {
+		this.ignoreBaseProperty = ignoreBaseProperty;
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider#setIgnoreInheritedElements(boolean)
+	 * 
+	 * @param ignoreInheritedElements
+	 */
+	public void setIgnoreInheritedElements(final boolean ignoreInheritedElements) {
+		this.ignoreInheritedProperties = ignoreInheritedElements;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider#isIgnoringInheritedElements()
+	 * 
+	 * @return
+	 */
+	public boolean isIgnoringInheritedElements() {
+		return this.ignoreInheritedProperties;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.tools.providers.IIgnoreStereotypeBasePropertyContentProvider#isIgnoringBaseProperty()
+	 * 
+	 * @return
+	 */
+	public boolean isIgnoringBaseProperty() {
+		return this.ignoreBaseProperty;
 	}
 }

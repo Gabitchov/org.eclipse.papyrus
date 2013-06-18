@@ -86,6 +86,20 @@ public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredC
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider#isRestricted()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isRestricted() {
+		if(!encapsulatedContentProviders.isEmpty()) {
+			return encapsulatedContentProviders.get(0).isRestricted();
+		}
+		throw new UnsupportedOperationException();
+	}
+
 	public boolean isValidValue(Object element) {
 		boolean result = false;
 		for(final IRestrictedContentProvider current : encapsulatedContentProviders) {
@@ -96,6 +110,30 @@ public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredC
 
 	public Object[] getElements() {
 		return getElements(null);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider#setIgnoreInheritedElements(boolean)
+	 * 
+	 * @param ignoreInheritedElements
+	 */
+	@Override
+	public void setIgnoreInheritedElements(boolean ignoreInheritedElements) {
+		for(final IRestrictedContentProvider current : encapsulatedContentProviders) {
+			current.setIgnoreInheritedElements(ignoreInheritedElements);
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider#isIgnoringInheritedElements()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isIgnoringInheritedElements() {
+		return encapsulatedContentProviders.get(0).isIgnoringInheritedElements();//the value is the same for all encapsulated content provider
 	}
 
 

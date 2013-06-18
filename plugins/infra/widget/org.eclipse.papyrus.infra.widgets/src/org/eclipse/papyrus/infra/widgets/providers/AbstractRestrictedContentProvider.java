@@ -24,7 +24,12 @@ public abstract class AbstractRestrictedContentProvider implements IRestrictedCo
 	/**
 	 * flag to indicate the useage of the restriction in the content provider
 	 */
-	protected boolean isRestricted;
+	private boolean isRestricted;
+
+	/**
+	 * if <code>false</code> the inherited features will be displayed
+	 */
+	private boolean ignoreInheritedFeatures;
 
 	/**
 	 * 
@@ -65,6 +70,39 @@ public abstract class AbstractRestrictedContentProvider implements IRestrictedCo
 	 */
 	public void dispose() {
 
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider#setIgnoreInheritedElements(boolean)
+	 * 
+	 * @param ignoreInheritedElements
+	 */
+	@Override
+	public void setIgnoreInheritedElements(boolean ignoreInheritedElements) {
+		this.ignoreInheritedFeatures = ignoreInheritedElements;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider#isIgnoringInheritedElements()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isIgnoringInheritedElements() {
+		return this.ignoreInheritedFeatures;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider#isRestricted()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isRestricted() {
+		return this.isRestricted;
 	}
 
 }

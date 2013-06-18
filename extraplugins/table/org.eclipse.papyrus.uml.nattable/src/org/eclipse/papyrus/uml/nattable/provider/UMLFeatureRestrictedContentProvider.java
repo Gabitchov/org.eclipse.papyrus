@@ -13,7 +13,6 @@ package org.eclipse.papyrus.uml.nattable.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,6 +22,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
@@ -30,53 +30,112 @@ import org.eclipse.papyrus.infra.widgets.providers.AbstractRestrictedContentProv
 import org.eclipse.papyrus.uml.nattable.manager.axis.UMLFeatureAxisManager;
 import org.eclipse.uml2.uml.UMLPackage;
 
+/**
+ * 
+ * @author vl222926
+ * 
+ */
+//FIXME : we should create or extends an EMF-content provider
 public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedContentProvider {
 
-	private final UMLFeatureAxisManager umlFeatureAxisManager;
+	/** the uml feature axis manager */
+	private final UMLFeatureAxisManager axisManager;
 
-	public UMLFeatureRestrictedContentProvider(UMLFeatureAxisManager umlFeatureAxisManager, boolean isRestricted) {
-		super(isRestricted);
-		this.umlFeatureAxisManager = umlFeatureAxisManager;
+
+	/**
+	 * 
+	 * Constructor.
+	 * boolean fields are initialized to false
+	 * 
+	 * @param axisManager
+	 *        the axis manager used by this content provider
+	 */
+	public UMLFeatureRestrictedContentProvider(final UMLFeatureAxisManager axisManager) {
+		this(axisManager, false);
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * Inits {@link #ignoreInheritedFeatures} to true
+	 * others boolean fields are initialized to false
+	 * 
+	 * @param axisManager
+	 *        the axis manager used by this content provider
+	 * @param isRestricted
+	 *        if <code>true</code> we return only elements accessible from the current contents of the table
+	 */
+	public UMLFeatureRestrictedContentProvider(UMLFeatureAxisManager axisManager, boolean isRestricted) {
+		super(isRestricted);
+		this.axisManager = axisManager;
+		setIgnoreInheritedElements(false);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getElements(java.lang.Object)
+	 * 
+	 * @param inputElement
+	 * @return
+	 */
 	public Object[] getElements(Object inputElement) {
 		final AbstractAxisProvider secondAxisProvider = getSecondAxisProvider();
-		final List<?> elements = umlFeatureAxisManager.getTableManager().getElementsList(secondAxisProvider);
-		if(this.isRestricted && elements.isEmpty()) {//we must returns nothing when the table is empty
+		final List<?> elements = axisManager.getTableManager().getElementsList(secondAxisProvider);
+		if(isRestricted() && elements.isEmpty()) {//we must returns nothing when the table is empty
 			return new Object[0];
 		} else {
-			return this.umlFeatureAxisManager.getAllPossibleAxis().toArray();
+			return this.axisManager.getAllPossibleAxis().toArray();
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	protected AbstractAxisProvider getManagedAxisProvider() {
-		return this.umlFeatureAxisManager.getRepresentedContentProvider();
+		return this.axisManager.getRepresentedContentProvider();
 	}
 
-	protected AbstractAxisProvider getSecondAxisProvider() {
-		AbstractAxisProvider secondAxisProvider = this.umlFeatureAxisManager.getTableManager().getVerticalAxisProvider();
-		if(secondAxisProvider == this.umlFeatureAxisManager) {
-			secondAxisProvider = this.umlFeatureAxisManager.getTableManager().getHorizontalAxisProvider();
+	/**
+	 * 
+	 * @return
+	 *         the other axis provider
+	 */
+	protected AbstractAxisProvider getSecondAxisProvider() {//FIXME : move me in an upper class
+		AbstractAxisProvider secondAxisProvider = this.axisManager.getTableManager().getVerticalAxisProvider();
+		if(secondAxisProvider == this.axisManager) {
+			secondAxisProvider = this.axisManager.getTableManager().getHorizontalAxisProvider();
 		}
 		return secondAxisProvider;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
+	 * 
+	 * @param parentElement
+	 * @return
+	 */
 	public Object[] getChildren(Object parentElement) {
 		List<Object> asList = new ArrayList<Object>();
 		if(parentElement instanceof EClass) {
 			EClass eClass = (EClass)parentElement;
-			asList.addAll(eClass.getEStructuralFeatures());
+			if(isIgnoringInheritedElements()) {
+				asList.addAll(eClass.getEStructuralFeatures());
+			} else {
+				asList.addAll(eClass.getEAllStructuralFeatures());
+			}
 			return asList.toArray();
 		} else if(parentElement instanceof EPackage) {
 			EPackage ePackage = (EPackage)parentElement;
 			Collection<EClassifier> eClassifiers = null;
-			if(this.isRestricted) {
+			if(isRestricted()) {
 				eClassifiers = new HashSet<EClassifier>();
-				AbstractAxisProvider axisProvider = ((INattableModelManager)this.umlFeatureAxisManager.getTableManager()).getHorizontalAxisProvider();
-				if(axisProvider == this.umlFeatureAxisManager.getRepresentedContentProvider()) {
-					axisProvider = ((INattableModelManager)this.umlFeatureAxisManager.getTableManager()).getVerticalAxisProvider();
+				AbstractAxisProvider axisProvider = ((INattableModelManager)this.axisManager.getTableManager()).getHorizontalAxisProvider();
+				if(axisProvider == this.axisManager.getRepresentedContentProvider()) {
+					axisProvider = ((INattableModelManager)this.axisManager.getTableManager()).getVerticalAxisProvider();
 				}
-				List<Object> elementsList = this.umlFeatureAxisManager.getTableManager().getElementsList(axisProvider);
+				List<Object> elementsList = this.axisManager.getTableManager().getElementsList(axisProvider);
 				for(Object object : elementsList) {
 					if(object instanceof EObject) {
 						EObject eObject = (EObject)object;
@@ -91,9 +150,11 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 			} else {
 				eClassifiers = ePackage.getEClassifiers();
 			}
+			eClassifiers.remove(EcorePackage.eINSTANCE.getEModelElement());
+
 			for(EClassifier eClassifier : eClassifiers) {
-				if(eClassifier instanceof EClass) {
-					asList.add(eClassifier);
+				if(eClassifier instanceof EClass && eClassifier != EcorePackage.eINSTANCE.getEModelElement()) {
+					asList.add(eClassifier);//we returns EClass with no EStructural feature too
 				}
 			}
 			return asList.toArray();
@@ -102,6 +163,13 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	public Object getParent(Object element) {
 		if(element instanceof EStructuralFeature) {
 			EStructuralFeature feature = (EStructuralFeature)element;
@@ -113,6 +181,13 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	public boolean hasChildren(Object element) {
 		if(element instanceof EClass) {
 			EClass eClass = (EClass)element;
@@ -133,10 +208,24 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 		return false;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider#getElements()
+	 * 
+	 * @return
+	 */
 	public Object[] getElements() {
 		return getElements(null);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider#isValidValue(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 *         <code>true</code> if the element is a UML Feature
+	 */
 	public boolean isValidValue(Object element) {
 		return element instanceof EStructuralFeature && UMLPackage.eINSTANCE.eContents().contains(((EObject)element).eContainer());
 	}
