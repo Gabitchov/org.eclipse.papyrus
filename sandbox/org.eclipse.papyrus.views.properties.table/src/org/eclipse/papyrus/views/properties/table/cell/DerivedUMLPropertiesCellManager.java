@@ -17,6 +17,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis;
 import org.eclipse.papyrus.uml.tools.commands.SetMultiplicityCommand;
 import org.eclipse.papyrus.uml.tools.util.MultiplicityParser;
 import org.eclipse.papyrus.views.properties.table.axis.DerivedUMLPropertiesAxisManager;
@@ -95,13 +96,25 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	}
 
 	private String getMultiplicityHandler(Object obj1, Object obj2) {
-		if(DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(obj1)) {
-			return (String)obj1;
-		}
-		if(DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(obj2)) {
-			return (String)obj2;
+		String featureId = getFeatureId(obj1);
+		if(featureId != null) {
+			return featureId;
 		}
 
+		featureId = getFeatureId(obj2);
+		if(featureId != null) {
+			return featureId;
+		}
+		return null;
+	}
+
+	private String getFeatureId(Object object) {
+		if(object instanceof FeatureIdAxis) {
+			FeatureIdAxis idAxis = (FeatureIdAxis)object;
+			if(DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(idAxis.getElement())) {
+				return DerivedUMLPropertiesAxisManager.MULTIPLICITY;
+			}
+		}
 		return null;
 	}
 
