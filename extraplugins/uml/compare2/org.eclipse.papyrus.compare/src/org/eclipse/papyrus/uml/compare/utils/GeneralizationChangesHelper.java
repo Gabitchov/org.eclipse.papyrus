@@ -11,7 +11,7 @@
  *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.compare.utils;
+package org.eclipse.papyrus.uml.compare.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;

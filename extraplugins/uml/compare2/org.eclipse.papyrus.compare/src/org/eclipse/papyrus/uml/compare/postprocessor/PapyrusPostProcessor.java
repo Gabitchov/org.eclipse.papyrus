@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.compare.postprocessor;
+package org.eclipse.papyrus.uml.compare.postprocessor;
 
 import java.util.List;
 import java.util.Set;
@@ -23,7 +23,7 @@ import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.compare.diagram.internal.extensions.NodeChange;
 import org.eclipse.emf.compare.postprocessor.IPostProcessor;
-import org.eclipse.papyrus.compare.utils.GeneralizationChangesHelper;
+import org.eclipse.papyrus.uml.compare.utils.GeneralizationChangesHelper;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Generalization;

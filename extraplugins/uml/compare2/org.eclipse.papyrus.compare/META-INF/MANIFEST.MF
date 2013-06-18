@@ -1,13 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.compare;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-SymbolicName: org.eclipse.papyrus.uml.compare;singleton:=true
+Bundle-Version: 0.10.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.papyrus.compare.postprocessor
+Export-Package: org.eclipse.papyrus.uml.compare.postprocessor,
+ org.eclipse.papyrus.uml.compare.utils
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.compare;bundle-version="2.1.0",

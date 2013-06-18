@@ -9,7 +9,7 @@
    <extension
          point="org.eclipse.emf.compare.rcp.postProcessor">
       <processor
-            class="org.eclipse.papyrus.compare.postprocessor.PapyrusPostProcessor"
+            class="org.eclipse.papyrus.uml.compare.postprocessor.PapyrusPostProcessor"
             ordinal="31">
          <nsURI
                value="http://www.eclipse.org/gmf/runtime/\d.\d.\d/notation">
