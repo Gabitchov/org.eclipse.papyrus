@@ -1,6 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="__sUW0OhNEeCjcc2EgK3Uwg" name="PapyrusDSMLValidationRule" metaclassReference="_wrBFYOhOEeCjcc2EgK3Uwg">
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="__sUW0OhNEeCjcc2EgK3Uwg" name="PapyrusDSMLValidationRule" metaclassReference="_wrBFYOhOEeCjcc2EgK3Uwg">
   <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OC7vsOhREeCjcc2EgK3Uwg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_cSI-kNgnEeKOqNIXy22Xwg" name="PapyrusDSMLValidationRule" nsURI="http:///schemas/PapyrusDSMLValidationRule/_cSIXgNgnEeKOqNIXy22Xwg/3" nsPrefix="PapyrusDSMLValidationRule">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cSY2MNgnEeKOqNIXy22Xwg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cSY2MdgnEeKOqNIXy22Xwg" key="Version" value="0.0.4"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cSY2MtgnEeKOqNIXy22Xwg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cSY2M9gnEeKOqNIXy22Xwg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cSY2NNgnEeKOqNIXy22Xwg" key="Date" value="2013-06-18"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cSY2NdgnEeKOqNIXy22Xwg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_cSI-kdgnEeKOqNIXy22Xwg" name="ValidationRule">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cSI-ktgnEeKOqNIXy22Xwg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_xu6yYOhOEeCjcc2EgK3Uwg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_cSI-k9gnEeKOqNIXy22Xwg" name="severity" ordered="false" lowerBound="1" eType="_cSI-p9gnEeKOqNIXy22Xwg" defaultValueLiteral="ERROR"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_cSI-ldgnEeKOqNIXy22Xwg" name="mode" ordered="false" lowerBound="1" eType="_cSI-rdgnEeKOqNIXy22Xwg" defaultValueLiteral="Batch"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_cSI-l9gnEeKOqNIXy22Xwg" name="isEnabledByDefault" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_cSI-mdgnEeKOqNIXy22Xwg" name="base_Constraint" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Constraint"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_cSI-m9gnEeKOqNIXy22Xwg" name="statusCode" ordered="false" lowerBound="1" defaultValueLiteral="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_cSI-ndgnEeKOqNIXy22Xwg" name="message" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_cSI-n9gnEeKOqNIXy22Xwg" name="description" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_cSI-odgnEeKOqNIXy22Xwg" name="target" ordered="false" upperBound="-1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_cSI-o9gnEeKOqNIXy22Xwg" name="class" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_cSI-pdgnEeKOqNIXy22Xwg" name="id" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_cSI-p9gnEeKOqNIXy22Xwg" name="Severity">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cSI-qNgnEeKOqNIXy22Xwg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1CpM8OhOEeCjcc2EgK3Uwg"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_cSI-qdgnEeKOqNIXy22Xwg" name="ERROR"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_cSI-qtgnEeKOqNIXy22Xwg" name="WARNING" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_cSI-q9gnEeKOqNIXy22Xwg" name="INFO" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_cSI-rNgnEeKOqNIXy22Xwg" name="CANCEL" value="3"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_cSI-rdgnEeKOqNIXy22Xwg" name="Mode">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cSI-rtgnEeKOqNIXy22Xwg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_97I3oOhOEeCjcc2EgK3Uwg"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_cSI-r9gnEeKOqNIXy22Xwg" name="Batch"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_cSI-sNgnEeKOqNIXy22Xwg" name="Live" value="1"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_Ag9WoNgnEeKOqNIXy22Xwg" name="PapyrusDSMLValidationRule" nsURI="http:///schemas/PapyrusDSMLValidationRule/_Ag7hcNgnEeKOqNIXy22Xwg/2" nsPrefix="PapyrusDSMLValidationRule">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AhPqgNgnEeKOqNIXy22Xwg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AhPqgdgnEeKOqNIXy22Xwg" key="Version" value="0.0.3"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AhPqgtgnEeKOqNIXy22Xwg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AhPqg9gnEeKOqNIXy22Xwg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AhPqhNgnEeKOqNIXy22Xwg" key="Date" value="2013-06-18"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AhPqhdgnEeKOqNIXy22Xwg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Ag9WodgnEeKOqNIXy22Xwg" name="ValidationRule">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ag9WotgnEeKOqNIXy22Xwg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_xu6yYOhOEeCjcc2EgK3Uwg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ag9Wo9gnEeKOqNIXy22Xwg" name="severity" ordered="false" lowerBound="1" eType="_Ag9Wt9gnEeKOqNIXy22Xwg" defaultValueLiteral="ERROR"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ag9WpdgnEeKOqNIXy22Xwg" name="mode" ordered="false" lowerBound="1" eType="_Ag9WvdgnEeKOqNIXy22Xwg" defaultValueLiteral="Batch"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ag9Wp9gnEeKOqNIXy22Xwg" name="isEnabledByDefault" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Ag9WqdgnEeKOqNIXy22Xwg" name="base_Constraint" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Constraint"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ag9Wq9gnEeKOqNIXy22Xwg" name="statusCode" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ag9WrdgnEeKOqNIXy22Xwg" name="message" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ag9Wr9gnEeKOqNIXy22Xwg" name="description" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ag9WsdgnEeKOqNIXy22Xwg" name="target" ordered="false" upperBound="-1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ag9Ws9gnEeKOqNIXy22Xwg" name="class" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ag9WtdgnEeKOqNIXy22Xwg" name="id" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_Ag9Wt9gnEeKOqNIXy22Xwg" name="Severity">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ag9WuNgnEeKOqNIXy22Xwg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1CpM8OhOEeCjcc2EgK3Uwg"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ag9WudgnEeKOqNIXy22Xwg" name="ERROR"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ag9WutgnEeKOqNIXy22Xwg" name="WARNING" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ag9Wu9gnEeKOqNIXy22Xwg" name="INFO" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ag9WvNgnEeKOqNIXy22Xwg" name="CANCEL" value="3"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_Ag9WvdgnEeKOqNIXy22Xwg" name="Mode">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ag9WvtgnEeKOqNIXy22Xwg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_97I3oOhOEeCjcc2EgK3Uwg"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ag9Wv9gnEeKOqNIXy22Xwg" name="Batch"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_Ag9WwNgnEeKOqNIXy22Xwg" name="Live" value="1"/>
+      </eClassifiers>
+    </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="__0tqwNgdEeKgsd1mLVpBNQ" name="PapyrusDSMLValidationRule" nsURI="http:///schemas/PapyrusDSMLValidationRule/__0rOgNgdEeKgsd1mLVpBNQ/1" nsPrefix="PapyrusDSMLValidationRule">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__07tMNgdEeKgsd1mLVpBNQ" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__07tMdgdEeKgsd1mLVpBNQ" key="Version" value="0.0.2"/>
@@ -109,33 +209,27 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_5xSbcOhQEeCjcc2EgK3Uwg" name="severity" visibility="public" type="_1CpM8OhOEeCjcc2EgK3Uwg">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6YAdMOhQEeCjcc2EgK3Uwg" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6YCSYOhQEeCjcc2EgK3Uwg" value="1"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="_6YDggOhQEeCjcc2EgK3Uwg">
-        <value xsi:nil="true"/>
-      </defaultValue>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="_3DogkNgmEeKOqNIXy22Xwg" type="_1CpM8OhOEeCjcc2EgK3Uwg" instance="_3K1ogOhOEeCjcc2EgK3Uwg"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_8gPVAOhQEeCjcc2EgK3Uwg" name="mode" visibility="public" type="_97I3oOhOEeCjcc2EgK3Uwg">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9H_RgOhQEeCjcc2EgK3Uwg" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9IBGsOhQEeCjcc2EgK3Uwg" value="1"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="_9IC74OhQEeCjcc2EgK3Uwg">
-        <value xsi:nil="true"/>
-      </defaultValue>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="_9iCucNgmEeKOqNIXy22Xwg" type="_97I3oOhOEeCjcc2EgK3Uwg" instance="_-4BWoOhOEeCjcc2EgK3Uwg"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_GkavsOhREeCjcc2EgK3Uwg" name="isEnabledByDefault" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HZ0tsOhREeCjcc2EgK3Uwg" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HZ2i4OhREeCjcc2EgK3Uwg" value="1"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="_HZ4YEOhREeCjcc2EgK3Uwg">
-        <value xsi:nil="true"/>
-      </defaultValue>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_0BdJANgmEeKOqNIXy22Xwg" value="true"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_I_ec4OhREeCjcc2EgK3Uwg" name="base_Constraint" association="_I_fD8OhREeCjcc2EgK3Uwg">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Constraint"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_vXrlUOqrEeCnkfBG0tzRQg" name="statusCode">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XFjVANgTEeKgsd1mLVpBNQ"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XFjVANgTEeKgsd1mLVpBNQ" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XFtGANgTEeKgsd1mLVpBNQ" value="1"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="_zzNVcOqrEeCnkfBG0tzRQg" value=""/>
+      <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_ZUED4NgnEeKOqNIXy22Xwg" value="1"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_ClVF8OqsEeCnkfBG0tzRQg" name="message">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -154,6 +248,8 @@
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_a1vCoOtYEeCnkfBG0tzRQg" name="class">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yu5U8NgmEeKOqNIXy22Xwg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yvE7INgmEeKOqNIXy22Xwg" value="1"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_gGxYQOt1EeCnkfBG0tzRQg" name="id">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
