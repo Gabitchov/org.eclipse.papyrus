@@ -23,15 +23,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.cdo.validation.problems;bundle-version="0.10.0",
  org.eclipse.papyrus.cdo.validation.problems.edit;bundle-version="0.10.0",
  org.eclipse.papyrus.editor;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.0",
+ com.google.guava;bundle-version="[11.0.0,12.0.0)"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
-Import-Package: com.google.common.base;version="10.0.1",
- com.google.common.cache;version="10.0.1",
- com.google.common.collect;version="10.0.1",
- com.google.common.eventbus;version="10.0.1",
- com.google.common.io;version="10.0.1"
 Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.ui",
  org.eclipse.papyrus.cdo.internal.ui.actions;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.adapters;x-friends:="org.eclipse.papyrus.cdo.ui.tests",

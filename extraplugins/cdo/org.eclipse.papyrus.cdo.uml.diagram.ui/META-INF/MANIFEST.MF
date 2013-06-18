@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
  org.eclipse.papyrus.cdo.core;bundle-version="0.10.0",
  org.eclipse.papyrus.cdo.ui;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.0"
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.0",
+ com.google.guava;bundle-version="[11.0.2,12.0.0)"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
@@ -18,5 +19,3 @@ Export-Package: org.eclipse.papyrus.cdo.uml.diagram.internal.ui;x-internal:=true
  org.eclipse.papyrus.cdo.uml.diagram.internal.ui.handlers;x-internal:=true,
  org.eclipse.papyrus.cdo.uml.diagram.internal.ui.l10n;x-internal:=true,
  org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards;x-internal:=true
-Import-Package: com.google.common.base;version="10.0.1",
- com.google.common.eventbus;version="10.0.1"
