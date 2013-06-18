@@ -19,9 +19,7 @@ import java.util.Map;
 import org.eclipse.papyrus.dsml.validation.IDSMLValidation;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
-import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsCategory;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
-import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidationRule;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -49,7 +47,7 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param profile
 	 */
 	public ConstraintManagerImpl(Profile profile) {
@@ -63,15 +61,15 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 	 * plugin for validationRules validation.
 	 * 
 	 * @param root
-	 *            root profile for which the validation plugin will be generated
+	 *        root profile for which the validation plugin will be generated
 	 */
 	private void extractElements(Profile root) {
 
 		//get the list of validationRules for each stereotype
-		createStereotypeToConstraintsMapping((Profile) root);
+		createStereotypeToConstraintsMapping(root);
 
 		//the top profile becomes the prime category
-		primeCategory = new CategoryImpl( root.getName().toLowerCase(), null);
+		primeCategory = new CategoryImpl(root.getName().toLowerCase(), null);
 
 		//construct all sub categories
 		relateCategoriesWithConstraints(root, primeCategory);
@@ -83,19 +81,18 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 	 * a stereotype becomes a category
 	 * 
 	 * @param element
-	 *            element for which function will find validationRules and its
-	 *            related categories
+	 *        element for which function will find validationRules and its
+	 *        related categories
 	 * @param category
-	 *            category for a group of validationRules
+	 *        category for a group of validationRules
 	 */
-	private void relateCategoriesWithConstraints(Element element,
-		Category category) {
+	private void relateCategoriesWithConstraints(Element element, Category category) {
 
 
-		if (element instanceof Profile) {
+		if(element instanceof Profile) {
 
 			//creation of a category
-			ConstraintCategoryImpl subCategory =new ConstraintCategoryImpl(((Profile)element).getName(), category );
+			ConstraintCategoryImpl subCategory = new ConstraintCategoryImpl(((Profile)element).getName(), category);
 			// add the category to the list of category
 			category.getSubcategories().add(subCategory);
 			//creation of a provider
@@ -104,22 +101,21 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 			// associate validation to category to provider
 			constraintProvider.getConstraintsCategories().add(subCategory);
 			constraintsProviders.add(constraintProvider);
-			if (((Profile)element).getDefinition()!=null){
+			if(((Profile)element).getDefinition() != null) {
 				constraintProvider.setEPackage(((Profile)element).getDefinition());
 			}
 
 			//iterate on all direct element of the profile
-			for (NamedElement subElement : ((Profile) element).getOwnedMembers()) {
+			for(NamedElement subElement : ((Profile)element).getOwnedMembers()) {
 
 				//this a profile
-				if (subElement instanceof Profile) {
-					this.relateCategoriesWithConstraints(subElement,subCategory);
-				} 
-				else if (subElement instanceof Stereotype) {
+				if(subElement instanceof Profile) {
+					this.relateCategoriesWithConstraints(subElement, subCategory);
+				} else if(subElement instanceof Stereotype) {
 
 					//create validation rules
-					if (this.constraintsOfStereotype.get(subElement) != null) {
-						for (Constraint constraint : this.constraintsOfStereotype.get(subElement)) {
+					if(this.constraintsOfStereotype.get(subElement) != null) {
+						for(Constraint constraint : this.constraintsOfStereotype.get(subElement)) {
 							try {
 								subCategory.getConstraints().add(new ValidationRuleImpl(constraint, subCategory));
 							} catch (WrongStereotypeException e) {
@@ -127,22 +123,25 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 							}
 						}
 					}
-					
+
 				}
 			}
-		
+
 		}
 	}
 
-	/** 
+	/**
 	 * create a category from the owner category and the sub-element that will becomes a category
-	 * @param category the category owner
-	 * @param subElement the element that will become a category
+	 * 
+	 * @param category
+	 *        the category owner
+	 * @param subElement
+	 *        the element that will become a category
 	 * @return the category
 	 */
 	protected Category createCategory(Category category, NamedElement subElement) {
 		Category subCategory;
-		subCategory = new CategoryImpl(category.getName() + "."	+ subElement.getName().toLowerCase(), category);
+		subCategory = new CategoryImpl(category.getName() + "." + subElement.getName().toLowerCase(), category);
 		return subCategory;
 	}
 
@@ -152,42 +151,37 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 	 * it add validationRules only if there are stereotype validationRules
 	 * 
 	 * @param profile
-	 *            root profile with stereotypes for which validationRules defined in
-	 *            the model will be found
+	 *        root profile with stereotypes for which validationRules defined in
+	 *        the model will be found
 	 */
 	private void createStereotypeToConstraintsMapping(Profile profile) {
 
-		for (Element element : profile.allOwnedElements()) {
+		for(Element element : profile.allOwnedElements()) {
 
-			if (element instanceof Constraint) {
-				if(element.getAppliedStereotype(IDSMLValidation.VALIDATIONRULE_STEREOTYPE)!=null){
+			if(element instanceof Constraint) {
+				if(element.getAppliedStereotype(IDSMLValidation.VALIDATIONRULE_STEREOTYPE) != null) {
 
-					Element contextElement= ((Constraint)element).getContext();
+					Element contextElement = ((Constraint)element).getContext();
 
 					//get the stereotype to add the constraint
-					if (contextElement instanceof Stereotype) {
-						if (this.constraintsOfStereotype.keySet().contains(
-							contextElement)) {
-							this.constraintsOfStereotype.get(
-								contextElement).add(
-									(Constraint) element);
+					if(contextElement instanceof Stereotype) {
+						if(this.constraintsOfStereotype.keySet().contains(contextElement)) {
+							this.constraintsOfStereotype.get(contextElement).add((Constraint)element);
 						} else {
 							List<Constraint> constraintsList = new ArrayList<Constraint>();
-							constraintsList.add((Constraint) element);
-							this.constraintsOfStereotype.put(
-								(Stereotype) contextElement,
-								constraintsList);
+							constraintsList.add((Constraint)element);
+							this.constraintsOfStereotype.put((Stereotype)contextElement, constraintsList);
 						}
 					}
 				}
-			} 
+			}
 		}
 	}
 
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager#getConstraintsProviders()
-	 *
+	 * 
 	 */
 
 	public List<IConstraintProvider> getConstraintsProviders() {
@@ -195,11 +189,11 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 	}
 
 
-/**
- * 
- * @see org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager#getPrimeCategory()
- *
- */
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager#getPrimeCategory()
+	 * 
+	 */
 	public Category getPrimeCategory() {
 		return this.primeCategory;
 	}

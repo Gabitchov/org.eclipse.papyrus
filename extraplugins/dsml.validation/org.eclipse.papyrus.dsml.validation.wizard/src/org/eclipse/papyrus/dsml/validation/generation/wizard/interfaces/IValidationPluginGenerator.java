@@ -19,7 +19,6 @@ public interface IValidationPluginGenerator {
 
 	final static String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature";
 
-	public void generate(IProject project, NewPluginProjectWizard wizard,
-			IConstraintsManager constraintsManager);
+	public void generate(IProject project, NewPluginProjectWizard wizard, IConstraintsManager constraintsManager);
 
 }
