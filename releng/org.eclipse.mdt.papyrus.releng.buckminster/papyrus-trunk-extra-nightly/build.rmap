@@ -42,6 +42,13 @@
       </rm:uri>
     </rm:provider>
     
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/plugins/customization/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
      <!-- Table -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/extraplugins/table/{1}">
