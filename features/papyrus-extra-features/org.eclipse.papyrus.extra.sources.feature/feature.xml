@@ -24,7 +24,7 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.extra.feature"
          version="0.0.0"/>
 
-   <includes
+ <includes
          id="org.eclipse.papyrus.extra.migration.source.feature"
          version="0.0.0"/>
 
@@ -36,17 +36,56 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.extra.cdo.source.feature"
          version="0.0.0"/>
 
-   <requires>
- 	  <import feature="org.eclipse.papyrus.extra.eastadl.source.feature" />
-      <import feature="org.eclipse.papyrus.extra.diagramtemplate.source.feature" />
-      <import feature="org.eclipse.papyrus.extra.infra.gmfdiag.css.source.feature" />
-      <import feature="org.eclipse.papyrus.extra.layout.source.feature" />
-      <import feature="org.eclipse.papyrus.extra.marte.source.feature" />
-      <import feature="org.eclipse.papyrus.extra.marte.properties.source.feature" />
-      <import feature="org.eclipse.papyrus.extra.marte.textedit.source.feature" />
-      <import feature="org.eclipse.papyrus.infra.nattable.source.feature"/>
-      <import feature="org.eclipse.papyrus.sysml.nattable.source.feature"/>
-      <import feature="org.eclipse.papyrus.uml.nattable.source.feature"/>
-   </requires>
+   <includes
+         id="org.eclipse.papyrus.extra.diagramtemplate.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.dsml.validation.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.eastadl.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.infra.gmfdiag.css.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.marte.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.marte.properties.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.marte.textedit.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.migration.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.migration.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.uml.compare.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.nattable.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.sysml.nattable.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.uml.nattable.source.feature"
+         version="0.0.0"/>
 
 </feature>

@@ -32,15 +32,56 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.extra.cdo.feature"
          version="0.0.0"/>
 
-   <requires>
-      <import feature="org.eclipse.papyrus.extra.diagramtemplate.feature"/>
-      <import feature="org.eclipse.papyrus.extra.infra.gmfdiag.css.feature"/>
-      <import feature="org.eclipse.papyrus.extra.layout.feature"/>
-      <import feature="org.eclipse.papyrus.extra.marte.feature"/>
-      <import feature="org.eclipse.papyrus.extra.marte.properties.feature"/>
-      <import feature="org.eclipse.papyrus.extra.marte.textedit.feature"/>
-      <import feature="org.eclipse.papyrus.extra.eastadl.feature"/>
-      <import feature="org.eclipse.papyrus.extra.dsml.validation.feature" version="0.10.0.qualifier"/>
-   </requires>
+   <includes
+         id="org.eclipse.papyrus.extra.diagramtemplate.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.dsml.validation.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.eastadl.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.infra.gmfdiag.css.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.marte.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.marte.properties.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.marte.textedit.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.migration.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.migration.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.uml.compare.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.nattable.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.sysml.nattable.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.uml.nattable.feature"
+         version="0.0.0"/>
 
 </feature>
