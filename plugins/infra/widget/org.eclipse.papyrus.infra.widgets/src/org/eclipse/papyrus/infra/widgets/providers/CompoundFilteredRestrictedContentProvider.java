@@ -92,7 +92,6 @@ public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredC
 	 * 
 	 * @return
 	 */
-	@Override
 	public boolean isRestricted() {
 		if(!encapsulatedContentProviders.isEmpty()) {
 			return encapsulatedContentProviders.get(0).isRestricted();

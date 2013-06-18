@@ -282,7 +282,6 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	 * 
 	 * @return
 	 */
-	@Override
 	public boolean isRestricted() {
 		return isRestricted;
 	}

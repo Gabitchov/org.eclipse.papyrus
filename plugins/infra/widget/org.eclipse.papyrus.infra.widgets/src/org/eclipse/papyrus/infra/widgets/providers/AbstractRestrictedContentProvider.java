@@ -100,7 +100,6 @@ public abstract class AbstractRestrictedContentProvider implements IRestrictedCo
 	 * 
 	 * @return
 	 */
-	@Override
 	public boolean isRestricted() {
 		return this.isRestricted;
 	}

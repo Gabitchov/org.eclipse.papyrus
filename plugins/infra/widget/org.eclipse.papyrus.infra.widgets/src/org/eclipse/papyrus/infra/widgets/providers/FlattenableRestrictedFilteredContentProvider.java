@@ -183,7 +183,6 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 	 *
 	 * @return
 	 */
-	@Override
 	public boolean isRestricted() {
 		return provider.isRestricted();
 	}
