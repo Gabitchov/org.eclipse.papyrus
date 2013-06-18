@@ -12,10 +12,10 @@
     <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
-            description="Profile to execute DSML validation  "
+            description="Profile to execute DSML validation"
             name="DSML Validation"
             path="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml"
-            provider="Eclipse.org">
+            provider="Eclipse Modeling Project">
       </profile>
    </extension>
 </plugin>
