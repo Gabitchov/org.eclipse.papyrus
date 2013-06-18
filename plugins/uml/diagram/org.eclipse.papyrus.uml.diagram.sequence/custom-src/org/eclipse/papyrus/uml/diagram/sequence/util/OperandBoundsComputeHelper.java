@@ -38,7 +38,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
@@ -81,7 +81,6 @@ import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.NamedElement;
 
 public class OperandBoundsComputeHelper {
 
@@ -313,6 +312,28 @@ public class OperandBoundsComputeHelper {
 				targetIOEP = findLastIOEP(compartment);
 			}
 			updateIOBoundsForCFResize(request, compoundCmd, compartment.getChildren(), cf, targetIOEP != null ? (InteractionOperand)targetIOEP.resolveSemanticElement() : null, request.getSizeDelta(), request.getResizeDirection());
+			if(targetIOEP != null && request.getSizeDelta().height != 0) {
+				int heightDelta = request.getSizeDelta().height;
+				int movedY = heightDelta;
+				Bounds bounds = getInteractionOperandEPBounds(targetIOEP);
+				Rectangle currentIOEPRect = OperandBoundsComputeHelper.fillRectangle(bounds);
+				if((request.getResizeDirection() & PositionConstants.NORTH) != 0) {
+					movedY = -heightDelta;
+					currentIOEPRect.setY(currentIOEPRect.y() - heightDelta);
+				} else if((request.getResizeDirection() & PositionConstants.SOUTH) != 0) {
+				}
+				currentIOEPRect.setHeight(bounds.getHeight() + heightDelta);
+				int minHeight = getMinimumHeightFor(targetIOEP);
+				if(currentIOEPRect.height < minHeight) {
+					compoundCmd.add(UnexecutableCommand.INSTANCE);
+					return UnexecutableCommand.INSTANCE;
+				} else {
+					Command shiftEnclosedExecutions = getShiftEnclosedFragmentsCommand(targetIOEP, currentIOEPRect, movedY);
+					if(shiftEnclosedExecutions != null) {
+						compoundCmd.add(shiftEnclosedExecutions);
+					}
+				}
+			}
 		}
 		//Append command for expand covered Lifelines when moving CombinedFragment.
 		Point moveDelta = request.getMoveDelta();
@@ -428,7 +449,7 @@ public class OperandBoundsComputeHelper {
 		for(EditPart ep : combinedFragmentChildrenEditParts) {
 			if(ep instanceof InteractionOperandEditPart) {
 				InteractionOperandEditPart ioEP = (InteractionOperandEditPart)ep;
-				InteractionOperand io = (InteractionOperand)ioEP.resolveSemanticElement();
+				EObject io = ioEP.resolveSemanticElement();
 				if(cf.getOperands().contains(io)) {
 					if(targetOperand.equals(io)) {
 						return ioEP;
@@ -545,11 +566,7 @@ public class OperandBoundsComputeHelper {
 			}
 			ICommand currentIOEPCommand = OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
 			compositeCommand.add(currentIOEPCommand);
-			ICommand cmd = getShiftEnclosedMessagesCommand(currentIOEP, currentIOEPRect, heightDelta);
-			if(cmd != null && cmd.canExecute()) {
-				compositeCommand.add(cmd);
-			}
-			Command shiftPreviousExecutions = getShiftEnclosedExecutionsCommand(currentIOEP, currentIOEPRect, heightDelta);
+			Command shiftPreviousExecutions = getShiftEnclosedFragmentsCommand(currentIOEP, currentIOEPRect, heightDelta);
 			if(shiftPreviousExecutions != null) {
 				compositeCommand.add(new EMFtoGMFCommandWrapper(new GEFtoEMFCommandWrapper(shiftPreviousExecutions)));
 			}
@@ -611,11 +628,7 @@ public class OperandBoundsComputeHelper {
 			ICommand previousIOEPCommand = OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(targetIOEP, targetIOEPRect);
 			compositeCommand.add(previousIOEPCommand);
 			if((shiftY < 0 && targetIOEPRect.y < currentIOEPRect.y) || shiftY > 0 && (targetIOEPRect.y > currentIOEPRect.y)) {
-				ICommand shiftPreviousMessages = getShiftEnclosedMessagesCommand(targetIOEP, targetIOEPRect, shiftY);
-				if(shiftPreviousMessages != null) {
-					compositeCommand.add(shiftPreviousMessages);
-				}
-				Command shiftPreviousExecutions = getShiftEnclosedExecutionsCommand(targetIOEP, targetIOEPRect, shiftY);
+				Command shiftPreviousExecutions = getShiftEnclosedFragmentsCommand(targetIOEP, targetIOEPRect, shiftY);
 				if(shiftPreviousExecutions != null) {
 					compositeCommand.add(new EMFtoGMFCommandWrapper(new GEFtoEMFCommandWrapper(shiftPreviousExecutions)));
 				}
@@ -627,11 +640,7 @@ public class OperandBoundsComputeHelper {
 			ICommand currentIOEPCommand = OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
 			compositeCommand.add(currentIOEPCommand);
 			if((shiftY < 0 && currentIOEPRect.y < targetIOEPRect.y) || (shiftY > 0 && currentIOEPRect.y > targetIOEPRect.y)) {
-				ICommand shiftCurrentMessages = getShiftEnclosedMessagesCommand(currentIOEP, currentIOEPRect, shiftY);
-				if(shiftCurrentMessages != null) {
-					compositeCommand.add(shiftCurrentMessages);
-				}
-				Command shiftCurrentExecutions = getShiftEnclosedExecutionsCommand(currentIOEP, currentIOEPRect, shiftY);
+				Command shiftCurrentExecutions = getShiftEnclosedFragmentsCommand(currentIOEP, currentIOEPRect, shiftY);
 				if(shiftCurrentExecutions != null) {
 					compositeCommand.add(new EMFtoGMFCommandWrapper(new GEFtoEMFCommandWrapper(shiftCurrentExecutions)));
 				}
@@ -737,7 +746,7 @@ public class OperandBoundsComputeHelper {
 		return groupRect;
 	}
 
-	private static Command getShiftEnclosedExecutionsCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY) {
+	private static Command getShiftEnclosedFragmentsCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY) {
 		if(editPart == null || newBounds == null || movedY == 0) {
 			return null;
 		}
@@ -764,66 +773,6 @@ public class OperandBoundsComputeHelper {
 			return null;
 		}
 		return new ICommandProxy(new MoveOperandBlockCommand(editPart.getEditingDomain(), blockToMove));
-	}
-
-
-
-	private static ICommand getShiftEnclosedMessagesCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY) {
-		if(editPart == null || newBounds == null || movedY == 0) {
-			return null;
-		}
-		IFigure cfFigure = editPart.getFigure();
-		Rectangle origCFBounds = newBounds.getCopy();
-		cfFigure.getParent().translateToAbsolute(origCFBounds);
-		origCFBounds.translate(cfFigure.getParent().getBounds().getLocation());
-		InteractionOperand interactionOperand = (InteractionOperand)editPart.resolveSemanticElement();
-		Set<Message> messages = new HashSet<Message>();
-		EList<InteractionFragment> fragments = interactionOperand.getFragments();
-		for(InteractionFragment frag : fragments) {
-			if(!(frag instanceof MessageOccurrenceSpecification)) {
-				continue;
-			}
-			Message message = ((MessageOccurrenceSpecification)frag).getMessage();
-			if(message != null) {
-				messages.add(message);
-			}
-		}
-		if(messages.isEmpty()) {
-			return null;
-		}
-		CompositeCommand commands = new CompositeCommand("Shift Enclosed Messages");
-		for(Message msg : messages) {
-			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(msg);
-			for(Setting ref : settings) {
-				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
-					View view = (View)ref.getEObject();
-					EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, editPart);
-					if(ep instanceof ConnectionEditPart) {
-						ConnectionEditPart cep = (ConnectionEditPart)ep;
-						Connection msgFigure = cep.getConnectionFigure();
-						ConnectionAnchor sourceAnchor = msgFigure.getSourceAnchor();
-						ConnectionAnchor targetAnchor = msgFigure.getTargetAnchor();
-						Point sourcePoint = sourceAnchor.getReferencePoint();
-						Point targetPoint = targetAnchor.getReferencePoint();
-						Edge edge = (Edge)cep.getModel();
-						if(!(cep.getSource() instanceof AbstractExecutionSpecificationEditPart) && !origCFBounds.contains(sourcePoint)) {
-							IdentityAnchor gmfSourceAnchor = (IdentityAnchor)edge.getSourceAnchor();
-							Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
-							commands.add(getMoveAnchorCommand(movedY, figureBounds, gmfSourceAnchor));
-						}
-						if(!(cep.getTarget() instanceof AbstractExecutionSpecificationEditPart) && !origCFBounds.contains(targetPoint)) {
-							IdentityAnchor gmfTargetAnchor = (IdentityAnchor)edge.getTargetAnchor();
-							Rectangle figureBounds = targetAnchor.getOwner().getBounds();
-							commands.add(getMoveAnchorCommand(movedY, figureBounds, gmfTargetAnchor));
-						}
-					}
-				}
-			}
-		}
-		if(commands.isEmpty()) {
-			return null;
-		}
-		return commands;
 	}
 
 	private static ICommand getMoveAnchorCommand(int yDelta, Rectangle figureBounds, IdentityAnchor gmfAnchor) {
@@ -1134,6 +1083,7 @@ public class OperandBoundsComputeHelper {
 		if(editPart != null) {
 			InteractionOperand interactionOperand = (InteractionOperand)editPart.resolveSemanticElement();
 			Set<ExecutionSpecification> executions = new HashSet<ExecutionSpecification>();
+			Set<Message> messages = new HashSet<Message>();
 			EList<InteractionFragment> fragments = interactionOperand.getFragments();
 			for(InteractionFragment fragment : fragments) {
 				if(fragment instanceof ExecutionSpecification) {
@@ -1143,10 +1093,15 @@ public class OperandBoundsComputeHelper {
 					if(execution != null) {
 						executions.add(execution);
 					}
+				} else if(fragment instanceof MessageOccurrenceSpecification) {
+					Message message = ((MessageOccurrenceSpecification)fragment).getMessage();
+					if(message != null) {
+						messages.add(message);
+					}
 				}
 			}
+			final EditPartViewer viewer = editPart.getViewer();
 			if(!executions.isEmpty()) {
-				final EditPartViewer viewer = editPart.getViewer();
 				for(ExecutionSpecification execution : executions) {
 					List<View> existingViews = DiagramEditPartsUtil.findViews(execution, viewer);
 					if(existingViews.isEmpty()) {
@@ -1166,7 +1121,43 @@ public class OperandBoundsComputeHelper {
 								if(visited) {
 									break;
 								} else {
-									OperandBlock newBlock = new OperandBlock(child, executions);
+									OperandBlock newBlock = new ExecutionOperandBlock(child, executions);
+									blocks.add(newBlock);
+								}
+							}
+						}
+					}
+				}
+			}
+			if(!messages.isEmpty()) {
+				for(Message msg : messages) {
+					List<View> existingViews = DiagramEditPartsUtil.findViews(msg, viewer);
+					if(existingViews.isEmpty()) {
+						continue;
+					} else {
+						for(View view : existingViews) {
+							Object object = viewer.getEditPartRegistry().get(view);
+							if(object instanceof ConnectionNodeEditPart) {
+								ConnectionNodeEditPart child = (ConnectionNodeEditPart)object;
+								EditPart source = child.getSource();
+								if(source instanceof AbstractExecutionSpecificationEditPart && executions.contains(((AbstractExecutionSpecificationEditPart)source).resolveSemanticElement())) {
+									continue;
+								}
+								EditPart target = child.getTarget();
+								if(target instanceof AbstractExecutionSpecificationEditPart && executions.contains(((AbstractExecutionSpecificationEditPart)target).resolveSemanticElement())) {
+									continue;
+								}
+								boolean visited = false;
+								for(OperandBlock blk : blocks) {
+									if(blk.contains(child)) {
+										visited = true;
+										break;
+									}
+								}
+								if(visited) {
+									break;
+								} else {
+									OperandBlock newBlock = new MessageOperandBlock(child);
 									blocks.add(newBlock);
 								}
 							}
@@ -1189,15 +1180,14 @@ public class OperandBoundsComputeHelper {
 	 * 
 	 * @author Jin Liu (jin.liu@soyatec.com)
 	 */
-	private static class OperandBlock {
+	private static class ExecutionOperandBlock extends OperandBlock {
 
-		private List<ShapeNodeEditPart> children = new ArrayList<ShapeNodeEditPart>();
 
-		public OperandBlock(ShapeNodeEditPart child, Set<ExecutionSpecification> executions) {
+		public ExecutionOperandBlock(ShapeNodeEditPart child, Set<ExecutionSpecification> executions) {
 			fillWith(child, executions);
 		}
 
-		public void fillWith(ShapeNodeEditPart child, Set<ExecutionSpecification> executions) {
+		private void fillWith(ShapeNodeEditPart child, Set<ExecutionSpecification> executions) {
 			if(children.contains(child) || child == null || executions == null || executions.isEmpty()) {
 				return;
 			}
@@ -1227,22 +1217,10 @@ public class OperandBoundsComputeHelper {
 			}
 		}
 
-		public boolean contains(ShapeNodeEditPart child) {
-			return children.contains(child);
-		}
-
-		public Rectangle getBounds() {
-			return computeBounds();
-		}
-
-		public List<ShapeNodeEditPart> getChildren() {
-			return new ArrayList<ShapeNodeEditPart>(children);
-		}
-
-		private Rectangle computeBounds() {
+		protected Rectangle computeBounds() {
 			Rectangle bounds = null;
-			for(ShapeNodeEditPart child : children) {
-				Rectangle rect = SequenceUtil.getAbsoluteBounds(child);
+			for(EditPart child : children) {
+				Rectangle rect = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)child);
 				if(bounds == null) {
 					bounds = rect;
 				} else {
@@ -1282,6 +1260,69 @@ public class OperandBoundsComputeHelper {
 			return executionGroups;
 		}
 
+		public List<ShapeNodeEditPart> getShapeNodeChildren() {
+			List<ShapeNodeEditPart> shapes = new ArrayList<ShapeNodeEditPart>();
+			List<EditPart> children = getChildren();
+			for(EditPart editPart : children) {
+				if(editPart instanceof ShapeNodeEditPart) {
+					shapes.add((ShapeNodeEditPart)editPart);
+				}
+			}
+			return shapes;
+		}
+	}
+
+	private static class MessageOperandBlock extends OperandBlock {
+
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param child
+		 * @param messages
+		 */
+		public MessageOperandBlock(ConnectionNodeEditPart child) {
+			children.add(child);
+		}
+
+		@Override
+		protected Rectangle computeBounds() {
+			ConnectionNodeEditPart message = getMessageChild();
+			if(message == null) {
+				return null;
+			}
+			Point start = SequenceUtil.getAbsoluteEdgeExtremity(message, true);
+			Point end = SequenceUtil.getAbsoluteEdgeExtremity(message, false);
+			Rectangle bounds = new Rectangle(start, end);
+			if(bounds.height < EXECUTION_VERTICAL_MARGIN) {
+				bounds.height = EXECUTION_VERTICAL_MARGIN;
+			}
+			return bounds;
+		}
+
+		public ConnectionNodeEditPart getMessageChild() {
+			return (ConnectionNodeEditPart)(children.isEmpty() ? null : children.get(0));
+		}
+
+	}
+
+	private static abstract class OperandBlock {
+
+		protected List<EditPart> children = new ArrayList<EditPart>();
+
+		public boolean contains(EditPart child) {
+			return children.contains(child);
+		}
+
+		public Rectangle getBounds() {
+			return computeBounds();
+		}
+
+		public List<EditPart> getChildren() {
+			return new ArrayList<EditPart>(children);
+		}
+
+		protected abstract Rectangle computeBounds();
 	}
 
 	private static class OperandBlockLayout {
@@ -1479,59 +1520,79 @@ public class OperandBoundsComputeHelper {
 			if(block == null || moveDelta == 0) {
 				return null;
 			}
-			List<ShapeNodeEditPart> children = block.getChildren();
 			CompoundCommand commands = new CompoundCommand();
-			for(ShapeNodeEditPart child : children) {
-				Bounds bounds = getInteractionOperandEPBounds(child);
-				Rectangle newBounds = fillRectangle(bounds);
-				newBounds.y += moveDelta;
-				CompoundCommand moveCommand = new CompoundCommand();
-				SetBoundsCommand cmd = new SetBoundsCommand(getEditingDomain(), getLabel(), child, newBounds);
-				moveCommand.add(new ICommandProxy(cmd));
-				moveCommand = OccurrenceSpecificationMoveHelper.completeMoveExecutionSpecificationCommand(moveCommand, child, newBounds, new ChangeBoundsRequest());
-				List targetConnections = child.getTargetConnections();
-				for(Object object : targetConnections) {
-					if(!(object instanceof AbstractMessageEditPart)) {
-						continue;
-					}
-					AbstractMessageEditPart conn = (AbstractMessageEditPart)object;
-					EditPart source = conn.getSource();
-					if(!(source instanceof AbstractExecutionSpecificationEditPart)) {
-						Edge edge = (Edge)conn.getNotationView();
-						Connection connectionFigure = conn.getConnectionFigure();
-						ConnectionAnchor sourceAnchor = connectionFigure.getSourceAnchor();
-						Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
-						Anchor gmfTargetAnchor = edge.getSourceAnchor();
-						if(gmfTargetAnchor instanceof IdentityAnchor) {
-							ICommand moveAnchorCommand = getMoveAnchorCommand(moveDelta, figureBounds, (IdentityAnchor)gmfTargetAnchor);
-							if(moveAnchorCommand != null && moveAnchorCommand.canExecute()) {
-								commands.add(new ICommandProxy(moveAnchorCommand));
+			if(block instanceof ExecutionOperandBlock) {
+				List<ShapeNodeEditPart> children = ((ExecutionOperandBlock)block).getShapeNodeChildren();
+				for(ShapeNodeEditPart child : children) {
+					Bounds bounds = getInteractionOperandEPBounds(child);
+					Rectangle newBounds = fillRectangle(bounds);
+					newBounds.y += moveDelta;
+					CompoundCommand moveCommand = new CompoundCommand();
+					SetBoundsCommand cmd = new SetBoundsCommand(getEditingDomain(), getLabel(), child, newBounds);
+					moveCommand.add(new ICommandProxy(cmd));
+					moveCommand = OccurrenceSpecificationMoveHelper.completeMoveExecutionSpecificationCommand(moveCommand, child, newBounds, new ChangeBoundsRequest());
+					List targetConnections = child.getTargetConnections();
+					for(Object object : targetConnections) {
+						if(!(object instanceof AbstractMessageEditPart)) {
+							continue;
+						}
+						AbstractMessageEditPart conn = (AbstractMessageEditPart)object;
+						EditPart source = conn.getSource();
+						if(!(source instanceof AbstractExecutionSpecificationEditPart)) {
+							Edge edge = (Edge)conn.getNotationView();
+							Connection connectionFigure = conn.getConnectionFigure();
+							ConnectionAnchor sourceAnchor = connectionFigure.getSourceAnchor();
+							Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
+							Anchor gmfTargetAnchor = edge.getSourceAnchor();
+							if(gmfTargetAnchor instanceof IdentityAnchor) {
+								ICommand moveAnchorCommand = getMoveAnchorCommand(moveDelta, figureBounds, (IdentityAnchor)gmfTargetAnchor);
+								if(moveAnchorCommand != null && moveAnchorCommand.canExecute()) {
+									commands.add(new ICommandProxy(moveAnchorCommand));
+								}
 							}
 						}
 					}
-				}
-				List sourceConnections = child.getSourceConnections();
-				for(Object object : sourceConnections) {
-					if(!(object instanceof AbstractMessageEditPart)) {
-						continue;
-					}
-					AbstractMessageEditPart conn = (AbstractMessageEditPart)object;
-					EditPart target = conn.getTarget();
-					if(!(target instanceof AbstractExecutionSpecificationEditPart)) {
-						Edge edge = (Edge)conn.getNotationView();
-						Connection connectionFigure = conn.getConnectionFigure();
-						ConnectionAnchor targetAnchor = connectionFigure.getTargetAnchor();
-						Rectangle figureBounds = targetAnchor.getOwner().getBounds();
-						Anchor gmfTargetAnchor = edge.getTargetAnchor();
-						if(gmfTargetAnchor instanceof IdentityAnchor) {
-							ICommand moveAnchorCommand = getMoveAnchorCommand(moveDelta, figureBounds, (IdentityAnchor)gmfTargetAnchor);
-							if(moveAnchorCommand != null && moveAnchorCommand.canExecute()) {
-								commands.add(new ICommandProxy(moveAnchorCommand));
+					List sourceConnections = child.getSourceConnections();
+					for(Object object : sourceConnections) {
+						if(!(object instanceof AbstractMessageEditPart)) {
+							continue;
+						}
+						AbstractMessageEditPart conn = (AbstractMessageEditPart)object;
+						EditPart target = conn.getTarget();
+						if(!(target instanceof AbstractExecutionSpecificationEditPart)) {
+							Edge edge = (Edge)conn.getNotationView();
+							Connection connectionFigure = conn.getConnectionFigure();
+							ConnectionAnchor targetAnchor = connectionFigure.getTargetAnchor();
+							Rectangle figureBounds = targetAnchor.getOwner().getBounds();
+							Anchor gmfTargetAnchor = edge.getTargetAnchor();
+							if(gmfTargetAnchor instanceof IdentityAnchor) {
+								ICommand moveAnchorCommand = getMoveAnchorCommand(moveDelta, figureBounds, (IdentityAnchor)gmfTargetAnchor);
+								if(moveAnchorCommand != null && moveAnchorCommand.canExecute()) {
+									commands.add(new ICommandProxy(moveAnchorCommand));
+								}
 							}
 						}
 					}
+					commands.add(moveCommand);
 				}
-				commands.add(moveCommand);
+			} else if(block instanceof MessageOperandBlock) {
+				ConnectionNodeEditPart message = ((MessageOperandBlock)block).getMessageChild();
+				if(message != null) {
+					Connection msgFigure = message.getConnectionFigure();
+					ConnectionAnchor sourceAnchor = msgFigure.getSourceAnchor();
+					ConnectionAnchor targetAnchor = msgFigure.getTargetAnchor();
+					Edge edge = (Edge)message.getModel();
+					IdentityAnchor gmfSourceAnchor = (IdentityAnchor)edge.getSourceAnchor();
+					Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
+					if(gmfSourceAnchor != null) {
+						commands.add(new ICommandProxy(getMoveAnchorCommand(moveDelta, figureBounds, gmfSourceAnchor)));
+					}
+					IdentityAnchor gmfTargetAnchor = (IdentityAnchor)edge.getTargetAnchor();
+					figureBounds = targetAnchor.getOwner().getBounds();
+					if(gmfTargetAnchor != null) {
+						commands.add(new ICommandProxy(getMoveAnchorCommand(moveDelta, figureBounds, gmfTargetAnchor)));
+					}
+				}
 			}
 			return commands.unwrap();
 		}

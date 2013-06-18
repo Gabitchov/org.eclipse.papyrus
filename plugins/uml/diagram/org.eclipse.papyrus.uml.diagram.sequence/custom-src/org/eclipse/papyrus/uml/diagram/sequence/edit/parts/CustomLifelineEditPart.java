@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -63,6 +64,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
@@ -148,7 +150,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 			//Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=395462
 			//If is inline mode, just return true, otherwise the child lifeline cannot be moved.
 			if(isInlineMode()) {
-				return true;
+				//return true;
 			}
 			if(fFigureLifelineNameContainerFigure != null && fFigureLifelineNameContainerFigure.containsPoint(x, y)) {
 				return true;
@@ -200,18 +202,22 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 			if(minSize != null && minSize.height < 0) {
 				//Make sure Lifeline can be expanded vertically by itself.
 				int height = minSize.height;
+				//Introduce a minimum width for PartDecomposition.
+				int width = minSize.width;
 				if(getLayoutManager() != null) {
 					Dimension d = getLayoutManager().getMinimumSize(this, wHint, hHint);
 					if(d != null) {
 						height = Math.max(height, d.height);
+						width = Math.max(width, d.width);
 					}
 				} else {
 					Dimension d = getPreferredSize(wHint, hHint);
 					if(d != null) {
 						height = Math.max(height, d.height);
+						width = Math.max(width, d.height);
 					}
 				}
-				return new Dimension(minSize.width, getMinimumHeight(height));
+				return new Dimension(isInlineMode() ? width : minSize.width, getMinimumHeight(height));
 			}
 			return super.getMinimumSize(wHint, hHint);
 		}
@@ -393,7 +399,12 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 				return true;
 			}
 			if(visualPartMap.containsKey(child)) {
-				if(child.containsPoint(pt)) {
+				Object object = visualPartMap.get(child);
+				if(object instanceof LifelineEditPart) {
+					if(((LifelineEditPart)object).getPrimaryShape().containsPoint(pt)) {
+						return true;
+					}
+				} else if(child.containsPoint(pt)) {
 					return true;
 				}
 			}
@@ -454,6 +465,18 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 			}
 
 			protected Command getCreateCommand(CreateRequest request) {
+				//only allow Lifeline creation for PartDecomposition.
+				if(request instanceof CreateViewRequest) {
+					CreateViewRequest req = (CreateViewRequest)request;
+					Iterator iter = req.getViewDescriptors().iterator();
+					while(iter.hasNext()) {
+						CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor)iter.next();
+						String semanticHint = viewDescriptor.getSemanticHint();
+						if(!UMLVisualIDRegistry.getType(VISUAL_ID).equals(semanticHint)) {
+							return UnexecutableCommand.INSTANCE;
+						}
+					}
+				}
 				return null;
 			}
 
@@ -656,7 +679,12 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 				return fig;
 			}
 			if(visualPartMap.containsKey(child)) {
-				if(child.containsPoint(pt)) {
+				Object object = visualPartMap.get(child);
+				if(object instanceof LifelineEditPart) {
+					if(((LifelineEditPart)object).getPrimaryShape().containsPoint(pt)) {
+						return child;
+					}
+				} else if(child.containsPoint(pt)) {
 					return child;
 				}
 			}

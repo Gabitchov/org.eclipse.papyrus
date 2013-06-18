@@ -65,7 +65,7 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 		graphics.drawLine(r.right() - 1, r.bottom() - 1, r.right() - 1, r.bottom() - 1 - BRACKET_HEIGHT);
 		graphics.drawLine(r.x, r.bottom() - 1, r.x, r.bottom() - 1 - BRACKET_HEIGHT);
 		// Refresh the line
-		int endY = r.height + r.x;
+		int endY = r.height + r.y;//fixed a issue on height.
 		Point pStart = new Point(r.x + r.width / 2, r.y + 1);
 		centralVerticalLine.setSize(1, endY - pStart.y);
 		centralVerticalLine.setLocation(pStart);

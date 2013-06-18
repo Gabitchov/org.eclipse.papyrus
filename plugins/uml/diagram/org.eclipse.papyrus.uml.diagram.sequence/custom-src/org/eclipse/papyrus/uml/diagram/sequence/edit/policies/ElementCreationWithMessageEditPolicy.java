@@ -131,30 +131,24 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 		if(host instanceof CustomLifelineEditPart) {
 			CustomLifelineEditPart lifeline = (CustomLifelineEditPart)host;
 			boolean inlineMode = lifeline.isInlineMode();
-			Object type = request.getType();
-			if(REQ_CONNECTION_END.equals(type)) {
-				Point location = ((CreateConnectionRequest)request).getLocation().getCopy();
-				if(inlineMode) {
+			if(inlineMode) {
+				Object type = request.getType();
+				if(REQ_CONNECTION_END.equals(type)) {
+					Point location = ((CreateConnectionRequest)request).getLocation().getCopy();
 					if(isCreateConnectionRequest(request, UMLElementTypes.Message_4006) && isLocatedOnLifelineHeader(lifeline, location)) {
 						return host;
 					}
 					return getTargetEditPart(request, lifeline, location);
-				}
-			} else if(REQ_CONNECTION_START.equals(type)) {
-				Point location = ((CreateConnectionRequest)request).getLocation().getCopy();
-				if(inlineMode) {
+				} else if(REQ_CONNECTION_START.equals(type)) {
+					Point location = ((CreateConnectionRequest)request).getLocation().getCopy();
 					return getTargetEditPart(request, lifeline, location);
-				}
-			} else if(REQ_RECONNECT_SOURCE.equals(type)) {
-				Point location = ((ReconnectRequest)request).getLocation().getCopy();
-				if(inlineMode) {
+				} else if(REQ_RECONNECT_SOURCE.equals(type)) {
+					Point location = ((ReconnectRequest)request).getLocation().getCopy();
 					return getTargetEditPart(request, lifeline, location);
-				}
-			} else if(REQ_RECONNECT_TARGET.equals(type)) {
-				Point location = ((ReconnectRequest)request).getLocation().getCopy();
-				ConnectionEditPart conn = ((ReconnectRequest)request).getConnectionEditPart();
-				View model = (View)conn.getModel();
-				if(inlineMode) {
+				} else if(REQ_RECONNECT_TARGET.equals(type)) {
+					Point location = ((ReconnectRequest)request).getLocation().getCopy();
+					ConnectionEditPart conn = ((ReconnectRequest)request).getConnectionEditPart();
+					View model = (View)conn.getModel();
 					if(4006 == UMLVisualIDRegistry.getVisualID(model) && isLocatedOnLifelineHeader(lifeline, location)) {
 						return host;
 					}
@@ -191,6 +185,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 			GraphicalEditPart child = (GraphicalEditPart)object;
 			IFigure figure = child.getFigure();
 			Point pt = location.getCopy();
+			figure.translateToRelative(pt);
 			if(figure.containsPoint(pt)) {
 				return child;
 			}
@@ -203,8 +198,8 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 		LifelineDotLineCustomFigure figureLifelineDotLineFigure = primaryShape.getFigureLifelineDotLineFigure();
 		Point pt = location.getCopy();
 		NodeFigure dashLineRectangle = figureLifelineDotLineFigure.getDashLineRectangle();
-		dashLineRectangle.translateToRelative(pt);
 		Rectangle rect = dashLineRectangle.getBounds().getExpanded(new Insets(0, 2, 0, 2));
+		figureLifelineDotLineFigure.translateToAbsolute(rect);
 		return rect.contains(pt);
 	}
 

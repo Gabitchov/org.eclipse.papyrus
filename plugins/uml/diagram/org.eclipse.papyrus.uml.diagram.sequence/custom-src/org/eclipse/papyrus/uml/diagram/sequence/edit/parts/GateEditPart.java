@@ -298,14 +298,15 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
+		if(event.isTouch()) {
+			return;
+		}
 		if(GateModelElementFactory.isShowNameChanged(event)) {
 			//refresh name child.
 			refreshChildren();
 			return;
 		}
-		if(!event.isTouch()) {
-			hookExternalGates();
-		}
+		hookExternalGates();
 		if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(event.getFeature())) {
 			//Update gate name when the name of message is changed.
 			EObject element = resolveSemanticElement();

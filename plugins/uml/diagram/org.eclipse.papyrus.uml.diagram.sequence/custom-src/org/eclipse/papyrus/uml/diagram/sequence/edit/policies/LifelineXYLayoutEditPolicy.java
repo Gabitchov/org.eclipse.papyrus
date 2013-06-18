@@ -31,6 +31,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -98,6 +99,37 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	private static final String CO_REGION_HINT = ((IHintedType)UMLElementTypes.CombinedFragment_3018).getSemanticHint();
 
 	@Override
+	public EditPart getTargetEditPart(Request request) {
+		EditPart targetEditPart = super.getTargetEditPart(request);
+		if(targetEditPart instanceof CustomLifelineEditPart) {
+			CustomLifelineEditPart lifelineEditPart = (CustomLifelineEditPart)targetEditPart;
+			if(lifelineEditPart.isInlineMode()) {
+				Point location = null;
+				if(request instanceof DropRequest) {
+					location = ((DropRequest)request).getLocation();
+				}
+				if(location != null) {
+					List children = lifelineEditPart.getChildren();
+					for(Object object : children) {
+						if(!(object instanceof CustomLifelineEditPart)) {
+							continue;
+						}
+						CustomLifelineEditPart child = (CustomLifelineEditPart)object;
+						IFigure figure = child.getFigure();
+						Point pt = location.getCopy();
+						figure.translateToRelative(pt);
+						if(figure.containsPoint(pt)) {
+							return child;
+						}
+					}
+					return null;
+				}
+			}
+		}
+		return targetEditPart;
+	}
+
+	@Override
 	protected Command getOrphanChildrenCommand(Request request) {
 		//Don't support, this will disable the createAddCommand(), too.
 		return UnexecutableCommand.INSTANCE;
@@ -108,6 +140,16 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 */
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
+		EditPart targetEditPart = getTargetEditPart(request);
+		if(targetEditPart instanceof CustomLifelineEditPart && targetEditPart.getParent() instanceof CustomLifelineEditPart) {
+			Point location = request.getLocation();
+			IFigure figure = ((CustomLifelineEditPart)targetEditPart).getPrimaryShape();
+			Point pt = location.getCopy();
+			figure.translateToRelative(pt);
+			if(!figure.containsPoint(pt)) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
 		if(request instanceof CreateViewRequest) {
 			CreateViewRequest cvr = (CreateViewRequest)request;
 			if(cvr.getViewDescriptors().size() > 0) {
@@ -137,9 +179,44 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						return cmd;
 					}
 				}
+				if(UMLVisualIDRegistry.getType(StateInvariantEditPart.VISUAL_ID).equals(semanticHint)) {
+					Command cmd = getCommandForStateInvariant(cvr, viewDescriptor);
+					if(cmd != null) {
+						return cmd;
+					}
+				}
 			}
 		}
 		return super.getCreateCommand(request);
+	}
+
+	/**
+	 * Fixed bugs about creating StateInvariant.
+	 */
+	private Command getCommandForStateInvariant(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
+		Rectangle newBounds = new Rectangle();
+		if(cvr.getLocation() != null) {
+			newBounds.setLocation(cvr.getLocation());
+		}
+		if(cvr.getSize() != null) {
+			newBounds.setSize(cvr.getSize());
+		} else {
+			newBounds.width = -1;
+			newBounds.height = -1;
+		}
+		if(newBounds.x < 0 || newBounds.y < 0) {
+			newBounds.x = newBounds.y = 0;
+		}
+		LifelineEditPart parent = (LifelineEditPart)getHost();
+		IFigure mainFigure = parent.getMainFigure();
+		mainFigure.translateToRelative(newBounds);
+		//		mainFigure.translateFromParent(newBounds);
+		Rectangle bounds = mainFigure.getBounds().getCopy();
+		Point t = mainFigure.getClientArea().getLocation().getNegated();
+		newBounds.performTranslate(t.x, t.y);
+		newBounds.translate(0, bounds.y);
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 	}
 
 	@Override

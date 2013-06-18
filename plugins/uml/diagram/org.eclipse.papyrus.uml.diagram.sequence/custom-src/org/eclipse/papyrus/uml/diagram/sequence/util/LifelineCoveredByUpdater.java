@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -30,6 +32,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart.PreserveAnchorsPositionCommandEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -134,7 +138,12 @@ public class LifelineCoveredByUpdater {
 			int newHeight = bottom - rect.y;
 			if(newHeight > rect.height) {
 				Bounds bounds = (Bounds)((Shape)lifelineEditpart.getModel()).getLayoutConstraint();
+				int heightDelta = newHeight - bounds.getHeight();
 				CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, bounds, NotationPackage.Literals.SIZE__HEIGHT, newHeight), true);
+				PreserveAnchorsPositionCommandEx preserveAnchorsCommand = new PreserveAnchorsPositionCommandEx(lifelineEditpart, new Dimension(0, heightDelta), PreserveAnchorsPositionCommandEx.PRESERVE_Y, lifelineEditpart.getBorderedFigure(), PositionConstants.SOUTH);
+				if(preserveAnchorsCommand.canExecute()) {
+					CommandHelper.executeCommandWithoutHistory(editingDomain, new GMFtoEMFCommandWrapper(preserveAnchorsCommand), true);
+				}
 			}
 		}
 		if(!coveredByLifelinesToRemove.isEmpty()) {

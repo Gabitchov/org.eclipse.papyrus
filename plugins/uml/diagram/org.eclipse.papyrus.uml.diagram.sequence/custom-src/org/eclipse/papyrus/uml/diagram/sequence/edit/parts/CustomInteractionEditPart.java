@@ -29,11 +29,15 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
@@ -45,6 +49,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.InteractionRectangleFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
@@ -117,6 +122,25 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
 		//Ordering fragments after creation, See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new InteractionFragmentsCreationEditPolicy());
+		//Install custom PrimaryDragEditPolicy to preserve anchors for lost and found.
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableShapeEditPolicy() {
+
+			@Override
+			protected Command getResizeCommand(ChangeBoundsRequest request) {
+				Command command = super.getResizeCommand(request);
+				if(command != null && command.canExecute()) {
+					Rectangle rect = getInitialFeedbackBounds();
+					Dimension sizeDelta = request.getSizeDelta();
+					rect.width += sizeDelta.width;
+					rect.height += sizeDelta.height;
+					Dimension minimumSize = getFigure().getMinimumSize();
+					if(rect.width >= minimumSize.width && rect.height >= minimumSize.height) {
+						command = command.chain(new ICommandProxy(new PreserveAnchorsPositionCommand(CustomInteractionEditPart.this, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_XY)));
+					}
+				}
+				return command;
+			}
+		});
 	}
 
 	/**

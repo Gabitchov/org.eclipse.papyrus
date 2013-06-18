@@ -326,10 +326,18 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		EList<InteractionFragment> covereds = element.getCoveredBys();
 		EditPart parent = lifelineEditPart.getParent();
 		List<?> children = parent.getChildren();
+		Rectangle bounds = lifelineEditPart.getFigure().getBounds().getCopy();
+		bounds.translate(moveDelta);
+		Point center = bounds.getCenter();
 		for(Object obj : children) {
 			EditPart et = (EditPart)obj;
 			View sp = (View)et.getModel();
 			if(!covereds.contains(sp.getElement())) {
+				continue;
+			}
+			//If the center vertical line is covered by the CombibedFragment, do NOT move the CF again. 
+			Rectangle rect = ((GraphicalEditPart)et).getFigure().getBounds();
+			if(rect.x < center.x && rect.right() > center.x) {
 				continue;
 			}
 			ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_MOVE);

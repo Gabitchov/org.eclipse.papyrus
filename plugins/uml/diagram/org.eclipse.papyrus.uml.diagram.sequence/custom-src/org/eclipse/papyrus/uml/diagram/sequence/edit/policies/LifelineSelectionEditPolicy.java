@@ -214,11 +214,19 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 		EList<InteractionFragment> covereds = element.getCoveredBys();
 		EditPart parent = lifelineEP.getParent();
 		List<?> children = parent.getChildren();
+		Rectangle bounds = lifelineEP.getFigure().getBounds().getCopy();
+		bounds.translate(request.getMoveDelta());
+		Point center = bounds.getCenter();
 		for(Object obj : children) {
 			if(obj instanceof CombinedFragmentEditPart) {
 				CombinedFragmentEditPart et = (CombinedFragmentEditPart)obj;
 				View sp = (View)et.getModel();
 				if(!covereds.contains(sp.getElement())) {
+					continue;
+				}
+				//If the center vertical line is covered by the CombibedFragment, do NOT move the CF again. 
+				Rectangle rect = ((GraphicalEditPart)et).getFigure().getBounds();
+				if(rect.x < center.x && rect.right() > center.x) {
 					continue;
 				}
 				changeCombinedFragmentBounds(request, et, lifelineEP);
