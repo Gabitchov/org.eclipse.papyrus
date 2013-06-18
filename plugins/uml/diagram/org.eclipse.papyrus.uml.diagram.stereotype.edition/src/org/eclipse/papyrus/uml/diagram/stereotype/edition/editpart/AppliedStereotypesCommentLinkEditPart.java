@@ -22,14 +22,14 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 
 /**
  * 
- * The editpart  AppliedSterotypesCommentLinkEditPart, the link between the stereotyped element and the comment.
- *
+ * The editpart AppliedSterotypesCommentLinkEditPart, the link between the stereotyped element and the comment.
+ * 
  */
 
 public class AppliedStereotypesCommentLinkEditPart extends ConnectionEditPart {
 
 	public static final String ID = "AppliedStereotypesCommentLink";
-	
+
 	public AppliedStereotypesCommentLinkEditPart(View view) {
 		super(view);
 	}
@@ -42,6 +42,7 @@ public class AppliedStereotypesCommentLinkEditPart extends ConnectionEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected Connection createConnectionFigure() {
 		return new AppliedStereotypesCommentLink();
 	}

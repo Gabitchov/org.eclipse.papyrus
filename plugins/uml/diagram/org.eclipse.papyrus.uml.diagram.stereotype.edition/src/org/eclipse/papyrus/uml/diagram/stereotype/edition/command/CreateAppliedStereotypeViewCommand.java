@@ -25,30 +25,33 @@ import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereo
 
 /**
  * the goal of this command is to create a basic compartment in the notation that represent a compartment of stereotypes
- *
+ * 
  */
 public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
-	
+
 	protected View owner;
+
 	protected EObject StereotypeApplication;
-	protected boolean displayit=false;
-	
+
+	protected boolean displayit = false;
+
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param domain
 	 * @param owner
 	 * @param StereotypeApplication
 	 * @param displayit
 	 */
-	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain,View owner, EObject StereotypeApplication, boolean displayit) {
-		super(domain,"CreateStereotypeCompartment");
+	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain, View owner, EObject StereotypeApplication, boolean displayit) {
+		super(domain, "CreateStereotypeCompartment");
 		this.owner = owner;
-		this.StereotypeApplication=StereotypeApplication;
-		this.displayit=displayit;
-		
+		this.StereotypeApplication = StereotypeApplication;
+		this.displayit = displayit;
+
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doExecute() {

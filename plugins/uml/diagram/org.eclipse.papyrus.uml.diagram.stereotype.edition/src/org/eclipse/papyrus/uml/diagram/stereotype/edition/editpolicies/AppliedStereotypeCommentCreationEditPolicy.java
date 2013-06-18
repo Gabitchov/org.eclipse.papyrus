@@ -37,11 +37,10 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.command.CreateAppliedStereotypeCommentViewCommand;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentLinkEditPart;
@@ -52,8 +51,8 @@ import org.eclipse.swt.widgets.Display;
  * This editpolicy has in charge to :
  * - create or destroy the appliedStereotypesCommentEditpart
  * - adapt the information about stereotype display into appliedstereotypeCommentEditPart
- *  by using eannotation existing mechanism
- *
+ * by using eannotation existing mechanism
+ * 
  */
 public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 
@@ -62,62 +61,64 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 	public final static String APPLIED_STEREOTYPE_COMMENT = "Applied_Stereotype_Comment";
 
 
-	protected void updateAppliedStereotypeCommentShape(){
+	protected void updateAppliedStereotypeCommentShape() {
 		String stereotypeLocalizationToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization((View)getHost().getModel());
 		String stereotypePropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
 		//look for the AppliedStereotypesCommentEditPart
-		if(getAppliedStereotypeCommentNode()==null&&(!stereotypePropertiesToDisplay.trim().equals(""))){
+		if(getAppliedStereotypeCommentNode() == null && (!stereotypePropertiesToDisplay.trim().equals(""))) {
 			//test if stereotype has to be display as a comment
-			if (stereotypeLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION)){
+			if(stereotypeLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION)) {
 
-				if( getHost() instanceof ConnectionEditPart){
-					executeAppliedStereotypeCommentCreation((ConnectionEditPart) getHost(), ((ConnectionEditPart) getHost()).getEditingDomain(),  ((ConnectionEditPart) getHost()).resolveSemanticElement());
+				if(getHost() instanceof ConnectionEditPart) {
+					executeAppliedStereotypeCommentCreation((ConnectionEditPart)getHost(), ((ConnectionEditPart)getHost()).getEditingDomain(), ((ConnectionEditPart)getHost()).resolveSemanticElement());
 				}
 
-				if( getHost() instanceof GraphicalEditPart){
-					executeAppliedStereotypeCommentCreation((GraphicalEditPart) getHost(), ((GraphicalEditPart) getHost()).getEditingDomain(),  ((GraphicalEditPart) getHost()).resolveSemanticElement());
+				if(getHost() instanceof GraphicalEditPart) {
+					executeAppliedStereotypeCommentCreation((GraphicalEditPart)getHost(), ((GraphicalEditPart)getHost()).getEditingDomain(), ((GraphicalEditPart)getHost()).resolveSemanticElement());
 				}
 			}
 		}
-		if(getAppliedStereotypeCommentNode()!=null){
-			View commentNode=getAppliedStereotypeCommentNode();
-			if (!stereotypeLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION)||getvisisbleAppliedStereotypeCompartment(commentNode,  getUMLElement())==0){
-				final TransactionalEditingDomain domain=	TransactionUtil.getEditingDomain(commentNode);
+		if(getAppliedStereotypeCommentNode() != null) {
+			View commentNode = getAppliedStereotypeCommentNode();
+			if(!stereotypeLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION) || getvisisbleAppliedStereotypeCompartment(commentNode, getUMLElement()) == 0) {
+				final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
 				executeAppliedStereotypeCommentDeletion(domain, commentNode);
 
 			}
 		}
 	}
 
-	protected int getvisisbleAppliedStereotypeCompartment(View view,EObject eobject){
-		int nbVisibleCompartment=0;
-		Iterator<View> iteratorView= view.getChildren().iterator();
+	protected int getvisisbleAppliedStereotypeCompartment(View view, EObject eobject) {
+		int nbVisibleCompartment = 0;
+		Iterator<View> iteratorView = view.getChildren().iterator();
 		while(iteratorView.hasNext()) {
 			View subview = (View)iteratorView.next();
-			if(subview.getElement()!=null && !subview.getElement().equals(eobject)){
+			if(subview.getElement() != null && !subview.getElement().equals(eobject)) {
 				nbVisibleCompartment++;
 			}
 		}
 		return nbVisibleCompartment;
 	}
-	protected void delegateEAnnotationInCommentShape(){
-		final Node appliedStereotypeComment= getAppliedStereotypeCommentNode();
 
-		if(appliedStereotypeComment!=null){
-			View originView= getView();
-			final EAnnotation stereotypeAnnotation=originView.getEAnnotation(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+	protected void delegateEAnnotationInCommentShape() {
+		final Node appliedStereotypeComment = getAppliedStereotypeCommentNode();
 
-			final TransactionalEditingDomain domain=	TransactionUtil.getEditingDomain(originView);
-			final RecordingCommand cmd=new RecordingCommand(domain,"EannotationDelegation") {
+		if(appliedStereotypeComment != null) {
+			View originView = getView();
+			final EAnnotation stereotypeAnnotation = originView.getEAnnotation(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
+
+			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(originView);
+			final RecordingCommand cmd = new RecordingCommand(domain, "EannotationDelegation") {
+
 				@Override
 				protected void doExecute() {
-					EAnnotation stereotypeAnnotationCopy=EcoreUtil.copy(stereotypeAnnotation);
+					EAnnotation stereotypeAnnotationCopy = EcoreUtil.copy(stereotypeAnnotation);
 					appliedStereotypeComment.getEAnnotations().clear();
 					appliedStereotypeComment.getEAnnotations().add(stereotypeAnnotationCopy);
-					RecordingCommand cmd=AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(domain, appliedStereotypeComment, UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
+					RecordingCommand cmd = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(domain, appliedStereotypeComment, UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
 					cmd.execute();
 					String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView());
-					cmd =AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, appliedStereotypeComment, AppliedStereotypeHelper.getStereotypesToDisplay(appliedStereotypeComment), presentationKind);
+					cmd = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, appliedStereotypeComment, AppliedStereotypeHelper.getStereotypesToDisplay(appliedStereotypeComment), presentationKind);
 					cmd.execute();
 				}
 			};
@@ -129,13 +130,13 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 
 							public void run() {
 								//use to avoid to put it in the command stack
-								Map<String,Boolean> options = new HashMap<String,Boolean>();  
+								Map<String, Boolean> options = new HashMap<String, Boolean>();
 								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								try{
-									InternalTransaction it=((InternalTransactionalEditingDomain)  domain).startTransaction(false, options);
+								try {
+									InternalTransaction it = ((InternalTransactionalEditingDomain)domain).startTransaction(false, options);
 									cmd.execute();
 									it.commit();
-								}catch(Exception e){
+								} catch (Exception e) {
 									Activator.log.error(e);
 								}
 							}
@@ -151,23 +152,24 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 
 	/**
 	 * return the comment nodes that represent stereotype properties
+	 * 
 	 * @return may be null if nothing is founded
 	 */
-	protected Node getAppliedStereotypeCommentNode(){
-		View SemanticView=(View) getHost().getModel();
+	protected Node getAppliedStereotypeCommentNode() {
+		View SemanticView = (View)getHost().getModel();
 
-		Edge appliedStereotypeLink= null;
+		Edge appliedStereotypeLink = null;
 		//look for all links with the id AppliedStereotypesCommentLinkEditPart.ID
 		@SuppressWarnings("unchecked")
-		Iterator<Edge>edgeIterator=SemanticView.getSourceEdges().iterator();
+		Iterator<Edge> edgeIterator = SemanticView.getSourceEdges().iterator();
 		while(edgeIterator.hasNext()) {
 			Edge edge = (Edge)edgeIterator.next();
-			if (edge.getType().equals(AppliedStereotypesCommentLinkEditPart.ID)){
-				appliedStereotypeLink=edge;
+			if(edge.getType().equals(AppliedStereotypesCommentLinkEditPart.ID)) {
+				appliedStereotypeLink = edge;
 			}
 
 		}
-		if(appliedStereotypeLink== null){
+		if(appliedStereotypeLink == null) {
 			return null;
 		}
 		return (Node)appliedStereotypeLink.getTarget();
@@ -191,39 +193,39 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							int x=200;
-							int y=100;
-							if(editPart.getModel()instanceof Node){
-								LayoutConstraint constraint=((Node)editPart.getModel()).getLayoutConstraint();
-								if( constraint instanceof Bounds){
-									x=x+ ((Bounds) constraint).getX();
-									y= ((Bounds) constraint).getY();
+							int x = 200;
+							int y = 100;
+							if(editPart.getModel() instanceof Node) {
+								LayoutConstraint constraint = ((Node)editPart.getModel()).getLayoutConstraint();
+								if(constraint instanceof Bounds) {
+									x = x + ((Bounds)constraint).getX();
+									y = ((Bounds)constraint).getY();
 								}
 
 							}
-							if(editPart.getModel()instanceof Edge&& ((((Edge)editPart.getModel()).getSource()) instanceof Node)){
+							if(editPart.getModel() instanceof Edge && ((((Edge)editPart.getModel()).getSource()) instanceof Node)) {
 
-								LayoutConstraint constraint=((Node)((Edge)editPart.getModel()).getSource()).getLayoutConstraint();
-								if( constraint instanceof Bounds){
-									x=x+ ((Bounds) constraint).getX();
-									y= ((Bounds) constraint).getY()-100;
+								LayoutConstraint constraint = ((Node)((Edge)editPart.getModel()).getSource()).getLayoutConstraint();
+								if(constraint instanceof Bounds) {
+									x = x + ((Bounds)constraint).getX();
+									y = ((Bounds)constraint).getY() - 100;
 								}
 
 							}
-							boolean isBorderElement= false;
-							if(editPart instanceof BorderedBorderItemEditPart ){
-								isBorderElement=true;
+							boolean isBorderElement = false;
+							if(editPart instanceof BorderedBorderItemEditPart) {
+								isBorderElement = true;
 							}
-							if(getAppliedStereotypeCommentNode()==null){
-								CreateAppliedStereotypeCommentViewCommand command = new CreateAppliedStereotypeCommentViewCommand(domain, (View)editPart.getModel(),x,y, semanticElement,isBorderElement);
+							if(getAppliedStereotypeCommentNode() == null) {
+								CreateAppliedStereotypeCommentViewCommand command = new CreateAppliedStereotypeCommentViewCommand(domain, (View)editPart.getModel(), x, y, semanticElement, isBorderElement);
 								//use to avoid to put it in the command stack
-								Map<String,Boolean> options = new HashMap<String,Boolean>();  
+								Map<String, Boolean> options = new HashMap<String, Boolean>();
 								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								try{
-									InternalTransaction it=((InternalTransactionalEditingDomain)  domain).startTransaction(false, options);
+								try {
+									InternalTransaction it = ((InternalTransactionalEditingDomain)domain).startTransaction(false, options);
 									command.execute();
 									it.commit();
-								}catch(Exception e){
+								} catch (Exception e) {
 									Activator.log.error(e);
 								}
 							}
@@ -237,7 +239,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 		}
 	}
 
-	protected void executeAppliedStereotypeCommentDeletion( final TransactionalEditingDomain domain, final View commentNode) {
+	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
 		try {
 			domain.runExclusive(new Runnable() {
 
@@ -246,17 +248,17 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 
 						public void run() {
 							//because it is asynchrone the comment node maybe become s null
-							if( commentNode!= null&& TransactionUtil.getEditingDomain(commentNode)!=null){
-								DeleteCommand command= new DeleteCommand(commentNode);
+							if(commentNode != null && TransactionUtil.getEditingDomain(commentNode) != null) {
+								DeleteCommand command = new DeleteCommand(commentNode);
 								//use to avoid to put it in the command stack
-								Map<String,Boolean> options = new HashMap<String,Boolean>();  
+								Map<String, Boolean> options = new HashMap<String, Boolean>();
 								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								try{
-									InternalTransaction it=((InternalTransactionalEditingDomain)  TransactionUtil.getEditingDomain(commentNode)).startTransaction(false, options);
-									GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
+								try {
+									InternalTransaction it = ((InternalTransactionalEditingDomain)TransactionUtil.getEditingDomain(commentNode)).startTransaction(false, options);
+									GMFtoEMFCommandWrapper warpperCmd = new GMFtoEMFCommandWrapper(command);
 									warpperCmd.execute();
 									it.commit();
-								}catch(Exception e){
+								} catch (Exception e) {
 									Activator.log.error(e);
 								}
 							}
@@ -268,6 +270,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 			Activator.log.error(e);
 		}
 	}
+
 	/**
 	 * 
 	 * {@inheritedDoc}
@@ -303,7 +306,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 			}
 		}
 		// if element that has changed is a stereotype => refresh the label.
-		if(notification.getNotifier()  instanceof EAnnotation && (notification.getEventType() == Notification.ADD)) {
+		if(notification.getNotifier() instanceof EAnnotation && (notification.getEventType() == Notification.ADD)) {
 			if(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
 				// stereotype annotation has changed => refresh label display
 				updateAppliedStereotypeCommentShape();
@@ -311,7 +314,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 			}
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

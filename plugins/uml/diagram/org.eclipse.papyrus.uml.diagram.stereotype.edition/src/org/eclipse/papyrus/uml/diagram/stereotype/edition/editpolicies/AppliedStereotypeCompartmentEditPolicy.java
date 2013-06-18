@@ -33,7 +33,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityCommand;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -60,7 +59,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		super();
 	}
 
-	
+
 
 	@Override
 	public void activate() {
@@ -82,7 +81,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	protected boolean hasToDisplayCompartment(EObject applicationOfStereotype) {
 		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
 		String stereotypesLocalizationToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization((View)getHost().getModel());
-		if( !(stereotypesLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION))){
+		if(!(stereotypesLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION))) {
 			return false;
 		}
 		HashSet<org.eclipse.uml2.uml.Stereotype> stereoSet = new HashSet<org.eclipse.uml2.uml.Stereotype>();
@@ -134,19 +133,19 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 					Display.getCurrent().syncExec(new Runnable() {
 
 						public void run() {
-							
+
 							CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), appliedstereotype, hasToDisplayCompartment(appliedstereotype));
 							//use to avoid to put it in the command stack
-							 Map<String,Boolean> options = new HashMap<String,Boolean>();  
-								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-							try{
-								InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+							Map<String, Boolean> options = new HashMap<String, Boolean>();
+							options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+							try {
+								InternalTransaction it = ((InternalTransactionalEditingDomain)editPart.getEditingDomain()).startTransaction(false, options);
 								command.execute();
 								it.commit();
-							}catch(Exception e){
+							} catch (Exception e) {
 								Activator.log.error(e);
 							}
-							
+
 						}
 					});
 				}
@@ -189,9 +188,9 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			}
 		}
 		// if element that has changed is a stereotype => refresh the label.
-		if(notification.getNotifier()  instanceof EAnnotation && (notification.getEventType() == Notification.ADD)) {
+		if(notification.getNotifier() instanceof EAnnotation && (notification.getEventType() == Notification.ADD)) {
 			if(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
-						// stereotype annotation has changed => refresh label display
+				// stereotype annotation has changed => refresh label display
 				refreshDisplay();
 			}
 		}
@@ -235,13 +234,13 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 						public void run() {
 							SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
 							//use to avoid to put it in the command stack
-							 Map<String,Boolean> options = new HashMap<String,Boolean>();  
-								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-							try{
-								InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+							Map<String, Boolean> options = new HashMap<String, Boolean>();
+							options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+							try {
+								InternalTransaction it = ((InternalTransactionalEditingDomain)editPart.getEditingDomain()).startTransaction(false, options);
 								setCommand.execute();
 								it.commit();
-							}catch(Exception e){
+							} catch (Exception e) {
 								Activator.log.error(e);
 							}
 						}
@@ -307,14 +306,14 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 									public void run() {
 										DeleteCommand command = new DeleteCommand(currentNode);
 										//use to avoid to put it in the command stack
-										 Map<String,Boolean> options = new HashMap<String,Boolean>();  
-											options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-										try{
-											InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
-											GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
+										Map<String, Boolean> options = new HashMap<String, Boolean>();
+										options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+										try {
+											InternalTransaction it = ((InternalTransactionalEditingDomain)editPart.getEditingDomain()).startTransaction(false, options);
+											GMFtoEMFCommandWrapper warpperCmd = new GMFtoEMFCommandWrapper(command);
 											warpperCmd.execute();
 											it.commit();
-										}catch(Exception e){
+										} catch (Exception e) {
 											Activator.log.error(e);
 										}
 									}
@@ -331,17 +330,17 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 								Display.getCurrent().syncExec(new Runnable() {
 
 									public void run() {
-										if(currentNode!=null&&editPart.getEditingDomain()!=null){
-											DeleteCommand command = new DeleteCommand(editPart.getEditingDomain(),currentNode);
+										if(currentNode != null && editPart.getEditingDomain() != null) {
+											DeleteCommand command = new DeleteCommand(editPart.getEditingDomain(), currentNode);
 											//use to avoid to put it in the command stack
-											 Map<String,Boolean> options = new HashMap<String,Boolean>();  
-												options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-											try{
-												InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
-												GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
+											Map<String, Boolean> options = new HashMap<String, Boolean>();
+											options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+											try {
+												InternalTransaction it = ((InternalTransactionalEditingDomain)editPart.getEditingDomain()).startTransaction(false, options);
+												GMFtoEMFCommandWrapper warpperCmd = new GMFtoEMFCommandWrapper(command);
 												warpperCmd.execute();
 												it.commit();
-											}catch(Exception e){
+											} catch (Exception e) {
 												Activator.log.error(e);
 											}
 										}

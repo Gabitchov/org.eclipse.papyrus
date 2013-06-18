@@ -13,11 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.command;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -28,33 +24,35 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * the goal of this command is to create a basic compartment in the notation that represent a compartment of stereotypes
- *
+ * 
  */
 public class CreateAppliedStereotypePropertyViewCommand extends RecordingCommand {
-	
+
 	protected View owner;
+
 	protected Property property;
-	
-	public CreateAppliedStereotypePropertyViewCommand(TransactionalEditingDomain domain,View owner, Property property) {
-		
+
+	public CreateAppliedStereotypePropertyViewCommand(TransactionalEditingDomain domain, View owner, Property property) {
+
 		super(domain, "CreateStereotypePropertyView");
 		this.owner = owner;
-		this.property=property;
-		
+		this.property = property;
+
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doExecute() {
-		
+
 		Node node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		node.setType(AppliedStereotypePropertyEditPart.ID);
 		ViewUtil.insertChildView(owner, node, -1, false);
 		node.setElement(property);
 		node.setMutable(true);
-		
 
-		
+
+
 	}
 
 }

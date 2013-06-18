@@ -41,12 +41,12 @@ public class StereotypePropertiesEditPartProvider extends RestrictedAbstractEdit
 	/** Default constructor */
 	public StereotypePropertiesEditPartProvider() {
 		super();
-		
+
 		nodeMap.put(AppliedStereotypeConpartmentEditPart.ID, AppliedStereotypeConpartmentEditPart.class);
 		nodeMap.put(AppliedStereotypePropertyEditPart.ID, AppliedStereotypeMultilinePropertyEditPart.class);
 		nodeMap.put(AppliedStereotypesCommentEditPart.ID, AppliedStereotypesCommentEditPart.class);
 		edgeMap.put(AppliedStereotypesCommentLinkEditPart.ID, AppliedStereotypesCommentLinkEditPart.class);
-		
+
 	}
 
 	/**

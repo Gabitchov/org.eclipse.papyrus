@@ -42,19 +42,19 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(EditPart editPart) {
-		if(editPart instanceof IPapyrusEditPart){
-		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
+		if(editPart instanceof IPapyrusEditPart) {
+			if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
 
-			if(editPart instanceof IPrimaryEditPart) {
-				if(UMLUtil.resolveUMLElement(editPart) != null) {
-					editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
+				if(editPart instanceof IPrimaryEditPart) {
+					if(UMLUtil.resolveUMLElement(editPart) != null) {
+						editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
+					}
+
 				}
-
+				if(editPart instanceof NamedElementEditPart) {
+					editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+				}
 			}
-			if(editPart instanceof NamedElementEditPart) {
-				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
-			}
-		}
 		}
 	}
 
