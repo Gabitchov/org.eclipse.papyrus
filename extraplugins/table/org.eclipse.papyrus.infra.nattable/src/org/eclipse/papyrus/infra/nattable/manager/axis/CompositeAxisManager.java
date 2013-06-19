@@ -38,10 +38,10 @@ import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.provider.tmp.CompoundFilteredRestrictedContentProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisComparator;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.widgets.providers.CompoundFilteredRestrictedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 
 

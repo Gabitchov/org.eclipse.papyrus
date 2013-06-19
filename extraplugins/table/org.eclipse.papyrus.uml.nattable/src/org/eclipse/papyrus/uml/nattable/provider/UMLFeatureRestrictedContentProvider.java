@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.widgets.providers.AbstractRestrictedContentProvider;
 import org.eclipse.papyrus.uml.nattable.manager.axis.UMLFeatureAxisManager;
+import org.eclipse.papyrus.uml.nattable.provider.tmp.AbstractRestrictedContentProvider;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**

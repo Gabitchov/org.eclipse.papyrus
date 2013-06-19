@@ -15,20 +15,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypePropertyAxisManager;
-import org.eclipse.papyrus.uml.tools.providers.UMLStereotypePropertyContentProvider;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
+import org.eclipse.papyrus.uml.nattable.provider.tmp.UMLStereotypePropertyContentProvider;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Stereotype;
@@ -205,13 +207,119 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	 */
 	private static final Collection<Profile> getAppliedProfilesInWholePackage(final Package pack) {
 		final Collection<Profile> appliedProfiles = new HashSet<Profile>();
-		final List<ProfileApplication> result = ElementUtil.getInstancesFilteredByType(pack, ProfileApplication.class, null);
+		final List<ProfileApplication> result = getInstancesFilteredByType(pack, ProfileApplication.class, null);
 		for(ProfileApplication profileApplication : result) {
 			if(EcoreUtil.getRootContainer((((ProfileApplication)profileApplication).getApplyingPackage())) == pack) {//restriction to avoid to find profile application from an imported model
 				appliedProfiles.add(profileApplication.getAppliedProfile());
 			}
 		}
 		return appliedProfiles;
+	}
+	
+	/**
+	 * Retrieve an list of all instances in the model that are instances of
+	 * the java.lang.Class metaType or with a stereotype applied
+	 * 
+	 * @param <T>
+	 * 
+	 * @param metaType
+	 *        selected classes
+	 * @param model
+	 *        to check
+	 * @param appliedStereotype
+	 *        may be null, metatype is ignored if not null
+	 * @return a list containing the selected instances
+	 */
+	//FIXME : replace me by ElementUtils.getInstance...
+	@SuppressWarnings("unchecked")
+	private static final <T extends EObject> List<T> getInstancesFilteredByType(final Package topPackage, final java.lang.Class<T> metaType, final Stereotype appliedStereotype) {
+		// retrieve parent element
+		// Package topPackage = Util.topPackage(element);
+		// Assert.isNotNull(topPackage,
+		// "Top package should not be null for element " + element);
+		Iterator<EObject> iter = topPackage.eAllContents();
+		List<T> filteredElements = new ArrayList<T>();
+
+		while(iter.hasNext()) {
+			EObject currentElt = iter.next();
+
+			// If currentElt is an ElementImport, it is replaced by the imported
+			// Element.
+			if(currentElt instanceof ElementImport) {
+				ElementImport elementImport = (ElementImport)currentElt;
+				currentElt = elementImport.getImportedElement();
+			}
+
+			/* package imports treatment */
+			else if(currentElt instanceof PackageImport) {
+				Iterator<EObject> piIter = ((PackageImport)currentElt).getImportedPackage().eAllContents();
+				while(piIter.hasNext()) {
+					EObject piCurrentElt = piIter.next();
+					if(piCurrentElt instanceof Element) {
+						if(appliedStereotype != null) {
+
+							Iterator<Stereotype> appStIter = ((Element)piCurrentElt).getAppliedStereotypes().iterator();
+							while(appStIter.hasNext()) {
+								Stereotype currentSt = (Stereotype)appStIter.next();
+
+								if(currentSt.conformsTo(appliedStereotype)) {
+									filteredElements.add((T)piCurrentElt);
+								}
+							}
+
+						} else { // if (appliedStereotype == null)
+							if(metaType.isInstance(piCurrentElt)) {
+								filteredElements.add((T)piCurrentElt);
+							}
+
+							/** add imported meta elements */
+							else if(piCurrentElt instanceof ElementImport) {
+								Iterator<EObject> eIter = ((ElementImport)piCurrentElt).getImportedElement().eAllContents();
+								while(eIter.hasNext()) {
+									EObject currentEIelt = eIter.next();
+									if(metaType.isInstance(currentEIelt))
+										filteredElements.add((T)currentEIelt);
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+			// Filtering elements
+			if(currentElt instanceof Element) {
+
+				if(appliedStereotype != null) {
+
+					Iterator<Stereotype> appStIter = ((Element)currentElt).getAppliedStereotypes().iterator();
+					while(appStIter.hasNext()) {
+						Stereotype currentSt = (Stereotype)appStIter.next();
+
+						if(currentSt.conformsTo(appliedStereotype)) {
+							filteredElements.add((T)currentElt);
+						}
+					}
+
+				} else { // if (appliedStereotype == null)
+					if(metaType.isInstance(currentElt)) {
+						filteredElements.add((T)currentElt);
+					}
+
+					/** add imported meta elements */
+					else if(currentElt instanceof ElementImport) {
+						Iterator<EObject> eIter = ((ElementImport)currentElt).getImportedElement().eAllContents();
+						while(eIter.hasNext()) {
+							EObject currentEIelt = eIter.next();
+							if(metaType.isInstance(currentEIelt))
+								filteredElements.add((T)currentEIelt);
+						}
+					}
+				}
+			}
+		}
+
+		return filteredElements;
 	}
 
 	/**
@@ -225,6 +333,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		this.isRestricted = isRestricted;
 	}
 
+	
 	/**
 	 * 
 	 * @return
