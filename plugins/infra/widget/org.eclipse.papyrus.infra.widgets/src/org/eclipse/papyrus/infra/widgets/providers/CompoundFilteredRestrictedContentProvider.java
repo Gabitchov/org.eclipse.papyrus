@@ -117,7 +117,6 @@ public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredC
 	 * 
 	 * @param ignoreInheritedElements
 	 */
-	@Override
 	public void setIgnoreInheritedElements(boolean ignoreInheritedElements) {
 		for(final IRestrictedContentProvider current : encapsulatedContentProviders) {
 			current.setIgnoreInheritedElements(ignoreInheritedElements);
@@ -130,7 +129,6 @@ public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredC
 	 * 
 	 * @return
 	 */
-	@Override
 	public boolean isIgnoringInheritedElements() {
 		return encapsulatedContentProviders.get(0).isIgnoringInheritedElements();//the value is the same for all encapsulated content provider
 	}

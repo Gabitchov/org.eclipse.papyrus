@@ -161,7 +161,6 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 	 *
 	 * @param ignoreInheritedElements
 	 */
-	@Override
 	public void setIgnoreInheritedElements(boolean ignoreInheritedElements) {
 		provider.setIgnoreInheritedElements(ignoreInheritedElements);
 	}
@@ -172,7 +171,6 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 	 *
 	 * @return
 	 */
-	@Override
 	public boolean isIgnoringInheritedElements() {
 		return provider.isIgnoringInheritedElements();
 	}

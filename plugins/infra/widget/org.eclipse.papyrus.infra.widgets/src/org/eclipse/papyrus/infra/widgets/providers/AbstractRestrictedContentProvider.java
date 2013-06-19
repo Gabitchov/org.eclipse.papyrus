@@ -78,7 +78,6 @@ public abstract class AbstractRestrictedContentProvider implements IRestrictedCo
 	 * 
 	 * @param ignoreInheritedElements
 	 */
-	@Override
 	public void setIgnoreInheritedElements(boolean ignoreInheritedElements) {
 		this.ignoreInheritedFeatures = ignoreInheritedElements;
 	}
@@ -89,7 +88,6 @@ public abstract class AbstractRestrictedContentProvider implements IRestrictedCo
 	 * 
 	 * @return
 	 */
-	@Override
 	public boolean isIgnoringInheritedElements() {
 		return this.ignoreInheritedFeatures;
 	}
