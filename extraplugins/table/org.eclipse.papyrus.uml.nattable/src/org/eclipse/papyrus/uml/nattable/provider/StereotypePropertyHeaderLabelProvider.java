@@ -21,6 +21,7 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
@@ -80,6 +81,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	public String getText(Object element) {
 		ILabelProviderConfiguration conf = null;
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		String alias = ""; //$NON-NLS-1$
 		if(element instanceof LabelProviderCellContextElement) {
 			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
@@ -91,15 +93,22 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		final Object value = ((ILabelProviderContextElement)element).getObject();
+		if(value instanceof FeatureAxis){
+			alias = ((FeatureAxis)value).getAlias();
+		}
 		final INattableModelManager modelManager = (INattableModelManager)getAxisContentProvider(configRegistry);
 		final EObject tableContext = modelManager.getTable().getContext();
 		String id = AxisUtils.getPropertyId(value);
 		final Property prop = UMLTableUtils.getRealStereotypeProperty(tableContext, id);
 		if(prop != null) {
-			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, prop.getName(), prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
+			String nameToDisplay = prop.getName();
+			if(alias != null && !alias.equals("")) { //$NON-NLS-1$
+				nameToDisplay = alias;
+			}
+			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, nameToDisplay, prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
 		} else {
 			id = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
 			return id + " " + REQUIRED_PROFILE_NOT_AVALAIBLE; //$NON-NLS-1$

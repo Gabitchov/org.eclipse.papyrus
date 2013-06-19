@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
@@ -65,7 +66,7 @@ public class ModelViewsHeaderLabelProvider extends EMFFeatureHeaderLabelProvider
 		final Object object = ((ILabelProviderContextElement)element).getObject();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
 		final String id = AxisUtils.getPropertyId(object);
-		final String name = id.replaceFirst(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
+		String name = id.replaceFirst(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
 		Object type = null;
 		boolean isDerived = false;
 		int lowerBounds = 1;
@@ -87,7 +88,14 @@ public class ModelViewsHeaderLabelProvider extends EMFFeatureHeaderLabelProvider
 			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
-			return "";
+			return ""; //$NON-NLS-1$
+		}
+		String alias = ""; //$NON-NLS-1$
+		if(object instanceof FeatureAxis){
+			alias = ((FeatureAxis)object).getAlias();
+		}
+		if(alias!=null && !alias.equals("")){ //$NON-NLS-1$
+			name = alias;
 		}
 		if(conf instanceof FeatureLabelProviderConfiguration) {
 			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, name, type, isDerived, lowerBounds, upperBounds);
