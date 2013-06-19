@@ -19,8 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.ManifestElement;
 import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
 import org.eclipse.papyrus.osgi.profile.IOSGIStereotype;
-import org.eclipse.pde.core.project.IBundleProjectDescription;
-import org.eclipse.pde.core.project.IPackageExportDescription;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
@@ -70,7 +68,7 @@ public class LoadedBundleDescriptionDesigner extends AbstractBundleDescriptionDe
 						UMLPackage.setName(manisfests[i].getValue());
 						bundleComponent.getPackagedElements().add(UMLPackage);
 						
-						Stereotype exportedPackageStereotype=UMLPackage.getApplicableStereotype(IADL4ECLIPSE_Stereotype.ECLIPSEEXPORTEDPACKAGE_);
+						Stereotype exportedPackageStereotype=UMLPackage.getApplicableStereotype(IADL4ECLIPSE_Stereotype.ECLIPSEEXPORTEDPACKAGE_STEREOTYPE);
 						UMLPackage.applyStereotype(exportedPackageStereotype);	
 						if((manisfests[i].getDirective("x-internal"))!=null){
 							String booleanString=(manisfests[i].getDirective("x-internal"));

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.adltool.designer.CompleteArchitectureSnapshotDesigner;
+import org.eclipse.papyrus.adltool.designer.CompleteFeatureArchitectureSnapshotDesigner;
 import org.eclipse.uml2.uml.Package;
 
 
@@ -25,13 +25,14 @@ import org.eclipse.uml2.uml.Package;
  * this purpose of this comment is to import all the architecture from the currentworkspace
  *
  */
-public class CompleteArchitectureSnapshotCommand extends RecordingCommand {
-	protected ArrayList<Object> bundleList=null;
-	protected Package rootPackage;
+public class CompleteFeaturesArchitectureSnapshotCommand extends RecordingCommand {
 
-	public CompleteArchitectureSnapshotCommand(TransactionalEditingDomain domain,Package rootPackage, ArrayList<Object> bundleList) {
-		super(domain,"Import Bundles", "Model architecture from current workspace");
-		this.rootPackage=rootPackage;
+	protected Package rootPackage;
+	protected ArrayList<Object> bundleList=null;
+
+	public CompleteFeaturesArchitectureSnapshotCommand(TransactionalEditingDomain domain,Package rootPackage, ArrayList<Object> bundleList) {
+		super(domain,"Import Bundles", "Model Feature architecture from current workspace");
+		this.rootPackage=rootPackage; 
 		this.bundleList=bundleList;
 	}
 
@@ -39,7 +40,9 @@ public class CompleteArchitectureSnapshotCommand extends RecordingCommand {
 	
 	@Override
 	protected void doExecute() {
-		CompleteArchitectureSnapshotDesigner snapshotDesigner= new CompleteArchitectureSnapshotDesigner(rootPackage, bundleList);
+		CompleteFeatureArchitectureSnapshotDesigner snapshotDesigner= new CompleteFeatureArchitectureSnapshotDesigner(rootPackage, bundleList);
 		snapshotDesigner.runImportBundles();
 	}
+	
+
 }

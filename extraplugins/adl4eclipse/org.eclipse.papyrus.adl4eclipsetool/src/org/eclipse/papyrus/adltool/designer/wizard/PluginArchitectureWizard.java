@@ -20,14 +20,17 @@ import java.util.ArrayList;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.adltool.designer.ArchitectureSnapshotDesigner;
 
+/**
+ * this wizard is used to display plugin from workspace and the platform
+ *
+ */
 
-
-public class BundleArchitectureWizard extends Wizard {
+public class PluginArchitectureWizard extends Wizard {
 
 	protected BundleSelectionPage bundleSelectionPage;
 	protected boolean onlyWorkspace=true;
 
-	public BundleArchitectureWizard(boolean onlyWorkspace) {
+	public PluginArchitectureWizard(boolean onlyWorkspace) {
 		super();
 		setNeedsProgressMonitor(true);
 		this.onlyWorkspace=onlyWorkspace;

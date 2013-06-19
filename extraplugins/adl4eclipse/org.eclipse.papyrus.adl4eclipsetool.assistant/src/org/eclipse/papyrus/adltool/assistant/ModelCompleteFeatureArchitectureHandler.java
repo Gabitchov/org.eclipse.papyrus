@@ -18,8 +18,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.adltool.command.SimpleArchitectureSnapshotCommand;
-import org.eclipse.papyrus.adltool.designer.wizard.BundleArchitectureWizard;
+import org.eclipse.papyrus.adltool.command.CompleteFeaturesArchitectureSnapshotCommand;
+import org.eclipse.papyrus.adltool.designer.wizard.FeatureArchitectureWizard;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -30,12 +30,12 @@ import org.eclipse.uml2.uml.Package;
 
 
 /**
- * this handler is used to generate the architecture from workspace
+ * this handler is used to generate the feature and plugin architecture from workspace
  *
  */
-public class SimpleArchitecrureHandler extends ADLToolAbstractHandler {
+public class ModelCompleteFeatureArchitectureHandler extends ADLToolAbstractHandler {
 
-	public SimpleArchitecrureHandler() {
+	public ModelCompleteFeatureArchitectureHandler() {
 	}
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -52,12 +52,12 @@ public class SimpleArchitecrureHandler extends ADLToolAbstractHandler {
 		} catch (ServiceException e) {
 			throw new ExecutionException("Can't get ModelSet", e);
 		}
-		BundleArchitectureWizard bWizard=new BundleArchitectureWizard(true);
+		FeatureArchitectureWizard bWizard=new FeatureArchitectureWizard(false);
 		WizardDialog wizardDialog = new WizardDialog(new Shell(),bWizard);
 		if (wizardDialog.open() == Window.OK) {
 			TransactionalEditingDomain dom = modelSet.getTransactionalEditingDomain();
 			if( selectedElement instanceof Package){
-				SimpleArchitectureSnapshotCommand comd= new SimpleArchitectureSnapshotCommand(dom, (Package)selectedElement, bWizard.getSelectedBundle());
+				CompleteFeaturesArchitectureSnapshotCommand comd= new CompleteFeaturesArchitectureSnapshotCommand(dom, (Package)selectedElement, bWizard.getSelectedBundle());
 				dom.getCommandStack().execute(comd);
 			}
 		} 

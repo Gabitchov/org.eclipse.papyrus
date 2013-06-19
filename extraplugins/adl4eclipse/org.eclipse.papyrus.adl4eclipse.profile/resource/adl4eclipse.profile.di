@@ -7,6 +7,9 @@
     <availablePage>
       <emfPageIdentifier href="adl4eclipse.profile.notation#_vNr94IGIEeKWufV7WxSyhw"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="adl4eclipse.profile.notation#_5XfK4NT3EeKj0Lzrn2trlQ"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -16,6 +19,9 @@
         </children>
         <children>
           <emfPageIdentifier href="adl4eclipse.profile.notation#_vNr94IGIEeKWufV7WxSyhw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="adl4eclipse.profile.notation#_5XfK4NT3EeKj0Lzrn2trlQ"/>
         </children>
       </children>
     </windows>

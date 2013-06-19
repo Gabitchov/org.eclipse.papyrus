@@ -16,6 +16,7 @@ package org.eclipse.papyrus.adltool.designer.bundle;
 import java.util.ArrayList;
 
 import org.eclipse.pde.core.project.IBundleProjectDescription;
+import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
 import org.eclipse.uml2.uml.Component;
 import org.osgi.framework.Bundle;
 
@@ -27,11 +28,13 @@ import org.osgi.framework.Bundle;
 public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 	protected  WorkspaceBundleDescriptionDesigner workspaceBundleDescriptionDesigner;
 	protected LoadedBundleDescriptionDesigner loadedBundleDescriptionDesigner;
+	protected FeatureDescriptionDesigner featureDescriptionDesigner;
 
 
 	public BundleDesignerRegistry() {
 		workspaceBundleDescriptionDesigner= new WorkspaceBundleDescriptionDesigner();
 		loadedBundleDescriptionDesigner= new LoadedBundleDescriptionDesigner();
+		featureDescriptionDesigner =new FeatureDescriptionDesigner();
 	}
 
 /**
@@ -49,6 +52,9 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		}
 		else if(bundleProject instanceof Bundle){
 			return loadedBundleDescriptionDesigner.getBundleValue(bundleProject, key);
+		}
+		else if(bundleProject instanceof IFeatureModel){
+			return featureDescriptionDesigner.getBundleValue(bundleProject, key);
 		}
 		return null;
 	}
@@ -68,6 +74,9 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		else if(bundleProject instanceof Bundle){
 			loadedBundleDescriptionDesigner.fillPluginProperties(bundleComponent, bundleProject);
 		}
+		else if(bundleProject instanceof IFeatureModel){
+		 featureDescriptionDesigner.fillPluginProperties(bundleComponent, bundleProject);
+		}
 	}
 
 /**
@@ -84,6 +93,9 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		}
 		else if(bundleProject instanceof Bundle){
 			return loadedBundleDescriptionDesigner.getSymbolicName(bundleProject);
+		}
+		else if(bundleProject instanceof IFeatureModel){
+			return featureDescriptionDesigner.getSymbolicName(bundleProject);
 		}
 		return null;
 	}
@@ -103,6 +115,9 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		else if(bundleProject instanceof Bundle){
 			loadedBundleDescriptionDesigner.fillExportedPackages(bundleComponent, bundleProject);
 		}
+		else if(bundleProject instanceof IFeatureModel){
+		 featureDescriptionDesigner.fillExportedPackages(bundleComponent, bundleProject);
+		}
 
 	}
 	/**
@@ -121,6 +136,9 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		else if(bundleProject instanceof Bundle){
 			return loadedBundleDescriptionDesigner.getRequiredBundle(bundleComponent, bundleProject);
 		}
+		else if(bundleProject instanceof IFeatureModel){
+			return featureDescriptionDesigner.getRequiredBundle(bundleComponent, bundleProject);
+			}
 		return new ArrayList<ReferencedOSGIElement>();
 	}
 }

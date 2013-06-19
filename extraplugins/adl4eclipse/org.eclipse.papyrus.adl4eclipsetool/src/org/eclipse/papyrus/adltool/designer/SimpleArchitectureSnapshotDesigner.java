@@ -27,9 +27,8 @@ public class SimpleArchitectureSnapshotDesigner extends ArchitectureSnapshotDesi
 
 	protected Package architecture;
 	protected Package platform;
-	public SimpleArchitectureSnapshotDesigner(Package rootPackage) {
-		super(rootPackage);
-	}
+	protected Package architecturefeature;
+	protected Package platformfeature;
 	
 	
 	public SimpleArchitectureSnapshotDesigner(Package rootPackage, ArrayList<Object>bundleInitialList) {
@@ -41,21 +40,23 @@ public class SimpleArchitectureSnapshotDesigner extends ArchitectureSnapshotDesi
 		super.initModel();
 		architecture=rootPackage.createNestedPackage("Architecture");
 		platform=rootPackage.createNestedPackage("Platform");
+		
 	}
 	
 	@Override
 	public void runImportBundles() {
 		initModel();
-		modelPlugins(architecture);
+		modelBundles(architecture);
+	
 	}
 		
 	@Override
-	protected void modelPlugin(Package pluginPackage, Object bundleProject) {
+	protected void modelBundle(Package pluginPackage, Object bundleProject) {
 		if (bundleProject instanceof Bundle){
-			super.modelPlugin(platform, bundleProject);
+			super.modelBundle(platform, bundleProject);
 		}
 		else{
-			super.modelPlugin(architecture, bundleProject);
+			super.modelBundle(architecture, bundleProject);
 		}
 	}
 }

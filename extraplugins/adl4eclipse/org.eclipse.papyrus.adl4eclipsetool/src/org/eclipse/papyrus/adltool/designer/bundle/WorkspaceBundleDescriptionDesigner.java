@@ -89,7 +89,7 @@ public class WorkspaceBundleDescriptionDesigner extends AbstractBundleDescriptio
 					Package UMLPackage=UMLFactory.eINSTANCE.createPackage();
 					UMLPackage.setName(packageExportDescription[i].getName());
 					bundleComponent.getPackagedElements().add(UMLPackage);
-					Stereotype exportedPackageStereotype=UMLPackage.getApplicableStereotype(IADL4ECLIPSE_Stereotype.ECLIPSEEXPORTEDPACKAGE_);
+					Stereotype exportedPackageStereotype=UMLPackage.getApplicableStereotype(IADL4ECLIPSE_Stereotype.ECLIPSEEXPORTEDPACKAGE_STEREOTYPE);
 					UMLPackage.applyStereotype(exportedPackageStereotype);
 					UMLPackage.setValue(exportedPackageStereotype, IADL4ECLIPSE_Stereotype.ECLIPSEEXPORTEDPACKAGE_ISINTERNAL_ATT, !packageExportDescription[i].isApi());
 					//TODO:friends

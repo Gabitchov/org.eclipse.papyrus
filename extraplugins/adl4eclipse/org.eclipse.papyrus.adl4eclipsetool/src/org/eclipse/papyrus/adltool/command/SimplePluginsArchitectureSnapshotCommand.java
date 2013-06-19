@@ -25,12 +25,12 @@ import org.eclipse.uml2.uml.Package;
  * this purpose of this comment is to import all the architecture from the currentworkspace
  *
  */
-public class SimpleArchitectureSnapshotCommand extends RecordingCommand {
+public class SimplePluginsArchitectureSnapshotCommand extends RecordingCommand {
 
 	protected Package rootPackage;
 	protected ArrayList<Object> bundleList=null;
 
-	public SimpleArchitectureSnapshotCommand(TransactionalEditingDomain domain,Package rootPackage, ArrayList<Object> bundleList) {
+	public SimplePluginsArchitectureSnapshotCommand(TransactionalEditingDomain domain,Package rootPackage, ArrayList<Object> bundleList) {
 		super(domain,"Import Bundles", "Model architecture from current workspace");
 		this.rootPackage=rootPackage; 
 		this.bundleList=bundleList;

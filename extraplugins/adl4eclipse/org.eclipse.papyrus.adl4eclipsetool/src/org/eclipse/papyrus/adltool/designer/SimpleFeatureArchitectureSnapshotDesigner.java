@@ -18,24 +18,36 @@ import java.util.ArrayList;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * import the list of plugins from all loading plugins 
+ * Designer to construct the architecture of feature from the workspace.
  *
  */
-  public class CompleteArchitectureSnapshotDesigner extends ArchitectureSnapshotDesigner {
- 
+public class SimpleFeatureArchitectureSnapshotDesigner extends CompleteFeatureArchitectureSnapshotDesigner {
 
+
+	protected Package architecture;
+	protected Package platform;
+	protected Package architecturefeature;
+	protected Package platformfeature;
 	
-	public CompleteArchitectureSnapshotDesigner(Package rootPackage, ArrayList<Object>bundleInitialList) {
+	public SimpleFeatureArchitectureSnapshotDesigner(Package rootPackage, ArrayList<Object> bundleInitialList) {
 		super(rootPackage, bundleInitialList);
 	}
+
+	
+	
 	@Override
 	protected void initModel() {
 		super.initModel();
+		architecture=rootPackage.createNestedPackage("Architecture");
+		platform=rootPackage.createNestedPackage("Platform");
+		
 	}
 	
 	@Override
 	public void runImportBundles() {
 		initModel();
-		modelBundles(rootPackage);
+		modelBundles(architecture);
+	
 	}
+	
 }

@@ -17,6 +17,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.pde.core.project.IBundleProjectDescription;
+import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
@@ -37,6 +38,10 @@ public class BundleLabelProvider extends LabelProvider {
 		else if(bundleProject instanceof Bundle){
 			return getImage("img/bundle_obj.gif");
 		}
+		else if(bundleProject instanceof IFeatureModel){
+			return getImage("img/bundle_obj.gif");
+		}
+		
 		return super.getImage(bundleProject);
 	}
 	

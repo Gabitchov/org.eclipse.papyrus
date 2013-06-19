@@ -1,4 +1,3 @@
-
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
@@ -19,9 +18,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.adltool.command.CompleteArchitectureSnapshotCommand;
-import org.eclipse.papyrus.adltool.command.SimpleArchitectureSnapshotCommand;
-import org.eclipse.papyrus.adltool.designer.wizard.BundleArchitectureWizard;
+import org.eclipse.papyrus.adltool.command.SimpleFeaturesArchitectureSnapshotCommand;
+import org.eclipse.papyrus.adltool.designer.wizard.FeatureArchitectureWizard;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -31,10 +29,13 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
 
+/**
+ * this handler is used to generate the feature and plugin architecture from workspace
+ *
+ */
+public class ModelFeatureArchitectureFromWorkspaceHandler extends ADLToolAbstractHandler {
 
-public class CompleteArchitectureHandler extends ADLToolAbstractHandler {
-
-	public CompleteArchitectureHandler() {
+	public ModelFeatureArchitectureFromWorkspaceHandler() {
 	}
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -51,15 +52,16 @@ public class CompleteArchitectureHandler extends ADLToolAbstractHandler {
 		} catch (ServiceException e) {
 			throw new ExecutionException("Can't get ModelSet", e);
 		}
-		BundleArchitectureWizard bWizard=new BundleArchitectureWizard(false);
+		FeatureArchitectureWizard bWizard=new FeatureArchitectureWizard(true);
 		WizardDialog wizardDialog = new WizardDialog(new Shell(),bWizard);
 		if (wizardDialog.open() == Window.OK) {
 			TransactionalEditingDomain dom = modelSet.getTransactionalEditingDomain();
 			if( selectedElement instanceof Package){
-				CompleteArchitectureSnapshotCommand comd= new CompleteArchitectureSnapshotCommand(dom, (Package)selectedElement,bWizard.getSelectedBundle());
+				SimpleFeaturesArchitectureSnapshotCommand comd= new SimpleFeaturesArchitectureSnapshotCommand(dom, (Package)selectedElement, bWizard.getSelectedBundle());
 				dom.getCommandStack().execute(comd);
 			}
 		} 
+
 		
 		return null;
 	}
