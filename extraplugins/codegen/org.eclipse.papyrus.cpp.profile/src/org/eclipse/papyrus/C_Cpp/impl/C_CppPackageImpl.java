@@ -621,6 +621,42 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExternLibrary_LibPaths() {
+		return (EAttribute)externLibraryEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternLibrary_Macros() {
+		return (EAttribute)externLibraryEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternLibrary_Libs() {
+		return (EAttribute)externLibraryEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternLibrary_Includes() {
+		return (EAttribute)externLibraryEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCppRoot() {
 		return cppRootEClass;
 	}
@@ -1012,6 +1048,20 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		createEAttribute(manualGenerationEClass, MANUAL_GENERATION__EXTENSION_BODY);
 		createEReference(manualGenerationEClass, MANUAL_GENERATION__BASE_CLASS);
 
+		externLibraryEClass = createEClass(EXTERN_LIBRARY);
+		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__NAME);
+		createEReference(externLibraryEClass, EXTERN_LIBRARY__BASE_PACKAGE);
+		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__LIB_PATHS);
+		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__MACROS);
+		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__LIBS);
+		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__INCLUDES);
+
+		noCodeGenEClass = createEClass(NO_CODE_GEN);
+		createEReference(noCodeGenEClass, NO_CODE_GEN__BASE_ELEMENT);
+
+		cppRootEClass = createEClass(CPP_ROOT);
+		createEReference(cppRootEClass, CPP_ROOT__BASE_PACKAGE);
+
 		arrayEClass = createEClass(ARRAY);
 		createEReference(arrayEClass, ARRAY__BASE_PARAMETER);
 		createEAttribute(arrayEClass, ARRAY__DEFINITION);
@@ -1035,16 +1085,6 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		externClassEClass = createEClass(EXTERN_CLASS);
 		createEAttribute(externClassEClass, EXTERN_CLASS__NAME);
 		createEReference(externClassEClass, EXTERN_CLASS__BASE_CLASS);
-
-		externLibraryEClass = createEClass(EXTERN_LIBRARY);
-		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__NAME);
-		createEReference(externLibraryEClass, EXTERN_LIBRARY__BASE_PACKAGE);
-
-		cppRootEClass = createEClass(CPP_ROOT);
-		createEReference(cppRootEClass, CPP_ROOT__BASE_PACKAGE);
-
-		noCodeGenEClass = createEClass(NO_CODE_GEN);
-		createEReference(noCodeGenEClass, NO_CODE_GEN__BASE_ELEMENT);
 
 		constInitEClass = createEClass(CONST_INIT);
 		createEAttribute(constInitEClass, CONST_INIT__INITIALISATION);
@@ -1147,6 +1187,20 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		initEAttribute(getManualGeneration_ExtensionBody(), theTypesPackage.getString(), "extensionBody", null, 1, 1, ManualGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getManualGeneration_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, ManualGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
+		initEClass(externLibraryEClass, ExternLibrary.class, "ExternLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExternLibrary_Name(), theTypesPackage.getString(), "name", null, 1, 1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getExternLibrary_Base_package(), theUMLPackage.getPackage(), null, "base_package", null, 1, 1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getExternLibrary_LibPaths(), theTypesPackage.getString(), "libPaths", null, 0, -1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getExternLibrary_Macros(), theTypesPackage.getString(), "macros", null, 0, -1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getExternLibrary_Libs(), theTypesPackage.getString(), "libs", null, 0, -1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getExternLibrary_Includes(), theTypesPackage.getString(), "includes", null, 0, -1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(noCodeGenEClass, NoCodeGen.class, "NoCodeGen", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNoCodeGen_Base_element(), theUMLPackage.getElement(), null, "base_element", null, 1, 1, NoCodeGen.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(cppRootEClass, CppRoot.class, "CppRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCppRoot_Base_package(), theUMLPackage.getPackage(), null, "base_package", null, 1, 1, CppRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
 		initEClass(arrayEClass, Array.class, "Array", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArray_Base_parameter(), theUMLPackage.getParameter(), null, "base_parameter", null, 1, 1, Array.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getArray_Definition(), theTypesPackage.getString(), "definition", null, 1, 1, Array.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1170,16 +1224,6 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		initEClass(externClassEClass, ExternClass.class, "ExternClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExternClass_Name(), theTypesPackage.getString(), "name", null, 1, 1, ExternClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getExternClass_Base_class(), theUMLPackage.getClass_(), null, "base_class", null, 1, 1, ExternClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(externLibraryEClass, ExternLibrary.class, "ExternLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExternLibrary_Name(), theTypesPackage.getString(), "name", null, 1, 1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getExternLibrary_Base_package(), theUMLPackage.getPackage(), null, "base_package", null, 1, 1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(cppRootEClass, CppRoot.class, "CppRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCppRoot_Base_package(), theUMLPackage.getPackage(), null, "base_package", null, 1, 1, CppRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(noCodeGenEClass, NoCodeGen.class, "NoCodeGen", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNoCodeGen_Base_element(), theUMLPackage.getElement(), null, "base_element", null, 1, 1, NoCodeGen.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(constInitEClass, ConstInit.class, "ConstInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstInit_Initialisation(), theTypesPackage.getString(), "initialisation", null, 1, 1, ConstInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

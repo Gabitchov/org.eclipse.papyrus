@@ -40,6 +40,20 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ManualGeneration/extensionBody"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ManualGeneration/base_Class"/>
     </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//ExternLibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ExternLibrary/base_package"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/libPaths"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/macros"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/libs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/includes"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//NoCodeGen">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//NoCodeGen/base_element"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//CppRoot">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//CppRoot/base_package"/>
+    </genClasses>
     <genClasses ecoreClass="C_Cpp.ecore#//Array">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Array/base_parameter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Array/definition"/>
@@ -63,16 +77,6 @@
     <genClasses ecoreClass="C_Cpp.ecore#//ExternClass">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternClass/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ExternClass/base_class"/>
-    </genClasses>
-    <genClasses ecoreClass="C_Cpp.ecore#//ExternLibrary">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ExternLibrary/base_package"/>
-    </genClasses>
-    <genClasses ecoreClass="C_Cpp.ecore#//CppRoot">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//CppRoot/base_package"/>
-    </genClasses>
-    <genClasses ecoreClass="C_Cpp.ecore#//NoCodeGen">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//NoCodeGen/base_element"/>
     </genClasses>
     <genClasses ecoreClass="C_Cpp.ecore#//ConstInit">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ConstInit/initialisation"/>

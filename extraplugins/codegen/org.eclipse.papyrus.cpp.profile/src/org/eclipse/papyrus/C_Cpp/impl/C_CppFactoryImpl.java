@@ -57,14 +57,14 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 			case C_CppPackage.PTR: return createPtr();
 			case C_CppPackage.INCLUDE: return createInclude();
 			case C_CppPackage.MANUAL_GENERATION: return createManualGeneration();
+			case C_CppPackage.EXTERN_LIBRARY: return createExternLibrary();
+			case C_CppPackage.NO_CODE_GEN: return createNoCodeGen();
+			case C_CppPackage.CPP_ROOT: return createCppRoot();
 			case C_CppPackage.ARRAY: return createArray();
 			case C_CppPackage.CONST: return createConst();
 			case C_CppPackage.DEFAULT: return createDefault();
 			case C_CppPackage.REF: return createRef();
 			case C_CppPackage.EXTERN_CLASS: return createExternClass();
-			case C_CppPackage.EXTERN_LIBRARY: return createExternLibrary();
-			case C_CppPackage.CPP_ROOT: return createCppRoot();
-			case C_CppPackage.NO_CODE_GEN: return createNoCodeGen();
 			case C_CppPackage.CONST_INIT: return createConstInit();
 			case C_CppPackage.FRIEND: return createFriend();
 			case C_CppPackage.INLINE: return createInline();

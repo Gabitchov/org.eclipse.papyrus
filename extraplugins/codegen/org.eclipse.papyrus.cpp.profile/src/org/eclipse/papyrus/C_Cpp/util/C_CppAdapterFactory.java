@@ -77,6 +77,18 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 				return createManualGenerationAdapter();
 			}
 			@Override
+			public Adapter caseExternLibrary(ExternLibrary object) {
+				return createExternLibraryAdapter();
+			}
+			@Override
+			public Adapter caseNoCodeGen(NoCodeGen object) {
+				return createNoCodeGenAdapter();
+			}
+			@Override
+			public Adapter caseCppRoot(CppRoot object) {
+				return createCppRootAdapter();
+			}
+			@Override
 			public Adapter caseArray(Array object) {
 				return createArrayAdapter();
 			}
@@ -95,18 +107,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExternClass(ExternClass object) {
 				return createExternClassAdapter();
-			}
-			@Override
-			public Adapter caseExternLibrary(ExternLibrary object) {
-				return createExternLibraryAdapter();
-			}
-			@Override
-			public Adapter caseCppRoot(CppRoot object) {
-				return createCppRootAdapter();
-			}
-			@Override
-			public Adapter caseNoCodeGen(NoCodeGen object) {
-				return createNoCodeGenAdapter();
 			}
 			@Override
 			public Adapter caseConstInit(ConstInit object) {

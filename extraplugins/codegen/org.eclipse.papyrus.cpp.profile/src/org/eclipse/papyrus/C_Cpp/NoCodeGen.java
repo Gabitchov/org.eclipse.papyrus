@@ -11,6 +11,10 @@ import org.eclipse.uml2.uml.Element;
  * A representation of the model object '<em><b>No Code Gen</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * No codegeneration should be done for this element
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>

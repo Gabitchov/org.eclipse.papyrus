@@ -82,6 +82,24 @@ public class C_CppSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case C_CppPackage.EXTERN_LIBRARY: {
+				ExternLibrary externLibrary = (ExternLibrary)theEObject;
+				T result = caseExternLibrary(externLibrary);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case C_CppPackage.NO_CODE_GEN: {
+				NoCodeGen noCodeGen = (NoCodeGen)theEObject;
+				T result = caseNoCodeGen(noCodeGen);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case C_CppPackage.CPP_ROOT: {
+				CppRoot cppRoot = (CppRoot)theEObject;
+				T result = caseCppRoot(cppRoot);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case C_CppPackage.ARRAY: {
 				Array array = (Array)theEObject;
 				T result = caseArray(array);
@@ -109,24 +127,6 @@ public class C_CppSwitch<T> extends Switch<T> {
 			case C_CppPackage.EXTERN_CLASS: {
 				ExternClass externClass = (ExternClass)theEObject;
 				T result = caseExternClass(externClass);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case C_CppPackage.EXTERN_LIBRARY: {
-				ExternLibrary externLibrary = (ExternLibrary)theEObject;
-				T result = caseExternLibrary(externLibrary);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case C_CppPackage.CPP_ROOT: {
-				CppRoot cppRoot = (CppRoot)theEObject;
-				T result = caseCppRoot(cppRoot);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case C_CppPackage.NO_CODE_GEN: {
-				NoCodeGen noCodeGen = (NoCodeGen)theEObject;
-				T result = caseNoCodeGen(noCodeGen);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

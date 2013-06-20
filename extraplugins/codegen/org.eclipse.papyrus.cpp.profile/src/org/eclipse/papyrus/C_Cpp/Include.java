@@ -12,6 +12,7 @@ import org.eclipse.uml2.uml.PackageImport;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
+ * An arbitrary string that is added to header and body file. Although primarily intended for manual include directives, it can be used for arbitrary definitions.
  * "preBody" is added to a C++ body file before automatic include statements, "body" after
  * <!-- end-model-doc -->
  *

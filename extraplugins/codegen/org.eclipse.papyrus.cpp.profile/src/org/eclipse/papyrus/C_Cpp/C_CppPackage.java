@@ -220,7 +220,176 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getArray()
 	 * @generated
 	 */
-	int ARRAY = 3;
+	int ARRAY = 6;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ConstImpl <em>Const</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.ConstImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getConst()
+	 * @generated
+	 */
+	int CONST = 7;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.DefaultImpl <em>Default</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.DefaultImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getDefault()
+	 * @generated
+	 */
+	int DEFAULT = 8;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.RefImpl <em>Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.RefImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getRef()
+	 * @generated
+	 */
+	int REF = 9;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl <em>Extern Class</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getExternClass()
+	 * @generated
+	 */
+	int EXTERN_CLASS = 10;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl <em>Extern Library</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getExternLibrary()
+	 * @generated
+	 */
+	int EXTERN_LIBRARY = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERN_LIBRARY__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Base package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERN_LIBRARY__BASE_PACKAGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Lib Paths</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERN_LIBRARY__LIB_PATHS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Macros</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERN_LIBRARY__MACROS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Libs</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERN_LIBRARY__LIBS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Includes</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERN_LIBRARY__INCLUDES = 5;
+
+	/**
+	 * The number of structural features of the '<em>Extern Library</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERN_LIBRARY_FEATURE_COUNT = 6;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.CppRootImpl <em>Cpp Root</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.CppRootImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getCppRoot()
+	 * @generated
+	 */
+	int CPP_ROOT = 5;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.NoCodeGenImpl <em>No Code Gen</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.NoCodeGenImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getNoCodeGen()
+	 * @generated
+	 */
+	int NO_CODE_GEN = 4;
+
+	/**
+	 * The feature id for the '<em><b>Base element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NO_CODE_GEN__BASE_ELEMENT = 0;
+
+	/**
+	 * The number of structural features of the '<em>No Code Gen</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NO_CODE_GEN_FEATURE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Base package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CPP_ROOT__BASE_PACKAGE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Cpp Root</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CPP_ROOT_FEATURE_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Base parameter</b></em>' reference.
@@ -268,16 +437,6 @@ public interface C_CppPackage extends EPackage {
 	int ARRAY_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ConstImpl <em>Const</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.C_Cpp.impl.ConstImpl
-	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getConst()
-	 * @generated
-	 */
-	int CONST = 4;
-
-	/**
 	 * The feature id for the '<em><b>Base parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -312,16 +471,6 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONST_FEATURE_COUNT = 3;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.DefaultImpl <em>Default</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.C_Cpp.impl.DefaultImpl
-	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getDefault()
-	 * @generated
-	 */
-	int DEFAULT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -360,16 +509,6 @@ public interface C_CppPackage extends EPackage {
 	int DEFAULT_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.RefImpl <em>Ref</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.C_Cpp.impl.RefImpl
-	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getRef()
-	 * @generated
-	 */
-	int REF = 6;
-
-	/**
 	 * The feature id for the '<em><b>Base parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -397,16 +536,6 @@ public interface C_CppPackage extends EPackage {
 	int REF_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl <em>Extern Class</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl
-	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getExternClass()
-	 * @generated
-	 */
-	int EXTERN_CLASS = 7;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -432,99 +561,6 @@ public interface C_CppPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERN_CLASS_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl <em>Extern Library</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl
-	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getExternLibrary()
-	 * @generated
-	 */
-	int EXTERN_LIBRARY = 8;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERN_LIBRARY__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Base package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERN_LIBRARY__BASE_PACKAGE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Extern Library</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERN_LIBRARY_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.CppRootImpl <em>Cpp Root</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.C_Cpp.impl.CppRootImpl
-	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getCppRoot()
-	 * @generated
-	 */
-	int CPP_ROOT = 9;
-
-	/**
-	 * The feature id for the '<em><b>Base package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CPP_ROOT__BASE_PACKAGE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Cpp Root</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CPP_ROOT_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.NoCodeGenImpl <em>No Code Gen</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.C_Cpp.impl.NoCodeGenImpl
-	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getNoCodeGen()
-	 * @generated
-	 */
-	int NO_CODE_GEN = 10;
-
-	/**
-	 * The feature id for the '<em><b>Base element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NO_CODE_GEN__BASE_ELEMENT = 0;
-
-	/**
-	 * The number of structural features of the '<em>No Code Gen</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NO_CODE_GEN_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ConstInitImpl <em>Const Init</em>}' class.
@@ -1353,6 +1389,50 @@ public interface C_CppPackage extends EPackage {
 	EReference getExternLibrary_Base_package();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getLibPaths <em>Lib Paths</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Lib Paths</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.ExternLibrary#getLibPaths()
+	 * @see #getExternLibrary()
+	 * @generated
+	 */
+	EAttribute getExternLibrary_LibPaths();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getMacros <em>Macros</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Macros</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.ExternLibrary#getMacros()
+	 * @see #getExternLibrary()
+	 * @generated
+	 */
+	EAttribute getExternLibrary_Macros();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getLibs <em>Libs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Libs</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.ExternLibrary#getLibs()
+	 * @see #getExternLibrary()
+	 * @generated
+	 */
+	EAttribute getExternLibrary_Libs();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludes <em>Includes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Includes</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludes()
+	 * @see #getExternLibrary()
+	 * @generated
+	 */
+	EAttribute getExternLibrary_Includes();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.C_Cpp.CppRoot <em>Cpp Root</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2091,6 +2171,38 @@ public interface C_CppPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTERN_LIBRARY__BASE_PACKAGE = eINSTANCE.getExternLibrary_Base_package();
+
+		/**
+		 * The meta object literal for the '<em><b>Lib Paths</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERN_LIBRARY__LIB_PATHS = eINSTANCE.getExternLibrary_LibPaths();
+
+		/**
+		 * The meta object literal for the '<em><b>Macros</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERN_LIBRARY__MACROS = eINSTANCE.getExternLibrary_Macros();
+
+		/**
+		 * The meta object literal for the '<em><b>Libs</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERN_LIBRARY__LIBS = eINSTANCE.getExternLibrary_Libs();
+
+		/**
+		 * The meta object literal for the '<em><b>Includes</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERN_LIBRARY__INCLUDES = eINSTANCE.getExternLibrary_Includes();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.impl.CppRootImpl <em>Cpp Root</em>}' class.

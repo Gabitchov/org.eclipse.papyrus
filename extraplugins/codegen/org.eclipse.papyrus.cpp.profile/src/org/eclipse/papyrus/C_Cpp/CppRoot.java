@@ -9,6 +9,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Cpp Root</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Indicates that this package shoudl be a root package, i.e. its contents should appear on top level folder during generation. Currently not used
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
