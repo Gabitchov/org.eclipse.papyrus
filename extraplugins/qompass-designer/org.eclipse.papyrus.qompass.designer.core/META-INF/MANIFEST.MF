@@ -34,7 +34,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
- org.eclipse.papyrus.acceleo;bundle-version="0.10.0"
+ org.eclipse.papyrus.acceleo;bundle-version="0.10.0",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.3.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.qompass.designer.core,
  org.eclipse.papyrus.qompass.designer.core.acceleo,

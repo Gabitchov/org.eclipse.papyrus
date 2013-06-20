@@ -37,10 +37,12 @@ public class ConfigureInstanceHandler extends CmdHandler {
 	public boolean isEnabled() {
 		updateSelectedEObject();
 		EObject selectedObj = getSelectedEObject();
+		System.err.println("isEnabled: " + selectedObj);
 		if((selectedObj instanceof Class) ||
 			(selectedObj instanceof Connector) ||
 			(selectedObj instanceof Property) ||
 			(selectedObj instanceof InstanceSpecification)) {
+			System.err.println("= true");
 			return true;
 		}
 		return false;

@@ -247,6 +247,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 
 				EList<EClassifier> wantedMetaClasses = new BasicEList<EClassifier>();
 				wantedMetaClasses.add(feature.getEType());
+				// creates (indirect) dependency to org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider
 				contentProvider.setWantedMetaclasses(wantedMetaClasses);
 				contentProvider.setNotWantedMetaclasses(Collections.EMPTY_LIST);
 				tsd.setContentProvider(contentProvider);

@@ -58,7 +58,7 @@ public class Deploy {
 
 		// change to flat copy eventually later (not yet working)
 		deploy.depInstance = new PartialCopy();
-
+		
 		deploy.depInstance.init(copy, deploy.bootLoaderGen, node);
 
 		// set a copy listener in order to assure that indirectly added classes
@@ -66,7 +66,6 @@ public class Deploy {
 		copy.preCopyListeners.add(new GatherConfigData(langSupport));
 		// TODO: not nice at all (make non-static?)
 		Stack<Slot> slotPath = new Stack<Slot>();
-		// do not deploy the system instance itself, but the contained instances as top-level instance
 		deploy.distributeToNode(false, slotPath, instance);
 /*
 		for (Slot topLevelSlot : instance.getSlots()) {
@@ -117,6 +116,7 @@ public class Deploy {
 
 		// copy implementation into node specific model
 		Classifier tmImplementation = depInstance.deployInstance(instance, slotPath);
+		// Classifier tmImplementation = copy.getCopy(smImplementation);
 
 		for(Slot slot : instance.getSlots()) {
 			InstanceSpecification containedInstance = DepUtils.getInstance(slot);
@@ -152,9 +152,9 @@ public class Deploy {
 		return bootLoaderGen.getUML();
 	}
 
-	private BootLoaderGen bootLoaderGen;
+	protected BootLoaderGen bootLoaderGen;
 
-	private InstanceSpecification node;
+	protected InstanceSpecification node;
 
-	private InstanceDeployer depInstance;
+	protected InstanceDeployer depInstance;
 }

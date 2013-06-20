@@ -63,6 +63,10 @@ public class PartialCopy implements InstanceDeployer {
 		if(!(classifier instanceof Class) || slotPath.size() > 0) {
 			return copy.getCopy(classifier);
 		}
+		if (AllocUtils.getNodes(is).contains(node)) {
+			return copy.getCopy(classifier);
+		}
+		
 		Class smCl = (Class)classifier;
 		
 		// create parts in target model, if allocated.

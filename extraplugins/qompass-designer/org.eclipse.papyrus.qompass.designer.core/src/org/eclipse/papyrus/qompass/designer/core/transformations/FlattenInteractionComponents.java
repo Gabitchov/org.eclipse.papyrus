@@ -93,7 +93,9 @@ public class FlattenInteractionComponents {
 		EList<Slot> slots =  new BasicEList<Slot>(instance.getSlots());
 		for (Slot subISslot : slots) {
 			InstanceSpecification subIS = DepUtils.getInstance(subISslot);
-			flattenAssembly (subIS, subISslot);
+			if (subIS != null) {
+				flattenAssembly (subIS, subISslot);
+			}
 		}
 	}
 	

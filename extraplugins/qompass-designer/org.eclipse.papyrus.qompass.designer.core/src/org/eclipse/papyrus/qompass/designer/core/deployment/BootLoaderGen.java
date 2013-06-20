@@ -357,7 +357,7 @@ public class BootLoaderGen {
 				// instance still points to a part in the tmp-model (there are no
 				// instance specifications in the final model). Therefore, we use copy to
 				// obtain the mapped instance.
-				Property part = (Property)copy.get(sf);
+				Property part = (Property)copy.copy(sf);
 				Class composite = part.getClass_();
 				for(Connector connector : composite.getOwnedConnectors()) {
 					// must assure same connector end connects part & port
