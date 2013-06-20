@@ -38,7 +38,7 @@ import org.eclipse.uml2.uml.Usage;
 
 
 /**
- * Main class of code generator
+ * Main class of code generator. This is an abstract class that is supposed to be overriden by language specific code generators
  */
 abstract public class ModelElementsCreator {
 

@@ -18,7 +18,7 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../org.eclipse.papyrus.cpp.profile;${target.folder}/../../org.eclipse.ui.workbench;${target.folder}/../../org.eclipse.papyrus.acceleo;"
+            dependencies="${target.folder}/../../org.eclipse.papyrus.cpp.profile;${target.folder}/../../org.eclipse.papyrus.acceleo;"
             binaryResource="false"
             packagesToRegister="">
         </acceleoCompiler>

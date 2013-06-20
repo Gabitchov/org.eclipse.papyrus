@@ -62,6 +62,13 @@ endif/]
 [/template]
 
 
+[template public throws(operation: Operation)]
+[if (operation.raisedException->size() > 0)]
+throws [for (raisedException) separator(',')][name/][/for]
+[/if]
+[/template]
+
+
 [template public CppOperationImplementation(operation : Operation)]
 [CppOperationDoc()/]
 [if (operation.name = 'main')]
@@ -69,7 +76,7 @@ endif/]
 	[getBody('C/C++')/]
 }
 [else]
-[templateSignature()/][InlineTxt()/][CppReturnSpec()/][operation.class.name/][templateShortSignature()/]::[destructor()/][operation.name/]([CppOperationParameters(false)/])[modConst()/][CppConstInit()/] {
+[templateSignature()/][InlineTxt()/][CppReturnSpec()/][operation.class.name/][templateShortSignature()/]::[destructor()/][operation.name/]([CppOperationParameters(false)/])[throws()/][modConst()/][CppConstInit()/] {
 	[getBodyInTemplate('C/C++')/]
 }
 [/if]
