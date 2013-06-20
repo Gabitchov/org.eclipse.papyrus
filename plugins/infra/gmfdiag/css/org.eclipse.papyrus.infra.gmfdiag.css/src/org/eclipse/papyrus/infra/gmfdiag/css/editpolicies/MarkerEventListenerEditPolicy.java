@@ -25,10 +25,9 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.Activator;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView;
 import org.eclipse.papyrus.infra.gmfdiag.css.service.CssMarkerEventManagerService;
@@ -64,10 +63,13 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 	public void activate() {
 		try {
 			ServicesRegistry servicesRegistry = ServiceUtilsForEditPart.getInstance().getServiceRegistry(getHost());
+
 			markerEventManagerService = servicesRegistry.getService(CssMarkerEventManagerService.class);
 			if(markerEventManagerService != null) {
 				markerEventManagerService.registerEditPolicy(this);
 			}
+
+			markerToPseudoSelectorMappingService = servicesRegistry.getService(MarkerToPseudoSelectorMappingService.class);
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
@@ -85,6 +87,7 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 			markerEventManagerService.unregisterEditPolicy(this);
 		}
 		getHost().removeEditPartListener(this);
+		markerStringToMarkerPseudoSelector.clear();
 	}
 
 	protected View getSemanticView() {
@@ -198,7 +201,7 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 	 */
 	public void notifyMarkerChange(IPapyrusMarker marker, int addedOrRemoved) {
 		String cssName = this.getPseudoSelector(marker);
-		if(!cssName.equals("")) {
+		if(cssName != null && !"".equals(cssName)) {
 			Set<String> state = new HashSet<String>();
 			state.add(cssName);
 			updateState(state, addedOrRemoved);
@@ -222,7 +225,7 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 		Set<String> state = new HashSet<String>();
 		for(int i = 0; i < markers.length; i++) {
 			cssName = this.getPseudoSelector(markers[i]);
-			if(!cssName.equals("")) {
+			if(cssName != null && !cssName.equals("")) {
 				state.add(cssName);
 			}
 		}
@@ -236,7 +239,7 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 	 * when a marker has been removed),
 	 * so that this pseudo selector can be removed from the state of the edit part.
 	 */
-	protected Map<String, String> markerStringToMarkerPseudoSelector = new HashMap<String, String>();
+	protected final Map<String, String> markerStringToMarkerPseudoSelector = new HashMap<String, String>();
 
 	/**
 	 * The Marker To Pseudo Selector Mapping Service
@@ -259,18 +262,14 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 			}
 
 			if(this.markerToPseudoSelectorMappingService == null) {
-				try {
-					ServicesRegistry servicesRegistry = ServiceUtilsForEditPart.getInstance().getServiceRegistry(getHost());
-					this.markerToPseudoSelectorMappingService = servicesRegistry.getService(MarkerToPseudoSelectorMappingService.class);
-				} catch (ServiceException e) {
-					e.printStackTrace();
-				}
+				return "";
 			}
+
 			String pseudoSelector = this.markerToPseudoSelectorMappingService.getPseudoSelector(marker.getType());
 			this.markerStringToMarkerPseudoSelector.put(marker.toString(), pseudoSelector);
 			return pseudoSelector;
 		} catch (CoreException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 		return "";
 	}
