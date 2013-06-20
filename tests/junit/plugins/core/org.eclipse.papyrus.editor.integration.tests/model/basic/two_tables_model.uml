@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_WYKr5Nm1EeKhMIaB2_NRKQ" name="model">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_YWxtYNm1EeKhMIaB2_NRKQ">
+    <body>This model contains two tables. The Generic Table is opened, while the table of views is closed.&#xD;
+Expected behavior:&#xD;
+- allPages() contains two entries&#xD;
+- activeEditor is a UML Generic Table Editor Editor&#xD;
+- activePage() is a Generic Table</body>
+  </ownedComment>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_WYKr5dm1EeKhMIaB2_NRKQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+</uml:Model>
