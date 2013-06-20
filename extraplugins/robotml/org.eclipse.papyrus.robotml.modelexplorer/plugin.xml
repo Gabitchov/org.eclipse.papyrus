@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+   <extension point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset file="resource/RobotMLExplorerQueries.querySet">
+      </modelqueryset>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resource/RobotMLCustomizations.uiCustom"
+            loadByDefault="true">
+      </browserCustomization>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resource/RobotMLClassifierFacet.uiCustom"
+            loadByDefault="true">
+      </browserCustomization>
+   </extension>
+   <extension
+         point="org.eclipse.emf.facet.infra.facet.registration">
+      <facetset
+            file="resource/RobotMLExplorerFacets.facetSet">
+      </facetset>
+   </extension>
+</plugin>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Generate Simulator">
+   <intro>
+      <description>
+         During this step, the user generate the PROTEUS simulator corresponding to its problem model and a chosen deployment. At this step, the simulator application could be non executable as there is probably for some of the underlying tools compilation to run and perhaps configuration(s) to apply.
+      </description>
+   </intro>
+   <item
+         title="Choose destination folder">
+      <description>
+          The default destination for the generation is into the problem model project folder. The user could choose another destination because he / she prefers to work outside the platform for compilation, tracking, etc inside his / her preferred tool.
+      </description>
+   </item>
+   <item
+         title="Configure generation ">
+      <description>
+        
+      </description>
+   </item>
+   <item
+         title="Launch generation ">
+      <description>
+        
+      </description>
+   </item>
+</cheatsheet>

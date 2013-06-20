@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Open Perspective">
+   <intro>
+      <description>
+         
+      </description>
+   </intro>
+   <item
+         skip="true"
+         title="Open perspective">
+      <description>
+         <b>User</b>needs only to open RobotML perspective.
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.papyrus.robotml.perspective)"/>
+   </item>
+</cheatsheet>

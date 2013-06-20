@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Remote load">
+    <intro>
+      <description>
+         In order to download a Problem model from the Robotic Portal, it is necessary to follow the below steps:<br/><br/><b>Login to the Robotic portal</b>: it can be necessary first to register to the portal<br/><br/><b>Download the problem to a local folder from the portal repository</b>: goal is to extract from the repository the Problem model on which the Problem provider wants to work<br/><br/><b>Import the problem into the workspace</b>: as in the previous case, it is necessary to make RobotML platform aware of the downloaded Problem model<br/><br/><b>Open RobotML perspective</b>: and as in the previous case the perspective must be opened manually
+      </description>
+   </intro>
+   <item
+         title="Login to the Robotic portal">
+      <description>
+         <b>If you don&apos;t have an account, please register</b>
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.browser.openBrowser(url=http://proteus.bourges.univ-orleans.fr/?q%=user/register)"/>
+      
+      
+   </item>
+   <item
+         title="Download the Problem model">
+      <description>
+         <b>Body</b>
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.team.svn.ui.command.CommitCommand"/>
+   </item>
+   <item
+         title="Import the problem">
+      <description>
+         <b>In this step you will import the downloaded problem model to your workspace</b>
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.file.import(importWizardId=org.eclipse.ui.wizards.import.ZipFile)"/>
+   </item>
+<item title="Open RobotML Perspective"  dialog="false" skip="true">
+	<description>
+		Creation of a project in ECLIPSE does not change by itself the perspective. User MUST change it manually and it is done performing this task of the workflow.
+	</description>
+	<command
+       required="true"
+       serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.papyrus.robotml.perspective)"/>
+</item>
+</cheatsheet>

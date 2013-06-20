@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+  <notation:Diagram xmi:id="_P3Vb5iY6EeG5htLAfvhNWA" type="architecture" name="ArchitectureDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_P3Vb5yY6EeG5htLAfvhNWA"/>
+    <element xmi:type="uml:Model" href="BasicRobotMLModel.uml#_P3Vb3SY6EeG5htLAfvhNWA"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_P3Vb6CY6EeG5htLAfvhNWA" type="componentdef" name="SensorsDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_P3Vb6SY6EeG5htLAfvhNWA"/>
+    <element xmi:type="uml:Package" href="BasicRobotMLModel.uml#_P3Vb4SY6EeG5htLAfvhNWA"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_P3Vb6iY6EeG5htLAfvhNWA" type="DatatypeDef" name="DataTypesDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_P3Vb6yY6EeG5htLAfvhNWA"/>
+    <element xmi:type="uml:Package" href="BasicRobotMLModel.uml#_P3Vb3yY6EeG5htLAfvhNWA"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_P3Vb7CY6EeG5htLAfvhNWA" type="componentdef" name="ActuatorsDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_P3Vb7SY6EeG5htLAfvhNWA"/>
+    <element xmi:type="uml:Package" href="BasicRobotMLModel.uml#_P3Vb4iY6EeG5htLAfvhNWA"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_P3Vb7iY6EeG5htLAfvhNWA" type="componentdef" name="SubSystemsDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_P3Vb7yY6EeG5htLAfvhNWA"/>
+    <element xmi:type="uml:Package" href="BasicRobotMLModel.uml#_P3Vb4yY6EeG5htLAfvhNWA"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_P3Vb8CY6EeG5htLAfvhNWA" type="InterfaceDef" name="InterfacesDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_P3Vb8SY6EeG5htLAfvhNWA"/>
+    <element xmi:type="uml:Package" href="BasicRobotMLModel.uml#_P3Vb4CY6EeG5htLAfvhNWA"/>
+  </notation:Diagram>
+</xmi:XMI>

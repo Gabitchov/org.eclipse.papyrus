@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Diagram declaration -->
+<extension point="org.eclipse.papyrus.core.papyrusDiagram">
+	<creationCommand
+		creationCommandClass="org.eclipse.papyrus.robotml.diagram.componentdef.ComponentdefDiagramCreateCommand"
+		icon="icons/obj16/componentdef.gif"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.CreateCommand"
+		language="proteus"
+		label="Proteus Component Definition Diagram"/>
+	<editorDiagram
+		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+		factoryClass="org.eclipse.papyrus.robotml.diagram.componentdef.ComponentdefDiagramEditorFactory"
+		icon="icons/obj16/componentdef.gif" />
+</extension>
+
+<!-- Diagram creation command and handler -->
+<extension point="org.eclipse.ui.commands">
+	<command id="org.eclipse.papyrus.robotml.diagram.componentdef.CreateCommand"
+		name="Create a new Proteus Component Definition Diagram"
+		description="Create a new Proteus Component Definition Diagram"
+		categoryId="org.eclipse.papyrus.editor.category"/>
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.ComponentdefDiagramCreateCommand"
+		commandId="org.eclipse.papyrus.robotml.diagram.componentdef.CreateCommand">
+		<activeWhen>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+			</with>
+		</activeWhen>
+	</handler>
+</extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+		<command commandId="org.eclipse.papyrus.robotml.diagram.componentdef.CreateCommand"
+			icon="icons/obj16/componentdef.gif" label="Create a new Proteus Component Definition Diagram"
+			style="push" tooltip="Create a new Proteus Component Definition Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+				</with>							
+			</visibleWhen>						
+					
+		</command>
+	</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.robotml.diagram.componentdef.CreateCommand"
+			icon="icons/obj16/componentdef.gif" label="Create a new Proteus Component Definition Diagram"
+			style="push" tooltip="Create a new Proteus Component Definition Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+				</with>							
+			</visibleWhen>						
+				
+		</command>
+	</toolbar>
+	</menuContribution>
+	
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.robotml.diagram.componentdef.CreateCommand"
+			icon="icons/obj16/componentdef.gif"
+			label="Create a new Proteus Component Definition Diagram"
+			style="push"
+			tooltip="Create a new Proteus Component Definition Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+				</with>							
+			</visibleWhen>						
+			
+		</command>
+	</menuContribution>
+		
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="PROTEUS_Componentdef">
+	
+	<paletteDefinition ID="PROTEUS_Componentdef"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="PROTEUS_Componentdef" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/componentdef.palette.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+		
+		<!-- Specify diagram this palette tools relate to -->						
+		<editor id="org.eclipse.papyrus.robotml.diagram.componentdef"/>
+	</paletteDefinition>
+</extension>
+
+
+<!-- Diagram view providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+
+	<!-- Diagram view provider -->
+	<viewProvider class="org.eclipse.papyrus.robotml.diagram.componentdef.provider.ComponentdefDiagramViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="componentdef"/>
+	</viewProvider>
+	
+	<!-- ViewProvider for inherited elements (from CompositeDiagram ViewProvider) -->
+	<viewProvider class="org.eclipse.papyrus.robotml.diagram.componentdef.provider.InheritedCompositeDiagramViewProvider">
+		<Priority name="Low"/>
+		
+		<!-- 
+			"2073" = CLASS
+			"3069" = PORT_CN
+			"2109" = COMMENT
+			"2114" = CONSTRAINT
+			"3070" = PROPERTY_CN
+			"3009" = PACKAGE_CN
+			"2007" = PACKAGE
+			"3097" = COMMENT_CN
+			"3085" = CLASS_CN
+			"3120" = CONSTRAINT_CN
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3069, 2109, 2114, 3070, 3009, 2007, 3097, 3085, 3120"/>
+		
+		<!-- 
+			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
+			"4002" = COMMENT_ANNOTATED_ELEMENT
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003, 4002"/>
+		
+		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
+		
+		<!-- "uml.Class" -->
+		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Class"/>
+		</object>
+		
+		<!-- "uml.Port" -->
+		<object id="uml.Port" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Port"/>
+		</object>
+		
+		<!-- "uml.Comment" -->
+		<object id="uml.Comment" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Comment"/>
+		</object>
+		
+		<!-- "uml.Constraint" -->
+		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Constraint"/>
+		</object>
+		
+		<!-- "uml.Property" -->
+		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Property"/>
+		</object>
+		
+		<!-- "uml.Package" -->
+		<object id="uml.Package" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Package"/>
+		</object>
+		
+		<!-- Additional activation contexts for nodes semantic objects -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
+			elements="uml.Class, uml.Port, uml.Comment, uml.Constraint, uml.Property, uml.Package"/>
+			
+	</viewProvider>
+			
+</extension>
+
+<!-- Diagram edit part providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+
+	<!-- Diagram edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.robotml.diagram.componentdef.provider.ComponentdefDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<object 
+			id="org.eclipse.papyrus.robotml.diagram.componentdef.Diagram"
+			class="org.eclipse.gmf.runtime.notation.Diagram">
+			<method name="getType()" value="componentdef"/>
+		</object>
+	</editpartProvider>
+
+
+	<!-- EditPartProvider for inherited elements (from CompositeDiagram) -->
+	<editpartProvider class="org.eclipse.papyrus.robotml.diagram.componentdef.provider.InheritedCompositeDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<!-- 
+			The semantic hints given here are used in case the provider is not already loaded.
+			As soon as the provider is loaded its provides method is used.		
+			"2073" = CLASS
+			"5156" = CLASS_LABEL_COMPOSITE_NAME_HINT
+			"7073" = CLASS_COMPARTMENT_CLASS_COMPOSITE_HINT
+			"3069" = PORT_CN
+			"5125" = PORT_CN_LABEL_NAME_HINT
+			"6029" = PORT_CN_LABEL_APPLIED_STEREOTYPE_HINT
+			"2109" = COMMENT
+			"5192" = COMMENT_LABEL_BODY_HINT
+			"2114" = CONSTRAINT
+			"5197" = CONSTRAINT_LABEL_NAME_HINT
+			"6039" = CONSTRAINT_LABEL_SPECIFICATION_HINT
+			"3070" = PROPERTY_CN
+			"5126" = PROPERTY_CN_LABEL_PART_NAME_HINT
+			"7077" = PROPERTY_CN_COMPARTMENT_PROPERTY_PART_HINT
+			"3009" = PACKAGE_CN
+			"5017" = PACKAGE_CN_LABEL_NAME_HINT
+			"7010" = PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"2007" = PACKAGE
+			"5026" = PACKAGE_LABEL_NAME_HINT
+			"7016" = PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"3097" = COMMENT_CN
+			"5150" = COMMENT_CN_LABEL_BODY_HINT
+			"3085" = CLASS_CN
+			"5155" = CLASS_CN_LABEL_COMPOSITE_NAME_HINT
+			"7060" = CLASS_CN_COMPARTMENT_CLASS_COMPOSITE_HINT
+			"3120" = CONSTRAINT_CN
+			"6048" = CONSTRAINT_CN_LABEL_NAME_HINT
+			"6049" = CONSTRAINT_CN_LABEL_SPECIFICATION_HINT
+		  -->
+		<object
+			id="CLASS"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2073, 5156, 7073"/>
+		</object>
+		<object
+			id="PORT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3069, 5125, 6029"/>
+		</object>
+		<object
+			id="COMMENT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2109, 5192"/>
+		</object>
+		<object
+			id="CONSTRAINT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2114, 5197, 6039"/>
+		</object>
+		<object
+			id="PROPERTY_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3070, 5126, 7077"/>
+		</object>
+		<object
+			id="PACKAGE_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3009, 5017, 7010"/>
+		</object>
+		<object
+			id="PACKAGE"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2007, 5026, 7016"/>
+		</object>
+		<object
+			id="COMMENT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3097, 5150"/>
+		</object>
+		<object
+			id="CLASS_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3085, 5155, 7060"/>
+		</object>
+		<object
+			id="CONSTRAINT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3120, 6048, 6049"/>
+		</object>
+
+				
+		<!-- 	
+			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
+			"4002" = COMMENT_ANNOTATED_ELEMENT
+		  -->
+		<object
+			id="CONSTRAINT_CONSTRAINED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4003"/>
+		</object>
+		<object
+			id="COMMENT_ANNOTATED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4002"/>
+		</object>
+
+		<context views="CLASS, PORT_CN, COMMENT, CONSTRAINT, PROPERTY_CN, PACKAGE_CN, PACKAGE, COMMENT_CN, CLASS_CN, CONSTRAINT_CN"/>
+		<context views="CONSTRAINT_CONSTRAINED_ELEMENT, COMMENT_ANNOTATED_ELEMENT"/>
+				
+	</editpartProvider>
+			
+</extension>
+
+<!-- Diagram edit policy provider -->	
+<extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.provider.ComponentdefDiagramEditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
+
+<!-- Preference pages declaration -->
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+
+	<!-- Diagram Preference pages declaration -->
+	<page
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		name="Componentdef Diagram"
+		category="org.eclipse.papyrus.preferences.diagrams"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ComponentdefDiagramGeneralPreferencePage">
+	</page>
+
+	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ComponentPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ComponentPreferencePage"
+		name="Component">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.PortPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.PortPreferencePage"
+		name="Port">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.CommentPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.CommentPreferencePage"
+		name="Comment">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ConstraintPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ConstraintPreferencePage"
+		name="Constraint">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.PropertyPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.PropertyPreferencePage"
+		name="Property">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.PackagePreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.PackagePreferencePage"
+		name="Package">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.PackagePreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.PackagePreferencePage"
+		name="Package">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.CommentPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.CommentPreferencePage"
+		name="Comment">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ClassPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ClassPreferencePage"
+		name="Class">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ConstraintPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ConstraintPreferencePage"
+		name="Constraint">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ConstraintConstrainedElementPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.ConstraintConstrainedElementPreferencePage"
+		name="ConstraintConstrainedElement">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.robotml.diagram.componentdef.preferences"
+		class="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.CommentAnnotatedElementPreferencePage"
+		id="org.eclipse.papyrus.robotml.diagram.componentdef.preferences.CommentAnnotatedElementPreferencePage"
+		name="CommentAnnotatedElement">
+	</page>
+	
+	
+</extension>
+
+</plugin>

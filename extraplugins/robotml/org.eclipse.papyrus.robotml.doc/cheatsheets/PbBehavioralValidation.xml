@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Model Validation">
+<intro>
+	<description>
+		The user will verify here that its problem model can be mapped onto the DEVS theory of system modeling (see http://en.wikipedia.org/wiki/DEVS). This mapping leads to the creation of a simulator allowing the user to verify that its data and control flow is as he / she saw it. The underlying used simulator engine is the VLE one (see http://www.vle-project.org/).
+</description>
+</intro>
+<item
+      title="Launch behavioral validation">
+   <description>
+     The user will launch the behavioral validation.
+   </description>
+
+</item>
+
+
+</cheatsheet>
+

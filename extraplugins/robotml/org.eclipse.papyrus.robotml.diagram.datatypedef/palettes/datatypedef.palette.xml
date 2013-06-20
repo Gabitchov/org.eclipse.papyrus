@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.robotml.diagram.diagram.datatypedef.UML_DatatypeDef__Nodes" name="Nodes">
+			
+			<aspectTool description="Create a new Package" id="datatypedef.tool.package"
+				name="Package" refToolId="clazz.tool.package">
+			</aspectTool>			
+			
+			<aspectTool description="Create a new DataType" id="datatypedef.tool.datatype"
+				name="DataType" refToolId="clazz.tool.datatype">
+			</aspectTool>
+			<aspectTool description="Create a new PrimitiveType" id="datatypedef.tool.primitivetype"
+				name="PrimitiveType" refToolId="clazz.tool.primitivetype">
+			</aspectTool>			
+			<aspectTool description="Create a new Enumeration" id="datatypedef.tool.enumeration"
+				name="Enumeration" refToolId="clazz.tool.enumeration">
+			</aspectTool>
+			<aspectTool description="Create a new EnumerationLiteral" id="datatypedef.tool.enumerationliteral"
+				name="EnumerationLiteral" refToolId="clazz.tool.enumerationliteral">
+			</aspectTool>
+			<aspectTool description="Create a new Signal" id="datatypedef.tool.signal"
+				name="Signal" refToolId="clazz.tool.signal">
+			</aspectTool>
+			<aspectTool description="Create a new Property" id="datatypedef.tool.property"
+				name="Property" refToolId="clazz.tool.property">
+			</aspectTool>
+			<aspectTool description="Create a new Operation" id="datatypedef.tool.operation"
+				name="Operation" refToolId="clazz.tool.operation">
+			</aspectTool>
+			
+			<aspectTool description="Create a new Comment" id="datatypedef.tool.comment"
+				name="Comment" refToolId="clazz.tool.comment">
+			</aspectTool>
+			
+			<aspectTool description="Create a new Constraint" id="datatypedef.tool.constraint"
+				name="Constraint" refToolId="clazz.tool.constraint">
+			</aspectTool>
+			
+		</drawer>
+		
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.robotml.diagram.diagram.datatypedef.UML_DatatypeDef__Edges" name="Edges">
+			
+			<aspectTool description="Create a new Generalization" id="datatypedef.tool.generalization"
+				name="Generalization" refToolId="clazz.tool.generalization">
+			</aspectTool>
+			<aspectTool description="Create a new Dependency" id="datatypedef.tool.dependency"
+				name="Dependency" refToolId="clazz.tool.dependency">
+			</aspectTool>			
+			
+			<aspectTool description="Create a new PackageMerge" id="datatypedef.tool.packagemerge"
+				name="PackageMerge" refToolId="clazz.tool.packagemerge">
+			</aspectTool>
+			<aspectTool description="Create a new ElementImport" id="datatypedef.tool.elementimport"
+				name="ElementImport" refToolId="clazz.tool.elementimport">
+			</aspectTool>
+			<aspectTool description="Create a new Link (Comment/Constraint)" id="datatypedef.tool.link"
+				name="Comment/Constraint link" refToolId="clazz.tool.link">
+			</aspectTool>
+		</drawer>
+	</content>
+</paletteDefinition>

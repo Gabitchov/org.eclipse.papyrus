@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Model Validation">
+<intro>
+	<description>
+		The user can validate the deployment model the same way he has validated the problem model.
+	</description>
+</intro>
+<item title="Verify validation settings" skip="true">
+	<description>
+		Verify the validation settings, i.e. the currently active validation rules (constraints).
+		Open the entry "Model Validation" within Window/Preferences and verify the active constraints.
+		RobotML related constraints are grouped.
+	</description>
+</item>
+<item title="Validate your Model" skip="true">
+	<description>
+    	Validate your model. Click right on an element within the model explorer. Choose
+    	the option "Validate model". Erroneous elements will appear in the Problem view,
+    	will be marked in the model explorer and in the diagrams. Caveat: the model explorer
+    	creates a visual marker for problems found within a child whereas this is not the case for
+    	diagrams.
+	</description>
+</item>
+<item title="Open the &quot;Problems&quot; view" skip="true">
+	<description>
+		Window > Show View > Problems
+	</description>
+ 	<command
+       required="false"
+       serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.ui.views.ProblemView)"/>
+</item>
+</cheatsheet>

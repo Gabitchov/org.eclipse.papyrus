@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Upload the problem">
+   <intro>
+      <description>
+       The user could upload the problem model to the remote server.
+      </description>
+   </intro>
+   <item
+         title="Connect to the svn repository">
+      <description>
+         <b>Show the svn repository view. Then add the repository to your </b>
+         
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.team.svn.ui.repository.browser.RepositoryBrowser)"/>
+      
+   </item>
+   <item
+         title="Commit the problem">
+      <description>
+         <b>Body</b>
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.team.svn.ui.command.CommitCommand"/>
+   </item>
+</cheatsheet>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Upload the problem">
+   <intro>
+      <description>
+       The user could upload the deployment model to the remote server.
+      </description>
+   </intro>
+   <item
+         title="Upload to remote server">
+      <description>
+        Choose the remote location where the deployment model will be uploaded.
+      </description>
+   </item>
+</cheatsheet>

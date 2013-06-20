@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paletteDefinition>
+	<content>
+		<drawer iconpath="/icons/drawer.gif" id="Drawer__1323777360776"
+			name="RobotML">
+			<aspectTool description="Create a new Robotic System" id="clazz.tool.system"
+				name="System" refToolId="clazz.tool.class"
+				iconpath="platform:/plugin/org.eclipse.papyrus.robotml/icons/16x16/03_robot_system.png">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="RobotML::System"></stereotype>
+					</stereotypesToApply>
+				</postAction>
+				<postAction
+					id="org.eclipse.papyrus.postaction.displayAppliedStereotypeactionprovider">
+					<displayName name="RobotML::System" />
+				</postAction>
+				<postAction
+					id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider"
+					displayKind="IconStereotype" displayPlace="Compartment"></postAction>
+			</aspectTool>
+			<aspectTool description="Create a new AlgorithmLibrary"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+				id="clazz.tool.AlgorithmLibrary" name="AlgorithmLibrary" refToolId="clazz.tool.class">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>						
+						<stereotype stereotypeName="RobotML::AlgorithmLibrary">							
+						</stereotype>
+					</stereotypesToApply>
+				</postAction>
+				<postAction
+					id="org.eclipse.papyrus.postaction.displayAppliedStereotypeactionprovider">
+					<displayName name="RobotML::AlgorithmLibrary" />
+				</postAction>				
+			</aspectTool>			
+			<aspectTool description="Create an operation"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif"
+				id="clazz.tool.algorithm" name="Operation" refToolId="clazz.tool.operation">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="RobotML::Algorithm" />
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create a new Property"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+				id="clazz.tool.property_1323777408057" name="Property" refToolId="clazz.tool.property" />
+			<aspectTool description="Create a generalization"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+				id="clazz.tool.generalization_1323777545778" name="Generalization"
+				refToolId="clazz.tool.generalization" />
+		</drawer>
+	</content>
+</paletteDefinition>

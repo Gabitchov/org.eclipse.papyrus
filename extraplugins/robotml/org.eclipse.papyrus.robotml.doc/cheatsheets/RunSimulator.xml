@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Run / Debug simulator">
+   <intro>
+      <description>
+         The user can use the specific interface linked to the simulator to play with it or he can use the unified and minimal interface to run the simulator and create simulations and measures.
+      </description>
+   </intro>
+   <item
+         title="Item">
+      <description>
+         <b>Body</b>
+      </description>
+   </item>
+</cheatsheet>

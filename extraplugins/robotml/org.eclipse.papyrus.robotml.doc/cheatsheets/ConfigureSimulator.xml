@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Configure simulator">
+   <intro>
+      <description>
+        During this step the user has to complete every of the information needed to be able to create results and use metrics.
+      </description>
+   </intro>
+   <item
+         title="Item">
+      <description>
+         <b>Body</b>
+      </description>
+   </item>
+</cheatsheet>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Save the problem">
+   <intro>
+      <description>
+         Here the user will save the problem model to a local folder.
+      </description>
+   </intro>
+   <item
+         title="Save to local folder">
+      <description>
+         The user can either save the problem model in the same project model, or choose another project folder to save the model.
+      </description>
+      <subitem
+            label="Choose the folder where to save the problem model.">
+         <command
+               required="false"
+               serialization="org.eclipse.ui.file.saveAs"/>
+      </subitem>
+      <subitem
+            label="Save the problem model to the local papyrus project folder.">
+         <command
+               required="false"
+               serialization="org.eclipse.ui.file.save"/>
+      </subitem>
+   </item>
+</cheatsheet>

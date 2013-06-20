@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://Robotml_PROFILES/"
+            target="platform:/plugin/org.eclipse.papyrus.robotml/model/">
+      </mapping>
+      <mapping
+            source="pathmap://Robotml_LIBRARIES/"
+            target="platform:/plugin/org.eclipse.papyrus.robotml/model/">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="UML profile for robotic systems"
+            iconpath="icons/robotml/RobotML-16x16-8bits.png"
+            name="RobotML"
+            path="pathmap://Robotml_PROFILES/RobotMLProfile.profile.uml"
+            provider="CEA List">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+       <library
+            description="RobotML DataTypes Libarary (v0.1)"
+            iconpath="icons/robotml/RobotML-16x16-8bits.png"
+            name="RobotML_Libraries"
+            path="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml"
+            provider="CEA LIST">
+      </library>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+      <paletteDefinition
+            ID="Palette_SM_RobotML"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            name="Palette_SM_RobotML"
+            path="palettes/Palette_SM_RobotML.xml"
+            provider="CEA LIST">
+         <Priority
+               name="Medium">
+         </Priority>
+         <editor
+               id="org.eclipse.papyrus.uml.diagram.statemachine">
+         </editor>
+      </paletteDefinition>
+   </extension>
+   <extension id="robotml.menu" name="RobotML Menus" point="org.eclipse.ui.menus">
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?endof=org.eclipse.papyrus.diagram.ui.toolbar">
+         <toolbar id="org.eclipse.robotml.ui.toolbar" label="RobotML Toolbar">
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+      <paletteDefinition
+            ID="Palette_Class_RobotML"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            name="Palette_Class_RobotML"
+            path="palettes/Palette_Class_RobotML.xml">
+         <Priority
+               name="Medium">
+         </Priority>
+         <editor
+               id="org.eclipse.papyrus.uml.diagram.clazz">
+         </editor>
+      </paletteDefinition>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://Robotml_PROFILES/RobotMLProfile.profile.uml#_3QOHEPcEEd-J06U5HM_o-Q"
+            uri="http://Papyrus/RobotML/1">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.RobotML.RobotMLPackage"
+            genModel="model/RobotML.genmodel"
+            uri="http://Papyrus/RobotML/1">
+      </package>
+   </extension>
+
+</plugin>

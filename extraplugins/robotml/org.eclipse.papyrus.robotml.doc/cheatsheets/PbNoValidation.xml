@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="No Validation">
+   <intro>
+      <description>
+         The user can validate later the model.
+      </description>
+   </intro>
+   <item
+         title="No validation">
+      <description>
+         In order to save its unfinished work, the user can check out the “no validation” case and  proceed to the following step.
+      </description>
+   </item>
+</cheatsheet>

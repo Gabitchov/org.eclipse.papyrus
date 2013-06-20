@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.eclipse.papyrus.robotml.perspective.RobotmlPerspective"
+            icon="platform:/plugin/org.eclipse.papyrus.robotml/icons/robotml/RobotML-16x16-8bits.png"
+            id="org.eclipse.papyrus.robotml.perspective"
+            name="robotML">
+      </perspective>
+   </extension>
+
+</plugin>

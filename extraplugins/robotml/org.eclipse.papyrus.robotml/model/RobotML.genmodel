@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.robotml/src" modelPluginID="org.eclipse.papyrus.robotml"
+    modelName="RobotML" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+  <foreignModel>RobotML.ecore</foreignModel>
+  <genPackages prefix="RobotML" basePackage="org.eclipse.papyrus" resource="XML" disposableProviderFactory="true"
+      ecorePackage="RobotML.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//RobotKind">
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/UUV"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/UGVcar"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/UGVdifferential"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/UAV"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/USV"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/piloted"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//UGVKind">
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//UGVKind/differential"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//UGVKind/car"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//SynchronizationKind">
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//SynchronizationKind/SYNCH"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//SynchronizationKind/ASYNCH"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//SynchronizationKind/undefined"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//DataFlowDirectionKind">
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//DataFlowDirectionKind/in"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//DataFlowDirectionKind/out"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//DataFlowDirectionKind/inout"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//ServiceFlowKind">
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//ServiceFlowKind/provided"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//ServiceFlowKind/required"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//RoboticMiddlewareKind">
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RoboticMiddlewareKind/RTMaps"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RoboticMiddlewareKind/AROCAM"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RoboticMiddlewareKind/ROS"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RoboticMiddlewareKind/OROCOS"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RoboticMiddlewareKind/URBI"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//Shade">
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//Shade/WIREFRAME"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//Shade/BOUNDBOX"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//Shade/SOLID"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//Shade/TEXTURED"/>
+    </genEnums>
+    <genClasses ecoreClass="RobotML.ecore#//Transition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Transition/base_Transition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Transition/guard"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Transition/effect"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//Algorithm">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Algorithm/base_Operation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Algorithm/isExternal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Algorithm/extFunctionName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Algorithm/libPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Algorithm/libFileFormat"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//Robot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Robot/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Robot/mass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Robot/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Robot/ugvKind"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//System">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//System/base_Class"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//System/native"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//System/libraryPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//System/libraryComponentName"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//Agent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Agent/movesOver"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//PhysicalObject">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//PhysicalObject/evelovesIn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//PhysicalObject/hasSurface"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//Environment"/>
+    <genClasses ecoreClass="RobotML.ecore#//Surface"/>
+    <genClasses ecoreClass="RobotML.ecore#//DataFlowPort">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//DataFlowPort/direction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//DataFlowPort/bufferSize"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="RobotML.ecore#//Port">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Port/base_Port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Port/synchronizationPolicy"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//ServicePort">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//ServicePort/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//ActuatorSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//RoboticSystem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotML.ecore#//RoboticSystem/localPosition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotML.ecore#//RoboticSystem/localOrientation"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//SensorSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SensorSystem/frequency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SensorSystem/identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//Hardware"/>
+    <genClasses ecoreClass="RobotML.ecore#//Software">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Software/isPeriodic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Software/period"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Software/priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Software/deadline"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Software/wcet"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//PrimitiveData">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//PrimitiveData/base_PrimitiveType"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//DataType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//DataType/base_DataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//DataType/native"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//DataType/libraryPath"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//EngineSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/vehicleTraction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/maxEngineForce"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/maxBreakingForce"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/maxAllowedSteering"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/maxAllowedVelocity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/gear_ration"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//WheelSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelRadius"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelWidth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/suspensionRestLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelConnectionHeight"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/typeOfWheel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDkp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDki"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDkd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelSteeringPIDkp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelSteeringPIDkd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelFriction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/suspensionStiffness"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/suspensionDamping"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/suspensionCompression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDmaxSum"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDmaxVal"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//ImageSensorSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//CameraSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CameraSystem/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CameraSystem/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CameraSystem/alpha_u"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CameraSystem/alpha_v"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CameraSystem/u0"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CameraSystem/v0"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CameraSystem/color_format"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotML.ecore#//CameraSystem/translate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotML.ecore#//CameraSystem/rotate"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//ObjectDetectionSensorSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//ObjectTrackingSensorSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//LidarSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/nbLayers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/layerAngleMin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/layerAngleStep"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/noise"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/sigmaNoise"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/angle_min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/angle_max"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/time_increment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/scan_time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/range_min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/range_max"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//LidarSystem/nbRays"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//LocalizationSensorSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//GPSSystem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotML.ecore#//GPSSystem/originPosition"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//SimulatedSystem">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//SimulatedSystem/base_Property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SimulatedSystem/mesh"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//AlgorithmLibrary">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//AlgorithmLibrary/base_Class"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//AlgorithmLibrary/path"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//State">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/base_State"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/operation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/arguments"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//SensorDriver"/>
+    <genClasses ecoreClass="RobotML.ecore#//Building"/>
+    <genClasses ecoreClass="RobotML.ecore#//Planet"/>
+    <genClasses ecoreClass="RobotML.ecore#//LandSurface"/>
+    <genClasses image="false" ecoreClass="RobotML.ecore#//Ground"/>
+    <genClasses ecoreClass="RobotML.ecore#//Floor"/>
+    <genClasses ecoreClass="RobotML.ecore#//WaterSurface"/>
+    <genClasses ecoreClass="RobotML.ecore#//Human"/>
+    <genClasses ecoreClass="RobotML.ecore#//Pedestrian"/>
+    <genClasses ecoreClass="RobotML.ecore#//Stairs"/>
+    <genClasses ecoreClass="RobotML.ecore#//Platform">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Platform/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//RoboticMiddleware">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//RoboticMiddleware/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//RoboticSimulator"/>
+    <genClasses ecoreClass="RobotML.ecore#//CycabTK">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CycabTK/useRealTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CycabTK/timeStep"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CycabTK/timeFactor"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//BlenderMorse">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//BlenderMorse/debugMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//BlenderMorse/debugDisplay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//BlenderMorse/gravity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//BlenderMorse/_viewport_shade"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//OnPort">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//OnPort/port"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//OnPort/base_Parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//Allocate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Allocate/base_Abstraction"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//InertialMeasurementUnitSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//InertialNavigationSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//OdometrySystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//InfraRedProximetrySystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//DeploymentPlan">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//DeploymentPlan/base_Package"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//DeploymentPlan/mainInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//Gyroscope"/>
+  </genPackages>
+  <genPackages prefix="RobotMLLibraries" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
+      ecorePackage="RobotMLLibraries.ecore#/">
+    <nestedGenPackages prefix="RobotML_ModelLibrary" disposableProviderFactory="true"
+        ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary">
+      <nestedGenPackages prefix="RobotML_DataTypes" disposableProviderFactory="true"
+          ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes">
+        <nestedGenPackages prefix="Diagnostic_datatypes" disposableProviderFactory="true"
+            ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes">
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticArray/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticArray/status"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticArray/values"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticStatus">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticStatus/OK"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticStatus/WARN"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticStatus/ERROR"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticStatus/level"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticStatus/name"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticStatus/message"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticStatus/hardware_id"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/DiagnosticStatus/values"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/KeyValue">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/KeyValue/key"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes/KeyValue/value"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Geometry_datatypes" disposableProviderFactory="true"
+            ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes">
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Point">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Point/x"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Point/y"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Point/z"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Point32">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Point32/x"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Point32/y"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Point32/z"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PointStamped">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PointStamped/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PointStamped/point"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Polygon">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Polygon/point"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PolygonStamped">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PolygonStamped/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PolygonStamped/polygon"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Vector3">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Vector3/x"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Vector3/y"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Vector3/z"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Vector3Stamped">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Vector3Stamped/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Vector3Stamped/vector"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Quaternion">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Quaternion/x"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Quaternion/y"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Quaternion/z"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Quaternion/w"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Pose">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Pose/position"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Pose/orientation"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseStamped">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseStamped/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseStamped/pose"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/TwistWithCovariance">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/TwistWithCovariance/twist"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/TwistWithCovariance/covariance"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Twist">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Twist/linear"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Twist/angular"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/TwistStamped">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/TwistStamped/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/TwistStamped/twist"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseWithCovariance">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseWithCovariance/pose"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseWithCovariance/covariance"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Pose2D">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Pose2D/x"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Pose2D/y"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Pose2D/theta"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseWithCovarianceStamped"/>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseArray/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/PoseArray/poses"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/QuaternionStamped">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/QuaternionStamped/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/QuaternionStamped/quaternion"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Transform">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Transform/translation"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Transform/rotation"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/WrenchStamped">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/WrenchStamped/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/WrenchStamped/wrench"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Wrench">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Wrench/force"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes/Wrench/torque"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Nav_datatypes" disposableProviderFactory="true"
+            ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes">
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/Path">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/Path/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/Path/poses"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/Odometry">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/Odometry/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/Odometry/child_frame_id"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/Odometry/pose"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/Odometry/twist"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/MapMetaData">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/MapMetaData/map_load_time"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/MapMetaData/resolution"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/MapMetaData/width"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/MapMetaData/origin"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/OccupancyGrid">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/OccupancyGrid/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/OccupancyGrid/info"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/OccupancyGrid/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/GridCells">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/GridCells/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/GridCells/cell_width"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/GridCells/cell_height"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes/GridCells/cells"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Sensor_datatypes" disposableProviderFactory="true"
+            ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes">
+          <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/STATUS_TYPE">
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/STATUS_TYPE/STATUS_NO_FIX"/>
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/STATUS_TYPE/STATUS_FIX"/>
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/STATUS_TYPE/STATUS_SBAS_FIX"/>
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/STATUS_TYPE/STATUS_GBAS_FIX"/>
+          </genEnums>
+          <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/SERVICE_TYPE">
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/SERVICE_TYPE/SERVICE_GPS"/>
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/SERVICE_TYPE/SERVICE_GLONASS"/>
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/SERVICE_TYPE/SERVICE_COMPASS"/>
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/SERVICE_TYPE/SERVICE_GALILEO"/>
+          </genEnums>
+          <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/COVARIANCE_TYPE">
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/COVARIANCE_TYPE/COVARIANCE_TYPE_UNKNOWN"/>
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/COVARIANCE_TYPE/COVARIANCE_TYPE_APPROXIMATED"/>
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/COVARIANCE_TYPE/_COVARIANCE_TYPE_DIAGONAL_KNOWN"/>
+            <genEnumLiterals ecoreEnumLiteral="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/COVARIANCE_TYPE/COVARIANCE_TYPE_KNOWN"/>
+          </genEnums>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/RegionOfInterest">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/RegionOfInterest/x_offset"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/RegionOfInterest/y_offset"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/RegionOfInterest/height"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/RegionOfInterest/do_rectify"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/RegionOfInterest/width"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Range">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Range/ULTRASOUND"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Range/INFRARED"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Range/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Range/radiation_type"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Range/field_of_view"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Range/min_range"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Range/max_range"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Range/range"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/height"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/width"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/distorsion_model"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/D"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/K"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/R"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/P"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/binning_x"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/binning_y"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CameraInfo/roi"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Imu">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Imu/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Imu/orientation"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Imu/orientation_covariance"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Imu/angular_velocity"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Imu/angular_velocity_covariance"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Imu/linear_acceleration"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Imu/linear_acceleration_covariance"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/angle_min"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/angle_max"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/angle_increment"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/time_increment"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/scan_time"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/range_min"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/range_max"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/range"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/LaserScan/intensities"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Image">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Image/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Image/height"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Image/width"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Image/encoding"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Image/is_bigendian"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Image/step"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Image/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/ChannelFloat32">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/ChannelFloat32/name"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/ChannelFloat32/values"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CompressedImage">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CompressedImage/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CompressedImage/format"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CompressedImage/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud/points"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud/channels"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointField">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointField/name"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointField/offset"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointField/datatype"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointField/count"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2/height"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2/width"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2/fields"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2/is_bigendian"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2/point_step"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2/row_step"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2/data"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/PointCloud2/is_dense"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JointState">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JointState/name"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JointState/position"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JointState/velocity"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JointState/effort"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus">
+            <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/STATUS_NO_FIX"/>
+            <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/STATUS_FIX"/>
+            <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/STATUS_SBAS_FIX"/>
+            <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/STATUS_GBAS_FIX"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/status"/>
+            <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/SERVICE_GPS"/>
+            <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/SERVICE_GLONASS"/>
+            <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/SERVICE_COMPASS"/>
+            <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/SERVICE_GALILEO"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatStatus/service"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatFix">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatFix/status"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatFix/service"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatFix/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatFix/latitude"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatFix/longitude"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatFix/altitude"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatFix/position_covariance"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/NavSatFix/position_covariance_type"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Joy">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Joy/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Joy/axes"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/Joy/buttons"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JoyFeedback">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JoyFeedback/TYPE_LED"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JoyFeedback/TYPE_RUMBLE"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JoyFeedback/TYPE_BUZZER"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JoyFeedback/type"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JoyFeedback/id"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JoyFeedback/intensity"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JoyFeedbackArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/JoyFeedbackArray/array"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CarLikeOdometry">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CarLikeOdometry/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CarLikeOdometry/steering_angle"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CarLikeOdometry/left_rear_wheel_distance"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CarLikeOdometry/right_rear_wheel_distance"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CarLikeOdometry/right_rear_wheel_velocity"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/CarLikeOdometry/left_rear_wheel_velocity"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/DifferentialOdometry">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/DifferentialOdometry/header"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/DifferentialOdometry/right_distance"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/DifferentialOdometry/left_distance"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/DifferentialOdometry/left_velocity"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes/DifferentialOdometry/right_velocity"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Actionlib_datatypes" disposableProviderFactory="true"
+            ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes">
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalID">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalID/stamp"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalID/id"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/PENDING"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/ACTIVE"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/PREEMPTED"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/SUCCEEDED"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/ABORTED"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/REJECTED"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/PREEMPTING"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/RECALLING"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/RECALLED"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/LOST"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/text"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatus/status"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatusArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatusArray/header"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes/GoalStatusArray/status_list"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Stereo_datatypes" disposableProviderFactory="true"
+            ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/stereo_datatypes"/>
+        <nestedGenPackages prefix="Oarps_datatypes" disposableProviderFactory="true"
+            ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes">
+          <nestedGenPackages prefix="Oarp1_datatypes" disposableProviderFactory="true"
+              ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes">
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/CarLikeCommand">
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/CarLikeCommand/velocity"/>
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/CarLikeCommand/steeringAngle"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/MultiLayerLidarScan">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/MultiLayerLidarScan/layers"/>
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/MultiLayerLidarScan/nbLayer"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/ExtentedLidarScan">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/ExtentedLidarScan/scan"/>
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/ExtentedLidarScan/layerId"/>
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes/ExtentedLidarScan/layerAngle"/>
+            </genClasses>
+          </nestedGenPackages>
+          <nestedGenPackages prefix="Oarp4_datatypes" disposableProviderFactory="true"
+              ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes">
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity_Linear">
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity_Linear/value"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Art_Set_Point">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Art_Set_Point/omega_left"/>
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Art_Set_Point/omega_right"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity_Angular">
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity_Angular/value"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Distance">
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Distance/value"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Metric">
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Metric/value"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Angular">
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Angular/value"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Op_Set_Point">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Op_Set_Point/velocity"/>
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Op_Set_Point/orientation"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Speed_Tics_Left_Right">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Speed_Tics_Left_Right/speed_tics_left"/>
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Speed_Tics_Left_Right/speed_tics_right"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Speed_Tics">
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Speed_Tics/value"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Odometer_Tics">
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Odometer_Tics/value"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Odometer_Tics_Left_Right">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Odometer_Tics_Left_Right/odometer_tics_left"/>
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Odometer_Tics_Left_Right/odometer_tics_right"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Proxi_Left_Right">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Proxi_Left_Right/proxi_left"/>
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Proxi_Left_Right/proxi_right"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Milli_Amp">
+              <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Milli_Amp/value"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Odometer_Linear_Left_Right">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Odometer_Linear_Left_Right/odometer_linear_left"/>
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Odometer_Linear_Left_Right/odometer_linear_right"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity_Angular_Left_Right">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity_Angular_Left_Right/velocity_angular_left"/>
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity_Angular_Left_Right/velocity_angular_right"/>
+            </genClasses>
+            <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity">
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity/velocity_linear"/>
+              <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes/Velocity/velocity_angular"/>
+            </genClasses>
+          </nestedGenPackages>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Std_datatypes" disposableProviderFactory="true"
+            ecorePackage="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes">
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt32"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Time"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/String"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Byte"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float64"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int8"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Bool"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt8"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt16"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int32"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int16"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Char"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Duration"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int64"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt64"/>
+          <genDataTypes ecoreDataType="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float32"/>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Header">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Header/seq"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Header/stamp"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Header/frame_id"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/MultiArrayDimension">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/MultiArrayDimension/label"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/MultiArrayDimension/size"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/MultiArrayDimension/stride"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/MultiArrayLayout">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/MultiArrayLayout/dim"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/MultiArrayLayout/data_offset"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/ByteMultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/ByteMultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/ByteMultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/ColorRGBA">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/ColorRGBA/r"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/ColorRGBA/g"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/ColorRGBA/b"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/ColorRGBA/a"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float32MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float32MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float32MultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int32MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int32MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int32MultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int8MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int8MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int8MultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int16MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int16MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int16MultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int64MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int64MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Int64MultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float64MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float64MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float64MultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt64MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt64MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt64MultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UIint16MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UIint16MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UIint16MultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt32MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt32MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt32MultiArray/data"/>
+          </genClasses>
+          <genClasses ecoreClass="RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt8MultiArray">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt8MultiArray/layout"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/UInt8MultiArray/data"/>
+          </genClasses>
+        </nestedGenPackages>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

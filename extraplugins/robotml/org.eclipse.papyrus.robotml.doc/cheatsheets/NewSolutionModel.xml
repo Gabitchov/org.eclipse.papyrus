@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet title="Creating a new Problem model">
+   
+<intro>
+	<description>In this step you will create a new solution model project which imports a problem model.</description>
+</intro>
+<item title="Open Papyrus Perspective"  dialog="false" skip="true">
+	<description> Start  setting up your environment perspective. </description>
+ <command
+       required="false"
+       serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.papyrus.infra.core.perspective)"/>
+</item>
+<item title="Create a new  proteus project" dialog="true" skip="false">
+	<description>
+	  		Start creating the project that will host your solution model. 
+      		
+File &gt; New &gt; Project &gt; Papyrus project &gt; Enter your project name, then select proteus as diagram language and the problem model template. On the next page, choose the diagrams that you want to create and the problem template that you want to load.
+    </description>
+ <command
+       required="true"
+       serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.papyrus.wizards.1createproject)"/>
+</item> 
+</cheatsheet>

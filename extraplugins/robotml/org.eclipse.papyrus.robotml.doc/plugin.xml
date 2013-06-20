@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="org.eclipse.papyrus.robotml.doc.category"
+            name="robotML.cheatsheets">
+      </category>
+      <cheatsheet
+            category="org.eclipse.papyrus.robotml.doc.category"
+            composite="true"
+            contentFile="$nl$/cheatsheets/RobotmlWorkFlow.xml"
+            id="org.eclipse.papyrus.robotml.doc.cheatsheet1051923325"
+            name="RobotML DashBoard">
+         <description>
+            RobotML Work Flow
+         </description>
+      </cheatsheet>
+   </extension>
+     <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="true">
+      </toc>
+           
+   </extension>
+
+</plugin>

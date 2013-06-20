@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Generate C++ Code from UML/Alf class model">
+   <intro>
+      <description>
+         This cheat sheet describes how structural and behavioral C++ code can be generated from an object-oriented UML model, where bodies of operations are specified using the Alf textual syntax. 
+      </description>
+   </intro>
+   <item
+   		 skip = "true"
+         title="Configure the UML/Alf to C++ code generator">
+     
+       <description>
+         First of all, the target folders for code generation must be configured.
+      </description>
+       <subitem
+            label="Go to menu Window / Preferences / Papyrus / UML/Alf to C++ Code Generator">
+      </subitem>
+      <subitem
+            label="Select the target rool folder for code generation (By default, the rule for generation is Use folder of the target UML model as root).">
+      </subitem>
+      <subitem
+            label="Specify a path relative to the root (e.g. src-gen/cppCode), press Apply, and finally OK.">
+      </subitem>
+   </item>
+  
+    <item
+         title="Generate code from a UML model">
+      
+       <description>
+      Once the UML/Alf to C++ code generator has been configured, code generation can be applied from a UML model.     
+      </description>
+       <subitem
+            label="In the project explorer, select the .uml file from which you want to generate code">
+      </subitem>
+       <subitem
+            label="Right-click, press C++ code generation, and finally Generate C++ code from UML/Alf class model.">
+      </subitem>
+   </item>
+</cheatsheet>

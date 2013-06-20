@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.eclipse.papyrus.robotml.validation.constraints"
+            name="RobotML rules">
+      </category>
+      <constraintProvider
+            mode="Batch">
+         <package
+               namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+         </package>
+         <constraints
+               categories="org.eclipse.papyrus.robotml.validation.constraints">
+            <constraint
+                  class="org.eclipse.papyrus.robotml.validation.constraints.PortIsCorrectlyTyped"
+                  id="org.eclipse.papyrus.robotml.validation.PortIsCorrectlyTyped"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.robotml.validation.PortIsCorrectlyTyped"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  RobotML : {0}.&quot;
+               </message>
+               <description>
+					Ports should be correctly typed.
+				</description>
+				<target class="Port" />
+            </constraint>
+         <constraint
+         class="org.eclipse.papyrus.robotml.validation.constraints.PortsAreCorrectlyConnected"
+                  id="org.eclipse.papyrus.robotml.validation.PortsAreCorrectlyConnected"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.robotml.validation.PortsAreCorrectlyConnected"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  &quot;RobotML: {0}.&quot;
+               </message>
+               <description>
+					Ports should be correctly connected.
+				</description>
+				<target class="Connector" />
+         
+         </constraint>
+          <constraint
+         class="org.eclipse.papyrus.robotml.validation.constraints.VerifyAlphanumericNamedElement"
+                  id="org.eclipse.papyrus.robotml.validation.VerifyAlphanumericNamedElement"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.robotml.validation.VerifyAlphanumericNamedElement"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  &quot;RobotML: {0}.&quot;
+               </message>
+               <description>
+					The name of the element shoud be alphanumeric.
+				</description>
+				<target class="NamedElement" />
+         
+         </constraint>
+         <constraint
+         class="org.eclipse.papyrus.robotml.validation.constraints.OnlyOneConnectionBetweenTwoPorts"
+                  id="org.eclipse.papyrus.robotml.validation.OnlyOneConnectionBetweenTwoPorts"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.robotml.validation.OnlyOneConnectionBetweenTwoPorts"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  &quot;RobotML : {0}.&quot;
+               </message>
+               <description>
+					Connection should be set between ports that are not already connecty.
+				</description>
+				<target class="Connector" />
+         
+         </constraint>
+         <constraint
+         class="org.eclipse.papyrus.robotml.validation.constraints.DetectRecursivity"
+                  id="org.eclipse.papyrus.robotml.validation.DetectRecursivity"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.robotml.validation.DetectRecursivity"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  &quot;RobotML : {0}.&quot;
+               </message>
+               <description>
+					Problem of recursivity: A subsystem (Property) should not be typed by the same system that contains it.
+				</description>
+				<target class="Property" />
+         
+         </constraint>
+          <constraint
+         class="org.eclipse.papyrus.robotml.validation.constraints.PropertyNameVsItsTypeName"
+                  id="org.eclipse.papyrus.robotml.validation.PropertyNameVsItsTypeName"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.robotml.validation.PropertyNameVsItsTypeName"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  &quot;RobotML : {0}.&quot;
+               </message>
+               <description>
+					Problem of recursivity: A subsystem (Property) should not be typed by the same system that contains it.
+				</description>
+				<target class="Property" />
+         
+         </constraint>
+         </constraints>
+      </constraintProvider>
+      <constraintProvider mode="Live">
+		<package namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML" />
+    
+		<constraints categories="org.eclipse.papyrus.robotml.validation.constraints">
+            
+            <constraint
+                  class="org.eclipse.papyrus.robotml.validation.constraints.OnlyOneConnectionBetweenTwoPorts"
+                  id="org.eclipse.papyrus.robotml.validation.Live.OnlyOneConnectionBetweenTwoPorts"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="org.eclipse.papyrus.robotml.validation.Live.OnlyOneConnectionBetweenTwoPorts"
+                  severity="ERROR"
+                  statusCode="1">
+				<message>
+					 &quot;RobotML : {0}.&quot;
+				</message>
+				<description>
+					Connection must be set between ports that are not already connected.
+				</description>
+				<target class="Connector" />
+			</constraint>
+			 </constraints>
+      </constraintProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            default="false"
+            id="org.eclipse.papyrus.robotml.validation.context">
+         <selector
+               class="org.eclipse.papyrus.robotml.validation.ValidationDelegateClientSelector">
+         </selector>
+      </clientContext>
+      <binding
+            context="org.eclipse.papyrus.robotml.validation.context">
+         <category
+               ref="org.eclipse.papyrus.robotml.validation.constraints">
+         </category>
+      </binding>
+   </extension>
+   
+ 
+</plugin>

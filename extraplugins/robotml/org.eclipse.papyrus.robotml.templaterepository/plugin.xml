@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.wizards.templates">
+      <template
+            di_file="resource/RoboCab.di"
+            file="resource/RoboCab.uml"
+            id="org.eclipse.papyrus.templaterepository.ModelWithChallenge1BasicArchitecture"
+            language="robotML"
+            name="A RobotML Model with Challenge1 basic architecture"
+            notation_file="resource/RoboCab.notation"
+            >
+      </template>
+      <template
+            di_file="resource/YouthChallenge.di"
+            file="resource/YouthChallenge.uml"
+            id="org.eclipse.papyrus.templaterepository.ModelWithChallenge1BasicArchitecture"
+            language="robotML"
+            name="A RobotML Model with YouthChallenge basic architecture"
+            notation_file="resource/YouthChallenge.notation"
+            >
+      </template>
+      <!--template
+            di_file="resource/SimplifiedChallenge1Model.di"
+            file="resource/SimplifiedChallenge1Model.uml"
+            id="org.eclipse.papyrus.robotml.templaterepository.SimplifiedChallenge1Model"
+            language="proteus"
+            name="A Simplified Challenge1 model"
+            notation_file="resource/SimplifiedChallenge1Model.notation"
+            uml_file="resource/SimplifiedChallenge1Model.uml">
+      </template-->
+      <template
+            di_file="resource/BasicRobotMLModel.di"
+            file="resource/BasicRobotMLModel.uml"
+            id="org.eclipse.papyrus.robotml.templaterepository.BasicTemplate"
+            language="robotML"
+            name="A basic model with RobotML dataTypes library"
+            notation_file="resource/BasicRobotMLModel.notation">
+      </template>
+      <template
+            di_file="resource/SearchLanding.di"
+            file="resource/SearchLanding.uml"
+            id="org.eclipse.papyrus.templaterepository.Model-TALC-Challenge"
+            language="robotML"
+            name="A RobotML Model with TALC challenge basic architecture"
+            notation_file="resource/SearchLanding.notation"
+            >
+      </template>
+   </extension>
+</plugin>

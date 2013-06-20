@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paletteDefinition>
+	<content>
+		
+		<drawer iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" id="drawer_1315919914240"
+			name="RobotML">
+			<aspectTool description="State"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif"
+				id="createStateCreationTool_1315919977929" name="State"
+				refToolId="createStateCreationTool">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="RobotML::State"></stereotype>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+		
+			<aspectTool description="FinalState"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif"
+				id="createFinalStateCreationTool_1315920419625" name="FinalState"
+				refToolId="createFinalStateCreationTool" >
+				
+			</aspectTool>
+			
+			<aspectTool description="InitialState"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_initial.gif"
+				id="createInitialCreationTool_1315920509328" name="InitialState"
+				refToolId="createInitialCreationTool" >
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="RobotML::State"></stereotype>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			
+			<separator id="Separator_1315920531125" />
+			<aspectTool description="Transition"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif"
+				id="createTransitionCreationTool_1315920536016" name="Transition"
+				refToolId="createTransitionCreationTool" >
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="RobotML::Transition"></stereotype>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+		</drawer>
+	</content>
+</paletteDefinition>

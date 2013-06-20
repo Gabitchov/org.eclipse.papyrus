@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Save the problem">
+   <intro>
+      <description>
+         Here the user will save the problem deployment model to a local folder
+   </intro>
+   <item
+         title="Item">
+        <description>
+         <b>Body</b>
+      </description>  
+        <subitem
+            label="Save the deployment model to the local papyrus project folder.">
+         <command
+               required="false"
+               serialization="org.eclipse.ui.file.save"/>
+      </subitem>
+      <subitem
+            label="Choose the folder where to save the deployment model.">
+         <command
+               required="false"
+               serialization="org.eclipse.ui.file.saveAs"/>
+      </subitem>
+    
+      
+     
+   </item>
+</cheatsheet>

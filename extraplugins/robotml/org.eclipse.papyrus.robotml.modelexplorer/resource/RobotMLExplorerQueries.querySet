@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ASCII"?>
+<query:ModelQuerySet
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation"
+    name="RobotMLExplorerQueries">
+  <associatedMetamodels
+      href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  <associatedMetamodels
+      href="http://www.eclipse.org/uml2/4.0.0/Types#/"/>
+  <queries xsi:type="query:JavaModelQuery"
+      name="getImage"
+      description="RobotML icon provider"
+      implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.GetImageQuery">
+    <returnType
+        xsi:type="ecore:EDataType"
+        href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery"
+      name="hasImage"
+      description="RobotML icon tester"
+      implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.HasImageQuery">
+    <returnType
+        xsi:type="ecore:EDataType"
+        href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery"
+      name="GetAllPorts"
+      description="Classifier owned ports provider"
+      upperBound="-1"
+      implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.GetAllPortsQuery">
+    <returnType
+        xsi:type="ecore:EClass"
+        href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
+    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery"
+      name="GetAllSubSystems"
+      description="Classifier owned sub systems provider"
+      upperBound="-1"
+      implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.GetAllSubSystemsQuery">
+    <returnType
+        xsi:type="ecore:EClass"
+        href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
+    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery"
+      name="GetOtherProperties"
+      description="Classifier other properties provider"
+      upperBound="-1"
+      implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.GetOtherPropertiesQuery">
+    <returnType
+        xsi:type="ecore:EClass"
+        href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
+    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery"
+      name="RobotMLProfileApplied"
+      description="Verify if the robotML profile is applied. If yes return false"
+      implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.RobotMLProfileAppliedQuery">
+    <returnType
+        xsi:type="ecore:EDataType"
+        href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+  </queries>
+</query:ModelQuerySet>

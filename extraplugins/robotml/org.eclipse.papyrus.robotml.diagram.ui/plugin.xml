@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="false"
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.robotml.diagram.ui.NewRobotmlModelWizard"
+            finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+            icon="platform:/plugin/org.eclipse.papyrus.robotml/icons/robotml/RobotML-16x16-8bits.png"
+            id="org.eclipse.papyrus.wizards.createrobotmlmodel"
+            name="RobotML Model">
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+      <wizard
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.robotml.diagram.ui.NewRobotmlProjectWizard"
+            finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+            icon="icons/new_sysml_project.gif"
+            id="org.eclipse.papyrus.wizards.createrobotmlwizard"
+            name="RobotML Project"
+            project="true">
+         <description>
+            New RobotML Project
+         </description>
+      </wizard>
+   </extension>
+
+</plugin>

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.eclipse.papyrus.robotml.modelexplorer;singleton:=true
+Bundle-Version: 0.10.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.robotml.modelexplorer.Activator
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
+ org.eclipse.uml2.uml;bundle-version="3.2.0",
+ org.eclipse.emf.facet.infra.query.core,
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,bin
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Localization: plugin

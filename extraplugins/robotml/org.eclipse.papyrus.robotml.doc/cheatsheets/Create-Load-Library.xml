@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Create / Load external Libraries">
+   <intro>
+      <description>
+         <b>Body</b>
+      </description>
+   </intro>
+   <item
+         title="Create">
+      <description>
+         <b>Body</b>
+      </description>
+   </item>
+   <item
+         title="Load">
+      <description>
+         <b>Body</b>
+      </description>
+   </item>
+   <item
+         title="Save / Upload">
+      <description>
+         <b>Body</b>
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.cheatsheets.openCheatSheet"/>
+   </item>
+</cheatsheet>

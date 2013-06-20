@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Close problem model">
+   <intro>
+      <description>
+         Once you have finished modeling the robotic problem and saved it, you could close the model.
+      </description>
+   </intro>
+   <item
+      title="Close the problem model.">
+      <command
+            required="false"
+            serialization="org.eclipse.ui.file.close"/>   
+      <description>
+         <b>Body</b>
+      </description>
+   </item>
+</cheatsheet>

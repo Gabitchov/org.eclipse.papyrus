@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Edit algorithmic parts with Alf">
+   <intro>
+      <description>
+         Algorithmic parts of a system model can be edited using the Alf textual syntax. This can be done by associating Alf bodies with operations of classes or components defined in the model. 
+      </description>
+   </intro>
+   <item
+   		 skip = "true"
+         title="Configure the Alf editor">
+     
+       <description>
+         First of all, the Alf editor must be configured as the default editor for UML operations.
+      </description>
+       <subitem
+            label="Go to menu Windows / Preferences / Papyrus / Embedded editors">
+      </subitem>
+      <subitem
+            label="In the list Elements to edit, select org.eclipse.uml2.uml.Operation.">
+      </subitem>
+      <subitem
+            label="In the list Associated editor, select Alf, press button Default, and finally press OK.">
+      </subitem>
+   </item>
+  
+    <item
+         title="Edit operation bodies with Alf">
+      
+       <description>
+      Once the Alf editor has been configured as the default editor for UML operations, bodies of operations can be edited using the Alf syntax.     
+      </description>
+       <subitem
+            label="Select an operation in the active class diagram (e.g., in the operation compartment of a class)">
+      </subitem>
+       <subitem
+            label="Press key F2. A popup editor will open, where it will be possible to edit both operation signature and body using the Alf syntax. Changes will be saved automatically when focus is lost or ctrl+enter is pressed. In order to ignore changes, simply press Esc.">
+      </subitem>
+   </item>>
+</cheatsheet>

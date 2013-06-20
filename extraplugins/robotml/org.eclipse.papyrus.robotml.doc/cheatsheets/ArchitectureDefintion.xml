@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Architecture definition">
+   <intro>
+      <description>
+         In this step, you will define the architecture of the robot(s). The architecture of the robots consists in composing the robot global system by a set of sub systems and connecting them.
+      </description>
+   </intro>
+  
+    <item      title="Define specific robotic systems">
+      <description>
+          To define specific robotic architecture, use the architecture definition diagram. 
+      </description>
+      <subitem
+            label="Go to the model explorer view">
+            <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.papyrus.modelexplorer.modelexplorer)"/>
+      </subitem>
+      <subitem
+            label="right click on the model, and choose create new diagram. Then choose architecture definition diagram.">
+      </subitem>
+      <subitem
+            label="Create your specific robotic architecture. Drop the robot system (if it was already created in the steps before) to the architecture diagram, then drop the sub systems of the robot inside the it. Connect the data flow ports and service ports of the sub systems. You can define the internal architecture of the sub systems as well.">
+      </subitem>
+   </item>
+</cheatsheet>

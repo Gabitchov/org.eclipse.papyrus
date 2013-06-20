@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Edit FSMs">
+   
+   <intro>
+      <description>
+         To specify a robotic system behavior, you can use finite state machines diagrams. Several FSMs can be attached to a robotic system.
+         </description>
+        
+   </intro> <item
+         title="Create new state machine diagram">
+      <description>
+         Go to the model explorer view and select the robotic system to which you want to describe the behavior through finite state machines.
+Right click on it and choose the &quot;new diagram&quot; menu, then choose &quot;create new state machine diagram&quot;. A new finate state machine will be created and added to the ownedBevior list of the selected system. 
+A new diagram will be created as well. In the next step you will graphically edit the FSM.
+Go to the model explorer view and select the robotic system to which you want to describe the behavior through finite state machines.
+Right click on it and choose the &quot;new diagram&quot; menu, then choose &quot;create new state machine diagram&quot;. A new finate state machine will be created and added to the ownedBevior list of the selected system. 
+A new diagram will be created as well. In the next step you will graphically edit the FSM.
+      </description>
+  <item
+        title="Edit the finite state machine">
+     <description>
+        The finite state machine is initialized with an empty state machine. To populate the diagram, you 
+     </description>
+  </item>
+   </item>
+ 
+  <item
+        title="Edit the state machine">
+     <description>
+        <b>Body</b>
+     </description>
+  </item>
+   
+</cheatsheet>

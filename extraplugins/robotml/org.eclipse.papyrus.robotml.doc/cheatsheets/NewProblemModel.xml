@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet title="Creating a new Problem model">
+   
+<intro>
+	<description></description>
+</intro>
+<item title="Create a new  RobotML project" dialog="true" skip="false">
+	<description>
+		Performing this task has the same effect as to open:<br/>File &gt; New &gt; Project &gt; RobotML project &gt;<br/><br/>At this step the project name and the default created diagram(s) have to be chosen. This is not to be confused with the &quot;RobotML Model&quot; choice that allows the user to create a new RobotML model in an existing project.
+    </description>
+ <command
+       required="false"
+       serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.papyrus.wizards.createrobotmlwizard)"/>
+</item>
+<item title="Open RobotML Perspective"  dialog="false" skip="false">
+	<description>
+		Creation of a project in ECLIPSE does not change by itself the perspective. User MUST change it manually and it is done performing this task of the workflow.
+	</description>
+	<command
+       required="true"
+       serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.papyrus.robotml.perspective)"/>
+</item>
+</cheatsheet>

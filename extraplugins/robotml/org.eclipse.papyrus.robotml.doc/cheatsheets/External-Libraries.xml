@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compositeCheatsheet name="External Libraries Dashboard">
+   <taskGroup kind="set" name="External Libraries" skip="false">
+      <intro>
+         <b>Introduction</b>
+      </intro>
+      <onCompletion>
+         <b>Conclusion</b>
+      </onCompletion>
+      <task kind="cheatsheet" name="Create / Load external library description" skip="false">
+         <intro>
+            <b>Introduction</b>
+         </intro>
+         <onCompletion>
+            <b>Conclusion</b>
+         </onCompletion>
+         <param name="path" value="Create-Load-Library.xml">
+         </param>
+      </task>
+      <task kind="cheatsheet" name="Task" skip="false">
+         <intro>
+            <b>Introduction</b>
+         </intro>
+         <onCompletion>
+            <b>Conclusion</b>
+         </onCompletion>
+         <param name="path">
+         </param>
+      </task>
+   </taskGroup>
+</compositeCheatsheet>

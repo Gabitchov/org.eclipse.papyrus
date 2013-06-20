@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compositeCheatsheet name="Load a problem model">
+   <taskGroup kind="choice" name="Load problem model" skip="false">
+      <intro>
+         <b>Introduction</b>
+      </intro>
+      <onCompletion>
+         <b>Conclusion</b>
+      </onCompletion>
+      <task kind="cheatsheet" name="local load" skip="false">
+         <intro>
+            <b>Introduction</b>
+         </intro>
+         <onCompletion>
+            <b>Conclusion</b>
+         </onCompletion>
+      </task>
+   </taskGroup>
+</compositeCheatsheet>

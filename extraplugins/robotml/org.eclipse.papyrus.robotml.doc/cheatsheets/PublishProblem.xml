@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Publish the problem">
+   <intro>
+      <description>
+       publish
+      </description>
+   </intro>
+   <item
+         title="Login to the portal">
+      <description>
+         <b>If you don&apos;t have an account, please register. Then upload the archieve file to the appropriate location</b>
+         
+      
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.browser.openBrowser(url=http://proteus.bourges.univ-orleans.fr/?q%%%=user/register)"/>
+   </item>
+   <item
+         title="Publish the problem">
+      <description>
+         Create an archieve file
+         
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.file.export(exportWizardId=org.eclipse.ui.wizards.export.ZipFile)"/>
+   </item>
+</cheatsheet>

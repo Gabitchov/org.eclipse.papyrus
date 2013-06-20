@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="RobotML Guide">
+	<topic label="User Guide" >
+	<topic label="Definitions"  href="html/R0.2.3-Definitions-help.html"> 
+	</topic>
+	<topic label="RobotML WorkFlow" href="html/RobotMLCheatSheetsHelp.html"/>
+	<topic label="RobotML Modeling Language" href="html/RobotMLModellingLanguage.html"/>
+	</topic>
+	<topic label="Developer Guide" >
+	<topic label="How to contribute to the code generation menu"  href="html/PapyrusTutorial_GenerationMenuContribution.html"> 
+	</topic>
+	</topic>
+</toc>

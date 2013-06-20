@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagramcontent:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagramcontent="http://www.eclipse.org/papyrus/0.7.0/diagramcontent" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" name="Componentdef" label="Proteus Component Definition Diagram" icon="icons/obj16/componentdef.gif" hint="componentdef" javaPackagePrefix="org.eclipse.papyrus.robotml.diagram.componentdef" javaClassPrefix="ComponentdefDiagram" language="proteus" createCommandLabel="Create a new Proteus Component Definition Diagram">
+  <diagramEditPart name="ComponentdefEditPart">
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy" key="DuplicatePasteEditPolicy.PASTE_ROLE"/>
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.composite.edit.policies.CompositeStructureDiagramItemSemanticEditPolicy" key="EditPolicyRoles.SEMANTIC_ROLE"/>
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy" key="&quot;RemoveOrphanView&quot;"/>
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.robotml.diagram.componentdef.edit.policy.ComponentdefDiagramDragDropEditPolicy" key="EditPolicyRoles.DRAG_DROP_ROLE"/>
+  </diagramEditPart>
+  <inheritedDiagrams name="CompositeDiagram" viewProviderClassQualifiedName="" editPartProviderClassQualifiedName="" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy" paletteToolPrefix="composite.tool">
+    <genInheritedEditor href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#CompositeStructure"/>
+    <genNodes name="Component">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@topLevelNodes.10"/>
+    </genNodes>
+    <genNodes name="" customPreferencePage="">
+      <genNode xsi:type="gmfgen:GenChildSideAffixedNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@childNodes.0"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@topLevelNodes.48"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@topLevelNodes.53"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@childNodes.2"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.19"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.9"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@childNodes.27"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@childNodes.15"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@childNodes.32"/>
+    </genNodes>
+    <genLinks name="">
+      <genLink href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@links.2"/>
+    </genLinks>
+    <genLinks name="">
+      <genLink href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@links.1"/>
+    </genLinks>
+  </inheritedDiagrams>
+</diagramcontent:Diagram>

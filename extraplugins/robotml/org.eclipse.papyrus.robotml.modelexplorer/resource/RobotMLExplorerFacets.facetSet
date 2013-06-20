@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<facet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:facet="http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="RobotMLExplorerFacets" nsURI="RobotMLExplorerFacets" nsPrefix="RobotMLExplorerFacets">
+  <eClassifiers xsi:type="facet:Facet" name="RobotMLClassifier" abstract="true">
+    <eSuperTypes href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="Ports" upperBound="-1" volatile="true" unsettable="true">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+      <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/RobotMLExplorerQueries#GetAllPorts"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="SubSystems" upperBound="-1" volatile="true" unsettable="true">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+      <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/RobotMLExplorerQueries#GetAllSubSystems"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="Others" upperBound="-1" volatile="true" unsettable="true">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+      <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/RobotMLExplorerQueries#GetOtherProperties"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <extendedPackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
+</facet:FacetSet>

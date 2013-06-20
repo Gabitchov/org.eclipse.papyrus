@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Deploy on environment simulator">
+   <intro>
+      <description>
+         <b>Body</b>
+      </description>
+   </intro>
+   <item
+         title="Choose environment simulators">
+      <description>
+         <b>Body</b>
+      </description>
+   </item>
+   <item
+         title="Deploy on environment simulators">
+      <description>
+         <b>Body</b>
+      </description>
+   </item>
+</cheatsheet>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Data types definition">
+   <intro>
+      <description>
+         The first step of defining the model consists in importing an existing library of datatypes or defining your own set of specific data types. Data types are used to give a type to data flow ports of robotic systems.
+      </description>
+   </intro>
+   <item
+         title="Define Specific Data Types">
+     
+       <description>
+         You can define your own data types using data types definition diagrams.
+      </description>
+       <subitem
+            label="Go to the model explorer view">
+            <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.papyrus.modelexplorer.modelexplorer)"/>
+      </subitem>
+      <subitem
+            label="right click on the model, and choose create new diagram. Then choose RobotML Data types definition diagram.">
+      </subitem>
+      <subitem
+            label="Create your specific data types.">
+      </subitem>
+   </item>
+  
+    <item
+         skip="true"
+         title="Import a data type library">
+      
+       <description>
+      You can import a registered data types library.     
+      </description>
+       <subitem
+            label="Open the papyrus model explorer view">
+            <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.papyrus.modelexplorer.modelexplorer)"/>
+      </subitem>
+       <subitem
+            label="Right click on the model or a part of the model">
+          <command
+                required="false"
+                serialization="org.eclipse.ui.browser.openBrowser(url=http://www.google.com)"/>
+      </subitem>
+       <subitem
+            label="Choose import package from registered library">
+      </subitem>
+      <subitem
+            label="Choose the data types library that you want to import">
+      </subitem>
+   </item>>
+</cheatsheet>

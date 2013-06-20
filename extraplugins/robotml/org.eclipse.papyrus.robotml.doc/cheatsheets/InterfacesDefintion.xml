@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Define interfaces">
+   <intro>
+      <description>
+         Interfaces are used to type Service Ports. They are composed of a set of operations without without stating how exactly they are implemented.
+      </description>
+   </intro>
+   <item      title="Define specific interfaces">
+      <description>
+         To define specific interfaces, you have to use interfaces definition diagrams.
+      </description>
+      <subitem
+            label="Go to the model explorer view">
+            <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.papyrus.modelexplorer.modelexplorer)"/>
+      </subitem>
+      <subitem
+            label="right click on the model, and choose create new diagram. Then choose Interfaces definition diagram.">
+      </subitem>
+      <subitem
+            label="Create your specific interfaces.">
+            
+      </subitem>
+   </item>
+</cheatsheet>

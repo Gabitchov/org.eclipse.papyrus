@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<MacroPackage xmlns="http://schemas.intempora.com/RTMaps/2011/RTMapsFiles" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/RTMapsFiles http://www.intempora.com/schemas/RTMaps/2011/RTMapsDiagram.xsd http://schemas.intempora.com/RTMaps/2011/RTMapsFiles http://www.intempora.com/schemas/RTMaps/2011/RTMapsDiagram_RTBoardView.xsd">
+  <RequiredPackages>
+    <File><![CDATA[C:\RTMaps 4\packages\rtmaps_wifibot.pck]]>
+      <Relative><![CDATA[%RTMAPS_INSTDIR%\packages\rtmaps_wifibot.pck]]></Relative>
+    </File>
+  </RequiredPackages>
+  <RequiredMacroPackages/>
+  <MacroComponentModel Model="actuation" Version="">
+    <Component InstanceName="Vectorizer_4" Model="Vectorizer" x="312" y="208" z="0">
+      <Input LongName="Vectorizer_4.input2" Name="input2">
+        <Property LongName="Vectorizer_4.input2.readerType" Type="1">4</Property>
+        <Property LongName="Vectorizer_4.input2.subsampling" Type="1">1</Property>
+      </Input>
+      <Input LongName="Vectorizer_4.input1" Name="input1">
+        <Property LongName="Vectorizer_4.input1.readerType" Type="1">4</Property>
+        <Property LongName="Vectorizer_4.input1.subsampling" Type="1">1</Property>
+      </Input>
+      <Output LongName="Vectorizer_4.outputInteger64" Name="outputInteger64">
+        <Property LongName="Vectorizer_4.outputInteger64.fifosize" Type="1">16</Property>
+        <Property LongName="Vectorizer_4.outputInteger64.periodic" Type="0">false</Property>
+        <Property LongName="Vectorizer_4.outputInteger64.subsampling" Type="1">1</Property>
+      </Output>
+      <Output LongName="Vectorizer_4.outputInteger" Name="outputInteger">
+        <Property LongName="Vectorizer_4.outputInteger.fifosize" Type="1">16</Property>
+        <Property LongName="Vectorizer_4.outputInteger.periodic" Type="0">false</Property>
+        <Property LongName="Vectorizer_4.outputInteger.subsampling" Type="1">1</Property>
+      </Output>
+      <Output LongName="Vectorizer_4.outputFloat" Name="outputFloat">
+        <Property LongName="Vectorizer_4.outputFloat.fifosize" Type="1">16</Property>
+        <Property LongName="Vectorizer_4.outputFloat.periodic" Type="0">false</Property>
+        <Property LongName="Vectorizer_4.outputFloat.subsampling" Type="1">1</Property>
+      </Output>
+      <Output LongName="Vectorizer_4.outputFloat32" Name="outputFloat32">
+        <Property LongName="Vectorizer_4.outputFloat32.fifosize" Type="1">16</Property>
+        <Property LongName="Vectorizer_4.outputFloat32.periodic" Type="0">false</Property>
+        <Property LongName="Vectorizer_4.outputFloat32.subsampling" Type="1">1</Property>
+      </Output>
+      <Property LongName="Vectorizer_4.nbInputs" Type="1">2</Property>
+      <Property LongName="Vectorizer_4.samplingMode" Type="4"><![CDATA[6|1|Synchronized|Periodic resampling|Asynchronous arrival on any of the inputs|Triggered by first input|Wait for at least 1 arrival on each input|Periodic resampling while post-processing]]></Property>
+      <Property LongName="Vectorizer_4.samplingPeriod" Type="1">50000</Property>
+      <Property LongName="Vectorizer_4.threaded" Type="0">true</Property>
+      <Property LongName="Vectorizer_4.priority" Type="1">128</Property>
+      <Property LongName="Vectorizer_4.autoStart" Type="0">false</Property>
+    </Component>
+    <Component InstanceName="wifibot_serial_2" Model="wifibot_serial" x="472" y="160" z="0">
+      <Input LongName="wifibot_serial_2.ileft_and_right_speeds" Name="ileft_and_right_speeds">
+        <Property LongName="wifibot_serial_2.ileft_and_right_speeds.readerType" Type="1">2</Property>
+        <Property LongName="wifibot_serial_2.ileft_and_right_speeds.subsampling" Type="1">1</Property>
+      </Input>
+      <Input LongName="wifibot_serial_2.iStream8" Name="iStream8">
+        <Property LongName="wifibot_serial_2.iStream8.readerType" Type="1">0</Property>
+        <Property LongName="wifibot_serial_2.iStream8.subsampling" Type="1">1</Property>
+      </Input>
+      <Output LongName="wifibot_serial_2.odometers_left_right" Name="odometers_left_right">
+        <Property LongName="wifibot_serial_2.odometers_left_right.fifosize" Type="1">16</Property>
+        <Property LongName="wifibot_serial_2.odometers_left_right.periodic" Type="0">false</Property>
+        <Property LongName="wifibot_serial_2.odometers_left_right.subsampling" Type="1">1</Property>
+      </Output>
+      <Output LongName="wifibot_serial_2.current" Name="current">
+        <Property LongName="wifibot_serial_2.current.fifosize" Type="1">16</Property>
+        <Property LongName="wifibot_serial_2.current.periodic" Type="0">false</Property>
+        <Property LongName="wifibot_serial_2.current.subsampling" Type="1">1</Property>
+      </Output>
+      <Output LongName="wifibot_serial_2.version" Name="version">
+        <Property LongName="wifibot_serial_2.version.fifosize" Type="1">16</Property>
+        <Property LongName="wifibot_serial_2.version.periodic" Type="0">false</Property>
+        <Property LongName="wifibot_serial_2.version.subsampling" Type="1">1</Property>
+      </Output>
+      <Output LongName="wifibot_serial_2.oStream8" Name="oStream8">
+        <Property LongName="wifibot_serial_2.oStream8.fifosize" Type="1">16</Property>
+        <Property LongName="wifibot_serial_2.oStream8.periodic" Type="0">false</Property>
+        <Property LongName="wifibot_serial_2.oStream8.subsampling" Type="1">1</Property>
+      </Output>
+      <Output LongName="wifibot_serial_2.speeds_left_right" Name="speeds_left_right">
+        <Property LongName="wifibot_serial_2.speeds_left_right.fifosize" Type="1">16</Property>
+        <Property LongName="wifibot_serial_2.speeds_left_right.periodic" Type="0">false</Property>
+        <Property LongName="wifibot_serial_2.speeds_left_right.subsampling" Type="1">1</Property>
+      </Output>
+      <Output LongName="wifibot_serial_2.battery" Name="battery">
+        <Property LongName="wifibot_serial_2.battery.fifosize" Type="1">16</Property>
+        <Property LongName="wifibot_serial_2.battery.periodic" Type="0">false</Property>
+        <Property LongName="wifibot_serial_2.battery.subsampling" Type="1">1</Property>
+      </Output>
+      <Output LongName="wifibot_serial_2.infrared_left_right" Name="infrared_left_right">
+        <Property LongName="wifibot_serial_2.infrared_left_right.fifosize" Type="1">16</Property>
+        <Property LongName="wifibot_serial_2.infrared_left_right.periodic" Type="0">false</Property>
+        <Property LongName="wifibot_serial_2.infrared_left_right.subsampling" Type="1">1</Property>
+      </Output>
+      <Property LongName="wifibot_serial_2.input_mode" Type="4"><![CDATA[2|0|Vectorized|Left/Right separated]]></Property>
+      <Property LongName="wifibot_serial_2.commands_send_period" Type="1">10000</Property>
+      <Property LongName="wifibot_serial_2.closed_loop_speed_control" Type="0">true</Property>
+      <Property LongName="wifibot_serial_2.pid_speed" Type="4"><![CDATA[2|1|10 ms|50 ms]]></Property>
+      <Property LongName="wifibot_serial_2.pInputFIFOSize" Type="1">1000</Property>
+      <Property LongName="wifibot_serial_2.pOutputFIFOsSize" Type="1">10</Property>
+      <Property LongName="wifibot_serial_2.threaded" Type="0">true</Property>
+      <Property LongName="wifibot_serial_2.priority" Type="1">128</Property>
+      <Property LongName="wifibot_serial_2.autoStart" Type="0">false</Property>
+    </Component>
+    <Component InstanceName="SerialPort_3" Model="SerialPort" x="560" y="40" z="0">
+      <Input LongName="SerialPort_3.streamInput" Name="streamInput">
+        <Property LongName="SerialPort_3.streamInput.readerType" Type="1">0</Property>
+        <Property LongName="SerialPort_3.streamInput.subsampling" Type="1">1</Property>
+      </Input>
+      <Input LongName="SerialPort_3.rts_state" Name="rts_state">
+        <Property LongName="SerialPort_3.rts_state.readerType" Type="1">0</Property>
+        <Property LongName="SerialPort_3.rts_state.subsampling" Type="1">1</Property>
+      </Input>
+      <Input LongName="SerialPort_3.dtr_state" Name="dtr_state">
+        <Property LongName="SerialPort_3.dtr_state.readerType" Type="1">0</Property>
+        <Property LongName="SerialPort_3.dtr_state.subsampling" Type="1">1</Property>
+      </Input>
+      <Output LongName="SerialPort_3.streamOutput" Name="streamOutput">
+        <Property LongName="SerialPort_3.streamOutput.fifosize" Type="1">32</Property>
+        <Property LongName="SerialPort_3.streamOutput.periodic" Type="0">false</Property>
+        <Property LongName="SerialPort_3.streamOutput.subsampling" Type="1">1</Property>
+      </Output>
+      <Property LongName="SerialPort_3.port" Type="3"><![CDATA[COM1]]></Property>
+      <Property LongName="SerialPort_3.use_ring" Type="0">false</Property>
+      <Property LongName="SerialPort_3.baudrate" Type="4"><![CDATA[10|5|110|300|1200|2400|4800|9600|19200|38400|57600|115200]]></Property>
+      <Property LongName="SerialPort_3.parity" Type="4"><![CDATA[5|0|None|Even|Odd|Mark|Space]]></Property>
+      <Property LongName="SerialPort_3.stopbits" Type="4"><![CDATA[3|0|1|2|1,5]]></Property>
+      <Property LongName="SerialPort_3.byteSize" Type="4"><![CDATA[4|3|5|6|7|8]]></Property>
+      <Property LongName="SerialPort_3.flowControl" Type="4"><![CDATA[3|0|None|Xon/Xoff|Hardware (RTS/CTS)]]></Property>
+      <Property LongName="SerialPort_3.XonChar" Type="1">17</Property>
+      <Property LongName="SerialPort_3.XoffChar" Type="1">19</Property>
+      <Property LongName="SerialPort_3.min" Type="1">50</Property>
+      <Property LongName="SerialPort_3.wtime" Type="1">10000</Property>
+      <Property LongName="SerialPort_3.use_non_standard_baudrate" Type="0">false</Property>
+      <Property LongName="SerialPort_3.non_standard_baudrate" Type="1">10000</Property>
+      <Property LongName="SerialPort_3.verbose" Type="0">false</Property>
+      <Property LongName="SerialPort_3.threaded" Type="0">true</Property>
+      <Property LongName="SerialPort_3.priority" Type="1">255</Property>
+      <Property LongName="SerialPort_3.autoStart" Type="0">false</Property>
+    </Component>
+    <Connection Input="wifibot_serial_2.ileft_and_right_speeds" Output="Vectorizer_4.outputInteger"/>
+    <Connection Input="wifibot_serial_2.iStream8" Output="SerialPort_3.streamOutput"/>
+    <Connection Input="SerialPort_3.streamInput" Output="wifibot_serial_2.oStream8"/>
+    <Input Name="left_motor_ctl" Target="Vectorizer_4.input1"/>
+    <Input Name="right_motor_ctl" Target="Vectorizer_4.input2"/>
+    <RTBoardView ID="JavaStudio1.0">
+      <Description/>
+      <ComponentBox InstanceName="Vectorizer_4" reversed="false">
+        <Description/>
+        <InputInfos Name="input2">
+          <Description/>
+        </InputInfos>
+        <InputInfos Name="input1">
+          <Description/>
+        </InputInfos>
+        <OutputInfos Name="outputInteger64">
+          <Description/>
+        </OutputInfos>
+        <OutputInfos Name="outputInteger">
+          <Description/>
+        </OutputInfos>
+        <OutputInfos Name="outputFloat">
+          <Description/>
+        </OutputInfos>
+        <OutputInfos Name="outputFloat32">
+          <Description/>
+        </OutputInfos>
+      </ComponentBox>
+      <ComponentBox InstanceName="wifibot_serial_2" reversed="false">
+        <Description/>
+        <InputInfos Name="ileft_and_right_speeds">
+          <Description/>
+        </InputInfos>
+        <InputInfos Name="iStream8">
+          <Description/>
+        </InputInfos>
+        <OutputInfos Name="odometers_left_right">
+          <Description/>
+        </OutputInfos>
+        <OutputInfos Name="current">
+          <Description/>
+        </OutputInfos>
+        <OutputInfos Name="version">
+          <Description/>
+        </OutputInfos>
+        <OutputInfos Name="oStream8">
+          <Description/>
+        </OutputInfos>
+        <OutputInfos Name="speeds_left_right">
+          <Description/>
+        </OutputInfos>
+        <OutputInfos Name="battery">
+          <Description/>
+        </OutputInfos>
+        <OutputInfos Name="infrared_left_right">
+          <Description/>
+        </OutputInfos>
+      </ComponentBox>
+      <ComponentBox InstanceName="SerialPort_3" reversed="false">
+        <Description/>
+        <InputInfos Name="streamInput">
+          <Description/>
+        </InputInfos>
+        <InputInfos Name="rts_state">
+          <Description/>
+        </InputInfos>
+        <InputInfos Name="dtr_state">
+          <Description/>
+        </InputInfos>
+        <OutputInfos Name="streamOutput">
+          <Description/>
+        </OutputInfos>
+      </ComponentBox>
+      <InputBox InstanceName="right_motor_ctl" reversed="false" x="152" y="296" z="-1">
+        <Description/>
+      </InputBox>
+      <InputBox InstanceName="left_motor_ctl" reversed="false" x="152" y="136" z="-1">
+        <Description/>
+      </InputBox>
+      <ConnectionShape InstanceName="wifibot_serial_2.ileft_and_right_speeds" color="0"/>
+      <ConnectionShape InstanceName="wifibot_serial_2.iStream8" color="0"/>
+      <ConnectionShape InstanceName="SerialPort_3.streamInput" color="0"/>
+    </RTBoardView>
+  </MacroComponentModel>
+</MacroPackage>

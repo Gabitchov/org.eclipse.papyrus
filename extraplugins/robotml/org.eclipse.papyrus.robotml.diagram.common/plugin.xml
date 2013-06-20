@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+      <diagramCategory
+            class="org.eclipse.papyrus.robotml.diagram.common.commands.CreateRobotmlModelCommand"
+            description="RobotML diagrams"
+            icon="platform:/plugin/org.eclipse.papyrus.robotml/icons/robotml/RobotML-32x32.png"
+            id="robotML"
+            label="RobotML">
+      </diagramCategory>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.eclipse.papyrus.robotml.diagram.common.IsPapyrusActiveWithRobotml">
+         <and>
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.infra.core.papyrusEditor">
+               </equals>
+            </with>
+            <with
+                  variable="selection">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.RobotmlSelectionTester.isRobotmlModel"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </definition>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.robotml.diagram.common.utils.RobotmlSelectionTester"
+            id="org.eclipse.papyrus.RobotmlSelectionTester"
+            namespace="org.eclipse.papyrus.RobotmlSelectionTester"
+            properties="isRobotmlModel"
+            type="org.eclipse.jface.viewers.ISelection">
+      </propertyTester>
+   </extension>
+   
+<extension id="papyrus.robotML.menuspapyrus.generate" name="Generate to Middleware/Simulator" point="org.eclipse.ui.menus">
+      <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild">
+         <menu
+               icon="icons/default.gif"
+               id="org.eclipse.papyrus.robotML.modelexplorer.popupmenu.generate"
+               label="Generate to Middleware/Simulator"
+               mnemonic="&amp;G"
+               tooltip="Generate from model to robotic Middleware/Simulator">
+            <visibleWhen
+                  checkEnabled="false">
+                  <reference
+                     definitionId="org.eclipse.papyrus.robotml.diagram.common.IsPapyrusActiveWithRobotml">
+               </reference>
+            </visibleWhen>
+         </menu>     
+       </menuContribution>
+ </extension>    
+ <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="this a category of RobotML commands"
+            id="org.eclipse.papyrus.robotML.generation.category"
+            name="RobotML generation Category">
+      </category>
+   </extension>
+ <extension
+       point="org.eclipse.papyrus.uml.properties.languageEditor">
+    <editor
+          editor="org.eclipse.papyrus.uml.properties.widgets.NaturalLanguageEditor"
+          language="alf">
+    </editor>
+ </extension>
+</plugin>

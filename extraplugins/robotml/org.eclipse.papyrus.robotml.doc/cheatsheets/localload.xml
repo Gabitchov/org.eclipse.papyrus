@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="local load">
+   <intro>
+      <description>
+    
+      </description>
+   </intro>
+   <item
+         title="Load from local folder">
+      <command
+            required="true"
+            serialization="org.eclipse.ui.file.import(importWizardId=org.eclipse.ui.wizards.import.ExternalProject)"/>
+      <description>
+         This
+      </description>
+   </item>
+<item title="Open RobotML Perspective"  dialog="false" skip="true">
+	<description>
+		Creation of a project in ECLIPSE does not change by itself the perspective. User MUST change it manually and it is done performing this task of the workflow.
+	</description>
+	<command
+       required="true"
+       serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.papyrus.robotml.perspective)"/>
+</item>
+</cheatsheet>

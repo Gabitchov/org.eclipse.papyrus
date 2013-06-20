@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Load a problem ">
+   <intro>
+      <description>
+       The user load the problem projects from the remote server. A problem is set of projects (deployed problem model, simulator code, configuration files, etc)
+      </description>
+   </intro>
+   <item
+         title="Load the deployed problem model">
+      <description>
+        Choose the remote location from where the problem model will be loaded.
+      </description>
+   </item>
+   <item
+         title="Load the simulator code and configuration files">
+      <description>
+        Choose the remote location from where the simulator code will be loaded.
+      </description>
+   </item>
+</cheatsheet>

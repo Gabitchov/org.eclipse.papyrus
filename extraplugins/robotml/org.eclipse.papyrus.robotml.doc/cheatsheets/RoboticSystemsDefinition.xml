@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Robotic systems definition">
+   <intro>
+      <description>
+         In this step, you will define the specific robotic systems for the problem model. 
+         Robotic systems could be robots and their subsystems such as specific actuators, sensors, etc.
+      <subitem
+            label="Sub-Step">
+      </subitem>
+      </description>
+   </intro>
+   
+   <item      title="Define specific sensors">
+      <description>
+          To define specific robotic systems, use the components definition diagram. 
+      </description>
+      <subitem
+            label="Go to the model explorer view">
+            <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.papyrus.modelexplorer.modelexplorer)"/>
+      </subitem>
+      <subitem
+            label="right click on the model, and choose create new diagram. Then choose Components definition diagram.">
+      </subitem>
+      <subitem
+            label="Create your specific robotic systems. You can add Data Flow or Service ports to the systems. Data Flow ports have to be typed by a data type, service ports by an interface.">
+      </subitem>
+   </item>
+   <item
+         title="Define specific actuators">
+      <description>
+         <b>Body</b>
+      </description>
+   </item>
+   <item
+         title="Define specific subsystems">
+      <description>
+         <b>Body</b>
+      </description>
+   </item>
+</cheatsheet>

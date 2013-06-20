@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="RobotMLExplorerFacets">
+  <types metaclassName="RobotMLExplorerFacets.RobotMLClassifier">
+    <references referenceName="Ports">
+      <customizedFeatures customizedFeature="italic">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="SubSystems">
+      <customizedFeatures customizedFeature="italic">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="Others">
+      <customizedFeatures customizedFeature="italic">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+  </types>
+</uicustom:MetamodelView>

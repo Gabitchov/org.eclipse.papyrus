@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compositeCheatsheet name="RobotML WorkFlow DashBoard">
+   <taskGroup kind="choice" name="RobotML WorkFlow" skip="false">
+      <intro>
+         The goal of this workflow is to facilitate its Problem provider user to create problems and its Solution provider user to provide solutions allowing them to interact with the <b>French Robotic Portal</b>.<br/><br/>As can be seen below in order to complete this workflow, there is a need on one hand to <b>create a Problem</b> and on the other hand to <b>provide a solution</b>. As the solution provider often works inside his proper environment in order to create the solution, the process develops more the <b>problem creation workflow</b> than the <b>solution creation workflow</b>.<br/><br/>To complete a Problem means to <b>publish an executable environmen</b> able to be used by the solution provider to test his solution and for the Problem provider to assess it. More details are to be found throughout the Workflow description.
+      </intro>
+      <onCompletion>
+         <b>Having reached the end dof the workflow means that at least one solution is now present either on your local disk (in this case we hope you will publish it on the website) or published on thte website and then the French Robotic community thank you for your effort</b>
+      </onCompletion>
+      <taskGroup kind="sequence" name="Phase 1: Problem Model Preparation" skip="false">
+         <intro>
+            The Problem model is obtained using the RobotML platform. Its goal is to describe a Problem that a <b>Problem provider</b> wants to provide  to the community using the DSL (stands for Domain Specific Language) and uploading it to the French Robotic portal.<br/><br/>To <b>create a Problem</b> in this scope means to:<br/><b>Model the environment</b> in which its robots evolve,<br/><b>Model the robots</b> with respect to their physical characteristics,<br/><b>Model their systems</b> that will provide their behaviours<br/><b>Describe the assessment criteria</b> in order to allow the solution provider to understand how its solution will be assessed<br/><br/>At this step the <b>Problem provider</b> has not to define on which actual platform(s) (environment simulator, robotic middleware, communication middleware) this <b>Problem model</b> will be deployed.
+         </intro>
+         <onCompletion>
+            <b>Finishing this phase, there is an existing and published Model of the problem, it is time to decide on which platform to deploy it and proceed to the new step.</b>
+         </onCompletion>
+         <taskGroup kind="choice" name="Step 1: Create/Load Problem model" skip="false">
+            <intro>
+               This step allows the <b>Problem provider</b> either to <b>create a new Problem model</b>, or to <b>load</b> an existing one from a <b>local folder</b> or from a <b>remote server</b> (it is how any user access the <b>French Robotic portal</b>).
+            </intro>
+            <onCompletion>
+               <b>Problem provider is now ready to work with his Problem model</b>
+            </onCompletion>
+            <task kind="cheatsheet" name="Create problem model" skip="false">
+               <intro>
+                  <b>Problem provider</b> is willing to start his work from scratch. The only thing opened here is the <b>RobotML perspective</b> onto a fresh new <b>RobotML project</b>.
+               </intro>
+               <onCompletion>
+                  <b>Problem provider has now opened the RobotML perspective introducing a complete new RobotML project</b>
+               </onCompletion>
+               <param name="path" value="NewProblemModel.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Open Problem Model" skip="false">
+               <intro>
+                  <b>RobotML project</b> already exists in the workspace. you have to go on it with your mouse pointer, right click on it and then choose the &quot;open&quot; choice in the menu. The only task is to open the correct perspective (should be the RobotML perspective).
+               </intro>
+               <onCompletion>
+                  <b>Problem provider has now opened the RobotML perspective using an existing RobotML project (present in his workspace)</b>
+               </onCompletion>
+               <param name="path" value="OpenPerspective.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Load problem model from local folder" skip="false">
+               <intro>
+                  <b>Problem provider</b> is willing to start his work from an existing project. The only thing opened here is the <b>RobotML perspective</b> onto a <b>RobotML project</b> imported from a local folder.  If the project is already present in the workspace then the only task is to open the RobotML perspective.
+               </intro>
+               <onCompletion>
+                  <b>Problem provider has now opened the RobotML perspective introducing a local (meaning in the accessible file system) existing RobotML project</b>
+               </onCompletion>
+               <param name="path" value="localload.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Load problem model from portal" skip="false">
+               <intro>
+                  <b>Problem provider</b> is willing to start his work from an existing project. He is downloading it from the <b>Robotic portal</b>. The only thing opened here is the <b>RobotML perspective</b> onto a <b>RobotML project</b> opened from the remote location. This means some steps as seen when opening the task.<br/><br/>It must be noted that the <b>Robotic portal</b> has been developed in its first instance thanks to the PROTEUS prject (go to http://www.anr-proteus.fr).
+               </intro>
+               <onCompletion>
+                  <b>Problem provider has now opened the RobotML perspective introducing a remote (meaning on a remote Repository) existing RobotML project</b>
+               </onCompletion>
+               <param name="path" value="remoteLoad.xml">
+               </param>
+            </task>
+         </taskGroup>
+         <taskGroup kind="set" name="Step 2: Edit Problem Model" skip="false">
+            <intro>
+               <b>Having opened the papyrus perspective, the user is now able to model the different systems of its problem model (robotic system and environment).</b><br/><br/>In order to model the Problem the different following steps are needed:<br/><br/><b>Definition of the datatypes</b> that will be used throughout the model,<br/><b>Definition of the different interfaces</b> specifying the services available on ports have to be defined. These services provides the public view of system parts through these specific service ports,<br/><b>Definition of the different robotic Application</b> that will leave then on,<br/><b>Definition of the environment</b> (it must be reminded that it includes the hardware parts of the robot and its robotic systems).
+            </intro>
+            <onCompletion>
+               <b>The Problem provider user is now ready to validate his work.</b>
+            </onCompletion>
+            <task kind="cheatsheet" name="Import/Define data types" skip="true">
+               <intro>
+                  The first step of defining the model consists in importing an existing library of datatypes or defining your own set of specific data types. Data types are used to give a type to data flow ports of robotic systems.
+               </intro>
+               <onCompletion>
+                  <b>Now that datatypes exists, we can proceed to the services associated to the different services ports.</b>
+               </onCompletion>
+               <param name="path" value="DataTypesDefinition.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Define interfaces" skip="true">
+               <intro>
+                  Interfaces are used to type Service Ports. They are composed of a set of operations without stating how exactly they are implemented.
+               </intro>
+               <onCompletion>
+                  <b>We can now proceed to the definition of the Robotic systems.</b>
+               </onCompletion>
+               <param name="path" value="InterfacesDefintion.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Define robotic systems" skip="true">
+               <intro>
+                  In this step, you will define the specific robotic systems for the problem model. Robotic systems could be robots and their subsystems such as specific actuators, sensors, etc.
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="RoboticSystemsDefinition.xml">
+               </param>
+            </task>
+            <taskGroup kind="set" name="Edit components behavior" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <task kind="cheatsheet" name="Edit Finite State Machines" skip="false">
+                  <intro>
+                     <b>Introduction</b>
+                  </intro>
+                  <onCompletion>
+                     <b>Conclusion</b>
+                  </onCompletion>
+                  <param name="path" value="EditFSMs.xml">
+                  </param>
+               </task>
+               <task kind="cheatsheet" name="Edit algorithmic parts with Alf" skip="false">
+                  <intro>
+                     <b>Introduction</b>
+                  </intro>
+                  <onCompletion>
+                     <b>Conclusion</b>
+                  </onCompletion>
+                  <param name="path" value="EditALFBehavior.xml">
+                  </param>
+               </task>
+            </taskGroup>
+            <task kind="cheatsheet" name="Define the architecture of the robotic system" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="ArchitectureDefintion.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Define the environment" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="EnvironmentDefinition.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Define the assessment criteria" skip="false">
+               <intro>
+                  <b>As described in Phase 1 introduction, in order to create a problem there is a need to describe how to assess it.</b>
+               </intro>
+               <onCompletion>
+                  <b>To achieve this step is to achieve the description of the problem. It is now possible to validate everything and then to save / upload it or better publish it.</b>
+               </onCompletion>
+               <param name="path" value="DefineAssessmentCriteria.xml">
+               </param>
+            </task>
+         </taskGroup>
+         <taskGroup kind="choice" name="Step 3: Validate Problem Model" skip="false">
+            <intro>
+               Validation means to verify that the problem model is correct. This correction concerns two aspects:<br/><br/>- structural aspects: verification are made upon the constraints that are requested by the meta-model<br/>- conceptual verification: through alignement to the DEVS theory, proof is created of the completness and corrections of the created model.
+            </intro>
+            <onCompletion>
+               To cross validation step means the model can be promoted to the website or at least that it is time to sa ve a working copy.
+            </onCompletion>
+            <task kind="cheatsheet" name="Structural validation" skip="false">
+               <intro>
+                  Here the user has to validate the problem or a part of the problem model.
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="PbStructuralValidation.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Behavioral validation" skip="false">
+               <intro>
+                  Here, the user will verify that its problem model can be mapped onto the DEVS theory of system modeling.
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="PbBehavioralValidation.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="No validation" skip="false">
+               <intro>
+                  In order to save its unfinished work, the user can check out the “no validation” case and  proceed to the following step.
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="PbNoValidation.xml">
+               </param>
+            </task>
+         </taskGroup>
+         <taskGroup kind="choice" name="Step 4: Save/Upload Problem" skip="false">
+            <intro>
+               This step allows the Model problem user to either save his work in an intermediate step or to publish it. Publication can be done either to a local folder or to the French community Robotic portal.
+            </intro>
+            <onCompletion>
+               <b>In order to end this step, it is now time to close the Model problem modelling.</b>
+            </onCompletion>
+            <task kind="cheatsheet" name="Save to local folder" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="ProblemSave.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Upload the model" skip="false">
+               <intro>
+                  The user could upload the problem model to the remote server.
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="PbUpload.xml">
+               </param>
+            </task>
+         </taskGroup>
+         <taskGroup kind="set" name="Step 5: Close Problem" skip="false">
+            <intro>
+               To close the problem means to put into effect post processing actions such as trying to compile the generated simulation if possible.
+            </intro>
+            <onCompletion>
+               <b>It is now time either to rest or to go through the deployment phase that will allow to proceed onto the Problem creation.</b>
+            </onCompletion>
+            <task kind="cheatsheet" name="Close the problem model" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="PbClose.xml">
+               </param>
+            </task>
+         </taskGroup>
+         <task kind="cheatsheet" name="Step 6: Publish Problem Model" skip="true">
+            <intro>
+               <b>Introduction</b>
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+            <param name="path" value="PublishProblem.xml">
+            </param>
+         </task>
+      </taskGroup>
+      <taskGroup kind="set" name="Phase 2: Problem Model Deployment" skip="false">
+         <intro>
+            In order to know how to generate a simulator and eventually configuration files or if you only want to map your Robotic systems onto an existing robot, there is a need to tell on what target the different parts of the Problem model will be deployed.<br/>Thus This phase allows the Problem provider user to map its model into the different actual targets concerned (robotic middlewares, environment simulators, etc).<br/>Apart from the open/load Model, the remaining steps are to edit the deployement and to validate it before saving and publishing the work to the portal or locally.
+         </intro>
+         <onCompletion>
+            During this phase, the Problem provider user has described what will be the mapping of the model. It is now possible to proceed to the generation phase ihe  order to complete the Problem creation.
+         </onCompletion>
+         <taskGroup kind="choice" name="Step 1: Open/Load problem model" skip="false">
+            <intro>
+               Phase 2 means THERE IS an existing Model problem already validate and thus on which we can begin to apply a deployement description. It explains why nothing is created at this step but only opened if local or loaded if remote (meaning froml the portal).
+            </intro>
+            <onCompletion>
+               <b>it is now time to edit the deployement</b>
+            </onCompletion>
+            <task kind="cheatsheet" name="Create a new deployed problem model" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="NewProblemModel.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Load a local deployed problem model" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="NewProblemModel.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Load a remote deployed problem model" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="NewProblemModel.xml">
+               </param>
+            </task>
+         </taskGroup>
+         <taskGroup kind="choice" name="Step 2: Edit deployment" skip="false">
+            <intro>
+               During this step the deployement will have to be done meaning to split components between Robotic middlewares (potentially more than one) and Environment simulators. In Robot only deployement (meaning there is no need for an Environment simulator as there is a real robot to deploy the system on), the &quot;Deploy on environment step&quot; can be skipped.
+            </intro>
+            <onCompletion>
+               It is now time to validate the deployement here before worked.
+            </onCompletion>
+            <task kind="cheatsheet" name="Deploy on robotic middleware" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+            </task>
+            <task kind="cheatsheet" name="Deploy on environment simulator" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+            </task>
+         </taskGroup>
+         <taskGroup kind="choice" name="Step 3: Validate deployment" skip="false">
+            <intro>
+               As in the Model problem preparation, the deployement, being a model itself, can be validated either structurally, using the meta-model implemented constraints, or behaviourally, using the capability to map onto the DEVS theory the model thus created.
+            </intro>
+            <onCompletion>
+               Whatever the validation done, if succesful enough it is time to proceed to save/upload step.
+            </onCompletion>
+            <task kind="cheatsheet" name="Structural validation" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="DeploymentStructuralValidation.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Behavioral validation" skip="false">
+               <intro>
+                  <b>crétaion d&apos;une simulation par DEVS (vérification de l&apos;existence de liens entre composants)</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="NewProblemModel.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="No validation" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="DeploymentNoValidation.xml">
+               </param>
+            </task>
+         </taskGroup>
+         <taskGroup kind="choice" name="Step 4: Save/Upload deployed problem model" skip="false">
+            <intro>
+               <b>Introduction</b>
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+            <task kind="cheatsheet" name="Save to local folder" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="DeploymentSave.xml">
+               </param>
+            </task>
+            <task kind="cheatsheet" name="Upload the deployed system" skip="false">
+               <intro>
+                  <b>Introduction</b>
+               </intro>
+               <onCompletion>
+                  <b>Conclusion</b>
+               </onCompletion>
+               <param name="path" value="DeploymentUpload.xml">
+               </param>
+            </task>
+         </taskGroup>
+      </taskGroup>
+      <taskGroup kind="set" name="Phase 3: Problem generation" skip="false">
+         <intro>
+            Problem generation is the phase where the Problem provider user consolidate his work and create a simulator mandatory for the Solution provider to be able to test his solution. The simulator includes:<br/><br/>- the Environment simulator (comprising the robot platform aspects)<br/>- the communication middleware (in this platform instance, ROS middleware is used)<br/>- and the robot(s)&apos; system(s) which relies upon a robotic middleware (existing implementation are ARROCAM, OROCOS, RT-MAPS and URBI)<br/><br/>If the Problem is directly concerning a robotic platform available to the Probleem provider as wall as the Solution providing, then the last two steps can be simplified as there is only the need to generate thr robotic system.<br/><br/>Finalising this phase means for the Problem provider user to end its task.
+         </intro>
+         <onCompletion>
+            <b>As it is, there is now a problem existing on the portal or locally to the disk. If it has been published on the portal then the Solution provider user is able to use this Probelm directly from the portal after having been registered, if not the last part is to provide the Problem through the export function and onto a key for instance.</b>
+         </onCompletion>
+         <task kind="cheatsheet" name="Step1: generate simulator" skip="false">
+            <intro>
+               During this step, the user generate the PROTEUS simulator corresponding to its problem model and a chosen deployment. At this step, the simulator application could be non executable as there is probably for some of the underlying tools compilation to run and perhaps configuration(s) to apply.
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+            <param name="path" value="GenerateSimulator.xml">
+            </param>
+         </task>
+         <task kind="cheatsheet" name="Step 2: Compile simulator" skip="false">
+            <intro>
+               <b>Introduction</b>
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+            <param name="path" value="CompileSimulator.xml">
+            </param>
+         </task>
+         <task kind="cheatsheet" name="Step 3: Configure Simulator" skip="false">
+            <intro>
+               During this step the user has to complete every of the information needed to be able to create results and use metrics.
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+            <param name="path" value="ConfigureSimulator.xml">
+            </param>
+         </task>
+         <task kind="cheatsheet" name="Step 4: Run / Debug Simulator" skip="false">
+            <intro>
+               <b>Introduction</b>
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+            <param name="path" value="RunSimulator.xml">
+            </param>
+         </task>
+      </taskGroup>
+      <taskGroup kind="sequence" name="Phase 4: Solution Preparation" skip="false">
+         <intro>
+            <b>A solution is something to be inserted into the Problem environment and more specifically into the Robotic system parts (library of functions, architecture described through the RobotML modelling platform).</b><br/><br/>As the whole environment exists, there is nothing more than to refine eventually the Problem Model, requiring eventually a further regeneration of the simulator and to provide implementation of algorithms allowing to provide the waited for behaviour of the Robotic system.
+         </intro>
+         <onCompletion>
+            <b>At this step the Problem provider user is able to assess the solution thanks to either the set of simulation provided respecting the constraints on the metrics or running himself the simulator including the solution part and allowing him to introduce some unwaited for new metrics.</b>
+         </onCompletion>
+         <task kind="cheatsheet" name="Step 1: Load a problem" skip="false">
+            <intro>
+               A problem is set of projects (problem model, deployed problem model, simulator code, configuration files, etc). They have to be loaded to work on the solution.
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+            <param name="path" value="PbLoad.xml">
+            </param>
+         </task>
+         <task kind="cheatsheet" name="Step 2: Create Solution" skip="false">
+            <intro>
+               Create a solution through importing a deployed problem model.
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+            <param name="path" value="NewSolutionModel.xml">
+            </param>
+         </task>
+         <task kind="cheatsheet" name="Step 3: Edit solution model" skip="false">
+            <intro>
+               Edit the systems that are tagged as systems to solve. Here, the user can model the internal structure of those systems to solve, and their behavior through finite state machines.
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+         </task>
+         <task kind="cheatsheet" name="Step 4: Edit / Map atomic behavior" skip="false">
+            <intro>
+               edit: describe the behavior of the system to solve using alf
+map: use an external algorithms library to associate an algorithmic modul to this system
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+         </task>
+         <task kind="cheatsheet" name="Step 5: Generate the solution simulator" skip="true">
+            <intro>
+               If the user has edited the solution systems using alf, he has to regenerate code from the solution model.
+            </intro>
+            <onCompletion>
+               <b>Conclusion</b>
+            </onCompletion>
+         </task>
+      </taskGroup>
+   </taskGroup>
+</compositeCheatsheet>
