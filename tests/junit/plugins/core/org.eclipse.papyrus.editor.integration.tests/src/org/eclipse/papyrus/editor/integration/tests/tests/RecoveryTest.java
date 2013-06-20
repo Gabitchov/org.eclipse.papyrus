@@ -48,7 +48,7 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 	//Should work
 	@Test
 	public void testInvalidAvailablePage() throws Exception {
-		initModel("invalidAvailablePage", "invalidAvailablePage");
+		initModel("invalidAvailablePage", "invalidAvailablePage", getBundle());
 		Assert.assertTrue(editor.getActiveEditor() instanceof UmlClassDiagramForMultiEditor);
 		//IPageManager manager = editor.getServicesRegistry().getService(IPageManager.class);
 		//Is the page manager supposed to filter the invalid pages..?
@@ -59,7 +59,7 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 	//Bug 401109: [PageManager] Deleting an element which contains an opened page leads to critical model corruption
 	@Test
 	public void testInvalidTab() throws Exception {
-		initModel("invalidTab", "invalid_child_tab");
+		initModel("invalidTab", "invalid_child_tab", getBundle());
 		IPageManager manager = editor.getServicesRegistry().getService(IPageManager.class);
 		Assert.assertEquals(1, manager.allPages().size());
 	}
@@ -70,7 +70,7 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 	//We should be able to open a Papyrus editor and manipulate the PageManager
 	@Test
 	public void testEmptyDiModel() throws Exception {
-		initModel("emptyDiModel", "empty_di_model");
+		initModel("emptyDiModel", "empty_di_model", getBundle());
 		IPageManager manager = editor.getServicesRegistry().getService(IPageManager.class);
 		Assert.assertEquals(0, manager.allPages().size());
 		NotationModel notationModel = (NotationModel)editor.getServicesRegistry().getService(ModelSet.class).getModel(NotationModel.MODEL_ID);
@@ -84,7 +84,7 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 	//This works programmatically, but is not supported by the current implementation of handler#isEnabled
 	@Test
 	public void testUnavailablePageRecovery() throws Exception {
-		initModel("unavailablePageRecovery", "missing_page_recovery");
+		initModel("unavailablePageRecovery", "missing_page_recovery", getBundle());
 		final IPageManager manager = editor.getServicesRegistry().getService(IPageManager.class);
 		int availablePages = manager.allPages().size();
 		NotationModel notationModel = (NotationModel)editor.getServicesRegistry().getService(ModelSet.class).getModel(NotationModel.MODEL_ID);
@@ -107,7 +107,7 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 	//Should work. The invalid tab is loaded as an "unresolved tab" and displays a warning.
 	@Test
 	public void testProxyDiagram() throws Exception {
-		initModel("proxyDiagram", "proxy_diagram_recovery");
+		initModel("proxyDiagram", "proxy_diagram_recovery", getBundle());
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		Assert.assertEquals(2, pageManager.allPages().size());
 	}
@@ -117,7 +117,7 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 	/** @see {link #testInvalidTab()} */
 	@Test
 	public void testProxyTable() throws Exception {
-		initModel("proxyTable", "proxy_table_recovery");
+		initModel("proxyTable", "proxy_table_recovery", getBundle());
 		//IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		//Assert.assertEquals(2, pageManager.allPages());
 	}
@@ -125,7 +125,7 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 	//This model contains a few different errors (Unresolved proxy, invalid tabs, invalid available pages, ...)
 	@Test
 	public void testCompleteCase() throws Exception {
-		initModel("completeCase", "complex_invalid_model");
+		initModel("completeCase", "complex_invalid_model", getBundle());
 		//		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		//		Assert.assertEquals(3, pageManager.allPages().size());
 	}
@@ -133,7 +133,7 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 	//We should be able to delete a diagram, even when there is an invalid page in the model
 	@Test
 	public void testDeleteDiagramWithInvalidAvailablePage() throws Exception {
-		initModel("deleteDiagramWithInvalidPage", "invalidAvailablePage");
+		initModel("deleteDiagramWithInvalidPage", "invalidAvailablePage", getBundle());
 
 		//Di layout: Diagram 0 - Invalid page - Diagram 1
 		//We take the diagram at index 1 (i.e. after the invalid page) and try to delete it

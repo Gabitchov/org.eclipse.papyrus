@@ -48,7 +48,7 @@ public class ModelSetTests extends AbstractEditorIntegrationTest {
 	@Test
 	public void testOpenModelWithSpecialChars() throws Exception {
 		System.out.println("Begin");
-		initModel("openSpecialChars", "^&_&^");
+		initModel("openSpecialChars", "^&_&^", getBundle());
 		IPageManager pageManager = getPageManager();
 		Assert.assertEquals("Some pages cannot be found", 3, pageManager.allPages().size());
 

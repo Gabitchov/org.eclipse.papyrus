@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.junit.After;
 import org.junit.Assert;
+import org.osgi.framework.Bundle;
 
 
 public abstract class AbstractEditorIntegrationTest {
@@ -37,12 +38,24 @@ public abstract class AbstractEditorIntegrationTest {
 	protected IProject project;
 
 	/**
+	 * 
+	 * @return
+	 *         the current bundle
+	 */
+	protected Bundle getBundle() {
+		return Activator.getDefault().getBundle();
+	}
+
+	/**
 	 * Inits this.editor
 	 * Fails or throws an exception if an error occurs
+	 * 
+	 * @param bundle
+	 *        TODO
 	 */
-	protected void initModel(String projectName, String modelName) throws Exception {
+	protected void initModel(String projectName, String modelName, Bundle bundle) throws Exception {
 		project = ProjectUtils.createProject(projectName);
-		final IFile diModelFile = PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), getSourcePath(), modelName);
+		final IFile diModelFile = PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), modelName);
 		Display.getDefault().syncExec(new Runnable() {
 
 			public void run() {

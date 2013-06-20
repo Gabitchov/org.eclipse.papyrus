@@ -200,14 +200,14 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 	@Test
 	public void testOpenEmptyModel() throws Exception {
-		initModel("openEmptyModel", "empty_model");
+		initModel("openEmptyModel", "empty_model", getBundle());
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		Assert.assertEquals(0, pageManager.allPages().size());
 	}
 
 	@Test
 	public void testAvailableAndActivePage() throws Exception {
-		initModel("availableAndActivePage", "two_diagrams_model");
+		initModel("availableAndActivePage", "two_diagrams_model", getBundle());
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		Assert.assertEquals(2, pageManager.allPages().size());
 
@@ -285,7 +285,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 	@Test
 	public void testDiagramCreation() throws Exception {
-		initModel("diagramCreation", "empty_model");
+		initModel("diagramCreation", "empty_model", getBundle());
 		ICreationCommand diagramCreationCommand = new CreateClassDiagramCommand();
 		ModelSet modelSet = editor.getServicesRegistry().getService(ModelSet.class);
 
@@ -301,7 +301,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 	@Test
 	public void testDiagramDeletion() throws Exception {
-		initModel("diagramDeletion", "simple_class_model");
+		initModel("diagramDeletion", "simple_class_model", getBundle());
 		ModelSet modelSet = getModelSet();
 		final Diagram diagram = (Diagram)NotationUtils.getNotationModel(modelSet).getResource().getContents().get(0);
 		testPageDeletion(diagram, UmlClassDiagramForMultiEditor.class);
@@ -325,7 +325,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	//This is an EMF Facet Table bug, which tries to delete columns for an empty table as soon as the table is created 
 	@Test
 	public void testTableCreation() throws Exception {
-		initModel("tableCreation", "empty_model");
+		initModel("tableCreation", "empty_model", getBundle());
 
 		final ServicesRegistry registry = editor.getServicesRegistry();
 		ModelSet modelSet = registry.getService(ModelSet.class);
@@ -360,7 +360,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 	@Test
 	public void testTableDeletion() throws Exception {
-		initModel("tableDeletion", "simple_table_model");
+		initModel("tableDeletion", "simple_table_model", getBundle());
 		ModelSet modelSet = editor.getServicesRegistry().getService(ModelSet.class);
 		final PapyrusTableInstance table = (PapyrusTableInstance)SashModelUtils.getSashModel(modelSet).getResource().getContents().get(1);
 		testPageDeletion(table, DefaultNattableEditor.class);
@@ -432,7 +432,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 	@Test
 	public void testContainedDiagramDeletion() throws Exception {
-		initModel("deleteContainedDiagrams", "delete_contained_diagram");
+		initModel("deleteContainedDiagrams", "delete_contained_diagram", getBundle());
 		ModelSet modelSet = getModelSet();
 		IPageManager pageManager = getPageManager();
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
@@ -484,7 +484,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	 */
 	@Test
 	public void testContainedNatTableDeletion() throws Exception {
-		initModel("deleteContainedNatTable", "delete_contained_table");
+		initModel("deleteContainedNatTable", "delete_contained_table", getBundle());
 		ModelSet modelSet = getModelSet();
 		IPageManager pageManager = getPageManager();
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
@@ -538,12 +538,12 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 	@Test
 	public void testMultipageEditor() throws Exception {
-		initModel("multipageEditor", "complex_multipage_model");
+		initModel("multipageEditor", "complex_multipage_model", getBundle());
 	}
 
 	@Test
 	public void testOpenModel() throws Exception {
-		initModel("openModel", "complex_multipage_model");
+		initModel("openModel", "complex_multipage_model", getBundle());
 	}
 
 	@Override
