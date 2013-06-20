@@ -143,7 +143,7 @@
     
     <!-- CPP -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/extraplugins/cpp-codegen/{1}">
+      <rm:uri format="{0}/extraplugins/codegen/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -152,6 +152,14 @@
     <!-- Java -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/extraplugins/java/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- UML RT -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/umlrt/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
