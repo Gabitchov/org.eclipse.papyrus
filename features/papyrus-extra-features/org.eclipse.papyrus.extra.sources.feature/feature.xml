@@ -79,5 +79,29 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.uml.nattable.source.feature"
          version="0.0.0"/>
+         
+    <includes
+         id="org.eclipse.papyrus.extra.umlrt.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.cpp.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.qompass.designer.basic.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.qompass.designer.tracing.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.java.generator.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.java.reverse.source.feature"
+         version="0.0.0"/>
 
 </feature>

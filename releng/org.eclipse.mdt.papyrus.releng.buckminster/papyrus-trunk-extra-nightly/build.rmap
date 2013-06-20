@@ -125,6 +125,38 @@
       </rm:uri>
     </rm:provider>
     
+    <!-- Qompass -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/qompass-designer/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- Tracing -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/qompass-designer/tracing/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- CPP -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/cpp-codegen/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- Java -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/java/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
     <!-- Incoming -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/incoming/{1}">
@@ -335,6 +367,14 @@
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GMF Tooling",0) -->
       <rm:uri format="{0}/modeling/gmp/gmf-tooling/updates/milestones">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- CDT -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("CDT",0) -->
+      <rm:uri format="{0}/tools/cdt/builds/juno/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>

@@ -31,7 +31,6 @@ Contributors:
       <import plugin="org.eclipse.emf.transaction" version="1.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gef" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jdt.core" version="3.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.java.reverse" version="0.10.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.papyrus.infra.core"/>
       <import plugin="org.eclipse.papyrus.uml.tools"/>
    </requires>
