@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PapyrusDSMLValidationRule="http:///schemas/PapyrusDSMLValidationRule/_cSIXgNgnEeKOqNIXy22Xwg/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/PapyrusDSMLValidationRule/_cSIXgNgnEeKOqNIXy22Xwg/3 pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml#_cSI-kNgnEeKOqNIXy22Xwg">
+  <uml:Profile xmi:id="_eugngJCjEeK0PJ1vk5Zadw" name="UMLRealTime" metaclassReference="_AIUIAJCoEeK0PJ1vk5Zadw _anofcJCoEeK0PJ1vk5Zadw _anpGgJCoEeK0PJ1vk5Zadw _anpGgZCoEeK0PJ1vk5Zadw _anpGgpCoEeK0PJ1vk5Zadw _anptkJCoEeK0PJ1vk5Zadw _anptkZCoEeK0PJ1vk5Zadw _anqUoJCoEeK0PJ1vk5Zadw _rHWkwJCpEeK0PJ1vk5Zadw" metamodelReference="_eugngZCjEeK0PJ1vk5Zadw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXJpcNgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_iXluUNgxEeKmBIMLIFUmag" name="UMLRealTime" nsURI="http:///schemas/UMLRealTime/_iXHNMNgxEeKmBIMLIFUmag/0" nsPrefix="UMLRealTime">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iat60NgxEeKmBIMLIFUmag" source="PapyrusVersion">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iat60dgxEeKmBIMLIFUmag" key="Version" value="0.10.0"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iat60tgxEeKmBIMLIFUmag" key="Comment" value="Initial version"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iat609gxEeKmBIMLIFUmag" key="Copyright" value="Copyright (c) 2013 CEA LIST.&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;&#x9;CEA LIST - Initial API and implementation"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iat61NgxEeKmBIMLIFUmag" key="Date" value="2013-06-18"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iat61dgxEeKmBIMLIFUmag" key="Author" value="B. Selic"/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_iXluUdgxEeKmBIMLIFUmag" name="Capsule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXluUtgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_A7-ZkJCoEeK0PJ1vk5Zadw"/>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXluU9gxEeKmBIMLIFUmag" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iXluVNgxEeKmBIMLIFUmag" key="documentation" value="self.base_Class.isActive&#xD;&#xA;self.base_Class.ownedReception->isEmpty()&#xD;&#xA;not (self.base_Class.isFinalSpecialization)&#xD;&#xA;(self.base_Class.generalization->size()) &lt;= 1&#xD;&#xA;(self.base_Class.generalization->notEmpty()) implies (self.base_Class.generalization->forAll (g | g.isSubstitutable))&#xD;&#xA;base_Class.ownedAttribute->forAll (at | at.type->size() = 1)&#xD;&#xA;(base_Class.classifierBehavior->notEmpty()) implies (base_Class.ownedAttribute->exists (at | at.name = 'msg'))&#xD;&#xA;base_Class.nestedClassifier->isEmpty()&#xD;&#xA;base_Class.feature->forAll (f | f.visibility->notEmpty() implies (f.visibility &lt;> uml::VisibilityKind::protected))&#xD;&#xA;base_Class.ownedAttribute->forAll (at | not (at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected) )&#xD;&#xA;base_Class.ownedOperation->forAll (op | op.visibility = uml::VisibilityKind::protected)&#xD;&#xA;base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)&#xD;&#xA;let sm = base_Class.classifierBehavior in&#xD;&#xA;sm->notEmpty() implies &#xD;&#xA;    (sm.oclIsTypeOf(uml::StateMachine) and -- only state machines behaviors&#xD;&#xA;     (not sm.isReentrant) and                        -- no re-entrant behavior&#xD;&#xA;     (not sm.ownedParameter->isEmpty()) and -- no parameters&#xD;&#xA;     sm.region->size() = 1)                                -- single region only&#xD;&#xA;let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;     (saps->notEmpty()) implies &#xD;&#xA;         saps->forAll (s | s.visibility = uml::VisibilityKind::public) &#xD;&#xA;base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;     (base_Class.ownedOperation->forAll (&#xD;&#xA;          op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXluVdgxEeKmBIMLIFUmag" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_iXluV9gxEeKmBIMLIFUmag" name="CapsulePart">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXluWNgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_jpPC0JCoEeK0PJ1vk5Zadw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXluWdgxEeKmBIMLIFUmag" name="base_Property" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_iXluW9gxEeKmBIMLIFUmag" name="isSubstitutable" ordered="false" lowerBound="1" defaultValueLiteral="true">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_iXluXdgxEeKmBIMLIFUmag" name="InEvent">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXluXtgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qce4QJCoEeK0PJ1vk5Zadw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXluX9gxEeKmBIMLIFUmag" name="base_CallEvent" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//CallEvent"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_iXluYdgxEeKmBIMLIFUmag" name="OutEvent">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXluYtgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_rX6lwJCoEeK0PJ1vk5Zadw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXluY9gxEeKmBIMLIFUmag" name="base_CallEvent" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//CallEvent"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_iXluZdgxEeKmBIMLIFUmag" name="Protocol">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXluZtgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_3mKEQJCoEeK0PJ1vk5Zadw"/>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXluZ9gxEeKmBIMLIFUmag" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iXluaNgxEeKmBIMLIFUmag" key="documentation" value="base_Collaboration.generalization->size() &lt;= 1"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXluadgxEeKmBIMLIFUmag" name="base_Collaboration" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Collaboration"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_iXlua9gxEeKmBIMLIFUmag" name="ProtocolContainer">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXlubNgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_8TYoYJCoEeK0PJ1vk5Zadw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXlubdgxEeKmBIMLIFUmag" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_iXlub9gxEeKmBIMLIFUmag" name="RTConnector">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXlucNgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__mKAsJCoEeK0PJ1vk5Zadw"/>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXlucdgxEeKmBIMLIFUmag" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iXluctgxEeKmBIMLIFUmag" key="documentation" value="base_Connector.end->size() = 2&#xD;&#xA;base_Connector.end->forAll (e | e.role.oclIsTypeOf(uml::Port))"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXluc9gxEeKmBIMLIFUmag" name="base_Connector" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Connector"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_iXluddgxEeKmBIMLIFUmag" name="RTPort">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXludtgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_NAPnQJCpEeK0PJ1vk5Zadw"/>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXlud9gxEeKmBIMLIFUmag" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iXlueNgxEeKmBIMLIFUmag" key="documentation" value="isWired implies base_Port.isService&#xD;&#xA;(not (isWired or isPublish)) implies (not base_Port.isService)&#xD;&#xA;((not isWired) and isPublish) implies base_Port.isService"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXluedgxEeKmBIMLIFUmag" name="base_Port" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Port"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_iXlue9gxEeKmBIMLIFUmag" name="isConjugate" ordered="false" lowerBound="1" defaultValueLiteral="false">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_iXlufdgxEeKmBIMLIFUmag" name="isNotification" ordered="false" lowerBound="1" defaultValueLiteral="false">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_iXluf9gxEeKmBIMLIFUmag" name="isPublish" ordered="false" lowerBound="1" defaultValueLiteral="false">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_iXlugdgxEeKmBIMLIFUmag" name="isWired" ordered="false" lowerBound="1" defaultValueLiteral="true">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_iXlug9gxEeKmBIMLIFUmag" name="registration" ordered="false" eType="_iXluh9gxEeKmBIMLIFUmag"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_iXluhdgxEeKmBIMLIFUmag" name="registrationOverride" ordered="false" defaultValueLiteral=" ">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EEnum" xmi:id="_iXluh9gxEeKmBIMLIFUmag" name="PortRegistrationType">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXluiNgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_kmNZsJCuEeK0PJ1vk5Zadw"/>
+          <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_iXluidgxEeKmBIMLIFUmag" name="Automatic"/>
+          <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_iXluitgxEeKmBIMLIFUmag" name="Application" value="1"/>
+          <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_iXlui9gxEeKmBIMLIFUmag" name="ApplicationLocked" value="2"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_iXlujNgxEeKmBIMLIFUmag" name="RTRedefinableElement">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iXlujdgxEeKmBIMLIFUmag" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_RGUEwJCpEeK0PJ1vk5Zadw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXlujtgxEeKmBIMLIFUmag" name="base_RedefinableElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//RedefinableElement"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_iXlukNgxEeKmBIMLIFUmag" name="rootFragment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_AIUIAJCoEeK0PJ1vk5Zadw" alias="Class">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_anofcJCoEeK0PJ1vk5Zadw" alias="Property">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_anpGgJCoEeK0PJ1vk5Zadw" alias="CallEvent">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#CallEvent"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_anpGgZCoEeK0PJ1vk5Zadw" alias="Collaboration">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Collaboration"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_anpGgpCoEeK0PJ1vk5Zadw" alias="Package">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_anptkJCoEeK0PJ1vk5Zadw" alias="Connector">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_anptkZCoEeK0PJ1vk5Zadw" alias="Port">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_anqUoJCoEeK0PJ1vk5Zadw" alias="RedefinableElement">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#RedefinableElement"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_rHWkwJCpEeK0PJ1vk5Zadw" alias="Element">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+    </elementImport>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_eugngZCjEeK0PJ1vk5Zadw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_eugngpCjEeK0PJ1vk5Zadw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_A7-ZkJCoEeK0PJ1vk5Zadw" name="Capsule">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_pvunAMe-EeK-XMDz3a2gIA" name="Capsules are always active entities" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_yyirUMe-EeK-XMDz3a2gIA">
+          <language>OCL</language>
+          <body>self.base_Class.isActive</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_-9oIIMe-EeK-XMDz3a2gIA" name="A capsule cannot have features that are receptions" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_QDljgMe_EeK-XMDz3a2gIA">
+          <language>OCL</language>
+          <body>self.base_Class.ownedReception->isEmpty()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_VFy5IMe_EeK-XMDz3a2gIA" name="Capsules can always be subclassed" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_e1Ea0Me_EeK-XMDz3a2gIA">
+          <language>OCL</language>
+          <body>not (self.base_Class.isFinalSpecialization)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_mPj2cMe_EeK-XMDz3a2gIA" name="Capsules can have at most one superclass" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_1C1dgMe_EeK-XMDz3a2gIA">
+          <language>OCL</language>
+          <body>(self.base_Class.generalization->size()) &lt;= 1</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_8zf9cMe_EeK-XMDz3a2gIA" name="Capsule classes are always substitutable" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MkqwIMfAEeK-XMDz3a2gIA">
+          <language>OCL</language>
+          <body>(self.base_Class.generalization->notEmpty()) implies (self.base_Class.generalization->forAll (g | g.isSubstitutable))</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_ljmS4MfAEeK-XMDz3a2gIA" name="All atributes of a capsule class must have exactly one type" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_0QLcEMfAEeK-XMDz3a2gIA">
+          <language>OCL</language>
+          <body>base_Class.ownedAttribute->forAll (at | at.type->size() = 1)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_-He4YMfAEeK-XMDz3a2gIA" name="A capsule with behavior has a local variable named &quot;msg&quot;" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_YAyYsMfBEeK-XMDz3a2gIA">
+          <language>OCL</language>
+          <body>(base_Class.classifierBehavior->notEmpty()) implies (base_Class.ownedAttribute->exists (at | at.name = 'msg'))</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="__DGWoMfBEeK-XMDz3a2gIA" name="A capsule class cannot have nested classifiers" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_JURrgMfCEeK-XMDz3a2gIA">
+          <language>OCL</language>
+          <body>base_Class.nestedClassifier->isEmpty()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_eRMKUMfCEeK-XMDz3a2gIA" name="No feature of a capsule can have private visibility" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_RR5M4MfDEeK-XMDz3a2gIA">
+          <language>OCL</language>
+          <body>base_Class.feature->forAll (f | f.visibility->notEmpty() implies (f.visibility &lt;> uml::VisibilityKind::private))</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_NVlzgMiAEeKp7oGSO7dnZg" name="All capsule variables can only have protected visibility" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_rsC0ksiAEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>base_Class.ownedAttribute->forAll (at | not (at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected) )</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_yAUPAMiAEeKp7oGSO7dnZg" name="All capsule operations must have protected visibility" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_hlZfQMiBEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>base_Class.ownedOperation->forAll (op | op.visibility = uml::VisibilityKind::protected)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_m4DEoMiBEeKp7oGSO7dnZg" name="No capsule feature can have private visibility" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_7O6QEMiBEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_GFyTAMiCEeKp7oGSO7dnZg" name="Combined state machine restrictions for capsules" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_5-KkcMiCEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>let sm = base_Class.classifierBehavior in&#xD;
+sm->notEmpty() implies &#xD;
+    (sm.oclIsTypeOf(uml::StateMachine) and -- only state machines behaviors&#xD;
+     (not sm.isReentrant) and                        -- no re-entrant behavior&#xD;
+     (not sm.ownedParameter->isEmpty()) and -- no parameters&#xD;
+     sm.region->size() = 1)                                -- single region only</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_BxRUYMiDEeKp7oGSO7dnZg" name="SAPs (unwired unpublished) must have protected visibility" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_pEpNIMiDEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;
+     (saps->notEmpty()) implies &#xD;
+         saps->forAll (s | s.visibility = uml::VisibilityKind::public) </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_wzgWQMiDEeKp7oGSO7dnZg" name="All operations of a capsule are sequential" constrainedElement="_A7-ZkJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_LM3PoMiEEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>base_Class.ownedOperation->notEmpty() implies &#xD;
+     (base_Class.ownedOperation->forAll (&#xD;
+          op | op.concurrency = uml::CallConcurrencyKind::sequential))</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_EPlfYJCoEeK0PJ1vk5Zadw" name="base_Class" association="_EPmGcJCoEeK0PJ1vk5Zadw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_EPmGcJCoEeK0PJ1vk5Zadw" name="E_Capsule_Class1" memberEnd="_EPmGcZCoEeK0PJ1vk5Zadw _EPlfYJCoEeK0PJ1vk5Zadw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_EPmGcZCoEeK0PJ1vk5Zadw" name="extension_Capsule" type="_A7-ZkJCoEeK0PJ1vk5Zadw" aggregation="composite" association="_EPmGcJCoEeK0PJ1vk5Zadw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_jpPC0JCoEeK0PJ1vk5Zadw" name="CapsulePart">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_oh4z0JCoEeK0PJ1vk5Zadw" name="base_Property" association="_oh4z0ZCoEeK0PJ1vk5Zadw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_FKmZUJCsEeK0PJ1vk5Zadw" name="isSubstitutable">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_SL4eUJCsEeK0PJ1vk5Zadw" value="true"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_oh4z0ZCoEeK0PJ1vk5Zadw" name="E_CapsulePart_Property1" memberEnd="_oh4z0pCoEeK0PJ1vk5Zadw _oh4z0JCoEeK0PJ1vk5Zadw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_oh4z0pCoEeK0PJ1vk5Zadw" name="extension_CapsulePart" type="_jpPC0JCoEeK0PJ1vk5Zadw" aggregation="composite" association="_oh4z0ZCoEeK0PJ1vk5Zadw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_qce4QJCoEeK0PJ1vk5Zadw" name="InEvent">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xJMA0JCoEeK0PJ1vk5Zadw" name="base_CallEvent" association="_xJMA0ZCoEeK0PJ1vk5Zadw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#CallEvent"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_rX6lwJCoEeK0PJ1vk5Zadw" name="OutEvent">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_wMUv8JCoEeK0PJ1vk5Zadw" name="base_CallEvent" association="_wMVXAJCoEeK0PJ1vk5Zadw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#CallEvent"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_wMVXAJCoEeK0PJ1vk5Zadw" name="E_OutEvent_CallEvent1" memberEnd="_wMVXAZCoEeK0PJ1vk5Zadw _wMUv8JCoEeK0PJ1vk5Zadw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_wMVXAZCoEeK0PJ1vk5Zadw" name="extension_OutEvent" type="_rX6lwJCoEeK0PJ1vk5Zadw" aggregation="composite" association="_wMVXAJCoEeK0PJ1vk5Zadw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_xJMA0ZCoEeK0PJ1vk5Zadw" name="E_InEvent_CallEvent1" memberEnd="_xJMA0pCoEeK0PJ1vk5Zadw _xJMA0JCoEeK0PJ1vk5Zadw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_xJMA0pCoEeK0PJ1vk5Zadw" name="extension_InEvent" type="_qce4QJCoEeK0PJ1vk5Zadw" aggregation="composite" association="_xJMA0ZCoEeK0PJ1vk5Zadw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_3mKEQJCoEeK0PJ1vk5Zadw" name="Protocol">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_c742IMiEEeKp7oGSO7dnZg" name="Protocol classes can have at most one generalization" constrainedElement="_3mKEQJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_qe6WQMiEEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>base_Collaboration.generalization->size() &lt;= 1</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_6umb4JCoEeK0PJ1vk5Zadw" name="base_Collaboration" association="_6unC8JCoEeK0PJ1vk5Zadw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Collaboration"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_6unC8JCoEeK0PJ1vk5Zadw" name="E_Protocol_Collaboration1" memberEnd="_6unC8ZCoEeK0PJ1vk5Zadw _6umb4JCoEeK0PJ1vk5Zadw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_6unC8ZCoEeK0PJ1vk5Zadw" name="extension_Protocol" type="_3mKEQJCoEeK0PJ1vk5Zadw" aggregation="composite" association="_6unC8JCoEeK0PJ1vk5Zadw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_8TYoYJCoEeK0PJ1vk5Zadw" name="ProtocolContainer">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_-WnEYJCoEeK0PJ1vk5Zadw" name="base_Package" association="_-WnrcJCoEeK0PJ1vk5Zadw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_-WnrcJCoEeK0PJ1vk5Zadw" name="E_ProtocolContainer_Package1" memberEnd="_-WnrcZCoEeK0PJ1vk5Zadw _-WnEYJCoEeK0PJ1vk5Zadw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_-WnrcZCoEeK0PJ1vk5Zadw" name="extension_ProtocolContainer" type="_8TYoYJCoEeK0PJ1vk5Zadw" aggregation="composite" association="_-WnrcJCoEeK0PJ1vk5Zadw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__mKAsJCoEeK0PJ1vk5Zadw" name="RTConnector">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_v91dEMiEEeKp7oGSO7dnZg" name="Only binary connectors allowed" constrainedElement="__mKAsJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_CEdrQMiFEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>base_Connector.end->size() = 2</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_HQx_IMiFEeKp7oGSO7dnZg" name="Connectors can only connect two Ports" constrainedElement="__mKAsJCoEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cpS00MiFEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>base_Connector.end->forAll (e | e.role.oclIsTypeOf(uml::Port))</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_BuXDUJCpEeK0PJ1vk5Zadw" name="base_Connector" association="_BuXqYJCpEeK0PJ1vk5Zadw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_BuXqYJCpEeK0PJ1vk5Zadw" name="E_RTConnector_Connector1" memberEnd="_BuXqYZCpEeK0PJ1vk5Zadw _BuXDUJCpEeK0PJ1vk5Zadw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_BuXqYZCpEeK0PJ1vk5Zadw" name="extension_RTConnector" type="__mKAsJCoEeK0PJ1vk5Zadw" aggregation="composite" association="_BuXqYJCpEeK0PJ1vk5Zadw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_NAPnQJCpEeK0PJ1vk5Zadw" name="RTPort">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_ooyssMiFEeKp7oGSO7dnZg" name="Wired ports must be declared service" constrainedElement="_NAPnQJCpEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_1p2IMMiFEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>isWired implies base_Port.isService</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_5f_TUMiFEeKp7oGSO7dnZg" name="Unwired &amp; unpublished ports cannot be service" constrainedElement="_NAPnQJCpEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_KawLUMiGEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>(not (isWired or isPublish)) implies (not base_Port.isService)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_QzX6QMiGEeKp7oGSO7dnZg" name="Unwired &amp; published ports must be service" constrainedElement="_NAPnQJCpEeK0PJ1vk5Zadw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cspOUMiGEeKp7oGSO7dnZg">
+          <language>OCL</language>
+          <body>((not isWired) and isPublish) implies base_Port.isService</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_PLy40JCpEeK0PJ1vk5Zadw" name="base_Port" association="_PLy40ZCpEeK0PJ1vk5Zadw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_LSAHUJCqEeK0PJ1vk5Zadw" name="isConjugate">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_5gcUwJCqEeK0PJ1vk5Zadw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_nNp54JCqEeK0PJ1vk5Zadw" name="isNotification" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nnU-IJCqEeK0PJ1vk5Zadw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nnVlMJCqEeK0PJ1vk5Zadw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_7RolkJCqEeK0PJ1vk5Zadw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_tI_28JCqEeK0PJ1vk5Zadw" name="isPublish" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tdYykJCqEeK0PJ1vk5Zadw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tdaAsJCqEeK0PJ1vk5Zadw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_3NcXYJCqEeK0PJ1vk5Zadw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__TKhUJCqEeK0PJ1vk5Zadw" name="isWired" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__r80wJCqEeK0PJ1vk5Zadw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__r9b0JCqEeK0PJ1vk5Zadw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_Ed8kIJCrEeK0PJ1vk5Zadw" value="true"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_cVPJYJCrEeK0PJ1vk5Zadw" name="registration" visibility="public" type="_kmNZsJCuEeK0PJ1vk5Zadw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_csGxQJCrEeK0PJ1vk5Zadw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_csHYUJCrEeK0PJ1vk5Zadw" value="1"/>
+        <defaultValue xmi:type="uml:Expression" xmi:id="_mguTsJCwEeK0PJ1vk5Zadw" name="" type="_kmNZsJCuEeK0PJ1vk5Zadw" symbol="">
+          <operand xmi:type="uml:LiteralString" xmi:id="_GKgoEJC1EeK0PJ1vk5Zadw" value="Automatic"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5y1k8JCtEeK0PJ1vk5Zadw" name="registrationOverride" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6KAu0JCtEeK0PJ1vk5Zadw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6KBV4JCtEeK0PJ1vk5Zadw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_8wQGYJCvEeK0PJ1vk5Zadw" value=" "/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_PLy40ZCpEeK0PJ1vk5Zadw" name="E_RTPort_Port1" memberEnd="_PLy40pCpEeK0PJ1vk5Zadw _PLy40JCpEeK0PJ1vk5Zadw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_PLy40pCpEeK0PJ1vk5Zadw" name="extension_RTPort" type="_NAPnQJCpEeK0PJ1vk5Zadw" aggregation="composite" association="_PLy40ZCpEeK0PJ1vk5Zadw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_RGUEwJCpEeK0PJ1vk5Zadw" name="RTRedefinableElement">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_UBAUQJCpEeK0PJ1vk5Zadw" name="base_RedefinableElement" association="_UBA7UJCpEeK0PJ1vk5Zadw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#RedefinableElement"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_iOc-gJC2EeK0PJ1vk5Zadw" name="rootFragment">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_UBA7UJCpEeK0PJ1vk5Zadw" name="E_RTRedefinableElement_RedefinableElement1" memberEnd="_UBA7UZCpEeK0PJ1vk5Zadw _UBAUQJCpEeK0PJ1vk5Zadw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_UBA7UZCpEeK0PJ1vk5Zadw" name="extension_RTRedefinableElement" type="_RGUEwJCpEeK0PJ1vk5Zadw" aggregation="composite" association="_UBA7UJCpEeK0PJ1vk5Zadw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_kmNZsJCuEeK0PJ1vk5Zadw" name="PortRegistrationType">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_nyPQ0JCuEeK0PJ1vk5Zadw" name="Automatic"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_pl_GYJCuEeK0PJ1vk5Zadw" name="Application"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_rDrMYJCuEeK0PJ1vk5Zadw" name="ApplicationLocked"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_34wmANgLEeKfXPKgoiG5jA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_35840NgLEeKfXPKgoiG5jA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml#_cSI-kNgnEeKOqNIXy22Xwg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml#__sUW0OhNEeCjcc2EgK3Uwg"/>
+    </profileApplication>
+  </uml:Profile>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_7uh9sNgLEeKfXPKgoiG5jA" base_Constraint="_pvunAMe-EeK-XMDz3a2gIA" message="Capsules are always active entities" id="isActiveEntity"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_8bULMNgLEeKfXPKgoiG5jA" base_Constraint="_-9oIIMe-EeK-XMDz3a2gIA" message="A capsule cannot have features that are receptions" id="hasNoReception"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_85qUENgLEeKfXPKgoiG5jA" base_Constraint="_VFy5IMe_EeK-XMDz3a2gIA" message="Capsules can always be subclassed" id="isNotFinal"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_9fJmwNgLEeKfXPKgoiG5jA" base_Constraint="_mPj2cMe_EeK-XMDz3a2gIA" message="Capsules can have at most one superclass" id="noMultipleInheritance"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_9-spgNgLEeKfXPKgoiG5jA" base_Constraint="_8zf9cMe_EeK-XMDz3a2gIA" message="Capsule classes are always substitutable" id="isSubstitutable"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_-jmGUNgLEeKfXPKgoiG5jA" base_Constraint="_ljmS4MfAEeK-XMDz3a2gIA" message="All atributes of a capsule class must have exactly one type" id="exactlyOneType"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="__NjCQNgLEeKfXPKgoiG5jA" base_Constraint="_m4DEoMiBEeKp7oGSO7dnZg" message="No capsule feature can have private visibility" id="featuresAreNotPrivate"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_A4EDUNgMEeKfXPKgoiG5jA" base_Constraint="_-He4YMfAEeK-XMDz3a2gIA" message="A capsule with behavior has a local variable named &quot;msg&quot;" id="hasMsgAttribute"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_BdaMENgMEeKfXPKgoiG5jA" base_Constraint="_NVlzgMiAEeKp7oGSO7dnZg" message="All capsule variables can only have protected visibility" id="allAttributesProtected"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_CAXvMNgMEeKfXPKgoiG5jA" base_Constraint="__DGWoMfBEeK-XMDz3a2gIA" message="A capsule class cannot have nested classifiers" id="hasNoNestedClassifier"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_CdFgYNgMEeKfXPKgoiG5jA" base_Constraint="_eRMKUMfCEeK-XMDz3a2gIA" message="No feature of a capsule can have private visibility" id="featuresAreNotProtected"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_C_mXkNgMEeKfXPKgoiG5jA" base_Constraint="_yAUPAMiAEeKp7oGSO7dnZg" message="All capsule operations must have protected visibility" id="allOperationsProtected"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_DesuYNgMEeKfXPKgoiG5jA" base_Constraint="_GFyTAMiCEeKp7oGSO7dnZg" message="Combined state machine restrictions for capsules" id="combinedStateMachineRestriction"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_EIDNYNgMEeKfXPKgoiG5jA" base_Constraint="_BxRUYMiDEeKp7oGSO7dnZg" message="SAPs (unwired unpublished) must have protected visibility" id="sapIsProtected"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_Ekn0oNgMEeKfXPKgoiG5jA" base_Constraint="_wzgWQMiDEeKp7oGSO7dnZg" message="All operations of a capsule are sequential" id="allOperationsSequential"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_FYik4NgMEeKfXPKgoiG5jA" base_Constraint="_c742IMiEEeKp7oGSO7dnZg" message="Protocol classes can have at most one generalization" id="atMostOneGeneralization"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_F6mwINgMEeKfXPKgoiG5jA" base_Constraint="_v91dEMiEEeKp7oGSO7dnZg" message="Only binary connectors allowed" id="onlyBinaryConnectors"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_GbpAoNgMEeKfXPKgoiG5jA" base_Constraint="_HQx_IMiFEeKp7oGSO7dnZg" message="Connectors can only connect two Ports" id="connectorsMustConnectPorts"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_G-TBwNgMEeKfXPKgoiG5jA" base_Constraint="_ooyssMiFEeKp7oGSO7dnZg" message="Wired ports must be declared service" id="wiredPortsMustBeService"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_Heb6YNgMEeKfXPKgoiG5jA" base_Constraint="_5f_TUMiFEeKp7oGSO7dnZg" message="Unwired &amp; unpublished ports cannot be service" id="unwiredUnpublishedPortsCannotBeService"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_IU5BQNgMEeKfXPKgoiG5jA" base_Constraint="_QzX6QMiGEeKp7oGSO7dnZg" message="Unwired &amp; published ports must be service" id="unwiredPublishedPortsMustBeService"/>
+</xmi:XMI>

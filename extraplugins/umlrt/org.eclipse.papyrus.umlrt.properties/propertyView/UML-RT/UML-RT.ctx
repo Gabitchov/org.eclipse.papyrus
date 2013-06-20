@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" name="UMLRealTime">
+  <dependencies href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#/"/>
+  <tabs label="UMLRealTime" id="umlrealtime" category="org.eclipse.papyrus" priority="20">
+    <sections name="Single Protocol" sectionFile="ui/SingleProtocol.xwt">
+      <widget href="ui/SingleProtocol.xwt#/"/>
+    </sections>
+    <sections name="Multiple Protocol" sectionFile="ui/MultipleProtocol.xwt">
+      <widget href="ui/MultipleProtocol.xwt#/"/>
+    </sections>
+    <sections name="Single Capsule" sectionFile="ui/SingleCapsule.xwt">
+      <widget href="ui/SingleCapsule.xwt#/"/>
+    </sections>
+    <sections name="Multiple Capsule" sectionFile="ui/MultipleCapsule.xwt">
+      <widget href="ui/MultipleCapsule.xwt#/"/>
+    </sections>
+    <sections name="Single RTRedefinableElement" sectionFile="ui/SingleRTRedefinableElement.xwt">
+      <widget href="ui/SingleRTRedefinableElement.xwt#/"/>
+    </sections>
+    <sections name="Multiple RTRedefinableElement" sectionFile="ui/MultipleRTRedefinableElement.xwt">
+      <widget href="ui/MultipleRTRedefinableElement.xwt#/"/>
+    </sections>
+    <sections name="Single RTConnector" sectionFile="ui/SingleRTConnector.xwt">
+      <widget href="ui/SingleRTConnector.xwt#/"/>
+    </sections>
+    <sections name="Multiple RTConnector" sectionFile="ui/MultipleRTConnector.xwt">
+      <widget href="ui/MultipleRTConnector.xwt#/"/>
+    </sections>
+    <sections name="Single OutEvent" sectionFile="ui/SingleOutEvent.xwt">
+      <widget href="ui/SingleOutEvent.xwt#/"/>
+    </sections>
+    <sections name="Multiple OutEvent" sectionFile="ui/MultipleOutEvent.xwt">
+      <widget href="ui/MultipleOutEvent.xwt#/"/>
+    </sections>
+    <sections name="Single InEvent" sectionFile="ui/SingleInEvent.xwt">
+      <widget href="ui/SingleInEvent.xwt#/"/>
+    </sections>
+    <sections name="Multiple InEvent" sectionFile="ui/MultipleInEvent.xwt">
+      <widget href="ui/MultipleInEvent.xwt#/"/>
+    </sections>
+    <sections name="Single CapsulePart" sectionFile="ui/SingleCapsulePart.xwt">
+      <widget href="ui/SingleCapsulePart.xwt#/"/>
+    </sections>
+    <sections name="Multiple CapsulePart" sectionFile="ui/MultipleCapsulePart.xwt">
+      <widget href="ui/MultipleCapsulePart.xwt#/"/>
+    </sections>
+    <sections name="Single ProtocolContainer" sectionFile="ui/SingleProtocolContainer.xwt">
+      <widget href="ui/SingleProtocolContainer.xwt#/"/>
+    </sections>
+    <sections name="Multiple ProtocolContainer" sectionFile="ui/MultipleProtocolContainer.xwt">
+      <widget href="ui/MultipleProtocolContainer.xwt#/"/>
+    </sections>
+    <sections name="Single RTPort" sectionFile="ui/SingleRTPort.xwt">
+      <widget href="ui/SingleRTPort.xwt#/"/>
+    </sections>
+    <sections name="Multiple RTPort" sectionFile="ui/MultipleRTPort.xwt">
+      <widget href="ui/MultipleRTPort.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single Protocol" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleProtocol">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::Protocol"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Protocol" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleProtocol">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::Protocol"/>
+    </constraints>
+  </views>
+  <views name="Single Capsule" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleCapsule">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::Capsule"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Capsule" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleCapsule">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::Capsule"/>
+    </constraints>
+  </views>
+  <views name="Single RTRedefinableElement" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleRTRedefinableElement">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::RTRedefinableElement"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple RTRedefinableElement" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleRTRedefinableElement">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::RTRedefinableElement"/>
+    </constraints>
+  </views>
+  <views name="Single RTConnector" sections="//@tabs.0/@sections.6" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleRTConnector">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::RTConnector"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple RTConnector" sections="//@tabs.0/@sections.7" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleRTConnector">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::RTConnector"/>
+    </constraints>
+  </views>
+  <views name="Single OutEvent" sections="//@tabs.0/@sections.8" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleOutEvent">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::OutEvent"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple OutEvent" sections="//@tabs.0/@sections.9" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleOutEvent">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::OutEvent"/>
+    </constraints>
+  </views>
+  <views name="Single InEvent" sections="//@tabs.0/@sections.10" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleInEvent">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::InEvent"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple InEvent" sections="//@tabs.0/@sections.11" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleInEvent">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::InEvent"/>
+    </constraints>
+  </views>
+  <views name="Single CapsulePart" sections="//@tabs.0/@sections.12" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleCapsulePart">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::CapsulePart"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple CapsulePart" sections="//@tabs.0/@sections.13" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleCapsulePart">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::CapsulePart"/>
+    </constraints>
+  </views>
+  <views name="Single ProtocolContainer" sections="//@tabs.0/@sections.14" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleProtocolContainer">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::ProtocolContainer"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple ProtocolContainer" sections="//@tabs.0/@sections.15" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleProtocolContainer">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::ProtocolContainer"/>
+    </constraints>
+  </views>
+  <views name="Single RTPort" sections="//@tabs.0/@sections.16" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleRTPort">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::RTPort"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple RTPort" sections="//@tabs.0/@sections.17" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleRTPort">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="UMLRealTime::RTPort"/>
+    </constraints>
+  </views>
+  <dataContexts name="UMLRealTime">
+    <elements name="RTRedefinableElement">
+      <properties name="rootFragment" type="Reference"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.17"/>
+    </elements>
+    <elements name="CapsulePart">
+      <properties name="isSubstitutable" type="Boolean"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.35"/>
+    </elements>
+    <elements name="RTConnector">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.65"/>
+    </elements>
+    <elements name="OutEvent">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.152"/>
+    </elements>
+    <elements name="ProtocolContainer">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.2"/>
+    </elements>
+    <elements name="Protocol">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.78"/>
+    </elements>
+    <elements name="Capsule">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.45"/>
+    </elements>
+    <elements name="InEvent">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.152"/>
+    </elements>
+    <elements name="RTPort">
+      <properties name="isConjugate" type="Boolean"/>
+      <properties name="isPublish" type="Boolean"/>
+      <properties name="registrationOverride"/>
+      <properties name="isNotification" type="Boolean"/>
+      <properties name="registration" type="Enumeration"/>
+      <properties name="isWired" type="Boolean"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.58"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.2"/>
+  </dataContexts>
+</contexts:Context>

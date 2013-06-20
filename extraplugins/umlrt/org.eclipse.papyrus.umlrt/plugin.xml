@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><?eclipse version="3.4"?>
+<plugin>
+<extension point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile"><profile description="UML RealTime Profile" name="UML RealTime" path="pathmap://UMLRT_PROFILES/uml-rt.profile.uml" provider="Eclipse Modeling Project"/></extension>
+<extension
+      point="org.eclipse.emf.ecore.uri_mapping">
+   <mapping
+         source="pathmap://UMLRT_PROFILES/"
+         target="platform:/plugin/org.eclipse.papyrus.umlrt/umlProfile/">
+   </mapping>
+</extension>
+<extension
+      point="org.eclipse.uml2.uml.dynamic_package">
+   <profile
+         location="pathmap://UMLRT_PROFILES/uml-rt.profile.uml#_0"
+         uri="http:///schemas/UMLRealTime/_iXHNMNgxEeKmBIMLIFUmag/0">
+   </profile>
+</extension></plugin>
