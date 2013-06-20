@@ -132,4 +132,5 @@ public interface Port extends ConfigurableElementInstance {
 	 */
 	boolean isSetRequiredInterface();
 
+	void update();
 } // Port

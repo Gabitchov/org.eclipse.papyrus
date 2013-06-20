@@ -15,6 +15,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Rule Application</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Apply a set of container rules. It can be applied to a single class or to a package, implying that all components within the package apply the specified rule.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>

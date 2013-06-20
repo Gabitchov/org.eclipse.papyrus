@@ -13,6 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Use Instance Configurator</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Use a dedicated component that that is responsible for configuring component instances. The concept is primarily intented for container extensions. For instance, a container extension might provide reflection data about a component. In this case, the instance configuration would create the value specifications using data available in the model
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>

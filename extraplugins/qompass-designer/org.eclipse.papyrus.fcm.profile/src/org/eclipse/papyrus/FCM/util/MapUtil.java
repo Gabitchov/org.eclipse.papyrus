@@ -6,8 +6,6 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.FCM.Activator;
 import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.FCM.Port;
@@ -96,10 +94,10 @@ public class MapUtil
 	 *        the name of a package that should be be returned.
 	 * @return a package
 	 */
-	public static Package getAndCreate(Package root, String name)
+	public static Package getAndCreate(Package root, String name, boolean createOnDemand)
 	{
 		NamedElement pkg = root.getOwnedMember(name);
-		if(pkg == null) {
+		if((pkg == null) && createOnDemand) {
 			pkg = root.createNestedPackage(name);
 		}
 		return (Package)pkg;
@@ -149,9 +147,11 @@ public class MapUtil
 	 *        separation string between kind and type name
 	 * @param type
 	 *        the type of the port
+	 * @param createOnDemand
+	 *        if true, create an interface on demand (otherwise, only existing ones will be returned)
 	 * @return
 	 */
-	public static Interface getOrCreateDerivedInterface(Port port, String separation, Type type, boolean getOnly)
+	public static Interface getOrCreateDerivedInterface(Port port, String separation, Type type, boolean createOnDemand)
 	{
 		if(port == null) {
 			return null;
@@ -160,7 +160,7 @@ public class MapUtil
 		if(kind == null) {
 			return null;
 		}
-		return getOrCreateDerivedInterfaceIntern(port, kind.getBase_Class().getName() + separation, type, getOnly);
+		return getOrCreateDerivedInterfaceIntern(port, kind.getBase_Class().getName() + separation, type, createOnDemand);
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class MapUtil
 	 * type name
 	 * 
 	 * @param port
-	 * 			The port??
+	 * 			The port
 	 * @param prefix
 	 *        prefix string
 	 * @param type
@@ -180,6 +180,26 @@ public class MapUtil
 		return getOrCreateDerivedInterfaceIntern(port, prefix, type, false);
 	}
 
+	/**
+	 * Get or create a derived interface for a port using a fixed prefix
+	 * type name
+	 * 
+	 * @param port
+	 * 			The port
+	 * @param prefix
+	 *        prefix string
+	 * @param type
+	 *        type name
+	 * @param createOnDemand
+	 *        if true, create interfaces on demand
+	 * @return the derived interface or null (if it cannot be created)
+	 */
+	public static Interface getOrCreateDerivedInterfaceFP(Port port, String prefix, Type type, boolean createOnDemand)
+	{
+		return getOrCreateDerivedInterfaceIntern(port, prefix, type, createOnDemand);
+	}
+
+	
 	/**
 	 * Get a derived interface for a port using the name given by concatenation of prefix and
 	 * type name
@@ -211,7 +231,7 @@ public class MapUtil
 	 *        if true, skip top level namespace element
 	 * @return
 	 */
-	public static Package getAndCreate(Package root, EList<Namespace> list) {
+	public static Package getAndCreate(Package root, EList<Namespace> list, boolean createOnDemand) {
 		boolean first = true;
 		for(int i = list.size() - 1; i >= 0; i--) {
 			Namespace ns = list.get(i);
@@ -225,7 +245,7 @@ public class MapUtil
 				}
 			}
 			NamedElement pkg = root.getOwnedMember(ns.getName());
-			if(pkg == null) {
+			if((pkg == null) && createOnDemand) {
 				// package does not exist => create it.
 				pkg = root.createNestedPackage(ns.getName());
 				// copy stereotype to create package
@@ -253,15 +273,15 @@ public class MapUtil
 	 *        if true, do not create non-existing elements
 	 * @return
 	 */
-	private static Interface getOrCreateDerivedInterfaceIntern(Port port, String prefix, Type type, boolean getOnly)
+	private static Interface getOrCreateDerivedInterfaceIntern(Port port, String prefix, Type type, boolean createOnDemand)
 	{
 		String interfaceName = "D_" + prefix + type.getName();
 
 		// create derived element in "derivedInterface" package within the model owning
 		// the port (which must be an FCM model, since the port carries the FCM stereotype)
 		Package baseModelOfPort = getTop(port.getBase_Port());
-		Package derivedInterfaces = getAndCreate(baseModelOfPort, "derivedInterfaces");
-		Package owner = getAndCreate(derivedInterfaces, type.allNamespaces());
+		Package derivedInterfaces = getAndCreate(baseModelOfPort, "derivedInterfaces", createOnDemand);
+		Package owner = getAndCreate(derivedInterfaces, type.allNamespaces(), createOnDemand);
 		Interface intf = null;
 
 		PackageableElement pe = owner.getPackagedElement(interfaceName);
@@ -269,7 +289,7 @@ public class MapUtil
 			// interface already exists
 			return (Interface)pe;
 		}
-		else if(!getOnly) {
+		else if(createOnDemand) {
 			// System.out.println ("Derived port types: create new interface " + interfaceName + " in package " + owner.getQualifiedName ());
 			intf = owner.createOwnedInterface(interfaceName);
 
@@ -299,45 +319,11 @@ public class MapUtil
 		else if(portKind.getBase_Class() != null) {
 			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName();
 			final IMappingRule mappingRule = getMappingRule(ruleName);
-			if((mappingRule != null) && (!calcRunning)) {
+			if(mappingRule != null) {
 				// EList<Interface> temp = new EObjectEList<Interface>(Interface.class, (PortImpl) port,
 				// 		FCMPackage.PORT__PROVIDED_INTERFACE);
-				Runnable rule = new Runnable() {
-
-					public void run() {
-						intf = mappingRule.getProvided(port, port.getConfiguration());
-					}
-				};
-				
-				if((mappingRule.needsTransaction() == IMappingRule.BOTH) ||
-					(mappingRule.needsTransaction() == IMappingRule.PROVIDED)) {
-					
-					// do not allow recursive calculation of modifying rules
-					if (calcRunning) return null;
-
-					calcRunning = true;
-					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(port);
-					if(CommandSupport.isWriteTransactionActive(domain) || (domain == null)) {
-						// don't start a new transaction, if there is already an active write transition
-						try {
-							rule.run();
-						} catch (Exception e) {
-							// Happens with current version of Papyrus (ValidationCommand is a
-							// transaction which spawn an additional thread). Needs fix on Papyrus side
-							System.err.println(e);
-						}
-					}
-					else {
-						CommandSupport.exec(domain, "calculate derived interface", rule);
-					}
-					calcRunning = false;
-				}
-				else {
-					rule.run();
-				}
-				calcRunning = false;
-				
-				return intf;
+				return mappingRule.getProvided(port, port.getConfiguration(), false);
+							
 			}
 		}
 		return null;
@@ -367,39 +353,7 @@ public class MapUtil
 			final IMappingRule mappingRule = getMappingRule(ruleName);
 			if(mappingRule != null) {
 				
-				Runnable rule = new Runnable() {
-
-					public void run() {
-						intf = mappingRule.getRequired(port, port.getConfiguration());
-					}
-				};
-				
-				if((mappingRule.needsTransaction() == IMappingRule.BOTH) ||
-					(mappingRule.needsTransaction() == IMappingRule.REQUIRED)) {
-					
-					// do not allow recursive calculation of modifying rules
-					if (calcRunning) return null;
-	
-					calcRunning = true;
-					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(port);
-					if(CommandSupport.isWriteTransactionActive(domain) || (domain == null)) {
-						// don't start a new transaction, if there is already an active write transition
-						try {
-							rule.run();
-						} catch (Exception e) {
-							// Happens with current version of Papyrus (ValidationCommand is a
-							// transaction which spawn an additional thread). Needs fix on Papyrus side
-							System.err.println(e);
-						}
-					}
-					else {
-						CommandSupport.exec(domain, "calculate derived interface", rule);
-					}
-					calcRunning = false;
-				}
-				else {
-					rule.run();
-				}
+				intf = mappingRule.getRequired(port, port.getConfiguration(), false);
 				return intf;
 			}
 		}
@@ -424,5 +378,20 @@ public class MapUtil
 			}
 		}
 		return null;
+	}
+	
+	public static void update(final Port port) {
+		if(port.getBase_Port() == null) {
+			// should not happen, but can occur in case of corrupted XMI files
+		}
+		PortKind portKind = port.getKind();
+		if(portKind.getBase_Class() != null) {
+			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName();
+			final IMappingRule mappingRule = getMappingRule(ruleName);
+			
+			mappingRule.getProvided(port, port.getConfiguration(), true);
+			mappingRule.getRequired(port, port.getConfiguration(), true);
+			
+		}
 	}
 }

@@ -43,6 +43,46 @@
     <genClasses ecoreClass="FCM.ecore#//ImplementationGroup">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ImplementationGroup/base_Class"/>
     </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//Assembly">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Assembly/base_Class"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//Flatten">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Flatten/base_Class"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//CompToOOmapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//CompToOOmapping/base_Class"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//ProgLanguage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ProgLanguage/base_Class"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//CodeGenOptions">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//CodeGenOptions/base_Package"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//CodeGenOptions/compToOOmapping"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//CodeGenOptions/progLanguage"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//InteractionComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//InteractionComponent/forDistribution"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//InteractionComponent/connectionPattern"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//InteractionComponent/base_Class"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//Singleton">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Singleton/base_Class"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//Connector">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Connector/base_Connector"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Connector/ic"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Connector/base_Property"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="FCM.ecore#//ConfigurableElementInstance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ConfigurableElementInstance/configuration"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//UseInstanceConfigurator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//UseInstanceConfigurator/base_Class"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//UseInstanceConfigurator/configurator"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//InstanceConfigurator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//InstanceConfigurator/base_Class"/>
+    </genClasses>
     <genClasses ecoreClass="FCM.ecore#//RuleApplication">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//RuleApplication/base_Class"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//RuleApplication/containerRule"/>
@@ -56,14 +96,6 @@
     <genClasses ecoreClass="FCM.ecore#//ConfigOption">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ConfigOption/base_Class"/>
     </genClasses>
-    <genClasses ecoreClass="FCM.ecore#//Singleton">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Singleton/base_Class"/>
-    </genClasses>
-    <genClasses ecoreClass="FCM.ecore#//InteractionComponent">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//InteractionComponent/forDistribution"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//InteractionComponent/connectionPattern"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//InteractionComponent/base_Class"/>
-    </genClasses>
     <genClasses ecoreClass="FCM.ecore#//PortKind">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//PortKind/base_Class"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//PortKind/providedInterface"/>
@@ -76,14 +108,6 @@
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference FCM.ecore#//Port/providedInterface"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference FCM.ecore#//Port/requiredInterface"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="FCM.ecore#//ConfigurableElementInstance">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ConfigurableElementInstance/configuration"/>
-    </genClasses>
-    <genClasses ecoreClass="FCM.ecore#//Connector">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Connector/base_Connector"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Connector/ic"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Connector/base_Property"/>
-    </genClasses>
     <genClasses ecoreClass="FCM.ecore#//DeploymentPlan">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//DeploymentPlan/mainInstance"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//DeploymentPlan/base_Package"/>
@@ -95,18 +119,6 @@
     <genClasses ecoreClass="FCM.ecore#//CompImplTemplate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//CompImplTemplate/templateDefs"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//CompImplTemplate/base_Class"/>
-    </genClasses>
-    <genClasses ecoreClass="FCM.ecore#//CppLibrary">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//CppLibrary/macros"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//CppLibrary/libs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//CppLibrary/libPaths"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//CppLibrary/includePaths"/>
-    </genClasses>
-    <genClasses ecoreClass="FCM.ecore#//ExternalLibrary">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ExternalLibrary/base_Package"/>
-    </genClasses>
-    <genClasses ecoreClass="FCM.ecore#//JavaLibrary">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//JavaLibrary/classPath"/>
     </genClasses>
     <genClasses ecoreClass="FCM.ecore#//ImplementationProperties">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//ImplementationProperties/sizeRAM"/>
@@ -140,6 +152,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Target/usedOS"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//Target/availRAM"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//Target/availROM"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Target/compiler"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//CompilerChain">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//CompilerChain/base_Class"/>
     </genClasses>
     <genClasses ecoreClass="FCM.ecore#//Fragment">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Fragment/base_Class"/>
@@ -166,12 +182,5 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ExtendedSignature/baseSignature"/>
     </genClasses>
     <genClasses ecoreClass="FCM.ecore#//ContainerPort"/>
-    <genClasses ecoreClass="FCM.ecore#//UseInstanceConfigurator">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//UseInstanceConfigurator/base_Class"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//UseInstanceConfigurator/configurator"/>
-    </genClasses>
-    <genClasses ecoreClass="FCM.ecore#//InstanceConfigurator">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//InstanceConfigurator/base_Class"/>
-    </genClasses>
   </genPackages>
 </genmodel:GenModel>

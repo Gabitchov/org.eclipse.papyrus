@@ -134,24 +134,6 @@ public interface FCMFactory extends EFactory {
 	DerivedElement createDerivedElement();
 
 	/**
-	 * Returns a new object of class '<em>Cpp Library</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Cpp Library</em>'.
-	 * @generated
-	 */
-	CppLibrary createCppLibrary();
-
-	/**
-	 * Returns a new object of class '<em>External Library</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>External Library</em>'.
-	 * @generated
-	 */
-	ExternalLibrary createExternalLibrary();
-
-	/**
 	 * Returns a new object of class '<em>Implementation Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -161,6 +143,51 @@ public interface FCMFactory extends EFactory {
 	ImplementationGroup createImplementationGroup();
 
 	/**
+	 * Returns a new object of class '<em>Assembly</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assembly</em>'.
+	 * @generated
+	 */
+	Assembly createAssembly();
+
+	/**
+	 * Returns a new object of class '<em>Flatten</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Flatten</em>'.
+	 * @generated
+	 */
+	Flatten createFlatten();
+
+	/**
+	 * Returns a new object of class '<em>Comp To OOmapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Comp To OOmapping</em>'.
+	 * @generated
+	 */
+	CompToOOmapping createCompToOOmapping();
+
+	/**
+	 * Returns a new object of class '<em>Prog Language</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Prog Language</em>'.
+	 * @generated
+	 */
+	ProgLanguage createProgLanguage();
+
+	/**
+	 * Returns a new object of class '<em>Code Gen Options</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Code Gen Options</em>'.
+	 * @generated
+	 */
+	CodeGenOptions createCodeGenOptions();
+
+	/**
 	 * Returns a new object of class '<em>Rule Application</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,15 +195,6 @@ public interface FCMFactory extends EFactory {
 	 * @generated
 	 */
 	RuleApplication createRuleApplication();
-
-	/**
-	 * Returns a new object of class '<em>Java Library</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Java Library</em>'.
-	 * @generated
-	 */
-	JavaLibrary createJavaLibrary();
 
 	/**
 	 * Returns a new object of class '<em>Implementation Properties</em>'.
@@ -213,6 +231,15 @@ public interface FCMFactory extends EFactory {
 	 * @generated
 	 */
 	Target createTarget();
+
+	/**
+	 * Returns a new object of class '<em>Compiler Chain</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Compiler Chain</em>'.
+	 * @generated
+	 */
+	CompilerChain createCompilerChain();
 
 	/**
 	 * Returns a new object of class '<em>Fragment</em>'.

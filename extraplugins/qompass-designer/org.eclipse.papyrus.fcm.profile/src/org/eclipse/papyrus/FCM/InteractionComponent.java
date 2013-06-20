@@ -15,6 +15,10 @@ import org.eclipse.uml2.uml.Collaboration;
  * A representation of the model object '<em><b>Interaction Component</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An interaction component is responsible for realization the communication between two components. It typically owns conjugated ports. It might be defined within a package template to enable the adaption of ports to those used by the interacting components
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>

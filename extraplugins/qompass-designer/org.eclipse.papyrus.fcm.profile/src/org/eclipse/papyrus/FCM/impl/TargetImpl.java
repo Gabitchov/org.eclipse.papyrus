@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.papyrus.FCM.CompilerChain;
 import org.eclipse.papyrus.FCM.ConfigOption;
 import org.eclipse.papyrus.FCM.FCMPackage;
 import org.eclipse.papyrus.FCM.OperatingSystem;
@@ -35,6 +36,7 @@ import org.eclipse.uml2.uml.Node;
  *   <li>{@link org.eclipse.papyrus.FCM.impl.TargetImpl#getUsedOS <em>Used OS</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.impl.TargetImpl#getAvailRAM <em>Avail RAM</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.impl.TargetImpl#getAvailROM <em>Avail ROM</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.TargetImpl#getCompiler <em>Compiler</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,6 +122,16 @@ public class TargetImpl extends EObjectImpl implements Target {
 	 * @ordered
 	 */
 	protected int availROM = AVAIL_ROM_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCompiler() <em>Compiler</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompiler()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompilerChain compiler;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -313,6 +325,44 @@ public class TargetImpl extends EObjectImpl implements Target {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CompilerChain getCompiler() {
+		if (compiler != null && compiler.eIsProxy()) {
+			InternalEObject oldCompiler = (InternalEObject)compiler;
+			compiler = (CompilerChain)eResolveProxy(oldCompiler);
+			if (compiler != oldCompiler) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FCMPackage.TARGET__COMPILER, oldCompiler, compiler));
+			}
+		}
+		return compiler;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompilerChain basicGetCompiler() {
+		return compiler;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCompiler(CompilerChain newCompiler) {
+		CompilerChain oldCompiler = compiler;
+		compiler = newCompiler;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.TARGET__COMPILER, oldCompiler, compiler));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -331,6 +381,9 @@ public class TargetImpl extends EObjectImpl implements Target {
 				return getAvailRAM();
 			case FCMPackage.TARGET__AVAIL_ROM:
 				return getAvailROM();
+			case FCMPackage.TARGET__COMPILER:
+				if (resolve) return getCompiler();
+				return basicGetCompiler();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -363,6 +416,9 @@ public class TargetImpl extends EObjectImpl implements Target {
 			case FCMPackage.TARGET__AVAIL_ROM:
 				setAvailROM((Integer)newValue);
 				return;
+			case FCMPackage.TARGET__COMPILER:
+				setCompiler((CompilerChain)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -393,6 +449,9 @@ public class TargetImpl extends EObjectImpl implements Target {
 			case FCMPackage.TARGET__AVAIL_ROM:
 				setAvailROM(AVAIL_ROM_EDEFAULT);
 				return;
+			case FCMPackage.TARGET__COMPILER:
+				setCompiler((CompilerChain)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -417,6 +476,8 @@ public class TargetImpl extends EObjectImpl implements Target {
 				return availRAM != AVAIL_RAM_EDEFAULT;
 			case FCMPackage.TARGET__AVAIL_ROM:
 				return availROM != AVAIL_ROM_EDEFAULT;
+			case FCMPackage.TARGET__COMPILER:
+				return compiler != null;
 		}
 		return super.eIsSet(featureID);
 	}

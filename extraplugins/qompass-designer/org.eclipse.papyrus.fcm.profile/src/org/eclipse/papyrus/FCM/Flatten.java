@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipse.papyrus.FCM;
 
@@ -10,25 +6,25 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Singleton</b></em>'.
+ * A representation of the model object '<em><b>Flatten</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Indicate that this component is instantiated only once within the system. It also implies that this component is automatically instantiated by a generated bootloader
+ * A composite that will get flattened during distribution. This means that it vanishes and its parts are added to the composite in which the flat composite is defined. A flat composite may not have assembly connections. It is primarily used by interaction components
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.FCM.Singleton#getBase_Class <em>Base Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.Flatten#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.papyrus.FCM.FCMPackage#getSingleton()
+ * @see org.eclipse.papyrus.FCM.FCMPackage#getFlatten()
  * @model
  * @generated
  */
-public interface Singleton extends EObject {
+public interface Flatten extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -39,14 +35,14 @@ public interface Singleton extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
-	 * @see org.eclipse.papyrus.FCM.FCMPackage#getSingleton_Base_Class()
+	 * @see org.eclipse.papyrus.FCM.FCMPackage#getFlatten_Base_Class()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	org.eclipse.uml2.uml.Class getBase_Class();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Singleton#getBase_Class <em>Base Class</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Flatten#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Base Class</em>' reference.
@@ -55,4 +51,4 @@ public interface Singleton extends EObject {
 	 */
 	void setBase_Class(org.eclipse.uml2.uml.Class value);
 
-} // Singleton
+} // Flatten

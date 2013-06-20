@@ -13,9 +13,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.FCM.ActualChoice;
+import org.eclipse.papyrus.FCM.Assembly;
 import org.eclipse.papyrus.FCM.AutoIndex;
 import org.eclipse.papyrus.FCM.AutoIndexPerNode;
+import org.eclipse.papyrus.FCM.CodeGenOptions;
 import org.eclipse.papyrus.FCM.CompImplTemplate;
+import org.eclipse.papyrus.FCM.CompToOOmapping;
+import org.eclipse.papyrus.FCM.CompilerChain;
 import org.eclipse.papyrus.FCM.ConfigOption;
 import org.eclipse.papyrus.FCM.ConfigurableElementInstance;
 import org.eclipse.papyrus.FCM.Configuration;
@@ -26,13 +30,12 @@ import org.eclipse.papyrus.FCM.ContainerPort;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.ContainerRuleKind;
 import org.eclipse.papyrus.FCM.CopyAttributeValue;
-import org.eclipse.papyrus.FCM.CppLibrary;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.FCM.ExtendedSignature;
-import org.eclipse.papyrus.FCM.ExternalLibrary;
 import org.eclipse.papyrus.FCM.FCMFactory;
 import org.eclipse.papyrus.FCM.FCMPackage;
+import org.eclipse.papyrus.FCM.Flatten;
 import org.eclipse.papyrus.FCM.Fragment;
 import org.eclipse.papyrus.FCM.ImplementationGroup;
 import org.eclipse.papyrus.FCM.ImplementationProperties;
@@ -41,10 +44,10 @@ import org.eclipse.papyrus.FCM.InstanceConfigurator;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.FCM.InterceptionKind;
 import org.eclipse.papyrus.FCM.InterceptionRule;
-import org.eclipse.papyrus.FCM.JavaLibrary;
 import org.eclipse.papyrus.FCM.OperatingSystem;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.PortKind;
+import org.eclipse.papyrus.FCM.ProgLanguage;
 import org.eclipse.papyrus.FCM.RuleApplication;
 import org.eclipse.papyrus.FCM.Singleton;
 import org.eclipse.papyrus.FCM.Target;
@@ -159,20 +162,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass cppLibraryEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass externalLibraryEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass implementationGroupEClass = null;
 
 	/**
@@ -180,14 +169,42 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass ruleApplicationEClass = null;
+	private EClass assemblyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass javaLibraryEClass = null;
+	private EClass flattenEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compToOOmappingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass progLanguageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass codeGenOptionsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ruleApplicationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -216,6 +233,13 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * @generated
 	 */
 	private EClass targetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compilerChainEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -792,69 +816,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCppLibrary() {
-		return cppLibraryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCppLibrary_Macros() {
-		return (EAttribute)cppLibraryEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCppLibrary_Libs() {
-		return (EAttribute)cppLibraryEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCppLibrary_LibPaths() {
-		return (EAttribute)cppLibraryEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCppLibrary_IncludePaths() {
-		return (EAttribute)cppLibraryEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getExternalLibrary() {
-		return externalLibraryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExternalLibrary_Base_Package() {
-		return (EReference)externalLibraryEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getImplementationGroup() {
 		return implementationGroupEClass;
 	}
@@ -866,6 +827,114 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 */
 	public EReference getImplementationGroup_Base_Class() {
 		return (EReference)implementationGroupEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAssembly() {
+		return assemblyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssembly_Base_Class() {
+		return (EReference)assemblyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFlatten() {
+		return flattenEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFlatten_Base_Class() {
+		return (EReference)flattenEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompToOOmapping() {
+		return compToOOmappingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompToOOmapping_Base_Class() {
+		return (EReference)compToOOmappingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProgLanguage() {
+		return progLanguageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProgLanguage_Base_Class() {
+		return (EReference)progLanguageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCodeGenOptions() {
+		return codeGenOptionsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCodeGenOptions_Base_Package() {
+		return (EReference)codeGenOptionsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCodeGenOptions_CompToOOmapping() {
+		return (EReference)codeGenOptionsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCodeGenOptions_ProgLanguage() {
+		return (EReference)codeGenOptionsEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -902,24 +971,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 */
 	public EReference getRuleApplication_Base_Package() {
 		return (EReference)ruleApplicationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getJavaLibrary() {
-		return javaLibraryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getJavaLibrary_ClassPath() {
-		return (EAttribute)javaLibraryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1082,6 +1133,33 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 */
 	public EAttribute getTarget_AvailROM() {
 		return (EAttribute)targetEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTarget_Compiler() {
+		return (EReference)targetEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompilerChain() {
+		return compilerChainEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompilerChain_Base_Class() {
+		return (EReference)compilerChainEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1457,6 +1535,46 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		implementationGroupEClass = createEClass(IMPLEMENTATION_GROUP);
 		createEReference(implementationGroupEClass, IMPLEMENTATION_GROUP__BASE_CLASS);
 
+		assemblyEClass = createEClass(ASSEMBLY);
+		createEReference(assemblyEClass, ASSEMBLY__BASE_CLASS);
+
+		flattenEClass = createEClass(FLATTEN);
+		createEReference(flattenEClass, FLATTEN__BASE_CLASS);
+
+		compToOOmappingEClass = createEClass(COMP_TO_OOMAPPING);
+		createEReference(compToOOmappingEClass, COMP_TO_OOMAPPING__BASE_CLASS);
+
+		progLanguageEClass = createEClass(PROG_LANGUAGE);
+		createEReference(progLanguageEClass, PROG_LANGUAGE__BASE_CLASS);
+
+		codeGenOptionsEClass = createEClass(CODE_GEN_OPTIONS);
+		createEReference(codeGenOptionsEClass, CODE_GEN_OPTIONS__BASE_PACKAGE);
+		createEReference(codeGenOptionsEClass, CODE_GEN_OPTIONS__COMP_TO_OOMAPPING);
+		createEReference(codeGenOptionsEClass, CODE_GEN_OPTIONS__PROG_LANGUAGE);
+
+		interactionComponentEClass = createEClass(INTERACTION_COMPONENT);
+		createEAttribute(interactionComponentEClass, INTERACTION_COMPONENT__FOR_DISTRIBUTION);
+		createEReference(interactionComponentEClass, INTERACTION_COMPONENT__CONNECTION_PATTERN);
+		createEReference(interactionComponentEClass, INTERACTION_COMPONENT__BASE_CLASS);
+
+		singletonEClass = createEClass(SINGLETON);
+		createEReference(singletonEClass, SINGLETON__BASE_CLASS);
+
+		connectorEClass = createEClass(CONNECTOR);
+		createEReference(connectorEClass, CONNECTOR__BASE_CONNECTOR);
+		createEReference(connectorEClass, CONNECTOR__IC);
+		createEReference(connectorEClass, CONNECTOR__BASE_PROPERTY);
+
+		configurableElementInstanceEClass = createEClass(CONFIGURABLE_ELEMENT_INSTANCE);
+		createEReference(configurableElementInstanceEClass, CONFIGURABLE_ELEMENT_INSTANCE__CONFIGURATION);
+
+		useInstanceConfiguratorEClass = createEClass(USE_INSTANCE_CONFIGURATOR);
+		createEReference(useInstanceConfiguratorEClass, USE_INSTANCE_CONFIGURATOR__BASE_CLASS);
+		createEReference(useInstanceConfiguratorEClass, USE_INSTANCE_CONFIGURATOR__CONFIGURATOR);
+
+		instanceConfiguratorEClass = createEClass(INSTANCE_CONFIGURATOR);
+		createEReference(instanceConfiguratorEClass, INSTANCE_CONFIGURATOR__BASE_CLASS);
+
 		ruleApplicationEClass = createEClass(RULE_APPLICATION);
 		createEReference(ruleApplicationEClass, RULE_APPLICATION__BASE_CLASS);
 		createEReference(ruleApplicationEClass, RULE_APPLICATION__CONTAINER_RULE);
@@ -1470,14 +1588,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		configOptionEClass = createEClass(CONFIG_OPTION);
 		createEReference(configOptionEClass, CONFIG_OPTION__BASE_CLASS);
 
-		singletonEClass = createEClass(SINGLETON);
-		createEReference(singletonEClass, SINGLETON__BASE_CLASS);
-
-		interactionComponentEClass = createEClass(INTERACTION_COMPONENT);
-		createEAttribute(interactionComponentEClass, INTERACTION_COMPONENT__FOR_DISTRIBUTION);
-		createEReference(interactionComponentEClass, INTERACTION_COMPONENT__CONNECTION_PATTERN);
-		createEReference(interactionComponentEClass, INTERACTION_COMPONENT__BASE_CLASS);
-
 		portKindEClass = createEClass(PORT_KIND);
 		createEReference(portKindEClass, PORT_KIND__BASE_CLASS);
 		createEReference(portKindEClass, PORT_KIND__PROVIDED_INTERFACE);
@@ -1490,14 +1600,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		createEReference(portEClass, PORT__PROVIDED_INTERFACE);
 		createEReference(portEClass, PORT__REQUIRED_INTERFACE);
 
-		configurableElementInstanceEClass = createEClass(CONFIGURABLE_ELEMENT_INSTANCE);
-		createEReference(configurableElementInstanceEClass, CONFIGURABLE_ELEMENT_INSTANCE__CONFIGURATION);
-
-		connectorEClass = createEClass(CONNECTOR);
-		createEReference(connectorEClass, CONNECTOR__BASE_CONNECTOR);
-		createEReference(connectorEClass, CONNECTOR__IC);
-		createEReference(connectorEClass, CONNECTOR__BASE_PROPERTY);
-
 		deploymentPlanEClass = createEClass(DEPLOYMENT_PLAN);
 		createEReference(deploymentPlanEClass, DEPLOYMENT_PLAN__MAIN_INSTANCE);
 		createEReference(deploymentPlanEClass, DEPLOYMENT_PLAN__BASE_PACKAGE);
@@ -1509,18 +1611,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		compImplTemplateEClass = createEClass(COMP_IMPL_TEMPLATE);
 		createEAttribute(compImplTemplateEClass, COMP_IMPL_TEMPLATE__TEMPLATE_DEFS);
 		createEReference(compImplTemplateEClass, COMP_IMPL_TEMPLATE__BASE_CLASS);
-
-		cppLibraryEClass = createEClass(CPP_LIBRARY);
-		createEAttribute(cppLibraryEClass, CPP_LIBRARY__MACROS);
-		createEAttribute(cppLibraryEClass, CPP_LIBRARY__LIBS);
-		createEAttribute(cppLibraryEClass, CPP_LIBRARY__LIB_PATHS);
-		createEAttribute(cppLibraryEClass, CPP_LIBRARY__INCLUDE_PATHS);
-
-		externalLibraryEClass = createEClass(EXTERNAL_LIBRARY);
-		createEReference(externalLibraryEClass, EXTERNAL_LIBRARY__BASE_PACKAGE);
-
-		javaLibraryEClass = createEClass(JAVA_LIBRARY);
-		createEAttribute(javaLibraryEClass, JAVA_LIBRARY__CLASS_PATH);
 
 		implementationPropertiesEClass = createEClass(IMPLEMENTATION_PROPERTIES);
 		createEAttribute(implementationPropertiesEClass, IMPLEMENTATION_PROPERTIES__SIZE_RAM);
@@ -1554,6 +1644,10 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		createEReference(targetEClass, TARGET__USED_OS);
 		createEAttribute(targetEClass, TARGET__AVAIL_RAM);
 		createEAttribute(targetEClass, TARGET__AVAIL_ROM);
+		createEReference(targetEClass, TARGET__COMPILER);
+
+		compilerChainEClass = createEClass(COMPILER_CHAIN);
+		createEReference(compilerChainEClass, COMPILER_CHAIN__BASE_CLASS);
 
 		fragmentEClass = createEClass(FRAGMENT);
 		createEReference(fragmentEClass, FRAGMENT__BASE_CLASS);
@@ -1581,13 +1675,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		createEReference(extendedSignatureEClass, EXTENDED_SIGNATURE__BASE_SIGNATURE);
 
 		containerPortEClass = createEClass(CONTAINER_PORT);
-
-		useInstanceConfiguratorEClass = createEClass(USE_INSTANCE_CONFIGURATOR);
-		createEReference(useInstanceConfiguratorEClass, USE_INSTANCE_CONFIGURATOR__BASE_CLASS);
-		createEReference(useInstanceConfiguratorEClass, USE_INSTANCE_CONFIGURATOR__CONFIGURATOR);
-
-		instanceConfiguratorEClass = createEClass(INSTANCE_CONFIGURATOR);
-		createEReference(instanceConfiguratorEClass, INSTANCE_CONFIGURATOR__BASE_CLASS);
 
 		// Create enums
 		templateKindEEnum = createEEnum(TEMPLATE_KIND);
@@ -1628,10 +1715,8 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		portEClass.getESuperTypes().add(this.getConfigurableElementInstance());
 		connectorEClass.getESuperTypes().add(this.getConfigurableElementInstance());
-		cppLibraryEClass.getESuperTypes().add(this.getExternalLibrary());
-		javaLibraryEClass.getESuperTypes().add(this.getExternalLibrary());
+		portEClass.getESuperTypes().add(this.getConfigurableElementInstance());
 		autoIndexPerNodeEClass.getESuperTypes().add(this.getAutoIndex());
 		containerPortEClass.getESuperTypes().add(this.getPort());
 
@@ -1648,6 +1733,46 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEClass(implementationGroupEClass, ImplementationGroup.class, "ImplementationGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImplementationGroup_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, ImplementationGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
+		initEClass(assemblyEClass, Assembly.class, "Assembly", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssembly_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, Assembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(flattenEClass, Flatten.class, "Flatten", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFlatten_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, Flatten.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(compToOOmappingEClass, CompToOOmapping.class, "CompToOOmapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompToOOmapping_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, CompToOOmapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(progLanguageEClass, ProgLanguage.class, "ProgLanguage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProgLanguage_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, ProgLanguage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(codeGenOptionsEClass, CodeGenOptions.class, "CodeGenOptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCodeGenOptions_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 1, 1, CodeGenOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCodeGenOptions_CompToOOmapping(), this.getCompToOOmapping(), null, "compToOOmapping", null, 1, 1, CodeGenOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCodeGenOptions_ProgLanguage(), this.getProgLanguage(), null, "progLanguage", null, 1, 1, CodeGenOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(interactionComponentEClass, InteractionComponent.class, "InteractionComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getInteractionComponent_ForDistribution(), theTypesPackage.getBoolean(), "forDistribution", "false", 1, 1, InteractionComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getInteractionComponent_ConnectionPattern(), theUMLPackage.getCollaboration(), null, "connectionPattern", null, 0, 1, InteractionComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getInteractionComponent_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, InteractionComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(singletonEClass, Singleton.class, "Singleton", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSingleton_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, Singleton.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(connectorEClass, Connector.class, "Connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConnector_Base_Connector(), theUMLPackage.getConnector(), null, "base_Connector", null, 1, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getConnector_Ic(), this.getInteractionComponent(), null, "ic", null, 0, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getConnector_Base_Property(), theUMLPackage.getProperty(), null, "base_Property", null, 1, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(configurableElementInstanceEClass, ConfigurableElementInstance.class, "ConfigurableElementInstance", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConfigurableElementInstance_Configuration(), theUMLPackage.getInstanceSpecification(), null, "configuration", null, 0, 1, ConfigurableElementInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(useInstanceConfiguratorEClass, UseInstanceConfigurator.class, "UseInstanceConfigurator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUseInstanceConfigurator_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, UseInstanceConfigurator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getUseInstanceConfigurator_Configurator(), this.getInstanceConfigurator(), null, "configurator", null, 1, 1, UseInstanceConfigurator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(instanceConfiguratorEClass, InstanceConfigurator.class, "InstanceConfigurator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInstanceConfigurator_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, InstanceConfigurator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
 		initEClass(ruleApplicationEClass, RuleApplication.class, "RuleApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRuleApplication_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, RuleApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getRuleApplication_ContainerRule(), this.getContainerRule(), null, "containerRule", null, 0, -1, RuleApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1661,14 +1786,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEClass(configOptionEClass, ConfigOption.class, "ConfigOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfigOption_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, ConfigOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(singletonEClass, Singleton.class, "Singleton", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSingleton_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, Singleton.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(interactionComponentEClass, InteractionComponent.class, "InteractionComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getInteractionComponent_ForDistribution(), theTypesPackage.getBoolean(), "forDistribution", "false", 1, 1, InteractionComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getInteractionComponent_ConnectionPattern(), theUMLPackage.getCollaboration(), null, "connectionPattern", null, 0, 1, InteractionComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getInteractionComponent_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, InteractionComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
 		initEClass(portKindEClass, PortKind.class, "PortKind", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPortKind_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, PortKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPortKind_ProvidedInterface(), theUMLPackage.getInterface(), null, "providedInterface", null, 0, 1, PortKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1681,14 +1798,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEReference(getPort_ProvidedInterface(), theUMLPackage.getInterface(), null, "providedInterface", null, 0, 1, Port.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getPort_RequiredInterface(), theUMLPackage.getInterface(), null, "requiredInterface", null, 0, 1, Port.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(configurableElementInstanceEClass, ConfigurableElementInstance.class, "ConfigurableElementInstance", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigurableElementInstance_Configuration(), theUMLPackage.getInstanceSpecification(), null, "configuration", null, 0, 1, ConfigurableElementInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(connectorEClass, Connector.class, "Connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConnector_Base_Connector(), theUMLPackage.getConnector(), null, "base_Connector", null, 1, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConnector_Ic(), this.getInteractionComponent(), null, "ic", null, 0, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConnector_Base_Property(), theUMLPackage.getProperty(), null, "base_Property", null, 1, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
 		initEClass(deploymentPlanEClass, DeploymentPlan.class, "DeploymentPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeploymentPlan_MainInstance(), theUMLPackage.getInstanceSpecification(), null, "mainInstance", null, 1, 1, DeploymentPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDeploymentPlan_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 1, 1, DeploymentPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1700,18 +1809,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEClass(compImplTemplateEClass, CompImplTemplate.class, "CompImplTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCompImplTemplate_TemplateDefs(), theTypesPackage.getString(), "templateDefs", null, 0, 1, CompImplTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCompImplTemplate_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, CompImplTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(cppLibraryEClass, CppLibrary.class, "CppLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCppLibrary_Macros(), theTypesPackage.getString(), "macros", null, 0, -1, CppLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getCppLibrary_Libs(), theTypesPackage.getString(), "libs", null, 0, -1, CppLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getCppLibrary_LibPaths(), theTypesPackage.getString(), "libPaths", null, 0, -1, CppLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getCppLibrary_IncludePaths(), theTypesPackage.getString(), "includePaths", null, 0, -1, CppLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(externalLibraryEClass, ExternalLibrary.class, "ExternalLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExternalLibrary_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 1, 1, ExternalLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(javaLibraryEClass, JavaLibrary.class, "JavaLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getJavaLibrary_ClassPath(), theTypesPackage.getString(), "classPath", null, 0, -1, JavaLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(implementationPropertiesEClass, ImplementationProperties.class, "ImplementationProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImplementationProperties_SizeRAM(), theTypesPackage.getInteger(), "sizeRAM", null, 1, 1, ImplementationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1745,6 +1842,10 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEReference(getTarget_UsedOS(), this.getOperatingSystem(), null, "usedOS", null, 1, 1, Target.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getTarget_AvailRAM(), theTypesPackage.getInteger(), "availRAM", null, 1, 1, Target.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getTarget_AvailROM(), theTypesPackage.getInteger(), "availROM", null, 1, 1, Target.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getTarget_Compiler(), this.getCompilerChain(), null, "compiler", null, 1, 1, Target.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(compilerChainEClass, CompilerChain.class, "CompilerChain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompilerChain_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, CompilerChain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFragment_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, Fragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1772,13 +1873,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEReference(getExtendedSignature_BaseSignature(), theUMLPackage.getTemplateSignature(), null, "baseSignature", null, 1, 1, ExtendedSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(containerPortEClass, ContainerPort.class, "ContainerPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(useInstanceConfiguratorEClass, UseInstanceConfigurator.class, "UseInstanceConfigurator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUseInstanceConfigurator_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, UseInstanceConfigurator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getUseInstanceConfigurator_Configurator(), this.getInstanceConfigurator(), null, "configurator", null, 1, 1, UseInstanceConfigurator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(instanceConfiguratorEClass, InstanceConfigurator.class, "InstanceConfigurator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInstanceConfigurator_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, InstanceConfigurator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(templateKindEEnum, TemplateKind.class, "TemplateKind");

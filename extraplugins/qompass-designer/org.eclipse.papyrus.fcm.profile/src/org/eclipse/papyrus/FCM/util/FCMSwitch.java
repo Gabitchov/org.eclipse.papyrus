@@ -86,6 +86,73 @@ public class FCMSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FCMPackage.ASSEMBLY: {
+				Assembly assembly = (Assembly)theEObject;
+				T result = caseAssembly(assembly);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.FLATTEN: {
+				Flatten flatten = (Flatten)theEObject;
+				T result = caseFlatten(flatten);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.COMP_TO_OOMAPPING: {
+				CompToOOmapping compToOOmapping = (CompToOOmapping)theEObject;
+				T result = caseCompToOOmapping(compToOOmapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.PROG_LANGUAGE: {
+				ProgLanguage progLanguage = (ProgLanguage)theEObject;
+				T result = caseProgLanguage(progLanguage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.CODE_GEN_OPTIONS: {
+				CodeGenOptions codeGenOptions = (CodeGenOptions)theEObject;
+				T result = caseCodeGenOptions(codeGenOptions);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.INTERACTION_COMPONENT: {
+				InteractionComponent interactionComponent = (InteractionComponent)theEObject;
+				T result = caseInteractionComponent(interactionComponent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.SINGLETON: {
+				Singleton singleton = (Singleton)theEObject;
+				T result = caseSingleton(singleton);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.CONNECTOR: {
+				Connector connector = (Connector)theEObject;
+				T result = caseConnector(connector);
+				if (result == null) result = caseConfigurableElementInstance(connector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.CONFIGURABLE_ELEMENT_INSTANCE: {
+				ConfigurableElementInstance configurableElementInstance = (ConfigurableElementInstance)theEObject;
+				T result = caseConfigurableElementInstance(configurableElementInstance);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.USE_INSTANCE_CONFIGURATOR: {
+				UseInstanceConfigurator useInstanceConfigurator = (UseInstanceConfigurator)theEObject;
+				T result = caseUseInstanceConfigurator(useInstanceConfigurator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.INSTANCE_CONFIGURATOR: {
+				InstanceConfigurator instanceConfigurator = (InstanceConfigurator)theEObject;
+				T result = caseInstanceConfigurator(instanceConfigurator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case FCMPackage.RULE_APPLICATION: {
 				RuleApplication ruleApplication = (RuleApplication)theEObject;
 				T result = caseRuleApplication(ruleApplication);
@@ -104,18 +171,6 @@ public class FCMSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FCMPackage.SINGLETON: {
-				Singleton singleton = (Singleton)theEObject;
-				T result = caseSingleton(singleton);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FCMPackage.INTERACTION_COMPONENT: {
-				InteractionComponent interactionComponent = (InteractionComponent)theEObject;
-				T result = caseInteractionComponent(interactionComponent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case FCMPackage.PORT_KIND: {
 				PortKind portKind = (PortKind)theEObject;
 				T result = casePortKind(portKind);
@@ -126,19 +181,6 @@ public class FCMSwitch<T> extends Switch<T> {
 				Port port = (Port)theEObject;
 				T result = casePort(port);
 				if (result == null) result = caseConfigurableElementInstance(port);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FCMPackage.CONFIGURABLE_ELEMENT_INSTANCE: {
-				ConfigurableElementInstance configurableElementInstance = (ConfigurableElementInstance)theEObject;
-				T result = caseConfigurableElementInstance(configurableElementInstance);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FCMPackage.CONNECTOR: {
-				Connector connector = (Connector)theEObject;
-				T result = caseConnector(connector);
-				if (result == null) result = caseConfigurableElementInstance(connector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,26 +199,6 @@ public class FCMSwitch<T> extends Switch<T> {
 			case FCMPackage.COMP_IMPL_TEMPLATE: {
 				CompImplTemplate compImplTemplate = (CompImplTemplate)theEObject;
 				T result = caseCompImplTemplate(compImplTemplate);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FCMPackage.CPP_LIBRARY: {
-				CppLibrary cppLibrary = (CppLibrary)theEObject;
-				T result = caseCppLibrary(cppLibrary);
-				if (result == null) result = caseExternalLibrary(cppLibrary);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FCMPackage.EXTERNAL_LIBRARY: {
-				ExternalLibrary externalLibrary = (ExternalLibrary)theEObject;
-				T result = caseExternalLibrary(externalLibrary);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FCMPackage.JAVA_LIBRARY: {
-				JavaLibrary javaLibrary = (JavaLibrary)theEObject;
-				T result = caseJavaLibrary(javaLibrary);
-				if (result == null) result = caseExternalLibrary(javaLibrary);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -213,6 +235,12 @@ public class FCMSwitch<T> extends Switch<T> {
 			case FCMPackage.TARGET: {
 				Target target = (Target)theEObject;
 				T result = caseTarget(target);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.COMPILER_CHAIN: {
+				CompilerChain compilerChain = (CompilerChain)theEObject;
+				T result = caseCompilerChain(compilerChain);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -264,18 +292,6 @@ public class FCMSwitch<T> extends Switch<T> {
 				T result = caseContainerPort(containerPort);
 				if (result == null) result = casePort(containerPort);
 				if (result == null) result = caseConfigurableElementInstance(containerPort);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FCMPackage.USE_INSTANCE_CONFIGURATOR: {
-				UseInstanceConfigurator useInstanceConfigurator = (UseInstanceConfigurator)theEObject;
-				T result = caseUseInstanceConfigurator(useInstanceConfigurator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FCMPackage.INSTANCE_CONFIGURATOR: {
-				InstanceConfigurator instanceConfigurator = (InstanceConfigurator)theEObject;
-				T result = caseInstanceConfigurator(instanceConfigurator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -509,36 +525,6 @@ public class FCMSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Cpp Library</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Cpp Library</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCppLibrary(CppLibrary object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Library</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Library</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExternalLibrary(ExternalLibrary object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Implementation Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -554,6 +540,81 @@ public class FCMSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Assembly</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Assembly</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssembly(Assembly object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Flatten</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Flatten</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFlatten(Flatten object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Comp To OOmapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Comp To OOmapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompToOOmapping(CompToOOmapping object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Prog Language</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Prog Language</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProgLanguage(ProgLanguage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Code Gen Options</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Code Gen Options</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCodeGenOptions(CodeGenOptions object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Rule Application</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -565,21 +626,6 @@ public class FCMSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRuleApplication(RuleApplication object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Java Library</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Java Library</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseJavaLibrary(JavaLibrary object) {
 		return null;
 	}
 
@@ -640,6 +686,21 @@ public class FCMSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTarget(Target object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compiler Chain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compiler Chain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompilerChain(CompilerChain object) {
 		return null;
 	}
 

@@ -81,6 +81,50 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 				return createImplementationGroupAdapter();
 			}
 			@Override
+			public Adapter caseAssembly(Assembly object) {
+				return createAssemblyAdapter();
+			}
+			@Override
+			public Adapter caseFlatten(Flatten object) {
+				return createFlattenAdapter();
+			}
+			@Override
+			public Adapter caseCompToOOmapping(CompToOOmapping object) {
+				return createCompToOOmappingAdapter();
+			}
+			@Override
+			public Adapter caseProgLanguage(ProgLanguage object) {
+				return createProgLanguageAdapter();
+			}
+			@Override
+			public Adapter caseCodeGenOptions(CodeGenOptions object) {
+				return createCodeGenOptionsAdapter();
+			}
+			@Override
+			public Adapter caseInteractionComponent(InteractionComponent object) {
+				return createInteractionComponentAdapter();
+			}
+			@Override
+			public Adapter caseSingleton(Singleton object) {
+				return createSingletonAdapter();
+			}
+			@Override
+			public Adapter caseConnector(Connector object) {
+				return createConnectorAdapter();
+			}
+			@Override
+			public Adapter caseConfigurableElementInstance(ConfigurableElementInstance object) {
+				return createConfigurableElementInstanceAdapter();
+			}
+			@Override
+			public Adapter caseUseInstanceConfigurator(UseInstanceConfigurator object) {
+				return createUseInstanceConfiguratorAdapter();
+			}
+			@Override
+			public Adapter caseInstanceConfigurator(InstanceConfigurator object) {
+				return createInstanceConfiguratorAdapter();
+			}
+			@Override
 			public Adapter caseRuleApplication(RuleApplication object) {
 				return createRuleApplicationAdapter();
 			}
@@ -93,28 +137,12 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 				return createConfigOptionAdapter();
 			}
 			@Override
-			public Adapter caseSingleton(Singleton object) {
-				return createSingletonAdapter();
-			}
-			@Override
-			public Adapter caseInteractionComponent(InteractionComponent object) {
-				return createInteractionComponentAdapter();
-			}
-			@Override
 			public Adapter casePortKind(PortKind object) {
 				return createPortKindAdapter();
 			}
 			@Override
 			public Adapter casePort(Port object) {
 				return createPortAdapter();
-			}
-			@Override
-			public Adapter caseConfigurableElementInstance(ConfigurableElementInstance object) {
-				return createConfigurableElementInstanceAdapter();
-			}
-			@Override
-			public Adapter caseConnector(Connector object) {
-				return createConnectorAdapter();
 			}
 			@Override
 			public Adapter caseDeploymentPlan(DeploymentPlan object) {
@@ -127,18 +155,6 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCompImplTemplate(CompImplTemplate object) {
 				return createCompImplTemplateAdapter();
-			}
-			@Override
-			public Adapter caseCppLibrary(CppLibrary object) {
-				return createCppLibraryAdapter();
-			}
-			@Override
-			public Adapter caseExternalLibrary(ExternalLibrary object) {
-				return createExternalLibraryAdapter();
-			}
-			@Override
-			public Adapter caseJavaLibrary(JavaLibrary object) {
-				return createJavaLibraryAdapter();
 			}
 			@Override
 			public Adapter caseImplementationProperties(ImplementationProperties object) {
@@ -163,6 +179,10 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTarget(Target object) {
 				return createTargetAdapter();
+			}
+			@Override
+			public Adapter caseCompilerChain(CompilerChain object) {
+				return createCompilerChainAdapter();
 			}
 			@Override
 			public Adapter caseFragment(Fragment object) {
@@ -195,14 +215,6 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseContainerPort(ContainerPort object) {
 				return createContainerPortAdapter();
-			}
-			@Override
-			public Adapter caseUseInstanceConfigurator(UseInstanceConfigurator object) {
-				return createUseInstanceConfiguratorAdapter();
-			}
-			@Override
-			public Adapter caseInstanceConfigurator(InstanceConfigurator object) {
-				return createInstanceConfiguratorAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -435,34 +447,6 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.CppLibrary <em>Cpp Library</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.FCM.CppLibrary
-	 * @generated
-	 */
-	public Adapter createCppLibraryAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.ExternalLibrary <em>External Library</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.FCM.ExternalLibrary
-	 * @generated
-	 */
-	public Adapter createExternalLibraryAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.ImplementationGroup <em>Implementation Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -477,6 +461,76 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.Assembly <em>Assembly</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.FCM.Assembly
+	 * @generated
+	 */
+	public Adapter createAssemblyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.Flatten <em>Flatten</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.FCM.Flatten
+	 * @generated
+	 */
+	public Adapter createFlattenAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.CompToOOmapping <em>Comp To OOmapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.FCM.CompToOOmapping
+	 * @generated
+	 */
+	public Adapter createCompToOOmappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.ProgLanguage <em>Prog Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.FCM.ProgLanguage
+	 * @generated
+	 */
+	public Adapter createProgLanguageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.CodeGenOptions <em>Code Gen Options</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.FCM.CodeGenOptions
+	 * @generated
+	 */
+	public Adapter createCodeGenOptionsAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.RuleApplication <em>Rule Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -487,20 +541,6 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRuleApplicationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.JavaLibrary <em>Java Library</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.FCM.JavaLibrary
-	 * @generated
-	 */
-	public Adapter createJavaLibraryAdapter() {
 		return null;
 	}
 
@@ -557,6 +597,20 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTargetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.CompilerChain <em>Compiler Chain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.FCM.CompilerChain
+	 * @generated
+	 */
+	public Adapter createCompilerChainAdapter() {
 		return null;
 	}
 

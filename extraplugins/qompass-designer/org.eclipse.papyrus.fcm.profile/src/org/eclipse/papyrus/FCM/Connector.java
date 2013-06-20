@@ -13,6 +13,10 @@ import org.eclipse.uml2.uml.Property;
  * A representation of the model object '<em><b>Connector</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This stereotype references the interaction component that should realize the communication. It can be applied to UML connectors as well as to properties. The former is used, if there are two communication partners, the latter is more flexible. For instance, in case of a DDS interaction, a publisher does not know the consumers, it therefore communicates with a part (property) representing the publisher part of the interaction component
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>

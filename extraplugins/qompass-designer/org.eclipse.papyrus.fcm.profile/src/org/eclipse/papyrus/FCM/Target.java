@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Node;
  *   <li>{@link org.eclipse.papyrus.FCM.Target#getUsedOS <em>Used OS</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.Target#getAvailRAM <em>Avail RAM</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.Target#getAvailROM <em>Avail ROM</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.Target#getCompiler <em>Compiler</em>}</li>
  * </ul>
  * </p>
  *
@@ -178,5 +179,31 @@ public interface Target extends EObject {
 	 * @generated
 	 */
 	void setAvailROM(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Compiler</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Compiler</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Compiler</em>' reference.
+	 * @see #setCompiler(CompilerChain)
+	 * @see org.eclipse.papyrus.FCM.FCMPackage#getTarget_Compiler()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	CompilerChain getCompiler();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Target#getCompiler <em>Compiler</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Compiler</em>' reference.
+	 * @see #getCompiler()
+	 * @generated
+	 */
+	void setCompiler(CompilerChain value);
 
 } // Target

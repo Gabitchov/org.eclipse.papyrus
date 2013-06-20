@@ -62,26 +62,31 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.TEMPLATE: return createTemplate();
 			case FCMPackage.CONFIGURATION_PROPERTY: return createConfigurationProperty();
 			case FCMPackage.IMPLEMENTATION_GROUP: return createImplementationGroup();
+			case FCMPackage.ASSEMBLY: return createAssembly();
+			case FCMPackage.FLATTEN: return createFlatten();
+			case FCMPackage.COMP_TO_OOMAPPING: return createCompToOOmapping();
+			case FCMPackage.PROG_LANGUAGE: return createProgLanguage();
+			case FCMPackage.CODE_GEN_OPTIONS: return createCodeGenOptions();
+			case FCMPackage.INTERACTION_COMPONENT: return createInteractionComponent();
+			case FCMPackage.SINGLETON: return createSingleton();
+			case FCMPackage.CONNECTOR: return createConnector();
+			case FCMPackage.USE_INSTANCE_CONFIGURATOR: return createUseInstanceConfigurator();
+			case FCMPackage.INSTANCE_CONFIGURATOR: return createInstanceConfigurator();
 			case FCMPackage.RULE_APPLICATION: return createRuleApplication();
 			case FCMPackage.CONTAINER_RULE: return createContainerRule();
 			case FCMPackage.CONFIG_OPTION: return createConfigOption();
-			case FCMPackage.SINGLETON: return createSingleton();
-			case FCMPackage.INTERACTION_COMPONENT: return createInteractionComponent();
 			case FCMPackage.PORT_KIND: return createPortKind();
 			case FCMPackage.PORT: return createPort();
-			case FCMPackage.CONNECTOR: return createConnector();
 			case FCMPackage.DEPLOYMENT_PLAN: return createDeploymentPlan();
 			case FCMPackage.DERIVED_ELEMENT: return createDerivedElement();
 			case FCMPackage.COMP_IMPL_TEMPLATE: return createCompImplTemplate();
-			case FCMPackage.CPP_LIBRARY: return createCppLibrary();
-			case FCMPackage.EXTERNAL_LIBRARY: return createExternalLibrary();
-			case FCMPackage.JAVA_LIBRARY: return createJavaLibrary();
 			case FCMPackage.IMPLEMENTATION_PROPERTIES: return createImplementationProperties();
 			case FCMPackage.OPERATING_SYSTEM: return createOperatingSystem();
 			case FCMPackage.TARGET_ARCHITECTURE: return createTargetArchitecture();
 			case FCMPackage.CONFIGURATION: return createConfiguration();
 			case FCMPackage.INTERCEPTION_RULE: return createInterceptionRule();
 			case FCMPackage.TARGET: return createTarget();
+			case FCMPackage.COMPILER_CHAIN: return createCompilerChain();
 			case FCMPackage.FRAGMENT: return createFragment();
 			case FCMPackage.COPY_ATTRIBUTE_VALUE: return createCopyAttributeValue();
 			case FCMPackage.AUTO_INDEX: return createAutoIndex();
@@ -90,8 +95,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.CONNECTOR_CONFIGURATION: return createConnectorConfiguration();
 			case FCMPackage.EXTENDED_SIGNATURE: return createExtendedSignature();
 			case FCMPackage.CONTAINER_PORT: return createContainerPort();
-			case FCMPackage.USE_INSTANCE_CONFIGURATOR: return createUseInstanceConfigurator();
-			case FCMPackage.INSTANCE_CONFIGURATOR: return createInstanceConfigurator();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -264,26 +267,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CppLibrary createCppLibrary() {
-		CppLibraryImpl cppLibrary = new CppLibraryImpl();
-		return cppLibrary;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExternalLibrary createExternalLibrary() {
-		ExternalLibraryImpl externalLibrary = new ExternalLibraryImpl();
-		return externalLibrary;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ImplementationGroup createImplementationGroup() {
 		ImplementationGroupImpl implementationGroup = new ImplementationGroupImpl();
 		return implementationGroup;
@@ -294,9 +277,9 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RuleApplication createRuleApplication() {
-		RuleApplicationImpl ruleApplication = new RuleApplicationImpl();
-		return ruleApplication;
+	public Assembly createAssembly() {
+		AssemblyImpl assembly = new AssemblyImpl();
+		return assembly;
 	}
 
 	/**
@@ -304,9 +287,49 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JavaLibrary createJavaLibrary() {
-		JavaLibraryImpl javaLibrary = new JavaLibraryImpl();
-		return javaLibrary;
+	public Flatten createFlatten() {
+		FlattenImpl flatten = new FlattenImpl();
+		return flatten;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompToOOmapping createCompToOOmapping() {
+		CompToOOmappingImpl compToOOmapping = new CompToOOmappingImpl();
+		return compToOOmapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProgLanguage createProgLanguage() {
+		ProgLanguageImpl progLanguage = new ProgLanguageImpl();
+		return progLanguage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CodeGenOptions createCodeGenOptions() {
+		CodeGenOptionsImpl codeGenOptions = new CodeGenOptionsImpl();
+		return codeGenOptions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RuleApplication createRuleApplication() {
+		RuleApplicationImpl ruleApplication = new RuleApplicationImpl();
+		return ruleApplication;
 	}
 
 	/**
@@ -347,6 +370,16 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	public Target createTarget() {
 		TargetImpl target = new TargetImpl();
 		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompilerChain createCompilerChain() {
+		CompilerChainImpl compilerChain = new CompilerChainImpl();
+		return compilerChain;
 	}
 
 	/**

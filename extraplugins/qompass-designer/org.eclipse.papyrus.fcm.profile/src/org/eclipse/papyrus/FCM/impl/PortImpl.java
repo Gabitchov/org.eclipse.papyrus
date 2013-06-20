@@ -171,6 +171,9 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 	 * @generated NOT
 	 */
 	public Interface basicGetProvidedInterface() {
+		if(base_Port == null) {
+			return null;
+		}
 		if(base_Port.isConjugated()) {
 			return MapUtil.getRequiredInterface(this);
 		}
@@ -206,6 +209,9 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 	 * @generated NOT
 	 */
 	public Interface basicGetRequiredInterface() {
+		if(base_Port == null) {
+			return null;
+		}
 		if(!base_Port.isConjugated()) {
 			return MapUtil.getRequiredInterface(this);
 		}
@@ -336,5 +342,9 @@ public class PortImpl extends ConfigurableElementInstanceImpl implements Port {
 			}
 		}
 		return null;
+	}
+	
+	public void update() {
+		MapUtil.update(this);		
 	}
 }
