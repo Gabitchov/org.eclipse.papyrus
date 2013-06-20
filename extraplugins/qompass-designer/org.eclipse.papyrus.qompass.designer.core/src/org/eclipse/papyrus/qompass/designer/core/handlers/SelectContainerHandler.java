@@ -14,6 +14,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
+import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
+import org.eclipse.papyrus.qompass.designer.core.dialogs.ContainerDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -21,12 +24,8 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
-import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
-import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
-import org.eclipse.papyrus.qompass.designer.core.dialogs.ContainerDialog;
-
 /**
- * Implementation class for ClassAction action
+ * Call the dialogs for selecting a container rule
  */
 public class SelectContainerHandler extends CmdHandler {
 
@@ -79,7 +78,7 @@ public class SelectContainerHandler extends CmdHandler {
 		if(element instanceof Class) {
 			// container dialog: either extension, rule or interceptor
 			// howto select? which? (and howto add/remove?) - Std - dialog is good?
-			CommandSupport.exec("Select container", new RunnableWithResult() {
+			CommandSupport.exec("Select container", event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					ContainerDialog elementSelector =

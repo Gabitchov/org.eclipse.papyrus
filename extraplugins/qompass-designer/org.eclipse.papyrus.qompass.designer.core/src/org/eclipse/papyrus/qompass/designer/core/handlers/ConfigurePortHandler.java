@@ -14,16 +14,15 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
+import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
+import org.eclipse.papyrus.qompass.designer.core.dialogs.ConfigureInstanceDialog;
+import org.eclipse.papyrus.qompass.designer.core.dialogs.ConfigurePortDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
-
-import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
-import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
-import org.eclipse.papyrus.qompass.designer.core.dialogs.ConfigureInstanceDialog;
-import org.eclipse.papyrus.qompass.designer.core.dialogs.ConfigurePortDialog;
 
 /**
  * Implementation class for ClassAction action
@@ -62,7 +61,7 @@ public class ConfigurePortHandler extends CmdHandler {
 		// 2. select implementation group according to connector type
 
 		if(element instanceof Class) {
-			CommandSupport.exec("Configure ports", new RunnableWithResult() {
+			CommandSupport.exec("Configure ports", event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					ConfigurePortDialog configureInstanceDialog =
@@ -79,7 +78,7 @@ public class ConfigurePortHandler extends CmdHandler {
 				}
 			});
 		} else if(element instanceof Port) {
-			CommandSupport.exec("Configure ports", new RunnableWithResult() {
+			CommandSupport.exec("Configure ports", event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					ConfigurePortDialog configurePortDialog =
@@ -99,7 +98,7 @@ public class ConfigurePortHandler extends CmdHandler {
 			
 		} else if(element instanceof InstanceSpecification) {
 
-			CommandSupport.exec("Configure instance", new RunnableWithResult() {
+			CommandSupport.exec("Configure instance", event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =

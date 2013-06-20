@@ -1,6 +1,24 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.FCM.Port;
+import org.eclipse.papyrus.FCM.util.IMappingRule;
+import org.eclipse.papyrus.FCM.util.MapUtil;
+import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
@@ -9,10 +27,6 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.papyrus.FCM.Port;
-import org.eclipse.papyrus.FCM.util.IMappingRule;
-import org.eclipse.papyrus.FCM.util.MapUtil;
-import org.eclipse.papyrus.qompass.designer.core.Log;
 
 /**
  * Will generate a suitable called interface push consumer. The port is typed with a primitive type
@@ -24,11 +38,7 @@ import org.eclipse.papyrus.qompass.designer.core.Log;
  */
 public class PushConsumer implements IMappingRule {
 
-	public int needsTransaction() {
-		return IMappingRule.PROVIDED;
-	}
-
-	public Interface getProvided(Port p, InstanceSpecification config) {
+	public Interface getProvided(Port p, InstanceSpecification config, boolean update) {
 		Log.log(Log.INFO_MSG, Log.CALC_PORTKIND,
 			p.getKind().getBase_Class().getName() + " => GetProvided on " + p.getBase_Port().getName());
 		Type type = p.getBase_Port().getType();
@@ -36,6 +46,10 @@ public class PushConsumer implements IMappingRule {
 		if((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
 			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, "Push_", type);
+			if (!update) {
+				return derivedInterface;
+			}
+			
 			if(derivedInterface == null) {
 				// may happen, if within template (do not want creation of derived interfaces in template)
 				return null;
@@ -59,7 +73,7 @@ public class PushConsumer implements IMappingRule {
 		}
 	}
 
-	public Interface getRequired(Port p, InstanceSpecification config) {
+	public Interface getRequired(Port p, InstanceSpecification config, boolean update) {
 		return null;
 	}
 }

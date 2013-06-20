@@ -13,6 +13,7 @@ package org.eclipse.papyrus.qompass.designer.core;
 
 import java.util.Collections;
 
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -22,7 +23,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 
 /**
  * Utility function. Allow execution of commands on a transactional command stack
@@ -38,10 +39,10 @@ public class CommandSupport {
 	 * @param label
 	 * @param command
 	 */
-	public static void exec(String label, final Runnable command) {
-		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
+	public static void exec(String label, ExecutionEvent event, final Runnable command) {
+		ServiceUtilsForHandlers serviceUtils = ServiceUtilsForHandlers.getInstance();
 		try {
-			exec(serviceUtils.getTransactionalEditingDomain(), label, command);
+			exec(serviceUtils.getTransactionalEditingDomain(event), label, command);
 		} catch (ServiceException e) {
 			Log.log(Log.ERROR_MSG, Log.UTILS, "Can not get editing domain");
 		}
@@ -53,11 +54,12 @@ public class CommandSupport {
 	 * @param label
 	 * @param command
 	 */
-	public static void exec(String label, final RunnableWithResult command) {
-		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
+	public static void exec(String label, ExecutionEvent event, final RunnableWithResult command) {
+		// ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
+		ServiceUtilsForHandlers serviceUtils = ServiceUtilsForHandlers.getInstance();
 		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
 		try {
-			history.execute(new AbstractTransactionalCommand(serviceUtils.getTransactionalEditingDomain(),
+			history.execute(new AbstractTransactionalCommand(serviceUtils.getTransactionalEditingDomain(event),
 				label, Collections.EMPTY_LIST) {
 
 				public CommandResult doExecuteWithResult(IProgressMonitor dummy, IAdaptable info) {

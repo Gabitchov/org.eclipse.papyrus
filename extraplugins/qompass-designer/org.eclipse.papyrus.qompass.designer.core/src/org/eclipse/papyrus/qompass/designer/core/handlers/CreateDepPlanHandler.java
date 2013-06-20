@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -5,13 +19,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Stereotype;
-
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -20,6 +27,12 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Stereotype;
 
 public class CreateDepPlanHandler extends CmdHandler {
 
@@ -49,7 +62,7 @@ public class CreateDepPlanHandler extends CmdHandler {
 		}
 		final Class selectedComposite = (Class)getSelectedEObject();
 
-		CommandSupport.exec("Create deployment plans", new Runnable() {
+		CommandSupport.exec("Create deployment plans", event, new Runnable() {
 
 			public void run() {
 				// execute with transaction support
@@ -94,7 +107,7 @@ public class CreateDepPlanHandler extends CmdHandler {
 			}
 			final String depPlanName = name;
 
-			CommandSupport.exec("Create deployment plan", new RunnableWithResult() {
+			CommandSupport.exec("Create deployment plan", event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					Package cdp = depPlans.createNestedPackage(depPlanName);

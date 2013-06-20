@@ -1,15 +1,33 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.transformations;
 
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.FCM.DerivedElement;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.papyrus.FCM.DerivedElement;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 
+/**
+ * Utility functions for the update derived elements, e.g. operations of a component
+ * that depend on the operations of an interface that is offered by the component.
+ */
 public class UpdateUtils {
 
 	public static EList<Element> getDerivedElements(Package pkg, NamedElement source) {

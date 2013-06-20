@@ -1,3 +1,18 @@
+/*******************************************************************import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Package;
+s distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.transformations;
 
 import java.util.HashMap;

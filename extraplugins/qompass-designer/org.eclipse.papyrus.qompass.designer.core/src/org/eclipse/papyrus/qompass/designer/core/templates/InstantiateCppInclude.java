@@ -1,8 +1,20 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.templates;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
@@ -10,14 +22,12 @@ import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.TemplateBinding;
 
 /**
- * Synchronize derived realizations (after copying). If re-synchronization is not done, the
- * relationship would point to wrong interface, if it is derived and depending on a formal parameter
- * (e.g. derived push interface with formal parameter T would be at wrong location).
- * => TODO: incomplete explication, re-think about location of derived interface
- * 
- * @author ansgar
+ * Instantiate the text within a C++Include tag.
+ * TODO: this function is C++ specific and should not be here
  * 
  */
 public class InstantiateCppInclude implements CopyListener {

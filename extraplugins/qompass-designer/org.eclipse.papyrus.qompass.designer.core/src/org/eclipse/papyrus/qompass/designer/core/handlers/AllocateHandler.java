@@ -15,14 +15,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.dialogs.AllocationDialog;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.uml2.uml.Package;
 
 /**
  * Implementation class for ClassAction action
@@ -66,7 +66,7 @@ public class AllocateHandler extends CmdHandler {
 
 		// container dialog: either extension, rule or interceptor
 		// howto select? which? (and howto add/remove?) - Std - dialog is good?
-		CommandSupport.exec("Instance allocation", new RunnableWithResult() {
+		CommandSupport.exec("Instance allocation", event, new RunnableWithResult() {
 
 			public CommandResult run() {
 				AllocationDialog allocDialog =

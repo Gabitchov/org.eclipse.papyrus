@@ -713,12 +713,12 @@ return processID;</body>
   <FCM:DerivedElement xmi:id="_JK-qwF2qEd-12d_h0i1xhQ" base_Element="_UdpIsD1nEd-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/SystemInterfaces.uml#_W7YrADz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
-  <FCM:CppLibrary xmi:id="_Sv6AMIKiEd-XA4A2KZ9L7Q" base_Package="_IewAUDguEd-9wq2wHPy3lw">
+  <C_Cpp:ExternLibrary xmi:id="_Sv6AMIKiEd-XA4A2KZ9L7Q" base_Package="_IewAUDguEd-9wq2wHPy3lw">
     <libs>otf</libs>
     <libPaths>/OTF-1.5/otflib/.libs</libPaths>
-    <includePaths>/OTF-1.5</includePaths>
+    <includes>/OTF-1.5</includes>
     <includes>otflib/includes.h</includes>
-  </FCM:CppLibrary>
+  </C_Cpp:ExternLibrary>
   <FCM:ContainerRule xmi:id="_ISo6gLdwEd-CtfrGQre34Q" base_Class="_GVZxwLdwEd-CtfrGQre34Q" extensionKind="InterceptAllPorts" interceptor="_35od4DKrEd-z5o2wSoJ16A">
     <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
@@ -742,10 +742,10 @@ return processID;</body>
   <FCM:InterceptionRule xmi:id="_m-L0sPwkEeGWn-a9PUOYcA" interceptionKind="InterceptAll" base_Property="_d7If0PwkEeGWn-a9PUOYcA"/>
   <C_Cpp:Include xmi:id="__rP4oPxWEeGOK9t90vpALA" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(clazz : Class)]&#xA;[clazz.declareTP()/]&#xA;[/template]" base_class="_rGPjgPxWEeGOK9t90vpALA" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE"/>
   <FCM:Template xmi:id="_bKW5IPxXEeGOK9t90vpALA" base_Element="_YU5H4PxXEeGOK9t90vpALA" kind="LoopOperations"/>
-  <FCM:CppLibrary xmi:id="_t_sHUPzOEeGKDvxFM1SZ_g" base_Package="_nAkZEPzOEeGKDvxFM1SZ_g">
+  <C_Cpp:ExternLibrary xmi:id="_t_sHUPzOEeGKDvxFM1SZ_g" base_Package="_nAkZEPzOEeGKDvxFM1SZ_g">
     <libs>lttng-ust</libs>
     <libs>dl</libs>
-  </FCM:CppLibrary>
+  </C_Cpp:ExternLibrary>
   <C_Cpp:ExternClass xmi:id="_1PAQ4PzSEeGKDvxFM1SZ_g" name="lttng/tracepoint.h" base_class="_v-VBcPzSEeGKDvxFM1SZ_g"/>
   <FCM:Template xmi:id="_flfM8PzhEeGe5LUTfvP5hQ" base_Element="_rGPjgPxWEeGOK9t90vpALA"/>
   <FCM:InteractionComponent xmi:id="__yL98PzhEeGe5LUTfvP5hQ" base_Class="_pwl_MPxWEeGOK9t90vpALA"/>

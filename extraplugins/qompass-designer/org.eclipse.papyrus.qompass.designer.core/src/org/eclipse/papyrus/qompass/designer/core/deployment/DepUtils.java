@@ -10,6 +10,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.FCM.DeploymentPlan;
+import org.eclipse.papyrus.FCM.ImplementationGroup;
+import org.eclipse.papyrus.FCM.ImplementationProperties;
+import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.FCM.Target;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.common.util.UML2Util;
@@ -29,13 +36,6 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
-import org.eclipse.papyrus.FCM.DeploymentPlan;
-import org.eclipse.papyrus.FCM.ImplementationGroup;
-import org.eclipse.papyrus.FCM.ImplementationProperties;
-import org.eclipse.papyrus.FCM.InteractionComponent;
-import org.eclipse.papyrus.FCM.Target;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 
 /**
  * Utilities around instances (within deployment plan)
@@ -423,6 +423,14 @@ public class DepUtils {
 		return null;
 	}
 
+	/**
+	 * Return the access path in terms of slots to an instance specification, i.e. the
+	 * set of slots starting with the slot within the main instance that identifies the next
+	 * instance until arriving at the passed instance.
+	 * 
+	 * @param is
+	 * @return
+	 */
 	public static Stack<Slot> getAccessPath(InstanceSpecification is) {
 		Stack<Slot> path = new Stack<Slot>();
 		while(is != null) {
@@ -436,6 +444,11 @@ public class DepUtils {
 		return path;
 	}
 
+	/**
+	 * Return true, if an instance is shared
+	 * @param slot
+	 * @return
+	 */
 	public static boolean isShared(Slot slot) {
 		StructuralFeature df = slot.getDefiningFeature();
 		if(df instanceof Property) {

@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.sync;
 
 import java.util.Iterator;
@@ -5,19 +19,6 @@ import java.util.Iterator;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.BehavioralFeature;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.ConnectorEnd;
-import org.eclipse.uml2.uml.DirectedRelationship;
-import org.eclipse.uml2.uml.Generalization;
-import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.InterfaceRealization;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
@@ -28,6 +29,18 @@ import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.UpdateUtils;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.BehavioralFeature;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.DirectedRelationship;
+import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.InterfaceRealization;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Synchronize component implementation classes.
@@ -100,6 +113,7 @@ public class CompImplSync {
 				if(cl instanceof Class) {
 					Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "syncViaType => implementation: " + cl.getName());
 					Class implementation = (Class)cl;
+					updatePorts(implementation);
 					if(Utils.isCompImpl(cl)) {
 						// add realization relationship only for implementations
 						if(addOnly) {
@@ -134,21 +148,16 @@ public class CompImplSync {
 	 */
 
 	/**
-	 * Rename the operations/attributes associated with a port, if the ports
-	 * name or type has changed.
+	 * Update the ports of a class, i.e. recalculate its derived interfaces
 	 * 
 	 * @param component
 	 * @param port
 	 */
-	public static void renamePort(Class implementation, Port port, String oldName) {
-		Interface requiredIntf = PortUtils.getRequired(port);
-
-		if(requiredIntf != null) {
-			String oldOpName = PrefixConstants.getConnQ_Prefix + oldName;
-			NamedElement ne = implementation.getMember(oldOpName, false, UMLPackage.eINSTANCE.getOperation());
-			if(ne instanceof Operation) {
-				Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "rename " + oldOpName);
-				ne.setName(PrefixConstants.getConnQ_Prefix + port.getName());
+	public static void updatePorts(Class implementation) {
+		for (Port port : PortUtils.getAllPorts(implementation)) {
+			org.eclipse.papyrus.FCM.Port fcmPort = StUtils.getApplication(port, org.eclipse.papyrus.FCM.Port.class);
+			if (fcmPort != null) {
+				fcmPort.update();
 			}
 		}
 	}
@@ -231,6 +240,12 @@ public class CompImplSync {
 		EList<Interface> providedIntfs = new BasicEList<Interface>();
 		for(Port port : PortUtils.getAllPorts2(implementation)) {
 			Interface providedIntf = PortUtils.getProvided(port);
+			// check, if there is a getter already. In this case, we assume that we should not synchronize
+			// operations
+			String opName = PrefixConstants.connectQ_Prefix + port.getName();
+			if (implementation.getOwnedOperation(opName, null, null) != null) {
+				continue;
+			}
 			ConnectorEnd connEnd = ConnectorUtils.getDelegation(implementation, port);
 			// check that there is no delegation to a part which in turn has to implement the operations.
 			if((providedIntf != null) && (connEnd == null)) {

@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.FCM.CppLibrary;
+import org.eclipse.papyrus.C_Cpp.ExternLibrary;
 import org.eclipse.papyrus.FCM.OperatingSystem;
 import org.eclipse.papyrus.FCM.Target;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
@@ -227,9 +227,9 @@ public class CppLanguageSupport implements ILangSupport {
 	public void gatherConfigData(Class implementation) {
 		Element owner = implementation.getOwner();
 		while(owner instanceof Package) {
-			CppLibrary cppLibrary = StUtils.getApplication(owner, CppLibrary.class);
+			ExternLibrary cppLibrary = StUtils.getApplication(owner, ExternLibrary.class);
 			if(cppLibrary != null) {
-				includePaths.addAll(cppLibrary.getIncludePaths());
+				includePaths.addAll(cppLibrary.getIncludes());
 				for(String libPath : cppLibrary.getLibPaths()) {
 					if(libPath.startsWith("/")) {
 						// libPaths starting with a slash are relative to workspace location

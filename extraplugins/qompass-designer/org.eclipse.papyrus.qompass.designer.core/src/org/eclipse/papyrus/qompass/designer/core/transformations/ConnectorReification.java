@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.transformations;
 
 /**
@@ -33,8 +47,9 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.TemplateBinding;
 
 /**
- * This class provides model information around connectors ... Many classes are
- * currently commented, since it is not clear if we really need these
+ * This class enables the reification of connectors, i.e. the replacement of
+ * a UML connector with an interaction component. Reification is primarily
+ * done on the level of a composite class, the
  */
 public class ConnectorReification {
 

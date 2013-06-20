@@ -1,10 +1,18 @@
-/*
- * This file is part of Qompass GenTools
- * Copyright (C) 2008 CEA LIST (http://www-list.cea.fr/)
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *  Christophe JOUVRAY
+ *
+ *****************************************************************************/
 
- * initial developer : Christophe JOUVRAY from CEA LIST 
- *             Ansgar Radermacher
- */
 package org.eclipse.papyrus.qompass.designer.core.acceleo;
 
 import org.eclipse.emf.common.util.BasicEList;

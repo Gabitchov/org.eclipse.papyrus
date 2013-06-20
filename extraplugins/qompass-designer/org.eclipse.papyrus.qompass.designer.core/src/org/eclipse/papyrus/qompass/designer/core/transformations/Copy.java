@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.transformations;
 
 import java.util.HashMap;
@@ -17,6 +31,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -39,12 +56,23 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
-
 /**
- * information about source and target packages within a model transformation
+ * A specific copier that enables to make iterative and shallow copies of model elements
+ * from a source to a target model. It also supports copy-listeners, i.e. listeners that
+ * might apply modifications before and after an element is copied.
+ * This class is very useful for model transformations that make a lazy copy of elements,
+ * i.e. copy only elements that are needed in the target model.
+ *
+ * Iterative means that you can copy one element after another, i.e. you do not need
+ * to copy all elements in a single call.
+ * Shallow means that some elements are incomplete copies. For instance, if you copy an
+ * attribute of a class into the target model, the copy routine will create the attribute within
+ * a shallow copy of the original class. The created class is a kind of shallow "container". It
+ * is required, since we can't create the attribute without having a class, but it would initially
+ * only contain the attribute that we copy. This class would have the same qualified name as the
+ * original, i.e. it would be created within shallow packages. 
+ * A shallow copy can be transformed into a "real" copy
+ * by explicitly copying it.
  * 
  * @author ansgar
  * 
@@ -362,6 +390,10 @@ public class Copy extends Copier {
 			// test code
 			if(false && (name != null) && name.endsWith("::I")) {
 				System.err.println(name);
+			}
+			if ((name != null) && name.startsWith("fifo")) {
+				if (copyExtReferences)
+					System.err.println("Hallo");
 			}
 		}
 		// additional sanity check: want to avoid copying (instead of instantiating) elements

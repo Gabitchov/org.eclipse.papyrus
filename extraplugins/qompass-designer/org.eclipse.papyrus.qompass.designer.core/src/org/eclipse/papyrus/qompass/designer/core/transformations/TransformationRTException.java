@@ -12,14 +12,22 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.qompass.designer.core.dialogs;
+package org.eclipse.papyrus.qompass.designer.core.transformations;
 
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.uml2.uml.NamedElement;
+/**
+ * Variant of the transformation exception that extends RuntimeException. This
+ * is sometimes useful, since it avoids to declare exceptions specifically
+ *
+ */
+public class TransformationRTException extends RuntimeException {
 
-public class QNameLabelProvider extends LabelProvider {
-
-	public String getText(Object element) {
-		return ((NamedElement)element).getQualifiedName();
+	public TransformationRTException(String reason) {
+		super(reason);
 	}
-};
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1235L;
+	
+}

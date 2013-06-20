@@ -22,7 +22,7 @@
           <ownedParameteredElement xmi:type="uml:LiteralInteger" xmi:id="_OURcYK8vEeCXIcykFPsB8Q" name="size" templateParameter="_H5vB4K8vEeCXIcykFPsB8Q"/>
         </ownedParameter>
       </ownedTemplateSignature>
-      <packagedElement xmi:type="uml:Class" xmi:id="_DA0VYK4iEeCXIcykFPsB8Q" clientDependency="_DA0Vca4iEeCXIcykFPsB8Q _DA0Vcq4iEeCXIcykFPsB8Q" name="FIFOStaticAlloc_impl">
+      <packagedElement xmi:type="uml:Class" xmi:id="_DA0VYK4iEeCXIcykFPsB8Q" name="FIFOStaticAlloc_impl">
         <ownedComment xmi:type="uml:Comment" xmi:id="_DA0VYa4iEeCXIcykFPsB8Q" annotatedElement="_DA0VYK4iEeCXIcykFPsB8Q">
           <body>Implementation stores an attribute (fixed size array) of template data type</body>
         </ownedComment>
@@ -49,9 +49,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DA0Vba4iEeCXIcykFPsB8Q" value="20"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DA0VbK4iEeCXIcykFPsB8Q" value="20"/>
         </ownedAttribute>
-        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_DA0Vca4iEeCXIcykFPsB8Q" name="derived realization of D_Push_dataType" client="_DA0VYK4iEeCXIcykFPsB8Q" supplier="_EUZMIf68Ed6Zw96O-tCw7A" contract="_EUZMIf68Ed6Zw96O-tCw7A"/>
-        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_DA0Vcq4iEeCXIcykFPsB8Q" name="derived realization of D_PullConsumer_dataType" client="_DA0VYK4iEeCXIcykFPsB8Q" supplier="_EYj6cP68Ed6Zw96O-tCw7A" contract="_EYj6cP68Ed6Zw96O-tCw7A"/>
-        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DA0Vbq4iEeCXIcykFPsB8Q" name="pull" specification="_DA0Vd64iEeCXIcykFPsB8Q">
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DA0Vbq4iEeCXIcykFPsB8Q" name="pull">
           <language>C/C++</language>
           <body>if (m_filled > 0) {
 	int current_pos = m_pull_pos;
@@ -64,7 +62,7 @@
 	return m_fifo [current_pos];
 }</body>
         </ownedBehavior>
-        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DA0Vb64iEeCXIcykFPsB8Q" name="push" specification="_DA0Vc64iEeCXIcykFPsB8Q">
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DA0Vb64iEeCXIcykFPsB8Q" name="push">
           <language>C/C++</language>
           <body>// copy passed parameters ...
 if (m_filled &lt; m_size) {
@@ -76,35 +74,16 @@ if (m_filled &lt; m_size) {
 	}
 }</body>
         </ownedBehavior>
-        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DA0VcK4iEeCXIcykFPsB8Q" name="hasData" specification="_DA0Ve64iEeCXIcykFPsB8Q">
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DA0VcK4iEeCXIcykFPsB8Q" name="hasData">
           <language>C/C++</language>
           <body>return (m_filled > 0);</body>
         </ownedBehavior>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_DA0Vc64iEeCXIcykFPsB8Q" name="push" method="_DA0Vb64iEeCXIcykFPsB8Q">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_DA0VdK4iEeCXIcykFPsB8Q" name="data" type="_j_050HLoEd6R5tffIPrlPg">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DA0Vdq4iEeCXIcykFPsB8Q" value="1"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DA0Vda4iEeCXIcykFPsB8Q" value="1"/>
-          </ownedParameter>
-        </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_DA0Vd64iEeCXIcykFPsB8Q" name="pull" method="_DA0Vbq4iEeCXIcykFPsB8Q">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_5uM1EE2DEeGzNbfAXPgNLA" name="ret" type="_j_050HLoEd6R5tffIPrlPg" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5uODME2DEeGzNbfAXPgNLA" value="1"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5uOqQE2DEeGzNbfAXPgNLA" value="1"/>
-          </ownedParameter>
-        </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_DA0Ve64iEeCXIcykFPsB8Q" name="hasData" method="_DA0VcK4iEeCXIcykFPsB8Q">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_DA0VfK4iEeCXIcykFPsB8Q" name="ret" direction="return">
-            <type xmi:type="uml:PrimitiveType" href="corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DA0Vfq4iEeCXIcykFPsB8Q" value="1"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DA0Vfa4iEeCXIcykFPsB8Q" value="1"/>
-          </ownedParameter>
-        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_qlssgHLmEd6R5tffIPrlPg" name="DataExchange">
       <ownedTemplateSignature xmi:type="uml:TemplateSignature" xmi:id="_cHY98HLoEd6R5tffIPrlPg" parameter="_diTcwHLoEd6R5tffIPrlPg">
         <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_diTcwHLoEd6R5tffIPrlPg" parameteredElement="_j_050HLoEd6R5tffIPrlPg">
-          <ownedParameteredElement xmi:type="uml:DataType" xmi:id="_j_050HLoEd6R5tffIPrlPg" name="dataType" templateParameter="_diTcwHLoEd6R5tffIPrlPg"/>
+          <ownedParameteredElement xmi:type="uml:DataType" xmi:id="_j_050HLoEd6R5tffIPrlPg" name="T" templateParameter="_diTcwHLoEd6R5tffIPrlPg"/>
         </ownedParameter>
       </ownedTemplateSignature>
       <packagedElement xmi:type="uml:Class" xmi:id="_wh_EwHLmEd6R5tffIPrlPg" name="PushPull" isAbstract="true">
@@ -146,7 +125,7 @@ if (m_filled &lt; m_size) {
         <ownedComment xmi:type="uml:Comment" xmi:id="_K_UZoDF2EeCpQdhNuFCtew" annotatedElement="_Y1jF8HPpEd6R5tffIPrlPg">
           <body>This is an implementation of a FIFO of a configurable size (default: 20 elements).</body>
         </ownedComment>
-        <packagedElement xmi:type="uml:Class" xmi:id="_Y1jF8HPpEd6R5tffIPrlPg" clientDependency="_EYbXkf68Ed6Zw96O-tCw7A _EYrPMf68Ed6Zw96O-tCw7A _y6XsAF72EeGerN33d-RdRg" name="FIFO_impl">
+        <packagedElement xmi:type="uml:Class" xmi:id="_Y1jF8HPpEd6R5tffIPrlPg" clientDependency="_y6XsAF72EeGerN33d-RdRg _ZR77QL5wEeKpNr0GJaRwvw _ZUSrsL5wEeKpNr0GJaRwvw" name="FIFO_impl">
           <ownedComment xmi:type="uml:Comment" xmi:id="_EiDM8K_2EeC6ALhykKLu_g" annotatedElement="_XDRnoHUIEd6R5tffIPrlPg">
             <body>Configuration attribute: the size of the FIFO
 </body>
@@ -174,12 +153,12 @@ if (m_filled &lt; m_size) {
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Q8o1YBGcEd-rfYlCjUOxJQ"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Q8vjEBGcEd-rfYlCjUOxJQ" value="*"/>
           </ownedAttribute>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_EYbXkf68Ed6Zw96O-tCw7A" name="derived realization of D_Push_dataType" client="_Y1jF8HPpEd6R5tffIPrlPg" supplier="_EUZMIf68Ed6Zw96O-tCw7A" contract="_EUZMIf68Ed6Zw96O-tCw7A"/>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_EYrPMf68Ed6Zw96O-tCw7A" name="derived realization of D_PullConsumer_dataType" client="_Y1jF8HPpEd6R5tffIPrlPg" supplier="_EYj6cP68Ed6Zw96O-tCw7A" contract="_EYj6cP68Ed6Zw96O-tCw7A"/>
           <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_y6XsAF72EeGerN33d-RdRg" name="derived realization of ILifeCycle" client="_Y1jF8HPpEd6R5tffIPrlPg">
             <supplier xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
             <contract xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
           </interfaceRealization>
+          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_ZR77QL5wEeKpNr0GJaRwvw" name="derived realization of D_Push_T" client="_Y1jF8HPpEd6R5tffIPrlPg" supplier="_ZQ2WIL5wEeKpNr0GJaRwvw" contract="_ZQ2WIL5wEeKpNr0GJaRwvw"/>
+          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_ZUSrsL5wEeKpNr0GJaRwvw" name="derived realization of D_PullConsumer_T" client="_Y1jF8HPpEd6R5tffIPrlPg" supplier="_ZSdfsL5wEeKpNr0GJaRwvw" contract="_ZSdfsL5wEeKpNr0GJaRwvw"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_FjGlgP69Ed6Zw96O-tCw7A" name="pull" specification="_EYx84P68Ed6Zw96O-tCw7A">
             <language>C/C++</language>
             <body>if (m_filled > 0) {
@@ -219,7 +198,7 @@ if (m_filled &lt; m_size) {
 if (m_size == 0) {
 	cerr &lt;&lt; &quot;Warning: size of FIFO is not properly configured (=0!)&quot; &lt;&lt; endl;
 }
-m_fifo = new [pkgTemplateParameter('dataType')+'[m_size]'/];
+m_fifo = new [pkgTemplateParameter('T')+'[m_size]'/];
 [/template]</body>
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_EYsdUP68Ed6Zw96O-tCw7A" name="push" method="_IwXLsP69Ed6Zw96O-tCw7A">
@@ -244,106 +223,71 @@ m_fifo = new [pkgTemplateParameter('dataType')+'[m_size]'/];
           <ownedOperation xmi:type="uml:Operation" xmi:id="_5IpEwK8xEeCXIcykFPsB8Q" name="activate" method="_QzOqwK8yEeCXIcykFPsB8Q"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_y7cqEF72EeGerN33d-RdRg" name="deactivate"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_dr0doDqNEeCd_O2fHA8dPg" clientDependency="_kMR58DqNEeCd_O2fHA8dPg _kMUWMDqNEeCd_O2fHA8dPg" name="KeepLast">
+        <packagedElement xmi:type="uml:Class" xmi:id="_dr0doDqNEeCd_O2fHA8dPg" clientDependency="_iR440L5wEeKpNr0GJaRwvw _iScScL5wEeKpNr0GJaRwvw" name="KeepLast">
           <generalization xmi:type="uml:Generalization" xmi:id="_dr0dozqNEeCd_O2fHA8dPg" general="_wh_EwHLmEd6R5tffIPrlPg"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_dr0dqzqNEeCd_O2fHA8dPg" name="m_data" visibility="public" type="_j_050HLoEd6R5tffIPrlPg" isUnique="false" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dr0drTqNEeCd_O2fHA8dPg" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dr0drDqNEeCd_O2fHA8dPg" value="1"/>
           </ownedAttribute>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_kMR58DqNEeCd_O2fHA8dPg" name="derived realization of D_Push_dataType" client="_dr0doDqNEeCd_O2fHA8dPg" supplier="_1IdcEDFqEeCz5-DK9j5azg" contract="_1IdcEDFqEeCz5-DK9j5azg"/>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_kMUWMDqNEeCd_O2fHA8dPg" name="derived realization of D_PullConsumer_dataType" client="_dr0doDqNEeCd_O2fHA8dPg" supplier="_gxOyUDFsEeCz5-DK9j5azg" contract="_gxOyUDFsEeCz5-DK9j5azg"/>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_dr0drjqNEeCd_O2fHA8dPg" name="pull" specification="_dr0dtzqNEeCd_O2fHA8dPg">
+          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_iR440L5wEeKpNr0GJaRwvw" name="derived realization of D_Push_T" client="_dr0doDqNEeCd_O2fHA8dPg" supplier="_ZQ2WIL5wEeKpNr0GJaRwvw" contract="_ZQ2WIL5wEeKpNr0GJaRwvw"/>
+          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_iScScL5wEeKpNr0GJaRwvw" name="derived realization of D_PullConsumer_T" client="_dr0doDqNEeCd_O2fHA8dPg" supplier="_ZSdfsL5wEeKpNr0GJaRwvw" contract="_ZSdfsL5wEeKpNr0GJaRwvw"/>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_dr0drjqNEeCd_O2fHA8dPg" name="pull">
             <language>C/C++</language>
             <body>return m_data;</body>
           </ownedBehavior>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_dr0drzqNEeCd_O2fHA8dPg" name="push" specification="_dr0dszqNEeCd_O2fHA8dPg">
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_dr0drzqNEeCd_O2fHA8dPg" name="push">
             <language>C/C++</language>
             <body>// copy passed parameter ...
 m_data = data;
 </body>
           </ownedBehavior>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_dr0dsDqNEeCd_O2fHA8dPg" name="hasData" specification="_dr0duzqNEeCd_O2fHA8dPg">
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_dr0dsDqNEeCd_O2fHA8dPg" name="hasData">
             <language>C/C++</language>
             <body>// only return true, once first data has been received
 return true;</body>
           </ownedBehavior>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_dr0dszqNEeCd_O2fHA8dPg" name="push" method="_dr0drzqNEeCd_O2fHA8dPg">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_dr0dtDqNEeCd_O2fHA8dPg" name="data" type="_j_050HLoEd6R5tffIPrlPg">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dr0dtjqNEeCd_O2fHA8dPg" value="1"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dr0dtTqNEeCd_O2fHA8dPg" value="1"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_iS924L5wEeKpNr0GJaRwvw" name="push">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_iTxvML5wEeKpNr0GJaRwvw" name="data" type="_j_050HLoEd6R5tffIPrlPg">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iUYzML5wEeKpNr0GJaRwvw" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iUmOkL5wEeKpNr0GJaRwvw" value="1"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_dr0dtzqNEeCd_O2fHA8dPg" name="pull" method="_dr0drjqNEeCd_O2fHA8dPg">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_5uB18E2DEeGzNbfAXPgNLA" name="ret" type="_j_050HLoEd6R5tffIPrlPg" direction="return">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5uDEEE2DEeGzNbfAXPgNLA" value="1"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5uDrIE2DEeGzNbfAXPgNLA" value="1"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_iVK2UL5wEeKpNr0GJaRwvw" name="pull">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_iV-uoL5wEeKpNr0GJaRwvw" name="ret" type="_j_050HLoEd6R5tffIPrlPg" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iWlLkL5wEeKpNr0GJaRwvw" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iWym8L5wEeKpNr0GJaRwvw" value="1"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_dr0duzqNEeCd_O2fHA8dPg" name="hasData" method="_dr0dsDqNEeCd_O2fHA8dPg">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_dr0dvDqNEeCd_O2fHA8dPg" name="ret" direction="return">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_iXWAkL5wEeKpNr0GJaRwvw" name="hasData">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_iYKf8L5wEeKpNr0GJaRwvw" name="ret" direction="return">
               <type xmi:type="uml:PrimitiveType" href="corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dr0dvjqNEeCd_O2fHA8dPg" value="1"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dr0dvTqNEeCd_O2fHA8dPg" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iYyLAL5wEeKpNr0GJaRwvw" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iY_mYL5wEeKpNr0GJaRwvw" value="1"/>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_qZQUUC_gEeKl_vDGXh-OPw" clientDependency="_M8bNcC_hEeKl_vDGXh-OPw" name="KeepLastBidir">
+        <packagedElement xmi:type="uml:Class" xmi:id="_qZQUUC_gEeKl_vDGXh-OPw" name="KeepLastBidir">
           <generalization xmi:type="uml:Generalization" xmi:id="_qZQUUS_gEeKl_vDGXh-OPw" general="_gKLGoC_fEeKl_vDGXh-OPw"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_qZQUUi_gEeKl_vDGXh-OPw" name="m_data" visibility="public" type="_j_050HLoEd6R5tffIPrlPg" isUnique="false" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qZQUUy_gEeKl_vDGXh-OPw" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qZQUVC_gEeKl_vDGXh-OPw" value="1"/>
           </ownedAttribute>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_M8bNcC_hEeKl_vDGXh-OPw" name="derived realization of D_PushProdPullCons_dataType" client="_qZQUUC_gEeKl_vDGXh-OPw" supplier="_AUVEgC_hEeKl_vDGXh-OPw" contract="_AUVEgC_hEeKl_vDGXh-OPw"/>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qZQUVy_gEeKl_vDGXh-OPw" name="pull" specification="_M8uvcC_hEeKl_vDGXh-OPw">
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qZQUVy_gEeKl_vDGXh-OPw" name="pull">
             <language>C/C++</language>
             <body>return m_data;</body>
           </ownedBehavior>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qZQUWC_gEeKl_vDGXh-OPw" name="push" specification="_M8e30C_hEeKl_vDGXh-OPw">
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qZQUWC_gEeKl_vDGXh-OPw" name="push">
             <language>C/C++</language>
             <body>// copy passed parameter ...
 m_data = data;
 </body>
           </ownedBehavior>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qZQUWS_gEeKl_vDGXh-OPw" name="hasData" specification="_M82rQC_hEeKl_vDGXh-OPw">
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qZQUWS_gEeKl_vDGXh-OPw" name="hasData">
             <language>C/C++</language>
             <body>// only return true, once first data has been received
 return true;</body>
           </ownedBehavior>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_M8e30C_hEeKl_vDGXh-OPw" name="push" method="_qZQUWC_gEeKl_vDGXh-OPw">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_M8mMkC_hEeKl_vDGXh-OPw" name="data" type="_j_050HLoEd6R5tffIPrlPg">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M8oo0C_hEeKl_vDGXh-OPw" value="1"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M8p28C_hEeKl_vDGXh-OPw" value="1"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_M8uvcC_hEeKl_vDGXh-OPw" name="pull" method="_qZQUVy_gEeKl_vDGXh-OPw">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_M8wkoC_hEeKl_vDGXh-OPw" name="ret" type="_j_050HLoEd6R5tffIPrlPg" direction="return">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M8yZ0C_hEeKl_vDGXh-OPw" value="1"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M8zA4C_hEeKl_vDGXh-OPw" value="1"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_M82rQC_hEeKl_vDGXh-OPw" name="hasData" method="_qZQUWS_gEeKl_vDGXh-OPw">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_M85ukC_hEeKl_vDGXh-OPw" name="ret" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M87jwC_hEeKl_vDGXh-OPw" value="1"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M88K0C_hEeKl_vDGXh-OPw" value="1"/>
-            </ownedParameter>
-          </ownedOperation>
         </packagedElement>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_1IdcEDFqEeCz5-DK9j5azg" name="D_Push_dataType">
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_1ImmADFqEeCz5-DK9j5azg" name="push">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_1In0IDFqEeCz5-DK9j5azg" name="data" type="_j_050HLoEd6R5tffIPrlPg"/>
-        </ownedOperation>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_gxOyUDFsEeCz5-DK9j5azg" name="D_PullConsumer_dataType">
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_gxWuIDFsEeCz5-DK9j5azg" name="pull">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_gxX8QDFsEeCz5-DK9j5azg" name="ret" type="_j_050HLoEd6R5tffIPrlPg" direction="return"/>
-        </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_gxc0wDFsEeCz5-DK9j5azg" name="hasData">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_gxfRADFsEeCz5-DK9j5azg" name="ret" direction="return">
-            <type xmi:type="uml:PrimitiveType" href="corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
-          </ownedParameter>
-        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_gKLGoC_fEeKl_vDGXh-OPw" name="BidirPushPull" isAbstract="true">
         <ownedAttribute xmi:type="uml:Port" xmi:id="_h9XikC_fEeKl_vDGXh-OPw" name="inoutR" visibility="public" type="_j_050HLoEd6R5tffIPrlPg" aggregation="composite">
@@ -363,24 +307,20 @@ return true;</body>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_EUZMIP68Ed6Zw96O-tCw7A" name="derivedInterfaces">
-      <packagedElement xmi:type="uml:Interface" xmi:id="_EUZMIf68Ed6Zw96O-tCw7A" name="D_Push_dataType">
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_EYawgP68Ed6Zw96O-tCw7A" name="push">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_EYbXkP68Ed6Zw96O-tCw7A" name="data" type="_j_050HLoEd6R5tffIPrlPg"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_ZQ2WIL5wEeKpNr0GJaRwvw" name="D_Push_T">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_ZRa94L5wEeKpNr0GJaRwvw" name="push">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_ZRnyML5wEeKpNr0GJaRwvw" name="data" type="_j_050HLoEd6R5tffIPrlPg"/>
         </ownedOperation>
       </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_EYj6cP68Ed6Zw96O-tCw7A" name="D_PullConsumer_dataType">
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_EYqoIP68Ed6Zw96O-tCw7A" name="pull">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_EYrPMP68Ed6Zw96O-tCw7A" name="ret" type="_j_050HLoEd6R5tffIPrlPg" direction="return"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_ZSdfsL5wEeKpNr0GJaRwvw" name="D_PullConsumer_T">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_ZTBgYL5wEeKpNr0GJaRwvw" name="pull">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_ZTOUsL5wEeKpNr0GJaRwvw" name="ret" type="_j_050HLoEd6R5tffIPrlPg" direction="return"/>
         </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_IAq_sBI7Ed-3zOZ0RGapGA" name="hasData">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_IArmwBI7Ed-3zOZ0RGapGA" name="ret" direction="return">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_ZTqZkL5wEeKpNr0GJaRwvw" name="hasData">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_ZT308L5wEeKpNr0GJaRwvw" name="ret" direction="return">
             <type xmi:type="uml:PrimitiveType" href="corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
           </ownedParameter>
         </ownedOperation>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_AUVEgC_hEeKl_vDGXh-OPw" name="D_PushProdPullCons_dataType">
-        <generalization xmi:type="uml:Generalization" xmi:id="_AUnYYC_hEeKl_vDGXh-OPw" general="_EUZMIf68Ed6Zw96O-tCw7A"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_AUn_cC_hEeKl_vDGXh-OPw" general="_EYj6cP68Ed6Zw96O-tCw7A"/>
       </packagedElement>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_eWXo4HLmEd6R5tffIPrlPg">
@@ -413,58 +353,48 @@ return true;</body>
     <kind xmi:type="FCM:PortKind" href="core.uml#_pE6GUFR1Ed6GqrP6fkWBoQ"/>
   </FCM:Port>
   <FCM:InteractionComponent xmi:id="_xQ_ccHUuEd6R5tffIPrlPg" base_Class="_Y1jF8HPpEd6R5tffIPrlPg"/>
-  <FCM:DerivedElement xmi:id="_EYYUQP68Ed6Zw96O-tCw7A" base_Element="_EUZMIf68Ed6Zw96O-tCw7A" source="_j_050HLoEd6R5tffIPrlPg"/>
-  <FCM:DerivedElement xmi:id="_EYlvoP68Ed6Zw96O-tCw7A" base_Element="_EYj6cP68Ed6Zw96O-tCw7A" source="_j_050HLoEd6R5tffIPrlPg"/>
-  <FCM:DerivedElement xmi:id="_EYu5kP68Ed6Zw96O-tCw7A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_EYzyEP68Ed6Zw96O-tCw7A" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_0TRKgP6-Ed6Zw96O-tCw7A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_0TVb8P6-Ed6Zw96O-tCw7A" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_7G9E0P6-Ed6Zw96O-tCw7A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_7HAIIP6-Ed6Zw96O-tCw7A" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_EYu5kP68Ed6Zw96O-tCw7A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_ZRa94L5wEeKpNr0GJaRwvw"/>
+  <FCM:DerivedElement xmi:id="_EYzyEP68Ed6Zw96O-tCw7A" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_ZTBgYL5wEeKpNr0GJaRwvw"/>
+  <FCM:DerivedElement xmi:id="_0TRKgP6-Ed6Zw96O-tCw7A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_0TVb8P6-Ed6Zw96O-tCw7A" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_7G9E0P6-Ed6Zw96O-tCw7A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_7HAIIP6-Ed6Zw96O-tCw7A" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
   <FCM:InteractionComponent xmi:id="_IwT2cP6_Ed6Zw96O-tCw7A" base_Class="_wh_EwHLmEd6R5tffIPrlPg"/>
   <FCM:InteractionComponent xmi:id="_KcV6cP6_Ed6Zw96O-tCw7A" base_Class="_zc4voHLmEd6R5tffIPrlPg"/>
-  <FCM:DerivedElement xmi:id="_vfBPwARNEd-OidZzGKCpzg" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_vfETEARNEd-OidZzGKCpzg" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_op38oAnOEd-9beZpMGts2w" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_op6Y4AnOEd-9beZpMGts2w" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_6tSQAAnUEd-co_m_wv4b6A" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_6tRB4AnUEd-co_m_wv4b6A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_YMvtUBGZEd-rfYlCjUOxJQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_YMw7cBGZEd-rfYlCjUOxJQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_t02owBGaEd-rfYlCjUOxJQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_t04d8BGaEd-rfYlCjUOxJQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_G7PB4BGcEd-rfYlCjUOxJQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_G7QQABGcEd-rfYlCjUOxJQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_C4zYIBGlEd-Jq_XWT8Mhpg" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_C5J9cBGlEd-Jq_XWT8Mhpg" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_IAwfQBI7Ed-3zOZ0RGapGA" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_IAxtYBI7Ed-3zOZ0RGapGA" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_IA3M8BI7Ed-3zOZ0RGapGA" source="_IAq_sBI7Ed-3zOZ0RGapGA"/>
-  <FCM:DerivedElement xmi:id="_AnNM4BI9Ed-XjYZ05V-9-Q" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_AnPpIBI9Ed-XjYZ05V-9-Q" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_AnVvwBI9Ed-XjYZ05V-9-Q" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q" source="_IAq_sBI7Ed-3zOZ0RGapGA"/>
-  <FCM:DerivedElement xmi:id="_11TxwBJWEd-QgZm_R1AKbA" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_11WOABJWEd-QgZm_R1AKbA" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_11YqQBJWEd-QgZm_R1AKbA" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q" source="_IAq_sBI7Ed-3zOZ0RGapGA"/>
-  <FCM:DerivedElement xmi:id="_C7UZcBQ-Ed-_dI0JopJMvQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_C7WOoBQ-Ed-_dI0JopJMvQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_C7YD0BQ-Ed-_dI0JopJMvQ" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q" source="_IAq_sBI7Ed-3zOZ0RGapGA"/>
-  <FCM:DerivedElement xmi:id="_kUMisBb8Ed-u0pMEAnvpEQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_kUNw0Bb8Ed-u0pMEAnvpEQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_kUPmABb8Ed-u0pMEAnvpEQ" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q" source="_IAq_sBI7Ed-3zOZ0RGapGA"/>
-  <FCM:DerivedElement xmi:id="_6-zKABcKEd-Tda7vKXmT2A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_6-1mQBcKEd-Tda7vKXmT2A" base_Element="_EYx84P68Ed6Zw96O-tCw7A" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_6-3bcBcKEd-Tda7vKXmT2A" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q" source="_IAq_sBI7Ed-3zOZ0RGapGA"/>
-  <FCM:DerivedElement xmi:id="_1IlX4DFqEeCz5-DK9j5azg" base_Element="_1IdcEDFqEeCz5-DK9j5azg" source="_j_050HLoEd6R5tffIPrlPg"/>
-  <FCM:DerivedElement xmi:id="_gxVgADFsEeCz5-DK9j5azg" base_Element="_gxOyUDFsEeCz5-DK9j5azg" source="_j_050HLoEd6R5tffIPrlPg"/>
+  <FCM:DerivedElement xmi:id="_vfBPwARNEd-OidZzGKCpzg" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_vfETEARNEd-OidZzGKCpzg" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_op38oAnOEd-9beZpMGts2w" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_op6Y4AnOEd-9beZpMGts2w" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_6tSQAAnUEd-co_m_wv4b6A" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_6tRB4AnUEd-co_m_wv4b6A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_YMvtUBGZEd-rfYlCjUOxJQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_YMw7cBGZEd-rfYlCjUOxJQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_t02owBGaEd-rfYlCjUOxJQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_t04d8BGaEd-rfYlCjUOxJQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_G7PB4BGcEd-rfYlCjUOxJQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_G7QQABGcEd-rfYlCjUOxJQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_C4zYIBGlEd-Jq_XWT8Mhpg" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_C5J9cBGlEd-Jq_XWT8Mhpg" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_IAwfQBI7Ed-3zOZ0RGapGA" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_IAxtYBI7Ed-3zOZ0RGapGA" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_IA3M8BI7Ed-3zOZ0RGapGA"/>
+  <FCM:DerivedElement xmi:id="_AnNM4BI9Ed-XjYZ05V-9-Q" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_AnPpIBI9Ed-XjYZ05V-9-Q" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_AnVvwBI9Ed-XjYZ05V-9-Q" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q" source="_ZTqZkL5wEeKpNr0GJaRwvw"/>
+  <FCM:DerivedElement xmi:id="_11TxwBJWEd-QgZm_R1AKbA" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_11WOABJWEd-QgZm_R1AKbA" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_11YqQBJWEd-QgZm_R1AKbA" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q"/>
+  <FCM:DerivedElement xmi:id="_C7UZcBQ-Ed-_dI0JopJMvQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_C7WOoBQ-Ed-_dI0JopJMvQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_C7YD0BQ-Ed-_dI0JopJMvQ" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q"/>
+  <FCM:DerivedElement xmi:id="_kUMisBb8Ed-u0pMEAnvpEQ" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_kUNw0Bb8Ed-u0pMEAnvpEQ" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_kUPmABb8Ed-u0pMEAnvpEQ" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q"/>
+  <FCM:DerivedElement xmi:id="_6-zKABcKEd-Tda7vKXmT2A" base_Element="_EYsdUP68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_6-1mQBcKEd-Tda7vKXmT2A" base_Element="_EYx84P68Ed6Zw96O-tCw7A"/>
+  <FCM:DerivedElement xmi:id="_6-3bcBcKEd-Tda7vKXmT2A" base_Element="_AnQ3QBI9Ed-XjYZ05V-9-Q"/>
   <FCM:InteractionComponent xmi:id="_hp8gEDqNEeCd_O2fHA8dPg" base_Class="_dr0doDqNEeCd_O2fHA8dPg"/>
-  <FCM:DerivedElement xmi:id="_kMpGUDqNEeCd_O2fHA8dPg" base_Element="_dr0dszqNEeCd_O2fHA8dPg" source="_1ImmADFqEeCz5-DK9j5azg"/>
-  <FCM:DerivedElement xmi:id="_kMsJoDqNEeCd_O2fHA8dPg" base_Element="_dr0dtzqNEeCd_O2fHA8dPg" source="_gxWuIDFsEeCz5-DK9j5azg"/>
-  <FCM:DerivedElement xmi:id="_kMul4DqNEeCd_O2fHA8dPg" base_Element="_dr0duzqNEeCd_O2fHA8dPg" source="_gxc0wDFsEeCz5-DK9j5azg"/>
   <FCM:InteractionComponent xmi:id="_MyvicK4iEeCXIcykFPsB8Q" base_Class="_DA0VYK4iEeCXIcykFPsB8Q"/>
-  <FCM:DerivedElement xmi:id="_O7188K4iEeCXIcykFPsB8Q" base_Element="_DA0Vc64iEeCXIcykFPsB8Q" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_O78qoK4iEeCXIcykFPsB8Q" base_Element="_DA0Vd64iEeCXIcykFPsB8Q" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_O8CKMK4iEeCXIcykFPsB8Q" base_Element="_DA0Ve64iEeCXIcykFPsB8Q" source="_IAq_sBI7Ed-3zOZ0RGapGA"/>
   <FCM:Template xmi:id="_53zBoK-xEeC6ALhykKLu_g" base_Element="_5IpEwK8xEeCXIcykFPsB8Q"/>
   <FCM:ConfigurationProperty xmi:id="_FxN9cLC0EeCaaIdtw75MLg" base_Property="_XDRnoHUIEd6R5tffIPrlPg"/>
   <FCM:DerivedElement xmi:id="_y7XKgF72EeGerN33d-RdRg" base_Element="_5IpEwK8xEeCXIcykFPsB8Q">
@@ -479,11 +409,12 @@ return true;</body>
   <FCM:Port xmi:id="_9Pv5MC_gEeKl_vDGXh-OPw" base_Port="_jaXsEC_fEeKl_vDGXh-OPw" conjugated="true">
     <kind xmi:type="FCM:PortKind" href="core.uml#_SrCqQC8qEeKx7OxAiA06uw"/>
   </FCM:Port>
-  <FCM:DerivedElement xmi:id="_AUYH0C_hEeKl_vDGXh-OPw" base_Element="_AUVEgC_hEeKl_vDGXh-OPw" source="_j_050HLoEd6R5tffIPrlPg"/>
   <FCM:Port xmi:id="_DPPWcC_hEeKl_vDGXh-OPw" base_Port="_h9XikC_fEeKl_vDGXh-OPw" conjugated="true">
     <kind xmi:type="FCM:PortKind" href="core.uml#_SrCqQC8qEeKx7OxAiA06uw"/>
   </FCM:Port>
-  <FCM:DerivedElement xmi:id="_M8thUC_hEeKl_vDGXh-OPw" base_Element="_M8e30C_hEeKl_vDGXh-OPw" source="_EYawgP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_M81dIC_hEeKl_vDGXh-OPw" base_Element="_M8uvcC_hEeKl_vDGXh-OPw" source="_EYqoIP68Ed6Zw96O-tCw7A"/>
-  <FCM:DerivedElement xmi:id="_M8_1MC_hEeKl_vDGXh-OPw" base_Element="_M82rQC_hEeKl_vDGXh-OPw" source="_IAq_sBI7Ed-3zOZ0RGapGA"/>
+  <FCM:DerivedElement xmi:id="_ZRMUYL5wEeKpNr0GJaRwvw" base_Element="_ZQ2WIL5wEeKpNr0GJaRwvw" source="_j_050HLoEd6R5tffIPrlPg"/>
+  <FCM:DerivedElement xmi:id="_ZSzd8L5wEeKpNr0GJaRwvw" base_Element="_ZSdfsL5wEeKpNr0GJaRwvw" source="_j_050HLoEd6R5tffIPrlPg"/>
+  <FCM:DerivedElement xmi:id="_iU8M0L5wEeKpNr0GJaRwvw" base_Element="_iS924L5wEeKpNr0GJaRwvw" source="_ZRa94L5wEeKpNr0GJaRwvw"/>
+  <FCM:DerivedElement xmi:id="_iXH-IL5wEeKpNr0GJaRwvw" base_Element="_iVK2UL5wEeKpNr0GJaRwvw" source="_ZTBgYL5wEeKpNr0GJaRwvw"/>
+  <FCM:DerivedElement xmi:id="_iZUWgL5wEeKpNr0GJaRwvw" base_Element="_iXWAkL5wEeKpNr0GJaRwvw" source="_ZTqZkL5wEeKpNr0GJaRwvw"/>
 </xmi:XMI>

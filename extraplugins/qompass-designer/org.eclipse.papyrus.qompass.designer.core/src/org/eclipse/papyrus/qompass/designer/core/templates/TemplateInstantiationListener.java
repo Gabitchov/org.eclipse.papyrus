@@ -1,9 +1,34 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.templates;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.C_Cpp.ConstInit;
+import org.eclipse.papyrus.FCM.ActualChoice;
+import org.eclipse.papyrus.FCM.Template;
+import org.eclipse.papyrus.FCM.TemplateKind;
+import org.eclipse.papyrus.qompass.designer.core.PortUtils;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
+import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
+import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Class;
@@ -19,17 +44,6 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.papyrus.C_Cpp.ConstInit;
-import org.eclipse.papyrus.FCM.ActualChoice;
-import org.eclipse.papyrus.FCM.Template;
-import org.eclipse.papyrus.FCM.TemplateKind;
-import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
-import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 
 /**
  * Template instantiation is implemented by means of an CopyListener that

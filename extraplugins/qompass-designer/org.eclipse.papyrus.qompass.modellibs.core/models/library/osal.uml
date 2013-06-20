@@ -10523,10 +10523,10 @@ Show: output the whole line immediately and reset the output string</body>
   <C_Cpp:Const xmi:id="_D-HE0F3MEd-12d_h0i1xhQ" base_parameter="_Y-RhoDUREdy0feurbW0fyQ"/>
   <C_Cpp:Ptr xmi:id="_NX10kDUSEdy0feurbW0fyQ" base_parameter="_Y-RhoDUREdy0feurbW0fyQ"/>
   <C_Cpp:Include xmi:id="_jne3cLmvEd-Ncuei_moJtA" header="#ifdef OS_Cygwin&#xA;&#x9;#define SYSTEM_Cygwin&#xA;&#x9;#define SYSTEM_POSIX4&#xA;&#x9;#define SYNCHRO_Cygwin&#xA;&#x9;#define SYNCHRO_POSIX4&#xA;&#x9;#define THREAD_POSIX4&#xA;&#x9;#define TIMER_POSIX4&#xA;&#x9;#define TIMER_Cygwin&#xA;#endif&#xA;&#xA;#ifdef OS_Linux&#xA;&#x9;#define SYSTEM_Linux&#xA;&#x9;#define SYSTEM_POSIX4&#xA;&#x9;#ifdef OS_Xenomai&#xA;&#x9;&#x9;#define SYSTEM_Xenomai&#xA;&#x9;#endif&#xA;&#x9;#define SYNCHRO_POSIX4&#xA;&#x9;#define THREAD_POSIX4&#xA;&#x9;#define TIMER_POSIX4&#xA;&#x9;#define TIMER_Linux&#xA;#endif&#xA;&#xA;#ifdef OS_Solaris&#xA;&#x9;#define SYSTEM_Solaris&#xA;&#x9;#define THREAD_Solaris&#xA;&#x9;#define SYNCHRO_Solaris&#xA;#endif" base_package="_ROTQYC-OEdySSa8YESkO2w"/>
-  <FCM:CppLibrary xmi:id="_USnQ4CgpEeC5Ga5kAgjl0g" base_Package="_ROTQYC-OEdySSa8YESkO2w">
+  <C_Cpp:ExternLibrary xmi:id="_USnQ4CgpEeC5Ga5kAgjl0g" base_Package="_ROTQYC-OEdySSa8YESkO2w">
     <libs>pthread</libs>
     <libs>rt</libs>
-  </FCM:CppLibrary>
+  </C_Cpp:ExternLibrary>
   <C_Cpp:Default xmi:id="_nABaADrnEeChpNDXy9GnYg" value=" TimeVal::systemTime();" base_property="_Ag0mQFKiEd-OfYmxqPWG5g"/>
   <C_Cpp:ExternClass xmi:id="_7xMi4It4EeCA0czgCf_91g" name="time.h" base_class="_5YJA0It4EeCA0czgCf_91g"/>
   <C_Cpp:ExternClass xmi:id="_2xMacIt9EeCA0czgCf_91g" name="time.h" base_class="_SPVucIt6EeCA0czgCf_91g"/>

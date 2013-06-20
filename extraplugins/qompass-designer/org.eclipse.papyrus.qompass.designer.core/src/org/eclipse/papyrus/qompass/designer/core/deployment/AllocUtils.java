@@ -1,11 +1,29 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.papyrus.FCM.Fragment;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
+import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -21,11 +39,6 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
-import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 
 public class AllocUtils {
 
@@ -250,9 +263,11 @@ public class AllocUtils {
 			for(Slot slot : slots) {
 				Property containedProperty = (Property)slot.getDefiningFeature();
 
-				org.eclipse.papyrus.FCM.Part fcmPart = StUtils.getApplication(containedProperty, org.eclipse.papyrus.FCM.Part.class);
-				if(fcmPart != null) {
-					EList<Port> colocateWithPort = fcmPart.getColocateWithPort();
+				Fragment fragment = StUtils.getApplication(containedProperty, Fragment.class);
+				if(fragment != null) {
+					// TODO
+					/*
+					EList<Port> colocateWithPort = fragment.getColocateWithPort();
 					// is the port within the list?
 					if(Utils.getNamedElementFromList(colocateWithPort, port.getName()) != null) {
 						// compare qualified name, since containedPort (stereotype attribute)
@@ -260,6 +275,7 @@ public class AllocUtils {
 						propagateNodesViaPort(DepUtils.getInstance(slot), port, nodes);
 						continue;
 					}
+					*/
 				}
 				for(Connector connection : compositeCL.getOwnedConnectors()) {
 					if(ConnectorUtils.connectsPort(connection, port)) {

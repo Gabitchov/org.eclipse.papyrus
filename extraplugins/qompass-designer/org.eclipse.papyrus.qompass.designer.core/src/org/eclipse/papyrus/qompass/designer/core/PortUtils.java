@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -6,8 +20,8 @@ import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
 
 public class PortUtils {
 
@@ -67,11 +81,12 @@ public class PortUtils {
 	 */
 	public static EList<Port> getAllPorts(EncapsulatedClassifier ec) {
 		EList<Port> ports = new BasicEList<Port>();
-		for(NamedElement attribute : ec.getAllAttributes()) {
+		for(Property attribute : ec.getAllAttributes()) {
 			if(attribute instanceof Port) {
-				ports.add((Port)attribute);
+				ports.addAll(flattenExtendedPort((Port) attribute));
 			}
 		}
+		
 		// TODO: for the moment, don't add aggregated port to list.
 		/*
 		 * ComponentType compType = = StUtils.getApplication (ec, ComponentType.class);
@@ -101,7 +116,10 @@ public class PortUtils {
 	public static EList<Port> getAllPorts2(EncapsulatedClassifier ec) {
 		EList<Port> ports = new BasicEList<Port>();
 
-		ports.addAll(ec.getOwnedPorts());
+		for(Port port : ec.getOwnedPorts()) {
+			ports.addAll(flattenExtendedPort(port));
+		}
+		
 		for(Classifier general : ec.getGenerals()) {
 			if((general instanceof EncapsulatedClassifier) && (!Utils.isCompImpl(general))) {
 				ports.addAll(getAllPorts2((EncapsulatedClassifier)general));
@@ -110,6 +128,32 @@ public class PortUtils {
 		return ports;
 	}
 
+	public static EList<Port> flattenExtendedPort(Port port) {
+		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
+		if ((fcmPort != null) && (fcmPort.getKind() != null)) {
+			org.eclipse.uml2.uml.Class cl = fcmPort.getKind().getBase_Class();
+			if ((cl != null) && (getAllPorts(cl).size() > 0)) {
+				return getAllPorts(cl);
+			}
+		}
+		EList<Port> ports = new BasicEList<Port>();
+		ports.add(port);
+		return ports;
+	}
+	
+	/**
+	 * Return true, if the passed port is an extended port
+	 * @param port
+	 * @return
+	 */
+	public static boolean isExtendedPort(Port port) {
+		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
+		if ((fcmPort != null) && (fcmPort.getKind() != null)) {
+			org.eclipse.uml2.uml.Class cl = fcmPort.getKind().getBase_Class();
+			return ((cl != null) && (getAllPorts(cl).size() > 0));
+		}
+		return false;
+	}
 	/**
 	 * Return the port kind, an element of the static profile
 	 * 

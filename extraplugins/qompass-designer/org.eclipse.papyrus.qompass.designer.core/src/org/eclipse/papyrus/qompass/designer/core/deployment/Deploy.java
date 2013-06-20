@@ -1,17 +1,30 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import java.util.Stack;
 
+import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
+import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Slot;
-
-import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 
 /*
  * This file is part of Qompass GenTools
@@ -53,7 +66,18 @@ public class Deploy {
 		copy.preCopyListeners.add(new GatherConfigData(langSupport));
 		// TODO: not nice at all (make non-static?)
 		Stack<Slot> slotPath = new Stack<Slot>();
+		// do not deploy the system instance itself, but the contained instances as top-level instance
 		deploy.distributeToNode(false, slotPath, instance);
+/*
+		for (Slot topLevelSlot : instance.getSlots()) {
+			InstanceSpecification topLevelInstance = DepUtils.getInstance(topLevelSlot);
+			if ((topLevelInstance != null) && AllocUtils.getAllNodes(topLevelInstance).contains(node)) {
+				slotPath.push(topLevelSlot);
+				deploy.distributeToNode(false, slotPath, topLevelInstance);
+				slotPath.pop();
+			}
+		}
+*/
 		Package cdp = instance.getNearestPackage();
 		// deploy singletons (difficult to embed singletons into main instance,
 		// since there is no attribute for these)
@@ -67,6 +91,13 @@ public class Deploy {
 		return deploy;
 	}
 
+	/**
+	 * Distribute an instance specification to the node by this 
+	 * @param allocAll
+	 * @param slotPath
+	 * @param instance
+	 * @throws TransformationException
+	 */
 	public void distributeToNode(boolean allocAll, Stack<Slot> slotPath, InstanceSpecification instance)
 		throws TransformationException {
 
@@ -85,7 +116,7 @@ public class Deploy {
 		}
 
 		// copy implementation into node specific model
-		Classifier tmImplementation = depInstance.deployInstance(instance);
+		Classifier tmImplementation = depInstance.deployInstance(instance, slotPath);
 
 		for(Slot slot : instance.getSlots()) {
 			InstanceSpecification containedInstance = DepUtils.getInstance(slot);
@@ -116,38 +147,6 @@ public class Deploy {
 		}
 	}
 
-	/**
-	 * Return the instance that is defined by a slot value
-	 * 
-	 * @param slot
-	 * @return the first slot that corresponds to an instance specification
-	 */
-	/*
-	 * public static InstanceSpecification getInstance (Slot slot) {
-	 * Iterator<ValueSpecification> values = slot.getValues ().iterator(); while
-	 * (values.hasNext ()) { ValueSpecification value = values.next (); //
-	 * instances are accessible via ValueSpecification subclass InstanceValue if
-	 * (value instanceof InstanceValue) { return ((InstanceValue)
-	 * value).getInstance (); } } return null; }
-	 */
-
-	/**
-	 * This method returns a deployment plan when given an instance
-	 * specification within that plan. It is used for convenience (avoid the
-	 * need to pass the a deployment plan in the Acceleo scripts)
-	 * 
-	 * @param instance
-	 *        an instance (specification) within the deployment plan
-	 * @return the deployment plan
-	 */
-	// TODO: make public? who is using it?
-	/*
-	 * private static Package getDeploymentPlan (InstanceSpecification instance)
-	 * { // all instance specifications are flat within the deployment plan
-	 * package Element owner = instance.getOwner (); if (!(owner instanceof
-	 * Package)) { return null; } else { // verify stereotype as well? return
-	 * (Package) owner; } }
-	 */
 
 	public Class getBootloader() {
 		return bootLoaderGen.getUML();

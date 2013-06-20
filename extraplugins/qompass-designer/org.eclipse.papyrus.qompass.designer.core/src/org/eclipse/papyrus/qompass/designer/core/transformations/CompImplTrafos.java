@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.transformations;
 
 import java.util.HashMap;
@@ -6,6 +20,12 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.C_Cpp.Ptr;
+import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.PortUtils;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
@@ -24,12 +44,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.papyrus.C_Cpp.Ptr;
-import org.eclipse.papyrus.FCM.InteractionComponent;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
-import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 
 /**
  * This class realizes the transformations for a component implementation (the executor)
@@ -185,8 +199,12 @@ public class CompImplTrafos {
 
 				String opName = PrefixConstants.connectQ_Prefix + port.getName();
 
-				// create operation (even if already inherited, the operation must be owned by
-				// a class that add behavior - TODO: bug in C++ code generator?) 
+				if (implementation.getOwnedOperation(opName, null, null) != null) {
+					// do not add the operation, if it already exists. This means that the
+					// user wants to override it with custom behavior. In case of extended
+					// ports, we may have to do that.
+					continue;
+				}
 				Operation op = implementation.createOwnedOperation(opName, null, null);
 				boolean multiPort = (port.getUpper() > 1) || (port.getUpper() == -1); // -1 indicates "*"
 				if(multiPort) {
@@ -283,125 +301,32 @@ public class CompImplTrafos {
 	 */
 	private static void addCreateConnections(Class implementation)
 		throws TransformationException {
-		String createConnBody = "";
-		Map<String, Integer> indexMap = new HashMap<String, Integer>();
+		String createConnBody = ""; //$NON-NLS-1$
+		Map<ConnectorEnd, Integer> indexMap = new HashMap<ConnectorEnd, Integer>();
 
 		for(Connector connector : implementation.getOwnedConnectors()) {
 			if(ConnectorUtils.isAssembly(connector)) {
-				// TODO: quite ugly (setter1/setter)
-				String getter1 = "";
-				String setter1 = "";
-				String getter = "";
-				String setter = "";
-				String index = "";
-				String index1 = "";
 				Boolean associationBased = false;
-				Property getPart = null;
-				Property setPart = null;
-				for(ConnectorEnd end : connector.getEnds()) {
-					if(end.getRole() instanceof Port) {
-						Port port = (Port)end.getRole();
-						if(PortUtils.getProvided(port) != null) {
-							if(getter.length() > 0) {
-								getter1 = getter;
-								// System.err.println("getter already assigned for connection " + connector.getName());
-								// throw new TransformationException("assembly connector \"" + connector.getName() + "\" connects two provided ports");
-							}
-							getPart = end.getPartWithPort();
-							getter = getPart.getName() + refOp(getPart) + "get_" + port.getName() + " ()";
-						}
-						if(PortUtils.getRequired(port) != null) {
-							if(setter.length() > 0) {
-								setter1 = setter;
-								// System.err.println("setter already assigned for connection " + connector.getName());
-								// throw new TransformationException("assembly connector \"" + connector.getName() + "\" connects two required ports");
-							}
-							setPart = end.getPartWithPort();
-							setter = setPart.getName() + refOp(setPart) + "connect_" + port.getName();
-							if((port.getUpper() > 1) || (port.getUpper() == -1)) {
-								// index depends of combination of property and port, use setter as String
-								Integer indexValue = indexMap.get(setter);
-								if(indexValue == null) {
-									indexValue = 0;
-									indexMap.put(setter, indexValue);
-								}
-								if(index.length() > 0) {
-									index1 = index;
-								}
-								index = indexValue + ", ";
-								indexValue++;
-								indexMap.put(setter, indexValue);
-							}
-						}
-					}
-					else if(end.getRole() instanceof Property) {
-						Property part = (Property)end.getRole();
-						Association association = connector.getType();
-						if(association != null) {
-							associationBased = true;
-							Property assocProp1 = association.getMemberEnd(null, part.getType());
-							Property assocProp2 = assocProp1.getOtherEnd();
-							if(assocProp1 != null) {
-								if(assocProp1.isNavigable()) { // if true, assume that "provided" is true
-									if(getter.length() > 0) {
-										getter1 = getter;
-										// System.err.println("getter already assigned for connection " + connector.getName());
-										// throw new TransformationException("assembly connector \"" + connector.getName() + "\" connects bidirectional association");
-									}
-									getPart = part;
-									getter = "&" + getPart.getName();
-								}
-								else {
-									// TODO: currently, exactly one association end must be navigable
-									if(setter.length() > 0) {
-										setter1 = setter;
-										// System.err.println("setter already assigned for connection " + connector.getName());
-										// throw new TransformationException("assembly connector \"" + connector.getName() + "\" connects bidirectional association");
-									}
-									setPart = part;
-									setter = setPart.getName() + refOp(setPart) + assocProp2.getName();
-								}
-							}
-						}
-						else {
-							// not handled (a connector not targeting a port must be typed)
-							throw new TransformationException("Connector <" + connector.getName() + "> does not use ports, but it is not typed (only connectors between ports should not be typed)");
-						}
-					}
+				if (connector.getEnds().size() != 2) {
+					throw new TransformationException("Connector <" + connector.getName() + "> does not have two ends. This is currently not supported"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
+				ConnectorEnd end1 = connector.getEnds().get(0);
+				ConnectorEnd end2 = connector.getEnds().get(1);
 				String cmd;
-				cmd = "// realization of connector <" + connector.getName() + ">\n";
-				if(instantiateViaBootloader(getPart) && instantiateViaBootloader(setPart)) {
-					cmd += "if ((" + getPart.getName() + " != 0) && (" + setPart.getName() + " != 0)) {\n\t";
-				}
-				else if(instantiateViaBootloader(getPart)) {
-					cmd += "if (" + getPart.getName() + " != 0) {\n\t";
-				}
-				else if(instantiateViaBootloader(setPart)) {
-					cmd += "if (" + setPart.getName() + " != 0) {\n\t";
-				}
-				if(associationBased) {
-					// TODO: make that a lot more clean
-					if((getter1.length() > 0) && (setter1.length() > 0)) {
-						cmd += setter1 + " = " + getter + ";\n";
-						cmd += setter + " = " + getter1 + ";\n";
-					}
-					else {
-						cmd += setter + " = " + getter + ";\n";
+				cmd = "// realization of connector <" + connector.getName() + ">\n";  //$NON-NLS-1$//$NON-NLS-2$
+				if (end1.getRole() instanceof Port) {
+					Port port = (Port) end1.getRole();
+					if (PortUtils.isExtendedPort(port)) {
+						EList<Port> subPorts = PortUtils.flattenExtendedPort(port);
+						for (Port subPort : subPorts) {
+							cmd += connectPorts(indexMap, connector, end1, end2, subPort);
+							cmd += connectPorts(indexMap, connector, end2, end1, subPort);
+						}
 					}
 				}
 				else {
-					if((getter1.length() > 0) && (setter1.length() > 0)) {
-						cmd += setter1 + " (" + index1 + getter + ");\n";
-						cmd += setter + " (" + index + getter1 + ");\n";
-					}
-					else {
-						cmd += setter + " (" + index + getter + ");\n";
-					}
-				}
-
-				if(instantiateViaBootloader(getPart) || instantiateViaBootloader(setPart)) {
-					cmd += "}\n";
+					cmd += connectPorts(indexMap, connector, end1, end2, null);
+					cmd += connectPorts(indexMap, connector, end2, end1, null);
 				}
 				createConnBody += cmd + "\n";
 			}
@@ -419,6 +344,109 @@ public class CompImplTrafos {
 		}
 	}
 
+	/**
+	 * Create a connection between the two ends of a receptacle. This function checks whether the first end really is
+	 * a receptacle and the second really is a facet.
+	 * @param indexMap a map of indices that are used in case of multiplex receptacles
+	 * @param connector a connector
+	 * @param receptacleEnd an end of the connector that may point to a receptacle port
+	 * @param facetEnd an end of the connector that may point to a facet port
+	 * @param subPort a sub-port in case of extended ports
+	 * @return
+	 * @throws TransformationException
+	 */
+	public static String connectPorts(Map<ConnectorEnd, Integer> indexMap, Connector connector, ConnectorEnd receptacleEnd, ConnectorEnd facetEnd, Port subPort)
+			throws TransformationException
+	{
+		Association association = connector.getType();
+		if((receptacleEnd.getRole() instanceof Port) && (facetEnd.getRole() instanceof Port)) {
+			Port facetPort = (Port) facetEnd.getRole();
+			Port receptaclePort = (Port) receptacleEnd.getRole();
+			if((PortUtils.getProvided(facetPort) != null) && (PortUtils.getRequired(receptaclePort) != null)) {
+				Property facetPart = facetEnd.getPartWithPort();
+				Property receptaclePart = facetEnd.getPartWithPort();
+					
+				String subPortName = (subPort != null) ? "_" + subPort.getName() : ""; //$NON-NLS-1$ //$NON-NLS-2$
+				String indexName = getIndexName(indexMap, receptaclePort, receptacleEnd);
+				String setter = receptaclePart.getName() + refOp(receptaclePart) + "connect_" + receptaclePort.getName() + subPortName; //$NON-NLS-1$
+				String getter = facetPart.getName() + refOp(facetPart) + "get_" + facetPort.getName() + subPortName + "()"; //$NON-NLS-1$ //$NON-NLS-2$
+				return setter + "(" + indexName + getter + ");\n"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+				
+		}
+		else if(receptacleEnd.getRole() instanceof Port) {
+			// only the receptacle end is of type port.
+			Port receptaclePort = (Port) receptacleEnd.getRole();
+			if(PortUtils.getRequired(receptaclePort) != null) {
+				Property facetPart = (Property) facetEnd.getRole();
+				Property receptaclePart = facetEnd.getPartWithPort();
+					
+				String indexName = getIndexName(indexMap, receptaclePort, receptacleEnd);
+				String setter = receptaclePart.getName() + refOp(receptaclePart) + "connect_" + receptaclePort.getName(); //$NON-NLS-1$
+				String getter = facetPart.getName() + refOp(facetPart) + facetPart.getName();
+				return setter + "(" + indexName + getter + ");\n"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+		else if(facetEnd.getRole() instanceof Port) {
+			// only the receptacle end is of type port.
+			Port facetPort = (Port) facetEnd.getRole();
+			if(PortUtils.getProvided(facetPort) != null) {
+				Property facetPart = facetEnd.getPartWithPort();
+				Property receptaclePart = (Property) facetEnd.getRole();
+					
+				String setter = receptaclePart.getName();
+				String getter = facetPart.getName() + refOp(facetPart) + "get_" + facetPort.getName() + " ()"; //$NON-NLS-1$ //$NON-NLS-2$
+				return setter + " = " + getter + ";\n"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+		else if(association != null) {
+			// both connector ends do not target ports. In this case, we require that the connector is typed
+			// with an association. We use this association to find out which end is navigable and assume that
+			// the part pointed to by the other end is a pointer that gets initialized with the part of the
+			// navigable end.
+			Property facetPart = (Property) facetEnd.getRole();
+			Property receptaclePart = (Property) receptacleEnd.getRole();
+					
+			// Property assocProp1 = association.getMemberEnd(null, facetPart.getType());
+			// Property assocProp2 = facetPart.getOtherEnd();
+			if((facetPart != null) && facetPart.isNavigable()) {
+				String setter = receptaclePart.getName();
+				String getter = "&" + facetPart.getName(); //$NON-NLS-1$
+				return setter + " = " + getter + ";\n"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+		else {
+			// not handled (a connector not targeting a port must be typed)
+			throw new TransformationException("Connector <" + connector.getName() + //$NON-NLS-1$
+					"> does not use ports, but it is not typed (only connectors between ports should not be typed)"); //$NON-NLS-1$
+		}
+		return ""; //$NON-NLS-1$
+	}
+	
+	/**
+	 * Handle ports with multiplicity > 1. The idea is that we could have multiple connections targeting a receptacle.
+	 * The first connection would start with index 0. Implementations can make no assumption which connection is associated
+	 * with a certain index. [want to avoid associative array in runtime].
+	 * @param port
+	 * @param end
+	 * @return
+	 */
+	public static String getIndexName (Map<ConnectorEnd, Integer> indexMap, Port port, ConnectorEnd end) {
+		if((port.getUpper() > 1) || (port.getUpper() == -1)) {
+			// index depends of combination of property and port, use connector end as key
+			Integer indexValue = indexMap.get(end);
+			if(indexValue == null) {
+				indexValue = 0;
+				indexMap.put(end, indexValue);
+			}
+			String index = indexValue + ", "; //$NON-NLS-1$
+			indexValue++;
+			indexMap.put(end, indexValue);
+			return index;
+		}	
+		return ""; //$NON-NLS-1$
+	}	
+	
 	public static void deleteConnectors(Package pkg) {
 		Iterator<PackageableElement> elements = pkg.getPackagedElements().iterator();
 		while(elements.hasNext()) {
@@ -435,7 +463,7 @@ public class CompImplTrafos {
 	/**
 	 * Return true, if the bootloader is responsible for the instantiation of a part.
 	 * [Structual difference: bootloader can decide instance based - and instances are deployed]
-	 * [Use aggregation kind "none"? Support only system fragments? suppress assemblies?
+	 *
 	 * If a part is a component type or an abstract implementation, it cannot be instantiated. Thus, a heir
 	 * has to be selected in the deployment plan. Since the selection might be different for different instances
 	 * of the composite, the instantiation is not done by the component itself, but by the bootloader.
@@ -448,14 +476,26 @@ public class CompImplTrafos {
 	 * [TODO: optimization: analyze whether the deployment plan selects a single implementation. If yes, let the
 	 * composite instantiate]
 	 * 
+	 * [TODO: elements within an assembly need to be instantiated by composite - if System - by bootloader.
+	 * assembly also need to be instantiated by composite!!
+	 * 
 	 * @param implementation
 	 * @return
 	 */
 	public static boolean instantiateViaBootloader(Class implementation) {
 		return Utils.isCompType(implementation) ||
-			implementation.isAbstract() || Utils.isSingleton(implementation);
+			implementation.isAbstract() || Utils.isSingleton(implementation) ||
+			Utils.isAssembly(implementation);
 	}
 
+	/**
+	 * Return whether a part needs to be instantiated by the bootloader instead by the
+	 * composite in which it is contained. The criteria is based on the question whether
+	 * the containing composite is flattened, as it is the case for the system
+	 * component and the interaction components for distribution. 
+	 * @param part
+	 * @return
+	 */
 	public static boolean instantiateViaBootloader(StructuralFeature part) {
 		if(part != null) {
 			if(part.getType() instanceof Class) {

@@ -1047,7 +1047,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jkrRMa8qEeCXIcykFPsB8Q" x="30" y="8"/>
       </children>
       <element xmi:type="uml:Package" href="core.uml#_RPCMoOxIEd-2rr_yAeKkjQ"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iLyysa8qEeCXIcykFPsB8Q" x="90" y="234"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iLyysa8qEeCXIcykFPsB8Q" x="90" y="243"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_q3ohcK8qEeCXIcykFPsB8Q" type="2012" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_q3pIgK8qEeCXIcykFPsB8Q" source="ShadowFigure">

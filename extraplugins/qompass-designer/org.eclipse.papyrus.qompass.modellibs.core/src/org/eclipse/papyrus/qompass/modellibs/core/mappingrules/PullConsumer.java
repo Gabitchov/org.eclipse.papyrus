@@ -1,6 +1,25 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.FCM.Port;
+import org.eclipse.papyrus.FCM.util.IMappingRule;
+import org.eclipse.papyrus.FCM.util.MapUtil;
+import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -12,11 +31,6 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.papyrus.FCM.Port;
-import org.eclipse.papyrus.FCM.util.IMappingRule;
-import org.eclipse.papyrus.FCM.util.MapUtil;
-import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 
 /**
  * Will generate a suitable callable interface pulling consumer. The port is typed with a primitive type
@@ -26,12 +40,8 @@ import org.eclipse.papyrus.qompass.designer.core.Utils;
  */
 public class PullConsumer implements IMappingRule {
 
-	public Interface getProvided(Port p, InstanceSpecification config) {
+	public Interface getProvided(Port p, InstanceSpecification config, boolean update) {
 		return null;
-	}
-
-	public int needsTransaction() {
-		return IMappingRule.REQUIRED;
 	}
 
 	public static PullConsumer getInstance() {
@@ -41,7 +51,7 @@ public class PullConsumer implements IMappingRule {
 		return instance;
 	}
 
-	public Interface getRequired(Port p, InstanceSpecification config) {
+	public Interface getRequired(Port p, InstanceSpecification config, boolean update) {
 		org.eclipse.uml2.uml.Port umlPort = p.getBase_Port();
 		Element owner = umlPort.getOwner();
 		String ownerStr = "";
@@ -55,6 +65,9 @@ public class PullConsumer implements IMappingRule {
 		if((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
 			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, "PullConsumer_", type);
+			if (!update) {
+				return derivedInterface;
+			}
 			if(derivedInterface == null) {
 				return null;
 			}

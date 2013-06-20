@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.templates;
 
 import java.util.Iterator;
@@ -29,6 +43,11 @@ import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 
+/**
+ * Create an automatic template binding for a connector, i.e. a binding that assures
+ * that the ports of an interaction component match those of an application component
+ * (if possible)
+ */
 public class ConnectorBinding {
 
 	/**
@@ -309,8 +328,9 @@ public class ConnectorBinding {
 
 		TemplateSignature signature = TemplateUtils.getSignature(template);
 		if(signature == null) {
-			// not a template, retain original name
-			System.err.println("no template signature found for " + template.getName());
+			// not a template. This is not an exception, caller need to handle "null" a return
+			// value indicating that no template instantiation needs to be done.
+			Log.log(Log.INFO_MSG, Log.TEMPLATE_BINDING, "ConnectorBinding: no template signature found for " + template.getName()); //$NON-NLS-1$
 			return null;
 		}
 

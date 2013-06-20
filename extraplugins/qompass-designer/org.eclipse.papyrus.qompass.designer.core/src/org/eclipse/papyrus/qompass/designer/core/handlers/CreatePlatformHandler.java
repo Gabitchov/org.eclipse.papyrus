@@ -1,17 +1,30 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Package;
-
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Package;
 
 public class CreatePlatformHandler extends CmdHandler {
 
@@ -39,7 +52,7 @@ public class CreatePlatformHandler extends CmdHandler {
 		}
 		final Class selectedComposite = (Class)getSelectedEObject();
 
-		CommandSupport.exec("Create platform model", new Runnable() {
+		CommandSupport.exec("Create platform model", event, new Runnable() {
 
 			public void run() {
 				// execute with transaction support
@@ -55,7 +68,7 @@ public class CreatePlatformHandler extends CmdHandler {
 				MessageDialog.openInformation(shell, "Error",
 					"Platform definition \"" + newPlatform + "\" exists already");
 			} else {
-				CommandSupport.exec("Create platform definition", new Runnable() {
+				CommandSupport.exec("Create platform definition", event, new Runnable() {
 
 					public void run() {
 						Package platformPkg = platform.createNestedPackage(newPlatform);

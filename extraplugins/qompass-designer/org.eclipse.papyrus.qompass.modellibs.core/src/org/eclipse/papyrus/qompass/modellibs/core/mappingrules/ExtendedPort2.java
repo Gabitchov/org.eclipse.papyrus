@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
 import org.eclipse.papyrus.FCM.util.IMappingRule;
@@ -27,26 +41,20 @@ import org.eclipse.uml2.uml.Type;
  * 
  * What is the difference to ExtendedPort?
  * 
- * @author ansgar
- * 
  */
 public class ExtendedPort2 implements IMappingRule {
 
-	public int needsTransaction() {
-		return IMappingRule.BOTH;
-	}
-
-	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
+	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
 	{
-		return getDerived(p, p.getBase_Port().isConjugated(), config);
+		return getDerived(p, p.getBase_Port().isConjugated(), config, update);
 	}
 
-	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
+	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
 	{
-		return getDerived(p, !p.getBase_Port().isConjugated(), config);
+		return getDerived(p, !p.getBase_Port().isConjugated(), config, update);
 	}
 
-	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isConjugated, InstanceSpecification config)
+	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isConjugated, InstanceSpecification config, boolean update)
 	{
 		Type type = extPort.getBase_Port().getType();
 		if(!(type instanceof Class))
@@ -55,6 +63,9 @@ public class ExtendedPort2 implements IMappingRule {
 		Class extendedPort = (Class)type;
 		String prefix = isConjugated ? "C2_" : "N2_";
 		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type);
+		if (!update) {
+			return derivedInterface;
+		}
 		if(derivedInterface == null) {
 			return null;
 		}

@@ -86,10 +86,19 @@
    </extension>
    <extension
          point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
-         <command
+	<menuContribution
+		allPopups="true"
+		locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+		<menu
+			icon="icons/Qompass-16x16.gif"
+			id="org.eclipse.papyrus.views.modelexplorer.popup.qompassdesigner"
+			label="Qompass Designer">
+		</menu>
+	</menuContribution>
+	<menuContribution
+		allPopups="false"
+		locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popup.qompassdesigner">
+		<command
                commandId="org.eclipse.papyrus.qompass.designer.core.menuActions.CreateDepPlanCmd"
                icon="icons/depPlan.gif"
                id="org.eclipse.papyrus.qompass.designer.core.menuActions.CreateDepPlanMenu"
@@ -206,10 +215,19 @@
                   checkEnabled="true">
             </visibleWhen>
          </command>
- 	  </menuContribution>
-      <menuContribution
+	</menuContribution>
+ 	<menuContribution
+		allPopups="true"
+		locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+		<menu
+			icon="icons/Qompass-16x16.gif"
+			id="org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu.qompassdesigner"
+			label="Qompass Designer">
+		</menu>
+	</menuContribution>
+	<menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu.qompassdesigner">            
          <command
                commandId="org.eclipse.papyrus.qompass.designer.core.menuActions.CreateDepPlanCmd"
                icon="icons/depPlan.gif"

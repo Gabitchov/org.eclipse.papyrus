@@ -1,14 +1,16 @@
-/**
- * Copyright CEA-LIST 2009
- * available under EPL 1.0 licence
- * 
- * This file is part of the Qompass tool chain (www.ec3m.net)
- * 
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- * Initial developer - Ansgar Radermacher
- */
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
 
 package org.eclipse.papyrus.qompass.designer.core.transformations;
 
@@ -23,14 +25,6 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Profile;
 import org.eclipse.papyrus.FCM.Configuration;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.FCM.util.MapUtil;
@@ -51,13 +45,22 @@ import org.eclipse.papyrus.qompass.designer.core.templates.InstantiateCppInclude
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterComments;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterStateMachines;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterTemplate;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 
 /**
- * This class contains all transformation during the instantiation of a
- * deployment plan, i.e. 1. The reification of connectors (including the
- * template instantiation). This transformation targets a new model 2. Adding
- * get_p/connect_q operations to a class (transformation within same model) 3.
- * Remove all component types 4. distribute to nodes
+ * This class executes all transformations during the instantiation of a
+ * deployment plan, i.e.
+ * 1. The reification of connectors (including template instantiation). This transformation targets a new model
+ * 2. Adding get_p/connect_q operations to a class (transformation within same model)
+ * 3. Remove all component types
+ * 4. distribute to nodes
  * 
  * @author ansgar
  * 
@@ -170,6 +173,8 @@ public class InstantiateDepPlan {
 			// LateEval.bindLateOperations();
 			// 3: distribute to nodes
 
+			FlattenInteractionComponents.getInstance().flattenAssembly(newRootIS, null);
+			
 			String tmpPath = tmpMM.getPath(project, "tmpModel", tmpModel.getName() + "Tmp.uml");
 			tmpMM.saveModel(tmpPath);
 
@@ -207,6 +212,7 @@ public class InstantiateDepPlan {
 					// Package originalRoot = genModel.createNestedPackage
 					// (existingModel.getName ());
 					Copy targetCopy = new Copy(tmpModel, genModel, true);
+					// TODO: distribution to nodes is currently not done. How can it be realized with a copy filter ?
 					targetCopy.preCopyListeners.add(FilterStateMachines.getInstance());
 					targetCopy.postCopyListeners.add(InstantiateCppIncludeWOB.getInstance());
 

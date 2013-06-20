@@ -13,16 +13,16 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.dialogs.ConnectorSelectionDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.papyrus.FCM.InteractionComponent;
-import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.dialogs.ConnectorSelectionDialog;
 
 /**
  * Implementation class for ClassAction action
@@ -70,7 +70,7 @@ public class SelectConnectorHandler extends CmdHandler {
 		if(elementSelector.getReturnCode() == IDialogConstants.OK_ID) {
 			final Object[] result = elementSelector.getResult();
 			if((result.length == 1) && (result[0] instanceof Class)) {
-				CommandSupport.exec("Select connector", new Runnable() {
+				CommandSupport.exec("Select connector", event, new Runnable() {
 
 					public void run() {
 						org.eclipse.papyrus.FCM.Connector fcmSelectedConnector = StUtils.applyApp(selectedConnector, org.eclipse.papyrus.FCM.Connector.class);

@@ -1,10 +1,26 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.deployment;
 
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.InstanceSpecification;
+import java.util.Stack;
 
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Slot;
 
 /**
  * Deploy an instance (on a certain node). This operation is specifically non recursive
@@ -39,11 +55,10 @@ public interface InstanceDeployer {
 	 * 
 	 * @param is
 	 *        an instance (UML instance specification) within the deployment plan
-	 * @param composite
-	 *        information about the containing composite, i.e. the composite in source
-	 *        and target model as well as informations about the slot.
+	 * @param slotPath
+	 *        a list (stack) of slots starting from the main instance
 	 * @return the classifier modified for deployment
 	 * @throws TransformationException
 	 */
-	public Classifier deployInstance(InstanceSpecification is) throws TransformationException;
+	public Classifier deployInstance(InstanceSpecification is, Stack<Slot> slotPath) throws TransformationException;
 }

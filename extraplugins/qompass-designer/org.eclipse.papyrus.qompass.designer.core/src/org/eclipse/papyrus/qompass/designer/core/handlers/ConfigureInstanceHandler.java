@@ -14,6 +14,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
+import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
+import org.eclipse.papyrus.qompass.designer.core.dialogs.ConfigureInstanceDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
@@ -21,10 +24,6 @@ import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
-
-import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
-import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
-import org.eclipse.papyrus.qompass.designer.core.dialogs.ConfigureInstanceDialog;
 
 /**
  * Implementation class for ClassAction action
@@ -67,7 +66,7 @@ public class ConfigureInstanceHandler extends CmdHandler {
 		if(element instanceof Class) {
 			// container dialog: either extension, rule or interceptor
 			// howto select? which? (and howto add/remove?) - Std - dialog is good?
-			CommandSupport.exec("Configure associated component instance", new RunnableWithResult() {
+			CommandSupport.exec("Configure associated component instance", event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =
@@ -86,7 +85,7 @@ public class ConfigureInstanceHandler extends CmdHandler {
 		} else if(element instanceof Feature) {
 			// container dialog: either extension, rule or interceptor
 			// howto select? which? (and howto add/remove?) - Std - dialog is good?
-			CommandSupport.exec("Configure associated instance", new RunnableWithResult() {
+			CommandSupport.exec("Configure associated instance", event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =
@@ -106,7 +105,7 @@ public class ConfigureInstanceHandler extends CmdHandler {
 			
 		} else if(element instanceof InstanceSpecification) {
 
-			CommandSupport.exec("Configure instance", new RunnableWithResult() {
+			CommandSupport.exec("Configure instance", event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =

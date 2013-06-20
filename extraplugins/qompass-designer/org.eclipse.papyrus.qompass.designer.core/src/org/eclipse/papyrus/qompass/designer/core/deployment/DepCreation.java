@@ -457,6 +457,9 @@ public class DepCreation {
 	public static void initAutoValuesHelper(InstanceSpecification is) {
 		for(Slot slot : is.getSlots()) {
 			StructuralFeature sf = slot.getDefiningFeature();
+			if (sf == null) {
+				throw new RuntimeException ("The defining feature of a slot of instance " + slot.getOwningInstance().getName() + " is null");
+			}
 			if(StUtils.isApplied(sf, AutoIndex.class)) {
 				Integer value = null;
 				Object key;

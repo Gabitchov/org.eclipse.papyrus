@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
 import org.eclipse.papyrus.FCM.util.IMappingRule;
@@ -37,21 +51,17 @@ import org.eclipse.uml2.uml.Type;
  */
 public class ExtendedPort implements IMappingRule {
 
-	public int needsTransaction() {
-		return IMappingRule.BOTH;
-	}
-
-	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
+	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
 	{
-		return getDerived(p, false, config);
+		return getDerived(p, false, config, update);
 	}
 
-	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config)
+	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
 	{
-		return getDerived(p, true, config);
+		return getDerived(p, true, config, update);
 	}
 
-	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isRequired, InstanceSpecification config)
+	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isRequired, InstanceSpecification config, boolean update)
 	{
 		Type type = extPort.getBase_Port().getType();
 		if(!(type instanceof Classifier)) {
@@ -60,7 +70,10 @@ public class ExtendedPort implements IMappingRule {
 		Class extendedPort = extPort.getKind().getBase_Class();
 
 		String prefix = extendedPort.getName() + "_" + (isRequired ? "R_" : "P_");
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type);
+		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type, update);
+		if (!update) {
+			return derivedInterface;
+		}
 		if(derivedInterface == null) {
 			return null;
 		}

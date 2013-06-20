@@ -1,10 +1,32 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.core.deployment;
 
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.InstanceSpecification;
+import java.util.Stack;
 
+import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Slot;
 
 /**
  * Copy a composite class while taking into account node allocation, i.e. only
@@ -34,9 +56,65 @@ public class PartialCopy implements InstanceDeployer {
 		// does nothing for the moment
 	}
 
-	public Classifier deployInstance(InstanceSpecification is) throws TransformationException {
+	public Classifier deployInstance(InstanceSpecification is, Stack<Slot> slotPath) throws TransformationException {
 		Classifier classifier = DepUtils.getClassifier(is);
-		return copy.getCopy(classifier);
+
+		// only make a partial copy of the system class slotPath size 0) for the moment.
+		if(!(classifier instanceof Class) || slotPath.size() > 0) {
+			return copy.getCopy(classifier);
+		}
+		Class smCl = (Class)classifier;
+		
+		// create parts in target model, if allocated.
+		for (Slot slot : is.getSlots()) {
+			copyPart(smCl, slot);
+		}
+		// since we copied some of its attributes, the copy class created a shallow copy of the class itself
+		Class tmCl = (Class) copy.get(smCl);
+		if (tmCl != null)
+			StUtils.copyStereotypes(smCl, tmCl);
+		
+		return tmCl;
+	}
+
+	/**
+	 * copy a part of a classifier, without being recursive [shouldn't that be in the generic deploy part?]
+	 * This function is called, whenever a sub-instance is deployed
+	 * Brainstorming: add containing composite to deployInstance? (in this case, deployInstance could create the
+	 * part in the containing composite, if it does not exist yet)
+	 * 
+	 * @param cl
+	 * @param newCl
+	 * @param slot
+	 * @param allocAll
+	 * @throws TransformationException
+	 */
+	protected void copyPart(Class smCl, Slot slot) throws TransformationException {
+		Property smPart = (Property)slot.getDefiningFeature();
+		// Log.log(Log.INFO_MSG, Log.DEPLOYMENT, "smCl:" + smCl.getQualifiedName ());
+		// Log.log(Log.INFO_MSG, Log.DEPLOYMENT, "tmCl:" + tmCl.getQualifiedName ());
+		
+		String partName = smPart.getName();
+		InstanceSpecification instanceOrThread = DepUtils.getInstance(slot);
+		if (AllocUtils.getNodes(instanceOrThread).contains(node)) {
+			copy.copy(smPart);
+			
+			// add connectors when possible, i.e. connectors that target the newly added part
+			for(Connector smConnector : smCl.getOwnedConnectors()) {
+				// check whether the newly added property enables the addition of connectors
+				// that connect this port.
+				if(ConnectorUtils.connectsPart(smConnector, smPart)) {
+					ConnectorEnd otherEnd = ConnectorUtils.connEndNotPart(smConnector, smPart);
+					// check whether the part references by the other end (i.e. that not connected with the part)
+					// TODO: take connections without port into account
+					Property otherPart = otherEnd.getPartWithPort();
+					// compare part names, since connector points to parts within the source model
+					if((otherPart == null) || (copy.get(otherPart) != null)) {
+						copy.copy(smConnector);
+					}
+				}
+			}
+		}
 	}
 
 	private InstanceSpecification node;
