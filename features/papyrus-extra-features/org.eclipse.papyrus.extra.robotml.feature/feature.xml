@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.extra.robotml.feature"
+      label="Papyrus extra: RobotML Modeling Tools (Incubation)"
+      version="0.10.0.qualifier"
+      provider-name="Eclipse Modeling Project">
+
+   <description>
+      RobotML Modelling Tools
+   </description>
+
+   <copyright>
+      ********************************
+* Copyright (c) 2010 CEA LIST.
+*
+*    
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the CeCILL-C Free Software
+* License v1.0
+* which accompanies this distribution, and is available at
+* http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
+*
+*
+* Contributors:
+*   (CEA LIST) Initial API and implementation
+*********************************/
+   </copyright>
+
+   <license url="http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html">
+      All rights reserved. This program and the accompanying materials
+are made available under the terms of the CeCILL-C Free Software License v1.0
+which accompanies this distribution, and is available at
+http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
+   </license>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.diagram.architecture"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.diagram.common"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.diagram.componentdef"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.diagram.datatypedef"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.diagram.interfacedef"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.templaterepository"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.diagram.ui"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.doc"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.validation"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.modelexplorer"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.robotml.perspective"
+         download-size="0"
+         install-size="0"
+         version="0.10.0.qualifier"
+         unpack="false"/>
+
+</feature>
