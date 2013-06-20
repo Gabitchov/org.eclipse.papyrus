@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * Management of validationRules assigned to the stereotypes specified in the
  * defined profile.
+ * ContraintProvider=Category=profile or subprofile
  * 
  * 
  */
@@ -37,6 +38,18 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 	private List<IConstraintProvider> constraintsProviders = new ArrayList<IConstraintProvider>();
 
 	private Map<Stereotype, List<Constraint>> constraintsOfStereotype = new HashMap<Stereotype, List<Constraint>>();
+	private Map<Constraint,ValidationRuleImpl > validationRuleMap = new HashMap<Constraint,ValidationRuleImpl>();
+	
+	
+	
+	public Map<Constraint, ValidationRuleImpl> getValidationRuleMap() {
+		return validationRuleMap;
+	}
+
+	public Map<Stereotype, List<Constraint>> getConstraintsOfStereotype() {
+		return constraintsOfStereotype;
+	}
+
 
 	private Category primeCategory;
 
@@ -77,7 +90,7 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 
 	/**
 	 * Recursive function to relate categories with the validationRules
-	 * a profile becomes a category
+	 * a profile becomes a category= a constraint Provider
 	 * a stereotype becomes a category
 	 * 
 	 * @param element
@@ -117,7 +130,9 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 					if(this.constraintsOfStereotype.get(subElement) != null) {
 						for(Constraint constraint : this.constraintsOfStereotype.get(subElement)) {
 							try {
-								subCategory.getConstraints().add(new ValidationRuleImpl(constraint, subCategory));
+								ValidationRuleImpl rule=new ValidationRuleImpl(constraint, subCategory);
+								validationRuleMap.put(constraint, rule);
+								subCategory.getConstraints().add(rule);
 							} catch (WrongStereotypeException e) {
 								e.printStackTrace();
 							}

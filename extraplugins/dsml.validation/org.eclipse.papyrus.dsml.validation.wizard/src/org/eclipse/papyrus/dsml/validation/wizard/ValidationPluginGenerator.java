@@ -15,6 +15,8 @@ package org.eclipse.papyrus.dsml.validation.wizard;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -31,6 +33,8 @@ import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraint
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidationRule;
 import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
 import org.eclipse.pde.internal.ui.wizards.plugin.NewPluginProjectWizard;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Stereotype;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -103,14 +107,14 @@ public class ValidationPluginGenerator {
 		Element extension = editor.getPluginEditor().addExtension(EMF_VALIDATION_CONSTRAINT_PROVIDERS_EXTENSIONPOINT);
 
 		//creation of categories extension point
-		//that correspond to sub-profiles and stereotypes
+		//that correspond to  profile and sub-profiles 
 		this.createHierarchyOfCategories(projectName,this.constraintsManager.getPrimeCategory(), extension, editor);
 
-		//add the constraint provider extension point, normally it exist only one
+		//add the constraint provider extension point, normally it exist only per profile so per category
 		for (IConstraintProvider constraintProvider : constraintsManager.getConstraintsProviders()) {
 			//create the extension point for the provider
 			Element extElForConstraintsProvider = createExtensionForConstraintsProvider(constraintProvider, extension, editor, definition);
-			// go though category  (profile+ stereotype)
+			// go though category  (profile)
 			for (IConstraintsCategory constraintCategory : constraintProvider.getConstraintsCategories()) {
 
 				//create the extension point validationRule for category
@@ -134,7 +138,7 @@ public class ValidationPluginGenerator {
 			}
 		}
 
-		generateCommonExtension2(projectName,editor);
+		generateBindings(projectName,editor, this.constraintsManager);
 
 		editor.getProject().refreshLocal(0, null);
 
@@ -203,8 +207,8 @@ public class ValidationPluginGenerator {
 		Element extElForConstraint = editor.getPluginEditor().addChild(
 			parentElement, EMF_VALIDATION_CONSTRAINT_CHILD);
 
-		extElForConstraint.setAttribute(ID, validation.getID() + OCL_LANGUAGE);
-		extElForConstraint.setAttribute("name", validation.getName() + OCL_LANGUAGE);
+		extElForConstraint.setAttribute(ID, validation.getID());
+		extElForConstraint.setAttribute("name", validation.getName());
 		extElForConstraint.setAttribute("lang", OCL_LANGUAGE);
 		extElForConstraint.setAttribute("statusCode", validation
 			.getStatusCode().toString());
@@ -322,23 +326,31 @@ public class ValidationPluginGenerator {
 
 	}
 
-	private void generateCommonExtension2(String projectName,PluginEditor editor) {
-
-		Element extension = editor.getPluginEditor().addExtension(
-			"org.eclipse.emf.validation.constraintBindings");
-
-		extension.setAttribute(ID,	ValidationPluginGenerator.getContextprefix());
-
-		Element element = editor.getPluginEditor().addChild(extension,"clientContext");
-		element.setAttribute(ID,ValidationPluginGenerator.getContextprefix());
-
-		element = editor.getPluginEditor().addChild(element, "selector");
-		element.setAttribute("class","org.eclipse.papyrus.validation"+SEPARATOR+"ValidationDelegateClientSelector");
-
-		element = editor.getPluginEditor().addChild(extension, "binding");
-		element.setAttribute("context",	ValidationPluginGenerator.getContextprefix());
-
-		this.createCategoriesForBinding(projectName,this.constraintsManager.getPrimeCategory(), element, editor);
+	private void generateBindings(String projectName,PluginEditor editor, IConstraintsManager constraintsManager) {
+		Element extension = editor.getPluginEditor().addExtension("org.eclipse.emf.validation.constraintBindings");
+		//create a client context per stereotypes
+		Set<Stereotype>constrainedStereotype=constraintsManager.getConstraintsOfStereotype().keySet();
+		for(Iterator<Stereotype> iterator = constrainedStereotype.iterator(); iterator.hasNext();) {
+			Stereotype stereotype = (Stereotype)iterator.next();
+			System.out.println("+--> create clientContext for the stereotype "+stereotype.getName());
+			Element clientContextElement = editor.getPluginEditor().addChild(extension,"clientContext");
+			clientContextElement.setAttribute(ID,stereotype.getName()+"ClientContext");
+			Element selectorElement = editor.addChild(clientContextElement, "selector");
+			selectorElement.setAttribute("class","org.eclipse.papyrus.validation."+stereotype.getName()+"ClientSelector");
+			
+			//create binding
+			List<Constraint> constraints=constraintsManager.getConstraintsOfStereotype().get(stereotype);
+			Element bindingelement = editor.getPluginEditor().addChild(extension, "binding");
+			bindingelement.setAttribute("context",	stereotype.getName()+"ClientContext");
+			for(Iterator<Constraint> iteratorConstraint = constraints.iterator(); iteratorConstraint.hasNext();) {
+				Constraint constraint = (Constraint)iteratorConstraint.next();
+				constraintsManager.getValidationRuleMap().get(constraint).getID();
+				Element subElement = editor.addChild(bindingelement, "constraint");
+				subElement.setAttribute("ref",projectName+SEPARATOR+constraintsManager.getValidationRuleMap().get(constraint).getID());
+				System.out.println("+----> create binding for the constraint "+constraintsManager.getValidationRuleMap().get(constraint).getID());
+			}
+		}
+		
 	}
 
 

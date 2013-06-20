@@ -109,20 +109,7 @@ public class ValidationRuleImpl implements IValidationRule {
 					this.targets.add((String)target);
 				}
 			}
-		} else {
-
-			BasicEList<String> tgs = new BasicEList<String>();
-
-			Element element = constraint.getContext();
-
-			if(element instanceof Stereotype) {
-				for(Class extension : ((Stereotype)element).getExtendedMetaclasses()) {
-
-					this.targets.add(extension.getName());
-					tgs.add(extension.getName());
-
-				}
-			}
+		
 		}
 
 		/*

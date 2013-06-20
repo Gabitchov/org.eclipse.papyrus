@@ -13,6 +13,11 @@
 package org.eclipse.papyrus.dsml.validation.model.elements.interfaces;
 
 import java.util.List;
+import java.util.Map;
+
+import org.eclipse.papyrus.dsml.validation.model.elements.impl.ValidationRuleImpl;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * Interface which specifies methods for the manager taking charge of a
@@ -29,6 +34,8 @@ public interface IConstraintsManager {
 	 * @return list of constraint providers
 	 */
 	public List<IConstraintProvider> getConstraintsProviders();
+	
+	public Map<Constraint, ValidationRuleImpl> getValidationRuleMap();
 
  
 	/**
@@ -37,5 +44,12 @@ public interface IConstraintsManager {
 	 * @return prime category
 	 */
 	public Category getPrimeCategory();
+	
+	
+	/**
+	 * 
+	 * @return the hashmap of constraint per stereotype
+	 */
+	public Map<Stereotype, List<Constraint>> getConstraintsOfStereotype();
 
 }

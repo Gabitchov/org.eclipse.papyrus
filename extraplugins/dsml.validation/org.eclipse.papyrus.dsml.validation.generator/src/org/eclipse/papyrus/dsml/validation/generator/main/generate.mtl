@@ -82,20 +82,42 @@ public class [constraint.name.toUpperFirst() + 'Constraint'/] extends AbstractMo
 
 [/template]
 
-[template public generateValidationContext(profile : Profile)]
-[file ('/org/eclipse/papyrus/validation/ValidationDelegateClientSelector.java', false)]
+[template public generateValidationContext(stereotype : Stereotype)]
+[file ('/org/eclipse/papyrus/validation/'+stereotype.name +'ClientSelector.java', false)]
 [comment @main/]
 package org.eclipse.papyrus.validation;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IClientSelector;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
-public class ValidationDelegateClientSelector implements IClientSelector {
+
+public class [stereotype.name/]ClientSelector implements IClientSelector {
 
 	public boolean selects(Object object) {
-		return (object instanceof Element);
+		if(!(object instanceof EObject)) {
+			return false;
+		}
+
+		if(object instanceof Element) {
+			return false;
+		}
+
+		EObject stereotypeApplication = ((EObject)object);
+		Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
+		if(stereotype == null) {
+			return false;
+		}
+
+		if("[stereotype.name/]".equals(stereotype.getName())) {
+			return true;
+		}
+
+		return false;
 	}
+
 }
 
 [/file]
