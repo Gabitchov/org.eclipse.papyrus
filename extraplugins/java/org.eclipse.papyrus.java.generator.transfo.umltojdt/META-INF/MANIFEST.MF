@@ -8,3 +8,4 @@ Bundle-Vendor:
 Require-Bundle: org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.java.generator.transfo.umltojdt
+Bundle-Localization: plugin

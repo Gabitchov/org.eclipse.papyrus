@@ -15,3 +15,5 @@ Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.jdt.core,
  org.eclipse.jface.text,
  org.eclipse.jdt.launching
+Bundle-Localization: plugin
+ 

@@ -18,3 +18,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Activator: org.eclipse.papyrus.java.generator.ui.Activator
 Export-Package: org.eclipse.papyrus.java.generator.ui
+Bundle-Localization: plugin

@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Acceleo Integration
+Bundle-Name: Acceleo Integration (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.acceleo
 Bundle-Version: 0.10.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.acceleo.Activator
-Bundle-Vendor: CEA
+Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.engine;bundle-version="3.2.2",
  org.eclipse.acceleo.parser;bundle-version="3.2.2",

@@ -38,4 +38,4 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-versi
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Localization: bundle
+Bundle-Localization: plugin

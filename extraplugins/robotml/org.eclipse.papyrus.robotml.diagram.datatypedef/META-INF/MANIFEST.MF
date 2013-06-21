@@ -31,3 +31,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %Bundle-Vendor
 Export-Package: org.eclipse.papyrus.robotml.diagram.datatypedef.provider
+Bundle-Localization: plugin

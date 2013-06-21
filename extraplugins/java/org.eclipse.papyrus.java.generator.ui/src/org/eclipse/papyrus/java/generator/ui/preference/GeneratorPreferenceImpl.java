@@ -45,30 +45,35 @@ public class GeneratorPreferenceImpl implements GeneratorPreference {
 	}
 
 	public boolean isPackageToGenerate(String packageQualifiedName) {
-		if(packageQualifiedName == null || packageQualifiedName.isEmpty())
+		if(packageQualifiedName == null || packageQualifiedName.isEmpty()) {
 			return true;
+		}
 
 		// gather list of packages :
 		String listStr = store.getString(PreferenceConstants.P_FILTER_OF_PACKAGE_NOT_TO_GENERATE);
 
 		// if list of package don't exist, return true
-		if(listStr == null || listStr.isEmpty())
+		if(listStr == null || listStr.isEmpty()) {
 			return true;
+		}
 
 		// gather list in a table
 		String[] listPackage = listStr.split(";");
 
 		for(String _package : listPackage) {
-			if(_package.equals(packageQualifiedName))
+			if(_package.equals(packageQualifiedName)) {
 				return false;
+			}
 
 			// if package have a *, we delete *			
 			String packageWithoutStar = _package;
-			if(_package.contains("*"))
+			if(_package.contains("*")) {
 				packageWithoutStar = _package.substring(0, _package.indexOf("*") - 1);
+			}
 
-			if(packageQualifiedName.contains(packageWithoutStar))
+			if(packageQualifiedName.contains(packageWithoutStar)) {
 				return false;
+			}
 		}
 
 		// by default, return true
@@ -79,7 +84,6 @@ public class GeneratorPreferenceImpl implements GeneratorPreference {
 		return store.getString(PreferenceConstants.P_GENERIC_CLASS_FOR_MULTIVALUE);
 	}
 
-	@Override
 	public boolean stopOnFirstError() {
 		return store.getBoolean(PreferenceConstants.P_STOP_ON_FIRST_ERROR);
 	}

@@ -9,7 +9,7 @@
  * Contributors:
  *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.robotml.cheatsheets;
+package org.eclipse.papyrus.robotml.doc;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -20,7 +20,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.robotml.cheatsheets"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.robotml.doc"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
