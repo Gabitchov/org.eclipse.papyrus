@@ -332,7 +332,7 @@ public class ValidationPluginGenerator {
 		Set<Stereotype>constrainedStereotype=constraintsManager.getConstraintsOfStereotype().keySet();
 		for(Iterator<Stereotype> iterator = constrainedStereotype.iterator(); iterator.hasNext();) {
 			Stereotype stereotype = (Stereotype)iterator.next();
-			System.out.println("+--> create clientContext for the stereotype "+stereotype.getName());
+			//("+--> create clientContext for the stereotype "+stereotype.getName());
 			Element clientContextElement = editor.getPluginEditor().addChild(extension,"clientContext");
 			clientContextElement.setAttribute(ID,stereotype.getName()+"ClientContext");
 			Element selectorElement = editor.addChild(clientContextElement, "selector");
@@ -347,7 +347,7 @@ public class ValidationPluginGenerator {
 				constraintsManager.getValidationRuleMap().get(constraint).getID();
 				Element subElement = editor.addChild(bindingelement, "constraint");
 				subElement.setAttribute("ref",projectName+SEPARATOR+constraintsManager.getValidationRuleMap().get(constraint).getID());
-				System.out.println("+----> create binding for the constraint "+constraintsManager.getValidationRuleMap().get(constraint).getID());
+				//("+----> create binding for the constraint "+constraintsManager.getValidationRuleMap().get(constraint).getID());
 			}
 		}
 		
