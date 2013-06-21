@@ -139,13 +139,13 @@ public class TableCreationInSysMLModelTest {
 
 		};
 		Display.getDefault().syncExec(runnableWithResult);
-		try {
-			Platform.getBundle("org.eclipse.papyrus.infra.nattable.common").start(); //$NON-NLS-1$
-			Platform.getBundle("org.eclipse.papyrus.sysml.nattable.requirement").start(); //$NON-NLS-1$
-			Platform.getBundle("org.eclipse.papyrus.sysml.nattable.requirement.config").start(); //$NON-NLS-1$
-		} catch (BundleException e) {
-			throw e;
-		}
+//		try {
+//			Platform.getBundle("org.eclipse.papyrus.infra.nattable.common").start(); //$NON-NLS-1$
+//			Platform.getBundle("org.eclipse.papyrus.sysml.nattable.requirement").start(); //$NON-NLS-1$
+//			Platform.getBundle("org.eclipse.papyrus.sysml.nattable.requirement.config").start(); //$NON-NLS-1$
+//		} catch (BundleException e) {
+//			throw e;
+//		}
 		Assert.assertEquals(runnableWithResult.getStatus().getMessage(), IStatus.OK, runnableWithResult.getStatus().getSeverity());
 		Assert.assertNotNull(class_);
 		Assert.assertNotNull(requirement1);
@@ -200,18 +200,13 @@ public class TableCreationInSysMLModelTest {
 		final ICommand creationCommand = provider.getEditCommand(request);
 		Assert.assertNotNull(creationCommand);
 		Assert.assertTrue(creationCommand.canExecute());
-		RunnableWithResult<Object> runnable = new RunnableWithResult.Impl<Object>() {//in a runnable to be sure that the table will be refreshed
 
-			@Override
-			public void run() {
-				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
-				NamedElement requirement = TableCreationInSysMLModelTest.rootModel.getMember("Requirement3"); //$NON-NLS-1$
-				Assert.assertNotNull(requirement);
-				requirement3 = (Class)requirement;
-			}
-		};
-
-		Display.getDefault().syncExec(runnable);
+		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
+		NamedElement requirement = TableCreationInSysMLModelTest.rootModel.getMember("Requirement3"); //$NON-NLS-1$
+		Assert.assertNotNull(requirement);
+		requirement3 = (Class)requirement;
+		//to refresh the table content
+		while(Display.getDefault().readAndDispatch());
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(requirement1));
@@ -228,18 +223,12 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertNotNull(destroyCommand);
 		Assert.assertTrue(destroyCommand.canExecute());
 
-		runnable = new RunnableWithResult.Impl<Object>() {//in a runnable to be sure that the table will be refreshed
-
-			@Override
-			public void run() {
-				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyCommand));
-				NamedElement requirement = TableCreationInSysMLModelTest.rootModel.getMember("Requirement3"); //$NON-NLS-1$
-				Assert.assertNull(requirement);
-				requirement3 = (Class)requirement;
-			}
-		};
-
-		Display.getDefault().syncExec(runnable);
+		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyCommand));
+		requirement = TableCreationInSysMLModelTest.rootModel.getMember("Requirement3"); //$NON-NLS-1$
+		Assert.assertNull(requirement);
+		requirement3 = (Class)requirement;
+		//to refresh the table content
+		while(Display.getDefault().readAndDispatch());
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(requirement1));
@@ -279,18 +268,14 @@ public class TableCreationInSysMLModelTest {
 		final ICommand creationCommand = provider.getEditCommand(request);
 		Assert.assertNotNull(creationCommand);
 		Assert.assertTrue(creationCommand.canExecute());
-		RunnableWithResult<Object> runnable = new RunnableWithResult.Impl<Object>() {//in a runnable to be sure that the table will be refreshed
 
-			@Override
-			public void run() {
-				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
-				NamedElement requirement = TableCreationInSysMLModelTest.rootModel.getMember("Requirement1"); //$NON-NLS-1$
-				Assert.assertNotNull(requirement);
-				nestedRequirement3 = (Class)requirement;
-			}
-		};
- 
-		Display.getDefault().syncExec(runnable);
+		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
+		NamedElement requirement = TableCreationInSysMLModelTest.requirement1.getMember("Requirement1"); //$NON-NLS-1$
+		Assert.assertNotNull(requirement);
+		nestedRequirement3 = (Class)requirement;
+
+		//to refresh the table content
+		while(Display.getDefault().readAndDispatch());
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(nestedRequirement1));
@@ -306,19 +291,15 @@ public class TableCreationInSysMLModelTest {
 		final ICommand destroyCommand = provider.getEditCommand(destroyRequest);
 		Assert.assertNotNull(destroyCommand);
 		Assert.assertTrue(destroyCommand.canExecute());
+		
+		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyCommand));
+		requirement = TableCreationInSysMLModelTest.requirement1.getMember("Requirement1"); //$NON-NLS-1$
+		Assert.assertNull(requirement);
+		nestedRequirement3 = (Class)requirement;
+		
+		//to refresh the table content
+		while(Display.getDefault().readAndDispatch());
 
-		runnable = new RunnableWithResult.Impl<Object>() {//in a runnable to be sure that the table will be refreshed
-
-			@Override
-			public void run() {
-				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyCommand));
-				NamedElement requirement = TableCreationInSysMLModelTest.rootModel.getMember("Requirement1"); //$NON-NLS-1$
-				Assert.assertNull(requirement);
-				nestedRequirement3 = (Class)requirement;
-			}
-		};
-
-		Display.getDefault().syncExec(runnable);
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(nestedRequirement1));
@@ -329,5 +310,4 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(nestedRequirement2));
 	}
 
-	//FIXME : test syncrho sur requirements fils!
 }
