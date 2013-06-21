@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.cpp.profile;
 
 import org.eclipse.emf.common.util.EList;
@@ -7,10 +21,6 @@ import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * Some functions around stereotype usage.
- * TODO: originally developed without use of static profile. It thus contains many functions
- * that are no longer needed (e.g. getBoolean) => needs some cleanup
- * 
- * @author ansgar
  * 
  */
 public class StUtils {
@@ -192,7 +202,7 @@ public class StUtils {
 	 * @return
 	 */
 	public static Stereotype apply(Element element, java.lang.Class<? extends EObject> clazz) {
-		return apply(element, getStereoName(clazz));
+		return apply(element, getStereoName(element, clazz));
 	}
 
 	/**
@@ -208,7 +218,7 @@ public class StUtils {
 	 * @return
 	 */
 	public static void unapply(Element element, java.lang.Class<? extends EObject> clazz) {
-		unapply(element, getStereoName(clazz));
+		unapply(element, getStereoName(element, clazz));
 	}
 
 	/**
@@ -224,20 +234,30 @@ public class StUtils {
 	 * @return
 	 */
 	public static Stereotype applyExact(Element element, java.lang.Class<? extends EObject> clazz) {
-		return applyExact(element, getStereoName(clazz));
+		return applyExact(element, getStereoName(element, clazz));
 	}
 
 	public static Stereotype getStereo(Element element, java.lang.Class<? extends EObject> clazz) {
-		return element.getAppliedStereotype(getStereoName(clazz));
+		return element.getAppliedStereotype(getStereoName(element, clazz));
 	}
 
-	public static String getStereoName(java.lang.Class<? extends EObject> clazz) {
-		String name = clazz.getName();
-		if(name.startsWith("org.eclipse.papyrus.MARTE")) {
-			// MARTE classes are prefixed with "org.eclipse.papyrus" which does not belong
-			// to the stereotype name
-			name = name.substring("org.eclipse.papyrus.".length());
+	/**
+	 * Get the stereotype-name that may relate to the name of an interface within a static profile.
+	 * Note that the class name within a static profile might have a prefix, such as org.eclipse.papyrus. This
+	 * functions tries to remove prefixes iteratively, if a stereotype is not applicable.
+	 *
+	 * @param clazz
+	 * @return
+	 */
+	public static String getStereoName(Element element, java.lang.Class<? extends EObject> clazz) {
+		String name = clazz.getName().replace(".", "::"); //$NON-NLS-1$ //$NON-NLS-2$;
+		while (element.getApplicableStereotype(name) == null) {
+			int index = name.indexOf("::"); //$NON-NLS-1$
+			if (index == -1) {
+				return null;
+			}
+			name = name.substring(index + 2);
 		}
-		return name.replace(".", "::");
+		return name;
 	}
 }
