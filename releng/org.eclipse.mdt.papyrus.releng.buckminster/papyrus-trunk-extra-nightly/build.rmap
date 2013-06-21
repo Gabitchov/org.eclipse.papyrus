@@ -165,6 +165,14 @@
       </rm:uri>
     </rm:provider>
     
+    <!-- RobotML -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/robotml/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
     <!-- Incoming -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/incoming/{1}">
