@@ -104,4 +104,8 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.extra.cpp.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.java.profile.feature"
+         version="0.0.0"/>
+
 </feature>
