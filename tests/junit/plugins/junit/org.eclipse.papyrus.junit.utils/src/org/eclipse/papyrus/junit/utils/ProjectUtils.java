@@ -53,5 +53,16 @@ public class ProjectUtils {
 		return testProject;
 	}
 
+	/**
+	 * Remove all the projects in a workspace
+	 * 
+	 * @throws CoreException
+	 */
+	public static final void removeAllProjectFromTheWorkspace() throws CoreException {
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		for(IProject project : workspace.getRoot().getProjects()) {
+			project.delete(true, new NullProgressMonitor());
+		}
+	}
 
 }
