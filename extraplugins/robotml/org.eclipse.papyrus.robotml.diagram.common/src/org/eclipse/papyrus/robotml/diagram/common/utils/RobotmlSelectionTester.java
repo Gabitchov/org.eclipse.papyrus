@@ -15,7 +15,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.RobotML.RobotMLPackage;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class RobotmlSelectionTester extends PropertyTester {
 
 	/** Tester ID for UML Model nature */
-	public final static String IS_ROBOTML_MODEL = "isRobotmlModel"; //$NON-NLS-N$
+	public final static String IS_ROBOTML_MODEL = "isRobotmlModel";
 
 
 	//public static String ROBOTML_ID = "RobotML";
@@ -51,9 +51,10 @@ public class RobotmlSelectionTester extends PropertyTester {
 
 		// Ensure Papyrus is the active editor
 		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if((editor == null) || (!(editor instanceof PapyrusMultiDiagramEditor))) {
+		if((editor == null) || (!(editor instanceof IMultiDiagramEditor))) {
 			return false;
 		}
+
 		Object currentValue = null;
 		if(IS_ROBOTML_MODEL.equals(property)) {
 			currentValue = testRobotmlModelNature(receiver);
