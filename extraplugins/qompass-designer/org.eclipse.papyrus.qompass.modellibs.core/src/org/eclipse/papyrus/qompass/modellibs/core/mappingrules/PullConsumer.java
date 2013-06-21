@@ -64,7 +64,7 @@ public class PullConsumer implements IMappingRule {
 
 		if((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, "PullConsumer_", type);
+			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, "PullConsumer_", type, update);
 			if (!update) {
 				return derivedInterface;
 			}

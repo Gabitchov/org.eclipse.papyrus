@@ -388,13 +388,16 @@ public class Copy extends Copier {
 				return sourceEObj;
 			}
 			// test code
-			if(false && (name != null) && name.endsWith("::I")) {
-				System.err.println(name);
+			if(false) {
+				if ((name != null) && name.endsWith("::I")) {
+					System.err.println(name);
+				}
+				if ((name != null) && name.startsWith("fifo")) {
+					if (copyExtReferences)
+						System.err.println("Hallo");
+				}
 			}
-			if ((name != null) && name.startsWith("fifo")) {
-				if (copyExtReferences)
-					System.err.println("Hallo");
-			}
+			
 		}
 		// additional sanity check: want to avoid copying (instead of instantiating) elements
 		// of a package template

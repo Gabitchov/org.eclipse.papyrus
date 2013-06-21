@@ -52,7 +52,7 @@ public class PushProdPullCons implements IMappingRule {
 
 		if((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterface(p, "_", type);
+			Interface derivedInterface = MapUtil.getOrCreateDerivedInterface(p, "_", type, update);
 			if (!update) {
 				return derivedInterface;
 			}

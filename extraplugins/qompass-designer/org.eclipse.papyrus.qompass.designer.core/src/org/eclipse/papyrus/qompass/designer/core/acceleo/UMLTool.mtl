@@ -69,3 +69,8 @@
 	invoke('org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool',
 		'encodeID(java.lang.String)',
 		Sequence{str}) /]
+
+[query public getReferencedClassifiers(cl : Classifier) : Sequence(Classifier) =
+	invoke('org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool',
+		'getReferencedClassifiers(org.eclipse.uml2.uml.Classifier)',
+		Sequence{cl}) /]

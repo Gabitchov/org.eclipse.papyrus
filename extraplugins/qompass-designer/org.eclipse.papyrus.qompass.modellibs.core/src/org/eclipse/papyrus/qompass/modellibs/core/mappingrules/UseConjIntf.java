@@ -49,7 +49,7 @@ public class UseConjIntf implements IMappingRule {
 		if (!(type instanceof Interface)) return null;
 	
 		Interface typingInterface = (Interface) type;
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterface (p, "_", type);
+		Interface derivedInterface = MapUtil.getOrCreateDerivedInterface (p, "_", type, update);
 		if (!update) {
 			return derivedInterface;
 		}

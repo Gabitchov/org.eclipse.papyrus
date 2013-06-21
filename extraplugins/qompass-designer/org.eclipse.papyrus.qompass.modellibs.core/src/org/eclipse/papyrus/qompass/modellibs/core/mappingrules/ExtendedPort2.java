@@ -62,7 +62,7 @@ public class ExtendedPort2 implements IMappingRule {
 
 		Class extendedPort = (Class)type;
 		String prefix = isConjugated ? "C2_" : "N2_";
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type);
+		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type, update);
 		if (!update) {
 			return derivedInterface;
 		}

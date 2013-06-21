@@ -45,7 +45,7 @@ public class PushConsumer implements IMappingRule {
 
 		if((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, "Push_", type);
+			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, "Push_", type, update);
 			if (!update) {
 				return derivedInterface;
 			}

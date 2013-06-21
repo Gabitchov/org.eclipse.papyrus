@@ -281,6 +281,9 @@ public class MapUtil
 		// the port (which must be an FCM model, since the port carries the FCM stereotype)
 		Package baseModelOfPort = getTop(port.getBase_Port());
 		Package derivedInterfaces = getAndCreate(baseModelOfPort, "derivedInterfaces", createOnDemand);
+		if (derivedInterfaces == null) {
+			return null;
+		}
 		Package owner = getAndCreate(derivedInterfaces, type.allNamespaces(), createOnDemand);
 		Interface intf = null;
 

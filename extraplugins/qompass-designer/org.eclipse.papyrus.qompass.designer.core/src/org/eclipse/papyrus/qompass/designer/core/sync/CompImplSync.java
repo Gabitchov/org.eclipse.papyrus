@@ -242,7 +242,7 @@ public class CompImplSync {
 			Interface providedIntf = PortUtils.getProvided(port);
 			// check, if there is a getter already. In this case, we assume that we should not synchronize
 			// operations
-			String opName = PrefixConstants.connectQ_Prefix + port.getName();
+			String opName = PrefixConstants.getP_Prefix + port.getName();
 			if (implementation.getOwnedOperation(opName, null, null) != null) {
 				continue;
 			}

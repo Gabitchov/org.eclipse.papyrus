@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Element;
  * Do not copy connector related elements, i.e.
  * 1. UML connectors with stereotype FCM.Connector
  * The rationale behind this is that we want to avoid copying a FCM connector from the source model
- * into the target model since the target model should only contain the refied form of the connector
+ * into the target model since the target model should only contain the reified form of the connector
  * 
  * 2. UML classes that are stereotyped as interaction components
  * We do not want to copy interaction components, since they typically need to be instantiated.
