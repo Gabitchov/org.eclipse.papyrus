@@ -92,4 +92,16 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.extra.robotml.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.extra.qompass.designer.basic.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.qompass.designer.tracing.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.cpp.feature"
+         version="0.0.0"/>
+
 </feature>
