@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
@@ -252,7 +251,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			super.deactivate();
 		}
 
-		//Refresh when the decoration service add a decoration
+		//Refresh when the decoration service adds a decoration
 		public void update(Observable o, Object arg) {
 			// check whether update is for this view
 			if(arg instanceof DecorationChange) {

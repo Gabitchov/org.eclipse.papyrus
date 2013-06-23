@@ -413,8 +413,8 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 
 		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 		cc.compose(setBoundsCommand);
-		// If specific drop, the defered command is already do in the getDropObjectCommand method
-		// Only if ctrl key activate
+		// If specific drop, the deferred command is already done in the getDropObjectCommand method
+		// Only if CTRL key is active
 		if(!getSpecificDrop().contains(nodeVISUALID) && isCopy(request)) {
 			DeferredCreateCommand createCommand2 = new DeferredCreateCommand(getEditingDomain(), droppedObject, (IAdaptable)createCommand.getCommandResult().getReturnValue(), getHost().getViewer());
 			cc.compose(createCommand2);
