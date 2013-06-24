@@ -71,7 +71,7 @@ public class CppLanguageSupport implements ILangSupport {
 			final CCProjectWizard wiz = new CCNamedProjectWizard(projectName);
 			// use general selection dialog instead
 
-			wiz.setWindowTitle("create project " + projectName);
+			wiz.setWindowTitle("create project " + projectName); //$NON-NLS-1$
 			wiz.init(wb, null);
 
 			Display.getDefault().syncExec(new Runnable() {
@@ -89,7 +89,7 @@ public class CppLanguageSupport implements ILangSupport {
 			project = null;
 		}
 		if((project == null) || !project.exists()) {
-			throw new TransformationException("could not create CDT project ...");
+			throw new TransformationException("could not create CDT project ..."); //$NON-NLS-1$
 		}
 		setProject(project);
 		setSettings(node);
@@ -139,7 +139,7 @@ public class CppLanguageSupport implements ILangSupport {
 				if(target != null) {
 					OperatingSystem os = target.getUsedOS();
 					if(os != null) {
-						macros.add("OS_" + os.getBase_Class().getName());
+						macros.add("OS_" + os.getBase_Class().getName()); //$NON-NLS-1$
 					}
 				}
 
@@ -148,7 +148,7 @@ public class CppLanguageSupport implements ILangSupport {
 					new BasicEList<ICLanguageSettingEntry>();
 				for(int i = 0; i < macros.size(); i++) {
 					// TODO: need to define values for macros as well?
-					icMacros.add(new CMacroEntry(macros.get(i), "", 0));
+					icMacros.add(new CMacroEntry(macros.get(i), "", 0)); //$NON-NLS-1$
 				}
 
 				// now set include path and preprocessor code
