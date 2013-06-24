@@ -90,7 +90,7 @@
          point="org.eclipse.ui.commandImages">
       <image
             commandId="org.eclipse.papyrus.infra.nattable.page.editor.create.command"
-            icon="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/icons/nattablepageeditor.png">
+            icon="icons/nattablepageeditor_new.png">
       </image>
    </extension>
 </plugin>

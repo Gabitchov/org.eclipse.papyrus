@@ -83,7 +83,7 @@
          point="org.eclipse.ui.commandImages">
       <image
             commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
-            icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.gif">
+            icon="icons/uml_generic_table_new.png">
       </image>
    </extension>
 </plugin>

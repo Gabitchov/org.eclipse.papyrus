@@ -116,11 +116,11 @@
          point="org.eclipse.ui.commandImages">
       <image
             commandId="org.eclipse.papyrus.sysml.nattable.requirement.create.command"
-            icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/icons/table_SysML_Requirement.gif">
+            icon="icons/table_SysML_Requirement_new.png">
       </image>
       <image
             commandId="org.eclipse.papyrus.sysml.nattable.requirement.create.withoutdialog.command"
-            icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/icons/table_SysML_Requirement.gif">
+            icon="icons/table_SysML_Requirement_new.png">
       </image>
    </extension>
 </plugin>

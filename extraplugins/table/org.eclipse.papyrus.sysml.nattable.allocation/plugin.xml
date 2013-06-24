@@ -14,7 +14,7 @@
          point="org.eclipse.ui.commandImages">
       <image
             commandId="org.eclipse.papyrus.sysml.nattable.allocation.create.command"
-            icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/icons/table_SysML_Allocation.gif">
+            icon="icons/table_SysML_Allocation_new.png">
       </image>
    </extension>
    <extension

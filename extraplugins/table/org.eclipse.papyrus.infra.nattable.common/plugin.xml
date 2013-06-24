@@ -30,7 +30,6 @@
             locationURI="menu:org.eclipse.papyrus.infra.nattable.menu.createnattable">
          <command
                commandId="org.eclipse.papyrus.infra.nattable.createFromCatalog.command"
-               icon="icons/tableCatalog.gif"
                mnemonic="&amp;G"
                style="push">
             <visibleWhen>
@@ -48,7 +47,6 @@
             locationURI="toolbar:org.eclipse.papyrus.infra.nattable.toolbar.createnattable">
          <command
                commandId="org.eclipse.papyrus.infra.nattable.createFromCatalog.command"
-               icon="icons/tableCatalog.gif"
                mnemonic="&amp;G"
                style="push">
             <visibleWhen>
@@ -66,7 +64,6 @@
             locationURI="popup:org.eclipse.papyrus.infra.nattable.popupmenu.createnattable">
          <command
                commandId="org.eclipse.papyrus.infra.nattable.createFromCatalog.command"
-               icon="icons/tableCatalog.gif"
                mnemonic="&amp;G"
                style="push">
             <visibleWhen>
@@ -147,5 +144,12 @@
 	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
 		<advice ref="org.eclipse.papyrus.infra.nattable.common.helper.advice.NatTableDuplicateEditHelperAdvice" />
 	</binding>
+</extension>
+<extension
+      point="org.eclipse.ui.commandImages">
+   <image
+         commandId="org.eclipse.papyrus.infra.nattable.createFromCatalog.command"
+         icon="icons/tableCatalog.png">
+   </image>
 </extension>
 </plugin>
