@@ -290,10 +290,7 @@ public class ConvertOldTableHandler extends AbstractHandler {
 	 *         the new table initialized with its configuration
 	 */
 	protected Table getCreateTableFromConfiguration(final PapyrusTableInstance oldTable, final TableConfiguration tableConfiguration) {
-		URI uri = NattableConfigurationRegistry.INSTANCE.getConfigurationURI(PAPYRUS_NEW_DEFAULT_TABLE);
-		ResourceSet resourceSet = oldTable.eResource().getResourceSet();
-		TableConfiguration configuration = (TableConfiguration)resourceSet.getResource(uri, true).getContents().get(0);
-		return TableHelper.createTable(configuration, oldTable.getTable().getContext(), oldTable.getName() + "(Converted)", oldTable.getTable().getDescription()); //$NON-NLS-1$
+		return TableHelper.createTable(tableConfiguration, oldTable.getTable().getContext(), oldTable.getName() + "(Converted)", oldTable.getTable().getDescription()); //$NON-NLS-1$
 	}
 
 	/**
