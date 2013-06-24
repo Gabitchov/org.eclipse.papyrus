@@ -15,42 +15,29 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.EventObject;
+import java.util.LinkedHashSet;
 import java.util.List;
 
-import org.eclipse.core.commands.Category;
-import org.eclipse.core.commands.Command;
-import org.eclipse.core.commands.IExecutionListener;
-import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.commands.ParameterType;
-import org.eclipse.core.commands.ParameterizedCommand;
-import org.eclipse.core.commands.SerializationException;
-import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.ui.commands.ICommandService;
-import org.eclipse.ui.commands.IElementReference;
-import org.eclipse.ui.menus.UIElement;
 
 /**
  * 
  * @author Vincent Lorenzo
  * 
  */
-public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractAxisManager {//FIXME : this abstract class must inherits from the UML Element axis manager
+//FIXME : this abstract class must inherits from the UML Element axis manager
+//FIXME : must be moved into infra.emf.nattable
+public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractAxisManager {
 
 	/**
 	 * the feature listener
@@ -58,9 +45,9 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	protected Adapter featureListener;
 
 	/**
-	 * the featuer currenlty listen
+	 * the features currently listen
 	 */
-	protected EStructuralFeature currentListenFeature;
+	protected Collection<EStructuralFeature> listenFeatures;
 
 	/**
 	 * 
@@ -75,10 +62,12 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	@Override
 	public void init(final INattableModelManager manager, final AxisManagerRepresentation rep, final AbstractAxisProvider provider) {
 		super.init(manager, rep, provider);
+		//		this.listenFeatures = getListenFeatures();
 		verifyValues();
-		this.currentListenFeature = getListenFeature();
+
 		addContextFeatureValueListener();
 	}
+
 
 	/**
 	 * add a listener on the table context to listen the required feature
@@ -88,26 +77,13 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if(msg.getFeature() == AbstractSynchronizedOnFeatureAxisManager.this.currentListenFeature) {//FIXME : create our own adapter for derived/subset feature
+				if(getListenFeatures().contains(msg.getFeature())) {//FIXME : create our own adapter for derived/subset feature
 					getTableManager().updateAxisContents(getRepresentedContentProvider());
 				}
 			};
 		};
 
 		getTableContext().eAdapters().add(this.featureListener);
-		
-	
-		
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getTableContext());
-		domain.getCommandStack().addCommandStackListener(new CommandStackListener() {
-			
-			@Override
-			public void commandStackChanged(EventObject event) {
-				getTableManager().updateAxisContents(getRepresentedContentProvider());
-			}
-		});
-		
-		
 	}
 
 	/**
@@ -115,21 +91,28 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 * 
 	 */
 	protected void verifyValues() {
-		Assert.isNotNull(getFillingConfiguration() != null);
-		verifyCoupleContextFeature();
+		Assert.isTrue(!getListenFeatures().isEmpty());
+		verifyFeatureMultiplicity();
 	}
 
 	/**
 	 * 
 	 * @return
-	 *         the feature to listen according to the current table configuration or <code>null</code> if it is not definedS
+	 *         the features to listen according to the current table configuration or <code>null</code> if it is not definedS
 	 */
-	protected EStructuralFeature getListenFeature() {
-		final EStructuralFeatureValueFillingConfiguration config = getFillingConfiguration();
-		if(config != null) {
-			return config.getListenFeature();
+	protected Collection<EStructuralFeature> getListenFeatures() {
+		if(this.listenFeatures == null) {
+			this.listenFeatures = new ArrayList<EStructuralFeature>();
+			final Collection<EStructuralFeatureValueFillingConfiguration> configs = getFillingConfigurations();
+			final Collection<EStructuralFeature> avalaibleFeatures = getTableContext().eClass().getEAllStructuralFeatures();
+			for(EStructuralFeatureValueFillingConfiguration eStructuralFeatureValueFillingConfiguration : configs) {
+				final EStructuralFeature feature = eStructuralFeatureValueFillingConfiguration.getListenFeature();
+				if(feature != null && avalaibleFeatures.contains(feature) && !this.listenFeatures.contains(feature)) {
+					listenFeatures.add(feature);
+				}
+			}
 		}
-		return null;
+		return this.listenFeatures;
 	}
 
 	/**
@@ -137,13 +120,14 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 * @return
 	 *         the filling configuration used by the table or <code>null</code> if any is defined
 	 */
-	protected EStructuralFeatureValueFillingConfiguration getFillingConfiguration() {//FIXME : local configuration not yet managed
+	protected Collection<EStructuralFeatureValueFillingConfiguration> getFillingConfigurations() {//FIXME : local configuration not yet managed
+		final Collection<EStructuralFeatureValueFillingConfiguration> configs = new ArrayList<EStructuralFeatureValueFillingConfiguration>();
 		for(final IAxisConfiguration current : this.representedAxisManager.getSpecificAxisConfigurations()) {
 			if(current instanceof EStructuralFeatureValueFillingConfiguration) {
-				return (EStructuralFeatureValueFillingConfiguration)current;
+				configs.add((EStructuralFeatureValueFillingConfiguration)current);
 			}
 		}
-		return null;
+		return configs;
 	}
 
 	/**
@@ -161,11 +145,9 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 * verify that the context contains the feature
 	 * 
 	 */
-	protected void verifyCoupleContextFeature() {
-		final EStructuralFeature feature = getListenFeature();
-		if(feature != null) {
+	protected void verifyFeatureMultiplicity() {
+		for(final EStructuralFeature feature : getListenFeatures()) {
 			Assert.isTrue(feature.isMany());
-			Assert.isTrue(getTableManager().getTable().getContext().eClass().getEAllStructuralFeatures().contains(feature));
 		}
 	}
 
@@ -203,19 +185,16 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	@Override
 	public Collection<Object> getAllManagedAxis() {
 		final EObject context = getTableContext();
-		Object value;
-		if(this.currentListenFeature != null) {
-			value = context.eGet(this.currentListenFeature);
-		} else {
-			value = context.eGet(getListenFeature());
+		final Collection<Object> valuesAsSet = new LinkedHashSet<Object>();
+		for(final EStructuralFeature current : getListenFeatures()) {
+			Object value = context.eGet(current);
+			Assert.isTrue(value instanceof Collection<?>);
+			valuesAsSet.addAll((Collection<? extends Object>)value);
 		}
-		assert value instanceof List<?>;
-		List<Object> interestingObject = filterObject((List<?>)value);
+		final List<Object> values = new ArrayList<Object>(valuesAsSet);
+		List<Object> interestingObject = filterObject(values);
 		interestingObject = sortObjects(interestingObject);
-		List<Object> newList = new ArrayList(interestingObject);
-		newList.addAll(interestingObject);
-		return newList;
-//		return interestingObject;
+		return interestingObject;
 	}
 
 	/**
@@ -223,8 +202,8 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 * @param objects
 	 * @return
 	 */
-	protected List<Object> sortObjects(final Collection<Object> objects) {
-		return new ArrayList<Object>(objects);
+	protected List<Object> sortObjects(final List<Object> objects) {
+		return objects;
 	}
 
 	/**
@@ -232,8 +211,8 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 * @param objects
 	 * @return
 	 */
-	protected List<Object> filterObject(final List<?> objects) {
-		return new ArrayList<Object>(objects);
+	protected List<Object> filterObject(final List<Object> objects) {
+		return objects;
 	}
 
 	/**

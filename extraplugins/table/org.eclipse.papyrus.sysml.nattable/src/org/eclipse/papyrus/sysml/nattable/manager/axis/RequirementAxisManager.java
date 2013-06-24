@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
+import org.eclipse.papyrus.uml.nattable.manager.axis.AbstractUMLSynchronizedOnFeatureAxisManager;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
@@ -41,37 +42,37 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author Vincent Lorenzo
  * 
  */
-public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisManager {//FIXME must inherits from EObjectAxisManager when the listen feature is typed by an EObejct...
+public class RequirementAxisManager extends AbstractUMLSynchronizedOnFeatureAxisManager{//AbstractSynchronizedOnFeatureAxisManager {//FIXME must inherits from EObjectAxisManager when the listen feature is typed by an EObejct...
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
-	 * 
-	 */
-	@Override
-	protected void addContextFeatureValueListener() {
-		this.featureListener = new AdapterImpl() {
+	//	/**
+	//	 * 
+	//	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
+	//	 * 
+	//	 */
+	//	@Override
+	//	protected void addContextFeatureValueListener() {
+	//		this.featureListener = new AdapterImpl() {
+	//
+	//			@Override
+	//			public void notifyChanged(Notification msg) {
+	//				if(msg.getFeature() == RequirementAxisManager.this.listenFeatures || msg.getFeature() == UMLPackage.eINSTANCE.getPackage_PackagedElement()) {
+	//					getTableManager().updateAxisContents(getRepresentedContentProvider());
+	//				}
+	//			}
+	//		};
+	//		getTableContext().eAdapters().add(this.featureListener);
+	//	}
 
-			@Override
-			public void notifyChanged(Notification msg) {
-				if(msg.getFeature() == RequirementAxisManager.this.currentListenFeature || msg.getFeature() == UMLPackage.eINSTANCE.getPackage_PackagedElement()) {
-					getTableManager().updateAxisContents(getRepresentedContentProvider());
-				}
-			}
-		};
-		getTableContext().eAdapters().add(this.featureListener);
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#dispose()
-	 * 
-	 */
-	@Override
-	public void dispose() {
-		getTableContext().eAdapters().remove(this.featureListener);
-		super.dispose();
-	}
+	//	/**
+	//	 * 
+	//	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#dispose()
+	//	 * 
+	//	 */
+	//	@Override
+	//	public void dispose() {
+	//		getTableContext().eAdapters().remove(this.featureListener);
+	//		super.dispose();
+	//	}
 
 
 	@Override
@@ -87,7 +88,7 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 	 * @return
 	 */
 	@Override
-	protected List<Object> filterObject(final List<?> objects) {
+	protected List<Object> filterObject(final List<Object> objects) {
 		final List<Object> interestingObjects = new ArrayList<Object>();
 		final RequirementMatcher matcher = new RequirementMatcher();
 		for(Object object : objects) {

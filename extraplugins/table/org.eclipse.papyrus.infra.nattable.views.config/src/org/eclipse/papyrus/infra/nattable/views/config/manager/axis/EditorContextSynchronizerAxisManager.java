@@ -88,11 +88,11 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#verifyCoupleContextFeature()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#verifyFeatureMultiplicity()
 	 * 
 	 */
 	@Override
-	protected void verifyCoupleContextFeature() {
+	protected void verifyFeatureMultiplicity() {
 		//nothing to do
 	}
 

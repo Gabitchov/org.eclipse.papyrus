@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
@@ -33,9 +34,10 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.AllocateMatcher;
 import org.eclipse.uml2.uml.UMLPackage;
-
+//FIXME : must extends AbstractUMLSynchronizedOnFeatureAxisManager
 public class AllocateAxisManager extends AbstractSynchronizedOnFeatureAxisManager {//FIXME must inherits from EObjectAxisManager when the listen feature is typed by an EObejct...
 
+	
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
@@ -47,7 +49,7 @@ public class AllocateAxisManager extends AbstractSynchronizedOnFeatureAxisManage
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if(msg.getFeature() == AllocateAxisManager.this.currentListenFeature || msg.getFeature() == UMLPackage.eINSTANCE.getPackage_PackagedElement()) {
+				if(msg.getFeature() == AllocateAxisManager.this.listenFeatures || msg.getFeature() == UMLPackage.eINSTANCE.getPackage_PackagedElement()) {
 					getTableManager().updateAxisContents(getRepresentedContentProvider());
 				}
 			}
@@ -81,7 +83,7 @@ public class AllocateAxisManager extends AbstractSynchronizedOnFeatureAxisManage
 	 * @return
 	 */
 	@Override
-	protected List<Object> filterObject(final List<?> objects) {
+	protected List<Object> filterObject(final List<Object> objects) {
 		final List<Object> interestingObjects = new ArrayList<Object>();
 		final AllocateMatcher matcher = new AllocateMatcher();
 		for(Object object : objects) {
