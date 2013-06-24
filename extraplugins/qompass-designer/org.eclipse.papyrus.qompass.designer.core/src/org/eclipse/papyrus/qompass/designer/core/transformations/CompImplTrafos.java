@@ -314,14 +314,12 @@ public class CompImplTrafos {
 				ConnectorEnd end2 = connector.getEnds().get(1);
 				String cmd;
 				cmd = "// realization of connector <" + connector.getName() + ">\n";  //$NON-NLS-1$//$NON-NLS-2$
-				if (end1.getRole() instanceof Port) {
+				if ((end1.getRole() instanceof Port) && PortUtils.isExtendedPort((Port) end1.getRole())) {
 					Port port = (Port) end1.getRole();
-					if (PortUtils.isExtendedPort(port)) {
-						EList<Port> subPorts = PortUtils.flattenExtendedPort(port);
-						for (Port subPort : subPorts) {
-							cmd += connectPorts(indexMap, connector, end1, end2, subPort);
-							cmd += connectPorts(indexMap, connector, end2, end1, subPort);
-						}
+					EList<Port> subPorts = PortUtils.flattenExtendedPort(port);
+					for (Port subPort : subPorts) {
+						cmd += connectPorts(indexMap, connector, end1, end2, subPort);
+						cmd += connectPorts(indexMap, connector, end2, end1, subPort);
 					}
 				}
 				else {
@@ -364,7 +362,7 @@ public class CompImplTrafos {
 			Port receptaclePort = (Port) receptacleEnd.getRole();
 			if((PortUtils.getProvided(facetPort) != null) && (PortUtils.getRequired(receptaclePort) != null)) {
 				Property facetPart = facetEnd.getPartWithPort();
-				Property receptaclePart = facetEnd.getPartWithPort();
+				Property receptaclePart = receptacleEnd.getPartWithPort();
 					
 				String subPortName = (subPort != null) ? "_" + subPort.getName() : ""; //$NON-NLS-1$ //$NON-NLS-2$
 				String indexName = getIndexName(indexMap, receptaclePort, receptacleEnd);
@@ -407,10 +405,10 @@ public class CompImplTrafos {
 			Property facetPart = (Property) facetEnd.getRole();
 			Property receptaclePart = (Property) receptacleEnd.getRole();
 					
-			// Property assocProp1 = association.getMemberEnd(null, facetPart.getType());
+			Property assocProp1 = association.getMemberEnd(null, facetPart.getType());
 			// Property assocProp2 = facetPart.getOtherEnd();
-			if((facetPart != null) && facetPart.isNavigable()) {
-				String setter = receptaclePart.getName();
+			if((assocProp1 != null) && assocProp1.isNavigable()) {
+				String setter = receptaclePart.getName() + refOp(receptaclePart)+ assocProp1.getName();
 				String getter = "&" + facetPart.getName(); //$NON-NLS-1$
 				return setter + " = " + getter + ";\n"; //$NON-NLS-1$ //$NON-NLS-2$
 			}
