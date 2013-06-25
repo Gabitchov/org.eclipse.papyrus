@@ -17,15 +17,21 @@ package org.eclipse.papyrus.adltool.designer.wizard;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.adltool.designer.bundle.BundleLabelProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.uml2.uml.Profile;
 
 
 public class BundleSelectionPage extends WizardPage {
@@ -50,9 +56,36 @@ public class BundleSelectionPage extends WizardPage {
 	public void createControl(Composite parent) {
 		comp = new Composite(parent, SWT.NULL);
 		FillLayout layout = new FillLayout();
+		layout.type = SWT.VERTICAL;
 		comp.setLayout(layout);
 		elementTree = new Tree(comp, SWT.CHECK | SWT.BORDER | SWT.V_SCROLL);
+		Composite buttons = new Composite(comp, SWT.NONE);
+		buttons.setLayout(new RowLayout());
 
+		Button selectAll = new Button(buttons, SWT.PUSH);
+		selectAll.setText("Select All");
+		selectAll.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				selectAll();
+			}
+		});
+
+		Button deselectAll = new Button(buttons, SWT.PUSH);
+		deselectAll.setText("Deselect All");
+		deselectAll.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				deselectAll();
+			}
+
+			
+		});
+
+		
+		
 		if(bundleList != null) {
 
 			Iterator<?> it = bundleList.iterator();
@@ -88,6 +121,25 @@ public class BundleSelectionPage extends WizardPage {
 
 	}
 
+
+	protected void selectAll() {
+		selectedBundleList.clear();
+		for(int i = 0; i < elementTree.getItems().length; i++) {
+			elementTree.getItems()[i].setChecked(true);
+			selectedBundleList.add(elementTree.getItems()[i].getData());
+			
+		}
+		setPageComplete(true);
+		
+	}
+	protected void deselectAll() {
+		for(int i = 0; i < elementTree.getItems().length; i++) {
+			elementTree.getItems()[i].setChecked(false);
+		}
+		
+			selectedBundleList.clear();
+			setPageComplete(false);
+	}
 
 	/**
 	 * create an item that represent the bundle
