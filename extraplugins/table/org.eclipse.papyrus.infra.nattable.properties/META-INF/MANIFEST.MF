@@ -7,7 +7,6 @@ Bundle-Activator: org.eclipse.papyrus.infra.nattable.properties.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.views.properties,
- org.eclipse.papyrus.infra.services.labelprovider
+ org.eclipse.papyrus.views.properties;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
