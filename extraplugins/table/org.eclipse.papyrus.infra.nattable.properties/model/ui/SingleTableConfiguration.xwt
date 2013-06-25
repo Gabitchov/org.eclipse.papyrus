@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:type"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:iconPath"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="nattable:nattableconfiguration:TableNamedElement:description"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="nattable:nattableconfiguration:TableNamedElement:name"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:cellEditorDeclaration"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:creationTester"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:rowHeaderAxisConfiguration"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:columnHeaderAxisConfiguration"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:defaultRowAxisProvider"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:defaultColumnAxisProvider"></ppe:ReferenceDialog>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:columnAxisProviders"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="nattable:nattableconfiguration:TableConfiguration:rowAxisProviders"></ppe:MultiReference>
+	</Composite>
+</Composite>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="nattable:nattableaxisconfiguration:AbstractHeaderAxisConfiguration:displayLabel"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="nattable:nattableaxisconfiguration:AbstractHeaderAxisConfiguration:displayFilter"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="nattable:nattableaxisconfiguration:AbstractHeaderAxisConfiguration:displayIndex"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="nattable:nattableaxisconfiguration:AbstractHeaderAxisConfiguration:indexStyle"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="nattable:nattableaxisconfiguration:TableHeaderAxisConfiguration:axisManagers"></ppe:MultiReference>
+	</Composite>
+</Composite>

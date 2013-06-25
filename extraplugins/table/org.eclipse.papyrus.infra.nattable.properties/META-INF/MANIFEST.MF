@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.properties;singleton:=true
+Bundle-Version: 0.10.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.infra.nattable.properties.Activator
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.views.properties,
+ org.eclipse.papyrus.infra.services.labelprovider
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
