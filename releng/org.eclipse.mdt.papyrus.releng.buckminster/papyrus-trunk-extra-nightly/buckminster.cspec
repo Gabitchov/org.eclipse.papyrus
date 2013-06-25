@@ -5,7 +5,7 @@
 	
         <cs:dependency name="org.eclipse.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle"/>
-        <cs:dependency name="org.eclipse.acceleo.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.acceleo" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.acceleo.ide.ui" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.papyrus.extra.build.feature" componentType="eclipse.feature"/>
 
