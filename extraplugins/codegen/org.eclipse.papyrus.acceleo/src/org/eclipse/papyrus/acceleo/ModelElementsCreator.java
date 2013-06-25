@@ -137,7 +137,7 @@ abstract public class ModelElementsCreator {
 		else if(element instanceof Relationship) {
 			// no code generation for relationships
 		} else {
-			System.err.println("C++ code generator: unsupported model element " + element);
+			throw new RuntimeException("C++ code generator: unsupported model element " + element); //$NON-NLS-1$
 		}
 	}
 
@@ -211,7 +211,7 @@ abstract public class ModelElementsCreator {
 				try {
 					os.write(content.getBytes());
 				} catch (IOException e) {
-					System.err.println(e);
+					throw new RuntimeException ("C++ code generation: " + e.getMessage()); //$NON-NLS-1$
 				}
 			}
 			// file.setContents(new ByteArrayInputStream(content.getBytes()),
@@ -237,11 +237,9 @@ abstract public class ModelElementsCreator {
 	 * @throws CoreException
 	 */
 	protected void createPackage(IContainer packageContainer, IProgressMonitor monitor, Package pkg) throws CoreException {
-		monitor.subTask("generate package " + pkg.getQualifiedName());
+		monitor.subTask("generate package " + pkg.getQualifiedName()); //$NON-NLS-1$
 
 		if(!isRoot(pkg) && !noCodeGen(pkg)) {
-
-			String fileContent = "";
 
 			packageContainer = (packageContainer instanceof IProject) ? ((IProject)packageContainer).getFolder(pkg.getName()) : ((IFolder)packageContainer).getFolder(pkg.getName());
 

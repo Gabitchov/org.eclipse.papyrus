@@ -5,8 +5,14 @@
          point="org.eclipse.papyrus.qompass.designer.core.language">
       <client
             class="org.eclipse.papyrus.qompass.designer.cpp.CppLanguageSupport"
-            language="C/C++">
+            language="C++">
       </client>
    </extension>
-
+  <extension
+         point="org.eclipse.papyrus.qompass.designer.core.language">
+      <client
+            class="org.eclipse.papyrus.qompass.designer.cpp.CLanguageSupport"
+            language="C">
+      </client>
+   </extension>
 </plugin>

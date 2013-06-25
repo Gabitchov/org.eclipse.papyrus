@@ -17,7 +17,7 @@
 
 [template public CppAttributeDeclaration(attribute : Property)]
 [CppElementDoc()/]
-[staticValue()/][modConst()/][attribute.type.qualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/];
+[staticValue()/][modConst()/][attribute.type.qualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/][if (hasStereotype(C_Cpp::Const))][defaultValue()/][/if];
 [/template]
 
 

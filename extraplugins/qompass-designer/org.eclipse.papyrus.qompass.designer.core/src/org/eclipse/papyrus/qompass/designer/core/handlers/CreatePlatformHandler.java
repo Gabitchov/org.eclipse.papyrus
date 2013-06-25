@@ -22,6 +22,7 @@ import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -52,23 +53,23 @@ public class CreatePlatformHandler extends CmdHandler {
 		}
 		final Class selectedComposite = (Class)getSelectedEObject();
 
-		CommandSupport.exec("Create platform model", event, new Runnable() {
+		CommandSupport.exec("Create platform model", event, new Runnable() { //$NON-NLS-1$
 
 			public void run() {
 				// execute with transaction support
-				platform = Utils.getRoot(selectedComposite, "PlatformModel");
+				platform = Utils.getRoot(selectedComposite, "PlatformModel");//$NON-NLS-1$
 			}
 		});
 
-		final String newPlatform = selectedComposite.getName() + "Platform";
+		final String newPlatform = selectedComposite.getName() + "Platform"; //$NON-NLS-1$
 
 		try {
 			if(platform.getMember(newPlatform) != null) {
 				Shell shell = new Shell();
-				MessageDialog.openInformation(shell, "Error",
-					"Platform definition \"" + newPlatform + "\" exists already");
+				MessageDialog.openInformation(shell, "Error", //$NON-NLS-1$
+					"Platform definition \"" + newPlatform + "\" exists already"); //$NON-NLS-1$ //$NON-NLS-2$
 			} else {
-				CommandSupport.exec("Create platform definition", event, new Runnable() {
+				CommandSupport.exec("Create platform definition", event, new Runnable() { //$NON-NLS-1$
 
 					public void run() {
 						Package platformPkg = platform.createNestedPackage(newPlatform);
@@ -76,7 +77,7 @@ public class CreatePlatformHandler extends CmdHandler {
 							DepCreation.createPlatformInstances(platformPkg, selectedComposite, null);
 						}
 						catch (TransformationException e) {
-							System.err.println(e);
+							throw new TransformationRTException(e.getMessage());
 						}
 					}
 				});

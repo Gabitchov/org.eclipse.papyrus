@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Alloc="http://www.eclipse.org/papyrus/Alloc/1" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/Alloc/1 http://www.eclipse.org/papyrus/MARTE/1#//Alloc">
   <uml:Model xmi:id="_O6TiIDLUEd26WNosUASSSw" name="HelloWorld">
-    <packageImport xmi:id="_OQbHElWgEeKdxoQIVxFNNg">
+    <packageImport xmi:id="_aTNGYNnMEeK_2PkMTenb-Q">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
-    <packageImport xmi:id="_OQbHE1WgEeKdxoQIVxFNNg">
+    <packageImport xmi:id="_aTNtcNnMEeK_2PkMTenb-Q">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/core.uml#_O6TiIDLUEd26WNosUASSSw"/>
     </packageImport>
-    <packageImport xmi:id="_OQbuIFWgEeKdxoQIVxFNNg">
+    <packageImport xmi:id="_aTOUgNnMEeK_2PkMTenb-Q">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
-    <packagedElement xmi:type="uml:Package" xmi:id="_OQbuIVWgEeKdxoQIVxFNNg" name="globalenums"/>
-    <packagedElement xmi:type="uml:Package" xmi:id="_OQcVMFWgEeKdxoQIVxFNNg" name="deployment">
-      <packagedElement xmi:type="uml:Package" xmi:id="_OQcVMVWgEeKdxoQIVxFNNg" name="SystemDepPlan">
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_OQcVMlWgEeKdxoQIVxFNNg" clientDependency="_OQ5oMFWgEeKdxoQIVxFNNg" name="mainInstance" classifier="_bYJagDLiEd2RVeNawwNNzg">
-          <slot xmi:id="_OQ8rglWgEeKdxoQIVxFNNg" definingFeature="_gV1cgDLiEd2RVeNawwNNzg">
-            <value xmi:type="uml:InstanceValue" xmi:id="_OQ8rg1WgEeKdxoQIVxFNNg" instance="_OQ8EcVWgEeKdxoQIVxFNNg"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_aTVCMNnMEeK_2PkMTenb-Q" name="globalenums"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_aTXecNnMEeK_2PkMTenb-Q" name="deployment">
+      <packagedElement xmi:type="uml:Package" xmi:id="_aTXecdnMEeK_2PkMTenb-Q" name="SystemDepPlan">
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_aTYFgNnMEeK_2PkMTenb-Q" clientDependency="_aW1pMNnMEeK_2PkMTenb-Q" name="mainInstance" classifier="_bYJagDLiEd2RVeNawwNNzg">
+          <slot xmi:id="_aXB2ctnMEeK_2PkMTenb-Q" definingFeature="_gV1cgDLiEd2RVeNawwNNzg">
+            <value xmi:type="uml:InstanceValue" xmi:id="_aXCdgNnMEeK_2PkMTenb-Q" instance="_aXAoUNnMEeK_2PkMTenb-Q"/>
           </slot>
         </packagedElement>
-        <packagedElement xmi:type="uml:Abstraction" xmi:id="_OQ5oMFWgEeKdxoQIVxFNNg" name="allocate mainInstance to monoNode" client="_OQcVMlWgEeKdxoQIVxFNNg" supplier="_GQ1ekKwHEeCQX8uv_p0Q4A"/>
-        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_OQ8EcVWgEeKdxoQIVxFNNg" name="mainInstance.hello" classifier="_tyiqsc__Ed-TP80eVS-2Rg">
-          <slot xmi:id="_OQ8rgFWgEeKdxoQIVxFNNg" definingFeature="_8pupUFTzEeKvFeqt5Q_lqw">
-            <value xmi:type="uml:LiteralString" xmi:id="_OQ8rgVWgEeKdxoQIVxFNNg" name="value for message" value="&quot;NaSowas&quot;">
+        <packagedElement xmi:type="uml:Abstraction" xmi:id="_aW1pMNnMEeK_2PkMTenb-Q" name="allocate mainInstance to monoNode" client="_aTYFgNnMEeK_2PkMTenb-Q" supplier="_GQ1ekKwHEeCQX8uv_p0Q4A"/>
+        <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_aXAoUNnMEeK_2PkMTenb-Q" name="mainInstance.hello" classifier="_tyiqsc__Ed-TP80eVS-2Rg">
+          <slot xmi:id="_aXB2cNnMEeK_2PkMTenb-Q" definingFeature="_8pupUFTzEeKvFeqt5Q_lqw">
+            <value xmi:type="uml:LiteralString" xmi:id="_aXB2cdnMEeK_2PkMTenb-Q" name="value for message" value="&quot;Test message&quot;">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </value>
           </slot>
         </packagedElement>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_OQcVM1WgEeKdxoQIVxFNNg" name="components">
+    <packagedElement xmi:type="uml:Package" xmi:id="_aTeMINnMEeK_2PkMTenb-Q" name="components">
       <packagedElement xmi:type="uml:Class" xmi:id="_bYJagDLiEd2RVeNawwNNzg" name="System">
         <ownedAttribute xmi:id="_gV1cgDLiEd2RVeNawwNNzg" name="hello" visibility="public" type="_tyiqsc__Ed-TP80eVS-2Rg" isUnique="false" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dCT24G6JEeGqWMX2LwdLDw" value="1"/>
@@ -56,89 +56,62 @@
         </interfaceRealization>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_tyjRwc__Ed-TP80eVS-2Rg" name="run" specification="_UtCt0FTzEeKvFeqt5Q_lqw">
           <language>C/C++</language>
-          <body>cout &lt;&lt; &quot;Hello world&quot; &lt;&lt; endl;</body>
+          <body>cout &lt;&lt; &quot;Hello world: &quot; &lt;&lt; message &lt;&lt; endl;</body>
         </ownedBehavior>
         <ownedOperation xmi:id="_UtCt0FTzEeKvFeqt5Q_lqw" name="run" method="_tyjRwc__Ed-TP80eVS-2Rg"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_OQ190lWgEeKdxoQIVxFNNg" name="platform">
-      <packagedElement xmi:type="uml:Package" xmi:id="_OQ1901WgEeKdxoQIVxFNNg" name="HWArchitecturePlatform">
+    <packagedElement xmi:type="uml:Package" xmi:id="_aWiHMNnMEeK_2PkMTenb-Q" name="platform">
+      <packagedElement xmi:type="uml:Package" xmi:id="_aWiHMdnMEeK_2PkMTenb-Q" name="HWArchitecturePlatform">
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_GQ1ekKwHEeCQX8uv_p0Q4A" name="monoNode" classifier="_zY9vMDLiEd2RVeNawwNNzg"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Node" xmi:id="_zY9vMDLiEd2RVeNawwNNzg" name="MonoNode"/>
     </packagedElement>
-    <profileApplication xmi:id="_OQVAcFWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQVAcVWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_aS16ANnMEeK_2PkMTenb-Q">
+      <eAnnotations xmi:id="_aS2hENnMEeK_2PkMTenb-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
     </profileApplication>
-    <profileApplication xmi:id="_OQVngFWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQVngVWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_aS3vMNnMEeK_2PkMTenb-Q">
+      <eAnnotations xmi:id="_aS3vMdnMEeK_2PkMTenb-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
-    <profileApplication xmi:id="_OQVnglWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQVng1WgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_aS4WQNnMEeK_2PkMTenb-Q">
+      <eAnnotations xmi:id="_aS49UNnMEeK_2PkMTenb-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/FCM/1#/"/>
       </eAnnotations>
       <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
     </profileApplication>
-    <profileApplication xmi:id="_OQWOkFWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQWOkVWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_aS6ygNnMEeK_2PkMTenb-Q">
+      <eAnnotations xmi:id="_aS7ZkNnMEeK_2PkMTenb-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//GCM"/>
       </eAnnotations>
       <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_YgAioAPMEdyuUt-4qHuVvQ"/>
     </profileApplication>
-    <profileApplication xmi:id="_OQW1oFWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQXcsFWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_b9oZ5rG3Ed-tmN4hwNCxXQ"/>
-      </eAnnotations>
-      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_3VS0wAPMEdyuUt-4qHuVvQ"/>
-    </profileApplication>
-    <profileApplication xmi:id="_OQXcsVWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQYDwFWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//SW_ResourceCore"/>
-      </eAnnotations>
-      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_-1fcUBJdEdy3Td9UhuLFPg"/>
-    </profileApplication>
-    <profileApplication xmi:id="_OQYq0FWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQYq0VWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//SW_Concurrency"/>
-      </eAnnotations>
-      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_A_vtYBJeEdy3Td9UhuLFPg"/>
-    </profileApplication>
-    <profileApplication xmi:id="_OQZR4FWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQZR4VWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_aTJcANnMEeK_2PkMTenb-Q">
+      <eAnnotations xmi:id="_aTJcAdnMEeK_2PkMTenb-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//HLAM"/>
       </eAnnotations>
       <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_yNSZIAPMEdyuUt-4qHuVvQ"/>
     </profileApplication>
-    <profileApplication xmi:id="_OQZ48FWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQZ48VWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//SW_Brokering"/>
-      </eAnnotations>
-      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_Cf874BJeEdy3Td9UhuLFPg"/>
-    </profileApplication>
-    <profileApplication xmi:id="_OQagAFWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQagAVWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//SW_Interaction"/>
-      </eAnnotations>
-      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_EIfnABJeEdy3Td9UhuLFPg"/>
-    </profileApplication>
-    <profileApplication xmi:id="_OQbHEFWgEeKdxoQIVxFNNg">
-      <eAnnotations xmi:id="_OQbHEVWgEeKdxoQIVxFNNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_aTMfUNnMEeK_2PkMTenb-Q">
+      <eAnnotations xmi:id="_aTMfUdnMEeK_2PkMTenb-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//Alloc"/>
       </eAnnotations>
       <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_ar8OsAPMEdyuUt-4qHuVvQ"/>
     </profileApplication>
   </uml:Model>
-  <C_Cpp:Include xmi:id="_OQfYgFWgEeKdxoQIVxFNNg" body="#include &lt;iostream>&#xA;using namespace std;" base_class="_tyiqsc__Ed-TP80eVS-2Rg"/>
-  <FCM:ConfigurationProperty xmi:id="_OQn7YFWgEeKdxoQIVxFNNg" base_Property="_8pupUFTzEeKvFeqt5Q_lqw"/>
-  <FCM:Target xmi:id="_OQ4aEFWgEeKdxoQIVxFNNg" base_Node="_zY9vMDLiEd2RVeNawwNNzg">
+  <C_Cpp:Include xmi:id="_aT_JgNnMEeK_2PkMTenb-Q" body="#include &lt;iostream>&#xA;using namespace std;" base_class="_tyiqsc__Ed-TP80eVS-2Rg"/>
+  <FCM:ConfigurationProperty xmi:id="_aU_2INnMEeK_2PkMTenb-Q" base_Property="_8pupUFTzEeKvFeqt5Q_lqw"/>
+  <FCM:DerivedElement xmi:id="_aWRBcNnMEeK_2PkMTenb-Q" base_Element="_UtCt0FTzEeKvFeqt5Q_lqw">
+    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
+  </FCM:DerivedElement>
+  <FCM:Target xmi:id="_aWtGUNnMEeK_2PkMTenb-Q" base_Node="_zY9vMDLiEd2RVeNawwNNzg">
     <targetArch href="pathmap://QML_CORE/core.uml#_FYOqwF0OEd-12d_h0i1xhQ"/>
     <usedOS href="pathmap://QML_CORE/core.uml#_1eULwF0NEd-12d_h0i1xhQ"/>
   </FCM:Target>
-  <Alloc:Allocate xmi:id="_OQ8EcFWgEeKdxoQIVxFNNg" base_Abstraction="_OQ5oMFWgEeKdxoQIVxFNNg"/>
+  <Alloc:Allocate xmi:id="_aW-zINnMEeK_2PkMTenb-Q" base_Abstraction="_aW1pMNnMEeK_2PkMTenb-Q"/>
 </xmi:XMI>

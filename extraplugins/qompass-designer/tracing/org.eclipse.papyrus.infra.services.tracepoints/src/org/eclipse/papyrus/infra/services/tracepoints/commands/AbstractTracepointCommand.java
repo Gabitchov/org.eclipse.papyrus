@@ -147,9 +147,8 @@ abstract public class AbstractTracepointCommand extends AbstractTransactionalCom
 				}
 			}
 		} catch (CoreException ce) {
-			System.err.println(ce);
+			throw new RuntimeException (ce);
 		}
-
 	}
 
 	/**

@@ -28,6 +28,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.Configuration;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.FCM.util.MapUtil;
+import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
 import org.eclipse.papyrus.qompass.designer.core.ProjectManagement;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterS
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterTemplate;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Model;
@@ -192,7 +194,12 @@ public class InstantiateDepPlan {
 					throw new TransformationException("None of the instances in the deployment plan is allocated to a node. Verify the node allocation.");
 				}
 				int nodeIndex = 0;
-				String targetLanguage = "C/C++";
+				Classifier cl = DepUtils.getClassifier(rootIS);
+				String targetLanguage = DepUtils.getLanguageFromClassifier(cl);
+				if (targetLanguage == null) {
+					targetLanguage = "C++";
+				}
+				
 				for(InstanceSpecification node : nodes) {
 					String modelName = existingModel.getName() + "_" + node.getName();
 					if(configuration != null) {
@@ -346,25 +353,25 @@ public class InstantiateDepPlan {
 					profileResource = ModelManagement.getResourceSet().getResource(profile.eResource().getURI(), true);
 				} catch (WrappedException e) {
 					// read 2nd time (some diagnostic errors are raised only once)
-					System.err.println("Warning: exception in profile.eResource() " + e.getMessage());
+					Log.log(Log.WARNING_MSG, Log.DEPLOYMENT, "Warning: exception in profile.eResource() " + e.getMessage()); //$NON-NLS-1$
 					profileResource = ModelManagement.getResourceSet().getResource(profile.eResource().getURI(), true);
 				}
 				Profile newProfileTop = (Profile)profileResource.getContents().get(0);
 				Profile newProfile;
 				String qname = profile.getQualifiedName();
-				if((qname != null) && qname.contains("::")) {
+				if((qname != null) && qname.contains("::")) { //$NON-NLS-1$
 					// profile is a sub-profile within same resource
 					// TODO: should Copy class copy profile applications?
 					// Should be handled in shallowContainer class.
 					// if we put profile/newProfile pair into copy map, copy would find (and copy profile
 					// applications in sub-folders
-					qname = qname.substring(qname.indexOf("::") + 2);
+					qname = qname.substring(qname.indexOf("::") + 2); //$NON-NLS-1$
 					newProfile = (Profile)Utils.getQualifiedElement(newProfileTop, qname);
 				}
 				else {
 					newProfile = newProfileTop;
 				}
-				newProfile.getMember("dummy"); // force profile loading
+				newProfile.getMember("dummy"); // force profile loading //$NON-NLS-1$
 				newModel.applyProfile(newProfile);
 			}
 		} catch (IllegalArgumentException e) {
@@ -398,7 +405,7 @@ public class InstantiateDepPlan {
 					importedPackage.eResource().load(null);
 					newModel.getMember("dummy"); // force loading of model
 				} catch (IOException e) {
-					System.err.println(e);
+					throw new TransformationException(e.getMessage());
 				}
 
 			}

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.FCM.CodeGenOptions;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.FCM.ImplementationGroup;
 import org.eclipse.papyrus.FCM.ImplementationProperties;
@@ -455,5 +456,25 @@ public class DepUtils {
 			return ((Property)df).getAggregation() == AggregationKind.SHARED_LITERAL;
 		}
 		return false;
+	}
+	
+	/**
+	 * Determine which programming language should be generated for a classifier. The
+	 * stereotype CodeGenOptions (which could be on any owning package) is evaluated.
+	 *
+	 * @param cl a classifier
+	 * @return the programming language
+	 */
+	public static String getLanguageFromClassifier(Classifier cl) {
+		CodeGenOptions codeGenOpt = StUtils.getApplication(cl, CodeGenOptions.class);
+		if ((codeGenOpt != null) && (codeGenOpt.getProgLanguage() != null)) {
+			return codeGenOpt.getProgLanguage().getBase_Class().getName();
+		}
+		else if (cl.getOwner() instanceof Classifier) {
+			return getLanguageFromClassifier((Classifier) cl.getOwner());
+		}
+		else {
+			return null;
+		}
 	}
 }

@@ -1,15 +1,9 @@
 package org.eclipse.papyrus.qompass.designer.core.generate;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 // deactivated differential code generation for the moment.
 /*
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
@@ -25,15 +19,14 @@ import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.compare.util.ModelUtils;
 */
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
+import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
-
-import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
-import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 
 public class GenerateCode {
 
@@ -55,7 +48,6 @@ public class GenerateCode {
 			try {
 				oldGenModel = ModelUtils.load(URI.createURI(path), ModelManagement.getResourceSet());
 			} catch (IOException io) {
-				System.err.println(io);
 			}
 			*/
 		}

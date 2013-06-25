@@ -257,11 +257,6 @@ public class TemplateInstantiationListener implements CopyListener {
 						actuals.add((Classifier)substitution.getActual());
 					}
 				}
-			} else {
-				for(Classifier cl : templateParams) {
-					// actuals.add((Classifier)bindNamedElement(cl));
-					System.err.println(cl);
-				}
 			}
 			return actuals;
 		}

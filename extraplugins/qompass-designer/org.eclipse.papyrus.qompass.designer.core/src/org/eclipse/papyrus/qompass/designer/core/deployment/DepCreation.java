@@ -19,6 +19,7 @@ import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Stereotypes;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -40,6 +41,8 @@ public class DepCreation {
 
 	private static Map<Object, Integer> map;
 
+	public static final String valueFor = "value for "; //$NON-NLS-1$
+	
 	/**
 	 * Create a slot and add an instance value associated with a part instance
 	 * specification.
@@ -98,18 +101,18 @@ public class DepCreation {
 		if(type != null) {
 			String name = type.getName();
 			String qname = type.getQualifiedName();
-			if(name.equals("Integer") || qname.equals(CORBAtypeNames.Octet)
+			if(name.equals("Integer") || qname.equals(CORBAtypeNames.Octet) //$NON-NLS-1$
 				|| qname.equals(CORBAtypeNames.Long)
 				|| qname.equals(CORBAtypeNames.UnsignedLong)
 				|| qname.equals(CORBAtypeNames.Short)
 				|| qname.equals(CORBAtypeNames.UnsignedShort)) {
-				slot.createValue("value for " + attribute.getName(), type,
+				slot.createValue(valueFor + attribute.getName(), type, //$NON-NLS-1$
 					UMLPackage.eINSTANCE.getLiteralInteger());
 			} else if(name.equals("Boolean")) {
-				slot.createValue("value for " + attribute.getName(), type,
+				slot.createValue(valueFor + attribute.getName(), type, //$NON-NLS-1$
 					UMLPackage.eINSTANCE.getLiteralBoolean());
 			} else {
-				slot.createValue("value for " + attribute.getName(), type,
+				slot.createValue(valueFor + attribute.getName(), type, //$NON-NLS-1$
 					UMLPackage.eINSTANCE.getLiteralString());
 			}
 		}
@@ -128,7 +131,7 @@ public class DepCreation {
 		slot.setDefiningFeature(attribute);
 		Type type = attribute.getType();
 		if(type != null) {
-			slot.createValue("value for " + attribute.getName(), type,
+			slot.createValue(valueFor + attribute.getName(), type,
 				UMLPackage.eINSTANCE.getLiteralString());
 		}
 		return slot;
@@ -165,14 +168,14 @@ public class DepCreation {
 	{
 		// create an instance specification for the composite
 		if(visitedClassifiers.contains(typeOrImplem)) {
-			String path = "";
+			String path = ""; //$NON-NLS-1$
 			for(Classifier cl : visitedClassifiers) {
 				if(path.length() > 0) {
-					path += ", ";
+					path += ", "; //$NON-NLS-1$
 				}
 				path += cl.getName();
 			}
-			path += ", " + typeOrImplem.getName();
+			path += ", " + typeOrImplem.getName(); //$NON-NLS-1$
 			throw new TransformationException("Class \"" + typeOrImplem.getQualifiedName() +
 				"\" is referenced in a circle! Thus, an infinite number of instance specifications would be required.\n\n" +
 				"recursion path: " + path);
@@ -183,7 +186,7 @@ public class DepCreation {
 			cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
 
 		// TODO: hack, could be named differently.
-		if(name.equals("mainInstance")) {
+		if(name.equals("mainInstance")) { //$NON-NLS-1$
 			DepUtils.setMainInstance(cdp, is);
 		}
 
@@ -206,8 +209,8 @@ public class DepCreation {
 
 		if(!(implementation instanceof Class)) {
 			throw new TransformationException(
-				"cannot find suitable implementation for instance <" + name
-					+ "> (given type <" + typeOrImplem.getName() + ">)");
+				"cannot find suitable implementation for instance <" + name //$NON-NLS-1$
+					+ "> (given type <" + typeOrImplem.getName() + ">)"); //$NON-NLS-1$
 		}
 		// else implementation is instance of Class (and not null)
 
@@ -253,15 +256,15 @@ public class DepCreation {
 
 					// hack: ad-hoc replication support. Better solution via design patterns
 					int upper = attribute.getUpper();
-					String infix = "";
+					String infix = ""; //$NON-NLS-1$
 					Object obj = StUtils.getAttribute(attribute,
-						Stereotypes.replicationInfo, "initialNumberOfReplicas");
+						Stereotypes.replicationInfo, "initialNumberOfReplicas"); //$NON-NLS-1$
 					if(obj instanceof Integer) {
 						if(upper != 1) {
-							System.err.println("cannot replicate an array");
+							throw new TransformationException("cannot replicate an array"); //$NON-NLS-1$
 						}
 						upper = ((Integer)obj).intValue();
-						infix = "r";
+						infix = "r"; //$NON-NLS-1$
 					}
 					// TODO: check validation constraints
 					for(int i = 0; i < upper; i++) {
@@ -346,13 +349,11 @@ public class DepCreation {
 					first = false;
 				}
 				// CAVEAT:
-				// - single value specification for all occurrences of an
-				// interceptor
+				// - single value specification for all occurrences of an interceptor
 				// - Could be done, but: how to know whether user wants single
-				// vs. interceptor specific configuration?
+				//   vs. interceptor specific configuration?
 				// - two different interceptors may not share the same type with
-				// a configuration
-				// attribute
+				//   a configuration attribute
 				Slot slot = createSlotForConfigProp(is, attribute);
 			}
 		}
@@ -507,9 +508,7 @@ public class DepCreation {
 		for(Slot slot : is.getSlots()) {
 			StructuralFeature sf = slot.getDefiningFeature();
 			if(sf == null) {
-				// throw new TransformationException (is.getName() + " has a slot without defining feature");
-				System.err.println(is.getName());
-				break;
+				throw new TransformationRTException(is.getName() + " has a slot without defining feature"); //$NON-NLS-1$
 			}
 			if(StUtils.isApplied(sf, CopyAttributeValue.class)) {
 				CopyAttributeValue cav = StUtils.getApplication(sf,
@@ -518,7 +517,7 @@ public class DepCreation {
 				ValueSpecification vs = getNearestValue(isStack, source);
 				if(vs instanceof LiteralInteger) {
 					LiteralInteger liCopy = (LiteralInteger)slot.createValue(
-						sf.getName() + "_copy", sf.getType(),
+						sf.getName() + "_copy", sf.getType(), //$NON-NLS-1$
 						UMLPackage.eINSTANCE.getLiteralInteger());
 					int value = ((LiteralInteger)vs).getValue();
 					liCopy.setValue(value);

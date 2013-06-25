@@ -203,12 +203,6 @@ Use the context menu on a selected connector to specify the interaction componen
       <packagedElement xmi:type="uml:Package" xmi:id="_YxI8IDegEeGPyrZ5I3hMlA" name="HWArchitecturePlatform">
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_GQ1ekKwHEeCQX8uv_p0Q4A" name="monoNode" classifier="_zY9vMDLiEd2RVeNawwNNzg"/>
       </packagedElement>
-      <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_aOAnkKmqEeCxII-g1_Lmeg">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aen2cKmqEeCxII-g1_Lmeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//SW_Concurrency"/>
-        </eAnnotations>
-        <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_A_vtYBJeEdy3Td9UhuLFPg"/>
-      </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_234GEDLiEd2RVeNawwNNzg" name="DeploymentPlans">
       <ownedComment xmi:type="uml:Comment" xmi:id="_VMRFgDOJEeC7y-fR3OSnFw">
@@ -312,41 +306,11 @@ Use the context menu on a selected connector to specify the interaction componen
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_YgAioAPMEdyuUt-4qHuVvQ"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_SPVg0KmqEeCxII-g1_Lmeg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Se6N4KmqEeCxII-g1_Lmeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_b9oZ5rG3Ed-tmN4hwNCxXQ"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_3VS0wAPMEdyuUt-4qHuVvQ"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_SfbyUKmqEeCxII-g1_Lmeg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SuJjwKmqEeCxII-g1_Lmeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//SW_ResourceCore"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_-1fcUBJdEdy3Td9UhuLFPg"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_f2hIMKmqEeCxII-g1_Lmeg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gEtVMKmqEeCxII-g1_Lmeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//SW_Concurrency"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_A_vtYBJeEdy3Td9UhuLFPg"/>
-    </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_popJkKmqEeCxII-g1_Lmeg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_p1PbIKmqEeCxII-g1_Lmeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//HLAM"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_yNSZIAPMEdyuUt-4qHuVvQ"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_yzqusKmqEeCxII-g1_Lmeg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_zCWq8KmqEeCxII-g1_Lmeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//SW_Brokering"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_Cf874BJeEdy3Td9UhuLFPg"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_6xYMIKmqEeCxII-g1_Lmeg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6_6-cKmqEeCxII-g1_Lmeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//SW_Interaction"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_EIfnABJeEdy3Td9UhuLFPg"/>
     </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_tZuBwE0tEeG4IqgA7gSE6w">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tisXkE0tEeG4IqgA7gSE6w" source="http://www.eclipse.org/uml2/2.0.0/UML">

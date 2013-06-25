@@ -40,7 +40,7 @@
         </interfaceRealization>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_tyjRwc__Ed-TP80eVS-2Rg" name="run" specification="_UtCt0FTzEeKvFeqt5Q_lqw">
           <language>C/C++</language>
-          <body>cout &lt;&lt; &quot;Hello world: &quot; &lt;&lt; message &lt;&lt; endl;</body>
+          <body>printf (&quot;Hello world: %s&quot;, message);</body>
         </ownedBehavior>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_UtCt0FTzEeKvFeqt5Q_lqw" name="run" method="_tyjRwc__Ed-TP80eVS-2Rg"/>
       </packagedElement>
@@ -166,7 +166,7 @@
   <FCM:DerivedElement xmi:id="_a4LokD16Ed-qiK1VZWszhA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE//sysinterfaces.uml#_C9IK4JsqEd61Eo3nmu3JhQ"/>
   </FCM:DerivedElement>
-  <C_Cpp:Include xmi:id="_11OtwPcaEd-KM6l7lmIPkw" body="#include &lt;iostream>&#xA;using namespace std;" base_class="_tyiqsc__Ed-TP80eVS-2Rg"/>
+  <C_Cpp:Include xmi:id="_11OtwPcaEd-KM6l7lmIPkw" body="#include &lt;stdio.h>" base_class="_tyiqsc__Ed-TP80eVS-2Rg"/>
   <FCM:Target xmi:id="_LD_uICr7EeCfcI_SvPT4lw" base_Node="_zY9vMDLiEd2RVeNawwNNzg">
     <targetArch xmi:type="FCM:TargetArchitecture" href="pathmap://QML_CORE/core.uml#_FYOqwF0OEd-12d_h0i1xhQ"/>
     <usedOS xmi:type="FCM:OperatingSystem" href="pathmap://QML_CORE/core.uml#_1eULwF0NEd-12d_h0i1xhQ"/>
@@ -181,6 +181,6 @@
   <FCM:DeploymentPlan xmi:id="_ymC2gFT2EeKvFeqt5Q_lqw" mainInstance="_ymErsFT2EeKvFeqt5Q_lqw" base_Package="_yl9-AFT2EeKvFeqt5Q_lqw"/>
   <Alloc:Allocate xmi:id="_UP7B0FWUEeKdxoQIVxFNNg" base_Abstraction="_UPx34FWUEeKdxoQIVxFNNg"/>
   <FCM:CodeGenOptions xmi:id="_1uf4ENykEeKPWMO32vUmzw" base_Package="_LOqIEDLaEd2qeKRLMdIx_A">
-    <progLanguage xmi:type="FCM:ProgLanguage" href="pathmap://QML_CORE/core.uml#_5WrSINzEEeKPWMO32vUmzw"/>
+    <progLanguage xmi:type="FCM:ProgLanguage" href="pathmap://QML_CORE/core.uml#_74ZoANzEEeKPWMO32vUmzw"/>
   </FCM:CodeGenOptions>
 </xmi:XMI>

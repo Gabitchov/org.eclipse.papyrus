@@ -37,12 +37,10 @@ public class ConfigureInstanceHandler extends CmdHandler {
 	public boolean isEnabled() {
 		updateSelectedEObject();
 		EObject selectedObj = getSelectedEObject();
-		System.err.println("isEnabled: " + selectedObj);
 		if((selectedObj instanceof Class) ||
 			(selectedObj instanceof Connector) ||
 			(selectedObj instanceof Property) ||
 			(selectedObj instanceof InstanceSpecification)) {
-			System.err.println("= true");
 			return true;
 		}
 		return false;
@@ -67,15 +65,15 @@ public class ConfigureInstanceHandler extends CmdHandler {
 
 		if(element instanceof Class) {
 			// container dialog: either extension, rule or interceptor
-			// howto select? which? (and howto add/remove?) - Std - dialog is good?
-			CommandSupport.exec("Configure associated component instance", event, new RunnableWithResult() {
+			// how-to select? which? (and how-to add/remove?) - is standard dialog sufficient?
+			CommandSupport.exec("Configure associated component instance", event, new RunnableWithResult() { //$NON-NLS-1$
 
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =
 						new ConfigureInstanceDialog(shell);
 					if (configureInstanceDialog.init((Class)element)) {
-						configureInstanceDialog.setTitle("Configure instance");
-						configureInstanceDialog.setMessage("Configure instance for component " + element.getName());
+						configureInstanceDialog.setTitle("Configure instance"); //$NON-NLS-1$
+						configureInstanceDialog.setMessage("Configure instance for component " + element.getName()); //$NON-NLS-1$
 						configureInstanceDialog.open();
 						if(configureInstanceDialog.getReturnCode() == IDialogConstants.OK_ID) {
 							return CommandResult.newOKCommandResult();
@@ -85,16 +83,14 @@ public class ConfigureInstanceHandler extends CmdHandler {
 				}
 			});
 		} else if(element instanceof Feature) {
-			// container dialog: either extension, rule or interceptor
-			// howto select? which? (and howto add/remove?) - Std - dialog is good?
-			CommandSupport.exec("Configure associated instance", event, new RunnableWithResult() {
+			CommandSupport.exec("Configure associated instance", event, new RunnableWithResult() { //$NON-NLS-1$
 
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =
 						new ConfigureInstanceDialog(shell);
 					if (configureInstanceDialog.init((Feature)element)) {
-						configureInstanceDialog.setTitle("Configure instance");
-						configureInstanceDialog.setMessage("Configure instance for property/connector " + element.getName());
+						configureInstanceDialog.setTitle("Configure instance"); //$NON-NLS-1$
+						configureInstanceDialog.setMessage("Configure instance for property/connector " + element.getName()); //$NON-NLS-1$
 						configureInstanceDialog.open();
 						if(configureInstanceDialog.getReturnCode() == IDialogConstants.OK_ID) {
 							return CommandResult.newOKCommandResult();
@@ -107,13 +103,13 @@ public class ConfigureInstanceHandler extends CmdHandler {
 			
 		} else if(element instanceof InstanceSpecification) {
 
-			CommandSupport.exec("Configure instance", event, new RunnableWithResult() {
+			CommandSupport.exec("Configure instance", event, new RunnableWithResult() { //$NON-NLS-1$
 
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =
 						new ConfigureInstanceDialog(shell);
 					if (configureInstanceDialog.init((InstanceSpecification)element)) {
-						configureInstanceDialog.setMessage("Configure instance " + element.getName());
+						configureInstanceDialog.setMessage("Configure instance " + element.getName()); //$NON-NLS-1$
 						configureInstanceDialog.open();
 						if(configureInstanceDialog.getReturnCode() == IDialogConstants.OK_ID) {
 							return CommandResult.newOKCommandResult();

@@ -2,10 +2,7 @@ package org.eclipse.papyrus.qompass.designer.vsl;
 
 import java.util.Collections;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.MARTE.utils.MarteUtils;
 import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.DataSizeUnitKind;
 import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.FrequencyUnitKind;
@@ -55,12 +52,13 @@ public class ParseVSL {
 	}
 
 	/**
-	 * test function
+	 * test function (currently unused)
 	 * 
 	 * @param expression
 	 *        a VSL expression
 	 */
 	public static void parseTest(String expression) {
+		/*
 		ParseVSL parseVSL = new ParseVSL();
 		XtextResource xtextResource = parseVSL.getXtextResource(expression);
 		if(xtextResource.getErrors().size() > 0) {
@@ -71,8 +69,9 @@ public class ParseVSL {
 		}
 		EList<EObject> contents = xtextResource.getContents();
 		System.out.println("contents.size: " + contents.size());
+		 */
 	}
-
+	
 	public static int getSizeFromVSL(String nfpDatasize) {
 		if(nfpDatasize != null) {
 			String unit = MarteUtils.getValueFromTuple(nfpDatasize, "unit");

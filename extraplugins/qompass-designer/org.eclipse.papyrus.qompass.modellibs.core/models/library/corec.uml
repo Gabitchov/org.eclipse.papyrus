@@ -1304,11 +1304,6 @@ Be aware that the number of instantiated template packages will be considerably 
         </ownedParameter>
       </ownedTemplateSignature>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_q56toNzEEeKPWMO32vUmzw" name="languages">
-      <packagedElement xmi:type="uml:Class" xmi:id="_tZgVgNzEEeKPWMO32vUmzw" name="C++"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_w2nVkNzEEeKPWMO32vUmzw" name="C"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_0rU9UNzEEeKPWMO32vUmzw" name="Java"/>
-    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_O6TiIjLUEd26WNosUASSSw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_O6TiIzLUEd26WNosUASSSw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
@@ -1509,7 +1504,4 @@ Be aware that the number of instantiated template packages will be considerably 
     <libs>pthread</libs>
     <libs>rt</libs>
   </C_Cpp:ExternLibrary>
-  <FCM:ProgLanguage xmi:id="_5WrSINzEEeKPWMO32vUmzw" base_Class="_tZgVgNzEEeKPWMO32vUmzw"/>
-  <FCM:ProgLanguage xmi:id="_74ZoANzEEeKPWMO32vUmzw" base_Class="_w2nVkNzEEeKPWMO32vUmzw"/>
-  <FCM:ProgLanguage xmi:id="_9OaYsNzEEeKPWMO32vUmzw" base_Class="_0rU9UNzEEeKPWMO32vUmzw"/>
 </xmi:XMI>

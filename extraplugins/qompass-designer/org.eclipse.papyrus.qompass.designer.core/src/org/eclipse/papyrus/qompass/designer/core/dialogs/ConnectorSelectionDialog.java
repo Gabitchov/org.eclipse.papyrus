@@ -28,6 +28,7 @@ import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.templates.ConnectorBinding;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -99,14 +100,14 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 		Group fUpperGroup = new Group(contents, SWT.NONE);
 		fUpperGroup.setLayout(new GridLayout());
 		fUpperGroup.setLayoutData(gridData);
-		fUpperGroup.setText(" Abstract interaction components ");
+		fUpperGroup.setText(" Abstract interaction components "); //$NON-NLS-1$
 		createFilterText(fUpperGroup);
 		fUpper = createFilteredList(fUpperGroup);
 
 		final Group fLowerGroup = new Group(contents, SWT.NONE);
 		fLowerGroup.setLayout(new GridLayout());
 		fLowerGroup.setLayoutData(gridData);
-		fLowerGroup.setText(" Realizations/groups of interaction components ");
+		fLowerGroup.setText(" Realizations/groups of interaction components "); //$NON-NLS-1$
 		// createLabel(contents, lowerLabel);
 		fLower = createFilteredList(fLowerGroup);
 		fFilteredList = fUpper;
@@ -119,7 +120,7 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 		}
 
 		fTypeOnly = new Button(contents, SWT.CHECK);
-		fTypeOnly.setText("Select type only");
+		fTypeOnly.setText("Select type only"); //$NON-NLS-1$
 		SelectionListener fTypeOnlySL = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
@@ -164,7 +165,7 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 		}
 
 		Label info = createMessageArea(contents);
-		info.setText("Information about connector implementation:");
+		info.setText("Information about connector implementation:"); //$NON-NLS-1$
 		// m_description = createMessageArea(contents);
 
 		GridData descriptionGD = new GridData();
@@ -326,7 +327,7 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 							Element owner = (Class)selectedConnector.getOwner();
 							if(owner instanceof Class) {
 								Class composite = (Class)owner;
-								Log.log(Log.INFO_MSG, Log.DIALOGS, "ConnectorSelectionDialog.getAllConnectors: try to bind connector " +
+								Log.log(Log.INFO_MSG, Log.DIALOGS, "ConnectorSelectionDialog.getAllConnectors: try to bind connector " + //$NON-NLS-1$
 									((Class)el).getQualifiedName());
 								ConnectorBinding.obtainBinding(composite, selectedConnector, (Class)el, false);
 								connectorList.add((Class)el);
@@ -334,8 +335,8 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 								connectorList.add((Class)el);
 							}
 						} catch (TransformationException e) {
-							// ignore error (normal, since potentially incompatible connectors are tried out)
-							// System.err.println(e);
+							// transform into runtime exception
+							throw new TransformationRTException(e.getMessage());
 						}
 					}
 				}

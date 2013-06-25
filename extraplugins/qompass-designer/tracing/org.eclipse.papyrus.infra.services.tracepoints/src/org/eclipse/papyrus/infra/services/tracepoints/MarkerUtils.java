@@ -65,7 +65,7 @@ public class MarkerUtils {
 				pResourceSet.getResource(uriOfMarker.trimFragment(), true);
 				return pResourceSet.getEObject(uriOfMarker, true);
 			} catch (MissingResourceException e) {
-				System.err.println("Missing resource");
+				throw new RuntimeException("MarkerUtils.getEObjectOfMarker: " + e.getMessage()); //$NON-NLS-1$
 			}
 		}
 		return null;

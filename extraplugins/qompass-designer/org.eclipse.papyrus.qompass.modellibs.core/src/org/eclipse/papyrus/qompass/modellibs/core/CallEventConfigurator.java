@@ -53,10 +53,10 @@ public class CallEventConfigurator implements IInstanceConfigurator {
 		if(context != null) {
 			// make sure that there is an enum par port
 			String literalName = "port_" + UMLTool.varName(context.port);
-			literalName = "0";
+			// literalName = "0";
 			// the associated enumeration is declared by the statemachine (which is included by the bootloader as well)
 
-			DepPlanUtils.configureProperty(instance, portAttribute, literalName);
+			DepPlanUtils.configureProperty(instance, portAttribute, 0);
 		}
 	}
 

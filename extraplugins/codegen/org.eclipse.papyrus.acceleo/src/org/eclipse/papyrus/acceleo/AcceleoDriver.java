@@ -268,7 +268,6 @@ public class AcceleoDriver {
 			parser.parse(sourceBuffer, resource, depURIs);
 			if(sourceBuffer.getProblems().getList() != null) {
 				if(sourceBuffer.getProblems().getList().size() > 0) {
-					// System.err.println(sourceBuffer.getProblems().getMessage());
 					throw new AcceleoException("Acceleo problem: " + sourceBuffer.getProblems().getMessage() +
 						"\n\nTemplate: " + templateName + "\n" + templateStr);
 				}
@@ -355,7 +354,6 @@ public class AcceleoDriver {
 					if((me instanceof Template) && (dontCheck || me.getName().equals(templateName))) {
 						logEntries.clear();
 						Object stringResult = engine.evaluate((Template)me, arguments, new PreviewStrategy(), null);
-						// System.err.println("result: " + stringResult);
 						if(logEntries.size() > 0) {
 							IStatus e = logEntries.get(0);
 							Throwable exception = e.getException();

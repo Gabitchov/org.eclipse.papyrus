@@ -382,22 +382,10 @@ public class Copy extends Copier {
 
 		if(sourceEObj instanceof NamedElement) {
 			String name = ((NamedElement)sourceEObj).getQualifiedName();
-			// System.err.println("Qompasscopier: " + name);
-			if((name != null) && name.startsWith("uml::")) {
+			if((name != null) && name.startsWith("uml::")) { //$NON-NLS-1$
 				Log.log(Log.ERROR_MSG, Log.TRAFO_COPY, "copy for meta-model element \"" + name + "\" requested. Return original element");
 				return sourceEObj;
-			}
-			// test code
-			if(false) {
-				if ((name != null) && name.endsWith("::I")) {
-					System.err.println(name);
-				}
-				if ((name != null) && name.startsWith("fifo")) {
-					if (copyExtReferences)
-						System.err.println("Hallo");
-				}
-			}
-			
+			}			
 		}
 		// additional sanity check: want to avoid copying (instead of instantiating) elements
 		// of a package template
@@ -608,12 +596,6 @@ public class Copy extends Copier {
 			// TODO: only allow shallow for packages
 			// return targetEObj;
 		}
-		if(false && sourceEObj instanceof NamedElement) {
-			String name = ((NamedElement)sourceEObj).getName();
-			if((name != null) && name.equals("BStringT")) {
-				System.err.println("testing: starting shallow copy of BStringT");
-			}
-		}
 		if((sourceEObj instanceof Element) && (targetEObj instanceof Element)) {
 			// TODO: can copy stereotypes only after creation, since eContainer does
 			// not exist at this moment. Need to put that intelligently into createShallowContainer
@@ -636,13 +618,6 @@ public class Copy extends Copier {
 						shallowCopyContainment(eReference, sourceEObj, targetEObj);
 					}
 				}
-			}
-		}
-
-		if(false && sourceEObj instanceof NamedElement) {
-			String name = ((NamedElement)sourceEObj).getName();
-			if((name != null) && name.equals("BStringT")) {
-				// System.err.println("testing: finished create shallow copy of BStringT");
 			}
 		}
 		return targetEObj;

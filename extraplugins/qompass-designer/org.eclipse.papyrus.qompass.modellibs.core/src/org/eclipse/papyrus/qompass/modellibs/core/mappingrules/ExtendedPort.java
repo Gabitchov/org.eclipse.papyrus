@@ -84,9 +84,8 @@ public class ExtendedPort implements IMappingRule {
 			try {
 				TemplateBinding binding =
 					TemplateUtils.fixedBinding(model, extendedPort, (Classifier)type);
-				Copy sat = new Copy(model, model, false);
-				System.err.println(model.getQualifiedName());
-				TemplateInstantiation ti = new TemplateInstantiation(sat, binding);
+				Copy copy = new Copy(model, model, false);
+				TemplateInstantiation ti = new TemplateInstantiation(copy, binding);
 				// create a bound element of the extended port. Add bound class to derived interface class
 				Class boundClass = ti.bindNamedElement(extendedPort);
 				derivedInterface.getNearestPackage().getPackagedElements().add(boundClass);
@@ -105,7 +104,7 @@ public class ExtendedPort implements IMappingRule {
 
 			if(derivedIntf != null) {
 				for(Operation op : derivedIntf.getAllOperations()) {
-					String name = port.getName() + "_" + op.getName();
+					String name = port.getName() + "_" + op.getName(); //$NON-NLS-1$
 
 					// check whether operation already exists. Create, if not
 					Operation derivedOperation = derivedInterface.getOperation(name, null, null);

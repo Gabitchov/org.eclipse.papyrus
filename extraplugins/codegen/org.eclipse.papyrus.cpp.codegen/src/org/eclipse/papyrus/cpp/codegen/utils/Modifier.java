@@ -109,16 +109,16 @@ public class Modifier {
 		if(propertyOperationOrParameter instanceof Parameter) {
 			ParameterDirectionKind directionKind = ((Parameter)propertyOperationOrParameter).getDirection();
 			if(directionKind == ParameterDirectionKind.IN_LITERAL) {
-				ptr += " _IN_"; //$NON-NLS-1$
+				ptr += " /*in*/"; //$NON-NLS-1$
 			}
 			else if(directionKind == ParameterDirectionKind.OUT_LITERAL) {
-				ptr += " _OUT_"; //$NON-NLS-1$
+				ptr += " /*out*/"; //$NON-NLS-1$
 				if(!ptrOrRef) {
 					ptr += CppCodeGenUtils.getOutInoutOp();
 				}
 			}
 			else if(directionKind == ParameterDirectionKind.INOUT_LITERAL) {
-				ptr += " _INOUT_"; //$NON-NLS-1$
+				ptr += " /*inout*/"; //$NON-NLS-1$
 				if(!ptrOrRef) {
 					ptr += CppCodeGenUtils.getOutInoutOp();
 				}

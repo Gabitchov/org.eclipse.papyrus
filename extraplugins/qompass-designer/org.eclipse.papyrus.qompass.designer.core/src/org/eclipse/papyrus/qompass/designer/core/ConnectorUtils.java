@@ -70,19 +70,15 @@ public class ConnectorUtils {
 				return true;
 			}
 			if(end.getRole() != null) {
-				if(end.getRole().getQualifiedName() == null) {
-					System.err.println("sowas");
-				}
-
 				if(end.getRole() == port) {
 					Log.log(Log.ERROR_MSG, Log.TRAFO_CONNECTOR,
-						"ConnectorUtls.connectsPort: qualified names match, but not the ID - should not happen");
+						"ConnectorUtls.connectsPort: qualified names match, but not the ID - should not happen"); //$NON-NLS-1$
 					return true;
 				}
 			} else {
 				Log.log(Log.ERROR_MSG, Log.TRAFO_CONNECTOR,
-					"ConnectorUtils.connectsPort: the role of one of the endpoints of connection " + connection.getName() +
-						" is null - should not happen");
+					"ConnectorUtils.connectsPort: the role of one of the endpoints of connection " + connection.getName() + //$NON-NLS-1$
+						" is null - should not happen"); //$NON-NLS-1$
 			}
 		}
 		return false;
