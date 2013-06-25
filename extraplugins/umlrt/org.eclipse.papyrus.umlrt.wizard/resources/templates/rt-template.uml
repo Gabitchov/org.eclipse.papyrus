@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_M6LNQN2REeK2yvTixhtyWQ" name="UML RealTime Model">
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_QT_owN2REeK2yvTixhtyWQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QUleoN2REeK2yvTixhtyWQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://UMLRT_PROFILES/uml-rt.profile.uml#_iXluUNgxEeKmBIMLIFUmag"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLRT_PROFILES/uml-rt.profile.uml#_eugngJCjEeK0PJ1vk5Zadw"/>
+  </profileApplication>
+</uml:Model>

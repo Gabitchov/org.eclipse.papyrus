@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.wizards.templates">
+      <template
+            di_file="resources/templates/rt-template.di"
+            file="resources/templates/rt-template.uml"
+            id="org.eclipse.papyrus.umlrt.wizard.template"
+            isDefault="false"
+            language="uml"
+            name="An empty UML RealTime model"
+            notation_file="resources/templates/rt-template.notation">
+      </template>
+   </extension>
+
+</plugin>
