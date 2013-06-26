@@ -53,6 +53,13 @@ public interface IBundleDescriptionDesigner {
 	public String getSymbolicName(Object bundleProject);
 	
 	/**
+	 * get the name from the JAVA object that represent the bundle
+	 * @param bundleProject
+	 * @return the  name
+	 */
+	public String getName(Object bundleProject);
+	
+	/**
 	 * create packages that are exported to other plugins
 	 * @param bundleComponent the UML representation of the bundle
 	 * @param bundleProject the bundle JAVA object

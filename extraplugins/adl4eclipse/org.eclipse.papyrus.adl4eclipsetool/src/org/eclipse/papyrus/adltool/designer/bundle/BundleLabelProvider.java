@@ -16,6 +16,7 @@ package org.eclipse.papyrus.adltool.designer.bundle;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.project.IBundleProjectDescription;
 import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
 import org.eclipse.swt.graphics.Image;
@@ -39,6 +40,10 @@ public class BundleLabelProvider extends LabelProvider {
 			return getImage("img/bundle_obj.gif");
 		}
 		else if(bundleProject instanceof IFeatureModel){
+			return getImage("img/bundle_obj.gif");
+		}
+		
+		else if(bundleProject instanceof IPluginModelBase){
 			return getImage("img/bundle_obj.gif");
 		}
 		

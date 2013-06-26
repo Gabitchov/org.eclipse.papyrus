@@ -15,6 +15,7 @@ package org.eclipse.papyrus.adltool.designer.bundle;
 
 import java.util.ArrayList;
 
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.project.IBundleProjectDescription;
 import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
 import org.eclipse.uml2.uml.Component;
@@ -29,12 +30,14 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 	protected  WorkspaceBundleDescriptionDesigner workspaceBundleDescriptionDesigner;
 	protected LoadedBundleDescriptionDesigner loadedBundleDescriptionDesigner;
 	protected FeatureDescriptionDesigner featureDescriptionDesigner;
+	protected IPluginModelDescriptionDesigner IpluginModelDescriptionDesigner;
 
 
 	public BundleDesignerRegistry() {
 		workspaceBundleDescriptionDesigner= new WorkspaceBundleDescriptionDesigner();
 		loadedBundleDescriptionDesigner= new LoadedBundleDescriptionDesigner();
 		featureDescriptionDesigner =new FeatureDescriptionDesigner();
+		IpluginModelDescriptionDesigner=new IPluginModelDescriptionDesigner();
 	}
 
 /**
@@ -55,6 +58,9 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		}
 		else if(bundleProject instanceof IFeatureModel){
 			return featureDescriptionDesigner.getBundleValue(bundleProject, key);
+		}
+		else if(bundleProject instanceof IPluginModelBase){
+			IpluginModelDescriptionDesigner.getBundleValue(bundleProject, key);
 		}
 		return null;
 	}
@@ -77,6 +83,9 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		else if(bundleProject instanceof IFeatureModel){
 		 featureDescriptionDesigner.fillPluginProperties(bundleComponent, bundleProject);
 		}
+		else if(bundleProject instanceof IPluginModelBase){
+			IpluginModelDescriptionDesigner.fillPluginProperties(bundleComponent, bundleProject);
+		}
 	}
 
 /**
@@ -96,6 +105,9 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		}
 		else if(bundleProject instanceof IFeatureModel){
 			return featureDescriptionDesigner.getSymbolicName(bundleProject);
+		}
+		else if(bundleProject instanceof IPluginModelBase){
+			return IpluginModelDescriptionDesigner.getSymbolicName( bundleProject);
 		}
 		return null;
 	}
@@ -118,6 +130,9 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		else if(bundleProject instanceof IFeatureModel){
 		 featureDescriptionDesigner.fillExportedPackages(bundleComponent, bundleProject);
 		}
+		else if(bundleProject instanceof IPluginModelBase){
+			 IpluginModelDescriptionDesigner.fillExportedPackages(bundleComponent, bundleProject);
+		}
 
 	}
 	/**
@@ -139,6 +154,27 @@ public class BundleDesignerRegistry  implements IBundleDescriptionDesigner{
 		else if(bundleProject instanceof IFeatureModel){
 			return featureDescriptionDesigner.getRequiredBundle(bundleComponent, bundleProject);
 			}
+		else if(bundleProject instanceof IPluginModelBase){
+			return IpluginModelDescriptionDesigner.getRequiredBundle(bundleComponent, bundleProject);
+		}
+		
 		return new ArrayList<ReferencedOSGIElement>();
+	}
+
+	public String getName(Object bundleProject) {
+		if(bundleProject instanceof IBundleProjectDescription){
+			return workspaceBundleDescriptionDesigner.getName(bundleProject);
+
+		}
+		else if(bundleProject instanceof Bundle){
+			return loadedBundleDescriptionDesigner.getName(bundleProject);
+		}
+		else if(bundleProject instanceof IFeatureModel){
+			return featureDescriptionDesigner.getName(bundleProject);
+		}
+		else if(bundleProject instanceof IPluginModelBase){
+			return IpluginModelDescriptionDesigner.getName( bundleProject);
+		}
+		return null;
 	}
 }

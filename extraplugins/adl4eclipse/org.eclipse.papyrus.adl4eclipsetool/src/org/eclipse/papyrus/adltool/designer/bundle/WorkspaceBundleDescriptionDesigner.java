@@ -103,11 +103,14 @@ public class WorkspaceBundleDescriptionDesigner extends AbstractBundleDescriptio
 			}
 		}
 	}
-	
+
 	public ArrayList<ReferencedOSGIElement> getRequiredBundle(Component bundleComponent, Object bundleProject) {
 		ArrayList<ReferencedOSGIElement> bundleRefList=new ArrayList<ReferencedOSGIElement>();
 		if(bundleProject instanceof IBundleProjectDescription){
 			IRequiredBundleDescription[] requiredBundleDescriptions=((IBundleProjectDescription)bundleProject).getRequiredBundles();
+			if(requiredBundleDescriptions==null){
+				return bundleRefList;
+			}
 			for(int i = 0; i < requiredBundleDescriptions.length; i++) {
 				ReferencedOSGIElement newrefElement= new ReferencedOSGIElement(null,requiredBundleDescriptions[i].getName());
 				bundleRefList.add(newrefElement);
@@ -121,4 +124,10 @@ public class WorkspaceBundleDescriptionDesigner extends AbstractBundleDescriptio
 		}
 		return null;
 	}
+
+	public String getName(Object bundleProject) {
+		return this.getBundleValue(bundleProject, org.osgi.framework.Constants.BUNDLE_NAME);
+	}
+
+	
 }

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.adltool.designer.bundle;
 
+import org.eclipse.pde.core.IModel;
 import org.osgi.framework.VersionRange;
 
 /**
@@ -24,6 +25,53 @@ public class ReferencedOSGIElement {
 	
 	private VersionRange version=null;
 	private String symbolicName= null;
+	private String kindRef="";
+	private IModel modelRef=null;
+	private boolean optional= false;
+	
+	
+	
+	
+	public boolean isOptional() {
+		return optional;
+	}
+
+
+
+
+	
+	public void setOptional(boolean optional) {
+		this.optional = optional;
+	}
+
+
+
+
+	public IModel getModelRef() {
+		return modelRef;
+	}
+
+
+
+	
+	public void setModelRef(IModel modelRef) {
+		this.modelRef = modelRef;
+	}
+
+
+
+	public String getKindRef() {
+		return kindRef;
+	}
+
+
+	
+	public void setKindRef(String kindRef) {
+		this.kindRef = kindRef;
+	}
+
+	public static String FEATURE="feature";
+	public static String PLUGIN="plugin";
 	
 	/**
 	 * Constructor.
@@ -35,8 +83,10 @@ public class ReferencedOSGIElement {
 		super();
 		this.version = version;
 		this.symbolicName = symbolicName;
+		this.kindRef=PLUGIN;
 	}
 
+	
 	/**
 	 * @return the version
 	 */

@@ -114,6 +114,11 @@ public class LoadedBundleDescriptionDesigner extends AbstractBundleDescriptionDe
 					if( manisfests[i].getAttribute(Constants.BUNDLE_VERSION.toLowerCase())!=null){
 						VersionRange version= new VersionRange( manisfests[i].getAttribute(Constants.BUNDLE_VERSION.toLowerCase()));
 						newRefElement.setVersion(version);
+						if (manisfests[i].getDirective(Constants.RESOLUTION_DIRECTIVE)!=null){
+							if( (manisfests[i].getDirective(Constants.RESOLUTION_DIRECTIVE).equals(Constants.RESOLUTION_OPTIONAL))){
+								newRefElement.setOptional(true);
+							}
+						}
 					}
 					bundleListName.add(newRefElement);
 			
@@ -139,5 +144,8 @@ public class LoadedBundleDescriptionDesigner extends AbstractBundleDescriptionDe
 		}
 		return null;
 
+	}
+	public String getName(Object bundleProject) {
+		return this.getBundleValue(bundleProject, org.osgi.framework.Constants.BUNDLE_NAME);
 	}
 }
