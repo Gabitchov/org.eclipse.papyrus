@@ -7,6 +7,18 @@ Bundle-Activator: org.eclipse.papyrus.infra.nattable.properties.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.views.properties;bundle-version="0.10.0"
+ org.eclipse.papyrus.views.properties;bundle-version="0.10.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.edit,
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.core.databinding;bundle-version="1.4.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.nattable;bundle-version="0.10.0",
+ org.eclipse.papyrus.views.properties.model;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.nattable.model,
+ org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
+ org.eclipse.gmf.runtime.emf.type.core,
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

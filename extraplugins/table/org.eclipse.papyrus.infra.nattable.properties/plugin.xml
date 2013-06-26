@@ -8,5 +8,11 @@
             isCustomizable="true">
       </context>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.environment">
+      <environment
+            environmentModel="model/Environment.xmi">
+      </environment>
+   </extension>
 
 </plugin>

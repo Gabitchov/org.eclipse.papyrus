@@ -29,6 +29,7 @@ Bundle-Vendor: %Bundle-Vendor
 Export-Package: org.eclipse.papyrus.infra.nattable,
  org.eclipse.papyrus.infra.nattable.celleditor,
  org.eclipse.papyrus.infra.nattable.celleditor.config,
+ org.eclipse.papyrus.infra.nattable.command,
  org.eclipse.papyrus.infra.nattable.configuration,
  org.eclipse.papyrus.infra.nattable.dataprovider,
  org.eclipse.papyrus.infra.nattable.handler,

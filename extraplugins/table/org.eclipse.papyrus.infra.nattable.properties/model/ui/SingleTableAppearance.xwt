@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" text="Column">
+	<Composite.layout>
+		<ppel:PropertiesLayout makeColumnsEqualWidth="true"
+			numColumns="1"></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Group text="Table">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Group.layout>
+		<ppe:BooleanRadio property="nattable:Table:invertAxis"
+			input="{Binding}"></ppe:BooleanRadio>
+	</Group>
+	<Group text="Column">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="2"
+				makeColumnsEqualWidth="true"></ppel:PropertiesLayout>
+		</Group.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="nattable:Table:localColumnHeaderAxisConfiguration.displayLabel"
+			customLabel="Display Label"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="nattable:Table:localColumnHeaderAxisConfiguration.displayFilter"
+			readOnly="true" customLabel="Display Filter"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="nattable:Table:localColumnHeaderAxisConfiguration.displayIndex"
+			customLabel="Display Index"></ppe:BooleanRadio>
+		<ppe:EnumCombo input="{Binding}"
+			property="nattable:Table:localColumnHeaderAxisConfiguration.indexStyle"
+			customLabel="Index Style"></ppe:EnumCombo>
+	</Group>
+	<Group text="Row">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="1"
+				makeColumnsEqualWidth="true"></ppel:PropertiesLayout>
+		</Group.layout>
+		<Composite>
+			<Composite.layout>
+				<ppel:PropertiesLayout numColumns="1"
+					makeColumnsEqualWidth="true"></ppel:PropertiesLayout>
+			</Composite.layout>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:localRowHeaderAxisConfiguration.displayLabel"
+				customLabel="Display Label"></ppe:BooleanRadio>
+		</Composite>
+		<Composite>
+			<Composite.layout>
+				<ppel:PropertiesLayout makeColumnsEqualWidth="true"
+					numColumns="2"></ppel:PropertiesLayout>
+			</Composite.layout>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:localRowHeaderAxisConfiguration.displayIndex"
+				customLabel="Display Index"></ppe:BooleanRadio>
+			<ppe:EnumCombo input="{Binding}"
+				property="nattable:Table:localRowHeaderAxisConfiguration.indexStyle"
+				customLabel="Index Style"></ppe:EnumCombo>
+		</Composite>
+	</Group>
+</Composite>

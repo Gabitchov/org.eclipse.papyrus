@@ -195,6 +195,11 @@
         <widget href="ui/MultipleObjectIdAxis.xwt#/"/>
       </sections>
     </tabs>
+    <tabs label="Appearance" id="TableAppearance" category="default" afterTab="/0/@tabs.0">
+      <sections name="SingleTableAppearance" sectionFile="ui/SingleTableAppearance.xwt">
+        <widget href="ui/SingleTableAppearance.xwt#/"/>
+      </sections>
+    </tabs>
     <views name="Single Table" sections="/0/@tabs.0/@sections.0" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.0">
       <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTable">
         <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
@@ -643,6 +648,13 @@
         <properties xsi:type="constraints:ValueProperty" name="className" value="ObjectIdAxis"/>
       </constraints>
     </views>
+    <views name="SingleTableAppearance" sections="/0/@tabs.1/@sections.0">
+      <constraints xsi:type="constraints:SimpleConstraint" name="singleTable">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
+        <properties xsi:type="constraints:ValueProperty" name="className" value="Table"/>
+      </constraints>
+    </views>
     <dataContexts name="nattable" label="nattable">
       <elements name="Table" supertypes="/0/@dataContexts.0/@elements.1/@elements.0">
         <properties name="context" type="Reference"/>
@@ -767,7 +779,7 @@
         </elements>
         <elements name="ObjectIdAxis" supertypes="/0/@dataContexts.0/@elements.6/@elements.1 /0/@dataContexts.0/@elements.6/@elements.4"/>
       </elements>
-      <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+      <modelElementFactory href="Environment.xmi#//@modelElementFactories.0"/>
     </dataContexts>
   </contexts:Context>
   <contexts:View name="Single TableNamedElement" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.1/@elements.0">

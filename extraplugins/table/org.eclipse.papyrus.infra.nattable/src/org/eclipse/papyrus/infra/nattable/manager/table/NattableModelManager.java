@@ -69,6 +69,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.F
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainuUtils;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
@@ -469,15 +470,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 */
 	private EditingDomain getTableEditingDomain() {
-		ServicesRegistry registry = null;
-		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTable());
-			return registry.getService(EditingDomain.class);
-		} catch (final ServiceException e) {
-			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
-		}
-
-		return null;
+		return TableEditingDomainuUtils.getTableContextEditingDomain(getTable());
 	}
 
 	/**
@@ -486,16 +479,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 */
 	private EditingDomain getContextEditingDomain() {
-		if(this.contextEditingDomain == null) {
-			ServicesRegistry registry = null;
-			try {
-				registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableContext());
-				this.contextEditingDomain = registry.getService(TransactionalEditingDomain.class);
-			} catch (final ServiceException e) {
-				Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
-			}
-		}
-		return this.contextEditingDomain;
+		return TableEditingDomainuUtils.getTableContextEditingDomain(getTable());
 	}
 
 	/**

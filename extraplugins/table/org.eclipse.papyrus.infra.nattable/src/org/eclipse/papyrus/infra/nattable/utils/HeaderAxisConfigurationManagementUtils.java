@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
+import org.eclipse.emf.validation.internal.service.GetLiveConstraintsOperation;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration;
@@ -86,9 +88,8 @@ public class HeaderAxisConfigurationManagementUtils {
 	 * @param table
 	 *        a table
 	 * @return
-	 *         the header configuration defined in the table and used for columns, mananing the inversion of the axis or <code>null</code> if we aer
-	 *         using the
-	 *         configuration defined in the table configuration
+	 *         the header configuration defined in the table and used for columns, managing the inversion of the axis or <code>null</code> if we are
+	 *         using the configuration defined in the table configuration
 	 */
 	public static final AbstractHeaderAxisConfiguration getColumnAbstractHeaderAxisInTable(final Table table) {
 		AbstractHeaderAxisConfiguration config = table.getLocalColumnHeaderAxisConfiguration();

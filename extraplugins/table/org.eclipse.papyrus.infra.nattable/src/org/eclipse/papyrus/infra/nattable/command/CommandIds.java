@@ -13,13 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.command;
 
-
+/**
+ * This class references the ids of the commands declared for tables
+ * 
+ * @author vl222926
+ * 
+ */
 public class CommandIds {
 
 	private CommandIds() {
 		//to prevent instanciation
 	}
-
 
 	public static final String TOGGLE_STATE = "org.eclipse.ui.commands.toggleState"; //$NON-NLS-1$
 
@@ -37,34 +41,34 @@ public class CommandIds {
 
 	public static final String COMMAND_ROW_DISPLAY_INDEX_STYLE_ID = "org.eclipse.papyrus.infra.nattable.row.index.style"; //$NON-NLS-1$
 
-	public static final String COMMAND_COLUMN_LABEL_DISPLAY_ICON = "org.eclipse.papyrus.infra.nattable.column.label.display.icon";
+	public static final String COMMAND_COLUMN_LABEL_DISPLAY_ICON = "org.eclipse.papyrus.infra.nattable.column.label.display.icon"; //$NON-NLS-1$
 
-	public static final String COMMAND_ROW_LABEL_DISPLAY_ICON = "org.eclipse.papyrus.infra.nattable.row.label.display.icon";
+	public static final String COMMAND_ROW_LABEL_DISPLAY_ICON = "org.eclipse.papyrus.infra.nattable.row.label.display.icon"; //$NON-NLS-1$
 
-	public static final String COMMAND_COLUMN_LABEL_DISPLAY_LABEL = "org.eclipse.papyrus.infra.nattable.column.label.display.label";
+	public static final String COMMAND_COLUMN_LABEL_DISPLAY_LABEL = "org.eclipse.papyrus.infra.nattable.column.label.display.label"; //$NON-NLS-1$
 
-	public static final String COMMAND_ROW_LABEL_DISPLAY_LABEL = "org.eclipse.papyrus.infra.nattable.row.label.display.label";
+	public static final String COMMAND_ROW_LABEL_DISPLAY_LABEL = "org.eclipse.papyrus.infra.nattable.row.label.display.label"; //$NON-NLS-1$
 
-	public static final String COMMAND_ROW_LABEL_FEATURE_DISPLAY_IS_DERIVED = "org.eclipse.papyrus.infra.nattable.row.label.feature.display.isderived";
+	public static final String COMMAND_ROW_LABEL_FEATURE_DISPLAY_IS_DERIVED = "org.eclipse.papyrus.infra.nattable.row.label.feature.display.isderived"; //$NON-NLS-1$
 
-	public static final String COMMAND_ROW_LABEL_FEATURE_DISPLAY_MULTIPLICITY = "org.eclipse.papyrus.infra.nattable.row.label.feature.display.multiplicity";
+	public static final String COMMAND_ROW_LABEL_FEATURE_DISPLAY_MULTIPLICITY = "org.eclipse.papyrus.infra.nattable.row.label.feature.display.multiplicity"; //$NON-NLS-1$
 
-	public static final String COMMAND_ROW_LABEL_FEATURE_DISPLAY_TYPE = "org.eclipse.papyrus.infra.nattable.row.label.feature.display.type";
+	public static final String COMMAND_ROW_LABEL_FEATURE_DISPLAY_TYPE = "org.eclipse.papyrus.infra.nattable.row.label.feature.display.type"; //$NON-NLS-1$
 
-	public static final String COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_IS_DERIVED = "org.eclipse.papyrus.infra.nattable.column.label.feature.display.isderived";
+	public static final String COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_IS_DERIVED = "org.eclipse.papyrus.infra.nattable.column.label.feature.display.isderived"; //$NON-NLS-1$
 
-	public static final String COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_MULTIPLICITY = "org.eclipse.papyrus.infra.nattable.column.label.feature.display.multiplicity";
+	public static final String COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_MULTIPLICITY = "org.eclipse.papyrus.infra.nattable.column.label.feature.display.multiplicity"; //$NON-NLS-1$
 
-	public static final String COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_TYPE = "org.eclipse.papyrus.infra.nattable.column.label.feature.display.type";
+	public static final String COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_TYPE = "org.eclipse.papyrus.infra.nattable.column.label.feature.display.type"; //$NON-NLS-1$
 
-	public static final String COMMAND_ROW_LABEL_FEATURE_DISPLAY_NAME = "org.eclipse.papyrus.infra.nattable.row.label.feature.display.name";
+	public static final String COMMAND_ROW_LABEL_FEATURE_DISPLAY_NAME = "org.eclipse.papyrus.infra.nattable.row.label.feature.display.name"; //$NON-NLS-1$
 
-	public static final String COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_NAME = "org.eclipse.papyrus.infra.nattable.column.label.feature.display.name";
+	public static final String COMMAND_COLUMN_LABEL_FEATURE_DISPLAY_NAME = "org.eclipse.papyrus.infra.nattable.column.label.feature.display.name"; //$NON-NLS-1$
 
-	public static final String COMMAND_ROW_DISCONNECT_SLAVE = "org.eclipse.papyrus.infra.nattable.row.disconnect.slave";
+	public static final String COMMAND_ROW_DISCONNECT_SLAVE = "org.eclipse.papyrus.infra.nattable.row.disconnect.slave"; //$NON-NLS-1$
 
-	public static final String COMMAND_COLUMN_DISCONNECT_SLAVE = "org.eclipse.papyrus.infra.nattable.column.disconnect.slave";
+	public static final String COMMAND_COLUMN_DISCONNECT_SLAVE = "org.eclipse.papyrus.infra.nattable.column.disconnect.slave"; //$NON-NLS-1$
 
-	public static final String COMMAND_INVERT_AXIS = "org.eclipse.papyrus.infra.nattable.invert.axis";
+	public static final String COMMAND_INVERT_AXIS = "org.eclipse.papyrus.infra.nattable.invert.axis"; //$NON-NLS-1$
 
 }
