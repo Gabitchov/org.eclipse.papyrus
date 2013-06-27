@@ -62,4 +62,24 @@ public class Constants {
 
 	public static final String COLUMN_OBJECT_LABEL_CONFIGURATION_DISPLAY_LABEL = "columnObjectLabelProviderConfigurationDisplayLabel"; //$NON-NLS-1$
 
+
+
+	public static final String ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_ICON = "rowFeatureLabelProviderConfigurationDisplayIcon"; //$NON-NLS-1$
+
+	public static final String ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_LABEL = "rowFeatureLabelProviderConfigurationDisplayLabel"; //$NON-NLS-1$
+
+	public static final String ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_IS_DERIVED = "rowFeatureLabelProviderConfigurationDisplayIsDerived"; //$NON-NLS-1$
+
+	public static final String ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_TYPE = "rowFeatureLabelProviderConfigurationDisplayType"; //$NON-NLS-1$
+
+	public static final String ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_MULTIPLICITY = "rowFeatureLabelProviderConfigurationDisplayMultiplicity"; //$NON-NLS-1$
+
+	public static final String ROW__FEATURE_LABEL_CONFIGURATION_DISPLAY_NAME = "rowFeatureLabelProviderConfigurationDisplayName"; //$NON-NLS-1$
+
+
+
+	public static final String ROW_OBJECT_LABEL_CONFIGURATION_DISPLAY_ICON = "rowObjectLabelProviderConfigurationDisplayIcon"; //$NON-NLS-1$
+
+	public static final String ROW_OBJECT_LABEL_CONFIGURATION_DISPLAY_LABEL = "rowObjectLabelProviderConfigurationDisplayLabel"; //$NON-NLS-1$
+
 }

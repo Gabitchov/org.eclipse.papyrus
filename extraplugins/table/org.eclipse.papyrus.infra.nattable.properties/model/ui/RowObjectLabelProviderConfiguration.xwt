@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Group xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns:x="http://www.eclipse.org/xwt"
+<Group xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	text="Column Header Label Style">
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	text="Row Header Label Style">
 	<Group.layout>
-		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Group.layout>
 	<Composite>
 		<Composite.layout>
@@ -16,10 +15,10 @@
 				<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 			</Composite.layout>
 			<ppe:BooleanRadio input="{Binding}"
-				property="nattable:Table:columnObjectLabelProviderConfigurationDisplayIcon"
+				property="nattable:Table:rowObjectLabelProviderConfigurationDisplayIcon"
 				customLabel="Display Icon"></ppe:BooleanRadio>
 			<ppe:BooleanRadio input="{Binding}"
-				property="nattable:Table:columnObjectLabelProviderConfigurationDisplayLabel"
+				property="nattable:Table:rowObjectLabelProviderConfigurationDisplayLabel"
 				customLabel="Display Label"></ppe:BooleanRadio>
 		</Composite>
 		<Composite>

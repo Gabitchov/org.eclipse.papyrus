@@ -24,8 +24,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
@@ -47,14 +45,20 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnObjectLabe
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnObjectLabelDisplayLabelObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowDisplayIndexHeaderObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowDisplayLabelHeaderObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelDisplayIconObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelDisplayIsDerivedObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelDisplayLabelObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelDisplayMultiplicityObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelDisplayNameObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelDisplayTypeObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowIndexHeaderStyleObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowObjectLabelDisplayIconObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowObjectLabelDisplayLabelObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 
 
 public class NatTableModelElement extends EMFModelElement {
@@ -88,6 +92,12 @@ public class NatTableModelElement extends EMFModelElement {
 	 * the list of the column label provider configuration
 	 */
 	private Collection<ILabelProviderConfiguration> columnLabelProviderConfigurations;
+
+
+	/**
+	 * the list of the row label provider configuration
+	 */
+	private Collection<ILabelProviderConfiguration> rowLabelProviderConfigurations;
 
 	/**
 	 * 
@@ -175,6 +185,19 @@ public class NatTableModelElement extends EMFModelElement {
 			rowHeaderAxisConfiguration.eAdapters().add(tableListener);
 		}
 
+		if(rowHeaderAxisConfiguration != null) {
+			rowLabelProviderConfigurations = rowHeaderAxisConfiguration.getOwnedLabelConfigurations();
+		}
+
+		if(this.rowLabelProviderConfigurations != null) {
+			//we add listener on all column label configurations
+			for(final ILabelProviderConfiguration conf : rowLabelProviderConfigurations) {
+				conf.eAdapters().add(tableListener);
+			}
+		}
+
+
+
 	}
 
 	/**
@@ -200,6 +223,13 @@ public class NatTableModelElement extends EMFModelElement {
 		//we add a listener on the rowHeaderAxisConfiguration
 		if(rowHeaderAxisConfiguration != null) {
 			rowHeaderAxisConfiguration.eAdapters().remove(tableListener);
+		}
+
+		if(this.rowLabelProviderConfigurations != null) {
+			//we add listener on all column label configurations
+			for(final ILabelProviderConfiguration conf : rowLabelProviderConfigurations) {
+				conf.eAdapters().remove(tableListener);
+			}
 		}
 	}
 
@@ -240,6 +270,7 @@ public class NatTableModelElement extends EMFModelElement {
 		removeListeners();
 		observableValues.clear();
 		columnLabelProviderConfigurations = null;
+		rowLabelProviderConfigurations = null;
 	}
 
 
@@ -303,6 +334,28 @@ public class NatTableModelElement extends EMFModelElement {
 				value = new ColumnObjectLabelDisplayIconObservableValue(table);
 			} else if(Constants.COLUMN_OBJECT_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
 				value = new ColumnObjectLabelDisplayLabelObservableValue(table);
+			} else
+
+			//feature row label property
+			if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
+				value = new RowFeatureLabelDisplayIconObservableValue(table);
+			} else if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
+				value = new RowFeatureLabelDisplayLabelObservableValue(table);
+			} else if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_IS_DERIVED.equals(propertyPath)) {
+				value = new RowFeatureLabelDisplayIsDerivedObservableValue(table);
+			} else if(Constants.ROW__FEATURE_LABEL_CONFIGURATION_DISPLAY_NAME.equals(propertyPath)) {
+				value = new RowFeatureLabelDisplayNameObservableValue(table);
+			} else if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_TYPE.equals(propertyPath)) {
+				value = new RowFeatureLabelDisplayTypeObservableValue(table);
+			} else if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_MULTIPLICITY.equals(propertyPath)) {
+				value = new RowFeatureLabelDisplayMultiplicityObservableValue(table);
+
+
+				//object row label property
+			} else if(Constants.ROW_OBJECT_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
+				value = new RowObjectLabelDisplayIconObservableValue(table);
+			} else if(Constants.ROW_OBJECT_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
+				value = new RowObjectLabelDisplayLabelObservableValue(table);
 			}
 
 			if(value != null) {
@@ -326,6 +379,7 @@ public class NatTableModelElement extends EMFModelElement {
 	public boolean isEditable(String propertyPath) {
 		boolean res = super.isEditable(propertyPath);
 		if(!res) {
+			//feature column label property
 			if(Constants.COLUMN_FEATURE_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
 				res = true;
 			} else if(Constants.COLUMN_FEATURE_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
@@ -343,6 +397,29 @@ public class NatTableModelElement extends EMFModelElement {
 			} else if(Constants.COLUMN_OBJECT_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
 				res = true;
 			} else if(Constants.COLUMN_OBJECT_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
+				res = true;
+			}
+
+
+
+			//feature row label property
+			else if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
+				res = true;
+			} else if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
+				res = true;
+			} else if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_IS_DERIVED.equals(propertyPath)) {
+				res = true;
+			} else if(Constants.ROW__FEATURE_LABEL_CONFIGURATION_DISPLAY_NAME.equals(propertyPath)) {
+				res = true;
+			} else if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_TYPE.equals(propertyPath)) {
+				res = true;
+			} else if(Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_MULTIPLICITY.equals(propertyPath)) {
+				res = true;
+
+				//object row label property
+			} else if(Constants.ROW_OBJECT_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
+				res = true;
+			} else if(Constants.ROW_OBJECT_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
 				res = true;
 			}
 		}

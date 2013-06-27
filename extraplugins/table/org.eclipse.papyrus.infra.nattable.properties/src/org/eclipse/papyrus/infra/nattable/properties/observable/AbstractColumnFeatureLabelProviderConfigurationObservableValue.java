@@ -63,10 +63,10 @@ public abstract class AbstractColumnFeatureLabelProviderConfigurationObservableV
 	 */
 	@Override
 	protected void doSetValue(Object value) {
-		final ICommand cmd = TableCommands.getSetColumnFeatureLabelConfigurationValueCommand(getTable(), (ILabelProviderConfiguration)getEditedEObject(), getManagedFeature(), value);
+		final ICommand cmd = TableCommands.getSetColumnLabelConfigurationValueCommand(getTable(), (ILabelProviderConfiguration)getEditedEObject(), getManagedFeature(), value);
 		final TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(getTable());
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 	}
-	
+
 
 }

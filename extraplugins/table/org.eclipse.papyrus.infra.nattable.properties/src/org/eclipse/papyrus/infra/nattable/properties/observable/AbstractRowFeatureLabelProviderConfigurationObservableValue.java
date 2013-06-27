@@ -25,11 +25,11 @@ import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtil
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainuUtils;
 
 /**
- * The Class AbstractColumnObjectLabelProviderConfigurationObservableValue.
+ * The Class AbstractRowFeatureLabelProviderConfigurationObservableValue.
  * 
  * @author vl222926
  */
-public abstract class AbstractColumnObjectLabelProviderConfigurationObservableValue extends AbstractConfigurationElementObservableValue {
+public abstract class AbstractRowFeatureLabelProviderConfigurationObservableValue extends AbstractConfigurationElementObservableValue {
 
 	/**
 	 * Constructor.
@@ -39,7 +39,7 @@ public abstract class AbstractColumnObjectLabelProviderConfigurationObservableVa
 	 * @param managedFeature
 	 *        the managed feature
 	 */
-	public AbstractColumnObjectLabelProviderConfigurationObservableValue(final Table table, final EStructuralFeature managedFeature) {
+	public AbstractRowFeatureLabelProviderConfigurationObservableValue(final Table table, final EStructuralFeature managedFeature) {
 		super(table, managedFeature);
 	}
 
@@ -51,7 +51,7 @@ public abstract class AbstractColumnObjectLabelProviderConfigurationObservableVa
 	 */
 	@Override
 	protected EObject getEditedEObject() {
-		return LabelConfigurationManagementUtils.getUsedColumnObjectLabelConfiguration(getTable());
+		return LabelConfigurationManagementUtils.getUsedRowFeatureLabelConfiguration(getTable());
 	}
 
 	/**
@@ -63,8 +63,10 @@ public abstract class AbstractColumnObjectLabelProviderConfigurationObservableVa
 	 */
 	@Override
 	protected void doSetValue(Object value) {
-		final ICommand cmd = TableCommands.getSetColumnLabelConfigurationValueCommand(getTable(), (ILabelProviderConfiguration)getEditedEObject(), getManagedFeature(), value);
+		final ICommand cmd = TableCommands.getSetRowLabelConfigurationValueCommand(getTable(), (ILabelProviderConfiguration)getEditedEObject(), getManagedFeature(), value);
 		final TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(getTable());
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 	}
+
+
 }

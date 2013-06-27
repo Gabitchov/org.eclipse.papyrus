@@ -15,8 +15,8 @@
 	</Group>
 	<Group text="Column">
 		<Group.layout>
-			<ppel:PropertiesLayout numColumns="2"
-				makeColumnsEqualWidth="true"></ppel:PropertiesLayout>
+			<ppel:PropertiesLayout makeColumnsEqualWidth="true"
+				numColumns="2"></ppel:PropertiesLayout>
 		</Group.layout>
 		<ppe:BooleanRadio input="{Binding}"
 			property="nattable:Table:localColumnHeaderAxisConfiguration.displayLabel"
@@ -47,8 +47,8 @@
 		</Composite>
 		<Composite>
 			<Composite.layout>
-				<ppel:PropertiesLayout makeColumnsEqualWidth="true"
-					numColumns="2"></ppel:PropertiesLayout>
+				<ppel:PropertiesLayout numColumns="2"
+					makeColumnsEqualWidth="true"></ppel:PropertiesLayout>
 			</Composite.layout>
 			<ppe:BooleanRadio input="{Binding}"
 				property="nattable:Table:localRowHeaderAxisConfiguration.displayIndex"
