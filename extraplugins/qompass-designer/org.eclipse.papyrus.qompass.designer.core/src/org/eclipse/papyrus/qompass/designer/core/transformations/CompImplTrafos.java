@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
@@ -192,12 +193,12 @@ public class CompImplTrafos {
 	 * @param implementation
 	 */
 	private static void addConnectPortOperation(Copy sat, Class implementation) {
-		for(Port port : PortUtils.getAllPorts2(implementation)) {
-			Interface requiredIntf = PortUtils.getRequired(port);
+		for(PortInfo portInfo : PortUtils.flattenExtendedPorts(PortUtils.getAllPorts2(implementation))) {
+			Interface requiredIntf = portInfo.getRequired();
 			if(requiredIntf != null) {
 				// port requires an interface, add "connect_p" operation & implementation
 
-				String opName = PrefixConstants.connectQ_Prefix + port.getName();
+				String opName = PrefixConstants.connectQ_Prefix + portInfo.getName();
 
 				if (implementation.getOwnedOperation(opName, null, null) != null) {
 					// do not add the operation, if it already exists. This means that the
@@ -206,7 +207,7 @@ public class CompImplTrafos {
 					continue;
 				}
 				Operation op = implementation.createOwnedOperation(opName, null, null);
-				boolean multiPort = (port.getUpper() > 1) || (port.getUpper() == -1); // -1 indicates "*"
+				boolean multiPort = (portInfo.getUpper() > 1) || (portInfo.getUpper() == -1); // -1 indicates "*"
 				if(multiPort) {
 					// add index parameter
 					Element eLong = Utils.getQualifiedElement(Utils.getTop(implementation), CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE);
@@ -226,7 +227,7 @@ public class CompImplTrafos {
 						UMLPackage.eINSTANCE.getOpaqueBehavior());
 				op.getMethods().add(behavior);
 
-				ConnectorEnd ce = ConnectorUtils.getDelegation(implementation, port);
+				ConnectorEnd ce = ConnectorUtils.getDelegation(implementation, portInfo.getModelPort());
 				// if there is an delegation to an inner property, delegate to it
 				// Make distinction between delegation to component (with a port) or
 				// "normal" class (without).
@@ -237,7 +238,7 @@ public class CompImplTrafos {
 					ConnectableElement role = ce.getRole();
 					if(role instanceof Port) {
 						body += refOp(part) + PrefixConstants.connectQ_Prefix + role.getName() + " ";
-						if((port.getUpper() > 1) || (port.getUpper() == -1)) {
+						if((portInfo.getUpper() > 1) || (portInfo.getUpper() == -1)) {
 							body += "(index, ref);";
 						} else {
 							body += "(ref);";
@@ -248,10 +249,10 @@ public class CompImplTrafos {
 					}
 				} else {
 					// no delegation - create attribute for port
-					String attributeName = PrefixConstants.attributePrefix + port.getName();
+					String attributeName = PrefixConstants.attributePrefix + portInfo.getName();
 					if(!Utils.hasNonPortOwnedAttribute(implementation, attributeName)) {
 						Property attr = implementation.createOwnedAttribute(attributeName, requiredIntf);
-						Copy.copyMultElemModifiers(port, attr);
+						Copy.copyMultElemModifiers(portInfo.getPort(), attr);
 						// is shared (should store a reference)
 						attr.setAggregation(AggregationKind.SHARED_LITERAL);
 					}
@@ -269,7 +270,7 @@ public class CompImplTrafos {
 				//   local attribute & associated operation (an inner class may delegate, but the
 				//   composite may be using it as well).
 				if((PrefixConstants.getConnQ_Prefix.length() > 0) && (ce != null)) {
-					opName = PrefixConstants.getConnQ_Prefix + port.getName();
+					opName = PrefixConstants.getConnQ_Prefix + portInfo.getName();
 					op = implementation.getOwnedOperation(opName, null, null);
 					if(op == null) {
 						op = implementation.createOwnedOperation(opName, null, null, requiredIntf);
@@ -283,7 +284,7 @@ public class CompImplTrafos {
 					op.getMethods().add(behavior);
 
 					// no delegation
-					String name = PrefixConstants.attributePrefix + port.getName();
+					String name = PrefixConstants.attributePrefix + portInfo.getName();
 					body = "return " + name + ";";
 					behavior.getLanguages().add("C/C++");
 					behavior.getBodies().add(body);
@@ -316,10 +317,10 @@ public class CompImplTrafos {
 				cmd = "// realization of connector <" + connector.getName() + ">\n";  //$NON-NLS-1$//$NON-NLS-2$
 				if ((end1.getRole() instanceof Port) && PortUtils.isExtendedPort((Port) end1.getRole())) {
 					Port port = (Port) end1.getRole();
-					EList<Port> subPorts = PortUtils.flattenExtendedPort(port);
-					for (Port subPort : subPorts) {
-						cmd += connectPorts(indexMap, connector, end1, end2, subPort);
-						cmd += connectPorts(indexMap, connector, end2, end1, subPort);
+					EList<PortInfo> subPorts = PortUtils.flattenExtendedPort(port);
+					for (PortInfo subPort : subPorts) {
+						cmd += connectPorts(indexMap, connector, end1, end2, subPort.getPort());
+						cmd += connectPorts(indexMap, connector, end2, end1, subPort.getPort());
 					}
 				}
 				else {

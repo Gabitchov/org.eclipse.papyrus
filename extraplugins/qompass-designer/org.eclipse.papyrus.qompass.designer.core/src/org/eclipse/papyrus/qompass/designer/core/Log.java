@@ -17,6 +17,8 @@ package org.eclipse.papyrus.qompass.designer.core;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Status;
+
 /**
  * Very simple message logging class
  * 
@@ -24,13 +26,6 @@ import java.util.Map;
  * 
  */
 public class Log {
-
-	public static final int ERROR_MSG = 1;
-
-	public static final int INFO_MSG = 2;
-
-	public static final int WARNING_MSG = 4;
-
 
 	public static final int TRAFO_CONNECTOR = 1;
 
@@ -75,12 +70,26 @@ public class Log {
 	}
 
 	public static void log(int msgKind, int moduleKind, String message) {
-		if(msgKind == ERROR_MSG) {
-			System.err.println(getModuleInfo(moduleKind) + message);
-		} else if(msgKind == INFO_MSG) {
+		if(msgKind == Status.INFO) {
+			// only show info messages that match a filter criterion
 			if((moduleKind & moduleFilter) != 0) {
-				System.out.println(getModuleInfo(moduleKind) + message);
+				Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, message));
 			}
+		}
+		else {
+			Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, message));
+		}
+	}
+
+	public static void log(int msgKind, int moduleKind, String message, Exception exception) {
+		if(msgKind == Status.INFO) {
+			// only show info messages that match a filter criterion
+			if((moduleKind & moduleFilter) != 0) {
+				Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, exception.getMessage(), exception));
+			}
+		}
+		else {
+			Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, exception.getMessage(), exception));
 		}
 	}
 

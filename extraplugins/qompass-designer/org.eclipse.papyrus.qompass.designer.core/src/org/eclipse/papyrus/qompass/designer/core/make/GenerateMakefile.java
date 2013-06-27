@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 
 /*
@@ -111,7 +112,7 @@ public class GenerateMakefile {
 			writer.flush();
 			writer.close();
 		} catch (IOException e) {
-			Log.log(Log.ERROR_MSG, Log.UTILS, "error during writing of makefile: " + e.getMessage());
+			Log.log(Status.ERROR, Log.UTILS, "error during writing of makefile: " + e.getMessage());
 		}
 	}
 }

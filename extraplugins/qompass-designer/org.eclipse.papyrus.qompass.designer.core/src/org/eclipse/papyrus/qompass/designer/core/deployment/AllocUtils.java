@@ -16,6 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.papyrus.FCM.Fragment;
@@ -279,9 +280,9 @@ public class AllocUtils {
 				}
 				for(Connector connection : compositeCL.getOwnedConnectors()) {
 					if(ConnectorUtils.connectsPort(connection, port)) {
-						Log.log(Log.INFO_MSG, Log.TRAFO_CONNECTOR, "connector: " + connection.getName());
-						Log.log(Log.INFO_MSG, Log.TRAFO_CONNECTOR, "end1: " + connection.getEnds().get(0).getPartWithPort());
-						Log.log(Log.INFO_MSG, Log.TRAFO_CONNECTOR, "end2: " + connection.getEnds().get(1).getPartWithPort());
+						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "connector: " + connection.getName());
+						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "end1: " + connection.getEnds().get(0).getPartWithPort());
+						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "end2: " + connection.getEnds().get(1).getPartWithPort());
 						ConnectorEnd end = ConnectorUtils.connEndForPart(connection, containedProperty);
 						// other connector end targeted at containedProperty?
 						if(end != null) {

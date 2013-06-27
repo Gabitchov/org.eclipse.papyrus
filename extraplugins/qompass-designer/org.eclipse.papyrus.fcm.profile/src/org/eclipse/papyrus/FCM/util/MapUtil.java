@@ -386,8 +386,12 @@ public class MapUtil
 	public static void update(final Port port) {
 		if(port.getBase_Port() == null) {
 			// should not happen, but can occur in case of corrupted XMI files
+			return;
 		}
 		PortKind portKind = port.getKind();
+		if(portKind == null) {
+			return;
+		}
 		if(portKind.getBase_Class() != null) {
 			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName();
 			final IMappingRule mappingRule = getMappingRule(ruleName);

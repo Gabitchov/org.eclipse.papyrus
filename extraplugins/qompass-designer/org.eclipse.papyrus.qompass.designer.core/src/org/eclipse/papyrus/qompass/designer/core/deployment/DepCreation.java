@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.papyrus.FCM.AutoIndex;
 import org.eclipse.papyrus.FCM.AutoIndexPerNode;
@@ -289,7 +290,7 @@ public class DepCreation {
 				// no composition - only create slot, if a singleton
 				// (otherwise, it's not clear with which instance the slot
 				// should be associated)
-				Log.log(Log.INFO_MSG, Log.DEPLOYMENT,
+				Log.log(Status.INFO, Log.DEPLOYMENT,
 					"DepCreation.createDepPlan: " + type.getQualifiedName());
 				if(Utils.isSingleton((Class)type)) {
 					// is a singleton - exactly one instance exists

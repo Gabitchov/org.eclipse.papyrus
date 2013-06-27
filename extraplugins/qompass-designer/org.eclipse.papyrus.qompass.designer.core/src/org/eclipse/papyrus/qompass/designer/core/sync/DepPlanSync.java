@@ -16,6 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core.sync;
 
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -103,7 +104,7 @@ public class DepPlanSync {
 							DepCreation.createDepPlan(depPlan, (Class)type, instance.getName() + "." + attribute.getName(), true);
 						DepPlanUtils.createSlot(depPlan, instance, partIS, attribute);
 					} catch (TransformationException e) {
-						Log.log(Log.ERROR_MSG, Log.DEPLOYMENT, e.getMessage());
+						Log.log(Status.ERROR, Log.DEPLOYMENT, e.getMessage());
 						throw new TransformationRTException(e.getMessage());
 					}
 				}

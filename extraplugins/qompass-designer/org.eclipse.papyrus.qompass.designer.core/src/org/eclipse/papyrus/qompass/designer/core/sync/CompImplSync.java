@@ -16,6 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core.sync;
 
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.OperationUtils;
+import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
@@ -84,7 +86,7 @@ public class CompImplSync {
 			InterfaceRealization ir = (InterfaceRealization)relationship;
 			Classifier cl = ir.getImplementingClassifier();
 			if(cl instanceof Class) {
-				Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "interface rel-ship:" + cl.getName());
+				Log.log(Status.INFO, Log.TRAFO_SYNC, "interface rel-ship:" + cl.getName());
 				Class implementation = (Class)cl;
 				// syncRealizations (implementation);
 				CompImplSync.interfaceModifications(implementation, toBeRemoved);
@@ -111,7 +113,7 @@ public class CompImplSync {
 				foundGeneralization = true;
 				Classifier cl = ((Generalization)relationship).getSpecific();
 				if(cl instanceof Class) {
-					Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "syncViaType => implementation: " + cl.getName());
+					Log.log(Status.INFO, Log.TRAFO_SYNC, "syncViaType => implementation: " + cl.getName());
 					Class implementation = (Class)cl;
 					updatePorts(implementation);
 					if(Utils.isCompImpl(cl)) {
@@ -238,15 +240,15 @@ public class CompImplSync {
 		// create a list of all provided interfaces and check whether realization relationship
 		// exists. If not, create
 		EList<Interface> providedIntfs = new BasicEList<Interface>();
-		for(Port port : PortUtils.getAllPorts2(implementation)) {
-			Interface providedIntf = PortUtils.getProvided(port);
+		for(PortInfo portInfo : PortUtils.flattenExtendedPorts(PortUtils.getAllPorts2(implementation))) {
+			Interface providedIntf = portInfo.getProvided();
 			// check, if there is a getter already. In this case, we assume that we should not synchronize
 			// operations
-			String opName = PrefixConstants.getP_Prefix + port.getName();
+			String opName = PrefixConstants.getP_Prefix + portInfo.getName();
 			if (implementation.getOwnedOperation(opName, null, null) != null) {
 				continue;
 			}
-			ConnectorEnd connEnd = ConnectorUtils.getDelegation(implementation, port);
+			ConnectorEnd connEnd = ConnectorUtils.getDelegation(implementation, portInfo.getPort());
 			// check that there is no delegation to a part which in turn has to implement the operations.
 			if((providedIntf != null) && (connEnd == null)) {
 				if(false && providedIntfs.contains(providedIntf)) {

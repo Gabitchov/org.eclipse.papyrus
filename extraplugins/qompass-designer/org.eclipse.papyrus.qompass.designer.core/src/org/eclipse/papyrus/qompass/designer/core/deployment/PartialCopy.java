@@ -95,8 +95,8 @@ public class PartialCopy implements InstanceDeployer {
 	 */
 	protected void copyPart(Class smCl, Slot slot) throws TransformationException {
 		Property smPart = (Property)slot.getDefiningFeature();
-		// Log.log(Log.INFO_MSG, Log.DEPLOYMENT, "smCl:" + smCl.getQualifiedName ());
-		// Log.log(Log.INFO_MSG, Log.DEPLOYMENT, "tmCl:" + tmCl.getQualifiedName ());
+		// Log.log(Status.INFO, Log.DEPLOYMENT, "smCl:" + smCl.getQualifiedName ());
+		// Log.log(Status.INFO, Log.DEPLOYMENT, "tmCl:" + tmCl.getQualifiedName ());
 		
 		String partName = smPart.getName();
 		InstanceSpecification instanceOrThread = DepUtils.getInstance(slot);

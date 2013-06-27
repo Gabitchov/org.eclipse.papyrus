@@ -22,6 +22,7 @@ package org.eclipse.papyrus.qompass.designer.core.transformations;
  * Major contributions: Ansgar Radermacher from CEA LIST
  */
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.InteractionComponent;
@@ -129,7 +130,7 @@ public class ConnectorReification {
 		if(!(smConnectorPart.getType() instanceof Class)) {
 			// can not happen since caller checks whether type is stereotyped as ConnectorComp
 			// which extends class
-			Log.log(Log.ERROR_MSG, Log.TRAFO_CONNECTOR, "template type is not a class");
+			Log.log(Status.ERROR, Log.TRAFO_CONNECTOR, "template type is not a class");
 			return null;
 		}
 		// choose an implementation
@@ -232,7 +233,7 @@ public class ConnectorReification {
 		Copy.copyID(smConnector, tmConnectorPart, "p");
 		tmConnectorPart.setIsComposite(true);
 
-		Log.log(Log.INFO_MSG, Log.TRAFO_CONNECTOR, "ConnectorReification," +
+		Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "ConnectorReification," +
 			"add part with connector implementation template <"
 			+ connectorImplemTemplate.getName() + "> and implementation <"
 			+ connectorImplem.getName() + ">");
@@ -389,9 +390,9 @@ public class ConnectorReification {
 					for(Port otherPort : PortUtils
 						.getAllPorts((EncapsulatedClassifier)otherPart
 							.getType())) {
-						Log.log(Log.INFO_MSG, Log.TRAFO_CONNECTOR, "ConnectorReification: otherPort type: " +
+						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "ConnectorReification: otherPort type: " +
 							otherPort.getType().getQualifiedName());
-						Log.log(Log.INFO_MSG, Log.TRAFO_CONNECTOR, "ConnectorReification:      port type: " +
+						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "ConnectorReification:      port type: " +
 							port.getType().getQualifiedName());
 						if(otherPort.getType() == port.getType()) {
 							Connector newConnector = composite.createOwnedConnector("connector - container of "

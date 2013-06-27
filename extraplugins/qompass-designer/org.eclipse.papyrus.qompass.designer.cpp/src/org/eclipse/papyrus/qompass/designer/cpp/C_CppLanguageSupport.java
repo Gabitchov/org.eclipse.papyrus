@@ -22,6 +22,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -104,7 +105,7 @@ public class C_CppLanguageSupport implements ILangSupport {
 			// ((CProject) project).
 			IProjectDescription desc = m_project.getDescription();
 			for(ICommand ic : desc.getBuildSpec()) {
-				Log.log(Log.INFO_MSG, Log.CODEGEN, "CppLanguageSupport - read build spec: " + ic);
+				Log.log(Status.INFO, Log.CODEGEN, "CppLanguageSupport - read build spec: " + ic);
 			}
 			ICProjectDescriptionManager mngr =
 				CoreModel.getDefault().getProjectDescriptionManager();
@@ -149,7 +150,7 @@ public class C_CppLanguageSupport implements ILangSupport {
 				// now set include path and preprocessor code
 				for(ICLanguageSetting lang : languageSettings) {
 					// selection better via ID? (instead of extension)
-					Log.log(Log.INFO_MSG, Log.CODEGEN, "CppLanguageSupport: lang.getID: " + lang.getId() + " lang.getLanguageID: " + lang.getLanguageId());
+					Log.log(Status.INFO, Log.CODEGEN, "CppLanguageSupport: lang.getID: " + lang.getId() + " lang.getLanguageID: " + lang.getLanguageId());
 					for(String ext : lang.getSourceExtensions()) {
 						if(ext.equals("cpp") || ext.equals("c")) {
 							lang.setSettingEntries(ICSettingEntry.INCLUDE_PATH, icIncludePaths);

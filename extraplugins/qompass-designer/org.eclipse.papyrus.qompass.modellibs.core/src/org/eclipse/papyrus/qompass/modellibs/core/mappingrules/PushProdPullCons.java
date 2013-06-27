@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.util.IMappingRule;
 import org.eclipse.papyrus.FCM.util.MapUtil;
@@ -46,7 +47,7 @@ public class PushProdPullCons implements IMappingRule {
 		if(owner instanceof NamedElement) {
 			ownerStr = " of class " + ((NamedElement)owner).getQualifiedName();
 		}
-		Log.log(Log.INFO_MSG, Log.CALC_PORTKIND,
+		Log.log(Status.INFO, Log.CALC_PORTKIND,
 			p.getKind().getBase_Class().getName() + " => GetRequired on " + umlPort.getName() + ownerStr);
 		Type type = umlPort.getType();
 

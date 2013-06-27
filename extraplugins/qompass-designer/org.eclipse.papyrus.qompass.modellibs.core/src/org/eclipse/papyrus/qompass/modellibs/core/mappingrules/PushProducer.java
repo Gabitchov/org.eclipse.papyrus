@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.util.IMappingRule;
@@ -50,7 +51,7 @@ public class PushProducer implements IMappingRule {
 	}
 
 	public Interface getRequired(Port p, InstanceSpecification config, boolean update) {
-		Log.log(Log.INFO_MSG, Log.CALC_PORTKIND, p.getKind().getBase_Class().getName() + " => GetRequired on " + p.getBase_Port().getName());
+		Log.log(Status.INFO, Log.CALC_PORTKIND, p.getKind().getBase_Class().getName() + " => GetRequired on " + p.getBase_Port().getName());
 		Type type = p.getBase_Port().getType();
 
 		if((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {

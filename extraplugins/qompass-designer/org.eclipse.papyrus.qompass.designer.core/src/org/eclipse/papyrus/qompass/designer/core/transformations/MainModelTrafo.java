@@ -25,6 +25,7 @@ package org.eclipse.papyrus.qompass.designer.core.transformations;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.FCM.ConfigOption;
@@ -372,7 +373,7 @@ public class MainModelTrafo {
 				// (due to a container transformation)
 				// modification would not be required, if 
 				if((tmPartIS != null) && (DepUtils.getClassifier(tmPartIS) != tmPart.getType())) {
-					Log.log(Log.INFO_MSG, Log.TRAFO_CONNECTOR, "change type of part " + tmPart.getName() +
+					Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "change type of part " + tmPart.getName() +
 						" due to container trafo");
 					tmPart.setType(DepUtils.getClassifier(tmPartIS));
 				}

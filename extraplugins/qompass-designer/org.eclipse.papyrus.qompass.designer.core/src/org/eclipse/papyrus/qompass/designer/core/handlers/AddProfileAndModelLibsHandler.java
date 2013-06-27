@@ -12,6 +12,7 @@ package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -154,7 +155,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 			ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 			domain = serviceUtils.getTransactionalEditingDomain();
 		} catch (ServiceException e) {
-			Log.log(Log.ERROR_MSG, Log.DIALOGS, "Cannot get service handler");
+			Log.log(Status.ERROR, Log.DIALOGS, "Cannot get service handler", e);
 			return null;
 		}
 		CommandStack stack = domain.getCommandStack();
@@ -222,7 +223,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 			ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 			domain = serviceUtils.getTransactionalEditingDomain();
 		} catch (ServiceException e) {
-			Log.log(Log.ERROR_MSG, Log.DIALOGS, "Cannot get service handler");
+			Log.log(Status.ERROR, Log.DIALOGS, "Cannot get service handler");
 			return;
 		}
 		try {

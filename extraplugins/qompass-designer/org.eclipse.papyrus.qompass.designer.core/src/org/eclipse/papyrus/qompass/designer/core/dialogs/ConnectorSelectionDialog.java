@@ -17,6 +17,7 @@ package org.eclipse.papyrus.qompass.designer.core.dialogs;
 
 import java.util.Arrays;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -327,7 +328,7 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 							Element owner = (Class)selectedConnector.getOwner();
 							if(owner instanceof Class) {
 								Class composite = (Class)owner;
-								Log.log(Log.INFO_MSG, Log.DIALOGS, "ConnectorSelectionDialog.getAllConnectors: try to bind connector " + //$NON-NLS-1$
+								Log.log(Status.INFO, Log.DIALOGS, "ConnectorSelectionDialog.getAllConnectors: try to bind connector " + //$NON-NLS-1$
 									((Class)el).getQualifiedName());
 								ConnectorBinding.obtainBinding(composite, selectedConnector, (Class)el, false);
 								connectorList.add((Class)el);

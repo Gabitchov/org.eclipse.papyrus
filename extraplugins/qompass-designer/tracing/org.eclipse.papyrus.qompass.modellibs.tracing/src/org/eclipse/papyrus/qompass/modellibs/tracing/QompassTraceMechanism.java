@@ -5,6 +5,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -21,6 +22,7 @@ import org.eclipse.papyrus.infra.services.tracepoints.MarkerUtils;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAOperation;
 import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
 import org.eclipse.papyrus.qompass.designer.core.Description;
+import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.Class;
@@ -143,7 +145,7 @@ public class QompassTraceMechanism implements ITraceMechanism {
 					return Utils.getAllRules((Package)contents.get(0));
 				}
 			} catch (ServiceException e) {
-				System.err.println(e);
+				Log.log(Status.ERROR, Log.TRAFO_CONTAINER, e.getMessage());
 			}
 			return new BasicEList<ContainerRule>();
 		} else {
@@ -153,7 +155,8 @@ public class QompassTraceMechanism implements ITraceMechanism {
 	}
 
 	public boolean configureTraceMechanisms() {
-		String config = "";
+		String config = ""; //$NON-NLS-1$
+		// TODO: config is never evaluated
 		try {
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
@@ -172,8 +175,8 @@ public class QompassTraceMechanism implements ITraceMechanism {
 				}
 			}
 		} catch (CoreException e) {
+			Log.log(Status.ERROR, Log.TRAFO_CONTAINER, e.getMessage());
 		}
-		System.err.println(config);
 		return true;
 	}
 

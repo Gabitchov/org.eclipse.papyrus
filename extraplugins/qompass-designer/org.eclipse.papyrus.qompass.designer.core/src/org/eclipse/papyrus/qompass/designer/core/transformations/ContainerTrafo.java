@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -479,7 +480,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 * the target model, i.e. the user model is not affected.
 	 */
 	public void moveSlots() {
-		Log.log(Log.INFO_MSG, Log.TRAFO_CONTAINER, "Move slots for instance: " + executorIS.getQualifiedName());
+		Log.log(Status.INFO, Log.TRAFO_CONTAINER, "Move slots for instance: " + executorIS.getQualifiedName());
 		Classifier mainCl = DepUtils.getClassifier(executorIS);
 		Iterator<Slot> slotIt = executorIS.getSlots().iterator();
 		while(slotIt.hasNext()) {

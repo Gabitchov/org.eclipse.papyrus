@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.core.listeners;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.qompass.designer.core.Log;
@@ -35,7 +36,7 @@ public class InterfaceListener implements IPapyrusListener {
 	private static InterfaceListener instance = null;
 
 	public void notifyChanged(Notification notification) {
-		Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Interface adapter");
+		Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface adapter");
 		int evtType = notification.getEventType();
 		Object notifier = notification.getNotifier();
 		String name = "";
@@ -43,12 +44,12 @@ public class InterfaceListener implements IPapyrusListener {
 			name = ((NamedElement)notifier).getName();
 		}
 		if(evtType == Notification.SET) {
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Interface.adapter, set " + name);
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface.adapter, set " + name);
 			if(notifier instanceof Class) {
 				// UMLExecutor.addCCM_intf ((Class) notifier);
 			}
 		} else if(evtType == Notification.ADD) {
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Interface.adapter, add " + name);
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface.adapter, add " + name);
 
 			if(notifier instanceof Interface) {
 				// Interface intf = (Interface) notifier;
@@ -75,14 +76,14 @@ public class InterfaceListener implements IPapyrusListener {
 			if(oldValue instanceof BehavioralFeature) {
 				BehavioralFeature toBeRemoved = (BehavioralFeature)oldValue;
 
-				Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Interface.adapter, remove " + toBeRemoved.getName() + " from " + name);
+				Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface.adapter, remove " + toBeRemoved.getName() + " from " + name);
 
 				Interface intf = (Interface)notifier;
 				// TODO: share code? with UMLExecutor
 				CompImplSync.syncViaInterface(intf, toBeRemoved);
 			}
 		} else {
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Interface.adapter, code: " + notification.getEventType() + ", name: " + name);
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface.adapter, code: " + notification.getEventType() + ", name: " + name);
 		}
 	}
 }

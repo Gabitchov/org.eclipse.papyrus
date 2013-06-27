@@ -16,6 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core.templates;
 
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.qompass.designer.core.CreationUtils;
@@ -122,7 +123,7 @@ public class TemplateUtils {
 		TemplateSignature signature = getSignature(template);
 		if(signature == null) {
 			// not a template, retain original name
-			Log.log(Log.INFO_MSG, Log.TEMPLATE_BINDING,
+			Log.log(Status.INFO, Log.TEMPLATE_BINDING,
 				"no template signature found" + (template instanceof NamedElement ?
 					" for " + ((NamedElement)template).getName() :
 					""));
@@ -156,7 +157,7 @@ public class TemplateUtils {
 			// class does not exist yet, needs to be created.
 			boundPackage = ((Package)owner).createNestedPackage(name);
 
-			Log.log(Log.INFO_MSG, Log.TEMPLATE_BINDING,
+			Log.log(Status.INFO, Log.TEMPLATE_BINDING,
 				"create bound package (fixed binding): " + name
 					+ " within " + owner.getName());
 		}
@@ -243,7 +244,7 @@ public class TemplateUtils {
 		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 			ParameterableElement pe = substitution.getFormal().getParameteredElement();
 			if(pe == formal) {
-				Log.log(Log.INFO_MSG, Log.TEMPLATE_INSTANTIATION,
+				Log.log(Status.INFO, Log.TEMPLATE_INSTANTIATION,
 					"TemplateInstantiation.getActualFromBinding: substitution formal = " + pe);
 				return (Classifier)substitution.getActual();
 			}
@@ -255,7 +256,7 @@ public class TemplateUtils {
 		TemplateBinding binding, String formalName) {
 		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 			ParameterableElement pe = substitution.getFormal().getParameteredElement();
-			Log.log(Log.INFO_MSG, Log.TEMPLATE_INSTANTIATION,
+			Log.log(Status.INFO, Log.TEMPLATE_INSTANTIATION,
 				"TemplateInstantiation.getActualFromBinding: substitution formal = " + pe);
 			if((pe instanceof NamedElement)
 				&& ((NamedElement)pe).getName().equals(formalName)) {

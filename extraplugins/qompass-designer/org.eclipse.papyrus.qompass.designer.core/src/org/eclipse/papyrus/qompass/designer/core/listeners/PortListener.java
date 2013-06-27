@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.core.listeners;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -51,7 +52,7 @@ public class PortListener implements IPapyrusListener {
 		Object notifier = notification.getNotifier();
 
 		if(evtType == Notification.SET) {
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Port adapter, set: " + ((NamedElement)notifier).getName());
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Port adapter, set: " + ((NamedElement)notifier).getName());
 			Object obj = notification.getFeature();
 			if(notifier instanceof Port) {
 				Port port = (Port)notifier;
@@ -69,7 +70,7 @@ public class PortListener implements IPapyrusListener {
 				}
 			}
 		} else {
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Port adapter, code: " + notification.getEventType() + ", " + notifier);
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Port adapter, code: " + notification.getEventType() + ", " + notifier);
 		}
 	}
 }

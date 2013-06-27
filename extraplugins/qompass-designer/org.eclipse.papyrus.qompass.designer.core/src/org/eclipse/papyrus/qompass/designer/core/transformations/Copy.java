@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -383,7 +384,7 @@ public class Copy extends Copier {
 		if(sourceEObj instanceof NamedElement) {
 			String name = ((NamedElement)sourceEObj).getQualifiedName();
 			if((name != null) && name.startsWith("uml::")) { //$NON-NLS-1$
-				Log.log(Log.ERROR_MSG, Log.TRAFO_COPY, "copy for meta-model element \"" + name + "\" requested. Return original element");
+				Log.log(Status.ERROR, Log.TRAFO_COPY, "copy for meta-model element \"" + name + "\" requested. Return original element");
 				return sourceEObj;
 			}			
 		}
@@ -391,7 +392,7 @@ public class Copy extends Copier {
 		// of a package template
 		if((sourceEObj instanceof Package) && (!withinTemplate)) {
 			if(((Package)sourceEObj).getOwnedTemplateSignature() != null) {
-				Log.log(Log.WARNING_MSG, Log.TRAFO_COPY, "warning: copying a package template without instantiating a template");
+				Log.log(Status.WARNING, Log.TRAFO_COPY, "warning: copying a package template without instantiating a template");
 			}
 		}
 

@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.util.IMappingRule;
@@ -39,7 +40,7 @@ import org.eclipse.uml2.uml.Type;
 public class PushConsumer implements IMappingRule {
 
 	public Interface getProvided(Port p, InstanceSpecification config, boolean update) {
-		Log.log(Log.INFO_MSG, Log.CALC_PORTKIND,
+		Log.log(Status.INFO, Log.CALC_PORTKIND,
 			p.getKind().getBase_Class().getName() + " => GetProvided on " + p.getBase_Port().getName());
 		Type type = p.getBase_Port().getType();
 

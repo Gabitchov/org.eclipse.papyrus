@@ -19,6 +19,7 @@ import java.io.IOException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
@@ -353,7 +354,7 @@ public class InstantiateDepPlan {
 					profileResource = ModelManagement.getResourceSet().getResource(profile.eResource().getURI(), true);
 				} catch (WrappedException e) {
 					// read 2nd time (some diagnostic errors are raised only once)
-					Log.log(Log.WARNING_MSG, Log.DEPLOYMENT, "Warning: exception in profile.eResource() " + e.getMessage()); //$NON-NLS-1$
+					Log.log(Status.WARNING, Log.DEPLOYMENT, "Warning: exception in profile.eResource() " + e.getMessage()); //$NON-NLS-1$
 					profileResource = ModelManagement.getResourceSet().getResource(profile.eResource().getURI(), true);
 				}
 				Profile newProfileTop = (Profile)profileResource.getContents().get(0);

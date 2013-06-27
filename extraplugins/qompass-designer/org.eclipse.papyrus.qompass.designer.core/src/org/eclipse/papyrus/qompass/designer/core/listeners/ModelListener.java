@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.core.listeners;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.qompass.designer.core.Log;
@@ -34,11 +35,11 @@ import org.eclipse.uml2.uml.Port;
 public class ModelListener implements IPapyrusListener {
 
 	public void notifyChanged(Notification notification) {
-		Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "ModelListener.notifyChanged: " + notification.getFeature());
+		Log.log(Status.INFO, Log.TRAFO_SYNC, "ModelListener.notifyChanged: " + notification.getFeature());
 		Object notifier = notification.getNotifier();
 		if(notifier instanceof NamedElement) {
 			String name = ((NamedElement)notifier).getName();
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Change notification for element: " + name);
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Change notification for element: " + name);
 		}
 
 		if(notifier instanceof Operation) {

@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.core;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.PortKind;
@@ -75,7 +76,8 @@ public class PortUtils {
 
 	/**
 	 * Returns all ports (including inherited ones) for an encapsulated classifier
-	 * 
+	 * It will also flatten extended ports
+	 *
 	 * @param ec
 	 * @return
 	 */
@@ -83,11 +85,11 @@ public class PortUtils {
 		EList<Port> ports = new BasicEList<Port>();
 		for(Property attribute : ec.getAllAttributes()) {
 			if(attribute instanceof Port) {
-				ports.addAll(flattenExtendedPort((Port) attribute));
+				ports.add((Port) attribute);
 			}
 		}
 		
-		// TODO: for the moment, don't add aggregated port to list.
+		// TODO: for the moment, don't add aggregated ports to list.
 		/*
 		 * ComponentType compType = = StUtils.getApplication (ec, ComponentType.class);
 		 * for (ContainerRule rule : compType.getContainerRule ())
@@ -116,9 +118,7 @@ public class PortUtils {
 	public static EList<Port> getAllPorts2(EncapsulatedClassifier ec) {
 		EList<Port> ports = new BasicEList<Port>();
 
-		for(Port port : ec.getOwnedPorts()) {
-			ports.addAll(flattenExtendedPort(port));
-		}
+		ports.addAll(ec.getOwnedPorts());
 		
 		for(Classifier general : ec.getGenerals()) {
 			if((general instanceof EncapsulatedClassifier) && (!Utils.isCompImpl(general))) {
@@ -128,17 +128,42 @@ public class PortUtils {
 		return ports;
 	}
 
-	public static EList<Port> flattenExtendedPort(Port port) {
-		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
-		if ((fcmPort != null) && (fcmPort.getKind() != null)) {
+	/**
+	 * When given a list of ports, flatten the extended ports within this list
+	 * and return a list of port-infos, i.e. information about ports.
+	 * @param ports A list of ports
+	 * @return A list of port-infos
+	 */
+	public static EList<PortInfo> flattenExtendedPorts(EList<Port> ports) {
+		EList<PortInfo> portInfos = new BasicEList<PortInfo>();
+		for (Port port : ports) {
+			portInfos.addAll (flattenExtendedPort(port));
+		}
+		return portInfos;
+	}
+
+	
+	/**
+	 * Flatten the given extended port and return a list of port-infos.
+	 * @param port
+	 * @return
+	 */
+	public static EList<PortInfo> flattenExtendedPort(Port port) {
+		EList<PortInfo> portInfos = new BasicEList<PortInfo>();
+		if (isExtendedPort(port)) {
+			org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
 			org.eclipse.uml2.uml.Class cl = fcmPort.getKind().getBase_Class();
 			if ((cl != null) && (getAllPorts(cl).size() > 0)) {
-				return getAllPorts(cl);
+				EList<Port> extendedPorts = getAllPorts(cl);
+				for (Port extendedPort : extendedPorts) {
+					portInfos.add(new PortInfo(extendedPort, port));
+				}
 			}
 		}
-		EList<Port> ports = new BasicEList<Port>();
-		ports.add(port);
-		return ports;
+		else {
+			portInfos.add(new PortInfo(port, null));
+		}
+		return portInfos;
 	}
 	
 	/**
@@ -191,7 +216,7 @@ public class PortUtils {
 				kindA.getBase_Class().getQualifiedName().equals(
 					kindB.getBase_Class().getQualifiedName());
 			if(tst != tst2) {
-				Log.log(Log.ERROR_MSG, Log.UTILS, "different instances of same kind??" + kindA.getBase_Class());
+				Log.log(Status.ERROR, Log.UTILS, "different instances of same kind??" + kindA.getBase_Class());
 			}
 			return kindA.getBase_Class().getQualifiedName().equals(
 				kindB.getBase_Class().getQualifiedName());

@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.core;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.uml2.uml.NamedElement;
@@ -48,7 +49,7 @@ public class CreationUtils {
 		int offset = (skipTop ? 2 : 1);
 		for(int i = list.size() - offset; i >= 0; i--) {
 			Namespace ns = list.get(i);
-			Log.log(Log.INFO_MSG, Log.UTILS, "getAndCreate:" + ns.getName());
+			Log.log(Status.INFO, Log.UTILS, "getAndCreate:" + ns.getName());
 
 			NamedElement pkg = root.getOwnedMember(ns.getName());
 			if(pkg == null) {

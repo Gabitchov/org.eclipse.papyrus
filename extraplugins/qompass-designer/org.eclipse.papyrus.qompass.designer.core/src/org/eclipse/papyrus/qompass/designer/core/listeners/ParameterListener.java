@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.core.listeners;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.qompass.designer.core.Log;
@@ -43,7 +44,7 @@ public class ParameterListener implements IPapyrusListener {
 			name = ((NamedElement)notifier).getName();
 		}
 		if((evtType == Notification.SET) || (evtType == Notification.ADD)) {
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Parameter.adapter, set " + name);
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Parameter.adapter, set " + name);
 
 			if(notifier instanceof Parameter) {
 				Element owner = ((Parameter)notifier).getOwner();
@@ -55,7 +56,7 @@ public class ParameterListener implements IPapyrusListener {
 				}
 			}
 		} else {
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Parameter.adapter, code: " + notification.getEventType() + ", name: " + name);
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Parameter.adapter, code: " + notification.getEventType() + ", name: " + name);
 		}
 	}
 }

@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.core;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -71,12 +72,12 @@ public class ConnectorUtils {
 			}
 			if(end.getRole() != null) {
 				if(end.getRole() == port) {
-					Log.log(Log.ERROR_MSG, Log.TRAFO_CONNECTOR,
+					Log.log(Status.ERROR, Log.TRAFO_CONNECTOR,
 						"ConnectorUtls.connectsPort: qualified names match, but not the ID - should not happen"); //$NON-NLS-1$
 					return true;
 				}
 			} else {
-				Log.log(Log.ERROR_MSG, Log.TRAFO_CONNECTOR,
+				Log.log(Status.ERROR, Log.TRAFO_CONNECTOR,
 					"ConnectorUtils.connectsPort: the role of one of the endpoints of connection " + connection.getName() + //$NON-NLS-1$
 						" is null - should not happen"); //$NON-NLS-1$
 			}

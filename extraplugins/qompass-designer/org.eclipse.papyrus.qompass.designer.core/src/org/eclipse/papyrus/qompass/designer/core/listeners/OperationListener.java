@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.core.listeners;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.qompass.designer.core.Log;
@@ -51,7 +52,7 @@ public class OperationListener implements IPapyrusListener {
 			name = ((NamedElement)notifier).getName();
 		}
 		if((evtType == Notification.SET) || (evtType == Notification.ADD)) {
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Operation.adapter, set " + name);
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Operation.adapter, set " + name);
 
 			if(notifier instanceof Operation) {
 				Operation operation = (Operation)notifier;
@@ -63,7 +64,7 @@ public class OperationListener implements IPapyrusListener {
 				}
 			}
 		} else {
-			Log.log(Log.INFO_MSG, Log.TRAFO_SYNC, "Operation.adapter, code: " + notification.getEventType() + ", name: " + name);
+			Log.log(Status.INFO, Log.TRAFO_SYNC, "Operation.adapter, code: " + notification.getEventType() + ", name: " + name);
 		}
 	}
 }
