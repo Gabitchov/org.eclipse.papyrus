@@ -20,50 +20,51 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.command.TableCommands;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainuUtils;
 
 /**
- * Abstract class for the columnHeaderAxisConfiguration
+ * The Class AbstractColumnObjectLabelProviderConfigurationObservableValue.
  * 
  * @author vl222926
- * 
  */
-public abstract class AbstractColumnHeaderAxisConfigurationObservableValue extends AbstractConfigurationElementObservableValue {
+public abstract class AbstractColumnObjectLabelProviderConfigurationObservableValue extends AbstractConfigurationElementObservableValue {
 
 	/**
-	 * 
 	 * Constructor.
 	 * 
 	 * @param table
-	 *        the managed table
+	 *        the table
 	 * @param managedFeature
 	 *        the managed feature
 	 */
-	public AbstractColumnHeaderAxisConfigurationObservableValue(Table table, EStructuralFeature managedFeature) {
+	public AbstractColumnObjectLabelProviderConfigurationObservableValue(final Table table, final EStructuralFeature managedFeature) {
 		super(table, managedFeature);
 	}
 
 	/**
+	 * Gets the edited e object.
 	 * 
-	 * @return
-	 *         the header axis configuration to use to get the value
+	 * @return the edited e object
+	 * @see org.eclipse.papyrus.infra.nattable.properties.observable.AbstractConfigurationElementObservableValue#getEditedEObject()
 	 */
 	@Override
-	protected final EObject getEditedEObject() {
-		return HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisUsedInTable(getTable());
+	protected EObject getEditedEObject() {
+		return LabelConfigurationManagementUtils.getUsedColumnObjectLabelConfiguration(getTable());
 	}
 
 	/**
+	 * Do set value.
 	 * 
 	 * @param value
-	 *        the new value
+	 *        the value
+	 * @see org.eclipse.core.databinding.observable.value.AbstractObservableValue#doSetValue(java.lang.Object)
 	 */
 	@Override
-	protected final void doSetValue(final Object value) {
-		final ICommand cmd = TableCommands.getSetColumnHeaderConfigurationValueCommand(getTable(), getManagedFeature(), value);
+	protected void doSetValue(Object value) {
+		final ICommand cmd = TableCommands.getSetColumnFeatureLabelConfigurationValueCommand(getTable(), (ILabelProviderConfiguration)getEditedEObject(), getManagedFeature(), value);
 		final TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(getTable());
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 	}
-
 }

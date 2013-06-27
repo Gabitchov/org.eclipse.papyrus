@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns:x="http://www.eclipse.org/xwt"
+<Composite xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns="http://www.eclipse.org/xwt/presentation" text="Column">
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	text="Column">
 	<Composite.layout>
-		<ppel:PropertiesLayout makeColumnsEqualWidth="true"
-			numColumns="1"></ppel:PropertiesLayout>
+		<ppel:PropertiesLayout numColumns="1"
+			makeColumnsEqualWidth="true"></ppel:PropertiesLayout>
 	</Composite.layout>
 	<Group text="Table">
 		<Group.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Group.layout>
-		<ppe:BooleanRadio property="nattable:Table:invertAxis"
-			input="{Binding}"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}" property="nattable:Table:invertAxis"></ppe:BooleanRadio>
 	</Group>
 	<Group text="Column">
 		<Group.layout>

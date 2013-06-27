@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	text="Column Header Label Style">
+	<Group.layout>
+		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<Composite xmlns:x="http://www.eclipse.org/xwt" text="Column Header Label Style"
+			xmlns="http://www.eclipse.org/xwt/presentation"
+			xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+			xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
+			<Composite.layout>
+				<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+			</Composite.layout>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:columnFeatureLabelProviderConfigurationDisplayIcon"
+				customLabel="Display Icon"></ppe:BooleanRadio>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:columnFeatureLabelProviderConfigurationDisplayLabel"
+				customLabel="Display Label"></ppe:BooleanRadio>
+		</Composite>
+		<Group text="Label Feature Style">
+			<Group.layout>
+				<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+			</Group.layout>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:columnFeatureLabelProviderConfigurationDisplayIsDerived"
+				customLabel="Display IsDerived"></ppe:BooleanRadio>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:columnFeatureLabelProviderConfigurationDisplayType"
+				customLabel="Display Type"></ppe:BooleanRadio>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:columnFeatureLabelProviderConfigurationDisplayName"
+				customLabel="Display Name"></ppe:BooleanRadio>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:columnFeatureLabelProviderConfigurationDisplayMultiplicity"
+				customLabel="Display Multiplicity"></ppe:BooleanRadio>
+		</Group>
+	</Composite>
+</Group>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	text="Column Header Label Style">
+	<Group.layout>
+		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<Composite>
+			<Composite.layout>
+				<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+			</Composite.layout>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:columnObjectLabelProviderConfigurationDisplayIcon"
+				customLabel="Display Icon"></ppe:BooleanRadio>
+			<ppe:BooleanRadio input="{Binding}"
+				property="nattable:Table:columnObjectLabelProviderConfigurationDisplayLabel"
+				customLabel="Display Label"></ppe:BooleanRadio>
+		</Composite>
+		<Composite>
+			<Composite.layout>
+				<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+			</Composite.layout>
+		</Composite>
+	</Composite>
+</Group>

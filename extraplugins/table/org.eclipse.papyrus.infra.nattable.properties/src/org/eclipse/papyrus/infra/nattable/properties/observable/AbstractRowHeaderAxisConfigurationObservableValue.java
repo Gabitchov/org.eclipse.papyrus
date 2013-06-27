@@ -13,15 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.observable;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.command.TableCommands;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
-import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainuUtils;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainuUtils;
 
 /**
  * Abstract class for the rowHeaderAxisConfiguration
@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagemen
  * @author vl222926
  * 
  */
-public abstract class AbstractRowHeaderAxisConfigurationObservableValue extends AbstractAxisHeaderConfigurationElementObservableValue {
+public abstract class AbstractRowHeaderAxisConfigurationObservableValue extends AbstractConfigurationElementObservableValue {
 
 	/**
 	 * 
@@ -46,12 +46,12 @@ public abstract class AbstractRowHeaderAxisConfigurationObservableValue extends 
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.properties.observable.AbstractAxisHeaderConfigurationElementObservableValue#getManagedConfiguration()
+	 * @see org.eclipse.papyrus.infra.nattable.properties.observable.AbstractConfigurationElementObservableValue#getEditedEObject()
 	 * 
 	 * @return
 	 */
 	@Override
-	protected final AbstractHeaderAxisConfiguration getManagedConfiguration() {
+	protected final EObject getEditedEObject() {
 		return HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisUsedInTable(getTable());
 	}
 

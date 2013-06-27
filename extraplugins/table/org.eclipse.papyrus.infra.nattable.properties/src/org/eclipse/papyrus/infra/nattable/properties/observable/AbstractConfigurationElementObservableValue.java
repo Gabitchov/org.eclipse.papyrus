@@ -15,9 +15,9 @@ package org.eclipse.papyrus.infra.nattable.properties.observable;
 
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Listener;
  * @author vl222926
  * 
  */
-public abstract class AbstractAxisHeaderConfigurationElementObservableValue extends AbstractObservableValue implements Listener {
+public abstract class AbstractConfigurationElementObservableValue extends AbstractObservableValue implements Listener {
 
 	/**
 	 * the managed table
@@ -53,7 +53,7 @@ public abstract class AbstractAxisHeaderConfigurationElementObservableValue exte
 	 * @param managedFeature
 	 *        the managed feature
 	 */
-	public AbstractAxisHeaderConfigurationElementObservableValue(final Table table, final EStructuralFeature managedFeature) {
+	public AbstractConfigurationElementObservableValue(final Table table, final EStructuralFeature managedFeature) {
 		this.table = table;
 		this.managedFeature = managedFeature;
 		oldValue = doGetValue();
@@ -68,7 +68,11 @@ public abstract class AbstractAxisHeaderConfigurationElementObservableValue exte
 	 */
 	@Override
 	protected Object doGetValue() {
-		return getManagedConfiguration().eGet(managedFeature);
+		EObject editedObject = getEditedEObject();
+		if(editedObject != null) {
+			return editedObject.eGet(getManagedFeature());
+		}
+		return null;
 	}
 
 
@@ -86,7 +90,7 @@ public abstract class AbstractAxisHeaderConfigurationElementObservableValue exte
 	 * @return
 	 *         the managed axis configuration
 	 */
-	protected abstract AbstractHeaderAxisConfiguration getManagedConfiguration();
+	protected abstract EObject getEditedEObject();
 
 	/**
 	 * 
@@ -97,7 +101,8 @@ public abstract class AbstractAxisHeaderConfigurationElementObservableValue exte
 	@Override
 	public void handleEvent(Event event) {
 		final Object newValue = doGetValue();
-		if(!oldValue.equals(newValue)) {
+		//big test required to avoid NPE when we receive event during the exchange of the axis
+		if((newValue != oldValue) && ((newValue != null && oldValue == null) || newValue == null && oldValue != null || !oldValue.equals(newValue))) {
 			final Object localOldValue = oldValue;
 			oldValue = newValue;
 			fireValueChange(new ValueDiff() {
