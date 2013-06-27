@@ -11,17 +11,17 @@
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Kh6MJqZsEeK7_saMR_mmoA" source="QualifiedName">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Kh6MJ6ZsEeK7_saMR_mmoA" key="QualifiedNameDepth" value="1000"/>
       </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NaF6MKZsEeK7_saMR_mmoA" source="Stereotype_Annotation">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z-Iq8KZwEeKF3spcIwuN_A" key="StereotypeWithQualifiedNameList" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z-Iq8aZwEeKF3spcIwuN_A" key="StereotypeList" value="SysML::Requirements::Requirement,CommentProfile::BugzillaReferences"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z-Iq8qZwEeKF3spcIwuN_A" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z-Iq86ZwEeKF3spcIwuN_A" key="PropStereoDisplay" value="SysML::Requirements::Requirement.id,SysML::Requirements::Requirement.text"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z-Iq9KZwEeKF3spcIwuN_A" key="StereotypePropertyLocation" value="Compartment"/>
-      </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_85I3EKZwEeKF3spcIwuN_A" source="PapyrusHyperLink__web">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_85I3EaZwEeKF3spcIwuN_A" key="tooltip_text" value="https://bugs.eclipse.org/bugs/show_bug.cgi?id=399865"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_85I3EqZwEeKF3spcIwuN_A" key="link" value="https://bugs.eclipse.org/bugs/show_bug.cgi?id=399865"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_85I3E6ZwEeKF3spcIwuN_A" key="is_default_navigation" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NaF6MKZsEeK7_saMR_mmoA" source="Stereotype_Annotation">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lypaN8RMEeKgUs1u6WQrDQ" key="StereotypeWithQualifiedNameList" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lypaOMRMEeKgUs1u6WQrDQ" key="StereotypeList" value="SysML::Requirements::Requirement"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lypaOcRMEeKgUs1u6WQrDQ" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lypaOsRMEeKgUs1u6WQrDQ" key="PropStereoDisplay" value="SysML::Requirements::Requirement.id,SysML::Requirements::Requirement.text"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lypaO8RMEeKgUs1u6WQrDQ" key="StereotypePropertyLocation" value="Compartment"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_Kh6MKKZsEeK7_saMR_mmoA" type="5029"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_Kh6MKaZsEeK7_saMR_mmoA" visible="false" type="7017">
@@ -43,7 +43,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Kh6MN6ZsEeK7_saMR_mmoA"/>
       </children>
       <element xmi:type="uml:Class" href="model.uml#_AjOVcKZsEeK7_saMR_mmoA"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Kh6MIaZsEeK7_saMR_mmoA" x="20" y="45" height="93"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Kh6MIaZsEeK7_saMR_mmoA" x="20" y="45" width="686" height="93"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_KJg6QaZsEeK7_saMR_mmoA"/>
     <element xmi:type="uml:Package" href="model.uml#_9IOOMKZrEeK7_saMR_mmoA"/>
