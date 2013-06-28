@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer
+			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+			id="org.eclipse.papyrus.uml.diagram.domain.UML_Domain__Tools" name="Tools">
+			<aspectTool description="Create a new Class" id="domain.tool.class"
+				name="Class" refToolId="clazz.tool.class">
+			</aspectTool>
+			<aspectTool description="Create a new Comment" id="domain.tool.comment"
+				name="Comment" refToolId="clazz.tool.comment">
+			</aspectTool>
+			<aspectTool description="Create a new Constraint" id="domain.tool.constraint"
+				name="Constraint" refToolId="clazz.tool.constraint">
+			</aspectTool>
+			<aspectTool description="Create a new DataType" id="domain.tool.datatype"
+				name="DataType" refToolId="clazz.tool.datatype">
+			</aspectTool>
+			<aspectTool description="Create a new Enumeration" id="domain.tool.enumeration"
+				name="Enumeration" refToolId="clazz.tool.enumeration">
+			</aspectTool>
+			<aspectTool description="Create a new Enumeration" id="domain.tool.enumeration"
+				name="Enumeration" refToolId="clazz.tool.enumeration">
+			</aspectTool>
+			<aspectTool description="Create a new InstanceSpecification" id="domain.tool.instancespecification"
+				name="InstanceSpecification" refToolId="clazz.tool.instancespecification">
+			</aspectTool>
+			<aspectTool description="Create a new Package" id="domain.tool.package"
+				name="Package" refToolId="clazz.tool.package">
+			</aspectTool>
+			<aspectTool description="Create a new PrimitiveType" id="domain.tool.primitivetype"
+				name="PrimitiveType" refToolId="clazz.tool.primitivetype">
+			</aspectTool>
+			<aspectTool description="Create a new Class" id="domain.tool.class"
+				name="Class" refToolId="clazz.tool.class">
+			</aspectTool>
+			<aspectTool description="Create a new DataType" id="domain.tool.datatype"
+				name="DataType" refToolId="clazz.tool.datatype">
+			</aspectTool>
+			<aspectTool description="Create a new Enumeration" id="domain.tool.enumeration"
+				name="Enumeration" refToolId="clazz.tool.enumeration">
+			</aspectTool>
+			<aspectTool description="Create a new Enumeration literal" id="domain.tool.enumeration literal"
+				name="Enumeration literal" refToolId="clazz.tool.enumerationliteral">
+			</aspectTool>
+			<aspectTool description="Create a new Interface" id="domain.tool.interface"
+				name="Interface" refToolId="clazz.tool.interface">
+			</aspectTool>
+			<aspectTool description="Create a new Operation" id="domain.tool.operation"
+				name="Operation" refToolId="clazz.tool.operation">
+			</aspectTool>
+			<aspectTool description="Create a new PrimitiveType" id="domain.tool.primitivetype"
+				name="PrimitiveType" refToolId="clazz.tool.primitivetype">
+			</aspectTool>
+			<aspectTool description="Create a new Property" id="domain.tool.property"
+				name="Property" refToolId="clazz.tool.property">
+			</aspectTool>
+			<aspectTool description="Create a new Reception" id="domain.tool.reception"
+				name="Reception" refToolId="clazz.tool.reception">
+			</aspectTool>
+			<aspectTool description="Create a new Signal" id="domain.tool.signal"
+				name="Signal" refToolId="clazz.tool.signal">
+			</aspectTool>
+			<aspectTool description="Create a new Slot" id="domain.tool.slot"
+				name="Slot" refToolId="clazz.tool.slot">
+			</aspectTool>
+			<aspectTool description="Create a new Association" id="domain.tool.association"
+				name="Association" refToolId="clazz.tool.association">
+			</aspectTool>
+			<aspectTool description="Create a new CommentLink" id="domain.tool.commentlink"
+				name="CommentLink" refToolId="clazz.tool.link">
+			</aspectTool>
+			<aspectTool description="Create a new ConstraintConstrainedElement" id="domain.tool.constraintconstrainedelement"
+				name="ConstraintConstrainedElement" refToolId="clazz.tool.link">
+			</aspectTool>
+			<aspectTool description="Create a new Generalization" id="domain.tool.generalization"
+				name="Generalization" refToolId="clazz.tool.generalization">
+			</aspectTool>
+			<aspectTool description="Create a new InstanceSpecification" id="domain.tool.instancespecification"
+				name="InstanceSpecification" refToolId="clazz.tool.instancespecificationlink">
+			</aspectTool>
+						
+		</drawer>
+	</content>
+</paletteDefinition>

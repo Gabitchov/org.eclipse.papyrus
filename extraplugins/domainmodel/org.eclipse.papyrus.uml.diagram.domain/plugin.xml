@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Diagram declaration -->
+<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+	<creationCommand
+		creationCommandClass="org.eclipse.papyrus.uml.diagram.domain.DomainDiagramCreateCommand"
+		icon="icons/obj16/Domain.gif"
+		id="org.eclipse.papyrus.uml.diagram.domain.CreateCommand"
+		language="uml"
+		label="UML Domain Diagram"/>
+	<editorDiagram
+		actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
+		factoryClass="org.eclipse.papyrus.uml.diagram.domain.DomainDiagramEditorFactory"
+		icon="icons/obj16/Domain.gif" />
+</extension>
+
+<!-- Diagram creation command and handler -->
+<extension point="org.eclipse.ui.commands">
+	<command id="org.eclipse.papyrus.uml.diagram.domain.CreateCommand"
+		name="Create a new Domain Diagram"
+		description="Create a new Domain Diagram"
+		categoryId="org.eclipse.papyrus.editor.category"/>
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.uml.diagram.domain.DomainDiagramCreateCommand"
+		commandId="org.eclipse.papyrus.uml.diagram.domain.CreateCommand">
+		<activeWhen>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor" />
+			</with>
+		</activeWhen>
+	</handler>
+</extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams" label="Diagrams">
+		<command commandId="org.eclipse.papyrus.uml.diagram.domain.CreateCommand"
+			icon="icons/obj16/Domain.gif" label="Create a new Domain Diagram"
+			style="push" tooltip="Create a new Domain Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+					
+		</command>
+	</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.uml.diagram.domain.CreateCommand"
+			icon="icons/obj16/Domain.gif" label="Create a new Domain Diagram"
+			style="push" tooltip="Create a new Domain Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+				
+		</command>
+	</toolbar>
+	</menuContribution>
+	
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.uml.diagram.domain.CreateCommand"
+			icon="icons/obj16/Domain.gif"
+			label="Create a new Domain Diagram"
+			style="push"
+			tooltip="Create a new Domain Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+			
+		</command>
+	</menuContribution>
+		
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+	name="UML_Domain">
+	
+	<paletteDefinition ID="UML_Domain"
+		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+		name="UML_Domain" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/domain.palette.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+		
+		<!-- Specify diagram this palette tools relate to -->						
+		<editor id="org.eclipse.papyrus.uml.diagram.domain"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Diagram view providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+	<!-- Diagram view provider -->
+	<viewProvider class="org.eclipse.papyrus.uml.diagram.domain.provider.DomainDiagramViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="domain"/>
+	</viewProvider>
+	
+	<!-- ViewProvider for inherited elements (from ClassDiagram ViewProvider) -->
+	<viewProvider class="org.eclipse.papyrus.uml.diagram.domain.provider.InheritedClassDiagramViewProvider">
+		<Priority name="Low"/>
+		
+		<!-- 
+			"2007" = PACKAGE
+			"3009" = PACKAGE_CN
+			"2012" = COMMENT
+			"3028" = COMMENT_CN
+			"2011" = CONSTRAINT
+			"3029" = CONSTRAINT_CN
+			"2001" = INSTANCE_SPECIFICATION
+			"3020" = INSTANCE_SPECIFICATION_CN
+			"2008" = CLASS
+			"3010" = CLASS_CN
+			"2010" = DATA_TYPE
+			"3027" = DATA_TYPE_CN
+			"2006" = ENUMERATION
+			"3025" = ENUMERATION_CN
+			"3026" = PRIMITIVE_TYPE_CN
+			"2009" = PRIMITIVE_TYPE
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2012, 3028, 2011, 3029, 2001, 3020, 2008, 3010, 2010, 3027, 2006, 3025, 3026, 2009"/>
+		
+		<!-- 
+			"3030" = INSTANCE_SPECIFICATION_SLOT_CLN
+			"3012" = CLASS_PROPERTY_CLN
+			"3011" = CLASS_RECEPTION_CLN
+			"3013" = CLASS_OPERATION_CLN
+			"3014" = CLASS_CLASS_CLN
+			"3036" = CLASS_INTERFACE_CLN
+			"3052" = CLASS_ENUMERATION_CLN
+			"3047" = CLASS_PRIMITIVE_TYPE_CLN
+			"3044" = CLASS_DATA_TYPE_CLN
+			"3050" = CLASS_SIGNAL_CLN
+			"3018" = DATA_TYPE_PROPERTY_CLN
+			"3019" = DATA_TYPE_OPERATION_CLN
+			"3017" = ENUMERATION_ENUMERATION_LITERAL_CLN
+			"3041" = PRIMITIVE_TYPE_PROPERTY_CLN
+			"3042" = PRIMITIVE_TYPE_OPERATION_CLN
+		  -->	  
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3030, 3012, 3011, 3013, 3014, 3036, 3052, 3047, 3044, 3050, 3018, 3019, 3017, 3041, 3042"/>
+		
+		<!-- 
+			"4013" = COMMENT_ANNOTATED_ELEMENT
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
+			"4002" = GENERALIZATION
+			"4021" = INSTANCE_SPECIFICATION
+			"4001" = ASSOCIATION
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013, 4014, 4002, 4021, 4001"/>
+		
+		<object id="elementtype.node"
+	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+	       
+	     <method
+	        name="getSemanticHint()"
+			value="2007, 3009, 2012, 3028, 2011, 3029, 2001, 3020, 2008, 3010, 2010, 3027, 2006, 3025, 3026, 2009">
+		</method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" elements="elementtype.node"/>
+	
+		<object id="elementtype.edge"
+	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+	       
+	     <method
+	        name="getSemanticHint()"
+			value="4013, 4014, 4002, 4021, 4001">
+		</method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="elementtype.edge"/>
+	
+		
+		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
+		
+		<!-- "uml.Package" -->
+		<object id="uml.Package" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Package"/>
+		</object>
+		
+		<!-- "uml.Comment" -->
+		<object id="uml.Comment" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Comment"/>
+		</object>
+		
+		<!-- "uml.Constraint" -->
+		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Constraint"/>
+		</object>
+		
+		<!-- "uml.InstanceSpecification" -->
+		<object id="uml.InstanceSpecification" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.InstanceSpecification"/>
+		</object>
+		
+		<!-- "uml.Class" -->
+		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Class"/>
+		</object>
+		
+		<!-- "uml.DataType" -->
+		<object id="uml.DataType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.DataType"/>
+		</object>
+		
+		<!-- "uml.Enumeration" -->
+		<object id="uml.Enumeration" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Enumeration"/>
+		</object>
+		
+		<!-- "uml.PrimitiveType" -->
+		<object id="uml.PrimitiveType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.PrimitiveType"/>
+		</object>
+		
+		<!-- "uml.Slot" -->
+		<object id="uml.Slot" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Slot"/>
+		</object>
+		
+		<!-- "uml.Property" -->
+		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Property"/>
+		</object>
+		
+		<!-- "uml.Reception" -->
+		<object id="uml.Reception" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Reception"/>
+		</object>
+		
+		<!-- "uml.Operation" -->
+		<object id="uml.Operation" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Operation"/>
+		</object>
+		
+		<!-- "uml.Interface" -->
+		<object id="uml.Interface" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Interface"/>
+		</object>
+		
+		<!-- "uml.Signal" -->
+		<object id="uml.Signal" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Signal"/>
+		</object>
+		
+		<!-- "uml.EnumerationLiteral" -->
+		<object id="uml.EnumerationLiteral" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.EnumerationLiteral"/>
+		</object>
+		
+		<!-- "uml.Generalization" -->
+		<object id="uml.Generalization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Generalization"/>
+		</object>
+		
+		<!-- "uml.Association" -->
+		<object id="uml.Association" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Association"/>
+		</object>
+		
+		<!-- Additional activation contexts for nodes semantic objects -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
+			elements="uml.Package, uml.Comment, uml.Constraint, uml.InstanceSpecification, uml.Class, uml.DataType, uml.Enumeration, uml.PrimitiveType, uml.Slot, uml.Property, uml.Reception, uml.Operation, uml.Interface, uml.Signal, uml.EnumerationLiteral"/>
+		
+		<!-- Additional activation contexts for edges semantic objects -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge"
+			elements="uml.Generalization, uml.InstanceSpecification, uml.Association"/>
+			
+	</viewProvider>	
+</extension>
+
+<!-- Diagram edit part providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+	
+	<!-- Diagram edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.uml.diagram.domain.provider.DomainDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<object 
+			id="org.eclipse.papyrus.uml.diagram.domain.Diagram"
+			class="org.eclipse.gmf.runtime.notation.Diagram">
+			<method name="getType()" value="domain"/>
+		</object>
+		<context views="org.eclipse.papyrus.uml.diagram.domain.Diagram"/>	
+	</editpartProvider>
+	
+	<!-- EditPartProvider for inherited elements (from ClassDiagram) -->
+	<editpartProvider class="org.eclipse.papyrus.uml.diagram.domain.provider.InheritedClassDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<!-- 
+			The semantic hints given here are used in case the provider is not already loaded.
+			As soon as the provider is loaded its provides method is used.		
+			"2007" = PACKAGE
+			"5026" = PACKAGE_LABEL_NAME_HINT
+			"7016" = PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"3009" = PACKAGE_CN
+			"5017" = PACKAGE_CN_LABEL_NAME_HINT
+			"7010" = PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"2012" = COMMENT
+			"5038" = COMMENT_LABEL_BODY_HINT
+			"3028" = COMMENT_CN
+			"5063" = COMMENT_CN_LABEL_BODY_HINT
+			"2011" = CONSTRAINT
+			"5037" = CONSTRAINT_LABEL_NAME_HINT
+			"5159" = CONSTRAINT_LABEL_BODY_HINT
+			"3029" = CONSTRAINT_CN
+			"5064" = CONSTRAINT_CN_LABEL_NAME_HINT
+			"5160" = CONSTRAINT_CN_LABEL_BODY_HINT
+			"2001" = INSTANCE_SPECIFICATION
+			"5002" = INSTANCE_SPECIFICATION_LABEL_NAME_HINT
+			"7001" = INSTANCE_SPECIFICATION_COMPARTMENT_SLOT_HINT
+			"3020" = INSTANCE_SPECIFICATION_CN
+			"5040" = INSTANCE_SPECIFICATION_CN_LABEL_NAME_HINT
+			"7035" = INSTANCE_SPECIFICATION_CN_COMPARTMENT_SLOT_HINT
+			"2008" = CLASS
+			"5029" = CLASS_LABEL_NAME_HINT
+			"7017" = CLASS_COMPARTMENT_ATTRIBUTE_HINT
+			"7018" = CLASS_COMPARTMENT_OPERATION_HINT
+			"7019" = CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT
+			"3010" = CLASS_CN
+			"5014" = CLASS_CN_LABEL_NAME_HINT
+			"7011" = CLASS_CN_COMPARTMENT_ATTRIBUTE_HINT
+			"7012" = CLASS_CN_COMPARTMENT_OPERATION_HINT
+			"7013" = CLASS_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT
+			"2010" = DATA_TYPE
+			"5035" = DATA_TYPE_LABEL_NAME_HINT
+			"7020" = DATA_TYPE_COMPARTMENT_ATTRIBUTE_HINT
+			"7021" = DATA_TYPE_COMPARTMENT_OPERATION_HINT
+			"3027" = DATA_TYPE_CN
+			"5061" = DATA_TYPE_CN_LABEL_NAME_HINT
+			"7032" = DATA_TYPE_CN_COMPARTMENT_ATTRIBUTE_HINT
+			"7033" = DATA_TYPE_CN_COMPARTMENT_OPERATION_HINT
+			"2006" = ENUMERATION
+			"5023" = ENUMERATION_LABEL_NAME_HINT
+			"7015" = ENUMERATION_COMPARTMENT_ENUMERATION_LITERAL_HINT
+			"3025" = ENUMERATION_CN
+			"5055" = ENUMERATION_CN_LABEL_NAME_HINT
+			"7031" = ENUMERATION_CN_COMPARTMENT_ENUMERATION_LITERAL_HINT
+			"3026" = PRIMITIVE_TYPE_CN
+			"5058" = PRIMITIVE_TYPE_CN_LABEL_NAME_HINT
+			"7041" = PRIMITIVE_TYPE_CN_COMPARTMENT_ATTRIBUTE_HINT
+			"7042" = PRIMITIVE_TYPE_CN_COMPARTMENT_OPERATION_HINT
+			"2009" = PRIMITIVE_TYPE
+			"5032" = PRIMITIVE_TYPE_LABEL_NAME_HINT
+			"7039" = PRIMITIVE_TYPE_COMPARTMENT_ATTRIBUTE_HINT
+			"7040" = PRIMITIVE_TYPE_COMPARTMENT_OPERATION_HINT
+		  -->
+		<object
+			id="PACKAGE"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2007, 5026, 7016"/>
+		</object>
+		<object
+			id="PACKAGE_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3009, 5017, 7010"/>
+		</object>
+		<object
+			id="COMMENT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2012, 5038"/>
+		</object>
+		<object
+			id="COMMENT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3028, 5063"/>
+		</object>
+		<object
+			id="CONSTRAINT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2011, 5037, 5159"/>
+		</object>
+		<object
+			id="CONSTRAINT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3029, 5064, 5160"/>
+		</object>
+		<object
+			id="INSTANCE_SPECIFICATION"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2001, 5002, 7001"/>
+		</object>
+		<object
+			id="INSTANCE_SPECIFICATION_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3020, 5040, 7035"/>
+		</object>
+		<object
+			id="CLASS"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2008, 5029, 7017, 7018, 7019"/>
+		</object>
+		<object
+			id="CLASS_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3010, 5014, 7011, 7012, 7013"/>
+		</object>
+		<object
+			id="DATA_TYPE"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2010, 5035, 7020, 7021"/>
+		</object>
+		<object
+			id="DATA_TYPE_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3027, 5061, 7032, 7033"/>
+		</object>
+		<object
+			id="ENUMERATION"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2006, 5023, 7015"/>
+		</object>
+		<object
+			id="ENUMERATION_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3025, 5055, 7031"/>
+		</object>
+		<object
+			id="PRIMITIVE_TYPE_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3026, 5058, 7041, 7042"/>
+		</object>
+		<object
+			id="PRIMITIVE_TYPE"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2009, 5032, 7039, 7040"/>
+		</object>
+		
+		<!-- 	
+			"3030" = INSTANCE_SPECIFICATION_SLOT_CLN
+			"3012" = CLASS_PROPERTY_CLN
+			"3011" = CLASS_RECEPTION_CLN
+			"3013" = CLASS_OPERATION_CLN
+			"3014" = CLASS_CLASS_CLN
+			"3036" = CLASS_INTERFACE_CLN
+			"3052" = CLASS_ENUMERATION_CLN
+			"3047" = CLASS_PRIMITIVE_TYPE_CLN
+			"3044" = CLASS_DATA_TYPE_CLN
+			"3050" = CLASS_SIGNAL_CLN
+			"3018" = DATA_TYPE_PROPERTY_CLN
+			"3019" = DATA_TYPE_OPERATION_CLN
+			"3017" = ENUMERATION_ENUMERATION_LITERAL_CLN
+			"3041" = PRIMITIVE_TYPE_PROPERTY_CLN
+			"3042" = PRIMITIVE_TYPE_OPERATION_CLN
+		  -->
+		<object
+			id="INSTANCE_SPECIFICATION_SLOT_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3030"/>
+		</object>
+		<object
+			id="CLASS_PROPERTY_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3012"/>
+		</object>
+		<object
+			id="CLASS_RECEPTION_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3011"/>
+		</object>
+		<object
+			id="CLASS_OPERATION_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3013"/>
+		</object>
+		<object
+			id="CLASS_CLASS_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3014"/>
+		</object>
+		<object
+			id="CLASS_INTERFACE_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3036"/>
+		</object>
+		<object
+			id="CLASS_ENUMERATION_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3052"/>
+		</object>
+		<object
+			id="CLASS_PRIMITIVE_TYPE_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3047"/>
+		</object>
+		<object
+			id="CLASS_DATA_TYPE_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3044"/>
+		</object>
+		<object
+			id="CLASS_SIGNAL_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3050"/>
+		</object>
+		<object
+			id="DATA_TYPE_PROPERTY_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3018"/>
+		</object>
+		<object
+			id="DATA_TYPE_OPERATION_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3019"/>
+		</object>
+		<object
+			id="ENUMERATION_ENUMERATION_LITERAL_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3017"/>
+		</object>
+		<object
+			id="PRIMITIVE_TYPE_PROPERTY_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3041"/>
+		</object>
+		<object
+			id="PRIMITIVE_TYPE_OPERATION_CLN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3042"/>
+		</object>
+		
+		<!-- 	
+			"4013" = COMMENT_ANNOTATED_ELEMENT
+			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
+			"4002" = GENERALIZATION
+			"6007" = GENERALIZATION_LABEL_APPLIED_STEREOTYPER_HINT
+			"4021" = INSTANCE_SPECIFICATION
+			"6039" = INSTANCE_SPECIFICATION_LABEL_SOURCE_IS_LINK_LABEL_HINT
+			"6038" = INSTANCE_SPECIFICATION_LABEL_TARGET_IS_LINK_LABEL_HINT
+			"4001" = ASSOCIATION
+			"6001" = ASSOCIATION_LABEL_APPLIED_STEREOTYPE_HINT
+			"6002" = ASSOCIATION_LABEL_NAME_HINT
+			"6003" = ASSOCIATION_LABEL_TARGET_NAME_HINT
+			"6005" = ASSOCIATION_LABEL_SOURCE_NAME_HINT
+			"6033" = ASSOCIATION_LABEL_MULTIPLICITY_SOURCE_HINT
+			"6034" = ASSOCIATION_LABEL_MULTIPLICITY_TARGET_HINT
+		  -->
+		<object
+			id="COMMENT_ANNOTATED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4013"/>
+		</object>
+		<object
+			id="CONSTRAINT_CONSTRAINED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4014"/>
+		</object>
+		<object
+			id="GENERALIZATION"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4002, 6007"/>
+		</object>
+		<object
+			id="INSTANCE_SPECIFICATION"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4021, 6039, 6038"/>
+		</object>
+		<object
+			id="ASSOCIATION"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4001, 6001, 6002, 6003, 6005, 6033, 6034"/>
+		</object>
+		
+		<context views="PACKAGE, PACKAGE_CN, COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN, INSTANCE_SPECIFICATION, INSTANCE_SPECIFICATION_CN, CLASS, CLASS_CN, DATA_TYPE, DATA_TYPE_CN, ENUMERATION, ENUMERATION_CN, PRIMITIVE_TYPE_CN, PRIMITIVE_TYPE"/>
+		<context views="INSTANCE_SPECIFICATION_SLOT_CLN, CLASS_PROPERTY_CLN, CLASS_RECEPTION_CLN, CLASS_OPERATION_CLN, CLASS_CLASS_CLN, CLASS_INTERFACE_CLN, CLASS_ENUMERATION_CLN, CLASS_PRIMITIVE_TYPE_CLN, CLASS_DATA_TYPE_CLN, CLASS_SIGNAL_CLN, DATA_TYPE_PROPERTY_CLN, DATA_TYPE_OPERATION_CLN, ENUMERATION_ENUMERATION_LITERAL_CLN, PRIMITIVE_TYPE_PROPERTY_CLN, PRIMITIVE_TYPE_OPERATION_CLN"/>
+		<context views="COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT, GENERALIZATION, INSTANCE_SPECIFICATION, ASSOCIATION"/>
+		
+	</editpartProvider>
+</extension>
+
+<!-- Diagram edit policy provider -->	
+<extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.uml.diagram.domain.provider.DomainDiagramEditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
+
+<!-- Preference pages declaration -->
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+
+	<!-- Diagram Preference pages declaration -->
+	<page
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		name="Domain Diagram"
+		category="org.eclipse.papyrus.preferences.diagrams"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.DomainDiagramGeneralPreferencePage">
+	</page>
+
+	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.PackagePreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.PackagePreferencePage"
+		name="Package">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.CommentPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.CommentPreferencePage"
+		name="Comment">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.ConstraintPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.ConstraintPreferencePage"
+		name="Constraint">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.InstanceSpecificationPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.InstanceSpecificationPreferencePage"
+		name="InstanceSpecification">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.ClassPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.ClassPreferencePage"
+		name="Class">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.DataTypePreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.DataTypePreferencePage"
+		name="DataType">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.EnumerationPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.EnumerationPreferencePage"
+		name="Enumeration">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.EnumerationPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.EnumerationPreferencePage"
+		name="Enumeration">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.PrimitiveTypePreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.PrimitiveTypePreferencePage"
+		name="PrimitiveType">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.CommentLinkPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.CommentLinkPreferencePage"
+		name="CommentLink">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.ConstraintConstrainedElementPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.ConstraintConstrainedElementPreferencePage"
+		name="ConstraintConstrainedElement">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.GeneralizationPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.GeneralizationPreferencePage"
+		name="Generalization">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.AssociationPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.AssociationPreferencePage"
+		name="Association">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.SlotPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.SlotPreferencePage"
+		name="Slot">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.PropertyPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.PropertyPreferencePage"
+		name="Property">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.ReceptionPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.ReceptionPreferencePage"
+		name="Reception">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.OperationPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.OperationPreferencePage"
+		name="Operation">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.InterfacePreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.InterfacePreferencePage"
+		name="Interface">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.SignalPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.SignalPreferencePage"
+		name="Signal">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.uml.diagram.domain.preferences"
+		class="org.eclipse.papyrus.uml.diagram.domain.preferences.EnumerationLiteralPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.domain.preferences.EnumerationLiteralPreferencePage"
+		name="EnumerationLiteral">
+	</page>
+			
+
+</extension>
+
+<!-- // Start of user code custom extensions 
+  -->
+
+<!-- Insert custom extensions here. -->
+  
+<!-- // End of user code 
+  -->
+
+</plugin>

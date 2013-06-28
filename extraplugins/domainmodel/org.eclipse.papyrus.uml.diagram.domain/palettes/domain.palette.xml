@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   <paletteDefinition>
+      <content>		
+         <drawer name="Nodes" id="Drawer__1372422134950" iconpath="/icons/drawer.gif">		
+         <aspectTool name="Class" id="clazz.tool.class_1372422621653" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif" refToolId="clazz.tool.class" description="Create a new Class"/>
+         <aspectTool name="Comment" id="clazz.tool.comment_1372422633277" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif" refToolId="clazz.tool.comment" description="Create a new Comment"/>
+         <aspectTool name="DataType" id="clazz.tool.datatype_1372422637235" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif" refToolId="clazz.tool.datatype" description="Create a new DataType"/>
+         <aspectTool name="Enumeration" id="clazz.tool.enumeration_1372422640538" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif" refToolId="clazz.tool.enumeration" description="Create a new Enumeration"/>
+         <aspectTool name="Enumeration literal" id="clazz.tool.enumerationliteral_1372422643873" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif" refToolId="clazz.tool.enumerationliteral" description="Create a new Enumeration literal"/>
+         <aspectTool name="Interface" id="clazz.tool.interface_1372422684307" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif" refToolId="clazz.tool.interface" description="Create a new Interface"/>
+         <aspectTool name="InstanceSpecification"  id="domain.tool.instancespecification" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif" refToolId="clazz.tool.instancespecification" description="Create a new InstanceSpecification" />
+         <aspectTool name="Operation" id="clazz.tool.operation_1372422687159" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif" refToolId="clazz.tool.operation" description="Create a new Operation"/>
+         <aspectTool name="Package" id="clazz.tool.package_1372422689465" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif" refToolId="clazz.tool.package" description="Create a new Package"/>
+         <aspectTool name="PrimitiveType" id="clazz.tool.primitivetype_1372422694264" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif" refToolId="clazz.tool.primitivetype" description="Create a new PrimitiveType"/>
+         <aspectTool name="Property" id="clazz.tool.property_1372422697006" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" refToolId="clazz.tool.property" description="Create a new Property"/>
+         <aspectTool name="Slot" id="clazz.tool.slot_1372422710770" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif" refToolId="clazz.tool.slot" description="Create a new Slot"/>
+      </drawer>
+      <drawer name="Edges" id="drawer_1372422516577" iconpath="/icons/drawer.gif">
+         <aspectTool name="Association" id="clazz.tool.association_1372422589274" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" refToolId="clazz.tool.association" description="Create a new Association"/>
+         <aspectTool name="Composition" id="clazz.tool.association_1372422154826" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_composite.gif" refToolId="clazz.tool.association" description="Create a new Composition">
+            <postAction id="org.eclipse.papyrus.postaction.associationendactionprovider">
+               <associationEnd name="source" index="0">
+                  <multiplicity value="1..1"/>
+               </associationEnd>
+               <associationEnd name="target" index="1">
+                  <aggregation value="composite"/>
+                  <multiplicity value="0..*"/>
+               </associationEnd>
+            </postAction>
+         </aspectTool>
+         <aspectTool name="Generalization" id="clazz.tool.generalization_1372422593840" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif" refToolId="clazz.tool.generalization" description="Create a new Generalization"/>
+         <aspectTool name="InstanceSpecification" id="clazz.tool.instancespecificationlink_1372422599325" iconpath="bundleentry://730.fwk234371210/icons/obj16/InstanceLink.gif" refToolId="clazz.tool.instancespecificationlink" description="Create a new InstanceSpecification"/>
+      </drawer>
+   </content>
+</paletteDefinition>
