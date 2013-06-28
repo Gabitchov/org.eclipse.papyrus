@@ -28,7 +28,7 @@
             </postAction>
          </aspectTool>
          <aspectTool name="Generalization" id="clazz.tool.generalization_1372422593840" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif" refToolId="clazz.tool.generalization" description="Create a new Generalization"/>
-         <aspectTool name="InstanceSpecification" id="clazz.tool.instancespecificationlink_1372422599325" iconpath="bundleentry://730.fwk234371210/icons/obj16/InstanceLink.gif" refToolId="clazz.tool.instancespecificationlink" description="Create a new InstanceSpecification"/>
+         <aspectTool name="InstanceSpecification" id="clazz.tool.instancespecificationlink_1372422599325" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" refToolId="clazz.tool.instancespecificationlink" description="Create a new InstanceSpecification"/>
       </drawer>
    </content>
 </paletteDefinition>
