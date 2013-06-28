@@ -14,5 +14,22 @@
             environmentModel="model/Environment.xmi">
       </environment>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.labelprovider">
+      <labelProvider
+            labelProvider="org.eclipse.papyrus.infra.nattable.properties.labelprovider.TablePropertyLabelProvider"
+            priority="45">
+      </labelProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="10"
+            provider="org.eclipse.papyrus.infra.nattable.provider.TableLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.views.properties.header.labelProvider.context">
+         </labelProviderContext>
+      </labelProvider>
+   </extension>
 
 </plugin>

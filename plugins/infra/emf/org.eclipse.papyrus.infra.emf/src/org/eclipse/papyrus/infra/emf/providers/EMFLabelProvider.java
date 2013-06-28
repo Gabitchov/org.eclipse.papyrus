@@ -152,7 +152,7 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 				if(!common.isAbstract()) {
 					//FIXME : the label provider service should manage this case
 					final Object instance = common.getEPackage().getEFactoryInstance().create(common);
-					return getImage(instance);
+					return getNonCommonIcon(instance);
 				}
 			}
 		} else if(selectedEObject.size() == 0) {
@@ -171,7 +171,7 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 	 *         <code>true</code> if the image found for each object is the same <code>false</code> of if the collection is empty or the image returned
 	 *         for each object is not the same
 	 */
-	private boolean hasCommonImage(final Collection<?> objects) {
+	protected boolean hasCommonImage(final Collection<?> objects) {
 		if(!objects.isEmpty()) {
 			final Image lastImage = getImage(objects.toArray()[0]);
 			for(final Object current : objects) {
@@ -183,6 +183,17 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * 
+	 * @param commonEClass
+	 *        the eClass
+	 * @return
+	 *         the icon to use for this eclass
+	 */
+	protected Image getNonCommonIcon(final Object commonObject) {
+		return getImage(commonObject);
 	}
 
 	/**
@@ -221,6 +232,8 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 		}
 		return ""; //$NON-NLS-1$
 	}
+
+	
 
 	public String getQualifierText(Object element) {
 		String result = null;
