@@ -65,7 +65,7 @@ public class CallBehaviorUtil {
 		return CallBehaviorActionType.snapshot;
 	}
 
-	public static void setLifelineType(final CallBehaviorAction callBehaviorAction, final CallBehaviorActionType callBehaviorActionType) {
+	public static void setCallBehaviorActionType(final CallBehaviorAction callBehaviorAction, final CallBehaviorActionType callBehaviorActionType) {
 		EAnnotation eAnnotation = callBehaviorAction.getEAnnotation(CALL_BEHAVIOR_ACTION_ANNOTATION);
 		if(eAnnotation == null) {
 			eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -150,6 +150,21 @@ public class CallBehaviorUtil {
 			eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			eAnnotation.setSource(IS_BEHAVIOR_NEW);
 			callBehaviorActionView.getEAnnotations().add(eAnnotation);
+		}
+	}
+
+	public static void resetSnapshotEannotation(final View callBehaviorActionView) {
+		final EAnnotation annotationDiagramUUID = callBehaviorActionView.getEAnnotation(CALL_BEHAVIOR_ACTION_ANNOTATION);
+		if(annotationDiagramUUID != null) {
+			EcoreUtil.delete(annotationDiagramUUID);
+		}
+		final EAnnotation eAnnotationLifelines = callBehaviorActionView.getEAnnotation(LIFELINE_QUALIFIED_NAME);
+		if(eAnnotationLifelines != null) {
+			EcoreUtil.delete(eAnnotationLifelines);
+		}
+		final EAnnotation eAnnotationIsNew = callBehaviorActionView.getEAnnotation(IS_BEHAVIOR_NEW);
+		if(eAnnotationIsNew != null) {
+			EcoreUtil.delete(eAnnotationIsNew);
 		}
 	}
 

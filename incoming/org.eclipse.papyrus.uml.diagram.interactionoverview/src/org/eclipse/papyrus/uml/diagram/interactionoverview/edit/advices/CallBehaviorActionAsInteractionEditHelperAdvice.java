@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -21,7 +22,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.dialogs.CreateInteractionUseDialog;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.dialogs.CreateInteractionWithSnapshotDialog;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.part.Messages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
@@ -46,7 +47,7 @@ public class CallBehaviorActionAsInteractionEditHelperAdvice extends AbstractEdi
 			parent = parent.eContainer();
 		}
 		if(CALL_BEHAVIOR_ACTION_AS_INTERACTION.equals(request.getParameter(CallBehaviorActionEditHelperAdvice.POPUP_TYPE))) {
-			final CreateInteractionUseDialog dialog = new CreateInteractionUseDialog(Display.getDefault().getActiveShell(), parentActivity, (InvocationAction)request.getElementToConfigure());
+			final CreateInteractionWithSnapshotDialog dialog = new CreateInteractionWithSnapshotDialog(Display.getDefault().getActiveShell(), parentActivity, (InvocationAction)request.getElementToConfigure());
 			if(IDialogConstants.OK_ID == dialog.open()) {
 				// initialize the invoked element (no need to use a command, since action is being created)
 				final CompositeCommand command = new CompositeCommand(Messages.CallBehaviorActionAsInteractionEditHelperAdvice_ConfigureCreatedInteraction);
@@ -56,8 +57,9 @@ public class CallBehaviorActionAsInteractionEditHelperAdvice extends AbstractEdi
 					final SetRequest setBehaviorRequest = new SetRequest(request.getElementToConfigure(), UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior(), behavior);
 					command.add(service.getEditCommand(setBehaviorRequest));
 				}
-				// initialize synchronous
 				return command;
+			}else{
+				return UnexecutableCommand.INSTANCE;
 			}
 		}
 		return null;

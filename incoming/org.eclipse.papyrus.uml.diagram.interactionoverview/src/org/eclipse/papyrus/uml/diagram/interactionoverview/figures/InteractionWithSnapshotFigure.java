@@ -103,6 +103,14 @@ public class InteractionWithSnapshotFigure extends InteractionUseFigure {
 		}
 	}
 
+	//Warning before using this method, a method to set the image has to be use right after
+	//in the case of undoing "update snapshot" command it calls a refresh to act like the editor just opened
+	public void resetImage() {
+		imageFigure.setImage(null);
+		originalSnapshot.dispose();
+		currentSnapshot.dispose();
+	}
+
 	public ImageFigure getImageFigure() {
 		return imageFigure;
 	}

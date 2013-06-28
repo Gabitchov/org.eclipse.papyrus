@@ -46,6 +46,6 @@ public class CustomActivityActivityContentCompartmentEditPart extends ActivityAc
 	 */
 	@Override
 	public boolean isSelectable() {
-		return true;
+		return false;
 	}
 }

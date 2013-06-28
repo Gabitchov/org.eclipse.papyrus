@@ -23,17 +23,17 @@ public class Messages extends NLS {
 
 	public static String CustomInteractionOverviewDiagramCreationEditPolicy_CreateActivity;
 
-	public static String CreateCallActionDialog_BehaviorInvocationCreationTitle;
+	public static String CreateCallBehaviorActionAsInteractionUseDialog_BehaviorInvocationCreationTitle;
 
-	public static String CreateCallActionDialog_BehaviorInvocationCreationHelp;
+	public static String CreateCallBehaviorActionAsInteractionUseDialog_BehaviorInvocationCreationHelp;
 
-	public static String CreateCallActionDialog_BehaviorInvocationSelectionTitle;
+	public static String CreateCallBehaviorActionAsInteractionUseDialog_BehaviorInvocationSelectionTitle;
 
-	public static String CreateCallActionDialog_BehaviorTitle;
+	public static String CreateCallBehaviorActionAsInteractionUseDialog_BehaviorTitle;
 
-	public static String CreateCallActionDialog_CreateBehavior;
+	public static String CreateCallBehaviorActionAsInteractionUseDialog_CreateBehavior;
 
-	public static String CreateCallActionDialog_SelectBehavior;
+	public static String CreateCallBehaviorActionAsInteractionUseDialog_SelectBehavior;
 
 	public static String CallBehaviorActionAsInteractionEditHelperAdvice_ConfigureCreatedInteraction;
 
@@ -56,4 +56,24 @@ public class Messages extends NLS {
 	public static String CreateSnapshotForInteractionFromViewDescriptorCommand_DiagramSelectorTitle;
 
 	public static String CreateSnapshotForInteractionFromViewDescriptorCommand_DiagramSelectorMessage;
+
+	public static String UpdateDiagramInSnapshotCommandHandler_updateDiagram;
+
+	public static String CreateSnapshotFromContextMenuCommand_createNewSnapshot;
+	
+	public static String AddHyperlinkDiagram_addHyperlinkCommand;
+	
+	public static String CreateCallBehaviorActionAsInteractionDialog_BehaviorInvocationCreationTitle;
+	
+	public static String CreateCallBehaviorActionAsInteractionDialog_BehaviorInvocationCreationHelp;
+	
+	public static String CreateCallBehaviorActionAsInteractionDialog_BehaviorTitle;
+	
+	public static String CreateCallBehaviorActionAsInteractionDialog_SelectBehavior;
+	
+	public static String CreateCallBehaviorActionAsInteractionDialog_CreateBehavior;
+	
+	public static String SwitchInteractionFormCommandHandler_InteractionToInteractionUseCommandTitle;
+	
+	public static String SwitchInteractionFormCommandHandler_InteractionUseToInteractionCommandTitle;
 }

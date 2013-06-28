@@ -96,7 +96,14 @@ public class CreateDiagramImage {
 					if(view.getElement() != null && view.getElement() instanceof NamedElement) {
 						CallBehaviorUtil.addLifelineQualifiedNames(callBehaviorActionView, ((NamedElement)(view.getElement())).getQualifiedName());
 					}
-
+					for(final Iterator iterator2 = graphicalEditPart.getSourceConnections().iterator(); iterator2.hasNext();) {
+						final GraphicalEditPart source = (GraphicalEditPart)iterator2.next();
+						source.getFigure().setVisible(false);
+					}
+					for(final Iterator iterator2 = graphicalEditPart.getTargetConnections().iterator(); iterator2.hasNext();) {
+						final GraphicalEditPart source = (GraphicalEditPart)iterator2.next();
+						source.getFigure().setVisible(false);
+					}
 				}
 			}
 		} else {
@@ -108,13 +115,22 @@ public class CreateDiagramImage {
 					final String qualifiedName = ((Lifeline)(view.getElement())).getQualifiedName();
 					if(qualifiedNames.contains(qualifiedName)) {
 						graphicalEditPart.getFigure().setVisible(false);
+						for(final Iterator iterator2 = graphicalEditPart.getSourceConnections().iterator(); iterator2.hasNext();) {
+							final GraphicalEditPart source = (GraphicalEditPart)iterator2.next();
+							source.getFigure().setVisible(false);
+						}
+						for(final Iterator iterator2 = graphicalEditPart.getTargetConnections().iterator(); iterator2.hasNext();) {
+							final GraphicalEditPart source = (GraphicalEditPart)iterator2.next();
+							source.getFigure().setVisible(false);
+						}
 					}
+
 				}
 			}
 		}
 
 		final Rectangle rectangle = gen.calculateImageRectangle(diagramEP.getPrimaryEditParts());
-		final ImageDescriptor descriptor = gen.createSWTImageDescriptorForDiagram();
+		final ImageDescriptor descriptor = gen.createSWTImageDescriptorForParts(diagramEP.getPrimaryEditParts(), rectangle);
 
 		return resize(descriptor.createImage(), rectangle.width, rectangle.height);
 

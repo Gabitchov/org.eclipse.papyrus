@@ -24,6 +24,9 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CallBehaviorActionAsInteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil.CallBehaviorActionType;
+import org.eclipse.uml2.uml.CallBehaviorAction;
 
 public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.provider.AbstractViewProvider {
 
@@ -82,6 +85,7 @@ public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.p
 		node.setType(UMLVisualIDRegistry.getType(CallBehaviorActionAsInteractionEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
+		CallBehaviorUtil.setCallBehaviorActionType((CallBehaviorAction)domainElement, CallBehaviorActionType.snapshot);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "CallBehaviorAction");

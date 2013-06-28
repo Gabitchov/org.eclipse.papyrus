@@ -24,6 +24,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InterruptibleActivity
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.InteractionOverviewDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.ActivityContentCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.ActivityContentCompartmentItemSemanticEditPolicy;
@@ -47,7 +48,6 @@ public class CustomEditPolicyProvider extends InteractionOverviewDiagramEditPoli
 			return false;
 		}
 
-		// Make sure this concern Internal Block Diagram only
 		final IGraphicalEditPart gep = (IGraphicalEditPart)epOperation.getEditPart();
 		final String diagramType = gep.getNotationView().getDiagram().getType();
 		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
@@ -132,6 +132,10 @@ public class CustomEditPolicyProvider extends InteractionOverviewDiagramEditPoli
 
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomInteractionOverviewDiagramDragAndDropEditPolicy());
 
+		if(editPart instanceof InteractionOverviewDiagramEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityItemSemanticEditPolicy());
+		}
+		
 		if(editPart instanceof ActivityActivityContentCompartmentEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityContentCompartmentItemSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityContentCompartmentCreationEditPolicy());

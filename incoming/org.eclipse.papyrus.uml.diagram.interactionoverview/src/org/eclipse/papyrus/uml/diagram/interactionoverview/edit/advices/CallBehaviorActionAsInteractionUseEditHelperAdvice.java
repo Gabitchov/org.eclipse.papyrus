@@ -10,9 +10,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -56,8 +58,9 @@ public class CallBehaviorActionAsInteractionUseEditHelperAdvice extends Abstract
 					final SetRequest setBehaviorRequest = new SetRequest(request.getElementToConfigure(), UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior(), behavior);
 					command.add(service.getEditCommand(setBehaviorRequest));
 				}
-				// initialize synchronous
 				return command;
+			}else{
+				return new UnexecutableCommand(Status.CANCEL_STATUS);
 			}
 		}
 		return null;

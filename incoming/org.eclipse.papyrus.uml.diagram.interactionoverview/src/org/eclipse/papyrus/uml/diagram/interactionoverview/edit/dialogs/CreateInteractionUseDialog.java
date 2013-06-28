@@ -21,7 +21,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.CreateInvocationAct
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.part.Messages;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.IInteractionOverviewPreferenceConstants;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.preferences.InteractionOverviewPreferenceConstants;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
@@ -52,7 +52,7 @@ public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getSelectionIsDefaultPreference() {
-		return IInteractionOverviewPreferenceConstants.PREF_NEW_INTERACTION_USE_SELECT_AS_DEFAULT;
+		return InteractionOverviewPreferenceConstants.PREF_NEW_INTERACTION_USE_SELECT_AS_DEFAULT;
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getCreationDefaultOwnerPreference() {
-		return IInteractionOverviewPreferenceConstants.PREF_NEW_INTERACTION_USE_CREATION_OWNER;
+		return InteractionOverviewPreferenceConstants.PREF_NEW_INTERACTION_USE_CREATION_OWNER;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getInvocationCreationSectionTitle() {
-		return Messages.CreateCallActionDialog_BehaviorInvocationCreationTitle;
+		return Messages.CreateCallBehaviorActionAsInteractionUseDialog_BehaviorInvocationCreationTitle;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getInvocationCreationSectionHelp() {
-		return Messages.CreateCallActionDialog_BehaviorInvocationCreationHelp;
+		return Messages.CreateCallBehaviorActionAsInteractionUseDialog_BehaviorInvocationCreationHelp;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getInvocationSelectionSectionTitle() {
-		return Messages.CreateCallActionDialog_BehaviorInvocationSelectionTitle;
+		return Messages.CreateCallBehaviorActionAsInteractionUseDialog_BehaviorInvocationSelectionTitle;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getTitle() {
-		return Messages.CreateCallActionDialog_BehaviorTitle;
+		return Messages.CreateCallBehaviorActionAsInteractionUseDialog_BehaviorTitle;
 	}
 
 	@Override
@@ -106,12 +106,12 @@ public class CreateInteractionUseDialog extends CreateInvocationActionDialog {
 
 	@Override
 	protected String getCreationLabel() {
-		return Messages.CreateCallActionDialog_CreateBehavior;
+		return Messages.CreateCallBehaviorActionAsInteractionUseDialog_CreateBehavior;
 	}
 
 	@Override
 	protected String getSelectionLabel() {
-		return Messages.CreateCallActionDialog_SelectBehavior;
+		return Messages.CreateCallBehaviorActionAsInteractionUseDialog_SelectBehavior;
 	}
 
 	@Override

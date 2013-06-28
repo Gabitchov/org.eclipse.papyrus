@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.AddHyperlinkDiagram;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.CreateSnapshotForInteractionFromViewDescriptorCommand;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CallBehaviorActionAsInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.part.Messages;
@@ -50,7 +51,9 @@ public class ActivityContentCompartmentCreationEditPolicy extends PapyrusCreatio
 	protected Command getCreateCallBehaviorActionAsInteractionCommand(final CreateViewRequest request, final ICommandProxy superCommand) {
 		final CompoundCommand compoundCommand = new CompoundCommand(Messages.ActivityContentCompartmentCreationEditPolicy_CreateCallBehaviorActionAsInteractionCommand);
 		compoundCommand.add(superCommand);
-		compoundCommand.add(new ICommandProxy(CreateSnapshotForInteractionFromViewDescriptorCommand.create(superCommand.getICommand(), (GraphicalEditPart)getHost())));
+		CreateSnapshotForInteractionFromViewDescriptorCommand snapshotCommand = CreateSnapshotForInteractionFromViewDescriptorCommand.create(superCommand.getICommand(), (GraphicalEditPart)getHost()); 
+		compoundCommand.add(new ICommandProxy(snapshotCommand));
+		compoundCommand.add(new ICommandProxy(new AddHyperlinkDiagram(superCommand.getICommand(), snapshotCommand)));
 		compoundCommand.add(new RefreshCommandForDo((org.eclipse.gef.GraphicalEditPart)getHost()));
 		return compoundCommand;
 	}

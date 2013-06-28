@@ -818,6 +818,82 @@
          </advice>
       </binding>
    </extension>
+    <extension
+          point="org.eclipse.ui.commands">
+       <command
+             defaultHandler="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.UpdateDiagramInSnapshotCommandHandler"
+             description="Update Snapshot in Interaction"
+             id="org.eclipse.papyrus.uml.diagram.interactionoverview.updateSnapshotCommand"
+             name="Update Snapshot in Interaction">
+       </command>
+       <command
+             defaultHandler="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.SwitchInteractionFormCommandHandler"
+             description="Switch Interaction &lt;-&gt; InteractionUse"
+             id="org.eclipse.papyrus.uml.diagram.interactionoverview.switchInteraction"
+             name="Switch Interaction &lt;-&gt; InteractionUse">
+       </command>
+    </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             allPopups="false"
+             locationURI="popup:popup:org.eclipse.ui.popup.any?after=additions">
+          <command
+                commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.updateSnapshotCommand"
+                label="Update Snapshot"
+                style="push">
+             <visibleWhen>
+                <and>
+	                    <iterate>
+	                        <instanceof value="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CallBehaviorActionAsInteractionEditPart">
+	                        </instanceof>
+	                    </iterate>
+	                    <with
+	                          variable="selection">
+	                       <not>
+	                          <count
+	                                value="0">
+	                          </count>
+	                       </not>
+	                    </with>
+	                </and>
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.uml.diagram.interactionoverview.switchInteraction"
+                label="Switch Interaction &lt;-&gt;InteractionUse"
+                style="push">
+             <visibleWhen>
+                <and>
+                   <iterate>
+                      <or>
+                         <instanceof
+                               value="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CallBehaviorActionAsInteractionEditPart">
+                         </instanceof>
+                         <instanceof
+                               value="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomInteractionUseEditPartCN">
+                         </instanceof>
+                      </or>
+                   </iterate>
+                   <with
+                         variable="selection">
+                      <not>
+                         <count
+                               value="0">
+                         </count>
+                      </not>
+                   </with>
+                </and>
+             </visibleWhen>
+          </command>
+       </menuContribution>
+    </extension>
+    <extension
+          point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.CallBehaviorActionToInteractionDropStrategy">
+       </strategy>
+    </extension>
     <!-- Insert custom extensions here. -->
 
     <!-- // End of user code -->

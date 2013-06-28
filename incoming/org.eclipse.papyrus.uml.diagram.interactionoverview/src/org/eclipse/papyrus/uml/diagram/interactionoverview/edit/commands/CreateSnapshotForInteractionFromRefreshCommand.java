@@ -17,8 +17,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ImageFigure;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -51,17 +49,20 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 
 public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTransactionalCommand {
 
-	View callBehaviorView;
+	protected View callBehaviorView;
 
-	CallBehaviorAction callBehaviorAction;
+	protected CallBehaviorAction callBehaviorAction;
 
-	GraphicalEditPart host;
+	protected GraphicalEditPart host;
+
+	protected boolean isOverrideImage;
 
 	public CreateSnapshotForInteractionFromRefreshCommand(final TransactionalEditingDomain editingDomain, final View callBehaviorActionView, final GraphicalEditPart host) {
 		super(editingDomain, Messages.CreateSnapshotForInteractionFromRefreshCommand_CreateSnapshotForRefresh, null);
 		this.callBehaviorView = callBehaviorActionView;
 		this.callBehaviorAction = (CallBehaviorAction)callBehaviorActionView.getElement();
 		this.host = host;
+		isOverrideImage = false;
 	}
 
 	@Override
@@ -85,29 +86,26 @@ public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTran
 		try {
 			newResource = resourceSet.createResource(org.eclipse.emf.common.util.URI.createURI(URIUtils.getTimestampedURI()));
 
-			final Copier copier = new Copier();
+			final Copier copier = new Copier(true, true);
 			cloneDiagram = (Diagram)copier.copy(diagram);
 			copier.copyReferences();
-			final TreeIterator<EObject> eObjects = diagram.eAllContents();
-			while(eObjects.hasNext()) {
-				final EObject eObject = eObjects.next();
-				copier.copy(eObject);
-				copier.copyReferences();
+			if(cloneDiagram != null) {
+				newResource.getContents().add(cloneDiagram);
 			}
-			newResource.getContents().add(cloneDiagram);
 			final GraphicalEditPart behaviorEditPart = findBehaviorEditPart(host, callBehaviorAction);
 			final IFigure borderedNodeImage = behaviorEditPart.getFigure();
 			final IFigure callActionBehaviorImage = findInteractionWithSnapshotInFigure(borderedNodeImage);
 			if(callActionBehaviorImage instanceof InteractionWithSnapshotFigure) {
 
 				final ImageFigure imageFigure = ((InteractionWithSnapshotFigure)callActionBehaviorImage).getImageFigure();
-				if(imageFigure.getImage() == null) {
+				if(isOverrideImage || imageFigure.getImage() == null) {
 					///test sur le bound
 					final PreferencesHint preferenceHint = getReferenceHint(diagram.getType());
 					final Image image = CreateDiagramImage.getDiagramImage(cloneDiagram, preferenceHint, imageFigure, callBehaviorView);
 
 
 					((InteractionWithSnapshotFigure)callActionBehaviorImage).setSnapshot(image);
+					CallBehaviorUtil.setDiagramLinked(callBehaviorView, diagram);
 				}
 			}
 		} finally {
@@ -123,7 +121,7 @@ public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTran
 		return CommandResult.newOKCommandResult();
 	}
 
-	private PreferencesHint getReferenceHint(final String type) {
+	protected PreferencesHint getReferenceHint(final String type) {
 		if(PackageEditPart.MODEL_ID.equals(type)) {
 			return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		} else if(TimingDiagramEditPart.MODEL_ID.equals(type)) {
@@ -136,7 +134,7 @@ public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTran
 		return null;
 	}
 
-	private GraphicalEditPart findBehaviorEditPart(final EditPart parentEditPart, final CallBehaviorAction callBehaviorAction) {
+	protected GraphicalEditPart findBehaviorEditPart(final EditPart parentEditPart, final CallBehaviorAction callBehaviorAction) {
 		for(final Object child : parentEditPart.getChildren()) {
 			if(child instanceof GraphicalEditPart) {
 				final GraphicalEditPart editPartChild = (GraphicalEditPart)child;
@@ -148,7 +146,7 @@ public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTran
 		return null;
 	}
 
-	private IFigure findInteractionWithSnapshotInFigure(final IFigure containerFigure) {
+	protected IFigure findInteractionWithSnapshotInFigure(final IFigure containerFigure) {
 		for(final Object childFigureAsObject : containerFigure.getChildren()) {
 			if(childFigureAsObject instanceof IFigure) {
 				final IFigure childFigure = (IFigure)childFigureAsObject;
@@ -164,7 +162,7 @@ public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTran
 		return null;
 	}
 
-	private Diagram findSequenceDiagram() {
+	protected Diagram findSequenceDiagram() {
 		final String uuidDiagram = CallBehaviorUtil.getDiagramLinked(callBehaviorView);
 		if(uuidDiagram != null && !uuidDiagram.equals("")) {
 			final ResourceSet resourceSet = callBehaviorAction.eResource().getResourceSet();

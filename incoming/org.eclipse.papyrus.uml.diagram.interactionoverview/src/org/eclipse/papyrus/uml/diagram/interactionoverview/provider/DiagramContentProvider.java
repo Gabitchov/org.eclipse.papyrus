@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
@@ -97,11 +97,10 @@ public class DiagramContentProvider extends MoDiscoContentProvider implements IH
 	}
 
 	public boolean isValidValue(final Object element) {
-		if(element instanceof ModelElementItem) {
-			final ModelElementItem item = (ModelElementItem)element;
-			return isValidDiagram((Diagram)item.getEObject());
-		} else {
-			return false;
+		final EObject eObject = EMFHelper.getEObject(element);
+		if(eObject instanceof Diagram) {
+			return isValidDiagram((Diagram)eObject);
 		}
+		return false;
 	}
 }
