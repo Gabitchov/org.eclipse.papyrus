@@ -37,7 +37,6 @@ public class TableAllocationCreationTester implements ITableTester {
 			Element el = (Element)context;
 			boolean result = context instanceof Package;
 			if(result) {
-				//doesn't work!
 				final String packageQN = UMLUtil.getProfile(AllocationsPackage.eINSTANCE, el).getQualifiedName();
 				result = result && el.getNearestPackage().getAppliedProfile(packageQN, true) != null;
 				if(result) {
