@@ -295,9 +295,10 @@ public class InstantiateDepPlan {
 
 				public void run() {
 					Shell shell = new Shell();
-					MessageDialog.openError(shell, "A transformation exception occurred", teFinal.getMessage());
+					MessageDialog.openError(shell, "A transformation exception occurred", teFinal.getMessage());   //$NON-NLS-1$
 				}
 			});
+			Log.log(Status.ERROR, Log.DEPLOYMENT, "", teFinal);   //$NON-NLS-1$
 		} catch (Exception e) {
 			final Exception eFinal = e;
 			e.printStackTrace();
@@ -305,11 +306,12 @@ public class InstantiateDepPlan {
 
 				public void run() {
 					Shell shell = new Shell();
-					String msg = eFinal.toString() + "\n\n" +
-						"Consult error log or console for details";
-					MessageDialog.openError(shell, "An error occurred during transformation", msg);
+					String msg = eFinal.toString() + "\n\n" +   //$NON-NLS-1$
+						"Consult error log or console for details";   //$NON-NLS-1$
+					MessageDialog.openError(shell, "An error occurred during transformation", msg);  //$NON-NLS-1$
 				}
 			});
+			Log.log(Status.ERROR, Log.DEPLOYMENT, "", e);  //$NON-NLS-1$
 		}
 		if(tmpMM != null) {
 			tmpMM.dispose();

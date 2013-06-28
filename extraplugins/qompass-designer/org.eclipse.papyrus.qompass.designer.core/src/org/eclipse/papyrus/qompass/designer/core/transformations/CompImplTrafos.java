@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Ptr;
-import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
@@ -97,12 +96,16 @@ public class CompImplTrafos {
 	 * @param implementation
 	 */
 	private static void addGetPortOperation(Class implementation) {
-		for(Port port : PortUtils.getAllPorts2(implementation)) {
-			Interface providedIntf = PortUtils.getProvided(port);
+		for(PortInfo portInfo : PortUtils.flattenExtendedPorts(PortUtils.getAllPorts2(implementation))) {
+			Interface providedIntf = portInfo.getProvided();
 			if(providedIntf != null) {
 				// port provides an interface, add "get_p" operation & implementation
 
-				String opName = PrefixConstants.getP_Prefix + port.getName();
+				String opName = PrefixConstants.getP_Prefix + portInfo.getName();
+				if (implementation.getOwnedOperation(opName, null, null) != null) {
+					// operation already exists. Assume that user wants to override standard delegation
+					continue;
+				}
 				Operation op = implementation.createOwnedOperation(opName, null, null, providedIntf);
 				Parameter retParam = op.getOwnedParameters().get(0);
 				retParam.setName("ret");
@@ -113,7 +116,7 @@ public class CompImplTrafos {
 						UMLPackage.eINSTANCE.getOpaqueBehavior());
 				op.getMethods().add(behavior);
 
-				ConnectorEnd ce = ConnectorUtils.getDelegation(implementation, port);
+				ConnectorEnd ce = ConnectorUtils.getDelegation(implementation, portInfo.getModelPort());
 				// if there is an delegation to an inner property, delegate to it
 				// Make distinction between delegation to component (with a port) or
 				// "normal" class (without).
@@ -122,13 +125,13 @@ public class CompImplTrafos {
 					Property part = ce.getPartWithPort();
 					ConnectableElement role = ce.getRole();
 
-					body = "return ";
+					body = "return ";  //$NON-NLS-1$
 					if(role instanceof Port) {
 						// check whether the part exists within the implementation (might not be the case
 						// due to partially copied composites).
 						// Check is based on names, since the connector points to elements within another
 						// model (copyClassifier does not make a proper connector copy)
-						body += part.getName() + refOp(part) + PrefixConstants.getP_Prefix + role.getName() + "();";
+						body += part.getName() + refOp(part) + PrefixConstants.getP_Prefix + role.getName() + "();";  //$NON-NLS-1$
 					} else {
 						// role is not a port: connector connects directly to a structural feature
 						// without passing via a port
@@ -138,23 +141,15 @@ public class CompImplTrafos {
 				} else {
 					// no delegation, check whether port implements provided interface
 					if(implementation.getInterfaceRealization(null, providedIntf) != null) {
-						body = "return this;";
+						body = "return this;";	 //$NON-NLS-1$
 					} else {
-						// does not implement provided interface (may happen in case of composite distribution)
-						// TODO: check whether assembly. Emit at least warning if not.
-						// [cannot happen unless distributed? (or bug in transformation?)]
-						if(StUtils.isApplied(implementation, InteractionComponent.class)) {
-							// || StUtils.isAd(implementation, Assembly.class)) {
-							body = "return 0;";
-						}
-						else {
-							throw new RuntimeException("Interface <" + providedIntf.getName() + "> provided by port <" +
-								port.getQualifiedName() + "> is not implemented by the component itself nor does the port delegate to a part");
-						}
+						throw new RuntimeException("Interface <" + providedIntf.getName() + "> provided by port <" + //$NON-NLS-1$ //$NON-NLS-2$
+							portInfo.getPort().getName() + "> of class <" + implementation.getName() +  //$NON-NLS-1$
+							"> is not implemented by the component itself nor does the port delegate to a part");  //$NON-NLS-1$
 					}
 				}
 				// todo: defined by template
-				behavior.getLanguages().add("C/C++");
+				behavior.getLanguages().add("C/C++"); //$NON-NLS-1$
 				behavior.getBodies().add(body);
 			}
 		}
