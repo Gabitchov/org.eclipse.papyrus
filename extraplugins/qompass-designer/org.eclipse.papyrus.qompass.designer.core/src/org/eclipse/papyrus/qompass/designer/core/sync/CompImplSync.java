@@ -251,11 +251,11 @@ public class CompImplSync {
 			ConnectorEnd connEnd = ConnectorUtils.getDelegation(implementation, portInfo.getPort());
 			// check that there is no delegation to a part which in turn has to implement the operations.
 			if((providedIntf != null) && (connEnd == null)) {
-				if(false && providedIntfs.contains(providedIntf)) {
-					// Turn that into a warning?
-					throw new RuntimeException("The interface " + providedIntf.getName() +
-						" is provided by more than one port of class <" + implementation.getQualifiedName() +
-						">, inputs would therefore be undistinguishable");
+				if(providedIntfs.contains(providedIntf)) {
+					// emit warning that more than one provider for same interface
+					Log.log(Status.WARNING, Log.TRAFO_SYNC, "The interface " + providedIntf.getName() +   //$NON-NLS-1$
+						" is provided by more than one port of class <" + implementation.getQualifiedName() +   //$NON-NLS-1$
+						">, inputs would therefore be undistinguishable");   //$NON-NLS-1$
 				}
 				providedIntfs.add(providedIntf);
 				InterfaceRealization ir = getRealization(implementation, providedIntf);

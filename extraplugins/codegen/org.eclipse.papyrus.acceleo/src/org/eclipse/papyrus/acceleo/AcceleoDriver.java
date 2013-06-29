@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.acceleo;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +29,7 @@ import org.eclipse.acceleo.parser.AcceleoSourceBuffer;
 import org.eclipse.acceleo.parser.cst.ModuleImportsValue;
 import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -50,13 +50,15 @@ public class AcceleoDriver {
 	public static void init() {
 		engine = new AcceleoEngine();
 		parser = new AcceleoParser();
+		hasErrors = false;
+		lastErrors = false;
 		// some errors are silently captured inside the evaluation query (@see AcceleoEvaluationVisiton.visitExpression). Yet they produce
 		// an event in the Acceleo log which is captured via this listener.
 		AcceleoEnginePlugin.getDefault().getLog().addLogListener(new ILogListener() {
 
 			public void logging(IStatus status, String plugin) {
-				logEntries.add(status);
-
+				hasErrors = true;
+				lastErrors = true;
 			}
 		});
 		acceleoResourceSet = new AcceleoResourceSetImpl();
@@ -111,8 +113,12 @@ public class AcceleoDriver {
 					Resource r = acceleoResourceSet.getResource(uri, true);
 					if(r != null) {
 						// use absolute path, if possible, i.e. if file exists at absolute path
-						// this is required, since Acceleo references dependent file using a relative
-						// path
+						// this is required, since Acceleo references dependent files using a relative
+						// path.
+						// This workaround is no longer required. In the contrary, it is harmful for binary
+						// build
+						
+						/*
 						String absoluteFileName = Utils.getAbsoluteFN(uri.toString());
 						if(absoluteFileName != null) {
 							File fileCandidate = new File(absoluteFileName);
@@ -122,6 +128,7 @@ public class AcceleoDriver {
 								return URI.createFileURI(fileCandidate.getAbsolutePath());
 							}
 						}
+						*/
 						return uri;
 					}
 				} catch (Exception e) {
@@ -238,7 +245,7 @@ public class AcceleoDriver {
 
 		try {
 			EList<URI> depURIs = new BasicEList<URI>();
-			logEntries.clear();
+			lastErrors = false;
 			// deps.add(outputURI);
 
 			// check, if imports are already in resource set
@@ -310,7 +317,12 @@ public class AcceleoDriver {
 		}
 		try {
 			// return evaluateURI(URI.createURI("org.eclipse.papyrus.cpp.codegen" + "/" + uriStr.replace(".", "/") + "." + IAcceleoConstants.EMTL_FILE_EXTENSION), element);
-			return evaluateURI(findFileInPlugin(moduleName), templateName, element);
+			URI uri = findFileInPlugin(moduleName);
+			if (uri == null) {
+				throw new RuntimeException("Cannot find Acceleo module " + moduleName + //$NON-NLS-1$
+						". Check whether the .emtl file exists and whether it is exported");  //$NON-NLS-1$
+			}
+			return evaluateURI(uri, templateName, element);
 		} catch (AcceleoException e) {
 		}
 		return null;
@@ -352,22 +364,20 @@ public class AcceleoDriver {
 				boolean dontCheck = (module.getOwnedModuleElement().size() == 1);
 				for(ModuleElement me : module.getOwnedModuleElement()) {
 					if((me instanceof Template) && (dontCheck || me.getName().equals(templateName))) {
-						logEntries.clear();
+						lastErrors = false;
 						Object stringResult = engine.evaluate((Template)me, arguments, new PreviewStrategy(), null);
-						if(logEntries.size() > 0) {
-							IStatus e = logEntries.get(0);
-							Throwable exception = e.getException();
-							String message = exception.getMessage();
-
-							if(exception.getCause() instanceof InvocationTargetException) {
-								Throwable targetException = ((InvocationTargetException)exception.getCause()).getTargetException();
-								if(targetException != null) {
-									message = targetException.getMessage();
-								}
+						if (lastErrors) {
+							// we do not throw an exception, since it would imply that the evaluation result is
+							// lost. For a users, the (partially) evaluated result might be more useful to locate
+							// the problem than the actual error message.
+							// log additional info about template, which are not present in the acceleo log
+							String message = "an acceleo error occurred during the evaluation of template <" + //$NON-NLS-1$
+									templateName + ">. Check previous errors in the log."; //$NON-NLS-1$
+							if (templateStr.length() > 0) {
+								message += "Template contents:\n" + templateStr; //$NON-NLS-1$
 							}
-							throw new AcceleoException("Acceleo evaluation problems (showing only first): " + message +
-								"\n\nTemplate: " + templateName + "\n" + templateStr);
-
+							AcceleoEnginePlugin.getDefault().getLog().log(
+								new Status(Status.INFO, AcceleoEnginePlugin.PLUGIN_ID, message));
 						}
 						if(stringResult instanceof String) {
 							return (String)stringResult;
@@ -379,8 +389,19 @@ public class AcceleoDriver {
 		throw new AcceleoEvaluationException("Template " + templateName + " not found");
 	}
 
-	protected static EList<IStatus> logEntries = new BasicEList<IStatus>();
-
+	public static void clearErrors() {
+		hasErrors = false;
+		lastErrors = false;
+	}
+	
+	public static boolean hasErrors() {
+		return hasErrors;
+	}
+	
+	protected static boolean hasErrors;
+	
+	protected static boolean lastErrors;
+	
 	protected static AcceleoEngine engine = null;
 
 	protected static ResourceSet acceleoResourceSet;

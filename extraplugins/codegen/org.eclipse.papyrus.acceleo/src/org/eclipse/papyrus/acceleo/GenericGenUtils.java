@@ -46,7 +46,7 @@ import org.eclipse.uml2.uml.Type;
  * @author wassim
  * 
  */
-public class GenUtils {
+public class GenericGenUtils {
 
 	/**
 	 * Retrieve template bindings for the class passed as a Parameter

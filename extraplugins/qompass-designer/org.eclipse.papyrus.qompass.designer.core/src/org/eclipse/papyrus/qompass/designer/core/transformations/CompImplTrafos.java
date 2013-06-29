@@ -78,7 +78,7 @@ public class CompImplTrafos {
 				// we may not apply the transformation to the boot-loader itself, in particular it would transform
 				// singletons into pointers.
 				if(Utils.isCompImpl(implementation) && (implementation != bootloader)) {
-					addGetPortOperation(implementation);
+					addGetPortOperation(copy, implementation);
 					addConnectPortOperation(copy, implementation);
 					markPartsPointer(implementation);
 				}
@@ -95,7 +95,7 @@ public class CompImplTrafos {
 	 * 
 	 * @param implementation
 	 */
-	private static void addGetPortOperation(Class implementation) {
+	private static void addGetPortOperation(Copy copy, Class implementation) {
 		for(PortInfo portInfo : PortUtils.flattenExtendedPorts(PortUtils.getAllPorts2(implementation))) {
 			Interface providedIntf = portInfo.getProvided();
 			if(providedIntf != null) {
@@ -140,7 +140,15 @@ public class CompImplTrafos {
 					}
 				} else {
 					// no delegation, check whether port implements provided interface
-					if(implementation.getInterfaceRealization(null, providedIntf) != null) {
+					boolean implementsIntf = implementation.getInterfaceRealization(null, providedIntf) != null;
+					if (!implementsIntf) {
+						// The extended port itself is not copied to the target model (since referenced via a stereotype). Therefore,
+						// a port of an extended port still points to the original model. We try whether the providedIntf within
+						// the target model is within the interface realizations.
+						Interface providedIntfInCopy = (Interface) copy.get(providedIntf);
+						implementsIntf = implementation.getInterfaceRealization(null, providedIntfInCopy) != null;
+					}
+					if (implementsIntf) {
 						body = "return this;";	 //$NON-NLS-1$
 					} else {
 						throw new RuntimeException("Interface <" + providedIntf.getName() + "> provided by port <" + //$NON-NLS-1$ //$NON-NLS-2$

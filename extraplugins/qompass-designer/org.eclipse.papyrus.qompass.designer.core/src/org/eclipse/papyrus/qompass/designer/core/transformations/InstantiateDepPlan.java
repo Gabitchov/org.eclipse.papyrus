@@ -29,6 +29,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.Configuration;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.FCM.util.MapUtil;
+import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
 import org.eclipse.papyrus.qompass.designer.core.ProjectManagement;
@@ -89,6 +90,7 @@ public class InstantiateDepPlan {
 		boolean generateCode = (genOptions & GenerationOptions.MODEL_ONLY) == 0;
 		boolean generateCACOnly = (genOptions & GenerationOptions.CAC_ONLY) != 0;
 
+		AcceleoDriver.clearErrors();
 		Package cdp;
 		Configuration configuration = null;
 		if(cdpOrConfig instanceof Package) {
@@ -316,6 +318,16 @@ public class InstantiateDepPlan {
 		if(tmpMM != null) {
 			tmpMM.dispose();
 		}
+		if (AcceleoDriver.hasErrors()) {
+			Display.getDefault().syncExec(new Runnable() {
+				public void run() {
+					Shell shell = new Shell();
+					MessageDialog.openInformation(shell, "Acceleo errors occured", //$NON-NLS-1$
+						"Acceleo errors occured during code generation. Please check the error log");  //$NON-NLS-1$
+				}
+			});
+		}
+
 	}
 
 

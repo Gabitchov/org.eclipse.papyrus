@@ -24,10 +24,13 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Classifier;
 
@@ -91,13 +94,18 @@ public class GenerateCodeHandler extends AbstractHandler {
 				// get the container for the current element
 				String headerSuffix = CppCodeGenUtils.getHeaderSuffix();
 				String bodySuffix = CppCodeGenUtils.getBodySuffix();
+				AcceleoDriver.clearErrors();
 				CppModelElementsCreator mec = new CppModelElementsCreator(modelProject);
 				IContainer srcPkg = mec.getContainer(classifier);
 				try {
 					mec.createPackageableElement(srcPkg, null, classifier);
 
-					IFile cppFile = srcPkg.getFile(new Path(name + "." + bodySuffix));
-					IFile hFile = srcPkg.getFile(new Path(name + "." + headerSuffix));
+					if (AcceleoDriver.hasErrors()) {
+						MessageDialog.openInformation(new Shell(), "Errors during code generation", //$NON-NLS-1$
+								"Errors occured during code generation. Please check the error log"); //$NON-NLS-1$
+					}
+					IFile cppFile = srcPkg.getFile(new Path(name + "." + bodySuffix)); //$NON-NLS-1$
+					IFile hFile = srcPkg.getFile(new Path(name + "." + headerSuffix)); //$NON-NLS-1$
 					if(!cppFile.exists()) {
 						return null;
 					}
