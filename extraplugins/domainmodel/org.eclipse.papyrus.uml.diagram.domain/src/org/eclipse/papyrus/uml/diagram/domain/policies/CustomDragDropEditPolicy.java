@@ -9,7 +9,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.domain.policies;
 
-import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.domain.edit.policy.DomainDiagramDragDropEditPolicy;
 
 /**
  * <pre>
@@ -19,6 +19,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDro
  * related to elements that are not used currently in PackageDiagram.
  * </pre>
  */
-public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
+public class CustomDragDropEditPolicy extends DomainDiagramDragDropEditPolicy {
 
+	
+	
 }
