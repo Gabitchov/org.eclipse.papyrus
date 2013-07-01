@@ -17,12 +17,19 @@
 		creationCommandClass="org.eclipse.papyrus.uml.diagram.domain.DomainDiagramCreateCommand"
 		icon="icons/obj16/Domain.gif"
 		id="org.eclipse.papyrus.uml.diagram.domain.CreateCommand"
-		language="uml"
+		language="domain"
 		label="UML Domain Diagram"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.uml.diagram.domain.DomainDiagramEditorFactory"
 		icon="icons/obj16/Domain.gif" />
+ <diagramCategory
+       class="org.eclipse.papyrus.uml.diagram.domain.command.CreateDomainModelCommand"
+       description="Domain model"
+       icon="icons/CategoryDomain.gif"
+       id="domain"
+       label="Domain">
+ </diagramCategory>
 </extension>
 
 <!-- Diagram creation command and handler -->
@@ -757,6 +764,15 @@
 
 <!-- // Start of user code custom extensions 
   -->
+<extension
+      point="org.eclipse.papyrus.uml.diagram.wizards.templates">
+  <template
+            file="resource/ModelWithBasicTypes.uml"
+            id="org.eclipse.papyrus.uml.diagam.domain.model"
+            language="domain"
+            name="A Domain Model with basic primitive types">
+      </template>
+</extension>
 
 <!-- Insert custom extensions here. -->
   
