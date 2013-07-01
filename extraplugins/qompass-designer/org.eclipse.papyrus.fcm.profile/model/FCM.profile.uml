@@ -57,6 +57,10 @@ The system component is also an assembly</body>
     <ownedComment xmi:type="uml:Comment" xmi:id="_Wh6KkNTgEeKiLbHSN_MIRQ" annotatedElement="_5SI38AAhEd-0dMgailnZgA">
       <body>A container rule, i.e. a specification of extension or interception within a container. Beside the two options, a container rule is basically a composite class whose parts are added to the container.</body>
     </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_hkxRcOHNEeKl1vaXi7stuw" annotatedElement="_KBrOsDyEEeCYGtteoBz6vQ">
+      <body>Template ports are ports that enable the binding of an extended port with an actual parameter: the resulting port kind is the port kind bound to the current port type.
+For instance, we cound type a port with &quot;MyType&quot; and use an extended port Writer with a template with formal parameter T. Resulting port would be Writer with T bound to MyType.</body>
+    </ownedComment>
     <elementImport xmi:type="uml:ElementImport" xmi:id="_NYUA4MtkEd2H_o0jIC6qDQ" alias="Package">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
     </elementImport>
@@ -181,9 +185,6 @@ The system component is also an assembly</body>
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pHFWAOSBEeCPMMwBhvVAnA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pHLcoOSBEeCPMMwBhvVAnA" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_pHatMOSBEeCPMMwBhvVAnA">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_cCkwQDrYEeGmX53MUlt37g">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dgh8ADrYEeGmX53MUlt37g" source="image_papyrus">
@@ -605,8 +606,15 @@ The system component is also an assembly</body>
     <packagedElement xmi:type="uml:Extension" xmi:id="_ZiRY4PPBEd-Tz5tQ_F9baw" name="E_ExtendedSignature_TemplateSignature0" memberEnd="_ZiRY4fPBEd-Tz5tQ_F9baw _ZiQx0PPBEd-Tz5tQ_F9baw">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_ZiRY4fPBEd-Tz5tQ_F9baw" name="extension_ExtendedSignature" type="_UsmDYPPBEd-Tz5tQ_F9baw" aggregation="composite" association="_ZiRY4PPBEd-Tz5tQ_F9baw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Stereotype" xmi:id="_KBrOsDyEEeCYGtteoBz6vQ" name="ContainerPort">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_KBrOsDyEEeCYGtteoBz6vQ" name="TemplatePort">
       <generalization xmi:type="uml:Generalization" xmi:id="_OUdSgDyEEeCYGtteoBz6vQ" general="_pP-ckMtqEd2H_o0jIC6qDQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_RgadAOHNEeKl1vaXi7stuw" name="boundType" visibility="public" type="_tBRZYMtpEd2H_o0jIC6qDQ" isDerived="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VfrH4OHNEeKl1vaXi7stuw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VgfAMOHNEeKl1vaXi7stuw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_VidWIOHNEeKl1vaXi7stuw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_beqmAEZ0EeCLCJBkU67iDQ" name="UseInstanceConfigurator">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_ejisQEZ0EeCLCJBkU67iDQ" name="base_Class" association="_ejj6YEZ0EeCLCJBkU67iDQ">
@@ -726,4 +734,5 @@ The system component is also an assembly</body>
   <Ecore:EReference xmi:id="_VMBfsJjPEd-YabZhJFlJ9g" isTransient="true" isVolatile="true" isUnsettable="true" base_Property="_nZNicMweEd2H_o0jIC6qDQ"/>
   <Ecore:EReference xmi:id="_ZTbZ8JjPEd-YabZhJFlJ9g" isTransient="true" isVolatile="true" isUnsettable="true" base_Property="_ml85gMweEd2H_o0jIC6qDQ"/>
   <Ecore:EAttribute xmi:id="_yiNMoOSBEeCPMMwBhvVAnA" isTransient="true" isVolatile="true" isUnsettable="true" base_Property="_nkb3gOSBEeCPMMwBhvVAnA"/>
+  <Ecore:EReference xmi:id="_ERitsOIqEeKl1vaXi7stuw" isTransient="true" isVolatile="true" isUnsettable="true" base_Property="_RgadAOHNEeKl1vaXi7stuw"/>
 </xmi:XMI>

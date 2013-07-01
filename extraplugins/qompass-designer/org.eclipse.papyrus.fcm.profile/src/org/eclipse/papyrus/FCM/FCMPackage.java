@@ -153,7 +153,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPortKind()
 	 * @generated
 	 */
-	int PORT_KIND = 17;
+	int PORT_KIND = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.CompImplTemplateImpl <em>Comp Impl Template</em>}' class.
@@ -163,7 +163,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCompImplTemplate()
 	 * @generated
 	 */
-	int COMP_IMPL_TEMPLATE = 21;
+	int COMP_IMPL_TEMPLATE = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConfigOptionImpl <em>Config Option</em>}' class.
@@ -231,7 +231,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDeploymentPlan()
 	 * @generated
 	 */
-	int DEPLOYMENT_PLAN = 19;
+	int DEPLOYMENT_PLAN = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.DerivedElementImpl <em>Derived Element</em>}' class.
@@ -241,7 +241,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDerivedElement()
 	 * @generated
 	 */
-	int DERIVED_ELEMENT = 20;
+	int DERIVED_ELEMENT = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ImplementationGroupImpl <em>Implementation Group</em>}' class.
@@ -261,7 +261,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getImplementationProperties()
 	 * @generated
 	 */
-	int IMPLEMENTATION_PROPERTIES = 22;
+	int IMPLEMENTATION_PROPERTIES = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.OperatingSystemImpl <em>Operating System</em>}' class.
@@ -271,7 +271,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getOperatingSystem()
 	 * @generated
 	 */
-	int OPERATING_SYSTEM = 23;
+	int OPERATING_SYSTEM = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.TargetArchitectureImpl <em>Target Architecture</em>}' class.
@@ -281,7 +281,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTargetArchitecture()
 	 * @generated
 	 */
-	int TARGET_ARCHITECTURE = 24;
+	int TARGET_ARCHITECTURE = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.TargetImpl <em>Target</em>}' class.
@@ -291,7 +291,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTarget()
 	 * @generated
 	 */
-	int TARGET = 27;
+	int TARGET = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurationImpl <em>Configuration</em>}' class.
@@ -301,7 +301,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfiguration()
 	 * @generated
 	 */
-	int CONFIGURATION = 25;
+	int CONFIGURATION = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.InterceptionRuleImpl <em>Interception Rule</em>}' class.
@@ -311,7 +311,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInterceptionRule()
 	 * @generated
 	 */
-	int INTERCEPTION_RULE = 26;
+	int INTERCEPTION_RULE = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.SingletonImpl <em>Singleton</em>}' class.
@@ -634,7 +634,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCompilerChain()
 	 * @generated
 	 */
-	int COMPILER_CHAIN = 28;
+	int COMPILER_CHAIN = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.FragmentImpl <em>Fragment</em>}' class.
@@ -644,7 +644,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getFragment()
 	 * @generated
 	 */
-	int FRAGMENT = 29;
+	int FRAGMENT = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.CopyAttributeValueImpl <em>Copy Attribute Value</em>}' class.
@@ -654,7 +654,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCopyAttributeValue()
 	 * @generated
 	 */
-	int COPY_ATTRIBUTE_VALUE = 30;
+	int COPY_ATTRIBUTE_VALUE = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.AutoIndexImpl <em>Auto Index</em>}' class.
@@ -664,7 +664,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getAutoIndex()
 	 * @generated
 	 */
-	int AUTO_INDEX = 31;
+	int AUTO_INDEX = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.AutoIndexPerNodeImpl <em>Auto Index Per Node</em>}' class.
@@ -674,7 +674,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getAutoIndexPerNode()
 	 * @generated
 	 */
-	int AUTO_INDEX_PER_NODE = 32;
+	int AUTO_INDEX_PER_NODE = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.InitPrecedenceImpl <em>Init Precedence</em>}' class.
@@ -684,7 +684,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInitPrecedence()
 	 * @generated
 	 */
-	int INIT_PRECEDENCE = 33;
+	int INIT_PRECEDENCE = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConnectorConfigurationImpl <em>Connector Configuration</em>}' class.
@@ -694,7 +694,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConnectorConfiguration()
 	 * @generated
 	 */
-	int CONNECTOR_CONFIGURATION = 34;
+	int CONNECTOR_CONFIGURATION = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ExtendedSignatureImpl <em>Extended Signature</em>}' class.
@@ -704,17 +704,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getExtendedSignature()
 	 * @generated
 	 */
-	int EXTENDED_SIGNATURE = 35;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ContainerPortImpl <em>Container Port</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.ContainerPortImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getContainerPort()
-	 * @generated
-	 */
-	int CONTAINER_PORT = 36;
+	int EXTENDED_SIGNATURE = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.UseInstanceConfiguratorImpl <em>Use Instance Configurator</em>}' class.
@@ -872,51 +862,6 @@ public interface FCMPackage extends EPackage {
 	int CONFIG_OPTION_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_KIND__BASE_CLASS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Provided Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_KIND__PROVIDED_INTERFACE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Required Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_KIND__REQUIRED_INTERFACE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Extended Port</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_KIND__EXTENDED_PORT = 3;
-
-	/**
-	 * The number of structural features of the '<em>Port Kind</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_KIND_FEATURE_COUNT = 4;
-
-	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -969,6 +914,124 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int PORT_FEATURE_COUNT = CONFIGURABLE_ELEMENT_INSTANCE_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.TemplatePortImpl <em>Template Port</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.TemplatePortImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTemplatePort()
+	 * @generated
+	 */
+	int TEMPLATE_PORT = 17;
+
+	/**
+	 * The feature id for the '<em><b>Configuration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PORT__CONFIGURATION = PORT__CONFIGURATION;
+
+	/**
+	 * The feature id for the '<em><b>Base Port</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PORT__BASE_PORT = PORT__BASE_PORT;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PORT__KIND = PORT__KIND;
+
+	/**
+	 * The feature id for the '<em><b>Provided Interface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PORT__PROVIDED_INTERFACE = PORT__PROVIDED_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Required Interface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PORT__REQUIRED_INTERFACE = PORT__REQUIRED_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Bound Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PORT__BOUND_TYPE = PORT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Template Port</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PORT_FEATURE_COUNT = PORT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORT_KIND__BASE_CLASS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Provided Interface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORT_KIND__PROVIDED_INTERFACE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Required Interface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORT_KIND__REQUIRED_INTERFACE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Extended Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORT_KIND__EXTENDED_PORT = 3;
+
+	/**
+	 * The number of structural features of the '<em>Port Kind</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORT_KIND_FEATURE_COUNT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Main Instance</b></em>' reference.
@@ -1493,60 +1556,6 @@ public interface FCMPackage extends EPackage {
 	int EXTENDED_SIGNATURE_FEATURE_COUNT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Configuration</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_PORT__CONFIGURATION = PORT__CONFIGURATION;
-
-	/**
-	 * The feature id for the '<em><b>Base Port</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_PORT__BASE_PORT = PORT__BASE_PORT;
-
-	/**
-	 * The feature id for the '<em><b>Kind</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_PORT__KIND = PORT__KIND;
-
-	/**
-	 * The feature id for the '<em><b>Provided Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_PORT__PROVIDED_INTERFACE = PORT__PROVIDED_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Required Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_PORT__REQUIRED_INTERFACE = PORT__REQUIRED_INTERFACE;
-
-	/**
-	 * The number of structural features of the '<em>Container Port</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_PORT_FEATURE_COUNT = PORT_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.TemplateKind <em>Template Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1864,6 +1873,27 @@ public interface FCMPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConfigOption_Base_Class();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.TemplatePort <em>Template Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Template Port</em>'.
+	 * @see org.eclipse.papyrus.FCM.TemplatePort
+	 * @generated
+	 */
+	EClass getTemplatePort();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.TemplatePort#getBoundType <em>Bound Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Bound Type</em>'.
+	 * @see org.eclipse.papyrus.FCM.TemplatePort#getBoundType()
+	 * @see #getTemplatePort()
+	 * @generated
+	 */
+	EReference getTemplatePort_BoundType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Singleton <em>Singleton</em>}'.
@@ -2666,16 +2696,6 @@ public interface FCMPackage extends EPackage {
 	EReference getExtendedSignature_BaseSignature();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ContainerPort <em>Container Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Container Port</em>'.
-	 * @see org.eclipse.papyrus.FCM.ContainerPort
-	 * @generated
-	 */
-	EClass getContainerPort();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator <em>Use Instance Configurator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3108,6 +3128,24 @@ public interface FCMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONFIG_OPTION__BASE_CLASS = eINSTANCE.getConfigOption_Base_Class();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.TemplatePortImpl <em>Template Port</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.TemplatePortImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTemplatePort()
+		 * @generated
+		 */
+		EClass TEMPLATE_PORT = eINSTANCE.getTemplatePort();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_PORT__BOUND_TYPE = eINSTANCE.getTemplatePort_BoundType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.SingletonImpl <em>Singleton</em>}' class.
@@ -3758,16 +3796,6 @@ public interface FCMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTENDED_SIGNATURE__BASE_SIGNATURE = eINSTANCE.getExtendedSignature_BaseSignature();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ContainerPortImpl <em>Container Port</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.ContainerPortImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getContainerPort()
-		 * @generated
-		 */
-		EClass CONTAINER_PORT = eINSTANCE.getContainerPort();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.UseInstanceConfiguratorImpl <em>Use Instance Configurator</em>}' class.

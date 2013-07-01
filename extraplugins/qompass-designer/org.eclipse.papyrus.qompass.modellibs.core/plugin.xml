@@ -30,6 +30,10 @@
 		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.ExtendedPort2" portKindName="ExtendedPort2">
 		</client>
 	</extension>
+	<extension id="TemplatePort" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.TemplatePort" portKindName="TemplatePort">
+		</client>
+	</extension>
 	<extension id="UseConjIntf" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
 		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.UseConjIntf" portKindName="UseConjIntf">
 		</client>

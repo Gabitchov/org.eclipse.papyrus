@@ -75,8 +75,9 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.RULE_APPLICATION: return createRuleApplication();
 			case FCMPackage.CONTAINER_RULE: return createContainerRule();
 			case FCMPackage.CONFIG_OPTION: return createConfigOption();
-			case FCMPackage.PORT_KIND: return createPortKind();
+			case FCMPackage.TEMPLATE_PORT: return createTemplatePort();
 			case FCMPackage.PORT: return createPort();
+			case FCMPackage.PORT_KIND: return createPortKind();
 			case FCMPackage.DEPLOYMENT_PLAN: return createDeploymentPlan();
 			case FCMPackage.DERIVED_ELEMENT: return createDerivedElement();
 			case FCMPackage.COMP_IMPL_TEMPLATE: return createCompImplTemplate();
@@ -94,7 +95,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.INIT_PRECEDENCE: return createInitPrecedence();
 			case FCMPackage.CONNECTOR_CONFIGURATION: return createConnectorConfiguration();
 			case FCMPackage.EXTENDED_SIGNATURE: return createExtendedSignature();
-			case FCMPackage.CONTAINER_PORT: return createContainerPort();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -200,6 +200,16 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	public ConfigOption createConfigOption() {
 		ConfigOptionImpl configOption = new ConfigOptionImpl();
 		return configOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplatePort createTemplatePort() {
+		TemplatePortImpl templatePort = new TemplatePortImpl();
+		return templatePort;
 	}
 
 	/**
@@ -450,16 +460,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	public ExtendedSignature createExtendedSignature() {
 		ExtendedSignatureImpl extendedSignature = new ExtendedSignatureImpl();
 		return extendedSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ContainerPort createContainerPort() {
-		ContainerPortImpl containerPort = new ContainerPortImpl();
-		return containerPort;
 	}
 
 	/**

@@ -10,6 +10,7 @@ import org.eclipse.papyrus.FCM.Activator;
 import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.PortKind;
+import org.eclipse.papyrus.FCM.TemplatePort;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
@@ -307,6 +308,12 @@ public class MapUtil
 		return null;
 	}
 
+		
+	/**
+	 * Calculate derived required interface in function of port type and kind
+	 * @param port the port, for which the calculation should be done
+	 * @return
+	 */
 	public static Interface getProvidedInterface(final Port port)
 	{
 		if(port.getBase_Port() == null) {
@@ -320,25 +327,20 @@ public class MapUtil
 			}
 		}
 		else if(portKind.getBase_Class() != null) {
-			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName();
+			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
 			final IMappingRule mappingRule = getMappingRule(ruleName);
 			if(mappingRule != null) {
-				// EList<Interface> temp = new EObjectEList<Interface>(Interface.class, (PortImpl) port,
-				// 		FCMPackage.PORT__PROVIDED_INTERFACE);
 				return mappingRule.getProvided(port, port.getConfiguration(), false);
-							
 			}
 		}
 		return null;
 	}
 
-	private static Interface intf;
-	
 	/**
-	 * avoid loops in calculation of derived interface
+	 * Calculate derived required interface in function of port type and kind
+	 * @param port the port, for which the calculation should be done
+	 * @return
 	 */
-	private static boolean calcRunning = false;
-
 	public static Interface getRequiredInterface(final Port port)
 	{
 		PortKind portKind = port.getKind();
@@ -355,9 +357,7 @@ public class MapUtil
 			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
 			final IMappingRule mappingRule = getMappingRule(ruleName);
 			if(mappingRule != null) {
-				
-				intf = mappingRule.getRequired(port, port.getConfiguration(), false);
-				return intf;
+				return mappingRule.getRequired(port, port.getConfiguration(), false);
 			}
 		}
 		return null;
@@ -383,6 +383,21 @@ public class MapUtil
 		return null;
 	}
 	
+	public static PortKind getBoundType(final Port port) {
+		if(port.getBase_Port() == null) {
+			// should not happen, but can occur in case of corrupted XMI files
+			return null;
+		}
+		else {
+			String ruleName = "TemplatePort"; //$NON-NLS-1$
+			final IMappingRule mappingRule = getMappingRule(ruleName);
+			if(mappingRule instanceof ITemplateMappingRule) {
+				return ((ITemplateMappingRule) mappingRule).getBoundType(port);	
+			}
+		}
+		return null;
+	}
+	
 	public static void update(final Port port) {
 		if(port.getBase_Port() == null) {
 			// should not happen, but can occur in case of corrupted XMI files
@@ -393,12 +408,17 @@ public class MapUtil
 			return;
 		}
 		if(portKind.getBase_Class() != null) {
-			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName();
+			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
+			if (port instanceof TemplatePort) {
+				ruleName = "TemplatePort"; //$NON-NLS-1$
+			}
 			final IMappingRule mappingRule = getMappingRule(ruleName);
 			
 			mappingRule.getProvided(port, port.getConfiguration(), true);
 			mappingRule.getRequired(port, port.getConfiguration(), true);
-			
+			if (mappingRule instanceof ITemplateMappingRule) {
+				((ITemplateMappingRule) mappingRule).updateBinding(port);
+			}
 		}
 	}
 }

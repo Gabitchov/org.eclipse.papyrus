@@ -10,12 +10,6 @@
     <packageImport xmi:type="uml:PackageImport" xmi:id="_rwBsMP7AEd6Zw96O-tCw7A">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
-    <packageImport xmi:type="uml:PackageImport" xmi:id="_7K0UkACUEd-PD8FdFs7bpA">
-      <importedPackage xmi:type="uml:Model" href="pathmap://QML_DISTRIBUTION/distribution.uml#_O6TiIDLUEd26WNosUASSSw"/>
-    </packageImport>
-    <packageImport xmi:type="uml:PackageImport" xmi:id="_rIIE0DKsEd-z5o2wSoJ16A">
-      <importedPackage xmi:type="uml:Model" href="pathmap://QML_TRACE/tracing.uml#_H-ZqYDKeEd-WprEKTCaiMA"/>
-    </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_LOqIEDLaEd2qeKRLMdIx_A" name="ComponentModel">
       <packagedElement xmi:type="uml:Package" xmi:id="_OGM88DLaEd2qeKRLMdIx_A" name="Server">
         <packagedElement xmi:type="uml:Class" xmi:id="_oqZNUDLaEd2qeKRLMdIx_A" clientDependency="_YQqH0JYlEd6G9q9hwr11bw" name="CServer_impl">

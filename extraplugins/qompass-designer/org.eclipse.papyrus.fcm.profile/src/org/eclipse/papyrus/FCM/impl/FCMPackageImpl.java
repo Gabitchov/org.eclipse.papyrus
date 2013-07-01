@@ -26,7 +26,6 @@ import org.eclipse.papyrus.FCM.Configuration;
 import org.eclipse.papyrus.FCM.ConfigurationProperty;
 import org.eclipse.papyrus.FCM.Connector;
 import org.eclipse.papyrus.FCM.ConnectorConfiguration;
-import org.eclipse.papyrus.FCM.ContainerPort;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.ContainerRuleKind;
 import org.eclipse.papyrus.FCM.CopyAttributeValue;
@@ -54,6 +53,7 @@ import org.eclipse.papyrus.FCM.Target;
 import org.eclipse.papyrus.FCM.TargetArchitecture;
 import org.eclipse.papyrus.FCM.Template;
 import org.eclipse.papyrus.FCM.TemplateKind;
+import org.eclipse.papyrus.FCM.TemplatePort;
 import org.eclipse.papyrus.FCM.UseInstanceConfigurator;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -114,6 +114,13 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * @generated
 	 */
 	private EClass configOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass templatePortEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -289,13 +296,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * @generated
 	 */
 	private EClass extendedSignatureEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass containerPortEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -647,6 +647,24 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 */
 	public EReference getConfigOption_Base_Class() {
 		return (EReference)configOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTemplatePort() {
+		return templatePortEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplatePort_BoundType() {
+		return (EReference)templatePortEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1329,15 +1347,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getContainerPort() {
-		return containerPortEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getUseInstanceConfigurator() {
 		return useInstanceConfiguratorEClass;
 	}
@@ -1588,17 +1597,20 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		configOptionEClass = createEClass(CONFIG_OPTION);
 		createEReference(configOptionEClass, CONFIG_OPTION__BASE_CLASS);
 
-		portKindEClass = createEClass(PORT_KIND);
-		createEReference(portKindEClass, PORT_KIND__BASE_CLASS);
-		createEReference(portKindEClass, PORT_KIND__PROVIDED_INTERFACE);
-		createEReference(portKindEClass, PORT_KIND__REQUIRED_INTERFACE);
-		createEAttribute(portKindEClass, PORT_KIND__EXTENDED_PORT);
+		templatePortEClass = createEClass(TEMPLATE_PORT);
+		createEReference(templatePortEClass, TEMPLATE_PORT__BOUND_TYPE);
 
 		portEClass = createEClass(PORT);
 		createEReference(portEClass, PORT__BASE_PORT);
 		createEReference(portEClass, PORT__KIND);
 		createEReference(portEClass, PORT__PROVIDED_INTERFACE);
 		createEReference(portEClass, PORT__REQUIRED_INTERFACE);
+
+		portKindEClass = createEClass(PORT_KIND);
+		createEReference(portKindEClass, PORT_KIND__BASE_CLASS);
+		createEReference(portKindEClass, PORT_KIND__PROVIDED_INTERFACE);
+		createEReference(portKindEClass, PORT_KIND__REQUIRED_INTERFACE);
+		createEAttribute(portKindEClass, PORT_KIND__EXTENDED_PORT);
 
 		deploymentPlanEClass = createEClass(DEPLOYMENT_PLAN);
 		createEReference(deploymentPlanEClass, DEPLOYMENT_PLAN__MAIN_INSTANCE);
@@ -1674,8 +1686,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		createEReference(extendedSignatureEClass, EXTENDED_SIGNATURE__BASE_TEMPLATE_SIGNATURE);
 		createEReference(extendedSignatureEClass, EXTENDED_SIGNATURE__BASE_SIGNATURE);
 
-		containerPortEClass = createEClass(CONTAINER_PORT);
-
 		// Create enums
 		templateKindEEnum = createEEnum(TEMPLATE_KIND);
 		actualChoiceEEnum = createEEnum(ACTUAL_CHOICE);
@@ -1716,9 +1726,9 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 
 		// Add supertypes to classes
 		connectorEClass.getESuperTypes().add(this.getConfigurableElementInstance());
+		templatePortEClass.getESuperTypes().add(this.getPort());
 		portEClass.getESuperTypes().add(this.getConfigurableElementInstance());
 		autoIndexPerNodeEClass.getESuperTypes().add(this.getAutoIndex());
-		containerPortEClass.getESuperTypes().add(this.getPort());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(templateEClass, Template.class, "Template", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1786,17 +1796,20 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEClass(configOptionEClass, ConfigOption.class, "ConfigOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfigOption_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, ConfigOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(portKindEClass, PortKind.class, "PortKind", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPortKind_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, PortKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getPortKind_ProvidedInterface(), theUMLPackage.getInterface(), null, "providedInterface", null, 0, 1, PortKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getPortKind_RequiredInterface(), theUMLPackage.getInterface(), null, "requiredInterface", null, 0, 1, PortKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPortKind_ExtendedPort(), theTypesPackage.getBoolean(), "extendedPort", null, 1, 1, PortKind.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(templatePortEClass, TemplatePort.class, "TemplatePort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTemplatePort_BoundType(), this.getPortKind(), null, "boundType", null, 0, 1, TemplatePort.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(portEClass, Port.class, "Port", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPort_Base_Port(), theUMLPackage.getPort(), null, "base_Port", null, 1, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPort_Kind(), this.getPortKind(), null, "kind", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPort_ProvidedInterface(), theUMLPackage.getInterface(), null, "providedInterface", null, 0, 1, Port.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getPort_RequiredInterface(), theUMLPackage.getInterface(), null, "requiredInterface", null, 0, 1, Port.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(portKindEClass, PortKind.class, "PortKind", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPortKind_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, PortKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getPortKind_ProvidedInterface(), theUMLPackage.getInterface(), null, "providedInterface", null, 0, 1, PortKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getPortKind_RequiredInterface(), theUMLPackage.getInterface(), null, "requiredInterface", null, 0, 1, PortKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPortKind_ExtendedPort(), theTypesPackage.getBoolean(), "extendedPort", null, 1, 1, PortKind.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(deploymentPlanEClass, DeploymentPlan.class, "DeploymentPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeploymentPlan_MainInstance(), theUMLPackage.getInstanceSpecification(), null, "mainInstance", null, 1, 1, DeploymentPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1871,8 +1884,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEClass(extendedSignatureEClass, ExtendedSignature.class, "ExtendedSignature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExtendedSignature_Base_TemplateSignature(), theUMLPackage.getTemplateSignature(), null, "base_TemplateSignature", null, 1, 1, ExtendedSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getExtendedSignature_BaseSignature(), theUMLPackage.getTemplateSignature(), null, "baseSignature", null, 1, 1, ExtendedSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(containerPortEClass, ContainerPort.class, "ContainerPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(templateKindEEnum, TemplateKind.class, "TemplateKind");

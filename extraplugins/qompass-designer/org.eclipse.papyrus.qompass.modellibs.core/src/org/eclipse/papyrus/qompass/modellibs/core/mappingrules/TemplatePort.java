@@ -14,16 +14,25 @@
 
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
-import org.eclipse.papyrus.FCM.util.IMappingRule;
-import org.eclipse.papyrus.FCM.util.MapUtil;
-import org.eclipse.papyrus.qompass.designer.core.OperationUtils;
-import org.eclipse.papyrus.qompass.designer.core.PortUtils;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.FCM.PortKind;
+import org.eclipse.papyrus.FCM.util.ITemplateMappingRule;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
+import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 
 
@@ -46,87 +55,77 @@ import org.eclipse.uml2.uml.Type;
  * The derived property isExtended of FCM port-kind is true, if the class representing the port-kind owns at least one
  * port
  * 
- * TODO: This class has become obsolete now, since extended DDS ports are now supported via flattening  
- * 
  * @author ansgar
  * 
  */
-@Deprecated
-public class ExtendedPort implements IMappingRule {
+public class TemplatePort implements ITemplateMappingRule {
 
 	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
 	{
 		return null;
-		// return getDerived(p, false, config, update);
 	}
 
 	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
 	{
 		return null;
-		// return getDerived(p, true, config, update);
 	}
 
-	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isRequired, InstanceSpecification config, boolean update)
+	public PortKind getBoundType(org.eclipse.papyrus.FCM.Port p)
 	{
-		Type type = extPort.getBase_Port().getType();
+		Port port = p.getBase_Port();
+		Type type = port.getType();
 		if(!(type instanceof Classifier)) {
 			return null;
 		}
-		Class extendedPort = extPort.getKind().getBase_Class();
-
-		String prefix = extendedPort.getName() + "_" + (isRequired ? "R_" : "P_");
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type, update);
-		if (!update) {
-			return derivedInterface;
-		}
-		if(derivedInterface == null) {
+		if (p.getKind() == null) {
 			return null;
 		}
-		/*
-		TemplateSignature signature = TemplateUtils.getSignature(type.getNearestPackage());
+		Class extendedPort = p.getKind().getBase_Class();
+		TemplateSignature signature = TemplateUtils.getSignature(extendedPort.getNearestPackage());
+		Package pkgTemplate = signature.getNearestPackage();
+		if(pkgTemplate != null) {
+			EList<Namespace> path = TemplateUtils.relativePathWithMerge(extendedPort, pkgTemplate);
+			Package model = Utils.getTop(port);
+			
+			String name = pkgTemplate.getName() + "_" + type.getName();  //$NON-NLS-1$
+			Package pkg = model.getNestedPackage(name);
+			if (pkg != null) {
+				for (Namespace pathElem : path) {
+					pkg = pkg.getNestedPackage(pathElem.getName());
+					if (pkg == null) {
+						return null;
+					}
+				}
+				PackageableElement boundClass = pkg.getPackagedElement(extendedPort.getName());
+				if (boundClass != null) {
+					return StUtils.getApplication(boundClass, PortKind.class);
+				}
+			}
+		}
+		return null;
+	}
+
+	public void updateBinding(org.eclipse.papyrus.FCM.Port p) {
+		// TODO Auto-generated method stub
+		Port port = p.getBase_Port();
+		Type type = port.getType();
+		if(!(type instanceof Classifier)) {
+			return;
+		}
+		Class extendedPort = p.getKind().getBase_Class();
+
+		TemplateSignature signature = TemplateUtils.getSignature(extendedPort.getNearestPackage());
 		if(signature != null) {
-			Package model = Utils.getTop(derivedInterface);
+			Package model = Utils.getTop(port);
 			try {
 				TemplateBinding binding =
 					TemplateUtils.fixedBinding(model, extendedPort, (Classifier)type);
 				Copy copy = new Copy(model, model, false);
 				TemplateInstantiation ti = new TemplateInstantiation(copy, binding);
 				// create a bound element of the extended port. Add bound class to derived interface class
-				Class boundClass = ti.bindNamedElement(extendedPort);
-				derivedInterface.getNearestPackage().getPackagedElements().add(boundClass);
+				ti.bindNamedElement(extendedPort);
 			} catch (TransformationException e) {
-				return null;
 			}
 		}
-		*/
-		// obtain first template parameter = port type
-		// kind.getBase_Class().getNearestPackage().getTemplateParameter();
-
-		for(Port port : extendedPort.getOwnedPorts()) {
-			Interface derivedIntf = (isRequired) ?
-				PortUtils.getRequired(port) :
-				PortUtils.getProvided(port);
-
-			if(derivedIntf != null) {
-				for(Operation op : derivedIntf.getAllOperations()) {
-					String name = port.getName() + "_" + op.getName(); //$NON-NLS-1$
-
-					// check whether operation already exists. Create, if not
-					Operation derivedOperation = derivedInterface.getOperation(name, null, null);
-					if(derivedOperation == null) {
-						derivedOperation = derivedInterface.createOwnedOperation(name, null, null);
-						OperationUtils.syncOperation(op, derivedOperation);
-						derivedOperation.setName(name);
-					}
-					else {
-						if (!OperationUtils.isSameOperation(derivedOperation, op, false)) {
-							OperationUtils.syncOperation(op, derivedOperation);
-							derivedOperation.setName(name);
-						}
-					}
-				}
-			}
-		}
-		return derivedInterface;
 	}
 }

@@ -80,6 +80,15 @@ public interface FCMFactory extends EFactory {
 	ConfigOption createConfigOption();
 
 	/**
+	 * Returns a new object of class '<em>Template Port</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Template Port</em>'.
+	 * @generated
+	 */
+	TemplatePort createTemplatePort();
+
+	/**
 	 * Returns a new object of class '<em>Singleton</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -303,15 +312,6 @@ public interface FCMFactory extends EFactory {
 	 * @generated
 	 */
 	ExtendedSignature createExtendedSignature();
-
-	/**
-	 * Returns a new object of class '<em>Container Port</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Container Port</em>'.
-	 * @generated
-	 */
-	ContainerPort createContainerPort();
 
 	/**
 	 * Returns a new object of class '<em>Use Instance Configurator</em>'.

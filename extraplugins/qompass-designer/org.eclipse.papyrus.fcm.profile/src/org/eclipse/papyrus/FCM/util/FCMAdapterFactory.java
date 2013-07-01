@@ -137,12 +137,16 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 				return createConfigOptionAdapter();
 			}
 			@Override
-			public Adapter casePortKind(PortKind object) {
-				return createPortKindAdapter();
+			public Adapter caseTemplatePort(TemplatePort object) {
+				return createTemplatePortAdapter();
 			}
 			@Override
 			public Adapter casePort(Port object) {
 				return createPortAdapter();
+			}
+			@Override
+			public Adapter casePortKind(PortKind object) {
+				return createPortKindAdapter();
 			}
 			@Override
 			public Adapter caseDeploymentPlan(DeploymentPlan object) {
@@ -211,10 +215,6 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExtendedSignature(ExtendedSignature object) {
 				return createExtendedSignatureAdapter();
-			}
-			@Override
-			public Adapter caseContainerPort(ContainerPort object) {
-				return createContainerPortAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -387,6 +387,20 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConfigOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.TemplatePort <em>Template Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.FCM.TemplatePort
+	 * @generated
+	 */
+	public Adapter createTemplatePortAdapter() {
 		return null;
 	}
 
@@ -709,20 +723,6 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExtendedSignatureAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.ContainerPort <em>Container Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.FCM.ContainerPort
-	 * @generated
-	 */
-	public Adapter createContainerPortAdapter() {
 		return null;
 	}
 

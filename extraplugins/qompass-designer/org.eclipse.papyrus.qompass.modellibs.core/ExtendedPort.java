@@ -46,24 +46,19 @@ import org.eclipse.uml2.uml.Type;
  * The derived property isExtended of FCM port-kind is true, if the class representing the port-kind owns at least one
  * port
  * 
- * TODO: This class has become obsolete now, since extended DDS ports are now supported via flattening  
- * 
  * @author ansgar
  * 
  */
-@Deprecated
 public class ExtendedPort implements IMappingRule {
 
 	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
 	{
-		return null;
-		// return getDerived(p, false, config, update);
+		return getDerived(p, false, config, update);
 	}
 
 	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
 	{
-		return null;
-		// return getDerived(p, true, config, update);
+		return getDerived(p, true, config, update);
 	}
 
 	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isRequired, InstanceSpecification config, boolean update)

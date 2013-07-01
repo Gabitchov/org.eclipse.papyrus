@@ -171,9 +171,11 @@ public class FCMSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FCMPackage.PORT_KIND: {
-				PortKind portKind = (PortKind)theEObject;
-				T result = casePortKind(portKind);
+			case FCMPackage.TEMPLATE_PORT: {
+				TemplatePort templatePort = (TemplatePort)theEObject;
+				T result = caseTemplatePort(templatePort);
+				if (result == null) result = casePort(templatePort);
+				if (result == null) result = caseConfigurableElementInstance(templatePort);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -181,6 +183,12 @@ public class FCMSwitch<T> extends Switch<T> {
 				Port port = (Port)theEObject;
 				T result = casePort(port);
 				if (result == null) result = caseConfigurableElementInstance(port);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FCMPackage.PORT_KIND: {
+				PortKind portKind = (PortKind)theEObject;
+				T result = casePortKind(portKind);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -284,14 +292,6 @@ public class FCMSwitch<T> extends Switch<T> {
 			case FCMPackage.EXTENDED_SIGNATURE: {
 				ExtendedSignature extendedSignature = (ExtendedSignature)theEObject;
 				T result = caseExtendedSignature(extendedSignature);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FCMPackage.CONTAINER_PORT: {
-				ContainerPort containerPort = (ContainerPort)theEObject;
-				T result = caseContainerPort(containerPort);
-				if (result == null) result = casePort(containerPort);
-				if (result == null) result = caseConfigurableElementInstance(containerPort);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -461,6 +461,21 @@ public class FCMSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConfigOption(ConfigOption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Template Port</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Template Port</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTemplatePort(TemplatePort object) {
 		return null;
 	}
 
@@ -806,21 +821,6 @@ public class FCMSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExtendedSignature(ExtendedSignature object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container Port</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container Port</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContainerPort(ContainerPort object) {
 		return null;
 	}
 
