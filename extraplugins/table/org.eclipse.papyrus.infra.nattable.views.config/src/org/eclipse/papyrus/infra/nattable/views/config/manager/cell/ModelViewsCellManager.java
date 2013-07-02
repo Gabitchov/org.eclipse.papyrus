@@ -75,7 +75,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 			final Object first = objects.get(0);
 			if(first instanceof EObject) {
 				final IPageManager mngr = Utils.getIPagneManager((EObject)first);
-				if(mngr != null && !mngr.allPages().contains(first)) {
+				if((mngr != null && !mngr.allPages().contains(first)) || mngr==null) {
 					return Collections.emptyList();
 				}
 			}
@@ -211,7 +211,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 				mngr = ServiceUtilsForResource.getInstance().getIPageManager(((EObject)editor).eResource());
 				return mngr.isOpen(editor);
 			} catch (ServiceException e) {
-				Activator.log.error(e);
+//				Activator.log.error(e);
 			}
 		}
 

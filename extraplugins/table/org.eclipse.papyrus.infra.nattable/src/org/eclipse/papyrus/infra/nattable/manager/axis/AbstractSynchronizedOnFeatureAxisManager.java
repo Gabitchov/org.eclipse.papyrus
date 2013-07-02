@@ -62,7 +62,6 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	@Override
 	public void init(final INattableModelManager manager, final AxisManagerRepresentation rep, final AbstractAxisProvider provider) {
 		super.init(manager, rep, provider);
-		//		this.listenFeatures = getListenFeatures();
 		verifyValues();
 
 		addContextFeatureValueListener();

@@ -27,14 +27,21 @@ import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.PartService;
 import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 
 public class OpenTableTest extends AbstractEditorIntegrationTest {
+
 
 	/**
 	 * This test allows to be sure that we doesn't break existing table model
@@ -52,11 +59,11 @@ public class OpenTableTest extends AbstractEditorIntegrationTest {
 		Table requirementTable = (Table)notationResource.getContents().get(0);
 		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, requirementTable)));
+		while(Display.getDefault().readAndDispatch());
 		tableEditor = editor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
 		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
 		Assert.assertNotNull(manager);
-
 	}
 
 	@Override
@@ -73,4 +80,5 @@ public class OpenTableTest extends AbstractEditorIntegrationTest {
 	public static void endOfTest() {
 		GenericUtils.closeAllEditors();
 	}
+
 }

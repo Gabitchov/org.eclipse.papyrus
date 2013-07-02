@@ -53,10 +53,16 @@ import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.PartService;
+import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.uml2.uml.Model;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -95,7 +101,6 @@ public class TableVerifyContents {
 	@BeforeClass
 	public static void init() {
 		try {
-
 			initTests(Activator.getDefault().getBundle(), PROJECT_NAME, MODEL_PATH);
 
 		} catch (CoreException e) {
@@ -160,7 +165,7 @@ public class TableVerifyContents {
 		Assert.assertEquals(subModel, table1.getContext());
 		Assert.assertEquals(subModel, diagram2.getElement());
 		Assert.assertEquals(rootModel, diagram1.getElement());
-
+		while(Display.getDefault().readAndDispatch());
 
 	}
 
@@ -187,6 +192,7 @@ public class TableVerifyContents {
 		Assert.assertNull(tableEditor);
 		TransactionalEditingDomain editingDomain = papyrusEditor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, table1)));
+		while(Display.getDefault().readAndDispatch());
 		tableEditor = papyrusEditor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
 		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);

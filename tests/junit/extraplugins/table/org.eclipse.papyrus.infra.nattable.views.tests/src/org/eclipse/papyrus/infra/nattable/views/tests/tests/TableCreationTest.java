@@ -44,9 +44,14 @@ import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.PartService;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
@@ -87,7 +92,6 @@ public class TableCreationTest {
 	@BeforeClass
 	public static void init() {
 		try {
-
 			initTests(Activator.getDefault().getBundle(), PROJECT_NAME, MODEL_PATH);
 
 		} catch (CoreException e) {
@@ -207,7 +211,9 @@ public class TableCreationTest {
 		Assert.assertEquals(2, managedAxis2.size());
 		Assert.assertTrue(managedAxis2.contains(subSubPackageTable1));
 		Assert.assertTrue(managedAxis2.contains(subSubPackageTable2));
+
 		while(Display.getDefault().readAndDispatch());
+
 		Assert.assertEquals(managedAxis2.size(), rowAxisManager2.getTableManager().getRowElementsList().size());
 		Assert.assertTrue(rowAxisManager2.getTableManager().getRowElementsList().contains(subSubPackageTable1));
 		Assert.assertTrue(rowAxisManager2.getTableManager().getRowElementsList().contains(subSubPackageTable2));

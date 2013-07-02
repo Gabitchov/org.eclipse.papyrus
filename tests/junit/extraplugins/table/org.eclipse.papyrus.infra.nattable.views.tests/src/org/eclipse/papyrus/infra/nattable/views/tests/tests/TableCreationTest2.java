@@ -15,15 +15,11 @@ package org.eclipse.papyrus.infra.nattable.views.tests.tests;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
-import org.eclipse.core.commands.Command;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -56,18 +52,20 @@ import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.ISelectionService;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommandService;
+import org.eclipse.ui.internal.PartService;
 import org.eclipse.uml2.uml.Model;
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
@@ -102,9 +100,7 @@ public class TableCreationTest2 {
 	@BeforeClass
 	public static void init() {
 		try {
-
 			initTests(Activator.getDefault().getBundle(), PROJECT_NAME, MODEL_PATH);
-
 		} catch (CoreException e) {
 			Activator.log.error(e);
 		} catch (IOException e) {
@@ -191,8 +187,11 @@ public class TableCreationTest2 {
 	@Test
 	public void createTable2AndDestroyAnOwnedElement() throws ServiceException {
 		final Object result1 = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationTest2.view, AllTests.COMMAND_ID, TableCreationTest2.rootModel, BUNDLE_ID);
+		while(Display.getDefault().readAndDispatch());
 		Assert.assertTrue(result1 instanceof NatTableEditor);
 		final NatTableEditor editor2 = (NatTableEditor)result1;
+		editor2.setFocus();
+		while(Display.getDefault().readAndDispatch());
 		final NattableModelManager manager2 = (NattableModelManager)editor2.getAdapter(INattableModelManager.class);
 		Assert.assertNotNull(manager2);
 		final Table table2 = manager2.getTable();
@@ -219,14 +218,16 @@ public class TableCreationTest2 {
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 
 
-		//		while(Display.getDefault().readAndDispatch());
+		while(Display.getDefault().readAndDispatch());
 		//verify the contents of table2
 		managedAxis_Table1 = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis_Table1.size());
 		Assert.assertTrue(managedAxis_Table1.contains(table1));
 		Assert.assertTrue(managedAxis_Table1.contains(table2));
 		Assert.assertTrue(managedAxis_Table1.contains(diagram1));
-		while(Display.getDefault().readAndDispatch());
+
+
+
 		Assert.assertEquals(managedAxis_Table1.size(), rowAxisManager.getTableManager().getRowElementsList().size());
 		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(table2));
 		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(table1));
@@ -238,6 +239,7 @@ public class TableCreationTest2 {
 		Assert.assertEquals(3, pageManager.allPages().size());
 		IEditorPart tableEditor = papyrusEditor.getActiveEditor();
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, table1)));
+		while(Display.getDefault().readAndDispatch());
 		tableEditor = papyrusEditor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
 		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);

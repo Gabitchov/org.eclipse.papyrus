@@ -88,11 +88,11 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#verifyFeatureMultiplicity()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#verifyValues()
 	 * 
 	 */
 	@Override
-	protected void verifyFeatureMultiplicity() {
+	protected void verifyValues() {
 		//nothing to do
 	}
 
@@ -164,11 +164,27 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 		return false;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.lang.Integer)
+	 * 
+	 * @param axisPosition
+	 * @return
+	 */
 	@Override
 	public boolean canDestroyAxisElement(Integer axisPosition) {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.lang.Integer)
+	 * 
+	 * @param domain
+	 * @param axisPosition
+	 * @return
+	 */
 	@Override
 	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
 		return UnexecutableCommand.INSTANCE;

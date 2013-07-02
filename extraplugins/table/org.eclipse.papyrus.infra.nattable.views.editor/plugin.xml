@@ -9,6 +9,12 @@
             id="org.eclipse.papyrus.infra.nattable.page.editor.create.command"
             name="Create a new Views Table">
       </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Create a new Views Table Without dialog"
+            id="org.eclipse.papyrus.infra.nattable.page.editor.create.withoutdialog.command"
+            name="Create a new Views Table ">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -26,6 +32,26 @@
          </activeWhen>
          <class
                class="org.eclipse.papyrus.infra.nattable.common.handlers.CreateNatTableEditorHandler">
+            <parameter
+                  name="tableType"
+                  value="PapyrusViewsTable">
+            </parameter>
+         </class>
+      </handler>
+      <handler
+            commandId="org.eclipse.papyrus.infra.nattable.page.editor.create.withoutdialog.command">
+         <activeWhen>
+            <or>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
+         <class
+               class="org.eclipse.papyrus.infra.nattable.common.handlers.CreateNatTableEditorWithoutDialogHandler">
             <parameter
                   name="tableType"
                   value="PapyrusViewsTable">
@@ -90,6 +116,10 @@
          point="org.eclipse.ui.commandImages">
       <image
             commandId="org.eclipse.papyrus.infra.nattable.page.editor.create.command"
+            icon="icons/nattablepageeditor_new.png">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.page.editor.create.withoutdialog.command"
             icon="icons/nattablepageeditor_new.png">
       </image>
    </extension>
