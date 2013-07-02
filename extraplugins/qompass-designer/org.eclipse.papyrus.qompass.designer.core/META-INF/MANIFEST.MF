@@ -44,8 +44,10 @@ Export-Package: org.eclipse.papyrus.qompass.designer.core,
  org.eclipse.papyrus.qompass.designer.core.dialogs,
  org.eclipse.papyrus.qompass.designer.core.extensions,
  org.eclipse.papyrus.qompass.designer.core.handlers,
+ org.eclipse.papyrus.qompass.designer.core.listeners,
  org.eclipse.papyrus.qompass.designer.core.preferences,
  org.eclipse.papyrus.qompass.designer.core.templates,
- org.eclipse.papyrus.qompass.designer.core.transformations
+ org.eclipse.papyrus.qompass.designer.core.transformations,
+ org.eclipse.papyrus.qompass.designer.core.transformations.filters
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
