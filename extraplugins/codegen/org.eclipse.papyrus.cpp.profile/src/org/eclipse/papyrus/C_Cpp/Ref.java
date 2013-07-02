@@ -36,7 +36,7 @@ public interface Ref extends EObject {
 	 * @return the value of the '<em>Base parameter</em>' reference.
 	 * @see #setBase_parameter(Parameter)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getRef_Base_parameter()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Parameter getBase_parameter();
@@ -62,7 +62,7 @@ public interface Ref extends EObject {
 	 * @return the value of the '<em>Base property</em>' reference.
 	 * @see #setBase_property(Property)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getRef_Base_property()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Property getBase_property();

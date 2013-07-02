@@ -45,7 +45,7 @@ public interface Include extends EObject {
 	 * @return the value of the '<em>Body</em>' attribute.
 	 * @see #setBody(String)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getInclude_Body()
-	 * @model default="" dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model default="" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	String getBody();
@@ -72,7 +72,7 @@ public interface Include extends EObject {
 	 * @return the value of the '<em>Header</em>' attribute.
 	 * @see #setHeader(String)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getInclude_Header()
-	 * @model default="" dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model default="" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	String getHeader();
@@ -98,7 +98,7 @@ public interface Include extends EObject {
 	 * @return the value of the '<em>Base package</em>' reference.
 	 * @see #setBase_package(org.eclipse.uml2.uml.Package)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getInclude_Base_package()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	org.eclipse.uml2.uml.Package getBase_package();
@@ -124,7 +124,7 @@ public interface Include extends EObject {
 	 * @return the value of the '<em>Base class</em>' reference.
 	 * @see #setBase_class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getInclude_Base_class()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	org.eclipse.uml2.uml.Class getBase_class();
@@ -150,7 +150,7 @@ public interface Include extends EObject {
 	 * @return the value of the '<em>Base Package Import</em>' reference.
 	 * @see #setBase_PackageImport(PackageImport)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getInclude_Base_PackageImport()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	PackageImport getBase_PackageImport();
@@ -177,7 +177,7 @@ public interface Include extends EObject {
 	 * @return the value of the '<em>Pre Body</em>' attribute.
 	 * @see #setPreBody(String)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getInclude_PreBody()
-	 * @model default="" dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model default="" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	String getPreBody();

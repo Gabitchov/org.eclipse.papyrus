@@ -121,6 +121,8 @@
     </genClasses>
     <genClasses ecoreClass="C_Cpp.ecore#//StorageClass">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//StorageClass/storageClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//StorageClass/base_Parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//StorageClass/base_Property"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

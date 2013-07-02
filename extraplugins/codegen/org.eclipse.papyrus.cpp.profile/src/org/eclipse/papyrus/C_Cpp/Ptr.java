@@ -41,7 +41,7 @@ public interface Ptr extends EObject {
 	 * @return the value of the '<em>Base parameter</em>' reference.
 	 * @see #setBase_parameter(Parameter)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getPtr_Base_parameter()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Parameter getBase_parameter();
@@ -67,7 +67,7 @@ public interface Ptr extends EObject {
 	 * @return the value of the '<em>Base property</em>' reference.
 	 * @see #setBase_property(Property)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getPtr_Base_property()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Property getBase_property();
@@ -93,7 +93,7 @@ public interface Ptr extends EObject {
 	 * @return the value of the '<em>Declaration</em>' attribute.
 	 * @see #setDeclaration(String)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getPtr_Declaration()
-	 * @model unique="false" dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model unique="false" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	String getDeclaration();

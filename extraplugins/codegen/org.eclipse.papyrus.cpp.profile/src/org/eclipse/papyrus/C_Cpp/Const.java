@@ -38,7 +38,7 @@ public interface Const extends EObject {
 	 * @return the value of the '<em>Base parameter</em>' reference.
 	 * @see #setBase_parameter(Parameter)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getConst_Base_parameter()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Parameter getBase_parameter();
@@ -64,7 +64,7 @@ public interface Const extends EObject {
 	 * @return the value of the '<em>Base property</em>' reference.
 	 * @see #setBase_property(Property)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getConst_Base_property()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Property getBase_property();
@@ -90,7 +90,7 @@ public interface Const extends EObject {
 	 * @return the value of the '<em>Base operation</em>' reference.
 	 * @see #setBase_operation(Operation)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getConst_Base_operation()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Operation getBase_operation();

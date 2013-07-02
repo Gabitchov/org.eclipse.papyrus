@@ -962,13 +962,31 @@ public interface C_CppPackage extends EPackage {
 	int STORAGE_CLASS__STORAGE_CLASS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Base Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORAGE_CLASS__BASE_PARAMETER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Base Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORAGE_CLASS__BASE_PROPERTY = 2;
+
+	/**
 	 * The number of structural features of the '<em>Storage Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STORAGE_CLASS_FEATURE_COUNT = 1;
+	int STORAGE_CLASS_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.VisibilityKind <em>Visibility Kind</em>}' enum.
@@ -1815,6 +1833,28 @@ public interface C_CppPackage extends EPackage {
 	EAttribute getStorageClass_StorageClass();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.StorageClass#getBase_Parameter <em>Base Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Parameter</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.StorageClass#getBase_Parameter()
+	 * @see #getStorageClass()
+	 * @generated
+	 */
+	EReference getStorageClass_Base_Parameter();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.StorageClass#getBase_Property <em>Base Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Property</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.StorageClass#getBase_Property()
+	 * @see #getStorageClass()
+	 * @generated
+	 */
+	EReference getStorageClass_Base_Property();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.C_Cpp.VisibilityKind <em>Visibility Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2519,6 +2559,22 @@ public interface C_CppPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STORAGE_CLASS__STORAGE_CLASS = eINSTANCE.getStorageClass_StorageClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORAGE_CLASS__BASE_PARAMETER = eINSTANCE.getStorageClass_Base_Parameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORAGE_CLASS__BASE_PROPERTY = eINSTANCE.getStorageClass_Base_Property();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.VisibilityKind <em>Visibility Kind</em>}' enum.

@@ -36,7 +36,7 @@ public interface Friend extends EObject {
 	 * @return the value of the '<em>Base dependency</em>' reference.
 	 * @see #setBase_dependency(Dependency)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getFriend_Base_dependency()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Dependency getBase_dependency();
@@ -62,7 +62,7 @@ public interface Friend extends EObject {
 	 * @return the value of the '<em>Base operation</em>' reference.
 	 * @see #setBase_operation(Operation)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getFriend_Base_operation()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Operation getBase_operation();

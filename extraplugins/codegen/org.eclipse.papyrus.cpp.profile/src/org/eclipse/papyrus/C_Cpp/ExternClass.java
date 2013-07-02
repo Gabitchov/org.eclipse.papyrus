@@ -33,7 +33,7 @@ public interface ExternClass extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternClass_Name()
-	 * @model unique="false" dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model unique="false" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	String getName();
