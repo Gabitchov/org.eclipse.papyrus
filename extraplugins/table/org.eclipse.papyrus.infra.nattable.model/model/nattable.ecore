@@ -19,7 +19,7 @@
       <details key="currentColumnAxisInHistory" value="columnAxisProvidersHistory->includes(currentColumnAxisProvider)"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="This object represents the table. It is used to save the interesting informations of the graphical table."/>
+      <details key="documentation" value="This object represents the table. It is used to save the interesting informations of the graphical table.&#xD;&#xA;&#xD;&#xA;The currentAxisProviders can be : Master/Master, Master/Slave, Slave/Master and never Slave/Slave."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -109,7 +109,7 @@
         <details key="defaultColumnAxisProviderExistsInCollection" value="columnAxisProviders->includes(defaultColumnAxisProvider)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="This object is used to configure a table. To create a new type of table, you must create &#xD;&#xA;a new file *.nattableConfiguration and register it using the extension point org.eclipse.papyrus.infra.nattable.configuration"/>
+        <details key="documentation" value="This object is used to configure a table. To create a new type of table, you must create &#xD;&#xA;a new file *.nattableConfiguration and register it using the extension point org.eclipse.papyrus.infra.nattable.configuration&#xD;&#xA;&#xD;&#xA;the defaultAxisProviders can be : Master/Master, Master/Slave, Slave/Master and never Slave/Slave."/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -187,48 +187,115 @@
       nsPrefix="nattableaxisprovider">
     <eClassifiers xsi:type="ecore:EClass" name="AbstractAxisProvider" abstract="true"
         eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement #//nattableconfiguration/TableNamedElement">
-      <eOperations name="getAxis" upperBound="-1" eType="#//nattableaxis/IAxis"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Abstract Element for the AxisProvider. This one only provides a method getAxis()."/>
+      </eAnnotations>
+      <eOperations name="getAxis" upperBound="-1" eType="#//nattableaxis/IAxis">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This method must returns the IAxis owned by the AxisProvider.&#xD;&#xA;Warning, in case of syncrhonized table, the list often will be empty. This method&#xD;&#xA;only returns the IAxis serialized in the model. Displayed elements are not necessary serialized.&#xD;&#xA;"/>
+        </eAnnotations>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IMasterAxisProvider" abstract="true"
         interface="true" eSuperTypes="#//nattableaxisprovider/AxisProvider">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="disconnectSlave" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Interface used to distinghuish master axis provider from slave axis provider. &#xD;&#xA;The master are able to disconnect the slave."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="disconnectSlave" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="if true, the slave won't be updated when the elements owned by the master will be changed."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ISlaveAxisProvider" abstract="true"
-        interface="true" eSuperTypes="#//nattableaxisprovider/AxisProvider"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AxisProvider" abstract="true" eSuperTypes="#//nattableaxisprovider/AbstractAxisProvider">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="axis" upperBound="-1"
-          eType="#//nattableaxis/IAxis" containment="true"/>
+        interface="true" eSuperTypes="#//nattableaxisprovider/AxisProvider">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Interface used to distinghuish the master from the slave axis provider."/>
+      </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SlaveObjectAxisProvider" eSuperTypes="#//nattableaxisprovider/ISlaveAxisProvider"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MasterObjectAxisProvider" eSuperTypes="#//nattableaxisprovider/IMasterAxisProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AxisProvider" abstract="true" eSuperTypes="#//nattableaxisprovider/AbstractAxisProvider">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="AbstractAxisProvider. This one owns IAxis"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="axis" upperBound="-1"
+          eType="#//nattableaxis/IAxis" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="IAxis owned by the AxisProvider. The list can be empty in case of synchronized table."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SlaveObjectAxisProvider" eSuperTypes="#//nattableaxisprovider/ISlaveAxisProvider">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Concret implementation of ISlaveAxisProvider"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MasterObjectAxisProvider" eSuperTypes="#//nattableaxisprovider/IMasterAxisProvider">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Concret implementation of IMasterAxisProvider"/>
+      </eAnnotations>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattablelabelprovider" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"
       nsPrefix="nattablelabelprovider">
     <eClassifiers xsi:type="ecore:EClass" name="ILabelProviderConfiguration" abstract="true"
-        interface="true" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
+        interface="true" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Common Interface for LabelProviderConfiguration"/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureLabelProviderConfiguration"
         eSuperTypes="#//nattablelabelprovider/ObjectLabelProviderConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="LabelProviderConfiguration for Feature. In case of Feature. we have two display options : &#xD;&#xA;&lt;ul>&lt;li>display the icon of the feature &lt;/li> &#xD;&#xA;&lt;li>display the label of the feature &lt;/li>&#xD;&#xA;&lt;li>display the multiplicity of the feature &lt;/li>&#xD;&#xA;&lt;li>display the type of the feature &lt;/li>&#xD;&#xA;&lt;li>display the '/' for isDerived of the feature &lt;/li>&#xD;&#xA;&lt;li>display the name of the feature &lt;/li>&#xD;&#xA; &lt;/ul>"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayIsDerived" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, we will display the '/' for isDerived"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayType" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, we will display the typeof the feature"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayMultiplicity"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, we will display the multiplicity of the feature"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayName" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, we will display the name of the feature"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectLabelProviderConfiguration"
         eSuperTypes="#//nattablelabelprovider/ILabelProviderConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="LabelProviderConfiguration for Object. In case of Object we have two display options : &#xD;&#xA;&lt;ul>&lt;li>display the icon of the object&lt;/li> &#xD;&#xA;&lt;li>display the label of the object&lt;/li> &lt;/ul>"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayIcon" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, we will display the icon of the object"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayLabel" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, we will display the label of the object"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattableaxisconfiguration" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"
