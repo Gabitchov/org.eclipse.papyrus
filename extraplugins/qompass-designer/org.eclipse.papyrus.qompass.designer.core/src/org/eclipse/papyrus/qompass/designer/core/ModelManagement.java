@@ -34,6 +34,10 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
+/**
+ * Manages a model (and the associated resource). Allows saving this model. It uses its own static resource set.
+ *
+ */
 public class ModelManagement {
 
 	/**

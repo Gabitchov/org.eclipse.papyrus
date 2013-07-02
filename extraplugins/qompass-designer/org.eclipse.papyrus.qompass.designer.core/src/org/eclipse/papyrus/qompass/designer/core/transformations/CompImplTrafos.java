@@ -21,6 +21,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Ptr;
+import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
@@ -77,7 +78,7 @@ public class CompImplTrafos {
 				Class implementation = (Class)element;
 				// we may not apply the transformation to the boot-loader itself, in particular it would transform
 				// singletons into pointers.
-				if(Utils.isCompImpl(implementation) && (implementation != bootloader)) {
+				if(Utils.isCompImpl(implementation) && (implementation != bootloader) && !StUtils.isApplied(implementation,  PortKind.class)) {
 					addGetPortOperation(copy, implementation);
 					addConnectPortOperation(copy, implementation);
 					markPartsPointer(implementation);
@@ -148,7 +149,7 @@ public class CompImplTrafos {
 						Interface providedIntfInCopy = (Interface) copy.get(providedIntf);
 						implementsIntf = implementation.getInterfaceRealization(null, providedIntfInCopy) != null;
 					}
-					if (implementsIntf) {
+					if (implementsIntf || true) {
 						body = "return this;";	 //$NON-NLS-1$
 					} else {
 						throw new RuntimeException("Interface <" + providedIntf.getName() + "> provided by port <" + //$NON-NLS-1$ //$NON-NLS-2$
