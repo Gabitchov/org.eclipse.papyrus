@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.PortKind;
+import org.eclipse.papyrus.FCM.TemplatePort;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Interface;
@@ -152,7 +153,14 @@ public class PortUtils {
 		EList<PortInfo> portInfos = new BasicEList<PortInfo>();
 		if (isExtendedPort(port)) {
 			org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
-			org.eclipse.uml2.uml.Class cl = fcmPort.getKind().getBase_Class();
+			org.eclipse.uml2.uml.Class cl;
+			if (isTemplatePort(port)) {
+				TemplatePort tp = StUtils.getApplication(port, TemplatePort.class);
+				cl = tp.getBoundType().getBase_Class();
+			}
+			else {
+				cl = fcmPort.getKind().getBase_Class();
+			}
 			if ((cl != null) && (getAllPorts(cl).size() > 0)) {
 				EList<Port> extendedPorts = getAllPorts(cl);
 				for (Port extendedPort : extendedPorts) {
@@ -179,6 +187,16 @@ public class PortUtils {
 		}
 		return false;
 	}
+	
+	/**
+	 * Return true, if the passed port is an extended port
+	 * @param port
+	 * @return
+	 */
+	public static boolean isTemplatePort(Port port) {
+		return StUtils.isApplied(port, TemplatePort.class);
+	}
+	
 	/**
 	 * Return the port kind, an element of the static profile
 	 * 
