@@ -18,25 +18,64 @@
       <details key="currentRowAxisInHistory" value="rowAxisProvidersHistory->includes(currentRowAxisProvider)"/>
       <details key="currentColumnAxisInHistory" value="columnAxisProvidersHistory->includes(currentColumnAxisProvider)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This object represents the table. It is used to save the interesting informations of the graphical table."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The context is used for two things : &#xD;&#xA;&lt;ul> &lt;li>&quot;virtual&quot; parent to display the table in the Papyrus Model Explorer &lt;/li>&#xD;&#xA;&lt;li>container of the objects created in the table&lt;/li>&#xD;&#xA;&lt;/ul> &#xD;&#xA;The context can't be null;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tableConfiguration" lowerBound="1"
-        eType="#//nattableconfiguration/TableConfiguration"/>
+        eType="#//nattableconfiguration/TableConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Reference the configuration used by the table. This field can't be null."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="invertAxis" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="If true, the axis will be inverted on the screen. When the user inverts the axis, &#xD;&#xA;only this boolean is changed. We must not invert the currentRowAxis and the currentColumnAxis neither the histories or the AxisConfiguration"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columnAxisProvidersHistory"
         lowerBound="1" upperBound="-1" eType="#//nattableaxisprovider/AbstractAxisProvider"
-        containment="true"/>
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This list contains all the columns configurations already used by the user and saved in this list by him."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rowAxisProvidersHistory"
         lowerBound="1" upperBound="-1" eType="#//nattableaxisprovider/AbstractAxisProvider"
-        containment="true"/>
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This list contains all the rowsconfigurations already used by the user and saved in this list by him."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localRowHeaderAxisConfiguration"
-        eType="#//nattableaxisconfiguration/LocalTableHeaderAxisConfiguration" containment="true"/>
+        eType="#//nattableaxisconfiguration/LocalTableHeaderAxisConfiguration" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This field contains the row headerAxisConfiguration. It could be null. &#xD;&#xA;In this case we use the row TableHeaderAxisConfiguration stored in the TableConfiguration of this table."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localColumnHeaderAxisConfiguration"
-        eType="#//nattableaxisconfiguration/LocalTableHeaderAxisConfiguration" containment="true"/>
+        eType="#//nattableaxisconfiguration/LocalTableHeaderAxisConfiguration" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This field contains the columnheaderAxisConfiguration. It could be null. &#xD;&#xA;In this case we use the column TableHeaderAxisConfiguration stored in the TableConfiguration of this table."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentRowAxisProvider"
-        lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider"/>
+        lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="References the current row AxisProvider used in the table.&#xD;&#xA;The value must be owned by rowAxisProviderHistory"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentColumnAxisProvider"
-        lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider"/>
+        lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="References the current column AxisProvider used in the table.&#xD;&#xA;The value must be owned by column AxisProviderHistory"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eSubpackages name="nattableconfiguration" nsURI="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"
       nsPrefix="nattableconfiguration">
@@ -47,8 +86,19 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="TableNamedElement" abstract="true"
         eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Abstract Element used in this metamodel for named element which have a description."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The description of the named element."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The name of the named element."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TableConfiguration" eSuperTypes="#//nattableconfiguration/TableNamedElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -58,30 +108,76 @@
         <details key="defaultRowAxisProviderExistsInCollection" value="rowAxisProviders->includes(defaultRowAxisProvider)"/>
         <details key="defaultColumnAxisProviderExistsInCollection" value="columnAxisProviders->includes(defaultColumnAxisProvider)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This object is used to configure a table. To create a new type of table, you must create &#xD;&#xA;a new file *.nattableConfiguration and register it using the extension point org.eclipse.papyrus.infra.nattable.configuration"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="iconPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The type of the table. This value is used to be able to open/close easily the table editor in Papyrus. &#xD;&#xA;Moreover it allows to distinghuish easily the table."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="iconPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The path of the icon to use for the table which references this TableConfiguration."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="creationTester" eType="#//nattabletester/AbstractTableTester"
-          containment="true"/>
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This value could be null. The tester is used to know if this tableConfiguration can be used&#xD;&#xA;to create a new table using as context the selected element."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cellEditorDeclaration"
-          lowerBound="1" eType="#//nattableconfiguration/CellEditorDeclaration" defaultValueLiteral="COLUMN"/>
+          lowerBound="1" eType="#//nattableconfiguration/CellEditorDeclaration" defaultValueLiteral="COLUMN">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This value can't be null. Indicates how the CellEditor must be declared. &#xD;&#xA;In the common table, we display features as columns and objects as line. &#xD;&#xA;In this case the cell editors are specific to features, so the cell editor must be declared on the columns."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="rowHeaderAxisConfiguration"
           lowerBound="1" eType="#//nattableaxisconfiguration/TableHeaderAxisConfiguration"
-          containment="true"/>
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This value can't be null. Gives the initial row configuration of the table."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="columnHeaderAxisConfiguration"
           lowerBound="1" eType="#//nattableaxisconfiguration/TableHeaderAxisConfiguration"
-          containment="true"/>
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This value can't be null. Gives the initial column configuration of the table."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="columnAxisProviders"
           lowerBound="1" upperBound="-1" eType="#//nattableaxisprovider/AbstractAxisProvider"
-          containment="true"/>
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This list can't be empty. Contains list of possible column AxisProvider for the table."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="rowAxisProviders" lowerBound="1"
-          upperBound="-1" eType="#//nattableaxisprovider/AbstractAxisProvider" containment="true"/>
+          upperBound="-1" eType="#//nattableaxisprovider/AbstractAxisProvider" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This list can't be empty. Contains a list of possible row AxisProvider for the table."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultRowAxisProvider"
-          lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider"/>
+          lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This value can't be null. References the Axis Provider to use by default for rows."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultColumnAxisProvider"
-          lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider"/>
+          lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This value can't be null. References the Axis Provider to use by default for columns."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CellEditorDeclaration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Indicates how the CellEditor must be declared. &#xD;&#xA;In the common table, we display features as columns and objects as line. &#xD;&#xA;In this case the cell editors are specific to features, so the cell editor must be declared on the columns."/>
+      </eAnnotations>
       <eLiterals name="COLUMN"/>
       <eLiterals name="ROW" value="1"/>
       <eLiterals name="CELL" value="2"/>
