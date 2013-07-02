@@ -1,34 +1,29 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.validator;
 
-import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.papyrus.infra.widgets.messages.Messages;
 
 
+/**
+ * Validator for Integer
+ * 
+ */
+public class IntegerInputValidator extends InputValidatorWrapper {
 
-public class IntegerInputValidator implements IInputValidator {
 
-
-
-
-	/**
-	 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
-	 * 
-	 * @param newText
-	 * @return <code>null</code> if the newText is valid an error message when newText is
-	 *         invalid
-	 */
-
-	public String isValid(String newText) {
-
-		try {
-			if(newText != null) {
-				new Integer(newText);
-			}
-		} catch (NumberFormatException e) {
-			return Messages.IntegerInputValidator_NotAnIntegerMessage;
-		}
-		return null;
+	public IntegerInputValidator() {
+		super(new IntegerValidator());
 	}
-
 
 }

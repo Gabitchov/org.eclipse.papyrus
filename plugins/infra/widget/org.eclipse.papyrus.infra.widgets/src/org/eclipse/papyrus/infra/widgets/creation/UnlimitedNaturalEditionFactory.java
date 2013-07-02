@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.widgets.creation;
 
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.papyrus.infra.widgets.validator.UnlimitedNaturalInputValidator;
+import org.eclipse.papyrus.infra.widgets.validator.UnlimitedNaturalValidator;
 import org.eclipse.swt.widgets.Control;
 
 /**
@@ -82,8 +83,8 @@ public class UnlimitedNaturalEditionFactory extends StringEditionFactory {
 	@Override
 	public Object createObject(Control widget) {
 		String txt = super.createObject(widget).toString();
-		if(UnlimitedNaturalInputValidator.INFINITE_STAR.equals(txt)) {
-			txt = UnlimitedNaturalInputValidator.INFINITE_MINUS_ONE;
+		if(UnlimitedNaturalValidator.INFINITE_STAR.equals(txt)) {
+			txt = UnlimitedNaturalValidator.INFINITE_MINUS_ONE;
 		}
 		if(txt != null) {
 			return Integer.parseInt(txt);

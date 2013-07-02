@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.validator;
 
-import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.papyrus.infra.tools.util.BooleanHelper;
-import org.eclipse.papyrus.infra.widgets.messages.Messages;
 
 /**
  * InputValidator for boolean
@@ -23,23 +20,10 @@ import org.eclipse.papyrus.infra.widgets.messages.Messages;
  * @author Vincent Lorenzo
  * 
  */
-public class BooleanInputValidator implements IInputValidator {
+public class BooleanInputValidator extends InputValidatorWrapper {
 
-
-
-	/**
-	 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
-	 * 
-	 * @param newText
-	 * @return <code>null</code> if the newText is valid an error message when newText is
-	 *         invalid
-	 */
-
-	public String isValid(String newText) {
-		if(!BooleanHelper.isBoolean(newText)) {
-			return Messages.BooleanInputValidator_NotABoolean;
-		}
-		return null;
+	public BooleanInputValidator() {
+		super(new BooleanValidator());
 	}
 
 }

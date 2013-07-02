@@ -13,47 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.validator;
 
-import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.papyrus.infra.widgets.messages.Messages;
 
 /**
  * Validator for the UnlimitedNaturalEditor. It accepts "-1", "*" and all integer >=0
  */
-public class UnlimitedNaturalInputValidator implements IInputValidator {
+public class UnlimitedNaturalInputValidator extends InputValidatorWrapper {
 
-
-	public static final String INFINITE_STAR = "*"; //$NON-NLS-1$
-
-	public static final String INFINITE_MINUS_ONE = "-1"; //$NON-NLS-1$
-
-
-	/**
-	 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
-	 * 
-	 * @param newText
-	 * @return <code>null</code> if the newText is valid an error message when newText is
-	 *         invalid
-	 */
-
-	public String isValid(String newText) {
-		if(INFINITE_STAR.equals(newText) || INFINITE_MINUS_ONE.equals(newText)) {
-			return null;
-		}
-		boolean isValid = true;
-		try {
-			Integer myUnlimitedNatural = new Integer(newText);
-			if(myUnlimitedNatural < -1) {
-				isValid = false;
-			}
-		} catch (NumberFormatException e) {
-			isValid = false;
-		}
-
-		if(!isValid) {
-			return Messages.UnlimitedNaturalInputValidator_NotAnUnlimitedNaturalMessage;
-		}
-		return null;
+	public UnlimitedNaturalInputValidator() {
+		super(new UnlimitedNaturalValidator());
 	}
-
 
 }

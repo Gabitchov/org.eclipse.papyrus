@@ -13,35 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.validator;
 
-import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.papyrus.infra.widgets.messages.Messages;
 
 /**
  * Validator for the Real
  */
-public class RealInputValidator implements IInputValidator {
+public class RealInputValidator extends InputValidatorWrapper {
 
-
-
-
-	/**
-	 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
-	 * 
-	 * @param newText
-	 * @return <code>null</code> if the newText is valid an error message when newText is
-	 *         invalid
-	 */
-
-	public String isValid(String newText) {
-		try {
-			if(newText != null) {
-				Double.parseDouble(newText);
-			}
-		} catch (NumberFormatException e) {
-			return Messages.RealInputValidator_NotaRealMessage;
-		}
-		return null;
+	public RealInputValidator() {
+		super(new RealValidator());
 	}
-
 
 }
