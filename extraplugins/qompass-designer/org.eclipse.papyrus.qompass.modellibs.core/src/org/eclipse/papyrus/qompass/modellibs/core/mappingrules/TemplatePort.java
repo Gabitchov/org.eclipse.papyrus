@@ -23,10 +23,12 @@ import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FixTemplateSync;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -106,7 +108,6 @@ public class TemplatePort implements ITemplateMappingRule {
 	}
 
 	public void updateBinding(org.eclipse.papyrus.FCM.Port p) {
-		// TODO Auto-generated method stub
 		Port port = p.getBase_Port();
 		Type type = port.getType();
 		if(!(type instanceof Classifier)) {
@@ -115,17 +116,56 @@ public class TemplatePort implements ITemplateMappingRule {
 		Class extendedPort = p.getKind().getBase_Class();
 
 		TemplateSignature signature = TemplateUtils.getSignature(extendedPort.getNearestPackage());
+		Package pkgTemplate = signature.getNearestPackage();
 		if(signature != null) {
 			Package model = Utils.getTop(port);
+			String name = pkgTemplate.getName() + "_" + type.getName();  //$NON-NLS-1$
+			Package pkg = model.getNestedPackage(name);
 			try {
 				TemplateBinding binding =
 					TemplateUtils.fixedBinding(model, extendedPort, (Classifier)type);
 				Copy copy = new Copy(model, model, false);
 				TemplateInstantiation ti = new TemplateInstantiation(copy, binding);
+				// remove listener synchronizing implementation, since it would add derived
+				// elements for the extended port itself (e.g. provided operations)
+				if(copy.postCopyListeners.contains(FixTemplateSync.getInstance())) {
+					copy.postCopyListeners.remove(FixTemplateSync.getInstance());
+				}
+				if (pkg != null) {
+					// bound template already exists, sync copy map
+					syncCopy(copy, pkgTemplate, pkg);
+				}
 				// create a bound element of the extended port. Add bound class to derived interface class
 				ti.bindNamedElement(extendedPort);
 			} catch (TransformationException e) {
 			}
 		}
+	}
+	
+	/**
+	 * Synchronize the copy map, i.e. put the correspondences between existing source and target elements into the map.
+	 * Otherwise, a new binding would produce duplicates.
+	 * TODO: A more efficient way would be to cache the copy function and only re-sync, if a new model has been loaded.
+	 *   On the other hand, the bound package is normally not very large
+	 *   
+	 * @param copy A copy map
+	 * @param sourcePkg The package template (source)
+	 * @param targetPkg The bound package (target)
+	 */
+	public static void syncCopy(Copy copy, Package sourcePkg, Package targetPkg) {
+		copy.put(sourcePkg, targetPkg);
+		for (PackageableElement target : targetPkg.getPackagedElements()) {
+			if (target instanceof NamedElement) {
+				String targetName = ((NamedElement) target).getName();
+				PackageableElement source = sourcePkg.getPackagedElement(targetName);
+				if((source instanceof Package) && (target instanceof Package)) {
+					syncCopy(copy, (Package) source, (Package) target);
+				}
+				else {
+					copy.put(source, target);
+				}
+			}
+		}
+
 	}
 }
