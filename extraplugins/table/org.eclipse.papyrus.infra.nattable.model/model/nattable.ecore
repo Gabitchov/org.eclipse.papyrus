@@ -5,7 +5,19 @@
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore#/"/>
   </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//nattableconfiguration/TableNamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="currentRowAxisInHistory currentColumnAxisInHistory"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="currentRowAxisInHistory" value="rowAxisProvidersHistory->includes(currentRowAxisProvider)"/>
+      <details key="currentColumnAxisInHistory" value="columnAxisProvidersHistory->includes(currentColumnAxisProvider)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tableConfiguration" lowerBound="1"
         eType="#//nattableconfiguration/TableConfiguration"/>
@@ -176,6 +188,12 @@
           upperBound="-1" eType="#//nattableaxisconfiguration/IAxisConfiguration"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TableHeaderAxisConfiguration" eSuperTypes="#//nattableaxisconfiguration/AbstractHeaderAxisConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="axisManagersIdUnique"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="axisManagersIdUnique" value="axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId &lt;> am2.axisManagerId)"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="axisManagers" lowerBound="1"
           upperBound="-1" eType="#//nattableaxisconfiguration/AxisManagerRepresentation"
           containment="true"/>
