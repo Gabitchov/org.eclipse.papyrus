@@ -251,6 +251,24 @@
                      class="Operation">
                </target>
             </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.TemplateRefWithoutBinding"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.TemplateRefWithoutBinding_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.TemplateRefWithoutBinding"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  "Qompass: {0}"
+               </message>
+               <description>
+                  Check whether a template parameter is referenced out of scope
+               </description>
+               <target
+                     class="TypedElement">
+               </target>
+            </constraint>
          </constraints>
       </constraintProvider>
       </extension>
