@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameter;
@@ -55,11 +56,11 @@ public class TemplateInstantiation {
 	public TemplateInstantiation(final Copy copy_, final TemplateBinding binding, Object args[]) throws TransformationException {
 		if(binding == null) {
 			// user should never see this exception
-			throw new TransformationException("Passed binding is null");
+			throw new TransformationException("Passed binding is null"); //$NON-NLS-1$
 		}
 		signature = binding.getSignature();
 		if(signature == null) {
-			throw new TransformationException("Passed template binding does not have a signature");
+			throw new TransformationException("Passed template binding does not have a signature"); //$NON-NLS-1$
 		}
 		packageTemplate = (Package)signature.getOwner();
 		/*
@@ -73,7 +74,7 @@ public class TemplateInstantiation {
 		copy = copy_;
 
 		Package boundPackage = (Package)binding.getBoundElement();
-		// set template instantiation parameter. Used by acceleo templates to get relation between
+		// set template instantiation parameter. Used by Acceleo templates to get relation between
 		// formal and actual parameters
 		TransformationContext.setTemplateInstantiation(this);
 
@@ -87,6 +88,15 @@ public class TemplateInstantiation {
 				copy.setPackageTemplate(addedPkgTemplate, boundPackage);
 			}
 		}
+		
+		if (boundPackage.getPackagedElements() != null) {
+			// bound package is not empty, but copy does not know about it. Fill copyMap with information about the relation
+			// This happens, if the original model already contains template instantiations, e.g. for template ports
+			if (copy.getMap(signature).keySet().size() == 0) {		
+				syncCopyMap(packageTemplate, boundPackage);
+			}
+		}
+		
 		this.binding = binding;
 		this.args = args;
 
@@ -109,17 +119,43 @@ public class TemplateInstantiation {
 			copy.preCopyListeners.add(TemplateInstantiationListener.getInstance());
 		}
 		TemplateInstantiationListener.getInstance().init(copy, binding, args);
-		InstantiateCppInclude.getInstance().init(binding, args);
-
+	
 		if(!copy.postCopyListeners.contains(FixTemplateSync.getInstance())) {
 			copy.postCopyListeners.add(FixTemplateSync.getInstance());
 		}
+		// TODO: programming language specific code!!
+		InstantiateCppInclude.getInstance().init(binding, args);
 		if(!copy.postCopyListeners.contains(InstantiateCppInclude.getInstance())) {
 			copy.postCopyListeners.add(InstantiateCppInclude.getInstance());
 		}
 	}
 
+	/**
+	 * Synchronize the copy map, i.e. put the correspondences between existing source and target elements into the map.
+	 * Otherwise, a new binding would produce duplicates.
+	 * TODO: A more efficient way would be to cache the copy function and only re-sync, if a new model has been loaded.
+	 *   On the other hand, the bound package is normally not very large
+	 *   
+	 * @param copy A copy map
+	 * @param sourcePkg The package template (source)
+	 * @param targetPkg The bound package (target)
+	 */
+	public void syncCopyMap(Package sourcePkg, Package targetPkg) {
+		copy.put(sourcePkg, targetPkg);
+		for (PackageableElement target : targetPkg.getPackagedElements()) {
+			if (target instanceof NamedElement) {
+				String targetName = ((NamedElement) target).getName();
+				PackageableElement source = sourcePkg.getPackagedElement(targetName);
+				if((source instanceof Package) && (target instanceof Package)) {
+					syncCopyMap((Package) source, (Package) target);
+				}
+				else {
+					copy.put(source, target);
+				}
+			}
+		}
 
+	}
 	Package packageTemplate;
 
 	public TemplateBinding binding;

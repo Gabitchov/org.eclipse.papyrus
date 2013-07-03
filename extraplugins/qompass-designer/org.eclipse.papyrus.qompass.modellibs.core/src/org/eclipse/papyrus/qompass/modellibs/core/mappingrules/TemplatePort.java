@@ -28,7 +28,6 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -87,10 +86,15 @@ public class TemplatePort implements ITemplateMappingRule {
 		Package pkgTemplate = signature.getNearestPackage();
 		if(pkgTemplate != null) {
 			EList<Namespace> path = TemplateUtils.relativePathWithMerge(extendedPort, pkgTemplate);
-			Package model = Utils.getTop(port);
 			
 			String name = pkgTemplate.getName() + "_" + type.getName();  //$NON-NLS-1$
+			Package model = Utils.getTop(port);
 			Package pkg = model.getNestedPackage(name);
+			if (pkg == null) {
+				model = Utils.getFirstLevel(port);	// try whether package template exists here
+				// required for target model with additional "root" folder
+				pkg = model.getNestedPackage(name);
+			}
 			if (pkg != null) {
 				for (Namespace pathElem : path) {
 					pkg = pkg.getNestedPackage(pathElem.getName());
@@ -116,11 +120,8 @@ public class TemplatePort implements ITemplateMappingRule {
 		Class extendedPort = p.getKind().getBase_Class();
 
 		TemplateSignature signature = TemplateUtils.getSignature(extendedPort.getNearestPackage());
-		Package pkgTemplate = signature.getNearestPackage();
 		if(signature != null) {
 			Package model = Utils.getTop(port);
-			String name = pkgTemplate.getName() + "_" + type.getName();  //$NON-NLS-1$
-			Package pkg = model.getNestedPackage(name);
 			try {
 				TemplateBinding binding =
 					TemplateUtils.fixedBinding(model, extendedPort, (Classifier)type);
@@ -131,41 +132,11 @@ public class TemplatePort implements ITemplateMappingRule {
 				if(copy.postCopyListeners.contains(FixTemplateSync.getInstance())) {
 					copy.postCopyListeners.remove(FixTemplateSync.getInstance());
 				}
-				if (pkg != null) {
-					// bound template already exists, sync copy map
-					syncCopy(copy, pkgTemplate, pkg);
-				}
+
 				// create a bound element of the extended port. Add bound class to derived interface class
 				ti.bindNamedElement(extendedPort);
 			} catch (TransformationException e) {
 			}
 		}
-	}
-	
-	/**
-	 * Synchronize the copy map, i.e. put the correspondences between existing source and target elements into the map.
-	 * Otherwise, a new binding would produce duplicates.
-	 * TODO: A more efficient way would be to cache the copy function and only re-sync, if a new model has been loaded.
-	 *   On the other hand, the bound package is normally not very large
-	 *   
-	 * @param copy A copy map
-	 * @param sourcePkg The package template (source)
-	 * @param targetPkg The bound package (target)
-	 */
-	public static void syncCopy(Copy copy, Package sourcePkg, Package targetPkg) {
-		copy.put(sourcePkg, targetPkg);
-		for (PackageableElement target : targetPkg.getPackagedElements()) {
-			if (target instanceof NamedElement) {
-				String targetName = ((NamedElement) target).getName();
-				PackageableElement source = sourcePkg.getPackagedElement(targetName);
-				if((source instanceof Package) && (target instanceof Package)) {
-					syncCopy(copy, (Package) source, (Package) target);
-				}
-				else {
-					copy.put(source, target);
-				}
-			}
-		}
-
 	}
 }

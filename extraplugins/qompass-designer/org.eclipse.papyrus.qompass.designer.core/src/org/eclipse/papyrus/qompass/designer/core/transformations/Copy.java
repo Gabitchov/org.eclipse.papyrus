@@ -384,7 +384,8 @@ public class Copy extends Copier {
 		if(sourceEObj instanceof NamedElement) {
 			String name = ((NamedElement)sourceEObj).getQualifiedName();
 			if((name != null) && name.startsWith("uml::")) { //$NON-NLS-1$
-				Log.log(Status.ERROR, Log.TRAFO_COPY, "copy for meta-model element \"" + name + "\" requested. Return original element");
+				Log.log(Status.ERROR, Log.TRAFO_COPY, "copy for meta-model element \"" + name + //$NON-NLS-1$
+						"\" requested. Return original element"); //$NON-NLS-1$
 				return sourceEObj;
 			}			
 		}
@@ -392,7 +393,7 @@ public class Copy extends Copier {
 		// of a package template
 		if((sourceEObj instanceof Package) && (!withinTemplate)) {
 			if(((Package)sourceEObj).getOwnedTemplateSignature() != null) {
-				Log.log(Status.WARNING, Log.TRAFO_COPY, "warning: copying a package template without instantiating a template");
+				Log.log(Status.WARNING, Log.TRAFO_COPY, "warning: copying a package template without instantiating a template"); //$NON-NLS-1$
 			}
 		}
 

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
@@ -388,9 +389,32 @@ public class StUtils {
 				if(newList.size() > 0) {
 					destination.setValue(stereoDest, attrName, newList);
 				}
-			} else if((copy != null) && (value instanceof Element)) {
-				destination.setValue(stereoDest, attrName, copy.getCopy((Element)value));
-			} else {
+			} else if((copy != null) && (value instanceof EObject)) {
+				if (value instanceof Element) {
+					destination.setValue(stereoDest, attrName, copy.getCopy((Element)value));
+				}
+				// TODO: remove hack: the template port references directly an element of a package template
+				//   the package template should not be copied, but instantiated as done in class TemplatePort
+				else if (!stereotypeName.endsWith("TemplatePort")) { // (copy.withinTemplate((EObject) value)) {
+					// value is likely a stereotype application. If copy does a package-template instantiation, it would
+					// check whether the passed element is within the package template. This would fail if we pass
+					// a stereotype application. (could also do check within copy??)
+					EObject eValue = (EObject) value;
+					Element base = UMLUtil.getBaseElement(eValue);
+					EClass eClass = eValue.eClass();
+					Element newBase =  copy.getCopy(base);
+					for (EObject stereoApp : newBase.getStereotypeApplications()) {
+						if (stereoApp.eClass() == eClass) {
+							destination.setValue(stereoDest, attrName, stereoApp);
+							break;
+						}
+					}
+				}
+				else {
+					destination.setValue(stereoDest, attrName, value);
+				}
+			}
+			else {
 				destination.setValue(stereoDest, attrName, value);
 			}
 		}

@@ -33,7 +33,6 @@ import org.eclipse.papyrus.FCM.Singleton;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferenceConstants;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -41,7 +40,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
@@ -88,6 +86,28 @@ public class Utils {
 					return (Package)element;
 				}
 			}
+			element = owner;
+		}
+		return null;
+	}
+
+	/**
+	 * Return package at first level. Useful, since last model transformation 
+	 * will put elements under a new "root"
+	 * 
+	 * @param element
+	 * @return
+	 */
+	public static Package getFirstLevel(Element element) {
+		Element lastElement = element;
+		while(element != null) {
+			Element owner = element.getOwner();
+			if(owner == null) {
+				if(lastElement instanceof Package) {
+					return (Package)lastElement;
+				}
+			}
+			lastElement = element;
 			element = owner;
 		}
 		return null;
@@ -148,7 +168,7 @@ public class Utils {
 
 	/**
 	 * this method returns the component type of an implementation. It is based
-	 * on the modeling convention that implemen tations inherit from types.
+	 * on the modeling convention that implementations inherit from types.
 	 */
 	public static Class componentType(Class implementation) {
 		if(Utils.isCompImpl(implementation)) {
@@ -224,7 +244,7 @@ public class Utils {
 	public static NamedElement getQualifiedElement(Package root,
 		String qualifiedName) {
 		NamedElement namedElement = null;
-		int index = qualifiedName.indexOf("::");
+		int index = qualifiedName.indexOf("::"); //$NON-NLS-1$
 		if(index != -1) {
 			// first try using a path without top element (since
 			// getQualifiedElement is typically used for
@@ -237,7 +257,7 @@ public class Utils {
 			// has been copied into the model,
 			// i.e. qualifiedName is prefixed by model name
 			namedElement = getQualifiedElement(root, qualifiedName,
-				root.getName() + "::" + qualifiedName);
+				root.getName() + "::" + qualifiedName); //$NON-NLS-1$
 		}
 		return namedElement;
 	}
@@ -293,90 +313,7 @@ public class Utils {
 	}
 
 	/**
-	 * Check whether an element (referenced from the source model) is part of a
-	 * package that is imported on top-level by the target model. It will always
-	 * return false, if the passed element is part of the source model.
-	 * 
-	 * @param sat
-	 *        source and target model information
-	 * @param namedElement
-	 *        a named element
-	 * @return true, if imported (on top level), false otherwise
-	 */
-	public static boolean isElementImported(Copy sat, NamedElement namedElement) {
-		if(isElementInDifferentModel(sat.source, namedElement)) {
-			String qualifiedName = namedElement.getQualifiedName();
-			int index = qualifiedName.indexOf("::");
-			// remove top level element of name
-			if(index != -1) {
-				qualifiedName = qualifiedName.substring(index + 2);
-			}
-			// check whether the element is reachable from the target root
-			if(getQualifiedElement(sat.target, qualifiedName) != null) {
-				return true;
-			}
-			/*
-			 * do not use packageImports, since import is transitiv and would
-			 * not capture all cases Package top = getTop (namedElement); for
-			 * (PackageImport packageImport : sat.target.getPackageImports()) {
-			 * if (packageImport.getImportedPackage () == top) { return true; }
-			 * }
-			 */
-		}
-		return false;
-	}
-
-	/**
-	 * Check whether a named element exists within the target model. This
-	 * function evaluates the copyImport flag. If true, it assumes that the
-	 * original model as well as imports correspond to a top level package
-	 * within the target model. If imports are not copied, the function assumes
-	 * that all elements of a different model are actually reachable via the
-	 * import relationship
-	 * 
-	 * @param sat
-	 * @param namedElement
-	 * @return the corresponding element within the target model - if it exits
-	 */
-	public static NamedElement getExistingNEinTarget(Copy sat,
-		NamedElement namedElement) {
-		if(sat.copyExtReferences) {
-			// copy imports into new model
-			// return existing element (or null)
-			return getExistingElement(sat.target, namedElement, false);
-		} else {
-			// elements that are imported should not be copied.
-			// Function assumes that all elements that are in a different model
-			// are actually
-			// reachable via import relations, i.e. exist already
-			if(isElementInDifferentModel(sat.source, namedElement)) {
-				return namedElement;
-			}
-			return getExistingElement(sat.target, namedElement, false);
-		}
-	}
-
-	public static NamedElement getExistingElement(Package model,
-		NamedElement namedElement, boolean skipTop) {
-		EList<Namespace> list = namedElement.allNamespaces();
-		int offset = (skipTop ? 2 : 1);
-		// start with list size - 2, i.e. skip last element which points to the
-		// name of the
-		// (potentially) imported model, since getImportedElement will start
-		// there.
-		Package currentPkg = model;
-		for(int i = list.size() - offset; i >= 0; i--) {
-			String name = list.get(i).getName();
-			NamedElement member = currentPkg.getMember(name);
-			if(member instanceof Package) {
-				currentPkg = (Package)member;
-			} else {
-				return null;
-			}
-		}
-		String name = namedElement.getName();
-		return currentPkg.getMember(name);
-	}
+	
 
 	/**
 	 * Check whether a class contains a non-port attribute of a given name
@@ -392,7 +329,6 @@ public class Utils {
 				}
 			}
 		}
-
 		return false;
 	}
 

@@ -143,7 +143,7 @@ public class TemplateUtils {
 		// are typed with the formal template parameter
 
 		actuals.add(fixedActual);
-		name = name + "_" + fixedActual.getName();
+		name = name + "_" + fixedActual.getName(); //$NON-NLS-1$
 		// }
 
 		// the bound package is instantiated in the same model, in which the

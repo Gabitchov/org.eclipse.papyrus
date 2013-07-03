@@ -156,7 +156,13 @@ public class PortUtils {
 			org.eclipse.uml2.uml.Class cl;
 			if (isTemplatePort(port)) {
 				TemplatePort tp = StUtils.getApplication(port, TemplatePort.class);
-				cl = tp.getBoundType().getBase_Class();
+				if (tp.getBoundType() == null) {
+					System.err.println("Problems, problems"); //$NON-NLS-1$
+					cl = fcmPort.getKind().getBase_Class();
+				}
+				else {
+					cl = tp.getBoundType().getBase_Class();
+				}
 			}
 			else {
 				cl = fcmPort.getKind().getBase_Class();
