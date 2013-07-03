@@ -75,7 +75,7 @@ public interface Table extends TableNamedElement {
 	 * @return the value of the '<em>Context</em>' reference.
 	 * @see #setContext(EObject)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_Context()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	EObject getContext();

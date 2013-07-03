@@ -113,7 +113,8 @@ public interface IAxis extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Returns the local label configuration to use for this IAxis.
+	 * Returns the local label configuration to use for this IAxis. This configuration
+	 * will override the label configuration defined in the AxisManagerConfiguration.
 	 * <!-- end-model-doc -->
 	 * 
 	 * @model kind="operation"

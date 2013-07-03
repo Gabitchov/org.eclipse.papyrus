@@ -15,20 +15,19 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderFactory;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis} object.
@@ -62,22 +61,40 @@ public class ObjectIdAxisItemProvider extends IdAxisItemProvider implements IEdi
 		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLocalLabelConfigurationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Local Label Configuration feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addLocalLabelConfigurationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ObjectAxis_localLabelConfiguration_feature"), //$NON-NLS-1$
-			getString("_UI_PropertyDescriptor_description", "_UI_ObjectAxis_localLabelConfiguration_feature", "_UI_ObjectAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, true, false, true, null, null, null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if(childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -117,6 +134,12 @@ public class ObjectIdAxisItemProvider extends IdAxisItemProvider implements IEdi
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch(notification.getFeatureID(ObjectIdAxis.class)) {
+		case NattableaxisPackage.OBJECT_ID_AXIS__LOCAL_LABEL_CONFIGURATION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -131,6 +154,10 @@ public class ObjectIdAxisItemProvider extends IdAxisItemProvider implements IEdi
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, NattablelabelproviderFactory.eINSTANCE.createObjectLabelProviderConfiguration()));
+
+		newChildDescriptors.add(createChildParameter(NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, NattablelabelproviderFactory.eINSTANCE.createFeatureLabelProviderConfiguration()));
 	}
 
 }

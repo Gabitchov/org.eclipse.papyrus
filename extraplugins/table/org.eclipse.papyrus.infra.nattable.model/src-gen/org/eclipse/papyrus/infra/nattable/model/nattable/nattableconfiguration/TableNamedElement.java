@@ -78,7 +78,7 @@ public interface TableNamedElement extends EObject, EModelElement {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableNamedElement_Name()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getName();

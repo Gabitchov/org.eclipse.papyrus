@@ -42,7 +42,8 @@ public interface ObjectAxis extends IAxis {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * This field can be null. References an object label configuration.
+	 * Returns the local label configuration to use for this IAxis. This configuration
+	 * will override the label configuration defined in the AxisManagerConfiguration.
 	 * <!-- end-model-doc -->
 	 * 
 	 * @return the value of the '<em>Local Label Configuration</em>' containment reference.
