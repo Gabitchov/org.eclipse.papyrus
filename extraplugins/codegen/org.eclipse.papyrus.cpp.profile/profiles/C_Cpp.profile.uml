@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Profile xmi:id="_j9REUByGEduN1bTiWJ0lyw" name="C_Cpp" metaclassReference="_TRvswByHEduN1bTiWJ0lyw _gphJsByIEduN1bTiWJ0lyw _Gt0nQByJEduN1bTiWJ0lyw _GuFF8ByJEduN1bTiWJ0lyw _G0LmkByMEdu0tMSz-ceC5A _G0XMwByMEdu0tMSz-ceC5A _G0a3IByMEdu0tMSz-ceC5A _jBetUByNEdu0tMSz-ceC5A _jB15sByNEdu0tMSz-ceC5A _jB_qsByNEdu0tMSz-ceC5A _jCCuAByNEdu0tMSz-ceC5A _jCGYYByNEdu0tMSz-ceC5A _jCJbsByNEdu0tMSz-ceC5A _X7dJsDlPEd2mO4M0idYmag _OiGWgF5fEeKpvPHLdOdp2Q _41Sz8I1SEeKTUILNxKtfZw">
+  <uml:Profile xmi:id="_j9REUByGEduN1bTiWJ0lyw" name="C_Cpp" metaclassReference="_TRvswByHEduN1bTiWJ0lyw _gphJsByIEduN1bTiWJ0lyw _Gt0nQByJEduN1bTiWJ0lyw _GuFF8ByJEduN1bTiWJ0lyw _G0LmkByMEdu0tMSz-ceC5A _G0XMwByMEdu0tMSz-ceC5A _G0a3IByMEdu0tMSz-ceC5A _jBetUByNEdu0tMSz-ceC5A _jB15sByNEdu0tMSz-ceC5A _jB_qsByNEdu0tMSz-ceC5A _jCCuAByNEdu0tMSz-ceC5A _jCGYYByNEdu0tMSz-ceC5A _jCJbsByNEdu0tMSz-ceC5A _X7dJsDlPEd2mO4M0idYmag _OiGWgF5fEeKpvPHLdOdp2Q _41Sz8I1SEeKTUILNxKtfZw _CBeJwOPxEeKKu7vQg_d5Xw">
     <ownedComment xmi:type="uml:Comment" xmi:id="_KaTwkNY9EeGH9LIP6-_nLw" annotatedElement="_19ZzgByHEduN1bTiWJ0lyw">
       <body>&quot;declaration&quot; attribute should only be used, if more than one indirections of pointers (often &quot;**&quot;)</body>
     </ownedComment>
@@ -16,7 +16,7 @@
 The name is not required, since the UML name is used </body>
     </ownedComment>
     <ownedComment xmi:type="uml:Comment" xmi:id="_LBAtgNTQEeKiLbHSN_MIRQ" annotatedElement="_IHjS8ByMEdu0tMSz-ceC5A">
-      <body>No codegeneration should be done for this element</body>
+      <body>No code generation should be done for this element. This also means that no include directive is generated, if the class is referenced.</body>
     </ownedComment>
     <ownedComment xmi:type="uml:Comment" xmi:id="_PJcigNTQEeKiLbHSN_MIRQ" annotatedElement="_u3zF8ByLEdu0tMSz-ceC5A">
       <body>Indicates that this package shoudl be a root package, i.e. its contents should appear on top level folder during generation. Currently not used</body>
@@ -68,6 +68,9 @@ The name is not required, since the UML name is used </body>
     </elementImport>
     <elementImport xmi:type="uml:ElementImport" xmi:id="_41Sz8I1SEeKTUILNxKtfZw" alias="Feature">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Feature"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_CBeJwOPxEeKKu7vQg_d5Xw" alias="Classifier">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
     </elementImport>
     <packageImport xmi:type="uml:PackageImport" xmi:id="_6G_4UP2HEeGbWP4cpLE0gg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -178,14 +181,14 @@ The name is not required, since the UML name is used </body>
     <packagedElement xmi:type="uml:Extension" xmi:id="_mb27wByIEduN1bTiWJ0lyw" name="E_Ref_Property1" memberEnd="_mbfIUByIEduN1bTiWJ0lyw _mb27wRyIEduN1bTiWJ0lyw">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_mb27wRyIEduN1bTiWJ0lyw" name="extension_Ref" type="_2VwCEByHEduN1bTiWJ0lyw" association="_mb27wByIEduN1bTiWJ0lyw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Stereotype" xmi:id="_MyI6IByJEduN1bTiWJ0lyw" name="ExternClass">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_MyI6IByJEduN1bTiWJ0lyw" name="External">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_UiU48ByJEduN1bTiWJ0lyw" name="name" isUnique="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ho9-oOL9EeKxe91u-BdTVQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HpF6cOL9EeKxe91u-BdTVQ" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_05Yf0ByJEduN1bTiWJ0lyw" name="base_class" isUnique="false" association="_05nJUByJEduN1bTiWJ0lyw">
-        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Ibp-8OPxEeKKu7vQg_d5Xw" name="base_Classifier" association="_Ibyh0OPxEeKKu7vQg_d5Xw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_PmXVQByJEduN1bTiWJ0lyw" name="ExternLibrary">
@@ -273,9 +276,6 @@ The name is not required, since the UML name is used </body>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_0jpgYByJEduN1bTiWJ0lyw" name="E_Include_Class1" memberEnd="_0ja24ByJEduN1bTiWJ0lyw _0jpgYRyJEduN1bTiWJ0lyw">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_0jpgYRyJEduN1bTiWJ0lyw" name="extension_Include" type="_RwTdQByJEduN1bTiWJ0lyw" association="_0jpgYByJEduN1bTiWJ0lyw"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_05nJUByJEduN1bTiWJ0lyw" name="E_ExternClass_Class1" memberEnd="_05Yf0ByJEduN1bTiWJ0lyw _05nwYByJEduN1bTiWJ0lyw">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_05nwYByJEduN1bTiWJ0lyw" name="extension_ExternClass" type="_MyI6IByJEduN1bTiWJ0lyw" association="_05nJUByJEduN1bTiWJ0lyw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_u3zF8ByLEdu0tMSz-ceC5A" name="CppRoot">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_xOLHcByLEdu0tMSz-ceC5A" name="base_package" isUnique="false" association="_xObmIByLEdu0tMSz-ceC5A">
@@ -473,6 +473,9 @@ The name is not required, since the UML name is used </body>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_cKgwEOL9EeKxe91u-BdTVQ" name="E_StorageClass_Property1" memberEnd="_cKgwEeL9EeKxe91u-BdTVQ _cKdswOL9EeKxe91u-BdTVQ">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_cKgwEeL9EeKxe91u-BdTVQ" name="extension_StorageClass" type="_U3BNgJVPEeKCE6_KfOehJw" aggregation="composite" association="_cKgwEOL9EeKxe91u-BdTVQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_Ibyh0OPxEeKKu7vQg_d5Xw" name="E_External_Classifier1" memberEnd="_Ibyh0ePxEeKKu7vQg_d5Xw _Ibp-8OPxEeKKu7vQg_d5Xw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Ibyh0ePxEeKKu7vQg_d5Xw" name="extension_External" type="_MyI6IByJEduN1bTiWJ0lyw" aggregation="composite" association="_Ibyh0OPxEeKKu7vQg_d5Xw"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_QS19UMogEeGKstsYRuxdvw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QUmQ0MogEeGKstsYRuxdvw" source="http://www.eclipse.org/uml2/2.0.0/UML">

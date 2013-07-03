@@ -64,7 +64,7 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 			case C_CppPackage.CONST: return createConst();
 			case C_CppPackage.DEFAULT: return createDefault();
 			case C_CppPackage.REF: return createRef();
-			case C_CppPackage.EXTERN_CLASS: return createExternClass();
+			case C_CppPackage.EXTERNAL: return createExternal();
 			case C_CppPackage.CONST_INIT: return createConstInit();
 			case C_CppPackage.FRIEND: return createFriend();
 			case C_CppPackage.INLINE: return createInline();
@@ -195,9 +195,9 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExternClass createExternClass() {
-		ExternClassImpl externClass = new ExternClassImpl();
-		return externClass;
+	public External createExternal() {
+		ExternalImpl external = new ExternalImpl();
+		return external;
 	}
 
 	/**

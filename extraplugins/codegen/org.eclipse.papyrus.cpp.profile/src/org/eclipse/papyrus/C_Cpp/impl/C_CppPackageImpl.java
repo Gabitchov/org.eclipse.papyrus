@@ -18,8 +18,8 @@ import org.eclipse.papyrus.C_Cpp.CppRoot;
 import org.eclipse.papyrus.C_Cpp.Default;
 import org.eclipse.papyrus.C_Cpp.EAccessKind;
 import org.eclipse.papyrus.C_Cpp.EStorageClass;
-import org.eclipse.papyrus.C_Cpp.ExternClass;
 import org.eclipse.papyrus.C_Cpp.ExternLibrary;
+import org.eclipse.papyrus.C_Cpp.External;
 import org.eclipse.papyrus.C_Cpp.Friend;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.Inline;
@@ -100,7 +100,7 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass externClassEClass = null;
+	private EClass externalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -567,8 +567,8 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExternClass() {
-		return externClassEClass;
+	public EClass getExternal() {
+		return externalEClass;
 	}
 
 	/**
@@ -576,8 +576,8 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExternClass_Name() {
-		return (EAttribute)externClassEClass.getEStructuralFeatures().get(0);
+	public EAttribute getExternal_Name() {
+		return (EAttribute)externalEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -585,8 +585,8 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExternClass_Base_class() {
-		return (EReference)externClassEClass.getEStructuralFeatures().get(1);
+	public EReference getExternal_Base_Classifier() {
+		return (EReference)externalEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1100,9 +1100,9 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		createEReference(refEClass, REF__BASE_PARAMETER);
 		createEReference(refEClass, REF__BASE_PROPERTY);
 
-		externClassEClass = createEClass(EXTERN_CLASS);
-		createEAttribute(externClassEClass, EXTERN_CLASS__NAME);
-		createEReference(externClassEClass, EXTERN_CLASS__BASE_CLASS);
+		externalEClass = createEClass(EXTERNAL);
+		createEAttribute(externalEClass, EXTERNAL__NAME);
+		createEReference(externalEClass, EXTERNAL__BASE_CLASSIFIER);
 
 		constInitEClass = createEClass(CONST_INIT);
 		createEAttribute(constInitEClass, CONST_INIT__INITIALISATION);
@@ -1241,9 +1241,9 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		initEReference(getRef_Base_parameter(), theUMLPackage.getParameter(), null, "base_parameter", null, 0, 1, Ref.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getRef_Base_property(), theUMLPackage.getProperty(), null, "base_property", null, 0, 1, Ref.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(externClassEClass, ExternClass.class, "ExternClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExternClass_Name(), theTypesPackage.getString(), "name", null, 0, 1, ExternClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getExternClass_Base_class(), theUMLPackage.getClass_(), null, "base_class", null, 1, 1, ExternClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(externalEClass, External.class, "External", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExternal_Name(), theTypesPackage.getString(), "name", null, 0, 1, External.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getExternal_Base_Classifier(), theUMLPackage.getClassifier(), null, "base_Classifier", null, 1, 1, External.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(constInitEClass, ConstInit.class, "ConstInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstInit_Initialisation(), theTypesPackage.getString(), "initialisation", null, 1, 1, ConstInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

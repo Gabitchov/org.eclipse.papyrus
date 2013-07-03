@@ -16,7 +16,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.C_Cpp.CppRoot;
-import org.eclipse.papyrus.C_Cpp.ExternClass;
+import org.eclipse.papyrus.C_Cpp.External;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.ManualGeneration;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
@@ -115,7 +115,7 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 		}
 
 		// Only generate when no CppNoCodeGen stereotype is applied to the class
-		else if((!GenUtils.hasStereotype(classifier, NoCodeGen.class)) && (!GenUtils.hasStereotype(classifier, ExternClass.class)) && (!GenUtils.hasStereotype(classifier, Template.class))) {
+		else if((!GenUtils.hasStereotype(classifier, NoCodeGen.class)) && (!GenUtils.hasStereotype(classifier, External.class)) && (!GenUtils.hasStereotype(classifier, Template.class))) {
 
 			// Template Bound Class
 			if(GenUtils.isTemplateBoundElement(classifier)) {

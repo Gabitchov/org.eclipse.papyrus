@@ -12,7 +12,7 @@ import org.eclipse.uml2.uml.Element;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * No codegeneration should be done for this element
+ * No code generation should be done for this element. This also means that no include directive is generated, if the class is referenced.
  * <!-- end-model-doc -->
  *
  * <p>

@@ -20,12 +20,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.C_Cpp.ExternClass;
+import org.eclipse.papyrus.C_Cpp.External;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Typedef;
 import org.eclipse.papyrus.C_Cpp.Visibility;
 import org.eclipse.papyrus.cpp.codegen.Constants;
-import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -491,7 +490,7 @@ public class GenUtils {
 		if(owner instanceof Package) {
 			owningPkgName = ((Package)owner).getName();
 		}
-		if((hasStereotype(ne, ExternClass.class)) || (hasStereotype(ne, NoCodeGen.class))) {
+		if((hasStereotype(ne, External.class)) || (hasStereotype(ne, NoCodeGen.class))) {
 			return ne.getName();
 		} else if(owningPkgName.equals("AnsiCLibrary")) {
 			// always use the short name for types within the ANSI C library

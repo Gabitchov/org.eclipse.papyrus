@@ -3,28 +3,33 @@
 package org.eclipse.papyrus.C_Cpp.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.papyrus.C_Cpp.C_CppPackage;
-import org.eclipse.papyrus.C_Cpp.ExternClass;
+import org.eclipse.papyrus.C_Cpp.External;
+
+import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Extern Class</b></em>'.
+ * An implementation of the model object '<em><b>External</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl#getBase_class <em>Base class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.ExternalImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.ExternalImpl#getBase_Classifier <em>Base Classifier</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExternClassImpl extends EObjectImpl implements ExternClass {
+public class ExternalImpl extends EObjectImpl implements External {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,21 +51,21 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBase_class() <em>Base class</em>}' reference.
+	 * The cached value of the '{@link #getBase_Classifier() <em>Base Classifier</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBase_class()
+	 * @see #getBase_Classifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected org.eclipse.uml2.uml.Class base_class;
+	protected Classifier base_Classifier;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExternClassImpl() {
+	protected ExternalImpl() {
 		super();
 	}
 
@@ -71,7 +76,7 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return C_CppPackage.Literals.EXTERN_CLASS;
+		return C_CppPackage.Literals.EXTERNAL;
 	}
 
 	/**
@@ -92,7 +97,7 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.EXTERN_CLASS__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.EXTERNAL__NAME, oldName, name));
 	}
 
 	/**
@@ -100,16 +105,16 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.uml.Class getBase_class() {
-		if (base_class != null && base_class.eIsProxy()) {
-			InternalEObject oldBase_class = (InternalEObject)base_class;
-			base_class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_class);
-			if (base_class != oldBase_class) {
+	public Classifier getBase_Classifier() {
+		if (base_Classifier != null && base_Classifier.eIsProxy()) {
+			InternalEObject oldBase_Classifier = (InternalEObject)base_Classifier;
+			base_Classifier = (Classifier)eResolveProxy(oldBase_Classifier);
+			if (base_Classifier != oldBase_Classifier) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, C_CppPackage.EXTERN_CLASS__BASE_CLASS, oldBase_class, base_class));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, C_CppPackage.EXTERNAL__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 			}
 		}
-		return base_class;
+		return base_Classifier;
 	}
 
 	/**
@@ -117,8 +122,8 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.uml.Class basicGetBase_class() {
-		return base_class;
+	public Classifier basicGetBase_Classifier() {
+		return base_Classifier;
 	}
 
 	/**
@@ -126,11 +131,11 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBase_class(org.eclipse.uml2.uml.Class newBase_class) {
-		org.eclipse.uml2.uml.Class oldBase_class = base_class;
-		base_class = newBase_class;
+	public void setBase_Classifier(Classifier newBase_Classifier) {
+		Classifier oldBase_Classifier = base_Classifier;
+		base_Classifier = newBase_Classifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.EXTERN_CLASS__BASE_CLASS, oldBase_class, base_class));
+			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.EXTERNAL__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 	}
 
 	/**
@@ -141,11 +146,11 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case C_CppPackage.EXTERN_CLASS__NAME:
+			case C_CppPackage.EXTERNAL__NAME:
 				return getName();
-			case C_CppPackage.EXTERN_CLASS__BASE_CLASS:
-				if (resolve) return getBase_class();
-				return basicGetBase_class();
+			case C_CppPackage.EXTERNAL__BASE_CLASSIFIER:
+				if (resolve) return getBase_Classifier();
+				return basicGetBase_Classifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -158,11 +163,11 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case C_CppPackage.EXTERN_CLASS__NAME:
+			case C_CppPackage.EXTERNAL__NAME:
 				setName((String)newValue);
 				return;
-			case C_CppPackage.EXTERN_CLASS__BASE_CLASS:
-				setBase_class((org.eclipse.uml2.uml.Class)newValue);
+			case C_CppPackage.EXTERNAL__BASE_CLASSIFIER:
+				setBase_Classifier((Classifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,11 +181,11 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case C_CppPackage.EXTERN_CLASS__NAME:
+			case C_CppPackage.EXTERNAL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case C_CppPackage.EXTERN_CLASS__BASE_CLASS:
-				setBase_class((org.eclipse.uml2.uml.Class)null);
+			case C_CppPackage.EXTERNAL__BASE_CLASSIFIER:
+				setBase_Classifier((Classifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -194,10 +199,10 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case C_CppPackage.EXTERN_CLASS__NAME:
+			case C_CppPackage.EXTERNAL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case C_CppPackage.EXTERN_CLASS__BASE_CLASS:
-				return base_class != null;
+			case C_CppPackage.EXTERNAL__BASE_CLASSIFIER:
+				return base_Classifier != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -218,4 +223,4 @@ public class ExternClassImpl extends EObjectImpl implements ExternClass {
 		return result.toString();
 	}
 
-} //ExternClassImpl
+} //ExternalImpl

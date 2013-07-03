@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.papyrus.C_Cpp.ExternClass;
+import org.eclipse.papyrus.C_Cpp.External;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Typedef;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -267,13 +267,13 @@ public class UMLTool {
 	 * @return
 	 */
 	public static String cppQName(NamedElement ne) {
-		if((StUtils.isApplied(ne, ExternClass.class)) || (StUtils.isApplied(ne, NoCodeGen.class))) {
+		if((StUtils.isApplied(ne, External.class)) || (StUtils.isApplied(ne, NoCodeGen.class))) {
 			return ne.getName();
 		} else {
 			String qName = ne.getName();
 			for(Namespace ns : ne.allNamespaces()) {
 				if(!(ns instanceof Model)) {
-					qName = ns.getName() + "::" + qName;
+					qName = ns.getName() + "::" + qName; //$NON-NLS-1$
 				}
 			}
 			return qName;

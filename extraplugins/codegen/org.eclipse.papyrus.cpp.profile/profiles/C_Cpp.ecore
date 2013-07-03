@@ -59,7 +59,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NoCodeGen">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="No codegeneration should be done for this element"/>
+      <details key="documentation" value="No code generation should be done for this element. This also means that no include directive is generated, if the class is referenced."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_element" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
@@ -108,11 +108,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_property" ordered="false"
         unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExternClass">
+  <eClassifiers xsi:type="ecore:EClass" name="External">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
         eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_class" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Classifier" ordered="false"
+        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstInit">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialisation" ordered="false"

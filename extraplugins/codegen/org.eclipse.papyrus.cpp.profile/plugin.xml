@@ -45,4 +45,18 @@
 			path="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml"
 			provider="CEA LIST"/>
 	</extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated C_Cpp -->
+      <package
+            uri="http://www.eclipse.org/papyrus/C_Cpp/1"
+            class="org.eclipse.papyrus.C_Cpp.C_CppPackage"
+            genModel="profiles/C_Cpp.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated C_Cpp -->
+      <parser
+            type="c_cpp"
+            class="org.eclipse.papyrus.C_Cpp.util.C_CppResourceFactoryImpl"/>
+   </extension>
 </plugin>

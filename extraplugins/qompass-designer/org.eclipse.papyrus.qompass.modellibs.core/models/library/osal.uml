@@ -10519,7 +10519,7 @@ Show: output the whole line immediately and reset the output string</body>
   <C_Cpp:Ptr xmi:id="_N4U_MFIhEdy7g9CjxdN7jw" base_property="_JByHAFIhEdy7g9CjxdN7jw"/>
   <C_Cpp:Const xmi:id="_K-SJADReEdyDwaY3iUxzzA" base_parameter="_o4Q9YDRGEdyG-pUz-bb-Lg"/>
   <C_Cpp:Ref xmi:id="_4wbsAFIFEd-OfYmxqPWG5g" base_parameter="_o4Q9YDRGEdyG-pUz-bb-Lg"/>
-  <C_Cpp:ExternClass xmi:id="_z-g9QFKWEd-OfYmxqPWG5g" name="time.h" base_class="_vZD1EFKWEd-OfYmxqPWG5g"/>
+  <C_Cpp:External xmi:id="_z-g9QFKWEd-OfYmxqPWG5g" name="time.h" base_class="_vZD1EFKWEd-OfYmxqPWG5g"/>
   <C_Cpp:Default xmi:id="_Yy4zUFRgEd-mj-y6sW0V8w" value="false" base_parameter="_VQVI4DUUEdyDReAOQiyvOg"/>
   <C_Cpp:Typedef xmi:id="_pTNvoFdhEd-9TNLvplUFDQ" definition="void (*typeName) (void*)" base_primitivetype="_kor6MFdhEd-9TNLvplUFDQ"/>
   <C_Cpp:Const xmi:id="_ecbxIFnDEd-9TNLvplUFDQ" base_property="_WG7s4DRoEdypGbuyt3_DaA"/>
@@ -10535,8 +10535,8 @@ Show: output the whole line immediately and reset the output string</body>
     <libs>rt</libs>
   </C_Cpp:ExternLibrary>
   <C_Cpp:Default xmi:id="_nABaADrnEeChpNDXy9GnYg" value=" TimeVal::systemTime();" base_property="_Ag0mQFKiEd-OfYmxqPWG5g"/>
-  <C_Cpp:ExternClass xmi:id="_7xMi4It4EeCA0czgCf_91g" name="time.h" base_class="_5YJA0It4EeCA0czgCf_91g"/>
-  <C_Cpp:ExternClass xmi:id="_2xMacIt9EeCA0czgCf_91g" name="time.h" base_class="_SPVucIt6EeCA0czgCf_91g"/>
+  <C_Cpp:External xmi:id="_7xMi4It4EeCA0czgCf_91g" name="time.h" base_class="_5YJA0It4EeCA0czgCf_91g"/>
+  <C_Cpp:External xmi:id="_2xMacIt9EeCA0czgCf_91g" name="time.h" base_class="_SPVucIt6EeCA0czgCf_91g"/>
   <C_Cpp:Const xmi:id="_yh6NYIu7EeC1j5hJbrrc8g" base_parameter="_efgpkDkXEdyuzNpSiGPe4w"/>
   <C_Cpp:Const xmi:id="__fXiUIu7EeC1j5hJbrrc8g" base_operation="_9xV0IDkfEdyuzNpSiGPe4w"/>
   <C_Cpp:Include xmi:id="_QWmjoPRTEeCUGrV0Hl4JwQ" body="#include &lt;OS_AL/Synchronization/Condition.h>&#xD;&#xA;#include &lt;OS_AL/Synchronization/Mutex.h>&#xD;&#xA;#include &lt;OS_AL/Time/TimeVal.h>&#xD;&#xA;#include &lt;OS_AL/ProcessingResources/ProDesc.h>&#xD;&#xA;#include &lt;OS_AL/Tracing/Trace.h>&#xD;&#xA;&#xD;&#xA;#include &lt;errno.h>" header="#if defined SYNCHRO_POSIX4 || defined SYNCHRO_Linux || defined SYNCHRO_WIN32&#xA;&#x9;#include &lt;pthread.h>&#xA;&#x9;typedef pthread_cond_t ConditionId;&#xA;&#xA;#elif defined SYNCHRO_Solaris&#xA;&#x9;#include &lt;synch.h>&#xA;&#x9;typedef cond_t ConditionId;&#xA;&#xA;#elif defined SYNCHRO_VxWorks&#xA;&#x9;#include &lt;semLib.h>&#xA;&#x9;typedef int ConditionId;&#x9;&#x9;&#x9;// dummy declaration&#xA;&#xA;#else&#xA;    #error SYNCHRO_X  not defined&#xA;&#xA;#endif&#xA;" base_class="_QWlVgPRTEeCUGrV0Hl4JwQ"/>
@@ -10550,5 +10550,5 @@ Show: output the whole line immediately and reset the output string</body>
     <libs>pthread</libs>
     <libs>rt</libs>
   </C_Cpp:ExternLibrary>
-  <C_Cpp:ExternClass xmi:id="_ClGTQNqFEeKrRY-H1kHnNA" name="pthread.h" base_class="_4lsq4NqEEeKrRY-H1kHnNA"/>
+  <C_Cpp:External xmi:id="_ClGTQNqFEeKrRY-H1kHnNA" name="pthread.h" base_class="_4lsq4NqEEeKrRY-H1kHnNA"/>
 </xmi:XMI>

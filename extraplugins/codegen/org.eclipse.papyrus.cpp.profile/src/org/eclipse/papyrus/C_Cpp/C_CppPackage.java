@@ -253,16 +253,6 @@ public interface C_CppPackage extends EPackage {
 	int REF = 9;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl <em>Extern Class</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl
-	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getExternClass()
-	 * @generated
-	 */
-	int EXTERN_CLASS = 10;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl <em>Extern Library</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -536,31 +526,41 @@ public interface C_CppPackage extends EPackage {
 	int REF_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternalImpl <em>External</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.C_Cpp.impl.ExternalImpl
+	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getExternal()
+	 * @generated
+	 */
+	int EXTERNAL = 10;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERN_CLASS__NAME = 0;
+	int EXTERNAL__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Base class</b></em>' reference.
+	 * The feature id for the '<em><b>Base Classifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERN_CLASS__BASE_CLASS = 1;
+	int EXTERNAL__BASE_CLASSIFIER = 1;
 
 	/**
-	 * The number of structural features of the '<em>Extern Class</em>' class.
+	 * The number of structural features of the '<em>External</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERN_CLASS_FEATURE_COUNT = 2;
+	int EXTERNAL_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ConstInitImpl <em>Const Init</em>}' class.
@@ -1343,36 +1343,36 @@ public interface C_CppPackage extends EPackage {
 	EReference getRef_Base_property();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.C_Cpp.ExternClass <em>Extern Class</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.C_Cpp.External <em>External</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Extern Class</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.ExternClass
+	 * @return the meta object for class '<em>External</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.External
 	 * @generated
 	 */
-	EClass getExternClass();
+	EClass getExternal();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.C_Cpp.ExternClass#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.C_Cpp.External#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.ExternClass#getName()
-	 * @see #getExternClass()
+	 * @see org.eclipse.papyrus.C_Cpp.External#getName()
+	 * @see #getExternal()
 	 * @generated
 	 */
-	EAttribute getExternClass_Name();
+	EAttribute getExternal_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.ExternClass#getBase_class <em>Base class</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.External#getBase_Classifier <em>Base Classifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base class</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.ExternClass#getBase_class()
-	 * @see #getExternClass()
+	 * @return the meta object for the reference '<em>Base Classifier</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.External#getBase_Classifier()
+	 * @see #getExternal()
 	 * @generated
 	 */
-	EReference getExternClass_Base_class();
+	EReference getExternal_Base_Classifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary <em>Extern Library</em>}'.
@@ -2161,14 +2161,14 @@ public interface C_CppPackage extends EPackage {
 		EReference REF__BASE_PROPERTY = eINSTANCE.getRef_Base_property();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl <em>Extern Class</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternalImpl <em>External</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.C_Cpp.impl.ExternClassImpl
-		 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getExternClass()
+		 * @see org.eclipse.papyrus.C_Cpp.impl.ExternalImpl
+		 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getExternal()
 		 * @generated
 		 */
-		EClass EXTERN_CLASS = eINSTANCE.getExternClass();
+		EClass EXTERNAL = eINSTANCE.getExternal();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -2176,15 +2176,15 @@ public interface C_CppPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERN_CLASS__NAME = eINSTANCE.getExternClass_Name();
+		EAttribute EXTERNAL__NAME = eINSTANCE.getExternal_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Base class</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Base Classifier</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTERN_CLASS__BASE_CLASS = eINSTANCE.getExternClass_Base_class();
+		EReference EXTERNAL__BASE_CLASSIFIER = eINSTANCE.getExternal_Base_Classifier();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl <em>Extern Library</em>}' class.

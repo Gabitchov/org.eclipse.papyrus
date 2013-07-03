@@ -7,7 +7,7 @@
 if (hasStereotype(Template)) then
 	getApplication(Template).oclAsType(Template).declaration
 else
-	if (hasStereotype(ExternClass)) then getApplication(ExternClass).oclAsType(ExternClass).name
+	if (hasStereotype(External)) then getApplication(External).oclAsType(External).name
 	else
 		-- standard case (no stereotypes are applied)
 		getNearestPackage().getFullPath() + '/' + ne.name + '.' + getHeaderSuffix()

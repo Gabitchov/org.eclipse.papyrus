@@ -30,9 +30,9 @@
 
 [template public CppClassAllIncludesDeclaration(class : Classifier, list : Sequence(Classifier) )]
 [for (cl : Classifier | list)]
-	[comment Only add include if this is not for the current class and if it does not have the stereotype "CppNoCodeGen", unless
-			it has stereotype "CppExternalClass"/]
-	[if((cl <> class) and (not hasStereotype(NoCodeGen)) or hasStereotype(ExternClass))]
+	[comment Only add include if this is not for the current class and if it does not have the stereotype "NoCodeGen", unless
+			it has stereotype "C_Cpp:External"/]
+	[if((cl <> class) and (not hasStereotype(NoCodeGen)) or hasStereotype(External))]
 		[if(oclIsKindOf(Enumeration) or oclIsKindOf(PrimitiveType))]
 			[comment Enumeration is not defined in a separate file, but in the package that owns it
 				=> include the owning package (might be a duplicate input, if owning package is also the owner of current class/]

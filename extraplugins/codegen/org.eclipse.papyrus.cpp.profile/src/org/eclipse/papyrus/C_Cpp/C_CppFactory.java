@@ -85,13 +85,13 @@ public interface C_CppFactory extends EFactory {
 	Ref createRef();
 
 	/**
-	 * Returns a new object of class '<em>Extern Class</em>'.
+	 * Returns a new object of class '<em>External</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Extern Class</em>'.
+	 * @return a new object of class '<em>External</em>'.
 	 * @generated
 	 */
-	ExternClass createExternClass();
+	External createExternal();
 
 	/**
 	 * Returns a new object of class '<em>Extern Library</em>'.

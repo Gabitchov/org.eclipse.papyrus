@@ -105,8 +105,8 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 				return createRefAdapter();
 			}
 			@Override
-			public Adapter caseExternClass(ExternClass object) {
-				return createExternClassAdapter();
+			public Adapter caseExternal(External object) {
+				return createExternalAdapter();
 			}
 			@Override
 			public Adapter caseConstInit(ConstInit object) {
@@ -275,16 +275,16 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.C_Cpp.ExternClass <em>Extern Class</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.C_Cpp.External <em>External</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.C_Cpp.ExternClass
+	 * @see org.eclipse.papyrus.C_Cpp.External
 	 * @generated
 	 */
-	public Adapter createExternClassAdapter() {
+	public Adapter createExternalAdapter() {
 		return null;
 	}
 

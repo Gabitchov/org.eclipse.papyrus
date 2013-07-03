@@ -1376,8 +1376,8 @@ Be aware that the number of instantiated template packages will be considerably 
   </FCM:DerivedElement>
   <FCM:Port xmi:id="_N0to8Cu4Ed-uZPFNCty7PQ" base_Port="_N0tB4Cu4Ed-uZPFNCty7PQ" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
   <l2:Create xmi:id="_WFy8ECu9Ed-uZPFNCty7PQ" base_BehavioralFeature="_JM4I4Cu9Ed-uZPFNCty7PQ"/>
-  <C_Cpp:ExternClass xmi:id="_EbeZ8Cu-Ed-uZPFNCty7PQ" name="semaphore.h" base_class="_BY-fwCnxEd-eoo60eNyGlg"/>
-  <C_Cpp:ExternClass xmi:id="_7tUvUCvDEd-uZPFNCty7PQ" name="pthread.h" base_class="_5KatsCvDEd-uZPFNCty7PQ"/>
+  <C_Cpp:External xmi:id="_EbeZ8Cu-Ed-uZPFNCty7PQ" name="semaphore.h" base_class="_BY-fwCnxEd-eoo60eNyGlg"/>
+  <C_Cpp:External xmi:id="_7tUvUCvDEd-uZPFNCty7PQ" name="pthread.h" base_class="_5KatsCvDEd-uZPFNCty7PQ"/>
   <C_Cpp:Ptr xmi:id="_G6PMUCvHEd-uZPFNCty7PQ" base_parameter="_Dn-xYCvHEd-uZPFNCty7PQ"/>
   <C_Cpp:Ptr xmi:id="_NPp2QCvHEd-uZPFNCty7PQ" base_parameter="_IdnDkCvHEd-uZPFNCty7PQ"/>
   <C_Cpp:Const xmi:id="_dtZbECvHEd-uZPFNCty7PQ" base_property="_Xq00oCvHEd-uZPFNCty7PQ"/>
@@ -1459,7 +1459,7 @@ Be aware that the number of instantiated template packages will be considerably 
   <C_Cpp:ExternLibrary xmi:id="_OQ81ENYGEd-CgJIavLpOxQ" base_Package="_I19MANYGEd-CgJIavLpOxQ">
     <libs>pthread</libs>
   </C_Cpp:ExternLibrary>
-  <C_Cpp:ExternClass xmi:id="_p8NbMNYGEd-CgJIavLpOxQ" name="pthread.h" base_class="_ea234NYGEd-CgJIavLpOxQ"/>
+  <C_Cpp:External xmi:id="_p8NbMNYGEd-CgJIavLpOxQ" name="pthread.h" base_class="_ea234NYGEd-CgJIavLpOxQ"/>
   <FCM:InteractionComponent xmi:id="_8BUh8NdwEd-ZnqCk2P2ZKg" base_Class="_3itBkNdwEd-ZnqCk2P2ZKg"/>
   <FCM:Template xmi:id="_CTIeQNdxEd-ZnqCk2P2ZKg" base_Element="_3itBoddwEd-ZnqCk2P2ZKg" kind="LoopOperations"/>
   <C_Cpp:Typedef xmi:id="_68Aa4No9Ed-wvpj-p-V_QQ" definition="union {&#xA;&lt;%for (ownedOperations) {%>&#xA;struct Op_&lt;%name%> {&#xA;&lt;%for (ownedParameters) {%>&#xA;&lt;%cppType%> &lt;%name%>;&#xA;&lt;%}%>&#xA;} op_&lt;%name%>;&#xA;&lt;%}%>&#xA;};" base_primitivetype="_xOqL0No9Ed-wvpj-p-V_QQ"/>

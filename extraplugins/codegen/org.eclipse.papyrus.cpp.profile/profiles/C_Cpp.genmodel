@@ -74,9 +74,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ref/base_parameter"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ref/base_property"/>
     </genClasses>
-    <genClasses ecoreClass="C_Cpp.ecore#//ExternClass">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternClass/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ExternClass/base_class"/>
+    <genClasses ecoreClass="C_Cpp.ecore#//External">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//External/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//External/base_Classifier"/>
     </genClasses>
     <genClasses ecoreClass="C_Cpp.ecore#//ConstInit">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ConstInit/initialisation"/>
