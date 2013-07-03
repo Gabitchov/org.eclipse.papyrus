@@ -36,20 +36,16 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Nattable
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class JavaTableTesterItemProvider
-	extends AbstractTableTesterItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class JavaTableTesterItemProvider extends AbstractTableTesterItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public JavaTableTesterItemProvider(AdapterFactory adapterFactory) {
@@ -60,11 +56,12 @@ public class JavaTableTesterItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addTesterPropertyDescriptor(object);
@@ -76,28 +73,20 @@ public class JavaTableTesterItemProvider
 	 * This adds a property descriptor for the Tester feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addTesterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_JavaTableTester_tester_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_JavaTableTester_tester_feature", "_UI_JavaTableTester_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattabletesterPackage.Literals.JAVA_TABLE_TESTER__TESTER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_JavaTableTester_tester_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_JavaTableTester_tester_feature", "_UI_JavaTableTester_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattabletesterPackage.Literals.JAVA_TABLE_TESTER__TESTER, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This returns JavaTableTester.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,14 +98,14 @@ public class JavaTableTesterItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((JavaTableTester)object).getTester();
-		return label == null || label.length() == 0 ?
-			getString("_UI_JavaTableTester_type") : //$NON-NLS-1$
-			getString("_UI_JavaTableTester_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_JavaTableTester_type") : //$NON-NLS-1$
+		getString("_UI_JavaTableTester_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -124,16 +113,17 @@ public class JavaTableTesterItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(JavaTableTester.class)) {
-			case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		switch(notification.getFeatureID(JavaTableTester.class)) {
+		case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -143,6 +133,7 @@ public class JavaTableTesterItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

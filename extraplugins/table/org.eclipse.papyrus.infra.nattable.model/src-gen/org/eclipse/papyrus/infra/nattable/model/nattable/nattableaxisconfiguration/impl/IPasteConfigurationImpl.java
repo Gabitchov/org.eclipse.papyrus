@@ -25,13 +25,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class IPasteConfigurationImpl extends MinimalEObjectImpl.Container implements IPasteConfiguration {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IPasteConfigurationImpl() {
@@ -41,6 +43,7 @@ public class IPasteConfigurationImpl extends MinimalEObjectImpl.Container implem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

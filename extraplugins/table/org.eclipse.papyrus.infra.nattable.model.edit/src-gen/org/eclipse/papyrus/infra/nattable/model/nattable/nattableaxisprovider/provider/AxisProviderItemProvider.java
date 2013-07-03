@@ -38,20 +38,16 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class AxisProviderItemProvider
-	extends AbstractAxisProviderItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class AxisProviderItemProvider extends AbstractAxisProviderItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AxisProviderItemProvider(AdapterFactory adapterFactory) {
@@ -62,11 +58,12 @@ public class AxisProviderItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -79,11 +76,12 @@ public class AxisProviderItemProvider
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS);
 		}
@@ -93,6 +91,7 @@ public class AxisProviderItemProvider
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,14 +106,14 @@ public class AxisProviderItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((AxisProvider)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AxisProvider_type") : //$NON-NLS-1$
-			getString("_UI_AxisProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_AxisProvider_type") : //$NON-NLS-1$
+		getString("_UI_AxisProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -122,16 +121,17 @@ public class AxisProviderItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AxisProvider.class)) {
-			case NattableaxisproviderPackage.AXIS_PROVIDER__AXIS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(AxisProvider.class)) {
+		case NattableaxisproviderPackage.AXIS_PROVIDER__AXIS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -141,31 +141,20 @@ public class AxisProviderItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
-				 NattableaxisFactory.eINSTANCE.createEObjectAxis()));
+		newChildDescriptors.add(createChildParameter(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS, NattableaxisFactory.eINSTANCE.createEObjectAxis()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
-				 NattableaxisFactory.eINSTANCE.createFeatureIdAxis()));
+		newChildDescriptors.add(createChildParameter(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS, NattableaxisFactory.eINSTANCE.createFeatureIdAxis()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
-				 NattableaxisFactory.eINSTANCE.createEStructuralFeatureAxis()));
+		newChildDescriptors.add(createChildParameter(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS, NattableaxisFactory.eINSTANCE.createEStructuralFeatureAxis()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
-				 NattableaxisFactory.eINSTANCE.createObjectIdAxis()));
+		newChildDescriptors.add(createChildParameter(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS, NattableaxisFactory.eINSTANCE.createObjectIdAxis()));
 	}
 
 }

@@ -314,41 +314,102 @@
         <details key="oneObjectLabelConfigurationTypes" value="ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::ObjectLabelProviderConfiguration))->size() &lt;= 1"/>
         <details key="oneFeatureLabelConfigurationTypes" value="ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::FeatureLabelProviderConfiguration))->size() &lt;= 1"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Abstract Class for the HeaderAxisConfiguration. This class provides : &#xD;&#xA;&lt;ul>&lt;li>informations on the appearance of the header&lt;/li>&#xD;&#xA;&lt;li> a list of label configuration which can be used by the header&lt;/li>&#xD;&#xA;&lt;li> a list of axisConfiguration. These axis configuration are used to provide the contents of the axis&lt;/li>&#xD;&#xA;&lt;/ul>"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexStyle" lowerBound="1"
-          eType="#//nattableaxisconfiguration/AxisIndexStyle"/>
+          eType="#//nattableaxisconfiguration/AxisIndexStyle">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This value can't be null. Indicates how to display the index of the Axis : using letter or using number."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayLabel" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, the label header will be displayed."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayFilter" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="false"/>
+          defaultValueLiteral="false">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true AND if the axisConfiguration is used as column, the row filter will be displayed."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayIndex" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, the index header will be displayed."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedLabelConfigurations"
           upperBound="-1" eType="#//nattablelabelprovider/ILabelProviderConfiguration"
-          containment="true"/>
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of the possible label configuration, referenced by the axis configuration."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAxisConfigurations"
           upperBound="-1" eType="#//nattableaxisconfiguration/IAxisConfiguration"
-          containment="true"/>
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of the owned axis configuration."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AxisManagerRepresentation">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This class is used to represents in the model the java Axis Manager."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="axisManagerId" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This id allows to find the Java Axis Manager represented by this element.&#xD;&#xA;To find it you must use AxisManagerFactory.INSTANCE.getAxisManager(AxisManagerRepresentation)&#xD;&#xA;To register a Java Axis Manager,you must use the extension point  : org.eclipse.papyrus.infra.nattable.axismanager"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="labelProviderContext"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The context on which the label provider to use for this AxisManagerRepresentation are declared.&#xD;&#xA;(see the Papyrus Label Provider Service for further informations)"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="headerLabelConfiguration"
-          lowerBound="1" eType="#//nattablelabelprovider/ILabelProviderConfiguration"/>
+          lowerBound="1" eType="#//nattablelabelprovider/ILabelProviderConfiguration">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The label provider configuration to use for the header of the axis provided by the represented AxisManager"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="specificAxisConfigurations"
-          upperBound="-1" eType="#//nattableaxisconfiguration/IAxisConfiguration"/>
+          upperBound="-1" eType="#//nattableaxisconfiguration/IAxisConfiguration">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A list of specific configurations to use for this axis."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AxisManagerConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This object allows to define and configure a Java AxisManager"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="localHeaderLabelConfiguration"
-          eType="#//nattablelabelprovider/ILabelProviderConfiguration"/>
+          eType="#//nattablelabelprovider/ILabelProviderConfiguration">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Reference the local header label configuration."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="axisManager" lowerBound="1"
-          eType="#//nattableaxisconfiguration/AxisManagerRepresentation"/>
+          eType="#//nattableaxisconfiguration/AxisManagerRepresentation">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This value can't be null. the axis manager representation"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="localSpecificConfigurations"
-          upperBound="-1" eType="#//nattableaxisconfiguration/IAxisConfiguration"/>
+          upperBound="-1" eType="#//nattableaxisconfiguration/IAxisConfiguration">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="specific configurations for the axis manager."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TableHeaderAxisConfiguration" eSuperTypes="#//nattableaxisconfiguration/AbstractHeaderAxisConfiguration">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -357,81 +418,213 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="axisManagersIdUnique" value="axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId &lt;> am2.axisManagerId)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Defines the configuration of the axis in the TableConfiguration"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="axisManagers" lowerBound="1"
           upperBound="-1" eType="#//nattableaxisconfiguration/AxisManagerRepresentation"
-          containment="true"/>
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This list can't be empty. The list of the AxisManager used to fill the axis."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LocalTableHeaderAxisConfiguration"
         eSuperTypes="#//nattableaxisconfiguration/AbstractHeaderAxisConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Define the configuration of the axis (rows or columns) in the table."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="axisManagerConfigurations"
           upperBound="-1" eType="#//nattableaxisconfiguration/AxisManagerConfiguration"
-          containment="true"/>
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This list contains the configuration of the axis managers used in the table."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IAxisConfiguration" abstract="true"
-        interface="true"/>
+        interface="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Comon Interface for axis configuration."/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureAxisConfiguration" eSuperTypes="#//nattableaxisconfiguration/IAxisConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Configuration to use for Axis representing features"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="showOnlyCommonFeature"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, only the common features will be displayed on the axis."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IFillingConfiguration" abstract="true"
-        interface="true" eSuperTypes="#//nattableaxisconfiguration/IAxisConfiguration"/>
+        interface="true" eSuperTypes="#//nattableaxisconfiguration/IAxisConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Comon Interface for filling configurations."/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EStructuralFeatureValueFillingConfiguration"
         eSuperTypes="#//nattableaxisconfiguration/IFillingConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Configuration used to fill the table listening a feature of the context of the table"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="listenFeature" lowerBound="1"
-          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This field can't be null. References the feature of the context of the table to listen.&#xD;&#xA;It is possible that the context doesn't have this feature."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IPasteConfiguration" eSuperTypes="#//nattableaxisconfiguration/IAxisConfiguration"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPasteConfiguration" eSuperTypes="#//nattableaxisconfiguration/IAxisConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Common Interface for the paste configuration."/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PasteEObjectConfiguration" eSuperTypes="#//nattableaxisconfiguration/IPasteConfiguration">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Configuration to use to paste EObject in the table."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The String representing the EClass of the elements to create (see papyrus services types for further information)"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="pasteElementContainementFeature"
-          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This field references the feature of the context of the table in which the created element will be added."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="AxisIndexStyle">
-      <eLiterals name="ALPHABETIC" value="1"/>
-      <eLiterals name="NUMERIC"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Enumeration used to describe the possible style of the index of the headers."/>
+      </eAnnotations>
+      <eLiterals name="ALPHABETIC" value="1">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Index Headers count will be : A-B-C-...Y-Z-AA-AB-..."/>
+        </eAnnotations>
+      </eLiterals>
+      <eLiterals name="NUMERIC">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Index Headers count will be : 1-2-3-..."/>
+        </eAnnotations>
+      </eLiterals>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattabletester" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"
       nsPrefix="nattabletester">
     <eClassifiers xsi:type="ecore:EClass" name="AbstractTableTester" abstract="true"
         eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
-      <eOperations name="getTester" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Abstract class for the tester."/>
+      </eAnnotations>
+      <eOperations name="getTester" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Returns an object representing the tester"/>
+        </eAnnotations>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="JavaTableTester" eSuperTypes="#//nattabletester/AbstractTableTester">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This class allows to references a JavaTableTester. The Java class is declared with an id, using the extension point org.eclipse.papyrus.infra.nattable.tester.&#xD;&#xA;The field tester must be the id declared in this extension point."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="tester" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The id of the java tester declared using the extension point org.eclispe.papyrus.infra.nattable.tester"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattableaxis" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"
       nsPrefix="nattableaxis">
     <eClassifiers xsi:type="ecore:EClass" name="IAxis" abstract="true" interface="true">
-      <eOperations name="getElement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-      <eOperations name="getLocalLabelConfiguration" eType="#//nattablelabelprovider/ILabelProviderConfiguration"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Common interface for the axis of the table. (An axis is a specific row or a specific column)"/>
+      </eAnnotations>
+      <eOperations name="getElement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Returns the elements represented by the IAxis"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getLocalLabelConfiguration" eType="#//nattablelabelprovider/ILabelProviderConfiguration">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Returns the local label configuration to use for this IAxis."/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="manager" lowerBound="1"
-          eType="#//nattableaxisconfiguration/AxisManagerRepresentation"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eType="#//nattableaxisconfiguration/AxisManagerRepresentation">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This field can't be null. Reference the axis manager providing this IAxis."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="An element can be displayed using an alias instead of its real name."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IdAxis" abstract="true" eSuperTypes="#//nattableaxis/IAxis">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="element" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This obejct allows to reference an element using a string instead of referencing it directly."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EObjectAxis" eSuperTypes="#//nattableaxis/ObjectAxis">
       <eStructuralFeatures xsi:type="ecore:EReference" name="element" lowerBound="1"
-          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This IAxis allows to reference an EObject."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureAxis" abstract="true" eSuperTypes="#//nattableaxis/IAxis">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Abstract class used to reference features."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="localLabelConfiguration"
-          eType="#//nattablelabelprovider/FeatureLabelProviderConfiguration"/>
+          eType="#//nattablelabelprovider/FeatureLabelProviderConfiguration" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This field can be null. References a feature label configuration."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectAxis" abstract="true" eSuperTypes="#//nattableaxis/IAxis">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Abstract class used to reference object"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="localLabelConfiguration"
-          eType="#//nattablelabelprovider/ObjectLabelProviderConfiguration"/>
+          eType="#//nattablelabelprovider/ObjectLabelProviderConfiguration" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This field can be null. References an object label configuration."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FeatureIdAxis" eSuperTypes="#//nattableaxis/IdAxis #//nattableaxis/FeatureAxis"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FeatureIdAxis" eSuperTypes="#//nattableaxis/IdAxis #//nattableaxis/FeatureAxis">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="IAxis used to represent feature using a string."/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EStructuralFeatureAxis" eSuperTypes="#//nattableaxis/FeatureAxis">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="IAxis used to reference EMF EStructuralFeature."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="element" lowerBound="1"
-          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The represented EStructuralFeature."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ObjectIdAxis" eSuperTypes="#//nattableaxis/IdAxis #//nattableaxis/ObjectAxis"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectIdAxis" eSuperTypes="#//nattableaxis/IdAxis #//nattableaxis/ObjectAxis">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="IAxis used to represent object using a string."/>
+      </eAnnotations>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

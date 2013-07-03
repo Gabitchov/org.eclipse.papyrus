@@ -35,23 +35,20 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class AxisManagerConfigurationItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class AxisManagerConfigurationItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AxisManagerConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -62,11 +59,12 @@ public class AxisManagerConfigurationItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addLocalHeaderLabelConfigurationPropertyDescriptor(object);
@@ -80,72 +78,46 @@ public class AxisManagerConfigurationItemProvider
 	 * This adds a property descriptor for the Local Header Label Configuration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLocalHeaderLabelConfigurationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AxisManagerConfiguration_localHeaderLabelConfiguration_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerConfiguration_localHeaderLabelConfiguration_feature", "_UI_AxisManagerConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_AxisManagerConfiguration_localHeaderLabelConfiguration_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerConfiguration_localHeaderLabelConfiguration_feature", "_UI_AxisManagerConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Axis Manager feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAxisManagerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AxisManagerConfiguration_axisManager_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerConfiguration_axisManager_feature", "_UI_AxisManagerConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_AxisManagerConfiguration_axisManager_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerConfiguration_axisManager_feature", "_UI_AxisManagerConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Local Specific Configurations feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLocalSpecificConfigurationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AxisManagerConfiguration_localSpecificConfigurations_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerConfiguration_localSpecificConfigurations_feature", "_UI_AxisManagerConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_AxisManagerConfiguration_localSpecificConfigurations_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_AxisManagerConfiguration_localSpecificConfigurations_feature", "_UI_AxisManagerConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisconfigurationPackage.Literals.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns AxisManagerConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,6 +129,7 @@ public class AxisManagerConfigurationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -169,6 +142,7 @@ public class AxisManagerConfigurationItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,6 +156,7 @@ public class AxisManagerConfigurationItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,6 +168,7 @@ public class AxisManagerConfigurationItemProvider
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -40,13 +40,16 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.util.NattableAdapterFac
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattableItemProviderAdapterFactory extends NattableAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -55,6 +58,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -63,6 +67,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -71,6 +76,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableItemProviderAdapterFactory() {
@@ -85,6 +91,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.Table} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TableItemProvider tableItemProvider;
@@ -93,11 +100,12 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.Table}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createTableAdapter() {
-		if (tableItemProvider == null) {
+		if(tableItemProvider == null) {
 			tableItemProvider = new TableItemProvider(this);
 		}
 
@@ -108,6 +116,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -118,6 +127,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -127,6 +137,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,6 +149,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,13 +160,14 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+		if(isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if(!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -166,6 +179,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -176,6 +190,7 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -186,24 +201,27 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if(parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
+	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if (tableItemProvider != null) tableItemProvider.dispose();
+		if(tableItemProvider != null)
+			tableItemProvider.dispose();
 	}
 
 }

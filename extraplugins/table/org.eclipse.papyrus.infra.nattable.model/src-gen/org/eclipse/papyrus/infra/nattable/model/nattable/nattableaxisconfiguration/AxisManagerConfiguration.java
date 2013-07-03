@@ -22,29 +22,37 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Axis Manager Configuration</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
+ * <!-- begin-model-doc -->
+ * This object allows to define and configure a Java AxisManager
+ * <!-- end-model-doc -->
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalHeaderLabelConfiguration <em>Local Header Label Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getAxisManager <em>Axis Manager</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfigurations <em>Local Specific Configurations</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalHeaderLabelConfiguration
+ * <em>Local Header Label Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getAxisManager <em>Axis Manager
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfigurations <em>
+ * Local Specific Configurations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisManagerConfiguration()
  * @model
  * @generated
  */
 public interface AxisManagerConfiguration extends EObject {
+
 	/**
 	 * Returns the value of the '<em><b>Local Header Label Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Local Header Label Configuration</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Reference the local header label configuration.
+	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Local Header Label Configuration</em>' reference.
 	 * @see #setLocalHeaderLabelConfiguration(ILabelProviderConfiguration)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisManagerConfiguration_LocalHeaderLabelConfiguration()
@@ -54,10 +62,14 @@ public interface AxisManagerConfiguration extends EObject {
 	ILabelProviderConfiguration getLocalHeaderLabelConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalHeaderLabelConfiguration <em>Local Header Label Configuration</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalHeaderLabelConfiguration
+	 * <em>Local Header Label Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Local Header Label Configuration</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Local Header Label Configuration</em>' reference.
 	 * @see #getLocalHeaderLabelConfiguration()
 	 * @generated
 	 */
@@ -66,11 +78,11 @@ public interface AxisManagerConfiguration extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Axis Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Axis Manager</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This value can't be null. the axis manager representation
+	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Axis Manager</em>' reference.
 	 * @see #setAxisManager(AxisManagerRepresentation)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisManagerConfiguration_AxisManager()
@@ -80,10 +92,14 @@ public interface AxisManagerConfiguration extends EObject {
 	AxisManagerRepresentation getAxisManager();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getAxisManager <em>Axis Manager</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getAxisManager
+	 * <em>Axis Manager</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Axis Manager</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Axis Manager</em>' reference.
 	 * @see #getAxisManager()
 	 * @generated
 	 */
@@ -93,11 +109,11 @@ public interface AxisManagerConfiguration extends EObject {
 	 * Returns the value of the '<em><b>Local Specific Configurations</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Local Specific Configurations</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * specific configurations for the axis manager.
+	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Local Specific Configurations</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisManagerConfiguration_LocalSpecificConfigurations()
 	 * @model

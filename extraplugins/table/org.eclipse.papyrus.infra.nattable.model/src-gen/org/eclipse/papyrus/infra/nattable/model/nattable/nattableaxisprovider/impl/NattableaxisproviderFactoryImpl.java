@@ -26,23 +26,25 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.*;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattableaxisproviderFactoryImpl extends EFactoryImpl implements NattableaxisproviderFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static NattableaxisproviderFactory init() {
 		try {
 			NattableaxisproviderFactory theNattableaxisproviderFactory = (NattableaxisproviderFactory)EPackage.Registry.INSTANCE.getEFactory(NattableaxisproviderPackage.eNS_URI);
-			if (theNattableaxisproviderFactory != null) {
+			if(theNattableaxisproviderFactory != null) {
 				return theNattableaxisproviderFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NattableaxisproviderFactoryImpl();
@@ -52,6 +54,7 @@ public class NattableaxisproviderFactoryImpl extends EFactoryImpl implements Nat
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableaxisproviderFactoryImpl() {
@@ -61,21 +64,25 @@ public class NattableaxisproviderFactoryImpl extends EFactoryImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case NattableaxisproviderPackage.SLAVE_OBJECT_AXIS_PROVIDER: return createSlaveObjectAxisProvider();
-			case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER: return createMasterObjectAxisProvider();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eClass.getClassifierID()) {
+		case NattableaxisproviderPackage.SLAVE_OBJECT_AXIS_PROVIDER:
+			return createSlaveObjectAxisProvider();
+		case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER:
+			return createMasterObjectAxisProvider();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SlaveObjectAxisProvider createSlaveObjectAxisProvider() {
@@ -86,6 +93,7 @@ public class NattableaxisproviderFactoryImpl extends EFactoryImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MasterObjectAxisProvider createMasterObjectAxisProvider() {
@@ -96,6 +104,7 @@ public class NattableaxisproviderFactoryImpl extends EFactoryImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableaxisproviderPackage getNattableaxisproviderPackage() {
@@ -105,6 +114,7 @@ public class NattableaxisproviderFactoryImpl extends EFactoryImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

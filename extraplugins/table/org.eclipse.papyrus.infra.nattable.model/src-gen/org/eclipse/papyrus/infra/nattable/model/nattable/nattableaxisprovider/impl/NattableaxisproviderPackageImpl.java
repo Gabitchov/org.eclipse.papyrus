@@ -58,12 +58,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.Nat
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattableaxisproviderPackageImpl extends EPackageImpl implements NattableaxisproviderPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass abstractAxisProviderEClass = null;
@@ -71,6 +74,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass iMasterAxisProviderEClass = null;
@@ -78,6 +82,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass iSlaveAxisProviderEClass = null;
@@ -85,6 +90,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass axisProviderEClass = null;
@@ -92,6 +98,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass slaveObjectAxisProviderEClass = null;
@@ -99,20 +106,19 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass masterObjectAxisProviderEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#eNS_URI
 	 * @see #init()
@@ -125,6 +131,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -132,17 +139,18 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link NattableaxisproviderPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link NattableaxisproviderPackage#eINSTANCE} when that field is accessed. Clients should not invoke it
+	 * directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static NattableaxisproviderPackage init() {
-		if (isInited) return (NattableaxisproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI);
+		if(isInited)
+			return (NattableaxisproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI);
 
 		// Obtain or create and register package
 		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattableaxisproviderPackageImpl());
@@ -181,7 +189,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 		// Mark meta-data to indicate it can't be changed
 		theNattableaxisproviderPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NattableaxisproviderPackage.eNS_URI, theNattableaxisproviderPackage);
 		return theNattableaxisproviderPackage;
@@ -190,6 +198,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAbstractAxisProvider() {
@@ -199,6 +208,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EOperation getAbstractAxisProvider__GetAxis() {
@@ -208,6 +218,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getIMasterAxisProvider() {
@@ -217,6 +228,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getIMasterAxisProvider_DisconnectSlave() {
@@ -226,6 +238,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getISlaveAxisProvider() {
@@ -235,6 +248,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAxisProvider() {
@@ -244,6 +258,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAxisProvider_Axis() {
@@ -253,6 +268,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSlaveObjectAxisProvider() {
@@ -262,6 +278,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMasterObjectAxisProvider() {
@@ -271,6 +288,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableaxisproviderFactory getNattableaxisproviderFactory() {
@@ -280,19 +298,22 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -315,19 +336,22 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -336,7 +360,6 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		NattableconfigurationPackage theNattableconfigurationPackage = (NattableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI);
 		NattableaxisPackage theNattableaxisPackage = (NattableaxisPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI);
 
@@ -345,7 +368,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		abstractAxisProviderEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		abstractAxisProviderEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		abstractAxisProviderEClass.getESuperTypes().add(theNattableconfigurationPackage.getTableNamedElement());
 		iMasterAxisProviderEClass.getESuperTypes().add(this.getAxisProvider());
 		iSlaveAxisProviderEClass.getESuperTypes().add(this.getAxisProvider());
@@ -359,7 +382,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 		initEOperation(getAbstractAxisProvider__GetAxis(), theNattableaxisPackage.getIAxis(), "getAxis", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iMasterAxisProviderEClass, IMasterAxisProvider.class, "IMasterAxisProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getIMasterAxisProvider_DisconnectSlave(), theEcorePackage.getEBoolean(), "disconnectSlave", null, 0, 1, IMasterAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIMasterAxisProvider_DisconnectSlave(), ecorePackage.getEBoolean(), "disconnectSlave", null, 0, 1, IMasterAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iSlaveAxisProviderEClass, ISlaveAxisProvider.class, "ISlaveAxisProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

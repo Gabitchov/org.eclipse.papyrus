@@ -27,14 +27,17 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.*
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage
  * @generated
  */
 public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
+
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static NattablelabelproviderPackage modelPackage;
@@ -43,10 +46,11 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattablelabelproviderAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattablelabelproviderPackage.eINSTANCE;
 		}
 	}
@@ -56,15 +60,16 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
+		if(object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -74,37 +79,44 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected NattablelabelproviderSwitch<Adapter> modelSwitch =
-		new NattablelabelproviderSwitch<Adapter>() {
-			@Override
-			public Adapter caseILabelProviderConfiguration(ILabelProviderConfiguration object) {
-				return createILabelProviderConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseFeatureLabelProviderConfiguration(FeatureLabelProviderConfiguration object) {
-				return createFeatureLabelProviderConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseObjectLabelProviderConfiguration(ObjectLabelProviderConfiguration object) {
-				return createObjectLabelProviderConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseEModelElement(EModelElement object) {
-				return createEModelElementAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected NattablelabelproviderSwitch<Adapter> modelSwitch = new NattablelabelproviderSwitch<Adapter>() {
+
+		@Override
+		public Adapter caseILabelProviderConfiguration(ILabelProviderConfiguration object) {
+			return createILabelProviderConfigurationAdapter();
+		}
+
+		@Override
+		public Adapter caseFeatureLabelProviderConfiguration(FeatureLabelProviderConfiguration object) {
+			return createFeatureLabelProviderConfigurationAdapter();
+		}
+
+		@Override
+		public Adapter caseObjectLabelProviderConfiguration(ObjectLabelProviderConfiguration object) {
+			return createObjectLabelProviderConfigurationAdapter();
+		}
+
+		@Override
+		public Adapter caseEModelElement(EModelElement object) {
+			return createEModelElementAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param target the object to adapt.
+	 * 
+	 * @param target
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -115,11 +127,14 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration <em>ILabel Provider Configuration</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration
+	 * <em>ILabel Provider Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration
 	 * @generated
@@ -129,11 +144,14 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration <em>Feature Label Provider Configuration</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration
+	 * <em>Feature Label Provider Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration
 	 * @generated
@@ -143,11 +161,14 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration <em>Object Label Provider Configuration</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration
+	 * <em>Object Label Provider Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration
 	 * @generated
@@ -162,6 +183,7 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.ecore.EModelElement
 	 * @generated
@@ -175,6 +197,7 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

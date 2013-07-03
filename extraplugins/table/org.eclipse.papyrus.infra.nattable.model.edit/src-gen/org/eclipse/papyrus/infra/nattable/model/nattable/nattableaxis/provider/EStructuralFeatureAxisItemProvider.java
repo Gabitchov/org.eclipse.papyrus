@@ -34,20 +34,16 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.Nattableax
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class EStructuralFeatureAxisItemProvider
-	extends FeatureAxisItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class EStructuralFeatureAxisItemProvider extends FeatureAxisItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EStructuralFeatureAxisItemProvider(AdapterFactory adapterFactory) {
@@ -58,11 +54,12 @@ public class EStructuralFeatureAxisItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addElementPropertyDescriptor(object);
@@ -74,28 +71,20 @@ public class EStructuralFeatureAxisItemProvider
 	 * This adds a property descriptor for the Element feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EStructuralFeatureAxis_element_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeatureAxis_element_feature", "_UI_EStructuralFeatureAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisPackage.Literals.ESTRUCTURAL_FEATURE_AXIS__ELEMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_EStructuralFeatureAxis_element_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeatureAxis_element_feature", "_UI_EStructuralFeatureAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisPackage.Literals.ESTRUCTURAL_FEATURE_AXIS__ELEMENT, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns EStructuralFeatureAxis.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,14 +96,14 @@ public class EStructuralFeatureAxisItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((EStructuralFeatureAxis)object).getAlias();
-		return label == null || label.length() == 0 ?
-			getString("_UI_EStructuralFeatureAxis_type") : //$NON-NLS-1$
-			getString("_UI_EStructuralFeatureAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_EStructuralFeatureAxis_type") : //$NON-NLS-1$
+		getString("_UI_EStructuralFeatureAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -122,6 +111,7 @@ public class EStructuralFeatureAxisItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,6 +125,7 @@ public class EStructuralFeatureAxisItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

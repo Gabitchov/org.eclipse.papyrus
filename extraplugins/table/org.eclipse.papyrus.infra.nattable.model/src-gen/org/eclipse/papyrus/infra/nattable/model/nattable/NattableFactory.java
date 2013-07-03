@@ -19,14 +19,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage
  * @generated
  */
 public interface NattableFactory extends EFactory {
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	NattableFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattableFactoryImpl.init();
@@ -35,6 +38,7 @@ public interface NattableFactory extends EFactory {
 	 * Returns a new object of class '<em>Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Table</em>'.
 	 * @generated
 	 */
@@ -44,6 +48,7 @@ public interface NattableFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

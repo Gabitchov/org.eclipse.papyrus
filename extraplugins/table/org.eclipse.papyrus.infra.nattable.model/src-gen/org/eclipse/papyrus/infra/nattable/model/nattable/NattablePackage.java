@@ -24,22 +24,28 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.N
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each operation of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each operation of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore#/'"
+ *        annotation=
+ *        "http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface NattablePackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "nattable"; //$NON-NLS-1$
@@ -48,6 +54,7 @@ public interface NattablePackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/nattable/model"; //$NON-NLS-1$
@@ -56,6 +63,7 @@ public interface NattablePackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "nattable"; //$NON-NLS-1$
@@ -64,6 +72,7 @@ public interface NattablePackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	NattablePackage eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl.init();
@@ -72,6 +81,7 @@ public interface NattablePackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl <em>Table</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl#getTable()
 	 * @generated
@@ -82,6 +92,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -91,6 +102,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -100,6 +112,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -109,6 +122,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -118,6 +132,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Table Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -127,6 +142,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Invert Axis</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -136,6 +152,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Column Axis Providers History</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -145,6 +162,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Row Axis Providers History</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -154,6 +172,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Local Row Header Axis Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -163,6 +182,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Local Column Header Axis Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -172,6 +192,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Current Row Axis Provider</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -181,6 +202,7 @@ public interface NattablePackage extends EPackage {
 	 * The feature id for the '<em><b>Current Column Axis Provider</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -190,6 +212,7 @@ public interface NattablePackage extends EPackage {
 	 * The number of structural features of the '<em>Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -199,6 +222,7 @@ public interface NattablePackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -208,6 +232,7 @@ public interface NattablePackage extends EPackage {
 	 * The number of operations of the '<em>Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -218,6 +243,7 @@ public interface NattablePackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table <em>Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Table</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table
 	 * @generated
@@ -228,6 +254,7 @@ public interface NattablePackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Context</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getContext()
 	 * @see #getTable()
@@ -236,9 +263,11 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_Context();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableConfiguration <em>Table Configuration</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableConfiguration
+	 * <em>Table Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Table Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableConfiguration()
 	 * @see #getTable()
@@ -250,6 +279,7 @@ public interface NattablePackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis <em>Invert Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Invert Axis</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis()
 	 * @see #getTable()
@@ -258,9 +288,11 @@ public interface NattablePackage extends EPackage {
 	EAttribute getTable_InvertAxis();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getColumnAxisProvidersHistory <em>Column Axis Providers History</em>}'.
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getColumnAxisProvidersHistory <em>Column Axis Providers History</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Column Axis Providers History</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getColumnAxisProvidersHistory()
 	 * @see #getTable()
@@ -269,9 +301,11 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_ColumnAxisProvidersHistory();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getRowAxisProvidersHistory <em>Row Axis Providers History</em>}'.
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getRowAxisProvidersHistory <em>Row Axis Providers History</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Row Axis Providers History</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getRowAxisProvidersHistory()
 	 * @see #getTable()
@@ -280,9 +314,12 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_RowAxisProvidersHistory();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalRowHeaderAxisConfiguration <em>Local Row Header Axis Configuration</em>}'.
+	 * Returns the meta object for the containment reference '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalRowHeaderAxisConfiguration <em>Local Row Header Axis Configuration</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference '<em>Local Row Header Axis Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalRowHeaderAxisConfiguration()
 	 * @see #getTable()
@@ -291,9 +328,12 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_LocalRowHeaderAxisConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalColumnHeaderAxisConfiguration <em>Local Column Header Axis Configuration</em>}'.
+	 * Returns the meta object for the containment reference '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalColumnHeaderAxisConfiguration
+	 * <em>Local Column Header Axis Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference '<em>Local Column Header Axis Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalColumnHeaderAxisConfiguration()
 	 * @see #getTable()
@@ -302,9 +342,11 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_LocalColumnHeaderAxisConfiguration();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentRowAxisProvider
+	 * <em>Current Row Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Current Row Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentRowAxisProvider()
 	 * @see #getTable()
@@ -313,9 +355,11 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_CurrentRowAxisProvider();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentColumnAxisProvider
+	 * <em>Current Column Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Current Column Axis Provider</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentColumnAxisProvider()
 	 * @see #getTable()
@@ -327,6 +371,7 @@ public interface NattablePackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -336,20 +381,23 @@ public interface NattablePackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 *   <li>each class,</li>
-	 *   <li>each feature of each class,</li>
-	 *   <li>each operation of each class,</li>
-	 *   <li>each enum,</li>
-	 *   <li>and each data type</li>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each operation of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl <em>Table</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl#getTable()
 		 * @generated
@@ -360,6 +408,7 @@ public interface NattablePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference TABLE__CONTEXT = eINSTANCE.getTable_Context();
@@ -368,6 +417,7 @@ public interface NattablePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Table Configuration</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference TABLE__TABLE_CONFIGURATION = eINSTANCE.getTable_TableConfiguration();
@@ -376,6 +426,7 @@ public interface NattablePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Invert Axis</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute TABLE__INVERT_AXIS = eINSTANCE.getTable_InvertAxis();
@@ -384,6 +435,7 @@ public interface NattablePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Column Axis Providers History</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference TABLE__COLUMN_AXIS_PROVIDERS_HISTORY = eINSTANCE.getTable_ColumnAxisProvidersHistory();
@@ -392,6 +444,7 @@ public interface NattablePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Row Axis Providers History</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference TABLE__ROW_AXIS_PROVIDERS_HISTORY = eINSTANCE.getTable_RowAxisProvidersHistory();
@@ -400,6 +453,7 @@ public interface NattablePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Local Row Header Axis Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION = eINSTANCE.getTable_LocalRowHeaderAxisConfiguration();
@@ -408,6 +462,7 @@ public interface NattablePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Local Column Header Axis Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION = eINSTANCE.getTable_LocalColumnHeaderAxisConfiguration();
@@ -416,6 +471,7 @@ public interface NattablePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Current Row Axis Provider</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference TABLE__CURRENT_ROW_AXIS_PROVIDER = eINSTANCE.getTable_CurrentRowAxisProvider();
@@ -424,6 +480,7 @@ public interface NattablePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Current Column Axis Provider</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference TABLE__CURRENT_COLUMN_AXIS_PROVIDER = eINSTANCE.getTable_CurrentColumnAxisProvider();

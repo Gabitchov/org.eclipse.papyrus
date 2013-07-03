@@ -33,23 +33,20 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Ma
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class MasterObjectAxisProviderItemProvider
-	extends AxisProviderItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class MasterObjectAxisProviderItemProvider extends AxisProviderItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MasterObjectAxisProviderItemProvider(AdapterFactory adapterFactory) {
@@ -60,11 +57,12 @@ public class MasterObjectAxisProviderItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addDisconnectSlavePropertyDescriptor(object);
@@ -76,28 +74,20 @@ public class MasterObjectAxisProviderItemProvider
 	 * This adds a property descriptor for the Disconnect Slave feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDisconnectSlavePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IMasterAxisProvider_disconnectSlave_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IMasterAxisProvider_disconnectSlave_feature", "_UI_IMasterAxisProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisproviderPackage.Literals.IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_IMasterAxisProvider_disconnectSlave_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_IMasterAxisProvider_disconnectSlave_feature", "_UI_IMasterAxisProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisproviderPackage.Literals.IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This returns MasterObjectAxisProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,14 +99,14 @@ public class MasterObjectAxisProviderItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((MasterObjectAxisProvider)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MasterObjectAxisProvider_type") : //$NON-NLS-1$
-			getString("_UI_MasterObjectAxisProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_MasterObjectAxisProvider_type") : //$NON-NLS-1$
+		getString("_UI_MasterObjectAxisProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -124,16 +114,17 @@ public class MasterObjectAxisProviderItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MasterObjectAxisProvider.class)) {
-			case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		switch(notification.getFeatureID(MasterObjectAxisProvider.class)) {
+		case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -143,6 +134,7 @@ public class MasterObjectAxisProviderItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

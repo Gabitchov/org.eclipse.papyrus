@@ -17,8 +17,12 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>ISlave Axis Provider</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * <!-- begin-model-doc -->
+ * Interface used to distinghuish the master from the slave axis provider.
+ * <!-- end-model-doc -->
+ * 
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getISlaveAxisProvider()
  * @model interface="true" abstract="true"
  * @generated

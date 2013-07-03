@@ -23,6 +23,12 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Cell Editor Declaration</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * Indicates how the CellEditor must be declared.
+ * In the common table, we display features as columns and objects as line.
+ * In this case the cell editors are specific to features, so the cell editor must be declared on the columns.
+ * <!-- end-model-doc -->
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getCellEditorDeclaration()
  * @model
  * @generated
@@ -32,6 +38,7 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * The '<em><b>COLUMN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #COLUMN_VALUE
 	 * @generated
 	 * @ordered
@@ -42,6 +49,7 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * The '<em><b>ROW</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #ROW_VALUE
 	 * @generated
 	 * @ordered
@@ -52,6 +60,7 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * The '<em><b>CELL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CELL_VALUE
 	 * @generated
 	 * @ordered
@@ -62,10 +71,10 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * The '<em><b>COLUMN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>COLUMN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>COLUMN</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #COLUMN
 	 * @model
 	 * @generated
@@ -77,10 +86,10 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * The '<em><b>ROW</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ROW</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>ROW</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #ROW
 	 * @model
 	 * @generated
@@ -92,10 +101,10 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * The '<em><b>CELL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CELL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>CELL</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CELL
 	 * @model
 	 * @generated
@@ -107,19 +116,16 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * An array of all the '<em><b>Cell Editor Declaration</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final CellEditorDeclaration[] VALUES_ARRAY =
-		new CellEditorDeclaration[] {
-			COLUMN,
-			ROW,
-			CELL,
-		};
+	private static final CellEditorDeclaration[] VALUES_ARRAY = new CellEditorDeclaration[]{ COLUMN, ROW, CELL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Cell Editor Declaration</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<CellEditorDeclaration> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -128,12 +134,13 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * Returns the '<em><b>Cell Editor Declaration</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static CellEditorDeclaration get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CellEditorDeclaration result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -144,12 +151,13 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * Returns the '<em><b>Cell Editor Declaration</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static CellEditorDeclaration getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CellEditorDeclaration result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -160,13 +168,17 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * Returns the '<em><b>Cell Editor Declaration</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static CellEditorDeclaration get(int value) {
-		switch (value) {
-			case COLUMN_VALUE: return COLUMN;
-			case ROW_VALUE: return ROW;
-			case CELL_VALUE: return CELL;
+		switch(value) {
+		case COLUMN_VALUE:
+			return COLUMN;
+		case ROW_VALUE:
+			return ROW;
+		case CELL_VALUE:
+			return CELL;
 		}
 		return null;
 	}
@@ -174,6 +186,7 @@ public enum CellEditorDeclaration implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -181,6 +194,7 @@ public enum CellEditorDeclaration implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -188,6 +202,7 @@ public enum CellEditorDeclaration implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -196,6 +211,7 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private CellEditorDeclaration(int value, String name, String literal) {
@@ -207,39 +223,43 @@ public enum CellEditorDeclaration implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-	
+
 } //CellEditorDeclaration

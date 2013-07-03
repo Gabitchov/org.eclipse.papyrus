@@ -40,13 +40,16 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.u
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattablelabelproviderItemProviderAdapterFactory extends NattablelabelproviderAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -55,6 +58,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -63,6 +67,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -71,6 +76,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattablelabelproviderItemProviderAdapterFactory() {
@@ -82,22 +88,26 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration} instances.
+	 * This keeps track of the one adapter used for all
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FeatureLabelProviderConfigurationItemProvider featureLabelProviderConfigurationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration}
+	 * .
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createFeatureLabelProviderConfigurationAdapter() {
-		if (featureLabelProviderConfigurationItemProvider == null) {
+		if(featureLabelProviderConfigurationItemProvider == null) {
 			featureLabelProviderConfigurationItemProvider = new FeatureLabelProviderConfigurationItemProvider(this);
 		}
 
@@ -105,9 +115,11 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration} instances.
+	 * This keeps track of the one adapter used for all
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ObjectLabelProviderConfigurationItemProvider objectLabelProviderConfigurationItemProvider;
@@ -116,11 +128,12 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createObjectLabelProviderConfigurationAdapter() {
-		if (objectLabelProviderConfigurationItemProvider == null) {
+		if(objectLabelProviderConfigurationItemProvider == null) {
 			objectLabelProviderConfigurationItemProvider = new ObjectLabelProviderConfigurationItemProvider(this);
 		}
 
@@ -131,6 +144,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -141,6 +155,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -150,6 +165,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -161,6 +177,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -171,13 +188,14 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+		if(isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if(!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -189,6 +207,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -199,6 +218,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -209,25 +229,29 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if(parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
+	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if (featureLabelProviderConfigurationItemProvider != null) featureLabelProviderConfigurationItemProvider.dispose();
-		if (objectLabelProviderConfigurationItemProvider != null) objectLabelProviderConfigurationItemProvider.dispose();
+		if(featureLabelProviderConfigurationItemProvider != null)
+			featureLabelProviderConfigurationItemProvider.dispose();
+		if(objectLabelProviderConfigurationItemProvider != null)
+			objectLabelProviderConfigurationItemProvider.dispose();
 	}
 
 }

@@ -18,40 +18,49 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.F
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Feature Axis</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
+ * <!-- begin-model-doc -->
+ * Abstract class used to reference features.
+ * <!-- end-model-doc -->
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration <em>Local Label Configuration
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getFeatureAxis()
  * @model abstract="true"
  * @generated
  */
 public interface FeatureAxis extends IAxis {
+
 	/**
-	 * Returns the value of the '<em><b>Local Label Configuration</b></em>' reference.
+	 * Returns the value of the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Local Label Configuration</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Local Label Configuration</em>' reference.
+	 * <!-- begin-model-doc -->
+	 * This field can be null. References a feature label configuration.
+	 * <!-- end-model-doc -->
+	 * 
+	 * @return the value of the '<em>Local Label Configuration</em>' containment reference.
 	 * @see #setLocalLabelConfiguration(FeatureLabelProviderConfiguration)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getFeatureAxis_LocalLabelConfiguration()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	FeatureLabelProviderConfiguration getLocalLabelConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration
+	 * <em>Local Label Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Local Label Configuration</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Local Label Configuration</em>' containment reference.
 	 * @see #getLocalLabelConfiguration()
 	 * @generated
 	 */

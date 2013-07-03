@@ -53,12 +53,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Nattable
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattabletesterPackageImpl extends EPackageImpl implements NattabletesterPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass abstractTableTesterEClass = null;
@@ -66,20 +69,19 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass javaTableTesterEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage#eNS_URI
 	 * @see #init()
@@ -92,6 +94,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -99,17 +102,18 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link NattabletesterPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link NattabletesterPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static NattabletesterPackage init() {
-		if (isInited) return (NattabletesterPackage)EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI);
+		if(isInited)
+			return (NattabletesterPackage)EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI);
 
 		// Obtain or create and register package
 		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattabletesterPackageImpl());
@@ -148,7 +152,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 		// Mark meta-data to indicate it can't be changed
 		theNattabletesterPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NattabletesterPackage.eNS_URI, theNattabletesterPackage);
 		return theNattabletesterPackage;
@@ -157,6 +161,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAbstractTableTester() {
@@ -166,6 +171,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EOperation getAbstractTableTester__GetTester() {
@@ -175,6 +181,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getJavaTableTester() {
@@ -184,6 +191,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getJavaTableTester_Tester() {
@@ -193,6 +201,7 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattabletesterFactory getNattabletesterFactory() {
@@ -202,19 +211,22 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -228,19 +240,22 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -248,15 +263,12 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
-		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		abstractTableTesterEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		abstractTableTesterEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		javaTableTesterEClass.getESuperTypes().add(this.getAbstractTableTester());
 
 		// Initialize classes, features, and operations; add parameters

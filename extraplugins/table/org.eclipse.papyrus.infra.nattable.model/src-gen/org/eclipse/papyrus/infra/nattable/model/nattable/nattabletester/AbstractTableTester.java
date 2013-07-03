@@ -13,21 +13,31 @@
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester;
 
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Abstract Table Tester</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * <!-- begin-model-doc -->
+ * Abstract class for the tester.
+ * <!-- end-model-doc -->
+ * 
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage#getAbstractTableTester()
  * @model abstract="true"
  * @generated
  */
-public interface AbstractTableTester extends EModelElement {
+public interface AbstractTableTester extends EObject, EModelElement {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Returns an object representing the tester
+	 * <!-- end-model-doc -->
+	 * 
 	 * @model kind="operation"
 	 * @generated
 	 */

@@ -17,8 +17,12 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurat
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IPaste Configuration</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * <!-- begin-model-doc -->
+ * Common Interface for the paste configuration.
+ * <!-- end-model-doc -->
+ * 
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getIPasteConfiguration()
  * @model
  * @generated

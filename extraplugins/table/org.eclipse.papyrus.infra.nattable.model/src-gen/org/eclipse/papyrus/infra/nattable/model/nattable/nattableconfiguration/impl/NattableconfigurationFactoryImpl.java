@@ -27,23 +27,25 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.*
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattableconfigurationFactoryImpl extends EFactoryImpl implements NattableconfigurationFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static NattableconfigurationFactory init() {
 		try {
 			NattableconfigurationFactory theNattableconfigurationFactory = (NattableconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(NattableconfigurationPackage.eNS_URI);
-			if (theNattableconfigurationFactory != null) {
+			if(theNattableconfigurationFactory != null) {
 				return theNattableconfigurationFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NattableconfigurationFactoryImpl();
@@ -53,6 +55,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableconfigurationFactoryImpl() {
@@ -62,50 +65,55 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case NattableconfigurationPackage.TABLE_CONFIGURATION: return createTableConfiguration();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eClass.getClassifierID()) {
+		case NattableconfigurationPackage.TABLE_CONFIGURATION:
+			return createTableConfiguration();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case NattableconfigurationPackage.CELL_EDITOR_DECLARATION:
-				return createCellEditorDeclarationFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eDataType.getClassifierID()) {
+		case NattableconfigurationPackage.CELL_EDITOR_DECLARATION:
+			return createCellEditorDeclarationFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case NattableconfigurationPackage.CELL_EDITOR_DECLARATION:
-				return convertCellEditorDeclarationToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eDataType.getClassifierID()) {
+		case NattableconfigurationPackage.CELL_EDITOR_DECLARATION:
+			return convertCellEditorDeclarationToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TableConfiguration createTableConfiguration() {
@@ -116,17 +124,20 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CellEditorDeclaration createCellEditorDeclarationFromString(EDataType eDataType, String initialValue) {
 		CellEditorDeclaration result = CellEditorDeclaration.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if(result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertCellEditorDeclarationToString(EDataType eDataType, Object instanceValue) {
@@ -136,6 +147,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableconfigurationPackage getNattableconfigurationPackage() {
@@ -145,6 +157,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

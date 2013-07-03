@@ -18,8 +18,12 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IAxis Configuration</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * <!-- begin-model-doc -->
+ * Comon Interface for axis configuration.
+ * <!-- end-model-doc -->
+ * 
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getIAxisConfiguration()
  * @model interface="true" abstract="true"
  * @generated

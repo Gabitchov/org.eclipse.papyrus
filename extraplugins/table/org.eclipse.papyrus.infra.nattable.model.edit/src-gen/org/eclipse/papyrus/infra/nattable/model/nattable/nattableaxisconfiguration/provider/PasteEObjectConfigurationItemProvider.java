@@ -33,23 +33,20 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class PasteEObjectConfigurationItemProvider
-	extends IPasteConfigurationItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PasteEObjectConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -60,11 +57,12 @@ public class PasteEObjectConfigurationItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addPastedElementIdPropertyDescriptor(object);
@@ -77,50 +75,33 @@ public class PasteEObjectConfigurationItemProvider
 	 * This adds a property descriptor for the Pasted Element Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPastedElementIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PasteEObjectConfiguration_pastedElementId_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PasteEObjectConfiguration_pastedElementId_feature", "_UI_PasteEObjectConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PasteEObjectConfiguration_pastedElementId_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_PasteEObjectConfiguration_pastedElementId_feature", "_UI_PasteEObjectConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Paste Element Containement Feature feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPasteElementContainementFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PasteEObjectConfiguration_pasteElementContainementFeature_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PasteEObjectConfiguration_pasteElementContainementFeature_feature", "_UI_PasteEObjectConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PasteEObjectConfiguration_pasteElementContainementFeature_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_PasteEObjectConfiguration_pasteElementContainementFeature_feature", "_UI_PasteEObjectConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns PasteEObjectConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,14 +113,14 @@ public class PasteEObjectConfigurationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((PasteEObjectConfiguration)object).getPastedElementId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PasteEObjectConfiguration_type") : //$NON-NLS-1$
-			getString("_UI_PasteEObjectConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_PasteEObjectConfiguration_type") : //$NON-NLS-1$
+		getString("_UI_PasteEObjectConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -147,16 +128,17 @@ public class PasteEObjectConfigurationItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PasteEObjectConfiguration.class)) {
-			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		switch(notification.getFeatureID(PasteEObjectConfiguration.class)) {
+		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -166,6 +148,7 @@ public class PasteEObjectConfigurationItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -17,8 +17,12 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurat
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IFilling Configuration</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * <!-- begin-model-doc -->
+ * Comon Interface for filling configurations.
+ * <!-- end-model-doc -->
+ * 
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getIFillingConfiguration()
  * @model interface="true" abstract="true"
  * @generated

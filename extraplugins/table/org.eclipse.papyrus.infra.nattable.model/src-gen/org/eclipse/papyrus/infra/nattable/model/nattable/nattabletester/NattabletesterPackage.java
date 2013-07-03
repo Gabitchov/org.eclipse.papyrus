@@ -23,22 +23,25 @@ import org.eclipse.emf.ecore.EcorePackage;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each operation of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each operation of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterFactory
  * @model kind="package"
  * @generated
  */
 public interface NattabletesterPackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "nattabletester"; //$NON-NLS-1$
@@ -47,6 +50,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"; //$NON-NLS-1$
@@ -55,6 +59,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "nattabletester"; //$NON-NLS-1$
@@ -63,14 +68,17 @@ public interface NattabletesterPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	NattabletesterPackage eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.AbstractTableTesterImpl <em>Abstract Table Tester</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.AbstractTableTesterImpl
+	 * <em>Abstract Table Tester</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.AbstractTableTesterImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl#getAbstractTableTester()
 	 * @generated
@@ -81,6 +89,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -90,6 +99,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The number of structural features of the '<em>Abstract Table Tester</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -99,6 +109,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -108,6 +119,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The operation id for the '<em>Get Tester</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -117,15 +129,18 @@ public interface NattabletesterPackage extends EPackage {
 	 * The number of operations of the '<em>Abstract Table Tester</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_TABLE_TESTER_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.JavaTableTesterImpl <em>Java Table Tester</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.JavaTableTesterImpl
+	 * <em>Java Table Tester</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.JavaTableTesterImpl
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl#getJavaTableTester()
 	 * @generated
@@ -136,6 +151,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -145,6 +161,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The feature id for the '<em><b>Tester</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -154,6 +171,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The number of structural features of the '<em>Java Table Tester</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -163,6 +181,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -172,6 +191,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The operation id for the '<em>Get Tester</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -181,6 +201,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * The number of operations of the '<em>Java Table Tester</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -188,9 +209,11 @@ public interface NattabletesterPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester <em>Abstract Table Tester</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester
+	 * <em>Abstract Table Tester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Abstract Table Tester</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester
 	 * @generated
@@ -198,9 +221,11 @@ public interface NattabletesterPackage extends EPackage {
 	EClass getAbstractTableTester();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester#getTester() <em>Get Tester</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester#getTester()
+	 * <em>Get Tester</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the '<em>Get Tester</em>' operation.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester#getTester()
 	 * @generated
@@ -208,9 +233,11 @@ public interface NattabletesterPackage extends EPackage {
 	EOperation getAbstractTableTester__GetTester();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester <em>Java Table Tester</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester
+	 * <em>Java Table Tester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Java Table Tester</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester
 	 * @generated
@@ -218,9 +245,11 @@ public interface NattabletesterPackage extends EPackage {
 	EClass getJavaTableTester();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester#getTester <em>Tester</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester#getTester
+	 * <em>Tester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Tester</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester#getTester()
 	 * @see #getJavaTableTester()
@@ -232,6 +261,7 @@ public interface NattabletesterPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -241,20 +271,24 @@ public interface NattabletesterPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 *   <li>each class,</li>
-	 *   <li>each feature of each class,</li>
-	 *   <li>each operation of each class,</li>
-	 *   <li>each enum,</li>
-	 *   <li>and each data type</li>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each operation of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.AbstractTableTesterImpl <em>Abstract Table Tester</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.AbstractTableTesterImpl
+		 * <em>Abstract Table Tester</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.AbstractTableTesterImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl#getAbstractTableTester()
 		 * @generated
@@ -265,14 +299,17 @@ public interface NattabletesterPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Get Tester</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EOperation ABSTRACT_TABLE_TESTER___GET_TESTER = eINSTANCE.getAbstractTableTester__GetTester();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.JavaTableTesterImpl <em>Java Table Tester</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.JavaTableTesterImpl
+		 * <em>Java Table Tester</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.JavaTableTesterImpl
 		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl#getJavaTableTester()
 		 * @generated
@@ -283,6 +320,7 @@ public interface NattabletesterPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Tester</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute JAVA_TABLE_TESTER__TESTER = eINSTANCE.getJavaTableTester_Tester();

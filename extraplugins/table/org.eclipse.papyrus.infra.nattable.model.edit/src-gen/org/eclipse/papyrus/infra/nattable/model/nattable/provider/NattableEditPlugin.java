@@ -22,13 +22,16 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
  * This is the central singleton for the Nattable edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public final class NattableEditPlugin extends EMFPlugin {
+
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final NattableEditPlugin INSTANCE = new NattableEditPlugin();
@@ -37,6 +40,7 @@ public final class NattableEditPlugin extends EMFPlugin {
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static Implementation plugin;
@@ -45,19 +49,18 @@ public final class NattableEditPlugin extends EMFPlugin {
 	 * Create the instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableEditPlugin() {
-		super
-		  (new ResourceLocator [] {
-		     EcoreEditPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[]{ EcoreEditPlugin.INSTANCE, });
 	}
 
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -70,6 +73,7 @@ public final class NattableEditPlugin extends EMFPlugin {
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -81,13 +85,16 @@ public final class NattableEditPlugin extends EMFPlugin {
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static class Implementation extends EclipsePlugin {
+
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		public Implementation() {

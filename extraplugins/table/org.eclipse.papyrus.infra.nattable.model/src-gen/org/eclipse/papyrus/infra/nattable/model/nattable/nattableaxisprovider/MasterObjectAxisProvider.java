@@ -17,8 +17,12 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Master Object Axis Provider</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * <!-- begin-model-doc -->
+ * Concret implementation of IMasterAxisProvider
+ * <!-- end-model-doc -->
+ * 
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getMasterObjectAxisProvider()
  * @model
  * @generated

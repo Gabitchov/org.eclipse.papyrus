@@ -27,23 +27,25 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implements NattableaxisconfigurationFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static NattableaxisconfigurationFactory init() {
 		try {
 			NattableaxisconfigurationFactory theNattableaxisconfigurationFactory = (NattableaxisconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(NattableaxisconfigurationPackage.eNS_URI);
-			if (theNattableaxisconfigurationFactory != null) {
+			if(theNattableaxisconfigurationFactory != null) {
 				return theNattableaxisconfigurationFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NattableaxisconfigurationFactoryImpl();
@@ -53,6 +55,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableaxisconfigurationFactoryImpl() {
@@ -62,57 +65,69 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION: return createAxisManagerRepresentation();
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION: return createAxisManagerConfiguration();
-			case NattableaxisconfigurationPackage.TABLE_HEADER_AXIS_CONFIGURATION: return createTableHeaderAxisConfiguration();
-			case NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION: return createLocalTableHeaderAxisConfiguration();
-			case NattableaxisconfigurationPackage.FEATURE_AXIS_CONFIGURATION: return createFeatureAxisConfiguration();
-			case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION: return createEStructuralFeatureValueFillingConfiguration();
-			case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION: return createIPasteConfiguration();
-			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION: return createPasteEObjectConfiguration();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eClass.getClassifierID()) {
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION:
+			return createAxisManagerRepresentation();
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION:
+			return createAxisManagerConfiguration();
+		case NattableaxisconfigurationPackage.TABLE_HEADER_AXIS_CONFIGURATION:
+			return createTableHeaderAxisConfiguration();
+		case NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION:
+			return createLocalTableHeaderAxisConfiguration();
+		case NattableaxisconfigurationPackage.FEATURE_AXIS_CONFIGURATION:
+			return createFeatureAxisConfiguration();
+		case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION:
+			return createEStructuralFeatureValueFillingConfiguration();
+		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION:
+			return createIPasteConfiguration();
+		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION:
+			return createPasteEObjectConfiguration();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case NattableaxisconfigurationPackage.AXIS_INDEX_STYLE:
-				return createAxisIndexStyleFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eDataType.getClassifierID()) {
+		case NattableaxisconfigurationPackage.AXIS_INDEX_STYLE:
+			return createAxisIndexStyleFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case NattableaxisconfigurationPackage.AXIS_INDEX_STYLE:
-				return convertAxisIndexStyleToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eDataType.getClassifierID()) {
+		case NattableaxisconfigurationPackage.AXIS_INDEX_STYLE:
+			return convertAxisIndexStyleToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AxisManagerRepresentation createAxisManagerRepresentation() {
@@ -123,6 +138,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AxisManagerConfiguration createAxisManagerConfiguration() {
@@ -133,6 +149,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TableHeaderAxisConfiguration createTableHeaderAxisConfiguration() {
@@ -143,6 +160,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LocalTableHeaderAxisConfiguration createLocalTableHeaderAxisConfiguration() {
@@ -153,6 +171,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FeatureAxisConfiguration createFeatureAxisConfiguration() {
@@ -163,6 +182,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EStructuralFeatureValueFillingConfiguration createEStructuralFeatureValueFillingConfiguration() {
@@ -173,6 +193,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public IPasteConfiguration createIPasteConfiguration() {
@@ -183,6 +204,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PasteEObjectConfiguration createPasteEObjectConfiguration() {
@@ -193,17 +215,20 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AxisIndexStyle createAxisIndexStyleFromString(EDataType eDataType, String initialValue) {
 		AxisIndexStyle result = AxisIndexStyle.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if(result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertAxisIndexStyleToString(EDataType eDataType, Object instanceValue) {
@@ -213,6 +238,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableaxisconfigurationPackage getNattableaxisconfigurationPackage() {
@@ -222,6 +248,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

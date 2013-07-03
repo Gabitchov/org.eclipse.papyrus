@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -44,6 +45,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.util.NattableaxisconfigurationValidator;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl;
@@ -64,12 +67,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.Nat
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattableaxisconfigurationPackageImpl extends EPackageImpl implements NattableaxisconfigurationPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass abstractHeaderAxisConfigurationEClass = null;
@@ -77,6 +83,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass axisManagerRepresentationEClass = null;
@@ -84,6 +91,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass axisManagerConfigurationEClass = null;
@@ -91,6 +99,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass tableHeaderAxisConfigurationEClass = null;
@@ -98,6 +107,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass localTableHeaderAxisConfigurationEClass = null;
@@ -105,6 +115,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass iAxisConfigurationEClass = null;
@@ -112,6 +123,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureAxisConfigurationEClass = null;
@@ -119,6 +131,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass iFillingConfigurationEClass = null;
@@ -126,6 +139,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eStructuralFeatureValueFillingConfigurationEClass = null;
@@ -133,6 +147,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass iPasteConfigurationEClass = null;
@@ -140,6 +155,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass pasteEObjectConfigurationEClass = null;
@@ -147,20 +163,19 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum axisIndexStyleEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#eNS_URI
 	 * @see #init()
@@ -173,6 +188,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -180,17 +196,18 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link NattableaxisconfigurationPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link NattableaxisconfigurationPackage#eINSTANCE} when that field is accessed. Clients should not invoke it
+	 * directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static NattableaxisconfigurationPackage init() {
-		if (isInited) return (NattableaxisconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI);
+		if(isInited)
+			return (NattableaxisconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI);
 
 		// Obtain or create and register package
 		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattableaxisconfigurationPackageImpl());
@@ -226,10 +243,18 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		theNattabletesterPackage.initializePackageContents();
 		theNattableaxisPackage.initializePackageContents();
 
+		// Register package validator
+		EValidator.Registry.INSTANCE.put(theNattableaxisconfigurationPackage, new EValidator.Descriptor() {
+
+			public EValidator getEValidator() {
+				return NattableaxisconfigurationValidator.INSTANCE;
+			}
+		});
+
 		// Mark meta-data to indicate it can't be changed
 		theNattableaxisconfigurationPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NattableaxisconfigurationPackage.eNS_URI, theNattableaxisconfigurationPackage);
 		return theNattableaxisconfigurationPackage;
@@ -238,6 +263,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAbstractHeaderAxisConfiguration() {
@@ -247,6 +273,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAbstractHeaderAxisConfiguration_IndexStyle() {
@@ -256,6 +283,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAbstractHeaderAxisConfiguration_DisplayLabel() {
@@ -265,6 +293,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAbstractHeaderAxisConfiguration_DisplayFilter() {
@@ -274,6 +303,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAbstractHeaderAxisConfiguration_DisplayIndex() {
@@ -283,6 +313,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAbstractHeaderAxisConfiguration_OwnedLabelConfigurations() {
@@ -292,6 +323,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAbstractHeaderAxisConfiguration_OwnedAxisConfigurations() {
@@ -301,6 +333,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAxisManagerRepresentation() {
@@ -310,6 +343,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAxisManagerRepresentation_AxisManagerId() {
@@ -319,6 +353,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAxisManagerRepresentation_LabelProviderContext() {
@@ -328,6 +363,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAxisManagerRepresentation_HeaderLabelConfiguration() {
@@ -337,6 +373,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAxisManagerRepresentation_SpecificAxisConfigurations() {
@@ -346,6 +383,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAxisManagerConfiguration() {
@@ -355,6 +393,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAxisManagerConfiguration_LocalHeaderLabelConfiguration() {
@@ -364,6 +403,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAxisManagerConfiguration_AxisManager() {
@@ -373,6 +413,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAxisManagerConfiguration_LocalSpecificConfigurations() {
@@ -382,6 +423,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTableHeaderAxisConfiguration() {
@@ -391,6 +433,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTableHeaderAxisConfiguration_AxisManagers() {
@@ -400,6 +443,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getLocalTableHeaderAxisConfiguration() {
@@ -409,6 +453,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getLocalTableHeaderAxisConfiguration_AxisManagerConfigurations() {
@@ -418,6 +463,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getIAxisConfiguration() {
@@ -427,6 +473,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeatureAxisConfiguration() {
@@ -436,6 +483,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureAxisConfiguration_ShowOnlyCommonFeature() {
@@ -445,6 +493,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getIFillingConfiguration() {
@@ -454,6 +503,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEStructuralFeatureValueFillingConfiguration() {
@@ -463,6 +513,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEStructuralFeatureValueFillingConfiguration_ListenFeature() {
@@ -472,6 +523,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getIPasteConfiguration() {
@@ -481,6 +533,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPasteEObjectConfiguration() {
@@ -490,6 +543,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPasteEObjectConfiguration_PastedElementId() {
@@ -499,6 +553,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPasteEObjectConfiguration_PasteElementContainementFeature() {
@@ -508,6 +563,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getAxisIndexStyle() {
@@ -517,6 +573,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattableaxisconfigurationFactory getNattableaxisconfigurationFactory() {
@@ -526,19 +583,22 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -590,19 +650,22 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -611,7 +674,6 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		NattablelabelproviderPackage theNattablelabelproviderPackage = (NattablelabelproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI);
 
 		// Create type parameters
@@ -619,7 +681,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		abstractHeaderAxisConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		abstractHeaderAxisConfigurationEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		tableHeaderAxisConfigurationEClass.getESuperTypes().add(this.getAbstractHeaderAxisConfiguration());
 		localTableHeaderAxisConfigurationEClass.getESuperTypes().add(this.getAbstractHeaderAxisConfiguration());
 		featureAxisConfigurationEClass.getESuperTypes().add(this.getIAxisConfiguration());
@@ -631,15 +693,15 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractHeaderAxisConfigurationEClass, AbstractHeaderAxisConfiguration.class, "AbstractHeaderAxisConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getAbstractHeaderAxisConfiguration_IndexStyle(), this.getAxisIndexStyle(), "indexStyle", null, 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayLabel(), theEcorePackage.getEBoolean(), "displayLabel", "true", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayFilter(), theEcorePackage.getEBoolean(), "displayFilter", "false", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayIndex(), theEcorePackage.getEBoolean(), "displayIndex", "true", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayLabel(), ecorePackage.getEBoolean(), "displayLabel", "true", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayFilter(), ecorePackage.getEBoolean(), "displayFilter", "false", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getAbstractHeaderAxisConfiguration_DisplayIndex(), ecorePackage.getEBoolean(), "displayIndex", "true", 1, 1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getAbstractHeaderAxisConfiguration_OwnedLabelConfigurations(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "ownedLabelConfigurations", null, 0, -1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAbstractHeaderAxisConfiguration_OwnedAxisConfigurations(), this.getIAxisConfiguration(), null, "ownedAxisConfigurations", null, 0, -1, AbstractHeaderAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(axisManagerRepresentationEClass, AxisManagerRepresentation.class, "AxisManagerRepresentation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getAxisManagerRepresentation_AxisManagerId(), ecorePackage.getEString(), "axisManagerId", null, 1, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getAxisManagerRepresentation_LabelProviderContext(), theEcorePackage.getEString(), "labelProviderContext", null, 0, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getAxisManagerRepresentation_LabelProviderContext(), ecorePackage.getEString(), "labelProviderContext", null, 0, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAxisManagerRepresentation_HeaderLabelConfiguration(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "headerLabelConfiguration", null, 1, 1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAxisManagerRepresentation_SpecificAxisConfigurations(), this.getIAxisConfiguration(), null, "specificAxisConfigurations", null, 0, -1, AxisManagerRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -662,18 +724,59 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		initEClass(iFillingConfigurationEClass, IFillingConfiguration.class, "IFillingConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(eStructuralFeatureValueFillingConfigurationEClass, EStructuralFeatureValueFillingConfiguration.class, "EStructuralFeatureValueFillingConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getEStructuralFeatureValueFillingConfiguration_ListenFeature(), theEcorePackage.getEStructuralFeature(), null, "listenFeature", null, 1, 1, EStructuralFeatureValueFillingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEStructuralFeatureValueFillingConfiguration_ListenFeature(), ecorePackage.getEStructuralFeature(), null, "listenFeature", null, 1, 1, EStructuralFeatureValueFillingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iPasteConfigurationEClass, IPasteConfiguration.class, "IPasteConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(pasteEObjectConfigurationEClass, PasteEObjectConfiguration.class, "PasteEObjectConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPasteEObjectConfiguration_PastedElementId(), ecorePackage.getEString(), "pastedElementId", null, 0, 1, PasteEObjectConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPasteEObjectConfiguration_PasteElementContainementFeature(), theEcorePackage.getEStructuralFeature(), null, "pasteElementContainementFeature", null, 0, 1, PasteEObjectConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPasteEObjectConfiguration_PasteElementContainementFeature(), ecorePackage.getEStructuralFeature(), null, "pasteElementContainementFeature", null, 0, 1, PasteEObjectConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(axisIndexStyleEEnum, AxisIndexStyle.class, "AxisIndexStyle"); //$NON-NLS-1$
 		addEEnumLiteral(axisIndexStyleEEnum, AxisIndexStyle.ALPHABETIC);
 		addEEnumLiteral(axisIndexStyleEEnum, AxisIndexStyle.NUMERIC);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+		createPivotAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+		addAnnotation(this, source, new String[]{ "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
+		"settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
+		"validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(abstractHeaderAxisConfigurationEClass, source, new String[]{ "constraints", "oneObjectLabelConfigurationTypes oneFeatureLabelConfigurationTypes" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(tableHeaderAxisConfigurationEClass, source, new String[]{ "constraints", "axisManagersIdUnique" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void createPivotAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$				
+		addAnnotation(abstractHeaderAxisConfigurationEClass, source, new String[]{ "oneObjectLabelConfigurationTypes", "ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::ObjectLabelProviderConfiguration))->size() <= 1", //$NON-NLS-1$ //$NON-NLS-2$
+		"oneFeatureLabelConfigurationTypes", "ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::FeatureLabelProviderConfiguration))->size() <= 1" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(tableHeaderAxisConfigurationEClass, source, new String[]{ "axisManagersIdUnique", "axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId <> am2.axisManagerId)" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 	}
 
 } //NattableaxisconfigurationPackageImpl

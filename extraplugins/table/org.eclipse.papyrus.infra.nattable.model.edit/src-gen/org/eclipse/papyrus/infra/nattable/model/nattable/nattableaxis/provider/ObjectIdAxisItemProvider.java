@@ -34,20 +34,16 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAx
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class ObjectIdAxisItemProvider
-	extends IdAxisItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ObjectIdAxisItemProvider extends IdAxisItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ObjectIdAxisItemProvider(AdapterFactory adapterFactory) {
@@ -58,11 +54,12 @@ public class ObjectIdAxisItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addLocalLabelConfigurationPropertyDescriptor(object);
@@ -74,28 +71,20 @@ public class ObjectIdAxisItemProvider
 	 * This adds a property descriptor for the Local Label Configuration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLocalLabelConfigurationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ObjectAxis_localLabelConfiguration_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ObjectAxis_localLabelConfiguration_feature", "_UI_ObjectAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ObjectAxis_localLabelConfiguration_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_ObjectAxis_localLabelConfiguration_feature", "_UI_ObjectAxis_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisPackage.Literals.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns ObjectIdAxis.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,14 +96,14 @@ public class ObjectIdAxisItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((ObjectIdAxis)object).getAlias();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ObjectIdAxis_type") : //$NON-NLS-1$
-			getString("_UI_ObjectIdAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_ObjectIdAxis_type") : //$NON-NLS-1$
+		getString("_UI_ObjectIdAxis_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -122,6 +111,7 @@ public class ObjectIdAxisItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,6 +125,7 @@ public class ObjectIdAxisItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

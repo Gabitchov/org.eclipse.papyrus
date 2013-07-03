@@ -24,16 +24,28 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Abstract Axis Provider</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * <!-- begin-model-doc -->
+ * Abstract Element for the AxisProvider. This one only provides a method getAxis().
+ * <!-- end-model-doc -->
+ * 
+ * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getAbstractAxisProvider()
  * @model abstract="true"
  * @generated
  */
 public interface AbstractAxisProvider extends EModelElement, TableNamedElement {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This method must returns the IAxis owned by the AxisProvider.
+	 * Warning, in case of syncrhonized table, the list often will be empty. This method
+	 * only returns the IAxis serialized in the model. Displayed elements are not necessary serialized.
+	 * 
+	 * <!-- end-model-doc -->
+	 * 
 	 * @model kind="operation"
 	 * @generated
 	 */

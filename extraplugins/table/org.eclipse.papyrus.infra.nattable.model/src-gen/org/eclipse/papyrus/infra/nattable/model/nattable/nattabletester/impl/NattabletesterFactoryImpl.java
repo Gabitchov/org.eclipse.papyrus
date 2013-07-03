@@ -26,23 +26,25 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.*;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattabletesterFactoryImpl extends EFactoryImpl implements NattabletesterFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static NattabletesterFactory init() {
 		try {
 			NattabletesterFactory theNattabletesterFactory = (NattabletesterFactory)EPackage.Registry.INSTANCE.getEFactory(NattabletesterPackage.eNS_URI);
-			if (theNattabletesterFactory != null) {
+			if(theNattabletesterFactory != null) {
 				return theNattabletesterFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NattabletesterFactoryImpl();
@@ -52,6 +54,7 @@ public class NattabletesterFactoryImpl extends EFactoryImpl implements Nattablet
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattabletesterFactoryImpl() {
@@ -61,20 +64,23 @@ public class NattabletesterFactoryImpl extends EFactoryImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case NattabletesterPackage.JAVA_TABLE_TESTER: return createJavaTableTester();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eClass.getClassifierID()) {
+		case NattabletesterPackage.JAVA_TABLE_TESTER:
+			return createJavaTableTester();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public JavaTableTester createJavaTableTester() {
@@ -85,6 +91,7 @@ public class NattabletesterFactoryImpl extends EFactoryImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattabletesterPackage getNattabletesterPackage() {
@@ -94,6 +101,7 @@ public class NattabletesterFactoryImpl extends EFactoryImpl implements Nattablet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

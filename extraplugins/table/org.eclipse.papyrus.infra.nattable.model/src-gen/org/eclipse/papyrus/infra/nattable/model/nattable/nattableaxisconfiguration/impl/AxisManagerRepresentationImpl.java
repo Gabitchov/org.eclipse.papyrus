@@ -39,20 +39,28 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getAxisManagerId <em>Axis Manager Id</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getLabelProviderContext <em>Label Provider Context</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getHeaderLabelConfiguration <em>Header Label Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getSpecificAxisConfigurations <em>Specific Axis Configurations</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getAxisManagerId <em>Axis
+ * Manager Id</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getLabelProviderContext
+ * <em>Label Provider Context</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getHeaderLabelConfiguration
+ * <em>Header Label Configuration</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerRepresentationImpl#getSpecificAxisConfigurations
+ * <em>Specific Axis Configurations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container implements AxisManagerRepresentation {
+
 	/**
 	 * The default value of the '{@link #getAxisManagerId() <em>Axis Manager Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAxisManagerId()
 	 * @generated
 	 * @ordered
@@ -63,6 +71,7 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	 * The cached value of the '{@link #getAxisManagerId() <em>Axis Manager Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAxisManagerId()
 	 * @generated
 	 * @ordered
@@ -73,6 +82,7 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	 * The default value of the '{@link #getLabelProviderContext() <em>Label Provider Context</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLabelProviderContext()
 	 * @generated
 	 * @ordered
@@ -83,6 +93,7 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	 * The cached value of the '{@link #getLabelProviderContext() <em>Label Provider Context</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLabelProviderContext()
 	 * @generated
 	 * @ordered
@@ -93,6 +104,7 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	 * The cached value of the '{@link #getHeaderLabelConfiguration() <em>Header Label Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getHeaderLabelConfiguration()
 	 * @generated
 	 * @ordered
@@ -103,6 +115,7 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	 * The cached value of the '{@link #getSpecificAxisConfigurations() <em>Specific Axis Configurations</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSpecificAxisConfigurations()
 	 * @generated
 	 * @ordered
@@ -112,6 +125,7 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AxisManagerRepresentationImpl() {
@@ -121,6 +135,7 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,6 +146,7 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getAxisManagerId() {
@@ -140,18 +156,20 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAxisManagerId(String newAxisManagerId) {
 		String oldAxisManagerId = axisManagerId;
 		axisManagerId = newAxisManagerId;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID, oldAxisManagerId, axisManagerId));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLabelProviderContext() {
@@ -161,26 +179,28 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLabelProviderContext(String newLabelProviderContext) {
 		String oldLabelProviderContext = labelProviderContext;
 		labelProviderContext = newLabelProviderContext;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT, oldLabelProviderContext, labelProviderContext));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ILabelProviderConfiguration getHeaderLabelConfiguration() {
-		if (headerLabelConfiguration != null && headerLabelConfiguration.eIsProxy()) {
+		if(headerLabelConfiguration != null && headerLabelConfiguration.eIsProxy()) {
 			InternalEObject oldHeaderLabelConfiguration = (InternalEObject)headerLabelConfiguration;
 			headerLabelConfiguration = (ILabelProviderConfiguration)eResolveProxy(oldHeaderLabelConfiguration);
-			if (headerLabelConfiguration != oldHeaderLabelConfiguration) {
-				if (eNotificationRequired())
+			if(headerLabelConfiguration != oldHeaderLabelConfiguration) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION, oldHeaderLabelConfiguration, headerLabelConfiguration));
 			}
 		}
@@ -190,6 +210,7 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ILabelProviderConfiguration basicGetHeaderLabelConfiguration() {
@@ -199,22 +220,24 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setHeaderLabelConfiguration(ILabelProviderConfiguration newHeaderLabelConfiguration) {
 		ILabelProviderConfiguration oldHeaderLabelConfiguration = headerLabelConfiguration;
 		headerLabelConfiguration = newHeaderLabelConfiguration;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION, oldHeaderLabelConfiguration, headerLabelConfiguration));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<IAxisConfiguration> getSpecificAxisConfigurations() {
-		if (specificAxisConfigurations == null) {
+		if(specificAxisConfigurations == null) {
 			specificAxisConfigurations = new EObjectResolvingEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS);
 		}
 		return specificAxisConfigurations;
@@ -223,20 +246,22 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
-				return getAxisManagerId();
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
-				return getLabelProviderContext();
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
-				if (resolve) return getHeaderLabelConfiguration();
-				return basicGetHeaderLabelConfiguration();
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
-				return getSpecificAxisConfigurations();
+		switch(featureID) {
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
+			return getAxisManagerId();
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
+			return getLabelProviderContext();
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
+			if(resolve)
+				return getHeaderLabelConfiguration();
+			return basicGetHeaderLabelConfiguration();
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
+			return getSpecificAxisConfigurations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -244,25 +269,26 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
-				setAxisManagerId((String)newValue);
-				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
-				setLabelProviderContext((String)newValue);
-				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
-				setHeaderLabelConfiguration((ILabelProviderConfiguration)newValue);
-				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
-				getSpecificAxisConfigurations().clear();
-				getSpecificAxisConfigurations().addAll((Collection<? extends IAxisConfiguration>)newValue);
-				return;
+		switch(featureID) {
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
+			setAxisManagerId((String)newValue);
+			return;
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
+			setLabelProviderContext((String)newValue);
+			return;
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
+			setHeaderLabelConfiguration((ILabelProviderConfiguration)newValue);
+			return;
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
+			getSpecificAxisConfigurations().clear();
+			getSpecificAxisConfigurations().addAll((Collection<? extends IAxisConfiguration>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -270,23 +296,24 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
-				setAxisManagerId(AXIS_MANAGER_ID_EDEFAULT);
-				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
-				setLabelProviderContext(LABEL_PROVIDER_CONTEXT_EDEFAULT);
-				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
-				setHeaderLabelConfiguration((ILabelProviderConfiguration)null);
-				return;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
-				getSpecificAxisConfigurations().clear();
-				return;
+		switch(featureID) {
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
+			setAxisManagerId(AXIS_MANAGER_ID_EDEFAULT);
+			return;
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
+			setLabelProviderContext(LABEL_PROVIDER_CONTEXT_EDEFAULT);
+			return;
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
+			setHeaderLabelConfiguration((ILabelProviderConfiguration)null);
+			return;
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
+			getSpecificAxisConfigurations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -294,19 +321,20 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
-				return AXIS_MANAGER_ID_EDEFAULT == null ? axisManagerId != null : !AXIS_MANAGER_ID_EDEFAULT.equals(axisManagerId);
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
-				return LABEL_PROVIDER_CONTEXT_EDEFAULT == null ? labelProviderContext != null : !LABEL_PROVIDER_CONTEXT_EDEFAULT.equals(labelProviderContext);
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
-				return headerLabelConfiguration != null;
-			case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
-				return specificAxisConfigurations != null && !specificAxisConfigurations.isEmpty();
+		switch(featureID) {
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__AXIS_MANAGER_ID:
+			return AXIS_MANAGER_ID_EDEFAULT == null ? axisManagerId != null : !AXIS_MANAGER_ID_EDEFAULT.equals(axisManagerId);
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__LABEL_PROVIDER_CONTEXT:
+			return LABEL_PROVIDER_CONTEXT_EDEFAULT == null ? labelProviderContext != null : !LABEL_PROVIDER_CONTEXT_EDEFAULT.equals(labelProviderContext);
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__HEADER_LABEL_CONFIGURATION:
+			return headerLabelConfiguration != null;
+		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION__SPECIFIC_AXIS_CONFIGURATIONS:
+			return specificAxisConfigurations != null && !specificAxisConfigurations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -314,11 +342,13 @@ public class AxisManagerRepresentationImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (axisManagerId: "); //$NON-NLS-1$

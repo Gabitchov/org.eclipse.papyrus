@@ -53,12 +53,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.Nat
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NattablelabelproviderPackageImpl extends EPackageImpl implements NattablelabelproviderPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass iLabelProviderConfigurationEClass = null;
@@ -66,6 +69,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureLabelProviderConfigurationEClass = null;
@@ -73,20 +77,19 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass objectLabelProviderConfigurationEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#eNS_URI
 	 * @see #init()
@@ -99,6 +102,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -106,17 +110,18 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link NattablelabelproviderPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link NattablelabelproviderPackage#eINSTANCE} when that field is accessed. Clients should not invoke it
+	 * directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static NattablelabelproviderPackage init() {
-		if (isInited) return (NattablelabelproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI);
+		if(isInited)
+			return (NattablelabelproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI);
 
 		// Obtain or create and register package
 		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattablelabelproviderPackageImpl());
@@ -155,7 +160,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		// Mark meta-data to indicate it can't be changed
 		theNattablelabelproviderPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NattablelabelproviderPackage.eNS_URI, theNattablelabelproviderPackage);
 		return theNattablelabelproviderPackage;
@@ -164,6 +169,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getILabelProviderConfiguration() {
@@ -173,6 +179,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeatureLabelProviderConfiguration() {
@@ -182,6 +189,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureLabelProviderConfiguration_DisplayIsDerived() {
@@ -191,6 +199,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureLabelProviderConfiguration_DisplayType() {
@@ -200,6 +209,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureLabelProviderConfiguration_DisplayMultiplicity() {
@@ -209,6 +219,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFeatureLabelProviderConfiguration_DisplayName() {
@@ -218,6 +229,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getObjectLabelProviderConfiguration() {
@@ -227,6 +239,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getObjectLabelProviderConfiguration_DisplayIcon() {
@@ -236,6 +249,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getObjectLabelProviderConfiguration_DisplayLabel() {
@@ -245,6 +259,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NattablelabelproviderFactory getNattablelabelproviderFactory() {
@@ -254,19 +269,22 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -286,19 +304,22 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -306,15 +327,12 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
-		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		iLabelProviderConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		iLabelProviderConfigurationEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		featureLabelProviderConfigurationEClass.getESuperTypes().add(this.getObjectLabelProviderConfiguration());
 		objectLabelProviderConfigurationEClass.getESuperTypes().add(this.getILabelProviderConfiguration());
 
@@ -322,14 +340,14 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		initEClass(iLabelProviderConfigurationEClass, ILabelProviderConfiguration.class, "ILabelProviderConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(featureLabelProviderConfigurationEClass, FeatureLabelProviderConfiguration.class, "FeatureLabelProviderConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getFeatureLabelProviderConfiguration_DisplayIsDerived(), theEcorePackage.getEBoolean(), "displayIsDerived", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getFeatureLabelProviderConfiguration_DisplayType(), theEcorePackage.getEBoolean(), "displayType", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getFeatureLabelProviderConfiguration_DisplayMultiplicity(), theEcorePackage.getEBoolean(), "displayMultiplicity", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getFeatureLabelProviderConfiguration_DisplayName(), theEcorePackage.getEBoolean(), "displayName", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getFeatureLabelProviderConfiguration_DisplayIsDerived(), ecorePackage.getEBoolean(), "displayIsDerived", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getFeatureLabelProviderConfiguration_DisplayType(), ecorePackage.getEBoolean(), "displayType", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getFeatureLabelProviderConfiguration_DisplayMultiplicity(), ecorePackage.getEBoolean(), "displayMultiplicity", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getFeatureLabelProviderConfiguration_DisplayName(), ecorePackage.getEBoolean(), "displayName", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(objectLabelProviderConfigurationEClass, ObjectLabelProviderConfiguration.class, "ObjectLabelProviderConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getObjectLabelProviderConfiguration_DisplayIcon(), theEcorePackage.getEBoolean(), "displayIcon", "true", 1, 1, ObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getObjectLabelProviderConfiguration_DisplayLabel(), theEcorePackage.getEBoolean(), "displayLabel", "true", 1, 1, ObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getObjectLabelProviderConfiguration_DisplayIcon(), ecorePackage.getEBoolean(), "displayIcon", "true", 1, 1, ObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getObjectLabelProviderConfiguration_DisplayLabel(), ecorePackage.getEBoolean(), "displayLabel", "true", 1, 1, ObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 } //NattablelabelproviderPackageImpl
