@@ -8,7 +8,8 @@ Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.presentation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation,
+Export-Package: org.eclipse.papyrus.infra.nattable.model.editor.customeditors,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation,

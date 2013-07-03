@@ -39,7 +39,7 @@
             name="%_UI_NattableaxisEditor_label"
             icon="icons/full/obj16/NattableaxisModelFile.gif"
             extensions="nattableaxis"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisEditor"
+            class="org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableaxisEditor"
             contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisActionBarContributor">
       </editor>
    </extension>
@@ -51,7 +51,7 @@
             name="%_UI_NattabletesterEditor_label"
             icon="icons/full/obj16/NattabletesterModelFile.gif"
             extensions="nattabletester"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation.NattabletesterEditor"
+            class="org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattabletesterEditor"
             contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation.NattabletesterActionBarContributor">
       </editor>
    </extension>
@@ -72,9 +72,6 @@
       </wizard>
    </extension>
 
-null
-null
-null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -82,7 +79,7 @@ null
             name="%_UI_NattableaxisconfigurationEditor_label"
             icon="icons/full/obj16/NattableaxisconfigurationModelFile.gif"
             extensions="nattableaxisconfiguration"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationEditor"
+            class="org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableaxisconfigurationEditor"
             contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationActionBarContributor">
       </editor>
    </extension>
@@ -103,10 +100,6 @@ null
       </wizard>
    </extension>
 
-null
-null
-null
-null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -114,7 +107,7 @@ null
             name="%_UI_NattablelabelproviderEditor_label"
             icon="icons/full/obj16/NattablelabelproviderModelFile.gif"
             extensions="nattablelabelprovider"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderEditor"
+            class="org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattablelabelproviderEditor"
             contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderActionBarContributor">
       </editor>
    </extension>
@@ -135,9 +128,7 @@ null
       </wizard>
    </extension>
 
-null
-null
-null
+
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -145,7 +136,7 @@ null
             name="%_UI_NattableaxisproviderEditor_label"
             icon="icons/full/obj16/NattableaxisproviderModelFile.gif"
             extensions="nattableaxisprovider"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderEditor"
+            class="org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableaxisproviderEditor"
             contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderActionBarContributor">
       </editor>
    </extension>
@@ -166,9 +157,7 @@ null
       </wizard>
    </extension>
 
-null
-null
-null
+
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -176,7 +165,7 @@ null
             name="%_UI_NattableEditor_label"
             icon="icons/full/obj16/NattableModelFile.gif"
             extensions="nattable"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditor"
+            class="org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableEditor"
             contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableActionBarContributor">
       </editor>
    </extension>
@@ -197,9 +186,6 @@ null
       </wizard>
    </extension>
 
-null
-null
-null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -207,7 +193,7 @@ null
             name="%_UI_NattableconfigurationEditor_label"
             icon="icons/full/obj16/NattableconfigurationModelFile.gif"
             extensions="nattableconfiguration"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationEditor"
+            class="org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableconfigurationEditor"
             contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationActionBarContributor">
       </editor>
    </extension>
@@ -228,6 +214,4 @@ null
       </wizard>
    </extension>
 
-null
-null
-null</plugin>
+</plugin>

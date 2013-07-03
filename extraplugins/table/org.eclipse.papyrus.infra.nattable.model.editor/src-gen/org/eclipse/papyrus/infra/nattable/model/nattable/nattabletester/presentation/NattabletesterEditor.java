@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.present
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,56 +34,24 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.ui.MarkerHelper;
-import org.eclipse.emf.common.ui.ViewerPane;
-import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
-import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+
 import org.eclipse.jface.util.LocalSelectionTransfer;
+
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -96,29 +65,29 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider.NattableaxisItemProviderAdapterFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider.NattableaxisconfigurationItemProviderAdapterFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.provider.NattableaxisproviderItemProviderAdapterFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider.NattableconfigurationItemProviderAdapterFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider.NattablelabelproviderItemProviderAdapterFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider.NattabletesterItemProviderAdapterFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorPlugin;
-import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableItemProviderAdapterFactory;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.custom.CTabFolder;
+
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
+
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+
 import org.eclipse.swt.graphics.Point;
+
 import org.eclipse.swt.layout.FillLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
+
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -126,17 +95,93 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
 import org.eclipse.ui.dialogs.SaveAsDialog;
+
 import org.eclipse.ui.ide.IGotoMarker;
+
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
+
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
+
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.ui.MarkerHelper;
+import org.eclipse.emf.common.ui.ViewerPane;
+
+import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
+
+import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+
+import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
+
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider.NattabletesterItemProviderAdapterFactory;
+
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider.NattableaxisItemProviderAdapterFactory;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider.NattableaxisconfigurationItemProviderAdapterFactory;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.provider.NattableaxisproviderItemProviderAdapterFactory;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider.NattableconfigurationItemProviderAdapterFactory;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider.NattablelabelproviderItemProviderAdapterFactory;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorPlugin;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableItemProviderAdapterFactory;
+
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
@@ -1493,7 +1538,7 @@ public class NattabletesterEditor extends MultiPageEditorPart implements IEditin
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
@@ -1502,7 +1547,7 @@ public class NattabletesterEditor extends MultiPageEditorPart implements IEditin
 		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
-		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, true);
+
 		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//
 		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
@@ -1514,16 +1559,16 @@ public class NattabletesterEditor extends MultiPageEditorPart implements IEditin
 				// Save the resources to the file system.
 				//
 				boolean first = true;
-				for(Resource resource : NattabletesterEditor.this.editingDomain.getResourceSet().getResources()) {
-					if((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !NattabletesterEditor.this.editingDomain.isReadOnly(resource)) {
+				for(Resource resource : editingDomain.getResourceSet().getResources()) {
+					if((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 						try {
 							long timeStamp = resource.getTimeStamp();
 							resource.save(saveOptions);
 							if(resource.getTimeStamp() != timeStamp) {
-								NattabletesterEditor.this.savedResources.add(resource);
+								savedResources.add(resource);
 							}
 						} catch (Exception exception) {
-							NattabletesterEditor.this.resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
 						}
 						first = false;
 					}
@@ -1531,7 +1576,7 @@ public class NattabletesterEditor extends MultiPageEditorPart implements IEditin
 			}
 		};
 
-		this.updateProblemIndication = false;
+		updateProblemIndication = false;
 		try {
 			// This runs the options, and shows progress.
 			//
@@ -1539,14 +1584,14 @@ public class NattabletesterEditor extends MultiPageEditorPart implements IEditin
 
 			// Refresh the necessary state.
 			//
-			((BasicCommandStack)this.editingDomain.getCommandStack()).saveIsDone();
+			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		} catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
 			NattableEditorPlugin.INSTANCE.log(exception);
 		}
-		this.updateProblemIndication = true;
+		updateProblemIndication = true;
 		updateProblemIndication();
 	}
 
