@@ -43,7 +43,6 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 	public void testToCreateAChildLabel(IElementType type, int containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
-
 		while(compartment == null && index < getChildEditPart().getChildren().size()) {
 			if((getChildEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getChildEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
 				compartment = (ListCompartmentEditPart)(getChildEditPart().getChildren().get(index));
@@ -54,7 +53,6 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 		//CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, compartment.getChildren().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModelchild().getOwnedElements().size() == 0);
-
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
 		Command command = compartment.getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
@@ -67,7 +65,6 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 		assertTrue(CREATION + TEST_THE_UNDO, ((Element)((View)getChildEditPart().getModel()).getElement()).getOwnedElements().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue("CREATION: " + TEST_THE_REDO, compartment.getChildren().size() == 1);
-
 	}
 
 	/**
@@ -93,7 +90,6 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 		//CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, compartment.getChildren().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 0);
-
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
 		Command command = compartment.getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
@@ -107,7 +103,6 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue("CREATION: " + TEST_THE_REDO, compartment.getChildren().size() == 1);
 		childNode = (GraphicalEditPart)compartment.getChildren().get(0);
-
 	}
 
 	/**
@@ -126,11 +121,9 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 	 *        the type
 	 */
 	public void testToCreateATopNode(IElementType type) {
-
 		//CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, ((Element)((View)getDiagramEditPart().getModel()).getElement()).getOwnedElements().size() == 0);
-
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
 		Command command = getDiagramEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
@@ -164,7 +157,6 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 	 * 
 	 * @return
 	 */
-
 	@Override
 	protected Element getRootSemanticModel() {
 		return (Element)((View)getTopEditPart().getModel()).getElement();
@@ -179,14 +171,11 @@ public abstract class TestNested extends org.eclipse.papyrus.diagram.tests.canon
 	 *        the container type
 	 */
 	public void testToManageTopNode(IElementType parentNodeType, IElementType topNodeType, IElementType type, int containerChilType, int containerType) {
-
 		//Parent Node
 		testToCreateATopNode(parentNodeType);
 		//Top Node
 		testToCreateANode(topNodeType, containerChilType);
 		//Nested classifier
 		testToCreateAChildLabel(type, containerType);
-
 	}
-
 }

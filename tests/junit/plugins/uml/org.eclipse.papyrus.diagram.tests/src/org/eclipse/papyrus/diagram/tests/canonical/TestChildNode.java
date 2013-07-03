@@ -43,16 +43,15 @@ public abstract class TestChildNode extends AbstractTestNode {
 	protected void setUp() throws Exception {
 		super.setUp();
 		CreateViewRequest requestcreation = createViewRequestShapeContainer();
-		if(requestcreation !=null) {
+		if(requestcreation != null) {
 			requestcreation.setSize(new Dimension(500, 500));
 			Command command = getDiagramEditPart().getCommand(requestcreation);
 			assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
 			assertNotSame(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, UnexecutableCommand.INSTANCE, command);
 			assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
-			executeOnUIThread(command);	
+			executeOnUIThread(command);
 		}
 		assertEquals(CREATION + INITIALIZATION_TEST, 1, getDiagramEditPart().getChildren().size());
-		
 		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
 		rootCompartment = null;
 		int index = 0;
@@ -62,11 +61,9 @@ public abstract class TestChildNode extends AbstractTestNode {
 			}
 			index++;
 		}
-		
 		assertNotNull("There should be at least one container for the node tests", rootCompartment);
 	}
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -74,13 +71,12 @@ public abstract class TestChildNode extends AbstractTestNode {
 	protected IGraphicalEditPart getContainerEditPart() {
 		return rootCompartment;
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#getRootView()
 	 * 
 	 * @return
 	 */
-
 	@Override
 	protected View getRootView() {
 		return (View)rootCompartment.getModel();

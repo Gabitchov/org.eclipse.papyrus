@@ -64,6 +64,20 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.papyrus.diagram.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+   <plugin
+         id="org.eclipse.papyrus.diagram.clazz.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+   <!--      
+   <plugin
          id="org.eclipse.papyrus.uml.diagram.sequence.tests"
          download-size="0"
          install-size="0"
@@ -84,12 +98,6 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
          version="0.0.0"
          unpack="false"/>
 
-   <plugin
-         id="org.eclipse.papyrus.diagram.clazz.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.uml.diagram.usecase.tests"
@@ -100,13 +108,6 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
 
    <plugin
          id="org.eclipse.papyrus.uml.diagram.interactionoverview.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.diagram.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -125,5 +126,5 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
+-->
 </feature>

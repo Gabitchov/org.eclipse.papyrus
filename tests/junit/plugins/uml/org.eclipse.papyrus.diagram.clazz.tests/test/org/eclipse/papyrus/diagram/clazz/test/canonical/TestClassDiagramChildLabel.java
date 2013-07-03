@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.diagram.clazz.test.IClassDiagramTestsConstants;
 import org.eclipse.papyrus.diagram.tests.canonical.TestChildLabel;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
@@ -46,6 +47,16 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 		return new CreateClassDiagramCommand();
 	}
 
+	@Override
+	protected String getProjectName() {
+		return IClassDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IClassDiagramTestsConstants.FILE_NAME;
+	}
+
 	@Test
 	public void testToManageInstanceSlot() {
 		//instance specification
@@ -68,35 +79,30 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 	public void testToManageComponentNestedInterface() {
 		//Interface
 		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Interface_3037, ComponentNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageComponentNestedSignal() {
 		//Signal
 		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Signal_3051, ComponentNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageComponentNestedDataType() {
 		//Data Type
 		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.DataType_3045, ComponentNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageComponentNestedEnumeration() {
 		//Enumeration
 		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Enumeration_3053, ComponentNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageComponentNestedPrimitiveType() {
 		//primitive Type
 		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.PrimitiveType_3046, ComponentNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
@@ -127,42 +133,36 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 	public void testToManageInterfaceNestedClass() {
 		//Class
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Class_3008, InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageInterfaceNestedInterface() {
 		//Interface
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Interface_3038, InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageInterfaceNestedSignal() {
 		//Signal
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Signal_3049, InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageInterfaceNestedDataType() {
 		//Data Type
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.DataType_3043, InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageInterfaceNestedEnumeration() {
 		//Enumeration
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Enumeration_3054, InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageInterfaceNestedPrimitiveType() {
 		//Primitive Type
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.PrimitiveType_3048, InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
@@ -193,42 +193,36 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 	public void testToManageClassNestedClass() {
 		//class
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Class_3014, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageClassNestedInetrface() {
 		//Interface
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Interface_3036, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageClassNestedSignal() {
 		//Signal
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Signal_3050, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageClassNestedDataType() {
 		//Data Type
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.DataType_3044, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageClassNestedEnumeration() {
 		//Enumeration
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Enumeration_3052, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test
 	public void testToManageClassNestedPrimitiveType() {
 		//Primitive Type
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.PrimitiveType_3047, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
-
 	}
 
 	@Test

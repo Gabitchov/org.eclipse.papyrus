@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-
 /**
  * All test in canonical package
  */
@@ -40,9 +39,6 @@ TestDropfunction.class,
 //test is a static operation is underlined
 TestStaticFeatureRepresentation.class,
 //test nested classifier
-TestClassDiagramNestedClassifier.class,
-
-})
+TestClassDiagramNestedClassifier.class, })
 public class AllCanonicalTests {
-
 }

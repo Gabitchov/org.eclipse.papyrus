@@ -16,25 +16,33 @@ package org.eclipse.papyrus.diagram.clazz.test.canonical;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.diagram.clazz.test.IClassDiagramTestsConstants;
 import org.eclipse.papyrus.diagram.tests.canonical.TestTopNode;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class TestClassDiagramTopNode.
  */
 public class TestClassDiagramTopNode extends TestTopNode {
-	
-	
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return  new CreateClassDiagramCommand();
+		return new CreateClassDiagramCommand();
 	}
-	
+
+	@Override
+	protected String getProjectName() {
+		return IClassDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IClassDiagramTestsConstants.FILE_NAME;
+	}
+
 	/**
 	 * Test to manage component.
 	 */
@@ -42,7 +50,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageComponent() {
 		testToManageNode(UMLElementTypes.Component_2002, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage instance specification.
 	 */
@@ -50,7 +58,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageInstanceSpecification() {
 		testToManageNode(UMLElementTypes.InstanceSpecification_2001, UMLPackage.eINSTANCE.getInstanceSpecification(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage signal.
 	 */
@@ -58,7 +66,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageSignal() {
 		testToManageNode(UMLElementTypes.Signal_2003, UMLPackage.eINSTANCE.getSignal(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage model.
 	 */
@@ -66,7 +74,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageModel() {
 		testToManageNode(UMLElementTypes.Model_2005, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage enumeration.
 	 */
@@ -74,7 +82,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageEnumeration() {
 		testToManageNode(UMLElementTypes.Enumeration_2006, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage i package.
 	 */
@@ -82,7 +90,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageIPackage() {
 		testToManageNode(UMLElementTypes.Package_2007, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage class.
 	 */
@@ -90,7 +98,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageClass() {
 		testToManageNode(UMLElementTypes.Class_2008, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage primitive type.
 	 */
@@ -98,7 +106,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManagePrimitiveType() {
 		testToManageNode(UMLElementTypes.PrimitiveType_2009, UMLPackage.eINSTANCE.getPrimitiveType(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage data type.
 	 */
@@ -106,7 +114,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageDataType() {
 		testToManageNode(UMLElementTypes.DataType_2010, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage constraint.
 	 */
@@ -114,7 +122,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageConstraint() {
 		testToManageNode(UMLElementTypes.Constraint_2011, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage comment.
 	 */
@@ -122,7 +130,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageComment() {
 		testToManageNode(UMLElementTypes.Comment_2012, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */
@@ -138,5 +146,4 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
 	}
-	
 }

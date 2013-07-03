@@ -44,17 +44,14 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.IntroPart;
 import org.eclipse.uml2.uml.Element;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 
-
 /**
  * The Class AbstractPapyrusTestCase.
  */
-@SuppressWarnings("deprecation")
 public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	protected boolean operationFailed = false;
@@ -119,8 +116,8 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	/** The diagram editor. */
 	protected UmlGmfDiagramEditor diagramEditor = null;
 
-	/** The clazzdiagramedit part. */
-	protected DiagramEditPart clazzdiagrameditPart;
+	/** The diagram edit part. */
+	protected DiagramEditPart diagramEditPart;
 
 	/**
 	 * @see junit.framework.TestCase#setUp()
@@ -168,20 +165,17 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 					//diResourceSet.save( new NullProgressMonitor());
 					//diagramEditor.close(true);
 					papyrusEditor = null;
-					clazzdiagrameditPart = null;
+					diagramEditPart = null;
 					diagramEditor = null;
 					page.closeAllEditors(true);
 					project.delete(true, new NullProgressMonitor());
-
 					setResult(true);
 				} catch (Exception ex) {
 					ex.printStackTrace(System.out);
 					setResult(false);
 				}
 			}
-
 		};
-
 		Display.getDefault().syncExec(runnable);
 		if(!runnable.getResult()) {
 			fail("Cannot close the editor and delete the project");
@@ -194,29 +188,38 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 * @return the diagram edit part
 	 */
 	protected DiagramEditPart getDiagramEditPart() {
-		if(clazzdiagrameditPart == null) {
+		if(diagramEditPart == null) {
 			diagramEditor = (UmlGmfDiagramEditor)papyrusEditor.getActiveEditor();
-			clazzdiagrameditPart = (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
+			diagramEditPart = (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
 			Assert.assertNotNull("Cannot find the diagram editor", diagramEditor);
-			Assert.assertNotNull("Cannot find the Diagram edit part", clazzdiagrameditPart);
+			Assert.assertNotNull("Cannot find the Diagram edit part", diagramEditPart);
 		}
-		return clazzdiagrameditPart;
+		return diagramEditPart;
 	}
 
 	protected abstract ICreationCommand getDiagramCommandCreation();
 
 	/**
+	 * Returns the Project
+	 */
+	protected abstract String getProjectName();
+
+	/**
+	 * Returns the File
+	 */
+	protected abstract String getFileName();
+
+	/**
 	 * Project creation.
 	 */
 	protected void projectCreation() {
-		
 		// assert the intro is not visible
 		Runnable closeIntroRunnable = new Runnable() {
 
 			public void run() {
 				try {
 					IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
-					if(introPart!=null) {
+					if(introPart != null) {
 						PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
 					}
 				} catch (Exception ex) {
@@ -225,16 +228,18 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 				}
 			}
 		};
-
 		Display.getDefault().syncExec(closeIntroRunnable);
-		
-		
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
-		project = root.getProject("ClazzDiagramTestProject");
-		file = project.getFile("ClazzDiagramTest.di");
+		/*
+		 * final String timestamp = Long.toString(System.currentTimeMillis());
+		 * 
+		 * project = root.getProject("DiagramTestProject_" + timestamp);
+		 * file = project.getFile("DiagramTest_" + timestamp + ".di"); //$NON-NLS-2$
+		 */
+		project = root.getProject(getProjectName());
+		file = project.getFile(getFileName()); //$NON-NLS-2$
 		this.diResourceSet = new DiResourceSet();
-
 		//at this point, no resources have been created
 		try {
 			if(!project.exists()) {
@@ -243,11 +248,9 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			if(!project.isOpen()) {
 				project.open(null);
 			}
-
 			if(file.exists()) {
 				file.delete(true, new NullProgressMonitor());
 			}
-
 			if(!file.exists()) {
 				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 				diResourceSet.createsModels(file);
@@ -264,7 +267,6 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 				command.createDiagram(diResourceSet, null, "DiagramToTest");
 				diResourceSet.save(new NullProgressMonitor());
 			}
-
 			Runnable runnable = new Runnable() {
 
 				public void run() {
@@ -277,7 +279,6 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 					}
 				}
 			};
-
 			Display.getDefault().syncExec(runnable);
 			Assert.assertNotNull("Failed to open the editor", papyrusEditor);
 		} catch (Exception e) {
@@ -285,7 +286,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			fail("Project creation failed: " + e.getMessage());
 		}
 	}
-	
+
 	/** Call {@link AbstractPapyrusTestCase#execute(Command) execute} on the UI thread. */
 	protected void executeOnUIThread(final Command command) {
 		Display.getDefault().syncExec(new Runnable() {
@@ -315,14 +316,11 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			}
 		});
 	}
-	
+
 	protected void assertLastOperationSuccessful() {
-		assertFalse(
-				"The operation failed. Look at the log, or put a breakpoint on ExecutionException or DefaultOperationHistory#notifyNotOK to find the cause.",
-				this.operationFailed);
+		assertFalse("The operation failed. Look at the log, or put a breakpoint on ExecutionException or DefaultOperationHistory#notifyNotOK to find the cause.", this.operationFailed);
 	}
-	
-	
+
 	/**
 	 * Reset the "operation failed" state. Call this before executing each operation for which you want to test whether
 	 * if failed with {@link AbstractPapyrusTestCase#assertLastOperationSuccessful()}.
@@ -330,7 +328,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	protected void resetLastOperationFailedState() {
 		this.operationFailed = false;
 	}
-	
+
 	/** Execute the given command in the diagram editor. */
 	protected void execute(final Command command) {
 		resetLastOperationFailedState();
@@ -361,6 +359,4 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 		// not "diagramEditor.getDiagramEditDomain().getDiagramCommandStack()" because it messes up undo contexts
 		return this.diagramEditor.getEditingDomain().getCommandStack();
 	}
-	
-
 }

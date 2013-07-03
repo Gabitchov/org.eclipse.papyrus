@@ -14,7 +14,6 @@ package org.eclipse.papyrus.diagram.tests.canonical;
 
 import java.util.ArrayList;
 
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -39,18 +38,17 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Before;
 
-
 /**
- *  Abstract class to test nodes
+ * Abstract class to test nodes
  */
-public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase{
-	
+public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase {
+
 	/** <code>true</code> if semantic tests should be run on graphical manipulation */
 	private boolean testSemantic;
 
 	/** command computed on the ui thread */
 	protected Command command;
-	
+
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#setUp()
 	 * 
@@ -77,14 +75,13 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 	 * 
 	 * @return
 	 */
-
 	protected abstract View getRootView();
 
 	/**
-	 * Returns the container edit part 
+	 * Returns the container edit part
 	 */
 	protected abstract IGraphicalEditPart getContainerEditPart();
-	
+
 	/**
 	 * Test to manage child node.
 	 * 
@@ -104,7 +101,6 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		testDestroy(type, 1, 1, 1, 1);
 		// the node has been destroyed, the UML element also. restore one element
 		undoOnUIThread();
-
 		// the node and the UML element are present
 		testViewDeletion(type);
 		// The node has been deleted, the uml element is still present
@@ -114,7 +110,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 			testChangeContainer(type, containerType);
 		}
 	}
-	
+
 	/**
 	 * Test to manage child node.
 	 * 
@@ -134,7 +130,6 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		testDestroy(type, 1, 1, 1, 1);
 		// the node has been destroyed, the UML element also. restore one element
 		undoOnUIThread();
-
 		// the node and the UML element are present
 		testViewDeletion(type);
 		// The node has been deleted, the uml element is still present
@@ -144,8 +139,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 			testChangeContainer(type, containerType);
 		}
 	}
-	
-	
+
 	/**
 	 * Test to manage child node.
 	 * 
@@ -153,7 +147,7 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 	 *        the type
 	 * @param containerType
 	 *        the container type
-	 *        @deprecated, @use {@link AbstractTestNode#testToManageNode(IElementType, EClass, IElementType, boolean)}
+	 * @deprecated, @use {@link AbstractTestNode#testToManageNode(IElementType, EClass, IElementType, boolean)}
 	 */
 	@Deprecated
 	public void testToManageChildNode(IElementType type, EClass eClass, IElementType containerType, boolean containerMove) {
@@ -182,7 +176,6 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		if(testSemantic) {
 			assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, expectedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
 		}
-
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 		Command command = ((GraphicalEditPart)getContainerEditPart().getChildren().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
@@ -193,13 +186,11 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		if(testSemantic) {
 			assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, expectedSemanticChildren - removedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
 		}
-
 		undoOnUIThread();
 		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, expectedGraphicalChildren, getContainerEditPart().getChildren().size());
 		if(testSemantic) {
 			assertEquals(DESTROY_DELETION + TEST_THE_UNDO, expectedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
 		}
-
 		redoOnUIThread();
 		assertEquals(DESTROY_DELETION + TEST_THE_REDO, expectedGraphicalChildren - removedGraphicalChildren, getContainerEditPart().getChildren().size());
 		if(testSemantic) {
@@ -219,7 +210,6 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		if(testSemantic) {
 			assertEquals(DROP + INITIALIZATION_TEST, 1, getRootSemanticModel().getOwnedElements().size());
 		}
-
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
 		for(Element element : getRootSemanticModel().getOwnedElements()) {
@@ -233,17 +223,14 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		assertNotNull(DROP + COMMAND_NULL, command);
 		assertTrue(DROP + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(DROP + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
-
 		// execute the drop
 		executeOnUIThread(command);
 		assertTrue(DROP + TEST_THE_EXECUTION, getContainerEditPart().getChildren().size() != 0);
 		assertTrue(DROP + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() != 0);
-
 		// undo the drop
 		undoOnUIThread();
 		assertEquals(DROP + TEST_THE_UNDO, 0, getContainerEditPart().getChildren().size());
 		assertTrue(DROP + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() != 0);
-
 		// redo the drop
 		redoOnUIThread();
 		assertTrue(DROP + TEST_THE_REDO, getContainerEditPart().getChildren().size() != 0);
@@ -262,12 +249,10 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		//CHANGE CONTAINER
 		assertEquals(CHANGE_CONTAINER + INITIALIZATION_TEST, 1, getContainerEditPart().getChildren().size());
 		assertEquals(CHANGE_CONTAINER + INITIALIZATION_TEST, 1, getRootSemanticModel().getOwnedElements().size());
-
 		final Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(containerType, getContainerEditPart().getDiagramPreferencesHint());
-		
 		command = null;
-		Display.getDefault().syncExec( new Runnable() {
-			
+		Display.getDefault().syncExec(new Runnable() {
+
 			public void run() {
 				command = getContainerEditPart().getCommand(requestcreation);
 			}
@@ -290,30 +275,25 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 			index++;
 		}
 		assertTrue("Container not found", compartment != null);
-
 		command = compartment.getCommand(changeBoundsRequest);
 		assertNotNull(CHANGE_CONTAINER, command);
 		assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
-
 		// execute change container
 		executeOnUIThread(command);
 		assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 1, getRootView().getChildren().size());
 		assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 1, getRootSemanticModel().getOwnedElements().size());
 		assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 1, compartment.getChildren().size());
-
 		// undo change container
 		undoOnUIThread();
 		assertEquals(CHANGE_CONTAINER + TEST_THE_UNDO, 2, getRootView().getChildren().size());
 		assertEquals(CHANGE_CONTAINER + TEST_THE_UNDO, 2, getRootSemanticModel().getOwnedElements().size());
 		assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 0, compartment.getChildren().size());
-
 		// redo change container
 		redoOnUIThread();
 		assertEquals(CHANGE_CONTAINER + TEST_THE_REDO, 1, getRootView().getChildren().size());
 		assertEquals(CHANGE_CONTAINER + TEST_THE_REDO, 1, getRootSemanticModel().getOwnedElements().size());
 		assertEquals(CHANGE_CONTAINER + TEST_THE_EXECUTION, 1, compartment.getChildren().size());
-
 	}
 
 	/**
@@ -327,38 +307,34 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		//CREATION
 		assertEquals(CREATION + INITIALIZATION_TEST, expectedGraphicalChildren, getContainerEditPart().getChildren().size());
 		assertEquals(CREATION + INITIALIZATION_TEST, expectedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
-
 		final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getContainerEditPart().getDiagramPreferencesHint());
 		Display.getDefault().syncExec(new Runnable() {
+
 			public void run() {
-				command = getContainerEditPart().getCommand(requestcreation); 
+				command = getContainerEditPart().getCommand(requestcreation);
 			}
 		});
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
-
 		// execute the creation
 		executeOnUIThread(command);
 		assertEquals(CREATION + TEST_THE_EXECUTION, expectedGraphicalChildren + addedGraphicalChildren, getRootView().getChildren().size());
 		if(testSemantic) {
 			assertEquals(CREATION + TEST_THE_EXECUTION, expectedSemanticChildren + addedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
 		}
-
 		// undo the creation
 		undoOnUIThread();
 		assertEquals(CREATION + TEST_THE_UNDO, expectedGraphicalChildren, getRootView().getChildren().size());
 		if(testSemantic) {
 			assertEquals(CREATION + TEST_THE_UNDO, expectedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
 		}
-
 		// redo the creation test
 		redoOnUIThread();
 		assertEquals(CREATION + TEST_THE_REDO, expectedGraphicalChildren + addedGraphicalChildren, getRootView().getChildren().size());
 		if(testSemantic) {
 			assertEquals(CREATION + TEST_THE_REDO, expectedSemanticChildren + addedSemanticChildren, getRootSemanticModel().getOwnedElements().size());
 		}
-
 	}
 
 	/**
@@ -381,36 +357,30 @@ public abstract class AbstractTestNode extends org.eclipse.papyrus.diagram.tests
 		//DELETION OF THE VIEW
 		assertEquals(VIEW_DELETION + INITIALIZATION_TEST, 1, getContainerEditPart().getChildren().size());
 		if(testSemantic) {
-
 		}
-
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = ((IGraphicalEditPart)getContainerEditPart().getChildren().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
-
 		// execute hide the view
 		executeOnUIThread(command);
 		assertEquals(VIEW_DELETION + TEST_THE_EXECUTION, 0, getContainerEditPart().getChildren().size());
 		if(testSemantic) {
 			//assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == numberOfRelatedSemanticElement);
 		}
-
 		// undo hide the view
 		undoOnUIThread();
 		assertEquals(VIEW_DELETION + TEST_THE_UNDO, 1, getContainerEditPart().getChildren().size());
 		if(testSemantic) {
 			//assertTrue(VIEW_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == numberOfRelatedSemanticElement);
 		}
-
 		// redo hide the view
 		redoOnUIThread();
 		assertEquals(VIEW_DELETION + TEST_THE_REDO, 0, getContainerEditPart().getChildren().size());
 		if(testSemantic) {
 			//assertTrue(VIEW_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == numberOfRelatedSemanticElement);	
 		}
-
 	}
 
 	protected abstract CreateViewRequest createViewRequestShapeContainer();

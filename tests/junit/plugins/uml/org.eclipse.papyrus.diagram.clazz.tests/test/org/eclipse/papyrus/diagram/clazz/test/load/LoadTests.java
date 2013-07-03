@@ -11,9 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.diagram.clazz.test.load;
-
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -35,8 +33,6 @@ Load300ClassTest.class,
 // 400 classes
 Load400ClassTest.class,
 // 500 classes
-Load500ClassTest.class,
-})
+Load500ClassTest.class, })
 public class LoadTests {
-
 }

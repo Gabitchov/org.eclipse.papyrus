@@ -36,7 +36,7 @@ public abstract class TestTopNode extends AbstractTestNode {
 	protected View getRootView() {
 		return (View)getContainerEditPart().getModel();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

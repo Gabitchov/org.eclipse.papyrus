@@ -43,8 +43,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Relationship;
 import org.junit.Before;
 
-
-
 /**
  * The Class MultiLink.
  */
@@ -126,7 +124,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		//DELETION OF THE VIEW
 		//DELETION OF ALL THE VIEW
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, linkNode != null);
-
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = linkNode.getCommand(deleteViewRequest);
 		assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
@@ -135,37 +132,27 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, getDiagramEditPart().getChildren().size() == 5);
 		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 0);
-
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(VIEW_DELETION + TEST_THE_UNDO, getDiagramEditPart().getChildren().size() == 6);
 		assertTrue(VIEW_DELETION + TEST_THE_UNDO, ((Diagram)getRootView()).getEdges().size() == 4);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(VIEW_DELETION + TEST_THE_REDO, getDiagramEditPart().getChildren().size() == 5);
 		assertTrue(VIEW_DELETION + TEST_THE_REDO, ((Diagram)getRootView()).getEdges().size() == 0);
-
-
-
 	}
 
 	public static Point getIntersectionPoint(ConnectionEditPart connEP, boolean source) {
-
 		ConnectionAnchor sourceAnchor;
 		ConnectionAnchor targetAnchor;
-
 		NodeEditPart sourceEP = (NodeEditPart)connEP.getSource();
 		NodeEditPart targetEP = (NodeEditPart)connEP.getTarget();
-
 		Point endLocation;
-
 		sourceAnchor = sourceEP.getSourceConnectionAnchor(connEP);
 		targetAnchor = targetEP.getTargetConnectionAnchor(connEP);
-
 		if(source) {
 			endLocation = sourceAnchor.getLocation(targetAnchor.getReferencePoint()).getCopy();
 		} else {
 			endLocation = targetAnchor.getLocation(sourceAnchor.getReferencePoint()).getCopy();
 		}
-
 		return endLocation;
 	}
 
@@ -178,7 +165,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 	public void testDestroy(IElementType type) {
 		//DESTROY SEMANTIC+ VIEW
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 6);
-
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 		Command command = linkNode.getCommand(deleteViewRequest);
 		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
@@ -187,8 +173,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, getDiagramEditPart().getChildren().size() == 5);
 		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 0);
-
-
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getDiagramEditPart().getChildren().size() == 6);
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, ((Diagram)getRootView()).getEdges().size() == 4);
@@ -196,7 +180,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		assertTrue(DESTROY_DELETION + TEST_THE_REDO, getDiagramEditPart().getChildren().size() == 5);
 		assertTrue(DESTROY_DELETION + TEST_THE_REDO, ((Diagram)getRootView()).getEdges().size() == 0);
 	}
-
 
 	/**
 	 * Test drop.
@@ -212,8 +195,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		assertTrue(DROP + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 0);
 		assertTrue(DROP + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().get(5) instanceof Relationship);
 		Relationship relationship = (Relationship)getRootSemanticModel().getOwnedElements().get(5);
-
-
 		//DO
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
@@ -227,20 +208,16 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(DROP + TEST_THE_EXECUTION, getDiagramEditPart().getChildren().size() == 6);
 		assertTrue(DROP + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 4);
-
 		//UNDO
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(DROP + TEST_THE_UNDO, getDiagramEditPart().getChildren().size() == 5);
 		assertTrue(DROP + TEST_THE_UNDO, ((Diagram)getRootView()).getEdges().size() == 0);
-
 		//REDO
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(DROP + TEST_THE_REDO, getDiagramEditPart().getChildren().size() == 6);
 		assertTrue(DROP + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 6);
 		assertTrue(DROP + TEST_THE_REDO, ((Diagram)getRootView()).getEdges().size() == 4);
 	}
-
-
 
 	/**
 	 * Test to create a node.
@@ -252,8 +229,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 	 * 
 	 */
 	public void testToCreateAMultiLink(IElementType branchType, boolean flow) {
-
-
 		//test to create the branch for dependency to node
 		Command cmd = target.getCommand(createConnectionViewRequest(branchType, binaryLink, thirdPlayer));
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == true);
@@ -261,48 +236,37 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		// EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(cmd);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 3);
 		assertTrue(CREATION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 6);
-
 		//Undo
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, ((Diagram)getRootView()).getEdges().size() == 1);
 		assertTrue(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 6);
-
-
 		//redo
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(CREATION + TEST_THE_REDO, ((Diagram)getRootView()).getEdges().size() == 3);
 		assertTrue(CREATION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 6);
 		assertTrue(CREATION + TEST_THE_REDO, getDiagramEditPart().getChildren().get(5) != null);
 		linkNode = (ShapeNodeEditPart)getDiagramEditPart().getChildren().get(5);
-
 		//test to create the branch from node to multidependency
 		if(flow) {
 			cmd = linkNode.getCommand(createConnectionViewRequest(branchType, fourthPlayer, linkNode));
-
 		} else {//test to create the branch from  multidependency to node
 			cmd = linkNode.getCommand(createConnectionViewRequest(branchType, linkNode, fourthPlayer));
 		}
-
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == true);
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 4);
 		assertTrue(CREATION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 6);
-
 		//undo
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, ((Diagram)getRootView()).getEdges().size() == 3);
 		assertTrue(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 6);
-
 		//redo
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(CREATION + TEST_THE_REDO, ((Diagram)getRootView()).getEdges().size() == 4);
 		assertTrue(CREATION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 6);
 	}
 
-
-
 	public void testTargetReconnectAMultiLink(IElementType type) {
-
 		//target reconnection
 		ReconnectRequest reconnectRequest = new ReconnectRequest();
 		assertTrue(THE_BRANCH_TO_RECONNECT_EXISTS, (ConnectionEditPart)target.getTargetConnections().get(0) != null);
@@ -310,31 +274,23 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		reconnectRequest.setConnectionEditPart(branch);
 		reconnectRequest.setTargetEditPart(guestPlayer);
 		reconnectRequest.setType(RequestConstants.REQ_RECONNECT_TARGET);
-
 		Command cmd = guestPlayer.getCommand(reconnectRequest);
-
 		assertTrue(RECONNECTION_TARGET + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == true);
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
 		// EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(cmd);
 		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 4);
 		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 6);
 		assertTrue(BRANCH_EXISTS_RECONNECTION_ON_TARGET, branch.getTarget().equals(guestPlayer));
-
 		//undo
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(BRANCH_EXISTS_RECONNECTION_ON_TARGET + TEST_THE_UNDO, branch.getTarget().equals(target));
-
 		//redo
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(BRANCH_EXISTS_RECONNECTION_ON_TARGET + TEST_THE_REDO, branch.getTarget().equals(guestPlayer));
-
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().undo();
-
-
 	}
 
 	public void testSourceReconnectAMultiLink(IElementType type) {
-
 		//target reconnection
 		ReconnectRequest reconnectRequest = new ReconnectRequest();
 		assertTrue(THE_BRANCH_TO_RECONNECT_EXISTS, (ConnectionEditPart)source.getSourceConnections().get(0) != null);
@@ -342,32 +298,25 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		reconnectRequest.setConnectionEditPart(branch);
 		reconnectRequest.setTargetEditPart(guestPlayer);
 		reconnectRequest.setType(RequestConstants.REQ_RECONNECT_SOURCE);
-
 		Command cmd = guestPlayer.getCommand(reconnectRequest);
-
 		assertTrue(RECONNECTION_SOURCE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == true);
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
 		assertTrue(RECONNECTION_SOURCE + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 4);
 		assertTrue(RECONNECTION_SOURCE + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 6);
 		assertTrue(BRANCH_EXISTS_RECONNECTION_ON_SOURCE + TEST_THE_EXECUTION, branch.getSource().equals(guestPlayer));
-
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(BRANCH_EXISTS_RECONNECTION_ON_SOURCE + TEST_THE_UNDO, branch.getSource().equals(source));
-
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(BRANCH_EXISTS_RECONNECTION_ON_SOURCE + TEST_THE_REDO, branch.getSource().equals(guestPlayer));
-
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().undo();
 	}
 
 	public CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target) {
 		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, ((IGraphicalEditPart)getDiagramEditPart()).getDiagramPreferencesHint());
-
 		connectionRequest.setSourceEditPart(null);
 		connectionRequest.setTargetEditPart(source);
 		connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
 		source.getCommand(connectionRequest);
-
 		// Now, setup the request in preparation to get the
 		// connection end
 		// command.
@@ -376,7 +325,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
 		return connectionRequest;
 	}
-
 
 	protected abstract CreateViewRequest createViewRequestShapeContainer();
 
@@ -389,7 +337,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-
 		CreateViewRequest requestcreation = createViewRequestShapeContainer();
 		//1st node
 		requestcreation.setLocation(new Point(10, 10));
@@ -399,8 +346,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
-
-
 		requestcreation.setLocation(new Point(400, 10));
 		//2d node
 		command = getDiagramEditPart().getCommand(requestcreation);
@@ -409,7 +354,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 2);
-
 		requestcreation.setLocation(new Point(200, 200));
 		//3d node
 		command = getDiagramEditPart().getCommand(requestcreation);
@@ -421,7 +365,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		source = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
 		target = (GraphicalEditPart)getDiagramEditPart().getChildren().get(1);
 		thirdPlayer = (GraphicalEditPart)getDiagramEditPart().getChildren().get(2);
-
 		//4d node
 		requestcreation.setLocation(new Point(400, 400));
 		command = getDiagramEditPart().getCommand(requestcreation);
@@ -440,24 +383,16 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 5);
 		guestPlayer = (GraphicalEditPart)getDiagramEditPart().getChildren().get(4);
-
-
-
-
-
 	}
 
 	public void installbinaryLink(IElementType type) {
 		//binaryLink
 		Command command = target.getCommand(createConnectionViewRequest(type, source, target));
-
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 1);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 6);
-
 		binaryLink = (ConnectionEditPart)source.getSourceConnections().get(0);
-
 	}
 
 	/**
@@ -465,7 +400,6 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 	 * 
 	 * @return
 	 */
-
 	@Override
 	protected View getRootView() {
 		return (View)getDiagramEditPart().getModel();
@@ -491,10 +425,7 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, getDiagramEditPart().getChildren().get(5) instanceof ShapeNodeEditPart);
 		linkNode = (ShapeNodeEditPart)getDiagramEditPart().getChildren().get(5);
-
 		testViewDeletion(branchType);
 		testDrop(branchType);
 	}
-
-
 }

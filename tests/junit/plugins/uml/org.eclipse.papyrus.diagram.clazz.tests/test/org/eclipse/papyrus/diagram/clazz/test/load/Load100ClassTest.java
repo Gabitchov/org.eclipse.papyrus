@@ -18,18 +18,27 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.diagram.clazz.test.IClassDiagramTestsConstants;
 import org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.junit.Ignore;
 import org.junit.Test;
-
-
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Load100ClassTest.
  */
 public class Load100ClassTest extends AbstractPapyrusTestCase {
+
+	@Override
+	protected String getProjectName() {
+		return IClassDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IClassDiagramTestsConstants.FILE_NAME;
+	}
 
 	/**
 	 * Test to create a node.
@@ -44,7 +53,6 @@ public class Load100ClassTest extends AbstractPapyrusTestCase {
 		assertTrue("CREATION: test if the command is created", command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: test if the command can be executed", command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-
 	}
 
 	/**

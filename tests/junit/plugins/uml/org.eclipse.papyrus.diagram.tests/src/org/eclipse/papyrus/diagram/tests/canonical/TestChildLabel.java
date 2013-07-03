@@ -34,14 +34,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Element;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class TestChildLabel.
  */
 public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase {
-
 
 	/** The Constant CREATION. */
 	protected static final String CREATION = "CREATION:";
@@ -88,240 +85,231 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 	/**
 	 * Test view deletion.
 	 * 
-	 * @param type the type
-	 * @param containerType the container type
+	 * @param type
+	 *        the type
+	 * @param containerType
+	 *        the container type
 	 */
-	public void testViewDeletion(IElementType type,int containerType) {
-
-		ListCompartmentEditPart compartment=null;
-		int index=0;
-		while (compartment==null && index <getTopEditPart().getChildren().size()){
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart&& (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(""+containerType))){
-				compartment= (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
+	public void testViewDeletion(IElementType type, int containerType) {
+		ListCompartmentEditPart compartment = null;
+		int index = 0;
+		while(compartment == null && index < getTopEditPart().getChildren().size()) {
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
 		}
-		assertTrue("Container not found", compartment!=null);
+		assertTrue("Container not found", compartment != null);
 		//DELETION OF THE VIEW
-		assertTrue(VIEW_DELETION +INITIALIZATION_TEST,compartment.getChildren().size()==1);
-		assertTrue(VIEW_DELETION +INITIALIZATION_TEST,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, compartment.getChildren().size() == 1);
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 1);
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = ((GraphicalEditPart)compartment.getChildren().get(0)).getCommand(deleteViewRequest);
-		assertNotNull(VIEW_DELETION +COMMAND_NULL,command);
-		assertTrue(VIEW_DELETION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
-		assertTrue(VIEW_DELETION +TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
+		assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
+		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(VIEW_DELETION +TEST_THE_EXECUTION,compartment.getChildren().size()==0);
-		assertTrue(VIEW_DELETION +TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-
+		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, compartment.getChildren().size() == 0);
+		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(VIEW_DELETION +TEST_THE_UNDO,compartment.getChildren().size()==1);
-		assertTrue(VIEW_DELETION +TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-
+		assertTrue(VIEW_DELETION + TEST_THE_UNDO, compartment.getChildren().size() == 1);
+		assertTrue(VIEW_DELETION + TEST_THE_UNDO, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(VIEW_DELETION +TEST_THE_REDO,compartment.getChildren().size()==0);
-		assertTrue(VIEW_DELETION +TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-
-
+		assertTrue(VIEW_DELETION + TEST_THE_REDO, compartment.getChildren().size() == 0);
+		assertTrue(VIEW_DELETION + TEST_THE_REDO, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 1);
 	}
 
 	/**
 	 * Test destroy.
 	 * 
-	 * @param type the type
-	 * @param containerType the container type
+	 * @param type
+	 *        the type
+	 * @param containerType
+	 *        the container type
 	 */
-	public void testDestroy(IElementType type,int containerType) {
-		ListCompartmentEditPart compartment=null;
-		int index=0;
-		while (compartment==null && index <getTopEditPart().getChildren().size()){
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart&& (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(""+containerType))){
-				compartment= (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
+	public void testDestroy(IElementType type, int containerType) {
+		ListCompartmentEditPart compartment = null;
+		int index = 0;
+		while(compartment == null && index < getTopEditPart().getChildren().size()) {
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
 		}
-		assertTrue("Container not found", compartment!=null);
+		assertTrue("Container not found", compartment != null);
 		//DESTROY SEMANTIC+ VIEW
-		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,compartment.getChildren().size()==1);
-		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-
-		Request deleteViewRequest =	new EditCommandRequestWrapper( new DestroyElementRequest(false));
+		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, compartment.getChildren().size() == 1);
+		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 1);
+		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 		Command command = ((GraphicalEditPart)compartment.getChildren().get(0)).getCommand(deleteViewRequest);
-		assertNotNull(DESTROY_DELETION +COMMAND_NULL,command);
-		assertTrue(DESTROY_DELETION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
-		assertTrue(DESTROY_DELETION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
+		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
+		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,compartment.getChildren().size()==0);
-		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
+		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, compartment.getChildren().size() == 0);
+		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		//assertTrue(DESTROY_DELETION +TEST_THE_UNDO,compartment.getChildren().size()==1);
-		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
+		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(DESTROY_DELETION +TEST_THE_REDO,compartment.getChildren().size()==0);
-		assertTrue(DESTROY_DELETION +TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
+		assertTrue(DESTROY_DELETION + TEST_THE_REDO, compartment.getChildren().size() == 0);
+		assertTrue(DESTROY_DELETION + TEST_THE_REDO, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 0);
 	}
-
 
 	/**
 	 * Test drop.
 	 * 
-	 * @param type the type
-	 * @param containerType the container type
+	 * @param type
+	 *        the type
+	 * @param containerType
+	 *        the container type
 	 */
-	public void testDrop(IElementType type,int containerType) {
-		ListCompartmentEditPart compartment=null;
-		int index=0;
-		while (compartment==null && index <getTopEditPart().getChildren().size()){
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart&& (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(""+containerType))){
-				compartment= (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
+	public void testDrop(IElementType type, int containerType) {
+		ListCompartmentEditPart compartment = null;
+		int index = 0;
+		while(compartment == null && index < getTopEditPart().getChildren().size()) {
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
 		}
-		assertTrue("Container not found", compartment!=null);
+		assertTrue("Container not found", compartment != null);
 		//DROP
-		assertTrue(DROP +INITIALIZATION_TEST,compartment.getChildren().size()==0);
-		assertTrue(DROP +INITIALIZATION_TEST,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-
-
-		DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
+		assertTrue(DROP + INITIALIZATION_TEST, compartment.getChildren().size() == 0);
+		assertTrue(DROP + INITIALIZATION_TEST, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 1);
+		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
 		list.add(getRootSemanticModel().getOwnedElements().get(0));
 		dropObjectsRequest.setObjects(list);
-		dropObjectsRequest.setLocation(new Point(20,20));
-		Command command= compartment.getCommand(dropObjectsRequest);
-		assertNotNull(DROP+COMMAND_NULL,command);
-		assertTrue(DROP +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
-		assertTrue(DROP+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
+		dropObjectsRequest.setLocation(new Point(20, 20));
+		Command command = compartment.getCommand(dropObjectsRequest);
+		assertNotNull(DROP + COMMAND_NULL, command);
+		assertTrue(DROP + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue(DROP + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(DROP +TEST_THE_EXECUTION,compartment.getChildren().size()!=0);
-		assertTrue(DROP +TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()!=0);
+		assertTrue(DROP + TEST_THE_EXECUTION, compartment.getChildren().size() != 0);
+		assertTrue(DROP + TEST_THE_EXECUTION, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() != 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(DROP+TEST_THE_UNDO,compartment.getChildren().size()==0);
-		assertTrue(DROP+TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()!=0);
+		assertTrue(DROP + TEST_THE_UNDO, compartment.getChildren().size() == 0);
+		assertTrue(DROP + TEST_THE_UNDO, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() != 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(DROP+TEST_THE_REDO,compartment.getChildren().size()!=0);
-		assertTrue(DROP+TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()!=0);
+		assertTrue(DROP + TEST_THE_REDO, compartment.getChildren().size() != 0);
+		assertTrue(DROP + TEST_THE_REDO, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() != 0);
 	}
-
 
 	/**
 	 * Test change container.
 	 * 
-	 * @param topNodeType the top node type
-	 * @param type the type
-	 * @param containerType the container type
+	 * @param topNodeType
+	 *        the top node type
+	 * @param type
+	 *        the type
+	 * @param containerType
+	 *        the container type
 	 */
-	public void testChangeContainer(IElementType topNodeType,IElementType type, int containerType) {
-		ListCompartmentEditPart compartment=null;
-		int index=0;
-		while (compartment==null && index <getTopEditPart().getChildren().size()){
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart&& (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(""+containerType))){
-				compartment= (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
+	public void testChangeContainer(IElementType topNodeType, IElementType type, int containerType) {
+		ListCompartmentEditPart compartment = null;
+		int index = 0;
+		while(compartment == null && index < getTopEditPart().getChildren().size()) {
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
 		}
-		assertTrue("Container not found", compartment!=null);
-
+		assertTrue("Container not found", compartment != null);
 		//CHANGE CONTAINER
-		assertTrue(CHANGE_CONTAINER +INITIALIZATION_TEST,compartment.getChildren().size()==1);
-		assertTrue(CHANGE_CONTAINER +INITIALIZATION_TEST,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-
-
-		Request requestcreation=CreateViewRequestFactory.getCreateShapeRequest(topNodeType, getDiagramEditPart().getDiagramPreferencesHint());
-		Command command=getDiagramEditPart().getCommand(requestcreation);
-		assertNotNull(CONTAINER_CREATION+COMMAND_NULL,command);
-		assertTrue(CONTAINER_CREATION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
-		assertTrue(CONTAINER_CREATION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
+		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, compartment.getChildren().size() == 1);
+		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 1);
+		Request requestcreation = CreateViewRequestFactory.getCreateShapeRequest(topNodeType, getDiagramEditPart().getDiagramPreferencesHint());
+		Command command = getDiagramEditPart().getCommand(requestcreation);
+		assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
+		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CONTAINER_CREATION+TEST_THE_EXECUTION,getRootView().getChildren().size()==2);
-		GraphicalEditPart newContainerEditPart= (GraphicalEditPart)getDiagramEditPart().getChildren().get(1);
+		assertTrue(CONTAINER_CREATION + TEST_THE_EXECUTION, getRootView().getChildren().size() == 2);
+		GraphicalEditPart newContainerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(1);
 		ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_ADD);
 		changeBoundsRequest.setEditParts((EditPart)compartment.getChildren().get(0));
-		changeBoundsRequest.setLocation(new Point(30,30));
-		ListCompartmentEditPart newCompartment=null;
-		index=0;
-		while (newCompartment==null && index <newContainerEditPart.getChildren().size()){
-			if((newContainerEditPart.getChildren().get(index)) instanceof ListCompartmentEditPart&& (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(""+containerType))){
-				newCompartment= (ListCompartmentEditPart)(newContainerEditPart.getChildren().get(index));
+		changeBoundsRequest.setLocation(new Point(30, 30));
+		ListCompartmentEditPart newCompartment = null;
+		index = 0;
+		while(newCompartment == null && index < newContainerEditPart.getChildren().size()) {
+			if((newContainerEditPart.getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+				newCompartment = (ListCompartmentEditPart)(newContainerEditPart.getChildren().get(index));
 			}
 			index++;
 		}
-		assertTrue("NewContainer not found", newCompartment!=null);
-
-
-		command=newCompartment.getCommand(changeBoundsRequest);
-		assertNotNull(CHANGE_CONTAINER,command);
-		assertTrue(CHANGE_CONTAINER+TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
-		assertTrue(CHANGE_CONTAINER+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
+		assertTrue("NewContainer not found", newCompartment != null);
+		command = newCompartment.getCommand(changeBoundsRequest);
+		assertNotNull(CHANGE_CONTAINER, command);
+		assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue(CHANGE_CONTAINER + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,compartment.getChildren().size()==0);
-		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
-		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,newCompartment.getChildren().size()==1);
+		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, compartment.getChildren().size() == 0);
+		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 0);
+		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, newCompartment.getChildren().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(CHANGE_CONTAINER+TEST_THE_UNDO,compartment.getChildren().size()==1);
-		assertTrue(CHANGE_CONTAINER+TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,newCompartment.getChildren().size()==0);
+		assertTrue(CHANGE_CONTAINER + TEST_THE_UNDO, compartment.getChildren().size() == 1);
+		assertTrue(CHANGE_CONTAINER + TEST_THE_UNDO, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 1);
+		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, newCompartment.getChildren().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,compartment.getChildren().size()==0);
-		assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
-		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,newCompartment.getChildren().size()==1);
-
+		assertTrue(CHANGE_CONTAINER + TEST_THE_REDO, compartment.getChildren().size() == 0);
+		assertTrue(CHANGE_CONTAINER + TEST_THE_REDO, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 0);
+		assertTrue(CHANGE_CONTAINER + TEST_THE_EXECUTION, newCompartment.getChildren().size() == 1);
 	}
 
 	/**
 	 * Test to create a node.
 	 * 
-	 * @param type the type
-	 * @param containerType the container type
+	 * @param type
+	 *        the type
+	 * @param containerType
+	 *        the container type
 	 */
-	public void testToCreateANode(IElementType type,int containerType) {
-		ListCompartmentEditPart compartment=null;
-		int index=0;
-		while (compartment==null && index <getTopEditPart().getChildren().size()){
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart&& (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(""+containerType))){
-				compartment= (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
+	public void testToCreateANode(IElementType type, int containerType) {
+		ListCompartmentEditPart compartment = null;
+		int index = 0;
+		while(compartment == null && index < getTopEditPart().getChildren().size()) {
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
 		}
-		assertTrue("Container not found", compartment!=null);
+		assertTrue("Container not found", compartment != null);
 		//CREATION
-		assertTrue(CREATION +INITIALIZATION_TEST,compartment.getChildren().size()==0);
-		assertTrue(CREATION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==0);
-
-		CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
-		Command command=compartment.getCommand(requestcreation);
-		assertNotNull(CREATION+COMMAND_NULL,command);
-		assertTrue(CREATION+TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: "+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
+		assertTrue(CREATION + INITIALIZATION_TEST, compartment.getChildren().size() == 0);
+		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 0);
+		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
+		Command command = compartment.getCommand(requestcreation);
+		assertNotNull(CREATION + COMMAND_NULL, command);
+		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION+TEST_THE_EXECUTION,compartment.getChildren().size()==1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, compartment.getChildren().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(CREATION+TEST_THE_UNDO,compartment.getChildren().size()==0);
-		assertTrue(CREATION+TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
+		assertTrue(CREATION + TEST_THE_UNDO, compartment.getChildren().size() == 0);
+		assertTrue(CREATION + TEST_THE_UNDO, ((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue("CREATION: "+TEST_THE_REDO,compartment.getChildren().size()==1);
-
+		assertTrue("CREATION: " + TEST_THE_REDO, compartment.getChildren().size() == 1);
 	}
 
 	/**
 	 * Test to create a top node.
 	 * 
-	 * @param type the type
+	 * @param type
+	 *        the type
 	 */
 	public void testToCreateATopNode(IElementType type) {
-
 		//CREATION
-		assertTrue(CREATION +INITIALIZATION_TEST,getDiagramEditPart().getChildren().size()==0);
-		assertTrue(CREATION +INITIALIZATION_TEST,((Element)((View)getDiagramEditPart().getModel()).getElement()).getOwnedElements().size()==0);
-
-		CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
-		Command command=getDiagramEditPart().getCommand(requestcreation);
-		assertNotNull(CREATION+COMMAND_NULL,command);
-		assertTrue(CREATION+TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
-		assertTrue(CREATION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
+		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Element)((View)getDiagramEditPart().getModel()).getElement()).getOwnedElements().size() == 0);
+		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
+		Command command = getDiagramEditPart().getCommand(requestcreation);
+		assertNotNull(CREATION + COMMAND_NULL, command);
+		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION+TEST_THE_EXECUTION,getRootView().getChildren().size()==1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, getRootView().getChildren().size() == 1);
 		topNode = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
 	}
 
@@ -330,16 +318,15 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 	 * 
 	 * @return the top edit part
 	 */
-	public GraphicalEditPart getTopEditPart(){
+	public GraphicalEditPart getTopEditPart() {
 		return topNode;
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#getRootSemanticModel()
-	 *
+	 * 
 	 * @return
 	 */
-
 	@Override
 	protected Element getRootSemanticModel() {
 		// TODO Auto-generated method stub
@@ -349,19 +336,20 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.c
 	/**
 	 * Test to manage top node.
 	 * 
-	 * @param topNodeType the top node type
-	 * @param type the type
-	 * @param containerType the container type
+	 * @param topNodeType
+	 *        the top node type
+	 * @param type
+	 *        the type
+	 * @param containerType
+	 *        the container type
 	 */
-	public void testToManageTopNode(IElementType topNodeType,IElementType type, int containerType) {
+	public void testToManageTopNode(IElementType topNodeType, IElementType type, int containerType) {
 		testToCreateATopNode(topNodeType);
-		testToCreateANode(type,containerType);
-		testDestroy(type,containerType);
+		testToCreateANode(type, containerType);
+		testDestroy(type, containerType);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		testViewDeletion(type,containerType);
-		testDrop(type,containerType);
-		testChangeContainer(topNodeType,type, containerType);
+		testViewDeletion(type, containerType);
+		testDrop(type, containerType);
+		testChangeContainer(topNodeType, type, containerType);
 	}
-
-
 }
