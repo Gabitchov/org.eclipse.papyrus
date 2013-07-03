@@ -36,5 +36,4 @@ TestRequirementDiagramContainment.class,
 // Link Owned By source
 TestRequirementDiagramLinkOwnedBySource.class })
 public class AllCanonicalTests {
-
 }

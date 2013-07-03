@@ -16,6 +16,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestLink;
 import org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
+import org.eclipse.papyrus.sysml.diagram.requirement.test.IRequirementDiagramTestsConstants;
 import org.junit.Test;
 
 /**
@@ -26,6 +27,16 @@ public class TestRequirementDiagramLink extends TestLink {
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new RequirementDiagramCreateCommand();
+	}
+
+	@Override
+	protected String getProjectName() {
+		return IRequirementDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IRequirementDiagramTestsConstants.FILE_NAME;
 	}
 
 	/**
@@ -51,5 +62,4 @@ public class TestRequirementDiagramLink extends TestLink {
 	public void testToManageRealization() {
 		testToManageLink(ElementTypes.CLASS, ElementTypes.CLASS, ElementTypes.REALIZATION, ElementTypes.PACKAGE, true);
 	}
-
 }

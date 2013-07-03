@@ -34,5 +34,4 @@ Load400RequirementTest.class,
 // 500 classes
 Load500RequirementTest.class, })
 public class LoadTests {
-
 }

@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
+import org.eclipse.papyrus.sysml.diagram.requirement.test.IRequirementDiagramTestsConstants;
 import org.eclipse.papyrus.sysml.diagram.requirement.test.canonical.AbstractPapyrusTestCase;
 import org.junit.Test;
 
@@ -25,6 +26,16 @@ import org.junit.Test;
  * The Class Load500RequirementTest.
  */
 public class Load500RequirementTest extends AbstractPapyrusTestCase {
+
+	@Override
+	protected String getProjectName() {
+		return IRequirementDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IRequirementDiagramTestsConstants.FILE_NAME;
+	}
 
 	/**
 	 * Test to create a node.
@@ -39,7 +50,6 @@ public class Load500RequirementTest extends AbstractPapyrusTestCase {
 		assertTrue("CREATION: test if the command is created", command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: test if the command can be executed", command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-
 	}
 
 	/**

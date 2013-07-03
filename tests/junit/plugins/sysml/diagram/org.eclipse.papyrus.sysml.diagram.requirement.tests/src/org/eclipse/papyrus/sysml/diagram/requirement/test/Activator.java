@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ *  (CEA LIST) - Initial API and implementation
  /*****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.test;
 
@@ -60,5 +60,4 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
-
 }

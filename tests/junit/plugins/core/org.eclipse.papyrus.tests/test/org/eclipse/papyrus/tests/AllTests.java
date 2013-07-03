@@ -67,7 +67,7 @@ public class AllTests {
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.modelexplorer", "org.eclipse.papyrus.sysml.modelexplorer.tests.suites.AllTests"));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.sysml.diagram.internalblock.Activator.PLUGIN_ID, "org.eclipse.papyrus.sysml.diagram.internalblock.tests.suites.AllTests"));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.diagram.blockdefinition", "org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites.AllTests"));
-		//suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.diagram.requirement.test.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.diagram.requirement.test.AllTests.class));
 		
 		/* uml */
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.diagram.common.Activator.ID, "org.eclipse.papyrus.diagram.common.tests.AllTests"));

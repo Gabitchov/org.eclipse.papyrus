@@ -10,18 +10,13 @@
  * Contributors:
  *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
  /*****************************************************************************/
-package org.eclipse.papyrus.sysml.diagram.requirement.test.canonical;
+package org.eclipse.papyrus.sysml.diagram.requirement.test;
 
-import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand;
+public interface IRequirementDiagramTestsConstants {
 
-/**
- * The Class AbstractPapyrusTestCase.
- */
-public abstract class AbstractPapyrusTestCase extends org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase {
+	/** name of the test project */
+	public final String PROJECT_NAME = "RequirementDiagramTestProject";
 
-	@Override
-	protected ICreationCommand getDiagramCommandCreation() {
-		return new RequirementDiagramCreateCommand();
-	}
+	/** name of the test model */
+	public final String FILE_NAME = "RequirmentDiagramTest.di";
 }
