@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
+import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
@@ -33,6 +34,7 @@ import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.uml2.uml.Model;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -99,13 +101,6 @@ public class TableCreationInUMLModel {
 
 		};
 		Display.getDefault().syncExec(runnableWithResult);
-		try {
-			Platform.getBundle("org.eclipse.papyrus.infra.nattable.common").start(); //$NON-NLS-1$
-			Platform.getBundle("org.eclipse.papyrus.sysml.nattable.requirement").start(); //$NON-NLS-1$
-			Platform.getBundle("org.eclipse.papyrus.sysml.nattable.requirement.config").start(); //$NON-NLS-1$
-		} catch (BundleException e) {
-			throw e;
-		}
 		Assert.assertEquals(runnableWithResult.getStatus().getMessage(), IStatus.OK, runnableWithResult.getStatus().getSeverity());
 		Assert.assertNotNull(TableCreationInSysMLModelTest.rootModel);
 
@@ -117,4 +112,8 @@ public class TableCreationInUMLModel {
 		ModelExplorerUtils.testHandlerStatusInModelExplorer(TableCreationInSysMLModelTest.view, AllTests.COMMAND_ID, TableCreationInSysMLModelTest.rootModel, false);
 	}
 
+	@AfterClass
+	public static void endOfTest() {
+		GenericUtils.closeAllEditors();
+	}
 }

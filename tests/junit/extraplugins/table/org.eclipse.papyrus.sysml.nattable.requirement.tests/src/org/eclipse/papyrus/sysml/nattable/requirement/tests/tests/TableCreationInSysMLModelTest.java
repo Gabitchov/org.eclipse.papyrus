@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
+import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
@@ -49,6 +50,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -139,13 +141,7 @@ public class TableCreationInSysMLModelTest {
 
 		};
 		Display.getDefault().syncExec(runnableWithResult);
-//		try {
-//			Platform.getBundle("org.eclipse.papyrus.infra.nattable.common").start(); //$NON-NLS-1$
-//			Platform.getBundle("org.eclipse.papyrus.sysml.nattable.requirement").start(); //$NON-NLS-1$
-//			Platform.getBundle("org.eclipse.papyrus.sysml.nattable.requirement.config").start(); //$NON-NLS-1$
-//		} catch (BundleException e) {
-//			throw e;
-//		}
+
 		Assert.assertEquals(runnableWithResult.getStatus().getMessage(), IStatus.OK, runnableWithResult.getStatus().getSeverity());
 		Assert.assertNotNull(class_);
 		Assert.assertNotNull(requirement1);
@@ -174,6 +170,8 @@ public class TableCreationInSysMLModelTest {
 	@Test
 	public void testCreationAndDestructionOnRootModel() {
 		Object result = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationInSysMLModelTest.view, AllTests.COMMAND_ID, TableCreationInSysMLModelTest.rootModel, BUNDLE_ID);
+		//to refresh the table content
+		while(Display.getDefault().readAndDispatch());
 		Assert.assertTrue(result instanceof NatTableEditor);
 		NatTableEditor editor = (NatTableEditor)result;
 		NattableModelManager manager = (NattableModelManager)editor.getAdapter(INattableModelManager.class);
@@ -242,6 +240,8 @@ public class TableCreationInSysMLModelTest {
 	@Test
 	public void testCreationAndDestructionOnRequirement() {
 		Object result = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationInSysMLModelTest.view, AllTests.COMMAND_ID, TableCreationInSysMLModelTest.requirement1, BUNDLE_ID);
+		//to refresh the table content
+		while(Display.getDefault().readAndDispatch());
 		Assert.assertTrue(result instanceof NatTableEditor);
 		NatTableEditor editor = (NatTableEditor)result;
 		NattableModelManager manager = (NattableModelManager)editor.getAdapter(INattableModelManager.class);
@@ -291,12 +291,12 @@ public class TableCreationInSysMLModelTest {
 		final ICommand destroyCommand = provider.getEditCommand(destroyRequest);
 		Assert.assertNotNull(destroyCommand);
 		Assert.assertTrue(destroyCommand.canExecute());
-		
+
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyCommand));
 		requirement = TableCreationInSysMLModelTest.requirement1.getMember("Requirement1"); //$NON-NLS-1$
 		Assert.assertNull(requirement);
 		nestedRequirement3 = (Class)requirement;
-		
+
 		//to refresh the table content
 		while(Display.getDefault().readAndDispatch());
 
@@ -310,4 +310,8 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(nestedRequirement2));
 	}
 
+	@AfterClass
+	public static void endOfTest() {
+		GenericUtils.closeAllEditors();
+	}
 }
