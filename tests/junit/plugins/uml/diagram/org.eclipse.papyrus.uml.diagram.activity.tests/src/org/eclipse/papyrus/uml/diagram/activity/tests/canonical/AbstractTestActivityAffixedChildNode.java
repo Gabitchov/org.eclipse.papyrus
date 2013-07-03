@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase;
+import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Before;
 
@@ -45,6 +46,16 @@ public class AbstractTestActivityAffixedChildNode extends AbstractPapyrusTestCas
 		return null;
 	}
 
+	@Override
+	protected String getProjectName() {
+		return IActivityDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IActivityDiagramTestsConstants.FILE_NAME;
+	}
+	
 	@Before
 	@Override
 	protected void setUp() throws Exception {

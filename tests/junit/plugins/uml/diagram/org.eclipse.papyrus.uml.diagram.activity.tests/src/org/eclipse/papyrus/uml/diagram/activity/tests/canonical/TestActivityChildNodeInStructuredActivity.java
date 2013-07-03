@@ -17,13 +17,23 @@ package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
 
 public  class TestActivityChildNodeInStructuredActivity extends AbstractTestActivityChildNode {
 
+	@Override
+	protected String getProjectName() {
+		return IActivityDiagramTestsConstants.PROJECT_NAME;
+	}
 
+	@Override
+	protected String getFileName() {
+		return IActivityDiagramTestsConstants.FILE_NAME;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

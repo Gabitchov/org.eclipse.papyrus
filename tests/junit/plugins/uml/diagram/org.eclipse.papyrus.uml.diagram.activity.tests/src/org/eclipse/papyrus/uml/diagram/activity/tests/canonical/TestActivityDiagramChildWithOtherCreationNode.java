@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -25,6 +26,15 @@ import org.junit.Test;
  */
 public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestActivityChildNode {
 
+	@Override
+	protected String getProjectName() {
+		return IActivityDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IActivityDiagramTestsConstants.FILE_NAME;
+	}
 	
 	/**
 	 * Test to manage callbehaviorAction
