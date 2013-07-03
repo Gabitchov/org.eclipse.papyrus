@@ -35,13 +35,14 @@ public class CustomAssociationBranchReorientCommand extends AssociationBranchReo
 	private EObject oldNamedElementEnd;
 
 	private EObject newNamedElementEnd;
-	protected View connection=null;
+
+	protected View connection = null;
 
 	public CustomAssociationBranchReorientCommand(ReorientRelationshipRequest request) {
 		super(request);
 		oldNamedElementEnd = request.getOldRelationshipEnd();
 		newNamedElementEnd = request.getNewRelationshipEnd();
-		connection =(View)request.getParameters().get("graphical_edge");
+		connection = (View)request.getParameters().get("graphical_edge");
 	}
 
 	/**
@@ -77,13 +78,12 @@ public class CustomAssociationBranchReorientCommand extends AssociationBranchReo
 		/* look for end for the given type */
 		int i = 0;
 
-		Property end =null;
-		if(MultiAssociationHelper.getSemanticBranchEnd(connection)!=null){
-			end=MultiAssociationHelper.getSemanticBranchEnd(connection);
-			i=getLink().getMemberEnds().indexOf(end);
-		}
-		else{
-			end= getLink().getMemberEnds().get(i);
+		Property end = null;
+		if(MultiAssociationHelper.getSemanticBranchEnd(connection) != null) {
+			end = MultiAssociationHelper.getSemanticBranchEnd(connection);
+			i = getLink().getMemberEnds().indexOf(end);
+		} else {
+			end = getLink().getMemberEnds().get(i);
 			while(!end.getType().equals(getOldTarget())) {
 				i++;
 				end = getLink().getMemberEnds().get(i);

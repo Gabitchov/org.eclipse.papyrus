@@ -31,7 +31,7 @@ public class AppliedStereotypeOperationDisplayEditPolicy extends AbstractApplied
 	 */
 	@Override
 	protected Operation getUMLElement() {
-		EObject element = super.getUMLElement(); 
+		EObject element = super.getUMLElement();
 		if(element instanceof Operation) {
 			return (Operation)element;
 		}

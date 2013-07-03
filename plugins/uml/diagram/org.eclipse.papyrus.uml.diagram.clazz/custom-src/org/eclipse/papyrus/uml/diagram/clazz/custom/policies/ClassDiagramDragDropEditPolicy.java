@@ -316,7 +316,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 
 		Element owner = (Element)semanticObject.getOwner();
-		if( owner==null){
+		if(owner == null) {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticObject));
 		}
 		EditPart ownerEditPart = containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), owner);
@@ -349,7 +349,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 			return UnexecutableCommand.INSTANCE;
 		}
 		if(containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement) != null) {
-			EditPart editpart=containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement);
+			EditPart editpart = containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement);
 			View droppedView = (View)(editpart.getModel());
 
 			containmentHelper.deleteIncomingContainmentLinksFor(cc, droppedView);
@@ -407,20 +407,19 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 
 		// in the case of labelEditPart the command add can launch null pointer exception
 		editPartsIter = request.getEditParts().iterator();
-		boolean containsLabelEditpart=false;
-		while(editPartsIter.hasNext()&& !containsLabelEditpart) {
-			EditPart currentEditPart=(EditPart) editPartsIter.next();
-			if(currentEditPart instanceof ITextAwareEditPart&& currentEditPart instanceof IPrimaryEditPart) {
-				containsLabelEditpart=true;
+		boolean containsLabelEditpart = false;
+		while(editPartsIter.hasNext() && !containsLabelEditpart) {
+			EditPart currentEditPart = (EditPart)editPartsIter.next();
+			if(currentEditPart instanceof ITextAwareEditPart && currentEditPart instanceof IPrimaryEditPart) {
+				containsLabelEditpart = true;
 			}
 		}
 
 		//the addCommand of a label edit part into the diagram raises an null pointer exception.
 		//it is due to the label has not constraint, used during the AddCommand
-		if(containsLabelEditpart&& getHost() instanceof DiagramEditPart){
+		if(containsLabelEditpart && getHost() instanceof DiagramEditPart) {
 			return UnexecutableCommand.INSTANCE;
-		}
-		else{
+		} else {
 			//normal case
 			ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_ADD);
 			req.setEditParts(request.getEditParts());

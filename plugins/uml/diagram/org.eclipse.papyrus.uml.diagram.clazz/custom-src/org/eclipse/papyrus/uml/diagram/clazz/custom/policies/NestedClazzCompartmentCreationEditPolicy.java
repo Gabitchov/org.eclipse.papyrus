@@ -89,9 +89,9 @@ public class NestedClazzCompartmentCreationEditPolicy extends PapyrusCreationEdi
 		IAdaptable elementAdapter = new EObjectAdapter(element);
 		int nodeVISUALID = UMLVisualIDRegistry.getNodeVisualID(((View)getHost().getModel()), element);
 		//If -1 then the node can node be create
-		if (nodeVISUALID == -1 ){			
+		if(nodeVISUALID == -1) {
 			cc.compose(UnexecutableCommand.INSTANCE);
-		} else {			
+		} else {
 			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.getElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, ((GraphicalEditPart)getHost()).getDiagramPreferencesHint());
 			CreateCommand createCommand = new CreateUniqueViewCommand(editingDomain, descriptor, ((View)(getHost().getModel())));
 			cc.compose(createCommand);
@@ -101,29 +101,23 @@ public class NestedClazzCompartmentCreationEditPolicy extends PapyrusCreationEdi
 
 	@Override
 	protected Command getCreateCommand(CreateViewRequest request) {
-		  TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-	            .getEditingDomain();
-	        CompositeTransactionalCommand cc = new CompositeTransactionalCommand(
-	            editingDomain, DiagramUIMessages.AddCommand_Label);
-	        
-	        Iterator descriptors = request.getViewDescriptors().iterator();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
 
-			while (descriptors.hasNext()) {
-				CreateViewRequest.ViewDescriptor descriptor =
-					(CreateViewRequest.ViewDescriptor)descriptors.next();
+		Iterator descriptors = request.getViewDescriptors().iterator();
 
-				CreateCommand createCommand =
-					new CreateUniqueViewCommand(editingDomain,
-						descriptor, 
-						(View)(getHost().getModel()));
-				createCommand.setLabel("custoCreateCommand");
+		while(descriptors.hasNext()) {
+			CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor)descriptors.next();
 
-				cc.compose(createCommand);
-			}
-			return new ICommandProxy(cc.reduce());
+			CreateCommand createCommand = new CreateUniqueViewCommand(editingDomain, descriptor, (View)(getHost().getModel()));
+			createCommand.setLabel("custoCreateCommand");
+
+			cc.compose(createCommand);
+		}
+		return new ICommandProxy(cc.reduce());
 	}
-	
 
-	
-	
+
+
+
 }

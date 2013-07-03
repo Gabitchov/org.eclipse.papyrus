@@ -85,7 +85,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 
 	@Override
 	public InstanceSpecification getUMLElement() {
-		EObject element = super.getUMLElement(); 
+		EObject element = super.getUMLElement();
 		if(element instanceof InstanceSpecification) {
 			return (InstanceSpecification)element;
 		}

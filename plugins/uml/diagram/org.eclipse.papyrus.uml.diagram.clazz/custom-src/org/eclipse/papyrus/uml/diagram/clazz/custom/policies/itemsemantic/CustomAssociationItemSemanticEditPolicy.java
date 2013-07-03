@@ -76,11 +76,11 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 	 */
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		
+
 		EObject selectedEObject = req.getElementToDestroy();
-		
-		
-		
+
+
+
 		CompoundCommand cmd = new CompoundCommand();
 		List<EObject> todestroy = new ArrayList<EObject>();
 		EObject mainObjectToDelete = req.getElementToDestroy();
@@ -91,15 +91,15 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 			for(Property end : association.getMemberEnds()) {
 				if(end.getOwner() != association) {
 					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(end);
-					DestroyElementRequest Destructreq= new DestroyElementRequest(end, false);
+					DestroyElementRequest Destructreq = new DestroyElementRequest(end, false);
 					if(provider != null) {
 						// Retrieve delete command from the Element Edit service
 						ICommand deleteCommand = provider.getEditCommand(Destructreq);
 						if(deleteCommand != null) {
-							cmd.add(new ICommandProxy( deleteCommand));
+							cmd.add(new ICommandProxy(deleteCommand));
 						}
 					}
-					
+
 				}
 			}
 		}

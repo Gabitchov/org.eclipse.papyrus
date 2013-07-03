@@ -132,7 +132,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public Property getUMLElement() {
-		EObject element = super.getUMLElement(); 
+		EObject element = super.getUMLElement();
 		if(element instanceof Property) {
 			return (Property)element;
 		}

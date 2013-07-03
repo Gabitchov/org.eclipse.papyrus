@@ -28,8 +28,8 @@ import com.google.common.collect.ImmutableSet;
  * @author arthur daussy
  * 
  */
-public class InterfaceNestedClassifierListenerEditPolicy extends 
-AbstractNestedClassifierListenerEditPolicy {
+public class InterfaceNestedClassifierListenerEditPolicy extends AbstractNestedClassifierListenerEditPolicy {
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.ListenerEventEditPolicy#getEStructuralFeaturesToListen()
@@ -39,6 +39,6 @@ AbstractNestedClassifierListenerEditPolicy {
 	public ImmutableSet<EStructuralFeature> getEStructuralFeaturesToListen() {
 		return ImmutableSet.of((EStructuralFeature)UMLPackage.Literals.INTERFACE__NESTED_CLASSIFIER);
 	}
-	
-	
+
+
 }

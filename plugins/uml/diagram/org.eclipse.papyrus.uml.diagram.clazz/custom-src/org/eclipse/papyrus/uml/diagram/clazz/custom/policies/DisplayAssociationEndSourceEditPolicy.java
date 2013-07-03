@@ -37,5 +37,5 @@ public class DisplayAssociationEndSourceEditPolicy extends DisplayAssociationEnd
 		propertyLabelHelper = AssociationEndSourceLabelHelper.getInstance();
 	}
 
-	
+
 }

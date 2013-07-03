@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * this is an abstract editpart used to allow double click on XY layout compartment
- *
+ * 
  */
 @SuppressWarnings("restriction")
 public abstract class AbstractPackageableElementCompartmentEditPart extends ShapeCompartmentEditPart {
@@ -32,17 +32,17 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 	public AbstractPackageableElementCompartmentEditPart(View view) {
 		super(view);
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart#getDragTracker(org.eclipse.gef.Request)
-	 *
+	 * 
 	 */
 	public DragTracker getDragTracker(Request req) {
-		if (!supportsDragSelection())
+		if(!supportsDragSelection())
 			return super.getDragTracker(req);
 
-		if (req instanceof SelectionRequest
-			&& ((SelectionRequest) req).getLastButtonPressed() == 3)
+		if(req instanceof SelectionRequest && ((SelectionRequest)req).getLastButtonPressed() == 3)
 			return new DeselectAllTracker(this) {
 
 				protected boolean handleButtonDown(int button) {
@@ -50,22 +50,24 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 					return true;
 				}
 			};
-		
+
 		return new RubberbandDragTracker() {
-			
-			/* this method has been respecified in order to allow double click 
+
+			/*
+			 * this method has been respecified in order to allow double click
 			 * on the compartment.
 			 * hence it allows the navigation by double click
 			 */
 			protected boolean handleDoubleClick(int button) {
-		        	SelectionRequest request = new SelectionRequest();
-		    		request.setLocation(getLocation());
-		    		request.setType(RequestConstants.REQ_OPEN);
-		    		AbstractPackageableElementCompartmentEditPart.this.performRequest(request);
-		            return true;
-		    }
+				SelectionRequest request = new SelectionRequest();
+				request.setLocation(getLocation());
+				request.setType(RequestConstants.REQ_OPEN);
+				AbstractPackageableElementCompartmentEditPart.this.performRequest(request);
+				return true;
+			}
+
 			protected void handleFinished() {
-				if (getViewer().getSelectedEditParts().isEmpty())
+				if(getViewer().getSelectedEditParts().isEmpty())
 					getViewer().select(AbstractPackageableElementCompartmentEditPart.this);
 			}
 		};

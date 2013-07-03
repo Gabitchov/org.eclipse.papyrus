@@ -1801,6 +1801,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ContextLinkEditPart.VISUAL_ID:
+			if(ContextLinkAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}

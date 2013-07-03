@@ -116,7 +116,7 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 		// be sure to have a UML element 
 		if(getView().getElement() instanceof Element) {
 			return (Element)getView().getElement();
-		} 
+		}
 		return null;
 	}
 

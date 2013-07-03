@@ -27,10 +27,10 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLModelingAssistantProvi
 /**
  * this is a custom assistant for editpart
  * I overload possible shorcut that can be created
- *
+ * 
  */
 public class CUMLModelingAssitantProvider extends UMLModelingAssistantProvider {
-	
+
 	@SuppressWarnings("rawtypes")
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
@@ -57,8 +57,8 @@ public class CUMLModelingAssitantProvider extends UMLModelingAssistantProvider {
 			//types.add(UMLElementTypes.NamedElement_2097);
 			//types.add(UMLElementTypes.NamedElement_2098);
 			return types;
+		} else {
+			return super.getTypesForPopupBar(host);
 		}
-		else {
-			return super.getTypesForPopupBar(host);}
 	}
 }

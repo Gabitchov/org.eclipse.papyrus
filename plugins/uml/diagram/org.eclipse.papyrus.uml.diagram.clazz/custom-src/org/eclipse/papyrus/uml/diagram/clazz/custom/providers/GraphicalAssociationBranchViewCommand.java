@@ -39,9 +39,9 @@ public class GraphicalAssociationBranchViewCommand extends CommonDeferredCreateC
 	/**
 	 * {@inheritDoc}
 	 */
-	public GraphicalAssociationBranchViewCommand(TransactionalEditingDomain editingDomain, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor,Object associationEndWrapper) {
+	public GraphicalAssociationBranchViewCommand(TransactionalEditingDomain editingDomain, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, Object associationEndWrapper) {
 		super(editingDomain, ((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(), sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, null);
-		this.associationEndWrapper=associationEndWrapper;
+		this.associationEndWrapper = associationEndWrapper;
 	}
 
 	/**
@@ -50,15 +50,16 @@ public class GraphicalAssociationBranchViewCommand extends CommonDeferredCreateC
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		CommandResult commandResult = null;
 		commandResult = super.doExecuteWithResult(progressMonitor, info);
-		View view=((View)(viewDescriptor.getAdapter(View.class)));
+		View view = ((View)(viewDescriptor.getAdapter(View.class)));
 		MultiAssociationHelper.createSemanticBranchStyles(view);
-		EObject associationEnd=null;
-		if(associationEndWrapper instanceof CreateElementRequest){
-			associationEnd=((CreateElementRequest)associationEndWrapper).getNewElement();}
-		if(associationEndWrapper instanceof Property){
-			associationEnd=(Property)associationEndWrapper;
+		EObject associationEnd = null;
+		if(associationEndWrapper instanceof CreateElementRequest) {
+			associationEnd = ((CreateElementRequest)associationEndWrapper).getNewElement();
 		}
-		if(associationEnd!=null && associationEnd instanceof Property){
+		if(associationEndWrapper instanceof Property) {
+			associationEnd = (Property)associationEndWrapper;
+		}
+		if(associationEnd != null && associationEnd instanceof Property) {
 			MultiAssociationHelper.setSemanticBranchEnd(view, (Property)associationEnd);
 		}
 

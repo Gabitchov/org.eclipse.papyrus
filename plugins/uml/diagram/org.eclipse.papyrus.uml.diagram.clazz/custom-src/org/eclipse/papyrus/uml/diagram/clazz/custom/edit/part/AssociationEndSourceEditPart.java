@@ -46,7 +46,7 @@ public class AssociationEndSourceEditPart extends AssociationTargetNameEditPart 
 		}
 		super.handleNotificationEvent(event);
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
 	 * 

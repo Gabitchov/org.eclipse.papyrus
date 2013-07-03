@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+
 /**
  * Basic Create Command but check that there is no other view which is related to the same element before. If so do nothing
  */
@@ -44,6 +45,7 @@ public class CreateUniqueViewCommand extends CreateCommand {
 			//trnasforme view to the semantic element (EObject)
 			@SuppressWarnings("unchecked")
 			Iterable<EObject> ite = Iterables.transform(containerView.getChildren(), new Function<View, EObject>() {
+
 				public EObject apply(View from) {
 					return from.getElement();
 				}
@@ -58,8 +60,8 @@ public class CreateUniqueViewCommand extends CreateCommand {
 			/*
 			 * Create the element only if there is no element relative to same EOBject already created
 			 */
-			if (!find.iterator().hasNext()){
-				return super.doExecuteWithResult(monitor,info);
+			if(!find.iterator().hasNext()) {
+				return super.doExecuteWithResult(monitor, info);
 			}
 		}
 		return CommandResult.newOKCommandResult();

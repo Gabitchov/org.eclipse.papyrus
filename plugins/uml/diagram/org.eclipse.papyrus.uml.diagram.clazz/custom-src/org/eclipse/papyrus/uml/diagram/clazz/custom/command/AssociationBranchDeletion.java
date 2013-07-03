@@ -70,26 +70,26 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 
 		// 1. Semantic deletion
 		GraphicalEditPart branchSource = (GraphicalEditPart)selectedElement.getSource();
-		
+
 
 		// target is the association end of the association branch
 		association = (Association)branchSource.resolveSemanticElement();
 		associationNodeEditPart = branchSource;
-		
-		Property associationEndToRemove=MultiAssociationHelper.getPropertyToListen((Edge)selectedElement.getModel(), association);
-		
+
+		Property associationEndToRemove = MultiAssociationHelper.getPropertyToListen((Edge)selectedElement.getModel(), association);
+
 
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(associationEndToRemove);
 		if(provider != null) {
-			DestroyElementRequest destroyRequest= new DestroyElementRequest(associationEndToRemove,false); 
+			DestroyElementRequest destroyRequest = new DestroyElementRequest(associationEndToRemove, false);
 			// Retrieve delete command from the Element Edit service
-				ICommand deleteCommand = provider.getEditCommand(destroyRequest);
-				if(deleteCommand != null) {
-					command.add(new ICommandProxy(deleteCommand));
-				}
+			ICommand deleteCommand = provider.getEditCommand(destroyRequest);
+			if(deleteCommand != null) {
+				command.add(new ICommandProxy(deleteCommand));
+			}
 		}
-		
-	
+
+
 
 		// 2. graphical deletion of the branch
 		View associationBranchView = selectedElement.getNotationView();

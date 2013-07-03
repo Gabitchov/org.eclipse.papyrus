@@ -98,7 +98,7 @@ public class CustomNamespaceEditPolicyProvider extends AbstractProvider implemen
 		if(editPart instanceof ComponentEditPartCN) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomComponentContextLinkSemanticEditPolicyCN());
 		}
-		
+
 		// install policy for InterfaceEditPart
 		if(editPart instanceof InterfaceEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInterfaceContextLinkSemanticEditPolicy());
@@ -106,7 +106,7 @@ public class CustomNamespaceEditPolicyProvider extends AbstractProvider implemen
 		if(editPart instanceof InterfaceEditPartCN) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInterfaceContextLinkSemanticEditPolicyCN());
 		}
-		
+
 		// install policy for DataTypeEditPart
 		if(editPart instanceof DataTypeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDataTypeContextLinkSemanticEditPolicy());
@@ -114,7 +114,7 @@ public class CustomNamespaceEditPolicyProvider extends AbstractProvider implemen
 		if(editPart instanceof DataTypeEditPartCN) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDataTypeContextLinkSemanticEditPolicyCN());
 		}
-		
+
 		// install policy for EnumerationEditPart
 		if(editPart instanceof EnumerationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomEnumerationContextLinkSemanticEditPolicy());
@@ -122,7 +122,7 @@ public class CustomNamespaceEditPolicyProvider extends AbstractProvider implemen
 		if(editPart instanceof EnumerationEditPartCN) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomEnumerationContextLinkSemanticEditPolicyCN());
 		}
-		
+
 		// install policy for InformationItemEditPart
 		if(editPart instanceof InformationItemEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInformationItemContextLinkSemanticEditPolicy());
@@ -130,7 +130,7 @@ public class CustomNamespaceEditPolicyProvider extends AbstractProvider implemen
 		if(editPart instanceof InformationItemEditPartCN) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInformationItemContextLinkSemanticEditPolicy());
 		}
-		
+
 		// install policy for PrimitiveTypeEditPart
 		if(editPart instanceof PrimitiveTypeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomPrimitiveTypeContextLinkSemanticEditPolicy());
@@ -138,7 +138,7 @@ public class CustomNamespaceEditPolicyProvider extends AbstractProvider implemen
 		if(editPart instanceof PrimitiveTypeEditPartCN) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomPrimitiveTypeContextLinkSemanticEditPolicyCN());
 		}
-		
+
 		// install policy for ModelEditPart
 		if(editPart instanceof ModelEditPartCN) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomModelContextLinkSemanticEditPolicyCN());
@@ -146,15 +146,15 @@ public class CustomNamespaceEditPolicyProvider extends AbstractProvider implemen
 		if(editPart instanceof ModelEditPartTN) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomModelContextLinkSemanticEditPolicyTN());
 		}
-		
+
 		// install policy for PackageEditPart
 		if(editPart instanceof PackageEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomPackageContextLinkSemanticEditPolicy());
 		}
-//		if (editPart instanceof PackageEditPartCN){	
-//			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new C);
-//		}
-		
+		//		if (editPart instanceof PackageEditPartCN){	
+		//			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new C);
+		//		}
+
 		// install policy for SignalEditPart
 		if(editPart instanceof SignalEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomSignalContextLinkSemanticEditPolicy());

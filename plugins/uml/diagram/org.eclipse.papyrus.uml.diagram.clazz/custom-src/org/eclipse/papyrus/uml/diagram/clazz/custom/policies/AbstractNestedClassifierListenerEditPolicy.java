@@ -36,10 +36,12 @@ import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
+
 /**
  * Use as based class for Nested Classifier Listener (for example see {@link ClassNestedClassifierListenerEditPolicy}
+ * 
  * @author adaussy
- *
+ * 
  */
 public abstract class AbstractNestedClassifierListenerEditPolicy extends ListenerEventEditPolicy {
 
@@ -47,10 +49,12 @@ public abstract class AbstractNestedClassifierListenerEditPolicy extends Listene
 	 * {@link EditPolicy} ID
 	 */
 	public static String EDIT_POLICY_ID = "NESTED_CLASSIFIER_LISTENER_EDITPOLICY";
+
 	/**
 	 * label of the composite command to add new classifier
 	 */
 	protected static final String MOVE_CLASSIFIER_TO_NESTED_CLASSIFIER_COMPARTMENT = "Move classifier to NestedClassifier Compartment";
+
 	/**
 	 * Label of the composite Command to remove orphan classifier
 	 */
@@ -103,7 +107,7 @@ public abstract class AbstractNestedClassifierListenerEditPolicy extends Listene
 		CompositeCommand cc = new CompositeCommand(MOVE_CLASSIFIER_TO_NESTED_CLASSIFIER_COMPARTMENT);
 		ViewDescriptor viewDescriptor = getViewDescriptor((EObject)newObject);
 		Iterable<ICommand> deleteCommands = Iterables.transform(DiagramEditPartsUtil.findViews((EObject)newObject, getHost().getViewer()), new Function<View, ICommand>() {
-	
+
 			public ICommand apply(View from) {
 				return new DeleteCommand(from);
 			}

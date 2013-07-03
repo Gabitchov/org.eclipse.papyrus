@@ -43,7 +43,7 @@ public class AssociationBranchEndLabelHelper extends PropertyLabelHelper {
 	public Property getUMLElement(GraphicalEditPart editPart) {
 
 		if((View)editPart.getModel() != null && ((View)editPart.getModel()).eContainer() != null) {
-			if(MultiAssociationHelper.getSemanticBranchEnd(((Edge)((View)editPart.getModel()).eContainer()))!=null){
+			if(MultiAssociationHelper.getSemanticBranchEnd(((Edge)((View)editPart.getModel()).eContainer())) != null) {
 				return MultiAssociationHelper.getSemanticBranchEnd(((Edge)((View)editPart.getModel()).eContainer()));
 			}
 

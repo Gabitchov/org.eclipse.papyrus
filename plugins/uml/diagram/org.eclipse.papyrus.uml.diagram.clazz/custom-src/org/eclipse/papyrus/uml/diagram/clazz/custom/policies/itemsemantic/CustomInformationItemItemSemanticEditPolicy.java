@@ -32,8 +32,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 
 
 public class CustomInformationItemItemSemanticEditPolicy extends InformationItemItemSemanticEditPolicy {
-	
-	
+
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -67,5 +67,5 @@ public class CustomInformationItemItemSemanticEditPolicy extends InformationItem
 		return super.getReorientRelationshipCommand(req);
 	}
 
-	
+
 }
