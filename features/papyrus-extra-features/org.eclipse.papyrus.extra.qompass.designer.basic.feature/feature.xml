@@ -53,31 +53,31 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import match="greaterOrEqual" plugin="org.eclipse.emf.transaction" version="1.4.0"/>
       <import match="greaterOrEqual" plugin="org.eclipse.gmf.runtime.common.core" version="1.4.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.fcm.profile" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.marte.static.profile" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.qompass.designer.vsl" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.modelexplorer.widgets" version="0.10.0"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.fcm.profile" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.marte.static.profile" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.qompass.designer.vsl" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.modelexplorer.widgets" version="0.10.1"/>
       <import match="greaterOrEqual" plugin="org.eclipse.emf.compare" version="3.0.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.diagram.common" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.gmfdiag.widgets" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.modelexplorer" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.profile" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.properties" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.tools" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.cpp.profile" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.core" version="0.10.0"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.diagram.common" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.gmfdiag.widgets" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.modelexplorer" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.profile" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.properties" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.tools" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.cpp.profile" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.core" version="0.10.1"/>
       <import match="greaterOrEqual" plugin="org.eclipse.gmf.runtime.common.core" version="1.7.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.widgets" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.emf" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.acceleo" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.qompass.designer.core" version="0.10.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.cpp.codegen" version="0.10.0"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.widgets" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.emf" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.acceleo" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.qompass.designer.core" version="0.10.1"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.cpp.codegen" version="0.10.1"/>
       <import match="greaterOrEqual" plugin="org.eclipse.cdt.managedbuilder.core" version="8.0.0"/>
       <import match="greaterOrEqual" plugin="org.eclipse.cdt.core" version="5.4.0"/>
       <import match="greaterOrEqual" plugin="org.eclipse.uml2.uml" version="3.0.1"/>
       <import match="greaterOrEqual" plugin="org.eclipse.ui.ide" version="3.8.0"/>
       <import match="greaterOrEqual" plugin="org.eclipse.uml2.uml" version="4.0.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.marte.vsl" version="0.10.0"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.marte.vsl" version="0.10.1"/>
       <import match="greaterOrEqual" plugin="org.eclipse.xtext" version="2.4.0"/>
       <import plugin="org.eclipse.uml2.types"/>
       <import match="greaterOrEqual" plugin="org.eclipse.ui" version="3.105.0"/>
