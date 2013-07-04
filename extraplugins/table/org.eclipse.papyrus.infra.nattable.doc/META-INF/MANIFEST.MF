@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Table Documentation (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.doc
-Bundle-Version: 0.10.0.qualifier
 Bundle-Vendor: Eclipse Modeling Project
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: Papyrus Table Documentation (Incubation)
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.doc
+

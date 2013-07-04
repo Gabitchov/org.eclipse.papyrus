@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.robotml;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-ClassPath: .
-Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.0",
+Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
  org.eclipse.emf.ecore,
  org.eclipse.uml2.uml
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %Bundle-Vendor
-Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.RobotML,
  org.eclipse.papyrus.RobotML.impl,
  org.eclipse.papyrus.RobotML.util
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.robotml;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

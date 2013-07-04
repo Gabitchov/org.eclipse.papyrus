@@ -1,5 +1,12 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext;bundle-version="0.10.0",
+Export-Package: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.contentassist,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.contentassist.antlr,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.quickfix
+Bundle-ActivationPolicy: lazy
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext;bundle-version="0.10.1",
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -7,26 +14,22 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext;
  org.eclipse.ui,
  org.eclipse.xtext.builder,
  org.antlr.runtime,
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
  org.eclipse.core.expressions;bundle-version="3.4.200",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1",
  org.apache.log4j;bundle-version="1.2.15",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0"
-Export-Package: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.contentassist.antlr,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.quickfix,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.contentassist
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
+Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.internal.UMLConnectionPointReferenceActivator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.connectionpointrefe
+ rence.xtext.ui.internal.UMLConnectionPointReferenceActivator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointr
+ eference.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j
+

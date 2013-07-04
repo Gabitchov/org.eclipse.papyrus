@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.extra.robotml.feature"
-      label="%featureName"
-      version="0.10.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.extra.robotml.feature" label="%featureName" provider-name="%providerName" version="0.10.1.qualifier">
 
    <description>
       RobotML Modelling Tools
@@ -21,88 +16,28 @@ http://www.eclipse.org/legal/epl-v10.html</copyright>
       %license
    </license>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.diagram.architecture"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.diagram.architecture" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.diagram.common"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.diagram.common" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.diagram.componentdef"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.diagram.componentdef" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.diagram.datatypedef"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.diagram.datatypedef" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.diagram.interfacedef"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.diagram.interfacedef" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.templaterepository"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.templaterepository" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.diagram.ui"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.diagram.ui" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.doc"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.doc" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.validation"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.validation" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.modelexplorer"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.modelexplorer" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
-   <plugin
-         id="org.eclipse.papyrus.robotml.perspective"
-         download-size="0"
-         install-size="0"
-         version="0.10.0.qualifier"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.robotml.perspective" install-size="0" unpack="false" version="0.10.0.qualifier"/>
 
 </feature>

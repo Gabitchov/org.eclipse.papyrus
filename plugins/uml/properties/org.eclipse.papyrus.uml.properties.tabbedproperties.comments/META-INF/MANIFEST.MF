@@ -5,21 +5,21 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore;bundle-version="2.5.0",
  org.eclipse.uml2.uml;bundle-version="3.0.0",
  org.eclipse.emf.edit;bundle-version="2.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
  org.eclipse.epf.richtext;bundle-version="1.2.0",
  org.eclipse.emf.edit.ui;bundle-version="2.5.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.1",
  org.eclipse.gef;bundle-version="3.7.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.uml.properties.tabbedproperties.comments,
  org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysection
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

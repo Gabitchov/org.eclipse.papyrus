@@ -1,17 +1,21 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.documentation.plugin.edit;singleton:=true
-Bundle-Version: 0.9.0.qualifier
+Export-Package: org.eclipse.papyrus.documentation.plugin.documentation
+ .provider
+Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.documentation.plugin.documentation.provider.PluginDocEditPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.documentation.plugin.documentation.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.documentation.plugin;visibility:=reexport,
+ org.eclipse.papyrus.documentation.plugin;bundle-version="0.10.1";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Bundle-Version: 0.10.1.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.documentation.plugin.documentati
+ on.provider.PluginDocEditPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.documentation.plugin.edit;sin
+ gleton:=true
+

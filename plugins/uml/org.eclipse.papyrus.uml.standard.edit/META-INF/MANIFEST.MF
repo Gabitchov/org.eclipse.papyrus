@@ -5,11 +5,11 @@ Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.papyrus.uml.standard;bundle-version="0.10.0";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.uml.standard;bundle-version="0.10.1";visibility:=reexport,
  org.eclipse.uml2.uml.edit,
  org.eclipse.core.runtime;bundle-version="3.6.0"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.standard.provider.standardEd
  itPlugin$Implementation

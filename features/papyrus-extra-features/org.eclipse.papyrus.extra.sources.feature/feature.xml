@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.extra.sources.feature"
-      label="%featureName"
-      version="0.10.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.extra.sources.feature" label="%featureName" provider-name="%providerName" version="0.10.1.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2008-2013 CEA LIST, Atos Origin, Conselleria de
@@ -20,96 +15,50 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <includes
-         id="org.eclipse.papyrus.extra.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.migration.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.migration.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.export.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.export.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.cdo.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.cdo.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.diagramtemplate.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.diagramtemplate.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.dsml.validation.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.dsml.validation.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.eastadl.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.eastadl.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.infra.gmfdiag.css.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.infra.gmfdiag.css.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.marte.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.marte.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.marte.properties.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.marte.properties.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.marte.textedit.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.marte.textedit.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.uml.compare.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.uml.compare.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.nattable.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.nattable.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.sysml.nattable.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.sysml.nattable.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.nattable.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.nattable.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.umlrt.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.umlrt.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.java.generator.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.java.generator.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.java.reverse.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.java.reverse.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.robotml.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.robotml.source.feature" version="0.0.0"/>
          
-   <includes
-         id="org.eclipse.papyrus.extra.qompass.designer.basic.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.qompass.designer.basic.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.qompass.designer.tracing.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.qompass.designer.tracing.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.cpp.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.cpp.source.feature" version="0.0.0"/>
          
-    <includes
-         id="org.eclipse.papyrus.java.profile.source.feature"
-         version="0.0.0"/>
+    <includes id="org.eclipse.papyrus.java.profile.source.feature" version="0.0.0"/>
 
 </feature>

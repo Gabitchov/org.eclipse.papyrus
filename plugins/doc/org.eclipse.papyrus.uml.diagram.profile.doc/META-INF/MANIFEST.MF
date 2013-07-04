@@ -1,8 +1,10 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Profile Documentation (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile.doc;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Vendor: Eclipse Modeling Project
-Require-Bundle: org.eclipse.papyrus.infra.doc;bundle-version="0.10.0",
+Require-Bundle: org.eclipse.papyrus.infra.doc;bundle-version="0.10.1",
  org.eclipse.help;bundle-version="3.6.0"
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: Profile Documentation (Incubation)
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile.doc;singl
+ eton:=true
+

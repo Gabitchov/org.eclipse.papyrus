@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.core.queries.test;bundle-version="0.10.0",
+Require-Bundle: org.eclipse.papyrus.core.queries.test;bundle-version="0.10.1",
  org.junit;bundle-version="4.10.0"
 Bundle-Vendor: Eclipse Modeling Project
 Fragment-Host: org.eclipse.papyrus.uml.diagram.paletteconfiguration;bu
  ndle-version="0.10.0"
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: Tests fragment for palette configuration plugin (Incubati
  on)
 Bundle-ManifestVersion: 2

@@ -1,13 +1,16 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: UML Generic Table Config (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.generic.config;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.nattable.generic.config.Activator
-Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.nattable,
+ org.eclipse.papyrus.infra.nattable;bundle-version="0.10.1",
  org.eclipse.uml2.uml;bundle-version="4.1.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: UML Generic Table Config (Incubation)
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.nattable.generic.config.Acti
+ vator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.generic.config;s
+ ingleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

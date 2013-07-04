@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.tests.uml.diagram.feature"
       label="Tests UML Diagram Feature (Incubation)"
-      version="0.10.0.qualifier"
+      version="0.10.1.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -69,29 +69,29 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.papyrus.diagram.clazz.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-    <plugin
+
+   <plugin
          id="org.eclipse.papyrus.uml.diagram.activity.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>      
-         
-    <plugin
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.papyrus.uml.diagram.usecase.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-    <plugin
+
+   <plugin
          id="org.eclipse.papyrus.uml.diagram.pkg.tests"
          download-size="0"
          install-size="0"
@@ -104,37 +104,26 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-   
+
    <plugin
          id="org.eclipse.papyrus.uml.diagram.component.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
- 
- 	<plugin
+
+   <plugin
          id="org.eclipse.papyrus.uml.diagram.timing.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
- 
- 	<plugin
+
+   <plugin
          id="org.eclipse.papyrus.uml.diagram.sequence.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-   <!--      
-  
 
-  
-   <plugin
-         id="org.eclipse.papyrus.uml.diagram.interactionoverview.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
--->
 </feature>

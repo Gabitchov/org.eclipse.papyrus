@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query,
  org.eclipse.uml2.uml
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.queries.core.configuration
  .plugin.Activator$Implementation

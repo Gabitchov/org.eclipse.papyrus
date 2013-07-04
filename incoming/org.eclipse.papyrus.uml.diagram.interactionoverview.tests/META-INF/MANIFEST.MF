@@ -1,23 +1,27 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: IODiagram Tests (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.interactionoverview.tests
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.interactionoverview.tests.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.diagram.interactionoverview;bundle-version="0.10.0",
- org.eclipse.papyrus.diagram.tests;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.diagram.activity;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.diagram.timing;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.diagram.interactionoverview;bundle-version="0.10.1",
+ org.eclipse.papyrus.diagram.tests;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.diagram.activity;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.diagram.timing;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
  org.eclipse.uml2.uml;bundle-version="4.0.2",
  org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.gmf.runtime.diagram.ui,
  org.junit;bundle-version="4.10.0"
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.uml.diagram.interactionoverview.tests
+Export-Package: org.eclipse.papyrus.uml.diagram.interactionoverview.te
+ sts
 Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: IODiagram Tests (Incubation)
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.interactionoverview.
+ tests.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.interactionovervi
+ ew.tests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

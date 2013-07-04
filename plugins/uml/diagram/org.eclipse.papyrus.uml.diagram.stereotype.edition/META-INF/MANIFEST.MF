@@ -1,27 +1,29 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.stereotype.edition;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.stereotype.edition.Activator
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.appearance;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.profile;bundle-version="0.10.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-Vendor: %providerName
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.appearance;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.profile;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.uml.diagram.stereotype.edition.command,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
- 
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.stereotype.edition.A
+ ctivator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.stereotype.editio
+ n;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

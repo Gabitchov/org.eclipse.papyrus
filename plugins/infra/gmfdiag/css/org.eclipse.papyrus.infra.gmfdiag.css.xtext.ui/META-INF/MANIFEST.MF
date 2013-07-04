@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.10.0",
+Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.10.1",
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -18,10 +18,13 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.ui.contentassist,
  org.eclipse.papyrus.infra.gmfdiag.ui.quickfix
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: CSS Editor UI (Incubation)
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSActivator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSAct
+ ivator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;si
+ ngleton:=true
 Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

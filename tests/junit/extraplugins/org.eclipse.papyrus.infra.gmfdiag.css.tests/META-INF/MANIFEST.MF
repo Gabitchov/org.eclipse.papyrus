@@ -1,26 +1,26 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.css.configuration;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.css.model;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.css.properties;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.css.configuration;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.css.model;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.css.properties;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
  org.eclipse.core.resources;bundle-version="3.8.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.10.1",
  org.junit;bundle-version="4.10.0"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.css.tests,
  org.eclipse.papyrus.infra.gmfdiag.css.tests.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: CSS Tests (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.tests.Activato

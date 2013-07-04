@@ -1,18 +1,21 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.editor.tests
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.editor.tests.Activator
-Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.nattable.model.editor;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.nattable.model.editor;bundle-version="0.10.1",
  org.junit;bundle-version="4.11.0",
- org.eclipse.papyrus.junit.utils;bundle-version="0.10.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="0.10.1",
  org.eclipse.emf.transaction
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.nattable.model.editor.tests,
  org.eclipse.papyrus.infra.nattable.model.editor.tests.tests
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.editor.test
+ s.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.editor.t
+ ests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

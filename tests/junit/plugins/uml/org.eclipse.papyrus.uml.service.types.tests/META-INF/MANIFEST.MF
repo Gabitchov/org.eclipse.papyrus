@@ -1,18 +1,19 @@
 Manifest-Version: 1.0
 Require-Bundle: org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.junit.utils;bundle-version="0.10.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="0.10.1",
  org.eclipse.uml2.uml.edit;bundle-version="4.0.100",
  org.eclipse.ui
-Bundle-Vendor: %providerName
-Fragment-Host: org.eclipse.papyrus.uml.service.types;bundle-version="0
- .9.0"
-Bundle-Version: 0.10.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.service.types.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.uml.service.types.tests.creation,
  org.eclipse.papyrus.uml.service.types.tests.registry,
  org.eclipse.papyrus.uml.service.types.tests.suites
+Bundle-Vendor: %providerName
+Fragment-Host: org.eclipse.papyrus.uml.service.types;bundle-version="0
+ .9.0"
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.service.types.tests;singl
+ eton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

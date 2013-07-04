@@ -1,12 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.domaincontextcodegen;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.domaincontextcodegen,
  org.eclipse.papyrus.domaincontextcodegen.impl,
  org.eclipse.papyrus.domaincontextcodegen.modules,
@@ -19,4 +11,14 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.engine;bundle-version="3.0.0",
  org.eclipse.core.resources;bundle-version="3.6.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0"
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.domaincontextcodegen;singleto
+ n:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

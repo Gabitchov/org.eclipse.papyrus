@@ -1,18 +1,21 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.infra.services.viewlabelprovider;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.services.viewlabelprovider.Activator
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
  org.eclipse.ui;bundle-version="3.105.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
  org.eclipse.emf.ecore;bundle-version="2.9.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %vendorName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.services.viewlabelprovider
+ .Activator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.services.viewlabelprovi
+ der;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

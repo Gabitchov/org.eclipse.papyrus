@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.extra.marte.textedit.feature"
-      label="%featureName"
-      version="0.10.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.extra.marte.textedit.feature" label="%featureName" provider-name="%providerName" version="0.10.1.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2008-2012 CEA LIST, Atos Origin, Conselleria de
@@ -20,32 +15,12 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <plugin
-         id="org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

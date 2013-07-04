@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.expressions;bundle-version="3.4.300",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
  org.junit;bundle-version="4.10.0"
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.sysml.modelexplorer;bundle-version=
  "0.10.0"
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

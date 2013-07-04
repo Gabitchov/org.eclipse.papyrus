@@ -1,16 +1,10 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.core.serviceregistry;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.8.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.junit,
  org.eclipse.emf.common,
  org.eclipse.emf.ecore
-Bundle-Activator: org.eclipse.papyrus.infra.core.serviceregistry.Activator
 Export-Package: org.eclipse.papyrus.infra.core.serviceregistry,
  org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptors,
  org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptors.impl,
@@ -18,5 +12,14 @@ Export-Package: org.eclipse.papyrus.infra.core.serviceregistry,
  org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid,
  org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.impl,
  org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.util
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.core.serviceregistry.Activ
+ ator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.core.serviceregistry;si
+ ngleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

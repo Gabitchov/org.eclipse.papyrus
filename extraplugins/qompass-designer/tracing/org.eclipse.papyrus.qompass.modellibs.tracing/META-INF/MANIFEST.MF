@@ -1,19 +1,22 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.qompass.modellibs.tracing;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.qompass.modellibs.tracing.Activator
-Bundle-Vendor: %providerName
-Require-Bundle: org.eclipse.papyrus.fcm.profile;bundle-version="0.10.0",
- org.eclipse.papyrus.qompass.modellibs.core;bundle-version="0.10.0",
+Require-Bundle: org.eclipse.papyrus.fcm.profile;bundle-version="0.10.1",
+ org.eclipse.papyrus.qompass.modellibs.core;bundle-version="0.10.1",
  org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.qompass.designer.core;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.services.tracepoints;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.qompass.designer.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.tracepoints;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.emf.workspace;bundle-version="1.5.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.qompass.modellibs.tracing.Activa
+ tor
+Bundle-SymbolicName: org.eclipse.papyrus.qompass.modellibs.tracing;sin
+ gleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

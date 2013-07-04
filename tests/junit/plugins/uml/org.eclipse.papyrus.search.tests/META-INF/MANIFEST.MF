@@ -1,12 +1,13 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.search.tests
-Bundle-Version: 0.10.0.qualifier
 Require-Bundle: org.eclipse.ui.ide;bundle-version="3.8.0",
  org.junit;bundle-version="4.10.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.search.tests.suites
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.search.tests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

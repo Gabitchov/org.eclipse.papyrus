@@ -1,20 +1,22 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.robotml.diagram.ui;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.robotml.diagram.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.robotml.diagram.common;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.robotml.diagram.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.core.resources;bundle-version="3.8.0",
  org.eclipse.ui.workbench;bundle-version="3.105.0",
  org.eclipse.jface;bundle-version="3.9.0"
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %Bundle-Vendor
 Export-Package: org.eclipse.papyrus.robotml.diagram.ui
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.robotml.diagram.ui.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.robotml.diagram.ui;singleton:
+ =true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

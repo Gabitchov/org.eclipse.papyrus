@@ -1,33 +1,24 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.cdo.ui;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.cdo.internal.ui.Activator
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide;bundle-version="[3.8.0,4.0.0)",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.ui.workbench,
- org.eclipse.papyrus.cdo.core;bundle-version="0.10.0";visibility:=reexport,
+ org.eclipse.papyrus.cdo.core;bundle-version="0.10.1";visibility:=reexport,
  org.eclipse.emf.cdo.ui;bundle-version="[4.2.0,5.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
  org.eclipse.emf.cdo.dawn;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.emf.cdo.dawn.gmf;bundle-version="[2.1.0,3.0.0)",
  org.eclipse.emf.cdo.dawn.ui;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.3.0",
- org.eclipse.papyrus.infra.onefile;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.services.markerlistener;bundle-version="0.10.0",
- org.eclipse.papyrus.cdo.validation.problems;bundle-version="0.10.0",
- org.eclipse.papyrus.cdo.validation.problems.edit;bundle-version="0.10.0",
- org.eclipse.papyrus.editor;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.onefile;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.markerlistener;bundle-version="0.10.1",
+ org.eclipse.papyrus.cdo.validation.problems;bundle-version="0.10.1",
+ org.eclipse.papyrus.cdo.validation.problems.edit;bundle-version="0.10.1",
+ org.eclipse.papyrus.editor;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.1",
  com.google.guava;bundle-version="[11.0.0,12.0.0)"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.ui",
  org.eclipse.papyrus.cdo.internal.ui.actions;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.adapters;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
@@ -48,3 +39,13 @@ Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papy
    org.eclipse.papyrus.cdo.uml.ui,
    org.eclipse.papyrus.cdo.uml.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.wizards;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.diagram.ui,org.eclipse.papyrus.cdo.ui.customization.properties"
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.cdo.internal.ui.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.cdo.ui;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

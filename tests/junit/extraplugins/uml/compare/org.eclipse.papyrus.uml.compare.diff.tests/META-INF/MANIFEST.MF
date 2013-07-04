@@ -2,29 +2,29 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.junit.utils;bundle-version="0.10.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="0.10.1",
  org.eclipse.core.resources,
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.papyrus.infra.emf.compare.common;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf.compare.instance;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf.compare.ui;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.compare;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.compare.file;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.compare.diff;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf.compare.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf.compare.instance;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf.compare.ui;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.compare;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.compare.file;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.compare.diff;bundle-version="0.10.1",
  org.eclipse.emf.compare.match;bundle-version="1.3.1",
  org.eclipse.emf.compare.diff;bundle-version="1.3.1",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.emf.compare.uml2;bundle-version="1.3.1",
  org.eclipse.emf.compare,
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf.compare.diff;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf.compare.diff;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.emf.edit.ui;bundle-version="2.8.0"
 Export-Package: org.eclipse.papyrus.uml.compare.diff.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: Tests Papyrus UML Merger (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.compare.diff.tests.Activator

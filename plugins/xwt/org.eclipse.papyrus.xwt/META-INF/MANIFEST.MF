@@ -35,7 +35,7 @@ Require-Bundle: org.eclipse.jface.databinding;bundle-version="1.2.0",
  org.eclipse.osgi;bundle-version="3.8.0"
 DynamicImport-Package: *
 Bundle-Vendor: %Bundle-Vendor.0
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.xwt.internal.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.xwt;singleton:=true

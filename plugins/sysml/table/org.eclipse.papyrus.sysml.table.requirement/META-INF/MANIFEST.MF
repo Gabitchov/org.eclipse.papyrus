@@ -1,30 +1,30 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.emf.facet.widgets.nattable.instance,
  org.eclipse.emf.facet.infra.query.core,
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.0",
- org.eclipse.papyrus.sysml.service.types;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.table.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
+ org.eclipse.papyrus.sysml.service.types;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.table.common;bundle-version="0.10.1",
  org.eclipse.core.expressions,
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
- org.eclipse.papyrus.infra.table.instance;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.table.instance;bundle-version="0.10.1",
  org.eclipse.emf.facet.widgets.nattable;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core,
- org.eclipse.papyrus.sysml;bundle-version="0.10.0",
+ org.eclipse.papyrus.sysml;bundle-version="0.10.1",
  org.eclipse.core.runtime;bundle-version="3.8.0",
  org.eclipse.emf.edit;bundle-version="2.8.0",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.ui,
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.papyrus.uml.table.common;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel;bundle-version="0.10.0"
+ org.eclipse.papyrus.uml.table.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.table.requirement.Activato

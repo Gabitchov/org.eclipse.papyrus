@@ -1,29 +1,30 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.views.search;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.views.search.Activator
 Require-Bundle: org.eclipse.ui;bundle-version="3.105.0",
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.emf;bundle-version="2.6.0",
  org.eclipse.core.resources;bundle-version="3.8.100",
  org.eclipse.emf.common;bundle-version="2.9.0",
  org.eclipse.emf.ecore;bundle-version="2.9.0",
  org.eclipse.search;bundle-version="3.8.100",
- org.eclipse.papyrus.infra.onefile;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.onefile;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.ui.ide,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.services.openelement;bundle-version="0.10.0"
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.openelement;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.views.search.regex,
  org.eclipse.papyrus.views.search.results,
  org.eclipse.papyrus.views.search.scope,
  org.eclipse.papyrus.views.search.utils,
  org.eclipse.papyrus.views.search.validator
 Bundle-Vendor: %vendorName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.views.search.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.views.search;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.diagramtemplate.doc;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.diagramtemplate.doc;singleton
+ :=true
 

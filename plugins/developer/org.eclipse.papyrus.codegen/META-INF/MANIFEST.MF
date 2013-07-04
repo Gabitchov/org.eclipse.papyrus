@@ -9,7 +9,7 @@ Export-Package: org.eclipse.papyrus.codegen;x-internal:=true,
  org.eclipse.papyrus.codegen.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.codegen.Activator

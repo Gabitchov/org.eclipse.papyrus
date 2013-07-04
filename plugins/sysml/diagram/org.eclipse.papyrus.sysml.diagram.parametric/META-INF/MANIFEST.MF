@@ -38,31 +38,32 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
  org.eclipse.draw2d;visibility:=reexport,
- org.eclipse.papyrus.sysml;bundle-version="0.9.0";visibility:=reexport,
- org.eclipse.papyrus.sysml.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.sysml;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.sysml.edit;bundle-version="0.10.1";visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport,
- org.eclipse.papyrus.resource;bundle-version="0.9.0";visibility:=reexport,
- org.eclipse.papyrus.resource.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.resource;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.resource.edit;bundle-version="0.10.1";visibility:=reexport,
  org.eclipse.gef,
- org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.standard;bundle-version="0.9.0";visibility:=reexport,
- org.eclipse.papyrus.uml.standard.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.10.1",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.standard;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.uml.standard.edit;bundle-version="0.10.1";visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
- org.eclipse.papyrus.parsers;bundle-version="0.9.0",
+ org.eclipse.papyrus.parsers;bundle-version="0.10.1",
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.parametric.part.Sy
  smlDiagramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric;sing
+ leton:=true
 

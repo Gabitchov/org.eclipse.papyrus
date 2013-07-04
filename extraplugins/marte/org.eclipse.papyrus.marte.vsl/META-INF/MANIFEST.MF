@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.marte.vsl,
  org.eclipse.papyrus.marte.vsl.extensions,
+ org.eclipse.papyrus.marte.vsl.formatting,
  org.eclipse.papyrus.marte.vsl.parseTreeConstruction,
  org.eclipse.papyrus.marte.vsl.parser.antlr,
  org.eclipse.papyrus.marte.vsl.parser.antlr.internal,
@@ -10,8 +11,12 @@ Export-Package: org.eclipse.papyrus.marte.vsl,
  org.eclipse.papyrus.marte.vsl.vSL,
  org.eclipse.papyrus.marte.vsl.vSL.impl,
  org.eclipse.papyrus.marte.vsl.vSL.util,
- org.eclipse.papyrus.marte.vsl.validation,
- org.eclipse.papyrus.marte.vsl.formatting
+ org.eclipse.papyrus.marte.vsl.validation
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -28,12 +33,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
  org.apache.log4j;bundle-version="1.2.15"
 Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Version: 0.10.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
+Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.marte.vsl;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.apache.log4j
+

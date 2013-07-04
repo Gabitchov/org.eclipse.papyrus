@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.infra.table.efacet.metamodel;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.table.efacet.metamodel;bundle-version="0.10.1"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: Tests for Papyrus Table EFacet (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.metamodel.tes

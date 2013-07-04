@@ -1,13 +1,15 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.dev.java.utils;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.dev.java.utils.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jdt.core
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.dev.java.utils.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.dev.java.utils;singleton:=tru
+ e
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

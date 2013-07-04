@@ -1,17 +1,20 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: LabelProvider service (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.infra.services.labelprovider;singleton:=true
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.services.labelprovider.Activator
-Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-Localization: plugin
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.infra.services.labelprovider,
  org.eclipse.papyrus.infra.services.labelprovider.service,
  org.eclipse.papyrus.infra.services.labelprovider.service.impl
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: LabelProvider service (Incubation)
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.services.labelprovider.Act
+ ivator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.services.labelprovider;
+ singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

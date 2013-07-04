@@ -27,10 +27,12 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag,
  org.eclipse.papyrus.infra.gmfdiag.validation
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: CSS Editor (Incubation)
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext;singl
+ eton:=true
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

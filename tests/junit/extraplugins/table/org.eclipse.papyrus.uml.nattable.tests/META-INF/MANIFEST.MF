@@ -1,21 +1,22 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.tests
-Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.nattable.tests.Activator
-Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit;bundle-version="4.11.0",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.nattable;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.nattable;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
+ org.eclipse.papyrus.infra.nattable;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.nattable;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.uml.nattable.tests,
  org.eclipse.papyrus.uml.nattable.tests.tests
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.nattable.tests.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.tests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

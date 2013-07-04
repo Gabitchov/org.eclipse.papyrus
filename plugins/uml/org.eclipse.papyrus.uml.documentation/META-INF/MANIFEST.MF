@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.views.documentation;bundle-version="0.10.0",
+Require-Bundle: org.eclipse.papyrus.views.documentation;bundle-version="0.10.1",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.uml.documentation.profile;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.documentation.profile;bundle-version="0.10.1",
  org.eclipse.core.runtime;bundle-version="3.8.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
@@ -13,3 +13,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.documentation.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.documentation;singleton:=
  true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

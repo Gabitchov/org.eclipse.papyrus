@@ -1,10 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.domaincodegen.ui;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.domaincodegen.ui.Activator
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -14,7 +8,15 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ocl.ecore,
  org.eclipse.acceleo.model,
  org.eclipse.acceleo.engine,
- org.eclipse.papyrus.domaincontextcodegen;bundle-version="0.8.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.eclipse.papyrus.domaincontextcodegen;bundle-version="0.10.1"
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.domaincodegen.ui.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.domaincodegen.ui;singleton:=t
+ rue
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

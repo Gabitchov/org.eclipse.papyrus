@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.java.generator.feature"
-      label="%featureName"
-      version="0.10.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.java.generator.feature" label="%featureName" provider-name="%providerName" version="0.10.1.qualifier">
 
    <description url="http://www.example.com/description">
       This feature allows to generate Java classes and packages from
@@ -41,15 +36,15 @@ generator project &amp; help for the conception
       <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="org.eclipse.m2m.qvt.oml"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.papyrus.java.generator.transfo.umltojdt" version="0.8.0" match="greaterOrEqual"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.java.generator.transfo.umltojdt" version="0.8.0"/>
       <import plugin="org.eclipse.jdt.core"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.jdt.launching"/>
       <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.uml2.common" version="1.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.jdt.core" version="3.6.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.common" version="2.6.0" match="greaterOrEqual"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.uml2.common" version="1.5.0"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.jdt.core" version="3.6.0"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.emf.common" version="2.6.0"/>
       <import plugin="org.eclipse.emf.query"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.uml2.common.edit"/>
@@ -57,53 +52,23 @@ generator project &amp; help for the conception
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.core.resources" version="3.6.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.java.generator.metamodel.jdt" version="0.8.0" match="greaterOrEqual"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.core.resources" version="3.6.0"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.java.generator.metamodel.jdt" version="0.8.0"/>
       <import plugin="org.eclipse.jdt.ui"/>
-      <import plugin="org.eclipse.papyrus.java.generator.jdtsynchronizer" version="0.8.0" match="greaterOrEqual"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.java.generator.jdtsynchronizer" version="0.8.0"/>
       <import feature="org.eclipse.papyrus.java.profile.feature" version="0.8.0.qualifier"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.papyrus.java.generator.jdtsynchronizer"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.java.generator.jdtsynchronizer" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.java.generator.metamodel.jdt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.java.generator.metamodel.jdt" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.java.generator.metamodel.jdt.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.java.generator.metamodel.jdt.edit" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.java.generator.metamodel.jdt.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.java.generator.metamodel.jdt.editor" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.java.generator.transfo.umltojdt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.java.generator.transfo.umltojdt" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.java.generator.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.java.generator.ui" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

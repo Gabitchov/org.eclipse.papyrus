@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.sdk.sources.feature"
-      label="Papyrus SDK Binaries and sources (Incubation)"
-      version="0.10.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.sdk.sources.feature" label="Papyrus SDK Binaries and sources (Incubation)" provider-name="Eclipse Modeling Project" version="0.10.1.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012, 2013 CEA LIST
@@ -18,128 +13,66 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <includes
-         id="org.eclipse.papyrus.sdk.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.sdk.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.customization.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.customization.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.editor.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.editor.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.core.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.core.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.gmfdiag.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.gmfdiag.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.queries.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.queries.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.services.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.services.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.table.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.table.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.widget.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.widget.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.sysml.diagram.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.sysml.diagram.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.sysml.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.sysml.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.sysml.table.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.sysml.table.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.modelexplorer.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.modelexplorer.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.properties.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.properties.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.table.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.table.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.tools.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.tools.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.views.modelexplorer.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.views.modelexplorer.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.views.properties.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.views.properties.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.diagram.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.diagram.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.sysml.properties.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.sysml.properties.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.emf.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.emf.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.textedit.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.textedit.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.alf.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.alf.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.xwt.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.xwt.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.infra.discovery.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.infra.discovery.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.views.validation.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.views.validation.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.doc.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.doc.source.feature" version="0.0.0"/>
          
-   <includes
-         id="org.eclipse.papyrus.views.search.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.views.search.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.uml.search.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.uml.search.source.feature" version="0.0.0"/>
 
 </feature>
