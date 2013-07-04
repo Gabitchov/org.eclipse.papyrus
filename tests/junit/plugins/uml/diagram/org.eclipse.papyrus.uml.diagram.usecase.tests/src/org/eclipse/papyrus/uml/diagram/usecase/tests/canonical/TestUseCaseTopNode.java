@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.usecase.tests.canonical;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.usecase.tests.IUseCaseDiagramTestsConstants;
 import org.junit.Test;
 
 
@@ -24,9 +25,20 @@ import org.junit.Test;
  * The Class TestUseCaseTopNode.
  */
 public class TestUseCaseTopNode extends TestSpecificTopNode {
+	
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return  new CreateUseCaseDiagramCommand();
+	}
+	
+	@Override
+	protected String getProjectName() {
+		return IUseCaseDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IUseCaseDiagramTestsConstants.FILE_NAME;
 	}
 	
 	/**

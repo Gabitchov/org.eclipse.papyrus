@@ -24,6 +24,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.usecase.tests.IUseCaseDiagramTestsConstants;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
@@ -32,7 +33,6 @@ import org.junit.Test;
  * The Class TestUseCaseChildNodeForPackage.
  */
 public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
-
 	
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
@@ -46,6 +46,15 @@ public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
 		return requestcreation;
 	}
 	
+	@Override
+	protected String getProjectName() {
+		return IUseCaseDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IUseCaseDiagramTestsConstants.FILE_NAME;
+	}
 	
 	@Test
 	public void testToManageUseCaseForClassSubject() {
@@ -64,5 +73,4 @@ public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return  new CreateUseCaseDiagramCommand();
 	}
-	
 }

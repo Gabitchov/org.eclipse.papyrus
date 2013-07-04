@@ -17,6 +17,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestLink;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.usecase.tests.IUseCaseDiagramTestsConstants;
 import org.junit.Test;
 
 
@@ -25,7 +26,6 @@ import org.junit.Test;
  */
 public class TestUseCaseLink extends TestLink {
 
-	
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return  new CreateUseCaseDiagramCommand();
@@ -36,6 +36,16 @@ public class TestUseCaseLink extends TestLink {
 	@Test
 	public void testToManageDependency() {
 		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.UseCase_2013,UMLElementTypes.Dependency_4013,UMLElementTypes.Package_2016,true);
+	}
+	
+	@Override
+	protected String getProjectName() {
+		return IUseCaseDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IUseCaseDiagramTestsConstants.FILE_NAME;
 	}
 	
 	/**
