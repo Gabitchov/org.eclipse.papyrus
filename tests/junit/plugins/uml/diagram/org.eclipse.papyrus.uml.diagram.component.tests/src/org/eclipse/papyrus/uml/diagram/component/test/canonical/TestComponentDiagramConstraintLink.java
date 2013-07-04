@@ -13,8 +13,10 @@
 package org.eclipse.papyrus.uml.diagram.component.test.canonical;
 
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.diagram.tests.canonical.TestConstraintLink;
 import org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.component.test.IComponentDiagramTestsConstants;
 import org.junit.Test;
 
 public class TestComponentDiagramConstraintLink extends TestConstraintLink {
@@ -22,6 +24,16 @@ public class TestComponentDiagramConstraintLink extends TestConstraintLink {
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateComponentDiagramCommand();
+	}
+	
+	@Override
+	protected String getProjectName() {
+		return IComponentDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IComponentDiagramTestsConstants.FILE_NAME;
 	}
 
 	/**

@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.component.test.IComponentDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.component.test.canonical.AbstractPapyrusTestCase;
 import org.junit.Test;
 
@@ -26,6 +27,16 @@ import org.junit.Test;
  */
 public class Load400ComponentTest extends AbstractPapyrusTestCase {
 
+	@Override
+	protected String getProjectName() {
+		return IComponentDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IComponentDiagramTestsConstants.FILE_NAME;
+	}
+	
 	/**
 	 * Test to create a Component.
 	 * 
