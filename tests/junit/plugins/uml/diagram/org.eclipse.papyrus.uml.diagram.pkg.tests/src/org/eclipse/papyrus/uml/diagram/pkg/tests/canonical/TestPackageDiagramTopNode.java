@@ -18,6 +18,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestTopNode;
 import org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand;
 import org.eclipse.papyrus.uml.diagram.pkg.provider.ElementTypes;
+import org.eclipse.papyrus.uml.diagram.pkg.tests.IPackageDiagramTestsConstants;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
@@ -34,6 +35,16 @@ public class TestPackageDiagramTopNode extends TestTopNode {
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(ElementTypes.PACKAGE, getDiagramEditPart().getDiagramPreferencesHint());
+	}
+	
+	@Override
+	protected String getProjectName() {
+		return IPackageDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IPackageDiagramTestsConstants.PROJECT_NAME;
 	}
 
 	/**

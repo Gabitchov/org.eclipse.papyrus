@@ -13,8 +13,10 @@
 package org.eclipse.papyrus.uml.diagram.pkg.tests.canonical;
 
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.diagram.tests.canonical.TestCommentLink;
 import org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand;
 import org.eclipse.papyrus.uml.diagram.pkg.provider.ElementTypes;
+import org.eclipse.papyrus.uml.diagram.pkg.tests.IPackageDiagramTestsConstants;
 import org.junit.Test;
 
 public class TestPackageDiagramCommentLink extends TestCommentLink {
@@ -23,7 +25,17 @@ public class TestPackageDiagramCommentLink extends TestCommentLink {
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new PackageDiagramCreateCommand();
 	}
+	
+	@Override
+	protected String getProjectName() {
+		return IPackageDiagramTestsConstants.PROJECT_NAME;
+	}
 
+	@Override
+	protected String getFileName() {
+		return IPackageDiagramTestsConstants.PROJECT_NAME;
+	}
+	
 	/**
 	 * Test to manage Comment
 	 */

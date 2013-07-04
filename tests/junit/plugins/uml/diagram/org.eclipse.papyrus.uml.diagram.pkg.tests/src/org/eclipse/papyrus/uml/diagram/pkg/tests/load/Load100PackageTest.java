@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.uml.diagram.pkg.provider.ElementTypes;
+import org.eclipse.papyrus.uml.diagram.pkg.tests.IPackageDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.pkg.tests.canonical.AbstractPapyrusTestCase;
 import org.junit.Test;
 
@@ -26,6 +27,16 @@ import org.junit.Test;
  */
 public class Load100PackageTest extends AbstractPapyrusTestCase {
 
+	@Override
+	protected String getProjectName() {
+		return IPackageDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IPackageDiagramTestsConstants.PROJECT_NAME;
+	}
+	
 	/**
 	 * Test to create a node.
 	 * 
