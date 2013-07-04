@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -43,6 +44,16 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 
 	private static final String CHANGE_OPERATOR_KIND = "Change Operator Kind: ";
 
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
+	
 	@Test
 	public void testToManageOperand() {
 		testToManageChildNode(UMLElementTypes.InteractionOperand_3005, combinedFragmentProvider);

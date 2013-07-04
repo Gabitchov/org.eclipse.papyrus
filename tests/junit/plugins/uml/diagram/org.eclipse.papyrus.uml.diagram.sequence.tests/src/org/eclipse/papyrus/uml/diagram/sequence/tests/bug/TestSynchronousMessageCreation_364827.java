@@ -33,6 +33,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestLink;
 import org.junit.Test;
@@ -50,6 +51,16 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		return new CreateSequenceDiagramCommand();
 	}
 
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
+	
 	public void selectActionExecution(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType subNodeType) {
 		installEnvironment(sourceType, targetType, subNodeType);
 		target = createSubNode(target, subNodeType, getAbsoluteCenter(target));

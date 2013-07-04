@@ -35,6 +35,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEdi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
@@ -75,6 +76,16 @@ public class TestDurationConstraints_384596 extends TestTopNode {
 		return new CreateSequenceDiagramCommand();
 	}
 
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
+	
 	@Test
 	public void testDurationEdition() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200), null);

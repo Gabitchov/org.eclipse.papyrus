@@ -52,6 +52,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
 import org.eclipse.ui.IEditorDescriptor;
@@ -81,6 +82,16 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
+	}
+	
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
 	@Test
@@ -210,8 +221,8 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	protected void projectCreation() {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
-		project = root.getProject("ClazzDiagramTestProject");
-		file = project.getFile("ClazzDiagramTest.di");
+		project = root.getProject(getProjectName());
+		file = project.getFile(getFileName());
 		this.diResourceSet = new DiResourceSet();
 		try {
 			//at this point, no resources have been created
@@ -248,7 +259,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	}
 
 	protected void initUml() throws CoreException {
-		IFile uml = project.getFile("ClazzDiagramTest.uml");
+		IFile uml = project.getFile("SequenceDiagramTest.uml");
 		String content = FileUtil.read(uml.getContents());
 		content = content.replaceAll("/>", UML_REPLACEMENT_TEMPLATE);
 

@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
 import org.eclipse.ui.IEditorDescriptor;
@@ -65,11 +66,21 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 	}
 
 	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
+	
+	@Override
 	protected void projectCreation() {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
-		project = root.getProject("SequenceDiagramTestProject");
-		file = project.getFile("SequenceDiagramTest.di");
+		project = root.getProject(getProjectName());
+		file = project.getFile(getFileName());
 		this.diResourceSet = new DiResourceSet();
 		try {
 			//at this point, no resources have been created

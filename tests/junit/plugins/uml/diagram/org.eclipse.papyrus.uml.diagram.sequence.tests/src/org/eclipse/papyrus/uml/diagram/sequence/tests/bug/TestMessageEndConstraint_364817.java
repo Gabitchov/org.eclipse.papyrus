@@ -31,6 +31,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestLink;
 import org.eclipse.uml2.uml.Constraint;
@@ -47,6 +48,16 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
+	}
+	
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
 	public void checkConstraintLink(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType subNodeType) {

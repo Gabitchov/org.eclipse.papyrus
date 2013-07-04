@@ -45,6 +45,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificatio
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -84,6 +85,16 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	private static final String SEP = "..";
 
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
+	
 	protected Event createMouseEvent(int x, int y, int button, int stateMask, int count) {
 		Event event = new Event();
 		event.time = (int)System.currentTimeMillis();

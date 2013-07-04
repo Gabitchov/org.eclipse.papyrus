@@ -46,6 +46,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
 import org.eclipse.ui.IEditorDescriptor;
@@ -94,6 +95,16 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 		return new CreateSequenceDiagramCommand();
 	}
 
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
+	
 	@Test
 	public void testLabelAppearence1() {
 		final LifelineEditPart lifeline1 = setupLifeline();
@@ -198,8 +209,8 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 	protected void projectCreation() {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
-		project = root.getProject("ClazzDiagramTestProject");
-		file = project.getFile("ClazzDiagramTest.di");
+		project = root.getProject(getProjectName());
+		file = project.getFile(getFileName());
 		this.diResourceSet = new DiResourceSet();
 		try {
 			//at this point, no resources have been created
@@ -236,7 +247,7 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 	}
 
 	protected void initUml() throws CoreException {
-		IFile uml = project.getFile("ClazzDiagramTest.uml");
+		IFile uml = project.getFile("SequenceDiagramTest.uml");
 		String content = FileUtil.read(uml.getContents());
 		content = content.replaceAll("/>", UML_REPLACEMENT_TEMPLATE);
 

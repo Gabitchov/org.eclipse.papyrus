@@ -53,6 +53,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.swt.graphics.Image;
 import org.junit.Before;
 import org.junit.Test;
@@ -74,6 +75,16 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 		super.setUp();
 	}
 
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
+	
 	protected void replaceEannotation(EAnnotation annotation, EModelElement object) {
 		while(object.getEAnnotation(annotation.getSource()) != null) {
 			object.getEAnnotations().remove(object.getEAnnotation(annotation.getSource()));

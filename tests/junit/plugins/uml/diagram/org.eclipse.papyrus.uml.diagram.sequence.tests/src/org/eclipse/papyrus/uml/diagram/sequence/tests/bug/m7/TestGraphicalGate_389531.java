@@ -37,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPar
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Gate;
@@ -54,6 +55,16 @@ import org.junit.Test;
  */
 public class TestGraphicalGate_389531 extends AbstractNodeTest {
 
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
+	
 	private GateEditPart createGate(EditPart parent, Point location) {
 		CreateRequest request = new CreateRequest(RequestConstants.REQ_CREATE);
 		request.setFactory(new CreationFactory() {

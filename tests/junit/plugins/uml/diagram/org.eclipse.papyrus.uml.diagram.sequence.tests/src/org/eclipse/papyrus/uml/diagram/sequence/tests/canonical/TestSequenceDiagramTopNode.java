@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Test;
 
@@ -27,6 +28,16 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 		return new CreateSequenceDiagramCommand();
 	}
 
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
+	
 	@Test
 	public void testToManageLifeline() {
 		testToManageTopNode(UMLElementTypes.Lifeline_3001, provider);
