@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.tests.tests;
 
-import java.util.Collections;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
@@ -27,21 +25,26 @@ import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
-import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.PartService;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
-
+/**
+ * Test the opening of an existing table
+ * 
+ * @author vl222926
+ * 
+ */
 public class OpenTableTest extends AbstractEditorIntegrationTest {
 
+	@BeforeClass
+	public static void startOfTest() {
+		GenericUtils.closeAllEditors();
+	}
 
 	/**
 	 * This test allows to be sure that we doesn't break existing table model

@@ -92,6 +92,7 @@ public class TableCreationTest {
 	@BeforeClass
 	public static void init() {
 		try {
+			GenericUtils.closeAllEditors();
 			initTests(Activator.getDefault().getBundle(), PROJECT_NAME, MODEL_PATH);
 
 		} catch (CoreException e) {
