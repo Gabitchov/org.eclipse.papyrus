@@ -53,11 +53,13 @@ public class DestroyElementPapyrusCommand extends DestroyElementCommand {
 			Collection<Setting> usages = EMFHelper.getUsages(destructee);
 			List<Object> result = new ArrayList<Object>();
 			for(Setting setting : usages) {
-				EReference eRef = (EReference)setting.getEStructuralFeature();
-				if(eRef.isChangeable() && (eRef.isDerived() == false) && (eRef.isContainment() == false) && (eRef.isContainer() == false)) {
-					List files = getWorkspaceFiles(setting.getEObject());
-					if(files != null) {
-						result.addAll(files);
+				if(setting.getEStructuralFeature() instanceof EReference) {
+					EReference eRef = (EReference)setting.getEStructuralFeature();
+					if(eRef.isChangeable() && (eRef.isDerived() == false) && (eRef.isContainment() == false) && (eRef.isContainer() == false)) {
+						List files = getWorkspaceFiles(setting.getEObject());
+						if(files != null) {
+							result.addAll(files);
+						}
 					}
 				}
 			}
@@ -71,9 +73,11 @@ public class DestroyElementPapyrusCommand extends DestroyElementCommand {
 		Collection<Setting> usages = EMFHelper.getUsages(destructee);
 
 		for(Setting setting : usages) {
-			EReference eRef = (EReference)setting.getEStructuralFeature();
-			if(eRef.isChangeable() && (eRef.isDerived() == false) && (eRef.isContainment() == false) && (eRef.isContainer() == false)) {
-				EcoreUtil.remove(setting.getEObject(), eRef, destructee);
+			if(setting.getEStructuralFeature() instanceof EReference) {
+				EReference eRef = (EReference)setting.getEStructuralFeature();
+				if(eRef.isChangeable() && (eRef.isDerived() == false) && (eRef.isContainment() == false) && (eRef.isContainer() == false)) {
+					EcoreUtil.remove(setting.getEObject(), eRef, destructee);
+				}
 			}
 		}
 	}
