@@ -43,7 +43,7 @@ public class OpenTableTest extends AbstractEditorIntegrationTest {
 
 	@BeforeClass
 	public static void startOfTest() {
-		GenericUtils.closeAllEditors();
+//		GenericUtils.closeAllEditors();
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class OpenTableTest extends AbstractEditorIntegrationTest {
 		Table requirementTable = (Table)notationResource.getContents().get(0);
 		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, requirementTable)));
-		while(Display.getDefault().readAndDispatch());
+		secureReadAndDispatch();
 		tableEditor = editor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
 		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
@@ -82,6 +82,20 @@ public class OpenTableTest extends AbstractEditorIntegrationTest {
 	@AfterClass
 	public static void endOfTest() {
 		GenericUtils.closeAllEditors();
+	}
+
+	public static void secureReadAndDispatch() {
+		while(true) {
+			boolean res = true;
+			try {
+				res = Display.getCurrent().readAndDispatch();
+			} catch (Exception e) {
+				//nothing to do
+			}
+			if(res == false) {
+				return;
+			}
+		}
 	}
 
 }
