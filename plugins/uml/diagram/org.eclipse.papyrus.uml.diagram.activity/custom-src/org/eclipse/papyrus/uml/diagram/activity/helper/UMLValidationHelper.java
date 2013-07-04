@@ -159,7 +159,7 @@ public class UMLValidationHelper {
 	 * @return
 	 */
 	public static IStatus validateInterruptibleEdge(ActivityEdge context, IValidationContext ctx) {
-		return validateInterruptibleEdge(context, context.getInterrupts()) ? ctx.createSuccessStatus() : ctx.createFailureStatus("Interrupting edges of a region must have their source node in the region and their target node outside the region in the same activity containing the region.");////$NON-NLS-0$
+		return validateInterruptibleEdge(context, context.getInterrupts()) ? ctx.createSuccessStatus() : ctx.createFailureStatus("Interrupting edges of a region must have their source node in the region and their target node outside the region in the same activity containing the region.");//
 	}
 
 	/**
@@ -209,7 +209,7 @@ public class UMLValidationHelper {
 			if(handlerBody instanceof Action) {
 				Action handlerBodyAction = (Action)handlerBody;
 				if(handlerBodyAction.getInputs() == null || handlerBodyAction.getInputs().size() != 1) {
-					return ctx.createFailureStatus(EXCEPTION_HANDLER_CONSTRAINT_4);////$NON-NLS-1$
+					return ctx.createFailureStatus(EXCEPTION_HANDLER_CONSTRAINT_4);//
 				}
 			}
 		}
@@ -821,7 +821,7 @@ public class UMLValidationHelper {
 		} else if(target instanceof ControlNode) {
 			List<ObjectNode> result = new LinkedList<ObjectNode>();
 			for(ActivityEdge outgoingEdge : target.getOutgoings()) {
-				if(outgoingEdge instanceof ObjectFlow) {
+				if(outgoingEdge instanceof ObjectFlow && !outgoingEdge.equals(objectFlow)) {
 					result.addAll(getDownStreamObjectNodes((ObjectFlow)outgoingEdge));
 				}
 			}
