@@ -342,16 +342,18 @@ public abstract class StereotypedElementLabelHelper {
 		// a max number ?!
 		// solution: set all images to null, and then add the correct icons
 		int i = 0;
-		while(((WrappingLabel)figure).getIcon(i) != null) {
-			((WrappingLabel)figure).setIcon(null, i);
-			i++;
+		if(figure instanceof WrappingLabel) {
+			while(((WrappingLabel)figure).getIcon(i) != null) {
+				((WrappingLabel)figure).setIcon(null, i);
+				i++;
+			}
+			i = 0;
+			for(Image image : imageToDisplay) {
+				((WrappingLabel)figure).setIcon(image, i);
+				i++;
+			}
+			((WrappingLabel)figure).setText(labelToDisplay(editPart));
 		}
-		i = 0;
-		for(Image image : imageToDisplay) {
-			((WrappingLabel)figure).setIcon(image, i);
-			i++;
-		}
-		((WrappingLabel)figure).setText(labelToDisplay(editPart));
 	}
 
 	/**
