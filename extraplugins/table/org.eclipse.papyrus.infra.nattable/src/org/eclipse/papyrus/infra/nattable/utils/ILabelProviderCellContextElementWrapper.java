@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
+import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 
 
@@ -22,15 +23,8 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
  * @author Vincent Lorenzo
  * 
  */
-public interface ILabelProviderCellContextElement extends ILabelProviderContextElement {
-
-	/**
-	 * 
-	 * @return
-	 *         the cell for which we want the label
-	 */
-	public ILayerCell getCell();
-
-
+//FIXME : must implements ILayerCell
+public interface ILabelProviderCellContextElementWrapper extends ILabelProviderContextElementWrapper , ILayerCell{
+		
 
 }

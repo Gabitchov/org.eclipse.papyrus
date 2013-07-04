@@ -23,8 +23,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructura
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
 
@@ -46,8 +46,8 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	 */
 	@Override
 	public boolean accept(Object element) {
-		if(element instanceof ILabelProviderContextElement) {
-			final Object object = ((ILabelProviderContextElement)element).getObject();
+		if(element instanceof ILabelProviderContextElementWrapper) {
+			final Object object = ((ILabelProviderContextElementWrapper)element).getObject();
 			return object instanceof EStructuralFeature || object instanceof EStructuralFeatureAxis;
 		}
 		return false;
@@ -141,20 +141,20 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	 */
 	@Override
 	public String getText(Object element) {
-		final Object object = ((ILabelProviderContextElement)element).getObject();
+		final Object object = ((ILabelProviderContextElementWrapper)element).getObject();
 		EStructuralFeature feature = null;
 		String alias = "";
 		if(object instanceof EStructuralFeatureAxis) {
 			feature = ((EStructuralFeatureAxis)object).getElement();
 			alias = ((EStructuralFeatureAxis)object).getAlias();
 		} else if(feature instanceof EStructuralFeature) {
-			feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
+			feature = (EStructuralFeature)((ILabelProviderContextElementWrapper)element).getObject();
 		}
 
-		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		final IConfigRegistry configRegistry = ((ILabelProviderContextElementWrapper)element).getConfigRegistry();
 		ILabelProviderConfiguration conf = null;
-		if(element instanceof LabelProviderCellContextElement) {
-			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
+		if(element instanceof LabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
 			return ""; //$NON-NLS-1$
@@ -180,19 +180,19 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	@Override
 	public Image getImage(Object element) {
 		ILabelProviderConfiguration conf = null;
-		if(element instanceof LabelProviderCellContextElement) {
-			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
+		if(element instanceof LabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayIcon()) {
 			return null;
 		}
 
-		final Object object = ((ILabelProviderContextElement)element).getObject();
+		final Object object = ((ILabelProviderContextElementWrapper)element).getObject();
 		EStructuralFeature feature = null;
 		if(object instanceof EStructuralFeatureAxis) {
 			feature = ((EStructuralFeatureAxis)object).getElement();
 		} else if(object instanceof EStructuralFeature) {
-			feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
+			feature = (EStructuralFeature)((ILabelProviderContextElementWrapper)element).getObject();
 		}
 		if(feature instanceof EAttribute) {
 			return EStructuralFeatureImageRegistry.getAttributeIcon();

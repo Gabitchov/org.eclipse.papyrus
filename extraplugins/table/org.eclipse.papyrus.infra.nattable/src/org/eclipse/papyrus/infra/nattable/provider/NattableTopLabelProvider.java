@@ -23,9 +23,9 @@ import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetMa
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
@@ -45,7 +45,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @param configRegistry
 	 * @return
 	 */
-	protected String getColumnHeaderLabel(final ILayerCell cell, final IConfigRegistry configRegistry) {
+	protected String getColumnHeaderLabel(final ILabelProviderCellContextElementWrapper cell, final IConfigRegistry configRegistry) {
 		return getLabel(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 	}
 
@@ -55,7 +55,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @param configRegistry
 	 * @return
 	 */
-	protected String getRowHeaderLabel(final ILayerCell cell, final IConfigRegistry configRegistry) {
+	protected String getRowHeaderLabel(final ILabelProviderCellContextElementWrapper cell, final IConfigRegistry configRegistry) {
 		return getLabel(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 	}
 
@@ -68,22 +68,17 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 */
 	@Override
 	public String getText(Object element) {
-		final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
-		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
-		String labelProviderContextId = null;
-		if(element instanceof IAxis) {
-			labelProviderContextId = ((IAxis)element).getManager().getLabelProviderContext();
-			return getLabel(cell, configRegistry, labelProviderContextId);
-		}
-		final LabelStack labels = getLabelStack(cell, configRegistry);
+		final ILabelProviderCellContextElementWrapper contextElement = (ILabelProviderCellContextElementWrapper)element;
+		final IConfigRegistry configRegistry = contextElement.getConfigRegistry();
+		final LabelStack labels = getLabelStack(contextElement, configRegistry);
 		if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
-			return getColumnHeaderLabel(cell, configRegistry);
+			return getColumnHeaderLabel(contextElement, configRegistry);
 		} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
-			return getRowHeaderLabel(cell, configRegistry);
+			return getRowHeaderLabel(contextElement, configRegistry);
 		} else if(labels.hasLabel(GridRegion.BODY)) {
-			return getBodyLabel(cell, configRegistry);
+			return getBodyLabel(contextElement, configRegistry);
 		}
-		Object value = cell.getDataValue();
+		Object value = contextElement.getObject();
 		if(value != null) {
 			return value.toString();
 		}
@@ -96,12 +91,12 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @param configRegistry
 	 * @return
 	 */
-	protected LabelStack getLabelStack(final ILayerCell cell, final IConfigRegistry configRegistry) {
-		LabelStack labels = cell.getConfigLabels();
+	protected LabelStack getLabelStack(final ILabelProviderCellContextElementWrapper contextElement, final IConfigRegistry configRegistry) {
+		LabelStack labels = contextElement.getConfigLabels();
 		if(labels.getLabels().isEmpty()) {
 			//in case of copy, we don't have the label
 			final INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			labels = ((AbstractNattableWidgetManager)manager).getGridLayer().getBodyLayer().getConfigLabelsByPosition(cell.getColumnPosition(), cell.getRowPosition());
+			labels = ((AbstractNattableWidgetManager)manager).getGridLayer().getBodyLayer().getConfigLabelsByPosition(contextElement.getColumnPosition(), contextElement.getRowPosition());
 		}
 		return labels;
 	}
@@ -113,24 +108,24 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @param labelproviderContext
 	 * @return
 	 */
-	protected String getLabel(final ILayerCell cell, final IConfigRegistry configRegistry, final String labelproviderContext) {
+	protected String getLabel(final ILabelProviderCellContextElementWrapper contextElement, final IConfigRegistry configRegistry, final String labelproviderContext) {
 		String txt = ""; //$NON-NLS-1$
-		Object value = cell.getDataValue();
-		final ILabelProviderContextElement contextElement = new LabelProviderCellContextElement(cell, configRegistry);
+		//		Object value = cell.getDataValue();
+		//		final ILabelProviderContextElement contextElement = new LabelProviderCellContextElement(cell, configRegistry);
 		LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 		ILabelProvider labelProvider = serv.getLabelProvider(labelproviderContext, contextElement);
 		if(labelProvider != null) {
 			txt = labelProvider.getText(contextElement);
 		} else {
-			labelProvider = serv.getLabelProvider(labelproviderContext, value);
+			labelProvider = serv.getLabelProvider(labelproviderContext, contextElement.getObject());
 			if(labelProvider != null) {
-				txt = labelProvider.getText(value);
+				txt = labelProvider.getText(contextElement.getObject());
 			} else {
-				labelProvider = serv.getLabelProvider(value);
+				labelProvider = serv.getLabelProvider(contextElement.getObject());
 				if(labelProvider != null) {
-					txt = labelProvider.getText(value);
+					txt = labelProvider.getText(contextElement.getObject());
 				} else {
-					txt = value.toString();
+					txt = contextElement.getObject().toString();
 				}
 			}
 		}
@@ -139,12 +134,12 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 
 	/**
 	 * 
-	 * @param cell
+	 * @param cellWrapperContextElement
 	 * @param configRegistry
 	 * @return
 	 */
-	protected String getBodyLabel(final ILayerCell cell, final IConfigRegistry configRegistry) {//Body or data grid?
-		return getLabel(cell, configRegistry, Constants.BODY_LABEL_PROVIDER_CONTEXT);
+	protected String getBodyLabel(final ILabelProviderCellContextElementWrapper cellWrapperContextElement, final IConfigRegistry configRegistry) {//Body or data grid?
+		return getLabel(cellWrapperContextElement, configRegistry, Constants.BODY_LABEL_PROVIDER_CONTEXT);
 	}
 
 	/**
@@ -156,7 +151,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 */
 	@Override
 	public boolean accept(Object element) {
-		return element instanceof ILabelProviderCellContextElement;
+		return element instanceof ILabelProviderCellContextElementWrapper;
 	}
 
 	/**
@@ -168,25 +163,26 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if(element instanceof ILabelProviderContextElement) {
-			final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
-			Object object = ((ILabelProviderContextElement)element).getObject();
-			String labelProviderContextId = null;
-			final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
-			if(object instanceof IAxis) {
-				labelProviderContextId = ((IAxis)object).getManager().getLabelProviderContext();
-				return getImage(cell, configRegistry, labelProviderContextId);
-			}
-			final LabelStack labels = getLabelStack(cell, configRegistry);
-			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
-				return getColumnHeaderImage(cell, configRegistry);
-			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
-				return getRowHeaderImage(cell, configRegistry);
-			} else if(labels.hasLabel(GridRegion.BODY)) {
-				return getBodyLabelImage(cell, configRegistry);
-			}
+		final ILabelProviderCellContextElementWrapper contextElement = (ILabelProviderCellContextElementWrapper)element;
+
+
+		Object object = contextElement.getObject();
+		String labelProviderContextId = null;
+		final IConfigRegistry configRegistry = contextElement.getConfigRegistry();
+		if(object instanceof IAxis) {
+			labelProviderContextId = ((IAxis)object).getManager().getLabelProviderContext();
+			return getImage(contextElement, configRegistry, labelProviderContextId);
 		}
-		return super.getImage(element);
+		final LabelStack labels = getLabelStack(contextElement, configRegistry);
+		if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
+			return getColumnHeaderImage(contextElement, configRegistry);
+		} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
+			return getRowHeaderImage(contextElement, configRegistry);
+		} else if(labels.hasLabel(GridRegion.BODY)) {
+			return getBodyLabelImage(contextElement, configRegistry);
+		}
+
+		return null;
 	}
 
 	/**
@@ -195,7 +191,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @param configRegistry
 	 * @return
 	 */
-	private Image getBodyLabelImage(ILayerCell cell, IConfigRegistry configRegistry) {
+	private Image getBodyLabelImage(ILabelProviderCellContextElementWrapper cell, IConfigRegistry configRegistry) {
 		return null;
 	}
 
@@ -208,7 +204,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @return
 	 *         the image to display in the row
 	 */
-	private Image getRowHeaderImage(ILayerCell cell, IConfigRegistry configRegistry) {
+	private Image getRowHeaderImage(ILabelProviderCellContextElementWrapper cell, IConfigRegistry configRegistry) {
 		return getImage(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 	}
 
@@ -222,15 +218,14 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 *        the context to used to find the label provider
 	 * @return
 	 */
-	private Image getImage(ILayerCell cell, IConfigRegistry configRegistry, String labelproviderContext) {
+	private Image getImage(ILabelProviderCellContextElementWrapper contextElement, IConfigRegistry configRegistry, String labelproviderContext) {
 		Image image = null;
-		Object value = cell.getDataValue();
-		final ILabelProviderContextElement contextElement = new LabelProviderCellContextElement(cell, configRegistry);
 		LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 		ILabelProvider labelProvider = serv.getLabelProvider(labelproviderContext, contextElement);
 		if(labelProvider != null) {
 			image = labelProvider.getImage(contextElement);
 		} else {
+			Object value = contextElement.getObject();
 			labelProvider = serv.getLabelProvider(labelproviderContext, value);
 			if(labelProvider != null) {
 				image = labelProvider.getImage(value);
@@ -253,7 +248,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @return
 	 *         the image to display for the header
 	 */
-	private Image getColumnHeaderImage(ILayerCell cell, IConfigRegistry configRegistry) {
+	private Image getColumnHeaderImage(ILabelProviderCellContextElementWrapper cell, IConfigRegistry configRegistry) {
 		return getImage(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 	}
 

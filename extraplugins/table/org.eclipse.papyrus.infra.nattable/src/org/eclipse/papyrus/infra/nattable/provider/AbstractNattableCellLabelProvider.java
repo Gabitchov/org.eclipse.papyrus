@@ -22,9 +22,9 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -160,11 +160,11 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 * @return
 	 *         the configuration to use for this element
 	 */
-	protected ILabelProviderConfiguration getLabelConfiguration(final LabelProviderCellContextElement element) {
+	protected ILabelProviderConfiguration getLabelConfiguration(final LabelProviderCellContextElementWrapper element) {
 		ILabelProviderConfiguration conf = null;
-		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		final IConfigRegistry configRegistry = ((ILabelProviderContextElementWrapper)element).getConfigRegistry();
 		INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-		LabelStack labels = element.getCell().getConfigLabels();
+		LabelStack labels = element.getConfigLabels();
 		if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
 			conf = LabelConfigurationManagementUtils.getUsedColumnObjectLabelConfiguration(manager.getTable());
 		} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {

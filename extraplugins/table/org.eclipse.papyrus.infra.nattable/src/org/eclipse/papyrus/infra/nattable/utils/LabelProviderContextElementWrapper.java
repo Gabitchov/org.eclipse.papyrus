@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 
 /**
  * This object can used as context to find the best label provider and get the text to display.
@@ -23,47 +22,49 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
  * @author Vincent Lorenzo
  * 
  */
-public class LabelProviderCellContextElement extends LabelProviderContextElement implements ILabelProviderCellContextElement {
+public class LabelProviderContextElementWrapper implements ILabelProviderContextElementWrapper {
 
 	/**
-	 * the cell
+	 * the config registry of the table
 	 */
-	private ILayerCell cell;
+	private IConfigRegistry registry;
+
+	/**
+	 * the object for which we want the label
+	 */
+	private Object object;
 
 	/**
 	 * *
 	 * Constructor.
 	 * 
-	 * @param cell
+	 * @param object
 	 *        the cell for which we want the label/icon, ...
 	 * @param registry
 	 *        the registry used by nattable
 	 */
-	public LabelProviderCellContextElement(ILayerCell cell, final IConfigRegistry registry) {
-		super(cell.getDataValue(), registry);
-		this.cell = cell;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement#getCell()
-	 * 
-	 * @return
-	 */
-	public ILayerCell getCell() {
-		return this.cell;
+	public LabelProviderContextElementWrapper(final Object object, final IConfigRegistry registry) {
+		this.object = object;
+		this.registry = registry;
 	}
 
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElement#getObject()
+	 * @see org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper#getConfigRegistry()
 	 * 
 	 * @return
 	 */
-	@Override
+	public IConfigRegistry getConfigRegistry() {
+		return this.registry;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
 	public Object getObject() {
-		return this.cell.getDataValue();
+		return this.object;
 	}
 
 }

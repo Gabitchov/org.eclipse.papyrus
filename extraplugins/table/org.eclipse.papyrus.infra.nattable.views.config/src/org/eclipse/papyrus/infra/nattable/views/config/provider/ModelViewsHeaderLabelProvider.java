@@ -22,8 +22,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.F
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 import org.eclipse.swt.graphics.Image;
 
@@ -44,8 +44,8 @@ public class ModelViewsHeaderLabelProvider extends EMFFeatureHeaderLabelProvider
 	 */
 	@Override
 	public boolean accept(final Object element) {
-		if(element instanceof ILabelProviderContextElement) {
-			final Object object = ((ILabelProviderContextElement)element).getObject();
+		if(element instanceof ILabelProviderContextElementWrapper) {
+			final Object object = ((ILabelProviderContextElementWrapper)element).getObject();
 			final String id = AxisUtils.getPropertyId(object);
 			if(id != null) {
 				return id.startsWith(Utils.NATTABLE_EDITOR_PAGE_ID);
@@ -63,8 +63,9 @@ public class ModelViewsHeaderLabelProvider extends EMFFeatureHeaderLabelProvider
 	 */
 	@Override
 	public String getText(final Object element) {
-		final Object object = ((ILabelProviderContextElement)element).getObject();
-		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		final ILabelProviderContextElementWrapper contextElement = (ILabelProviderContextElementWrapper)element;
+		final Object object = contextElement.getObject();
+		final IConfigRegistry configRegistry = contextElement.getConfigRegistry();
 		final String id = AxisUtils.getPropertyId(object);
 		String name = id.replaceFirst(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
 		Object type = null;
@@ -84,17 +85,17 @@ public class ModelViewsHeaderLabelProvider extends EMFFeatureHeaderLabelProvider
 			type = EcorePackage.eINSTANCE.getEString();
 		}
 		ILabelProviderConfiguration conf = null;
-		if(element instanceof LabelProviderCellContextElement) {
-			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
+		if(element instanceof LabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
 			return ""; //$NON-NLS-1$
 		}
 		String alias = ""; //$NON-NLS-1$
-		if(object instanceof FeatureAxis){
+		if(object instanceof FeatureAxis) {
 			alias = ((FeatureAxis)object).getAlias();
 		}
-		if(alias!=null && !alias.equals("")){ //$NON-NLS-1$
+		if(alias != null && !alias.equals("")) { //$NON-NLS-1$
 			name = alias;
 		}
 		if(conf instanceof FeatureLabelProviderConfiguration) {
@@ -114,13 +115,13 @@ public class ModelViewsHeaderLabelProvider extends EMFFeatureHeaderLabelProvider
 	@Override
 	public Image getImage(final Object element) {
 		ILabelProviderConfiguration conf = null;
-		if(element instanceof LabelProviderCellContextElement) {
-			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
+		if(element instanceof LabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayIcon()) {
 			return null;
 		}
-		final Object object = ((ILabelProviderContextElement)element).getObject();
+		final Object object = ((ILabelProviderContextElementWrapper)element).getObject();
 		final String id = AxisUtils.getPropertyId(object);
 		final String columnName = id.replaceFirst(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
 		if(Utils.VIEW_NAME.equals(columnName) || Utils.VIEW_IS_OPEN.equals(columnName) || Utils.VIEW_EDITOR_TYPE.equals(columnName)) {

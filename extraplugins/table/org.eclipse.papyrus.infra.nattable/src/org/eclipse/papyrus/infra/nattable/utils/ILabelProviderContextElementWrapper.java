@@ -22,7 +22,7 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
  * @author Vincent Lorenzo
  * 
  */
-public interface ILabelProviderContextElement {
+public interface ILabelProviderContextElementWrapper {
 
 	/**
 	 * 

@@ -24,8 +24,8 @@ import org.eclipse.nebula.widgets.nattable.style.CellStyleUtil;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.style.IStyle;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
@@ -63,7 +63,7 @@ public class CustomizedCellPainter extends TextPainter {
 	@Override
 	protected String convertDataType(final ILayerCell cell, final IConfigRegistry configRegistry) {
 		final LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-		final ILabelProviderContextElement contextElement = new LabelProviderCellContextElement(cell, configRegistry);
+		final ILabelProviderContextElementWrapper contextElement = new LabelProviderCellContextElementWrapper(cell, configRegistry);
 		final ILabelProvider provider = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT, contextElement);
 		String str = provider.getText(contextElement);
 		if(str == null) {

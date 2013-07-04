@@ -17,7 +17,7 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowPortNAMatcher;
 import org.eclipse.papyrus.uml.nattable.provider.AbstractUMLNattableCellLabelProvider;
 import org.eclipse.uml2.uml.Port;
@@ -44,9 +44,9 @@ public class SysMLFlowPortDirectionLabelProvider extends AbstractUMLNattableCell
 	 */
 	@Override
 	public boolean accept(final Object element) {
-		if(element instanceof LabelProviderCellContextElement) {
-			final ILayerCell cell = ((LabelProviderCellContextElement)element).getCell();
-			final IConfigRegistry registry = ((LabelProviderCellContextElement)element).getConfigRegistry();
+		if(element instanceof LabelProviderCellContextElementWrapper) {
+			final ILayerCell cell = ((LabelProviderCellContextElementWrapper)element);
+			final IConfigRegistry registry = ((LabelProviderCellContextElementWrapper)element).getConfigRegistry();
 			final Object columnObject = getColumnObject(cell, registry);
 			String str = AxisUtils.getPropertyId(columnObject);
 			if(str == null) {
@@ -62,8 +62,8 @@ public class SysMLFlowPortDirectionLabelProvider extends AbstractUMLNattableCell
 
 	@Override
 	public String getText(Object element) {
-		final ILayerCell cell = ((LabelProviderCellContextElement)element).getCell();
-		final IConfigRegistry configRegistry = ((LabelProviderCellContextElement)element).getConfigRegistry();
+		final ILayerCell cell = ((LabelProviderCellContextElementWrapper)element);
+		final IConfigRegistry configRegistry = ((LabelProviderCellContextElementWrapper)element).getConfigRegistry();
 		final Object rowObject = getRowObject(cell, configRegistry);
 		final Object columObject = getColumnObject(cell, configRegistry);
 		Port port = null;

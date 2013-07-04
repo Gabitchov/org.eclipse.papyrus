@@ -87,6 +87,6 @@ public class AxisComparator implements Comparator<IAxis> {
 	 */
 	protected String getText(final LabelProviderService serv, final Object obj) {
 		final ILabelProvider provider = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
-		return provider.getText(new LabelProviderContextElement(obj, this.configRegistry));
+		return provider.getText(new LabelProviderContextElementWrapper(obj, this.configRegistry));
 	}
 }

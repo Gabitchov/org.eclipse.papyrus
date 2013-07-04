@@ -19,8 +19,8 @@ import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
@@ -66,10 +66,10 @@ public class GenericDisplayConverter implements IDisplayConverter {
 	 * @param canonicalValue
 	 * @return
 	 */
-	public Object canonicalToDisplayValue(ILayerCell cell, IConfigRegistry configRegistry, Object canonicalValue) {
-		LabelProviderService service = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-		ILabelProvider labelProvider = service.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT);
-		final ILabelProviderContextElement contextElement = new LabelProviderCellContextElement(cell, configRegistry);
+	public Object canonicalToDisplayValue(final ILayerCell cell, final IConfigRegistry configRegistry, final Object canonicalValue) {
+		final LabelProviderService service = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		final ILabelProvider labelProvider = service.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT);
+		final ILabelProviderContextElementWrapper contextElement = new LabelProviderCellContextElementWrapper(cell, canonicalValue, configRegistry);
 		assert labelProvider != null;
 		return labelProvider.getText(contextElement);
 	}

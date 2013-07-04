@@ -26,9 +26,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.F
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.uml.nattable.messages.Messages;
@@ -62,8 +62,8 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	 */
 	@Override
 	public boolean accept(Object element) {
-		if(element instanceof ILabelProviderContextElement) {
-			final Object value = ((ILabelProviderContextElement)element).getObject();
+		if(element instanceof ILabelProviderContextElementWrapper) {
+			final Object value = ((ILabelProviderContextElementWrapper)element).getObject();
 			String id = AxisUtils.getPropertyId(value);
 			return (id != null && id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX));
 		}
@@ -80,11 +80,11 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	@Override
 	public String getText(Object element) {
 		ILabelProviderConfiguration conf = null;
-		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		final IConfigRegistry configRegistry = ((ILabelProviderContextElementWrapper)element).getConfigRegistry();
 		String alias = ""; //$NON-NLS-1$
-		if(element instanceof LabelProviderCellContextElement) {
+		if(element instanceof LabelProviderCellContextElementWrapper) {
 			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
+			LabelStack labels = ((LabelProviderCellContextElementWrapper)element).getConfigLabels();
 			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
 				conf = LabelConfigurationManagementUtils.getUsedColumnFeatureLabelConfiguration(manager.getTable());
 			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
@@ -95,8 +95,8 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
 			return ""; //$NON-NLS-1$
 		}
-		final Object value = ((ILabelProviderContextElement)element).getObject();
-		if(value instanceof FeatureAxis){
+		final Object value = ((ILabelProviderContextElementWrapper)element).getObject();
+		if(value instanceof FeatureAxis) {
 			alias = ((FeatureAxis)value).getAlias();
 		}
 		final INattableModelManager modelManager = (INattableModelManager)getAxisContentProvider(configRegistry);
@@ -124,13 +124,13 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	 */
 	@Override
 	public Image getImage(Object element) {
-		final Object value = ((ILabelProviderContextElement)element).getObject();
-		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		final Object value = ((ILabelProviderContextElementWrapper)element).getObject();
+		final IConfigRegistry configRegistry = ((ILabelProviderContextElementWrapper)element).getConfigRegistry();
 		final INattableModelManager modelManager = (INattableModelManager)getAxisContentProvider(configRegistry);
 		ILabelProviderConfiguration conf = null;
-		if(element instanceof LabelProviderCellContextElement) {
+		if(element instanceof LabelProviderCellContextElementWrapper) {
 			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
+			LabelStack labels = ((LabelProviderCellContextElementWrapper)element).getConfigLabels();
 			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
 				conf = LabelConfigurationManagementUtils.getUsedColumnFeatureLabelConfiguration(manager.getTable());
 			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {

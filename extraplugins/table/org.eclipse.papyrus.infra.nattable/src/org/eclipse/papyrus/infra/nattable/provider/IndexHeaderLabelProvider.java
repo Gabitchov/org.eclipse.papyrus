@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.provider;
 
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 
 /**
  * The label provider used for the index of the header
@@ -32,8 +32,8 @@ public class IndexHeaderLabelProvider extends AbstractNattableCellLabelProvider 
 	 */
 	@Override
 	public boolean accept(Object element) {
-		if(element instanceof ILabelProviderContextElement) {
-			Object object = ((ILabelProviderContextElement)element).getObject();
+		if(element instanceof ILabelProviderContextElementWrapper) {
+			Object object = ((ILabelProviderContextElementWrapper)element).getObject();
 			return object instanceof String || object instanceof Integer;
 		}
 		return false;
@@ -48,6 +48,6 @@ public class IndexHeaderLabelProvider extends AbstractNattableCellLabelProvider 
 	 */
 	@Override
 	public String getText(Object element) {
-		return ((ILabelProviderContextElement)element).getObject().toString();
+		return ((ILabelProviderContextElementWrapper)element).getObject().toString();
 	}
 }

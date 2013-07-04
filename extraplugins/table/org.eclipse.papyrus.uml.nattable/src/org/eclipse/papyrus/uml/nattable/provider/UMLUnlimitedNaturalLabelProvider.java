@@ -17,10 +17,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -41,12 +39,12 @@ public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLab
 	 */
 	@Override
 	public boolean accept(Object element) {
-		if(element instanceof ILabelProviderCellContextElement) {
-			final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
-			final IConfigRegistry registry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		if(element instanceof ILabelProviderCellContextElementWrapper) {
+			final ILabelProviderCellContextElementWrapper cellWrapperContext = ((ILabelProviderCellContextElementWrapper)element);
+			final IConfigRegistry registry = cellWrapperContext.getConfigRegistry();
 
 			//we do some quick test on the value
-			final Object value = cell.getDataValue();
+			final Object value = cellWrapperContext.getObject();
 			if(value instanceof Collection<?> && !((Collection<?>)value).iterator().hasNext()) {//if the value is en empty collection, we return false;
 				return false;
 			} else if(!(value instanceof Collection<?>) && !(value instanceof Integer)) { //if the value is not a collection and not an integer, we return false
@@ -54,8 +52,8 @@ public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLab
 			}
 
 			//now it is possible that we accepts the element
-			final Object rowObject = getRowObject(cell, registry);
-			final Object columnObject = getColumnObject(cell, registry);
+			final Object rowObject = getRowObject(cellWrapperContext, registry);
+			final Object columnObject = getColumnObject(cellWrapperContext, registry);
 
 			final List<Object> objects = getUMLObjects(rowObject, columnObject);
 			if(objects.size() == 2) {

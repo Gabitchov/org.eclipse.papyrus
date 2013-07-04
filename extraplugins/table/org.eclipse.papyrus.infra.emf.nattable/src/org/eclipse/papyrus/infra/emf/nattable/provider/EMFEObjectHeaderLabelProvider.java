@@ -21,8 +21,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
 
@@ -43,8 +43,8 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 	 */
 	@Override
 	public boolean accept(Object element) {
-		if(element instanceof ILabelProviderContextElement) {
-			Object object = ((ILabelProviderContextElement)element).getObject();
+		if(element instanceof ILabelProviderContextElementWrapper) {
+			Object object = ((ILabelProviderContextElementWrapper)element).getObject();
 			if(object instanceof IAxis) {
 				object = ((IAxis)object).getElement();
 			}
@@ -62,16 +62,16 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 	 */
 	@Override
 	public String getText(Object element) {
-		ILabelProviderContextElement context = (ILabelProviderContextElement)element;
-		EObject object = (EObject)((ILabelProviderContextElement)element).getObject();
+		ILabelProviderContextElementWrapper context = (ILabelProviderContextElementWrapper)element;
+		EObject object = (EObject)((ILabelProviderContextElementWrapper)element).getObject();
 		if(object instanceof EObjectAxis) {
 			object = ((EObjectAxis)object).getElement();
 		}
 		final IConfigRegistry configRegistry = context.getConfigRegistry();
 		final LabelProviderService serv = getLabelProviderService(configRegistry);
 		ILabelProviderConfiguration conf = null;
-		if(element instanceof LabelProviderCellContextElement) {
-			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
+		if(element instanceof LabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
 			return "";
@@ -88,15 +88,15 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 	 */
 	@Override
 	public Image getImage(Object element) {
-		EObject object = (EObject)((ILabelProviderContextElement)element).getObject();
+		EObject object = (EObject)((ILabelProviderContextElementWrapper)element).getObject();
 		if(object instanceof EObjectAxis) {
 			object = ((EObjectAxis)object).getElement();
 		}
-		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		final IConfigRegistry configRegistry = ((ILabelProviderContextElementWrapper)element).getConfigRegistry();
 		final LabelProviderService serv = getLabelProviderService(configRegistry);
 		ILabelProviderConfiguration conf = null;
-		if(element instanceof LabelProviderCellContextElement) {
-			conf = getLabelConfiguration((LabelProviderCellContextElement)element);
+		if(element instanceof LabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper)element);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayIcon()) {
 			return null;

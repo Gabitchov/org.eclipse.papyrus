@@ -16,9 +16,7 @@ package org.eclipse.papyrus.uml.nattable.provider;
 import java.util.List;
 
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.uml2.uml.Property;
 
 
@@ -33,13 +31,14 @@ public class StereotypePropertyCellLabelProvider extends AbstractUMLNattableCell
 	 */
 	@Override
 	public boolean accept(Object element) {
-		if(element instanceof ILabelProviderCellContextElement) {
-			final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
-			final IConfigRegistry registry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		if(element instanceof ILabelProviderCellContextElementWrapper) {
+			final ILabelProviderCellContextElementWrapper cellWrapperContextElement = (ILabelProviderCellContextElementWrapper)element;
+
+			final IConfigRegistry registry = cellWrapperContextElement.getConfigRegistry();
 
 			//now it is possible that we accepts the element
-			final Object rowObject = getRowObject(cell, registry);
-			final Object columnObject = getColumnObject(cell, registry);
+			final Object rowObject = getRowObject(cellWrapperContextElement, registry);
+			final Object columnObject = getColumnObject(cellWrapperContextElement, registry);
 
 			final List<Object> objects = getUMLObjects(rowObject, columnObject);
 			if(objects.size() == 2) {

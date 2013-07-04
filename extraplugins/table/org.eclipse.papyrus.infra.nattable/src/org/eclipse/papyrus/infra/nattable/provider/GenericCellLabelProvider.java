@@ -19,8 +19,8 @@ import java.util.Iterator;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
 /**
@@ -37,12 +37,12 @@ public class GenericCellLabelProvider extends AbstractNattableCellLabelProvider 
 	 * 
 	 * @param element
 	 * @return
-	 *         <code>true</code> if the element is an instance of {@link ILabelProviderContextElement} and if the cell represents an
+	 *         <code>true</code> if the element is an instance of {@link ILabelProviderContextElementWrapper} and if the cell represents an
 	 *         {@link EStructuralFeature} of an {@link EObject}
 	 */
 	@Override
 	public boolean accept(Object element) {
-		return element instanceof ILabelProviderCellContextElement;
+		return element instanceof ILabelProviderCellContextElementWrapper;
 	}
 
 	/**
@@ -54,9 +54,9 @@ public class GenericCellLabelProvider extends AbstractNattableCellLabelProvider 
 	 */
 	@Override
 	public String getText(Object element) {
-		final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
-		final IConfigRegistry registry = ((ILabelProviderContextElement)element).getConfigRegistry();
-		Object value = cell.getDataValue();
+		final ILabelProviderCellContextElementWrapper contextElement = (ILabelProviderCellContextElementWrapper)element;
+		final IConfigRegistry registry = ((ILabelProviderContextElementWrapper)element).getConfigRegistry();
+		Object value = contextElement.getObject();
 		String label = ""; //$NON-NLS-1$
 		final LabelProviderService service = getLabelProviderService(registry);
 		if(value instanceof Collection<?>) {
