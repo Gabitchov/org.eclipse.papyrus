@@ -15,18 +15,29 @@ package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.deployment.test.IDeploymentDiagramTestsConstants;
 import org.junit.Test;
 
 /**
  * The Class TestComponentDiagramLink.
  */
-public class TestDeploymentDiagramDeploymentLink extends TestDeploymentLink {
+public class TestDeploymentDiagramDeploymentLink extends TestWithoutReconnectAMultilinkk {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateDeploymentDiagramCommand();
 	}
+	
+	@Override
+	protected String getProjectName() {
+		return IDeploymentDiagramTestsConstants.PROJECT_NAME;
+	}
 
+	@Override
+	protected String getFileName() {
+		return IDeploymentDiagramTestsConstants.FILE_NAME;
+	}
+	
 	/**
 	 * Test to manage Deployment
 	 */

@@ -29,8 +29,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.tests.canonical.TestLink;
 import org.eclipse.uml2.uml.Element;
 
-public abstract class TestManifestationLink extends TestLink {
-
+public abstract  class TestWithoutReconnectAMultilinkk extends TestLink {
 	/**
 	 * Test view deletion.
 	 * 

@@ -17,6 +17,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestLinkOwnedBySource;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.deployment.test.IDeploymentDiagramTestsConstants;
 import org.junit.Test;
 
 /**
@@ -29,6 +30,16 @@ public class TestDeploymentDiagramLinkOwnedBySource extends TestLinkOwnedBySourc
 		return new CreateDeploymentDiagramCommand();
 	}
 
+	@Override
+	protected String getProjectName() {
+		return IDeploymentDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IDeploymentDiagramTestsConstants.FILE_NAME;
+	}
+	
 	/**
 	 * Test to manage Generalization
 	 */

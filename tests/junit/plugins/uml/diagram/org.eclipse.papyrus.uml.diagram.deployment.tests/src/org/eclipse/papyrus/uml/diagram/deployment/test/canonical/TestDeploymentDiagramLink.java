@@ -16,6 +16,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestLink;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.deployment.test.IDeploymentDiagramTestsConstants;
 import org.junit.Test;
 
 /**
@@ -28,6 +29,16 @@ public class TestDeploymentDiagramLink extends TestLink {
 		return new CreateDeploymentDiagramCommand();
 	}
 
+	@Override
+	protected String getProjectName() {
+		return IDeploymentDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IDeploymentDiagramTestsConstants.FILE_NAME;
+	}
+	
 	/**
 	 * Test to manage Dependency
 	 */

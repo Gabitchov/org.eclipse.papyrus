@@ -19,6 +19,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.deployment.test.IDeploymentDiagramTestsConstants;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
@@ -38,6 +39,16 @@ public class TestDeploymentDiagramChildNode extends TestChildNode {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2009, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
+	@Override
+	protected String getProjectName() {
+		return IDeploymentDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IDeploymentDiagramTestsConstants.FILE_NAME;
+	}
+	
 	/**
 	 * Test to manage i package.
 	 */
@@ -101,5 +112,4 @@ public class TestDeploymentDiagramChildNode extends TestChildNode {
 	public void testToManageConstraint() {
 		testToManageNode(UMLElementTypes.Constraint_56, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_36, true);
 	}
-
 }
