@@ -100,7 +100,6 @@ public class TableCreationTest2 {
 	@BeforeClass
 	public static void init() {
 		try {
-			GenericUtils.closeAllEditors();
 			initTests(Activator.getDefault().getBundle(), PROJECT_NAME, MODEL_PATH);
 		} catch (CoreException e) {
 			Activator.log.error(e);
@@ -188,11 +187,11 @@ public class TableCreationTest2 {
 	@Test
 	public void createTable2AndDestroyAnOwnedElement() throws ServiceException {
 		final Object result1 = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationTest2.view, AllTests.COMMAND_ID, TableCreationTest2.rootModel, BUNDLE_ID);
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.safeReadAndDispatch();
 		Assert.assertTrue(result1 instanceof NatTableEditor);
 		final NatTableEditor editor2 = (NatTableEditor)result1;
 		editor2.setFocus();
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.safeReadAndDispatch();
 		final NattableModelManager manager2 = (NattableModelManager)editor2.getAdapter(INattableModelManager.class);
 		Assert.assertNotNull(manager2);
 		final Table table2 = manager2.getTable();
@@ -219,7 +218,7 @@ public class TableCreationTest2 {
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 
 
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.safeReadAndDispatch();
 		//verify the contents of table2
 		managedAxis_Table1 = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis_Table1.size());
@@ -240,7 +239,7 @@ public class TableCreationTest2 {
 		Assert.assertEquals(3, pageManager.allPages().size());
 		IEditorPart tableEditor = papyrusEditor.getActiveEditor();
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, table1)));
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.safeReadAndDispatch();
 		tableEditor = papyrusEditor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
 		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);

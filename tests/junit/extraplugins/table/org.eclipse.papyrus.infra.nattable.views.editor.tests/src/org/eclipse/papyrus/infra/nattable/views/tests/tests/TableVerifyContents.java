@@ -166,7 +166,7 @@ public class TableVerifyContents {
 		Assert.assertEquals(subModel, table1.getContext());
 		Assert.assertEquals(subModel, diagram2.getElement());
 		Assert.assertEquals(rootModel, diagram1.getElement());
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.safeReadAndDispatch();
 
 	}
 
@@ -193,7 +193,7 @@ public class TableVerifyContents {
 		Assert.assertNull(tableEditor);
 		TransactionalEditingDomain editingDomain = papyrusEditor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, table1)));
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.safeReadAndDispatch();
 		tableEditor = papyrusEditor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
 		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);

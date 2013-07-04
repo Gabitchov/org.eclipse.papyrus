@@ -92,7 +92,6 @@ public class TableCreationTest {
 	@BeforeClass
 	public static void init() {
 		try {
-			GenericUtils.closeAllEditors();
 			initTests(Activator.getDefault().getBundle(), PROJECT_NAME, MODEL_PATH);
 
 		} catch (CoreException e) {
@@ -213,7 +212,7 @@ public class TableCreationTest {
 		Assert.assertTrue(managedAxis2.contains(subSubPackageTable1));
 		Assert.assertTrue(managedAxis2.contains(subSubPackageTable2));
 
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.safeReadAndDispatch();
 
 		Assert.assertEquals(managedAxis2.size(), rowAxisManager2.getTableManager().getRowElementsList().size());
 		Assert.assertTrue(rowAxisManager2.getTableManager().getRowElementsList().contains(subSubPackageTable1));
@@ -238,7 +237,7 @@ public class TableCreationTest {
 		Assert.assertNotNull(manager3);
 		final Table subModelTable3 = manager3.getTable();
 		Assert.assertEquals(AllTests.VIEWS_TABLE_ID, subModelTable3.getTableConfiguration().getType());
-		while(Display.getDefault().readAndDispatch());
+		DisplayUtils.safeReadAndDispatch();
 		final IAxisManager rowAxisManager3 = manager3.getRowAxisManager();
 		final Collection<Object> managedAxis_SubPackageTable3 = rowAxisManager3.getAllManagedAxis();
 		Assert.assertEquals(1, managedAxis_SubPackageTable3.size());

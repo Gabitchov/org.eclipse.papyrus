@@ -25,7 +25,6 @@ import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -62,7 +61,7 @@ public class OpenTableTest extends AbstractEditorIntegrationTest {
 		Table requirementTable = (Table)notationResource.getContents().get(0);
 		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, requirementTable)));
-		secureReadAndDispatch();
+		DisplayUtils.safeReadAndDispatch();
 		tableEditor = editor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
 		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
@@ -82,20 +81,6 @@ public class OpenTableTest extends AbstractEditorIntegrationTest {
 	@AfterClass
 	public static void endOfTest() {
 		GenericUtils.closeAllEditors();
-	}
-
-	public static void secureReadAndDispatch() {
-		while(true) {
-			boolean res = true;
-			try {
-				res = Display.getCurrent().readAndDispatch();
-			} catch (Exception e) {
-				//nothing to do
-			}
-			if(res == false) {
-				return;
-			}
-		}
 	}
 
 }
