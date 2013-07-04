@@ -11,14 +11,6 @@
 			target="platform:/plugin/org.eclipse.papyrus.cpp.profile/profiles/"/>
 	</extension>
   
-	<extension
-			point="org.eclipse.emf.ecore.generated_package">
-		<package 
-			uri="http://www.eclipse.org/papyrus/C_Cpp/1"
-			class = "org.eclipse.papyrus.C_Cpp.C_CppPackage"
-			genModel = "profile/C_Cpp.genmodel"/> 
-	</extension>
-  
 	<extension 
 			point="org.eclipse.uml2.uml.generated_package">
 		<profile
