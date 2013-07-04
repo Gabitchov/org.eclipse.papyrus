@@ -5,23 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.internal.runtime.InternalPlatform;
-import org.eclipse.core.runtime.IBundleGroup;
-import org.eclipse.core.runtime.IBundleGroupProvider;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.osgi.launch.EquinoxFactory;
 import org.eclipse.pde.internal.core.PDECore;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.eclipse.pde.internal.core.ifeature.IFeature;
-import org.eclipse.pde.internal.core.ifeature.IFeatureChild;
 import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
-import org.eclipse.ui.internal.ide.AboutInfo;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
+@SuppressWarnings("restriction")
 public class BundleTestsUtils {
 
 	// This version number should be changed at each release
-	public static final String PAPYRUS_VERSION = "0.9.0"; //$NON-NLS-1$
+	public static final String PAPYRUS_VERSION = "0.10.1"; //$NON-NLS-1$
 
 	public static final String INCUBATION = "(Incubation)"; //$NON-NLS-1$
 
@@ -40,6 +35,10 @@ public class BundleTestsUtils {
 	public static final String BUNDLE_IMPORT_PACKAGE = "Import-Package"; //$NON-NLS-1$
 
 	public static final String JAVA_VERSION_5 = "J2SE-1.5"; //$NON-NLS-1$
+
+	public static final String JAVA_VERSION_6 = "JavaSE-1.6"; //$NON-NLS-1$
+
+	public static final String JAVA_VERSION_REGEX = JAVA_VERSION_5 + "|" + JAVA_VERSION_6;
 
 	public static final String REQUIRE_BUNDLE = "Require-Bundle"; //$NON-NLS-1$
 
@@ -61,7 +60,6 @@ public class BundleTestsUtils {
 				papyrusBundle.add(bundles[i]);
 			}
 		}
-		EquinoxFactory factory = new EquinoxFactory();
 
 		return papyrusBundle;
 	}
@@ -91,7 +89,7 @@ public class BundleTestsUtils {
 		for(IFeatureModel iFeatureModel : models2) {
 			final IFeature feature = iFeatureModel.getFeature();
 			final String id = feature.getId();
-			if(id.startsWith(PAPYRUS_PREFIX)) { //$NON-NLS-1$
+			if(id.startsWith(PAPYRUS_PREFIX)) {
 				features.add((Feature)feature);
 			}
 		}

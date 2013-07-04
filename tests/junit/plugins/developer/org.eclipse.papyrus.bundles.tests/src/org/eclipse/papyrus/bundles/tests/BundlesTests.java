@@ -29,9 +29,11 @@ import org.osgi.framework.Bundle;
 
 public class BundlesTests {
 
-	private static final String REGEX_VERSION_NUMBER = "0\\.10\\.0\\..*";
+	//Transform the version number to the regex format
+	//Adds .* (Valid version numbers are e.g. 0.10.1.qualifier)
+	private static final String REGEX_VERSION_NUMBER = BundleTestsUtils.PAPYRUS_VERSION.replaceAll("\\.", "\\\\.") + "\\..*"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
-	private static final String REGEX_INCUBATION = ".*\\(Incubation\\)";
+	private static final String REGEX_INCUBATION = ".*\\(Incubation\\)"; //$NON-NLS-1$
 
 	@Test
 	public void featureVersionNumberTest() {
@@ -56,7 +58,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void incubationTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_NAME, ".*\\(Incubation\\)", false, false); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_NAME, REGEX_INCUBATION, false, false);
 	}
 
 	/**
@@ -88,7 +90,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void javaVersionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, BundleTestsUtils.JAVA_VERSION_5, false, true);
+		testManifestProperty(BundleTestsUtils.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, BundleTestsUtils.JAVA_VERSION_REGEX, false, true);
 	}
 
 	/**
@@ -224,7 +226,7 @@ public class BundlesTests {
 			String localMessage = null;
 			for(final String bundle : bundles) {
 				if(bundle.contains("org.eclipse.papyrus")) { //$NON-NLS-1$
-					if(!bundle.contains("bundle-version=" + '"' + "0.10.0" + '"')) { //$NON-NLS-1$ //$NON-NLS-2$
+					if(!bundle.contains("bundle-version=" + '"' + BundleTestsUtils.PAPYRUS_VERSION + '"')) { //$NON-NLS-1$ 
 						nb++;
 						if(localMessage == null) {
 							localMessage = NLS.bind("{0} incorrect required bundle-version:", current.getSymbolicName()); //$NON-NLS-1$
