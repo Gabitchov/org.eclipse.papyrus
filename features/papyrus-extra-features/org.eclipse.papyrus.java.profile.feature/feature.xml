@@ -53,21 +53,18 @@ generator project &amp; help for the conception
          id="org.eclipse.papyrus.java.profile"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.java.profile.edit"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.java.profile.editor"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
 </feature>

@@ -27,84 +27,72 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.robotml"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.diagram.architecture"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.diagram.common"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.diagram.componentdef"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.diagram.datatypedef"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.diagram.interfacedef"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.templaterepository"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.diagram.ui"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.doc"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.validation"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.modelexplorer"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.robotml.perspective"
          download-size="0"
          install-size="0"
-         version=""
          unpack="false"/>
 
 </feature>
