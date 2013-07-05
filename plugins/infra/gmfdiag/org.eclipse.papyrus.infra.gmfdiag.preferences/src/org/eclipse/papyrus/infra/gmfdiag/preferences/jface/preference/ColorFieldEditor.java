@@ -85,6 +85,7 @@ public class ColorFieldEditor extends FieldEditor {
 		colorButton.setLayoutData(new GridData());
 		colorButton.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent event) {
 				changeColors(colorButton);
 			}
@@ -114,8 +115,16 @@ public class ColorFieldEditor extends FieldEditor {
 	@Override
 	protected void doStore() {
 		if(colorSelector != null) {
-			PreferenceConverter.setValue(getPreferenceStore(), getPreferenceName(), colorSelector.getSelectedColor());
+			RGB color = colorSelector.getSelectedColor();
+			if(color == null) {
+				color = getDefaultColor();
+			}
+			PreferenceConverter.setValue(getPreferenceStore(), getPreferenceName(), color);
 		}
+	}
+
+	private RGB getDefaultColor() {
+		return PreferenceConverter.getDefaultColor(getPreferenceStore(), getPreferenceName());
 	}
 
 	@Override
@@ -134,7 +143,12 @@ public class ColorFieldEditor extends FieldEditor {
 		if(colorSelector.getSelectedColor() == null && !colorSelector.useDefaultColor()) {
 			return;
 		}
-		updateButtonImage(colorSelector.getSelectedColor());
+
+		if(colorSelector.useDefaultColor()) {
+			updateButtonImage(getDefaultColor());
+		} else {
+			updateButtonImage(colorSelector.getSelectedColor());
+		}
 
 	}
 
@@ -173,6 +187,7 @@ public class ColorFieldEditor extends FieldEditor {
 		/**
 		 * @see org.eclipse.jface.resource.CompositeImageDescriptor#drawCompositeImage(int, int)
 		 */
+		@Override
 		protected void drawCompositeImage(int width, int height) {
 
 			// draw the thin color bar underneath
@@ -190,6 +205,7 @@ public class ColorFieldEditor extends FieldEditor {
 		/**
 		 * @see org.eclipse.jface.resource.CompositeImageDescriptor#getSize()
 		 */
+		@Override
 		protected Point getSize() {
 			return ICON_SIZE;
 		}
