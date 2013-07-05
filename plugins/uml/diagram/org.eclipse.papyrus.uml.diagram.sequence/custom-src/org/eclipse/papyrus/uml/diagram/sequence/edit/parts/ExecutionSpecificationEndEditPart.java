@@ -73,6 +73,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.ExecutionOccurrenceSpeci
 import org.eclipse.papyrus.uml.diagram.sequence.command.ExecutionOccurrenceSpecificationMessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationEndGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
@@ -197,6 +198,8 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 				setFeedbackLocation(feedback, rect.getCenter());
 			}
 		});
+		//Remove CREATION_ROLE if there's no custom DRAG_DROP_ROLE and CREATION_ROLE editpolicies, otherwise, CustomizableDropEditPolicy will be added as a defaultCreationEditPolicy in new CustomizableDropEditPolicy. 
+		removeEditPolicy(EditPolicyRoles.CREATION_ROLE);
 	}
 
 	public void rebuildLinks(Diagram diagram) {
@@ -518,6 +521,14 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart#mapTerminalToConnectionAnchor(String)
 	 */
 	public ConnectionAnchor mapTerminalToConnectionAnchor(String terminal) {
+		//redirect to use the anchor of parent Execution.
+		if(terminal != null && terminal.indexOf("{") != -1 && terminal.indexOf("}") != -1) {
+			int location = AnchorHelper.FixedAnchorEx.parsePosition(terminal);
+			if(PositionConstants.TOP == location || PositionConstants.BOTTOM == location) {
+				IFigure parentFigure = ((AbstractExecutionSpecificationEditPart)getParent()).getFigure();
+				return new AnchorHelper.FixedAnchorEx(parentFigure, location);
+			}
+		}
 		return ((IAnchorableFigure)getFigure()).getConnectionAnchor(terminal);
 	}
 

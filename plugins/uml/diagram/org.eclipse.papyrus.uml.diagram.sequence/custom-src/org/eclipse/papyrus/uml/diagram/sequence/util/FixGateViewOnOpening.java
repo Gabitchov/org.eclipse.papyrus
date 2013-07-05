@@ -97,6 +97,10 @@ public class FixGateViewOnOpening {
 			return;
 		}
 		Message message = gate.getMessage();
+		//NPE happens.
+		if(message == null) {
+			return;
+		}
 		View messageView = findPrimaryView(diagram, message);
 		Edge edge = null;
 		if(messageView instanceof Edge) {

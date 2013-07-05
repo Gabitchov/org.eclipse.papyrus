@@ -13,14 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.DelegatingLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomBehaviorExecutionSpecificationItemSemanticEditPolicy;
 
 /**
@@ -62,6 +65,18 @@ public class CustomBehaviorExecutionSpecificationEditPart extends BehaviorExecut
 			@Override
 			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
 				return false;
+			}
+
+			@Override
+			public ConnectionAnchor getConnectionAnchor(String terminal) {
+				//Use FixedAnchorEx for MessageSync, this will be invoked by mapConnectionAnchor(termial) operation.
+				if(terminal != null && terminal.indexOf("{") != -1 && terminal.indexOf("}") != -1) {
+					int position = AnchorHelper.FixedAnchorEx.parsePosition(terminal);
+					if(PositionConstants.TOP == position || PositionConstants.BOTTOM == position) {
+						return new AnchorHelper.FixedAnchorEx(this, position);
+					}
+				}
+				return super.getConnectionAnchor(terminal);
 			}
 		};
 		result.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20))); // min height 20

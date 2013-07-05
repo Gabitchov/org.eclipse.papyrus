@@ -27,6 +27,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -48,6 +49,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -56,9 +58,11 @@ import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * Add support to connect directly on ExecutionOccurrenceSpecification.
@@ -144,6 +148,21 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 		if(targetEP == null) {
 			return null;
 		}
+		//Fixed bug about creating MessageSync on same Execution.
+		INodeEditPart sourceEditPart = getSourceEditPart(request.getSourceEditPart());
+		if(request instanceof CreateConnectionViewRequest) {
+			if(((IHintedType)UMLElementTypes.Message_4003).getSemanticHint().equals(((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint())) {
+				if(targetEP == sourceEditPart) {
+					return UnexecutableCommand.INSTANCE;
+				} else if(targetEP instanceof AbstractExecutionSpecificationEditPart && getHost() instanceof ExecutionSpecificationEndEditPart) {
+					EObject parentElement = ((AbstractExecutionSpecificationEditPart)targetEP).resolveSemanticElement();
+					EObject element = ((ExecutionSpecificationEndEditPart)getHost()).resolveSemanticElement();
+					if(parentElement instanceof ExecutionSpecification && element instanceof OccurrenceSpecification && element == ((ExecutionSpecification)parentElement).getFinish()) {
+						return UnexecutableCommand.INSTANCE;
+					}
+				}
+			}
+		}
 		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
 		ConnectionAnchor targetAnchor = getTargetConnectionAnchor(getHost(), request);
 		Iterator commandItr = cc.iterator();
@@ -153,7 +172,6 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 		SetConnectionAnchorsCommand scaCommand = (SetConnectionAnchorsCommand)commandItr.next(); //2
 		scaCommand.setNewTargetTerminal(targetEP.mapConnectionAnchorToTerminal(targetAnchor));
 		setViewAdapter(sceCommand.getEdgeAdaptor());
-		INodeEditPart sourceEditPart = getSourceEditPart(request.getSourceEditPart());
 		ConnectionAnchor sourceAnchor = sourceEditPart.mapTerminalToConnectionAnchor(scaCommand.getNewSourceTerminal());
 		PointList pointList = new PointList();
 		if(request.getLocation() == null) {
@@ -234,6 +252,7 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 			return null;
 		}
 		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(getHostFigure().getBounds(), getHost()));
+		request.getExtendedData().put(SequenceRequestConstant.SOURCE_LOCATION_DATA, request.getLocation());
 		CreateConnectionViewRequest req = (CreateConnectionViewRequest)request;
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_CreateCommand_Connection_Label);
 		Diagram diagramView = ((View)getHost().getModel()).getDiagram();

@@ -3,7 +3,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -227,6 +226,15 @@ public class AnchorHelper {
 		}
 	}
 
+	/**
+	 * Changed by Jin Liu.
+	 * 
+	 * Since the Interaction figure would be always resized to show all children, which has a minimum size calculated by all children.
+	 * The size of it would be changed automatically, the real location of the anchor would be get wrong.
+	 * 
+	 * Now, we use the location directly to avoid preserve position when the size of referenced figure changes.
+	 * 
+	 */
 	public static class InnerPointAnchor extends SlidableAnchor {
 
 		private PrecisionPoint percent;
@@ -241,19 +249,34 @@ public class AnchorHelper {
 
 		public static InnerPointAnchor createAnchorAtLocation(IFigure fig, PrecisionPoint loc) {
 			PrecisionPoint p = loc.getPreciseCopy();
-			Rectangle b = fig.getBounds().getCopy();
-			fig.translateToAbsolute(b);
-			Dimension d = p.getDifference(b.getTopLeft());
-			PrecisionPoint per = new PrecisionPoint(d.preciseWidth() / b.width, d.preciseHeight() / b.height);
-			return new InnerPointAnchor(fig, per);
+			//			Rectangle b = fig.getBounds().getCopy();
+			//			fig.translateToAbsolute(b);
+			//			Dimension d = p.getDifference(b.getTopLeft());
+			//			PrecisionPoint per = new PrecisionPoint(d.preciseWidth() / b.width, d.preciseHeight() / b.height);
+			fig.translateToRelative(p);
+			return new InnerPointAnchor(fig, p);
 		}
 
 		protected Point getLocation(Point ownReference, Point foreignReference) {
-			PrecisionRectangle bounds = new PrecisionRectangle(figure.getBounds());
-			bounds.setPreciseWidth((bounds.width * percent.preciseX()));
-			bounds.setPreciseHeight((bounds.height * percent.preciseY()));
-			figure.translateToAbsolute(bounds);
-			return bounds.getBottomRight();
+			if((percent.preciseX() < 1 && percent.preciseX() > 0) || (percent.preciseY() > 0 && percent.preciseY() < 1)) {
+				PrecisionRectangle bounds = new PrecisionRectangle(figure.getBounds());
+				bounds.setPreciseWidth((bounds.width * percent.preciseX()));
+				bounds.setPreciseHeight((bounds.height * percent.preciseY()));
+				percent = new PrecisionPoint(bounds.getBottomRight());
+			}
+			Point copy = percent.getCopy();
+			figure.translateToAbsolute(copy);
+			return copy;
+		}
+
+		@Override
+		public Point getReferencePoint() {
+			if((percent.preciseX() < 1 && percent.preciseX() > 0) || (percent.preciseY() > 0 && percent.preciseY() < 1)) {
+				return super.getReferencePoint();
+			}
+			Point copy = percent.getCopy();
+			figure.translateToAbsolute(copy);
+			return copy;
 		}
 	}
 }

@@ -116,14 +116,16 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	 */
 	protected Command getMoveMessageCommand(BendpointRequest request) {
 		if(getHost() instanceof Message6EditPart || getHost() instanceof Message7EditPart) {
-			PointList points = getConnection().getPoints();
+			PointList points = getConnection().getPoints().getCopy();
 			CompoundCommand command = new CompoundCommand("Move");
 			AbstractMessageEditPart messageEditPart = (AbstractMessageEditPart)getHost();
 			//move source
 			ReconnectRequest sourceReq = new ReconnectRequest(REQ_RECONNECT_SOURCE);
 			sourceReq.setConnectionEditPart(messageEditPart);
-			sourceReq.setLocation(SequenceUtil.getAbsoluteEdgeExtremity(messageEditPart, true).setY(points.getFirstPoint().y));
+			Point sourceLocation = points.getFirstPoint().getCopy();
+			getConnection().translateToAbsolute(sourceLocation);
 			EditPart source = messageEditPart.getSource();
+			sourceReq.setLocation(sourceLocation);
 			sourceReq.setTargetEditPart(source);
 			Command moveSourceCommand = source.getCommand(sourceReq);
 			command.add(moveSourceCommand);
@@ -131,7 +133,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			EditPart target = messageEditPart.getTarget();
 			ReconnectRequest targetReq = new ReconnectRequest(REQ_RECONNECT_TARGET);
 			targetReq.setConnectionEditPart(messageEditPart);
-			targetReq.setLocation(SequenceUtil.getAbsoluteEdgeExtremity(messageEditPart, false).setY(points.getLastPoint().y));
+			Point targetLocation = points.getLastPoint().getCopy();
+			getConnection().translateToAbsolute(targetLocation);
+			targetReq.setLocation(targetLocation);
 			targetReq.setTargetEditPart(target);
 			Command moveTargetCommand = target.getCommand(targetReq);
 			command.add(moveTargetCommand);
@@ -258,7 +262,8 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		} else if(MOVED_DOWN.equals(moveData)) {
 			Point targetRefPoint = points.getLastPoint();
 			getConnection().translateToAbsolute(targetRefPoint);
-			Command tgtCmd = getReconnectCommand(connectionPart, connectionPart.getSource(), targetRefPoint, RequestConstants.REQ_RECONNECT_TARGET);
+			//Self message not always has same source and target, such as MessageSync.
+			Command tgtCmd = getReconnectCommand(connectionPart, connectionPart.getTarget(), targetRefPoint, RequestConstants.REQ_RECONNECT_TARGET);
 			compoudCmd.add(tgtCmd);
 		}
 		return compoudCmd.unwrap();
@@ -318,7 +323,15 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		if(request instanceof BendpointRequest) {
 			RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
 			if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
-				super.showSourceFeedback(request);
+				if(getLineSegMode() != LineMode.OBLIQUE && REQ_MOVE_BENDPOINT.equals(request.getType())) {
+					//Fixed bug about show feedback for moving bendpoints, make sure at least 3 points. 
+					List constraint = (List)getConnection().getRoutingConstraint();
+					if(constraint.size() > 2) {
+						super.showSourceFeedback(request);
+					}
+				} else {
+					super.showSourceFeedback(request);
+				}
 				if(getLineSegMode() != LineMode.OBLIQUE && REQ_MOVE_BENDPOINT.equals(request.getType())) {
 					showMoveLineSegFeedback((BendpointRequest)request);
 				}
@@ -369,6 +382,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				from = 2;
 				to = 3;
 				request.getExtendedData().put(MOVE_LINE_ORIENTATION_DATA, MOVED_DOWN);
+			}
+			if(getHost() instanceof MessageEditPart && index > 1) {
+				dy = 0;
 			}
 			// move points on link
 			int size = linkPoints.size();
@@ -435,7 +451,13 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			fig.translateToAbsolute(bounds);
 			Rectangle conBounds = linkPoints.getBounds().getCopy();
 			getConnection().translateToAbsolute(conBounds);
-			if( //Don't change the orientation of self message.
+			if(getHost() instanceof MessageEditPart) {//Sync message is linked between two executions.
+				if(conBounds.width < 2 || conBounds.height < 2
+				// check top and bottom y limit
+				|| conBounds.y <= bounds.y || conBounds.getBottom().y >= bounds.getBottom().y) {
+					return false;
+				}
+			} else if( //Don't change the orientation of self message.
 			bounds.intersects(conBounds.getShrinked(1, 1))
 			//make sure the line is not closest.
 			|| conBounds.width < 2 || conBounds.height < 2

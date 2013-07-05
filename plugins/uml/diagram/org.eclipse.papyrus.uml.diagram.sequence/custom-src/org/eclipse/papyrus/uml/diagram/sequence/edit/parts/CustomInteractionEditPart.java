@@ -22,6 +22,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.ConnectionEditPart;
@@ -30,10 +31,10 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -46,10 +47,12 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.LayoutConstraint;
+import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.InteractionRectangleFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
@@ -62,6 +65,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInt
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.Gate;
@@ -127,17 +131,22 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 
 			@Override
 			protected Command getResizeCommand(ChangeBoundsRequest request) {
-				Command command = super.getResizeCommand(request);
-				if(command != null && command.canExecute()) {
-					Rectangle rect = getInitialFeedbackBounds();
-					Dimension sizeDelta = request.getSizeDelta();
-					rect.width += sizeDelta.width;
-					rect.height += sizeDelta.height;
-					Dimension minimumSize = getFigure().getMinimumSize();
-					if(rect.width >= minimumSize.width && rect.height >= minimumSize.height) {
-						command = command.chain(new ICommandProxy(new PreserveAnchorsPositionCommand(CustomInteractionEditPart.this, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_XY)));
-					}
+				Rectangle newBounds = getInitialFeedbackBounds().getCopy();
+				Dimension sizeDelta = request.getSizeDelta();
+				newBounds.width += sizeDelta.width;
+				newBounds.height += sizeDelta.height;
+				Dimension minimumSize = getFigure().getMinimumSize();
+				//Avoid to update model when the new size is less than the minimum one.
+				if(newBounds.width < minimumSize.width || newBounds.height < minimumSize.height) {
+					return UnexecutableCommand.INSTANCE;
 				}
+				Command command = super.getResizeCommand(request);
+				/** Anchors for Lost/Found message were updated, there's no need to preserve positions after resize. */
+				//if(command != null && command.canExecute()) {
+				//if(newBounds.width >= minimumSize.width && newBounds.height >= minimumSize.height) {
+				//command = command.chain(new ICommandProxy(new PreserveAnchorsPositionCommand(CustomInteractionEditPart.this, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_XY)));
+				//}
+				//}
 				return command;
 			}
 		});
@@ -228,6 +237,77 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 			}
 		}
 		super.handleNotificationEvent(notification);
+		if(!notification.isTouch()) {
+			synchronizeSize();
+		}
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#refreshBounds()
+	 * 
+	 */
+
+	@Override
+	protected void refreshBounds() {
+		super.refreshBounds();
+		//Add size updater at the beginning of showing this edit part.
+		getViewer().getControl().getDisplay().asyncExec(new Runnable() {
+
+			public void run() {
+				synchronizeSize();
+			}
+		});
+	}
+
+	/**
+	 * Synchronize real figure size to model of Interaction.
+	 * 1. At most time, the size of mode is very important when calculate the bounds of a EditPart, see SequenceUtil.getAbsoluteBounds().
+	 * 2. This method would be invoked when the figure size increased automatically, the interaction always allow to show all children, see
+	 * primaryShape.getMinimumSize().
+	 * 3. In order to avoid update after changes of model, we only care the minimum size of figure.
+	 */
+	private void synchronizeSize() {
+		View view = getNotationView();
+		if(view instanceof Shape) {
+			LayoutConstraint c = ((Shape)view).getLayoutConstraint();
+			if(c instanceof Size) {
+				final Size size = (Size)c;
+				Dimension realSize = getFigure().getMinimumSize();
+				final Dimension sizeDelta = new Dimension();
+				if(size.getWidth() != -1 && realSize.width > size.getWidth()) {
+					sizeDelta.width = realSize.width;
+				}
+				if(size.getHeight() != -1 && realSize.height > size.getHeight()) {
+					sizeDelta.height = realSize.height;
+				}
+				if(sizeDelta.width != 0 || sizeDelta.height != 0) {
+					AbstractCommand cmd = new AbstractCommand() {
+
+						public boolean canExecute() {
+							return true;
+						}
+
+						public boolean canUndo() {
+							return false;
+						}
+
+						public void execute() {
+							if(sizeDelta.width != 0) {
+								size.setWidth(sizeDelta.width);
+							}
+							if(sizeDelta.height != 0) {
+								size.setHeight(sizeDelta.height);
+							}
+						}
+
+						public void redo() {
+							execute();
+						}
+					};
+					CommandHelper.executeCommandWithoutHistory(getEditingDomain(), cmd, true);
+				}
+			}
+		}
 	}
 
 	/**

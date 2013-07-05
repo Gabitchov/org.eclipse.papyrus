@@ -55,6 +55,7 @@ import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
+import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
@@ -66,6 +67,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -337,7 +339,9 @@ public class OperandBoundsComputeHelper {
 		}
 		//Append command for expand covered Lifelines when moving CombinedFragment.
 		Point moveDelta = request.getMoveDelta();
-		if(moveDelta.y != 0) {
+		//Update also happens with resize.
+		Dimension sizeDelta = request.getSizeDelta();
+		if(moveDelta.y > 0 || sizeDelta.height > 0) {
 			if(combinedFragmentEditPart.getModel() instanceof Node) {
 				Node node = (Node)combinedFragmentEditPart.getModel();
 				if(node.getLayoutConstraint() instanceof Bounds) {
@@ -345,8 +349,14 @@ public class OperandBoundsComputeHelper {
 					Dimension preferredSize = combinedFragmentEditPart.getFigure().getPreferredSize();
 					int width = containerBounds.getWidth() != -1 ? containerBounds.getWidth() : preferredSize.width();
 					int height = containerBounds.getHeight() != -1 ? containerBounds.getHeight() : preferredSize.height();
-					int x = containerBounds.getX() + moveDelta.x;
-					int y = containerBounds.getY() + moveDelta.y;
+					int x = containerBounds.getX();
+					int y = containerBounds.getY();
+					if(moveDelta.y > 0) {
+						y += moveDelta.y;
+					}
+					if(sizeDelta.height > 0) {
+						height += sizeDelta.height;
+					}
 					Rectangle newBounds = new Rectangle(x, y, width, height);
 					ICommand command = getExpandCoveredsCommand(combinedFragmentEditPart, newBounds);
 					if(command != null && command.canExecute()) {
@@ -1294,6 +1304,9 @@ public class OperandBoundsComputeHelper {
 			Point start = SequenceUtil.getAbsoluteEdgeExtremity(message, true);
 			Point end = SequenceUtil.getAbsoluteEdgeExtremity(message, false);
 			Rectangle bounds = new Rectangle(start, end);
+			if(message.getSource() instanceof GateEditPart || message.getTarget() instanceof GateEditPart) {
+				bounds.expand(0, Math.round((GateEditPart.DEFAULT_SIZE.height - bounds.height) / 2.0));
+			}
 			if(bounds.height < EXECUTION_VERTICAL_MARGIN) {
 				bounds.height = EXECUTION_VERTICAL_MARGIN;
 			}
@@ -1439,7 +1452,7 @@ public class OperandBoundsComputeHelper {
 		}
 
 		private boolean isValidBlock(Rectangle area, Rectangle block) {
-			if(!area.contains(block)) {
+			if(area.y > block.y || area.bottom() < block.bottom()) {
 				return false;
 			}
 			for(Rectangle validRect : validBlocks) {
@@ -1578,19 +1591,37 @@ public class OperandBoundsComputeHelper {
 			} else if(block instanceof MessageOperandBlock) {
 				ConnectionNodeEditPart message = ((MessageOperandBlock)block).getMessageChild();
 				if(message != null) {
-					Connection msgFigure = message.getConnectionFigure();
-					ConnectionAnchor sourceAnchor = msgFigure.getSourceAnchor();
-					ConnectionAnchor targetAnchor = msgFigure.getTargetAnchor();
 					Edge edge = (Edge)message.getModel();
-					IdentityAnchor gmfSourceAnchor = (IdentityAnchor)edge.getSourceAnchor();
-					Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
-					if(gmfSourceAnchor != null) {
-						commands.add(new ICommandProxy(getMoveAnchorCommand(moveDelta, figureBounds, gmfSourceAnchor)));
+					Connection msgFigure = message.getConnectionFigure();
+					if(message.getSource() instanceof GateEditPart) {
+						GateEditPart gate = (GateEditPart)message.getSource();
+						Location layout = (Location)((Shape)gate.getNotationView()).getLayoutConstraint();
+						Point location = new Point(layout.getX(), layout.getY());
+						location.y += moveDelta;
+						SetBoundsCommand command = new SetBoundsCommand(getEditingDomain(), "", gate, location);
+						commands.add(new ICommandProxy(command));
+					} else {
+						ConnectionAnchor sourceAnchor = msgFigure.getSourceAnchor();
+						IdentityAnchor gmfSourceAnchor = (IdentityAnchor)edge.getSourceAnchor();
+						Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
+						if(gmfSourceAnchor != null) {
+							commands.add(new ICommandProxy(getMoveAnchorCommand(moveDelta, figureBounds, gmfSourceAnchor)));
+						}
 					}
-					IdentityAnchor gmfTargetAnchor = (IdentityAnchor)edge.getTargetAnchor();
-					figureBounds = targetAnchor.getOwner().getBounds();
-					if(gmfTargetAnchor != null) {
-						commands.add(new ICommandProxy(getMoveAnchorCommand(moveDelta, figureBounds, gmfTargetAnchor)));
+					if(message.getTarget() instanceof GateEditPart) {
+						GateEditPart gate = (GateEditPart)message.getTarget();
+						Location layout = (Location)((Shape)gate.getNotationView()).getLayoutConstraint();
+						Point location = new Point(layout.getX(), layout.getY());
+						location.y += moveDelta;
+						SetBoundsCommand command = new SetBoundsCommand(getEditingDomain(), "", gate, location);
+						commands.add(new ICommandProxy(command));
+					} else {
+						IdentityAnchor gmfTargetAnchor = (IdentityAnchor)edge.getTargetAnchor();
+						ConnectionAnchor targetAnchor = msgFigure.getTargetAnchor();
+						Rectangle figureBounds = targetAnchor.getOwner().getBounds();
+						if(gmfTargetAnchor != null) {
+							commands.add(new ICommandProxy(getMoveAnchorCommand(moveDelta, figureBounds, gmfTargetAnchor)));
+						}
 					}
 				}
 			}

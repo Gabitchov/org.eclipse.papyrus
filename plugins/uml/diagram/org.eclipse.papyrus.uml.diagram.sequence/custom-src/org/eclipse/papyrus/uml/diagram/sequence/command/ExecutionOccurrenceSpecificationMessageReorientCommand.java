@@ -113,9 +113,13 @@ public class ExecutionOccurrenceSpecificationMessageReorientCommand extends Edit
 	}
 
 	protected CommandResult reorientTarget() {
+		//Same target, ignore it.
+		MessageEnd receiveEvent = getLink().getReceiveEvent();
+		if(receiveEvent != null && receiveEvent == getNewTarget()) {
+			return CommandResult.newOKCommandResult();
+		}
 		ExecutionSpecification oldExecution = getExecution(getOldTarget(), false);
 		ExecutionSpecification newExecution = getExecution(getNewTarget(), false);
-		MessageEnd receiveEvent = getLink().getReceiveEvent();
 		ReconnectMessageHelper.updateMessageEnd(receiveEvent, oldExecution, newExecution);
 		ReconnectMessageHelper.updateMessage(getLink());
 		if(oldExecution != null && receiveEvent != null) {
@@ -136,9 +140,13 @@ public class ExecutionOccurrenceSpecificationMessageReorientCommand extends Edit
 	}
 
 	protected CommandResult reorientSource() {
+		MessageEnd sendEvent = getLink().getSendEvent();
+		if(sendEvent != null && sendEvent == getNewTarget()) {
+			return CommandResult.newOKCommandResult();
+		}
 		ExecutionSpecification oldExecution = getExecution(getOldTarget(), false);
 		ExecutionSpecification newExecution = getExecution(getNewTarget(), false);
-		MessageEnd sendEvent = getLink().getSendEvent();
+
 		ReconnectMessageHelper.updateMessageEnd(sendEvent, oldExecution, newExecution);
 		if(oldExecution != null && sendEvent instanceof MessageOccurrenceSpecification) {
 			if(sendEvent == oldExecution.getStart()) {

@@ -887,7 +887,7 @@ public class CommandHelper {
 		//		} else {
 		//			throw new IllegalArgumentException(WRONG_GATE_CONTAINER_TYPE_ERROR_MSG);
 		//		}
-		if(gate != null && gate.getName() != null) {
+		if(gate != null && gate.getName() == null) {
 			ElementInitializers.init_NamedElement(gate, direction.toString().toLowerCase() + "_"); //$NON-NLS-1$
 		}
 		return gate;

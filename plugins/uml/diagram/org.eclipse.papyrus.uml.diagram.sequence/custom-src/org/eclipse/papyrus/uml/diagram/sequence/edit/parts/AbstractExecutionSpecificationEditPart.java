@@ -33,10 +33,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Anchor;
@@ -442,6 +445,17 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 			if(connectionEditPart instanceof MessageEditPart) {
 				// Sync Message
 				return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
+			}
+		}
+		//Fixed bug about computing target anchor when creating message sync.
+		else if(request instanceof CreateConnectionViewRequest) {
+			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest)request;
+			ConnectionViewDescriptor viewDesc = ((CreateConnectionViewRequest)request).getConnectionViewDescriptor();
+			if(((IHintedType)UMLElementTypes.Message_4003).getSemanticHint().equals(viewDesc.getSemanticHint())) {
+				// Sync Message
+				if(!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
+					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
+				}
 			}
 		}
 		return super.getTargetConnectionAnchor(request);

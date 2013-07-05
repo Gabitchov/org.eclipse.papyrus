@@ -135,6 +135,12 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	@Override
+	protected Command createAddCommand(EditPart child, Object constraint) {
+		//Don't supported.
+		return null;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */

@@ -213,6 +213,8 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 				setFeedbackLocation(feedback, rect.getCenter());
 			}
 		});
+		//Remove CREATION_ROLE if there's no custom DRAG_DROP_ROLE and CREATION_ROLE editpolicies, otherwise, CustomizableDropEditPolicy will be added as a defaultCreationEditPolicy in new CustomizableDropEditPolicy. 
+		removeEditPolicy(EditPolicyRoles.CREATION_ROLE);
 	}
 
 	protected IFigure createFigure() {

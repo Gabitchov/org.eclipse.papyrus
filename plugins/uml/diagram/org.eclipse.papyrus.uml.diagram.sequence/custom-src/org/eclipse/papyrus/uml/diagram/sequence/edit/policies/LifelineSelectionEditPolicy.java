@@ -168,10 +168,19 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 			Rectangle other = getLifelineIntersectBounds(lifelineEP, parent, request, c);
 			if(other != null) {
 				if(request.getSizeDelta().width == 0) { // move only
+					//Fixed bug about moving child lifelines, do NOT allow move out now.
 					if(request.getMoveDelta().x > 0) { // move right
-						request.getMoveDelta().x = other.getLeft().x - rect.getRight().x;
+						if((p.right() - other.right()) > 0) {
+							request.getMoveDelta().x = other.getRight().x - rect.getLeft().x;
+						} else {
+							request.getMoveDelta().x = 0;//no margin for moving
+						}
 					} else {
-						request.getMoveDelta().x = other.getRight().x - rect.getLeft().x;
+						if((other.x - p.x) > 0) {
+							request.getMoveDelta().x = other.getLeft().x - rect.getRight().x;
+						} else {
+							request.getMoveDelta().x = 0;//no margin for moving
+						}
 					}
 				} else {
 					if(request.getMoveDelta().x == 0) { // resize right edge

@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateOrSelectElementCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.menus.PopupMenu;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -27,7 +28,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.uml2.uml.InteractionFragment;
 
 public class PromptCreateElementAndNodeCommand extends CreateOrSelectElementCommand {
@@ -68,6 +71,45 @@ public class PromptCreateElementAndNodeCommand extends CreateOrSelectElementComm
 		this.container = container;
 		command = new CompoundCommand();
 		command.add(createCommand);
+
+		//Repair the location of Popup menu.
+		setPopupMenu(new PopupMenu(executionTypes, getLabelProvider()) {
+
+			@Override
+			public boolean show(Control parent) {
+				Menu menu = new Menu(parent);
+				createMenuItems(menu, this, new ArrayList());
+
+				menu.setVisible(true);
+				org.eclipse.swt.graphics.Point loc = getMenuLocation();
+				if(loc != null) {
+					menu.setLocation(loc);
+				}
+				Display display = menu.getDisplay();
+				while(!menu.isDisposed() && menu.isVisible()) {
+					if(!display.readAndDispatch())
+						display.sleep();
+				}
+
+				if(!menu.isDisposed()) {
+					menu.dispose();
+
+					if(getResult() != null) {
+						return true;
+					}
+				}
+				return false;
+			}
+		});
+	}
+
+	protected org.eclipse.swt.graphics.Point getMenuLocation() {
+		if(location == null || sourceEP == null || sourceEP.getViewer() == null) {
+			return null;
+		}
+		Control control = sourceEP.getViewer().getControl();
+		org.eclipse.swt.graphics.Point menuLoc = new org.eclipse.swt.graphics.Point(location.x, location.y);
+		return control.toDisplay(menuLoc);
 	}
 
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {

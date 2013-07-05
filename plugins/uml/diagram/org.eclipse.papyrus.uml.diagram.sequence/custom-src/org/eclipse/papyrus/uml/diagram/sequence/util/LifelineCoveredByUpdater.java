@@ -138,9 +138,14 @@ public class LifelineCoveredByUpdater {
 			int newHeight = bottom - rect.y;
 			if(newHeight > rect.height) {
 				Bounds bounds = (Bounds)((Shape)lifelineEditpart.getModel()).getLayoutConstraint();
-				int heightDelta = newHeight - bounds.getHeight();
+				int height = bounds.getHeight();
+				//Fixed bug when has default height(-1).
+				if(height == -1) {
+					height = lifelineEditpart.getPrimaryShape().getBounds().height;
+				}
+				int heightDelta = newHeight - height;
 				CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, bounds, NotationPackage.Literals.SIZE__HEIGHT, newHeight), true);
-				PreserveAnchorsPositionCommandEx preserveAnchorsCommand = new PreserveAnchorsPositionCommandEx(lifelineEditpart, new Dimension(0, heightDelta), PreserveAnchorsPositionCommandEx.PRESERVE_Y, lifelineEditpart.getBorderedFigure(), PositionConstants.SOUTH);
+				PreserveAnchorsPositionCommandEx preserveAnchorsCommand = new PreserveAnchorsPositionCommandEx(lifelineEditpart, new Dimension(0, heightDelta), PreserveAnchorsPositionCommandEx.PRESERVE_Y, lifelineEditpart.getPrimaryShape(), PositionConstants.SOUTH);
 				if(preserveAnchorsCommand.canExecute()) {
 					CommandHelper.executeCommandWithoutHistory(editingDomain, new GMFtoEMFCommandWrapper(preserveAnchorsCommand), true);
 				}
