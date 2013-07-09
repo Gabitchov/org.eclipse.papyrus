@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
-import org.eclipse.emf.validation.internal.service.GetLiveConstraintsOperation;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration;

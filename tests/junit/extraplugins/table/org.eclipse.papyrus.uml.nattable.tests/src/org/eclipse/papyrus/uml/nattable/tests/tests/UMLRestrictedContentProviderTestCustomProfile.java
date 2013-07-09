@@ -154,7 +154,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 	public void testWithRestriction() {
 		NattableModelManager modelManager = new NattableModelManager(table);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(true);
-		((org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider)columnContentProvider).setIgnoreInheritedElements(true);
+	columnContentProvider.setIgnoreInheritedElements(true);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -217,7 +217,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 	public void testWithoutRestriction() {
 		NattableModelManager modelManager = new NattableModelManager(table);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(false);
-		((org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider)columnContentProvider).setIgnoreInheritedElements(true);
+	columnContentProvider.setIgnoreInheritedElements(true);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -298,7 +298,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 	public void testWithRestrictionWithInheritedProperties() {
 		NattableModelManager modelManager = new NattableModelManager(table);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(true);
-		((org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider)columnContentProvider).setIgnoreInheritedElements(false);
+	columnContentProvider.setIgnoreInheritedElements(false);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -366,7 +366,7 @@ public class UMLRestrictedContentProviderTestCustomProfile {
 	public void testWithoutRestrictionWithInheritedProperties() {
 		NattableModelManager modelManager = new NattableModelManager(table);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(false);
-		((org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider)columnContentProvider).setIgnoreInheritedElements(false);
+	columnContentProvider.setIgnoreInheritedElements(false);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);

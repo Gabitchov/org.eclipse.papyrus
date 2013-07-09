@@ -134,7 +134,7 @@ public class UMLRestrictedContentProviderTest {
 	public void testEmptyTableWithRestriction() {
 		NattableModelManager modelManager = new NattableModelManager(emptyTable1);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(true);
-		((org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider)columnContentProvider).setIgnoreInheritedElements(true);
+		columnContentProvider.setIgnoreInheritedElements(true);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(0, elements.length);
 	}
@@ -147,7 +147,7 @@ public class UMLRestrictedContentProviderTest {
 	public void testEmptyTableWithoutRestriction() {
 		NattableModelManager modelManager = new NattableModelManager(emptyTable1);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(false);
-		((org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider)columnContentProvider).setIgnoreInheritedElements(true);
+		columnContentProvider.setIgnoreInheritedElements(true);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -178,7 +178,7 @@ public class UMLRestrictedContentProviderTest {
 	public void testNotEmptyTableWithRestriction() {
 		NattableModelManager modelManager = new NattableModelManager(notEmptyTable1);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(true);
-		((org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider)columnContentProvider).setIgnoreInheritedElements(true);
+		columnContentProvider.setIgnoreInheritedElements(true);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(1, elements.length);
 		Assert.assertEquals(elements[0], UMLPackage.eINSTANCE);
@@ -191,7 +191,7 @@ public class UMLRestrictedContentProviderTest {
 	public void testNotEmptyTableWithoutProfileWithoutRestriction() {
 		NattableModelManager modelManager = new NattableModelManager(notEmptyTable1);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(false);
-		((org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider)columnContentProvider).setIgnoreInheritedElements(true);
+		columnContentProvider.setIgnoreInheritedElements(true);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -222,7 +222,7 @@ public class UMLRestrictedContentProviderTest {
 	public void testNotEmptyTableWithProfileWithRestriction() {
 		NattableModelManager modelManager = new NattableModelManager(notEmptyTable2);
 		IRestrictedContentProvider columnContentProvider = modelManager.getColumnAxisManager().createPossibleAxisContentProvider(true);
-		((org.eclipse.papyrus.infra.nattable.provider.tmp.IRestrictedContentProvider)columnContentProvider).setIgnoreInheritedElements(true);
+		columnContentProvider.setIgnoreInheritedElements(true);
 		Object[] elements = columnContentProvider.getElements();
 		Assert.assertEquals(2, elements.length);
 		List<?> roots = Arrays.asList(elements);
@@ -246,11 +246,9 @@ public class UMLRestrictedContentProviderTest {
 		Assert.assertEquals(1, columnContentProvider.getChildren(sysmlBlockProfile).length);
 		Assert.assertTrue(columnContentProvider.getChildren(umlPackage).length > 0);
 	}
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
 }

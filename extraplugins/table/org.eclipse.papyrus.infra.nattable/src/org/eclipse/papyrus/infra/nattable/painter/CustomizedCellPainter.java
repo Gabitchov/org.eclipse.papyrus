@@ -12,7 +12,7 @@
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Override of the paintCell() method
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.configuration;
+package org.eclipse.papyrus.infra.nattable.painter;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;

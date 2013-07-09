@@ -18,6 +18,7 @@ import org.eclipse.nebula.widgets.nattable.config.DefaultNatTableStyleConfigurat
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.nattable.converter.GenericDisplayConverter;
 import org.eclipse.papyrus.infra.nattable.formatter.PapyrusExportFormatter;
+import org.eclipse.papyrus.infra.nattable.painter.CustomizedCellPainter;
 
 /**
  * Register a specific Cellpainter

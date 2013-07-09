@@ -19,6 +19,7 @@ import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.BeveledBorderD
 import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.CellPainterDecorator;
 import org.eclipse.nebula.widgets.nattable.ui.util.CellEdgeEnum;
 import org.eclipse.papyrus.infra.nattable.painter.CustomImagePainter;
+import org.eclipse.papyrus.infra.nattable.painter.CustomizedCellPainter;
 
 /**
  * 
