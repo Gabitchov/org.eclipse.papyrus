@@ -121,7 +121,7 @@ public class AnimationUtils {
 		}
 		ResourceSet resourceSet = resource.getResourceSet() ;
 
-		final String  resourceNotationURI = modelElement.eResource().getURI().toString().replaceAll(".uml", ".notation") ;
+		final String  resourceNotationURI = modelElement.eResource().getURI().toString().replaceAll("\\.uml$", ".notation") ;
 		@SuppressWarnings("unused")
 		Resource notationResource = resourceSet.getResource(URI.createURI(resourceNotationURI), true) ;
 		List<EObject> matchingObjects = new ArrayList<EObject>() ;

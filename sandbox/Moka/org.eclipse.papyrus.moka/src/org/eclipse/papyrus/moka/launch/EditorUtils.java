@@ -67,7 +67,7 @@ public class EditorUtils {
 	public static IEditorPart getEditorPart(String resourceURI) {
 		// FIXME this snippet of code is not robust
 		String[] splitted = resourceURI.split("/") ;
-		String resourceName = splitted[splitted.length - 1].replaceAll(".uml", ".di") ;
+		String resourceName = splitted[splitted.length - 1].replaceAll("\\.uml$", ".di") ;
 		IWorkbenchWindow[] windows = PlatformUI.getWorkbench().getWorkbenchWindows() ;
 		IEditorPart part = null ;
 		for (int i = 0 ; i < windows.length && part == null ; i++) {
@@ -121,7 +121,7 @@ public class EditorUtils {
 	 * @return a File Editor Input for the given resource URI string.
 	 */
 	public static FileEditorInput getFileEditorInput(String resourceURI) {
-		Resource newResource = new ResourceSetImpl().createResource(URI.createURI(resourceURI.replaceAll(".uml", ".di"))) ;
+		Resource newResource = new ResourceSetImpl().createResource(URI.createURI(resourceURI.replaceAll("\\.uml$", ".di"))) ;
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IWorkspaceRoot workspaceRoot = workspace.getRoot();
 		IFile modelElementIFile = (IFile) workspaceRoot.findMember(newResource.getURI().toPlatformString(true));
