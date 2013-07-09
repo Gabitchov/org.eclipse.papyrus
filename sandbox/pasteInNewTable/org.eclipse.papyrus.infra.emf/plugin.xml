@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService"
+            description="Service used to initialize association between ResourceSet and ServiceRegistry"
+            id="org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
+         </dependsOn>
+      </service>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="100"
+            provider="org.eclipse.papyrus.infra.emf.providers.EMFFilteredLabelProvider">
+      </labelProvider>
+      <labelProvider
+            priority="50"
+            provider="org.eclipse.papyrus.infra.emf.providers.AnyTypeLabelProvider">
+      </labelProvider>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <adviceBinding
+               class="org.eclipse.papyrus.infra.emf.advice.DeletePageAdvice"
+               id="org.eclipse.papyrus.infra.emf.deletePageAdvice"
+               inheritance="none"
+               typeId="*">
+         </adviceBinding>
+         <metamodelType
+               eclass="EObject"
+               edithelper="org.eclipse.papyrus.infra.emf.advice.DeletePageEditHelper"
+               id="org.eclipse.papyrus.infra.emf.page">
+         </metamodelType>
+      </metamodel>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <binding
+            context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+         <elementType
+               ref="org.eclipse.papyrus.infra.emf.page">
+         </elementType>
+      </binding>
+      <binding
+            context="org.eclipse.gmf.runtime.emf.type.core.defaultContext">
+         <elementType
+               ref="org.eclipse.papyrus.infra.emf.deletePageAdvice">
+         </elementType>
+      </binding>
+   </extension>
+
+</plugin>

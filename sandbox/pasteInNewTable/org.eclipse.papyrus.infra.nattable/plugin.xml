@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.eclipse.papyrus.infra.nattable.axismanager" name="Axis Manager" schema="schema/org.eclipse.papyrus.infra.nattable.axismanager.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.nattable.cellmanager" name="Cell Manager" schema="schema/org.eclipse.papyrus.infra.nattable.cellmanager.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.nattable.celleditor.configuration" name="CellEditorConfiguration" schema="schema/org.eclipse.papyrus.infra.nattable.celleditor.configuration.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.nattable.configuration" name="Nattable Configuration" schema="schema/org.eclipse.papyrus.infra.nattable.configuration.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.nattable.tester" name="Table Tester" schema="schema/org.eclipse.papyrus.infra.nattable.tester.exsd"/>
+ <extension
+       point="org.eclipse.ui.menus">
+    <menuContribution
+          allPopups="true"
+          locationURI="popup:org.eclipse.ui.popup.any">
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.invert.axis"
+             style="toggle">
+          <visibleWhen>
+             <and>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                         value="true">
+                   </test>
+                </with>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.canInvertAxis"
+                         value="true">
+                   </test>
+                </with>
+             </and>
+          </visibleWhen>
+       </command>
+       <command
+             commandId="org.eclipse.ui.file.print"
+             label="Print Table"
+             mnemonic="&amp;P"
+             style="push">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+       </command>
+       <command
+             commandId="org.eclipse.ui.edit.selectAll"
+             style="push">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+       </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
+             style="push">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+       </command>
+       <menu
+             icon="icons/tableColumnAction.gif"
+             label="Columns">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.createdestroycolumns"
+                label="Create/Destroy columns"
+                style="push"
+                tooltip="Open a dialog to choose the visible columns">
+             <visibleWhen
+                   checkEnabled="true">
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
+                icon="icons/sort_columns_by_name_A_to_Z.gif"
+                label="Sort Columns (A-&gt;Z)"
+                style="push">
+             <parameter
+                   name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                   value="true">
+             </parameter>
+             <visibleWhen>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                         value="true">
+                   </test>
+                </with>
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
+                icon="icons/sort_columns_by_name_Z_to_A.gif"
+                label="Sort Columns (Z-&gt;A)"
+                style="push">
+             <parameter
+                   name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                   value="false">
+             </parameter>
+             <visibleWhen>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                         value="true">
+                   </test>
+                </with>
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.column.display.index"
+                style="toggle">
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.column.display.label"
+                style="toggle">
+          </command>
+          <menu
+                icon="icons/columnIndex.png"
+                label="Index Style">
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.index.style"
+                   label="Alphabetical"
+                   style="radio">
+                <parameter
+                      name="org.eclipse.ui.commands.radioStateParameter"
+                      value="ALPHABETIC">
+                </parameter>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.index.style"
+                   label="Numerical"
+                   style="radio">
+                <parameter
+                      name="org.eclipse.ui.commands.radioStateParameter"
+                      value="NUMERIC">
+                </parameter>
+             </command>
+          </menu>
+          <menu
+                icon="icons/label.png"
+                label="Label Style">
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.label.display.icon"
+                   label="Display Icon"
+                   style="toggle">
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.label.feature.display.isderived"
+                   label="Display IsDerived"
+                   style="toggle">
+                <visibleWhen>
+                   <with
+                         variable="selection">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureColumnHeaderConfiguration"
+                            value="true">
+                      </test>
+                   </with>
+                </visibleWhen>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.label.feature.display.name"
+                   label="Display Name"
+                   style="toggle">
+                <visibleWhen>
+                   <with
+                         variable="selection">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureColumnHeaderConfiguration"
+                            value="true">
+                      </test>
+                   </with>
+                </visibleWhen>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.label.feature.display.type"
+                   label="Display Type"
+                   style="toggle">
+                <visibleWhen>
+                   <with
+                         variable="selection">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureColumnHeaderConfiguration"
+                            value="true">
+                      </test>
+                   </with>
+                </visibleWhen>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.label.feature.display.multiplicity"
+                   label="Display Multiplicity"
+                   style="toggle">
+                <visibleWhen>
+                   <with
+                         variable="selection">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureColumnHeaderConfiguration"
+                            value="true">
+                      </test>
+                   </with>
+                </visibleWhen>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.label.display.label"
+                   label="Display Label"
+                   style="toggle">
+             </command>
+          </menu>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.column.disconnect.slave"
+                style="toggle">
+             <visibleWhen>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.hasSlaveRowAxisProvider"
+                         value="true">
+                   </test>
+                </with>
+             </visibleWhen>
+          </command>
+       </menu>
+      
+       <menu
+             icon="icons/tableRowAction.gif"
+             label="Rows">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.createdestroyrows"
+                label="Create/Destroy rows"
+                style="push"
+                tooltip="Open a dialog to choose the visible rows">
+             <visibleWhen
+                   checkEnabled="true">
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
+                icon="icons/sort_columns_by_name_A_to_Z.gif"
+                label="Sort Rows (A-&gt;Z)"
+                style="push">
+             <parameter
+                   name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                   value="true">
+             </parameter>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
+                icon="icons/sort_columns_by_name_Z_to_A.gif"
+                label="Sort Rows (Z-&gt;A)"
+                style="push">
+             <parameter
+                   name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                   value="false">
+             </parameter>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.row.display.index"
+                style="toggle">
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.row.display.label"
+                style="toggle">
+          </command>
+          <menu
+                icon="icons/rowIndex.png"
+                label="Index Style">
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.index.style"
+                   label="Alphabetical"
+                   style="radio">
+                <parameter
+                      name="org.eclipse.ui.commands.radioStateParameter"
+                      value="ALPHABETIC">
+                </parameter>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.index.style"
+                   label="Numerical"
+                   style="radio">
+                <parameter
+                      name="org.eclipse.ui.commands.radioStateParameter"
+                      value="NUMERIC">
+                </parameter>
+             </command>
+          </menu>
+          <menu
+                icon="icons/label.png"
+                label="Label Style">
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.label.display.icon"
+                   label="Display Icon"
+                   style="toggle">
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.label.feature.display.isderived"
+                   label="Display IsDerived"
+                   style="toggle">
+                <visibleWhen>
+                   <with
+                         variable="selection">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureRowHeaderConfiguration"
+                            value="true">
+                      </test>
+                   </with>
+                </visibleWhen>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.label.feature.display.name"
+                   label="Display Name"
+                   style="toggle">
+                <visibleWhen>
+                   <with
+                         variable="selection">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureRowHeaderConfiguration"
+                            value="true">
+                      </test>
+                   </with>
+                </visibleWhen>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.label.feature.display.type"
+                   label="Display Type"
+                   style="toggle">
+                <visibleWhen>
+                   <with
+                         variable="selection">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureRowHeaderConfiguration"
+                            value="true">
+                      </test>
+                   </with>
+                </visibleWhen>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.label.feature.display.multiplicity"
+                   label="Display Multiplicity"
+                   style="toggle">
+                <visibleWhen>
+                   <with
+                         variable="selection">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.eclipse.papyrus.infra.nattable.tester.hasFeatureRowHeaderConfiguration"
+                            value="true">
+                      </test>
+                   </with>
+                </visibleWhen>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.label.display.label"
+                   label="Display Label"
+                   style="toggle">
+             </command>
+          </menu>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.row.disconnect.slave"
+                style="toggle">
+             <visibleWhen
+                   checkEnabled="true">
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.hasSlaveColumnAxisProvider"
+                         value="true">
+                   </test>
+                </with>
+             </visibleWhen>
+          </command>
+       </menu> 
+    </menuContribution>
+  </extension>
+   <extension
+       point="org.eclipse.ui.handlers">
+    <handler
+          class="org.eclipse.papyrus.infra.nattable.handler.PrintTableHandler"
+          commandId="org.eclipse.ui.file.print">
+       <activeWhen>
+          <and>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>
+    <handler
+          class="org.eclipse.papyrus.infra.nattable.handler.SelectAllHandler"
+          commandId="org.eclipse.ui.edit.selectAll">
+       <activeWhen>
+          <and>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>
+    <handler
+          class="org.eclipse.papyrus.infra.nattable.handler.ExportToXLSHandler"
+          commandId="org.eclipse.papyrus.infra.nattable.exporttoXLScommand">
+       <activeWhen>
+          <and>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>
+          <handler
+          class="org.eclipse.papyrus.infra.nattable.copy.CopySelectionToClipboardAction"
+          commandId="org.eclipse.ui.edit.copy">
+       <activeWhen>
+          <and>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>
+ </extension>
+ <extension
+       point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+          class="org.eclipse.papyrus.infra.nattable.utils.NattableWidgetPropertyTester"
+          id="org.eclipse.papyrus.infra.nattable.tester"
+          namespace="org.eclipse.papyrus.infra.nattable.tester"
+          properties="isNattableWidget, hasFeatureRowHeaderConfiguration, hasFeatureColumnHeaderConfiguration, hasSlaveRowAxisProvider, hasSlaveColumnAxisProvider, canInvertAxis"
+          type="org.eclipse.jface.viewers.IStructuredSelection">
+    </propertyTester>
+ </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+    <context
+          description="Context for the headers of the table"
+          id="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+    </context>
+    <context
+          description="Context for feature in the header of the axis"
+          id="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider">
+    </context>
+    <context
+          description="Context for the body of the table"
+          id="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+    </context>
+    <context
+          description="the context to use to find the label provider used to display values in cells and headers"
+          id="org.eclipse.papyrus.infra.nattable.full.labelprovider">
+    </context>
+    <labelProvider
+          priority="2000"
+          provider="org.eclipse.papyrus.infra.nattable.provider.NattableTopLabelProvider">
+       <labelProviderContext
+             context="org.eclipse.papyrus.infra.nattable.full.labelprovider">
+       </labelProviderContext>
+    </labelProvider>
+    <labelProvider
+          priority="1600"
+          provider="org.eclipse.papyrus.infra.nattable.provider.IndexHeaderLabelProvider">
+       <labelProviderContext
+             context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+       </labelProviderContext>
+       <labelProviderContext
+             context="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider">
+       </labelProviderContext>
+    </labelProvider>
+     <labelProvider
+            priority="1950"
+            provider="org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
+ </extension>
+ 
+ <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+
+	<!-- Generalizarion specific advices (remove inconsistent views when a Generalization is deleted -->		
+	<adviceBinding id="org.eclipse.papyrus.infra.nattable.common.helper.advice.TableContentsAdviceHelper"
+		class="org.eclipse.papyrus.infra.nattable.helper.advice.TableContentsAdviceHelper"
+		inheritance="all" typeId="*">
+	</adviceBinding>
+		
+	</metamodel>
+</extension>
+	
+<!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration to shared IClientContext -->
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
+		<elementType ref="org.eclipse.papyrus.infra.nattable.common.helper.advice.TableContentsAdviceHelper"/>
+	</binding>
+		
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <category
+         description="This cateogy can be used for all Papyrus Nattable Widget commands"
+         id="org.eclipse.papyrus.infra.nattable.category"
+         name="Papyrus Nattable Widget Category">
+   </category>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Export Table to XLS"
+         id="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
+         name="Export Table to XLS Command">
+   </command>
+
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SelectColumnsHandler"
+         description="Open a dialog to select the columns to display"
+         id="org.eclipse.papyrus.infra.nattable.createdestroycolumns"
+         name="Select the columns to Show">
+      </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SelectRowsHandler"
+         description="Open a dialog to select the rows to display"
+         id="org.eclipse.papyrus.infra.nattable.createdestroyrows"
+         name="Select the rows to Show">
+   </command>
+
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SortColumnsHandler"
+         id="org.eclipse.papyrus.infra.nattable.sort.columns.command"
+         name="Sort Columns Command">
+      <commandParameter
+            id="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+            name="alphabetic_order"
+            optional="false">
+      </commandParameter>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SortRowsHandler"
+         id="org.eclipse.papyrus.infra.nattable.sort.rows.command"
+         name="Sort Rows Command">
+      <commandParameter
+            id="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+            name="alphabetic_order"
+            optional="false">
+      </commandParameter>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayIndexHeaderHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.display.index"
+         name="Display Column Index">
+       <state
+         class="org.eclipse.ui.handlers.RegistryToggleState:true"
+         id="org.eclipse.ui.commands.toggleState">
+   </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayLabelHeaderHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.display.label"
+         name="Display Column Label">
+           <state
+         class="org.eclipse.ui.handlers.RegistryToggleState:true"
+         id="org.eclipse.ui.commands.toggleState">
+   </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ChangeIndexColumnStyleHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.index.style"
+         name="Change Column Index Style">
+           <commandParameter
+         id="org.eclipse.ui.commands.radioStateParameter"
+         name="ColumnHeaderParameter"
+         optional="false">
+   </commandParameter>
+   <state
+         class="org.eclipse.ui.handlers.RadioState:Alphabetic"
+         id="org.eclipse.ui.commands.radioState">
+   </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayIndexHeaderHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.display.index"
+         name="Display Row Index">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayLabelHeaderHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.display.label"
+         name="Display Row Label">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ChangeIndexRowStyleHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.index.style"
+         name="Change Row Index Style">
+      <commandParameter
+            id="org.eclipse.ui.commands.radioStateParameter"
+            name="ColumnHeaderParameter"
+            optional="false">
+      </commandParameter>
+      <state
+            class="org.eclipse.ui.handlers.RadioState:Alphabetic"
+            id="org.eclipse.ui.commands.radioState">
+      </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowMasterDisconnectColumnSlaveHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.disconnect.slave"
+         name="Disconnect Column Axis">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnMasterDisconnectRowSlaveHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.disconnect.slave"
+         name="Disconnect Rows Axis">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.InvertAxisHandler"
+         description="This command allows to invert rows and columns"
+         id="org.eclipse.papyrus.infra.nattable.invert.axis"
+         name="Invert Axis">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayLabelImageHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.label.display.icon"
+         name="Display Row Label Icon">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayLabeTextHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.label.display.label"
+         name="Display Row Label">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayLabelFeatureIsDerivedHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.label.feature.display.isderived"
+         name="Display Row Label Feature IsDerived">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayLabelFeatureTypeHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.label.feature.display.type"
+         name="Display Row Label Feature Type">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayLabelFeatureMultiplicityHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.label.feature.display.multiplicity"
+         name="Display Row Label Feature Multiplicity">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayLabelFeatureNameHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.label.feature.display.name"
+         name="Display Row Label Feature Name">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayLabelImageHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.label.display.icon"
+         name="Display Column Labe Icon">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayLabelFeatureIsDerivedHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.label.feature.display.isderived"
+         name="Display Column Label Feature IsDerived">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayLabelTextHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.label.display.label"
+         name="Display Column Label">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayLabelFeatureMultiplicityHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.label.feature.display.multiplicity"
+         name="Display Column Label Feature Multiplicity">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayLabelFeatureTypeHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.label.feature.display.type"
+         name="Display Column Label Feature Type">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.nattable.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayLabelFeatureNameHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.label.feature.display.name"
+         name="Display Column Label Feature Name">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+   <labelProvider
+         priority="10"
+         provider="org.eclipse.papyrus.infra.nattable.provider.TableLabelProvider">
+   </labelProvider>
+</extension>
+  <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/papyrus/nattable/model">
+         <adviceBinding
+               class="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableContextAdvice"
+               id="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableAdvice"
+               inheritance="all"
+               typeId="*">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <binding
+            context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+         <elementType
+               ref="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableAdvice">
+         </elementType>
+      </binding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.createdestroycolumns"
+            icon="icons/CreateDestroyColumn.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.createdestroyrows"
+            icon="icons/CreateDestroyRow.gif">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="This category is used for all rows commands"
+            id="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            name="NatTable Rows Catgerory">
+      </category>
+      <category
+            description="This category is used for all columns Commands"
+            id="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            name="NatTable Columns Category">
+      </category>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnEditAliasHeaderHandler"
+            description="Allows to Edit the name of the column header"
+            id="org.eclipse.papyrus.infra.nattable.edit.column.header"
+            name="Rename Header">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowEditAliasHeaderHandler"
+            description="Allows to Edit the name of the row header"
+            id="org.eclipse.papyrus.infra.nattable.edit.row.header"
+            name="Rename Header">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDestroyAxisHandler"
+            id="org.eclipse.papyrus.infra.nattable.destroy.row"
+            name="Destroy Row">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDestroyAxisElementHandler"
+            id="org.eclipse.papyrus.infra.nattable.destroy.row.element"
+            name="Destroy Row Element">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDestroyAxisHandler"
+            id="org.eclipse.papyrus.infra.nattable.destroy.column"
+            name="Destroy Column">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDestroyAxisElementHandler"
+            id="org.eclipse.papyrus.infra.nattable.destroy.column.element"
+            name="Destroy Column Element">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowAutoResizeHandler"
+            id="org.eclipse.papyrus.infra.nattable.autoresize.rows"
+            name="AutoResize Row">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnAutoResizeHandler"
+            id="org.eclipse.papyrus.infra.nattable.autoresize.columns"
+            name="AutoResize Column">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.edit.column.header"
+            icon="icons/rename.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.edit.row.header"
+            icon="icons/rename.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.destroy.column.element"
+            icon="icons/delete_obj.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.destroy.row.element"
+            icon="icons/delete_obj.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.destroy.row"
+            icon="icons/remove_row.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.destroy.column"
+            icon="icons/remove_column.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.autoresize.columns"
+            icon="icons/auto_resize_column.png">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.autoresize.rows"
+            icon="icons/auto_resize_row.png">
+      </image>
+   </extension>
+</plugin>
+

@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;bundle-version="2.7.0",
+ org.eclipse.emf.edit;bundle-version="2.7.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
+ org.eclipse.emf.edit.ui;bundle-version="2.8.0",
+ org.eclipse.core.databinding;bundle-version="1.4.1",
+ org.eclipse.core.databinding.property;bundle-version="1.4.0",
+ org.eclipse.emf.databinding;bundle-version="1.2.0",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
+ org.eclipse.emf.facet.infra.facet;bundle-version="0.2.0",
+ org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.2.0",
+ org.eclipse.emf.facet.infra.facet.core;bundle-version="0.2.0",
+ org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.2.0",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.10.1",
+ org.eclipse.emf.transaction;bundle-version="1.4.0",
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.facet.custom.metamodel;bundle-version="0.2.0",
+ org.eclipse.emf.facet.custom.ui;bundle-version="0.2.0",
+ org.eclipse.emf.facet.util.emf.core,
+ com.ibm.icu;bundle-version="4.4.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
+ org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
+ org.eclipse.core.expressions;bundle-version="3.4.400",
+ org.eclipse.gmf.runtime.common.core;bundle-version="1.7.0",
+ org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
+ com.google.guava;bundle-version="10.0.1"
+Export-Package: org.eclipse.papyrus.infra.emf,
+ org.eclipse.papyrus.infra.emf.commands,
+ org.eclipse.papyrus.infra.emf.databinding,
+ org.eclipse.papyrus.infra.emf.dialog,
+ org.eclipse.papyrus.infra.emf.providers,
+ org.eclipse.papyrus.infra.emf.providers.strategy,
+ org.eclipse.papyrus.infra.emf.utils
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.1.qualifier
+Bundle-Name: EMF Tools (Incubation)
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.emf.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.emf;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+
