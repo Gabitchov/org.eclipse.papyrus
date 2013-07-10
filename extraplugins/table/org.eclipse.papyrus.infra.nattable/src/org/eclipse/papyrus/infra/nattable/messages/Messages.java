@@ -19,6 +19,8 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.nattable.messages.messages"; //$NON-NLS-1$
 
+	public static String CellManagerFactory_CellManagerNotFound;
+
 	public static String CompositeAxisManager_DestroyAxisCommand;
 
 	public static String AbstractAxisManager_InputDialogMessage;

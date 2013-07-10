@@ -17,85 +17,158 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.nattable.messages.Messages;
 import org.eclipse.papyrus.uml.nattable.utils.Constants;
-import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
+import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
-//FIXME : move this class to remove UML dependency
-public class StereotypePropertyCellManager implements ICellManager {
+/**
+ * The cell manager used for Property of stereotypes
+ * 
+ * @author vl222926
+ * 
+ */
+public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
-	//FIXME : remove me!
-	public static final String STEREOTYPE_PREFIX = "property_of_stereotype:/";
+	/**
+	 * the error message
+	 */
+	public static final String SEVERAL_STEREOTYPES_WITH_THIS_FEATURE_ARE_APPLIED = Messages.StereotypePropertyCellManager_SeveralStereotypesWithThisFeatureAreApplied;
 
-	public boolean handles(final Object obj1, final Object obj2) {
-		return organizeObject(obj1, obj2).size() == 2;
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.manager.cell.UMLFeatureCellManager#handles(java.lang.Object, java.lang.Object)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @return
+	 */
+	@Override
+	public boolean handles(final Object columnElement, final Object rowElement) {
+		return organizeAndResolvedObjects(columnElement, rowElement) != null;
 	}
 
-	public Object getValue(final Object obj1, final Object obj2) {
-		final List<Object> elements = organizeObject(obj1, obj2);
-		final Object el = elements.get(0);
-		if(el instanceof Element) {
-			String propertyQualifiedName = (String)elements.get(1);
-			propertyQualifiedName = propertyQualifiedName.substring(Constants.PROPERTY_OF_STEREOTYPE_PREFIX.length(), propertyQualifiedName.length());
-			final String stereotypeQN = NamedElementUtil.getParentQualifiedName(propertyQualifiedName);
-			final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQualifiedName);
-			final Stereotype ste = ((Element)el).getAppliedStereotype(stereotypeQN);
-
-			//FIXME : case where the property comes from a super class not managed
-			//FIXME : case a stereotype and a super stereotype with the same property is applied not managed
-			if(ste != null) {
-				return ((Element)el).getValue(ste, propertyName);
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getValue(java.lang.Object, java.lang.Object,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
+	 * @return
+	 */
+	@Override
+	public Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement);
+		if(umlObjects.size() == 2) {
+			final Element el = (Element)umlObjects.get(0);
+			final String id = (String)umlObjects.get(1);
+			final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
+			final List<Stereotype> stereotypesWithThisProperty = UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id);
+			if(stereotypesWithThisProperty.size() == 1) {
+				return el.getValue(stereotypesWithThisProperty.get(0), prop.getName());
+			} else if(stereotypesWithThisProperty.size() > 1) {
+				return SEVERAL_STEREOTYPES_WITH_THIS_FEATURE_ARE_APPLIED;
 			}
-
 		}
 		return NOT_AVALAIBLE;
 	}
 
 	/**
 	 * 
-	 * @param obj1
-	 * @param obj2
+	 * @param columnElement
+	 * @param rowElement
 	 * @return
+	 *         a list with 2 elements : the first one is the Element and the second one the string representing the property of stereotypes
 	 */
-	protected List<Object> organizeObject(final Object obj1, final Object obj2) {
-		final List<Object> objects = new ArrayList<Object>();
-		if(obj1 instanceof String && ((String)obj1).startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX)) {
-			objects.add(obj2);
-			objects.add(obj1);
-		} else if(obj2 instanceof String && ((String)obj2).startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX)) {
-			objects.add(obj1);
-			objects.add(obj2);
+	@Override
+	protected List<Object> organizeAndResolvedObjects(final Object columnElement, final Object rowElement) {
+		List<Object> objects = null;
+		final Object column = AxisUtils.getRepresentedElement(columnElement);
+		final Object row = AxisUtils.getRepresentedElement(rowElement);
+		if(column instanceof String && ((String)column).startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX) && row instanceof Element) {
+			objects = new ArrayList<Object>();
+			objects.add(row);
+			objects.add(column);
+		}
+		if(row instanceof String && ((String)row).startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX) && column instanceof Element) {
+			objects = new ArrayList<Object>();
+			objects.add(column);
+			objects.add(row);
 		}
 		return objects;
 	}
 
-	public void setValue(EditingDomain domain, Object rowElement, Object lineElement, Object newValue) {
-		// TODO Auto-generated method stub
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.manager.cell.UMLFeatureCellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @return
+	 */
+	@Override
+	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement);
+		final Element el = (Element)umlObjects.get(0);
+		final String id = (String)umlObjects.get(1);
+		switch(UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id).size()) {
+		case 1:
+			final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
+			return !prop.isDerived() && !prop.isReadOnly();
+		default:
+			return false;
+		}
 
 	}
 
-	public boolean isCellEditable(Object obj1, Object obj2) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	public Command getSetValueCommand(EditingDomain domain, Object rowElement, Object lineElement, Object newValue) {
-		// TODO Auto-generated method stub
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getSetValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      java.lang.Object, java.lang.Object, java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 * 
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param newValue
+	 * @param tableManager
+	 * @return
+	 */
+	@Override
+	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement);
+		final Element el = (Element)umlObjects.get(0);
+		final String id = (String)umlObjects.get(1);
+		final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
+		final List<Stereotype> stereotypes = UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id);
+		if(prop != null) {
+			if(stereotypes.size() == 1) {
+				final EObject stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
+				final EStructuralFeature steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
+				final AbstractEditCommandRequest request = new SetRequest(domain, stereotypeApplication, steApFeature, newValue);
+				final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(stereotypeApplication);
+				final ICommand editCommand = provider.getEditCommand(request);
+				return new GMFtoEMFCommandWrapper(editCommand);
+			} else {
+				//FIXME : not yet managed
+			}
+		}
 		return null;
 	}
 
-	public ICellEditor getCellEditor(Table table, Object obj1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean handlesAxisElement(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

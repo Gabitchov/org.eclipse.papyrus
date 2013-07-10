@@ -14,7 +14,8 @@
 package org.eclipse.papyrus.infra.nattable.manager.cell;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
  * The abstract class for the cell manager
@@ -24,21 +25,80 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  */
 public abstract class AbstractCellManager implements ICellManager {
 
+
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setValue(org.eclipse.emf.edit.domain.EditingDomain, java.lang.Object,
-	 *      java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @return
+	 */
+	@Override
+	public boolean handles(Object columnElement, Object rowElement) {
+		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object, INattableModelManager)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
+	 * @return
+	 */
+	@Override
+	public Object getValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setValue(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      java.lang.Object, java.lang.Object, java.lang.Object, INattableModelManager)
 	 * 
 	 * @param domain
-	 * @param obj1
-	 * @param obj2
+	 * @param columnElement
+	 * @param rowElement
 	 * @param newValue
+	 * @param tableManager
 	 */
-	public void setValue(EditingDomain domain, Object obj1, Object obj2, Object newValue) {
-		final Command cmd = getSetValueCommand(domain, obj1, obj2, newValue);
+	@Override
+	public void setValue(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
+		final Command cmd = getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
 		assert cmd != null;
 		domain.getCommandStack().execute(cmd);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * 
+	 * @param obj1
+	 * @param obj2
+	 * @return
+	 */
+	@Override
+	public boolean isCellEditable(Object obj1, Object obj2) {
+		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      java.lang.Object, java.lang.Object, java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 * 
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param newValue
+	 * @param tableManager
+	 * @return
+	 */
+	@Override
+	public Command getSetValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, Object newValue, INattableModelManager tableManager) {
+		return null;
+	}
 
 }

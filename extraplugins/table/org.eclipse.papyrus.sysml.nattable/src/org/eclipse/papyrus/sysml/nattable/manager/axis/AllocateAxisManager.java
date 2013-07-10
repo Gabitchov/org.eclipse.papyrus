@@ -34,10 +34,11 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.AllocateMatcher;
 import org.eclipse.uml2.uml.UMLPackage;
+
 //FIXME : must extends AbstractUMLSynchronizedOnFeatureAxisManager
 public class AllocateAxisManager extends AbstractSynchronizedOnFeatureAxisManager {//FIXME must inherits from EObjectAxisManager when the listen feature is typed by an EObejct...
 
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()

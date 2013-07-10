@@ -277,7 +277,7 @@ public class LabelConfigurationManagementUtils {
 		}
 		return conf;
 	}
-	
+
 	/**
 	 * 
 	 * @param table

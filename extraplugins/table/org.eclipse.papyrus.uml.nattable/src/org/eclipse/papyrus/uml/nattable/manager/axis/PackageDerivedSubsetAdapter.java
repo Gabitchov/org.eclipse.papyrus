@@ -19,14 +19,13 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLDerivedUnionAdapter;
 
 /**
- * @see for generation see {@link PapyrusUMLDerivedSubsetAdapter}
- * This adapter allows to receive notifications for changes on feature :
- * *
- * <ul>
- * <li>UMLPackage.Literals.PACKAGE__NESTED_PACKAGE</li>
- * <li>UMLPackage.Literals.PACKAGE__OWNED_STEREOTYPE</li>
- * <li>UMLPackage.Literals.PACKAGE__OWNED_TYPE</li>
- * </ul>
+ * @see for generation see {@link PapyrusUMLDerivedSubsetAdapter} This adapter allows to receive notifications for changes on feature :
+ *      *
+ *      <ul>
+ *      <li>UMLPackage.Literals.PACKAGE__NESTED_PACKAGE</li>
+ *      <li>UMLPackage.Literals.PACKAGE__OWNED_STEREOTYPE</li>
+ *      <li>UMLPackage.Literals.PACKAGE__OWNED_TYPE</li>
+ *      </ul>
  * 
  * @author vl222926
  * 

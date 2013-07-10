@@ -27,10 +27,6 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
-import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 
 /**
@@ -45,20 +41,6 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	 */
 	private PageList pageList;
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
-	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation,
-	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider)
-	 * 
-	 * @param manager
-	 * @param rep
-	 * @param provider
-	 */
-	@Override
-	public void init(INattableModelManager manager, AxisManagerRepresentation rep, AbstractAxisProvider provider) {
-		super.init(manager, rep, provider);
-	}
 
 	/**
 	 * 
@@ -105,7 +87,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	 *         <code>true</code> if the page is referenced by a child of the context of the table or by the context itself
 	 */
 	private boolean mustBeDisplayedInThisTable(final Object page) {
-		final Object value = CellManagerFactory.INSTANCE.getCrossValue(page, Utils.NATTABLE_EDITOR_PAGE_ID + Utils.VIEW_CONTEXT);
+		final Object value = Utils.getEditorContext(page);
 		if(value instanceof EObject) {
 			final EObject tableContext = getTableContext();
 			EObject container = (EObject)value;

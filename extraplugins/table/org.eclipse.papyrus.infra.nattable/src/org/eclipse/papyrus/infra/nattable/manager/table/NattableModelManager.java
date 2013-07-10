@@ -500,15 +500,33 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *         rowIndex
 	 */
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
+		final Object row;
+		final Object column;
 		final Object obj1 = this.verticalElements.get(columnIndex);
 		final Object obj2 = this.horizontalElements.get(rowIndex);
-		return CellManagerFactory.INSTANCE.getCrossValue(obj1, obj2);
+		if(getTable().isInvertAxis()) {
+			column = obj2;
+			row = obj1;
+		} else {
+			row = obj2;
+			column = obj1;
+		}
+		return CellManagerFactory.INSTANCE.getCrossValue(column, row, this);
 	}
 
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
+		final Object row;
+		final Object column;
 		final Object obj1 = this.verticalElements.get(columnIndex);
 		final Object obj2 = this.horizontalElements.get(rowIndex);
-		CellManagerFactory.INSTANCE.setCellValue(getContextEditingDomain(), obj1, obj2, newValue);
+		if(getTable().isInvertAxis()) {
+			column = obj2;
+			row = obj1;
+		} else {
+			row = obj2;
+			column = obj1;
+		}
+		CellManagerFactory.INSTANCE.setCellValue((TransactionalEditingDomain)getContextEditingDomain(), column, row, newValue, this);
 	}
 
 	/**

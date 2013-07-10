@@ -159,6 +159,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param site
 	 * @return
 	 */
+	@Override
 	public NatTable createNattable(final Composite parent, final int style, final IWorkbenchPartSite site) {
 		this.bodyDataProvider = new BodyDataProvider(this);
 		this.bodyLayerStack = new BodyLayerStack(this.bodyDataProvider, this);
@@ -194,21 +195,32 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.natTable.addConfiguration(new IConfiguration() {
 
 
-			public void configureUiBindings(UiBindingRegistry uiBindingRegistry) {
+			@Override
+			public void configureUiBindings(final UiBindingRegistry uiBindingRegistry) {
 				// TODO Auto-generated method stub
 
 			}
 
 
-			public void configureRegistry(IConfigRegistry configRegistry) {
+			@Override
+			public void configureRegistry(final IConfigRegistry configRegistry) {
 				configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITABLE_RULE, new EditableRule() {
 
 					@Override
-					public boolean isEditable(int columnIndex, int rowIndex) {
+					public boolean isEditable(final int columnIndex, final int rowIndex) {
+						final Object row;
+						final Object column;
+						final Object rowElement = AbstractNattableWidgetManager.this.rowHeaderDataProvider.getDataValue(1, rowIndex);
+						final Object columnElement = AbstractNattableWidgetManager.this.columnHeaderDataProvider.getDataValue(columnIndex, 1);
+						if(AbstractNattableWidgetManager.this.table.isInvertAxis()) {
+							row = columnElement;
+							column = rowElement;
+						} else {
+							row = rowElement;
+							column = columnElement;
+						}
 
-						final Object obj1 = AbstractNattableWidgetManager.this.rowHeaderDataProvider.getDataValue(1, rowIndex);
-						final Object obj2 = AbstractNattableWidgetManager.this.columnHeaderDataProvider.getDataValue(columnIndex, 1);
-						return CellManagerFactory.INSTANCE.isCellEditable(obj1, obj2);
+						return CellManagerFactory.INSTANCE.isCellEditable(column, row);
 					}
 				});
 
@@ -217,7 +229,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			}
 
 
-			public void configureLayer(ILayer layer) {
+			@Override
+			public void configureLayer(final ILayer layer) {
 				// TODO Auto-generated method stub
 
 			}
@@ -321,6 +334,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		columnReorderLayer.addLayerListener(new ILayerListener() {
 
 
+			@Override
 			public void handleLayerEvent(final ILayerEvent event) {
 				if(event instanceof ColumnReorderEvent) {
 					ColumnReorderEvent columnReorderEvent = (ColumnReorderEvent)event;
@@ -359,6 +373,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *         elements, the cell, the point and its translation).
 	 *         Some of these values can be <code>null</code> or not depending of the region of the table
 	 */
+	@Override
 	public LocationValue getLocationInTheTable(final Point absolutePoint) {
 		final Point widgetPoint = this.natTable.toControl(absolutePoint.x, absolutePoint.y);
 		TableGridRegion kind = TableGridRegion.UNKNOWN;
@@ -406,6 +421,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#print()
 	 * 
 	 */
+	@Override
 	public void print() {
 		this.natTable.doCommand(new TurnViewportOffCommand());
 		this.natTable.doCommand(new PrintCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
@@ -417,6 +433,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#selectAll()
 	 * 
 	 */
+	@Override
 	public void selectAll() {
 		this.natTable.doCommand(new SelectAllCommand());
 	}
@@ -426,6 +443,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#exportToXLS()
 	 * 
 	 */
+	@Override
 	public void exportToXLS() {
 		this.natTable.doCommand(new ExportCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
 	}
@@ -440,10 +458,12 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 
 	 * @return
 	 */
+	@Override
 	public BodyLayerStack getBodyLayerStack() {
 		return this.bodyLayerStack;
 	}
 
+	@Override
 	public void dispose() {
 		this.bodyDataProvider.dispose();
 		this.rowHeaderDataProvider.dispose();
@@ -455,6 +475,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		return this.tableContext;
 	}
 
+	@Override
 	public Table getTable() {
 		return this.table;
 	}

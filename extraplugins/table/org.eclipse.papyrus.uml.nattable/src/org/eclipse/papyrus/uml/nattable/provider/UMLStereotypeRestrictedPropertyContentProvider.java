@@ -215,7 +215,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		}
 		return appliedProfiles;
 	}
-	
+
 	/**
 	 * Retrieve an list of all instances in the model that are instances of
 	 * the java.lang.Class metaType or with a stereotype applied
@@ -333,7 +333,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		this.isRestricted = isRestricted;
 	}
 
-	
+
 	/**
 	 * 
 	 * @return

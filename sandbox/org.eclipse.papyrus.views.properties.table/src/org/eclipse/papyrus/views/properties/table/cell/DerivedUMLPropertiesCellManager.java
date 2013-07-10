@@ -17,6 +17,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis;
 import org.eclipse.papyrus.uml.tools.commands.SetMultiplicityCommand;
 import org.eclipse.papyrus.uml.tools.util.MultiplicityParser;
@@ -31,8 +32,8 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean handles(Object obj1, Object obj2) {
-		return getMultiplicityElement(obj1, obj2) != null && getMultiplicityHandler(obj1, obj2) != null;
+	public boolean handles(Object columnElement, Object rowElement) {
+		return getMultiplicityElement(columnElement, rowElement) != null && getMultiplicityHandler(columnElement, rowElement) != null;
 	}
 
 	/**
@@ -45,8 +46,8 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	/**
 	 * {@inheritDoc}
 	 */
-	public Object getValue(Object axisElement1, Object axisElement2) {
-		MultiplicityElement element = getMultiplicityElement(axisElement1, axisElement2);
+	public Object getValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		MultiplicityElement element = getMultiplicityElement(columnElement, rowElement);
 		if(element == null) {
 			return null;
 		}
@@ -62,16 +63,16 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean isCellEditable(Object obj1, Object obj2) {
-		return getMultiplicityElement(obj1, obj2) != null;
+	public boolean isCellEditable(Object columnElement, Object rowElement) {
+		return getMultiplicityElement(columnElement, rowElement) != null;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public Command getSetValueCommand(EditingDomain domain, Object obj1, Object obj2, Object newValue) {
+	public Command getSetValueCommand(EditingDomain domain, Object columnElement, Object rowElemenet, Object newValue) {
 
-		MultiplicityElement element = getMultiplicityElement(obj1, obj2);
+		MultiplicityElement element = getMultiplicityElement(columnElement, rowElemenet);
 
 		if(element == null) {
 			return null;

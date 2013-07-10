@@ -19,14 +19,13 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -42,25 +41,27 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
 	 * 
-	 * @param obj1
-	 * @param obj2
+	 * @param columnElement
+	 * @param rowElement
 	 * @return
 	 */
-	public boolean handles(final Object obj1, final Object obj2) {
-		return organizeObject(obj1, obj2).size() == 2;
+	@Override
+	public boolean handles(final Object columnElement, final Object rowElement) {
+		return organizeAndResolvedObjects(columnElement, rowElement) != null;
 	}
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object)
+	 * @param columnElement
+	 * @param rowElement
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object, INattableModelManager)
 	 * 
-	 * @param obj1
-	 * @param obj2
 	 * @return
 	 */
-	public Object getValue(final Object obj1, final Object obj2) {
-		final List<EObject> objects = organizeObject(obj1, obj2);
-		final EObject eobject = objects.get(0);
+	@Override
+	public Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+		final EObject eobject = (EObject)objects.get(0);
 		final EStructuralFeature feature = (EStructuralFeature)objects.get(1);
 		if(eobject.eClass().getEAllStructuralFeatures().contains(feature)) {
 			return eobject.eGet(feature);
@@ -70,24 +71,29 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @param obj1
-	 * @param obj2
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
 	 * @return
+	 *         <code>null</code> or a list of 2 objects.
+	 *         <ul>
+	 *         <li>the first element is the edited EObject</li>
+	 *         <li>the second one is the edited feature</li>
+	 *         </ul>
 	 */
-	protected List<EObject> organizeObject(Object obj1, Object obj2) {
-		if(obj1 instanceof IAxis) {
-			obj1 = ((IAxis)obj1).getElement();
-		}
-		if(obj2 instanceof IAxis) {
-			obj2 = ((IAxis)obj2).getElement();
-		}
-		final List<EObject> objects = new ArrayList<EObject>();
-		if(obj1 instanceof EObject && obj2 instanceof EStructuralFeature) {
-			objects.add((EObject)obj1);
-			objects.add((EObject)obj2);
-		} else if(obj1 instanceof EStructuralFeature && obj2 instanceof EObject) {
-			objects.add((EObject)obj2);
-			objects.add((EObject)obj1);
+	protected List<Object> organizeAndResolvedObjects(final Object columnElement, final Object rowElement) {
+		List<Object> objects = null;
+		final Object row = AxisUtils.getRepresentedElement(rowElement);
+		final Object column = AxisUtils.getRepresentedElement(columnElement);
+		if(row instanceof EObject && column instanceof EStructuralFeature) {
+			objects = new ArrayList<Object>();
+			objects.add(row);
+			objects.add(column);
+		} else if(column instanceof EObject && row instanceof EStructuralFeature) {
+			objects = new ArrayList<Object>();
+			objects.add(column);
+			objects.add(row);
 		}
 		return objects;
 	}
@@ -97,23 +103,18 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
 	 * 
-	 * @param obj1
-	 * @param obj2
+	 * @param columnElement
+	 * @param rowElement
 	 * @return
 	 */
-	public boolean isCellEditable(Object obj1, Object obj2) {
-		final List<EObject> objects = organizeObject(obj1, obj2);
-		if(objects.size() == 2) {
-			final EObject object = objects.get(0);
-			final EStructuralFeature feature = (EStructuralFeature)objects.get(1);
-			//FIXME : we must manage the derived, the read-only, the changeable, ...
-			if(object.eClass().getEAllStructuralFeatures().contains(feature)) {
-				//				if(!feature.isChangeable()){
-				//					return false;
-				//				}
-				if(!feature.isDerived()) {
-					return true;
-				}
+	@Override
+	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+		final EObject object = (EObject)objects.get(0);
+		final EStructuralFeature feature = (EStructuralFeature)objects.get(1);
+		if(object.eClass().getEAllStructuralFeatures().contains(feature)) {
+			if(!feature.isDerived()) {
+				return feature.isChangeable();
 			}
 		}
 		return false;
@@ -122,30 +123,19 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
-	 *      java.lang.Object, java.lang.Object, java.lang.Object)
+	 *      java.lang.Object, java.lang.Object, java.lang.Object, INattableModelManager)
 	 * 
 	 * @param domain
+	 * @param columnElement
 	 * @param rowElement
-	 * @param lineElement
 	 * @param newValue
 	 * @return
 	 */
-	public Command getSetValueCommand(EditingDomain domain, Object rowElement, Object lineElement, Object newValue) {
-		final List<EObject> objects = organizeObject(rowElement, lineElement);
-		final AbstractEditCommandRequest request = new SetRequest((TransactionalEditingDomain)domain, objects.get(0), (EStructuralFeature)objects.get(1), newValue);
+	@Override
+	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+		final AbstractEditCommandRequest request = new SetRequest(domain, (EObject)objects.get(0), (EStructuralFeature)objects.get(1), newValue);
 		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(objects.get(0));
 		return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
 	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handlesAxisElement(java.lang.Object)
-	 * 
-	 * @param obj
-	 * @return
-	 */
-	public boolean handlesAxisElement(Object obj) {
-		return obj instanceof EStructuralFeature || obj instanceof EStructuralFeatureAxis;
-	}
-
 }

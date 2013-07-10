@@ -171,7 +171,7 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	public EObject getEditedEObject(int columnIndex, int rowIndex) {
 		Object colElement = this.elementProvider.getColumnElement(columnIndex);
 		Object rowElement = this.elementProvider.getRowElement(rowIndex);
-		colElement= AxisUtils.getRepresentedElement(colElement);
+		colElement = AxisUtils.getRepresentedElement(colElement);
 		rowElement = AxisUtils.getRepresentedElement(rowElement);
 		Element el = (Element)rowElement;
 

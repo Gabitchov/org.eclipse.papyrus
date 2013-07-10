@@ -14,13 +14,11 @@
 package org.eclipse.papyrus.infra.nattable.views.config.manager.cell;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -29,9 +27,9 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.nattable.views.config.Activator;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -44,79 +42,70 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
  */
 public class ModelViewsCellManager extends AbstractCellManager {
 
-	/**
-	 * the name of the feature which references the context of a diagram
-	 */
-	private static final String DIAGRAM_CONTEXT_FEATURE_NAME = "element"; //$NON-NLS-1$
 
-	/**
-	 * the name of the feature which references the EMF-Facet table in the PapyrusTableInstance
-	 */
-	private static final String PAPYRUS_TABLE_INSTANCE__TABLE_INSTANCE2_FEATURE_NAME = "table"; //$NON-NLS-1$
 
 	/**
 	 * 
-	 * @param obj1
-	 * @param obj2
-	 * @return
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @return <code>null</code> or a list of 2 objects.
+	 *         <ul>
+	 *         <li>the first element is the edited EObject</li>
+	 *         <li>the second one is the edited feature</li>
+	 *         </ul>
+	 * 
 	 */
-	protected List<Object> organizeObject(Object obj1, Object obj2) {
+	protected List<Object> organizeAndResolvedObjects(final Object columnElement, final Object rowElement) {
 		final List<Object> objects = new ArrayList<Object>();
-		obj1 = AxisUtils.getRepresentedElement(obj1);
-		obj2 = AxisUtils.getRepresentedElement(obj2);
-		if(obj1 instanceof String && ((String)obj1).startsWith(Utils.NATTABLE_EDITOR_PAGE_ID)) {
-			objects.add(obj2);
-			objects.add(obj1);
-		} else if(obj2 instanceof String && ((String)obj2).startsWith(Utils.NATTABLE_EDITOR_PAGE_ID)) {
-			objects.add(obj1);
-			objects.add(obj2);
+		Object row = AxisUtils.getRepresentedElement(rowElement);
+		Object column = AxisUtils.getRepresentedElement(columnElement);
+		if(row instanceof String && ((String)row).startsWith(Utils.NATTABLE_EDITOR_PAGE_ID) && column instanceof EObject) {
+			objects.add(column);
+			objects.add(row);
+		} else if(column instanceof String && ((String)column).startsWith(Utils.NATTABLE_EDITOR_PAGE_ID) && row instanceof EObject) {
+			objects.add(row);
+			objects.add(column);
 		}
+
 		if(objects.size() == 2) {
-			final Object first = objects.get(0);
-			if(first instanceof EObject) {
-				final IPageManager mngr = Utils.getIPagneManager((EObject)first);
-				if((mngr != null && !mngr.allPages().contains(first)) || mngr==null) {
-					return Collections.emptyList();
-				}
+			final EObject first = (EObject)objects.get(0);
+			final IPageManager mngr = Utils.getIPagneManager(first);
+			if((mngr != null && !mngr.allPages().contains(first)) || mngr == null) {
+				return null;
 			}
 		}
 
-		return objects;
+		if(objects.size() == 2) {
+			return objects;
+		}
+		return null;
 	}
 
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
 	 * 
-	 * @param obj1
-	 * @param obj2
+	 * @param rowElement
+	 * @param columnElement
 	 * @return
 	 */
-	public boolean handles(Object obj1, Object obj2) {
-		return organizeObject(obj1, obj2).size() == 2;
+	public boolean handles(Object rowElement, Object columnElement) {
+		return organizeAndResolvedObjects(columnElement, rowElement) != null;
 	}
+
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handlesAxisElement(java.lang.Object)
+	 * @param rowElement
+	 * @param columnElement
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object, INattableModelManager)
 	 * 
-	 * @param obj
 	 * @return
 	 */
-	public boolean handlesAxisElement(Object obj) {
-		return false;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object)
-	 * 
-	 * @param obj1
-	 * @param obj2
-	 * @return
-	 */
-	public Object getValue(Object obj1, Object obj2) {
-		final List<Object> objects = organizeObject(obj1, obj2);
+	public Object getValue(Object rowElement, Object columnElement, INattableModelManager tableManager) {
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
 		final String featureName = ((String)objects.get(1)).replace(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
 		final Object editor = objects.get(0);
 		if(Utils.VIEW_NAME.equals(featureName)) {
@@ -139,13 +128,13 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
 	 * 
-	 * @param obj1
-	 * @param obj2
+	 * @param rowElement
+	 * @param columnElement
 	 * @return
 	 *         <code>true</code> excepted if the edited feature is isOpen
 	 */
-	public boolean isCellEditable(Object obj1, Object obj2) {
-		final List<Object> objects = organizeObject(obj1, obj2);
+	public boolean isCellEditable(Object rowElement, Object columnElement) {
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
 		final String featureName = ((String)objects.get(1)).replace(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
 		return featureName.equals(Utils.VIEW_NAME);
 	}
@@ -153,25 +142,24 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
-	 *      java.lang.Object, java.lang.Object, java.lang.Object)
+	 *      java.lang.Object, java.lang.Object, java.lang.Object, INattableModelManager)
 	 * 
 	 * @param domain
-	 * @param obj1
-	 * @param obj2
+	 * @param rowElement
+	 * @param columnElement
 	 * @param newValue
 	 * @return
 	 */
-	public Command getSetValueCommand(EditingDomain domain, Object obj1, Object obj2, Object newValue) {
-		final List<Object> objects = organizeObject(obj1, obj2);
-		if(objects.get(0) instanceof EObject) {
-			final EObject editor = (EObject)objects.get(0);
-			final String featureName = ((String)objects.get(1)).replace(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
-			if(Utils.VIEW_NAME.equals(featureName)) {
-				EStructuralFeature feature = editor.eClass().getEStructuralFeature(Utils.VIEW_NAME);
-				final AbstractEditCommandRequest request = new SetRequest((TransactionalEditingDomain)domain, editor, feature, newValue);
-				final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(editor);
-				return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
-			}
+	@Override
+	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager manager) {
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+		final EObject editor = (EObject)objects.get(0);
+		final String featureName = ((String)objects.get(1)).replace(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
+		if(Utils.VIEW_NAME.equals(featureName)) {
+			final EStructuralFeature feature = editor.eClass().getEStructuralFeature(Utils.VIEW_NAME);
+			final AbstractEditCommandRequest request = new SetRequest((TransactionalEditingDomain)domain, editor, feature, newValue);
+			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(editor);
+			return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
 		}
 		return null;
 	}
@@ -211,7 +199,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 				mngr = ServiceUtilsForResource.getInstance().getIPageManager(((EObject)editor).eResource());
 				return mngr.isOpen(editor);
 			} catch (ServiceException e) {
-//				Activator.log.error(e);
+				//				Activator.log.error(e);
 			}
 		}
 
@@ -246,28 +234,11 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	 *         the context of this editor
 	 */
 	protected Object getEditorContext(final Object editor) {
-		if(editor instanceof EObject) {
-			EObject eobject = (EObject)editor;
-			EStructuralFeature feature = eobject.eClass().getEStructuralFeature(Utils.VIEW_CONTEXT);
-			if(feature == null) {//it is maybe a diagram
-				//workaround for the diagram
-				feature = eobject.eClass().getEStructuralFeature(DIAGRAM_CONTEXT_FEATURE_NAME);
-			}
-			if(feature != null) {
-				return eobject.eGet(feature);
-			}
-			//its maybe an old table
-			EStructuralFeature tmp = eobject.eClass().getEStructuralFeature(PAPYRUS_TABLE_INSTANCE__TABLE_INSTANCE2_FEATURE_NAME);
-			if(tmp != null) {
-				final EObject tableinstance2 = (EObject)eobject.eGet(tmp);
-				if(tableinstance2 != null) {
-					feature = tableinstance2.eClass().getEStructuralFeature(Utils.VIEW_CONTEXT);
-					return tableinstance2.eGet(feature);
-				}
-
-			}
+		final Object result = Utils.getEditorContext(editor);
+		if(result == null) {
+			return NOT_AVALAIBLE;
 		}
-		return NOT_AVALAIBLE;
+		return result;
 	}
 
 }

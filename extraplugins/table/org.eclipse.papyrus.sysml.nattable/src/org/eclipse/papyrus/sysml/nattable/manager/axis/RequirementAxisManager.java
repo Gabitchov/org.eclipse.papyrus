@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author Vincent Lorenzo
  * 
  */
-public class RequirementAxisManager extends AbstractUMLSynchronizedOnFeatureAxisManager{//AbstractSynchronizedOnFeatureAxisManager {//FIXME must inherits from EObjectAxisManager when the listen feature is typed by an EObejct...
+public class RequirementAxisManager extends AbstractUMLSynchronizedOnFeatureAxisManager {//AbstractSynchronizedOnFeatureAxisManager {//FIXME must inherits from EObjectAxisManager when the listen feature is typed by an EObejct...
 
 	//	/**
 	//	 * 
