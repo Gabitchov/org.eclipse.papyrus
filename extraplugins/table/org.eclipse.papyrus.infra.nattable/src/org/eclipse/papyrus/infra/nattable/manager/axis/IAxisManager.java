@@ -265,5 +265,15 @@ public interface IAxisManager extends IDisposable {
 	 */
 	public Command getDestroyAxisElementCommand(final EditingDomain domain, final Integer axisPosition);
 
+	/**
+	 * An axis provider determines if it can be saved as a configuration for later retrieval or not. It makes sense to save configurations of
+	 * EStructuralFeatures (read-only) and Stereotype properties (read-only), but not those of EObjects which are not read-only.
+	 * 
+	 * 
+	 * 
+	 * @return
+	 */
+	public boolean canBeSavedAsConfig();
+
 
 }

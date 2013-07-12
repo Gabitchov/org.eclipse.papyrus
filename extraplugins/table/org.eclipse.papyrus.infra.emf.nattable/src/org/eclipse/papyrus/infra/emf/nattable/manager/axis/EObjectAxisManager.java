@@ -200,5 +200,17 @@ public class EObjectAxisManager extends AbstractAxisManager {
 		return null;
 	}
 
+	/**
+	 * We don't want to save configurations of axis representing EObjects
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canBeSavedAsConfig()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean canBeSavedAsConfig() {
+		return false;
+	}
+
 
 }

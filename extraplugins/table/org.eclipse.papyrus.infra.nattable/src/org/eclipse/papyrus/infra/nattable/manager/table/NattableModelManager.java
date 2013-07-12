@@ -22,6 +22,7 @@ import java.util.List;
 
 import org.eclipse.core.commands.State;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -84,7 +85,7 @@ import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 
-public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
+public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager, IAdaptable {
 
 	/**
 	 * the column manager
@@ -123,6 +124,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
 	 */
 	private TransactionalEditingDomain contextEditingDomain;
+
+	private Adapter changeAxisProvider;
+
+	private AdapterImpl changeAxisProviderHistory;
 
 
 	/**
@@ -163,6 +168,44 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if(rawModel.isInvertAxis()) {
 			invertJavaObject();
 		}
+
+		changeAxisProvider = new AdapterImpl() {
+
+			public void notifyChanged(final Notification msg) {
+				if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_CurrentColumnAxisProvider() || msg.getFeature() == NattablePackage.eINSTANCE.getTable_CurrentRowAxisProvider()) {
+
+					Display.getCurrent().asyncExec(new Runnable() {
+
+						@Override
+						public void run() {
+							init();
+							refreshNatTable();
+						}
+					});
+				}
+			}
+
+		};
+
+		changeAxisProviderHistory = new AdapterImpl() {
+
+			public void notifyChanged(final Notification msg) {
+				if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_ColumnAxisProvidersHistory() || msg.getFeature() == NattablePackage.eINSTANCE.getTable_RowAxisProvidersHistory()) {
+
+					Display.getCurrent().asyncExec(new Runnable() {
+
+						@Override
+						public void run() {
+							init();
+						}
+					});
+				}
+			}
+
+		};
+
+		rawModel.eAdapters().add(changeAxisProvider);
+
 	}
 
 
@@ -374,8 +417,17 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * create the line and the columns managers
 	 */
 	protected void init() {
+		if(this.columnManager != null) {
+			this.columnManager.dispose();
+		}
+		if(this.rowManager != null) {
+			this.rowManager.dispose();
+		}
+		this.columnProvider = getTable().getCurrentColumnAxisProvider();
+		this.rowProvider = getTable().getCurrentRowAxisProvider();
 		this.columnManager = createAxisManager(getTable().getTableConfiguration().getColumnHeaderAxisConfiguration().getAxisManagers(), getTable().getCurrentColumnAxisProvider());
 		this.rowManager = createAxisManager(getTable().getTableConfiguration().getRowHeaderAxisConfiguration().getAxisManagers(), getTable().getCurrentRowAxisProvider());
+
 		boolean allIsSlave = this.columnManager.isSlave() && this.rowManager.isSlave();
 		Assert.isTrue(!allIsSlave, Messages.NattableModelManager_AtLeastOfOneTheAxisManagerMustBeAMaster);
 	}
@@ -1045,6 +1097,15 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	public String getTableName() {
 		return getTable().getName();
+	}
+
+
+	@Override
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+		if(adapter == NatTable.class) {
+			return this.natTable;
+		}
+		return null;
 	}
 
 }

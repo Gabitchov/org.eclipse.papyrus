@@ -293,4 +293,15 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
 		return UnexecutableCommand.INSTANCE;
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canBeSavedAsConfig()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean canBeSavedAsConfig() {
+		return true;
+	}
 }

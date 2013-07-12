@@ -249,4 +249,16 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	public boolean canEditAxisHeader() {
 		return false;
 	}
+
+	/**
+	 * Configurations of axis on synchronized features will not be saved
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canBeSavedAsConfig()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean canBeSavedAsConfig() {
+		return false;
+	}
 }

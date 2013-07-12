@@ -4,7 +4,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.nattable;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
+ SVN_org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.nattable.common;bundle-version="0.10.1",
  org.eclipse.emf.common,
  org.eclipse.papyrus.uml.nattable.generic.config;bundle-version="0.10.1"

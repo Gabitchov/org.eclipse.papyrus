@@ -259,6 +259,16 @@
                 </with>
              </visibleWhen>
           </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.saveColumnAxisProvider"
+                label="Save the current column axis provider"
+                style="push">
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.loadColumnAxisProvider"
+                label="Retrieve a saved axis provider for columns"
+                style="push">
+          </command>
        </menu>
       
        <menu
@@ -422,7 +432,17 @@
                 </with>
              </visibleWhen>
           </command>
-       </menu> 
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.saveRowAxisProvider"
+                label="Save the current row axis provider"
+                style="push">
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.loadRowAxisProvider"
+                label="Retrieve a saved axis provider for rows"
+                style="push">
+          </command>
+       </menu>
     </menuContribution>
   </extension>
    <extension
@@ -710,6 +730,26 @@
             class="org.eclipse.ui.handlers.RegistryToggleState:true"
             id="org.eclipse.ui.commands.toggleState">
       </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SaveCurrentRowAxisProvidersHandler"
+         id="org.eclipse.papyrus.infra.nattable.saveRowAxisProvider"
+         name="Save the current row axis provider">
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SaveCurrentColumnAxisProvidersHandler"
+         id="org.eclipse.papyrus.infra.nattable.saveColumnAxisProvider"
+         name="Save the current column axis provider">
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.LoadRowAxisProvidersHandler"
+         id="org.eclipse.papyrus.infra.nattable.loadRowAxisProvider"
+         name="Retrieve a saved axis provider for rows">
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.LoadColumnAxisProvidersHandler"
+         id="org.eclipse.papyrus.infra.nattable.loadColumnAxisProvider"
+         name="Retrieve a saved axis provider for columns">
    </command>
 </extension>
 <extension

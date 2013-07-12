@@ -495,6 +495,15 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	@Override
+	public boolean canBeSavedAsConfig() {
+		boolean canBeSavedAsConfig = true;
+		for(IAxisManager manager : subManagers) {
+			canBeSavedAsConfig &= manager.canBeSavedAsConfig();
+		}
+		return canBeSavedAsConfig;
+	}
+
 
 
 
