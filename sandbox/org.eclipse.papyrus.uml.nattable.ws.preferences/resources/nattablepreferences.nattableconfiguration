@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nattableconfiguration:TableConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:nattableaxisconfiguration="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration" xmlns:nattableaxisprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider" xmlns:nattableconfiguration="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration" xmlns:nattablelabelprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider" xmlns:nattabletester="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester" description="This table allows to edit preferences" name="PreferencesTable" type="PapyrusPreferencesTable" iconPath="platform:/plugin/org.eclipse.papyrus.uml.nattable.ws.preferences/icons/preferences_16x16.gif" defaultRowAxisProvider="//@rowAxisProviders.0" defaultColumnAxisProvider="//@columnAxisProviders.0">
+  <creationTester xsi:type="nattabletester:JavaTableTester" tester="org.eclipse.papyrus.uml.nattable.ws.preferences.creationtester"/>
+  <rowHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration" indexStyle="NUMERIC">
+    <ownedLabelConfigurations xsi:type="nattablelabelprovider:ObjectLabelProviderConfiguration"/>
+    <ownedAxisConfigurations xsi:type="nattableaxisconfiguration:EStructuralFeatureValueFillingConfiguration">
+      <listenFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element/ownedComment"/>
+    </ownedAxisConfigurations>
+    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.infra.nattable.propertyfile.file.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" specificAxisConfigurations="//@rowHeaderAxisConfiguration/@ownedAxisConfigurations.0"/>
+  </rowHeaderAxisConfiguration>
+  <columnHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration">
+    <ownedLabelConfigurations xsi:type="nattablelabelprovider:ObjectLabelProviderConfiguration"/>
+    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.infra.nattable.propertyfile.property.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0"/>
+  </columnHeaderAxisConfiguration>
+  <columnAxisProviders xsi:type="nattableaxisprovider:SlaveObjectAxisProvider" description="Provides the property of the files" name="Preferences Property Axis Manager"/>
+  <rowAxisProviders xsi:type="nattableaxisprovider:MasterObjectAxisProvider" description="Provides the files properties" name="Provides the files properties"/>
+</nattableconfiguration:TableConfiguration>
