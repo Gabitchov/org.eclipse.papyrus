@@ -82,4 +82,9 @@ public class EditorFeatureAxisManager extends AbstractAxisManager {
 	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
 		return UnexecutableCommand.INSTANCE;
 	}
+
+	@Override
+	public boolean canBeSavedAsConfig() {
+		return true;
+	}
 }

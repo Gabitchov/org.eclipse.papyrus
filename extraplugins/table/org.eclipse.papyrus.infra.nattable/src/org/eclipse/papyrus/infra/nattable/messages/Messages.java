@@ -31,6 +31,16 @@ public class Messages extends NLS {
 
 	public static String AbstractCreateNattableEditorHandler_PapyrusTableCreation;
 
+	public static String AbstractSaveCurrentAxisProvidersHandler_0;
+
+	public static String AbstractSaveCurrentAxisProvidersHandler_1;
+
+	public static String AbstractSaveCurrentAxisProvidersHandler_2;
+
+	public static String AbstractSaveCurrentAxisProvidersHandler_4;
+
+	public static String AbstractSaveCurrentAxisProvidersHandler_5;
+
 	public static String AbstractTableHandler_CurrentEditorCantBeFound;
 
 	public static String AxisManagerFactory_AxisManagerClassCantBeLoaded;
@@ -148,6 +158,14 @@ public class Messages extends NLS {
 	public static String ColumnsToShowDialog_SelectAllAvailablesFeatures;
 
 	public static String ColumnsToShowDialog_ShowAllPossibilities;
+
+	public static String LoadCurrentAxisProvidersDialog_0;
+
+	public static String LoadCurrentAxisProvidersDialog_1;
+
+	public static String LoadCurrentAxisProvidersDialog_2;
+
+	public static String LoadCurrentAxisProvidersDialog_3;
 
 	public static String PasteInPapyrusTableCommandProvider_0;
 
