@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Papyrus PSF support (Incubation)
+Bundle-SymbolicName: org.eclipse.papyrus.infra.psf
+Bundle-Version: 0.10.1.qualifier
+Bundle-Activator: org.eclipse.papyrus.infra.psf.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.team.core;bundle-version="3.7.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
