@@ -21,14 +21,24 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TableLayout;
+import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
+import org.eclipse.papyrus.uml.profile.definition.Version;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
+import org.eclipse.papyrus.uml.profile.utils.Util;
 import org.eclipse.papyrus.uml.profile.validation.ProfileValidationHelper;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.messages.Messages;
@@ -36,9 +46,12 @@ import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.Message;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.RegisteredProfileSelectionDialog;
 import org.eclipse.papyrus.uml.tools.importsources.PackageImportSourceDialog;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
@@ -73,6 +86,102 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 	 */
 	public ProfileApplicationEditor(Composite parent, int style) {
 		super(parent, style);
+
+		tree.setHeaderVisible(true);
+		GridData treeData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		treeData.horizontalSpan = 2;
+		treeData.minimumHeight = 140;
+		tree.setLayoutData(treeData);
+
+		TableLayout layout = new TableLayout(true);
+		tree.setLayout(layout);
+
+		TreeColumn nameColumn = new TreeColumn(tree, SWT.NONE);
+		nameColumn.setText("Name");
+		layout.addColumnData(new ColumnWeightData(40, 400, true));
+
+		TreeColumn locationColumn = new TreeColumn(tree, SWT.NONE);
+		locationColumn.setText("Location");
+		layout.addColumnData(new ColumnWeightData(30, 300, true));
+
+		TreeColumn versionColumn = new TreeColumn(tree, SWT.NONE);
+		versionColumn.setText("Version");
+		layout.addColumnData(new ColumnWeightData(10, 100, true));
+	}
+
+	@Override
+	public void setToolTipText(String text) {
+		//Override to avoid displaying a tooltip on the tree. It prevents the Cells tooltips from working
+		super.setLabelToolTipText(text);
+	}
+
+	@Override
+	public void setLabelProvider(ILabelProvider labelProvider) {
+		super.setLabelProvider(new ProfileColumnsLabelProvider(labelProvider));
+	}
+
+	protected class ProfileColumnsLabelProvider extends ColumnLabelProvider {
+
+		private ILabelProvider defaultLabelProvider;
+
+		public ProfileColumnsLabelProvider(ILabelProvider defaultLabelProvider) {
+			this.defaultLabelProvider = defaultLabelProvider;
+		}
+
+		@Override
+		public void update(ViewerCell cell) {
+			if(cell.getColumnIndex() == 0) {
+				updateName(cell);
+				return;
+			}
+
+			Profile profile;
+			EObject element = EMFHelper.getEObject(cell.getElement());
+
+			if(element instanceof Profile) {
+				profile = (Profile)element;
+			} else {
+				cell.setText("");
+				return;
+			}
+
+			switch(cell.getColumnIndex()) {
+			case 1:
+				updateLocation(cell, profile);
+				break;
+			case 2:
+				updateVersion(cell, profile);
+				break;
+			}
+
+		}
+
+		public void updateName(ViewerCell cell) {
+			cell.setImage(defaultLabelProvider.getImage(cell.getElement()));
+			cell.setText(defaultLabelProvider.getText(cell.getElement()));
+		}
+
+		public void updateLocation(ViewerCell cell, Profile profile) {
+			String location = "Unknown";
+			if(profile.eResource() != null) {
+				URI uri = profile.eResource().getURI();
+				if(uri != null) {
+					location = uri.toString();
+				}
+			}
+
+			cell.setText(location);
+		}
+
+		public void updateVersion(ViewerCell cell, Profile profile) {
+			String versionText = "";
+			Version version = Util.getProfileDefinitionVersion(profile);
+			if(version != Version.emptyVersion) {
+				versionText = version.toString();
+			}
+
+			cell.setText(versionText);
+		}
 	}
 
 	@Override

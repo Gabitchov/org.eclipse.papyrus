@@ -23,7 +23,7 @@ public class ProfileLabelProvider extends EMFLabelProvider implements ILabelProv
 
 	private Package umlPackage;
 
-	public final static String TAG_PROFILE_CHANGED = " (has changed, consider re-applying profile)";
+	public final static String TAG_PROFILE_CHANGED = "    (has changed, consider re-applying profile)";
 
 	public final static String UNKNOWN_PROFILE = "<Unknown>";
 
