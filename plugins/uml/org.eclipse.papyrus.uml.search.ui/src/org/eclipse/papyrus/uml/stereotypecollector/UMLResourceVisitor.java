@@ -11,7 +11,7 @@
  *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.views.search.scope;
+package org.eclipse.papyrus.uml.stereotypecollector;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,11 +27,11 @@ import org.eclipse.emf.common.util.URI;
  * Implements a visitor that goes through a hierarchy of Iresource from a root and collect only those that can be processed for search
  * 
  */
-public class ResourceVisitor implements IResourceProxyVisitor {
+public class UMLResourceVisitor implements IResourceProxyVisitor {
 
 	private Collection<IResource> participants;
 
-	public ResourceVisitor() {
+	public UMLResourceVisitor() {
 		super();
 		this.participants = new HashSet<IResource>();
 	}
@@ -43,14 +43,9 @@ public class ResourceVisitor implements IResourceProxyVisitor {
 
 			URI uri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
 
-			if("di".equals(uri.fileExtension())) { //$NON-NLS-1$
-				//Verify that it is a true papyrus model
-				//				try {
-				//					ModelSet modelSet = ModelUtils.openFile(resource);
-				//					modelSet.unload();
+			if("uml".equals(uri.fileExtension())) { //$NON-NLS-1$
 				participants.add(resource);
-				//				} catch (ModelMultiException e) {
-				//				}
+
 			}
 
 			break;

@@ -14,17 +14,12 @@
 package org.eclipse.papyrus.uml.search.ui.providers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.uml.search.ui.pages.PapyrusSearchPage;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * 
@@ -33,12 +28,18 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ParticipantTypeContentProvider implements ITreeContentProvider {
 
+
+
+
 	private EPackage ePackage = null;
 
-	PapyrusSearchPage papyrusSearchPage = null;
 
-	public ParticipantTypeContentProvider(PapyrusSearchPage papyrusSearchPage) {
-		this.papyrusSearchPage = papyrusSearchPage;
+	private HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>> participantsList = new HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>>();
+
+
+
+
+	public ParticipantTypeContentProvider() {
 	}
 
 	public void dispose() {
@@ -46,51 +47,86 @@ public class ParticipantTypeContentProvider implements ITreeContentProvider {
 	}
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-
+		participantsList = (HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>>)newInput;
 	}
 
 	public Object[] getElements(Object inputElement) {
-		List<EObject> result = new ArrayList<EObject>();
-		if(inputElement instanceof EPackage) {
-			ePackage = (EPackage)inputElement;
 
-			for(EClassifier classifier : ePackage.getEClassifiers()) {
-				if(classifier instanceof EClass) {
-					if(papyrusSearchPage != null) {
-						if(papyrusSearchPage.getSearchAllStringAttributes()) {
-							result.add(classifier);
-						} else {
 
-							if(classifier == UMLPackage.eINSTANCE.getNamedElement()) {
-								result.add(classifier);
-							}
-							EList<EClass> supers = ((EClass)classifier).getEAllSuperTypes();
-							if(supers.contains(UMLPackage.eINSTANCE.getNamedElement())) {
-								result.add(classifier);
-							}
-						}
+		List<Object> result = new ArrayList<Object>();
 
-					} else {
-						result.add(classifier);
-					}
-				}
-			}
-
+		if(inputElement instanceof HashMap) {
+			return ((HashMap)inputElement).keySet().toArray();
 		}
+
+		//		for(Object obj : (Collection<Object>)inputElement) {
+		//			result.add(obj);
+		//		}
+
 
 		return result.toArray();
 	}
 
 	public Object[] getChildren(Object parentElement) {
+		if(parentElement instanceof ParticipantTypeElement) {
+			if(!(parentElement instanceof ParticipantTypeAttribute)) {
+				return participantsList.get(parentElement).toArray();
+			}
+		}
 		return null;
+
+		//		List<ParticipantTypeAttribute> result = new ArrayList<ParticipantTypeAttribute>();
+		//		if(parentElement instanceof ParticipantTypeElement) {
+		//
+		//			if(((ParticipantTypeElement)parentElement).getElement() instanceof EClass) {
+		//				//			result.addAll(((EClass)parentElement).getEAllAttributes());
+		//				for(EObject eAttribute : ((EClass)((ParticipantTypeElement)parentElement).getElement()).getEAllAttributes()) {
+		//					ParticipantTypeAttribute attribute = new ParticipantTypeAttribute(eAttribute, ((ParticipantTypeElement)parentElement));
+		//
+		//					result.add(attribute);
+		//
+		//				}
+		//
+		//
+		//			} else if(((ParticipantTypeElement)parentElement).getElement() instanceof Stereotype) {
+		//
+		//						for(Property property : ((Stereotype)((ParticipantTypeElement)parentElement).getElement()).getAllAttributes()) {
+		//							if(!property.getName().startsWith("base_")) {
+		//								if(property.getType() instanceof Element) {
+		//		
+		//									if(UMLUtil.isBoolean(property.getType()) || UMLUtil.isString(property.getType()) || UMLUtil.isInteger(property.getType()) || UMLUtil.isReal(property.getType()) || UMLUtil.isUnlimitedNatural(property.getType()) || property.getType() instanceof Enumeration) {
+		//										//						result.add(property);
+		//										ParticipantTypeAttribute attribute = new ParticipantTypeAttribute(property, (ParticipantTypeElement)parentElement);
+		//		
+		//										result.add(attribute);
+		//		
+		//		
+		//									}
+		//								}
+		//							}
+		//				}
+		//			}
+		//		}
+		//		
+		//		return result.toArray();
 	}
 
 	public Object getParent(Object element) {
 
+
 		return null;
+
 	}
 
 	public boolean hasChildren(Object element) {
-		return false;
+		if(element instanceof ParticipantTypeAttribute) {
+			return false;
+		} else {
+			if(getChildren(element).length > 0)
+				return true;
+			else
+				return false;
+		}
+
 	}
 }

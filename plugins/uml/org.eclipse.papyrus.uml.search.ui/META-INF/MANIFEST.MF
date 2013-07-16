@@ -18,8 +18,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.jface,
  org.eclipse.emf.transaction,
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.uml.search.ui.providers
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
+  org.eclipse.ocl.examples.xtext.essentialocl;bundle-version="3.3.0",
+ org.eclipse.ocl.examples.xtext.essentialocl.ui;bundle-version="3.3.0",
+ org.eclipse.ocl.examples.xtext.console
+Export-Package: org.eclipse.papyrus.uml.search.ui.providers,
+ org.eclipse.papyrus.uml.search.ui.validator
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.1.qualifier

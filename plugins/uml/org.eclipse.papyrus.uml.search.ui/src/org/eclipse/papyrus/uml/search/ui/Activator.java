@@ -13,14 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui;
 
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle.
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends EssentialOCLActivator {
 
 	// The plug-in ID
 	/** The Constant PLUGIN_ID. */

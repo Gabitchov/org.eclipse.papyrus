@@ -175,4 +175,12 @@ public abstract class AbstractResultEntry extends Match {
 	public void setParent(Object parent) {
 		this.parent = parent;
 	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName() + "(" + super.hashCode() + ") : source -> " + source; //$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+
+
 }

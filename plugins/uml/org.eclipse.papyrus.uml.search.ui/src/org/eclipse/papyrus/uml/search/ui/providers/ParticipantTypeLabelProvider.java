@@ -23,16 +23,24 @@ public class ParticipantTypeLabelProvider extends LabelProvider {
 
 	@Override
 	public Image getImage(Object object) {
-		if(object instanceof ENamedElement) {
-			String imagePath = "/icons/full/obj16/" + ((ENamedElement)object).getName() + ".gif"; //$NON-NLS-1$ //$NON-NLS-2$
-			return ResourceManager.getPluginImage("org.eclipse.uml2.uml.edit", imagePath); //$NON-NLS-1$
-		}
+		if(object instanceof ParticipantTypeElement)
+			if(((ParticipantTypeElement)object).getElement() instanceof ENamedElement) {
+				String imagePath = "/icons/full/obj16/" + ((ENamedElement)((ParticipantTypeElement)object).getElement()).getName() + ".gif"; //$NON-NLS-1$ //$NON-NLS-2$
+				return ResourceManager.getPluginImage("org.eclipse.uml2.uml.edit", imagePath); //$NON-NLS-1$
+			}
+
 		return null;
 	}
 
 	@Override
 	public String getText(Object object) {
-		return object instanceof ENamedElement ? ((ENamedElement)object).getName() : null;
+
+		if(object instanceof ParticipantTypeElement) {
+			return ((ParticipantTypeElement)object).getText();
+		}
+
+		return ""; //$NON-NLS-1$
+		//
 	}
 
 }
