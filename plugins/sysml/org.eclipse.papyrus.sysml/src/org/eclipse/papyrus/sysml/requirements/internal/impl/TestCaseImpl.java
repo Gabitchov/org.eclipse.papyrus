@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
@@ -252,8 +252,9 @@ public class TestCaseImpl extends EObjectImpl implements TestCase {
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<Requirement>(Requirement.class, verifies.size(), verifies.toArray());
+
+		UnmodifiableEList<Requirement> resultList = new UnmodifiableEList<Requirement>(this, RequirementsPackage.eINSTANCE.getTestCase_Verifies(), verifies.size(), verifies.toArray());
+		return resultList;
 	}
 
 	/**

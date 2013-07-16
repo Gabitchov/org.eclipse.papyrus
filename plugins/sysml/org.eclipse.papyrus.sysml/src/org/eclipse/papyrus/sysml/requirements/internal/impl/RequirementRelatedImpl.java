@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
@@ -215,8 +215,9 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<Requirement>(Requirement.class, refines.size(), refines.toArray());
+
+		UnmodifiableEList<Requirement> resultList = new UnmodifiableEList<Requirement>(this, RequirementsPackage.eINSTANCE.getRequirementRelated_Refines(), refines.size(), refines.toArray());
+		return resultList;
 	}
 
 	/**
@@ -249,8 +250,9 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<Requirement>(Requirement.class, satisfies.size(), satisfies.toArray());
+
+		UnmodifiableEList<Requirement> resultList = new UnmodifiableEList<Requirement>(this, RequirementsPackage.eINSTANCE.getRequirementRelated_Satisfies(), satisfies.size(), satisfies.toArray());
+		return resultList;
 	}
 
 	/**
@@ -289,8 +291,9 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<Requirement>(Requirement.class, tracedFrom.size(), tracedFrom.toArray());
+
+		UnmodifiableEList<Requirement> resultList = new UnmodifiableEList<Requirement>(this, RequirementsPackage.eINSTANCE.getRequirementRelated_TracedFrom(), tracedFrom.size(), tracedFrom.toArray());
+		return resultList;
 	}
 
 	/**
@@ -323,8 +326,10 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<Requirement>(Requirement.class, verifies.size(), verifies.toArray());
+
+
+		UnmodifiableEList<Requirement> resultList = new UnmodifiableEList<Requirement>(this, RequirementsPackage.eINSTANCE.getRequirementRelated_Verifies(), verifies.size(), verifies.toArray());
+		return resultList;
 	}
 
 	/**

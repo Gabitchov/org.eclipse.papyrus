@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
@@ -330,8 +330,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<Requirement>(Requirement.class, derived.size(), derived.toArray());
+
+		UnmodifiableEList<Requirement> resultList = new UnmodifiableEList<Requirement>(this, RequirementsPackage.eINSTANCE.getRequirement_Derived(), derived.size(), derived.toArray());
+		return resultList;
 	}
 
 	/**
@@ -364,8 +365,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<Requirement>(Requirement.class, derivedFrom.size(), derivedFrom.toArray());
+
+		UnmodifiableEList<Requirement> resultList = new UnmodifiableEList<Requirement>(this, RequirementsPackage.eINSTANCE.getRequirement_DerivedFrom(), derivedFrom.size(), derivedFrom.toArray());
+		return resultList;
 	}
 
 	/**
@@ -411,8 +413,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<NamedElement>(NamedElement.class, refinedBy.size(), refinedBy.toArray());
+
+		UnmodifiableEList<NamedElement> resultList = new UnmodifiableEList<NamedElement>(this, RequirementsPackage.eINSTANCE.getRequirement_RefinedBy(), refinedBy.size(), refinedBy.toArray());
+		return resultList;
 	}
 
 	/**
@@ -466,8 +469,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<NamedElement>(NamedElement.class, satisfyBy.size(), satisfyBy.toArray());
+
+		UnmodifiableEList<NamedElement> resultList = new UnmodifiableEList<NamedElement>(this, RequirementsPackage.eINSTANCE.getRequirement_SatisfiedBy(), satisfyBy.size(), satisfyBy.toArray());
+		return resultList;
 	}
 
 	/**
@@ -534,8 +538,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<NamedElement>(NamedElement.class, tracedTo.size(), tracedTo.toArray());
+
+		UnmodifiableEList<NamedElement> resultList = new UnmodifiableEList<NamedElement>(this, RequirementsPackage.eINSTANCE.getRequirement_TracedTo(), tracedTo.size(), tracedTo.toArray());
+		return resultList;
 	}
 
 	/**
@@ -589,8 +594,9 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<NamedElement>(NamedElement.class, verifiedBy.size(), verifiedBy.toArray());
+
+		UnmodifiableEList<NamedElement> resultList = new UnmodifiableEList<NamedElement>(this, RequirementsPackage.eINSTANCE.getRequirement_VerifiedBy(), verifiedBy.size(), verifiedBy.toArray());
+		return resultList;
 	}
 
 	/**
