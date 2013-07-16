@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement;
 
@@ -48,6 +49,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  * </em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCells <em>Cells</em>}</li>
  * </ul>
  * </p>
  * 
@@ -302,5 +304,22 @@ public interface Table extends TableNamedElement {
 	 * @generated
 	 */
 	void setCurrentColumnAxisProvider(AbstractAxisProvider value);
+
+	/**
+	 * Returns the value of the '<em><b>Cells</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Cells of the table. They are used when the value to display can't be deduced of
+	 * the intersection of the row and the column.
+	 * <!-- end-model-doc -->
+	 * 
+	 * @return the value of the '<em>Cells</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_Cells()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Cell> getCells();
 
 } // Table

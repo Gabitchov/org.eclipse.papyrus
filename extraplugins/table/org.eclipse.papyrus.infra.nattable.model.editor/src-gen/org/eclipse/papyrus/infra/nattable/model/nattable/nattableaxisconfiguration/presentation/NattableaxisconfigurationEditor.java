@@ -171,10 +171,12 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider.N
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.provider.NattableaxisproviderItemProviderAdapterFactory;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.provider.NattablecellItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider.NattableconfigurationItemProviderAdapterFactory;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider.NattablelabelproviderItemProviderAdapterFactory;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.provider.NattableproblemItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider.NattabletesterItemProviderAdapterFactory;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorPlugin;
@@ -752,6 +754,8 @@ public class NattableaxisconfigurationEditor extends MultiPageEditorPart impleme
 		adapterFactory.addAdapterFactory(new NattableaxisconfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new NattabletesterItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new NattableaxisItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new NattablecellItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new NattableproblemItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 

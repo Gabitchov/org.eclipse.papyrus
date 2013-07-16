@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableNamedElementImpl;
@@ -57,6 +58,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
  * Configuration</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCells <em>Cells</em>}</li>
  * </ul>
  * </p>
  * 
@@ -174,6 +176,17 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * @ordered
 	 */
 	protected AbstractAxisProvider currentColumnAxisProvider;
+
+	/**
+	 * The cached value of the '{@link #getCells() <em>Cells</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getCells()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Cell> cells;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -513,6 +526,19 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * 
 	 * @generated
 	 */
+	public EList<Cell> getCells() {
+		if(cells == null) {
+			cells = new EObjectContainmentEList<Cell>(Cell.class, this, NattablePackage.TABLE__CELLS);
+		}
+		return cells;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch(featureID) {
@@ -524,6 +550,8 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 			return basicSetLocalRowHeaderAxisConfiguration(null, msgs);
 		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
 			return basicSetLocalColumnHeaderAxisConfiguration(null, msgs);
+		case NattablePackage.TABLE__CELLS:
+			return ((InternalEList<?>)getCells()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -563,6 +591,8 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 			if(resolve)
 				return getCurrentColumnAxisProvider();
 			return basicGetCurrentColumnAxisProvider();
+		case NattablePackage.TABLE__CELLS:
+			return getCells();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -606,6 +636,10 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
 			setCurrentColumnAxisProvider((AbstractAxisProvider)newValue);
 			return;
+		case NattablePackage.TABLE__CELLS:
+			getCells().clear();
+			getCells().addAll((Collection<? extends Cell>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -646,6 +680,9 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
 			setCurrentColumnAxisProvider((AbstractAxisProvider)null);
 			return;
+		case NattablePackage.TABLE__CELLS:
+			getCells().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -677,6 +714,8 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 			return currentRowAxisProvider != null;
 		case NattablePackage.TABLE__CURRENT_COLUMN_AXIS_PROVIDER:
 			return currentColumnAxisProvider != null;
+		case NattablePackage.TABLE__CELLS:
+			return cells != null && !cells.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
