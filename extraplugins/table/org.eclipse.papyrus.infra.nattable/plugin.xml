@@ -443,6 +443,20 @@
                 style="push">
           </command>
        </menu>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.mark.as.resolved.command"
+             style="push">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+       </command>
     </menuContribution>
   </extension>
    <extension
@@ -975,6 +989,11 @@
             defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnAutoResizeHandler"
             id="org.eclipse.papyrus.infra.nattable.autoresize.columns"
             name="AutoResize Column">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ResolvedProblemHandler"
+            id="org.eclipse.papyrus.infra.nattable.mark.as.resolved.command"
+            name="Mark As Resolved">
       </command>
    </extension>
    <extension
