@@ -136,7 +136,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		//that's why we can't add the variable NAT_EVENT_DATA_PARAMETER_ID and we need to create a NatEventData instead of to get it in evaluationContext
 		if(eventData == null) {
 			Point cursorLocation = Display.getDefault().getCursorLocation();
-			Control control = Display.getDefault().getCursorControl();
+			Control control = Display.getDefault().getCursorControl();//FIXME doesn't work when we are selecting a command in a menu!
 			if(control instanceof NatTable) {//FIXME : not nice, but required
 				cursorLocation = control.toControl(cursorLocation);
 				Event e = new Event();

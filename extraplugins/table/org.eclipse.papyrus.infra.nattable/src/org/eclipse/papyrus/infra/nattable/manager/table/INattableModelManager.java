@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -181,4 +182,15 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	 *         the row axis manager, managing the axis inversion
 	 */
 	public IAxisManager getRowAxisManager();
+
+	/**
+	 * 
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @return
+	 *         the cell for this couple if existing on the model or <code>null</code>
+	 */
+	public Cell getCell(final Object columnElement, final Object rowElement);
 }
