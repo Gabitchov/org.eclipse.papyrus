@@ -11,12 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
@@ -69,7 +71,28 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			//TODO : Find all semantic roots, including Models and Libraries
 			//This is related to the ModelSet evolution 
 			try {
-				return new EObject[]{ UmlUtils.getUmlModel(modelSet).lookupRoot() };
+				EObject rootElement = UmlUtils.getUmlModel(modelSet).lookupRoot();
+				if (rootElement == null){
+					return new EObject[0];
+				}
+				
+				Resource rootResource = rootElement.eResource();
+				if (rootResource == null){
+					return new EObject[]{rootElement};
+				}
+				
+				List<EObject> rootObjects = new LinkedList<EObject>();
+				for (EObject rootObject : rootResource.getContents()){
+					if (rootObject instanceof Element){
+						rootObjects.add(rootObject);
+					}
+				}
+				
+				if (rootObjects.isEmpty()){
+					return new EObject[]{rootElement};
+				}
+				
+				return rootObjects.toArray(new EObject[0]);
 			} catch (NotFoundException ex) {
 				Activator.log.error(ex);
 			}
