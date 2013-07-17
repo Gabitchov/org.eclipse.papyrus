@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.views.properties.table.cell;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -71,7 +71,7 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	/**
 	 * {@inheritDoc}
 	 */
-	public Command getSetValueCommand(EditingDomain domain, Object columnElement, Object rowElemenet, Object newValue) {
+	public Command getSetValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElemenet, Object newValue) {
 
 		MultiplicityElement element = getMultiplicityElement(columnElement, rowElemenet);
 

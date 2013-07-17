@@ -62,7 +62,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -70,7 +70,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		final Set<Stereotype> appliedStereotypes = new HashSet<Stereotype>();
 		for(final Object current : objectToAdd) {
 			if(current instanceof Element) {
@@ -105,7 +105,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -113,7 +113,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getAddAxisCommand(EditingDomain domain, Collection<Object> objectToAdd) {
+	public Command getAddAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToAdd) {
 		final List<String> allPropertyQN = new ArrayList<String>();
 		for(Object object : objectToAdd) {
 			if(object instanceof Property) {
@@ -157,7 +157,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 
-	public boolean canInsertAxis(EditingDomain domain, Collection<Object> objectsToAdd, int index) {
+	public boolean canInsertAxis(TransactionalEditingDomain domain, Collection<Object> objectsToAdd, int index) {
 		return false;
 	}
 
@@ -189,7 +189,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -198,7 +198,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> umlProperties) {
+	public Command getDestroyAxisCommand(TransactionalEditingDomain domain, Collection<Object> umlProperties) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
 		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
 		final List<String> propIdToDestroy = new ArrayList<String>();
@@ -290,7 +290,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 		return false;
 	}
 
-	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		return UnexecutableCommand.INSTANCE;
 	}
 

@@ -22,7 +22,7 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
@@ -160,7 +160,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain,
 	 *      java.lang.Integer)
 	 * 
 	 * @param domain
@@ -168,7 +168,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	 * @return
 	 */
 	@Override
-	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		return UnexecutableCommand.INSTANCE;
 	}
 

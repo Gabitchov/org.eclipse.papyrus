@@ -143,13 +143,14 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
-	 *      java.lang.Object, java.lang.Object, java.lang.Object, INattableModelManager)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#getSetValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      java.lang.Object, java.lang.Object, java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 * 
 	 * @param domain
-	 * @param rowElement
 	 * @param columnElement
+	 * @param rowElement
 	 * @param newValue
+	 * @param manager
 	 * @return
 	 */
 	@Override

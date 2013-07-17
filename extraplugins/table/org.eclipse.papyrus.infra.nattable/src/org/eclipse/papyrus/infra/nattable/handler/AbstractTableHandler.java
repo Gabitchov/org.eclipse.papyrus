@@ -19,17 +19,13 @@ import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
@@ -86,15 +82,8 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 * 
 	 * @return
 	 */
-	protected EditingDomain getTableEditingDomain() {//duplicated code from NattableModelManager
-		ServicesRegistry registry = null;
-		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getCurrentNattableModelManager().getTable());
-			return registry.getService(EditingDomain.class);
-		} catch (final ServiceException e) {
-			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
-		}
-		return null;
+	protected TransactionalEditingDomain getTableEditingDomain() {//duplicated code from NattableModelManager
+		return TableEditingDomainUtils.getTableEditingDomain(getCurrentNattableModelManager().getTable());
 	}
 
 	/**
@@ -102,16 +91,8 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 * 
 	 * @return
 	 */
-	protected EditingDomain getContextEditingDomain() {//duplicated code from NattableModelManager
-		ServicesRegistry registry = null;
-		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getCurrentNattableModelManager().getTable());
-			return registry.getService(EditingDomain.class);
-		} catch (final ServiceException e) {
-			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
-		}
-
-		return null;
+	protected TransactionalEditingDomain getContextEditingDomain() {//duplicated code from NattableModelManager
+		return TableEditingDomainUtils.getTableContextEditingDomain(getCurrentNattableModelManager().getTable());
 	}
 
 	/**

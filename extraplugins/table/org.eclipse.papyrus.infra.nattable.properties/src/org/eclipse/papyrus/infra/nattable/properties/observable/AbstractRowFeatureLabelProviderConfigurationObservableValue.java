@@ -22,7 +22,7 @@ import org.eclipse.papyrus.infra.nattable.command.TableCommands;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainuUtils;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 
 /**
  * The Class AbstractRowFeatureLabelProviderConfigurationObservableValue.
@@ -64,7 +64,7 @@ public abstract class AbstractRowFeatureLabelProviderConfigurationObservableValu
 	@Override
 	protected void doSetValue(Object value) {
 		final ICommand cmd = TableCommands.getSetRowLabelConfigurationValueCommand(getTable(), (ILabelProviderConfiguration)getEditedEObject(), getManagedFeature(), value);
-		final TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(getTable());
+		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(getTable());
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 	}
 

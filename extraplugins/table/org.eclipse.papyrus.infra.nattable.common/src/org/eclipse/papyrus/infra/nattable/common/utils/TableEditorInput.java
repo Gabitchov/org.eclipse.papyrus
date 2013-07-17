@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.utils;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.ui.IEditorInput;
@@ -31,9 +31,9 @@ public class TableEditorInput implements IEditorInput {
 	/** A textual description of what is shown in the editor */
 	private final String description;
 
-	private final EditingDomain editingDomain;
+	private final TransactionalEditingDomain editingDomain;
 
-	public TableEditorInput(final Table papyrusTable, final EditingDomain editingDomain) {
+	public TableEditorInput(final Table papyrusTable, final TransactionalEditingDomain editingDomain) {
 		this.tableInstance = papyrusTable;
 		this.description = papyrusTable.getDescription();
 		this.editingDomain = editingDomain;
@@ -71,7 +71,7 @@ public class TableEditorInput implements IEditorInput {
 		return null;
 	}
 
-	protected EditingDomain getEditingDomain() {
+	protected TransactionalEditingDomain getEditingDomain() {
 		return this.editingDomain;
 	}
 }

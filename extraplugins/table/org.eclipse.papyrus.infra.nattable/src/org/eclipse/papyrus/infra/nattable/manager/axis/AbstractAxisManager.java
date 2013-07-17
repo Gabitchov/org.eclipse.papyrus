@@ -24,7 +24,6 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -188,14 +187,14 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
 	 * @param objectToAdd
 	 * @return
 	 */
-	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		return null;
 	}
 
@@ -213,14 +212,14 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getComplementaryAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
 	 * @param objectToAdd
 	 * @return
 	 */
-	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		return null;
 	}
 
@@ -279,18 +278,10 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 
+
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
-	 *      java.util.Collection)
-	 * 
-	 * @param domain
-	 * @param objectToDestroy
-	 * @return
-	 */
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getDestroyAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -298,7 +289,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {//FIXME must be done in the abstract class
+	public Command getDestroyAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToDestroy) {//FIXME must be done in the abstract class
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
 		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
 		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
@@ -347,11 +338,11 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * 
 	 * @return
 	 */
-	protected EditingDomain getTableEditingDomain() {//Duplicated from NatTableModelManager
+	protected TransactionalEditingDomain getTableEditingDomain() {//Duplicated from NatTableModelManager
 		ServicesRegistry registry = null;
 		try {
 			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableManager().getTable());
-			return registry.getService(EditingDomain.class);
+			return registry.getService(TransactionalEditingDomain.class);
 		} catch (final ServiceException e) {
 			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
 		}
@@ -364,7 +355,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * 
 	 * @return
 	 */
-	protected EditingDomain getContextEditingDomain() { //Duplicated from NatTableModelManager
+	protected TransactionalEditingDomain getContextEditingDomain() { //Duplicated from NatTableModelManager
 		ServicesRegistry registry = null;
 		try {
 			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableContext());
@@ -479,7 +470,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	@Override
 	public void destroyAxis(final List<Integer> axisPositions) {
 		final List<Object> toDestroy = getElements(axisPositions);
-		EditingDomain domain = getTableEditingDomain();
+		TransactionalEditingDomain domain = getTableEditingDomain();
 		final Command cmd = getDestroyAxisCommand(domain, toDestroy);
 		domain.getCommandStack().execute(cmd);
 	}
@@ -522,7 +513,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	@Override
 	public void destroyAxisElement(final List<Integer> axisPosition) {
 		final CompoundCommand cmd = new CompoundCommand("Destroy Axis Element Command");
-		EditingDomain domain = getContextEditingDomain();
+		TransactionalEditingDomain domain = getContextEditingDomain();
 		for(Integer integer : axisPosition) {
 			cmd.append(getDestroyAxisElementCommand(domain, integer));
 		}

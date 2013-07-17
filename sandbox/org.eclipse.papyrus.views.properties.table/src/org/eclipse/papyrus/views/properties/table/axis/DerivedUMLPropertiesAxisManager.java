@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.views.properties.table.axis;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 
 /**
@@ -47,7 +47,7 @@ public class DerivedUMLPropertiesAxisManager extends AbstractAxisManager {
 		return false;
 	}
 
-	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		return null;
 	}
 
