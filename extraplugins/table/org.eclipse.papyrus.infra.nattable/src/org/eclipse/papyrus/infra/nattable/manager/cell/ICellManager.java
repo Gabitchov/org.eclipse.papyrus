@@ -82,7 +82,7 @@ public interface ICellManager {
 	 * @return
 	 *         <code>true</code> if the intersection of the 2 objects is editable
 	 */
-	public boolean isCellEditable(final Object obj1, final Object obj2);
+	public boolean isCellEditable(final Object columnElement, final Object rowElement);
 
 	/**
 	 * 

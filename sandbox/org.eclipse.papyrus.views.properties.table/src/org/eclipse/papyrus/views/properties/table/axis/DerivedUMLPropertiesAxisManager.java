@@ -51,4 +51,9 @@ public class DerivedUMLPropertiesAxisManager extends AbstractAxisManager {
 		return null;
 	}
 
+	@Override
+	public boolean canBeSavedAsConfig() {
+		return false;
+	}
+
 }

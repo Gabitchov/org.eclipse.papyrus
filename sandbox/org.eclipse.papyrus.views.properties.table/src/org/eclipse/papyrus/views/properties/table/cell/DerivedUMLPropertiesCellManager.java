@@ -46,7 +46,8 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	/**
 	 * {@inheritDoc}
 	 */
-	public Object getValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
+	@Override
+	protected Object doGetValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 		MultiplicityElement element = getMultiplicityElement(columnElement, rowElement);
 		if(element == null) {
 			return null;

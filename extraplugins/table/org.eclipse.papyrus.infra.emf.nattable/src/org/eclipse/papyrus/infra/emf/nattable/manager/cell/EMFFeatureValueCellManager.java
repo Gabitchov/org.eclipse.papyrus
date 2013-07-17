@@ -50,16 +50,19 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		return organizeAndResolvedObjects(columnElement, rowElement) != null;
 	}
 
+
 	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#doGetValue(java.lang.Object, java.lang.Object,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 * 
 	 * @param columnElement
 	 * @param rowElement
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object, INattableModelManager)
-	 * 
+	 * @param tableManager
 	 * @return
 	 */
 	@Override
-	public Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+	protected Object doGetValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
 		final EObject eobject = (EObject)objects.get(0);
 		final EStructuralFeature feature = (EStructuralFeature)objects.get(1);
