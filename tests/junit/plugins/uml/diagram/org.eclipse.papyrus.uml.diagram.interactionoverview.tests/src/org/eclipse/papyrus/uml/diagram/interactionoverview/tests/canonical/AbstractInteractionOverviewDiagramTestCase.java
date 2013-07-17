@@ -56,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramCreateCommand;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomActivityEditPartTN;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomInteractionUseEditPartCN;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.tests.IInteractionoverviewDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EditPartUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -74,6 +75,16 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new InteractionOverviewDiagramCreateCommand();
+	}
+	
+	@Override
+	protected String getProjectName() {
+		return IInteractionoverviewDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return IInteractionoverviewDiagramTestsConstants.FILE_NAME;
 	}
 
 	/**
