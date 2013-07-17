@@ -14,6 +14,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.painter;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
@@ -23,15 +26,18 @@ import org.eclipse.nebula.widgets.nattable.resize.command.RowResizeCommand;
 import org.eclipse.nebula.widgets.nattable.style.CellStyleUtil;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.style.IStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Custom CellPainter to define the LabelProvider to use
@@ -41,6 +47,11 @@ import org.eclipse.swt.graphics.Rectangle;
  */
 //FIXME : we should use the TextPainter itself, now with the GenericDisplayConverter, it should works fine
 public class CustomizedCellPainter extends TextPainter {
+
+	/**
+	 * the color used for error;
+	 */
+	private final Color errorColor = new Color(Display.getDefault(), 255, 0, 0);
 
 	/**
 	 * 
@@ -121,8 +132,35 @@ public class CustomizedCellPainter extends TextPainter {
 				yStartPos += fontHeight;
 			}
 		}
+	}
 
 
+	/**
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.painter.cell.BackgroundPainter#getBackgroundColour(org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell,
+	 *      org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
+	 * 
+	 * @param cell
+	 * @param configRegistry
+	 * @return
+	 */
+	@Override
+	protected Color getBackgroundColour(final ILayerCell cell, final IConfigRegistry configRegistry) {
+		Object value = cell.getDataValue();
+		boolean hasError = false;
+		if(value instanceof Problem) {
+			hasError = true;
+		} else if(value instanceof Collection<?>) {
+			final Iterator<?> iter = ((Collection<?>)value).iterator();
+			while(!hasError && iter.hasNext()) {
+				hasError = iter.next() instanceof Problem;
+			}
+		}
+
+		if(hasError) {
+			return this.errorColor;
+		}
+		return super.getBackgroundColour(cell, configRegistry);
 	}
 
 }
