@@ -16,8 +16,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.105.0",
 Export-Package: org.eclipse.papyrus.views.search.regex,
  org.eclipse.papyrus.views.search.results,
  org.eclipse.papyrus.views.search.scope,
- org.eclipse.papyrus.views.search.utils,
- org.eclipse.papyrus.views.search.validator
+ org.eclipse.papyrus.views.search.utils
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.1.qualifier

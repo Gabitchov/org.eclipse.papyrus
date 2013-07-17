@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
@@ -185,8 +185,9 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<NamedElement>(NamedElement.class, allocatedFrom.size(), allocatedFrom.toArray());
+
+		UnmodifiableEList<NamedElement> resultList = new UnmodifiableEList<NamedElement>(this, AllocationsPackage.eINSTANCE.getAllocated_AllocatedFrom(), allocatedFrom.size(), allocatedFrom.toArray());
+		return resultList;
 	}
 
 	/**
@@ -225,7 +226,7 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 		// AllocatedFrom property lists all the named elements linked to current
 		// by an Allocate link.
 		// Current element is the target of the Allocate link.
-		EList<NamedElement> allocatedFrom = new BasicEList<NamedElement>();
+		EList<NamedElement> allocatedTo = new BasicEList<NamedElement>();
 		Allocate currentAllocate = null;
 
 		if(getBase_NamedElement() != null) {
@@ -236,12 +237,12 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 				currentAllocate = UMLUtil.getStereotypeApplication(currentDependency, Allocate.class);
 
 				if(currentAllocate != null) {
-					allocatedFrom.addAll(currentAllocate.getBase_Abstraction().getSuppliers());
+					allocatedTo.addAll(currentAllocate.getBase_Abstraction().getSuppliers());
 				}
 			}
 		}
-		// Convert to InternalEList<?>
-		return new BasicInternalEList<NamedElement>(NamedElement.class, allocatedFrom.size(), allocatedFrom.toArray());
+		UnmodifiableEList<NamedElement> resultList = new UnmodifiableEList<NamedElement>(this, AllocationsPackage.eINSTANCE.getAllocated_AllocatedTo(), allocatedTo.size(), allocatedTo.toArray());
+		return resultList;
 	}
 
 	/**

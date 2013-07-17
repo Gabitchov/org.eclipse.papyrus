@@ -2920,6 +2920,12 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+A">
    </key>
+   <key
+         commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ZoomInCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL++">
+   </key>
 </extension>
 <extension
       point="org.eclipse.ui.handlers">

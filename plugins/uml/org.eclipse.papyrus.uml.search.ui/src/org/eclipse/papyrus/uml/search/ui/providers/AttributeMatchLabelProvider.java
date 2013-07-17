@@ -45,7 +45,7 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 	}
 
 	private String printResult(String sectionThatMatch, String value, int offset, int lenght, String attributeName) {
-		return "\"" + sectionThatMatch + "\"" + Messages.AttributeMatchLabelProvider_3 + "\"" + value + "\" [" + offset + "," + lenght + "] (" + attributeName + Messages.AttributeMatchLabelProvider_8 + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ 
+		return "\"" + sectionThatMatch + "\"" + Messages.AttributeMatchLabelProvider_3 + "\"" + value + "\" [" + offset + "," + lenght + "] (" + attributeName + Messages.AttributeMatchLabelProvider_8 + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ 
 	}
 
 	public String getText(Object element) {
@@ -60,17 +60,27 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 						String value = (String)target.eGet(source);
 						return printResult(value.substring(attributeMatch.getOffset(), attributeMatch.getLength()), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 
+					} else {
+						String value = String.valueOf(target.eGet(source));
+						return printResult(value.substring(attributeMatch.getOffset(), attributeMatch.getLength()), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 					}
 				} else if(attributeMatch.getSource() instanceof Property) {
+
 					Property source = (Property)attributeMatch.getSource();
 					Class containingClass = source.getClass_();
 					if(containingClass instanceof Stereotype) {
 						if(target instanceof Element) {
-							Object tagValue = ((Element)target).getValue((Stereotype)containingClass, source.getName());
+
+							Object tagValue = ((Element)target).getValue((Stereotype)containingClass, ((Property)attributeMatch.getSource()).getName());
+
 							if(tagValue instanceof String) {
 								String value = (String)tagValue;
 								return printResult(value.substring(attributeMatch.getOffset(), attributeMatch.getLength()), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
+							} else {
+								String value = String.valueOf(tagValue);
+								return printResult(value.substring(attributeMatch.getOffset(), attributeMatch.getLength()), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 							}
+
 						}
 					}
 				}

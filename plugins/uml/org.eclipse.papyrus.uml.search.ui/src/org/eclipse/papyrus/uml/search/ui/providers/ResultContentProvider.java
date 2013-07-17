@@ -24,7 +24,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.uml.search.ui.pages.PapyrusSearchResultPage;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
-import org.eclipse.papyrus.views.search.results.ModelMatch;
 import org.eclipse.papyrus.views.search.results.ResultEntry;
 import org.eclipse.papyrus.views.search.utils.MatchUtils;
 import org.eclipse.search.ui.text.AbstractTextSearchResult;
@@ -111,10 +110,16 @@ public class ResultContentProvider implements ITreeContentProvider {
 
 		boolean found = false;
 
-		for(Object object : children) {
+		for(Object childInMap : children) {
 			if(child instanceof AbstractResultEntry) {
-				if(object instanceof AbstractResultEntry) {
-					if(((AbstractResultEntry)object).equals((AbstractResultEntry)child)) {
+				if(childInMap instanceof AbstractResultEntry) {
+					if(((AbstractResultEntry)childInMap).equals((AbstractResultEntry)child)) {
+
+						if((!(child instanceof ResultEntry)) && (childInMap instanceof ResultEntry)) {
+
+							replaceResultEntryByRealResult((AbstractResultEntry)childInMap, (AbstractResultEntry)child);
+
+						}
 
 						found = true;
 						break;
@@ -128,8 +133,30 @@ public class ResultContentProvider implements ITreeContentProvider {
 			children.add(child);
 			return true;
 		} else {
-
 			return false;
+		}
+
+	}
+
+	protected void replaceResultEntryByRealResult(AbstractResultEntry toReplace, AbstractResultEntry replacement) {
+
+		//Must replace ResultEntry in the tree by RealMatch
+		for(Object childInMap : fChildrenMap.get(toReplace)) {
+			if(childInMap instanceof AbstractResultEntry) {
+				((AbstractResultEntry)childInMap).setParent(replacement);
+			}
+		}
+
+		fChildrenMap.put(replacement, fChildrenMap.get(toReplace));
+		((AbstractResultEntry)replacement).setParent(toReplace.getParent());
+		fChildrenMap.remove(toReplace);
+
+		for(Object key : fChildrenMap.keySet()) {
+
+			if(fChildrenMap.get(key).contains(toReplace)) {
+				fChildrenMap.get(key).remove(toReplace);
+				fChildrenMap.get(key).add(replacement);
+			}
 		}
 
 	}
@@ -137,31 +164,37 @@ public class ResultContentProvider implements ITreeContentProvider {
 	protected Object getUpdateParent(Object child) {
 		Object parent = getParent(child);
 
+		Object existingParent = null;
+
+		//Try to find if it is already in the childrenMap
 		for(Object key : fChildrenMap.keySet()) {
+			//It may be the parent
 			if(key instanceof AbstractResultEntry) {
 				if(((AbstractResultEntry)key).equals(parent)) {
-					if((parent instanceof ModelMatch) && key instanceof ResultEntry) {
-						//Must replace ResultEntry in the tree by RealMatch
-						for(Object childInMap : fChildrenMap.get(key)) {
-							if(childInMap instanceof AbstractResultEntry) {
-								((AbstractResultEntry)childInMap).setParent(parent);
-							}
-						}
-						key = parent;
-
-					} else {
-						parent = key;
-						((AbstractResultEntry)child).setParent(parent);
-					}
-
+					existingParent = key;
+					break;
 				}
 			}
 
+			//or one of the children
+			for(Object childInMap : fChildrenMap.get(key)) {
+				if(childInMap instanceof AbstractResultEntry) {
+					if(((AbstractResultEntry)childInMap).equals(parent)) {
+						existingParent = childInMap;
+						break;
+					}
+				}
+			}
 		}
 
-		return parent;
-
+		if(existingParent != null) {
+			((AbstractResultEntry)child).setParent(existingParent);
+			return existingParent;
+		} else {
+			return parent;
+		}
 	}
+
 
 	protected void insert(Object child, boolean refreshViewer) {
 
@@ -189,9 +222,28 @@ public class ResultContentProvider implements ITreeContentProvider {
 		}
 	}
 
-	protected boolean hasChild(Object parent, Object child, Map<Object, Set<Object>> fChildrenMap) {
+	protected boolean hasChild(Object parent, Object child) {
 		Set<Object> children = fChildrenMap.get(parent);
-		return children != null && children.contains(child);
+
+		if(children != null) {
+			for(Object childInMap : children) {
+				if(childInMap instanceof AbstractResultEntry) {
+					if(child instanceof AbstractResultEntry) {
+						if(((AbstractResultEntry)childInMap).equals((AbstractResultEntry)child)) {
+
+							if((!(child instanceof ResultEntry)) && (childInMap instanceof ResultEntry)) {
+								replaceResultEntryByRealResult((AbstractResultEntry)childInMap, (AbstractResultEntry)child);
+							}
+
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
+		//		return children != null && children.contains(child);
 	}
 
 	protected void removeFromSiblings(Object element, Object parent) {
@@ -233,20 +285,21 @@ public class ResultContentProvider implements ITreeContentProvider {
 		for(int i = 0; i < updatedElements.length; i++) {
 
 			if(updatedElements[i] instanceof AbstractResultEntry) {
+				AbstractResultEntry resultEntry = (AbstractResultEntry)updatedElements[i];
 				Set<AbstractResultEntry> matches = MatchUtils.getMatches(fResult, true);
 
 				if(matches.contains(updatedElements[i])) {
-					AbstractResultEntry resultEntry = (AbstractResultEntry)updatedElements[i];
-					Object parent = getUpdateParent(updatedElements[i]);
 
-					if(hasChild(parent, updatedElements[i], fChildrenMap)) {
+					Object parent = getUpdateParent(resultEntry);
+
+					if(hasChild(parent, resultEntry)) {
 						fViewer.update(new Object[]{ resultEntry, parent }, null);
 					} else {
-						insert(updatedElements[i], true); //or update
+						insert(resultEntry, true); //or update
 					}
 
 				} else {
-					remove(updatedElements[i], true);
+					remove(resultEntry, true);
 				}
 			} else {
 				if(fResult.getMatchCount(updatedElements[i]) > 0) {

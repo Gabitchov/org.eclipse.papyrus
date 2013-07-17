@@ -20,7 +20,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
-import org.eclipse.papyrus.uml.search.ui.query.PapyrusQuery;
+import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
 import org.eclipse.papyrus.views.search.utils.MatchUtils;
@@ -40,14 +40,14 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 
 
 
-	private PapyrusQuery searchQuery;
+	private AbstractPapyrusQuery searchQuery;
 
-	public PapyrusSearchResult(PapyrusQuery query) {
+	public PapyrusSearchResult(AbstractPapyrusQuery query) {
 		this.searchQuery = query;
 		possibleMatchFilter = new MatchFilter[0];
 	}
 
-	public PapyrusQuery getQuery() {
+	public AbstractPapyrusQuery getQuery() {
 		return searchQuery;
 	}
 

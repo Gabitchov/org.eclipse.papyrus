@@ -56,7 +56,7 @@ public class ReplaceDialog extends Dialog {
 
 	PapyrusSearchResultPage fResultPage;
 
-	org.eclipse.papyrus.uml.search.ui.query.PapyrusQuery fQuery;
+	org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery fQuery;
 
 	Object[] fSelection;
 
@@ -79,7 +79,7 @@ public class ReplaceDialog extends Dialog {
 
 		this.fResultPage = fResultPage;
 		this.fSelection = selection;
-		this.fQuery = (org.eclipse.papyrus.uml.search.ui.query.PapyrusQuery)fResultPage.getInput().getQuery();
+		this.fQuery = (org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery)fResultPage.getInput().getQuery();
 
 	}
 

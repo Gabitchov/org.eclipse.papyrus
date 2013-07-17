@@ -32,6 +32,22 @@ public class ModelElementMatch extends ModelMatch {
 		//		this.parent = new ResultEntry(scopeEntry.getResource(), scopeEntry);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		//		if(obj instanceof ModelElementMatch) {
+		//			if(super.equals(obj)) {
+		//
+		//				return true;
+		//
+		//			}
+		//			return false;
+		//
+		//		} else {
+		//			return false;
+		//		}
+		return super.equals(obj);
+	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.views.search.results.AbstractResultEntry#elementToDisplay()
