@@ -21,7 +21,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.command.TableCommands;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainuUtils;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 
 /**
  * Abstract class for the columnHeaderAxisConfiguration
@@ -62,7 +62,7 @@ public abstract class AbstractColumnHeaderAxisConfigurationObservableValue exten
 	@Override
 	protected final void doSetValue(final Object value) {
 		final ICommand cmd = TableCommands.getSetColumnHeaderConfigurationValueCommand(getTable(), getManagedFeature(), value);
-		final TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(getTable());
+		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(getTable());
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 	}
 

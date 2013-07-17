@@ -35,7 +35,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainuUtils;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -69,7 +69,7 @@ public class TableCommands {
 	 */
 	//FIXME : the handler must use me
 	public static ICommand getSetRowHeaderConfigurationValueCommand(final Table table, final EStructuralFeature feature, final Object newValue) {
-		final TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(table);
+		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
 		final CompositeCommand compositeCommand = new CompositeCommand("SetRowHeaderConfigurationCommand"); //$NON-NLS-1$
 		EObject elementToEdit = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisUsedInTable(table);
 		if(elementToEdit instanceof TableHeaderAxisConfiguration) {
@@ -104,7 +104,7 @@ public class TableCommands {
 	 */
 	//FIXME : the handler must use me
 	public static ICommand getSetColumnHeaderConfigurationValueCommand(final Table table, final EStructuralFeature feature, final Object newValue) {
-		final TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(table);
+		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
 		final CompositeCommand compositeCommand = new CompositeCommand("SetColumnHeaderConfigurationCommand"); //$NON-NLS-1$
 		EObject elementToEdit = HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisUsedInTable(table);
 		if(elementToEdit instanceof TableHeaderAxisConfiguration) {
@@ -143,7 +143,7 @@ public class TableCommands {
 	//FIXME the handler must use me
 	public static final ICommand getSetColumnLabelConfigurationValueCommand(final Table table, final ILabelProviderConfiguration usedLabelConfiguration, final EStructuralFeature editedFeature, final Object newValue) {
 		final CompositeCommand cmd = new CompositeCommand("ChangeColumnLabelConfigurationValueCommand"); //$NON-NLS-1$
-		TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(table);
+		TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
 		ILabelProviderConfiguration editedLabelConf;
 		if(usedLabelConfiguration.eContainer() instanceof TableHeaderAxisConfiguration) {
 			editedLabelConf = EcoreUtil.copy(usedLabelConfiguration);
@@ -174,7 +174,7 @@ public class TableCommands {
 	//FIXME the handler must use me
 	public static final ICommand getSetRowLabelConfigurationValueCommand(final Table table, final ILabelProviderConfiguration usedLabelConfiguration, final EStructuralFeature editedFeature, final Object newValue) {
 		final CompositeCommand cmd = new CompositeCommand("ChangeRowLabelConfigurationValueCommand"); //$NON-NLS-1$
-		TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(table);
+		TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
 		ILabelProviderConfiguration editedLabelConf;
 		if(usedLabelConfiguration.eContainer() instanceof TableHeaderAxisConfiguration) {
 			editedLabelConf = EcoreUtil.copy(usedLabelConfiguration);
@@ -256,7 +256,7 @@ public class TableCommands {
 	 *         the command to register the local label configuration
 	 */
 	private static final ICommand getRegisterLocalLabelConfigurationCommand(final String commandName, final Table table, final AbstractHeaderAxisConfiguration headerAxisConfigurationUsedInTable, final TableHeaderAxisConfiguration tableHeaderAxisConfiguration, final EStructuralFeature axisConfigurationFeature, final ILabelProviderConfiguration localTableLabelConfiguration, final ILabelProviderConfiguration tableLabelConfiguration) {
-		final TransactionalEditingDomain domain = TableEditingDomainuUtils.getTableEditingDomain(table);
+		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
 		final CompositeCommand cmd = new CompositeCommand(commandName);
 
 		//1. we must get or create the required LocalTableHeaderAxisConfiguration

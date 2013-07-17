@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -27,14 +26,14 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
  * Utils class to get the best editing domain to use
  * 
  */
-public class TableEditingDomainuUtils {
+public class TableEditingDomainUtils {
 
 	/**
 	 * 
 	 * Constructor.
 	 * 
 	 */
-	private TableEditingDomainuUtils() {
+	private TableEditingDomainUtils() {
 		//to prevent instanciation
 	}
 
@@ -48,7 +47,7 @@ public class TableEditingDomainuUtils {
 		ServicesRegistry registry = null;
 		try {
 			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(table);
-			return (TransactionalEditingDomain)registry.getService(EditingDomain.class);
+			return (TransactionalEditingDomain)registry.getService(TransactionalEditingDomain.class);
 		} catch (final ServiceException e) {
 			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
 		}
@@ -66,7 +65,7 @@ public class TableEditingDomainuUtils {
 		ServicesRegistry registry = null;
 		try {
 			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(table.getContext());
-			return (TransactionalEditingDomain)registry.getService(EditingDomain.class);
+			return (TransactionalEditingDomain)registry.getService(TransactionalEditingDomain.class);
 		} catch (final ServiceException e) {
 			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
 		}

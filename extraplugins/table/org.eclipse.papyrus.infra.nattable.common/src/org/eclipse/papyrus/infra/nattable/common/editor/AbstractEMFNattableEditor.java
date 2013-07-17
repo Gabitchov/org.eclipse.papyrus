@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -91,7 +91,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	 * 
 	 * @return
 	 */
-	public EditingDomain getEditingDomain() {
+	public TransactionalEditingDomain getEditingDomain() {
 		try {
 			return ServiceUtils.getInstance().getTransactionalEditingDomain(this.servicesRegistry);
 		} catch (final ServiceException e) {

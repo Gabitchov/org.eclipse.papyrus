@@ -98,13 +98,16 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @param rowElement
-	 * @param columnElement
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object, INattableModelManager)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#doGetValue(java.lang.Object, java.lang.Object,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @param tableManager
 	 * @return
 	 */
-	public Object getValue(Object rowElement, Object columnElement, INattableModelManager tableManager) {
+	@Override
+	protected Object doGetValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
 		final String featureName = ((String)objects.get(1)).replace(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
 		final Object editor = objects.get(0);
@@ -123,7 +126,6 @@ public class ModelViewsCellManager extends AbstractCellManager {
 		return NOT_AVALAIBLE;
 	}
 
-
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
@@ -141,13 +143,14 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
-	 *      java.lang.Object, java.lang.Object, java.lang.Object, INattableModelManager)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#getSetValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      java.lang.Object, java.lang.Object, java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 * 
 	 * @param domain
-	 * @param rowElement
 	 * @param columnElement
+	 * @param rowElement
 	 * @param newValue
+	 * @param manager
 	 * @return
 	 */
 	@Override

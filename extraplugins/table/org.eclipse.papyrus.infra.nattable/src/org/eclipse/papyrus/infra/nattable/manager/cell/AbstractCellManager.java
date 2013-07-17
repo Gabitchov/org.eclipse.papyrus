@@ -47,9 +47,26 @@ public abstract class AbstractCellManager implements ICellManager {
 	 * @param rowElement
 	 * @param tableManager
 	 * @return
+	 *         the value for the cell. The developper must override the method doGetValue
 	 */
 	@Override
-	public Object getValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
+	public final Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		return doGetValue(columnElement, rowElement, tableManager);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object, INattableModelManager)
+	 * 
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @param tableManager
+	 *        the table manager
+	 * @return
+	 */
+	protected Object doGetValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
 		return null;
 	}
 
@@ -75,12 +92,12 @@ public abstract class AbstractCellManager implements ICellManager {
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
 	 * 
-	 * @param obj1
-	 * @param obj2
+	 * @param columnElement
+	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(Object obj1, Object obj2) {
+	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
 		return false;
 	}
 
