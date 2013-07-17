@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="org.eclipse.papyrus.uml.modelrepair.menuContribution1">
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.uml.modelrepair.handler.ModelRepairHandler"
+            id="org.eclipse.papyrus.uml.modelrepair.editlinks"
+            name="Edit model links">
+      </command>
+   </extension>
+
+</plugin>

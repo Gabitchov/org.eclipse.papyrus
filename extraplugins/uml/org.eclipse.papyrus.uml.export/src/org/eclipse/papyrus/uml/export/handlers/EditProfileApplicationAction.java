@@ -26,6 +26,7 @@ import org.eclipse.core.filebuffers.ITextFileBufferManager;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
@@ -170,7 +171,7 @@ public class EditProfileApplicationAction extends ActionDelegate implements IAct
 	public void run(IAction action) {
 		if(files != null) {
 			Iterator<IFile> filesIt = files.iterator();
-			IFile file = filesIt.next();
+			final IFile file = filesIt.next();
 			ResourceSet resourceSet = new ResourceSetImpl();
 			ITextFileBufferManager manager = FileBuffers.getTextFileBufferManager();
 			try {
@@ -183,7 +184,7 @@ public class EditProfileApplicationAction extends ActionDelegate implements IAct
 			final IDocument doc = buffer.getDocument();
 			final FindReplaceDocumentAdapter adapter = new FindReplaceDocumentAdapter(doc);
 			final MultiTextEdit multiEdit = new MultiTextEdit();
-			Resource umlResource = WSFileUtil.loadResource(file.getFullPath().toString(), resourceSet);
+			final Resource umlResource = WSFileUtil.loadResource(file.getFullPath().toString(), resourceSet);
 			if(umlResource.getContents().isEmpty()) {
 				// The root doesn't exist.
 				try {
@@ -217,20 +218,22 @@ public class EditProfileApplicationAction extends ActionDelegate implements IAct
 							Object[] profiles = dialog.getResult();
 							for(int i = 0; i < profiles.length; i++) {
 								if(profiles[i] instanceof Profile) {
-									// TODO Auto-generated method stub
-
-									String localProfileURI = ((Profile)profiles[i]).eResource().getURI().toString();
-
-
-									//the applied local profile in the xmi file has an uri that is relative to the workspace, 
-									//so adapt the uri that is in the preferences to fit in this format
-									localProfileURI = localProfileURI.replace("platform:/resource/", "../"); //$NON-NLS-1$ //$NON-NLS-2$											
+									//Absolute profile URI (platform:/resource/)
+									URI localProfileURI = ((Profile)profiles[i]).eResource().getURI();
+									
+									//Absolute model URI (platform:/resource)
+									IPath filePath = file.getFullPath();
+									URI modelURI = umlResource.getURI();
+									
+									//Relative profile URI
+									URI relativeProfileURI = localProfileURI.deresolve(modelURI);
 
 									String installedProfileURI = findCorrespondingInstalledProfile((Profile)profiles[i]);
 									if(installedProfileURI != null) {
 
 										try {
-											WSFileUtil.replaceString(localProfileURI, installedProfileURI, adapter, doc, 0, multiEdit);
+											WSFileUtil.replaceString(localProfileURI.toString(), installedProfileURI, adapter, doc, 0, multiEdit);
+											WSFileUtil.replaceString(relativeProfileURI.toString(), installedProfileURI, adapter, doc, 0, multiEdit);
 										} catch (BadLocationException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
