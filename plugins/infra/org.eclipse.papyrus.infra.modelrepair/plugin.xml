@@ -5,7 +5,35 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="org.eclipse.papyrus.uml.modelrepair.menuContribution1">
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <command
+               commandId="org.eclipse.papyrus.uml.modelrepair.editlinks"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <adapt
+                           type="org.eclipse.core.resources.IFile">
+                        <or>
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="di">
+                           </test>
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="uml">
+                           </test>
+                        </or>
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+            
+         </command>
       </menuContribution>
    </extension>
    <extension

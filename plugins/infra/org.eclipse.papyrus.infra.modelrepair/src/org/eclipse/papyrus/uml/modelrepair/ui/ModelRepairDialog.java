@@ -12,25 +12,21 @@
 package org.eclipse.papyrus.uml.modelrepair.ui;
 
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.TrayDialog;
+import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.TableLayout;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.uml.modelrepair.ui.providers.ResourceLabelProvider;
+import org.eclipse.papyrus.uml.modelrepair.ui.providers.ResourceLinksContentProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
 
 
 public class ModelRepairDialog extends TrayDialog {
@@ -47,43 +43,44 @@ public class ModelRepairDialog extends TrayDialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite contents = (Composite)super.createDialogArea(parent);
 
-		Composite self = new Composite(contents, SWT.BORDER);
-		self.setLayout(new GridLayout(4, true));
+		Composite self = new Composite(contents, SWT.NONE);
+		self.setLayout(new FillLayout());
+		self.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		EcoreUtil.resolveAll(resourceSet);
+		TreeViewer viewer = new TreeViewer(self, SWT.FULL_SELECTION | SWT.BORDER);
+		Tree tree = viewer.getTree();
+		TableLayout layout = new TableLayout(true);
+		tree.setLayout(layout);
+		tree.setHeaderVisible(true);
 
-		Map<Resource, Set<URI>> allLinks = allLinks();
 
-		for(Resource resource : allLinks.keySet()) {
-			Label label = new Label(self, SWT.NONE);
-			String displayLabel = String.format("%s (%s)", resource.getURI().lastSegment(), allLinks.get(resource).size()); //$NON-NLS-1$
+		TreeColumn nameColumn = new TreeColumn(tree, SWT.NONE);
+		nameColumn.setText("Resource");
+		layout.addColumnData(new ColumnWeightData(25, 250, true));
 
-			label.setText(displayLabel);
-		}
+		TreeColumn locationColumn = new TreeColumn(tree, SWT.NONE);
+		locationColumn.setText("Location");
+		layout.addColumnData(new ColumnWeightData(45, 450, true));
+
+		TreeColumn versionColumn = new TreeColumn(tree, SWT.NONE);
+		versionColumn.setText("Read-only");
+		layout.addColumnData(new ColumnWeightData(10, 100, true));
+
+
+		viewer.setContentProvider(new ResourceLinksContentProvider());
+		viewer.setLabelProvider(new ResourceLabelProvider(resourceSet));
+		viewer.setInput(resourceSet);
 
 		return contents;
 	}
 
-	protected Map<Resource, Set<URI>> allLinks() {
-		Map<Resource, Set<URI>> result = new HashMap<Resource, Set<URI>>();
-		for(Resource resource : resourceSet.getResources()) {
-
-			Set<URI> allReferencedURIs = new HashSet<URI>();
-			result.put(resource, allReferencedURIs);
-
-			Iterator<EObject> allContents = resource.getAllContents();
-
-			while(allContents.hasNext()) {
-				EObject nextElement = allContents.next();
-				List<EObject> allReferencedEObjects = nextElement.eCrossReferences();
-				for(EObject referencedEObject : allReferencedEObjects) {
-					allReferencedURIs.add(referencedEObject.eResource().getURI());
-				}
-			}
-		}
-
-		return result;
+	@Override
+	public void create() {
+		super.create();
+		getShell().setText("Edit model links");
+		getShell().pack();
 	}
+
 
 	@Override
 	protected boolean isResizable() {
