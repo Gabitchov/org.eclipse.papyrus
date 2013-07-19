@@ -1032,7 +1032,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 				Collection<ScopeEntry> scopeEntries = createScopeEntries(scope);
 				ISearchQuery query;
 				if(searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
-					if(searchQueryText.getText().isEmpty()) {
+					if(searchQueryText.getText().length() == 0) {
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_29, Messages.PapyrusSearchPage_30);
 						return false;
 					} else {
@@ -1058,7 +1058,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_31, Messages.PapyrusSearchPage_32);
 						return false;
 					} else {
-						if(searchQueryText.getText().isEmpty()) {
+						if(searchQueryText.getText().length() == 0) {
 							for(Object participantChecked : participantTypesTreeViewer.getCheckedElements()) {
 								if(participantChecked instanceof ParticipantTypeAttribute) {
 									MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_33, Messages.PapyrusSearchPage_34);
@@ -1118,7 +1118,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	public boolean performReplace() {
 		if(queryKind.getSelectionIndex() == TEXT_QUERY_KIND) {
 			if(validateRegex()) {
-				if(searchQueryText.getText().isEmpty()) {
+				if(searchQueryText.getText().length() == 0) {
 					MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_36, Messages.PapyrusSearchPage_37);
 					return false;
 				}

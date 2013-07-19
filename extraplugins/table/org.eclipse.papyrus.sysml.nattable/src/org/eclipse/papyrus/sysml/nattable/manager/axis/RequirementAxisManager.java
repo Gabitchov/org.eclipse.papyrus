@@ -17,23 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
 import org.eclipse.papyrus.uml.nattable.manager.axis.AbstractUMLSynchronizedOnFeatureAxisManager;
-import org.eclipse.uml2.uml.UMLPackage;
 
 
 /**
@@ -118,14 +113,14 @@ public class RequirementAxisManager extends AbstractUMLSynchronizedOnFeatureAxis
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain,
 	 *      java.lang.Integer)
 	 * 
 	 * @param domain
 	 * @param axisPosition
 	 * @return
 	 */
-	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		final Object current = getElements().get(axisPosition);
 		if(current instanceof EObjectAxis) {
 			final EObject element = ((EObjectAxis)current).getElement();

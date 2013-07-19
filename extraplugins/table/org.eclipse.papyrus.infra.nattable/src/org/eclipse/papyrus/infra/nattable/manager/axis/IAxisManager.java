@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
@@ -55,7 +55,7 @@ public interface IAxisManager extends IDisposable {
 	 *        the object to add
 	 * @return the command to add an axis to the emf model
 	 */
-	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd);
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd);
 
 	/**
 	 * 
@@ -66,7 +66,7 @@ public interface IAxisManager extends IDisposable {
 	 * @return the complementary command, which is called by the master on the
 	 *         slave to add required axis
 	 */
-	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd);
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd);
 
 	/**
 	 * 
@@ -142,7 +142,7 @@ public interface IAxisManager extends IDisposable {
 	 * @param objectToDestroy
 	 * @return
 	 */
-	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy);
+	public Command getDestroyAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToDestroy);
 
 	/**
 	 * 
@@ -263,7 +263,7 @@ public interface IAxisManager extends IDisposable {
 	 * @param axisPosition
 	 * @return
 	 */
-	public Command getDestroyAxisElementCommand(final EditingDomain domain, final Integer axisPosition);
+	public Command getDestroyAxisElementCommand(final TransactionalEditingDomain domain, final Integer axisPosition);
 
 	/**
 	 * An axis provider determines if it can be saved as a configuration for later retrieval or not. It makes sense to save configurations of

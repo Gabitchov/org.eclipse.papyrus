@@ -63,7 +63,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getValue(java.lang.Object, java.lang.Object,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#doGetValue(java.lang.Object, java.lang.Object,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 * 
 	 * @param columnElement
@@ -72,7 +72,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 * @return
 	 */
 	@Override
-	public Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+	protected Object doGetValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
 		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement);
 		if(umlObjects.size() == 2) {
 			final Element el = (Element)umlObjects.get(0);

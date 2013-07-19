@@ -17,11 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -116,14 +114,14 @@ public class AllocateAxisManager extends AbstractSynchronizedOnFeatureAxisManage
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain,
 	 *      java.lang.Integer)
 	 * 
 	 * @param domain
 	 * @param axisPosition
 	 * @return
 	 */
-	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		final Object current = getElements().get(axisPosition);
 		EObject elementToDestroy = null;
 		if(current instanceof EObjectAxis) {

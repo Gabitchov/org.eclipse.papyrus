@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -49,7 +48,7 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -57,7 +56,7 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		final Set<Object> features = new HashSet<Object>();
 		for(final Object current : objectToAdd) {
 			if(current instanceof EObject) {
@@ -73,7 +72,7 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -81,7 +80,7 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getAddAxisCommand(EditingDomain domain, Collection<Object> objectToAdd) {
+	public Command getAddAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToAdd) {
 		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 		for(final Object current : objectToAdd) {
 			if(isAllowedContents(current)) {
@@ -99,7 +98,7 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getDestroyAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -107,7 +106,7 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {//FIXME must be done in the abstract class
+	public Command getDestroyAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToDestroy) {//FIXME must be done in the abstract class
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
 		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
 		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
@@ -248,7 +247,7 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 		return false;
 	}
 
-	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		return UnexecutableCommand.INSTANCE;
 	}
 

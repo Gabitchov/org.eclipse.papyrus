@@ -25,7 +25,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.edit.command.MoveCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -125,7 +124,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -133,7 +132,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @return
 	 */
 	@Override
-	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
 		for(final IAxisManager current : this.subManagers) {
 			final Command tmp = current.getAddAxisCommand(domain, objectToAdd);
@@ -149,7 +148,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -157,7 +156,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @return
 	 */
 	@Override
-	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
 		for(final IAxisManager current : this.subManagers) {
 			final Command tmp = current.getComplementaryAddAxisCommand(domain, objectToAdd);
@@ -270,7 +269,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getDestroyAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -278,7 +277,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @return
 	 */
 	@Override
-	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
+	public Command getDestroyAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToDestroy) {
 		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_DestroyAxisCommand);
 		for(final IAxisManager current : this.subManagers) {
 			final Command tmp = current.getDestroyAxisCommand(domain, objectToDestroy);
@@ -369,7 +368,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	public void moveAxis(Object elementToMove, int newIndex) {
 		if(!isDynamic() && elementToMove instanceof IAxis) {
-			EditingDomain domain = getTableEditingDomain();
+			TransactionalEditingDomain domain = getTableEditingDomain();
 			final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
 			domain.getCommandStack().execute(command);
 		};
@@ -475,7 +474,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain,
 	 *      java.lang.Integer)
 	 * 
 	 * @param domain
@@ -483,7 +482,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @return
 	 */
 	@Override
-	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		final List<Object> elements = tableManager.getElementsList(getRepresentedContentProvider());//FIXME create a util method for that
 		final Object element = elements.get(axisPosition);
 		if(element instanceof IAxis) {
