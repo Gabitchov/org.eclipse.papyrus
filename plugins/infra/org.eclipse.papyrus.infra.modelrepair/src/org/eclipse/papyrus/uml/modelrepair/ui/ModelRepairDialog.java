@@ -11,46 +11,77 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.ui;
 
+import java.io.IOException;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.uml.modelrepair.Activator;
 import org.eclipse.papyrus.uml.modelrepair.ui.providers.ResourceLabelProvider;
 import org.eclipse.papyrus.uml.modelrepair.ui.providers.ResourceLinksContentProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.custom.TreeEditor;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
+import org.eclipse.swt.widgets.TreeItem;
 
 
 public class ModelRepairDialog extends TrayDialog {
 
-	private ResourceSet resourceSet;
+	private ModelSet modelSet;
 
-	public ModelRepairDialog(Shell shell, ResourceSet resourceSet) {
+	public ModelRepairDialog(Shell shell, ModelSet modelSet) {
 		super(shell);
 
-		this.resourceSet = resourceSet;
+		this.modelSet = modelSet;
 	}
+
+	protected TreeViewer viewer;
+
+	protected Tree tree;
+
+	protected TreeEditor editor;
+
+	protected Text textEditor;
+
+	protected TreeItem currentSelection;
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite contents = (Composite)super.createDialogArea(parent);
 
 		Composite self = new Composite(contents, SWT.NONE);
-		self.setLayout(new FillLayout());
+		self.setLayout(new GridLayout(1, false));
 		self.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		TreeViewer viewer = new TreeViewer(self, SWT.FULL_SELECTION | SWT.BORDER);
-		Tree tree = viewer.getTree();
-		TableLayout layout = new TableLayout(true);
+		Label label = new Label(self, SWT.NONE);
+		label.setText("Press F2 or double click on an element to change its URI");
+		label.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+
+		viewer = new TreeViewer(self, SWT.FULL_SELECTION | SWT.BORDER);
+		tree = viewer.getTree();
+		TableLayout layout = new TableLayout();
 		tree.setLayout(layout);
+		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		tree.setHeaderVisible(true);
 
 
@@ -68,10 +99,121 @@ public class ModelRepairDialog extends TrayDialog {
 
 
 		viewer.setContentProvider(new ResourceLinksContentProvider());
-		viewer.setLabelProvider(new ResourceLabelProvider(resourceSet));
-		viewer.setInput(resourceSet);
+		viewer.setLabelProvider(new ResourceLabelProvider(modelSet));
+		viewer.setInput(modelSet);
+
+		editor = new TreeEditor(tree);
+		editor.setColumn(1);
+		editor.horizontalAlignment = SWT.CENTER;
+		editor.grabHorizontal = true;
+		textEditor = new Text(tree, SWT.BORDER);
+
+		textEditor.addFocusListener(new FocusListener() {
+
+			public void focusLost(FocusEvent e) {
+				if(e.widget == textEditor) {
+					validate();
+				}
+			}
+
+			public void focusGained(FocusEvent e) {
+				//Nothing
+			}
+		});
+
+		textEditor.addKeyListener(new KeyListener() {
+
+			public void keyReleased(KeyEvent e) {
+				if(e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) {
+					validate();
+					e.doit = false;
+				}
+			}
+
+			public void keyPressed(KeyEvent e) {
+				//Nothing
+			}
+		});
+
+		viewer.getTree().addKeyListener(new KeyListener() {
+
+			public void keyReleased(KeyEvent e) {
+				if(e.keyCode == SWT.F2 && e.widget == tree) {
+					editElement(tree);
+				}
+			}
+
+			public void keyPressed(KeyEvent e) {
+				//Nothing
+			}
+		});
+
+		tree.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				//Nothing
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				//Double click
+				if(e.widget == tree) {
+					editElement(tree);
+					e.doit = false;
+				}
+			}
+		});
 
 		return contents;
+	}
+
+	protected void editElement(Tree tree) {
+		if(tree.getSelection().length == 0) {
+			return;
+		}
+
+		currentSelection = tree.getSelection()[0];
+		Object element = currentSelection.getData();
+		textEditor.setText(((ILabelProvider)viewer.getLabelProvider()).getText(element));
+		editor.setEditor(textEditor, currentSelection);
+	}
+
+	protected void validate() {
+		editor.setEditor(null);
+		textEditor.setVisible(false);
+
+		if(currentSelection == null) {
+			return;
+		}
+
+		Object element = currentSelection.getData();
+
+		Resource resource;
+		if(element instanceof URI) {
+			resource = modelSet.getResource((URI)element, false);
+		} else if(element instanceof Resource) {
+			resource = (Resource)element;
+		} else {
+			return;
+		}
+
+		if(resource == null) {
+			return;
+		}
+
+		URI newURI = URI.createURI(textEditor.getText());
+		resource.setURI(newURI);
+
+		viewer.refresh();
+	}
+
+	@Override
+	protected void okPressed() {
+		try {
+			modelSet.save(new NullProgressMonitor());
+		} catch (IOException ex) {
+			Activator.log.error(ex);
+		}
+		super.okPressed();
 	}
 
 	@Override

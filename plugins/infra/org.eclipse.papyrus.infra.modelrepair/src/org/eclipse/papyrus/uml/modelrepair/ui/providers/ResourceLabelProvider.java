@@ -115,4 +115,13 @@ public class ResourceLabelProvider extends ColumnLabelProvider {
 
 		return null;
 	}
+
+	@Override
+	public String getText(Object element) {
+		URI uri = getURI(element);
+		if(uri != null) {
+			return getURI(element).toString();
+		}
+		return super.getText(element);
+	}
 }
