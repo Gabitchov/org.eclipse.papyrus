@@ -26,7 +26,7 @@ public class PropertyNameVsItsTypeName extends AbstractModelConstraint {
 	public IStatus validate(IValidationContext ctx) {
 		Property subsystem = (Property)ctx.getTarget();
 		//System.err.println("\n\n Type: "+subsystem.getType() +"\n Owner: "+ subsystem.getOwner());
-
+		if (ConstraintsUtil.verifyRobotMLApplied(subsystem)){
 		//1. verify that a property has a type
 		if(subsystem.getType() == null) {
 			return ctx.createFailureStatus("Property (subsystem or attribute) should have a Type" + subsystem.getQualifiedName());
@@ -49,7 +49,7 @@ public class PropertyNameVsItsTypeName extends AbstractModelConstraint {
 				return ctx.createFailureStatus("Property (subsystem or attribute) should have a name diffrent from its Type name " + subsystem.getQualifiedName());
 		}
 
-
+		}
 
 
 
