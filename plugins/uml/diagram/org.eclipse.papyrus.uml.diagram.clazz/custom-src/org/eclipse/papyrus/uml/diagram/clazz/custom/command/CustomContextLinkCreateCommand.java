@@ -12,9 +12,20 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Connector;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ContextLinkCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContextLinkEditPart;
+import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Namespace;
 
@@ -49,11 +60,47 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 				return false;
 			}
 		}
+		View viewSource = findView(source);
+		
+		if(viewSource != null && source instanceof Constraint) {
+			View viewTarget = findView(target);
+			List sourceConnections = ViewUtil.getSourceConnections(viewSource);
+			
+			for(Object connector : sourceConnections) {
+				if(!(connector instanceof Connector)) {
+					continue;
+				}
+				Edge edge = (Edge)connector;
+
+				if(("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
+					if(viewTarget == edge.getTarget()) {
+						// the context link is already
+						//  drawn between the Constraint and the NamedElement
+						return false;
+					}
+				}
+			}
+		}
+				
 		if(getTarget() != null && (getTarget().getOwnedRules().contains(getTarget()))) {
 			return false;
 		}
 		return true;
 	}
 
-
+	private View findView(EObject element) {
+		if(element == null) {
+			return null;
+		}
+		Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(element);
+		for(Setting ref : settings) {
+			if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
+				View view = (View)ref.getEObject();
+				if(view != null) {
+					return view;
+				}
+			}
+		}
+		return null;
+	}
 }

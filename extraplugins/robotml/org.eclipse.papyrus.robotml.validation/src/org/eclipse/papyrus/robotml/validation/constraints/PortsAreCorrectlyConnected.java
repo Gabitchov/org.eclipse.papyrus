@@ -45,6 +45,7 @@ public class PortsAreCorrectlyConnected extends AbstractModelConstraint {
 	@Override
 	public IStatus validate(IValidationContext ctx) {
 		Connector elt = (Connector)ctx.getTarget();
+		if (ConstraintsUtil.verifyRobotMLApplied(elt)){
 		List<ConnectorEnd> cends = new ArrayList<ConnectorEnd>();
 		cends = elt.getEnds();
 		// 1. verify that only ports of the same kind are connected
@@ -58,7 +59,7 @@ public class PortsAreCorrectlyConnected extends AbstractModelConstraint {
 					ConnectableElement connectorEndRole0 = cends.get(0).getRole();
 					ConnectableElement connectorEndRole1 = cends.get(1).getRole();
 
-					// System.out.println(connectorEndRole0.getEnds());
+			
 					if((connectorEndRole0 instanceof Port) && (connectorEndRole1 instanceof Port)) {// if4
 						// verify that the connection is between two ports of
 						// two subsystems of the same containing system
@@ -86,11 +87,7 @@ public class PortsAreCorrectlyConnected extends AbstractModelConstraint {
 								if((elt.getOwner() == connectorEndRole0.getOwner()) || (elt.getOwner() == connectorEndRole1.getOwner())) {
 									areSubsystems = false;
 								}
-								// System.err.println("\n\n\nConnector Owner: "
-								// + elt.getOwner()+ "\nPort0 owner: "+
-								// connectorEndRole0.getOwner()+
-								// "\nPort1 owner: "+
-								// connectorEndRole1.getOwner()+" "+areSubsystems+"\n\n");
+							
 								// verify if connections are set between in and
 								// out DataFlowPorts or provided and required
 								// ServicePorts
@@ -128,7 +125,7 @@ public class PortsAreCorrectlyConnected extends AbstractModelConstraint {
 			}// end if2
 		}// end if1
 			// 2. verify that there is only one connection between ports
-
+		}
 		return ctx.createSuccessStatus();
 	}
 }

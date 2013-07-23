@@ -39,10 +39,12 @@ public class VerifyAlphanumericNamedElement extends AbstractModelConstraint {
 	public IStatus validate(IValidationContext ctx) {
 		// TODO Auto-generated method stub
 		NamedElement element = (NamedElement)ctx.getTarget();
+		 	if (ConstraintsUtil.verifyRobotMLApplied(element)){
 		//4. verify that a property has an alphanumeric name that can also contain underscore
 		if(((element instanceof Classifier) || (element instanceof Property) || (element instanceof DataType)) && !checkAlphaNumeric(element.getName())) {
 			return ctx.createFailureStatus("Element should have an alphanumeric name beginning by a letter" + element.getQualifiedName());
 		}
+		 	}
 		return ctx.createSuccessStatus();
 	}
 

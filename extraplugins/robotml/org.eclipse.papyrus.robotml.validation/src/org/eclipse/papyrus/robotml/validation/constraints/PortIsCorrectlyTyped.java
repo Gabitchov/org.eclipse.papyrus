@@ -16,7 +16,6 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.RobotML.DataFlowPort;
 import org.eclipse.papyrus.RobotML.ServicePort;
-
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
@@ -29,6 +28,7 @@ public class PortIsCorrectlyTyped extends AbstractModelConstraint {
 	@Override
 	public IStatus validate(IValidationContext ctx) {
 		Port elt = (Port)ctx.getTarget();
+		if (ConstraintsUtil.verifyRobotMLApplied(elt)){
 		//1. verify if the port is typed
 		if(elt.getType() == null) {
 			return ctx.createFailureStatus("Port should have a type (" + elt.getQualifiedName() + ")");
@@ -47,6 +47,7 @@ public class PortIsCorrectlyTyped extends AbstractModelConstraint {
 					}
 				}
 			}
+		}
 		}
 		return ctx.createSuccessStatus();
 

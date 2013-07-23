@@ -29,6 +29,7 @@ public class OnlyOneConnectionBetweenTwoPorts extends AbstractModelConstraint {
 	public IStatus validate(IValidationContext ctx) {
 
 		Connector elt = (Connector)ctx.getTarget();
+		if (ConstraintsUtil.verifyRobotMLApplied(elt)){
 		List<ConnectorEnd> cends = new ArrayList<ConnectorEnd>();
 		cends = elt.getEnds();
 		if(cends != null) {//if1
@@ -61,7 +62,7 @@ public class OnlyOneConnectionBetweenTwoPorts extends AbstractModelConstraint {
 				}
 			}
 		}
-
+		}
 		return ctx.createSuccessStatus();
 	}
 
