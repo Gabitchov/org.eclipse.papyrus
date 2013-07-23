@@ -12,22 +12,11 @@
 package org.eclipse.papyrus.uml.modelrepair.ui;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.TrayDialog;
@@ -36,8 +25,8 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
 import org.eclipse.papyrus.uml.modelrepair.Activator;
-import org.eclipse.papyrus.uml.modelrepair.readonly.ReadOnlyHelper;
 import org.eclipse.papyrus.uml.modelrepair.ui.providers.ResourceLabelProvider;
 import org.eclipse.papyrus.uml.modelrepair.ui.providers.ResourceLinksContentProvider;
 import org.eclipse.swt.SWT;
@@ -65,10 +54,13 @@ public class ModelRepairDialog extends TrayDialog {
 
 	private ModelSet modelSet;
 
-	public ModelRepairDialog(Shell shell, ModelSet modelSet) {
+	private EditingDomain editingDomain;
+
+	public ModelRepairDialog(Shell shell, ModelSet modelSet, EditingDomain domain) {
 		super(shell);
 
 		this.modelSet = modelSet;
+		this.editingDomain = domain;
 	}
 
 	protected TreeViewer viewer;
@@ -234,15 +226,15 @@ public class ModelRepairDialog extends TrayDialog {
 	protected void doValidate() {
 		URI newURI = URI.createURI(textEditor.getText());
 
-		Resource fromResource = null;
+		URI uriToReplace;
 
-		Resource toResource;
+		Resource fromResource = null;
 
 		if(currentSelection.getParentItem() == null) { //We selected a root, which is a resource
 			Object element = currentSelection.getData();
 
 			if(element instanceof Resource) {
-				toResource = (Resource)element;
+				uriToReplace = ((Resource)element).getURI();
 			} else {
 				return;
 			}
@@ -258,120 +250,24 @@ public class ModelRepairDialog extends TrayDialog {
 			Object element = currentSelection.getData();
 
 			if(element instanceof URI) {
-				toResource = modelSet.getResource((URI)element, false);
+				uriToReplace = (URI)element;
 			} else {
 				return;
 			}
 		}
 
-		if(toResource == null) {
+		if(uriToReplace == null) {
 			return;
 		}
 
-		if(toResource.getURI().equals(newURI)) {
+		if(uriToReplace.equals(newURI)) {
 			return;
 		}
-
-		Set<Resource> resourcesToEdit = new HashSet<Resource>();
 
 		if(fromResource == null) {
-			resourcesToEdit.addAll(modelSet.getResources());
-			resourcesToEdit.remove(toResource);
+			DependencyManagementHelper.updateDependencies(uriToReplace, newURI, modelSet, editingDomain);
 		} else {
-			resourcesToEdit.add(fromResource);
-		}
-
-		for(Resource currentResource : resourcesToEdit) {
-
-			if(ReadOnlyHelper.isReadOnly(currentResource)) {
-				continue;
-			}
-
-			Iterator<EObject> allContentsIterator = currentResource.getAllContents();
-
-			while(allContentsIterator.hasNext()) {
-				EObject eObject;
-
-				eObject = allContentsIterator.next();
-
-				if(eObject.eIsProxy()) {
-					continue;
-				}
-
-				for(EReference reference : eObject.eClass().getEAllReferences()) {
-					if(reference.isTransient()) {
-						continue;
-					}
-
-					if(reference.isContainment()) {
-						continue;
-					}
-
-					Object value = eObject.eGet(reference);
-					if(value instanceof EObject) {
-						EObject targetEObject = (EObject)value;
-						if(targetEObject.eResource() == toResource) {
-							EClass targetEClass = targetEObject.eClass();
-							EObject newEObject = targetEClass.getEPackage().getEFactoryInstance().create(targetEClass);
-							if(newEObject instanceof InternalEObject) {
-								String eObjectFragment = targetEObject.eResource().getURIFragment(targetEObject);
-								URI eObjectURI = newURI.appendFragment(eObjectFragment);
-								((InternalEObject)newEObject).eSetProxyURI(eObjectURI);
-
-								try {
-									System.out.println("Replace " + EcoreUtil.getURI(targetEObject) + " with " + EcoreUtil.getURI(newEObject));
-									eObject.eSet(reference, newEObject);
-								} catch (Exception ex) {
-									Activator.log.error(ex);
-								}
-							}
-						}
-					} else if(value instanceof Collection<?>) {
-						Map<Integer, EObject> indexToNewValue = new HashMap<Integer, EObject>();
-
-						Collection<Object> collection = (Collection<Object>)value;
-
-						int i = 0;
-						for(Object collectionElement : (Collection<?>)value) {
-							if(collectionElement instanceof EObject) {
-								EObject targetEObject = (EObject)collectionElement;
-								if(targetEObject.eResource() == toResource) {
-									EClass targetEClass = targetEObject.eClass();
-									EObject newEObject = targetEClass.getEPackage().getEFactoryInstance().create(targetEClass);
-									if(newEObject instanceof InternalEObject) {
-										String eObjectFragment = targetEObject.eResource().getURIFragment(targetEObject);
-										URI eObjectURI = newURI.appendFragment(eObjectFragment);
-										((InternalEObject)newEObject).eSetProxyURI(eObjectURI);
-
-										System.out.println("Replace " + EcoreUtil.getURI(targetEObject) + " with " + EcoreUtil.getURI(newEObject));
-										indexToNewValue.put(i, newEObject);
-									}
-								}
-							}
-
-							i++;
-						}
-
-						Object[] allValues = collection.toArray();
-
-						if(indexToNewValue.isEmpty()) {
-							continue;
-						}
-
-						for(Map.Entry<Integer, EObject> entry : indexToNewValue.entrySet()) {
-							//								System.out.println("Replace " + allValues[entry.getKey()] + " with " + entry.getValue());
-							allValues[entry.getKey()] = entry.getValue();
-						}
-
-						try {
-							collection.clear();
-							collection.addAll(Arrays.asList(allValues));
-						} catch (Exception ex) {
-							//								Activator.log.warn(ex.getMessage());
-						}
-					}
-				}
-			}
+			DependencyManagementHelper.updateDependencies(uriToReplace, newURI, fromResource, editingDomain);
 		}
 	}
 

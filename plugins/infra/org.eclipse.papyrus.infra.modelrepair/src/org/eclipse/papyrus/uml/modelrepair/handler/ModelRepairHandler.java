@@ -7,6 +7,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -35,7 +36,7 @@ public class ModelRepairHandler extends AbstractHandler {
 		if(selectedAdapter instanceof IFile) {
 			IFile selectedFile = (IFile)selectedAdapter;
 			ModelSet modelSet = new DiResourceSet();
-			TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(modelSet);
+			EditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(modelSet);
 
 			IPath workspacePath = selectedFile.getFullPath();
 
@@ -43,7 +44,7 @@ public class ModelRepairHandler extends AbstractHandler {
 
 			try {
 				modelSet.loadModels(workspaceURI);
-				ModelRepairDialog dialog = new ModelRepairDialog(HandlerUtil.getActiveShell(event), modelSet);
+				ModelRepairDialog dialog = new ModelRepairDialog(HandlerUtil.getActiveShell(event), modelSet, editingDomain);
 				dialog.open();
 				modelSet.unload();
 			} catch (ModelMultiException e) {

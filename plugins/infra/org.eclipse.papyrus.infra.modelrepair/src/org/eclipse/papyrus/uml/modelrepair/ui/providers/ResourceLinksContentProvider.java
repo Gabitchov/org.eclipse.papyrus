@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.ui.providers;
 
 import java.util.HashMap;
@@ -13,10 +24,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.uml.modelrepair.readonly.ReadOnlyHelper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 
 public class ResourceLinksContentProvider implements ITreeContentProvider {
@@ -67,7 +80,8 @@ public class ResourceLinksContentProvider implements ITreeContentProvider {
 	public boolean hasChildren(Object element) {
 		if(element instanceof Resource) {
 			Resource resource = (Resource)element;
-			if(ReadOnlyHelper.isReadOnly(resource)) {
+			EditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(resource.getResourceSet());
+			if(EMFHelper.isReadOnly(resource, domain)) {
 				return false;
 			}
 		}
@@ -97,17 +111,13 @@ public class ResourceLinksContentProvider implements ITreeContentProvider {
 
 			while(allContents.hasNext()) {
 				EObject nextElement = allContents.next();
-				//				Optional<Boolean> isReadOnly = readOnlyHandler.isReadOnly(nextElement);
-				//				if(isReadOnly.isPresent() && isReadOnly.get()) {
-				//					continue;
-				//				}
 
 				List<EObject> allReferencedEObjects = nextElement.eCrossReferences();
 				EContentsEList.FeatureIterator<EObject> iterator = (EContentsEList.FeatureIterator<EObject>)allReferencedEObjects.iterator();
 				while(iterator.hasNext()) {
 					EObject referencedEObject = iterator.next();
 					if(referencedEObject.eIsProxy()) {
-						allReferencedURIs.add(EcoreUtil.getURI(referencedEObject));
+						allReferencedURIs.add(EcoreUtil.getURI(referencedEObject).trimFragment());
 					} else {
 						if(referencedEObject.eResource() == null) {
 							continue;
