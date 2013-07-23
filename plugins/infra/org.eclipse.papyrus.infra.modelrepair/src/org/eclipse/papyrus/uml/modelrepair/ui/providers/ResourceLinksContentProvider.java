@@ -11,17 +11,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
-import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
-
-import com.google.common.base.Optional;
+import org.eclipse.papyrus.uml.modelrepair.readonly.ReadOnlyHelper;
 
 
 public class ResourceLinksContentProvider implements ITreeContentProvider {
@@ -70,26 +65,28 @@ public class ResourceLinksContentProvider implements ITreeContentProvider {
 	}
 
 	public boolean hasChildren(Object element) {
+		if(element instanceof Resource) {
+			Resource resource = (Resource)element;
+			if(ReadOnlyHelper.isReadOnly(resource)) {
+				return false;
+			}
+		}
 		return getChildren(element).length > 0;
 	}
 
 	protected Map<Resource, Set<URI>> allLinks() {
-		if(allLinks != null) {
-			return allLinks;
-		}
+		//Do not cache, to recompute the dependencies after a refresh
+		//This may be expensive. TODO: Manually clean the cache before refresh.
+
+		//		if(allLinks != null) {
+		//			return allLinks;
+		//		}
 
 		allLinks = new HashMap<Resource, Set<URI>>();
 
 		if(input == null) {
 			return allLinks;
 		}
-
-		EditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(input);
-		if(input instanceof IEditingDomainProvider) {
-			domain = ((IEditingDomainProvider)input).getEditingDomain();
-		}
-		IReadOnlyHandler readOnlyHandler = ReadOnlyManager.getReadOnlyHandler(domain);
-
 
 		for(Resource resource : input.getResources()) {
 
@@ -100,13 +97,15 @@ public class ResourceLinksContentProvider implements ITreeContentProvider {
 
 			while(allContents.hasNext()) {
 				EObject nextElement = allContents.next();
-				Optional<Boolean> isReadOnly = readOnlyHandler.isReadOnly(nextElement);
-				if(isReadOnly.isPresent() && isReadOnly.get()) {
-					continue;
-				}
+				//				Optional<Boolean> isReadOnly = readOnlyHandler.isReadOnly(nextElement);
+				//				if(isReadOnly.isPresent() && isReadOnly.get()) {
+				//					continue;
+				//				}
 
 				List<EObject> allReferencedEObjects = nextElement.eCrossReferences();
-				for(EObject referencedEObject : allReferencedEObjects) {
+				EContentsEList.FeatureIterator<EObject> iterator = (EContentsEList.FeatureIterator<EObject>)allReferencedEObjects.iterator();
+				while(iterator.hasNext()) {
+					EObject referencedEObject = iterator.next();
 					if(referencedEObject.eIsProxy()) {
 						allReferencedURIs.add(EcoreUtil.getURI(referencedEObject));
 					} else {
@@ -116,6 +115,10 @@ public class ResourceLinksContentProvider implements ITreeContentProvider {
 
 						//Exclude local references
 						if(referencedEObject.eResource() != resource) {
+							if(iterator.feature().isTransient()) {
+								continue;
+							}
+
 							allReferencedURIs.add(referencedEObject.eResource().getURI());
 						}
 					}
@@ -133,5 +136,4 @@ public class ResourceLinksContentProvider implements ITreeContentProvider {
 
 		return allLinks;
 	}
-
 }

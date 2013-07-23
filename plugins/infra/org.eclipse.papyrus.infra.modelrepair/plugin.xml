@@ -41,7 +41,7 @@
       <command
             defaultHandler="org.eclipse.papyrus.uml.modelrepair.handler.ModelRepairHandler"
             id="org.eclipse.papyrus.uml.modelrepair.editlinks"
-            name="Edit model links">
+            name="Edit model dependencies">
       </command>
    </extension>
 
