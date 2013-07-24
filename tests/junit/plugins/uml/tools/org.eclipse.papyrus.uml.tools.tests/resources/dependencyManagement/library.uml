@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_gvvLwPQ1EeK9gKrxk10euQ" name="Library">
+  <packageImport xmi:id="_gvvLwfQ1EeK9gKrxk10euQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_iLO5YPQ1EeK9gKrxk10euQ" name="Interface1"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_iQ41cPQ1EeK9gKrxk10euQ" name="Interface2"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_iVyjkPQ1EeK9gKrxk10euQ" name="Interface3"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_irEQAPQ1EeK9gKrxk10euQ" clientDependency="_lWJ-R_Q1EeK9gKrxk10euQ" name="Class1" isAbstract="true">
+    <interfaceRealization xmi:id="_lWJ-R_Q1EeK9gKrxk10euQ" name="InterfaceRealization1" client="_irEQAPQ1EeK9gKrxk10euQ" supplier="_iLO5YPQ1EeK9gKrxk10euQ" contract="_iLO5YPQ1EeK9gKrxk10euQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iwbRIPQ1EeK9gKrxk10euQ" clientDependency="_lgRikPQ1EeK9gKrxk10euQ" name="Class2" isAbstract="true">
+    <interfaceRealization xmi:id="_lgRikPQ1EeK9gKrxk10euQ" name="InterfaceRealization1" client="_iwbRIPQ1EeK9gKrxk10euQ" supplier="_iQ41cPQ1EeK9gKrxk10euQ" contract="_iQ41cPQ1EeK9gKrxk10euQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_i1ewQPQ1EeK9gKrxk10euQ" clientDependency="_lqPW4PQ1EeK9gKrxk10euQ" name="Class3" isAbstract="true">
+    <interfaceRealization xmi:id="_lqPW4PQ1EeK9gKrxk10euQ" name="InterfaceRealization1" client="_i1ewQPQ1EeK9gKrxk10euQ" supplier="_iVyjkPQ1EeK9gKrxk10euQ" contract="_iVyjkPQ1EeK9gKrxk10euQ"/>
+  </packagedElement>
+</uml:Model>

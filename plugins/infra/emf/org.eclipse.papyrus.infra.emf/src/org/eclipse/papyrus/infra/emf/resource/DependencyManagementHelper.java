@@ -139,7 +139,7 @@ public class DependencyManagementHelper {
 					}
 
 					try {
-						System.out.println("Replace " + EcoreUtil.getURI(eObjectToReplace) + " with " + EcoreUtil.getURI(newEObject));
+						//System.out.println("Replace " + EcoreUtil.getURI(eObjectToReplace) + " with " + EcoreUtil.getURI(newEObject));
 						eObject.eSet(reference, newEObject);
 					} catch (Exception ex) {
 						Activator.log.error(ex);
@@ -158,7 +158,7 @@ public class DependencyManagementHelper {
 								continue;
 							}
 
-							System.out.println("Replace " + EcoreUtil.getURI(eObjectToReplace) + " with " + EcoreUtil.getURI(newEObject));
+							//System.out.println("Replace " + EcoreUtil.getURI(eObjectToReplace) + " with " + EcoreUtil.getURI(newEObject));
 							previousToNewValue.put(eObjectToReplace, newEObject);
 						}
 					}
