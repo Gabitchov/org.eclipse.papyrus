@@ -55,7 +55,7 @@
       <cellManager
             id="org.eclipse.papyrus.uml.nattable.uml.feature.cell.manager"
             manager="org.eclipse.papyrus.uml.nattable.manager.cell.UMLFeatureCellManager"
-            order="500">
+            order="450">
       </cellManager>
       <cellManager
             id="org.eclipse.papyrus.uml.nattable.uml.stereotype.property.cell.manager"
@@ -69,5 +69,18 @@
             class="org.eclipse.papyrus.uml.nattable.tester.IsUMLElementTester"
             id="org.eclipse.papyrus.uml.nattable.tester.isumlelement">
       </tester>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            class="org.eclipse.papyrus.uml.nattable.menu.CreateColumnStereotypePropertyMenuFactory"
+            locationURI="popup:org.eclipse.ui.popup.any">
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            class="org.eclipse.papyrus.uml.nattable.menu.CreateRowStereotypePropertyMenuFactory"
+            locationURI="popup:org.eclipse.ui.popup.any">
+      </menuContribution>
    </extension>
 </plugin>

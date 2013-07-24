@@ -18,6 +18,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
@@ -72,4 +74,45 @@ public class EnumerationUtil {
 		assert returnedValue.size() == toAdapt.size();
 		return returnedValue;
 	}
+
+	/**
+	 * 
+	 * @param eenum
+	 *        an eemf enumeration
+	 * @param toConvert
+	 *        a list of enumeration literal to convert
+	 * @return
+	 *         the list of the converted element (/!\ in case of fail, the returned list contains less elements than the initial list)
+	 */
+	public static final List<Enumerator> adaptToEnumeratorList(final EEnum eenum, final Collection<?> toConvert) {
+		final List<Enumerator> convertedvalues = new ArrayList<Enumerator>();
+		for(final Object object : toConvert) {
+			if(object instanceof EnumerationLiteral) {
+				final EEnumLiteral literal = eenum.getEEnumLiteral(((EnumerationLiteral)object).getName());
+				if(literal != null) {
+					convertedvalues.add(literal.getInstance());
+				}
+			}
+		}
+		return convertedvalues;
+
+	}
+
+	/**
+	 * 
+	 * @param eenum
+	 *        an emf enumeration
+	 * @param umlLiteral
+	 *        a uml literal
+	 * @return
+	 *         the enumerator to use for this enumeration literal (/!\ can be null in case of fail)
+	 */
+	public static final Enumerator adaptToEnumerator(final EEnum eenum, final EnumerationLiteral umlLiteral) {
+		final EEnumLiteral literal = eenum.getEEnumLiteral(umlLiteral.getName());
+		if(literal != null) {
+			return literal.getInstance();
+		}
+		return null;
+	}
+
 }

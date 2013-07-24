@@ -25,6 +25,8 @@ import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.ICellAxisWrapper;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage;
 
 /**
  * 
@@ -64,6 +66,17 @@ public class TableContentsAdviceHelper extends AbstractEditHelperAdvice {
 	protected List<EObject> getAssociatedElementToDestroy(final EObject eobject) {
 		final CrossReferenceAdapter adapter = getCrossReferenceAdapter(eobject);
 		Set<EObject> elementsToDestroy = adapter.getInverseReferencers(eobject, NattableaxisPackage.eINSTANCE.getEObjectAxis_Element(), NattableaxisPackage.eINSTANCE.getEObjectAxis());
+		elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getEObjectAxisWrapper_Element(), NattablecellPackage.eINSTANCE.getEObjectAxisWrapper()));
+
+		if(eobject instanceof ICellAxisWrapper) {
+			elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getCell_RowWrapper(), NattablecellPackage.eINSTANCE.getCell()));
+			elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getCell_ColumnWrapper(), NattablecellPackage.eINSTANCE.getCell()));
+		}
+		//		for(final EObject current : cellWrapper) {
+		//			if(current instanceof ICellAxisWrapper) {
+		//				elementsToDestroy.add(current.eContainer());
+		//			}
+		//		}
 		return new ArrayList<EObject>(elementsToDestroy);
 	}
 
@@ -79,6 +92,7 @@ public class TableContentsAdviceHelper extends AbstractEditHelperAdvice {
 
 		CrossReferenceAdapter crossReferenceAdapter = CrossReferenceAdapter.getExistingCrossReferenceAdapter(element);
 		if(crossReferenceAdapter == null) {
+			//FIXME : replace this call to transaction util.
 			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(element);
 			if(domain != null) {
 				crossReferenceAdapter = CrossReferenceAdapter.getCrossReferenceAdapter(domain.getResourceSet());

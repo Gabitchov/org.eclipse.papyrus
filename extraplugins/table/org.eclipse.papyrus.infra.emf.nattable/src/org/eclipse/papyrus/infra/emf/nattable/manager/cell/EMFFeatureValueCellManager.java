@@ -15,19 +15,35 @@ package org.eclipse.papyrus.infra.emf.nattable.manager.cell;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.ICellAxisWrapper;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
+import org.eclipse.papyrus.infra.tools.converter.StringValueConverterStatus;
 
 /**
  * Cell Manager which allows to get the value of an {@link EStructuralFeature} for an {@link EObject}
@@ -138,8 +154,174 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	@Override
 	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
 		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
-		final AbstractEditCommandRequest request = new SetRequest(domain, (EObject)objects.get(0), (EStructuralFeature)objects.get(1), newValue);
-		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(objects.get(0));
+		return getSetValueCommand(domain, (EObject)objects.get(0), (EStructuralFeature)objects.get(1), newValue);
+	}
+
+	/**
+	 * 
+	 * @param domain
+	 *        the editing domain
+	 * @param elementToEdit
+	 *        the element to edit
+	 * @param featureToEdit
+	 *        the feature to edit
+	 * @param newValue
+	 *        the new value
+	 * @return
+	 *         the command to set the value
+	 */
+	protected Command getSetValueCommand(final TransactionalEditingDomain domain, final EObject elementToEdit, final EStructuralFeature featureToEdit, final Object newValue) {
+		final AbstractEditCommandRequest request = new SetRequest(domain, elementToEdit, featureToEdit, newValue);
+		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToEdit);
 		return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getSetStringValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      EObject, java.lang.Object, java.lang.Object, java.lang.String, java.util.Map)
+	 * 
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param newValue
+	 * @param stringResolvers
+	 * @return
+	 */
+	@Override
+	public Command getSetStringValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final String newValue, final AbstractStringValueConverter valueSolver, final INattableModelManager tableManager) {
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+		final EObject editedObject = (EObject)objects.get(0);
+		final EStructuralFeature editedFeature = (EStructuralFeature)objects.get(1);
+		ConvertedValueContainer<?> solvedValue = valueSolver.deduceValueFromString(editedFeature, newValue);
+		final CompositeCommand cmd = new CompositeCommand("Set Value As String Command"); //$NON-NLS-1$
+		Object convertedValue = solvedValue.getConvertedValue();
+		Command setValueCommand = getSetValueCommand(domain, editedObject, editedFeature, convertedValue);
+		if(setValueCommand != null) {
+			cmd.add(new EMFtoGMFCommandWrapper(setValueCommand));
+		}
+		final Command createProblemCommand = getCreateStringResolutionProblemProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
+		if(createProblemCommand != null) {
+			cmd.add(new EMFtoGMFCommandWrapper(createProblemCommand));
+		}
+		if(cmd.isEmpty()) {
+			return null;
+		}
+		return new GMFtoEMFCommandWrapper(cmd);
+	}
+
+
+	/**
+	 * 
+	 * @param domain
+	 *        the editing domain
+	 * @param tableManager
+	 *        the table manager
+	 * @param rowElement
+	 *        the row element
+	 * @param columnElement
+	 *        the column element
+	 * @param pastedText
+	 *        the pasted text
+	 * @param valueContainer
+	 *        the converted value
+	 * @return
+	 *         the command to create a String resolution Problem
+	 */
+	//FIXME : could be in a util class
+	protected Command getCreateStringResolutionProblemProblemCommand(final TransactionalEditingDomain domain, final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer) {
+		final IStatus status = valueContainer.getStatus();
+		if(!status.isOK()) {
+			if(status.matches(IStatus.ERROR)) {
+				final CompositeCommand command = new CompositeCommand("Create Cell For Error Command"); //$NON-NLS-1$
+				Cell cell = tableManager.getCell(columnElement, rowElement);
+
+				if(cell == null) {
+					//we create the cell
+					final Table table = tableManager.getTable();
+					cell = NattablecellFactory.eINSTANCE.createCell();
+
+					SetRequest request = new SetRequest(domain, table, NattablePackage.eINSTANCE.getTable_Cells(), cell);
+					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(table);
+					command.add(provider.getEditCommand(request));
+
+					//create the columnWrapper;
+					final Object column = AxisUtils.getRepresentedElement(columnElement);
+					ICellAxisWrapper columnWrapper = null;
+					if(column instanceof String) {
+						columnWrapper = NattablecellFactory.eINSTANCE.createIdAxisWrapper();
+						provider = ElementEditServiceUtils.getCommandProvider(columnWrapper);
+						request = new SetRequest(domain, columnWrapper, NattablecellPackage.eINSTANCE.getIdAxisWrapper_Element(), column);
+						command.add(provider.getEditCommand(request));
+					} else if(column instanceof EObject) {
+						columnWrapper = NattablecellFactory.eINSTANCE.createEObjectAxisWrapper();
+						provider = ElementEditServiceUtils.getCommandProvider(columnWrapper);
+						request = new SetRequest(domain, columnWrapper, NattablecellPackage.eINSTANCE.getEObjectAxisWrapper_Element(), column);
+						command.add(provider.getEditCommand(request));
+					}
+
+					final Object row = AxisUtils.getRepresentedElement(rowElement);
+					ICellAxisWrapper rowWrapper = null;
+					if(row instanceof String) {
+						rowWrapper = NattablecellFactory.eINSTANCE.createIdAxisWrapper();
+						provider = ElementEditServiceUtils.getCommandProvider(rowWrapper);
+						request = new SetRequest(domain, rowWrapper, NattablecellPackage.eINSTANCE.getIdAxisWrapper_Element(), row);
+						command.add(provider.getEditCommand(request));
+					} else if(row instanceof EObject) {
+						rowWrapper = NattablecellFactory.eINSTANCE.createEObjectAxisWrapper();
+						provider = ElementEditServiceUtils.getCommandProvider(rowWrapper);
+						request = new SetRequest(domain, rowWrapper, NattablecellPackage.eINSTANCE.getEObjectAxisWrapper_Element(), row);
+						command.add(provider.getEditCommand(request));
+					}
+
+					if(rowWrapper == null || columnWrapper == null) {
+						throw new UnsupportedOperationException("Case not managed"); //$NON-NLS-1$
+					}
+
+
+					provider = ElementEditServiceUtils.getCommandProvider(cell);
+					request = new SetRequest(domain, cell, NattablecellPackage.eINSTANCE.getCell_ColumnWrapper(), columnWrapper);
+					command.add(provider.getEditCommand(request));
+					request = new SetRequest(domain, cell, NattablecellPackage.eINSTANCE.getCell_RowWrapper(), rowWrapper);
+					command.add(provider.getEditCommand(request));
+				}
+
+
+				final StringResolutionProblem problem = NattableproblemFactory.eINSTANCE.createStringResolutionProblem();
+				problem.setName("Set Value As Text Problem"); //$NON-NLS-1$
+				problem.setDescription(status.getMessage());
+				problem.setValueAsString(pastedText);
+
+				if(status instanceof StringValueConverterStatus) {
+					problem.getUnresolvedString().addAll(((StringValueConverterStatus)status).getUnresolvedString());
+				}
+
+				SetRequest setProblemRequest = new SetRequest(domain, cell, NattablecellPackage.eINSTANCE.getCell_Problems(), problem);
+				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cell);
+				command.add(provider.getEditCommand(setProblemRequest));
+				return new GMFtoEMFCommandWrapper(command);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#getOrCreateStringValueConverterClass(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
+	 *      java.util.Map, java.lang.String)
+	 * 
+	 * @param tableManager
+	 * @param existingConverters
+	 * @param multiValueSeparator
+	 * @return
+	 */
+	@Override
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator) {
+		AbstractStringValueConverter converter = existingConverters.get(EMFStringValueConverter.class);
+		if(converter == null) {
+			converter = new EMFStringValueConverter(tableManager.getTable().getContext(), multiValueSeparator);
+			existingConverters.put(EMFStringValueConverter.class, converter);
+		}
+		return converter;
 	}
 }

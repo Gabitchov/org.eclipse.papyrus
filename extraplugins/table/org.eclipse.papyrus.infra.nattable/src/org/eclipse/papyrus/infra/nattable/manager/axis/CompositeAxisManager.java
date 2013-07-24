@@ -124,8 +124,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(TransactionalEditingDomain,
-	 *      java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(TransactionalEditingDomain, java.util.Collection)
 	 * 
 	 * @param domain
 	 * @param objectToAdd
@@ -474,8 +473,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain,
-	 *      java.lang.Integer)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain, java.lang.Integer)
 	 * 
 	 * @param domain
 	 * @param axisPosition
@@ -503,6 +501,22 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		return canBeSavedAsConfig;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAdapter(java.lang.Class)
+	 * 
+	 * @param adapter
+	 * @return
+	 */
+	@Override
+	public Object getAdapter(Class adapter) {
+		for(final IAxisManager current : this.subManagers) {
+			if(current.getClass() == adapter) {
+				return current;
+			}
+		}
+		return super.getAdapter(adapter);
+	}
 
 
 

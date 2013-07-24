@@ -13,10 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.cell;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
 
 /**
  * The interface to implements for a cell manager
@@ -99,4 +102,33 @@ public interface ICellManager {
 	 *         the command to set the value
 	 */
 	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager);
+
+	/**
+	 * 
+	 * @param domain
+	 *        the editing domain
+	 * @param newValue
+	 *        the newValue, represented by a String
+	 * @param valueConverter
+	 *        the solver used to resolve values
+	 * @param columnElement
+	 *        the columnElement
+	 * @param rowElement
+	 *        the rowElement
+	 */
+	public Command getSetStringValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final String newValue, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager);
+
+
+	/**
+	 * 
+	 * @param tableManager
+	 *        the table manager
+	 * @param existingConverters
+	 *        a map with the existing converters, to avoid to create them too often
+	 * @param multiValueSeparator
+	 *        the separator used for multi values
+	 * @return
+	 *         the class to use to converter the string into values. If the method create them, the method must add it to the map existingConverters
+	 */
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator);
 }

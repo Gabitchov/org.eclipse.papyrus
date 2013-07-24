@@ -24,6 +24,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
@@ -43,6 +45,8 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnFeatureLab
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnIndexHeaderStyleObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnObjectLabelDisplayIconObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnObjectLabelDisplayLabelObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteEObjectContainmentFeatureObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteEObjectElementTypeIdObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowDisplayIndexHeaderObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowDisplayLabelHeaderObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelDisplayIconObservableValue;
@@ -54,8 +58,15 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelD
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowIndexHeaderStyleObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowObjectLabelDisplayIconObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowObjectLabelDisplayLabelObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectContainmentFeatureObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectElementTypeIdObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnContainmentFeatureContentProvider;
+import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnElementTypeIdContentProvider;
+import org.eclipse.papyrus.infra.nattable.properties.provider.RowContainmentFeatureContentProvider;
+import org.eclipse.papyrus.infra.nattable.properties.provider.RowElementTypeIdContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
@@ -100,6 +111,11 @@ public class NatTableModelElement extends EMFModelElement {
 	private Collection<ILabelProviderConfiguration> rowLabelProviderConfigurations;
 
 	/**
+	 * a table manager created to get possible axis contents
+	 */
+	private INattableModelManager tableModelManager;
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -117,6 +133,7 @@ public class NatTableModelElement extends EMFModelElement {
 	 * Add the listener
 	 */
 	private void init() {
+		tableModelManager = new NattableModelManager(getEditedTable());
 		this.observableValues = new HashMap<String, AbstractConfigurationElementObservableValue>();
 		this.interestingFeatures = new ArrayList<EStructuralFeature>();
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_InvertAxis());
@@ -271,6 +288,8 @@ public class NatTableModelElement extends EMFModelElement {
 		observableValues.clear();
 		columnLabelProviderConfigurations = null;
 		rowLabelProviderConfigurations = null;
+		tableModelManager.dispose();
+		tableModelManager = null;
 	}
 
 
@@ -358,6 +377,19 @@ public class NatTableModelElement extends EMFModelElement {
 				value = new RowObjectLabelDisplayLabelObservableValue(table);
 			}
 
+			//paste row EObject
+			else if(Constants.ROW_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
+				value = new RowPasteEObjectContainmentFeatureObservableValue(table);
+			} else if(Constants.ROW_PASTED_EOBJECT_ID.equals(propertyPath)) {
+				value = new RowPasteEObjectElementTypeIdObservableValue(table);
+			}
+
+			//paste column EObject
+			else if(Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
+				value = new ColumnPasteEObjectContainmentFeatureObservableValue(table);
+			} else if(Constants.COLUMN_PASTED_EOBJECT_ID.equals(propertyPath)) {
+				value = new ColumnPasteEObjectElementTypeIdObservableValue(table);
+			}
 			if(value != null) {
 				this.observableValues.put(propertyPath, (AbstractConfigurationElementObservableValue)value);
 			}
@@ -422,7 +454,39 @@ public class NatTableModelElement extends EMFModelElement {
 			} else if(Constants.ROW_OBJECT_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
 				res = true;
 			}
+
+			//paste row EObject
+			else if(Constants.ROW_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
+				res = new RowContainmentFeatureContentProvider(getEditedTable()).getElements().length != 0;
+			} else if(Constants.ROW_PASTED_EOBJECT_ID.equals(propertyPath)) {
+				res = new RowElementTypeIdContentProvider(this.tableModelManager).getElements().length != 0;
+
+				//paste column EObject
+			} else if(Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
+				res = new ColumnContainmentFeatureContentProvider(getEditedTable()).getElements().length != 0;
+			} else if(Constants.COLUMN_PASTED_EOBJECT_ID.equals(propertyPath)) {
+				res = new ColumnElementTypeIdContentProvider(this.tableModelManager).getElements().length != 0;
+			}
 		}
+
 		return res;
+	}
+
+	@Override
+	public IStaticContentProvider getContentProvider(String propertyPath) {
+		IStaticContentProvider provider = null;
+		if(Constants.ROW_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
+			provider = new RowContainmentFeatureContentProvider(getEditedTable());
+		} else if(Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
+			provider = new ColumnContainmentFeatureContentProvider(getEditedTable());
+		} else if(Constants.ROW_PASTED_EOBJECT_ID.equals(propertyPath)) {
+			provider = new RowElementTypeIdContentProvider(this.tableModelManager);
+		} else if(Constants.COLUMN_PASTED_EOBJECT_ID.equals(propertyPath)) {
+			provider = new ColumnElementTypeIdContentProvider(this.tableModelManager);
+		}
+		if(provider != null) {
+			return provider;
+		}
+		return super.getContentProvider(propertyPath);
 	}
 }

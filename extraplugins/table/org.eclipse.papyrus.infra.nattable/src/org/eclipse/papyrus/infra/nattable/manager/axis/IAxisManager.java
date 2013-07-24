@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
@@ -33,7 +34,7 @@ import org.eclipse.ui.services.IDisposable;
  * @author Vincent Lorenzo
  * 
  */
-public interface IAxisManager extends IDisposable {
+public interface IAxisManager extends IDisposable, IAdaptable {
 
 	/**
 	 * 

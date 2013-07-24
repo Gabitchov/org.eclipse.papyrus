@@ -13,9 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.cell;
 
+import java.util.Collection;
+import java.util.Map;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
+import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
 
 /**
  * The abstract class for the cell manager
@@ -51,6 +58,13 @@ public abstract class AbstractCellManager implements ICellManager {
 	 */
 	@Override
 	public final Object getValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		final Cell cell = tableManager.getCell(columnElement, rowElement);
+		if(cell != null) {
+			final Collection<Problem> problems = cell.getProblems();
+			if(problems.size() != 0) {
+				return problems;
+			}
+		}
 		return doGetValue(columnElement, rowElement, tableManager);
 	}
 
@@ -116,6 +130,53 @@ public abstract class AbstractCellManager implements ICellManager {
 	@Override
 	public Command getSetValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, Object newValue, INattableModelManager tableManager) {
 		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetStringValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.tools.converter.IStringValueConverter,
+	 *      INattableModelManager)
+	 * 
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param newValue
+	 * @param valueSolver
+	 * @param tableManager
+	 * @return
+	 */
+	@Override
+	public Command getSetStringValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, String newValue, AbstractStringValueConverter valueSolver, INattableModelManager tableManager) {
+		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getOrCreateStringValueConverterClass(INattableModelManager, Map, String)
+	 * 
+	 * @return
+	 */
+	@Override
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator) {
+		AbstractStringValueConverter converter = existingConverters.get(this.getClass());
+		if(converter == null) {
+			converter = new AbstractStringValueConverter() {
+
+				@Override
+				public void dispose() {
+					//nothing to do
+				}
+
+				@Override
+				protected ConvertedValueContainer<?> doDeduceValueFromString(Object type, String valueAsString) {
+					//nothing to do
+					return null;
+				}
+			};
+			existingConverters.put(converter.getClass(), converter);
+		}
+		return converter;
 	}
 
 }
