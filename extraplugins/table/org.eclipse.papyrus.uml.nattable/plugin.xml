@@ -70,4 +70,17 @@
             id="org.eclipse.papyrus.uml.nattable.tester.isumlelement">
       </tester>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            class="org.eclipse.papyrus.uml.nattable.menu.CreateColumnStereotypePropertyMenuFactory"
+            locationURI="popup:org.eclipse.ui.popup.any">
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            class="org.eclipse.papyrus.uml.nattable.menu.CreateRowStereotypePropertyMenuFactory"
+            locationURI="popup:org.eclipse.ui.popup.any">
+      </menuContribution>
+   </extension>
 </plugin>

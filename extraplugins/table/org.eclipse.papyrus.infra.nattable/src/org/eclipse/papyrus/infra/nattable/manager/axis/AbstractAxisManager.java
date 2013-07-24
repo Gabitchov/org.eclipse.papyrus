@@ -187,8 +187,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getAddAxisCommand(TransactionalEditingDomain,
-	 *      java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getAddAxisCommand(TransactionalEditingDomain, java.util.Collection)
 	 * 
 	 * @param domain
 	 * @param objectToAdd
@@ -528,5 +527,17 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 */
 	protected List<Object> getElements() {
 		return this.tableManager.getElementsList(getRepresentedContentProvider());
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
+	 * 
+	 * @param adapter
+	 * @return
+	 */
+	@Override
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+		return null;
 	}
 }

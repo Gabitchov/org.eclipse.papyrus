@@ -514,6 +514,38 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#removeColumns(java.util.Collection)
+	 * 
+	 * @param objetsToRemove
+	 */
+	@Override
+	public void removeColumns(Collection<Object> objetsToRemove) {
+		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final Command cmd = getDestroyColumnElementCommand(objetsToRemove);
+		if(cmd != null && cmd.canExecute()) {
+			domain.getCommandStack().execute(cmd);
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#removeRows(java.util.Collection)
+	 * 
+	 * @param objectsToRemove
+	 */
+	@Override
+	public void removeRows(Collection<Object> objectsToRemove) {
+		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final Command cmd = getDestroyRowElementCommand(objectsToRemove);
+		if(cmd != null && cmd.canExecute()) {
+			domain.getCommandStack().execute(cmd);
+		}
+	}
+
+
+
+	/**
 	 * Returns the EditingDomain associated to the table
 	 * 
 	 * @return
@@ -1134,5 +1166,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 		return null;
 	}
+
+
+
 
 }

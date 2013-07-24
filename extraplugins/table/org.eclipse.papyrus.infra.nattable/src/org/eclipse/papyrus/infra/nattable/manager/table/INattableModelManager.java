@@ -43,6 +43,10 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 
 	public void addColumns(final Collection<Object> objectsToAdd);
 
+	public void removeColumns(final Collection<Object> objectsToRemove);
+
+	public void removeRows(final Collection<Object> objectsToRemove);
+
 	public boolean canInsertRow(final Collection<Object> objectsToAdd, int index);
 
 	public boolean canInsertColumns(final Collection<Object> objectsToAdd, int index);
