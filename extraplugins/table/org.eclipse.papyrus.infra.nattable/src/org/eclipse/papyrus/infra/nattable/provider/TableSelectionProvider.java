@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.provider;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -23,12 +24,14 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
 import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.event.CellSelectionEvent;
-import org.eclipse.nebula.widgets.nattable.selection.event.ColumnSelectionEvent;
+import org.eclipse.nebula.widgets.nattable.selection.event.ISelectionEvent;
+import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.ui.services.IDisposable;
 
 
@@ -78,48 +81,42 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 	}
 
 	protected/* synchronized */void calculateAndStoreNewSelection(final ILayerEvent event) {
-		if(event instanceof ColumnSelectionEvent) {
-			final ColumnSelectionEvent e = (ColumnSelectionEvent)event;
-			final int[] positions = this.selectionLayer.getSelectedColumnPositions();
-			//			System.out.println(positions);
-			//			this.selectionLayer.
+		//the list of the selected elements
+		final List<Object> selection = new ArrayList<Object>();
 
-		} else if(event instanceof CellSelectionEvent) {
-			final CellSelectionEvent e = (CellSelectionEvent)event;
-			final int colPos = e.getColumnPosition();
-			final int rowPos = e.getRowPosition();
-			//			System.out.println(colPos);
-			//			System.out.println(rowPos);
-			int i = 0;
-			i++;
-			final ILayerCell cell = this.selectionLayer.getCellByPosition(colPos, rowPos);
-			if(cell != null) {
-				final Object value = cell.getDataValue();
+		if(event instanceof ISelectionEvent) {
+			//add the cell selection
+			final Collection<PositionCoordinate> selectedCells = Arrays.asList(this.selectionLayer.getSelectedCellPositions());
+			final TableSelectionWrapper wrapper = new TableSelectionWrapper(selectedCells);
+			selection.add(0, wrapper);
 
-				if(value != null) {
-					if(value instanceof Collection<?>) {
-						final List<Object> selection = new ArrayList<Object>();
-						final Iterator<?> iter = ((Collection<?>)value).iterator();
-						while(iter.hasNext()) {
-							final Object current = iter.next();
-							selection.add(current);
-							setSelection(new StructuredSelection(selection));
+			//we returns the contents of the last selected cell
+			//we could returns the contents of all selected cells if its required
+			if(event instanceof CellSelectionEvent) {
+				final CellSelectionEvent e = (CellSelectionEvent)event;
+				final int colPos = e.getColumnPosition();
+				final int rowPos = e.getRowPosition();
+				final ILayerCell cell = this.selectionLayer.getCellByPosition(colPos, rowPos);
+				if(cell != null) {
+					final Object value = cell.getDataValue();
+
+					if(value != null) {
+						if(value instanceof Collection<?>) {
+							final Iterator<?> iter = ((Collection<?>)value).iterator();
+							while(iter.hasNext()) {
+								final Object current = iter.next();
+								selection.add(current);
+							}
+						} else {
+							selection.add(value);
 						}
-					} else {
-						setSelection(new StructuredSelection(value));
+
 					}
-
-				} else {
-					setSelection(new StructuredSelection());
 				}
-			} else {
-				setSelection(new StructuredSelection());
 			}
-
 		}
-		//must be done in a new thread?
+		setSelection(new StructuredSelection(selection));
 	}
-
 
 	public void dispose() {
 		this.selectionLayer.removeLayerListener(this.selectionListener);

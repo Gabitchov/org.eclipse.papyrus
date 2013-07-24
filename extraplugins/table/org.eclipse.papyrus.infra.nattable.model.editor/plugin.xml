@@ -33,7 +33,48 @@
    </extension>
 
    <extension point="org.eclipse.ui.editors">
+      <!-- @generated NOT nattable -->
+      <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.presentation.NattableproblemEditorID"
+            name="%_UI_NattableproblemEditor_label"
+            icon="icons/full/obj16/NattableproblemModelFile.gif"
+            extensions="nattableproblem"
+            class="org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableproblemEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.presentation.NattableproblemActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated NOT nattable -->
+      <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.presentation.NattablecellEditorID"
+            name="%_UI_NattablecellEditor_label"
+            icon="icons/full/obj16/NattablecellModelFile.gif"
+            extensions="nattablecell"
+            class="org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattablecellEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.presentation.NattablecellActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
       <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.presentation.NattableproblemModelWizardID"
+            name="%_UI_NattableproblemModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.presentation.NattableproblemModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattableproblemModelFile.gif">
+         <description>%_UI_NattableproblemModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated NOT nattable -->
       <editor
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisEditorID"
             name="%_UI_NattableaxisEditor_label"
@@ -44,8 +85,25 @@
       </editor>
    </extension>
 
-   <extension point="org.eclipse.ui.editors">
+   <extension point="org.eclipse.ui.newWizards">
       <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.presentation.NattablecellModelWizardID"
+            name="%_UI_NattablecellModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.presentation.NattablecellModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattablecellModelFile.gif">
+         <description>%_UI_NattablecellModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated NOT nattable -->
       <editor
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation.NattabletesterEditorID"
             name="%_UI_NattabletesterEditor_label"
@@ -72,8 +130,10 @@
       </wizard>
    </extension>
 
+null
+
    <extension point="org.eclipse.ui.editors">
-      <!-- @generated nattable -->
+      <!-- @generated NOT nattable -->
       <editor
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationEditorID"
             name="%_UI_NattableaxisconfigurationEditor_label"
@@ -100,8 +160,10 @@
       </wizard>
    </extension>
 
+null
+
    <extension point="org.eclipse.ui.editors">
-      <!-- @generated nattable -->
+      <!-- @generated NOT nattable -->
       <editor
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderEditorID"
             name="%_UI_NattablelabelproviderEditor_label"
@@ -128,9 +190,11 @@
       </wizard>
    </extension>
 
+null
+
 
    <extension point="org.eclipse.ui.editors">
-      <!-- @generated nattable -->
+      <!-- @generated NOT nattable -->
       <editor
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderEditorID"
             name="%_UI_NattableaxisproviderEditor_label"
@@ -157,9 +221,11 @@
       </wizard>
    </extension>
 
+null
+
 
    <extension point="org.eclipse.ui.editors">
-      <!-- @generated nattable -->
+      <!-- @generated NOT nattable -->
       <editor
             id="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorID"
             name="%_UI_NattableEditor_label"
@@ -186,8 +252,10 @@
       </wizard>
    </extension>
 
+null
+
    <extension point="org.eclipse.ui.editors">
-      <!-- @generated nattable -->
+      <!-- @generated NOT nattable -->
       <editor
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationEditorID"
             name="%_UI_NattableconfigurationEditor_label"
@@ -213,5 +281,7 @@
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
+
+null
 
 </plugin>

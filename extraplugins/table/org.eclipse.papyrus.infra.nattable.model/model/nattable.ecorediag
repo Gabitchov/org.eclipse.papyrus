@@ -774,20 +774,6 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EjzGAaHtEeKNUa7kbzEWsw" id="(0.5,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EjzGAqHtEeKNUa7kbzEWsw" id="(0.25,0.9264705882352942)"/>
   </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_EhRWcKHtEeKNUa7kbzEWsw" type="3002" source="_EfVc8aHtEeKNUa7kbzEWsw" target="_EfVdLaHtEeKNUa7kbzEWsw">
-    <children xmi:type="notation:Node" xmi:id="_EhRWdKHtEeKNUa7kbzEWsw" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_EhRWdaHtEeKNUa7kbzEWsw" x="-31" y="24"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_EhRWdqHtEeKNUa7kbzEWsw" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_EhRWd6HtEeKNUa7kbzEWsw" y="-16"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_EhRWcaHtEeKNUa7kbzEWsw" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_EhRWcqHtEeKNUa7kbzEWsw" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="nattable.ecore#//nattableaxisconfiguration/AxisManagerConfiguration/localSpecificConfiguration"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EhRWc6HtEeKNUa7kbzEWsw" points="[0, 0, 0, 286]$[0, -286, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EjzGHaHtEeKNUa7kbzEWsw" id="(0.07894736842105263,0.19318181818181818)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EjzGHqHtEeKNUa7kbzEWsw" id="(0.9893617021276596,0.6344086021505376)"/>
-  </edges>
   <edges xmi:type="notation:Edge" xmi:id="_EhRWeKHtEeKNUa7kbzEWsw" type="3003" source="_EffN3aHtEeKNUa7kbzEWsw" target="_EfVc_aHtEeKNUa7kbzEWsw">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_EhRWeaHtEeKNUa7kbzEWsw" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_EhRWeqHtEeKNUa7kbzEWsw" fontName="Segoe UI"/>
@@ -795,20 +781,6 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EhRWe6HtEeKNUa7kbzEWsw" points="[0, 0, -120, 102]$[0, -30, -120, 72]$[120, -30, 0, 72]$[120, -102, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EjzGE6HtEeKNUa7kbzEWsw" id="(0.7477477477477478,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EjzGFKHtEeKNUa7kbzEWsw" id="(0.2072072072072072,1.0)"/>
-  </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_EhRWhKHtEeKNUa7kbzEWsw" type="3002" source="_EfVdCaHtEeKNUa7kbzEWsw" target="_EfVdLaHtEeKNUa7kbzEWsw">
-    <children xmi:type="notation:Node" xmi:id="_EhRWiKHtEeKNUa7kbzEWsw" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_EhRWiaHtEeKNUa7kbzEWsw" x="-817" y="342"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_EhRWiqHtEeKNUa7kbzEWsw" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_EhRWi6HtEeKNUa7kbzEWsw" x="-725" y="295"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_EhRWhaHtEeKNUa7kbzEWsw" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_EhRWhqHtEeKNUa7kbzEWsw" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="nattable.ecore#//nattableaxisconfiguration/AbstractHeaderAxisConfiguration/ownedAxisConfiguration"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EhRWh6HtEeKNUa7kbzEWsw" points="[-11, -7, 1191, 179]$[-886, -7, 316, 179]$[-1202, -186, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EjzF-aHtEeKNUa7kbzEWsw" id="(0.057692307692307696,0.19327731092436976)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EjzF-qHtEeKNUa7kbzEWsw" id="(0.8297872340425532,1.0)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_EhbHdKHtEeKNUa7kbzEWsw" type="3003" source="_EffOAaHtEeKNUa7kbzEWsw" target="_EfVdLaHtEeKNUa7kbzEWsw">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_EhbHdaHtEeKNUa7kbzEWsw" routing="Rectilinear" lineColor="4210752"/>
@@ -997,18 +969,6 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_hoQkp6H2EeKNUa7kbzEWsw" points="[1, 6, 843, 815]$[1, 131, 843, 940]$[-480, 131, 362, 940]$[-480, -803, 362, 6]$[-838, -803, 4, 6]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NTAooKJ4EeKNUa7kbzEWsw" id="(0.3355263157894737,0.958904109589041)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_m2_6UKH2EeKNUa7kbzEWsw" id="(0.982532751091703,0.16666666666666666)"/>
-  </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_rlo-QKH3EeKNUa7kbzEWsw" type="3002" source="_EfMSxaHtEeKNUa7kbzEWsw" target="_rlVcQKH3EeKNUa7kbzEWsw">
-    <children xmi:type="notation:Node" xmi:id="_rlo-RKH3EeKNUa7kbzEWsw" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_rlo-RaH3EeKNUa7kbzEWsw" x="-10" y="-10"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_rlo-RqH3EeKNUa7kbzEWsw" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_rlo-R6H3EeKNUa7kbzEWsw" x="10" y="10"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_rlo-QaH3EeKNUa7kbzEWsw" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_rlo-QqH3EeKNUa7kbzEWsw" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="nattable.ecore#//nattableaxis/EStructuralFeatureAxis/element"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rlo-Q6H3EeKNUa7kbzEWsw" points="[-20, -29, 1099, 1596]$[-1118, -1624, 1, 1]"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_xj1bAqH3EeKNUa7kbzEWsw" type="3003" source="_xjigEKH3EeKNUa7kbzEWsw" target="_xjrqDKH3EeKNUa7kbzEWsw">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_xj1bA6H3EeKNUa7kbzEWsw" routing="Rectilinear" lineColor="4210752"/>

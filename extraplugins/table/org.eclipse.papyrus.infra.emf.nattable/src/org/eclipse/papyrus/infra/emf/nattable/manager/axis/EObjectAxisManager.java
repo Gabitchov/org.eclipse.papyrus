@@ -60,6 +60,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 				final EObjectAxis horizontalAxis = NattableaxisFactory.eINSTANCE.createEObjectAxis();
 				horizontalAxis.setElement((EObject)object);
 				horizontalAxis.setManager(this.representedAxisManager);
+				//FIXME : replace me by a SetRequest
 				final Command tmp = AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), horizontalAxis);
 				cmd.append(tmp);
 			}

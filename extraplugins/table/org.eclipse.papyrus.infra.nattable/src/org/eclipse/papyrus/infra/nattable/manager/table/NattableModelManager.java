@@ -59,6 +59,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Ab
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.ICellAxisWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
@@ -584,12 +586,14 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * refresh NatTable (asyncExec)
 	 */
 	public void refreshNatTable() {
-		Display.getDefault().asyncExec(new Runnable() {
+		if(this.natTable != null && !this.natTable.isDisposed()) {
+			Display.getDefault().asyncExec(new Runnable() {
 
-			public void run() {
-				NattableModelManager.this.natTable.refresh();
-			}
-		});
+				public void run() {
+					NattableModelManager.this.natTable.refresh();
+				}
+			});
+		}
 	}
 
 
@@ -1103,6 +1107,30 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		if(adapter == NatTable.class) {
 			return this.natTable;
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getCell(java.lang.Object, java.lang.Object)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @return
+	 */
+	public Cell getCell(final Object columnElement, final Object rowElement) {
+		//FIXME : improve this methods, with a HashMap synchronized on the EMF-Model!
+		for(final Cell current : getTable().getCells()) {
+			final ICellAxisWrapper rowWrapper = current.getRowWrapper();
+			final ICellAxisWrapper columnWrapper = current.getColumnWrapper();
+
+			if(rowWrapper.getElement().equals(AxisUtils.getRepresentedElement(rowElement)) && AxisUtils.getRepresentedElement(columnElement).equals(columnWrapper.getElement())) {
+				return current;
+			}
+			//FIXME : several others case to manage 
+			//FIXME : (replacement of an EObject by an IAxis)
+			//FIXME : replacement of an IAxis by its EObject
 		}
 		return null;
 	}

@@ -443,6 +443,20 @@
                 style="push">
           </command>
        </menu>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.mark.as.resolved.command"
+             style="push">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+       </command>
     </menuContribution>
   </extension>
    <extension
@@ -511,6 +525,22 @@
           </and>
        </activeWhen>
     </handler>
+          <handler
+                class="org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler"
+                commandId="org.eclipse.ui.edit.paste">
+             <activeWhen>
+                <and>
+                   <with
+                         variable="selection">
+                      <test
+                            forcePluginActivation="true"
+                            property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                            value="true">
+                      </test>
+                   </with>
+                </and>
+             </activeWhen>
+          </handler>
  </extension>
  <extension
        point="org.eclipse.core.expressions.propertyTesters">
@@ -881,6 +911,10 @@
          priority="10"
          provider="org.eclipse.papyrus.infra.nattable.provider.TableLabelProvider">
    </labelProvider>
+   <labelProvider
+         priority="10"
+         provider="org.eclipse.papyrus.infra.nattable.provider.ProblemLabelProvider">
+   </labelProvider>
 </extension>
   <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
@@ -975,6 +1009,11 @@
             defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnAutoResizeHandler"
             id="org.eclipse.papyrus.infra.nattable.autoresize.columns"
             name="AutoResize Column">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ResolvedProblemHandler"
+            id="org.eclipse.papyrus.infra.nattable.mark.as.resolved.command"
+            name="Mark As Resolved">
       </command>
    </extension>
    <extension

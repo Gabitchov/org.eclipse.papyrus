@@ -82,4 +82,14 @@ public class Constants {
 
 	public static final String ROW_OBJECT_LABEL_CONFIGURATION_DISPLAY_LABEL = "rowObjectLabelProviderConfigurationDisplayLabel"; //$NON-NLS-1$
 
+
+
+	public static final String ROW_PASTED_EOBJECT_ID = "localRowHeaderAxisConfiguration.pastedEObjectId";//$NON-NLS-1$
+
+	public static final String ROW_PASTED_EOBJECT_CONTAINMENT_FEATURE = "localRowHeaderAxisConfiguration.pastedEObjectContainmentFeature";//$NON-NLS-1$
+
+	public static final String COLUMN_PASTED_EOBJECT_ID = "localColumnHeaderAxisConfiguration.pastedEObjectId";//$NON-NLS-1$
+
+	public static final String COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE = "localColumnHeaderAxisConfiguration.pastedEObjectContainmentFeature";//$NON-NLS-1$
+
 }

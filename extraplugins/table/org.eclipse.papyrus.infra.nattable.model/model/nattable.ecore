@@ -77,6 +77,12 @@
         <details key="documentation" value="References the current column AxisProvider used in the table.&#xD;&#xA;The value must be owned by column AxisProviderHistory"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cells" upperBound="-1"
+        eType="#//nattablecell/Cell" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Cells of the table. They are used when the value to display can't be deduced of&#xD;&#xA;the intersection of the row and the column."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eSubpackages name="nattableconfiguration" nsURI="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"
       nsPrefix="nattableconfiguration">
@@ -627,6 +633,89 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="IAxis used to represent object using a string."/>
       </eAnnotations>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="nattablecell" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattablecell"
+      nsPrefix="nattablecell">
+    <eClassifiers xsi:type="ecore:EClass" name="Cell" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Cell elements used to store specific information which can't be stored in the edited model"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="columnWrapper" lowerBound="1"
+          eType="#//nattablecell/ICellAxisWrapper" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The column element on which this cell must be displayed."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="rowWrapper" lowerBound="1"
+          eType="#//nattablecell/ICellAxisWrapper" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The row element on which this cell must be displayed."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="problems" upperBound="-1"
+          eType="#//nattableproblem/Problem" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="a list of problem founds on this cell"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ICellAxisWrapper" abstract="true"
+        interface="true" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This class encapsulates the real axis object."/>
+      </eAnnotations>
+      <eOperations name="getElement" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Return the wrapped object"/>
+        </eAnnotations>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EObjectAxisWrapper" eSuperTypes="#//nattablecell/ICellAxisWrapper">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Wrapper for EObject"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="element" lowerBound="1"
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The wrapped element"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IdAxisWrapper" eSuperTypes="#//nattablecell/ICellAxisWrapper">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Wrapper for Id"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="element" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The id used to identifies an element."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="nattableproblem" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattableproblem"
+      nsPrefix="nattableproblem">
+    <eClassifiers xsi:type="ecore:EClass" name="Problem" eSuperTypes="#//nattableconfiguration/TableNamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A problem"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StringResolutionProblem" eSuperTypes="#//nattableproblem/Problem">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This kind of problem is used when the user set a value as a text in a Cell and the system can't convert this string value into the correct type"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueAsString" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The text which is the source of the problem"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unresolvedString" lowerBound="1"
+          upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="the text or a substring of it, which is the source of the problem"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

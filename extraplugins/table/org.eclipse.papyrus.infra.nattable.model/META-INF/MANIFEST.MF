@@ -11,12 +11,18 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.util,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.impl,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.util,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.util,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.util,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.util,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.util,
@@ -33,6 +39,5 @@ Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleto
- n:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleton:=true
 

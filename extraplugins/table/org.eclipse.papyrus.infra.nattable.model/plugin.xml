@@ -71,4 +71,20 @@
             genModel="model/nattable.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattable -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattablecell"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage"
+            genModel="model/nattable.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattable -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattableproblem"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemPackage"
+            genModel="model/nattable.genmodel"/>
+   </extension>
+
 </plugin>

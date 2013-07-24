@@ -3,8 +3,10 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model.editor.customeditors,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.presentation
 Bundle-ActivationPolicy: lazy
@@ -14,7 +16,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.infra.nattable.model.edit;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.nattable.model.edit;visibility:=reexport;bundle-version="0.10.1",
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -23,8 +25,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.pr
- esentation.NattableEditorPlugin$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.editor;s
- ingleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.editor;singleton:=true
 

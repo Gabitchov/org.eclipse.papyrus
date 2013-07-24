@@ -14,24 +14,35 @@
 package org.eclipse.papyrus.uml.nattable.manager.cell;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
+import org.eclipse.papyrus.infra.tools.converter.MultiConvertedValueContainer;
+import org.eclipse.papyrus.infra.tools.converter.StringValueConverterStatus;
+import org.eclipse.papyrus.uml.nattable.Activator;
 import org.eclipse.papyrus.uml.nattable.messages.Messages;
 import org.eclipse.papyrus.uml.nattable.utils.Constants;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
+import org.eclipse.papyrus.uml.tools.utils.EnumerationUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -160,10 +171,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 			if(stereotypes.size() == 1) {
 				final EObject stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
 				final EStructuralFeature steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
-				final AbstractEditCommandRequest request = new SetRequest(domain, stereotypeApplication, steApFeature, newValue);
-				final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(stereotypeApplication);
-				final ICommand editCommand = provider.getEditCommand(request);
-				return new GMFtoEMFCommandWrapper(editCommand);
+				return getSetValueCommand(domain, stereotypeApplication, steApFeature, newValue);
 			} else {
 				//FIXME : not yet managed
 			}
@@ -171,4 +179,91 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getSetStringValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      EObject, java.lang.Object, java.lang.Object, java.lang.String, java.util.Map)
+	 * 
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param newValue
+	 * @param stringResolvers
+	 * @return
+	 */
+	@Override
+	public Command getSetStringValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final String newValue, final AbstractStringValueConverter valueSolver, final INattableModelManager tableManager) {
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement);
+		final Element el = (Element)umlObjects.get(0);
+		final String id = (String)umlObjects.get(1);
+		Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
+		List<Stereotype> stereotypes = UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id);
+		ConvertedValueContainer<?> solvedValue = null;
+		EObject stereotypeApplication = null;
+		EStructuralFeature steApFeature = null;
+		if(prop != null) {
+			if(stereotypes.size() == 1) {
+				stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
+				switch(UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id).size()) {
+				case 1:
+					stereotypes = UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id);
+					prop = UMLTableUtils.getRealStereotypeProperty(el, id);
+					break;
+				default:
+					prop = null;
+					stereotypes = Collections.emptyList();
+				}
+			}
+		}
+
+		solvedValue = valueSolver.deduceValueFromString(prop, newValue);
+		steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
+		if(prop.getType() instanceof EnumerationLiteral) {
+			EEnum eenum = (EEnum)steApFeature.getEType();
+			Object value = solvedValue.getConvertedValue();
+			if(value instanceof Collection<?>) {
+				final Collection<Enumerator> enumeratorList = EnumerationUtil.adaptToEnumeratorList(eenum, (Collection<?>)value);
+				if(enumeratorList.size() == ((Collection<?>)value).size()) {
+					solvedValue = new MultiConvertedValueContainer<Enumerator>(enumeratorList, solvedValue.getStatus());
+				} else {
+					IStatus status = new StringValueConverterStatus(IStatus.ERROR, Activator.PLUGIN_ID, "Some enumeration literal can't be resolved", Collections.<String> emptyList()); //$NON-NLS-1$
+					solvedValue = new ConvertedValueContainer<Object>(enumeratorList, status);
+				}
+			} else if(value instanceof EnumerationLiteral) {
+				if(value != null) {
+					final Enumerator enumerator = EnumerationUtil.adaptToEnumerator(eenum, (EnumerationLiteral)value);
+					if(enumerator != null) {
+						solvedValue = new ConvertedValueContainer<Enumerator>(enumerator, solvedValue.getStatus());
+					} else {
+						IStatus status = new StringValueConverterStatus(IStatus.ERROR, Activator.PLUGIN_ID, NLS.bind("The enumeration literal represented by {0} can be resolved", newValue), Collections.singletonList(newValue)); //$NON-NLS-1$
+						solvedValue = new ConvertedValueContainer<Object>(null, status);
+					}
+				}
+			}
+		}
+
+		final CompositeCommand cmd = new CompositeCommand("Set Value As String Command"); //$NON-NLS-1$
+		if(steApFeature == null || stereotypes.size() != 1) {
+			IStatus status = new StringValueConverterStatus(IStatus.ERROR, Activator.PLUGIN_ID, "The property of stereotype to use to do the set value can't be resolved", Collections.singletonList(newValue)); //$NON-NLS-1$
+			solvedValue = new ConvertedValueContainer<Object>(null, status);
+		} else {
+
+			Object value = solvedValue.getConvertedValue();
+			if((value != null) || (value == null && !(prop.getType() instanceof PrimitiveType))) {
+				//we want avoid set null on element which doesn't allow it (FlowPort#direction) when the enum has not been properly resolved
+				final Command setValueCommand = getSetValueCommand(domain, stereotypeApplication, steApFeature, value);
+				if(setValueCommand != null) {
+					cmd.add(new EMFtoGMFCommandWrapper(setValueCommand));
+				}
+			}
+		}
+		final Command createProblemCommand = getCreateStringResolutionProblemProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
+		if(createProblemCommand != null) {
+			cmd.add(new EMFtoGMFCommandWrapper(createProblemCommand));
+		}
+		if(cmd.isEmpty()) {
+			return null;
+		}
+		return new GMFtoEMFCommandWrapper(cmd);
+	}
 }

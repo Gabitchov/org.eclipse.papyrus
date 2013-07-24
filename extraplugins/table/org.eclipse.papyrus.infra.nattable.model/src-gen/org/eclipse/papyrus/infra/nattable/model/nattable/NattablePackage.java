@@ -209,6 +209,16 @@ public interface NattablePackage extends EPackage {
 	int TABLE__CURRENT_COLUMN_AXIS_PROVIDER = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Cells</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__CELLS = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -216,7 +226,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_FEATURE_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int TABLE_FEATURE_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -368,6 +378,19 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_CurrentColumnAxisProvider();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCells
+	 * <em>Cells</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Cells</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCells()
+	 * @see #getTable()
+	 * @generated
+	 */
+	EReference getTable_Cells();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -484,6 +507,15 @@ public interface NattablePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE__CURRENT_COLUMN_AXIS_PROVIDER = eINSTANCE.getTable_CurrentColumnAxisProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Cells</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference TABLE__CELLS = eINSTANCE.getTable_Cells();
 
 	}
 
