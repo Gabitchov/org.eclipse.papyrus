@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
@@ -61,11 +62,16 @@ public class DependencyManagementHelper {
 	 *        Must not be empty
 	 * @param editingDomain
 	 *        The editing domain. May be null.
+	 * 
+	 * @return
+	 *         The collection of replacements
 	 */
-	public static void updateDependencies(URI uriToReplace, URI targetURI, Collection<Resource> fromResources, EditingDomain editingDomain) {
+	public static Collection<Replacement> updateDependencies(URI uriToReplace, URI targetURI, Collection<Resource> fromResources, EditingDomain editingDomain) {
 		if(fromResources == null || fromResources.isEmpty()) {
 			throw new IllegalArgumentException("There is no resource to modify");
 		}
+
+		Collection<Replacement> replacements = new LinkedList<Replacement>();
 
 		for(Resource currentResource : fromResources) {
 			if(currentResource == null) {
@@ -76,8 +82,10 @@ public class DependencyManagementHelper {
 				continue;
 			}
 
-			updateDependencies(uriToReplace, targetURI, currentResource, editingDomain);
+			replacements.addAll(updateDependencies(uriToReplace, targetURI, currentResource, editingDomain));
 		}
+
+		return replacements;
 	}
 
 	/**
@@ -97,8 +105,10 @@ public class DependencyManagementHelper {
 	 *        Must not be null
 	 * @param editingDomain
 	 *        The editing domain. May be null.
+	 * @return
+	 *         The collection of replacements
 	 */
-	public static void updateDependencies(URI uriToReplace, URI targetURI, Resource fromResource, EditingDomain editingDomain) {
+	public static Collection<Replacement> updateDependencies(URI uriToReplace, URI targetURI, Resource fromResource, EditingDomain editingDomain) {
 		if(uriToReplace == null) {
 			throw new IllegalArgumentException("There is no URI to replace");
 		}
@@ -116,6 +126,8 @@ public class DependencyManagementHelper {
 		}
 
 		Iterator<EObject> allContentsIterator = fromResource.getAllContents();
+
+		Collection<Replacement> replacements = new LinkedList<Replacement>();
 
 		while(allContentsIterator.hasNext()) {
 			EObject eObject = allContentsIterator.next();
@@ -141,6 +153,7 @@ public class DependencyManagementHelper {
 					try {
 						//System.out.println("Replace " + EcoreUtil.getURI(eObjectToReplace) + " with " + EcoreUtil.getURI(newEObject));
 						eObject.eSet(reference, newEObject);
+						replacements.add(new ReplacementImpl(eObject, reference, eObjectToReplace, newEObject));
 					} catch (Exception ex) {
 						Activator.log.error(ex);
 					}
@@ -171,11 +184,14 @@ public class DependencyManagementHelper {
 						EStructuralFeature.Setting setting = (EStructuralFeature.Setting)collection;
 						for(Map.Entry<EObject, EObject> entry : previousToNewValue.entrySet()) {
 							EcoreUtil.replace(setting, entry.getKey(), entry.getValue());
+							replacements.add(new ReplacementImpl(eObject, reference, entry.getKey(), entry.getValue()));
 						}
 					}
 				}
 			}
 		}
+
+		return replacements;
 	}
 
 	/**
@@ -253,14 +269,16 @@ public class DependencyManagementHelper {
 	 *        The resourceSet to edit. Its resources will be modified.
 	 * @param editingDomain
 	 *        The editing domain. May be null.
+	 * @return
+	 *         The collection of replacements
 	 */
-	public static void updateDependencies(URI uriToReplace, URI targetURI, ResourceSet resourceSet, EditingDomain editingDomain) {
+	public static Collection<Replacement> updateDependencies(URI uriToReplace, URI targetURI, ResourceSet resourceSet, EditingDomain editingDomain) {
 		Set<Resource> resourcesToEdit = new HashSet<Resource>(resourceSet.getResources());
 		Resource resourceToReplace = resourceSet.getResource(uriToReplace, false);
 		if(resourceToReplace != null) {
 			resourcesToEdit.remove(resourceToReplace);
 		}
-		updateDependencies(uriToReplace, targetURI, resourcesToEdit, editingDomain);
+		return updateDependencies(uriToReplace, targetURI, resourcesToEdit, editingDomain);
 	}
 
 	/**
@@ -278,9 +296,11 @@ public class DependencyManagementHelper {
 	 * @param fromResource
 	 *        The resource to edit. Only the objects of this resource will be modified.
 	 *        Must not be null
+	 * @return
+	 *         The collection of replacements
 	 */
-	public static void updateDependencies(URI uriToReplace, URI targetURI, Collection<Resource> fromResources) {
-		updateDependencies(uriToReplace, targetURI, fromResources, null);
+	public static Collection<Replacement> updateDependencies(URI uriToReplace, URI targetURI, Collection<Resource> fromResources) {
+		return updateDependencies(uriToReplace, targetURI, fromResources, null);
 	}
 
 	/**
@@ -298,9 +318,11 @@ public class DependencyManagementHelper {
 	 * @param fromResource
 	 *        The resource to edit. Only the objects of this resource will be modified.
 	 *        Must not be null
+	 * @return
+	 *         The collection of replacements
 	 */
-	public static void updateDependencies(URI uriToReplace, URI targetURI, Resource fromResource) {
-		updateDependencies(uriToReplace, targetURI, fromResource, null);
+	public static Collection<Replacement> updateDependencies(URI uriToReplace, URI targetURI, Resource fromResource) {
+		return updateDependencies(uriToReplace, targetURI, fromResource, null);
 	}
 
 	/**
@@ -316,11 +338,68 @@ public class DependencyManagementHelper {
 	 *        May or may not exist. In the later case, the values will be proxies to the un-existing target URI
 	 * @param resourceSet
 	 *        The resourceSet to edit. Its resources will be modified.
+	 * @return
+	 *         The collection of replacements
 	 */
-	public static void updateDependencies(URI uriToReplace, URI targetURI, ResourceSet resourceSet) {
+	public static Collection<Replacement> updateDependencies(URI uriToReplace, URI targetURI, ResourceSet resourceSet) {
 		Set<Resource> resourcesToEdit = new HashSet<Resource>(resourceSet.getResources());
 		resourcesToEdit.remove(resourceSet.getResource(uriToReplace, false));
-		updateDependencies(uriToReplace, targetURI, resourcesToEdit, null);
+		return updateDependencies(uriToReplace, targetURI, resourcesToEdit, null);
+	}
+
+	private static class ReplacementImpl implements Replacement {
+
+		private EObject parent;
+
+		private EStructuralFeature property;
+
+		private EObject oldValue;
+
+		private EObject newValue;
+
+		public ReplacementImpl(EObject parent, EStructuralFeature property, EObject oldValue, EObject newValue) {
+			this.parent = parent;
+			this.property = property;
+			this.oldValue = oldValue;
+			this.newValue = newValue;
+		}
+
+		public EObject getEObject() {
+			return parent;
+		}
+
+		public EStructuralFeature getEStructuralFeature() {
+			return property;
+		}
+
+		public EObject get(boolean resolve) {
+			if(resolve && newValue != null && newValue.eIsProxy()) {
+				newValue = EcoreUtil.resolve(newValue, parent);
+			}
+
+			return newValue;
+		}
+
+		public void set(Object newValue) {
+			throw new UnsupportedOperationException();
+		}
+
+		public boolean isSet() {
+			return newValue != null;
+		}
+
+		public void unset() {
+			throw new UnsupportedOperationException();
+		}
+
+		public EObject getOldValue() {
+			return oldValue;
+		}
+
+		@Override
+		public String toString() {
+			return String.format("%s replaced with %s", EcoreUtil.getURI(oldValue), EcoreUtil.getURI(newValue));
+		}
 	}
 
 }

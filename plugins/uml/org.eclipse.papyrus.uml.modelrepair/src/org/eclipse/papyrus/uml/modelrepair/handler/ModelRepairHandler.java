@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -21,6 +32,8 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 public class ModelRepairHandler extends AbstractHandler {
 
+	//Prototype.
+	//Not visible.
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
 		if(currentSelection.isEmpty() || !(currentSelection instanceof IStructuredSelection)) {
@@ -54,4 +67,5 @@ public class ModelRepairHandler extends AbstractHandler {
 
 		return null;
 	}
+
 }

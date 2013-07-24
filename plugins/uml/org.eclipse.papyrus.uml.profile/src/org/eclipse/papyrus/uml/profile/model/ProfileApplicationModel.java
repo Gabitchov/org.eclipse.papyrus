@@ -89,6 +89,10 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 	}
 
 	protected boolean checkAndRefreshProfiles(Package currentPackage) {
+		if(Display.getCurrent() == null) {
+			return false;
+		}
+
 		for(Profile profile : currentPackage.getAppliedProfiles()) {
 			if(ProfileUtil.isDirty(currentPackage, profile)) {
 				RefreshProfileDialog dialog = new RefreshProfileDialog(Display.getCurrent().getActiveShell(), this.rootPackage);
