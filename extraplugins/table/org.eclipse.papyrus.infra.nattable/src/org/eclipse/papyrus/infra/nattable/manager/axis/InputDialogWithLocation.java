@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Shell;
  * @author vl222926
  * 
  */
+//FIXME : move me!
 public class InputDialogWithLocation extends InputDialog {
 
 	/**

@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit,
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.infra.emf.nattable,
  org.eclipse.papyrus.infra.emf.nattable.celleditor.config,
  org.eclipse.papyrus.infra.emf.nattable.manager.axis,

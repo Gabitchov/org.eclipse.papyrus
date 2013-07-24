@@ -19,10 +19,13 @@ import java.util.TreeMap;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
 
 /**
  * The cell manager factory
@@ -157,5 +160,52 @@ public final class CellManagerFactory {
 		} else {
 			throw new UnsupportedOperationException(CELL_MANAGER_NOT_FOUND);
 		}
+	}
+
+	/**
+	 * 
+	 * @param editingDomain
+	 *        the editing domain to use
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @param valueAsString
+	 *        the value as string
+	 * @param stringResolvers
+	 *        a map with instances of existing string resolvers
+	 * @param tableManager
+	 *        the table manager
+	 * @return
+	 *         the command to set the value
+	 */
+	public Command getSetStringValueCommand(final TransactionalEditingDomain editingDomain, final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter stringResolvers, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		if(cellManager != null) {
+			return cellManager.getSetStringValueCommand(editingDomain, columnElement, rowElement, valueAsString, stringResolvers, tableManager);
+		} else {
+			return UnexecutableCommand.INSTANCE;
+		}
+	}
+
+	/**
+	 * 
+	 * @param columnElement
+	 *        the columnElement
+	 * @param rowElement
+	 *        the rowElement
+	 * @param tableManager
+	 *        the table manager
+	 * @param existingConverters
+	 *        the map of the existing converters (to avoid to create same too many times
+	 * @return
+	 *         the converter to use, or null if not found
+	 */
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(final Object columnElement, final Object rowElement, INattableModelManager tableManager, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		if(cellManager != null) {
+			return cellManager.getOrCreateStringValueConverterClass(tableManager, existingConverters, multiValueSeparator);
+		}
+		return null;
 	}
 }

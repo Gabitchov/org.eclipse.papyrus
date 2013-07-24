@@ -586,12 +586,14 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * refresh NatTable (asyncExec)
 	 */
 	public void refreshNatTable() {
-		Display.getDefault().asyncExec(new Runnable() {
+		if(this.natTable != null && !this.natTable.isDisposed()) {
+			Display.getDefault().asyncExec(new Runnable() {
 
-			public void run() {
-				NattableModelManager.this.natTable.refresh();
-			}
-		});
+				public void run() {
+					NattableModelManager.this.natTable.refresh();
+				}
+			});
+		}
 	}
 
 
@@ -1123,7 +1125,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			final ICellAxisWrapper rowWrapper = current.getRowWrapper();
 			final ICellAxisWrapper columnWrapper = current.getColumnWrapper();
 
-			if(rowWrapper.getElement() == rowElement && columnElement == columnWrapper.getElement()) {
+			if(rowWrapper.getElement().equals(AxisUtils.getRepresentedElement(rowElement)) && AxisUtils.getRepresentedElement(columnElement).equals(columnWrapper.getElement())) {
 				return current;
 			}
 			//FIXME : several others case to manage 

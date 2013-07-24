@@ -55,7 +55,7 @@
       <cellManager
             id="org.eclipse.papyrus.uml.nattable.uml.feature.cell.manager"
             manager="org.eclipse.papyrus.uml.nattable.manager.cell.UMLFeatureCellManager"
-            order="500">
+            order="450">
       </cellManager>
       <cellManager
             id="org.eclipse.papyrus.uml.nattable.uml.stereotype.property.cell.manager"

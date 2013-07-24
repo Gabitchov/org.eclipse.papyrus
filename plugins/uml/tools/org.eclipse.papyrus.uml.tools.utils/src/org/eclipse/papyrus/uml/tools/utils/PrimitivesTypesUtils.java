@@ -35,5 +35,11 @@ public class PrimitivesTypesUtils {
 	/** the string used for uml unlimited natural */
 	public static final String UML_UNLIMITED_NATURAL = "UnlimitedNatural"; //$NON-NLS-1$
 
+	/** the string used for enumeration */
+	public static final String ENUMERATION = "Enumeration"; //$NON-NLS-1$
+
+	/** the string used for enumeration literal */
+	public static final String ENUMERATION_LITERAL = "EnumerationLiteral"; //$NON-NLS-1$
+
 
 }
