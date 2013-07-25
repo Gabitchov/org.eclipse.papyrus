@@ -17,7 +17,7 @@
             locationURI="popup:org.eclipse.ui.popup.any">
          <command
                commandId="org.eclipse.papyrus.dev.java.utils.EmptyPackagesCommand"
-               icon="icons/16977.empty_pack_obj.png"
+               icon="icons/empty_package.png"
                label="%command.label"
                mnemonic="%command.mnemonic"
                style="push">
