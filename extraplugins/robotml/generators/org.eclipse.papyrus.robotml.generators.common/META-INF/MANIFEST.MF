@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: RobotML generators common queries (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.robotml.generators.common
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.robotml.generators.common.Activator
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.core.runtime,
