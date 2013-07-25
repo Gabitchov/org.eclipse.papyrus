@@ -12,12 +12,12 @@ package org.eclipse.papyrus.robotml.generators.intempora.rtmaps.ui.popupMenus;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ArrayList;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -38,36 +38,39 @@ import org.eclipse.ui.actions.ActionDelegate;
  * RTMaps code generation.
  */
 public class AcceleoGenerateRTMapsAction extends ActionDelegate implements IActionDelegate {
-	
+
 	/**
 	 * Selected model files.
 	 */
 	protected List<IFile> files;
 
-	/**{@inheritDoc}
-	 *
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.ui.actions.ActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public void selectionChanged(IAction action, ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
-			files = ((IStructuredSelection) selection).toList();
+		if(selection instanceof IStructuredSelection) {
+			files = ((IStructuredSelection)selection).toList();
 		}
 	}
 
-	/**{@inheritDoc}
-	 *
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.ui.actions.ActionDelegate#run(org.eclipse.jface.action.IAction)
 	 * @generated
 	 */
 	public void run(IAction action) {
-		if (files != null) {
+		if(files != null) {
 			IRunnableWithProgress operation = new IRunnableWithProgress() {
+
 				public void run(IProgressMonitor monitor) {
 					try {
 						Iterator<IFile> filesIt = files.iterator();
-						while (filesIt.hasNext()) {
+						while(filesIt.hasNext()) {
 							IFile model = (IFile)filesIt.next();
 							URI modelURI = URI.createPlatformResourceURI(model.getFullPath().toString(), true);
 							try {

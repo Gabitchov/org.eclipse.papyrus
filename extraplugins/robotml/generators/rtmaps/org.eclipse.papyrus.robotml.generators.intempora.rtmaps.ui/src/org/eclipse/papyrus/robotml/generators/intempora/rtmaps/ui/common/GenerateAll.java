@@ -16,15 +16,15 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.robotml.generators.intempora.rtmaps.Generate_rtmaps;
 import org.osgi.framework.Bundle;
-import org.eclipse.papyrus.robotml.generators.intempora.rtmaps.*;
 
 /**
  * Main entry point of the 'RTMaps' generation module.
@@ -50,13 +50,13 @@ public class GenerateAll {
 	 * Constructor.
 	 * 
 	 * @param modelURI
-	 *            is the URI of the model.
+	 *        is the URI of the model.
 	 * @param targetFolder
-	 *            is the output folder
+	 *        is the output folder
 	 * @param arguments
-	 *            are the other arguments
+	 *        are the other arguments
 	 * @throws IOException
-	 *             Thrown when the output cannot be saved.
+	 *         Thrown when the output cannot be saved.
 	 * @generated
 	 */
 	public GenerateAll(URI modelURI, IContainer targetFolder, List<? extends Object> arguments) {
@@ -67,18 +67,18 @@ public class GenerateAll {
 
 	/**
 	 * Launches the generation.
-	 *
+	 * 
 	 * @param monitor
-	 *            This will be used to display progress information to the user.
+	 *        This will be used to display progress information to the user.
 	 * @throws IOException
-	 *             Thrown when the output cannot be saved.
+	 *         Thrown when the output cannot be saved.
 	 * @generated
 	 */
 	public void doGenerate(IProgressMonitor monitor) throws IOException {
-		if (!targetFolder.getLocation().toFile().exists()) {
+		if(!targetFolder.getLocation().toFile().exists()) {
 			targetFolder.getLocation().toFile().mkdirs();
 		}
-		
+
 		// final URI template0 = getTemplateURI("org.eclipse.papyrus.robotml.generators.intempora.rtmaps", new Path("/org/eclipse/robotml/generators/acceleo/rtmaps/main/generate_rtmaps.emtl"));
 		// org.eclipse.papyrus.robotml.generators.intempora.rtmaps.main.Generate_rtmaps gen0 = new org.eclipse.papyrus.robotml.generators.intempora.rtmaps.main.Generate_rtmaps(modelURI, targetFolder.getLocation().toFile(), arguments) {
 		//	protected URI createTemplateURI(String entry) {
@@ -92,17 +92,17 @@ public class GenerateAll {
 		String generationID = org.eclipse.acceleo.engine.utils.AcceleoLaunchingUtil.computeUIProjectID("org.eclipse.papyrus.robotml.generators.intempora.rtmaps", "org.eclipse.papyrus.robotml.generators.intempora.rtmaps.main.Generate_rtmaps", modelURI.toString(), targetFolder.getFullPath().toString(), new ArrayList<String>());
 		gen0.setGenerationID(generationID);
 		gen0.doGenerate(BasicMonitor.toMonitor(monitor));
-			
-		
+
+
 	}
-	
+
 	/**
 	 * Finds the template in the plug-in. Returns the template plug-in URI.
 	 * 
 	 * @param bundleID
-	 *            is the plug-in ID
+	 *        is the plug-in ID
 	 * @param relativePath
-	 *            is the relative path of the template in the plug-in
+	 *        is the relative path of the template in the plug-in
 	 * @return the template URI
 	 * @throws IOException
 	 * @generated
@@ -110,34 +110,34 @@ public class GenerateAll {
 	@SuppressWarnings({ "unused" })
 	private URI getTemplateURI(String bundleID, IPath relativePath) throws IOException {
 		Bundle bundle = Platform.getBundle(bundleID);
-		if (bundle == null) {
+		if(bundle == null) {
 			// no need to go any further
 			return URI.createPlatformResourceURI(new Path(bundleID).append(relativePath).toString(), false);
 		}
 		URL url = bundle.getEntry(relativePath.toString());
-		if (url == null && relativePath.segmentCount() > 1) {
+		if(url == null && relativePath.segmentCount() > 1) {
 			Enumeration<URL> entries = bundle.findEntries("/", "*.emtl", true);
-			if (entries != null) {
+			if(entries != null) {
 				String[] segmentsRelativePath = relativePath.segments();
-				while (url == null && entries.hasMoreElements()) {
+				while(url == null && entries.hasMoreElements()) {
 					URL entry = entries.nextElement();
 					IPath path = new Path(entry.getPath());
-					if (path.segmentCount() > relativePath.segmentCount()) {
+					if(path.segmentCount() > relativePath.segmentCount()) {
 						path = path.removeFirstSegments(path.segmentCount() - relativePath.segmentCount());
 					}
 					String[] segmentsPath = path.segments();
 					boolean equals = segmentsPath.length == segmentsRelativePath.length;
-					for (int i = 0; equals && i < segmentsPath.length; i++) {
+					for(int i = 0; equals && i < segmentsPath.length; i++) {
 						equals = segmentsPath[i].equals(segmentsRelativePath[i]);
 					}
-					if (equals) {
+					if(equals) {
 						url = bundle.getEntry(entry.getPath());
 					}
 				}
 			}
 		}
 		URI result;
-		if (url != null) {
+		if(url != null) {
 			result = URI.createPlatformPluginURI(new Path(bundleID).append(new Path(url.getPath())).toString(), false);
 		} else {
 			result = URI.createPlatformResourceURI(new Path(bundleID).append(relativePath).toString(), false);

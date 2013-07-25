@@ -28,17 +28,18 @@ public class Activator extends AbstractUIPlugin {
 	 * The shared instance.
 	 */
 	private static Activator plugin;
-	
+
 	public static LogHelper log;
-	
+
 	/**
 	 * The constructor.
 	 */
 	public Activator() {
 	}
 
-	/**{@inheritDoc}
-	 *
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
 	 * @generated
 	 */
@@ -48,8 +49,9 @@ public class Activator extends AbstractUIPlugin {
 		log = new LogHelper(this);
 	}
 
-	/**{@inheritDoc}
-	 *
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 * @generated
 	 */
@@ -60,7 +62,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the shared instance.
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {
