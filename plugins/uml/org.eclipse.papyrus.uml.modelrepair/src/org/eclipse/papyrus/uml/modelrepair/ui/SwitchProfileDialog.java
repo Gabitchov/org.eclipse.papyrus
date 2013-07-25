@@ -55,7 +55,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
@@ -103,18 +102,18 @@ public class SwitchProfileDialog extends SelectionDialog {
 		self.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		Label descriptionLabel = new Label(self, SWT.NONE);
-		String description = "Press F2 or double click on an element to change its URI\n";
-		description += "Edit a root element to modify all dependencies to the selected resource\n";
-		description += "Edit a child element to modify only the dependencies from the root resource to the selected one\n";
+		String description = "Select an applied profile, then select a profile (either from the workspace, or a registered one)\n";
+		description += "If the profiles are equivalent, the selected profile will replace the applied profile. Stereotype applications will be kept\n";
+		description += "Two profiles are equivalent if, e.g. one is the copy of the other, or if you have deployed a workspace profile in a plug-in\n";
+		description += "If a profile P' is a copy of a profile P, with some modifications, they are also equivalent";
 		descriptionLabel.setText(description);
 
 		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 
 		Label warningLabel = new Label(self, SWT.NONE);
-		String warning = "/!\\ Modifying the dependencies between models may result into an inconsistent state and a corrupted model /!\\\n";
-		warning += "Most corrupted model can be repaired with this tool";
+		String warning = "/!\\ Replacing an applied profile with a totally different one will result in an invalid model /!\\";
 		warningLabel.setText(warning);
-		warningLabel.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_RED));
+		warningLabel.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_DARK_RED));
 
 		warningLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 
