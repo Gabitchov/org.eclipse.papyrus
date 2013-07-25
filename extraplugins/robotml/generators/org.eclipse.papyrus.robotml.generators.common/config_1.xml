@@ -1,0 +1,37 @@
+<config>
+
+	<!-- User libraries ++++++++++++++++++++++++++++++++++++++++++++ -->
+	<user-libraries>
+		<library>libBasicFlying.so</library>
+	</user-libraries>
+
+	<!-- Matlab configuration ++++++++++++++++++++++++++++++++++++++++++++ -->
+	<Matlab initString="">
+		<add2path>.</add2path>
+	</Matlab>
+
+	<!-- Environment configuration ++++++++++++++++++++++++++++++++++++++++++++ -->
+	<Environment>terrain/locals.xml</Environment>
+
+	<!-- Root : Root ++++++++++++++++++++++++++++++++++++++++++++ -->
+	<instance proto="Root" name="Root">
+		
+		<cycle><Long>1</Long></cycle>
+		<time><Long>1</Long></time>
+		<timestep><Long>1</Long></timestep>
+		
+		<!-- aircraft : Aircraft ++++++++++++++++++++++++++++++++++++++++++++ -->
+		<instance proto="Aircraft" name="U1">
+			
+			<NID><Long>1</Long></NID>
+
+		</instance> 
+		<!-- eof aircraft : Aircraft -->
+		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->		
+		
+	</instance> 
+	<!-- eof Root : Root -->
+	<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+
+</config>
