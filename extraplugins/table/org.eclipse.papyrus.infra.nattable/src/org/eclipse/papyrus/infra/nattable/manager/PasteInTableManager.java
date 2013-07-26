@@ -63,7 +63,6 @@ public class PasteInTableManager {
 		case PASTE_EOBJECT_ROW_OR_COLUMN:
 			PasteEObjectAxisInTableCommandProvider commandProvider = new PasteEObjectAxisInTableCommandProvider(tableManager, pasteMode);
 			commandProvider.executePasteFromStringCommand(useProgressMonitorDialog);
-			commandProvider.dispose();
 			break;
 		default:
 			break;
