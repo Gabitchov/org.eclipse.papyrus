@@ -203,7 +203,7 @@ public class GatesHolderGraphicalNodeEditPolicy extends SequenceGraphicalNodeEdi
 				Point sourceLocation = GateHelper.computeGateLocation(location, ep.getFigure(), null);
 				CreateGateElementAndViewCommand createSourceGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), sourceViewAdapter, sourceLocation);
 				createSourceGateCommand.setCreateInnerCFGate(true);
-				createSourceGateCommand.setVolatiled(!(getHost() instanceof InteractionEditPart));
+				createSourceGateCommand.setVolatiled(!(sourceEditPart instanceof InteractionEditPart));
 				cc.add(new ICommandProxy(createSourceGateCommand));
 				sourceViewAdapter = createSourceGateCommand.getResult();
 			}

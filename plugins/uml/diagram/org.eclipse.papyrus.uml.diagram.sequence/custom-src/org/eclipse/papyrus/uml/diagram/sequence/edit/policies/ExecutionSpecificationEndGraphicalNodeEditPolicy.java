@@ -59,6 +59,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -115,6 +116,9 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 				cmd = cmd == null ? cmdBP : cmd.chain(cmdBP);
 			}
 		}
+		if(cmd.canExecute()) {
+			return cmd.chain(FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request));
+		}
 		return cmd;
 	}
 
@@ -133,7 +137,11 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_SetConnectionEndsCommand_Source);
 		cc.compose(sceCommand);
 		cc.compose(scaCommand);
-		return new ICommandProxy(cc);
+		ICommandProxy result = new ICommandProxy(cc);
+		if(result.canExecute()) {
+			return result.chain(FragmentsOrdererHelper.createOrderingFragmentsCommand(node, request));
+		}
+		return result;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -233,7 +241,12 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 		CompositeCommand cc = new CompositeCommand(semanticCommand.getLabel());
 		cc.compose(semanticCommand);
 		cc.compose(new CommandProxy(viewCommand));
-		return new ICommandProxy(cc);
+		ICommandProxy result = new ICommandProxy(cc);
+		if(result.canExecute()) {
+			Command orderFragments = FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost().getParent(), request);
+			return result.chain(orderFragments);
+		}
+		return result;
 	}
 
 	@SuppressWarnings("unchecked")

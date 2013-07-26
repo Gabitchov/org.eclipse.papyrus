@@ -75,6 +75,16 @@ public class RestoreExecutionEndAdvice extends AbstractEditHelperAdvice {
 				return command.reduce();
 			}
 		}
+		//Try to restore the end of execution when the message end has been removed.
+		else if(elementToDestroy instanceof MessageOccurrenceSpecification) {
+			CompositeCommand command = new CompositeCommand("Restore Execution End");
+			MessageOccurrenceSpecification end = (MessageOccurrenceSpecification)elementToDestroy;
+			addRestoreExecutionEndCcommand(command, request.getEditingDomain(), end, true);
+			addRestoreExecutionEndCcommand(command, request.getEditingDomain(), end, false);
+			if(command.canExecute()) {
+				return command.reduce();
+			}
+		}
 		return super.getAfterDestroyElementCommand(request);
 	}
 
@@ -86,7 +96,29 @@ public class RestoreExecutionEndAdvice extends AbstractEditHelperAdvice {
 		RestoreExecutionEndCommand cmd = new RestoreExecutionEndCommand(editingDomain, execution, isStart);
 		cmd.setContainer((InteractionFragment)end.eContainer());
 		cmd.setCovered(end.getCovered());
+		//Add index support.
+		int executionIndex = getIndex(execution);
+		int index = getIndex(end);
+		if(isStart && index > executionIndex) {
+			index = executionIndex;
+		} else if(!isStart && index <= executionIndex) {
+			index = executionIndex + 1;
+		}
+		cmd.setIndex(index);
 		command.add(cmd);
+	}
+
+	private int getIndex(InteractionFragment fragment) {
+		if(fragment == null || fragment.eContainer() == null) {
+			return -1;
+		}
+		EObject parent = fragment.eContainer();
+		if(parent instanceof Interaction) {
+			return ((Interaction)parent).getFragments().indexOf(fragment);
+		} else if(parent instanceof InteractionOperand) {
+			return ((InteractionOperand)parent).getFragments().indexOf(fragment);
+		}
+		return -1;
 	}
 
 	private class RestoreExecutionEndCommand extends AbstractTransactionalCommand {
@@ -98,6 +130,8 @@ public class RestoreExecutionEndAdvice extends AbstractEditHelperAdvice {
 		private InteractionFragment container;
 
 		private Lifeline covered;
+
+		private int index;
 
 		/**
 		 * Constructor.
@@ -112,6 +146,13 @@ public class RestoreExecutionEndAdvice extends AbstractEditHelperAdvice {
 		}
 
 		/**
+		 * @param index
+		 */
+		public void setIndex(int index) {
+			this.index = index;
+		}
+
+		/**
 		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
 		 *      org.eclipse.core.runtime.IAdaptable)
 		 * 
@@ -122,12 +163,19 @@ public class RestoreExecutionEndAdvice extends AbstractEditHelperAdvice {
 		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			//Once the execution has been removed, ignore it.
+			if(execution.eContainer() == null) {
+				return CommandResult.newOKCommandResult();
+			}
 			ExecutionOccurrenceSpecification newEnd = null;
 			InteractionFragment container = (InteractionFragment)getContainer();
+			EList<InteractionFragment> fragments = null;
 			if(container instanceof Interaction) {
 				newEnd = (ExecutionOccurrenceSpecification)((Interaction)container).createFragment(null, UMLPackage.eINSTANCE.getExecutionOccurrenceSpecification());
+				fragments = ((Interaction)container).getFragments();
 			} else if(container instanceof InteractionOperand) {
 				newEnd = (ExecutionOccurrenceSpecification)((InteractionOperand)container).createFragment(null, UMLPackage.eINSTANCE.getExecutionOccurrenceSpecification());
+				fragments = ((InteractionOperand)container).getFragments();
 			}
 			if(newEnd == null) {
 				return CommandResult.newCancelledCommandResult();
@@ -140,6 +188,10 @@ public class RestoreExecutionEndAdvice extends AbstractEditHelperAdvice {
 			} else {
 				newEnd.setName(execution.getName() + "Finish");
 				execution.setFinish(newEnd);
+			}
+			//Index support.
+			if(index != -1 && fragments != null && index >= 0 && index < fragments.size() && fragments.indexOf(newEnd) != index) {
+				fragments.move(index, newEnd);
 			}
 			return CommandResult.newOKCommandResult();
 		}
