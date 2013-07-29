@@ -21,6 +21,7 @@ import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusColumnHeaderStyleConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusColumnResizeBindingsConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
+import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
 
 
 public class ColumnHeaderLayerStack extends AbstractLayerTransform {
@@ -34,7 +35,7 @@ public class ColumnHeaderLayerStack extends AbstractLayerTransform {
 	 * @param bodyDataProvider
 	 */
 	public ColumnHeaderLayerStack(final IDataProvider dataProvider, final BodyLayerStack bodyLayer, final BodyDataProvider bodyDataProvider) {
-		DataLayer dataLayer = new DataLayer(dataProvider);
+		DataLayer dataLayer = new DataLayer(dataProvider, DefaultSizeUtils.getDefaultCellWidth(), DefaultSizeUtils.getDefaultCellHeight());
 		ColumnHeaderLayer colHeaderLayer = new ColumnHeaderLayer(dataLayer, bodyLayer.getViewportLayer(), bodyLayer.getSelectionLayer(), false);
 		colHeaderLayer.addConfiguration(new PapyrusColumnResizeBindingsConfiguration());
 		colHeaderLayer.addConfiguration(new PapyrusColumnHeaderStyleConfiguration());

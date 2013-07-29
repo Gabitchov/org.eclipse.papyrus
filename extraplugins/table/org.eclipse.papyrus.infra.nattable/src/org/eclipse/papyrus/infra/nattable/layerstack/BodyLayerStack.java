@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.nattable.configuration.StyleConfiguration;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusSelectionLayer;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.reorder.CustomDefaultColumnReorderBindings;
+import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
 import org.eclipse.swt.SWT;
 
 
@@ -48,9 +49,8 @@ public class BodyLayerStack extends AbstractLayerTransform {
 	//	private final RowReorderLayer rowReoderLayer;
 
 	public BodyLayerStack(final IDataProvider dataProvider, final INattableModelManager manager) {
-		this.bodyDataLayer = new DataLayer(dataProvider);
+		this.bodyDataLayer = new DataLayer(dataProvider, DefaultSizeUtils.getDefaultCellWidth(), DefaultSizeUtils.getDefaultCellHeight());
 		this.bodyDataLayer.addConfiguration(new StyleConfiguration());
-		this.bodyDataLayer.setDefaultColumnWidth(200);
 
 		this.columnReorderLayer = new ColumnReorderLayer(this.bodyDataLayer, false);
 
