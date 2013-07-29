@@ -61,6 +61,28 @@ public class Messages extends NLS {
 
 	public static String CreateOrSelectBlockPropertyTypeDialog_SelectNewTypeContainerDialogMessage;
 
+	public static String CreateOrSelectConstraintPropertyTypeDialog_DialogTitle;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_SelectionSectionTitle;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_SelectionSectionRadioLabel;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_CreationSectionTitle;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_CreationSectionRadioLabel;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_NewTypeNameLabel;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_NewTypeContainerNameLabel;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_SelectTypeDialogTitle;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_SelectTypeDialogMessage;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_SelectNewTypeContainerDialogTitle;
+
+	public static String CreateOrSelectConstraintPropertyTypeDialog_SelectNewTypeContainerDialogMessage;
+
 	public static String CreateOrSelectActorPartTypeDialog_DialogTitle;
 
 	public static String CreateOrSelectActorPartTypeDialog_SelectionSectionTitle;

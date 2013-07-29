@@ -17,8 +17,13 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.blocks.BindingConnector;
+import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.uml.diagram.common.figure.ConnectorEdgeFigure;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
+import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.Element;
 
 public class ConnectorEditPart extends AbstractElementLinkEditPart {
 
@@ -91,33 +96,14 @@ public class ConnectorEditPart extends AbstractElementLinkEditPart {
 		return (ConnectorEdgeFigure)getFigure();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected void refreshLineType() {
-		// Start of user code custom line type
-		super.refreshLineType();
-		// End of user code
+	protected void refreshLineWidth() {
+		if (org.eclipse.uml2.uml.util.UMLUtil.getStereotypeApplication((Element)resolveSemanticElement(), BindingConnector.class) != null) {
+			setLineWidth(2);
+		}
+		else {
+			setLineWidth(1);
+		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void refreshArrowSource() {
-		// Start of user code custom source decoration
-		super.refreshArrowSource();
-		// End of user code
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void refreshArrowTarget() {
-		// Start of user code custom target decoration
-		super.refreshArrowTarget();
-		// End of user code
-	}
 }
