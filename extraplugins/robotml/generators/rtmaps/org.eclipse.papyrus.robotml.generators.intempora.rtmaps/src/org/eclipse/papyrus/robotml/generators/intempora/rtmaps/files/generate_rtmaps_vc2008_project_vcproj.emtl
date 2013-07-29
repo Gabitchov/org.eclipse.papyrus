@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="generate_rtmaps_vc2008_project_vcproj" nsURI="org::eclipse::papyrus::robotml::generators::intempora::rtmaps::files::generate_rtmaps_vc2008_project_vcproj" startHeaderPosition="773" endHeaderPosition="978">
+    <input>
+      <takesTypesFrom href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+    </input>
+    <input>
+      <takesTypesFrom href="http://Papyrus/RobotML/1#/"/>
+    </input>
+    <imports href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/GeneralQueries.emtl#/0"/>
+    <imports href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/ArchitectureQueries.emtl#/0"/>
+    <ownedModuleElement xsi:type="mtl:Template" name="generateRTMapsVC2008ProjectVCPROJ" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;?xml version=&quot;1.0&quot; encoding=&quot;Windows-1252&quot;?>&#xD;&#xA;&lt;VisualStudioProject&#xD;&#xA;&#x9;ProjectType=&quot;Visual C++&quot;&#xD;&#xA;&#x9;Version=&quot;9,00&quot;&#xD;&#xA;&#x9;Name=&quot;rtmaps_"/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="model" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/model">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot;&#xD;&#xA;&#x9;ProjectGUID=&quot;{A36E0705-729F-4AFD-8DE7-EF205F5FBCEE}&quot;&#xD;&#xA;&#x9;RootNamespace=&quot;rtmaps_"/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="model" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/model">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot;&#xD;&#xA;&#x9;SccLocalPath=&quot;.&quot;&#xD;&#xA;&#x9;TargetFrameworkVersion=&quot;131072&quot;&#xD;&#xA;&#x9;>&#xD;&#xA;&#x9;&lt;Platforms>&#xD;&#xA;&#x9;&#x9;&lt;Platform&#xD;&#xA;&#x9;&#x9;&#x9;Name=&quot;Win32&quot;&#xD;&#xA;&#x9;&#x9;/>&#xD;&#xA;&#x9;&lt;/Platforms>&#xD;&#xA;&#x9;&lt;ToolFiles>&#xD;&#xA;&#x9;&lt;/ToolFiles>&#xD;&#xA;&#x9;&lt;Configurations>&#xD;&#xA;&#x9;&#x9;&lt;Configuration&#xD;&#xA;&#x9;&#x9;&#x9;Name=&quot;Release|Win32&quot;&#xD;&#xA;&#x9;&#x9;&#x9;ConfigurationType=&quot;2&quot;&#xD;&#xA;&#x9;&#x9;&#x9;InheritedPropertySheets=&quot;$(RTMAPS_SDKDIR)\templates.u\RTMaps_x86_Release_vc2008.vsprops&quot;&#xD;&#xA;&#x9;&#x9;&#x9;UseOfMFC=&quot;0&quot;&#xD;&#xA;&#x9;&#x9;&#x9;ATLMinimizesCRunTimeLibraryUsage=&quot;false&quot;&#xD;&#xA;&#x9;&#x9;&#x9;CharacterSet=&quot;2&quot;&#xD;&#xA;&#x9;&#x9;&#x9;>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCPreBuildEventTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCCustomBuildTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCXMLDataGeneratorTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCWebServiceProxyGeneratorTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCMIDLTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&lt;!-- "/>
+        <body xsi:type="mtl:ProtectedAreaBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" &#xD;&#xA;-->&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCCLCompilerTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AdditionalIncludeDirectories=&quot;..\include&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&lt;!-- "/>
+          <marker xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Additional includes - Release Win32">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </marker>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;-->&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCManagedResourceCompilerTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCResourceCompilerTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCPreLinkEventTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&lt;!-- "/>
+        <body xsi:type="mtl:ProtectedAreaBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" &#xD;&#xA;-->&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCLinkerTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;RandomizedBaseAddress=&quot;1&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;DataExecutionPrevention=&quot;0&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AdditionalDependencies=&quot;msvcprt.lib&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AdditionalLibraryDirectories=&quot;&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&lt;!-- "/>
+          <marker xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Additional libs - Release Win32">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </marker>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;-->&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCALinkTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCManifestTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCXDCMakeTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCBscMakeTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCFxCopTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCAppVerifierTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCPostBuildEventTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&lt;/Configuration>&#xD;&#xA;&#x9;&#x9;&lt;Configuration&#xD;&#xA;&#x9;&#x9;&#x9;Name=&quot;Debug|Win32&quot;&#xD;&#xA;&#x9;&#x9;&#x9;ConfigurationType=&quot;2&quot;&#xD;&#xA;&#x9;&#x9;&#x9;InheritedPropertySheets=&quot;$(RTMAPS_SDKDIR)\templates.u\RTMaps_x86_Debug_vc2008.vsprops&quot;&#xD;&#xA;&#x9;&#x9;&#x9;UseOfMFC=&quot;0&quot;&#xD;&#xA;&#x9;&#x9;&#x9;ATLMinimizesCRunTimeLibraryUsage=&quot;false&quot;&#xD;&#xA;&#x9;&#x9;&#x9;CharacterSet=&quot;2&quot;&#xD;&#xA;&#x9;&#x9;&#x9;>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCPreBuildEventTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCCustomBuildTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCXMLDataGeneratorTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCWebServiceProxyGeneratorTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCMIDLTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&lt;!-- "/>
+        <body xsi:type="mtl:ProtectedAreaBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" &#xD;&#xA;-->&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCCLCompilerTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AdditionalIncludeDirectories=&quot;..\include&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&lt;!-- "/>
+          <marker xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Additional includes - Debug Win32">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </marker>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;-->&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCManagedResourceCompilerTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCResourceCompilerTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCPreLinkEventTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&lt;!-- "/>
+        <body xsi:type="mtl:ProtectedAreaBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" &#xD;&#xA;-->&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCLinkerTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AdditionalDependencies=&quot;msvcprt.lib&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AdditionalLibraryDirectories=&quot;&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;RandomizedBaseAddress=&quot;1&quot;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;DataExecutionPrevention=&quot;0&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&lt;!-- "/>
+          <marker xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Additional libs - Debug Win32">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </marker>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;-->&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCALinkTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCManifestTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCXDCMakeTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCBscMakeTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCFxCopTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCAppVerifierTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&#x9;&lt;Tool&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Name=&quot;VCPostBuildEventTool&quot;&#xD;&#xA;&#x9;&#x9;&#x9;/>&#xD;&#xA;&#x9;&#x9;&lt;/Configuration>&#xD;&#xA;&#x9;&lt;/Configurations>&#xD;&#xA;&#x9;&lt;References>&#xD;&#xA;&#x9;&lt;/References>&#xD;&#xA;&#x9;&lt;Files>&#xD;&#xA;&#x9;&#x9;&lt;Filter&#xD;&#xA;&#x9;&#x9;&#x9;Name=&quot;src&quot;&#xD;&#xA;&#x9;&#x9;&#x9;>&#xD;&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="mtl:IfBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&#x9;&lt;File RelativePath=&quot;.\src\maps_"/>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="elt" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/elt">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=".cpp&quot;/>&#xD;&#xA;"/>
+            <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="mtl:QueryInvocation">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <definition href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/ArchitectureQueries.emtl#/0/isMacroComponent"/>
+                <argument xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="elt" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/elt">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/17/Class">
+                    <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                </argument>
+              </source>
+              <argument xsi:type="ocl.ecore:BooleanLiteralExp" booleanSymbol="false">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/="/>
+            </ifExpr>
+          </body>
+          <loopVariable name="elt">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+          </loopVariable>
+          <iterSet xsi:type="mtl:QueryInvocation" eType="/14/Sequence(NamedElement)">
+            <definition href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/ArchitectureQueries.emtl#/0/getComponentModels"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="model" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/model">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+            </argument>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&lt;/Filter>&#xD;&#xA;&#x9;&#x9;&lt;Filter&#xD;&#xA;&#x9;&#x9;&#x9;Name=&quot;local_interfaces&quot;&#xD;&#xA;&#x9;&#x9;&#x9;>&#xD;&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="mtl:IfBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&#x9;&lt;File RelativePath=&quot;.\local_interfaces\maps_"/>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="elt" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/elt">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=".h&quot;/>&#xD;&#xA;"/>
+            <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="mtl:QueryInvocation">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <definition href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/ArchitectureQueries.emtl#/0/isMacroComponent"/>
+                <argument xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="elt" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/elt">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/17/Class">
+                    <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                </argument>
+              </source>
+              <argument xsi:type="ocl.ecore:BooleanLiteralExp" booleanSymbol="false">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/="/>
+            </ifExpr>
+          </body>
+          <loopVariable name="elt">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+          </loopVariable>
+          <iterSet xsi:type="mtl:QueryInvocation" eType="/14/Sequence(NamedElement)">
+            <definition href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/ArchitectureQueries.emtl#/0/getComponentModels"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="model" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/model">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+            </argument>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&lt;/Filter>&#xD;&#xA;&#x9;&#x9;&lt;File&#xD;&#xA;&#x9;&#x9;&#x9;RelativePath=&quot;.\rtmaps_"/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="model" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/model">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=".pckinfo&quot;&#xD;&#xA;&#x9;&#x9;&#x9;>&#xD;&#xA;&#x9;&#x9;&lt;/File>&#xD;&#xA;&#x9;&lt;/Files>&#xD;&#xA;&#x9;&lt;Globals>&#xD;&#xA;&#x9;&lt;/Globals>&#xD;&#xA;&lt;/VisualStudioProject>&#xD;&#xA;&#xD;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/+">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/+">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/+">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/+">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                <source xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="user_sdk/">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                </source>
+                <argument xsi:type="ocl.ecore:PropertyCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="model" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/model">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+                </argument>
+              </source>
+              <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=".u/rtmaps_">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </argument>
+            </source>
+            <argument xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="model" referredVariable="/0/generateRTMapsVC2008ProjectVCPROJ/model">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+            </argument>
+          </source>
+          <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_vc2008.vcproj">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </argument>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <parameter name="model">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+      <eOperations name="+">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="other">
+          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generateRTMapsVC2008ProjectVCPROJ">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generateRTMapsVC2008ProjectVCPROJ"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="model">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="getComponentModels">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/ArchitectureQueries.emtl#/0/getComponentModels"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/ArchitectureQueries.emtl#/3/Sequence(NamedElement)"/>
+        <eParameters name="model">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="isMacroComponent">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/ArchitectureQueries.emtl#/0/isMacroComponent"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="class">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Model_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Class_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Element_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Property_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Connector_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Connector"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Parameter_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Classifier_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Port_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Port"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(NamedElement)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="types">
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="Class">
+      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/generateRTMapsVC2008ProjectVCPROJ">
+      <details key="start" value="1079"/>
+      <details key="end" value="5222"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generateRTMapsVC2008ProjectVCPROJ/%">
+      <details key="start" value="1147"/>
+      <details key="end" value="1149"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1">
+      <details key="start" value="1149"/>
+      <details key="end" value="5209"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%">
+      <details key="start" value="1246"/>
+      <details key="end" value="1373"/>
+      <details key="line" value="27"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.1">
+      <details key="start" value="1374"/>
+      <details key="end" value="1384"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.1/model">
+      <details key="start" value="1374"/>
+      <details key="end" value="1379"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.2">
+      <details key="start" value="1386"/>
+      <details key="end" value="1467"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.3">
+      <details key="start" value="1468"/>
+      <details key="end" value="1478"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.3/model">
+      <details key="start" value="1468"/>
+      <details key="end" value="1473"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.4">
+      <details key="start" value="1480"/>
+      <details key="end" value="2157"/>
+      <details key="line" value="33"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.5">
+      <details key="start" value="2157"/>
+      <details key="end" value="2326"/>
+      <details key="line" value="68"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.5/%">
+      <details key="start" value="2208"/>
+      <details key="end" value="2314"/>
+      <details key="line" value="68"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.5/%.1">
+      <details key="start" value="2169"/>
+      <details key="end" value="2206"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.6">
+      <details key="start" value="2326"/>
+      <details key="end" value="2497"/>
+      <details key="line" value="75"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.7">
+      <details key="start" value="2497"/>
+      <details key="end" value="2754"/>
+      <details key="line" value="85"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.7/%">
+      <details key="start" value="2544"/>
+      <details key="end" value="2742"/>
+      <details key="line" value="85"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.7/%.1">
+      <details key="start" value="2509"/>
+      <details key="end" value="2542"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.8">
+      <details key="start" value="2754"/>
+      <details key="end" value="3590"/>
+      <details key="line" value="95"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.9">
+      <details key="start" value="3590"/>
+      <details key="end" value="3757"/>
+      <details key="line" value="141"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.9/%">
+      <details key="start" value="3639"/>
+      <details key="end" value="3745"/>
+      <details key="line" value="141"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.9/%.1">
+      <details key="start" value="3602"/>
+      <details key="end" value="3637"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.10">
+      <details key="start" value="3757"/>
+      <details key="end" value="3928"/>
+      <details key="line" value="148"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.11">
+      <details key="start" value="3928"/>
+      <details key="end" value="4183"/>
+      <details key="line" value="158"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.11/%">
+      <details key="start" value="3973"/>
+      <details key="end" value="4171"/>
+      <details key="line" value="158"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.11/%.1">
+      <details key="start" value="3940"/>
+      <details key="end" value="3971"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.12">
+      <details key="start" value="4183"/>
+      <details key="end" value="4612"/>
+      <details key="line" value="168"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13">
+      <details key="start" value="4613"/>
+      <details key="end" value="4795"/>
+      <details key="line" value="198"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%">
+      <details key="start" value="4670"/>
+      <details key="end" value="4786"/>
+      <details key="line" value="199"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%">
+      <details key="start" value="4725"/>
+      <details key="end" value="4759"/>
+      <details key="line" value="200"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%.1">
+      <details key="start" value="4760"/>
+      <details key="end" value="4768"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%.1/elt">
+      <details key="start" value="4760"/>
+      <details key="end" value="4763"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%.2">
+      <details key="start" value="4770"/>
+      <details key="end" value="4779"/>
+      <details key="line" value="200"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%.3">
+      <details key="start" value="4674"/>
+      <details key="end" value="4722"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%.3/%">
+      <details key="start" value="4675"/>
+      <details key="end" value="4713"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%.3/%/%">
+      <details key="start" value="4692"/>
+      <details key="end" value="4712"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%.3/%/%/elt">
+      <details key="start" value="4692"/>
+      <details key="end" value="4695"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%.3/%/%/%">
+      <details key="start" value="4706"/>
+      <details key="end" value="4711"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%/%.3/%.1">
+      <details key="start" value="4716"/>
+      <details key="end" value="4721"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/elt">
+      <details key="start" value="4619"/>
+      <details key="end" value="4636"/>
+      <details key="line" value="198"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%.1">
+      <details key="start" value="4639"/>
+      <details key="end" value="4664"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.13/%.1/model">
+      <details key="start" value="4658"/>
+      <details key="end" value="4663"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.14">
+      <details key="start" value="4797"/>
+      <details key="end" value="4855"/>
+      <details key="line" value="203"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15">
+      <details key="start" value="4856"/>
+      <details key="end" value="5049"/>
+      <details key="line" value="207"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%">
+      <details key="start" value="4913"/>
+      <details key="end" value="5040"/>
+      <details key="line" value="208"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%">
+      <details key="start" value="4968"/>
+      <details key="end" value="5015"/>
+      <details key="line" value="209"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%.1">
+      <details key="start" value="5016"/>
+      <details key="end" value="5024"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%.1/elt">
+      <details key="start" value="5016"/>
+      <details key="end" value="5019"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%.2">
+      <details key="start" value="5026"/>
+      <details key="end" value="5033"/>
+      <details key="line" value="209"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%.3">
+      <details key="start" value="4917"/>
+      <details key="end" value="4965"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%.3/%">
+      <details key="start" value="4918"/>
+      <details key="end" value="4956"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%.3/%/%">
+      <details key="start" value="4935"/>
+      <details key="end" value="4955"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%.3/%/%/elt">
+      <details key="start" value="4935"/>
+      <details key="end" value="4938"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%.3/%/%/%">
+      <details key="start" value="4949"/>
+      <details key="end" value="4954"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%/%.3/%.1">
+      <details key="start" value="4959"/>
+      <details key="end" value="4964"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.54" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/elt">
+      <details key="start" value="4862"/>
+      <details key="end" value="4879"/>
+      <details key="line" value="207"/>
+    </eAnnotations>
+    <eAnnotations source="positions.55" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%.1">
+      <details key="start" value="4882"/>
+      <details key="end" value="4907"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.15/%.1/model">
+      <details key="start" value="4901"/>
+      <details key="end" value="4906"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.16">
+      <details key="start" value="5051"/>
+      <details key="end" value="5099"/>
+      <details key="line" value="212"/>
+    </eAnnotations>
+    <eAnnotations source="positions.58" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.17">
+      <details key="start" value="5100"/>
+      <details key="end" value="5110"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.59" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.17/model">
+      <details key="start" value="5100"/>
+      <details key="end" value="5105"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.60" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.18">
+      <details key="start" value="5112"/>
+      <details key="end" value="5202"/>
+      <details key="line" value="214"/>
+    </eAnnotations>
+    <eAnnotations source="positions.61" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19">
+      <details key="start" value="1156"/>
+      <details key="end" value="1226"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%">
+      <details key="start" value="1156"/>
+      <details key="end" value="1207"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%/%">
+      <details key="start" value="1156"/>
+      <details key="end" value="1194"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%/%/%">
+      <details key="start" value="1156"/>
+      <details key="end" value="1179"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%/%/%/%">
+      <details key="start" value="1156"/>
+      <details key="end" value="1167"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%/%/%/%.1">
+      <details key="start" value="1169"/>
+      <details key="end" value="1179"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%/%/%/%.1/model">
+      <details key="start" value="1169"/>
+      <details key="end" value="1174"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%/%/%.1">
+      <details key="start" value="1182"/>
+      <details key="end" value="1194"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%/%.1">
+      <details key="start" value="1197"/>
+      <details key="end" value="1207"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%/%.1/model">
+      <details key="start" value="1197"/>
+      <details key="end" value="1202"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.19/%.1">
+      <details key="start" value="1210"/>
+      <details key="end" value="1226"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.72" references="/0/generateRTMapsVC2008ProjectVCPROJ/%.1/%.20">
+      <details key="start" value="1235"/>
+      <details key="end" value="1242"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.73" references="/0/generateRTMapsVC2008ProjectVCPROJ/model">
+      <details key="start" value="1130"/>
+      <details key="end" value="1143"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

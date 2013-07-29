@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="generate_rtmaps_robotml_primitive_datatypes_h" nsURI="org::eclipse::papyrus::robotml::generators::intempora::rtmaps::files::generate_rtmaps_robotml_primitive_datatypes_h" startHeaderPosition="773" endHeaderPosition="987">
+    <input>
+      <takesTypesFrom href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+    </input>
+    <input>
+      <takesTypesFrom href="http://Papyrus/RobotML/1#/"/>
+    </input>
+    <imports href="../../../../../../../../../../../common/org.eclipse.papyrus.robotml.generators.common/bin/org/eclipse/papyrus/robotml/generators/common/mmqueries/DataTypeQueries.emtl#/0"/>
+    <ownedModuleElement xsi:type="mtl:Template" name="generateRTMapsRobotMLPrimitiveDataTypes" visibility="Public">
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="#ifndef __MAPS_ROBOTML_PRIMITIVE_DATATYPES_H__&#xD;&#xA;#define __MAPS_ROBOTML_PRIMITIVE_DATATYPES_H__&#xD;&#xA;&#xD;&#xA;#include &lt;string>&#xD;&#xA;#include &lt;vector>&#xD;&#xA;&#xD;&#xA;#include &quot;maps_types.h&quot;&#xD;&#xA;&#xD;&#xA;/**************************************/&#xD;&#xA;/* PRIMITIVE DATA TYPES */&#xD;&#xA;/**************************************/&#xD;&#xA;typedef bool Bool;&#xD;&#xA;typedef MAPSUInt8 Byte;&#xD;&#xA;typedef MAPSUInt8 Char;&#xD;&#xA;typedef MAPSInt8 Int8;&#xD;&#xA;typedef MAPSUInt8 UInt8;&#xD;&#xA;typedef MAPSInt16 Int16;&#xD;&#xA;typedef MAPSUInt16 UInt16;&#xD;&#xA;typedef MAPSInt32 Int32;&#xD;&#xA;typedef MAPSUInt32 UInt32;&#xD;&#xA;typedef MAPSInt64 Int64;&#xD;&#xA;typedef MAPSUInt64 UInt64;&#xD;&#xA;typedef MAPSFloat32 Float32;&#xD;&#xA;typedef MAPSFloat64 Float64;&#xD;&#xA;&#xD;&#xA;typedef std::string String;&#xD;&#xA;&#xD;&#xA;typedef MAPSTimestamp &#x9;Time;&#xD;&#xA;typedef MAPSDelay &#x9;&#x9;Duration;&#xD;&#xA;&#xD;&#xA;class MAPSRobotMLString {&#xD;&#xA;&#x9;std::string text;&#xD;&#xA;};&#xD;&#xA;&#xD;&#xA;#endif //__MAPS_ROBOTML_PRIMITIVE_DATATYPES_H__&#xD;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="user_sdk/include/robotml/maps_robotml_primitive_datatypes.h">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
+      <parameter name="root_model">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generateRTMapsRobotMLPrimitiveDataTypes">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generateRTMapsRobotMLPrimitiveDataTypes"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="root_model">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Model_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Element_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataType_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//DataType"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/generateRTMapsRobotMLPrimitiveDataTypes">
+      <details key="start" value="993"/>
+      <details key="end" value="1999"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generateRTMapsRobotMLPrimitiveDataTypes/%">
+      <details key="start" value="1072"/>
+      <details key="end" value="1984"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generateRTMapsRobotMLPrimitiveDataTypes/%/%">
+      <details key="start" value="1160"/>
+      <details key="end" value="1977"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateRTMapsRobotMLPrimitiveDataTypes/%/%.1">
+      <details key="start" value="1079"/>
+      <details key="end" value="1140"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateRTMapsRobotMLPrimitiveDataTypes/%/%.2">
+      <details key="start" value="1149"/>
+      <details key="end" value="1156"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generateRTMapsRobotMLPrimitiveDataTypes/%.1">
+      <details key="start" value="1986"/>
+      <details key="end" value="1988"/>
+      <details key="line" value="61"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generateRTMapsRobotMLPrimitiveDataTypes/root_model">
+      <details key="start" value="1050"/>
+      <details key="end" value="1068"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>
