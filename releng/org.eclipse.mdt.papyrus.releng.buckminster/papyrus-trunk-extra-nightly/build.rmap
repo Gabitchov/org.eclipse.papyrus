@@ -181,6 +181,22 @@
       </rm:uri>
     </rm:provider>
     
+    <!-- RobotML Generators common -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/robotml/generators/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- RobotML RTMaps Generator -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/robotml/generators/rtmaps/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
     <!-- Incoming -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/incoming/{1}">
