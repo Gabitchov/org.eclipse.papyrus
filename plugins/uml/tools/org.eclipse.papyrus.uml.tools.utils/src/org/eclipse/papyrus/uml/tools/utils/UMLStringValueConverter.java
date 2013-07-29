@@ -201,7 +201,7 @@ public class UMLStringValueConverter extends EMFStringValueConverter {
 		} else {
 			namespace = null;
 		}
-		if(valueAsString != null && !valueAsString.isEmpty() && namespace != null) {
+		if(valueAsString != null && valueAsString.length() != 0 && namespace != null) {
 			IStatus iStatus = Status.OK_STATUS;
 			final Collection<String> unresolvedValues = new ArrayList<String>();
 			ConvertedValueContainer<?> returnedValue = null;

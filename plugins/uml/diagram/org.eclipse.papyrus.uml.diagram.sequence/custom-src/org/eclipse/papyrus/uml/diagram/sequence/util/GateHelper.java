@@ -127,9 +127,9 @@ public class GateHelper {
 				ann.getDetails().put(CF_GATE_OUTSIDE, getIdentification(gate));
 				ann = gate.createEAnnotation(CF_GATE_DATA);
 				ann.getDetails().put(CF_GATE_INSIDE, getIdentification(innerGate));
-				setVolatile(innerGate, true);
+				//				setVolatile(innerGate, true);
 			}
-			setVolatile(gate, true);
+			//			setVolatile(gate, true);
 		} else if(parent instanceof InteractionUse) {
 			InteractionUse interactionUse = (InteractionUse)parent;
 			Interaction refersTo = interactionUse.getRefersTo();
@@ -418,17 +418,17 @@ public class GateHelper {
 					MessageEnd receiveEvent = message.getReceiveEvent();
 					Lifeline lifeline = getCoveredBy(receiveEvent);
 					if(!cf.getCovereds().contains(lifeline)) {
-						direction = MessageDirection.IN;
-					} else {
 						direction = MessageDirection.OUT;
+					} else {
+						direction = MessageDirection.IN;
 					}
 				} else {
 					MessageEnd sendEvent = message.getSendEvent();
 					Lifeline coveredBy = getCoveredBy(sendEvent);
 					if(!cf.getCovereds().contains(coveredBy)) {
-						direction = MessageDirection.OUT;
-					} else {
 						direction = MessageDirection.IN;
+					} else {
+						direction = MessageDirection.OUT;
 					}
 				}
 			} else if(parent instanceof Interaction) {

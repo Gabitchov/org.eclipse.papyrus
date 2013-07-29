@@ -635,18 +635,33 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *        the axis for which must refresh the contents
 	 */
 	public void updateAxisContents(final AbstractAxisProvider axis) {
-		Display.getDefault().asyncExec(new Runnable() {//required, because we get the event before the changes
 
-			public void run() {
-				if(NattableModelManager.this.natTable != null && !NattableModelManager.this.natTable.isDisposed()) {
-					if(axis == NattableModelManager.this.columnProvider) {
-						updateColumnContents();
-					} else {
-						updateRowContents();
-					}
+		try {
+			getContextEditingDomain().runExclusive(new Runnable() {
+
+				@Override
+				public void run() {
+					Display.getDefault().syncExec(new Runnable() {
+
+						@Override
+						public void run() {
+							if(NattableModelManager.this.natTable != null && !NattableModelManager.this.natTable.isDisposed()) {
+								if(axis == NattableModelManager.this.columnProvider) {
+									updateColumnContents();
+								} else {
+									updateRowContents();
+								}
+							}
+						}
+					});
+
 				}
-			}
-		});
+
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**

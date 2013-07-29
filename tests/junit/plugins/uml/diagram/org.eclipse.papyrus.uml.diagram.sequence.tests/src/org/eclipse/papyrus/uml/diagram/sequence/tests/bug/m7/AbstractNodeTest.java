@@ -50,6 +50,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
@@ -69,6 +70,16 @@ import org.eclipse.uml2.uml.UMLPackage;
 public abstract class AbstractNodeTest extends TestTopNode {
 
 	private static final String RESIZE = "Resize: ";
+
+	@Override
+	protected String getProjectName() {
+		return ISequenceDiagramTestsConstants.PROJECT_NAME;
+	}
+
+	@Override
+	protected String getFileName() {
+		return ISequenceDiagramTestsConstants.FILE_NAME;
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase#getDiagramCommandCreation()
