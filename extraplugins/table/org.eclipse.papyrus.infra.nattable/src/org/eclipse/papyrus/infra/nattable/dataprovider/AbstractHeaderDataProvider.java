@@ -189,11 +189,13 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 	 *         the index to display according to the index style
 	 */
 	protected Object getAxisIndex(int axisIndex) {
-		switch(this.style) {
-		case ALPHABETIC:
-			return IntegerAndSpreadsheetNumberConverter.toString(axisIndex + 1);
-		case NUMERIC:
-			return axisIndex;
+		if(axisIndex > -1) {
+			switch(this.style) {
+			case ALPHABETIC:
+				return IntegerAndSpreadsheetNumberConverter.toString(axisIndex + 1);
+			case NUMERIC:
+				return axisIndex;
+			}
 		}
 		return null;
 	}
