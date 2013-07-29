@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.CompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateActorPartWithTypeConfigureCommandFactory;
+import org.eclipse.papyrus.sysml.diagram.common.commands.CreateConstraintPropertyWithTypeConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreatePartWithTypeConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateReferenceWithTypeConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateValueWithTypeConfigureCommandFactory;
@@ -72,6 +73,11 @@ public class BlockPropertyStructureCompartmentSemanticEditPolicy extends Compart
 				if(UMLElementTypes.PROPERTY == req.getElementType()) {
 					req.setContainer(type);
 				}
+
+				if(SysMLElementTypes.CONSTRAINT_PROPERTY == req.getElementType()) {
+					req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new CreateConstraintPropertyWithTypeConfigureCommandFactory());
+				}
+
 				
 			} else if ((UMLElementTypes.PROPERTY == req.getElementType()) || (Arrays.asList(req.getElementType().getAllSuperTypes()).contains(UMLElementTypes.PROPERTY))) { 
 				// Forbid Property::qualifier creation

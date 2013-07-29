@@ -33,6 +33,8 @@ public class UMLGraphicalTypes {
 
 	public static final String SHAPE_UML_PORT_AS_AFFIXED_ID = "shape_uml_port_as_affixed"; //$NON-NLS-1$
 
+	public static final String SHAPE_UML_PROPERTY_AS_AFFIXED_ID = "shape_uml_property_as_affixed"; //$NON-NLS-1$
+
 	/** Custom label nodes */
 	public static final String SHAPE_UML_CONSTRAINT_AS_LABEL_ID = "shape_uml_constraint_as_label"; //$NON-NLS-1$
 
