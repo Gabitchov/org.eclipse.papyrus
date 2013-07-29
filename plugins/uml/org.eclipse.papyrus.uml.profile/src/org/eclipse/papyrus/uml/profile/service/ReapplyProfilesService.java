@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.profile.model;
+package org.eclipse.papyrus.uml.profile.service;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -20,13 +20,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.papyrus.infra.core.services.EditorLifecycleEventListener;
+import org.eclipse.papyrus.infra.core.services.EditorLifecycleManager;
+import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.uml.profile.Activator;
+import org.eclipse.papyrus.uml.profile.service.ui.RefreshProfileDialog;
 import org.eclipse.papyrus.uml.profile.validation.ProfileValidationHelper;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -44,22 +47,40 @@ import org.eclipse.uml2.uml.Profile;
  * @author Camille Letavernier
  * 
  */
-public class ProfileApplicationModel implements IModelSetSnippet {
+public class ReapplyProfilesService implements IService, EditorLifecycleEventListener {
 
-	protected Package rootPackage;
+	private ServicesRegistry servicesRegistry;
 
-	public void start(ModelSet modelsManager) {
+	private org.eclipse.uml2.uml.Package rootPackage;
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
+		this.servicesRegistry = servicesRegistry;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void startService() throws ServiceException {
 		try {
-			//FIXME: The ServiceUtilsForResourceSet initializer service is not started yet. We can't access the ServicesRegistry.
-			IMultiDiagramEditor editor = ServiceUtilsForResourceSet.getInstance().getService(IMultiDiagramEditor.class, modelsManager);
-			if(editor == null) {
-				return; //Do not popup a dialog when there is no Editor
-			}
+			EditorLifecycleManager lifecyleManager = servicesRegistry.getService(EditorLifecycleManager.class);
+			lifecyleManager.addEditorLifecycleEventsListener(this);
 		} catch (ServiceException ex) {
-			//return;
+			return; //If the EditorLifecycleManager is not present, do nothing
+		}
+	}
+
+	protected void checkProfiles(IMultiDiagramEditor editor) {
+		ModelSet modelSet;
+		try {
+			modelSet = servicesRegistry.getService(ModelSet.class);
+		} catch (ServiceException ex) {
+			return;
 		}
 
-		UmlModel umlModel = (UmlModel)modelsManager.getModel(UmlModel.MODEL_ID);
+		UmlModel umlModel = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
 		if(umlModel == null) {
 			return;
 		}
@@ -70,8 +91,7 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 			return;
 		}
 
-		checkAndRefreshProfiles(rootPackage);
-
+		checkAndRefreshProfiles(rootPackage, editor);
 	}
 
 	protected Package getRootPackage(UmlModel umlModel) {
@@ -88,10 +108,10 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 		return null;
 	}
 
-	protected boolean checkAndRefreshProfiles(Package currentPackage) {
+	protected boolean checkAndRefreshProfiles(Package currentPackage, IMultiDiagramEditor editor) {
 		for(Profile profile : currentPackage.getAppliedProfiles()) {
 			if(ProfileUtil.isDirty(currentPackage, profile)) {
-				RefreshProfileDialog dialog = new RefreshProfileDialog(Display.getCurrent().getActiveShell(), this.rootPackage);
+				RefreshProfileDialog dialog = new RefreshProfileDialog(editor.getSite().getShell(), this.rootPackage);
 				dialog.setCallback(getCallback(dialog));
 				dialog.open();
 				return true;
@@ -99,7 +119,7 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 		}
 
 		for(Package nestedPackage : currentPackage.getNestedPackages()) {
-			if(checkAndRefreshProfiles(nestedPackage)) {
+			if(checkAndRefreshProfiles(nestedPackage, editor)) {
 				return true;
 			}
 		}
@@ -141,8 +161,24 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 		};
 	}
 
-	public void dispose(ModelSet modelsManager) {
-		rootPackage = null;
+	/**
+	 * {@inheritDoc}
+	 */
+	public void disposeService() throws ServiceException {
+		this.rootPackage = null;
+		this.servicesRegistry = null;
+	}
+
+	public void postInit(IMultiDiagramEditor editor) {
+		//Nothing
+	}
+
+	public void postDisplay(IMultiDiagramEditor editor) {
+		checkProfiles(editor);
+	}
+
+	public void beforeClose(IMultiDiagramEditor editor) {
+		//Nothing
 	}
 
 }

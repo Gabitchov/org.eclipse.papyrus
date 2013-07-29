@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.profile.model;
+package org.eclipse.papyrus.uml.profile.service.ui;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -46,7 +46,7 @@ public class RefreshProfileDialog extends SelectionDialog {
 
 	protected Package rootPackage;
 
-	protected RefreshProfileDialog(Shell parentShell, Package rootPackage) {
+	public RefreshProfileDialog(Shell parentShell, Package rootPackage) {
 		super(parentShell);
 		setBlockOnOpen(false);
 		this.rootPackage = rootPackage;

@@ -15,12 +15,13 @@ package org.eclipse.papyrus.uml.diagram.common.util;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -66,7 +67,8 @@ public class UMLSelectionTester extends PropertyTester {
 
 	/** True if root object is a UML Model */
 	protected boolean testUMLModelNature(Object receiver) {
-		EObject root = getRoot();
+		EObject root = getRoot(receiver);
+
 		/*
 		 * For controlled resources, it is very important to consider root of UML model can be a Package. Of course, we
 		 * can still exclude Profile, which should be dedicated to profile diagrams.
@@ -76,25 +78,37 @@ public class UMLSelectionTester extends PropertyTester {
 
 	/** True if root object is a UML Profile */
 	protected boolean testUMLProfileNature(Object receiver) {
-		return (getRoot() instanceof Profile);
+		return (getRoot(receiver) instanceof Profile);
+	}
+
+	private EObject getRoot(Object receiver) {
+		if(receiver instanceof IStructuredSelection) {
+			IStructuredSelection selection = (IStructuredSelection)receiver;
+			try {
+				ModelSet modelSet = ServiceUtilsForSelection.getInstance().getModelSet(selection);
+				EObject root = getRoot(modelSet);
+				return root;
+			} catch (ServiceException ex) {
+				return null;
+			}
+		}
+
+		return null;
 	}
 
 	/** Returns the root EObject of currently opened model */
-	private EObject getRoot() {
-		EObject root = null;
-
-		try {
-			ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
-			UmlModel openedModel = (UmlModel)serviceUtils.getModelSet().getModel(UmlModel.MODEL_ID);
-			if(openedModel != null) {
+	private EObject getRoot(ModelSet modelSet) {
+		UmlModel openedModel = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
+		if(openedModel != null) {
+			EObject root;
+			try {
 				root = openedModel.lookupRoot();
+			} catch (NotFoundException e) {
+				return null;
 			}
-		} catch (ServiceException e) {
-			Activator.log.error(e);
-		} catch (NotFoundException e) {
-			Activator.log.error(e);
+			return root;
 		}
 
-		return root;
+		return null;
 	}
 }
