@@ -790,6 +790,9 @@ public class CommandHelper {
 	 */
 	public static Gate doCreateGate(Element element, MessageDirection direction) {
 		Gate gate = GateHelper.createGate(element, true);
+		if(element instanceof CombinedFragment) {
+			GateHelper.setVolatile(gate, true);
+		}
 		//		Gate gate = null;
 		//		if(element instanceof Interaction) {
 		//			gate = ((Interaction)element).createFormalGate(null);

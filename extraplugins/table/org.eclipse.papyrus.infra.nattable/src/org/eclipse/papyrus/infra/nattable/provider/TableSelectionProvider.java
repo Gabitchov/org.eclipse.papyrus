@@ -73,6 +73,9 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 	}
 
 	public synchronized void setSelection(final ISelection selection) {
+		if(this.currentSelection.equals(selection)) {
+			return;
+		}
 		this.currentSelection = selection;
 		final SelectionChangedEvent event = new SelectionChangedEvent(this, this.currentSelection);
 		for(final ISelectionChangedListener current : this.listeners) {

@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.provider;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -25,23 +22,24 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.jface.window.Window;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.dialog.CommandCreationProgressMonitorDialog;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -49,15 +47,13 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisConfigurationUtils;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.PasteModeEnumeration;
 import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.services.IDisposable;
 
 /**
  * Paste command manager for the paste in the table
@@ -66,7 +62,7 @@ import org.eclipse.ui.services.IDisposable;
  * 
  */
 
-public class PasteEObjectAxisInTableCommandProvider implements IDisposable {
+public class PasteEObjectAxisInTableCommandProvider {
 
 	private static final int MIN_AXIS_FOR_PROGRESS_MONITOR = 5;
 
@@ -144,64 +140,44 @@ public class PasteEObjectAxisInTableCommandProvider implements IDisposable {
 	 *        boolean indicating that we must do the paste with a progress monitor
 	 */
 	public void executePasteFromStringCommand(final boolean useProgressMonitor) {
-		Table table = this.tableManager.getTable();
+		final String pasteJobName;
+		if(pasteMode == PasteModeEnumeration.PASTE_EOBJECT_COLUMN) {
+			pasteJobName = "Paste Columns";
+		} else {
+			pasteJobName = "Paste Rows";
+		}
+		Table table = tableManager.getTable();
 		final TransactionalEditingDomain tableEditingDomain = TableEditingDomainUtils.getTableEditingDomain(table);
 		final TransactionalEditingDomain contextEditingDomain = TableEditingDomainUtils.getTableContextEditingDomain(table);
-		Command pasteCommand = null;
-		//without progress monitor
+
+
 		if(!useProgressMonitor) {
-			pasteCommand = getPasteFromFromStringCommand(contextEditingDomain, tableEditingDomain, null, null);
-		} else {
-			//with progress monitor
-			Command createdCommand;
-			int returnCode = Window.OK;
-
-			final CommandCreationProgressMonitorDialog commandCreationDialog = new CommandCreationProgressMonitorDialog(Display.getCurrent().getActiveShell());
-			final ProgressMonitorDialog commandExecutionProgressMonitor = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
-			commandCreationDialog.getProgressMonitor().setTaskName("Paste Creation");
-			try {
-				commandCreationDialog.run(true, true, new IRunnableWithProgress() {
-
-					public void run(final IProgressMonitor cancelProvider) throws InvocationTargetException, InterruptedException {
-						Command cmd;
-						try {
-							cmd = getPasteFromFromStringCommand(contextEditingDomain, tableEditingDomain, cancelProvider, commandExecutionProgressMonitor);
-							commandCreationDialog.setCreatedCommand(cmd);
-						} catch (final Exception e) {
-							commandCreationDialog.setCaughtException(e);
-							commandCreationDialog.setCreatedCommand(null);
-						}
-					}
-				});
-			} catch (final InvocationTargetException e) {
-				Activator.log.error(e);
-			} catch (final InterruptedException e) {
-				Activator.log.error(e);
-			}
-			final Exception e = commandCreationDialog.getCaughtException();
-			if(e != null) {
-				NotificationBuilder.createErrorPopup(e.getMessage()).run();
-			}
-
-			returnCode = commandCreationDialog.getReturnCode();
-			createdCommand = commandCreationDialog.getCreatedCommand();
-
-
-			if(returnCode == Window.OK) {
-				pasteCommand = createdCommand;
-				//we don't use dialogs to do the paste
-			} else if(returnCode == Window.CANCEL) {
-				NotificationBuilder.createInfoPopup("Paste has been cancelled").run();
-				return;
-			}
-		}
-		//we execute the paste command
-		if(pasteCommand.canExecute()) {
+			final Command pasteCommand = getPasteFromFromStringCommand(contextEditingDomain, tableEditingDomain, new NullProgressMonitor());
 			contextEditingDomain.getCommandStack().execute(pasteCommand);
 		} else {
-			NotificationBuilder.createErrorPopup("Paste command can't be executed");
-		}
+			//we create a job in order to don't freeze the UI
+			final Job job = new Job(pasteJobName) {
 
+				@Override
+				protected IStatus run(IProgressMonitor monitor) {
+
+					final Command pasteCommand = getPasteFromFromStringCommand(contextEditingDomain, tableEditingDomain, monitor);
+					if(pasteCommand == null) {
+						return new Status(IStatus.CANCEL, Activator.PLUGIN_ID, "Command creation has been cancelled");
+					}
+					//we execute the paste command
+					if(pasteCommand.canExecute()) {
+						contextEditingDomain.getCommandStack().execute(pasteCommand);
+						monitor.done();
+						return Status.OK_STATUS;
+					} else {
+						return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The Paste command can't be executed");
+					}
+				}
+			};
+			job.setUser(true);
+			job.schedule();
+		}
 	}
 
 	/**
@@ -212,9 +188,9 @@ public class PasteEObjectAxisInTableCommandProvider implements IDisposable {
 	 *        the command execution progress monitor
 	 * @return
 	 */
-	protected Command getPasteFromFromStringCommand(final TransactionalEditingDomain contextEditingDomain, final TransactionalEditingDomain tableEditingDomain, final IProgressMonitor commandCreationCancelProvider, final ProgressMonitorDialog commandExecutionProgressMonitor) {
+	protected Command getPasteFromFromStringCommand(final TransactionalEditingDomain contextEditingDomain, final TransactionalEditingDomain tableEditingDomain, final IProgressMonitor progressMonitor) {
 		final Table table = this.tableManager.getTable();
-		final CompositeCommand cmd = new CompositeCommand("Paste from String Command");
+		//		final CompositeCommand cmd = new CompositeCommand("Paste from String Command");
 		final EObject tableContext = table.getContext();
 
 		final String[] axisToPaste;
@@ -232,180 +208,124 @@ public class PasteEObjectAxisInTableCommandProvider implements IDisposable {
 			throw new UnsupportedOperationException();
 		}
 
-		//the list of the command creation
-		final List<ICommand> createCommands = new ArrayList<ICommand>();
+		//initialize the progress monitor
+		final int nbActions = axisToPaste.length;
+		progressMonitor.beginTask("Paste Action", nbActions);
 
-		//1. we launch the dialog used for the command creation
-		if(commandCreationCancelProvider != null) {
-			commandCreationCancelProvider.beginTask("Initialize Paste Action", axisToPaste.length + 1);
-		}
-
-		//2. we build the command itself
-		final boolean useDialog = (commandExecutionProgressMonitor != null) && (axisToPaste.length > MIN_AXIS_FOR_PROGRESS_MONITOR);
-
-		//2.1 create the command to open the progress monitor dialog during the command execution
-		if(useDialog) {
-			final AbstractTransactionalCommand beginMonitor = new AbstractTransactionalCommand(tableEditingDomain, "Launch Progress Monitor Dialog", Collections.emptyList()) {
-
-				@Override
-				protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-					commandExecutionProgressMonitor.open();
-					commandExecutionProgressMonitor.getProgressMonitor().setTaskName("Pasting In Table");
-					commandExecutionProgressMonitor.getProgressMonitor().beginTask("Pasting In Table", axisToPaste.length);
-					return CommandResult.newOKCommandResult();
-				}
-			};
-			cmd.add(beginMonitor);
-		}
 
 		//2.2 create the creation request and find the command provider
+		final Boolean initializeName = mustInitializeName();
 		final CreateElementRequest createRequest = new CreateElementRequest(contextEditingDomain, table.getContext(), this.typeToCreate, (EReference)this.containmentFeature);
 		final IElementEditService tableContextCommandProvider = ElementEditServiceUtils.getCommandProvider(tableContext);
 
-		//2.3 create the axis
-		for(final String currentAxisAsString : axisToPaste) {
-			if(useDialog) {
-				commandCreationCancelProvider.worked(1);
-			}
-			if((commandCreationCancelProvider != null) && commandCreationCancelProvider.isCanceled()) {
-				//the user click on the cancel button
-				return null;
-			}
+		final ICommand pasteAllCommand = new AbstractTransactionalCommand(contextEditingDomain, "Paste Command", null) {
 
-			//2.3.1 we get the string values of the cells
-			final String[] cells = TableClipboardUtils.getCells(currentAxisAsString);
 
-			//2.3.2 : update the paste execution dialog
-			if(useDialog) {
-				final ICommand dialogCommand = new AbstractTransactionalCommand(tableEditingDomain, null, null) {
-
-					@Override
-					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-						commandExecutionProgressMonitor.getProgressMonitor().subTask("Pasting : " + currentAxisAsString);
-						return CommandResult.newOKCommandResult();
+			/**
+			 * 
+			 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+			 *      org.eclipse.core.runtime.IAdaptable)
+			 * 
+			 * @param monitor
+			 * @param info
+			 * @return
+			 * @throws ExecutionException
+			 */
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				for(int i = 0; i < axisToPaste.length; i++) {
+					final String currentAxisAsString = axisToPaste[i];
+					if(progressMonitor.isCanceled()) {
+						progressMonitor.done();
+						localDispose();
+						return CommandResult.newCancelledCommandResult();
 					}
-				};
-				cmd.add(dialogCommand);
-			}
+					progressMonitor.subTask(NLS.bind("Creating {0} number {1}/{2}", new Object[]{ typeToCreate.getDisplayName(), i, axisToPaste.length }));
+					final ICommand commandCreation = tableContextCommandProvider.getEditCommand(createRequest);
+					if(commandCreation.canExecute()) {
+						//1. we create the element
+						commandCreation.execute(monitor, info);
+						//we execute the creation command
 
-			//2.3.3 we create the element itself
-			final ICommand commandCreation = tableContextCommandProvider.getEditCommand(createRequest);
-			//we add the creation command to the list of the creation command to be able to add the result of these command to the table
-			createCommands.add(commandCreation);
-			cmd.add(commandCreation);
+						//2. we add it to the table
+						final CommandResult res = commandCreation.getCommandResult();
+						commandCreation.dispose();
 
-			//2.3.4 we set these properties values
-			for(int i = 0; i < secondAxis.size(); i++) {
-				final Object currentAxis = secondAxis.get(i);
-				final String valueAsString = cells[i];
-
-				final AbstractTransactionalCommand setValuesCommand = new AbstractTransactionalCommand(contextEditingDomain, "Set Value Command", null) {
-
-					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-						final EObject createdElement = (EObject)commandCreation.getCommandResult().getReturnValue();
-						final Object columnObject;
-						final Object rowObject;
+						final Object createdElement = (EObject)res.getReturnValue();
+						final Command addCommand;
 						if(pasteMode == PasteModeEnumeration.PASTE_EOBJECT_COLUMN) {
-							columnObject = createdElement;
-							rowObject = currentAxis;
+							addCommand = tableManager.getAddColumnElementCommand(Collections.singleton(createdElement));
 						} else {
-							columnObject = currentAxis;
-							rowObject = createdElement;
+							addCommand = tableManager.getAddRowElementCommand(Collections.singleton(createdElement));
+						}
+						if(addCommand != null) {//can be null
+							addCommand.execute();
+							addCommand.dispose();
 						}
 
+						//3. we set the values
+						final String[] cells = TableClipboardUtils.getCells(currentAxisAsString);
+						for(int j = 0; j < secondAxis.size(); j++) {
+							final Object currentAxis = secondAxis.get(j);
+							final String valueAsString = cells[j];
+							final Object columnObject;
+							final Object rowObject;
+							if(pasteMode == PasteModeEnumeration.PASTE_EOBJECT_COLUMN) {
+								columnObject = createdElement;
+								rowObject = currentAxis;
+							} else {
+								columnObject = currentAxis;
+								rowObject = createdElement;
+							}
 
-						boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
 
-						if(isEditable) {
-							final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, TableClipboardUtils.MULTI_VALUE_SEPARATOR);
-							final Command setValueCommand = CellManagerFactory.INSTANCE.getSetStringValueCommand(contextEditingDomain, columnObject, rowObject, valueAsString, converter, tableManager);
-							if(setValueCommand != null && setValueCommand.canExecute()) {
+							boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
 
-								try {
+							if(isEditable) {
+								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, TableClipboardUtils.MULTI_VALUE_SEPARATOR);
+								final Command setValueCommand = CellManagerFactory.INSTANCE.getSetStringValueCommand(contextEditingDomain, columnObject, rowObject, valueAsString, converter, tableManager);
+								if(setValueCommand != null && setValueCommand.canExecute()) {
 									setValueCommand.execute();
-								} catch (Exception e) {
-									Activator.log.error(e);
+									setValueCommand.dispose();
+								} else {
+									//FIXME?
 								}
 							}
 						}
-						return null;
+						progressMonitor.worked(1);
 					}
-				};
 
-				cmd.add(setValuesCommand);
-			}
 
-			//2.3.5 update the command paste dialog
-			if(useDialog) {
-				final ICommand dialogCommand = new AbstractTransactionalCommand(tableEditingDomain, null, null) {
-
-					@Override
-					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-						commandExecutionProgressMonitor.getProgressMonitor().worked(1);
-						return CommandResult.newOKCommandResult();
-					}
-				};
-				cmd.add(dialogCommand);
-			}
-		}
-
-		//2.4 we add the created elements to the table
-		final AbstractTransactionalCommand addToTableCommand = new AbstractTransactionalCommand(tableEditingDomain, "Add To Table After Paste Command", null) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				final Collection<Object> objectsToAdd = new ArrayList<Object>();
-				for(final ICommand current : createCommands) {
-					objectsToAdd.add(current.getCommandResult().getReturnValue());
 				}
-				Command cmd = null;
-				if(pasteMode == PasteModeEnumeration.PASTE_EOBJECT_COLUMN) {
-					cmd = tableManager.getAddColumnElementCommand(objectsToAdd);
-				} else {
-					cmd = tableManager.getAddRowElementCommand(objectsToAdd);
-				}
-				if(cmd != null) {//can be null
-					cmd.execute();
-				}
-				return null;
+				progressMonitor.done();
+				localDispose();
+				return CommandResult.newOKCommandResult();
 			}
 		};
-		cmd.add(addToTableCommand);
-
-		//2.5 close the dialog used during the paste command execution
-		if(useDialog) {
-			final AbstractTransactionalCommand endMonitor = new AbstractTransactionalCommand(tableEditingDomain, "Close Progress Monitor Dialog", Collections.emptyList()) { //$NON-NLS-1$
-
-				@Override
-				protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-					commandExecutionProgressMonitor.getProgressMonitor().done();
-					commandExecutionProgressMonitor.close();
-					return CommandResult.newOKCommandResult();
-				}
-			};
-			cmd.add(endMonitor);
-		}
-
-		//2.6 we return the command
-		return new GMFtoEMFCommandWrapper(cmd);
+		return new GMFtoEMFCommandWrapper(pasteAllCommand);
 	}
 
 
 	/**
 	 * 
-	 * @see org.eclipse.ui.services.IDisposable#dispose()
-	 * 
+	 * @return
+	 *         <code>true</code> if the name must be initialized
 	 */
-	@Override
-	public void dispose() {
-		this.tableManager = null;
-		this.typeToCreate = null;
-		this.containmentFeature = null;
-		for(final AbstractStringValueConverter current : existingConverters.values()) {
-			current.dispose();
+	//FIXME : not very nice must efficient
+	private Boolean mustInitializeName() {
+		final List<?> existingColumns;
+		if(this.pasteMode == PasteModeEnumeration.PASTE_EOBJECT_COLUMN) {
+			existingColumns = this.tableManager.getRowElementsList();
+		} else {
+			existingColumns = this.tableManager.getColumnElementsList();
 		}
-		this.existingConverters.clear();
+		for(Object object : existingColumns) {
+			Object current = AxisUtils.getRepresentedElement(object);
+			if(current instanceof EAttribute && ((EAttribute)current).getName().equals("name")) {
+				return Boolean.FALSE;
+			}
+		}
+		return Boolean.TRUE;
 	}
 
 	/**
@@ -416,6 +336,16 @@ public class PasteEObjectAxisInTableCommandProvider implements IDisposable {
 	protected PasteModeEnumeration askWhichPasteModeDo() {
 		//TODO develop a dialog for that
 		throw new UnsupportedOperationException();
+	}
+
+	private void localDispose() {
+		this.tableManager = null;
+		this.typeToCreate = null;
+		this.containmentFeature = null;
+		for(final AbstractStringValueConverter current : existingConverters.values()) {
+			current.dispose();
+		}
+		this.existingConverters.clear();
 	}
 
 }

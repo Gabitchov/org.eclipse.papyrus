@@ -13,10 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
@@ -52,7 +48,6 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * Listener on double click events from {@link ISashWindowsContainer}'tabs.
 	 */
 	private TabMouseEventListener tabMouseEventListener;
-	
 
 	/**
 	 * get the contentProvider. Create it if necessary.
@@ -134,7 +129,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		sashContainer = new SashWindowsContainer(this);
 		sashContainer.setContentProvider(getContentProvider());
 		sashContainer.createPartControl(parent);
-		
+
 		// Add double click menu
 		tabMouseEventListener = new TabMouseEventListener(sashContainer, getSite());
 
@@ -176,12 +171,12 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	@Override
 	public void dispose() {
 		deactivate();
-		
-		if( tabMouseEventListener != null ) {
+
+		if(tabMouseEventListener != null) {
 			tabMouseEventListener.dispose(sashContainer);
 			tabMouseEventListener = null;
 		}
-		
+
 		//The selection provider keeps a reference to "this". It is not disposed.
 		getSite().setSelectionProvider(null);
 		if(sashContainer != null) {
@@ -271,91 +266,6 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	@Override
 	public void setFocus() {
 		sashContainer.setFocus();
-
 	}
 
-	/**
-	 * Overrides isDirty.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
-	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#isDirty()
-	 * @deprecated A SaveAndDirtyService is used instead.
-	 */
-	@Deprecated
-	@Override
-	public boolean isDirty() {
-		//		return sashContainer.isDirty();
-		EditorVisitor visitor = new EditorVisitor();
-		sashContainer.visit(visitor);
-
-		for(IEditorPart editorPart : visitor.getPages()) {
-			if(editorPart.isDirty()) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Notify all the editors that the multi editor has been saved.<BR>
-	 * Fires the PROP_DIRTY property change.
-	 * 
-	 * TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
-	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
-	 * 
-	 * @deprecated A SaveAndDirtyService is used instead.
-	 */
-	@Deprecated
-	protected void markSaveLocation() {
-		//		return sashContainer.isDirty();
-		EditorVisitor visitor = new EditorVisitor();
-		sashContainer.visit(visitor);
-
-		for(IEditorPart editorPart : visitor.getPages()) {
-			editorPart.doSave(new NullProgressMonitor());
-		}
-		firePropertyChange(PROP_DIRTY);
-	}
-
-	/**
-	 * A visitor allowing to collect the available IEditor.
-	 * TODO : Remove
-	 * 
-	 * @author dumoulin
-	 * 
-	 */
-	protected class EditorVisitor implements IPageVisitor {
-
-		private List<IEditorPart> pages = new ArrayList<IEditorPart>();
-
-		/**
-		 * Get collected pages.
-		 * 
-		 * @return
-		 */
-		public List<IEditorPart> getPages() {
-			return pages;
-		}
-
-		/**
-		 * 
-		 */
-		public void accept(IComponentPage page) {
-			// Do nothing
-		}
-
-		/**
-		 * 
-		 */
-		public void accept(IEditorPage page) {
-
-			IEditorPart editor = page.getIEditorPart();
-			pages.add(editor);
-		}
-	}
 }

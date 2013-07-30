@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.OperationTemplateParameter;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.PackageMerge;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
@@ -207,6 +208,19 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 		} else if(element instanceof Comment) {
 			Comment comment = (Comment)element;
 			return getText(comment);
+		} else if(element instanceof PackageMerge) {
+			String label = "PackageMerge";
+			PackageMerge packageMerge = (PackageMerge)element;
+			Package mergedPackage = packageMerge.getMergedPackage();
+
+			if(mergedPackage != null) {
+				if(mergedPackage.eIsProxy()) {
+					label += " <<Package not found>>";
+				} else {
+					label += " " + mergedPackage.getName(); //$NON-NLS-1$
+				}
+			}
+			return label;
 		}
 		// TODO: Temporary solution for template parameters
 		// Note: In the class diagram, for template parameters, 

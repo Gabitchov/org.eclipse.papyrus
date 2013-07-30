@@ -60,10 +60,16 @@ import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelM
 import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.gef.MultiDiagramEditorGefDelegate;
+import org.eclipse.papyrus.infra.core.services.EditorLifecycleManager;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
+import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.internal.EditorLifecycleManagerImpl;
+import org.eclipse.papyrus.infra.core.services.internal.InternalEditorLifecycleManager;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -360,7 +366,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 
 		// Try to got it from CoreComposedActionBarContributor
-		// The ActionBarContributorRegistry is initialized by the Contributor.
 		// Get it from the contributor.
 		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
 		if(contributor instanceof CoreComposedActionBarContributor) {
@@ -412,7 +417,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Add a viewer
 		if(IContentOutlinePage.class == adapter) {
 			try {
-				IContentOutlinePage contentOutline = getContentOutlineRegistry().getContentOutline();
+				ContentOutlineRegistry outlineRegistry = getContentOutlineRegistry();
+				if(outlineRegistry == null) {
+					return null;
+				}
+				IContentOutlinePage contentOutline = outlineRegistry.getContentOutline();
 				if(contentOutline != null) {
 					return contentOutline;
 				}
@@ -436,9 +445,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// EMF requirements
 		if(IEditingDomainProvider.class == adapter) {
-
-			// return (IEditingDomainProvider)
-			// defaultContext.getTransactionalEditingDomain().getResourceSet();
 			return domainProvider;
 		}
 
@@ -446,31 +452,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		if(adapter == ActionRegistry.class) {
 			return gefAdaptorDelegate.getActionRegistry();
 		}
-
-		// // GEF diagram requirements
-		// if (adapter == SelectionSynchronizer.class) {
-		// return gefAdaptorDelegate.getSelectionSynchronizer();
-		// }
-
-		// DONE : following code is GMF dependent. It should be moved to adapter (moved to infra.gmfdiag.common)
-		// Do we really need it? Who use it ?
-		// -> It seems to be needed, see bug 354050
-		//
-		//		if(adapter == IDiagramGraphicalViewer.class) {
-		//			return getDiagramGraphicalViewer();
-		//		}
-		//
-		//		if(adapter == Diagram.class) {
-		//			return getDiagram();
-		//		}
-		//
-		//		if(adapter == DiagramEditPart.class) {
-		//			return getDiagramEditPart();
-		//		}
-		//
-		//		if(adapter == IDiagramWorkbenchPart.class) {
-		//			return getDiagramWorkbenchPart();
-		//		}
 
 		return super.getAdapter(adapter);
 	}
@@ -480,24 +461,34 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-
 		// Init super
 		super.init(site, input);
 
-		// Used to get the appropriate domain object from a graphical object (EditPart, ...)
-		// BusinessModelResolver.getInstance();
+		// Set editor name
+		setPartName(input.getName());
 
-		// Load resources
-		//		resourceSet = new DiResourceSet();
-		//		IFile file = ((IFileEditorInput)input).getFile();
-		//		resourceSet.loadResources(file);
+		loadModelAndServices();
+		loadNestedEditors();
+	}
 
-		// Create the 2 edit domains
-		//		transactionalEditingDomain = resourceSet.getTransactionalEditingDomain();
+	@Override
+	public void createPartControl(Composite parent) {
+		super.createPartControl(parent);
 
+		//Fire the PostDisplay event asynchronously, to leave time to the Eclipse
+		//framework to actually display the contents of the editor
+		Display.getDefault().asyncExec(new Runnable() {
+
+			public void run() {
+				getLifecycleManager().firePostDisplay(CoreMultiDiagramEditor.this);
+			}
+		});
+
+	}
+
+	protected void loadModelAndServices() throws PartInitException {
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
-
 
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
@@ -560,8 +551,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		};
 		servicesRegistry.add(ILabelProvider.class, 1, labelProvider);
 
+		EditorLifecycleManager lifecycleManager = new EditorLifecycleManagerImpl();
+		servicesRegistry.add(EditorLifecycleManager.class, 1, lifecycleManager, ServiceStartKind.LAZY);
+
 		// Start servicesRegistry
 		URI uri;
+		IEditorInput input = getEditorInput();
 		if(input instanceof IFileEditorInput) {
 			uri = URI.createPlatformResourceURI(((IFileEditorInput)input).getFile().getFullPath().toString(), true);
 		} else if(input instanceof URIEditorInput) {
@@ -576,6 +571,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			servicesToStart.add(ModelSet.class);
 
 			servicesRegistry.startServicesByClassKeys(servicesToStart);
+
 			resourceSet = servicesRegistry.getService(ModelSet.class);
 			resourceSet.loadModels(uri);
 
@@ -598,11 +594,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 
 		// Get required services
-		ISashWindowsContentProvider contentProvider = null;
+
 		try {
 			transactionalEditingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
 			sashModelMngr = servicesRegistry.getService(DiSashModelManager.class);
-			contentProvider = servicesRegistry.getService(ISashWindowsContentProvider.class);
+
 			saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 			undoContext = servicesRegistry.getService(IUndoContext.class);
 		} catch (ServiceException e) {
@@ -612,18 +608,40 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			throw new PartInitException("could not initialize services", e);
 		}
 
+
+		// Listen on input changed from the ISaveAndDirtyService
+		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
+		getLifecycleManager().firePostInit(this);
+	}
+
+	private InternalEditorLifecycleManager getLifecycleManager() {
+		try {
+			return (InternalEditorLifecycleManager)servicesRegistry.getService(EditorLifecycleManager.class);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
+		return null;
+	}
+
+	protected void loadNestedEditors() throws PartInitException {
+		ISashWindowsContentProvider contentProvider = null;
+		try {
+			contentProvider = servicesRegistry.getService(ISashWindowsContentProvider.class);
+		} catch (ServiceException ex) {
+			log.error("A required service is missing.", ex);
+			// if one of the services above fail to start, the editor can't run
+			// => stop
+			throw new PartInitException("could not initialize services", ex);
+		}
+
 		// Set the content provider providing editors.
 		setContentProvider(contentProvider);
-
-		// Set editor name
-		setPartName(input.getName());
 
 		// Listen on contentProvider changes
 		sashModelMngr.getSashModelContentChangedProvider().addListener(contentChangedListener);
 		((TransactionalCommandStack)transactionalEditingDomain.getCommandStack()).addCommandStackListener(refreshTabsCommandStackListener);
 
-		// Listen on input changed from the ISaveAndDirtyService
-		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
+		IEditorInput input = getEditorInput();
 
 		if(input instanceof IPapyrusPageInput) {
 			IPapyrusPageInput papyrusPageInput = (IPapyrusPageInput)input;
@@ -725,6 +743,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public void dispose() {
+		getLifecycleManager().fireBeforeClose(this);
 		if(sashModelMngr != null) {
 			sashModelMngr.getSashModelContentChangedProvider().removeListener(contentChangedListener);
 			transactionalEditingDomain.getCommandStack().removeCommandStackListener(refreshTabsCommandStackListener);

@@ -39,6 +39,12 @@
     <affixedNodes href="UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
     <borderedNodeFigure href="UML.ReusableParts.idgen#org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure"/>
   </customNodes>
+  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_constraintblockproperty_as_composite" label="ConstraintBlockPropertyComposite" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockPropertyCompositeEditPart" semanticType="org.eclipse.papyrus.sysml.PartProperty" altSemanticTypes="org.eclipse.papyrus.sysml.ReferenceProperty" tag="[#runtime-defined]" compartments="compartment_sysml_blockproperty_structure" visibleCompartments="compartment_sysml_blockproperty_structure">
+    <labels href="UML.ReusableParts.idgen#label_uml_property_label"/>
+    <affixedNodes href="#shape_sysml_flowport_as_affixed"/>
+    <affixedNodes href="UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
+    <borderedNodeFigure href="UML.ReusableParts.idgen#org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure"/>
+  </customNodes>
   <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_dimension_as_classifier" label="Dimension" semanticType="org.eclipse.papyrus.sysml.Dimension" tag="dimension" labels="label_sysml_dimension_name"/>
   <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_constraintblock_as_classifier" label="ConstraintBlock" semanticType="org.eclipse.papyrus.sysml.ConstraintBlock" tag="constraint" labels="label_sysml_constraintblock_name" compartments="compartment_sysml_parameter_as_list compartment_sysml_constraint_as_list" visibleCompartments="compartment_sysml_parameter_as_list compartment_sysml_constraint_as_list"/>
   <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_flowspecification_as_classifier" label="FlowSpecification" semanticType="org.eclipse.papyrus.sysml.FlowSpecification" tag="flowSpecification" labels="label_sysml_flowspecification_name" compartments="compartment_sysml_flowproperty_as_list" visibleCompartments="compartment_sysml_flowproperty_as_list"/>
@@ -117,6 +123,7 @@
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPropertyChildLabelEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortChildLabelEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockPropertyCompositeEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.AssociationEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.figure.AssociationFigure"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ConstraintParameterCompartmentSemanticEditPolicy"/>
