@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.viewersearch.impl.ViewerSearchService;
@@ -187,7 +188,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 	 * @param scopeEntry
 	 *        the scopeEntry that contains the participant
 	 */
-	protected void evaluateAndAddToResult(String value, Object attribute, Pattern pattern, Object participant, ScopeEntry scopeEntry) {
+	protected void evaluateAndAddToResult(String value, Object attribute, Pattern pattern, Object participant, ScopeEntry scopeEntry, Stereotype stereotype) {
 
 		value = value != null ? value : ""; //$NON-NLS-1$
 
@@ -197,7 +198,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 			if(m.matches()) {
 				int start = m.start();
 				int end = m.end();
-				ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute);
+				ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, stereotype);
 
 				fResults.add(match);
 			}
@@ -205,7 +206,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 			while(m.find()) {
 				int start = m.start();
 				int end = m.end();
-				AttributeMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute);
+				AttributeMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, stereotype);
 				fResults.add(match);
 			}
 		}
@@ -263,10 +264,10 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 
 						if(value instanceof String) {
 							String stringValue = (String)value;
-							evaluateAndAddToResult(stringValue, attribute, pattern, participant, scopeEntry);
+							evaluateAndAddToResult(stringValue, attribute, pattern, participant, scopeEntry, null);
 						} else {
 							String stringValue = String.valueOf(value);
-							evaluateAndAddToResult(stringValue, attribute, pattern, participant, scopeEntry);
+							evaluateAndAddToResult(stringValue, attribute, pattern, participant, scopeEntry, null);
 						}
 					}
 				}
@@ -274,7 +275,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 
 			}
 		}
-		findAndShow(scopeEntry);
+		findInDiagram(scopeEntry);
 
 	}
 
@@ -298,7 +299,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 					EList<Stereotype> stereotypesApplied = ((Element)participant).getAppliedStereotypes();
 					for(Stereotype stereotype : stereotypesApplied) {
 						for(Stereotype stereotypeSelected : stereotypeList.keySet()) {
-							if(stereotype.getName().equals(stereotypeSelected.getName())) {
+							if(EcoreUtil.equals(stereotype, stereotypeSelected)) {
 								if(stereotypeList.get(stereotypeSelected).size() == 0) {
 
 									propertyList = this.getStereotypesAttributes(stereotype);
@@ -308,10 +309,10 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 										if(value != null) {
 											if(value instanceof String) {
 												String stringValue = (String)value;
-												evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry);
+												evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry, stereotype);
 											} else {
 												String stringValue = String.valueOf(value);
-												evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry);
+												evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry, stereotype);
 											}
 										}
 									}
@@ -319,15 +320,15 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 									propertyList = this.getStereotypesAttributes(stereotype);
 									for(Property property : propertyList) {
 										for(Property property2 : (stereotypeList.get(stereotypeSelected))) {
-											if(property.getName().equals(property2.getName())) {
+											if(EcoreUtil.equals(property, property2)) {
 												Object value = ((Element)participant).getValue(stereotype, property.getName());
 												if(value != null) {
 													if(value instanceof String) {
 														String stringValue = (String)value;
-														evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry);
+														evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry, stereotype);
 													} else {
 														String stringValue = String.valueOf(value);
-														evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry);
+														evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry, stereotype);
 													}
 												}
 											}
@@ -342,7 +343,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 
 
 		}
-		findAndShow(scopeEntry);
+		findInDiagram(scopeEntry);
 
 	}
 
@@ -371,7 +372,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 		return result;
 	}
 
-	protected void findAndShow(ScopeEntry scopeEntry) {
+	protected void findInDiagram(ScopeEntry scopeEntry) {
 		//Now, find in diagram and others the elements we found
 		ViewerSearchService viewerSearcherService = new ViewerSearchService();
 		try {
@@ -381,7 +382,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 
 			for(AbstractResultEntry match : fResults) {
 				if(match instanceof AttributeMatch) {
-					sources.add(((AttributeMatch)match).getTarget());
+					sources.add(((AttributeMatch)match).getSource());
 				} else {
 					sources.add(match.getSource());
 				}
@@ -409,7 +410,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 	}
 
 	public boolean canRerun() {
-		return false;
+		return true;
 	}
 
 	public boolean canRunInBackground() {

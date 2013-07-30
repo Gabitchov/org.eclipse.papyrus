@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
+import org.eclipse.papyrus.views.search.scope.ScopeEntry;
 import org.eclipse.search.ui.text.AbstractTextSearchResult;
 import org.eclipse.search.ui.text.Match;
 
@@ -46,21 +47,31 @@ public class MatchUtils {
 
 		for(Object element : elementList) {
 			for(Match match : searchResult.getMatches(element)) {
+
 				if(match instanceof AbstractResultEntry) {
-					boolean toAdd = false;
-					if(checkFiltered) {
-						if(!match.isFiltered()) {
+
+					if(match.getElement() instanceof ScopeEntry) {
+						//							ScopeEntry scope = (ScopeEntry)match.getElement();
+						//							((AbstractResultEntry)element).recursiveHierarchy((AbstractResultEntry)element, scope);
+
+						boolean toAdd = false;
+						if(checkFiltered) {
+							if(!match.isFiltered()) {
+								toAdd = true;
+							}
+						} else {
 							toAdd = true;
 						}
-					} else {
-						toAdd = true;
-					}
 
-					if(toAdd) {
-						if(type.isAssignableFrom(((AbstractResultEntry)match).elementToCheckFilterFor().getClass())) {
-							results.add((AbstractResultEntry)match);
+						if(toAdd) {
+							if(type.isAssignableFrom(((AbstractResultEntry)match).elementToCheckFilterFor().getClass())) {
+								results.add((AbstractResultEntry)match);
+							}
 						}
 					}
+
+
+
 				}
 			}
 		}

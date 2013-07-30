@@ -26,4 +26,5 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.search.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.views.search;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.eclipse.uml2.uml
 

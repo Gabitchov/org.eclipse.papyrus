@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
@@ -129,7 +130,17 @@ public class StereotypeCollector implements IStereotypeCollector {
 				EObject umlElement = (EObject)UMLResourceContentIterator.next();
 
 				if(umlElement instanceof ProfileApplication) {
-					profiles.add(((ProfileApplication)umlElement).getAppliedProfile());
+					boolean found = false;
+					Profile profileToProcess = ((ProfileApplication)umlElement).getAppliedProfile();
+					for(Profile alreadyAddedProfile : profiles) {
+
+						if(EcoreUtil.equals(alreadyAddedProfile, profileToProcess)) {
+							found = true;
+						}
+					}
+					if(!found) {
+						profiles.add(profileToProcess);
+					}
 				}
 
 			}
@@ -141,7 +152,18 @@ public class StereotypeCollector implements IStereotypeCollector {
 			while(profileContentIterator.hasNext()) {
 				EObject profileContent = (EObject)profileContentIterator.next();
 				if(profileContent instanceof Stereotype) {
-					preResult.add((Stereotype)profileContent);
+					boolean found = false;
+					Stereotype stereotypeToProcess = (Stereotype)profileContent;
+					for(Stereotype alreadyAddedStereotype : preResult) {
+
+						if(EcoreUtil.equals(alreadyAddedStereotype, stereotypeToProcess)) {
+							found = true;
+						}
+					}
+
+					if(!found) {
+						preResult.add(stereotypeToProcess);
+					}
 				}
 			}
 
@@ -153,6 +175,20 @@ public class StereotypeCollector implements IStereotypeCollector {
 			for(Classifier parent : stereo.getGenerals()) {
 				if(parent instanceof Stereotype) {
 					result.add((Stereotype)parent);
+
+					boolean found = false;
+					Stereotype stereotypeToProcess = (Stereotype)parent;
+					for(Stereotype alreadyAddedStereotype : result) {
+
+						if(EcoreUtil.equals(alreadyAddedStereotype, stereotypeToProcess)) {
+							found = true;
+						}
+					}
+
+					if(!found) {
+						result.add(stereotypeToProcess);
+					}
+
 				}
 			}
 

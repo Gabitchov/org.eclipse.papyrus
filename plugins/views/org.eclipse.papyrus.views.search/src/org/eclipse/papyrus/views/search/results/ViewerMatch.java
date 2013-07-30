@@ -13,7 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.results;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
@@ -29,11 +32,14 @@ public class ViewerMatch extends AbstractResultEntry {
 	/**
 	 * The model element that is represented by the viewer
 	 */
-	protected Object semanticElement;
+	protected URI URIsemanticElement;
 
 	public ViewerMatch(Object source, ScopeEntry scopeEntry, Object semanticElement) {
 		super(UNSPECIFIED, UNSPECIFIED, source, scopeEntry);
-		this.semanticElement = semanticElement;
+		if(semanticElement instanceof EObject) {
+			this.URIsemanticElement = EcoreUtil.getURI((EObject)semanticElement);
+		}
+
 
 		this.parent = getLastParent(this, scopeEntry);
 		//		this.parent = new ResultEntry(scopeEntry.getResource(), scopeEntry);
@@ -41,11 +47,17 @@ public class ViewerMatch extends AbstractResultEntry {
 	}
 
 	public Object getSemanticElement() {
-		return semanticElement;
+		if(this.URIsemanticElement != null) {
+			ResourceSet resSet = ((ScopeEntry)this.getElement()).getModelSet();
+			return resSet.getEObject(this.URIsemanticElement, true);
+		}
+		return null;
 	}
 
 	public void setSemanticElement(Object semanticElement) {
-		this.semanticElement = semanticElement;
+		if(semanticElement instanceof EObject) {
+			this.URIsemanticElement = EcoreUtil.getURI((EObject)semanticElement);
+		}
 	}
 
 	/**
@@ -56,7 +68,7 @@ public class ViewerMatch extends AbstractResultEntry {
 	 */
 	@Override
 	public Object elementToDisplay() {
-		return source;
+		return this.getSource();
 	}
 
 	/**
@@ -67,7 +79,11 @@ public class ViewerMatch extends AbstractResultEntry {
 	 */
 	@Override
 	public Object elementToCheckFilterFor() {
-		return semanticElement;
+		if(this.URIsemanticElement != null) {
+			ResourceSet resSet = ((ScopeEntry)this.getElement()).getModelSet();
+			return resSet.getEObject(this.URIsemanticElement, true);
+		}
+		return null;
 	}
 
 	/**
@@ -78,8 +94,8 @@ public class ViewerMatch extends AbstractResultEntry {
 	 */
 	@Override
 	public Object openElement(OpenElementService service) throws ServiceException, PartInitException {
-		if(source instanceof EObject) {
-			return service.openElement((EObject)source);
+		if(this.getSource() instanceof EObject) {
+			return service.openElement((EObject)this.getSource());
 		}
 		return null;
 	}

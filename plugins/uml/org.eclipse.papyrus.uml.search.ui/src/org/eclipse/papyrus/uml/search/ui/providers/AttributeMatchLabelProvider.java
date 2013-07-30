@@ -36,9 +36,9 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 			LabelProviderService service = new LabelProviderServiceImpl();
 			try {
 				service.startService();
-				return service.getLabelProvider().getImage(((AttributeMatch)element).getSource());
+				return service.getLabelProvider().getImage(((AttributeMatch)element).getMetaAttribute());
 			} catch (ServiceException e) {
-				Activator.log.warn(Messages.AttributeMatchLabelProvider_0 + ((AttributeMatch)element).getSource());
+				Activator.log.warn(Messages.AttributeMatchLabelProvider_0 + ((AttributeMatch)element).getMetaAttribute());
 			}
 		}
 		return null;
@@ -52,10 +52,10 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 
 		if(element instanceof AttributeMatch) {
 			AttributeMatch attributeMatch = ((AttributeMatch)element);
-			if((attributeMatch).getTarget() instanceof EObject) {
-				EObject target = (EObject)attributeMatch.getTarget();
-				if(attributeMatch.getSource() instanceof EAttribute) {
-					EAttribute source = (EAttribute)attributeMatch.getSource();
+			if((attributeMatch).getSource() instanceof EObject) {
+				EObject target = (EObject)attributeMatch.getSource();
+				if(attributeMatch.getMetaAttribute() instanceof EAttribute) {
+					EAttribute source = (EAttribute)attributeMatch.getMetaAttribute();
 					if(target.eGet(source) instanceof String) {
 						String value = (String)target.eGet(source);
 						return printResult(value.substring(attributeMatch.getOffset(), attributeMatch.getLength()), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
@@ -64,14 +64,14 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 						String value = String.valueOf(target.eGet(source));
 						return printResult(value.substring(attributeMatch.getOffset(), attributeMatch.getLength()), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 					}
-				} else if(attributeMatch.getSource() instanceof Property) {
+				} else if(attributeMatch.getMetaAttribute() instanceof Property) {
 
-					Property source = (Property)attributeMatch.getSource();
+					Property source = (Property)attributeMatch.getMetaAttribute();
 					Class containingClass = source.getClass_();
 					if(containingClass instanceof Stereotype) {
 						if(target instanceof Element) {
 
-							Object tagValue = ((Element)target).getValue((Stereotype)containingClass, ((Property)attributeMatch.getSource()).getName());
+							Object tagValue = ((Element)target).getValue((Stereotype)containingClass, ((Property)attributeMatch.getMetaAttribute()).getName());
 
 							if(tagValue instanceof String) {
 								String value = (String)tagValue;

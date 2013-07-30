@@ -13,7 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.results;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
@@ -38,6 +46,10 @@ public abstract class AbstractResultEntry extends Match {
 	 * The parent of this result entry in the hierarchy
 	 */
 	protected Object parent;
+
+	protected URI uriSource;
+
+	protected java.net.URI uriResource;
 
 	/**
 	 * Used to specify offset and length of {@link Match} when these attributes are not meaningful
@@ -76,16 +88,16 @@ public abstract class AbstractResultEntry extends Match {
 	 * @param scopeEntry
 	 *        the {@link ScopeEntry} corresponding to the resource that contains the element that matches
 	 */
-	protected void recursiveHierarchy(AbstractResultEntry child, ScopeEntry scopeEntry) {
+	public void recursiveHierarchy(AbstractResultEntry child) {
 		if(child.getSource() instanceof EObject) {
 			EObject potentialParent = ((EObject)child.getSource()).eContainer();
 
 			if(potentialParent != null) {
-				ResultEntry theParent = new ResultEntry(potentialParent, scopeEntry);
+				ResultEntry theParent = new ResultEntry(potentialParent, (ScopeEntry)this.getElement());
 				child.setParent(theParent);
-				recursiveHierarchy(theParent, scopeEntry);
+				recursiveHierarchy(theParent);
 			} else {
-				ResultEntry theParent = new ResultEntry(scopeEntry.getResource(), scopeEntry);
+				ResultEntry theParent = new ResultEntry(((ScopeEntry)this.getElement()).getResource(), (ScopeEntry)this.getElement());
 				child.setParent(theParent);
 			}
 		}
@@ -130,10 +142,23 @@ public abstract class AbstractResultEntry extends Match {
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof AbstractResultEntry) {
-			if(((AbstractResultEntry)obj).getSource().equals(this.source)) {
-				if(((AbstractResultEntry)obj).getOffset() == this.getOffset()) {
-					if(((AbstractResultEntry)obj).getLength() == this.getLength()) {
-						return true;
+			if(obj instanceof EObject && this.getSource() instanceof EObject) {
+				if(EcoreUtil.equals((EObject)this.getSource(), (EObject)obj)) {
+					if(((AbstractResultEntry)obj).getOffset() == this.getOffset()) {
+						if(((AbstractResultEntry)obj).getLength() == this.getLength()) {
+							return true;
+						}
+					}
+				}
+			} else {
+				if(((AbstractResultEntry)obj).getSource() != null) {
+					if(((AbstractResultEntry)obj).getSource().equals(this.getSource())) {
+						if(((AbstractResultEntry)obj).getOffset() == this.getOffset()) {
+							if(((AbstractResultEntry)obj).getLength() == this.getLength()) {
+								return true;
+							}
+						}
+
 					}
 				}
 			}
@@ -157,11 +182,29 @@ public abstract class AbstractResultEntry extends Match {
 	 */
 	public AbstractResultEntry(int offset, int lenght, Object source, ScopeEntry scopeEntry) {
 		super(scopeEntry, offset, lenght);
-		this.source = source;
+		//		this.source = source;
+		if(source instanceof EObject) {
+
+			this.uriSource = EcoreUtil.getURI((EObject)source);
+		} else if(source instanceof IResource) {
+			this.uriResource = ((IResource)source).getLocationURI();
+		}
 	}
 
 	public Object getSource() {
-		return source;
+		if(this.uriSource != null) {
+			ResourceSet resSet = ((ScopeEntry)this.getElement()).getModelSet();
+			return resSet.getEObject(this.uriSource, true);
+		} else if(this.uriResource != null) {
+
+			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+
+
+			IPath path = new Path(this.uriResource.getPath());
+			return root.getFile(path);
+		}
+
+		return null;
 	}
 
 	public void setSource(Object source) {
@@ -180,7 +223,6 @@ public abstract class AbstractResultEntry extends Match {
 	public String toString() {
 		return this.getClass().getSimpleName() + "(" + super.hashCode() + ") : source -> " + source; //$NON-NLS-1$ //$NON-NLS-2$
 	}
-
 
 
 }

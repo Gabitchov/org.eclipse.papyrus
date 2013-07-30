@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.												 
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -79,7 +79,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 
 	protected Set<AbstractResultEntry> fResults = null;
 
-	private boolean searchStereotypeAttributes;
+
 
 	public PapyrusQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, Collection<ScopeEntry> scopeEntries, Object[] participantsTypes, boolean searchAllStringAttributes) {
 		this.searchQueryText = searchQueryText;
@@ -143,7 +143,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			if(m.matches()) {
 				int start = m.start();
 				int end = m.end();
-				ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute);
+				ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, null);
 
 				fResults.add(match);
 			}
@@ -151,7 +151,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			while(m.find()) {
 				int start = m.start();
 				int end = m.end();
-				AttributeMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute);
+				AttributeMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, null);
 				fResults.add(match);
 			}
 		}
@@ -200,16 +200,12 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 							for(Property stereotypeProperty : stereotype.getAllAttributes()) {
 								if(!stereotypeProperty.getName().startsWith("base_")) { //$NON-NLS-1$
 									Object value = ((Element)participant).getValue(stereotype, stereotypeProperty.getName());
-									if(value != null) {
 
-										if(value instanceof String) {
-											String stringValue = (String)value;
-											evaluateAndAddToResult(stringValue, stereotypeProperty, pattern, participant, scopeEntry);
-										}
+									if(value instanceof String) {
+										String stringValue = (String)value;
+										evaluateAndAddToResult(stringValue, stereotypeProperty, pattern, participant, scopeEntry);
 									}
-
 								}
-
 							}
 						}
 					}
@@ -227,7 +223,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			}
 		}
 
-		//Now, find in diagram and others the elements we found
+		//		Now, find in diagram and others the elements we found
 		ViewerSearchService viewerSearcherService = new ViewerSearchService();
 		try {
 			viewerSearcherService.startService();
@@ -236,7 +232,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			Set<Object> sources = new HashSet<Object>();
 			for(AbstractResultEntry match : fResults) {
 				if(match instanceof AttributeMatch) {
-					sources.add(((AttributeMatch)match).getTarget());
+					sources.add(((AttributeMatch)match).getSource());
 				} else {
 					sources.add(match.getSource());
 				}
@@ -264,7 +260,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 	}
 
 	public boolean canRerun() {
-		return false;
+		return true;
 	}
 
 	public boolean canRunInBackground() {

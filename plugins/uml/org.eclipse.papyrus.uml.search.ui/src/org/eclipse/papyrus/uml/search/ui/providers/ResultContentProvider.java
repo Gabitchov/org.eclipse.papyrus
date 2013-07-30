@@ -43,6 +43,16 @@ public class ResultContentProvider implements ITreeContentProvider {
 
 	private AbstractTreeViewer fViewer;
 
+
+	public AbstractTreeViewer getfViewer() {
+		return fViewer;
+	}
+
+
+	public void setfViewer(AbstractTreeViewer fViewer) {
+		this.fViewer = fViewer;
+	}
+
 	private Map<Object, Set<Object>> fChildrenMap;
 
 	public ResultContentProvider(PapyrusSearchResultPage page, AbstractTreeViewer viewer) {
@@ -87,7 +97,7 @@ public class ResultContentProvider implements ITreeContentProvider {
 		fViewer.refresh();
 	}
 
-	private void initialize() {
+	public void initialize() {
 
 		fChildrenMap = new HashMap<Object, Set<Object>>();
 
@@ -253,7 +263,7 @@ public class ResultContentProvider implements ITreeContentProvider {
 		}
 	}
 
-	protected void remove(Object element, boolean refreshViewer) {
+	public void remove(Object element, boolean refreshViewer) {
 		if(hasChildren(element)) {
 			if(refreshViewer) {
 				fViewer.refresh(element);
