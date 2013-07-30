@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.services.viewersearch.impl.ViewerSearchService;
 import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
+import org.eclipse.papyrus.uml.search.ui.validator.ParticipantValidator;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.views.search.regex.PatternHelper;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
@@ -40,8 +41,6 @@ import org.eclipse.papyrus.views.search.results.AttributeMatch;
 import org.eclipse.papyrus.views.search.results.ModelMatch;
 import org.eclipse.papyrus.views.search.results.ViewerMatch;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
-import org.eclipse.papyrus.views.search.validator.ParticipantValidator;
-import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.search.ui.ISearchResult;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -54,7 +53,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Papyrus specific search query
  * 
  */
-public class PapyrusQuery implements ISearchQuery {
+public class PapyrusQuery extends AbstractPapyrusQuery {
 
 	public boolean isCaseSensitive() {
 		return isCaseSensitive;
@@ -82,14 +81,14 @@ public class PapyrusQuery implements ISearchQuery {
 
 	private boolean searchStereotypeAttributes;
 
-	public PapyrusQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, boolean searchStereotypeAttributes, Collection<ScopeEntry> scopeEntries, Object[] participantsTypes, boolean searchAllStringAttributes) {
+	public PapyrusQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, Collection<ScopeEntry> scopeEntries, Object[] participantsTypes, boolean searchAllStringAttributes) {
 		this.searchQueryText = searchQueryText;
 		this.isCaseSensitive = isCaseSensitive;
 		this.isRegularExpression = isRegularExpression;
 		this.scopeEntries = scopeEntries;
 		this.participantsTypes = participantsTypes;
 		this.searchAllStringAttributes = searchAllStringAttributes;
-		this.searchStereotypeAttributes = searchStereotypeAttributes;
+
 		results = new PapyrusSearchResult(this);
 		fResults = new HashSet<AbstractResultEntry>();
 	}
@@ -195,20 +194,11 @@ public class PapyrusQuery implements ISearchQuery {
 						}
 					}
 
-				} else {
-					if(participant instanceof NamedElement) {
-						String umlElementName = ((NamedElement)participant).getName();
-						umlElementName = umlElementName != null ? umlElementName : ""; //$NON-NLS-1$
-
-						evaluateAndAddToResult(umlElementName, UMLPackage.eINSTANCE.getNamedElement_Name(), pattern, participant, scopeEntry);
-					}
-				}
-				if(searchStereotypeAttributes) {
 					if(participant instanceof Element) {
 						EList<Stereotype> stereotypes = ((Element)participant).getAppliedStereotypes();
 						for(Stereotype stereotype : stereotypes) {
 							for(Property stereotypeProperty : stereotype.getAllAttributes()) {
-								if(!stereotypeProperty.getName().startsWith("base_")) {
+								if(!stereotypeProperty.getName().startsWith("base_")) { //$NON-NLS-1$
 									Object value = ((Element)participant).getValue(stereotype, stereotypeProperty.getName());
 									if(value != null) {
 
@@ -217,12 +207,22 @@ public class PapyrusQuery implements ISearchQuery {
 											evaluateAndAddToResult(stringValue, stereotypeProperty, pattern, participant, scopeEntry);
 										}
 									}
-								}
-							}
 
+								}
+
+							}
 						}
 					}
+
+				} else {
+					if(participant instanceof NamedElement) {
+						String umlElementName = ((NamedElement)participant).getName();
+						umlElementName = umlElementName != null ? umlElementName : ""; //$NON-NLS-1$
+
+						evaluateAndAddToResult(umlElementName, UMLPackage.eINSTANCE.getNamedElement_Name(), pattern, participant, scopeEntry);
+					}
 				}
+
 
 			}
 		}

@@ -26,7 +26,7 @@ import java.util.Properties;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -106,7 +106,7 @@ public class PropertyFileAxisManager extends AbstractSynchronizedOnFeatureAxisMa
 	}
 
 	@Override
-	public Command getAddAxisCommand(EditingDomain domain, Collection<Object> objectToAdd) {
+	public Command getAddAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToAdd) {
 		return super.getAddAxisCommand(domain, objectToAdd);
 	}
 
@@ -116,7 +116,7 @@ public class PropertyFileAxisManager extends AbstractSynchronizedOnFeatureAxisMa
 	}
 
 	@Override
-	public Command getComplementaryAddAxisCommand(EditingDomain domain, Collection<Object> objectToAdd) {
+	public Command getComplementaryAddAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToAdd) {
 		return super.getComplementaryAddAxisCommand(domain, objectToAdd);
 	}
 
@@ -146,7 +146,7 @@ public class PropertyFileAxisManager extends AbstractSynchronizedOnFeatureAxisMa
 	}
 
 	@Override
-	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
+	public Command getDestroyAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToDestroy) {
 		return super.getDestroyAxisCommand(domain, objectToDestroy);
 	}
 
@@ -211,15 +211,6 @@ public class PropertyFileAxisManager extends AbstractSynchronizedOnFeatureAxisMa
 		return prop;
 	}
 
-	@Override
-	protected EditingDomain getTableEditingDomain() {
-		return super.getTableEditingDomain();
-	}
-
-	@Override
-	protected EditingDomain getContextEditingDomain() {
-		return super.getContextEditingDomain();
-	}
 
 	@Override
 	public void moveAxis(Object elementToMove, int newIndex) {
@@ -297,7 +288,7 @@ public class PropertyFileAxisManager extends AbstractSynchronizedOnFeatureAxisMa
 	}
 
 	@Override
-	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		return null;
 	}
 

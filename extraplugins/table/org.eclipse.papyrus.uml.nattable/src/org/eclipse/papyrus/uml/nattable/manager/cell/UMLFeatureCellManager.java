@@ -14,8 +14,13 @@
 package org.eclipse.papyrus.uml.nattable.manager.cell;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager;
+import org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.uml.tools.utils.UMLStringValueConverter;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -42,5 +47,25 @@ public class UMLFeatureCellManager extends EMFFeatureValueCellManager {
 			answer = objects.get(0) instanceof Element;
 		}
 		return answer;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getOrCreateStringValueConverterClass(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
+	 *      java.util.Map, java.lang.String)
+	 * 
+	 * @param tableManager
+	 * @param existingConverters
+	 * @param multiValueSeparator
+	 * @return
+	 */
+	@Override
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator) {
+		AbstractStringValueConverter converter = existingConverters.get(EMFStringValueConverter.class);
+		if(converter == null) {
+			converter = new UMLStringValueConverter(tableManager.getTable().getContext(), multiValueSeparator);
+			existingConverters.put(EMFStringValueConverter.class, converter);
+		}
+		return converter;
 	}
 }

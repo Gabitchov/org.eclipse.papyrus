@@ -92,7 +92,7 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 	 * @return
 	 */
 	public EObject lookupRoot() throws NotFoundException {
-		if(resource.getContents().isEmpty()) {
+		if(resource == null || resource.getContents().isEmpty()) {
 			// The root doesn't exist.
 			throw new NotFoundException("No root defined in the model");
 		}

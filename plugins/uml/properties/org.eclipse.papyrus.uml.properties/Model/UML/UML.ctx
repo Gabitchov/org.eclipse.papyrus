@@ -1375,6 +1375,12 @@
     <sections name="SingleDatatypeInstance" sectionFile="ui/SingleDatatypeInstance.xwt">
       <widget href="ui/SingleDatatypeInstance.xwt#/"/>
     </sections>
+    <sections name="SinglePackageMerge" sectionFile="ui/SinglePackageMerge.xwt">
+      <widget href="ui/SinglePackageMerge.xwt#/"/>
+    </sections>
+    <sections name="MultiplePackageMerge" sectionFile="ui/MultiplePackageMerge.xwt">
+      <widget href="ui/MultiplePackageMerge.xwt#/"/>
+    </sections>
   </tabs>
   <tabs label="Profile" id="profile" category="org.eclipse.papyrus" priority="50">
     <sections name="SinglePackageProfile" sectionFile="ui/SinglePackageProfile.xwt">
@@ -4156,6 +4162,18 @@
   <views name="SingleDatatypeInstance" sections="//@tabs.0/@sections.457">
     <constraints xsi:type="constraints:SimpleConstraint" name="isUMLDatatypeInstance">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.3"/>
+    </constraints>
+  </views>
+  <views name="SinglePackageMerge" sections="//@tabs.0/@sections.458">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePackageMerge">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="PackageMerge"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="MultiplePackageMerge" sections="//@tabs.0/@sections.459">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePackageMerge">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="PackageMerge"/>
     </constraints>
   </views>
   <dataContexts name="UML" label="UML">

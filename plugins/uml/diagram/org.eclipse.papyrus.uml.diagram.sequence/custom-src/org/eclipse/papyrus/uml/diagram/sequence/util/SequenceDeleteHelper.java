@@ -47,6 +47,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.RestoreExecutionEndAdvice;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -314,11 +315,27 @@ public class SequenceDeleteHelper {
 					MessageEnd receiveEvent = message.getReceiveEvent();
 					if(receiveEvent != null) {
 						DestroyElementRequest myReq = new DestroyElementRequest(transactionalEditingDomain, receiveEvent, false);
+						//Sometimes, the message end is also the end of a execution.
+						RestoreExecutionEndAdvice provider = new RestoreExecutionEndAdvice();
+						if(provider != null) {
+							ICommand editCommand = provider.getAfterEditCommand(myReq);
+							if(editCommand != null && editCommand.canExecute()) {
+								deleteElementsCommand.add(new ICommandProxy(editCommand));
+							}
+						}
 						deleteElementsCommand.add(new ICommandProxy(new DestroyElementCommand(myReq)));
 					}
 					MessageEnd sendEvent = message.getSendEvent();
 					if(sendEvent != null) {
 						DestroyElementRequest myReq = new DestroyElementRequest(transactionalEditingDomain, sendEvent, false);
+						//Sometimes, the message end is also the end of a execution.
+						RestoreExecutionEndAdvice provider = new RestoreExecutionEndAdvice();
+						if(provider != null) {
+							ICommand editCommand = provider.getAfterEditCommand(myReq);
+							if(editCommand != null && editCommand.canExecute()) {
+								deleteElementsCommand.add(new ICommandProxy(editCommand));
+							}
+						}
 						deleteElementsCommand.add(new ICommandProxy(new DestroyElementCommand(myReq)));
 					}
 				}

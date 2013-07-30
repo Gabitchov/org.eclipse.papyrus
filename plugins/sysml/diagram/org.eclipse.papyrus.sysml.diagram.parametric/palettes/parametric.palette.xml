@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition>
+	<content>
+		<drawer id="parametric.drawer.nodes" name="Nodes" iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+			<aspectTool description="Create a new ConstraintProperty" id="parametric.tool.constraintblockpropertycomposite"
+				name="ConstraintProperty" refToolId="parametric.tool.constraintblockpropertycomposite">
+			</aspectTool>
+			<aspectTool description="Create a new ConstraintParameter" id="parametric.tool.parameter"
+				name="ConstraintParameter" refToolId="parametric.tool.parameter">
+			</aspectTool>
+			<aspectTool description="Create a new Part" id="parametric.tool.blockpropertycomposite"
+				name="Part" refToolId="parametric.tool.blockpropertycomposite">
+			</aspectTool>
+			<aspectTool description="Create a new Reference" id="parametric.tool.reference"
+				name="Reference" refToolId="parametric.tool.reference">
+			</aspectTool>
+			<aspectTool description="Create a new Value" id="parametric.tool.value"
+				name="Value" refToolId="parametric.tool.value">
+			</aspectTool>
+		</drawer>
+		<drawer id="parametric.drawer.edges" name="Edges" iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+			<aspectTool description="Create a new BindingConnector" id="parametric.tool.connector"
+				name="BindingConnector" refToolId="parametric.tool.connector">
+			</aspectTool>
+		</drawer>
+		<drawer id="parametric.drawer.others" name="Others" iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+			<aspectTool description="Create a new Dependency" id="parametric.tool.dependency"
+				name="Dependency" refToolId="parametric.tool.dependency">
+			</aspectTool>
+			<aspectTool description="Create a new Comment" id="parametric.tool.comment"
+				name="Comment" refToolId="parametric.tool.comment">
+			</aspectTool>
+			<aspectTool description="Create a new Constraint" id="parametric.tool.constraint"
+				name="Constraint" refToolId="parametric.tool.constraint">
+			</aspectTool>
+			<aspectTool description="Create a new CommentAnnotatedElement" id="parametric.tool.commentannotatedelement"
+				name="CommentAnnotatedElement" refToolId="parametric.tool.comment_constraint_link">
+			</aspectTool>			
+		</drawer>
+	</content>
+</paletteDefinition>

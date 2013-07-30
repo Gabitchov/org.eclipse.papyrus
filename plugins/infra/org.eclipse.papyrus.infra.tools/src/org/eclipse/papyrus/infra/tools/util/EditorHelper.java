@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.tools.util;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
@@ -43,6 +44,25 @@ public class EditorHelper {
 				final IWorkbenchPage activePage = activeWorkbench.getActivePage();
 				if(activePage != null) {
 					return activePage.getActiveEditor();
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the current active part or <code>null</code> if not found
+	 */
+	public static final IWorkbenchPart getActivePart() {
+		final IWorkbench workbench = PlatformUI.getWorkbench();
+		if(workbench != null) {
+			final IWorkbenchWindow activeWorkbench = workbench.getActiveWorkbenchWindow();
+			if(activeWorkbench != null) {
+				final IWorkbenchPage activePage = activeWorkbench.getActivePage();
+				if(activePage != null) {
+					return activePage.getActivePart();
 				}
 			}
 		}

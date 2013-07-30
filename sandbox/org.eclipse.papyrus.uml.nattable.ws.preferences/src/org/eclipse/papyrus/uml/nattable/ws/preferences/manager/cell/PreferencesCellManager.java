@@ -38,7 +38,7 @@ public class PreferencesCellManager extends AbstractCellManager {
 	}
 
 	@Override
-	public Object getValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
+	protected Object doGetValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 		final List<Object> elements = organizedAndResolvedValue(columnElement, rowElement);
 		Properties prop = new Properties();
 		FileInputStream fis = null;
@@ -111,8 +111,8 @@ public class PreferencesCellManager extends AbstractCellManager {
 	}
 
 	@Override
-	public boolean isCellEditable(Object obj1, Object obj2) {
-		final List<Object> elements = organizedAndResolvedValue(obj1, obj2);
+	public boolean isCellEditable(Object columnElement, Object rowElement) {
+		final List<Object> elements = organizedAndResolvedValue(columnElement, rowElement);
 		Properties prop = new Properties();
 		FileInputStream fis = null;
 		try {

@@ -19,7 +19,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
@@ -43,7 +42,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -54,13 +53,14 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	 *         the command to create the required axis in the model
 	 */
 	@Override
-	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		final CompoundCommand cmd = new CompoundCommand(Messages.EObjectManager_AddAxisElement);
 		for(final Object object : objectToAdd) {
 			if(isAllowedContents(object)) {
 				final EObjectAxis horizontalAxis = NattableaxisFactory.eINSTANCE.createEObjectAxis();
 				horizontalAxis.setElement((EObject)object);
 				horizontalAxis.setManager(this.representedAxisManager);
+				//FIXME : replace me by a SetRequest
 				final Command tmp = AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), horizontalAxis);
 				cmd.append(tmp);
 			}
@@ -71,7 +71,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	/**
 	 * This manager doesn't add axis on the other side, because it is a master axis manager
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(TransactionalEditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -79,7 +79,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		return null;
 	}
 
@@ -182,14 +182,14 @@ public class EObjectAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain,
 	 *      java.lang.Integer)
 	 * 
 	 * @param domain
 	 * @param axisPosition
 	 * @return
 	 */
-	public Command getDestroyAxisElementCommand(EditingDomain domain, Integer axisPosition) {
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		final Object current = getElements().get(axisPosition);
 		if(current instanceof EObjectAxis) {
 			final EObject element = ((EObjectAxis)current).getElement();

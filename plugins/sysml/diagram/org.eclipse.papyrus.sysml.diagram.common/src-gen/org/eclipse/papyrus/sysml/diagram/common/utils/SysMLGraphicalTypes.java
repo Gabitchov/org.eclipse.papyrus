@@ -25,6 +25,8 @@ public class SysMLGraphicalTypes {
 
 	public static final String SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_blockproperty_as_composite"; //$NON-NLS-1$
 
+	public static final String SHAPE_SYSML_CONSTRAINTBLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_constraintblockproperty_as_composite"; //$NON-NLS-1$
+
 	public static final String SHAPE_SYSML_DIMENSION_AS_CLASSIFIER_ID = "shape_sysml_dimension_as_classifier"; //$NON-NLS-1$
 
 	public static final String SHAPE_SYSML_CONSTRAINTBLOCK_AS_CLASSIFIER_ID = "shape_sysml_constraintblock_as_classifier"; //$NON-NLS-1$

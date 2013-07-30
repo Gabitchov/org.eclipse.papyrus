@@ -15,21 +15,20 @@ package org.eclipse.papyrus.infra.nattable.handler;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
+import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
@@ -37,6 +36,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * The abstract handler to use for the table actions
@@ -47,7 +47,7 @@ import org.eclipse.ui.PlatformUI;
 public abstract class AbstractTableHandler extends AbstractHandler {
 
 	/** the id used to find the NatEvent in the EclipseContext */
-	public static final String NAT_EVENT_DATA_PARAMETER_ID = "natEventParameterId";
+	public static final String NAT_EVENT_DATA_PARAMETER_ID = "natEventParameterId"; //$NON-NLS-1$
 
 	/**
 	 * the event which have declenched the call to setEnable(Object evaluationContext. This event contains the location of the mouse pointer when
@@ -56,6 +56,10 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	//FIXME : should maybe be remove with the future usage of e4 and the Eclispe Context
 	protected NatEventData eventData;
 
+	/**
+	 * the table selection wrapper
+	 */
+	protected TableSelectionWrapper wrapper = null;
 
 	/**
 	 * 
@@ -86,15 +90,8 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 * 
 	 * @return
 	 */
-	protected EditingDomain getTableEditingDomain() {//duplicated code from NattableModelManager
-		ServicesRegistry registry = null;
-		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getCurrentNattableModelManager().getTable());
-			return registry.getService(EditingDomain.class);
-		} catch (final ServiceException e) {
-			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
-		}
-		return null;
+	protected TransactionalEditingDomain getTableEditingDomain() {//duplicated code from NattableModelManager
+		return TableEditingDomainUtils.getTableEditingDomain(getCurrentNattableModelManager().getTable());
 	}
 
 	/**
@@ -102,16 +99,8 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 * 
 	 * @return
 	 */
-	protected EditingDomain getContextEditingDomain() {//duplicated code from NattableModelManager
-		ServicesRegistry registry = null;
-		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getCurrentNattableModelManager().getTable());
-			return registry.getService(EditingDomain.class);
-		} catch (final ServiceException e) {
-			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
-		}
-
-		return null;
+	protected TransactionalEditingDomain getContextEditingDomain() {//duplicated code from NattableModelManager
+		return TableEditingDomainUtils.getTableContextEditingDomain(getCurrentNattableModelManager().getTable());
 	}
 
 	/**
@@ -136,7 +125,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		//that's why we can't add the variable NAT_EVENT_DATA_PARAMETER_ID and we need to create a NatEventData instead of to get it in evaluationContext
 		if(eventData == null) {
 			Point cursorLocation = Display.getDefault().getCursorLocation();
-			Control control = Display.getDefault().getCursorControl();
+			Control control = Display.getDefault().getCursorControl();//FIXME doesn't work when we are selecting a command in a menu!
 			if(control instanceof NatTable) {//FIXME : not nice, but required
 				cursorLocation = control.toControl(cursorLocation);
 				Event e = new Event();
@@ -234,5 +223,19 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	public void setEnabled(Object evaluationContext) {
 		this.eventData = getNatEventData(evaluationContext);
 		setBaseEnabled(getCurrentNattableModelManager() != null);
+		wrapper = null;
+
+		if(evaluationContext instanceof IEvaluationContext) {
+			Object selection = HandlerUtil.getVariable(evaluationContext, "selection"); //$NON-NLS-1$
+			if(selection instanceof IStructuredSelection) {
+				Iterator<?> iter = ((IStructuredSelection)selection).iterator();
+				while(iter.hasNext() && wrapper == null) {
+					Object current = iter.next();
+					if(current instanceof TableSelectionWrapper) {
+						wrapper = (TableSelectionWrapper)current;
+					}
+				}
+			}
+		}
 	}
 }

@@ -46,7 +46,8 @@ public class AttributeMatch extends ModelMatch {
 	public AttributeMatch(int offset, int lenght, Object target, ScopeEntry scopeEntry, Object attribute) {
 		super(offset, lenght, attribute, scopeEntry);
 		this.target = target;
-		this.parent = new ModelElementMatch(target, scopeEntry);
+		this.parent = new ResultEntry(target, scopeEntry);
+		recursiveHierarchy((AbstractResultEntry)parent, scopeEntry);
 	}
 
 	/**

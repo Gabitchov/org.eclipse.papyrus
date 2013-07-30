@@ -40,6 +40,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider.TableNamedElementItemProvider;
 
 /**
@@ -165,6 +166,7 @@ public class TableItemProvider extends TableNamedElementItemProvider implements 
 			childrenFeatures.add(NattablePackage.Literals.TABLE__ROW_AXIS_PROVIDERS_HISTORY);
 			childrenFeatures.add(NattablePackage.Literals.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION);
 			childrenFeatures.add(NattablePackage.Literals.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION);
+			childrenFeatures.add(NattablePackage.Literals.TABLE__CELLS);
 		}
 		return childrenFeatures;
 	}
@@ -229,6 +231,7 @@ public class TableItemProvider extends TableNamedElementItemProvider implements 
 		case NattablePackage.TABLE__ROW_AXIS_PROVIDERS_HISTORY:
 		case NattablePackage.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION:
 		case NattablePackage.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION:
+		case NattablePackage.TABLE__CELLS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -258,6 +261,8 @@ public class TableItemProvider extends TableNamedElementItemProvider implements 
 		newChildDescriptors.add(createChildParameter(NattablePackage.Literals.TABLE__LOCAL_ROW_HEADER_AXIS_CONFIGURATION, NattableaxisconfigurationFactory.eINSTANCE.createLocalTableHeaderAxisConfiguration()));
 
 		newChildDescriptors.add(createChildParameter(NattablePackage.Literals.TABLE__LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION, NattableaxisconfigurationFactory.eINSTANCE.createLocalTableHeaderAxisConfiguration()));
+
+		newChildDescriptors.add(createChildParameter(NattablePackage.Literals.TABLE__CELLS, NattablecellFactory.eINSTANCE.createCell()));
 	}
 
 	/**

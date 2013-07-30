@@ -231,7 +231,7 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the found Papyrus models
 	 */
-	protected List<IResource> findPapyrusModels(IResource res) {
+	protected Collection<IResource> findPapyrusModels(IResource res) {
 		ResourceVisitor visitor = new ResourceVisitor();
 		try {
 			res.accept(visitor, IResource.DEPTH_INFINITE);
@@ -248,7 +248,7 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createWorkspaceScope() {
+	protected Collection<IResource> createWorkspaceScope() {
 
 		//Go through the workspace root
 		IResource root = ResourcesPlugin.getWorkspace().getRoot();

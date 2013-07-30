@@ -75,6 +75,10 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 	public void showTargetFeedback(Request request) {
 		super.showTargetFeedback(request);
 
+		if(viewerContext == null) {
+			return;
+		}
+
 		//Do not install navigation on the root
 		if(getRoot() == getHost()) {
 			return;
@@ -88,7 +92,7 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 
 	@Override
 	public Command getCommand(Request request) {
-		if(request instanceof SelectionRequest) {
+		if(request instanceof SelectionRequest && viewerContext != null) {
 			return viewerContext.navigate((SelectionRequest)request);
 		}
 		return super.getCommand(request);

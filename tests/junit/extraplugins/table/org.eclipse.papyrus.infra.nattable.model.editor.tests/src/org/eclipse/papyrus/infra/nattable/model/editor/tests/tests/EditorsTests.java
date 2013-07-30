@@ -23,8 +23,10 @@ import org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNatta
 import org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableaxisEditor;
 import org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableaxisconfigurationEditor;
 import org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableaxisproviderEditor;
+import org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattablecellEditor;
 import org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableconfigurationEditor;
 import org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattablelabelproviderEditor;
+import org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattableproblemEditor;
 import org.eclipse.papyrus.infra.nattable.model.editor.customeditors.CustomNattabletesterEditor;
 import org.eclipse.papyrus.infra.nattable.model.editor.tests.Activator;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
@@ -138,6 +140,20 @@ public class EditorsTests {
 	public void testOpenNattableTesterFileEditor() throws Exception {
 		IEditorPart editor = openFile("testTableConfiguration", "My.nattabletester", getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
 		Assert.assertTrue(editor instanceof CustomNattabletesterEditor);
+	}
+
+
+	@Test
+	public void testOpenNattableTesterCellEditor() throws Exception {
+		IEditorPart editor = openFile("testTableConfiguration", "My.nattablecell", getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
+		Assert.assertTrue(editor instanceof CustomNattablecellEditor);
+	}
+
+
+	@Test
+	public void testOpenNattableTesterProblemEditor() throws Exception {
+		IEditorPart editor = openFile("testTableConfiguration", "My.nattableproblem", getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
+		Assert.assertTrue(editor instanceof CustomNattableproblemEditor);
 	}
 
 	protected String getSourcePath() {

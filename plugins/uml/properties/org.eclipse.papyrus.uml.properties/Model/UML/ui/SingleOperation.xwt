@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composite xmlns:umlXtext="clr-namespace:org.eclipse.papyrus.uml.properties.xtext"
-	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:xtext="clr-namespace:org.eclipse.papyrus.infra.widgets.xtext.creation"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:xtext="clr-namespace:org.eclipse.papyrus.infra.widgets.xtext.creation"
 	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns:j="clr-namespace:java.lang" xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:x="http://www.eclipse.org/xwt">
+	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns="http://www.eclipse.org/xwt/presentation">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -28,8 +29,10 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:EnumCombo input="{Binding}" property="UML:BehavioralFeature:concurrency"></ppe:EnumCombo>
+		<ppe:ReferenceDialog property="UML:Operation:bodyCondition"
+			input="{Binding}"></ppe:ReferenceDialog>
 		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}" property="UML:BehavioralFeature:concurrency"></ppe:EnumCombo>
 	</Composite>
 	<Composite>
 		<Composite.layout>
@@ -39,5 +42,9 @@
 			property="UML:BehavioralFeature:method"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
 			property="UML:BehavioralFeature:ownedParameter"></ppe:MultiReference>
+		<ppe:MultiReference property="UML:Operation:precondition"
+			input="{Binding}"></ppe:MultiReference>
+		<ppe:MultiReference property="UML:Operation:postcondition"
+			input="{Binding}"></ppe:MultiReference>
 	</Composite>
 </Composite>

@@ -1,843 +1,2255 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9">
-  <contexts:Context name="nattable">
-    <tabs label="Table" id="Table" category="default" priority="1">
-      <sections name="Single Table" sectionFile="ui/SingleTable.xwt">
-        <widget href="ui/SingleTable.xwt#/"/>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9"
+    xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9">
+  <contexts:Context
+      name="nattable">
+    <tabs label="Table"
+        id="Table"
+        category="default"
+        priority="1">
+      <sections
+          name="Single Table"
+          sectionFile="ui/SingleTable.xwt">
+        <widget
+            href="ui/SingleTable.xwt#/"/>
       </sections>
-      <sections name="Multiple Table" sectionFile="ui/MultipleTable.xwt">
-        <widget href="ui/MultipleTable.xwt#/"/>
+      <sections
+          name="Multiple Table"
+          sectionFile="ui/MultipleTable.xwt">
+        <widget
+            href="ui/MultipleTable.xwt#/"/>
       </sections>
-      <sections name="Single TableConfiguration" sectionFile="ui/SingleTableConfiguration.xwt">
-        <widget href="ui/SingleTableConfiguration.xwt#/"/>
+      <sections
+          name="Single TableConfiguration"
+          sectionFile="ui/SingleTableConfiguration.xwt">
+        <widget
+            href="ui/SingleTableConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple TableConfiguration" sectionFile="ui/MultipleTableConfiguration.xwt">
-        <widget href="ui/MultipleTableConfiguration.xwt#/"/>
+      <sections
+          name="Multiple TableConfiguration"
+          sectionFile="ui/MultipleTableConfiguration.xwt">
+        <widget
+            href="ui/MultipleTableConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single AbstractAxisProvider" sectionFile="ui/SingleAbstractAxisProvider.xwt">
-        <widget href="ui/SingleAbstractAxisProvider.xwt#/"/>
+      <sections
+          name="Single AbstractAxisProvider"
+          sectionFile="ui/SingleAbstractAxisProvider.xwt">
+        <widget
+            href="ui/SingleAbstractAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Multiple AbstractAxisProvider" sectionFile="ui/MultipleAbstractAxisProvider.xwt">
-        <widget href="ui/MultipleAbstractAxisProvider.xwt#/"/>
+      <sections
+          name="Multiple AbstractAxisProvider"
+          sectionFile="ui/MultipleAbstractAxisProvider.xwt">
+        <widget
+            href="ui/MultipleAbstractAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Single AxisProvider" sectionFile="ui/SingleAxisProvider.xwt">
-        <widget href="ui/SingleAxisProvider.xwt#/"/>
+      <sections
+          name="Single AxisProvider"
+          sectionFile="ui/SingleAxisProvider.xwt">
+        <widget
+            href="ui/SingleAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Multiple AxisProvider" sectionFile="ui/MultipleAxisProvider.xwt">
-        <widget href="ui/MultipleAxisProvider.xwt#/"/>
+      <sections
+          name="Multiple AxisProvider"
+          sectionFile="ui/MultipleAxisProvider.xwt">
+        <widget
+            href="ui/MultipleAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Single IMasterAxisProvider" sectionFile="ui/SingleIMasterAxisProvider.xwt">
-        <widget href="ui/SingleIMasterAxisProvider.xwt#/"/>
+      <sections
+          name="Single IMasterAxisProvider"
+          sectionFile="ui/SingleIMasterAxisProvider.xwt">
+        <widget
+            href="ui/SingleIMasterAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Multiple IMasterAxisProvider" sectionFile="ui/MultipleIMasterAxisProvider.xwt">
-        <widget href="ui/MultipleIMasterAxisProvider.xwt#/"/>
+      <sections
+          name="Multiple IMasterAxisProvider"
+          sectionFile="ui/MultipleIMasterAxisProvider.xwt">
+        <widget
+            href="ui/MultipleIMasterAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Single ISlaveAxisProvider" sectionFile="ui/SingleISlaveAxisProvider.xwt">
-        <widget href="ui/SingleISlaveAxisProvider.xwt#/"/>
+      <sections
+          name="Single ISlaveAxisProvider"
+          sectionFile="ui/SingleISlaveAxisProvider.xwt">
+        <widget
+            href="ui/SingleISlaveAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Multiple ISlaveAxisProvider" sectionFile="ui/MultipleISlaveAxisProvider.xwt">
-        <widget href="ui/MultipleISlaveAxisProvider.xwt#/"/>
+      <sections
+          name="Multiple ISlaveAxisProvider"
+          sectionFile="ui/MultipleISlaveAxisProvider.xwt">
+        <widget
+            href="ui/MultipleISlaveAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Single SlaveObjectAxisProvider" sectionFile="ui/SingleSlaveObjectAxisProvider.xwt">
-        <widget href="ui/SingleSlaveObjectAxisProvider.xwt#/"/>
+      <sections
+          name="Single SlaveObjectAxisProvider"
+          sectionFile="ui/SingleSlaveObjectAxisProvider.xwt">
+        <widget
+            href="ui/SingleSlaveObjectAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Multiple SlaveObjectAxisProvider" sectionFile="ui/MultipleSlaveObjectAxisProvider.xwt">
-        <widget href="ui/MultipleSlaveObjectAxisProvider.xwt#/"/>
+      <sections
+          name="Multiple SlaveObjectAxisProvider"
+          sectionFile="ui/MultipleSlaveObjectAxisProvider.xwt">
+        <widget
+            href="ui/MultipleSlaveObjectAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Single MasterObjectAxisProvider" sectionFile="ui/SingleMasterObjectAxisProvider.xwt">
-        <widget href="ui/SingleMasterObjectAxisProvider.xwt#/"/>
+      <sections
+          name="Single MasterObjectAxisProvider"
+          sectionFile="ui/SingleMasterObjectAxisProvider.xwt">
+        <widget
+            href="ui/SingleMasterObjectAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Multiple MasterObjectAxisProvider" sectionFile="ui/MultipleMasterObjectAxisProvider.xwt">
-        <widget href="ui/MultipleMasterObjectAxisProvider.xwt#/"/>
+      <sections
+          name="Multiple MasterObjectAxisProvider"
+          sectionFile="ui/MultipleMasterObjectAxisProvider.xwt">
+        <widget
+            href="ui/MultipleMasterObjectAxisProvider.xwt#/"/>
       </sections>
-      <sections name="Single ILabelProviderConfiguration" sectionFile="ui/SingleILabelProviderConfiguration.xwt">
-        <widget href="ui/SingleILabelProviderConfiguration.xwt#/"/>
+      <sections
+          name="Single ILabelProviderConfiguration"
+          sectionFile="ui/SingleILabelProviderConfiguration.xwt">
+        <widget
+            href="ui/SingleILabelProviderConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple ILabelProviderConfiguration" sectionFile="ui/MultipleILabelProviderConfiguration.xwt">
-        <widget href="ui/MultipleILabelProviderConfiguration.xwt#/"/>
+      <sections
+          name="Multiple ILabelProviderConfiguration"
+          sectionFile="ui/MultipleILabelProviderConfiguration.xwt">
+        <widget
+            href="ui/MultipleILabelProviderConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single ObjectLabelProviderConfiguration" sectionFile="ui/SingleObjectLabelProviderConfiguration.xwt">
-        <widget href="ui/SingleObjectLabelProviderConfiguration.xwt#/"/>
+      <sections
+          name="Single ObjectLabelProviderConfiguration"
+          sectionFile="ui/SingleObjectLabelProviderConfiguration.xwt">
+        <widget
+            href="ui/SingleObjectLabelProviderConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple ObjectLabelProviderConfiguration" sectionFile="ui/MultipleObjectLabelProviderConfiguration.xwt">
-        <widget href="ui/MultipleObjectLabelProviderConfiguration.xwt#/"/>
+      <sections
+          name="Multiple ObjectLabelProviderConfiguration"
+          sectionFile="ui/MultipleObjectLabelProviderConfiguration.xwt">
+        <widget
+            href="ui/MultipleObjectLabelProviderConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single FeatureLabelProviderConfiguration" sectionFile="ui/SingleFeatureLabelProviderConfiguration.xwt">
-        <widget href="ui/SingleFeatureLabelProviderConfiguration.xwt#/"/>
+      <sections
+          name="Single FeatureLabelProviderConfiguration"
+          sectionFile="ui/SingleFeatureLabelProviderConfiguration.xwt">
+        <widget
+            href="ui/SingleFeatureLabelProviderConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple FeatureLabelProviderConfiguration" sectionFile="ui/MultipleFeatureLabelProviderConfiguration.xwt">
-        <widget href="ui/MultipleFeatureLabelProviderConfiguration.xwt#/"/>
+      <sections
+          name="Multiple FeatureLabelProviderConfiguration"
+          sectionFile="ui/MultipleFeatureLabelProviderConfiguration.xwt">
+        <widget
+            href="ui/MultipleFeatureLabelProviderConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single AbstractHeaderAxisConfiguration" sectionFile="ui/SingleAbstractHeaderAxisConfiguration.xwt">
-        <widget href="ui/SingleAbstractHeaderAxisConfiguration.xwt#/"/>
+      <sections
+          name="Single AbstractHeaderAxisConfiguration"
+          sectionFile="ui/SingleAbstractHeaderAxisConfiguration.xwt">
+        <widget
+            href="ui/SingleAbstractHeaderAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple AbstractHeaderAxisConfiguration" sectionFile="ui/MultipleAbstractHeaderAxisConfiguration.xwt">
-        <widget href="ui/MultipleAbstractHeaderAxisConfiguration.xwt#/"/>
+      <sections
+          name="Multiple AbstractHeaderAxisConfiguration"
+          sectionFile="ui/MultipleAbstractHeaderAxisConfiguration.xwt">
+        <widget
+            href="ui/MultipleAbstractHeaderAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single AxisManagerRepresentation" sectionFile="ui/SingleAxisManagerRepresentation.xwt">
-        <widget href="ui/SingleAxisManagerRepresentation.xwt#/"/>
+      <sections
+          name="Single AxisManagerRepresentation"
+          sectionFile="ui/SingleAxisManagerRepresentation.xwt">
+        <widget
+            href="ui/SingleAxisManagerRepresentation.xwt#/"/>
       </sections>
-      <sections name="Multiple AxisManagerRepresentation" sectionFile="ui/MultipleAxisManagerRepresentation.xwt">
-        <widget href="ui/MultipleAxisManagerRepresentation.xwt#/"/>
+      <sections
+          name="Multiple AxisManagerRepresentation"
+          sectionFile="ui/MultipleAxisManagerRepresentation.xwt">
+        <widget
+            href="ui/MultipleAxisManagerRepresentation.xwt#/"/>
       </sections>
-      <sections name="Single AxisManagerConfiguration" sectionFile="ui/SingleAxisManagerConfiguration.xwt">
-        <widget href="ui/SingleAxisManagerConfiguration.xwt#/"/>
+      <sections
+          name="Single AxisManagerConfiguration"
+          sectionFile="ui/SingleAxisManagerConfiguration.xwt">
+        <widget
+            href="ui/SingleAxisManagerConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple AxisManagerConfiguration" sectionFile="ui/MultipleAxisManagerConfiguration.xwt">
-        <widget href="ui/MultipleAxisManagerConfiguration.xwt#/"/>
+      <sections
+          name="Multiple AxisManagerConfiguration"
+          sectionFile="ui/MultipleAxisManagerConfiguration.xwt">
+        <widget
+            href="ui/MultipleAxisManagerConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single TableHeaderAxisConfiguration" sectionFile="ui/SingleTableHeaderAxisConfiguration.xwt">
-        <widget href="ui/SingleTableHeaderAxisConfiguration.xwt#/"/>
+      <sections
+          name="Single TableHeaderAxisConfiguration"
+          sectionFile="ui/SingleTableHeaderAxisConfiguration.xwt">
+        <widget
+            href="ui/SingleTableHeaderAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple TableHeaderAxisConfiguration" sectionFile="ui/MultipleTableHeaderAxisConfiguration.xwt">
-        <widget href="ui/MultipleTableHeaderAxisConfiguration.xwt#/"/>
+      <sections
+          name="Multiple TableHeaderAxisConfiguration"
+          sectionFile="ui/MultipleTableHeaderAxisConfiguration.xwt">
+        <widget
+            href="ui/MultipleTableHeaderAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single LocalTableHeaderAxisConfiguration" sectionFile="ui/SingleLocalTableHeaderAxisConfiguration.xwt">
-        <widget href="ui/SingleLocalTableHeaderAxisConfiguration.xwt#/"/>
+      <sections
+          name="Single LocalTableHeaderAxisConfiguration"
+          sectionFile="ui/SingleLocalTableHeaderAxisConfiguration.xwt">
+        <widget
+            href="ui/SingleLocalTableHeaderAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple LocalTableHeaderAxisConfiguration" sectionFile="ui/MultipleLocalTableHeaderAxisConfiguration.xwt">
-        <widget href="ui/MultipleLocalTableHeaderAxisConfiguration.xwt#/"/>
+      <sections
+          name="Multiple LocalTableHeaderAxisConfiguration"
+          sectionFile="ui/MultipleLocalTableHeaderAxisConfiguration.xwt">
+        <widget
+            href="ui/MultipleLocalTableHeaderAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single IAxisConfiguration" sectionFile="ui/SingleIAxisConfiguration.xwt">
-        <widget href="ui/SingleIAxisConfiguration.xwt#/"/>
+      <sections
+          name="Single IAxisConfiguration"
+          sectionFile="ui/SingleIAxisConfiguration.xwt">
+        <widget
+            href="ui/SingleIAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple IAxisConfiguration" sectionFile="ui/MultipleIAxisConfiguration.xwt">
-        <widget href="ui/MultipleIAxisConfiguration.xwt#/"/>
+      <sections
+          name="Multiple IAxisConfiguration"
+          sectionFile="ui/MultipleIAxisConfiguration.xwt">
+        <widget
+            href="ui/MultipleIAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single FeatureAxisConfiguration" sectionFile="ui/SingleFeatureAxisConfiguration.xwt">
-        <widget href="ui/SingleFeatureAxisConfiguration.xwt#/"/>
+      <sections
+          name="Single FeatureAxisConfiguration"
+          sectionFile="ui/SingleFeatureAxisConfiguration.xwt">
+        <widget
+            href="ui/SingleFeatureAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple FeatureAxisConfiguration" sectionFile="ui/MultipleFeatureAxisConfiguration.xwt">
-        <widget href="ui/MultipleFeatureAxisConfiguration.xwt#/"/>
+      <sections
+          name="Multiple FeatureAxisConfiguration"
+          sectionFile="ui/MultipleFeatureAxisConfiguration.xwt">
+        <widget
+            href="ui/MultipleFeatureAxisConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single IFillingConfiguration" sectionFile="ui/SingleIFillingConfiguration.xwt">
-        <widget href="ui/SingleIFillingConfiguration.xwt#/"/>
+      <sections
+          name="Single IFillingConfiguration"
+          sectionFile="ui/SingleIFillingConfiguration.xwt">
+        <widget
+            href="ui/SingleIFillingConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple IFillingConfiguration" sectionFile="ui/MultipleIFillingConfiguration.xwt">
-        <widget href="ui/MultipleIFillingConfiguration.xwt#/"/>
+      <sections
+          name="Multiple IFillingConfiguration"
+          sectionFile="ui/MultipleIFillingConfiguration.xwt">
+        <widget
+            href="ui/MultipleIFillingConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single EStructuralFeatureValueFillingConfiguration" sectionFile="ui/SingleEStructuralFeatureValueFillingConfiguration.xwt">
-        <widget href="ui/SingleEStructuralFeatureValueFillingConfiguration.xwt#/"/>
+      <sections
+          name="Single EStructuralFeatureValueFillingConfiguration"
+          sectionFile="ui/SingleEStructuralFeatureValueFillingConfiguration.xwt">
+        <widget
+            href="ui/SingleEStructuralFeatureValueFillingConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple EStructuralFeatureValueFillingConfiguration" sectionFile="ui/MultipleEStructuralFeatureValueFillingConfiguration.xwt">
-        <widget href="ui/MultipleEStructuralFeatureValueFillingConfiguration.xwt#/"/>
+      <sections
+          name="Multiple EStructuralFeatureValueFillingConfiguration"
+          sectionFile="ui/MultipleEStructuralFeatureValueFillingConfiguration.xwt">
+        <widget
+            href="ui/MultipleEStructuralFeatureValueFillingConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single IPasteConfiguration" sectionFile="ui/SingleIPasteConfiguration.xwt">
-        <widget href="ui/SingleIPasteConfiguration.xwt#/"/>
+      <sections
+          name="Single IPasteConfiguration"
+          sectionFile="ui/SingleIPasteConfiguration.xwt">
+        <widget
+            href="ui/SingleIPasteConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple IPasteConfiguration" sectionFile="ui/MultipleIPasteConfiguration.xwt">
-        <widget href="ui/MultipleIPasteConfiguration.xwt#/"/>
+      <sections
+          name="Multiple IPasteConfiguration"
+          sectionFile="ui/MultipleIPasteConfiguration.xwt">
+        <widget
+            href="ui/MultipleIPasteConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single PasteEObjectConfiguration" sectionFile="ui/SinglePasteEObjectConfiguration.xwt">
-        <widget href="ui/SinglePasteEObjectConfiguration.xwt#/"/>
+      <sections
+          name="Single PasteEObjectConfiguration"
+          sectionFile="ui/SinglePasteEObjectConfiguration.xwt">
+        <widget
+            href="ui/SinglePasteEObjectConfiguration.xwt#/"/>
       </sections>
-      <sections name="Multiple PasteEObjectConfiguration" sectionFile="ui/MultiplePasteEObjectConfiguration.xwt">
-        <widget href="ui/MultiplePasteEObjectConfiguration.xwt#/"/>
+      <sections
+          name="Multiple PasteEObjectConfiguration"
+          sectionFile="ui/MultiplePasteEObjectConfiguration.xwt">
+        <widget
+            href="ui/MultiplePasteEObjectConfiguration.xwt#/"/>
       </sections>
-      <sections name="Single AbstractTableTester" sectionFile="ui/SingleAbstractTableTester.xwt">
-        <widget href="ui/SingleAbstractTableTester.xwt#/"/>
+      <sections
+          name="Single AbstractTableTester"
+          sectionFile="ui/SingleAbstractTableTester.xwt">
+        <widget
+            href="ui/SingleAbstractTableTester.xwt#/"/>
       </sections>
-      <sections name="Multiple AbstractTableTester" sectionFile="ui/MultipleAbstractTableTester.xwt">
-        <widget href="ui/MultipleAbstractTableTester.xwt#/"/>
+      <sections
+          name="Multiple AbstractTableTester"
+          sectionFile="ui/MultipleAbstractTableTester.xwt">
+        <widget
+            href="ui/MultipleAbstractTableTester.xwt#/"/>
       </sections>
-      <sections name="Single JavaTableTester" sectionFile="ui/SingleJavaTableTester.xwt">
-        <widget href="ui/SingleJavaTableTester.xwt#/"/>
+      <sections
+          name="Single JavaTableTester"
+          sectionFile="ui/SingleJavaTableTester.xwt">
+        <widget
+            href="ui/SingleJavaTableTester.xwt#/"/>
       </sections>
-      <sections name="Multiple JavaTableTester" sectionFile="ui/MultipleJavaTableTester.xwt">
-        <widget href="ui/MultipleJavaTableTester.xwt#/"/>
+      <sections
+          name="Multiple JavaTableTester"
+          sectionFile="ui/MultipleJavaTableTester.xwt">
+        <widget
+            href="ui/MultipleJavaTableTester.xwt#/"/>
       </sections>
-      <sections name="Single IAxis" sectionFile="ui/SingleIAxis.xwt">
-        <widget href="ui/SingleIAxis.xwt#/"/>
+      <sections
+          name="Single IAxis"
+          sectionFile="ui/SingleIAxis.xwt">
+        <widget
+            href="ui/SingleIAxis.xwt#/"/>
       </sections>
-      <sections name="Multiple IAxis" sectionFile="ui/MultipleIAxis.xwt">
-        <widget href="ui/MultipleIAxis.xwt#/"/>
+      <sections
+          name="Multiple IAxis"
+          sectionFile="ui/MultipleIAxis.xwt">
+        <widget
+            href="ui/MultipleIAxis.xwt#/"/>
       </sections>
-      <sections name="Single IdAxis" sectionFile="ui/SingleIdAxis.xwt">
-        <widget href="ui/SingleIdAxis.xwt#/"/>
+      <sections
+          name="Single IdAxis"
+          sectionFile="ui/SingleIdAxis.xwt">
+        <widget
+            href="ui/SingleIdAxis.xwt#/"/>
       </sections>
-      <sections name="Multiple IdAxis" sectionFile="ui/MultipleIdAxis.xwt">
-        <widget href="ui/MultipleIdAxis.xwt#/"/>
+      <sections
+          name="Multiple IdAxis"
+          sectionFile="ui/MultipleIdAxis.xwt">
+        <widget
+            href="ui/MultipleIdAxis.xwt#/"/>
       </sections>
-      <sections name="Single ObjectAxis" sectionFile="ui/SingleObjectAxis.xwt">
-        <widget href="ui/SingleObjectAxis.xwt#/"/>
+      <sections
+          name="Single ObjectAxis"
+          sectionFile="ui/SingleObjectAxis.xwt">
+        <widget
+            href="ui/SingleObjectAxis.xwt#/"/>
       </sections>
-      <sections name="Multiple ObjectAxis" sectionFile="ui/MultipleObjectAxis.xwt">
-        <widget href="ui/MultipleObjectAxis.xwt#/"/>
+      <sections
+          name="Multiple ObjectAxis"
+          sectionFile="ui/MultipleObjectAxis.xwt">
+        <widget
+            href="ui/MultipleObjectAxis.xwt#/"/>
       </sections>
-      <sections name="Single EObjectAxis" sectionFile="ui/SingleEObjectAxis.xwt">
-        <widget href="ui/SingleEObjectAxis.xwt#/"/>
+      <sections
+          name="Single EObjectAxis"
+          sectionFile="ui/SingleEObjectAxis.xwt">
+        <widget
+            href="ui/SingleEObjectAxis.xwt#/"/>
       </sections>
-      <sections name="Multiple EObjectAxis" sectionFile="ui/MultipleEObjectAxis.xwt">
-        <widget href="ui/MultipleEObjectAxis.xwt#/"/>
+      <sections
+          name="Multiple EObjectAxis"
+          sectionFile="ui/MultipleEObjectAxis.xwt">
+        <widget
+            href="ui/MultipleEObjectAxis.xwt#/"/>
       </sections>
-      <sections name="Single FeatureAxis" sectionFile="ui/SingleFeatureAxis.xwt">
-        <widget href="ui/SingleFeatureAxis.xwt#/"/>
+      <sections
+          name="Single FeatureAxis"
+          sectionFile="ui/SingleFeatureAxis.xwt">
+        <widget
+            href="ui/SingleFeatureAxis.xwt#/"/>
       </sections>
-      <sections name="Multiple FeatureAxis" sectionFile="ui/MultipleFeatureAxis.xwt">
-        <widget href="ui/MultipleFeatureAxis.xwt#/"/>
+      <sections
+          name="Multiple FeatureAxis"
+          sectionFile="ui/MultipleFeatureAxis.xwt">
+        <widget
+            href="ui/MultipleFeatureAxis.xwt#/"/>
       </sections>
-      <sections name="Single FeatureIdAxis" sectionFile="ui/SingleFeatureIdAxis.xwt">
-        <widget href="ui/SingleFeatureIdAxis.xwt#/"/>
+      <sections
+          name="Single FeatureIdAxis"
+          sectionFile="ui/SingleFeatureIdAxis.xwt">
+        <widget
+            href="ui/SingleFeatureIdAxis.xwt#/"/>
       </sections>
-      <sections name="Multiple FeatureIdAxis" sectionFile="ui/MultipleFeatureIdAxis.xwt">
-        <widget href="ui/MultipleFeatureIdAxis.xwt#/"/>
+      <sections
+          name="Multiple FeatureIdAxis"
+          sectionFile="ui/MultipleFeatureIdAxis.xwt">
+        <widget
+            href="ui/MultipleFeatureIdAxis.xwt#/"/>
       </sections>
-      <sections name="Single EStructuralFeatureAxis" sectionFile="ui/SingleEStructuralFeatureAxis.xwt">
-        <widget href="ui/SingleEStructuralFeatureAxis.xwt#/"/>
+      <sections
+          name="Single EStructuralFeatureAxis"
+          sectionFile="ui/SingleEStructuralFeatureAxis.xwt">
+        <widget
+            href="ui/SingleEStructuralFeatureAxis.xwt#/"/>
       </sections>
-      <sections name="Multiple EStructuralFeatureAxis" sectionFile="ui/MultipleEStructuralFeatureAxis.xwt">
-        <widget href="ui/MultipleEStructuralFeatureAxis.xwt#/"/>
+      <sections
+          name="Multiple EStructuralFeatureAxis"
+          sectionFile="ui/MultipleEStructuralFeatureAxis.xwt">
+        <widget
+            href="ui/MultipleEStructuralFeatureAxis.xwt#/"/>
       </sections>
-      <sections name="Single ObjectIdAxis" sectionFile="ui/SingleObjectIdAxis.xwt">
-        <widget href="ui/SingleObjectIdAxis.xwt#/"/>
+      <sections
+          name="Single ObjectIdAxis"
+          sectionFile="ui/SingleObjectIdAxis.xwt">
+        <widget
+            href="ui/SingleObjectIdAxis.xwt#/"/>
       </sections>
-      <sections name="Multiple ObjectIdAxis" sectionFile="ui/MultipleObjectIdAxis.xwt">
-        <widget href="ui/MultipleObjectIdAxis.xwt#/"/>
+      <sections
+          name="Multiple ObjectIdAxis"
+          sectionFile="ui/MultipleObjectIdAxis.xwt">
+        <widget
+            href="ui/MultipleObjectIdAxis.xwt#/"/>
       </sections>
     </tabs>
-    <tabs label="Appearance" id="TableAppearance" category="default" afterTab="/0/@tabs.0">
-      <sections name="SingleTableAppearance" sectionFile="ui/SingleTableAppearance.xwt">
-        <widget href="ui/SingleTableAppearance.xwt#/"/>
+    <tabs label="Appearance"
+        id="TableAppearance"
+        category="default"
+        afterTab="/0/@tabs.0">
+      <sections
+          name="SingleTableAppearance"
+          sectionFile="ui/SingleTableAppearance.xwt">
+        <widget
+            href="ui/SingleTableAppearance.xwt#/"/>
       </sections>
-      <sections name="ColumnFeatureLabelProviderConfiguration" sectionFile="ui/ColumnFeatureLabelProviderConfiguration.xwt">
-        <constraints xsi:type="constraints:SimpleConstraint" name="hasColumnFeatureLabelConfigurationConstraint" overrideable="false">
-          <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
-          <properties xsi:type="constraints:ValueProperty" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasColumnFeatureLabelConfigurationConstraint"/>
+      <sections
+          name="ColumnFeatureLabelProviderConfiguration"
+          sectionFile="ui/ColumnFeatureLabelProviderConfiguration.xwt">
+        <constraints
+            xsi:type="constraints:SimpleConstraint"
+            name="hasColumnFeatureLabelConfigurationConstraint"
+            overrideable="false">
+          <constraintType
+              href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties
+              xsi:type="constraints:ValueProperty"
+              name="className"
+              value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasColumnFeatureLabelConfigurationConstraint"/>
         </constraints>
-        <widget href="ui/ColumnFeatureLabelProviderConfiguration.xwt#/"/>
+        <widget
+            href="ui/ColumnFeatureLabelProviderConfiguration.xwt#/"/>
       </sections>
-      <sections name="ColumnObjectLabelProviderConfiguration" sectionFile="ui/ColumnObjectLabelProviderConfiguration.xwt">
-        <constraints xsi:type="constraints:SimpleConstraint" name="hasColumnObjectLabelConfigurationConstraint" overrideable="false">
-          <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
-          <properties xsi:type="constraints:ValueProperty" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasColumnObjectLabelConfigurationConstraint"/>
+      <sections
+          name="ColumnObjectLabelProviderConfiguration"
+          sectionFile="ui/ColumnObjectLabelProviderConfiguration.xwt">
+        <constraints
+            xsi:type="constraints:SimpleConstraint"
+            name="hasColumnObjectLabelConfigurationConstraint"
+            overrideable="false">
+          <constraintType
+              href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties
+              xsi:type="constraints:ValueProperty"
+              name="className"
+              value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasColumnObjectLabelConfigurationConstraint"/>
         </constraints>
-        <widget href="ui/ColumnObjectLabelProviderConfiguration.xwt#/"/>
+        <widget
+            href="ui/ColumnObjectLabelProviderConfiguration.xwt#/"/>
       </sections>
-      <sections name="RowFeatureLabelProviderConfiguration" sectionFile="ui/RowFeatureLabelProviderConfiguration.xwt">
-        <constraints xsi:type="constraints:SimpleConstraint" name="hasRowFeatureLabelConfigurationConstraint" overrideable="false">
-          <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
-          <properties xsi:type="constraints:ValueProperty" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasRowFeatureLabelConfigurationConstraint"/>
+      <sections
+          name="RowFeatureLabelProviderConfiguration"
+          sectionFile="ui/RowFeatureLabelProviderConfiguration.xwt">
+        <constraints
+            xsi:type="constraints:SimpleConstraint"
+            name="hasRowFeatureLabelConfigurationConstraint"
+            overrideable="false">
+          <constraintType
+              href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties
+              xsi:type="constraints:ValueProperty"
+              name="className"
+              value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasRowFeatureLabelConfigurationConstraint"/>
         </constraints>
-        <widget href="ui/RowFeatureLabelProviderConfiguration.xwt#/"/>
+        <widget
+            href="ui/RowFeatureLabelProviderConfiguration.xwt#/"/>
       </sections>
-      <sections name="RowObjectLabelProviderConfiguration" sectionFile="ui/RowObjectLabelProviderConfiguration.xwt">
-        <constraints xsi:type="constraints:SimpleConstraint" name="hasRowObjectLabelConfigurationConstraint" overrideable="false">
-          <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
-          <properties xsi:type="constraints:ValueProperty" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasRowObjectLabelConfigurationConstraint"/>
+      <sections
+          name="RowObjectLabelProviderConfiguration"
+          sectionFile="ui/RowObjectLabelProviderConfiguration.xwt">
+        <constraints
+            xsi:type="constraints:SimpleConstraint"
+            name="hasRowObjectLabelConfigurationConstraint"
+            overrideable="false">
+          <constraintType
+              href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties
+              xsi:type="constraints:ValueProperty"
+              name="className"
+              value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasRowObjectLabelConfigurationConstraint"/>
         </constraints>
-        <widget href="ui/RowObjectLabelProviderConfiguration.xwt#/"/>
+        <widget
+            href="ui/RowObjectLabelProviderConfiguration.xwt#/"/>
       </sections>
     </tabs>
-    <views name="Single Table" sections="/0/@tabs.0/@sections.0" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTable">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="Table"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple Table" sections="/0/@tabs.0/@sections.1" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleTable">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="Table"/>
-      </constraints>
-    </views>
-    <views name="Single TableConfiguration" sections="/0/@tabs.0/@sections.2" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.1/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTableConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="TableConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple TableConfiguration" sections="/0/@tabs.0/@sections.3" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.1/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleTableConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="TableConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single AbstractAxisProvider" sections="/0/@tabs.0/@sections.4" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAbstractAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractAxisProvider"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple AbstractAxisProvider" sections="/0/@tabs.0/@sections.5" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAbstractAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractAxisProvider"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-      </constraints>
-    </views>
-    <views name="Single AxisProvider" sections="/0/@tabs.0/@sections.6" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.3">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AxisProvider"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple AxisProvider" sections="/0/@tabs.0/@sections.7" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.3">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AxisProvider"/>
-      </constraints>
-    </views>
-    <views name="Single IMasterAxisProvider" sections="/0/@tabs.0/@sections.8" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIMasterAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IMasterAxisProvider"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple IMasterAxisProvider" sections="/0/@tabs.0/@sections.9" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIMasterAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IMasterAxisProvider"/>
-      </constraints>
-    </views>
-    <views name="Single ISlaveAxisProvider" sections="/0/@tabs.0/@sections.10" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.2">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleISlaveAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ISlaveAxisProvider"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple ISlaveAxisProvider" sections="/0/@tabs.0/@sections.11" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.2">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleISlaveAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ISlaveAxisProvider"/>
-      </constraints>
-    </views>
-    <views name="Single SlaveObjectAxisProvider" sections="/0/@tabs.0/@sections.12" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.4">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleSlaveObjectAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="SlaveObjectAxisProvider"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple SlaveObjectAxisProvider" sections="/0/@tabs.0/@sections.13" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.4">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleSlaveObjectAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="SlaveObjectAxisProvider"/>
-      </constraints>
-    </views>
-    <views name="Single MasterObjectAxisProvider" sections="/0/@tabs.0/@sections.14" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.5">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleMasterObjectAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="MasterObjectAxisProvider"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple MasterObjectAxisProvider" sections="/0/@tabs.0/@sections.15" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.2/@elements.5">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleMasterObjectAxisProvider">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="MasterObjectAxisProvider"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
-      </constraints>
-    </views>
-    <views name="Single ILabelProviderConfiguration" sections="/0/@tabs.0/@sections.16" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.3/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleILabelProviderConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ILabelProviderConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple ILabelProviderConfiguration" sections="/0/@tabs.0/@sections.17" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.3/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleILabelProviderConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ILabelProviderConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
-      </constraints>
-    </views>
-    <views name="Single ObjectLabelProviderConfiguration" sections="/0/@tabs.0/@sections.18" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.3/@elements.2">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleObjectLabelProviderConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ObjectLabelProviderConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple ObjectLabelProviderConfiguration" sections="/0/@tabs.0/@sections.19" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.3/@elements.2">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleObjectLabelProviderConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ObjectLabelProviderConfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single FeatureLabelProviderConfiguration" sections="/0/@tabs.0/@sections.20" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.3/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFeatureLabelProviderConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="FeatureLabelProviderConfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple FeatureLabelProviderConfiguration" sections="/0/@tabs.0/@sections.21" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.3/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFeatureLabelProviderConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="FeatureLabelProviderConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
-      </constraints>
-    </views>
-    <views name="Single AbstractHeaderAxisConfiguration" sections="/0/@tabs.0/@sections.22" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAbstractHeaderAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractHeaderAxisConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple AbstractHeaderAxisConfiguration" sections="/0/@tabs.0/@sections.23" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAbstractHeaderAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractHeaderAxisConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single AxisManagerRepresentation" sections="/0/@tabs.0/@sections.24" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAxisManagerRepresentation">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AxisManagerRepresentation"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple AxisManagerRepresentation" sections="/0/@tabs.0/@sections.25" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAxisManagerRepresentation">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AxisManagerRepresentation"/>
-      </constraints>
-    </views>
-    <views name="Single AxisManagerConfiguration" sections="/0/@tabs.0/@sections.26" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.2">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAxisManagerConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AxisManagerConfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple AxisManagerConfiguration" sections="/0/@tabs.0/@sections.27" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.2">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAxisManagerConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AxisManagerConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single TableHeaderAxisConfiguration" sections="/0/@tabs.0/@sections.28" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.3">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTableHeaderAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="TableHeaderAxisConfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple TableHeaderAxisConfiguration" sections="/0/@tabs.0/@sections.29" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.3">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleTableHeaderAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="TableHeaderAxisConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single LocalTableHeaderAxisConfiguration" sections="/0/@tabs.0/@sections.30" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.4">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLocalTableHeaderAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="LocalTableHeaderAxisConfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple LocalTableHeaderAxisConfiguration" sections="/0/@tabs.0/@sections.31" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.4">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLocalTableHeaderAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="LocalTableHeaderAxisConfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single IAxisConfiguration" sections="/0/@tabs.0/@sections.32" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.5">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IAxisConfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple IAxisConfiguration" sections="/0/@tabs.0/@sections.33" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.5">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IAxisConfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single FeatureAxisConfiguration" sections="/0/@tabs.0/@sections.34" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.6">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFeatureAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="FeatureAxisConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple FeatureAxisConfiguration" sections="/0/@tabs.0/@sections.35" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.6">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFeatureAxisConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="FeatureAxisConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single IFillingConfiguration" sections="/0/@tabs.0/@sections.36" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.7">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIFillingConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IFillingConfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple IFillingConfiguration" sections="/0/@tabs.0/@sections.37" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.7">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIFillingConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IFillingConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single EStructuralFeatureValueFillingConfiguration" sections="/0/@tabs.0/@sections.38" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.8">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleEStructuralFeatureValueFillingConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="EStructuralFeatureValueFillingConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple EStructuralFeatureValueFillingConfiguration" sections="/0/@tabs.0/@sections.39" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.8">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleEStructuralFeatureValueFillingConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="EStructuralFeatureValueFillingConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single IPasteConfiguration" sections="/0/@tabs.0/@sections.40" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.9">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIPasteConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IPasteConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple IPasteConfiguration" sections="/0/@tabs.0/@sections.41" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.9">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIPasteConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IPasteConfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single PasteEObjectConfiguration" sections="/0/@tabs.0/@sections.42" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.10">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePasteEObjectConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="PasteEObjectConfiguration"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple PasteEObjectConfiguration" sections="/0/@tabs.0/@sections.43" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.4/@elements.10">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePasteEObjectConfiguration">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="PasteEObjectConfiguration"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
-      </constraints>
-    </views>
-    <views name="Single AbstractTableTester" sections="/0/@tabs.0/@sections.44" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.5/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAbstractTableTester">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractTableTester"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple AbstractTableTester" sections="/0/@tabs.0/@sections.45" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.5/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAbstractTableTester">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractTableTester"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"/>
-      </constraints>
-    </views>
-    <views name="Single JavaTableTester" sections="/0/@tabs.0/@sections.46" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.5/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleJavaTableTester">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="JavaTableTester"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple JavaTableTester" sections="/0/@tabs.0/@sections.47" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.5/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleJavaTableTester">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="JavaTableTester"/>
-      </constraints>
-    </views>
-    <views name="Single IAxis" sections="/0/@tabs.0/@sections.48" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IAxis"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple IAxis" sections="/0/@tabs.0/@sections.49" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.0">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IAxis"/>
-      </constraints>
-    </views>
-    <views name="Single IdAxis" sections="/0/@tabs.0/@sections.50" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIdAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IdAxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple IdAxis" sections="/0/@tabs.0/@sections.51" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.1">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIdAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="IdAxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-      </constraints>
-    </views>
-    <views name="Single ObjectAxis" sections="/0/@tabs.0/@sections.52" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.4">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleObjectAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ObjectAxis"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple ObjectAxis" sections="/0/@tabs.0/@sections.53" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.4">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleObjectAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ObjectAxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-      </constraints>
-    </views>
-    <views name="Single EObjectAxis" sections="/0/@tabs.0/@sections.54" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.2">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleEObjectAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="EObjectAxis"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple EObjectAxis" sections="/0/@tabs.0/@sections.55" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.2">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleEObjectAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="EObjectAxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-      </constraints>
-    </views>
-    <views name="Single FeatureAxis" sections="/0/@tabs.0/@sections.56" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.3">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFeatureAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="FeatureAxis"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple FeatureAxis" sections="/0/@tabs.0/@sections.57" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.3">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFeatureAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="FeatureAxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-      </constraints>
-    </views>
-    <views name="Single FeatureIdAxis" sections="/0/@tabs.0/@sections.58" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.5">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFeatureIdAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="FeatureIdAxis"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple FeatureIdAxis" sections="/0/@tabs.0/@sections.59" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.5">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFeatureIdAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="FeatureIdAxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-      </constraints>
-    </views>
-    <views name="Single EStructuralFeatureAxis" sections="/0/@tabs.0/@sections.60" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.6">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleEStructuralFeatureAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="EStructuralFeatureAxis"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple EStructuralFeatureAxis" sections="/0/@tabs.0/@sections.61" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.6">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleEStructuralFeatureAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="EStructuralFeatureAxis"/>
-      </constraints>
-    </views>
-    <views name="Single ObjectIdAxis" sections="/0/@tabs.0/@sections.62" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.7">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isSingleObjectIdAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ObjectIdAxis"/>
-      </constraints>
-    </views>
-    <views elementMultiplicity="-1" name="Multiple ObjectIdAxis" sections="/0/@tabs.0/@sections.63" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.6/@elements.7">
-      <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleObjectIdAxis">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="ObjectIdAxis"/>
-      </constraints>
-    </views>
-    <views name="SingleTableAppearance" sections="/0/@tabs.1/@sections.0 /0/@tabs.1/@sections.1 /0/@tabs.1/@sections.2 /0/@tabs.1/@sections.3 /0/@tabs.1/@sections.4">
-      <constraints xsi:type="constraints:SimpleConstraint" name="singleTable">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
-        <properties xsi:type="constraints:ValueProperty" name="className" value="Table"/>
-      </constraints>
-    </views>
-    <dataContexts name="nattable" label="nattable">
-      <elements name="Table" supertypes="/0/@dataContexts.0/@elements.1/@elements.0">
-        <properties name="context" type="Reference"/>
-        <properties name="tableConfiguration" type="Reference"/>
-        <properties name="invertAxis"/>
-        <properties name="columnAxisProvidersHistory" type="Reference" multiplicity="-1"/>
-        <properties name="rowAxisProvidersHistory" type="Reference" multiplicity="-1"/>
-        <properties name="localRowHeaderAxisConfiguration" type="Reference"/>
-        <properties name="localColumnHeaderAxisConfiguration" type="Reference"/>
-        <properties name="currentRowAxisProvider" type="Reference"/>
-        <properties name="currentColumnAxisProvider" type="Reference"/>
-        <properties name="columnFeatureLabelProviderConfigurationDisplayIcon" label="Display Column FeatureIcon" type="Boolean" description="Display Column Icon"/>
-        <properties name="columnFeatureLabelProviderConfigurationDisplayLabel" label="Display Column Feature Label" type="Boolean" description="Display Column Label"/>
-        <properties name="columnFeatureLabelProviderConfigurationDisplayIsDerived" label="Display Column Feature IsDerived" type="Boolean" description="Display Column Feature IsDerived"/>
-        <properties name="columnFeatureLabelProviderConfigurationDisplayType" label="Display Column Feature Type" type="Boolean" description="Display Column Feature Type"/>
-        <properties name="columnFeatureLabelProviderConfigurationDisplayMultiplicity" label="Display Column Feature Multiplicity" type="Boolean" description="Display Column Feature Multiplicity"/>
-        <properties name="columnFeatureLabelProviderConfigurationDisplayName" label="Display Column Feature Name" type="Boolean" description="Display Column Feature Name"/>
-        <properties name="columnObjectLabelProviderConfigurationDisplayIcon" label="Display Column Object Icon" type="Boolean" description="Display Column Object Icon"/>
-        <properties name="columnObjectLabelProviderConfigurationDisplayLabel" label="Display Column Object Label" type="Boolean" description="Display Column Object Label"/>
-        <properties name="rowFeatureLabelProviderConfigurationDisplayIcon" label="Display Row FeatureIcon" type="Boolean" description="Display Row Icon"/>
-        <properties name="rowFeatureLabelProviderConfigurationDisplayLabel" label="Display Row Feature Label" type="Boolean" description="Display Row Label"/>
-        <properties name="rowFeatureLabelProviderConfigurationDisplayIsDerived" label="Display Row Feature IsDerived" type="Boolean" description="Display Row Feature IsDerived"/>
-        <properties name="rowFeatureLabelProviderConfigurationDisplayType" label="Display Row Feature Type" type="Boolean" description="Display Row Feature Type"/>
-        <properties name="rowFeatureLabelProviderConfigurationDisplayMultiplicity" label="Display Row Feature Multiplicity" type="Boolean" description="Display Row Feature Multiplicity"/>
-        <properties name="rowFeatureLabelProviderConfigurationDisplayName" label="Display Row Feature Name" type="Boolean" description="Display Row Feature Name"/>
-        <properties name="rowObjectLabelProviderConfigurationDisplayIcon" label="Display Row Object Icon" type="Boolean" description="Display Row Object Icon"/>
-        <properties name="rowObjectLabelProviderConfigurationDisplayLabel" label="Display Row Object Label" type="Boolean" description="Display Row Object Label"/>
+    <tabs label="Paste"
+        id="Paste In Table"
+        category="default"
+        afterTab="/0/@tabs.1">
+      <sections
+          name="CanPasteEObjectColumnSection"
+          sectionFile="ui/CanPasteEObjectColumnSection.xwt">
+        <constraints
+            xsi:type="constraints:SimpleConstraint"
+            name="canPasteColumnEObjectConstraint">
+          <constraintType
+              href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties
+              xsi:type="constraints:ValueProperty"
+              name="className"
+              value="org.eclipse.papyrus.infra.nattable.properties.constraints.CanCreateColumnElementContraint"/>
+        </constraints>
+        <widget
+            href="ui/CanPasteEObjectColumnSection.xwt#/"/>
+      </sections>
+      <sections
+          name="CantPasteEObjectColumnSection"
+          sectionFile="ui/CantPasteEObjectColumnSection.xwt">
+        <constraints
+            xsi:type="constraints:SimpleConstraint"
+            name="cantPasteColumnEObjectConstraint">
+          <constraintType
+              href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties
+              xsi:type="constraints:ValueProperty"
+              name="className"
+              value="org.eclipse.papyrus.infra.nattable.properties.constraints.CantCreateColumnElementContraint"/>
+        </constraints>
+        <widget
+            href="ui/CantPasteEObjectColumnSection.xwt#/"/>
+      </sections>
+      <sections
+          name="CanPasteEObjectRowSection"
+          sectionFile="ui/CanPasteEObjectRowSection.xwt">
+        <constraints
+            xsi:type="constraints:SimpleConstraint"
+            name="canPasteEObjectRowConstraint">
+          <constraintType
+              href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties
+              xsi:type="constraints:ValueProperty"
+              name="className"
+              value="org.eclipse.papyrus.infra.nattable.properties.constraints.CanCreateRowElementContraint"/>
+        </constraints>
+        <widget
+            href="ui/CanPasteEObjectRowSection.xwt#/"/>
+      </sections>
+      <sections
+          name="CantPasteEObjectRowSection"
+          sectionFile="ui/CantPasteEObjectRowSection.xwt">
+        <constraints
+            xsi:type="constraints:SimpleConstraint"
+            name="cantPasteEObjectRowConstraint">
+          <constraintType
+              href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties
+              xsi:type="constraints:ValueProperty"
+              name="className"
+              value="org.eclipse.papyrus.infra.nattable.properties.constraints.CantCreateRowElementContraint"/>
+        </constraints>
+        <widget
+            href="ui/CantPasteEObjectRowSection.xwt#/"/>
+      </sections>
+    </tabs>
+    <views name="Single Table"
+        sections="/0/@tabs.0/@sections.0"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleTable">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="Table"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple Table"
+        sections="/0/@tabs.0/@sections.1"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleTable">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="Table"/>
+      </constraints>
+    </views>
+    <views name="Single TableConfiguration"
+        sections="/0/@tabs.0/@sections.2"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.1/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleTableConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="TableConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple TableConfiguration"
+        sections="/0/@tabs.0/@sections.3"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.1/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleTableConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="TableConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single AbstractAxisProvider"
+        sections="/0/@tabs.0/@sections.4"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleAbstractAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AbstractAxisProvider"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple AbstractAxisProvider"
+        sections="/0/@tabs.0/@sections.5"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleAbstractAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AbstractAxisProvider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+      </constraints>
+    </views>
+    <views name="Single AxisProvider"
+        sections="/0/@tabs.0/@sections.6"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.3">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AxisProvider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple AxisProvider"
+        sections="/0/@tabs.0/@sections.7"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.3">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AxisProvider"/>
+      </constraints>
+    </views>
+    <views name="Single IMasterAxisProvider"
+        sections="/0/@tabs.0/@sections.8"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleIMasterAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IMasterAxisProvider"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple IMasterAxisProvider"
+        sections="/0/@tabs.0/@sections.9"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleIMasterAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IMasterAxisProvider"/>
+      </constraints>
+    </views>
+    <views name="Single ISlaveAxisProvider"
+        sections="/0/@tabs.0/@sections.10"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.2">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleISlaveAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ISlaveAxisProvider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple ISlaveAxisProvider"
+        sections="/0/@tabs.0/@sections.11"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.2">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleISlaveAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ISlaveAxisProvider"/>
+      </constraints>
+    </views>
+    <views name="Single SlaveObjectAxisProvider"
+        sections="/0/@tabs.0/@sections.12"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.4">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleSlaveObjectAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="SlaveObjectAxisProvider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple SlaveObjectAxisProvider"
+        sections="/0/@tabs.0/@sections.13"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.4">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleSlaveObjectAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="SlaveObjectAxisProvider"/>
+      </constraints>
+    </views>
+    <views name="Single MasterObjectAxisProvider"
+        sections="/0/@tabs.0/@sections.14"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.5">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleMasterObjectAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="MasterObjectAxisProvider"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple MasterObjectAxisProvider"
+        sections="/0/@tabs.0/@sections.15"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.2/@elements.5">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleMasterObjectAxisProvider">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="MasterObjectAxisProvider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"/>
+      </constraints>
+    </views>
+    <views name="Single ILabelProviderConfiguration"
+        sections="/0/@tabs.0/@sections.16"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.3/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleILabelProviderConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ILabelProviderConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple ILabelProviderConfiguration"
+        sections="/0/@tabs.0/@sections.17"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.3/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleILabelProviderConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ILabelProviderConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
+      </constraints>
+    </views>
+    <views name="Single ObjectLabelProviderConfiguration"
+        sections="/0/@tabs.0/@sections.18"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.3/@elements.2">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleObjectLabelProviderConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ObjectLabelProviderConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple ObjectLabelProviderConfiguration"
+        sections="/0/@tabs.0/@sections.19"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.3/@elements.2">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleObjectLabelProviderConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ObjectLabelProviderConfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single FeatureLabelProviderConfiguration"
+        sections="/0/@tabs.0/@sections.20"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.3/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleFeatureLabelProviderConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="FeatureLabelProviderConfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple FeatureLabelProviderConfiguration"
+        sections="/0/@tabs.0/@sections.21"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.3/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleFeatureLabelProviderConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="FeatureLabelProviderConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"/>
+      </constraints>
+    </views>
+    <views name="Single AbstractHeaderAxisConfiguration"
+        sections="/0/@tabs.0/@sections.22"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleAbstractHeaderAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AbstractHeaderAxisConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple AbstractHeaderAxisConfiguration"
+        sections="/0/@tabs.0/@sections.23"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleAbstractHeaderAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AbstractHeaderAxisConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single AxisManagerRepresentation"
+        sections="/0/@tabs.0/@sections.24"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleAxisManagerRepresentation">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AxisManagerRepresentation"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple AxisManagerRepresentation"
+        sections="/0/@tabs.0/@sections.25"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleAxisManagerRepresentation">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AxisManagerRepresentation"/>
+      </constraints>
+    </views>
+    <views name="Single AxisManagerConfiguration"
+        sections="/0/@tabs.0/@sections.26"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.2">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleAxisManagerConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AxisManagerConfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple AxisManagerConfiguration"
+        sections="/0/@tabs.0/@sections.27"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.2">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleAxisManagerConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AxisManagerConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single TableHeaderAxisConfiguration"
+        sections="/0/@tabs.0/@sections.28"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.3">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleTableHeaderAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="TableHeaderAxisConfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple TableHeaderAxisConfiguration"
+        sections="/0/@tabs.0/@sections.29"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.3">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleTableHeaderAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="TableHeaderAxisConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single LocalTableHeaderAxisConfiguration"
+        sections="/0/@tabs.0/@sections.30"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.4">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleLocalTableHeaderAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="LocalTableHeaderAxisConfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple LocalTableHeaderAxisConfiguration"
+        sections="/0/@tabs.0/@sections.31"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.4">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleLocalTableHeaderAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="LocalTableHeaderAxisConfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single IAxisConfiguration"
+        sections="/0/@tabs.0/@sections.32"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.5">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleIAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IAxisConfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple IAxisConfiguration"
+        sections="/0/@tabs.0/@sections.33"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.5">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleIAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IAxisConfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single FeatureAxisConfiguration"
+        sections="/0/@tabs.0/@sections.34"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.6">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleFeatureAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="FeatureAxisConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple FeatureAxisConfiguration"
+        sections="/0/@tabs.0/@sections.35"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.6">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleFeatureAxisConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="FeatureAxisConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single IFillingConfiguration"
+        sections="/0/@tabs.0/@sections.36"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.7">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleIFillingConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IFillingConfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple IFillingConfiguration"
+        sections="/0/@tabs.0/@sections.37"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.7">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleIFillingConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IFillingConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single EStructuralFeatureValueFillingConfiguration"
+        sections="/0/@tabs.0/@sections.38"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.8">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleEStructuralFeatureValueFillingConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="EStructuralFeatureValueFillingConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple EStructuralFeatureValueFillingConfiguration"
+        sections="/0/@tabs.0/@sections.39"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.8">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleEStructuralFeatureValueFillingConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="EStructuralFeatureValueFillingConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single IPasteConfiguration"
+        sections="/0/@tabs.0/@sections.40"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.9">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleIPasteConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IPasteConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple IPasteConfiguration"
+        sections="/0/@tabs.0/@sections.41"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.9">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleIPasteConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IPasteConfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single PasteEObjectConfiguration"
+        sections="/0/@tabs.0/@sections.42"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.10">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSinglePasteEObjectConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="PasteEObjectConfiguration"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple PasteEObjectConfiguration"
+        sections="/0/@tabs.0/@sections.43"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.4/@elements.10">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultiplePasteEObjectConfiguration">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="PasteEObjectConfiguration"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"/>
+      </constraints>
+    </views>
+    <views name="Single AbstractTableTester"
+        sections="/0/@tabs.0/@sections.44"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.5/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleAbstractTableTester">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AbstractTableTester"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple AbstractTableTester"
+        sections="/0/@tabs.0/@sections.45"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.5/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleAbstractTableTester">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="AbstractTableTester"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"/>
+      </constraints>
+    </views>
+    <views name="Single JavaTableTester"
+        sections="/0/@tabs.0/@sections.46"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.5/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleJavaTableTester">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="JavaTableTester"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple JavaTableTester"
+        sections="/0/@tabs.0/@sections.47"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.5/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleJavaTableTester">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="JavaTableTester"/>
+      </constraints>
+    </views>
+    <views name="Single IAxis"
+        sections="/0/@tabs.0/@sections.48"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleIAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IAxis"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple IAxis"
+        sections="/0/@tabs.0/@sections.49"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.0">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleIAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IAxis"/>
+      </constraints>
+    </views>
+    <views name="Single IdAxis"
+        sections="/0/@tabs.0/@sections.50"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleIdAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IdAxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple IdAxis"
+        sections="/0/@tabs.0/@sections.51"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.1">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleIdAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="IdAxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+      </constraints>
+    </views>
+    <views name="Single ObjectAxis"
+        sections="/0/@tabs.0/@sections.52"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.4">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleObjectAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ObjectAxis"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple ObjectAxis"
+        sections="/0/@tabs.0/@sections.53"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.4">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleObjectAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ObjectAxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+      </constraints>
+    </views>
+    <views name="Single EObjectAxis"
+        sections="/0/@tabs.0/@sections.54"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.2">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleEObjectAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="EObjectAxis"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple EObjectAxis"
+        sections="/0/@tabs.0/@sections.55"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.2">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleEObjectAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="EObjectAxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+      </constraints>
+    </views>
+    <views name="Single FeatureAxis"
+        sections="/0/@tabs.0/@sections.56"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.3">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleFeatureAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="FeatureAxis"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple FeatureAxis"
+        sections="/0/@tabs.0/@sections.57"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.3">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleFeatureAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="FeatureAxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+      </constraints>
+    </views>
+    <views name="Single FeatureIdAxis"
+        sections="/0/@tabs.0/@sections.58"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.5">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleFeatureIdAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="FeatureIdAxis"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple FeatureIdAxis"
+        sections="/0/@tabs.0/@sections.59"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.5">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleFeatureIdAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="FeatureIdAxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+      </constraints>
+    </views>
+    <views name="Single EStructuralFeatureAxis"
+        sections="/0/@tabs.0/@sections.60"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.6">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleEStructuralFeatureAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="EStructuralFeatureAxis"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple EStructuralFeatureAxis"
+        sections="/0/@tabs.0/@sections.61"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.6">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleEStructuralFeatureAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="EStructuralFeatureAxis"/>
+      </constraints>
+    </views>
+    <views name="Single ObjectIdAxis"
+        sections="/0/@tabs.0/@sections.62"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.7">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isSingleObjectIdAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ObjectIdAxis"/>
+      </constraints>
+    </views>
+    <views elementMultiplicity="-1"
+        name="Multiple ObjectIdAxis"
+        sections="/0/@tabs.0/@sections.63"
+        automaticContext="true"
+        datacontexts="/0/@dataContexts.0/@elements.6/@elements.7">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="isMultipleObjectIdAxis">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxis"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="ObjectIdAxis"/>
+      </constraints>
+    </views>
+    <views name="SingleTableAppearance"
+        sections="/0/@tabs.1/@sections.0 /0/@tabs.1/@sections.1 /0/@tabs.1/@sections.2 /0/@tabs.1/@sections.3 /0/@tabs.1/@sections.4">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="singleTable">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="Table"/>
+      </constraints>
+    </views>
+    <views name="SinglePasteInTable"
+        sections="/0/@tabs.2/@sections.0 /0/@tabs.2/@sections.1 /0/@tabs.2/@sections.2 /0/@tabs.2/@sections.3">
+      <constraints
+          xsi:type="constraints:SimpleConstraint"
+          name="singleTable">
+        <constraintType
+            href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="nsUri"
+            value="http://www.eclipse.org/papyrus/nattable/model"/>
+        <properties
+            xsi:type="constraints:ValueProperty"
+            name="className"
+            value="Table"/>
+      </constraints>
+    </views>
+    <dataContexts
+        name="nattable"
+        label="nattable">
+      <elements
+          name="Table"
+          supertypes="/0/@dataContexts.0/@elements.1/@elements.0">
+        <properties
+            name="context"
+            type="Reference"/>
+        <properties
+            name="tableConfiguration"
+            type="Reference"/>
+        <properties
+            name="invertAxis"/>
+        <properties
+            name="columnAxisProvidersHistory"
+            type="Reference"
+            multiplicity="-1"/>
+        <properties
+            name="rowAxisProvidersHistory"
+            type="Reference"
+            multiplicity="-1"/>
+        <properties
+            name="localRowHeaderAxisConfiguration"
+            type="Reference"/>
+        <properties
+            name="localColumnHeaderAxisConfiguration"
+            type="Reference"/>
+        <properties
+            name="currentRowAxisProvider"
+            type="Reference"/>
+        <properties
+            name="currentColumnAxisProvider"
+            type="Reference"/>
+        <properties
+            name="columnFeatureLabelProviderConfigurationDisplayIcon"
+            label="Display Column FeatureIcon"
+            type="Boolean"
+            description="Display Column Icon"/>
+        <properties
+            name="columnFeatureLabelProviderConfigurationDisplayLabel"
+            label="Display Column Feature Label"
+            type="Boolean"
+            description="Display Column Label"/>
+        <properties
+            name="columnFeatureLabelProviderConfigurationDisplayIsDerived"
+            label="Display Column Feature IsDerived"
+            type="Boolean"
+            description="Display Column Feature IsDerived"/>
+        <properties
+            name="columnFeatureLabelProviderConfigurationDisplayType"
+            label="Display Column Feature Type"
+            type="Boolean"
+            description="Display Column Feature Type"/>
+        <properties
+            name="columnFeatureLabelProviderConfigurationDisplayMultiplicity"
+            label="Display Column Feature Multiplicity"
+            type="Boolean"
+            description="Display Column Feature Multiplicity"/>
+        <properties
+            name="columnFeatureLabelProviderConfigurationDisplayName"
+            label="Display Column Feature Name"
+            type="Boolean"
+            description="Display Column Feature Name"/>
+        <properties
+            name="columnObjectLabelProviderConfigurationDisplayIcon"
+            label="Display Column Object Icon"
+            type="Boolean"
+            description="Display Column Object Icon"/>
+        <properties
+            name="columnObjectLabelProviderConfigurationDisplayLabel"
+            label="Display Column Object Label"
+            type="Boolean"
+            description="Display Column Object Label"/>
+        <properties
+            name="rowFeatureLabelProviderConfigurationDisplayIcon"
+            label="Display Row FeatureIcon"
+            type="Boolean"
+            description="Display Row Icon"/>
+        <properties
+            name="rowFeatureLabelProviderConfigurationDisplayLabel"
+            label="Display Row Feature Label"
+            type="Boolean"
+            description="Display Row Label"/>
+        <properties
+            name="rowFeatureLabelProviderConfigurationDisplayIsDerived"
+            label="Display Row Feature IsDerived"
+            type="Boolean"
+            description="Display Row Feature IsDerived"/>
+        <properties
+            name="rowFeatureLabelProviderConfigurationDisplayType"
+            label="Display Row Feature Type"
+            type="Boolean"
+            description="Display Row Feature Type"/>
+        <properties
+            name="rowFeatureLabelProviderConfigurationDisplayMultiplicity"
+            label="Display Row Feature Multiplicity"
+            type="Boolean"
+            description="Display Row Feature Multiplicity"/>
+        <properties
+            name="rowFeatureLabelProviderConfigurationDisplayName"
+            label="Display Row Feature Name"
+            type="Boolean"
+            description="Display Row Feature Name"/>
+        <properties
+            name="rowObjectLabelProviderConfigurationDisplayIcon"
+            label="Display Row Object Icon"
+            type="Boolean"
+            description="Display Row Object Icon"/>
+        <properties
+            name="rowObjectLabelProviderConfigurationDisplayLabel"
+            label="Display Row Object Label"
+            type="Boolean"
+            description="Display Row Object Label"/>
+        <properties
+            name="rowPastedEObjectId"
+            label="Row Pasted Element Type Id"
+            description="Row Pasted Element Type Id"/>
+        <properties
+            name="rowPastedEObjectContainmentFeature"
+            label="Row Pasted EObject Contaiment Feature"/>
       </elements>
-      <elements xsi:type="contexts:DataContextPackage" name="nattableconfiguration">
-        <elements name="TableNamedElement">
-          <properties name="description"/>
-          <properties name="name"/>
+      <elements
+          xsi:type="contexts:DataContextPackage"
+          name="nattableconfiguration">
+        <elements
+            name="TableNamedElement">
+          <properties
+              name="description"/>
+          <properties
+              name="name"/>
         </elements>
-        <elements name="TableConfiguration" supertypes="/0/@dataContexts.0/@elements.1/@elements.0">
-          <properties name="type"/>
-          <properties name="iconPath"/>
-          <properties name="creationTester" type="Reference"/>
-          <properties name="cellEditorDeclaration" type="Enumeration"/>
-          <properties name="rowHeaderAxisConfiguration" type="Reference"/>
-          <properties name="columnHeaderAxisConfiguration" type="Reference"/>
-          <properties name="columnAxisProviders" type="Reference" multiplicity="-1"/>
-          <properties name="rowAxisProviders" type="Reference" multiplicity="-1"/>
-          <properties name="defaultRowAxisProvider" type="Reference"/>
-          <properties name="defaultColumnAxisProvider" type="Reference"/>
-        </elements>
-      </elements>
-      <elements xsi:type="contexts:DataContextPackage" name="nattableaxisprovider">
-        <elements name="AbstractAxisProvider"/>
-        <elements name="IMasterAxisProvider" supertypes="/0/@dataContexts.0/@elements.2/@elements.3">
-          <properties name="disconnectSlave"/>
-        </elements>
-        <elements name="ISlaveAxisProvider" supertypes="/0/@dataContexts.0/@elements.2/@elements.3"/>
-        <elements name="AxisProvider" supertypes="/0/@dataContexts.0/@elements.2/@elements.0">
-          <properties name="axis" type="Reference" multiplicity="-1"/>
-        </elements>
-        <elements name="SlaveObjectAxisProvider" supertypes="/0/@dataContexts.0/@elements.2/@elements.2"/>
-        <elements name="MasterObjectAxisProvider" supertypes="/0/@dataContexts.0/@elements.2/@elements.1"/>
-      </elements>
-      <elements xsi:type="contexts:DataContextPackage" name="nattablelabelprovider">
-        <elements name="ILabelProviderConfiguration"/>
-        <elements name="FeatureLabelProviderConfiguration" supertypes="/0/@dataContexts.0/@elements.3/@elements.2">
-          <properties name="displayIsDerived"/>
-          <properties name="displayType"/>
-          <properties name="displayMultiplicity"/>
-          <properties name="displayName"/>
-        </elements>
-        <elements name="ObjectLabelProviderConfiguration" supertypes="/0/@dataContexts.0/@elements.3/@elements.0">
-          <properties name="displayIcon"/>
-          <properties name="displayLabel"/>
-        </elements>
-      </elements>
-      <elements xsi:type="contexts:DataContextPackage" name="nattableaxisconfiguration">
-        <elements name="AbstractHeaderAxisConfiguration">
-          <properties name="indexStyle" type="Enumeration"/>
-          <properties name="displayLabel"/>
-          <properties name="displayFilter"/>
-          <properties name="displayIndex"/>
-          <properties name="ownedLabelConfigurations" type="Reference" multiplicity="-1"/>
-          <properties name="ownedAxisConfigurations" type="Reference" multiplicity="-1"/>
-        </elements>
-        <elements name="AxisManagerRepresentation">
-          <properties name="axisManagerId"/>
-          <properties name="labelProviderContext"/>
-          <properties name="headerLabelConfiguration" type="Reference"/>
-          <properties name="specificAxisConfigurations" type="Reference" multiplicity="-1"/>
-        </elements>
-        <elements name="AxisManagerConfiguration">
-          <properties name="localHeaderLabelConfiguration" type="Reference"/>
-          <properties name="axisManager" type="Reference"/>
-          <properties name="localSpecificConfigurations" type="Reference" multiplicity="-1"/>
-        </elements>
-        <elements name="TableHeaderAxisConfiguration" supertypes="/0/@dataContexts.0/@elements.4/@elements.0">
-          <properties name="axisManagers" type="Reference" multiplicity="-1"/>
-        </elements>
-        <elements name="LocalTableHeaderAxisConfiguration" supertypes="/0/@dataContexts.0/@elements.4/@elements.0">
-          <properties name="axisManagerConfigurations" type="Reference" multiplicity="-1"/>
-        </elements>
-        <elements name="IAxisConfiguration"/>
-        <elements name="FeatureAxisConfiguration" supertypes="/0/@dataContexts.0/@elements.4/@elements.5">
-          <properties name="showOnlyCommonFeature" type="Boolean"/>
-        </elements>
-        <elements name="IFillingConfiguration" supertypes="/0/@dataContexts.0/@elements.4/@elements.5"/>
-        <elements name="EStructuralFeatureValueFillingConfiguration" supertypes="/0/@dataContexts.0/@elements.4/@elements.7">
-          <properties name="listenFeature" type="Reference"/>
-        </elements>
-        <elements name="IPasteConfiguration" supertypes="/0/@dataContexts.0/@elements.4/@elements.5"/>
-        <elements name="PasteEObjectConfiguration" supertypes="/0/@dataContexts.0/@elements.4/@elements.9">
-          <properties name="pastedElementId"/>
-          <properties name="pasteElementContainementFeature" type="Reference"/>
+        <elements
+            name="TableConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.1/@elements.0">
+          <properties
+              name="type"/>
+          <properties
+              name="iconPath"/>
+          <properties
+              name="creationTester"
+              type="Reference"/>
+          <properties
+              name="cellEditorDeclaration"
+              type="Enumeration"/>
+          <properties
+              name="rowHeaderAxisConfiguration"
+              type="Reference"/>
+          <properties
+              name="columnHeaderAxisConfiguration"
+              type="Reference"/>
+          <properties
+              name="columnAxisProviders"
+              type="Reference"
+              multiplicity="-1"/>
+          <properties
+              name="rowAxisProviders"
+              type="Reference"
+              multiplicity="-1"/>
+          <properties
+              name="defaultRowAxisProvider"
+              type="Reference"/>
+          <properties
+              name="defaultColumnAxisProvider"
+              type="Reference"/>
         </elements>
       </elements>
-      <elements xsi:type="contexts:DataContextPackage" name="nattabletester">
-        <elements name="AbstractTableTester"/>
-        <elements name="JavaTableTester" supertypes="/0/@dataContexts.0/@elements.5/@elements.0">
-          <properties name="tester"/>
+      <elements
+          xsi:type="contexts:DataContextPackage"
+          name="nattableaxisprovider">
+        <elements
+            name="AbstractAxisProvider"/>
+        <elements
+            name="IMasterAxisProvider"
+            supertypes="/0/@dataContexts.0/@elements.2/@elements.3">
+          <properties
+              name="disconnectSlave"/>
+        </elements>
+        <elements
+            name="ISlaveAxisProvider"
+            supertypes="/0/@dataContexts.0/@elements.2/@elements.3"/>
+        <elements
+            name="AxisProvider"
+            supertypes="/0/@dataContexts.0/@elements.2/@elements.0">
+          <properties
+              name="axis"
+              type="Reference"
+              multiplicity="-1"/>
+        </elements>
+        <elements
+            name="SlaveObjectAxisProvider"
+            supertypes="/0/@dataContexts.0/@elements.2/@elements.2"/>
+        <elements
+            name="MasterObjectAxisProvider"
+            supertypes="/0/@dataContexts.0/@elements.2/@elements.1"/>
+      </elements>
+      <elements
+          xsi:type="contexts:DataContextPackage"
+          name="nattablelabelprovider">
+        <elements
+            name="ILabelProviderConfiguration"/>
+        <elements
+            name="FeatureLabelProviderConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.3/@elements.2">
+          <properties
+              name="displayIsDerived"/>
+          <properties
+              name="displayType"/>
+          <properties
+              name="displayMultiplicity"/>
+          <properties
+              name="displayName"/>
+        </elements>
+        <elements
+            name="ObjectLabelProviderConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.3/@elements.0">
+          <properties
+              name="displayIcon"/>
+          <properties
+              name="displayLabel"/>
         </elements>
       </elements>
-      <elements xsi:type="contexts:DataContextPackage" name="nattableaxis">
-        <elements name="IAxis">
-          <properties name="manager" type="Reference"/>
-          <properties name="alias"/>
+      <elements
+          xsi:type="contexts:DataContextPackage"
+          name="nattableaxisconfiguration">
+        <elements
+            name="AbstractHeaderAxisConfiguration">
+          <properties
+              name="indexStyle"
+              type="Enumeration"/>
+          <properties
+              name="displayLabel"/>
+          <properties
+              name="displayFilter"/>
+          <properties
+              name="displayIndex"/>
+          <properties
+              name="ownedLabelConfigurations"
+              type="Reference"
+              multiplicity="-1"/>
+          <properties
+              name="ownedAxisConfigurations"
+              type="Reference"
+              multiplicity="-1"/>
         </elements>
-        <elements name="IdAxis" supertypes="/0/@dataContexts.0/@elements.6/@elements.0">
-          <properties name="element"/>
+        <elements
+            name="AxisManagerRepresentation">
+          <properties
+              name="axisManagerId"/>
+          <properties
+              name="labelProviderContext"/>
+          <properties
+              name="headerLabelConfiguration"
+              type="Reference"/>
+          <properties
+              name="specificAxisConfigurations"
+              type="Reference"
+              multiplicity="-1"/>
         </elements>
-        <elements name="EObjectAxis" supertypes="/0/@dataContexts.0/@elements.6/@elements.4">
-          <properties name="element" type="Reference"/>
+        <elements
+            name="AxisManagerConfiguration">
+          <properties
+              name="localHeaderLabelConfiguration"
+              type="Reference"/>
+          <properties
+              name="axisManager"
+              type="Reference"/>
+          <properties
+              name="localSpecificConfigurations"
+              type="Reference"
+              multiplicity="-1"/>
         </elements>
-        <elements name="FeatureAxis" supertypes="/0/@dataContexts.0/@elements.6/@elements.0">
-          <properties name="localLabelConfiguration" type="Reference"/>
+        <elements
+            name="TableHeaderAxisConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.4/@elements.0">
+          <properties
+              name="axisManagers"
+              type="Reference"
+              multiplicity="-1"/>
         </elements>
-        <elements name="ObjectAxis" supertypes="/0/@dataContexts.0/@elements.6/@elements.0">
-          <properties name="localLabelConfiguration" type="Reference"/>
+        <elements
+            name="LocalTableHeaderAxisConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.4/@elements.0">
+          <properties
+              name="axisManagerConfigurations"
+              type="Reference"
+              multiplicity="-1"/>
         </elements>
-        <elements name="FeatureIdAxis" supertypes="/0/@dataContexts.0/@elements.6/@elements.1 /0/@dataContexts.0/@elements.6/@elements.3"/>
-        <elements name="EStructuralFeatureAxis" supertypes="/0/@dataContexts.0/@elements.6/@elements.3">
-          <properties name="element" type="Reference"/>
+        <elements
+            name="IAxisConfiguration"/>
+        <elements
+            name="FeatureAxisConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.4/@elements.5">
+          <properties
+              name="showOnlyCommonFeature"
+              type="Boolean"/>
         </elements>
-        <elements name="ObjectIdAxis" supertypes="/0/@dataContexts.0/@elements.6/@elements.1 /0/@dataContexts.0/@elements.6/@elements.4"/>
+        <elements
+            name="IFillingConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.4/@elements.5"/>
+        <elements
+            name="EStructuralFeatureValueFillingConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.4/@elements.7">
+          <properties
+              name="listenFeature"
+              type="Reference"/>
+        </elements>
+        <elements
+            name="IPasteConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.4/@elements.5"/>
+        <elements
+            name="PasteEObjectConfiguration"
+            supertypes="/0/@dataContexts.0/@elements.4/@elements.9">
+          <properties
+              name="pastedElementId"/>
+          <properties
+              name="pasteElementContainementFeature"
+              type="Reference"/>
+        </elements>
       </elements>
-      <modelElementFactory href="Environment.xmi#//@modelElementFactories.0"/>
+      <elements
+          xsi:type="contexts:DataContextPackage"
+          name="nattabletester">
+        <elements
+            name="AbstractTableTester"/>
+        <elements
+            name="JavaTableTester"
+            supertypes="/0/@dataContexts.0/@elements.5/@elements.0">
+          <properties
+              name="tester"/>
+        </elements>
+      </elements>
+      <elements
+          xsi:type="contexts:DataContextPackage"
+          name="nattableaxis">
+        <elements
+            name="IAxis">
+          <properties
+              name="manager"
+              type="Reference"/>
+          <properties
+              name="alias"/>
+        </elements>
+        <elements
+            name="IdAxis"
+            supertypes="/0/@dataContexts.0/@elements.6/@elements.0">
+          <properties
+              name="element"/>
+        </elements>
+        <elements
+            name="EObjectAxis"
+            supertypes="/0/@dataContexts.0/@elements.6/@elements.4">
+          <properties
+              name="element"
+              type="Reference"/>
+        </elements>
+        <elements
+            name="FeatureAxis"
+            supertypes="/0/@dataContexts.0/@elements.6/@elements.0">
+          <properties
+              name="localLabelConfiguration"
+              type="Reference"/>
+        </elements>
+        <elements
+            name="ObjectAxis"
+            supertypes="/0/@dataContexts.0/@elements.6/@elements.0">
+          <properties
+              name="localLabelConfiguration"
+              type="Reference"/>
+        </elements>
+        <elements
+            name="FeatureIdAxis"
+            supertypes="/0/@dataContexts.0/@elements.6/@elements.1 /0/@dataContexts.0/@elements.6/@elements.3"/>
+        <elements
+            name="EStructuralFeatureAxis"
+            supertypes="/0/@dataContexts.0/@elements.6/@elements.3">
+          <properties
+              name="element"
+              type="Reference"/>
+        </elements>
+        <elements
+            name="ObjectIdAxis"
+            supertypes="/0/@dataContexts.0/@elements.6/@elements.1 /0/@dataContexts.0/@elements.6/@elements.4"/>
+      </elements>
+      <modelElementFactory
+          href="Environment.xmi#//@modelElementFactories.0"/>
     </dataContexts>
   </contexts:Context>
-  <contexts:View name="Single TableNamedElement" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.1/@elements.0">
-    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTableNamedElement">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" name="className" value="TableNamedElement"/>
-      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"/>
+  <contexts:View
+      name="Single TableNamedElement"
+      automaticContext="true"
+      datacontexts="/0/@dataContexts.0/@elements.1/@elements.0">
+    <constraints
+        xsi:type="constraints:SimpleConstraint"
+        name="isSingleTableNamedElement">
+      <constraintType
+          href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties
+          xsi:type="constraints:ValueProperty"
+          name="className"
+          value="TableNamedElement"/>
+      <properties
+          xsi:type="constraints:ValueProperty"
+          name="nsUri"
+          value="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"/>
     </constraints>
   </contexts:View>
-  <contexts:View elementMultiplicity="-1" name="Multiple TableNamedElement" automaticContext="true" datacontexts="/0/@dataContexts.0/@elements.1/@elements.0">
-    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleTableNamedElement">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"/>
-      <properties xsi:type="constraints:ValueProperty" name="className" value="TableNamedElement"/>
+  <contexts:View
+      elementMultiplicity="-1"
+      name="Multiple TableNamedElement"
+      automaticContext="true"
+      datacontexts="/0/@dataContexts.0/@elements.1/@elements.0">
+    <constraints
+        xsi:type="constraints:SimpleConstraint"
+        name="isMultipleTableNamedElement">
+      <constraintType
+          href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties
+          xsi:type="constraints:ValueProperty"
+          name="nsUri"
+          value="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"/>
+      <properties
+          xsi:type="constraints:ValueProperty"
+          name="className"
+          value="TableNamedElement"/>
     </constraints>
   </contexts:View>
 </xmi:XMI>

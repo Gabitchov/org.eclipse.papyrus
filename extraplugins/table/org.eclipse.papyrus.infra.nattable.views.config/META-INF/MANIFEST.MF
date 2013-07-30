@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1"
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.infra.nattable.views.config,
  org.eclipse.papyrus.infra.nattable.views.config.celleditor,
  org.eclipse.papyrus.infra.nattable.views.config.manager.axis,

@@ -13,17 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.scope;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceProxy;
 import org.eclipse.core.resources.IResourceProxyVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.views.search.utils.ModelUtils;
 
 /**
  * 
@@ -32,11 +29,11 @@ import org.eclipse.papyrus.views.search.utils.ModelUtils;
  */
 public class ResourceVisitor implements IResourceProxyVisitor {
 
-	private List<IResource> participants;
+	private Collection<IResource> participants;
 
 	public ResourceVisitor() {
 		super();
-		this.participants = new ArrayList<IResource>();
+		this.participants = new HashSet<IResource>();
 	}
 
 	public boolean visit(IResourceProxy proxy) throws CoreException {
@@ -48,13 +45,12 @@ public class ResourceVisitor implements IResourceProxyVisitor {
 
 			if("di".equals(uri.fileExtension())) { //$NON-NLS-1$
 				//Verify that it is a true papyrus model
-				try {
-					ModelSet modelSet = ModelUtils.openFile(resource);
-					modelSet.unload();
-					participants.add(resource);
-				} catch (ModelMultiException e) {
-				}
-
+				//				try {
+				//					ModelSet modelSet = ModelUtils.openFile(resource);
+				//					modelSet.unload();
+				participants.add(resource);
+				//				} catch (ModelMultiException e) {
+				//				}
 			}
 
 			break;
@@ -64,7 +60,7 @@ public class ResourceVisitor implements IResourceProxyVisitor {
 		return true;
 	}
 
-	public List<IResource> getParticipants() {
+	public Collection<IResource> getParticipants() {
 		return participants;
 	}
 

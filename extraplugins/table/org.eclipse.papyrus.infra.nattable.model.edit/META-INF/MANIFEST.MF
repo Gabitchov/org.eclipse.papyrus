@@ -2,8 +2,10 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.provider,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.provider
 Bundle-ActivationPolicy: lazy
@@ -19,8 +21,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.pr
- ovider.NattableEditPlugin$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.edit;sin
- gleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.edit;singleton:=true
 

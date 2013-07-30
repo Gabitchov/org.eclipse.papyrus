@@ -136,9 +136,9 @@ public class PapyrusSearchResultPage extends AbstractTextSearchViewPage {
 		}
 	}
 
+
 	@Override
 	protected void evaluateChangedElements(Match[] matches, Set changedElements) {
-
 		for(int i = 0; i < matches.length; i++) {
 			changedElements.add(matches[i]);
 		}

@@ -27,7 +27,7 @@ import org.eclipse.search.ui.ISearchPageScoreComputer;
 public class PapyrusSearchPageScoreComputer implements ISearchPageScoreComputer {
 
 	public int computeScore(String pageId, Object input) {
-		if("org.eclipse.papyrus.search.ui.pages.PapyrusSearchPage".equals(pageId)) {
+		if("org.eclipse.papyrus.search.ui.pages.PapyrusSearchPage".equals(pageId)) { //$NON-NLS-1$
 			EObject currentEObject = EMFHelper.getEObject(input);
 			if(currentEObject != null) {
 				try {

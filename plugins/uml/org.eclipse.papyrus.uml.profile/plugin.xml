@@ -110,13 +110,6 @@
       </constraintProvider>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.core.model">
-      <modelSetSnippet
-            classname="org.eclipse.papyrus.uml.profile.model.ProfileApplicationModel"
-            description="Automatically reapplies local profiles when they&apos;ve been redefined">
-      </modelSetSnippet>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
       <readOnlyHandler
             class="org.eclipse.papyrus.uml.profile.readonly.AppliedProfileReadOnlyHandler"
@@ -145,6 +138,21 @@
             priority="45"
             provider="org.eclipse.papyrus.uml.profile.providers.AppliedStereotypePropertyFilteredLabelProvider">
       </labelProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.uml.profile.service.ReapplyProfilesService"
+            description="Automatically reapplies local profiles when they&apos;ve been redefined"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.services.EditorLifecycleManager">
+         </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
+         </dependsOn>
+      </service>
    </extension>
 
 </plugin>
