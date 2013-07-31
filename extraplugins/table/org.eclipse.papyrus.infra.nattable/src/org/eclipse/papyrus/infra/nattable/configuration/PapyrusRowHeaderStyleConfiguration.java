@@ -38,6 +38,28 @@ public class PapyrusRowHeaderStyleConfiguration extends DefaultRowHeaderStyleCon
 	@Override
 	public void configureRegistry(final IConfigRegistry configRegistry) {
 		this.cellPainter = new BeveledBorderDecorator(new CellPainterDecorator(new CustomizedCellPainter(), CellEdgeEnum.LEFT, new CustomImagePainter()));
+		//		configureHeaderHasSelectionStyle(configRegistry);
 		super.configureRegistry(configRegistry);
 	}
+
+	//	public Color selectedHeaderBgColor = GUIHelper.COLOR_GRAY;
+	//
+	//	public Color selectedHeaderFgColor = GUIHelper.COLOR_WHITE;
+	//
+	//	public Font selectedHeaderFont = GUIHelper.getFont(new FontData("Verdana", 10, SWT.BOLD)); //$NON-NLS-1$
+	//
+	//	public BorderStyle selectedHeaderBorderStyle = new BorderStyle(-1, selectedHeaderFgColor, LineStyleEnum.SOLID);
+	//
+	//	protected void configureHeaderHasSelectionStyle(IConfigRegistry configRegistry) {
+	//		Style cellStyle = new Style();
+	//
+	//		cellStyle.setAttributeValue(CellStyleAttributes.FOREGROUND_COLOR, selectedHeaderFgColor);
+	//		cellStyle.setAttributeValue(CellStyleAttributes.BACKGROUND_COLOR, selectedHeaderBgColor);
+	//		cellStyle.setAttributeValue(CellStyleAttributes.FONT, selectedHeaderFont);
+	//		cellStyle.setAttributeValue(CellStyleAttributes.BORDER_STYLE, selectedHeaderBorderStyle);
+	//
+	//		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_STYLE, cellStyle, DisplayMode.SELECT, GridRegion.COLUMN_HEADER);
+	//		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_STYLE, cellStyle, DisplayMode.SELECT, GridRegion.CORNER);
+	//		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_STYLE, cellStyle, DisplayMode.SELECT, GridRegion.ROW_HEADER);
+	//	}
 }

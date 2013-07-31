@@ -56,6 +56,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.PapyrusClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusHeaderMenuConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.AbstractDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
@@ -71,6 +72,8 @@ import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
+import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
+import org.eclipse.papyrus.infra.nattable.sort.ColumnSortModel;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
@@ -138,6 +141,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	private BodyDataProvider bodyDataProvider;
 
 	/**
+	 * the sort model used for rows
+	 */
+	private IPapyrusSortModel rowSortModel;
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -165,7 +173,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.bodyLayerStack = new BodyLayerStack(this.bodyDataProvider, this);
 
 		this.columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
-		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(this.columnHeaderDataProvider, this.bodyLayerStack, this.bodyDataProvider);
+		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(this.columnHeaderDataProvider, this.bodyLayerStack, this.bodyDataProvider, getRowSortModel());
 
 		this.rowHeaderDataProvider = new RowHeaderDataProvider(this);
 
@@ -235,6 +243,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 			}
 		});
+		this.natTable.addConfiguration(new PapyrusClickSortConfiguration());
+
+		//		natTable.addConfiguration(new DefaultSelectionStyleConfiguration());
+
 
 		configureNatTable();
 		addColumnReorderListener(this.bodyLayerStack.getColumnReorderLayer());
@@ -479,4 +491,18 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	public Table getTable() {
 		return this.table;
 	}
+
+	/**
+	 * 
+	 * @return
+	 *         the created sort model to use for
+	 */
+	protected IPapyrusSortModel getRowSortModel() {
+		if(this.rowSortModel == null) {
+			this.rowSortModel = new ColumnSortModel(this);
+		}
+		return this.rowSortModel;
+	}
+
+
 }
