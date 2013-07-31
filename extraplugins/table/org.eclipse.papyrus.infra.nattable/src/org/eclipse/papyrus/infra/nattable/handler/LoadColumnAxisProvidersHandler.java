@@ -44,7 +44,12 @@ public class LoadColumnAxisProvidersHandler extends AbstractLoadAxisProvidersHan
 	 */
 	@Override
 	public AbstractAxisProvider getCurrentAxisProvider() {
-		return this.getCurrentNattableModelManager().getTable().getCurrentColumnAxisProvider();
+		if(!this.getCurrentNattableModelManager().getTable().isInvertAxis()){
+			return this.getCurrentNattableModelManager().getTable().getCurrentColumnAxisProvider();
+		}else{
+			return this.getCurrentNattableModelManager().getTable().getCurrentRowAxisProvider();
+	
+		}
 	}
 
 	/**
@@ -56,7 +61,11 @@ public class LoadColumnAxisProvidersHandler extends AbstractLoadAxisProvidersHan
 	 */
 	@Override
 	public EList<AbstractAxisProvider> getAxisProvidersHistory() {
-		return this.getCurrentNattableModelManager().getTable().getColumnAxisProvidersHistory();
+		if(!this.getCurrentNattableModelManager().getTable().isInvertAxis()){
+			return this.getCurrentNattableModelManager().getTable().getColumnAxisProvidersHistory();
+		}else{
+			return this.getCurrentNattableModelManager().getTable().getRowAxisProvidersHistory();
+		}
 	}
 
 	/**

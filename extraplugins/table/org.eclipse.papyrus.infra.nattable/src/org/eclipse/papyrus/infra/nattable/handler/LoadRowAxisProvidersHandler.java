@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
 /**
@@ -44,7 +45,11 @@ public class LoadRowAxisProvidersHandler extends AbstractLoadAxisProvidersHandle
 	 * @return
 	 */
 	public EList<AbstractAxisProvider> getAxisProvidersHistory() {
-		return this.getCurrentNattableModelManager().getTable().getRowAxisProvidersHistory();
+		if(!this.getCurrentNattableModelManager().getTable().isInvertAxis()){
+			return this.getCurrentNattableModelManager().getTable().getRowAxisProvidersHistory();
+		}else{
+			return this.getCurrentNattableModelManager().getTable().getColumnAxisProvidersHistory();
+		}
 	}
 
 	/**
@@ -55,7 +60,11 @@ public class LoadRowAxisProvidersHandler extends AbstractLoadAxisProvidersHandle
 	 * @return
 	 */
 	public AbstractAxisProvider getCurrentAxisProvider() {
-		return this.getCurrentNattableModelManager().getTable().getCurrentRowAxisProvider();
+		if(!this.getCurrentNattableModelManager().getTable().isInvertAxis()){
+			return this.getCurrentNattableModelManager().getTable().getCurrentRowAxisProvider();
+		}else{
+			return this.getCurrentNattableModelManager().getTable().getCurrentColumnAxisProvider();
+		}
 	}
 
 	/**
