@@ -363,7 +363,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 						}
 
 					}
-					boolean test = ((Stereotype)parentElement.getElement()).isAbstract();
+
 					participantsList.put(parentElement, attributeList);
 
 
@@ -387,9 +387,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	}
 
 	protected void createAdvancedSearch() {
-
-
-
 
 		participantTypesTree = new CheckBoxFilteredTree(advancedSearchComposite, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.SINGLE, new PatternFilter(), true);
 		participantTypesTree.setLayout(new GridLayout());
@@ -419,9 +416,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		Composite participantManipualtionComposite = new Composite(advancedSearchComposite, SWT.NONE);
 		participantManipualtionComposite.setLayout(new GridLayout(1, false));
 		participantManipualtionComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, true, 1, 1));
-
-
-
 
 		Button btnSelectSub = new Button(participantManipualtionComposite, SWT.PUSH);
 		btnSelectSub.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -519,7 +513,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 			}
 		});
-
 
 		participantTypesTreeViewer.setInput(participantsList);
 
@@ -679,37 +672,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-
-
-
-
-		//		for(Object element : participantsList.keySet()) {
-		//			if(element instanceof ParticipantTypeElement) {
-		//				if(((ParticipantTypeElement)element).getElement() instanceof EClass) {
-		//					List<EClass> superTypes = ((EClass)((ParticipantTypeElement)element).getElement()).getEAllSuperTypes();
-		//
-		//					if(superTypes.contains(elementParent.getElement())) {
-		//						//					participantTypesTreeViewer.setChecked(element, true);
-		//						((ParticipantTypeElement)element).setChecked(true);
-		//
-		//						//Proceed with attributes 
-		//						for(ParticipantTypeAttribute attributeParent : attributeParentList) {
-		//							for(ParticipantTypeAttribute attributeToEvaluate : participantsList.get(element)) {
-		//								if(attributeParent.getElement() == attributeToEvaluate.getElement()) {
-		//
-		//									attributeToEvaluate.setChecked(true);
-		//
-		//
-		//								}
-		//
-		//							}
-		//						}
-		//					}
-		//				}
-		//			}
-		//		}
-		//		
 	}
 
 
@@ -809,7 +771,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		oclEditor.getViewer().getTextWidget().addVerifyKeyListener(new VerifyKeyListener() {
 
 			public void verifyKey(VerifyEvent e) {
-				// System.out.println("verifyKey: " + e.keyCode);
 				if(e.keyCode == SWT.KEYPAD_CR || e.keyCode == SWT.CR) {
 					if((e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {
 						e.doit = false;
@@ -1028,7 +989,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		if(queryKind.getSelectionIndex() == TEXT_QUERY_KIND) {
 			if(validateRegex()) {
 				Collection<IResource> scope = ScopeCollector.getInstance().computeSearchScope(container);
-
 				Collection<ScopeEntry> scopeEntries = createScopeEntries(scope);
 				ISearchQuery query;
 				if(searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
@@ -1037,6 +997,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 						return false;
 					} else {
 						initMetaClasses();
+
 						query = new PapyrusQuery(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), scopeEntries, umlMetaClasses.toArray(), btnSearchAllStringAttributes.getSelection());
 					}
 				} else {
@@ -1157,6 +1118,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 					query = new PapyrusAdvancedQuery(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), scopeEntries, participantsToEvaluate.toArray());
 
 				}
+
 				NewSearchUI.runQueryInForeground(container.getRunnableContext(), query);
 
 

@@ -19,7 +19,9 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -59,8 +61,9 @@ public class ParticipantValidator implements IParticipantValidator {
 		TreeIterator<EObject> it = root.eAllContents();
 		while(it.hasNext()) {
 			EObject modelElement = (EObject)it.next();
-			//Check that metaclass of this element is a supported metaclass
 
+			//Check that metaclass of this element is a supported metaclass
+			EClass e = modelElement.eClass();
 			if(participantsTypesList.contains(modelElement.eClass())) {
 				results.add(modelElement);
 			}
@@ -85,10 +88,10 @@ public class ParticipantValidator implements IParticipantValidator {
 		while(it.hasNext()) {
 			EObject modelElement = (EObject)it.next();
 			if(modelElement instanceof Element) {
-				for(Stereotype element : ((Element)modelElement).getAppliedStereotypes()) {
+				for(Stereotype appliedStereotype : ((Element)modelElement).getAppliedStereotypes()) {
 					//Check that metaclass of this element is a supported metaclass
 					for(Object stereotypeToGet : participantsTypesList) {
-						if(element.getName().equals(((Stereotype)stereotypeToGet).getName())) {
+						if(EcoreUtil.equals(appliedStereotype, (EObject)stereotypeToGet)) {
 							results.add(modelElement);
 						}
 					}

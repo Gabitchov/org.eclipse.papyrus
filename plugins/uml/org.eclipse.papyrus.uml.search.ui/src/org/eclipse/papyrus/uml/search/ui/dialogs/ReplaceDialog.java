@@ -147,12 +147,12 @@ public class ReplaceDialog extends Dialog {
 	}
 
 	private void change(AttributeMatch match) {
-		if(match.getTarget() instanceof EObject) {
+		if(match.getSource() instanceof EObject) {
 
-			EObject target = (EObject)match.getTarget();
+			EObject target = (EObject)match.getSource();
 
-			if(match.getSource() instanceof EAttribute) {
-				Object value = target.eGet((EAttribute)match.getSource());
+			if(match.getMetaAttribute() instanceof EAttribute) {
+				Object value = target.eGet((EAttribute)match.getMetaAttribute());
 				if(value != null) {
 					if(value instanceof String) {
 						String originalvalue = (String)value;
@@ -160,12 +160,12 @@ public class ReplaceDialog extends Dialog {
 
 						String newValue = computeReplacementString(pattern, originalvalue, replaceText.getText());
 
-						target.eSet((EAttribute)match.getSource(), newValue);
+						target.eSet((EAttribute)match.getMetaAttribute(), newValue);
 
 					}
 				}
-			} else if(match.getSource() instanceof Property) {
-				Property source = (Property)match.getSource();
+			} else if(match.getMetaAttribute() instanceof Property) {
+				Property source = (Property)match.getMetaAttribute();
 				Class containingClass = source.getClass_();
 				if(containingClass instanceof Stereotype) {
 					if(target instanceof Element) {
@@ -216,7 +216,7 @@ public class ReplaceDialog extends Dialog {
 			if(match instanceof AttributeMatch) {
 				final AttributeMatch attributeMatch = (AttributeMatch)match;
 
-				EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(attributeMatch.getTarget());
+				EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(attributeMatch.getSource());
 
 				Object element = match.getElement();
 

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.results;
 
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
@@ -26,8 +27,12 @@ import org.eclipse.ui.PartInitException;
  */
 public class ResultEntry extends AbstractResultEntry {
 
+
+
 	public ResultEntry(Object source, ScopeEntry scopeEntry) {
 		super(UNSPECIFIED, UNSPECIFIED, source, scopeEntry);
+
+
 	}
 
 	/**
@@ -38,8 +43,29 @@ public class ResultEntry extends AbstractResultEntry {
 	 */
 	@Override
 	public Object elementToDisplay() {
-		return source;
+		return this.getSource();
+
+
+
 	}
+
+	//	@Override
+	//	public Object getSource() {
+	//		if(this.uriSource != null) {
+	//			ResourceSet resSet = ((ScopeEntry)this.getElement()).getModelSet();
+	//			return resSet.getEObject(this.uriSource, true);
+	//		} else if(this.uriResource != null) {
+	//
+	//			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+	//
+	//
+	//			IPath path = new Path(this.uriResource.getPath());
+	//			return root.getFile(path);
+	//		}
+	//		return null;
+	//
+	//
+	//	}
 
 	/**
 	 * 
@@ -49,8 +75,13 @@ public class ResultEntry extends AbstractResultEntry {
 	 */
 	@Override
 	public Object elementToCheckFilterFor() {
-		return source;
+		//		ResourceSet resSet = new ResourceSetImpl();
+		//		if(this.uriSource != null) {
+		//			return resSet.getEObject(uriSource, true);
+		//		}
+		return this.getSource();
 	}
+
 
 	/**
 	 * 
@@ -60,9 +91,13 @@ public class ResultEntry extends AbstractResultEntry {
 	 */
 	@Override
 	public Object openElement(OpenElementService service) throws ServiceException, PartInitException {
-		if(source instanceof EObject) {
-			return service.openElement((EObject)source);
+		if(this.getSource() instanceof EObject) {
+
+			return service.openSemanticElement((EObject)this.getSource());
 		}
 		return null;
 	}
+
+
+
 }

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -55,6 +56,11 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * the sub managers
 	 */
 	protected List<IAxisManager> subManagers;
+
+	/**
+	 * the comparator used to sort the axis
+	 */
+	protected Comparator<Object> axisComparator;
 
 	/**
 	 * 
@@ -186,8 +192,14 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 					}
 				}
 			}
+			if(this.axisComparator != null) {
+				Collections.sort(displayedElement, this.axisComparator);
+			} else {
+
+			}
 		}
 	}
+
 
 	/**
 	 * 
@@ -518,7 +530,34 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		return super.getAdapter(adapter);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager#isInSortedState()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isInSortedState() {
+		return this.axisComparator != null;
+	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager#setAxisComparator(java.util.Comparator)
+	 * 
+	 * @param comp
+	 */
+	public void setAxisComparator(final Comparator<Object> comp) {
+		this.axisComparator = comp;
+		if(this.axisComparator != null) {
+			List<Object> displayedElement = getTableManager().getElementsList(getRepresentedContentProvider());
+			synchronized(displayedElement) {
+				Collections.sort(displayedElement, comp);
+				getTableManager().refreshNatTable();//useful?
+			}
+		} else {
+			getTableManager().updateAxisContents(getRepresentedContentProvider());
+		}
+	}
 
 }

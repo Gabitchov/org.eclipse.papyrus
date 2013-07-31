@@ -16,7 +16,11 @@ package org.eclipse.papyrus.views.search.scope;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -59,12 +63,16 @@ public class ScopeEntry {
 	/**
 	 * The resource that contains the element that raised a match
 	 */
-	private IResource resource;
+	//	private IResource resource;
+
+	private IPath pathResource;
 
 
 	public ScopeEntry(IResource resource) {
 		super();
-		this.resource = resource;
+		//		this.resource = resource;
+
+		this.pathResource = resource.getFullPath();
 		this.modelSet = getModelSet();
 		this.servicesRegistry = getServicesRegistry();
 	}
@@ -122,12 +130,13 @@ public class ScopeEntry {
 			} catch (ServiceException e) {
 				//Create one
 				try {
-					modelSet = ModelUtils.openFile(resource);
+
+					modelSet = ModelUtils.openFile(this.getResource());
 					getServicesRegistry().add(ModelSet.class, 10, modelSet);
 					getServicesRegistry().add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
 					getServicesRegistry().startServicesByClassKeys(ModelSet.class, ServiceUtilsForResourceInitializerService.class);
 				} catch (ModelMultiException modelMultiException) {
-					Activator.log.error(Messages.ScopeEntry_1 + resource, modelMultiException);
+					Activator.log.error(Messages.ScopeEntry_1 + this.getResource(), modelMultiException);
 				} catch (ServiceMultiException e1) {
 					Activator.log.error(e1);
 				} catch (ServiceNotFoundException e1) {
@@ -148,7 +157,7 @@ public class ScopeEntry {
 		for(IEditorPart editor : editors) {
 
 			if(editor != null) {
-				if(ResourceUtil.getResource(editor.getEditorInput()).equals(resource)) {
+				if(ResourceUtil.getResource(editor.getEditorInput()).equals(this.getResource())) {
 					return editor;
 				}
 			}
@@ -200,11 +209,26 @@ public class ScopeEntry {
 	}
 
 	public IResource getResource() {
-		return resource;
+
+
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IFile file = root.getFile(pathResource);
+
+		return (IResource)file;
+		//		if(this.uriResource != null) {
+		//
+		//			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		//
+		//
+		//			IPath path = new Path(this.uriResource.getPath());
+		//			return root.getFile(path);
+		//		} else {
+		//			return null;
+		//		}
 	}
 
 	public void setResource(IResource resource) {
-		this.resource = resource;
+		this.pathResource = resource.getFullPath();
 	}
 
 }

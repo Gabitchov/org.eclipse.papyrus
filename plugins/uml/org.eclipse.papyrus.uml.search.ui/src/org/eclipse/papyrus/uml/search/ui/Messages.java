@@ -190,13 +190,19 @@ public class Messages extends NLS {
 	public static String TypesMatchFilter_2;
 
 	public static String TypesMatchFilter_3;
+
 	public static String PapyrusSearchPage_lblResearchKind_text;
+
 	public static String PapyrusSearchPage_txtSearchKind_text;
-	public static String PapyrusSearchPage_group_text;
+
 	public static String PapyrusSearchPage_btnCheckButton_text;
+
 	public static String PapyrusSearchPage_btnGg_text;
+
 	public static String PapyrusSearchPage_btnRefreshTypes_text;
+
 	public static String PapyrusSearchPage_btnRefreshTypes_text_1;
+
 	public static String PapyrusSearchPage_btnNewButton_text;
 	static {
 		// initialize resource bundle

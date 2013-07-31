@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.views.search.results;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
@@ -26,9 +27,13 @@ import org.eclipse.ui.PartInitException;
  */
 public class ModelElementMatch extends ModelMatch {
 
+
+
 	public ModelElementMatch(Object source, ScopeEntry scopeEntry) {
 		super(UNSPECIFIED, UNSPECIFIED, source, scopeEntry);
-		recursiveHierarchy(this, scopeEntry);
+		recursiveHierarchy(this);
+
+
 		//		this.parent = new ResultEntry(scopeEntry.getResource(), scopeEntry);
 	}
 
@@ -56,7 +61,12 @@ public class ModelElementMatch extends ModelMatch {
 	 */
 	@Override
 	public Object elementToDisplay() {
-		return source;
+		//		return this.getSource();
+		if(this.uriSource != null) {
+			ResourceSet resSet = ((ScopeEntry)this.getElement()).getModelSet();
+			return resSet.getEObject(this.uriSource, true);
+		}
+		return null;
 	}
 
 	/**
@@ -67,8 +77,20 @@ public class ModelElementMatch extends ModelMatch {
 	 */
 	@Override
 	public Object elementToCheckFilterFor() {
-		return source;
+		return this.getSource();
 	}
+
+	//	@Override
+	//	public Object getSource() {
+	//
+	//		if(this.uriSource != null) {
+	//			ResourceSet resSet = ((ScopeEntry)this.getElement()).getModelSet();
+	//			return resSet.getEObject(this.uriSource, true);
+	//		}
+	//		return null;
+	//
+	//
+	//	}
 
 	/**
 	 * 
@@ -78,8 +100,9 @@ public class ModelElementMatch extends ModelMatch {
 	 */
 	@Override
 	public Object openElement(OpenElementService service) throws ServiceException, PartInitException {
-		if(source instanceof EObject) {
-			return service.openSemanticElement((EObject)source);
+		if(this.getSource() instanceof EObject) {
+
+			return service.openSemanticElement((EObject)this.getSource());
 		}
 		return null;
 	}

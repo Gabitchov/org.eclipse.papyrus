@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
@@ -48,5 +49,20 @@ public interface ICompositeAxisManager extends IAxisManager {
 	public void sortAxisByName(final boolean alpabeticOrder, IConfigRegistry iConfigRegistry);
 
 	public boolean canEditAxisHeader(NatEventData evaluationContext);
+
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> if the axis managed by this manager are sorted
+	 */
+	public boolean isInSortedState();
+
+	/**
+	 * 
+	 * @param comp
+	 *        the comparator to use to sort the axis. this comparator may be null
+	 */
+	public void setAxisComparator(final Comparator<Object> comp);
+
 
 }

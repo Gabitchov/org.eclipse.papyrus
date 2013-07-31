@@ -52,13 +52,14 @@ public class ColumnDestroyAxisElementHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
+		boolean enabled = false;
 		final IAxisManager axisManager = getColumnAxisManager();
 		if(axisManager != null) {
 			this.eventData = getNatEventData(evaluationContext);
 			final List<Integer> col = getFullSelectedColumnsIndex(this.eventData);
-			setBaseEnabled(axisManager.canDestroyAxisElement(col));
-		} else {
-			setBaseEnabled(false);
+			enabled = axisManager.canDestroyAxisElement(col);
 		}
+		setBaseEnabled(enabled);
+
 	}
 }

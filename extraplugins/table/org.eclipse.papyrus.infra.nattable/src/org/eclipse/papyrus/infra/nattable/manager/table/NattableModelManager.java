@@ -394,6 +394,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public void invertJavaObject() {
+		getRowSortModel().clear();//we clear the sort model
+		this.rowManager.setAxisComparator(null);
 		AbstractAxisProvider newColumProvider = this.rowProvider;
 		AbstractAxisProvider newRowProvider = this.columnProvider;
 		List<Object> newVerticalElementList = this.horizontalElements;
@@ -648,6 +650,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 							if(NattableModelManager.this.natTable != null && !NattableModelManager.this.natTable.isDisposed()) {
 								if(axis == NattableModelManager.this.columnProvider) {
 									updateColumnContents();
+									NattableModelManager.this.getRowSortModel().updateSort();
 								} else {
 									updateRowContents();
 								}
@@ -747,10 +750,16 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public Object getColumnElement(int index) {
+		if(index < 0 || index > this.verticalElements.size()) {
+			return null;
+		}
 		return this.verticalElements.get(index);
 	}
 
 	public Object getRowElement(int index) {
+		if(index < 0 || index > this.horizontalElements.size()) {
+			return null;
+		}
 		return this.horizontalElements.get(index);
 	}
 
@@ -861,11 +870,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 
 	public boolean declareEditorsOnColumns() {
-		return true;
+		return true;//FIXME : used?
 	}
 
 	public boolean declareEditorsOnRows() {
-		return false;
+		return false;//FIXME : used?
 	}
 
 	public ITableAxisElementProvider getTableAxisElementProvider() {// FIXME :
