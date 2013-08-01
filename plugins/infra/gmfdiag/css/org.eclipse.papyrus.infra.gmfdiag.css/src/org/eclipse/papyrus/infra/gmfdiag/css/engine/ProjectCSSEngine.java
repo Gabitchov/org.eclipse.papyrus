@@ -38,8 +38,14 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
  */
 public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 
+	/**
+	 * The name of the EMF Model containing the {@link StyleSheet}s, relative to the Engine's Project
+	 */
 	public static String PROJECT_STYLESHEETS = "stylesheets.xmi"; //$NON-NLS-1$
 
+	/**
+	 * The Engine's project. May be null or closed, or may not exist
+	 */
 	protected IProject project;
 
 	public ProjectCSSEngine(Resource modelResource) {
@@ -61,7 +67,7 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 	@Override
 	protected void reloadStyleSheets() {
 		styleSheets.clear();
-		if(project == null || !project.isOpen()) {
+		if(project == null || !project.exists() || !project.isOpen()) {
 			return;
 		}
 
@@ -96,7 +102,7 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 			super.parseStyleSheet(styleSheet);
 		} else {
 			//Parse relative paths from the Project
-			if(project.exists() && project.isOpen()) {
+			if(project != null && project.exists() && project.isOpen()) {
 				IFile file = project.getFile(path);
 
 				if(file.exists()) {
