@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ModelCSSEngine;
+import org.eclipse.papyrus.infra.gmfdiag.css.engine.ProjectCSSEngine;
 
 /**
  * A GMF Resource with CSS support
@@ -35,10 +36,11 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.ModelCSSEngine;
  * 
  */
 @SuppressWarnings("restriction")
-public class CSSNotationResource
-		extends GMFResource {
+public class CSSNotationResource extends GMFResource {
 
-	private ExtendedCSSEngine engine;
+	private ExtendedCSSEngine modelEngine;
+
+	private ExtendedCSSEngine projectEngine;
 
 	private Adapter disposeListener;
 
@@ -46,41 +48,45 @@ public class CSSNotationResource
 		super(uri);
 	}
 
-	public ExtendedCSSEngine getEngine() {
-		if (engine == null) {
+	public ExtendedCSSEngine getModelEngine() {
+		if(modelEngine == null) {
 			// Create a CSSEngine and listen to modifications on the
 			// resourceSet,
 			// to know when this resource is disposed
-			engine = new ModelCSSEngine(this);
-			getResourceSet().eAdapters().add(
-				disposeListener = new ResourceDisposeListener());
+			modelEngine = new ModelCSSEngine(this);
+			getResourceSet().eAdapters().add(disposeListener = new ResourceDisposeListener());
 		}
-		return engine;
+		return modelEngine;
+	}
+
+	public ExtendedCSSEngine getProjectEngine() {
+		if(projectEngine == null) {
+			projectEngine = new ProjectCSSEngine(this);
+		}
+
+		return projectEngine;
 	}
 
 	public static ExtendedCSSEngine getEngine(Resource resource) {
 		ExtendedCSSEngine result = null;
 
-		if (resource instanceof CSSNotationResource) {
-			result = ((CSSNotationResource) resource).getEngine();
-		} else if ("notation".equals(resource.getURI().fileExtension())) {
-			CSSNotationResourceAdapter adapter = (CSSNotationResourceAdapter) EcoreUtil
-				.getExistingAdapter(resource, ExtendedCSSEngine.class);
+		if(resource instanceof CSSNotationResource) {
+			result = ((CSSNotationResource)resource).getModelEngine();
+		} else if("notation".equals(resource.getURI().fileExtension())) {
+			CSSNotationResourceAdapter adapter = (CSSNotationResourceAdapter)EcoreUtil.getExistingAdapter(resource, ExtendedCSSEngine.class);
 
-			if (adapter == null) {
+			if(adapter == null) {
 				// is the resource set a ModelSet that has the CSS notation
 				// model associated?
 				ResourceSet resourceSet = resource.getResourceSet();
-				if ((resourceSet instanceof ModelSet)
-					&& (((ModelSet) resourceSet)
-						.getModel(NotationModel.MODEL_ID) instanceof CSSNotationModel)) {
+				if((resourceSet instanceof ModelSet) && (((ModelSet)resourceSet).getModel(NotationModel.MODEL_ID) instanceof CSSNotationModel)) {
 
 					adapter = new CSSNotationResourceAdapter();
 					resource.eAdapters().add(adapter);
 				}
 			}
 
-			if (adapter != null) {
+			if(adapter != null) {
 				result = adapter.getEngine();
 			}
 		}
@@ -91,9 +97,7 @@ public class CSSNotationResource
 	public static boolean isCSSEnabled(Resource resource) {
 		// while a resource is loading, we don't want to poke its CSS style
 		// annotations
-		return (resource != null)
-			&& !((Resource.Internal) resource).isLoading()
-			&& (getEngine(resource) != null);
+		return (resource != null) && !((Resource.Internal)resource).isLoading() && (getEngine(resource) != null);
 	}
 
 	/**
@@ -103,36 +107,39 @@ public class CSSNotationResource
 	 */
 	private void disposeEngine(Object notifier) {
 		// notifier is the owning resourceSet
-		if (engine != null) {
-			engine.dispose();
-			engine = null;
+		if(modelEngine != null) {
+			modelEngine.dispose();
+			modelEngine = null;
 			// Stop listening on the resourceSet
-			((ResourceSet) notifier).eAdapters().remove(disposeListener);
+			((ResourceSet)notifier).eAdapters().remove(disposeListener);
+		}
+
+		if(projectEngine != null) {
+			projectEngine.dispose();
+			projectEngine = null;
 		}
 	}
 
-	private class ResourceDisposeListener
-			extends AdapterImpl {
+	private class ResourceDisposeListener extends AdapterImpl {
 
 		@Override
 		public void notifyChanged(Notification notification) {
 			// If this resource is removed from the resourceSet, dispose the
 			// CSSEngine
 			// and stop listening on the resourceSet
-			switch (notification.getEventType()) {
-				case Notification.REMOVE_MANY :
-					for (Object oldValue : (Collection<?>) notification
-						.getOldValue()) {
-						if (oldValue == CSSNotationResource.this) {
-							disposeEngine(notification.getNotifier());
-						}
-					}
-					break;
-				case Notification.REMOVE :
-					if (notification.getOldValue() == CSSNotationResource.this) {
+			switch(notification.getEventType()) {
+			case Notification.REMOVE_MANY:
+				for(Object oldValue : (Collection<?>)notification.getOldValue()) {
+					if(oldValue == CSSNotationResource.this) {
 						disposeEngine(notification.getNotifier());
 					}
-					break;
+				}
+				break;
+			case Notification.REMOVE:
+				if(notification.getOldValue() == CSSNotationResource.this) {
+					disposeEngine(notification.getNotifier());
+				}
+				break;
 			}
 		}
 	}

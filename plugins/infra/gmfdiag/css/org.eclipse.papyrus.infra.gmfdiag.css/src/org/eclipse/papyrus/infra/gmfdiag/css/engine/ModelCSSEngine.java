@@ -19,6 +19,7 @@ import org.eclipse.e4.ui.css.core.engine.CSSElementContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
@@ -45,8 +46,15 @@ public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 	 * @param model
 	 */
 	public ModelCSSEngine(Resource model) {
-		super(WorkspaceCSSEngine.instance);
+		super(getProjectCSSEngine(model));
 		this.model = model;
+	}
+
+	private static ExtendedCSSEngine getProjectCSSEngine(Resource resource) {
+		if(resource instanceof CSSNotationResource) {
+			return ((CSSNotationResource)resource).getProjectEngine();
+		}
+		return new ProjectCSSEngine(resource);
 	}
 
 	@Override
