@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="theme" name="CSS Theme" schema="schema/theme.exsd"/>
    <extension-point id="markertopseudoselectormappingprovider" name="MarkerToPseudoSelectorMappingProvider" schema="schema/markertopseudoselectormappingprovider.exsd"/>
+   <extension-point id="domElementAdapter" name="domElementAdapter" schema="schema/domElementAdapter.exsd"/>
 	<extension point="org.eclipse.emf.ecore.factory_override">
 		<factory
 			class="org.eclipse.papyrus.infra.gmfdiag.css.factory.CSSNotationFactory"

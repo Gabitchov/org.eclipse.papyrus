@@ -52,7 +52,7 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 		super(parent);
 		this.diagram = diagram;
 
-		setElementProvider(new GMFElementProvider());
+		setElementProvider(new ElementProviderWrapper(diagram));
 	}
 
 	@Override

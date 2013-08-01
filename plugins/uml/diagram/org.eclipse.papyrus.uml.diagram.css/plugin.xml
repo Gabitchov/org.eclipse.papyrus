@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.css.domElementAdapter">
+      <factory
+            factory="org.eclipse.papyrus.uml.diagram.css.dom.GMFUMLElementProviderFactory"
+            order="50">
+      </factory>
+   </extension>
+
+</plugin>

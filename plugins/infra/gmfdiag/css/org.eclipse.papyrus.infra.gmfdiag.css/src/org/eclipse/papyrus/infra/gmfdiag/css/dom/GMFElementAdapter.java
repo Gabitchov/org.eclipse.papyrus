@@ -65,69 +65,46 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	//TODO : Use an extension point for this map, or find another way to map Diagram ID to CSS Element name
 	public static final Map<String, String> diagramNameMappings = new HashMap<String, String>();
 
-	static {
-		//UML
-		diagramNameMappings.put("CompositeStructure", "CompositeDiagram");
-		diagramNameMappings.put("Package", "PackageDiagram");
-		diagramNameMappings.put("PapyrusUMLActivityDiagram", "ActivityDiagram");
-		diagramNameMappings.put("PapyrusUMLClassDiagram", "ClassDiagram");
-		diagramNameMappings.put("PapyrusUMLCommunicationDiagram", "CommunicationDiagram");
-		diagramNameMappings.put("PapyrusUMLComponentDiagram", "ComponentDiagram");
-		diagramNameMappings.put("PapyrusUMLDeploymentDiagram", "DeploymentDiagram");
-		diagramNameMappings.put("PapyrusUMLProfileDiagram", "ProfileDiagram");
-		diagramNameMappings.put("PapyrusUMLSequenceDiagram", "SequenceDiagram");
-		diagramNameMappings.put("PapyrusUMLStateMachineDiagram", "StateMachineDiagram");
-		diagramNameMappings.put("UseCase", "UseCaseDiagram");
-		diagramNameMappings.put("PapyrusUMLTimingDiagram", "TimingDiagram");
-		diagramNameMappings.put("PapyrusUMLInteractionOverviewDiagram", "InteractionOverviewDiagram");
-
-		//SysML
-		diagramNameMappings.put("BlockDefinition", "BlockDiagram");
-		diagramNameMappings.put("InternalBlock", "InternalBlockDiagram");
-		diagramNameMappings.put("PapyrusSysMLRequirement", "RequirementDiagram");
-		diagramNameMappings.put("Parametric", "ParametricDiagram");
-	}
-
 	/**
 	 * The Semantic Model Element associated to the current styled element
 	 * Might also be a GMF Diagram
 	 */
-	private EObject semanticElement;
+	protected EObject semanticElement;
 
 	/**
 	 * The current GMF Element
 	 */
-	private View notationElement;
+	protected View notationElement;
 
 	/**
 	 * The namespace URI of the semanticElement
 	 */
-	private String namespaceURI;
+	protected String namespaceURI;
 
 	/**
 	 * The unqualified name of the semantic Element
 	 */
-	private String localName;
+	protected String localName;
 
 	/**
 	 * The list of child nodes for this element
 	 */
-	private Node[] children;
+	protected Node[] children;
 
 	/**
 	 * The parent node of this element
 	 */
-	private Node parentNode;
+	protected Node parentNode;
 
 	/**
 	 * A Listener for standard Style properties
 	 */
-	private Adapter styleListener;
+	protected Adapter styleListener;
 
 	/**
 	 * A Listener for custom Style properties
 	 */
-	private CustomStyleListener cssStyleListener;
+	protected CustomStyleListener cssStyleListener;
 
 	/**
 	 * Returns the CSS ID of the selected element.
@@ -368,7 +345,24 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * The attributes are the semantic's element features
 	 */
 	@Override
-	public String getAttribute(String attr) {
+	public final String getAttribute(String attr) {
+		String value = doGetAttribute(attr);
+		if(value != null) {
+			return value;
+
+		}
+
+		return "";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * The attributes are the semantic's element features
+	 * 
+	 * Returns null if the attribute is not known
+	 */
+	protected String doGetAttribute(String attr) {
 		EStructuralFeature feature = getSemanticElement().eClass().getEStructuralFeature(attr);
 		if(feature != null) {
 			Object value = semanticElement.eGet(feature);
@@ -377,7 +371,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 			}
 		}
 
-		return "";
+		return null;
 	}
 
 	/**
