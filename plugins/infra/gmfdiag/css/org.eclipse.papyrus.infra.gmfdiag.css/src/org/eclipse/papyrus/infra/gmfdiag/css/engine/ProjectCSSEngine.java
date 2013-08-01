@@ -15,6 +15,10 @@ import java.io.IOException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -24,9 +28,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * A CSS Engine for the current Eclipse Project
@@ -37,6 +43,38 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
  * 
  */
 public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
+
+	private IResourceChangeListener resourceListener = new IResourceChangeListener() {
+
+		public void resourceChanged(IResourceChangeEvent event) {
+			if(project != null) {
+				try {
+					event.getDelta().accept(new IResourceDeltaVisitor() {
+
+						public boolean visit(IResourceDelta delta) throws CoreException {
+							if(delta.getResource().equals(project.getFile(PROJECT_STYLESHEETS))) {
+								ProjectCSSEngine.this.reset();
+								DiagramHelper.setNeedsRefresh();
+								Display.getDefault().asyncExec(new Runnable() {
+
+									public void run() {
+										DiagramHelper.refreshDiagrams();
+									}
+								});
+
+								return false;
+							}
+
+							return true;
+						}
+
+					});
+				} catch (CoreException ex) {
+					Activator.log.error(ex);
+				}
+			}
+		}
+	};
 
 	/**
 	 * The name of the EMF Model containing the {@link StyleSheet}s, relative to the Engine's Project
@@ -57,11 +95,17 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 			try {
 				IPath workspacePath = new Path(platformString);
 				this.project = ResourcesPlugin.getWorkspace().getRoot().getFile(workspacePath).getProject();
+				ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
 			} catch (Exception ex) {
 				Activator.log.error(ex);
 			}
 		}
+	}
 
+	@Override
+	public void dispose() {
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceListener);
+		super.dispose();
 	}
 
 	@Override
