@@ -41,37 +41,6 @@
                   </with>
                </visibleWhen>
             </command>
-            <command
-                  commandId="org.eclipse.papyrus.uml.modelrepair.editlinks"
-                  style="push">
-               <visibleWhen
-                     checkEnabled="false">
-                  <with
-                        variable="selection">
-                     <iterate
-                           ifEmpty="false"
-                           operator="and">
-                        <adapt
-                              type="org.eclipse.core.resources.IFile">
-                           <or>
-                              <test
-                                    property="org.eclipse.core.resources.extension"
-                                    value="di">
-                              </test>
-                              <test
-                                    property="org.eclipse.core.resources.extension"
-                                    value="uml">
-                              </test>
-                              <test
-                                    property="org.eclipse.core.resources.extension"
-                                    value="notation">
-                              </test>
-                           </or>
-                        </adapt>
-                     </iterate>
-                  </with>
-               </visibleWhen>
-            </command>
          </menu>
       </menuContribution>
    </extension>
