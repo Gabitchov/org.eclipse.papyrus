@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.infra.psf.handler.ImportPSF"
+            defaultHandler="org.eclipse.papyrus.infra.psf.handler.ImportPSFHandler"
             description="Imports a Team Project Set File (Psf) in background"
             id="org.eclipse.papyrus.infra.psf.import"
             name="Import PSF (Background)">

@@ -11,17 +11,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.psf.runtime;
 
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 
-
+/**
+ * Represents the result of an Import PSF action.
+ * Contains the set of sucessfully imported projects,
+ * and a list of diagnostics
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class ImportResult {
 
 	private IProject[] importedProjects;
 
-	private Map<String, IStatus> diagnostic;
+	private final List<IStatus> diagnostic = new LinkedList<IStatus>();
 
 	public IProject[] getImportedProjects() {
 		return importedProjects;
@@ -31,12 +39,8 @@ public class ImportResult {
 		this.importedProjects = importedProjects;
 	}
 
-	public Map<String, IStatus> getDiagnostic() {
+	public List<IStatus> getDiagnostic() {
 		return diagnostic;
-	}
-
-	public void setDiagnostic(Map<String, IStatus> diagnostic) {
-		this.diagnostic = diagnostic;
 	}
 
 }

@@ -29,17 +29,19 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.psf.Activator;
 import org.eclipse.papyrus.infra.psf.ui.FilterProjectsDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -106,11 +108,18 @@ public class ProjectSetImporter {
 		return importProjectSet(xmlMemento, filename, shell, monitor);
 	}
 
+	/**
+	 * Differences with the base implementation:
+	 * 
+	 * - User can select the projects to import
+	 * - Projects are imported one by one (Instead of being imported provider by provider). The workspace is not locked during the import
+	 * - Exceptions are caught and stored. They do not break the import
+	 * - The method returns an ImportResult, containing the list of successfully imported projects and a diagnostic for errors
+	 */
 	private static ImportResult importProjectSet(XMLMemento xmlMemento, String filename, Shell shell, IProgressMonitor mainMonitor) throws InvocationTargetException {
 
 		ImportResult result = new ImportResult();
-		Map<String, IStatus> diagnostic = new LinkedHashMap<String, IStatus>();
-		result.setDiagnostic(diagnostic);
+		final List<IStatus> diagnostic = result.getDiagnostic();
 
 		Map<String, List<String>> providersToProjects = filterProjects(xmlMemento, shell);
 
@@ -134,8 +143,6 @@ public class ProjectSetImporter {
 				}
 			} else {
 				final ProjectSetSerializationContext context = new ProjectSetSerializationContext(filename);
-				final List<Exception> errors = new ArrayList<Exception>();
-
 
 				int nbProjects = 0;
 
@@ -147,7 +154,7 @@ public class ProjectSetImporter {
 
 				int totalWork = nbProjects + nbWorkingSets;
 
-				mainMonitor.beginTask("Importing " + nbProjects + " projects...", totalWork);
+				mainMonitor.beginTask(String.format("Importing %s projects", nbProjects), totalWork);
 
 				for(Map.Entry<String, List<String>> providerToProjects : providersToProjects.entrySet()) {
 					if(mainMonitor.isCanceled()) {
@@ -165,8 +172,7 @@ public class ProjectSetImporter {
 					}
 
 					if(providerType == null) {
-						//TODO
-						//throw new TeamException(new Status(IStatus.ERROR, TeamUIPlugin.ID, 0, NLS.bind(TeamUIMessages.ProjectSetImportWizard_0, new String[]{ id }), null));
+						diagnostic.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, String.format("Unknown team provider: %s", id)));
 						mainMonitor.worked(projects.size());
 						continue;
 					}
@@ -177,52 +183,60 @@ public class ProjectSetImporter {
 					if(serializer != null) {
 						for(final String ref : projects) {
 
+							if(mainMonitor.isCanceled()) {
+								return result;
+							}
+
 							try {
 								IProgressMonitor monitor = new SubProgressMonitor(mainMonitor, 1);
 
-								String projectName = getProjectName(serializer, ref);
+								final String projectName = getProjectName(serializer, ref);
 
-								mainMonitor.subTask("Importing " + projectName + "...");
+								mainMonitor.subTask(String.format("Importing %s...", projectName));
+
+								final List<IProject> importedProjects = new LinkedList<IProject>();
 
 								WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
 
 									@Override
 									protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
-										IProject[] allProjects = serializer.addToWorkspace(new String[]{ ref }, context, monitor);
-
-										if(allProjects != null) {
-											newProjects.addAll(Arrays.asList(allProjects));
-										}
-
 										try {
-											ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
-										} catch (CoreException ex) {
-											errors.add(ex);
+											IProject[] allProjects = serializer.addToWorkspace(new String[]{ ref }, context, monitor);
+
+											if(allProjects != null) {
+												importedProjects.addAll(Arrays.asList(allProjects));
+											}
+										} catch (Exception ex) {
+											diagnostic.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, String.format("An error occurred when importing %s", projectName), ex));
 										}
 									}
 								};
 
 								operation.run(monitor);
 
-							} catch (InterruptedException e) {
-								errors.add(e);
+								//Refresh the new projects
+								for(IProject project : importedProjects) {
+									if(project == null) {
+										continue;
+									}
+									try {
+										project.refreshLocal(IResource.DEPTH_INFINITE, null);
+									} catch (CoreException ex) {
+										Activator.log.error(ex); //Not directly related to the import.
+									} catch (OperationCanceledException ex) {
+										//Ignore: The refresh workspace is cancel
+									}
+								}
+
+								newProjects.addAll(importedProjects);
+
+							} catch (InterruptedException ex) {
+								mainMonitor.setCanceled(true);
 							} catch (Exception ex) {
-								errors.add(ex);
+								diagnostic.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An error occurred when importing a project", ex));
 							}
 						}
 					}
-				}
-
-				if(!errors.isEmpty()) {
-					TeamException[] exceptions = errors.toArray(new TeamException[errors.size()]);
-					IStatus[] status = new IStatus[exceptions.length];
-
-					int i = 0;
-					for(TeamException exception : exceptions) {
-						status[i++] = exception.getStatus();
-					}
-
-					//throw new TeamException(new MultiStatus(TeamUIPlugin.ID, 0, status, TeamUIMessages.ProjectSetImportWizard_1, null));
 				}
 
 				//try working sets
@@ -232,11 +246,14 @@ public class ProjectSetImporter {
 				boolean mergeAll = false;
 				boolean skipAll = false;
 
-				mainMonitor.setTaskName("Creating " + nbWorkingSets + " working sets...");
+				mainMonitor.setTaskName(String.format("Creating %s working sets...", nbWorkingSets));
 
-				for(int i = 0; i < sets.length; i++) {
-					mainMonitor.subTask("Working set " + sets[i].getString("label"));
-					IWorkingSet newWs = wsManager.createWorkingSet(sets[i]);
+				for(IMemento set : sets) {
+					if(mainMonitor.isCanceled()) {
+						return result;
+					}
+					mainMonitor.subTask(String.format("Working set %s", set.getString("label")));
+					IWorkingSet newWs = wsManager.createWorkingSet(set);
 					if(newWs != null) {
 						IWorkingSet oldWs = wsManager.getWorkingSet(newWs.getName());
 						if(oldWs == null) {
@@ -273,18 +290,16 @@ public class ProjectSetImporter {
 								break;
 							case 3: // cancel
 							default:
-								//throw new OperationCanceledException();
+								mainMonitor.setCanceled(true);
 							}
 						}
 					}
 
 					mainMonitor.worked(1);
 				}
-
 			}
 
 			result.setImportedProjects(newProjects.toArray(new IProject[newProjects.size()]));
-			result.setDiagnostic(diagnostic);
 
 			return result;
 		} catch (TeamException e) {

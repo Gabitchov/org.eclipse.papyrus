@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
@@ -36,8 +37,13 @@ import org.eclipse.papyrus.infra.psf.runtime.ProjectSetImporter;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-
-public class ImportPSF extends AbstractHandler {
+/**
+ * Handles the ImportPSF command: org.eclipse.papyrus.infra.psf.import
+ * 
+ * @author Camille Letavernier
+ * 
+ */
+public class ImportPSFHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final Shell activeShell = HandlerUtil.getActiveShell(event);
@@ -53,38 +59,26 @@ public class ImportPSF extends AbstractHandler {
 			while(selectionIterator.hasNext()) {
 				Object selectedElement = selectionIterator.next();
 				IFile file = (IFile)Platform.getAdapterManager().getAdapter(selectedElement, IFile.class);
-				if(file != null && "psf".equals(file.getLocation().getFileExtension())) {
+				if(file != null && "psf".equals(file.getLocation().getFileExtension())) { //$NON-NLS-1$
 					final String fileName = file.getLocation().toString();
 
-					Job job = new Job("Import " + file.getName()) {
+					Job job = new Job(String.format("Import %s", file.getName())) {
 
 						@Override
 						protected IStatus run(IProgressMonitor monitor) {
 							AbstractOperation operation = new ImportProjectSetOperation(getName(), fileName, activeShell);
 
 							try {
-								IStatus result = OperationHistoryFactory.getOperationHistory().execute(operation, monitor, null);
+								final IStatus result = OperationHistoryFactory.getOperationHistory().execute(operation, monitor, null);
 
 								if(monitor.isCanceled() || result.getSeverity() == IStatus.CANCEL) {
-									//TODO
-								}
-
-								if(result.isOK()) {
-									return result;
-								}
-
-								if(result.getSeverity() == IStatus.WARNING) {
-									//TODO
-								}
-
-								if(result.getSeverity() == IStatus.ERROR) {
-									//TODO
+									//TODO: Abort or Undo
 								}
 
 								return result;
 							} catch (ExecutionException ex) {
 								Activator.log.error(ex);
-								return new Status(IStatus.ERROR, Activator.PLUGIN_ID, ex.getMessage(), ex);
+								return new Status(IStatus.ERROR, Activator.PLUGIN_ID, String.format("An error occurred when importing the PSF %s", fileName), ex);
 							}
 						}
 					};
@@ -138,14 +132,32 @@ public class ImportPSF extends AbstractHandler {
 		@Override
 		public IStatus execute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			try {
-				ImportResult result = ProjectSetImporter.importProjectSet(psfFileName, shell, monitor);
-				importedProjects = result.getImportedProjects();
-				return Status.OK_STATUS;
+				if(ProjectSetImporter.isValidProjectSetFile(psfFileName)) {
+					ImportResult result = ProjectSetImporter.importProjectSet(psfFileName, shell, monitor);
+					importedProjects = result.getImportedProjects();
+					if(!result.getDiagnostic().isEmpty()) {
+						if(result.getDiagnostic().size() == 1) {
+							return result.getDiagnostic().get(0);
+						} else {
+							IStatus[] status = result.getDiagnostic().toArray(new IStatus[0]);
+							int code = IStatus.OK;
+							for(IStatus currentStatus : status) {
+								if(currentStatus.getSeverity() > code) {
+									code = currentStatus.getSeverity();
+								}
+							}
+
+							IStatus resultStatus = new MultiStatus(Activator.PLUGIN_ID, code, status, "The following errors occurred during import:", null);
+							return resultStatus;
+						}
+					}
+					return Status.OK_STATUS;
+				} else {
+					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The selected file is not a valid Project Set File");
+				}
 			} catch (InvocationTargetException ex) {
-				Activator.log.error(ex);
-				//Report
+				return new Status(IStatus.ERROR, Activator.PLUGIN_ID, String.format("An error occurred when importing the PSF %s", psfFileName), ex);
 			}
-			return Status.OK_STATUS;
 		}
 	}
 }

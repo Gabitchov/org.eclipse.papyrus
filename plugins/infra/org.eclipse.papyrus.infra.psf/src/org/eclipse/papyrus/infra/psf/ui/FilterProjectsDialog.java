@@ -34,6 +34,15 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.SelectionDialog;
 
+/**
+ * A Checkbox Dialog to filter the projects to be imported.
+ * 
+ * Note: the projects are represented by their PSF Reference, which is specific for each
+ * team provider. The reference does not necessarily represent a single project
+ * (Although it is the most common case)
+ * 
+ * @author Camille Letavernier
+ */
 public class FilterProjectsDialog extends SelectionDialog {
 
 
@@ -44,7 +53,14 @@ public class FilterProjectsDialog extends SelectionDialog {
 		public String getText(Object element) {
 			if(element instanceof String) {
 				String ref = (String)element;
-				int lastIndex = Math.max(ref.lastIndexOf('/'), Math.max(ref.lastIndexOf(','), ref.lastIndexOf('\\')));
+
+				char[] splitStrings = new char[]{ '/', ',', '\\' };
+
+				int lastIndex = -1;
+				for(char split : splitStrings) {
+					lastIndex = Math.max(lastIndex, ref.lastIndexOf(split));
+				}
+
 				if(lastIndex == -1) {
 					return ref;
 				}
@@ -53,7 +69,6 @@ public class FilterProjectsDialog extends SelectionDialog {
 
 			return super.getText(element);
 		}
-
 	}
 
 	public class MapContentProvider implements ITreeContentProvider {
@@ -215,6 +230,7 @@ public class FilterProjectsDialog extends SelectionDialog {
 
 	@Override
 	protected void okPressed() {
+		//Remove the unchecked projects/providers
 		Iterator<String> providerIterator = providersToProjects.keySet().iterator();
 		while(providerIterator.hasNext()) {
 			String provider = providerIterator.next();
