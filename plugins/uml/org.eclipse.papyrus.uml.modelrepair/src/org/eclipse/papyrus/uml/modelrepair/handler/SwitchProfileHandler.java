@@ -34,7 +34,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.modelrepair.Activator;
 import org.eclipse.papyrus.uml.modelrepair.ui.SwitchProfileDialog;
-import org.eclipse.papyrus.uml.modelrepair.util.ProfileHelper;
+import org.eclipse.papyrus.uml.tools.util.ProfileHelper;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.uml2.uml.Profile;

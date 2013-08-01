@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.ui;
 
 import java.io.IOException;
@@ -47,7 +58,7 @@ import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.modelrepair.Activator;
-import org.eclipse.papyrus.uml.modelrepair.util.ProfileHelper;
+import org.eclipse.papyrus.uml.tools.util.ProfileHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -62,7 +73,11 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.uml2.uml.Profile;
 
-
+/**
+ * The dialog to switch from a Profile application to another
+ * 
+ * @author Camille Letavernier
+ */
 public class SwitchProfileDialog extends SelectionDialog {
 
 	private static final int APPLY_ID = IDialogConstants.CLIENT_ID + 1;
@@ -101,7 +116,7 @@ public class SwitchProfileDialog extends SelectionDialog {
 		self.setLayout(new GridLayout(1, false));
 		self.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		Label descriptionLabel = new Label(self, SWT.NONE);
+		Label descriptionLabel = new Label(self, SWT.WRAP);
 		String description = "Select an applied profile, then select a profile (either from the workspace, or a registered one)\n";
 		description += "If the profiles are equivalent, the selected profile will replace the applied profile. Stereotype applications will be kept\n";
 		description += "Two profiles are equivalent if, e.g. one is the copy of the other, or if you have deployed a workspace profile in a plug-in\n";
@@ -110,7 +125,7 @@ public class SwitchProfileDialog extends SelectionDialog {
 
 		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 
-		Label warningLabel = new Label(self, SWT.NONE);
+		Label warningLabel = new Label(self, SWT.WRAP);
 		String warning = "/!\\ Replacing an applied profile with a totally different one will result in an invalid model /!\\";
 		warningLabel.setText(warning);
 		warningLabel.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_DARK_RED));
@@ -290,6 +305,7 @@ public class SwitchProfileDialog extends SelectionDialog {
 		super.create();
 		updateControls();
 		getShell().setText("Switch profile location");
+		getShell().setMinimumSize(600, 400);
 		getShell().pack();
 	}
 
