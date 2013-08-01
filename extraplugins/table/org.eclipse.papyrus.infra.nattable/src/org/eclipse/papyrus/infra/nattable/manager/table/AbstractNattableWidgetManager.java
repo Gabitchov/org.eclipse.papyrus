@@ -22,11 +22,11 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.EditableRule;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.config.IConfiguration;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataToClipboardCommand;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
@@ -37,7 +37,6 @@ import org.eclipse.nebula.widgets.nattable.grid.data.DefaultCornerDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
-import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
 import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
@@ -72,8 +71,8 @@ import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
-import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
 import org.eclipse.papyrus.infra.nattable.sort.ColumnSortModel;
+import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
@@ -186,66 +185,15 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		cornerLayer.addConfiguration(new CornerConfiguration(this));
 		this.gridLayer = new PapyrusGridLayer(this.bodyLayerStack, this.columnHeaderLayerStack, this.rowHeaderLayerStack, cornerLayer);
 		this.gridLayer.addConfiguration(new DefaultPrintBindings());
-		//		gridLayer.addConfiguration(new StyleConfiguration());
-		//		fBodyLayer.getBodyDataLayer().addConfiguration(new StyleConfiguration());
-		//		fBodyLayer.addConfiguration(new StyleConfiguration());
-
-
-
 
 		this.natTable = new NatTable(parent, this.gridLayer, false);
 
 
-		//for the edition
-		//		configureEdition(this.natTable, this.bodyLayerStack);
+
 		this.natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
-		//		this.natTable.addConfiguration(new HeaderMenuConfiguration(this.natTable));
-		this.natTable.addConfiguration(new IConfiguration() {
 
-
-			@Override
-			public void configureUiBindings(final UiBindingRegistry uiBindingRegistry) {
-				// TODO Auto-generated method stub
-
-			}
-
-
-			@Override
-			public void configureRegistry(final IConfigRegistry configRegistry) {
-				configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITABLE_RULE, new EditableRule() {
-
-					@Override
-					public boolean isEditable(final int columnIndex, final int rowIndex) {
-						final Object row;
-						final Object column;
-						final Object rowElement = AbstractNattableWidgetManager.this.rowHeaderDataProvider.getDataValue(1, rowIndex);
-						final Object columnElement = AbstractNattableWidgetManager.this.columnHeaderDataProvider.getDataValue(columnIndex, 1);
-						if(AbstractNattableWidgetManager.this.table.isInvertAxis()) {
-							row = columnElement;
-							column = rowElement;
-						} else {
-							row = rowElement;
-							column = columnElement;
-						}
-
-						return CellManagerFactory.INSTANCE.isCellEditable(column, row);
-					}
-				});
-
-				configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, null, DisplayMode.EDIT, ""); //$NON-NLS-1$
-
-			}
-
-
-			@Override
-			public void configureLayer(final ILayer layer) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		this.natTable.addConfiguration(new CellEditionConfiguration());
 		this.natTable.addConfiguration(new PapyrusClickSortConfiguration());
-
-		//		natTable.addConfiguration(new DefaultSelectionStyleConfiguration());
 
 
 		configureNatTable();
@@ -268,23 +216,19 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	protected void configureNatTable() {
 		if(this.natTable != null && !this.natTable.isDisposed()) {
-			this.natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
+			ConfigRegistry configRegistry = new ConfigRegistry();
+			configRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, AbstractNattableWidgetManager.this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+			configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+			//commented because seems generate several bugs with edition
+			//newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL,  GridRegion.BODY);
+			configRegistry.registerConfigAttribute(CellConfigAttributes.EXPORT_FORMATTER, new PapyrusExportFormatter());
+
+			this.natTable.setConfigRegistry(configRegistry);
 			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 			this.natTable.configure();
 		}
 	}
 
-	protected IConfigRegistry createAndInitializeNewConfigRegistry() {
-		final IConfigRegistry newRegistry = new ConfigRegistry();
-		if(!this.natTable.isDisposed()) {
-			newRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			newRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-			//commented because seems generate several bugs with edition
-			//newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL,  GridRegion.BODY);
-			newRegistry.registerConfigAttribute(CellConfigAttributes.EXPORT_FORMATTER, new PapyrusExportFormatter());
-		}
-		return newRegistry;
-	}
 
 	private LabelProviderService getLabelProviderService() {
 		try {
@@ -504,5 +448,42 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		return this.rowSortModel;
 	}
 
+	/**
+	 * 
+	 * 
+	 * Configuration used for cell edition in the table
+	 */
+	private class CellEditionConfiguration extends AbstractRegistryConfiguration {
 
+		/**
+		 * 
+		 * @see org.eclipse.nebula.widgets.nattable.config.IConfiguration#configureRegistry(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
+		 * 
+		 * @param configRegistry
+		 */
+		@Override
+		public void configureRegistry(IConfigRegistry configRegistry) {
+			configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITABLE_RULE, new EditableRule() {
+
+				@Override
+				public boolean isEditable(final int columnIndex, final int rowIndex) {
+					//					final Object row;
+					//					final Object column;
+					final Object rowElement = AbstractNattableWidgetManager.this.rowHeaderDataProvider.getDataValue(1, rowIndex);
+					final Object columnElement = AbstractNattableWidgetManager.this.columnHeaderDataProvider.getDataValue(columnIndex, 1);
+					//					if(AbstractNattableWidgetManager.this.table.isInvertAxis()) {
+					//						row = columnElement;
+					//						column = rowElement;
+					//					} else {
+					//						row = rowElement;
+					//						column = columnElement;
+					//					}
+
+					return CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement);
+				}
+			});
+
+			configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, null, DisplayMode.EDIT, ""); //$NON-NLS-1$
+		}
+	}
 }
