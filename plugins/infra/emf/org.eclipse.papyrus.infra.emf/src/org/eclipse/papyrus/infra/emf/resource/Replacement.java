@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,17 +9,24 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.tests.tests;
+package org.eclipse.papyrus.infra.emf.resource;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
+/**
+ * Represents a value replacement.
+ * 
+ * @author Camille Letavernier
+ * 
+ */
+public interface Replacement extends EStructuralFeature.Setting {
 
-@RunWith(Suite.class)
-@SuiteClasses({ ContentProviderTest.class, UMLStereotypePropertyContentProviderTest.class, DependencyManagementTest.class
-
-})
-public class AllTests {
-	//Test suite
+	/**
+	 * Returns the old value
+	 * 
+	 * @return
+	 *         The value which has been replaced
+	 */
+	public EObject getOldValue();
 }

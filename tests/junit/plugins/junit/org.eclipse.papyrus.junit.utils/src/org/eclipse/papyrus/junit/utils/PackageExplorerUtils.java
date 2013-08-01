@@ -15,14 +15,13 @@ package org.eclipse.papyrus.junit.utils;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.eclipse.jdt.ui.IPackagesViewPart;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.junit.Assert;
 
 /**
  * 

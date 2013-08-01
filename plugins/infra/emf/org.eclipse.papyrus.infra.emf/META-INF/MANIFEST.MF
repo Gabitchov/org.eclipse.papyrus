@@ -35,6 +35,7 @@ Export-Package: org.eclipse.papyrus.infra.emf,
  org.eclipse.papyrus.infra.emf.dialog,
  org.eclipse.papyrus.infra.emf.providers,
  org.eclipse.papyrus.infra.emf.providers.strategy,
+ org.eclipse.papyrus.infra.emf.resource,
  org.eclipse.papyrus.infra.emf.utils
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy

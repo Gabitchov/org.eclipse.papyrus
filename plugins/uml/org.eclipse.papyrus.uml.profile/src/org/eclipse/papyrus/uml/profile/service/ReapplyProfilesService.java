@@ -109,6 +109,10 @@ public class ReapplyProfilesService implements IService, EditorLifecycleEventLis
 	}
 
 	protected boolean checkAndRefreshProfiles(Package currentPackage, IMultiDiagramEditor editor) {
+		if(Display.getCurrent() == null) {
+			return false;
+		}
+
 		for(Profile profile : currentPackage.getAppliedProfiles()) {
 			if(ProfileUtil.isDirty(currentPackage, profile)) {
 				RefreshProfileDialog dialog = new RefreshProfileDialog(editor.getSite().getShell(), this.rootPackage);

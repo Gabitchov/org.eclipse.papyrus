@@ -11,8 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.editor.integration.tests.tests;
 
-import junit.framework.Assert;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -33,6 +31,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Model;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**

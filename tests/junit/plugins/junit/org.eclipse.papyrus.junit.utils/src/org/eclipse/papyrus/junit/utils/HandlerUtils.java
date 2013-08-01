@@ -13,14 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils;
 
-import junit.framework.Assert;
-
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.ParameterizedCommand;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.IHandlerService;
+import org.junit.Assert;
 
 /**
  * 

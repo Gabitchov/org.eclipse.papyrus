@@ -154,7 +154,7 @@ public class ModelExplorerUtils {
 			((AbstractHandler)handler).setEnabled(commandToTest);
 		}
 		boolean res = handler.isEnabled();
-		Assert.assertEquals(wantedResult, res);;
+		Assert.assertEquals(wantedResult, res);
 	}
 
 	/**
