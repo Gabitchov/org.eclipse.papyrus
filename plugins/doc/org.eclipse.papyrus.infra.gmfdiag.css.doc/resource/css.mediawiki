@@ -60,7 +60,8 @@ Eclipse implements the 2.1 version of the CSS syntax. The available selectors ar
 *ElementType: Matches the elements of type “ElementType”<br> 
 *.myStyle: Matches the elements on which the style “myStyle” is applied<br> 
 *#myID: Matches the element with the CSS ID “myID”. The CSS ID must be unique among a diagram. To avoid confusing the users, and because this selector doesn’t make much sense on diagrams, this selector has been disabled in Papyrus.<br> 
-*[property=value]: Matches the elements which have a property “property” with the value “value”.<br>
+*[property=value]: Matches the elements which have a property “property” with the value “value”. It can also match the properties of Stereotypes<br>
+*[appliedStereotypes~="MyStereotype"]: Matches the elements on which the Stereotype "MyStereotype" is applied. You can use either the Stereotype's name or qualified name (MyProfile::MyPackage::MyStereotype). Note: always use the "~=" operator (Which means "contains"), because elements can have more than one applied stereotype.
 
 The pseudo-selectors are currently not used in Papyrus.<br> 
 
@@ -98,6 +99,17 @@ Meaning: this style applies to all UML Classes. They will have a white and verti
 }</source> 
 
 Meaning: The properties directly contained in a Class, which is drawn on a ClassDiagram (Either as a root element of the diagram, or in a Package) will be displayed in red.<br> 
+
+<source lang="css">[appliedStereotypes~="Block"]{
+	bold:true;
+}
+
+/* Equivalent: qualified name */
+[appliedStereotypes~="SysML::Blocks::Block"]{
+	bold:true;
+}</source>
+
+Meaning: The elements with the "Block" stereotype must be displayed in bold.
 
 == With the Papyrus tooling  ==
 

@@ -204,6 +204,17 @@
 		on a ClassDiagram (Either as a root element of the diagram, or in a
 		Package) will be displayed in red.<br />
 	</p>
+	<pre class="source-css">[appliedStereotypes~="Block"]{
+	bold:true;
+}
+
+/* Equivalent: qualified name */
+[appliedStereotypes~="SysML::Blocks::Block"]{
+	bold:true;
+}
+</pre>
+	<p>Meaning: The elements with the "Block" stereotype must be
+		displayed in bold.</p>
 	<h2 id="With_the_Papyrus_tooling">With the Papyrus tooling</h2>
 	<p>Papyrus also provides a tool to generate a CSS Rule from an
 		element displayed in the diagram. You need to create a stylesheet
