@@ -118,21 +118,25 @@
 		selectors are:<br />
 	</p>
 	<ul>
-		<li><pre>*</pre>:matches all elements<br /></li>
-		<li>ElementType: Matches the elements of type “ElementType”<br />
+		<li><b>*</b>: Matches all elements<br /></li>
+		<li><b>ElementType</b>: Matches the elements of type “ElementType”<br />
 		</li>
-		<li>.myStyle: Matches the elements on which the style “myStyle”
+		<li><b>.myStyle</b>: Matches the elements on which the style “myStyle”
 			is applied<br />
-			<ol>
-				<li>myID: Matches the element with the CSS ID “myID”. The CSS
-					ID must be unique among a diagram. To avoid confusing the users,
-					and because this selector doesn’t make much sense on diagrams, this
-					selector has been disabled in Papyrus.<br />
-				</li>
-			</ol>
+		<li><b>#myID</b>: Matches the element with the CSS ID “myID”. The CSS
+			ID must be unique among a diagram. To avoid confusing the users,
+			and because this selector doesn’t make much sense on diagrams, this
+			selector has been disabled in Papyrus.<br />
 		</li>
-		<li><a href="property=value">property=value</a>: Matches the
-			elements which have a property “property” with the value “value”.<br /></li>
+		<li><b>[property=value]</b>: Matches the
+			elements which have a property “property” with the value “value”. It
+			can also match the properties of Stereotypes<br /></li>
+		<li><b>[appliedStereotypes~=&quot;MyStereotype&quot;]</b>:
+			Matches the elements on which the Stereotype "MyStereotype" is
+			applied. You can use either the Stereotype's name or qualified name
+			(MyProfile::MyPackage::MyStereotype). Note: always use the "~="
+			operator (Which means "contains"), because elements can have more
+			than one applied stereotype.</li>
 	</ul>
 	<p>
 		The pseudo-selectors are currently not used in Papyrus.<br />
