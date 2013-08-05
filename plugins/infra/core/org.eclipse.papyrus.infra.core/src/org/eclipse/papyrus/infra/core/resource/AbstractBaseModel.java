@@ -25,7 +25,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware;
@@ -38,19 +37,7 @@ import org.eclipse.papyrus.infra.core.Activator;
  * @author cedric dumoulin
  * 
  */
-public abstract class AbstractBaseModel implements IVersionableModel {
-
-	public static final String ENCODING = "UTF-8"; //$NON-NLS-1$
-
-	/**
-	 * The associated ModelManager.
-	 */
-	private ModelSet modelSet;
-
-	/**
-	 * List of attached snippets.
-	 */
-	protected ModelSnippetList snippets = new ModelSnippetList();
+public abstract class AbstractBaseModel extends AbstractModel implements IVersionableModel {
 
 	/**
 	 * The associated resource.
@@ -61,32 +48,6 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 	 * The resource URI.
 	 */
 	protected URI resourceURI;
-
-	/**
-	 * @see org.eclipse.papyrus.infra.core.resource.IModel#init(org.eclipse.papyrus.infra.core.resource.ModelSet)
-	 * 
-	 * @param modelManager
-	 */
-	public void init(ModelSet modelManager) {
-		this.modelSet = modelManager;
-
-	}
-
-	/**
-	 * @return the modelManager
-	 */
-	protected ModelSet getModelManager() {
-		return modelSet;
-	}
-
-	/**
-	 * Get the associated ResourceSet containing the resources of this model.
-	 * 
-	 * @return
-	 */
-	protected ResourceSet getResourceSet() {
-		return modelSet;
-	}
 
 	/**
 	 * @return the resource
@@ -101,13 +62,6 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 	public URI getResourceURI() {
 		return resourceURI;
 	}
-
-	/**
-	 * Get the model identifier.
-	 * 
-	 * @return
-	 */
-	abstract public String getIdentifier();
 
 	/**
 	 * Get the file extension used by the resource.
@@ -285,17 +239,6 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 		}
 	}
 
-	/**
-	 * Add a snippet to this model. The snippet is called just after model is
-	 * initialized, and before it is disposed or unloaded. Snippet can be shared
-	 * among models.
-	 * 
-	 * @param snippet
-	 *        The snippet to add.
-	 */
-	public void addModelSnippet(IModelSnippet snippet) {
-		snippets.add(snippet);
-	}
 
 	protected Map<Object, Object> getSaveOptions() {
 		Map<Object, Object> saveOptions = new HashMap<Object, Object>();

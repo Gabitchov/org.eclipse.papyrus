@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
@@ -147,4 +148,28 @@ public interface IModel {
 	 * @return
 	 */
 	public Set<URI> getModifiedURIs();
+
+	/**
+	 * Sets the list of Model (referenced by identifiers) that should be loaded before this one is loaded.
+	 * @param afterLoadModelIdentifiers the list of Model (referenced by identifiers) that should be loaded before this one can be loaded, or <code>null</code> if there are no dependencies
+	 */
+	public void setAfterLoadModelDependencies(List<String> afterLoadModelIdentifiers);
+
+	/**
+	 * Returns the Models (referenced by identifiers) that should be loaded before this one is loaded.
+	 * @return the Models (referenced by identifiers) that should be loaded before this one can be loaded, or <code>null</code> if there are no dependencies
+	 */
+	public List<String> getAfterLoadModelIdentifiers();
+	
+	/**
+	 * Sets the list of Model (referenced by identifiers) that should not be unloaded before this one is unloaded.
+	 * @param unloadBeforeModelIdentifiers the Models (referenced by identifiers) that should not be unloaded before this one is unloaded, or <code>null</code> if there are no dependencies
+	 */
+	public void setBeforeUnloadDependencies(List<String> unloadBeforeModelIdentifiers);
+	
+	/**
+	 * Returns the Models (referenced by identifiers) that should not be unloaded before this one is unloaded.
+	 * @return the Models (referenced by identifiers) that should not be unloaded before this one is loaded, or <code>null</code> if there are no dependencies
+	 */
+	public List<String> getUnloadBeforeModelIdentifiers();
 }
