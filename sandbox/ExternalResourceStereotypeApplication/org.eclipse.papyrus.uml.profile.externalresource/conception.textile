@@ -1,0 +1,27 @@
+
+h1. Conception of the external profile application management module
+
+
+h2. Context
+
+Currently, profile applications are serialized within the same file as the model itself. This feature will enable to serialize profile applications within a dedicated file. This feature will be an option that the user may configure within the Papyrus preferences. If one applies several profiles on a model, each profile application is serialized within its own resource. It has to be possible to switch from one configuration to the other, i.e. either to externalize profile applications or to internalize them.
+Control mode shall be taken into consideration here and should continue to work correctly.
+
+Enable external profile application
+The purpose of this task will consist in patching the UML2 component in order this latter can fully support the possibility to apply profiles on UML models by serializing this profile application in a separate file and vice-versa. Papyrus UI has also to be enriched in order to enable the user to configure Papyrus in order to enable or disable this option. The process will be reversible, i.e. profiles would be serializable individually in or out the model resources. In addition, the tool will also support the ability to apply several times the same profile. In case of a profile has been applied several time (values of the stereotype properties would be possibly different in that case), only one profile application is defined as part of the current configuration.
+Control mode extension
+This task will consist in analyzing the impact of the externalization of profile serialization and update its design in order the control mode can still run correctly in that case. The test set of the control mode will also be extended to cover this new use case.
+
+h2. Thoughts
+
+# currently, the profile application themselves are part of the model (this is a real element in the UML metamodel). the stereotype applications are located in the same resource as the model, at the same level as the model itself. The goal of this module is to separate the stereotype applications from the model resource and to put them in one or several external resources. 
+# Several strategies are possible to manage profile applications in external resources. Each profile application can be saved in a separated resource, or all profile applications can have their own resource. This would ease the management of view points on the model (loading or not a given profile would be easy, and so specific domain concepts would be present or not. The sub profiles should also be taken into account: do each sub-profile need its own resource, or the resource is managed by the main profile (example of SysML)
+# The naming of the resource: name of the profile should be present. the name of the UML element on which the profile is applied should be used, in order to be able to have several external resources for the same profile in case of control mode. Should the version of the profile be present also ? 
+# integration with the control mode: should one/several new resource be created when splitting the model?
+# integration with rename/copy files
+# integration with copy paste: does the current extension of the copy/paste work with this module?
+
+h2. Current external mechanism limitations
+
+UML2 module provides a framework for externalization of the stereotype applications, but this mechanism is rather basic. It relies with a singleton helper, referenced in the java system properties. If the externalization is done, it will be done for all components in the installation relying on UML2 metamodel, not only Papyrus models. Moreover, only one Eclipse component can provide a customization. If another component that Papyrus relies on that extension mechanism, only one will work at the same time.
+

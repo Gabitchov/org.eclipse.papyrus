@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/"
+            target="platform:/plugin/org.eclipse.papyrus.uml.profile.externalresource.tests/resources/"/>
+   </extension>
+   <extension point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile 
+      		iconpath="resources/icons/testProfile.gif" 
+      		name="ExternalResourcesTestProfile (Test)" 
+      		path="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml" 
+      		provider="Eclipse Modeling Project">
+      </profile>
+   </extension>
+
+</plugin>
