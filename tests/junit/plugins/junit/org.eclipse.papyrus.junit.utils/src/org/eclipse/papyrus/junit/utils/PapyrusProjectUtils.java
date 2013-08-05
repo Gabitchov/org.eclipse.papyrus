@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -58,10 +59,24 @@ public class PapyrusProjectUtils {
 
 	public static IFile copyIFile(String sourcePath, Bundle sourceBundle, IProject targetProject, String targetFileName) throws CoreException, IOException {
 		final IFile createdFile = targetProject.getFile(targetFileName);
+		if(createdFile.getParent() instanceof IFolder) {
+			createRecursiveFolder((IFolder)createdFile.getParent());
+		}
 		URL bundleResource = sourceBundle.getResource(sourcePath);
 		Assert.assertNotNull("Cannot find bundle resource: " + sourcePath, bundleResource);
 		InputStream bundleResourceStream = bundleResource.openStream();
 		createdFile.create(bundleResourceStream, true, new NullProgressMonitor());
 		return createdFile;
+	}
+
+	public static void createRecursiveFolder(IFolder folderToCreate) throws CoreException {
+		if(folderToCreate.exists()) {
+			return;
+		}
+
+		if(folderToCreate.getParent() instanceof IFolder) {
+			createRecursiveFolder((IFolder)folderToCreate.getParent());
+		}
+		folderToCreate.create(true, true, new NullProgressMonitor());
 	}
 }

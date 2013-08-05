@@ -25,6 +25,11 @@ import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.tools.tests.Activator;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -98,6 +103,88 @@ public class DependencyManagementTest extends AbstractEditorTest {
 		reloadedModelSet.unload();
 
 		project.delete(true, null);
+	}
+
+	//Switch from two different versions of a profile
+	//Problem: !!Stereotypes are not references!! They are instances. After the switch, the new 
+	//profile is correctly applied, but the applied Stereotypes are the ones from the initial Profile
+	//
+	//Current state: FAILS
+	@Test
+	public void testSwitchProfilesWithStereotypes() throws Exception {
+		IProject project = ProjectUtils.createProject("dependencyManagement.switchProfiles");
+		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/model");
+		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/p1/profile1.profile");
+		PapyrusProjectUtils.copyPapyrusModel(project, getBundle(), getSourcePath(), "profiles/p2/profile2.profile");
+
+		final URI clientModelDiURI = URI.createPlatformResourceURI(project.getName() + "/profiles/model.di", true);
+		final URI clientModelURI = URI.createPlatformResourceURI(project.getName() + "/profiles/model.uml", true);
+		final URI sourceProfileURI = URI.createPlatformResourceURI(project.getName() + "/profiles/p1/profile1.profile.uml", true);
+		final URI targetProfileURI = URI.createPlatformResourceURI(project.getName() + "/profiles/p2/profile2.profile.uml", true);
+
+		final ModelSet modelSet = ModelUtils.loadModelSet(clientModelDiURI, true);
+		final TransactionalEditingDomain domain = ModelUtils.getEditingDomain(modelSet);
+
+		//The modelset doesn't have any reference to the target profile
+		Assert.assertNull("The modelset should not have references to the target library", modelSet.getResource(targetProfileURI, false));
+
+		Model rootModel = UMLUtil.load(modelSet, clientModelURI, UMLPackage.eINSTANCE.getModel());
+
+		//Before the transformation, stereotypes from the source profile must be applied
+		checkAppliedProfileAndStereotypes(modelSet, rootModel, sourceProfileURI);
+
+		//Execute the transformation
+		domain.getCommandStack().execute(new RecordingCommand(domain, "Edit profile applications") {
+
+			@Override
+			protected void doExecute() {
+				DependencyManagementHelper.updateDependencies(sourceProfileURI, targetProfileURI, modelSet, domain);
+			}
+
+		});
+
+		//After the transformation, stereotypes from the target profile must be applied 
+		checkAppliedProfileAndStereotypes(modelSet, rootModel, targetProfileURI);
+
+		//Save, reload, and check again
+		modelSet.save(new NullProgressMonitor());
+
+		ModelSet newModelSet = ModelUtils.loadModelSet(clientModelDiURI, true);
+
+		Assert.assertNull("The modelset should not have references to the source library", newModelSet.getResource(sourceProfileURI, false));
+
+		rootModel = UMLUtil.load(modelSet, clientModelURI, UMLPackage.eINSTANCE.getModel());
+
+		//After the transformation + reload, stereotypes from the target profile must be applied
+		checkAppliedProfileAndStereotypes(modelSet, rootModel, targetProfileURI);
+
+
+		//Cleanup
+		domain.dispose();
+		modelSet.unload();
+
+		ModelUtils.getEditingDomain(newModelSet).dispose();
+		newModelSet.unload();
+
+		project.delete(true, null);
+	}
+
+	private void checkAppliedProfileAndStereotypes(ModelSet modelSet, Model rootModel, URI expectedProfileURI) throws Exception {
+		Profile expectedProfile = UMLUtil.load(modelSet, expectedProfileURI, UMLPackage.eINSTANCE.getProfile());
+
+		Assert.assertEquals(expectedProfile, rootModel.getAppliedProfiles().get(0));
+
+		NamedElement class1 = UMLUtil.findNamedElements(rootModel.eResource(), "model::Class1").iterator().next();
+		NamedElement class2 = UMLUtil.findNamedElements(rootModel.eResource(), "model::Class2").iterator().next();
+		NamedElement class3 = UMLUtil.findNamedElements(rootModel.eResource(), "model::Class3").iterator().next();
+
+		NamedElement stereotype1 = UMLUtil.findNamedElements(expectedProfile.eResource(), "Profile::Stereotype1").iterator().next();
+		NamedElement stereotype2 = UMLUtil.findNamedElements(expectedProfile.eResource(), "Profile::Stereotype2").iterator().next();
+		NamedElement stereotype3 = UMLUtil.findNamedElements(expectedProfile.eResource(), "Profile::Stereotype3").iterator().next();
+
+		Assert.assertEquals(stereotype1, class1.getAppliedStereotype("Profile::Stereotype1"));
+		Assert.assertEquals(stereotype2, class2.getAppliedStereotype("Profile::Stereotype2"));
+		Assert.assertEquals(stereotype3, class3.getAppliedStereotype("Profile::Stereotype3"));
 	}
 
 	//Switch from a library to an un-existing resource
