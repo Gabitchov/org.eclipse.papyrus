@@ -25,33 +25,19 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
+import org.eclipse.papyrus.infra.core.resource.AbstractModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
-import org.eclipse.papyrus.infra.core.resource.IModelSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.ModelSnippetList;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 
-public class AdditionalResourcesModel implements IModel {
+public class AdditionalResourcesModel extends AbstractModel implements IModel {
 
-	/**
-	 * The associated ModelManager.
-	 */
-	private ModelSet modelSet;
-
-	/**
-	 * List of attached snippets.
-	 */
-	private ModelSnippetList snippets = new ModelSnippetList();
-
-	/**
-	 * Model ID.
-	 */
+	/** Model identifier */
 	public static String MODEL_ID = "org.eclipse.papyrus.infra.core.resource.additional";
 
-	public void init(ModelSet modelManager) {
-		this.modelSet = modelManager;
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getIdentifier() {
 		return MODEL_ID;
 	}
@@ -130,17 +116,6 @@ public class AdditionalResourcesModel implements IModel {
 		}
 	}
 
-	public void addModelSnippet(IModelSnippet snippet) {
-		snippets.add(snippet);
-	}
-
-	/**
-	 * @return the modelManager
-	 */
-	protected ModelSet getModelManager() {
-		return modelSet;
-	}
-
 	/**
 	 * Check is a resource is additional in the resource set
 	 * 
@@ -167,4 +142,5 @@ public class AdditionalResourcesModel implements IModel {
 		}
 		return res;
 	}
+
 }

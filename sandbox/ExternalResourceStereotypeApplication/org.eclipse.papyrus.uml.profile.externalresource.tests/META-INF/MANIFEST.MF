@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Profil in External Resources plugin project
+Bundle-SymbolicName: org.eclipse.papyrus.uml.profile.externalresource.tests;singleton:=true
+Bundle-Version: 0.10.1.qualifier
+Bundle-Activator: org.eclipse.papyrus.uml.profile.externalresource.tests.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit,
+ org.eclipse.papyrus.uml.extensionpoints,
+ org.eclipse.emf.ecore
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.profile.externalresource.tests,
+ org.eclipse.papyrus.uml.profile.externalresource.tests.resourceloading

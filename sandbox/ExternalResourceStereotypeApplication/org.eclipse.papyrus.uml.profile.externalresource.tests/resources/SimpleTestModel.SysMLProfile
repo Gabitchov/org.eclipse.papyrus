@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Blocks:Block xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks" xmi:id="_UuaJwPqJEeKrCKXbcChcTw">
+  <base_Class xmi:type="uml:Class" href="SimpleTestModel.uml#_kdOGQPLZEeKxdJFsMzlLJA"/>
+</Blocks:Block>

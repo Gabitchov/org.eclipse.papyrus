@@ -502,9 +502,10 @@ public class ModelSet extends ResourceSetImpl {
 		uriWithoutExtension = uri.trimFileExtension();
 
 		ModelMultiException exceptions = null;
-
+		List<IModel> orderedModelsForLoading = getOrderedModelsForLoading();
+		
 		// Walk all registered models
-		for(IModel model : models.values()) {
+		for(IModel model : orderedModelsForLoading) {
 			// Try to load each model. Catch exceptions in order to load other
 			// models.
 			try {
@@ -526,6 +527,14 @@ public class ModelSet extends ResourceSetImpl {
 		if(exceptions != null) {
 			throw exceptions;
 		}
+	}
+
+	/**
+	 * Returns the models to be loaded, in order according to their dependencies   
+	 * @return the models to be loaded, in order according to their dependencies   
+	 */
+	protected List<IModel> getOrderedModelsForLoading() {
+		return ModelUtils.getOrderedModelsForLoading(models);
 	}
 
 	/**
@@ -831,6 +840,8 @@ public class ModelSet extends ResourceSetImpl {
 		snippets.performDispose(this);
 		snippets.clear();
 
+		
+		// FIXME RS: handle the unload ordering as indicated in the model extension point  
 		// Walk all registered models
 		for(IModel model : models.values()) {
 			if(!(model instanceof AdditionalResourcesModel)) {

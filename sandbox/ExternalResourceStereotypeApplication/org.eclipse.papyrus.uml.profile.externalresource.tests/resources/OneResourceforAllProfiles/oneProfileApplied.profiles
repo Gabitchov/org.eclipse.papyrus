@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExternalResourcesTestProfile="http:///schemas/ExternalResourcesTestProfile/_aPlNkPLZEeKxdJFsMzlLJA/1" xmlns:SubProfile="http://ExternalResourcesTestProfile/schemas/SubProfile/_aPpfAPLZEeKxdJFsMzlLJA/1" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/ExternalResourcesTestProfile/_aPlNkPLZEeKxdJFsMzlLJA/1 pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_aPl0oPLZEeKxdJFsMzlLJA http://ExternalResourcesTestProfile/schemas/SubProfile/_aPpfAPLZEeKxdJFsMzlLJA/1 pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_aPpfAfLZEeKxdJFsMzlLJA">
+  <ExternalResourcesTestProfile:ClassStereotype stringValue="class1Value&#xD;&#xA;">
+    <base_Class xmi:type="uml:Class" href="oneProfileApplied.uml#_6e1LAPVEEeKWG-T5DC87Xw"/>
+  </ExternalResourcesTestProfile:ClassStereotype>
+  <SubProfile:ElementStereotype stringSimple="Class2Value" intSimple="3">
+    <base_Element xmi:type="uml:Class" href="oneProfileApplied.uml#_kyl8EPXIEeKjvqrMhLLWTg"/>
+  </SubProfile:ElementStereotype>
+</xmi:XMI>
