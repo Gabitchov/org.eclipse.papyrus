@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:x="http://www.eclipse.org/xwt"
+<Composite
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
 	xmlns:uml="clr-namespace:org.eclipse.papyrus.uml.properties.widgets"
-	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
-	<uml:StereotypeApplication
-		input="{Binding}" property="StereotypeApplication:stereotypeApplication">
+	<uml:StereotypeApplication input="{Binding}"
+		property="StereotypeApplication:stereotypeApplication">
 		<uml:StereotypeApplication.layoutData>
-			<GridData grabExcessHorizontalSpace="true"
-				verticalAlignment="FILL" grabExcessVerticalSpace="true"
+			<GridData grabExcessVerticalSpace="true"
+				grabExcessHorizontalSpace="true" verticalAlignment="FILL"
 				horizontalAlignment="FILL"></GridData>
 		</uml:StereotypeApplication.layoutData>
 	</uml:StereotypeApplication>

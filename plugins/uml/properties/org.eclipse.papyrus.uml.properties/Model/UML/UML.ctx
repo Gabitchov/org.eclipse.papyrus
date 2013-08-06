@@ -1382,6 +1382,11 @@
       <widget href="ui/MultiplePackageMerge.xwt#/"/>
     </sections>
   </tabs>
+  <tabs label="Comments" id="comments" category="org.eclipse.papyrus" image="" priority="20">
+    <sections name="SingleElementAppliedComments" sectionFile="ui/SingleElementAppliedComments.xwt">
+      <widget href="ui/SingleElementAppliedComments.xwt#/"/>
+    </sections>
+  </tabs>
   <tabs label="Profile" id="profile" category="org.eclipse.papyrus" priority="50">
     <sections name="SinglePackageProfile" sectionFile="ui/SinglePackageProfile.xwt">
       <widget href="ui/SinglePackageProfile.xwt#/"/>
@@ -1390,13 +1395,13 @@
       <widget href="ui/SingleElement.xwt#/"/>
     </sections>
   </tabs>
-  <views name="SinglePackageProfile" sections="//@tabs.1/@sections.0" automaticContext="true">
+  <views name="SinglePackageProfile" sections="//@tabs.2/@sections.0" automaticContext="true">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePackage" overrideable="false">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="Package"/>
     </constraints>
   </views>
-  <views name="SingleElement" sections="//@tabs.1/@sections.1">
+  <views name="SingleElement" sections="//@tabs.2/@sections.1 //@tabs.1/@sections.0">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleElement" overrideable="false">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="Element"/>
@@ -5235,5 +5240,9 @@
       <properties name="name" label="" description="The image's name. This is a virtual property, used only for label display."/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.5"/>
+  </dataContexts>
+  <dataContexts name="AppliedComments" label="AppliedComments">
+    <properties name="appliedComments" label="" type="Reference" multiplicity="-1" description="The list of comments applied to this element"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.7"/>
   </dataContexts>
 </contexts:Context>
