@@ -19,6 +19,7 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -52,7 +53,7 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 					event.getDelta().accept(new IResourceDeltaVisitor() {
 
 						public boolean visit(IResourceDelta delta) throws CoreException {
-							if(delta.getResource().equals(project.getFile(PROJECT_STYLESHEETS))) {
+							if(delta.getResource().equals(stylesheetPreferences)) {
 								ProjectCSSEngine.this.reset();
 								DiagramHelper.setNeedsRefresh();
 								Display.getDefault().asyncExec(new Runnable() {
@@ -77,7 +78,10 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 	};
 
 	/**
-	 * The name of the EMF Model containing the {@link StyleSheet}s, relative to the Engine's Project
+	 * The file name of the EMF Model containing the {@link StyleSheet}s.
+	 * It will be stored in the project's preferences scope (Typically the .settings folder)
+	 * 
+	 * @see {@link ProjectScope}
 	 */
 	public static String PROJECT_STYLESHEETS = "stylesheets.xmi"; //$NON-NLS-1$
 
@@ -85,6 +89,8 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 	 * The Engine's project. May be null or closed, or may not exist
 	 */
 	protected IProject project;
+
+	protected IFile stylesheetPreferences;
 
 	public ProjectCSSEngine(Resource modelResource) {
 		super(WorkspaceCSSEngine.instance);
@@ -95,6 +101,9 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 			try {
 				IPath workspacePath = new Path(platformString);
 				this.project = ResourcesPlugin.getWorkspace().getRoot().getFile(workspacePath).getProject();
+				IPath preferencesAbsolutePath = new ProjectScope(project).getLocation().append(PROJECT_STYLESHEETS);
+				IPath projectRelativePath = preferencesAbsolutePath.makeRelativeTo(project.getLocation());
+				stylesheetPreferences = project.getFile(projectRelativePath);
 				ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
 			} catch (Exception ex) {
 				Activator.log.error(ex);
@@ -115,12 +124,11 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 			return;
 		}
 
-		IFile styleSheetModel = project.getFile(PROJECT_STYLESHEETS);
-		if(!styleSheetModel.exists()) {
+		if(stylesheetPreferences == null || !stylesheetPreferences.exists()) {
 			return;
 		}
 
-		IPath workspacePath = styleSheetModel.getFullPath();
+		IPath workspacePath = stylesheetPreferences.getFullPath();
 
 		URI workspaceURI = URI.createPlatformResourceURI(workspacePath.toString(), true);
 
