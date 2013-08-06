@@ -773,6 +773,8 @@ public class CommandHelper {
 			endMsg = doCreateMessageOccurrence(interactionFragment, event, lifeline);
 		} else if(element instanceof Interaction || element instanceof CombinedFragment || element instanceof InteractionUse) {
 			endMsg = doCreateGate(element, direction);
+		} else if(element instanceof ExecutionOccurrenceSpecification) {
+			endMsg = createMessageEnd(interactionFragment, event, ((ExecutionOccurrenceSpecification)element).getExecution(), direction);
 		}
 		return endMsg;
 	}

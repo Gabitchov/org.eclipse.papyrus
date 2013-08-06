@@ -64,7 +64,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 	protected String getFileName() {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	private GateEditPart createGate(EditPart parent, Point location) {
 		CreateRequest request = new CreateRequest(RequestConstants.REQ_CREATE);
 		request.setFactory(new CreationFactory() {
@@ -368,7 +368,8 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		Gate gate2 = (Gate)message2.getReceiveEvent();
 		GateEditPart gate2EditPart = getGateEditPart(interaction, gate2);
 		assertNotNull("Gate created", gate2EditPart);
-		assertEquals("Gate name", "out_" + message2.getName(), getGateName(gate2EditPart));
+		//the name of gate on Interaction will not be changed.
+		assertEquals("Gate name", gate2.getName(), getGateName(gate2EditPart));
 	}
 
 	/**

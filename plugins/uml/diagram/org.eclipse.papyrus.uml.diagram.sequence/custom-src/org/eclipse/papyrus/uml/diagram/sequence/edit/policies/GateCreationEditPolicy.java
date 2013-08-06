@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Point;
@@ -33,6 +34,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -112,6 +114,23 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 		Rectangle rect = locator.getValidLocation(proposedLocation, gateFeedback);
 		getHostFigure().translateToAbsolute(rect);
 		gateFeedback.translateToRelative(rect);
+		if(rect.x < 0 || rect.y < 0) {
+			// Try to fixed the bug about shaking when the feedback outside the viewer bounds.
+			// Now just display half-width of the normal rectangle.
+			Control control = getHost().getViewer().getControl();
+			if(control instanceof FigureCanvas) {
+				int hv = ((FigureCanvas)control).getViewport().getHorizontalRangeModel().getValue();
+				if(rect.x < 0 && hv >= 0) {
+					rect.x = 0;
+					rect.width = rect.width / 2;
+				}
+				int vv = ((FigureCanvas)control).getViewport().getVerticalRangeModel().getValue();
+				if(rect.y < 0 && vv >= 0) {
+					rect.y = 0;
+					rect.height = rect.height / 2;
+				}
+			}
+		}
 		gateFeedback.setBounds(rect);
 		Point location = rect.getLocation().getCopy();
 		gateFeedback.translateToAbsolute(location);

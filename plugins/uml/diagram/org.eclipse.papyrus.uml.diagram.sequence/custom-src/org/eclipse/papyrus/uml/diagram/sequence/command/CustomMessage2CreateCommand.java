@@ -26,7 +26,10 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message2CreateComm
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
 
@@ -107,6 +110,16 @@ public class CustomMessage2CreateCommand extends Message2CreateCommand {
 			return CommandResult.newErrorCommandResult("Failed to create message");
 		}
 		if(message != null) {
+			//Do reset message end to target ExecutionSpecification. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
+			if(getTarget() instanceof ExecutionSpecification) {
+				OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification)getTarget(), message.getReceiveEvent());
+			}
+			if(getSource() instanceof ExecutionOccurrenceSpecification) {
+				ExecutionSpecification execution = ((ExecutionOccurrenceSpecification)getSource()).getExecution();
+				if(execution != null) {
+					OccurrenceSpecificationHelper.resetExecutionStart(execution, message.getSendEvent());
+				}
+			}
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
 			return CommandResult.newOKCommandResult(message);

@@ -145,7 +145,7 @@ public class LifelineCoveredByUpdater {
 				}
 				int heightDelta = newHeight - height;
 				CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, bounds, NotationPackage.Literals.SIZE__HEIGHT, newHeight), true);
-				PreserveAnchorsPositionCommandEx preserveAnchorsCommand = new PreserveAnchorsPositionCommandEx(lifelineEditpart, new Dimension(0, heightDelta), PreserveAnchorsPositionCommandEx.PRESERVE_Y, lifelineEditpart.getPrimaryShape(), PositionConstants.SOUTH);
+				PreserveAnchorsPositionCommandEx preserveAnchorsCommand = new PreserveAnchorsPositionCommandEx(lifelineEditpart, new Dimension(0, heightDelta), PreserveAnchorsPositionCommandEx.PRESERVE_Y, lifelineEditpart.getPrimaryShape().getFigureLifelineDotLineFigure(), PositionConstants.SOUTH);
 				if(preserveAnchorsCommand.canExecute()) {
 					CommandHelper.executeCommandWithoutHistory(editingDomain, new GMFtoEMFCommandWrapper(preserveAnchorsCommand), true);
 				}
