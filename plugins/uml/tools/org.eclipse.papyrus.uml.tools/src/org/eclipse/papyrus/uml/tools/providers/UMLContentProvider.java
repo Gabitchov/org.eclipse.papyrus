@@ -53,7 +53,7 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 	protected ResourceSet root;
 
 	public UMLContentProvider() {
-		//Empty (@see #setInput())
+		//Empty (@see #inputChanged(Viewer, Object, Object))
 	}
 
 	@Override

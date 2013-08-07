@@ -12,7 +12,7 @@
    <extension point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             activeByDefault="true"
-            contentProvider="org.eclipse.papyrus.uml.tools.providers.UMLContentProvider"
+            contentProvider="org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider"
             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
             id="org.eclipse.papyrus.views.modelexplorer.UMLnavigatorContent"
             labelProvider="org.eclipse.jface.viewers.LabelProvider"

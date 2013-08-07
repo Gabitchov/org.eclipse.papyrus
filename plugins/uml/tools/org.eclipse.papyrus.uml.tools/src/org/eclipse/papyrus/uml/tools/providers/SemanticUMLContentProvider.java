@@ -20,8 +20,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
@@ -35,6 +38,11 @@ import org.eclipse.uml2.uml.Stereotype;
  * @author Camille Letavernier
  */
 public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
+
+
+	public SemanticUMLContentProvider() {
+		//Empty (@see #inputChanged(Viewer, Object, Object))
+	}
 
 	public SemanticUMLContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots) {
 		super(editedEObject, feature, roots);
@@ -72,26 +80,26 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			//This is related to the ModelSet evolution 
 			try {
 				EObject rootElement = UmlUtils.getUmlModel(modelSet).lookupRoot();
-				if (rootElement == null){
+				if(rootElement == null) {
 					return new EObject[0];
 				}
-				
+
 				Resource rootResource = rootElement.eResource();
-				if (rootResource == null){
-					return new EObject[]{rootElement};
+				if(rootResource == null) {
+					return new EObject[]{ rootElement };
 				}
-				
+
 				List<EObject> rootObjects = new LinkedList<EObject>();
-				for (EObject rootObject : rootResource.getContents()){
-					if (rootObject instanceof Element){
+				for(EObject rootObject : rootResource.getContents()) {
+					if(rootObject instanceof Element) {
 						rootObjects.add(rootObject);
 					}
 				}
-				
-				if (rootObjects.isEmpty()){
-					return new EObject[]{rootElement};
+
+				if(rootObjects.isEmpty()) {
+					return new EObject[]{ rootElement };
 				}
-				
+
 				return rootObjects.toArray(new EObject[0]);
 			} catch (NotFoundException ex) {
 				Activator.log.error(ex);
@@ -112,13 +120,13 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 		if(metaclass instanceof Stereotype) {
 			Stereotype stereotype = (Stereotype)metaclass;
 			boolean res = semanticElement.getAppliedStereotype(stereotype.getQualifiedName()) != null;
-			if (!res) {
+			if(!res) {
 				EClass definition = stereotype.getDefinition();
-				for (EObject e : semanticElement.getStereotypeApplications()){
+				for(EObject e : semanticElement.getStereotypeApplications()) {
 					EClass c = e.eClass();
-					if (definition != null && definition.isSuperTypeOf(c)){
-						res = true ;
-						break ;
+					if(definition != null && definition.isSuperTypeOf(c)) {
+						res = true;
+						break;
 					}
 				}
 			}
@@ -176,5 +184,26 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 		//If no stereotype application is found, return the UML Element
 		return semanticElement;
+	}
+
+	@Override
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		ResourceSet root = null;
+
+		if(newInput instanceof ResourceSet) {
+			root = (ResourceSet)newInput;
+		}
+
+		if(newInput instanceof ServicesRegistry) {
+			try {
+				root = ServiceUtils.getInstance().getModelSet((ServicesRegistry)newInput);
+			} catch (Exception ex) {
+				Activator.log.error(ex);
+			}
+		}
+
+		this.roots = getRoots(root);
+
+		super.inputChanged(viewer, oldInput, newInput);
 	}
 }

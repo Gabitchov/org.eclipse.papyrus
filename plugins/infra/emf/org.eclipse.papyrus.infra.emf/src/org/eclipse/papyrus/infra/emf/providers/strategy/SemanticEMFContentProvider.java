@@ -46,6 +46,10 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 
 	protected AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
+	protected SemanticEMFContentProvider() {
+		super(Activator.getDefault().getCustomizationManager());
+	}
+
 	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots, CustomizationManager customizationManager) {
 		super(customizationManager);
 		this.roots = roots;
