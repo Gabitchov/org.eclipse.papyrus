@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
@@ -32,6 +36,7 @@ import org.eclipse.ui.PlatformUI;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
@@ -296,11 +301,83 @@ public class NavigatorUtils {
 	}
 
 	/**
+	 * Tests whether at least one elements matches the given Predicate in the resource set
+	 * This doesn't rely on the CrossReferencer. Instead, it will browse all the objects of the given Type
+	 * in the ResourceSet.
+	 * 
+	 * If "search all contents" is false, it will restrict the search to root elements
+	 * of the same EPackage as the researched Type.
+	 * 
+	 * For example, if we're looking for GMF Diagrams (type == Diagram), we will only look for root elements
+	 * from the Notation metamodel (Excluding the underlying semantic model.
+	 * 
+	 * @param referencedElement
+	 *        The referenced element
+	 * @param type
+	 *        The type of the element which may contain references to the "referencedElement"
+	 * @param searchAllContents
+	 *        If false, the research will be restricted to the root elements of the same EPackage as "type"
+	 * @param predicate
+	 *        The predicate used to determine whether an object of type "type" has a reference to the "referencedElement"
+	 * 
+	 * 
+	 * @return
+	 *         True if at least one object matches the predicate and targets the referencedElement
+	 */
+	public static boolean any(EObject referencedElement, final EClass type, final boolean searchAllContents, Predicate<EObject> predicate) {
+		if(referencedElement == null || referencedElement.eResource() == null || referencedElement.eResource().getResourceSet() == null) {
+			return false;
+		}
+
+		ResourceSet resourceSet = referencedElement.eResource().getResourceSet();
+
+		Predicate<EObject> composedPredicate = Predicates.and(new Predicate<EObject>() {
+
+			public boolean apply(EObject arg0) {
+				return type.isSuperTypeOf(arg0.eClass());
+			}
+		}, predicate);
+
+		for(final Resource resource : resourceSet.getResources()) {
+
+			Iterable<EObject> iterable = new Iterable<EObject>() {
+
+				public Iterator<EObject> iterator() {
+					Iterator<EObject> allContentsIterator;
+
+					if(searchAllContents) {
+						allContentsIterator = resource.getAllContents();
+					} else {
+						Collection<EObject> contentsToBrowse = new LinkedList<EObject>();
+
+						for(EObject rootElement : resource.getContents()) {
+							if(rootElement.eClass().getEPackage() == type.getEPackage()) {
+								contentsToBrowse.add(rootElement);
+							}
+						}
+
+						allContentsIterator = EcoreUtil.getAllProperContents(contentsToBrowse, false);
+					}
+
+					return allContentsIterator;
+				}
+			};
+
+			if(Iterables.any(iterable, composedPredicate)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Search all the elements referencing the context,
 	 * filter the results by the predicate
 	 * 
 	 * @return
 	 */
+	//@unused for efficiency issues
 	public static boolean find(EObject toFind, Predicate<Setting> predicate) {
 		if(toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null) {
 			return false;
@@ -312,7 +389,7 @@ public class NavigatorUtils {
 			resourceSet.eAdapters().add(adapter);
 		}
 		Collection<Setting> settings = adapter.getInverseReferences(toFind, false);
-		return Iterables.filter(settings, predicate).iterator().hasNext();
+		return Iterables.any(settings, predicate);
 	}
 
 	/**

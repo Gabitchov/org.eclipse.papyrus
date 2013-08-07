@@ -13,11 +13,11 @@
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
@@ -28,13 +28,14 @@ public class IsDiagramContainer extends AbstractEditorContainerQuery implements 
 	/**
 	 * Return true if the element is a Diagram Container
 	 */
-	public Boolean evaluate(EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Predicate<Setting> p = new Predicate<Setting>() {
+	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
+		Predicate<EObject> p = new Predicate<EObject>() {
 
-			public boolean apply(Setting arg0) {
-				return arg0.getEObject() instanceof Diagram;
+			public boolean apply(EObject arg0) {
+				return arg0 instanceof Diagram && ((Diagram)arg0).getElement() == context;
 			}
 		};
-		return NavigatorUtils.find(context, p);
+
+		return NavigatorUtils.any(context, NotationPackage.eINSTANCE.getDiagram(), false, p);
 	}
 }
