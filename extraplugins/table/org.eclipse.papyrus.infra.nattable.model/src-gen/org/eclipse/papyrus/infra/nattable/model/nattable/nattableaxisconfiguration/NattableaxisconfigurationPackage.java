@@ -734,6 +734,26 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	int IPASTE_CONFIGURATION = 9;
 
 	/**
+	 * The feature id for the '<em><b>Post Actions</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int IPASTE_CONFIGURATION__POST_ACTIONS = IAXIS_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Detached Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int IPASTE_CONFIGURATION__DETACHED_MODE = IAXIS_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>IPaste Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -741,7 +761,7 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPASTE_CONFIGURATION_FEATURE_COUNT = IAXIS_CONFIGURATION_FEATURE_COUNT + 0;
+	int IPASTE_CONFIGURATION_FEATURE_COUNT = IAXIS_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>IPaste Configuration</em>' class.
@@ -765,6 +785,26 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	int PASTE_EOBJECT_CONFIGURATION = 10;
+
+	/**
+	 * The feature id for the '<em><b>Post Actions</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PASTE_EOBJECT_CONFIGURATION__POST_ACTIONS = IPASTE_CONFIGURATION__POST_ACTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Detached Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PASTE_EOBJECT_CONFIGURATION__DETACHED_MODE = IPASTE_CONFIGURATION__DETACHED_MODE;
 
 	/**
 	 * The feature id for the '<em><b>Pasted Element Id</b></em>' attribute.
@@ -1183,6 +1223,32 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	EClass getIPasteConfiguration();
 
 	/**
+	 * Returns the meta object for the attribute list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#getPostActions <em>Post Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute list '<em>Post Actions</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#getPostActions()
+	 * @see #getIPasteConfiguration()
+	 * @generated
+	 */
+	EAttribute getIPasteConfiguration_PostActions();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#isDetachedMode <em>Detached Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Detached Mode</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration#isDetachedMode()
+	 * @see #getIPasteConfiguration()
+	 * @generated
+	 */
+	EAttribute getIPasteConfiguration_DetachedMode();
+
+	/**
 	 * Returns the meta object for class '
 	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration
 	 * <em>Paste EObject Configuration</em>}'.
@@ -1541,6 +1607,24 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IPASTE_CONFIGURATION = eINSTANCE.getIPasteConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Post Actions</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute IPASTE_CONFIGURATION__POST_ACTIONS = eINSTANCE.getIPasteConfiguration_PostActions();
+
+		/**
+		 * The meta object literal for the '<em><b>Detached Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute IPASTE_CONFIGURATION__DETACHED_MODE = eINSTANCE.getIPasteConfiguration_DetachedMode();
 
 		/**
 		 * The meta object literal for the '

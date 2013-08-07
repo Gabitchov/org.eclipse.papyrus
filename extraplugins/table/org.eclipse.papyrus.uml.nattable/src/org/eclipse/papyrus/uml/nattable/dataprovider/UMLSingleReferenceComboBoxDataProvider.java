@@ -137,7 +137,7 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	private List<EObject> getPossibleValuesForStereotypeProperty(final Element element, final String id) {
 		final List<EObject> availableValues = new ArrayList<EObject>();
 		Property prop = UMLTableUtils.getRealStereotypeProperty(element, id);
-		final List<Stereotype> stereotypes = UMLTableUtils.getAppliedSteretoypesWithThisProperty(element, id);
+		final List<Stereotype> stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(element, id);
 		EObject steAppl = element.getStereotypeApplication(stereotypes.get(0));
 		EStructuralFeature stereotypePropertyFeature = steAppl.eClass().getEStructuralFeature(prop.getName());
 		final Stereotype ste = stereotypes.get(0);

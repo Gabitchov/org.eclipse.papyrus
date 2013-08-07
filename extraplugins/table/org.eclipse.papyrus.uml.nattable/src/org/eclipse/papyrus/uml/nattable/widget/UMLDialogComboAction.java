@@ -92,7 +92,7 @@ public class UMLDialogComboAction extends AbstractComboAction {
 				realEditedObject = editedElement;
 			} else {
 				String id = AxisUtils.getPropertyId(feature);
-				stereotypesWithEditedFeatureAppliedOnElement = UMLTableUtils.getAppliedSteretoypesWithThisProperty(editedElement, id);
+				stereotypesWithEditedFeatureAppliedOnElement = UMLTableUtils.getAppliedStereotypesWithThisProperty(editedElement, id);
 				stereotype = stereotypesWithEditedFeatureAppliedOnElement.get(0);
 				realEditedObject = editedElement.getStereotypeApplication(stereotypesWithEditedFeatureAppliedOnElement.get(0));
 				Property prop = UMLTableUtils.getRealStereotypeProperty(editedElement, id);

@@ -28,4 +28,12 @@ public class Constants {
 	 * the id used for stereotypes properties
 	 */
 	public static final String PROPERTY_OF_STEREOTYPE_PREFIX = "property_of_stereotype:/"; //$NON-NLS-1$
+
+	/**
+	 * the prefix used to identify this post action
+	 */
+	public static final String POST_ACTION_APPLY_STEREOTYPE_PREFIX = "applyStereotype:/";
+
+
+
 }

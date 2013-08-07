@@ -60,7 +60,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IM
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.ICellAxisWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
@@ -1177,17 +1176,17 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	public Cell getCell(final Object columnElement, final Object rowElement) {
 		//FIXME : improve this methods, with a HashMap synchronized on the EMF-Model!
-		for(final Cell current : getTable().getCells()) {
-			final ICellAxisWrapper rowWrapper = current.getRowWrapper();
-			final ICellAxisWrapper columnWrapper = current.getColumnWrapper();
-
-			if(rowWrapper.getElement().equals(AxisUtils.getRepresentedElement(rowElement)) && AxisUtils.getRepresentedElement(columnElement).equals(columnWrapper.getElement())) {
-				return current;
-			}
-			//FIXME : several others case to manage 
-			//FIXME : (replacement of an EObject by an IAxis)
-			//FIXME : replacement of an IAxis by its EObject
-		}
+		//		for(final Cell current : getTable().getCells()) {
+		//			final ICellAxisWrapper rowWrapper = current.getRowWrapper();
+		//			final ICellAxisWrapper columnWrapper = current.getColumnWrapper();
+		//
+		//			if(rowWrapper.getElement().equals(AxisUtils.getRepresentedElement(rowElement)) && AxisUtils.getRepresentedElement(columnElement).equals(columnWrapper.getElement())) {
+		//				return current;
+		//			}
+		//			//FIXME : several others case to manage 
+		//			//FIXME : (replacement of an EObject by an IAxis)
+		//			//FIXME : replacement of an IAxis by its EObject
+		//		}
 		return null;
 	}
 
