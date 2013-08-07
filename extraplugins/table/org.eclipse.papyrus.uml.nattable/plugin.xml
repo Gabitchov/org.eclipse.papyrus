@@ -83,4 +83,10 @@
             locationURI="popup:org.eclipse.ui.popup.any">
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.paste.postactions">
+      <postAction
+            postActionClass="org.eclipse.papyrus.uml.nattable.paste.ApplyStereotypePastePostAction">
+      </postAction>
+   </extension>
 </plugin>

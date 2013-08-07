@@ -546,6 +546,26 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * 
 	 * @generated
 	 */
+	public EAttribute getIPasteConfiguration_PostActions() {
+		return (EAttribute)iPasteConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getIPasteConfiguration_DetachedMode() {
+		return (EAttribute)iPasteConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getPasteEObjectConfiguration() {
 		return pasteEObjectConfigurationEClass;
 	}
@@ -648,6 +668,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		createEReference(eStructuralFeatureValueFillingConfigurationEClass, ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE);
 
 		iPasteConfigurationEClass = createEClass(IPASTE_CONFIGURATION);
+		createEAttribute(iPasteConfigurationEClass, IPASTE_CONFIGURATION__POST_ACTIONS);
+		createEAttribute(iPasteConfigurationEClass, IPASTE_CONFIGURATION__DETACHED_MODE);
 
 		pasteEObjectConfigurationEClass = createEClass(PASTE_EOBJECT_CONFIGURATION);
 		createEAttribute(pasteEObjectConfigurationEClass, PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID);
@@ -737,6 +759,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		initEReference(getEStructuralFeatureValueFillingConfiguration_ListenFeature(), ecorePackage.getEStructuralFeature(), null, "listenFeature", null, 1, 1, EStructuralFeatureValueFillingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iPasteConfigurationEClass, IPasteConfiguration.class, "IPasteConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getIPasteConfiguration_PostActions(), ecorePackage.getEString(), "postActions", null, 0, -1, IPasteConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIPasteConfiguration_DetachedMode(), ecorePackage.getEBoolean(), "detachedMode", "true", 0, 1, IPasteConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(pasteEObjectConfigurationEClass, PasteEObjectConfiguration.class, "PasteEObjectConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPasteEObjectConfiguration_PastedElementId(), ecorePackage.getEString(), "pastedElementId", null, 0, 1, PasteEObjectConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

@@ -116,7 +116,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 			realEditedObject = editedElement;
 		} else {
 			final String id = AxisUtils.getPropertyId(this.axisElement);
-			stereotypesWithEditedFeatureAppliedOnElement = UMLTableUtils.getAppliedSteretoypesWithThisProperty(editedElement, id);
+			stereotypesWithEditedFeatureAppliedOnElement = UMLTableUtils.getAppliedStereotypesWithThisProperty(editedElement, id);
 			stereotype = stereotypesWithEditedFeatureAppliedOnElement.get(0);
 			realEditedObject = editedElement.getStereotypeApplication(stereotypesWithEditedFeatureAppliedOnElement.get(0));
 			Property prop = UMLTableUtils.getRealStereotypeProperty(editedElement, id);

@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager;
-import org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.uml.tools.utils.UMLStringValueConverter;
@@ -43,7 +42,7 @@ public class UMLFeatureCellManager extends EMFFeatureValueCellManager {
 	public boolean handles(final Object columnElement, final Object rowElement) {
 		boolean answer = super.handles(columnElement, rowElement);
 		if(answer) {
-			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 			answer = objects.get(0) instanceof Element;
 		}
 		return answer;
@@ -61,10 +60,10 @@ public class UMLFeatureCellManager extends EMFFeatureValueCellManager {
 	 */
 	@Override
 	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator) {
-		AbstractStringValueConverter converter = existingConverters.get(EMFStringValueConverter.class);
+		AbstractStringValueConverter converter = existingConverters.get(UMLStringValueConverter.class);
 		if(converter == null) {
 			converter = new UMLStringValueConverter(tableManager.getTable().getContext(), multiValueSeparator);
-			existingConverters.put(EMFStringValueConverter.class, converter);
+			existingConverters.put(UMLStringValueConverter.class, converter);
 		}
 		return converter;
 	}

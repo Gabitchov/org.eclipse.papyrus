@@ -208,4 +208,51 @@ public final class CellManagerFactory {
 		}
 		return null;
 	}
+
+	/**
+	 * This method is used when we are pasting elements in detached mode
+	 * 
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @param valueAsString
+	 *        the value as string
+	 * @param valueConverter
+	 *        the value converter to use
+	 * @param tableManager
+	 *        the table manager
+	 * @param sharedMap
+	 *        a map with shared elements. The method may read/add elements to the shared map. These contributions will be managed by a paste post
+	 *        action or by the paste manager itself
+	 */
+	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager, final Map<?, ?> sharedMap) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		if(cellManager != null) {
+			cellManager.setStringValue(columnElement, rowElement, valueAsString, valueConverter, tableManager, sharedMap);
+		} else {
+			throw new UnsupportedOperationException(CELL_MANAGER_NOT_FOUND);
+		}
+	}
+
+	/**
+	 * 
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @param sharedMap
+	 *        a map with shared elements
+	 * @return
+	 *         <code>true</code> if the cell is editable
+	 */
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		if(cellManager != null) {
+			return cellManager.isCellEditable(columnElement, rowElement, sharedMap);
+		}
+		return false;
+
+	}
+
 }

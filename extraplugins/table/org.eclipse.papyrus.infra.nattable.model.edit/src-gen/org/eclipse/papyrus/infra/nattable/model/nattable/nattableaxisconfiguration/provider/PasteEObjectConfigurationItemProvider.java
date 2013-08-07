@@ -118,9 +118,8 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PasteEObjectConfiguration)object).getPastedElementId();
-		return label == null || label.length() == 0 ? getString("_UI_PasteEObjectConfiguration_type") : //$NON-NLS-1$
-		getString("_UI_PasteEObjectConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		PasteEObjectConfiguration pasteEObjectConfiguration = (PasteEObjectConfiguration)object;
+		return getString("_UI_PasteEObjectConfiguration_type") + " " + pasteEObjectConfiguration.isDetachedMode(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

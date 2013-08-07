@@ -54,4 +54,18 @@ public class Constants {
 	 */
 	public static final String SORT_COMMAND_PARAMETER = "org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter";
 
+	/**
+	 * the key used to store the container of the pasted element in a map
+	 */
+	public static final String PASTED_ELEMENT_CONTAINER_KEY = "pastedElementContainer";
+
+	/**
+	 * the key used to store the references to set after to have attached the pasted element to the model
+	 */
+	public static final String REFERENCES_TO_SET_KEY = "referencesToSet";
+
+	/**
+	 * the key used to store the cells to attached to the model
+	 */
+	public static final String CELLS_TO_ADD_KEY = "cellsToAdd";
 }

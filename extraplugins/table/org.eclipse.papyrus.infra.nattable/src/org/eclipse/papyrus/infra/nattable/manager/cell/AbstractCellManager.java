@@ -179,4 +179,35 @@ public abstract class AbstractCellManager implements ICellManager {
 		return converter;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @param sharedMap
+	 * @return
+	 */
+	@Override
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
+		return isCellEditable(columnElement, rowElement);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String,
+	 *      org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @param valueAsString
+	 * @param valueConverter
+	 * @param tableManager
+	 * @param sharedMap
+	 */
+	@Override
+	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueConverter, INattableModelManager tableManager, Map<?, ?> sharedMap) {
+		//do nothing
+	}
 }

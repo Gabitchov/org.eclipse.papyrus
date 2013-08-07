@@ -84,7 +84,7 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 		if(modelElement != null) {
 			final String id = AxisUtils.getPropertyId(this.axisElement);
 			final Property property = UMLTableUtils.getRealStereotypeProperty(modelElement, id);
-			final List<Stereotype> ste = UMLTableUtils.getAppliedSteretoypesWithThisProperty(modelElement, id);
+			final List<Stereotype> ste = UMLTableUtils.getAppliedStereotypesWithThisProperty(modelElement, id);
 			if(ste.size() == 1) {
 				final Stereotype current = ste.get(0);
 				final EObject steAppl = modelElement.getStereotypeApplication(current);

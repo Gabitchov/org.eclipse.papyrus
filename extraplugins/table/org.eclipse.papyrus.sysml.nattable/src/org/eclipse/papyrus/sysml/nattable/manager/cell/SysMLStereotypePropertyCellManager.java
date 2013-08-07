@@ -46,7 +46,7 @@ public class SysMLStereotypePropertyCellManager extends StereotypePropertyCellMa
 	@Override
 	public boolean handles(final Object columnElement, final Object rowElement) {
 		if(super.handles(columnElement, rowElement)) {
-			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 			if(objects.size() == 2) {
 				final EObject object = (EObject)objects.get(0);
 				if(object instanceof Port) {
@@ -72,7 +72,7 @@ public class SysMLStereotypePropertyCellManager extends StereotypePropertyCellMa
 	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
 		boolean value = super.isCellEditable(columnElement, rowElement);
 		if(value) {
-			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 			if(objects.size() == 2) {
 				final EObject object = (EObject)objects.get(0);
 				if(matcher.matches(object)) {

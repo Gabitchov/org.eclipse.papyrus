@@ -489,6 +489,18 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Common Interface for the paste configuration."/>
       </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="postActions" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This field references post actions, using a string to do during the paste, after the creation of the element. "/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="detachedMode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, the created elements will be added at the end of the paste and the set values&#xD;&#xA;won't be do using the service edit"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PasteEObjectConfiguration" eSuperTypes="#//nattableaxisconfiguration/IPasteConfiguration">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
