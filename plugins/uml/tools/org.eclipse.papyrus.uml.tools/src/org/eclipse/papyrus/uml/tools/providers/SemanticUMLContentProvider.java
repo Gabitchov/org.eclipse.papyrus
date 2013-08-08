@@ -192,9 +192,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 		if(newInput instanceof ResourceSet) {
 			root = (ResourceSet)newInput;
-		}
-
-		if(newInput instanceof ServicesRegistry) {
+		} else if(newInput instanceof ServicesRegistry) {
 			try {
 				root = ServiceUtils.getInstance().getModelSet((ServicesRegistry)newInput);
 			} catch (Exception ex) {
@@ -202,7 +200,9 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			}
 		}
 
-		this.roots = getRoots(root);
+		if(root != null) {
+			this.roots = getRoots(root);
+		}
 
 		super.inputChanged(viewer, oldInput, newInput);
 	}
