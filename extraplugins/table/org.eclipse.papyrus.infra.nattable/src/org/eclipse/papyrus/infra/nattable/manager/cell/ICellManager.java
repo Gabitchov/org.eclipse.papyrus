@@ -130,5 +130,39 @@ public interface ICellManager {
 	 * @return
 	 *         the class to use to converter the string into values. If the method create them, the method must add it to the map existingConverters
 	 */
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator);
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator);
+
+	/**
+	 * This method is used when we are pasting element in detached mode
+	 * 
+	 * @param columnElement
+	 *        the column element as described in the model (you must ignore the invert axis)
+	 * @param rowElement
+	 *        the row element as described in the model (you must ignore the invert axis)
+	 * @param sharedMap
+	 *        a map with shared elements
+	 * @return
+	 *         <code>true</code> if the intersection of the 2 objects is editable
+	 */
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap);
+
+	/**
+	 * This method is used when we are pasting elements in detached mode
+	 * 
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @param valueAsString
+	 *        the value as string
+	 * @param valueConverter
+	 *        the value converter to use
+	 * @param tableManager
+	 *        the table manager
+	 * @param sharedMap
+	 *        a map with shared elements. The method may read/add elements to the shared map. These contributions will be managed by a paste post
+	 *        action or by the paste manager itself
+	 * 
+	 */
+	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager, final Map<?, ?> sharedMap);
 }

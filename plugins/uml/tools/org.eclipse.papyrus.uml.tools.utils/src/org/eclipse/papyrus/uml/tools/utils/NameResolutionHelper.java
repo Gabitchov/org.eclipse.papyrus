@@ -96,7 +96,7 @@ public class NameResolutionHelper {
 		computeNames(model.getName() + "::", model, false);
 
 		// Build names corresponding to other available UML resources in the workspace 
-		List<Resource> resources = scope.eResource().getResourceSet().getResources();
+		List<Resource> resources = new ArrayList<Resource>(scope.eResource().getResourceSet().getResources());//we duplicate the resource to avoid concurrent modification
 		for(Resource resource : resources) {
 			if(resource != scope.eResource() && resource instanceof UMLResource) {
 				UMLResource umlResource = (UMLResource)resource;

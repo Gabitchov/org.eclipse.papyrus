@@ -21,14 +21,19 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
 /**
@@ -64,8 +69,36 @@ public class IPasteConfigurationItemProvider extends ItemProviderAdapter impleme
 		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addPostActionsPropertyDescriptor(object);
+			addDetachedModePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Post Actions feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addPostActionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_IPasteConfiguration_postActions_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_IPasteConfiguration_postActions_feature", "_UI_IPasteConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisconfigurationPackage.Literals.IPASTE_CONFIGURATION__POST_ACTIONS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Detached Mode feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDetachedModePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_IPasteConfiguration_detachedMode_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_IPasteConfiguration_detachedMode_feature", "_UI_IPasteConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			NattableaxisconfigurationPackage.Literals.IPASTE_CONFIGURATION__DETACHED_MODE, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -89,7 +122,8 @@ public class IPasteConfigurationItemProvider extends ItemProviderAdapter impleme
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_IPasteConfiguration_type"); //$NON-NLS-1$
+		IPasteConfiguration iPasteConfiguration = (IPasteConfiguration)object;
+		return getString("_UI_IPasteConfiguration_type") + " " + iPasteConfiguration.isDetachedMode(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -103,6 +137,13 @@ public class IPasteConfigurationItemProvider extends ItemProviderAdapter impleme
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch(notification.getFeatureID(IPasteConfiguration.class)) {
+		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__POST_ACTIONS:
+		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__DETACHED_MODE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 

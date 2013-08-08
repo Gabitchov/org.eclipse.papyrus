@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
-import org.eclipse.papyrus.infra.nattable.properties.observable.AbstractConfigurationElementObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnDisplayFilterHeaderObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnDisplayIndexHeaderObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnDisplayLabelHeaderObservableValue;
@@ -47,6 +46,8 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnObjectLabe
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnObjectLabelDisplayLabelObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteEObjectContainmentFeatureObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteEObjectElementTypeIdObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteObjectDetachedModeObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteObjectPostActionsObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowDisplayIndexHeaderObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowDisplayLabelHeaderObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelDisplayIconObservableValue;
@@ -60,6 +61,8 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.RowObjectLabelDi
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowObjectLabelDisplayLabelObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectContainmentFeatureObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectElementTypeIdObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectDetachedModeObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectPostActionsObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnElementTypeIdContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowContainmentFeatureContentProvider;
@@ -70,6 +73,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 
 
 public class NatTableModelElement extends EMFModelElement {
@@ -82,7 +86,7 @@ public class NatTableModelElement extends EMFModelElement {
 	/**
 	 * the map linking the propertypath and the observable values
 	 */
-	private Map<String, AbstractConfigurationElementObservableValue> observableValues;
+	private Map<String, IObservable> observableValues;
 
 	/**
 	 * the collection of the interesting features to update the property view
@@ -134,7 +138,7 @@ public class NatTableModelElement extends EMFModelElement {
 	 */
 	private void init() {
 		tableModelManager = new NattableModelManager(getEditedTable());
-		this.observableValues = new HashMap<String, AbstractConfigurationElementObservableValue>();
+		this.observableValues = new HashMap<String, IObservable>();
 		this.interestingFeatures = new ArrayList<EStructuralFeature>();
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_InvertAxis());
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_LocalColumnHeaderAxisConfiguration());
@@ -268,8 +272,10 @@ public class NatTableModelElement extends EMFModelElement {
 				initOtherFieldsAndAddOthersListeners();
 
 				final Event event = new Event();
-				for(final AbstractConfigurationElementObservableValue current : observableValues.values()) {
-					current.handleEvent(event);
+				for(final IObservable current : observableValues.values()) {
+					if(current instanceof Listener) {
+						((Listener)current).handleEvent(event);
+					}
 				}
 			}
 		});
@@ -310,7 +316,7 @@ public class NatTableModelElement extends EMFModelElement {
 	 */
 	@Override
 	protected IObservable doGetObservable(final String propertyPath) {
-		AbstractConfigurationElementObservableValue value = this.observableValues.get(propertyPath);
+		IObservable value = this.observableValues.get(propertyPath);
 		if(value == null) {
 			Table table = getEditedTable();
 			//column header properties
@@ -382,6 +388,10 @@ public class NatTableModelElement extends EMFModelElement {
 				value = new RowPasteEObjectContainmentFeatureObservableValue(table);
 			} else if(Constants.ROW_PASTED_EOBJECT_ID.equals(propertyPath)) {
 				value = new RowPasteEObjectElementTypeIdObservableValue(table);
+			} else if(Constants.ROW_PASTED_OBJECT_DETACHED_MODE_FEATURE.equals(propertyPath)) {
+				value = new RowPasteObjectDetachedModeObservableValue(getEditedTable());
+			} else if(Constants.ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+				value = new RowPasteObjectPostActionsObservableValue(getDomain(), getEditedTable());
 			}
 
 			//paste column EObject
@@ -389,9 +399,14 @@ public class NatTableModelElement extends EMFModelElement {
 				value = new ColumnPasteEObjectContainmentFeatureObservableValue(table);
 			} else if(Constants.COLUMN_PASTED_EOBJECT_ID.equals(propertyPath)) {
 				value = new ColumnPasteEObjectElementTypeIdObservableValue(table);
+			} else if(Constants.COLUMN_PASTED_OBJECT_DETACHED_MODE_FEATURE.equals(propertyPath)) {
+				value = new ColumnPasteObjectDetachedModeObservableValue(getEditedTable());
+			} else if(Constants.COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+				value = new ColumnPasteObjectPostActionsObservableValue(getDomain(), getEditedTable());
 			}
+
 			if(value != null) {
-				this.observableValues.put(propertyPath, (AbstractConfigurationElementObservableValue)value);
+				this.observableValues.put(propertyPath, (IObservable)value);
 			}
 		}
 		if(value != null) {
@@ -460,12 +475,20 @@ public class NatTableModelElement extends EMFModelElement {
 				res = new RowContainmentFeatureContentProvider(getEditedTable()).getElements().length != 0;
 			} else if(Constants.ROW_PASTED_EOBJECT_ID.equals(propertyPath)) {
 				res = new RowElementTypeIdContentProvider(this.tableModelManager).getElements().length != 0;
+			} else if(Constants.ROW_PASTED_OBJECT_DETACHED_MODE_FEATURE.equals(propertyPath)) {
+				res = true;
+			} else if(Constants.ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+				res = true;
 
 				//paste column EObject
 			} else if(Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
 				res = new ColumnContainmentFeatureContentProvider(getEditedTable()).getElements().length != 0;
 			} else if(Constants.COLUMN_PASTED_EOBJECT_ID.equals(propertyPath)) {
 				res = new ColumnElementTypeIdContentProvider(this.tableModelManager).getElements().length != 0;
+			} else if(Constants.COLUMN_PASTED_OBJECT_DETACHED_MODE_FEATURE.equals(propertyPath)) {
+				res = true;
+			} else if(Constants.COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+				res = true;
 			}
 		}
 

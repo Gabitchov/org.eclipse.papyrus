@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
@@ -37,10 +38,12 @@ import org.eclipse.papyrus.infra.tools.converter.MultiConvertedValueContainer;
 import org.eclipse.papyrus.infra.tools.converter.StringValueConverterStatus;
 import org.eclipse.papyrus.uml.nattable.Activator;
 import org.eclipse.papyrus.uml.nattable.messages.Messages;
+import org.eclipse.papyrus.uml.nattable.paste.StereotypeApplicationStructure;
 import org.eclipse.papyrus.uml.nattable.utils.Constants;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.utils.EnumerationUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
@@ -69,7 +72,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 */
 	@Override
 	public boolean handles(final Object columnElement, final Object rowElement) {
-		return organizeAndResolvedObjects(columnElement, rowElement) != null;
+		return organizeAndResolvedObjects(columnElement, rowElement, null) != null;
 	}
 
 	/**
@@ -84,12 +87,12 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 */
 	@Override
 	protected Object doGetValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
-		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement);
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		if(umlObjects.size() == 2) {
 			final Element el = (Element)umlObjects.get(0);
 			final String id = (String)umlObjects.get(1);
 			final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
-			final List<Stereotype> stereotypesWithThisProperty = UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id);
+			final List<Stereotype> stereotypesWithThisProperty = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id);
 			if(stereotypesWithThisProperty.size() == 1) {
 				return el.getValue(stereotypesWithThisProperty.get(0), prop.getName());
 			} else if(stereotypesWithThisProperty.size() > 1) {
@@ -107,7 +110,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 *         a list with 2 elements : the first one is the Element and the second one the string representing the property of stereotypes
 	 */
 	@Override
-	protected List<Object> organizeAndResolvedObjects(final Object columnElement, final Object rowElement) {
+	protected List<Object> organizeAndResolvedObjects(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
 		List<Object> objects = null;
 		final Object column = AxisUtils.getRepresentedElement(columnElement);
 		final Object row = AxisUtils.getRepresentedElement(rowElement);
@@ -135,17 +138,32 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 */
 	@Override
 	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
-		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement);
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		final Element el = (Element)umlObjects.get(0);
 		final String id = (String)umlObjects.get(1);
-		switch(UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id).size()) {
+		switch(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id).size()) {
 		case 1:
 			final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
 			return !prop.isDerived() && !prop.isReadOnly();
 		default:
 			return false;
 		}
+	}
 
+
+	@Override
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, sharedMap);
+		final Element el = (Element)umlObjects.get(0);
+		final String id = (String)umlObjects.get(1);
+
+		switch(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id, sharedMap).size()) {
+		case 1:
+			final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id, sharedMap);
+			return !prop.isDerived() && !prop.isReadOnly();
+		default:
+			return false;
+		}
 	}
 
 	/**
@@ -162,11 +180,11 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 */
 	@Override
 	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
-		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement);
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		final Element el = (Element)umlObjects.get(0);
 		final String id = (String)umlObjects.get(1);
 		final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
-		final List<Stereotype> stereotypes = UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id);
+		final List<Stereotype> stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id);
 		if(prop != null) {
 			if(stereotypes.size() == 1) {
 				final EObject stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
@@ -193,20 +211,20 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 */
 	@Override
 	public Command getSetStringValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final String newValue, final AbstractStringValueConverter valueSolver, final INattableModelManager tableManager) {
-		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement);
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		final Element el = (Element)umlObjects.get(0);
 		final String id = (String)umlObjects.get(1);
 		Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
-		List<Stereotype> stereotypes = UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id);
+		List<Stereotype> stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id);
 		ConvertedValueContainer<?> solvedValue = null;
 		EObject stereotypeApplication = null;
 		EStructuralFeature steApFeature = null;
 		if(prop != null) {
 			if(stereotypes.size() == 1) {
 				stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
-				switch(UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id).size()) {
+				switch(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id).size()) {
 				case 1:
-					stereotypes = UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id);
+					stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id);
 					prop = UMLTableUtils.getRealStereotypeProperty(el, id);
 					break;
 				default:
@@ -265,5 +283,83 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 			return null;
 		}
 		return new GMFtoEMFCommandWrapper(cmd);
+	}
+
+	@Override
+	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueSolver, INattableModelManager tableManager, Map<?, ?> sharedMap) {
+		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, sharedMap);
+		final Element el = (Element)umlObjects.get(0);
+		final String id = (String)umlObjects.get(1);
+		Property prop = UMLTableUtils.getRealStereotypeProperty(el, id, sharedMap);
+		List<Stereotype> stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id, sharedMap);
+		ConvertedValueContainer<?> solvedValue = null;
+		EObject stereotypeApplication = null;
+		EStructuralFeature steApFeature = null;
+		if(sharedMap != null) {
+			List<StereotypeApplicationStructure> struct = UMLTableUtils.findStereotypeApplicationDataStructure(el, id, sharedMap);
+			//FIXME : size > 1 not yet managed
+			StereotypeApplicationStructure current = struct.get(0);
+			stereotypeApplication = current.getStereotypeApplication();
+			steApFeature = current.getFeature();
+			prop = current.getProperty();
+		} else {
+			if(prop != null) {
+				if(stereotypes.size() == 1) {
+					stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
+					switch(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id, sharedMap).size()) {
+					case 1:
+						stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id, sharedMap);
+						prop = UMLTableUtils.getRealStereotypeProperty(el, id, sharedMap);
+						break;
+					default:
+						prop = null;
+						stereotypes = Collections.emptyList();
+					}
+				}
+			}
+			steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
+		}
+		solvedValue = valueSolver.deduceValueFromString(prop, valueAsString);
+
+
+		if(prop.getType() instanceof Enumeration) {//FIXME : this case must be managed by the converter!
+			EEnum eenum = (EEnum)steApFeature.getEType();
+			Object value = solvedValue.getConvertedValue();
+			if(value instanceof Collection<?>) {
+				final Collection<Enumerator> enumeratorList = EnumerationUtil.adaptToEnumeratorList(eenum, (Collection<?>)value);
+				if(enumeratorList.size() == ((Collection<?>)value).size()) {
+					solvedValue = new MultiConvertedValueContainer<Enumerator>(enumeratorList, solvedValue.getStatus());
+				} else {
+					IStatus status = new StringValueConverterStatus(IStatus.ERROR, Activator.PLUGIN_ID, "Some enumeration literal can't be resolved", Collections.<String> emptyList()); //$NON-NLS-1$
+					solvedValue = new ConvertedValueContainer<Object>(enumeratorList, status);
+				}
+			} else if(value instanceof EnumerationLiteral) {
+				if(value != null) {
+					final Enumerator enumerator = EnumerationUtil.adaptToEnumerator(eenum, (EnumerationLiteral)value);
+					if(enumerator != null) {
+						solvedValue = new ConvertedValueContainer<Enumerator>(enumerator, solvedValue.getStatus());
+					} else {
+						IStatus status = new StringValueConverterStatus(IStatus.ERROR, Activator.PLUGIN_ID, NLS.bind("The enumeration literal represented by {0} can be resolved", valueAsString), Collections.singletonList(valueAsString)); //$NON-NLS-1$
+						solvedValue = new ConvertedValueContainer<Object>(null, status);
+					}
+				}
+			}
+		}
+
+		//		final CompositeCommand cmd = new CompositeCommand("Set Value As String Command"); //$NON-NLS-1$
+		if(steApFeature == null || stereotypes.size() != 1) {
+			IStatus status = new StringValueConverterStatus(IStatus.ERROR, Activator.PLUGIN_ID, "The property of stereotype to use to do the set value can't be resolved", Collections.singletonList(valueAsString)); //$NON-NLS-1$
+			solvedValue = new ConvertedValueContainer<Object>(null, status);
+		} else {
+
+			Object value = solvedValue.getConvertedValue();
+			if((value != null) || (value == null && !(prop.getType() instanceof PrimitiveType))) {
+				//we want avoid set null on element which doesn't allow it (FlowPort#direction) when the enum has not been properly resolved
+				stereotypeApplication.eSet(steApFeature, value);
+			}
+		}
+
+		createStringResolutionProblemProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
+
 	}
 }

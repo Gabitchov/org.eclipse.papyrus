@@ -14,12 +14,14 @@
 package org.eclipse.papyrus.infra.emf.nattable.manager.cell;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -34,11 +36,14 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.ICellAxisWrapper;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.IdAxisWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
+import org.eclipse.papyrus.infra.nattable.paste.ReferenceValueSetter;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
@@ -63,7 +68,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 */
 	@Override
 	public boolean handles(final Object columnElement, final Object rowElement) {
-		return organizeAndResolvedObjects(columnElement, rowElement) != null;
+		return organizeAndResolvedObjects(columnElement, rowElement, null) != null;
 	}
 
 
@@ -79,7 +84,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 */
 	@Override
 	protected Object doGetValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
-		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		final EObject eobject = (EObject)objects.get(0);
 		final EStructuralFeature feature = (EStructuralFeature)objects.get(1);
 		if(eobject.eClass().getEAllStructuralFeatures().contains(feature)) {
@@ -94,6 +99,8 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 *        the column element
 	 * @param rowElement
 	 *        the row element
+	 * @param sharedMap
+	 *        TODO
 	 * @return
 	 *         <code>null</code> or a list of 2 objects.
 	 *         <ul>
@@ -101,7 +108,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 *         <li>the second one is the edited feature</li>
 	 *         </ul>
 	 */
-	protected List<Object> organizeAndResolvedObjects(final Object columnElement, final Object rowElement) {
+	protected List<Object> organizeAndResolvedObjects(final Object columnElement, final Object rowElement, Map<?, ?> sharedMap) {
 		List<Object> objects = null;
 		final Object row = AxisUtils.getRepresentedElement(rowElement);
 		final Object column = AxisUtils.getRepresentedElement(columnElement);
@@ -128,7 +135,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 */
 	@Override
 	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
-		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		final EObject object = (EObject)objects.get(0);
 		final EStructuralFeature feature = (EStructuralFeature)objects.get(1);
 		if(object.eClass().getEAllStructuralFeatures().contains(feature)) {
@@ -153,7 +160,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 */
 	@Override
 	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
-		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		return getSetValueCommand(domain, (EObject)objects.get(0), (EStructuralFeature)objects.get(1), newValue);
 	}
 
@@ -190,7 +197,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 */
 	@Override
 	public Command getSetStringValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final String newValue, final AbstractStringValueConverter valueSolver, final INattableModelManager tableManager) {
-		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		final EObject editedObject = (EObject)objects.get(0);
 		final EStructuralFeature editedFeature = (EStructuralFeature)objects.get(1);
 		ConvertedValueContainer<?> solvedValue = valueSolver.deduceValueFromString(editedFeature, newValue);
@@ -323,5 +330,127 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 			existingConverters.put(EMFStringValueConverter.class, converter);
 		}
 		return converter;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#setValue(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      java.lang.Object, java.lang.Object, java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 * 
+	 * @param domain
+	 * @param columnElement
+	 * @param rowElement
+	 * @param newValue
+	 * @param tableManager
+	 */
+	@Override
+	public void setValue(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
+		if(domain == null) {
+			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
+			final EObject elementToEdit = (EObject)objects.get(0);
+			final EStructuralFeature editedFeature = (EStructuralFeature)objects.get(1);
+			elementToEdit.eSet(editedFeature, newValue);
+		} else {
+			super.setValue(domain, columnElement, rowElement, newValue, tableManager);
+		}
+	}
+
+	//FIXME : could be in a util class
+	protected void createStringResolutionProblemProblem(final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer, final Map<?, ?> sharedMap) {
+		final IStatus status = valueContainer.getStatus();
+		if(!status.isOK()) {
+			if(status.matches(IStatus.ERROR)) {
+				final List<ReferenceValueSetter> references = (List<ReferenceValueSetter>)sharedMap.get(Constants.REFERENCES_TO_SET_KEY);
+				if(status.matches(IStatus.ERROR)) {
+					Cell cell = tableManager.getCell(columnElement, rowElement);
+
+					if(cell == null) {
+						//we create the cell
+						final Table table = tableManager.getTable();
+						cell = NattablecellFactory.eINSTANCE.createCell();
+
+						//create the columnWrapper;
+						final Object column = AxisUtils.getRepresentedElement(columnElement);
+						ICellAxisWrapper columnWrapper = null;
+						if(column instanceof String) {
+							columnWrapper = NattablecellFactory.eINSTANCE.createIdAxisWrapper();
+							((IdAxisWrapper)columnWrapper).setElement((String)column);
+						} else if(column instanceof EObject) {
+							columnWrapper = NattablecellFactory.eINSTANCE.createEObjectAxisWrapper();
+							ReferenceValueSetter structure = new ReferenceValueSetter(columnWrapper, NattablecellPackage.eINSTANCE.getEObjectAxisWrapper_Element(), column);
+							references.add(structure);
+						}
+
+						final Object row = AxisUtils.getRepresentedElement(rowElement);
+						ICellAxisWrapper rowWrapper = null;
+						if(row instanceof String) {
+							rowWrapper = NattablecellFactory.eINSTANCE.createIdAxisWrapper();
+							((IdAxisWrapper)rowWrapper).setElement((String)row);
+						} else if(row instanceof EObject) {
+							rowWrapper = NattablecellFactory.eINSTANCE.createEObjectAxisWrapper();
+							ReferenceValueSetter structure = new ReferenceValueSetter(rowWrapper, NattablecellPackage.eINSTANCE.getEObjectAxisWrapper_Element(), row);
+							references.add(structure);
+						}
+
+						if(rowWrapper == null || columnWrapper == null) {
+							throw new UnsupportedOperationException("Case not managed"); //$NON-NLS-1$
+						}
+						cell.setColumnWrapper(columnWrapper);
+						cell.setRowWrapper(rowWrapper);
+						final List<Cell> cells = (List<Cell>)sharedMap.get(Constants.CELLS_TO_ADD_KEY);
+						cells.add(cell);
+
+
+					}
+
+
+					final StringResolutionProblem problem = NattableproblemFactory.eINSTANCE.createStringResolutionProblem();
+					problem.setName("Set Value As Text Problem"); //$NON-NLS-1$
+					problem.setDescription(status.getMessage());
+					problem.setValueAsString(pastedText);
+
+					if(status instanceof StringValueConverterStatus) {
+						problem.getUnresolvedString().addAll(((StringValueConverterStatus)status).getUnresolvedString());
+					}
+
+					if(cell.eContainer() == null) {
+						cell.eSet(NattablecellPackage.eINSTANCE.getCell_Problems(), Collections.singleton(problem));
+					} else {
+						final ReferenceValueSetter structure = new ReferenceValueSetter(cell, NattablecellPackage.eINSTANCE.getCell_Problems(), problem);
+						references.add(structure);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String,
+	 *      org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter,
+	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
+	 * 
+	 * @param columnElement
+	 * @param rowElement
+	 * @param valueAsString
+	 * @param valueConverter
+	 * @param tableManager
+	 * @param sharedMap
+	 */
+	@Override
+	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager, final Map<?, ?> sharedMap) {
+		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, sharedMap);
+		final EObject editedObject = (EObject)objects.get(0);
+		final EStructuralFeature editedFeature = (EStructuralFeature)objects.get(1);
+		ConvertedValueContainer<?> solvedValue = valueConverter.deduceValueFromString(editedFeature, valueAsString);
+		if(editedFeature instanceof EReference) {
+			final List<ReferenceValueSetter> references = (List<ReferenceValueSetter>)sharedMap.get(Constants.REFERENCES_TO_SET_KEY);
+			final ReferenceValueSetter structure = new ReferenceValueSetter(editedObject, (EReference)editedFeature, solvedValue.getConvertedValue());
+			references.add(structure);
+		} else {
+			editedObject.eSet(editedFeature, solvedValue.getConvertedValue());
+		}
+
+		createStringResolutionProblemProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
 	}
 }

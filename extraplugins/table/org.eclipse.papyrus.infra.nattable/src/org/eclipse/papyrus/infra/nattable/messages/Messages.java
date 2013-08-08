@@ -167,6 +167,26 @@ public class Messages extends NLS {
 
 	public static String LoadCurrentAxisProvidersDialog_3;
 
+	public static String PasteEObjectAxisInTableCommandProvider_AddingElementToTheTable;
+
+	public static String PasteEObjectAxisInTableCommandProvider_CommandCreationHasBeenCancelled;
+
+	public static String PasteEObjectAxisInTableCommandProvider_CreatingAnumberXonY;
+
+	public static String PasteEObjectAxisInTableCommandProvider_DoingAdditionalActions;
+
+	public static String PasteEObjectAxisInTableCommandProvider_FinishingThePaste;
+
+	public static String PasteEObjectAxisInTableCommandProvider_LinkingReferencesToTheModel;
+
+	public static String PasteEObjectAxisInTableCommandProvider_PasteAction;
+
+	public static String PasteEObjectAxisInTableCommandProvider_PasteColumns;
+
+	public static String PasteEObjectAxisInTableCommandProvider_PasteFromStringCommand;
+
+	public static String PasteEObjectAxisInTableCommandProvider_PasteRows;
+
 	public static String PasteInPapyrusTableCommandProvider_0;
 
 	public static String PasteInPapyrusTableCommandProvider_1;
