@@ -25,6 +25,12 @@ public class Constants {
 
 	public static final String END_OF_COLLECTION = "]"; //$NON-NLS-1$
 
+	/**
+	 * The String used to represent big collections
+	 * Example: [v1, v2, v3, ...]
+	 */
+	public static final String BIG_COLLECTION = "..."; //$NON-NLS-1$
+
 	public static final String SEPARATOR = ", "; //$NON-NLS-1$
 
 	public static final String NOT_AVALAIBLE = "N/A";//$NON-NLS-1$

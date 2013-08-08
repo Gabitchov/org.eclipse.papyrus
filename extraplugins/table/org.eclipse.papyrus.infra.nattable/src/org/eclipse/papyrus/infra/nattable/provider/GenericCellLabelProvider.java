@@ -33,6 +33,11 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 public class GenericCellLabelProvider extends AbstractNattableCellLabelProvider {
 
 	/**
+	 * Limit the number of displayed elements for collections
+	 */
+	public static final int MAX_DISPLAYED_ELEMENTS = 10;
+
+	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#accept(java.lang.Object)
 	 * 
@@ -63,13 +68,22 @@ public class GenericCellLabelProvider extends AbstractNattableCellLabelProvider 
 		if(value instanceof Collection<?>) {
 			Iterator<?> iter = ((Collection<?>)value).iterator();
 			label += Constants.BEGIN_OF_COLLECTION;
+			int i = 1;
 			while(iter.hasNext()) {
+				if(i > MAX_DISPLAYED_ELEMENTS) {
+					label += Constants.BIG_COLLECTION;
+					break;
+				}
+
 				Object current = iter.next();
 				label += service.getLabelProvider(current).getText(current);
 				if(iter.hasNext()) {
 					label += Constants.SEPARATOR;
 				}
+
+				i++;
 			}
+
 			label += Constants.END_OF_COLLECTION;
 		} else {
 			label = service.getLabelProvider(value).getText(value);
