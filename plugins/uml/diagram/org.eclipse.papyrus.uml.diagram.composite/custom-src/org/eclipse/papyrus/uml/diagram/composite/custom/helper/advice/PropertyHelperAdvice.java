@@ -64,7 +64,6 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 		if((elementToEdit instanceof Property) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && ((request.getValue() == null) || (request.getValue() instanceof Type))) {
 
 			Property propertyToEdit = (Property)elementToEdit;
-			Set<View> propertyToEditViews = CrossReferencerUtil.getCrossReferencingViews(propertyToEdit, CompositeStructureDiagramEditPart.MODEL_ID);
 
 			oldType = propertyToEdit.getType();
 			newType = (Type)request.getValue();
@@ -81,15 +80,24 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 				possiblyInconsistentMembers.addAll(oldTypeMembers);
 				possiblyInconsistentMembers.removeAll(newTypeMembers);
 
-				// Parse the list of possibly inconsistent members
-				for(NamedElement possiblyInconsistentMember : possiblyInconsistentMembers) {
+				if(!possiblyInconsistentMembers.isEmpty()) {
 
-					// Retrieve views of the current possiblyInconsistentMember
-					Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(possiblyInconsistentMember, CompositeStructureDiagramEditPart.MODEL_ID).iterator();
-					while(viewIt.hasNext()) {
-						View possiblyInconsistentMemberView = viewIt.next();
-						if(isConcerned(possiblyInconsistentMemberView, propertyToEditViews)) {
-							viewsToDelete.add(possiblyInconsistentMemberView);
+					Set<View> propertyToEditViews = null;
+
+					// Parse the list of possibly inconsistent members
+					for(NamedElement possiblyInconsistentMember : possiblyInconsistentMembers) {
+
+						// Retrieve views of the current possiblyInconsistentMember
+						Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(possiblyInconsistentMember, CompositeStructureDiagramEditPart.MODEL_ID).iterator();
+						while(viewIt.hasNext()) {
+							if(propertyToEditViews == null) {
+								propertyToEditViews = CrossReferencerUtil.getCrossReferencingViews(propertyToEdit, CompositeStructureDiagramEditPart.MODEL_ID);
+							}
+
+							View possiblyInconsistentMemberView = viewIt.next();
+							if(isConcerned(possiblyInconsistentMemberView, propertyToEditViews)) {
+								viewsToDelete.add(possiblyInconsistentMemberView);
+							}
 						}
 					}
 				}
