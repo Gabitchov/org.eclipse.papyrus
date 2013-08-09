@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.handler;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
@@ -30,8 +29,11 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.ui.InterfaceManagerDial
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -47,7 +49,7 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		List<IGraphicalEditPart> selection = getSelectedElements();
 		if(selection.size() != 1) {
 			return UnexecutableCommand.INSTANCE;
@@ -131,7 +133,7 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 		EObject semanticElement = selection.get(0).resolveSemanticElement();
 
 		// Selection should be a Port but should not be a FlowPort
-		if (!(semanticElement instanceof Port)) {
+		if(!(semanticElement instanceof Port)) {
 			return false;
 		}
 
