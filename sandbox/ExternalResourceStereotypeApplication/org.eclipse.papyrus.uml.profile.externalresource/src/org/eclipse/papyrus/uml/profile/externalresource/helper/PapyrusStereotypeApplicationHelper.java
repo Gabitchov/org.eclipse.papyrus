@@ -64,9 +64,8 @@ public class PapyrusStereotypeApplicationHelper extends StereotypeApplicationHel
 	}
 
 	/**
-	 * Returns the location strategy to use for the given couple element/definition
+	 * Returns the specific location strategy to use for the given model element
 	 * @param element the stereotyped element
-	 * @param definition the definition of the stereotype to be applied
 	 * @return the location strategy or <code>null</code> if none was found
 	 */
 	public static IStereotypeApplicationLocationStrategy getCurrentLocationStrategy(EObject element) {
