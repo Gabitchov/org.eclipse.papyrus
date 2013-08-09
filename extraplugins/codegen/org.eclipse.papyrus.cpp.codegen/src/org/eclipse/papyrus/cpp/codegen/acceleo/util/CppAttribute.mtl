@@ -1,5 +1,6 @@
-[module CppAttribute('http://www.eclipse.org/uml2/4.0.0/UML')/]
-[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[module CppAttribute('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/papyrus/C_Cpp/1')/]
+[import org::eclipse::papyrus::acceleo::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::CppGenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::utils::Modifier/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::Constants/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppDocumentation/]
@@ -17,18 +18,18 @@
 
 [template public CppAttributeDeclaration(attribute : Property)]
 [CppElementDoc()/]
-[staticValue()/][modConst()/][attribute.type.qualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/][if (hasStereotype(C_Cpp::Const))][defaultValue()/][/if];
+[staticValue()/][modConst()/][attribute.type.cppQualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/][if (hasStereotype(C_Cpp::Const))][defaultValue()/][/if];
 [/template]
 
 
 [template public CppAttributeImplementation(attribute : Property)]
 	[CppElementDoc()/]
-	[modConst()/][attribute.type.qualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/];
+	[modConst()/][attribute.type.cppQualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/];
 [/template]
 
 [template public CppStaticAttributeImplementation(attribute : Property)]
 [CppElementDoc()/]
-[type.qualifiedName()/][modPtr()/][modRef()/] [attribute.class.name/]::[attribute.name/][modArray()/][defaultValue()/];
+[type.cppQualifiedName()/][modPtr()/][modRef()/] [attribute.class.name/]::[attribute.name/][modArray()/][defaultValue()/];
 [/template]
 
 

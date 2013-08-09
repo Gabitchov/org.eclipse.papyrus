@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 - 2012 CEA LIST.
+ * Copyright (c) 2006 - 2013 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -43,10 +43,12 @@ import org.eclipse.uml2.uml.Type;
 /**
  * Some utilities: a set of static methods for Acceleo based code generation
  * 
- * @author wassim
+ * @author wassim, ansgar
  * 
  */
-public class GenericGenUtils {
+public class GenUtils {
+
+	public static final String NL = System.getProperties().getProperty("line.separator"); //$NON-NLS-1$
 
 	/**
 	 * Retrieve template bindings for the class passed as a Parameter
@@ -83,11 +85,29 @@ public class GenericGenUtils {
 		return result;
 	}
 
+	/**
+	 * Get the name of a template parameter or undefined, if it is not set
+	 * 
+	 * @param templateParam
+	 * @return
+	 */
+	public static String getTemplateName(TemplateParameter templateParam) {
+		String name = ""; //$NON-NLS-1$
+		ParameterableElement pElt = templateParam.getParameteredElement();
+		if((pElt != null) && (pElt instanceof NamedElement)) {
+			name = ((NamedElement)pElt).getName();
+		} else {
+			name = "undefined"; //$NON-NLS-1$
+		}
+
+		return name;
+	}
+
 	
 	/**
-	 * 
-	 * @param classifier
-	 * @return
+	 *
+	 * @param classifier a classifier owning a template signature
+	 * @return the list of (formal) parameters defined within a template signature
 	 */
 	public static Collection<TemplateParameter> getTemplateParameters(Classifier classifier) {
 
@@ -119,7 +139,6 @@ public class GenericGenUtils {
 		return params;
 	}
 
-
 	/**
 	 * Retrieve a list of types that belong to by a classifier in the current class
 	 * 
@@ -127,7 +146,30 @@ public class GenericGenUtils {
 	 *        Class on which the attributes are searched
 	 * @return collection of classes which are the type of the attributes
 	 */
-	public static EList<Classifier> getTypesViaAttributesk(Classifier current) {
+	public static EList<Classifier> getOwnedAttributeTypes(Classifier current) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+
+		Iterator<Property> attributes;
+		attributes = current.getAttributes().iterator();
+		while(attributes.hasNext()) {
+			Property currentAttribute = attributes.next();
+			Type type = currentAttribute.getType();
+			if(type instanceof Classifier) {
+				Classifier attrType = (Classifier)type;
+				result.add(attrType);
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve a list of types that belong to by a classifier in the current class
+	 * 
+	 * @param current
+	 *        Class on which the attributes are searched
+	 * @return collection of classes which are the type of the attributes
+	 */
+	public static EList<Classifier> getTypesViaAttributes(Classifier current) {
 		EList<Classifier> result = new UniqueEList<Classifier>();
 
 		for (Property currentAttribute : current.getAttributes()) {
@@ -140,8 +182,9 @@ public class GenericGenUtils {
 	}
 
 	/**
-	 * Retrieve the operations in the current class then for each
-	 * operation it finds the parameters that have a class type
+	 * Retrieve the operations in the current class. For each
+	 * operation collected the classifier type. This class thus finds types, on
+	 * which the signature depends.
 	 * 
 	 * @param current
 	 *        Class on which the attributes are searched
@@ -234,6 +277,7 @@ public class GenericGenUtils {
 		return classifiers;
 	}
 
+	
 	/**
 	 * Return the qualified name of a named element, but use "_" instead of "::" as separator
 	 * 
@@ -348,6 +392,8 @@ public class GenericGenUtils {
 
 	/**
 	 * Is a certain stereotype applied?
+	 * In case of Java, we use the class above (without the A) prefix. In case of Acceleo, a stereotype
+	 * such as C_Cpp::Include is passed as EClass and we therefore use this operation from Acceleo.
 	 * 
 	 * @param element
 	 * @param eClass The eClass associated with the stereotype name
@@ -387,6 +433,17 @@ public class GenericGenUtils {
 		return null;
 	}
 
+	/**
+	 * Return a stereotype application when given the eClass of that application.
+	 * In case of Java, we use the class above (without the A) prefix. In case of Acceleo, a stereotype
+	 * such as C_Cpp::Include is passed as EClass and we therefore use this operation from Acceleo.
+
+	 * @param element
+	 *        the UML model element
+	 * @param eClass
+	 *        the eClass of the stereotype application
+	 * @return
+	 */
 	public static EObject getApplicationA(Element element, EClass eClass) {
 		for(EObject stereoApplication : element.getStereotypeApplications()) {
 			// check whether the stereotype is an instance of the passed parameter clazz

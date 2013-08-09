@@ -1,9 +1,10 @@
-[module CppClassFriendDeclaration('http://www.eclipse.org/uml2/4.0.0/UML')/]
-[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[module CppClassFriendDeclaration('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/papyrus/C_Cpp/1')/]
+[import org::eclipse::papyrus::acceleo::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::CppGenUtils/]
 
 
 [template public CppClassFriendDeclaration(friend : Classifier)]
-friend class [friend.qualifiedName()/];
+friend class [friend.cppQualifiedName()/];
 [/template]
 
 [template public CppClassIncludeFriendDeclaration(class : Classifier)]

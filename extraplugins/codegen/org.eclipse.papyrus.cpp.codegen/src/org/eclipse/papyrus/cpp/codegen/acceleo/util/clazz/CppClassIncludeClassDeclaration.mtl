@@ -1,5 +1,6 @@
 [module CppClassIncludeClassDeclaration('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/papyrus/C_Cpp/1')/]
-[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::acceleo::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::CppGenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::utils::ClassUtils/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeDeclaration/]
 
@@ -25,7 +26,7 @@
 [/template]
 
 [template public CppClassAllIncludesDeclarationBody(class : Classifier)]
-[CppClassAllIncludesDeclaration(getDependencies())/]
+[CppClassAllIncludesDeclaration(getTypesViaDependencies())/]
 [/template]
 
 [template public CppClassAllIncludesDeclaration(class : Classifier, list : Sequence(Classifier) )]
