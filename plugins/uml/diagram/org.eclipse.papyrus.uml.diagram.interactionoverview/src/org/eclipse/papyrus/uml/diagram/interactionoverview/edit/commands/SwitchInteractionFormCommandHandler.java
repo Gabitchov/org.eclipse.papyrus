@@ -12,7 +12,6 @@ package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -29,14 +28,13 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.part.Messages;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForDo;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForUndo;
 
-public class SwitchInteractionFormCommandHandler extends
-		GraphicalCommandHandler {
+public class SwitchInteractionFormCommandHandler extends GraphicalCommandHandler {
 
 	@Override
-	protected Command getCommand() throws ExecutionException {
-		
+	protected Command getCommand() {
+
 		List<IGraphicalEditPart> elements = getSelectedElements();
-		if(elements.size() == 1 && elements.get(0) instanceof CustomInteractionUseEditPartCN){
+		if(elements.size() == 1 && elements.get(0) instanceof CustomInteractionUseEditPartCN) {
 			CustomInteractionUseEditPartCN callBehaviorActionEditPart = (CustomInteractionUseEditPartCN)elements.get(0);
 			View callBehaviorView = (View)callBehaviorActionEditPart.getModel();
 			CompoundCommand cc = new CompoundCommand(Messages.SwitchInteractionFormCommandHandler_InteractionUseToInteractionCommandTitle);
@@ -44,12 +42,12 @@ public class SwitchInteractionFormCommandHandler extends
 			cc.add(new RefreshCommandForUndo((GraphicalEditPart)callBehaviorActionEditPart.getParent()));
 			cc.add(new ICommandProxy(changeCommand));
 			cc.add(new ICommandProxy(new DestroyElementCommand(new DestroyElementRequest(callBehaviorView, true))));
-			CreateSnapshotForInteractionFromViewDescriptorCommand snapshotCommand = new CreateSnapshotForInteractionFromViewDescriptorCommand(getEditingDomain(), changeCommand, (GraphicalEditPart)callBehaviorActionEditPart.getParent()); 
+			CreateSnapshotForInteractionFromViewDescriptorCommand snapshotCommand = new CreateSnapshotForInteractionFromViewDescriptorCommand(getEditingDomain(), changeCommand, (GraphicalEditPart)callBehaviorActionEditPart.getParent());
 			cc.add(new ICommandProxy(snapshotCommand));
 			cc.add(new ICommandProxy(new AddHyperlinkDiagram(changeCommand, snapshotCommand)));
 			cc.add(new RefreshCommandForDo((GraphicalEditPart)callBehaviorActionEditPart.getParent()));
 			return cc;
-		}else if(elements.size() == 1 && elements.get(0) instanceof CallBehaviorActionAsInteractionEditPart){
+		} else if(elements.size() == 1 && elements.get(0) instanceof CallBehaviorActionAsInteractionEditPart) {
 			CallBehaviorActionAsInteractionEditPart callBehaviorActionEditPart = (CallBehaviorActionAsInteractionEditPart)elements.get(0);
 			View callBehaviorView = (View)callBehaviorActionEditPart.getModel();
 			CompoundCommand cc = new CompoundCommand(Messages.SwitchInteractionFormCommandHandler_InteractionToInteractionUseCommandTitle);

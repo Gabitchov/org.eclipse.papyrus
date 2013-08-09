@@ -45,7 +45,8 @@ public class LoadHandler extends GraphicalCommandHandler {
 	 * @return the load command
 	 * @throws ExecutionException
 	 */
-	protected Command getCommand() throws ExecutionException {
+	@Override
+	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		List<IGraphicalEditPart> selection = getSelectedElements();
 		if(editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && selection.size() > 0) {

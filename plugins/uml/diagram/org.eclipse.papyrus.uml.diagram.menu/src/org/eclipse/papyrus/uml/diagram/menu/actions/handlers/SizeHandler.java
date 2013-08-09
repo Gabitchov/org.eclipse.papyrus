@@ -50,41 +50,41 @@ public class SizeHandler extends ParametricAndListeningHandler {
 	// Overload the method (execute) to update the position of Scroll Bar
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 *
+	 * 
 	 * @param event
 	 * @return
 	 * @throws ExecutionException
 	 */
-	
+
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		List<IGraphicalEditPart> selem = getSelectedElements();
-		
-		
+
+
 		if(!selem.isEmpty()) {
 
 			Iterator<IGraphicalEditPart> editParts = selem.iterator();
-			
-			
+
+
 			while(editParts.hasNext()) {
 				EditPart editPart = editParts.next();
 				List<?> editPartChildS = editPart.getChildren();
 
-				
+
 				for(int k = 0; k < editPartChildS.size(); k++) {
 					if(!editPartChildS.isEmpty()) {
 						EditPart ept = (EditPart)editPartChildS.get(k);
 
 						final GraphicalEditPart graphicalEditPart = (GraphicalEditPart)ept;
 
-						final IFigure fig = graphicalEditPart.getFigure();	
-						
+						final IFigure fig = graphicalEditPart.getFigure();
+
 						if(fig instanceof ResizableCompartmentFigure) {
 
 							ScrollPane fScrollPane = ((ResizableCompartmentFigure)fig).getScrollPane();
 							if(fScrollPane != null) {
 								fScrollPane.scrollHorizontalTo(0);
-								fScrollPane.scrollVerticalTo(0);	
+								fScrollPane.scrollVerticalTo(0);
 							}
 						}
 					}
@@ -102,11 +102,11 @@ public class SizeHandler extends ParametricAndListeningHandler {
 	 * @throws ExecutionException
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		super.getCommand();
 		SizeAction action = new SizeAction(this.parameter, getSelectedElements());
 		Command cmd = action.getCommand();
-		
+
 		return (cmd == null) ? UnexecutableCommand.INSTANCE : cmd;
 	}
 }

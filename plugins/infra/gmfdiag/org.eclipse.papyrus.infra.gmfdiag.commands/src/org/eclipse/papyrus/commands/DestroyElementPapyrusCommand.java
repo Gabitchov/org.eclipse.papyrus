@@ -39,7 +39,19 @@ public class DestroyElementPapyrusCommand extends DestroyElementCommand {
 
 	public DestroyElementPapyrusCommand(DestroyElementRequest request) {
 		super(request);
-		getAffectedFiles().addAll(fileOfIncomingReferences(request.getElementToDestroy()));
+
+	}
+
+	private List<Object> affectedFiles;
+
+	//Compute the affected files as late as possible, as this is an expensive operation (CrossReference)
+	@Override
+	public List<Object> getAffectedFiles() {
+		if(affectedFiles == null) {
+			affectedFiles = new ArrayList<Object>(super.getAffectedFiles());
+			affectedFiles.addAll(fileOfIncomingReferences(((DestroyElementRequest)getRequest()).getElementToDestroy()));
+		}
+		return affectedFiles;
 	}
 
 	/**

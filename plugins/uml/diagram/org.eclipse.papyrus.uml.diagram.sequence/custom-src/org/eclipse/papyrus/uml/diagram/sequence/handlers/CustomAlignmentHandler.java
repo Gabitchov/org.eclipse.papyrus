@@ -36,7 +36,7 @@ public class CustomAlignmentHandler extends AlignementHandler {
 	 * @throws ExecutionException
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		return super.getCommand();
 	}
 }
