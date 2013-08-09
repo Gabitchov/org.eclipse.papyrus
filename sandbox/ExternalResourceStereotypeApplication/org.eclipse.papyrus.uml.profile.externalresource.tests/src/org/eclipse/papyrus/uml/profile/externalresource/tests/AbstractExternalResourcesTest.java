@@ -66,15 +66,16 @@ public abstract class AbstractExternalResourcesTest {
 
 	public static String editorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
 
-	public static final String EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE = "ExternalResourcesTestProfile::SubProfile";
+	
 	public static final String EXTERNAL_RESOURCES_TEST_PROFILE = "ExternalResourcesTestProfile";
+	public static final String EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE = EXTERNAL_RESOURCES_TEST_PROFILE+NamedElement.SEPARATOR+"SubProfile";
 	public static final String MODEL_CLASS1 = "Class1";
 	public static final String CLASS_STEREOTYPE_NAME = "ClassStereotype";
 	public static final String CLASS_STEREOTYPE_QN = EXTERNAL_RESOURCES_TEST_PROFILE+"::"+CLASS_STEREOTYPE_NAME;
 
 	public static final String MODEL_CLASS2 = "Class2";
 	public static final String ELEMENT_STEREOTYPE_NAME = "ElementStereotype";
-	public static final String ELEMENT_STEREOTYPE_QN = EXTERNAL_RESOURCES_TEST_PROFILE+NamedElement.SEPARATOR+EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE+NamedElement.SEPARATOR+ELEMENT_STEREOTYPE_NAME;
+	public static final String ELEMENT_STEREOTYPE_QN = EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE+NamedElement.SEPARATOR+ELEMENT_STEREOTYPE_NAME;
 	
 	@Before
 	public void initializeRegistry() {

@@ -53,7 +53,7 @@ public class LoadUnloadOutsideEditorTests extends AbstractExternalResourcesTest 
 		// Model::class1 should have <<classStereotype>> Applied (verify stereotype in subprofile)
 		Class class2_ = (Class)rootModel.getPackagedElement(MODEL_CLASS2, true, UMLPackage.eINSTANCE.getClass_(), false);
 		Assert.assertNotNull(MODEL_CLASS2 + " should not be null", class2_);
-		Assert.assertNotNull(MODEL_CLASS2 + " should have stereotype " + ELEMENT_STEREOTYPE_NAME, class2_.getAppliedStereotype(ELEMENT_STEREOTYPE_QN));
+		Assert.assertNotNull(MODEL_CLASS2 + " should have stereotype " + ELEMENT_STEREOTYPE_NAME+", but has only: "+class2_.getAppliedStereotypes(), class2_.getAppliedStereotype(ELEMENT_STEREOTYPE_QN));
 	}
 
 	@Test
