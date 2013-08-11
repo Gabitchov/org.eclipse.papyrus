@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated facade -->
+      <package
+            uri="http://www.eclipse.org/papyrus/facade"
+            class="org.eclipse.papyrus.facade.FacadePackage"
+            genModel="model/facade.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated facade -->
+      <parser
+            type="facade"
+            class="org.eclipse.papyrus.facade.util.FacadeResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated facade -->
+      <package
+            uri="http://www.eclipse.org/papyrus/virtualmetamodel"
+            class="org.eclipse.papyrus.facade.virtualmetamodel.VirtualmetamodelPackage"
+            genModel="model/facade.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated facade -->
+      <parser
+            type="virtualmetamodel"
+            class="org.eclipse.papyrus.facade.virtualmetamodel.util.VirtualmetamodelResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated facade -->
+      <package
+            uri="http://www.eclipse.org/papyrus/extensiondefinition"
+            class="org.eclipse.papyrus.facade.extensiondefinition.ExtensiondefinitionPackage"
+            genModel="model/facade.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated facade -->
+      <parser
+            type="extensiondefinition"
+            class="org.eclipse.papyrus.facade.extensiondefinition.util.ExtensiondefinitionResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated facademapping -->
+      <package
+            uri="http://www.eclipse.org/papyrus/facademapping"
+            class="org.eclipse.papyrus.facademapping.FacademappingPackage"
+            genModel="model/facademapping.genmodel"/>
+   </extension>
+
+</plugin>

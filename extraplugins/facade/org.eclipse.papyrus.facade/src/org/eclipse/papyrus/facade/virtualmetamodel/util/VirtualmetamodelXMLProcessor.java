@@ -1,0 +1,50 @@
+/**
+ */
+package org.eclipse.papyrus.facade.virtualmetamodel.util;
+
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
+
+import org.eclipse.papyrus.facade.virtualmetamodel.VirtualmetamodelPackage;
+
+/**
+ * This class contains helper methods to serialize and deserialize XML documents
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class VirtualmetamodelXMLProcessor extends XMLProcessor {
+
+	/**
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VirtualmetamodelXMLProcessor() {
+		super((EPackage.Registry.INSTANCE));
+		VirtualmetamodelPackage.eINSTANCE.eClass();
+	}
+	
+	/**
+	 * Register for "*" and "xml" file extensions the VirtualmetamodelResourceFactoryImpl factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Map<String, Resource.Factory> getRegistrations() {
+		if (registrations == null) {
+			super.getRegistrations();
+			registrations.put(XML_EXTENSION, new VirtualmetamodelResourceFactoryImpl());
+			registrations.put(STAR_EXTENSION, new VirtualmetamodelResourceFactoryImpl());
+		}
+		return registrations;
+	}
+
+} //VirtualmetamodelXMLProcessor

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.facade/src" modelPluginID="org.eclipse.papyrus.facade"
+    modelName="Facademapping" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>facademapping.ecore</foreignModel>
+  <genPackages prefix="Facademapping" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
+      ecorePackage="facademapping.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="facademapping.ecore#//ExtensionDefinitionKind">
+      <genEnumLiterals ecoreEnumLiteral="facademapping.ecore#//ExtensionDefinitionKind/Association"/>
+      <genEnumLiterals ecoreEnumLiteral="facademapping.ecore#//ExtensionDefinitionKind/Generalization"/>
+      <genEnumLiterals ecoreEnumLiteral="facademapping.ecore#//ExtensionDefinitionKind/MultiGeneralization"/>
+      <genEnumLiterals ecoreEnumLiteral="facademapping.ecore#//ExtensionDefinitionKind/Fusion"/>
+    </genEnums>
+    <genClasses ecoreClass="facademapping.ecore#//Mapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference facademapping.ecore#//Mapping/umlElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference facademapping.ecore#//Mapping/specificDomainElement"/>
+    </genClasses>
+    <genClasses ecoreClass="facademapping.ecore#//StereotypedMapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference facademapping.ecore#//StereotypedMapping/appliedStereotypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facademapping.ecore#//StereotypedMapping/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="facademapping.ecore#//FacadeMappping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference facademapping.ecore#//FacadeMappping/mappings"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated facade -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.facade.presentation.FacadeModelWizardID"
+            name="%_UI_FacadeModelWizard_label"
+            class="org.eclipse.papyrus.facade.presentation.FacadeModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FacadeModelFile.gif">
+         <description>%_UI_FacadeModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated facade -->
+      <editor
+            id="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionEditorID"
+            name="%_UI_ExtensiondefinitionEditor_label"
+            icon="icons/full/obj16/ExtensiondefinitionModelFile.gif"
+            extensions="extensiondefinition"
+            class="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionEditor"
+            contributorClass="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated facade -->
+      <editor
+            id="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelEditorID"
+            name="%_UI_VirtualmetamodelEditor_label"
+            icon="icons/full/obj16/VirtualmetamodelModelFile.gif"
+            extensions="virtualmetamodel"
+            class="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelEditor"
+            contributorClass="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated facade -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionModelWizardID"
+            name="%_UI_ExtensiondefinitionModelWizard_label"
+            class="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ExtensiondefinitionModelFile.gif">
+         <description>%_UI_ExtensiondefinitionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null
+null
+null
+null
+null
+null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated facademapping -->
+      <editor
+            id="org.eclipse.papyrus.facademapping.presentation.FacademappingEditorID"
+            name="%_UI_FacademappingEditor_label"
+            icon="icons/full/obj16/FacademappingModelFile.gif"
+            extensions="facademapping"
+            class="org.eclipse.papyrus.facademapping.presentation.FacademappingEditor"
+            contributorClass="org.eclipse.papyrus.facademapping.presentation.FacademappingActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated facade -->
+      <editor
+            id="org.eclipse.papyrus.facade.presentation.FacadeEditorID"
+            name="%_UI_FacadeEditor_label"
+            icon="icons/full/obj16/FacadeModelFile.gif"
+            extensions="facade"
+            class="org.eclipse.papyrus.facade.presentation.FacadeEditor"
+            contributorClass="org.eclipse.papyrus.facade.presentation.FacadeActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated facade -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelModelWizardID"
+            name="%_UI_VirtualmetamodelModelWizard_label"
+            class="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/VirtualmetamodelModelFile.gif">
+         <description>%_UI_VirtualmetamodelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null
+null
+null
+null
+null
+null
+</plugin>

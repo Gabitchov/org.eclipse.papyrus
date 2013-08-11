@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+         point="org.eclipse.ui.popupMenus">
+         <objectContribution
+               adaptable="true"
+               id="org.eclipse.emf.eef.codegen.ecore.ui.launcher"
+               objectClass="org.eclipse.emf.codegen.ecore.genmodel.GenModel">
+          <menu
+               id="org.eclipse.emf.eef.ui.menu"
+               label="EEF"
+               path="edit">
+             <groupMarker
+                   name="facade-generation">
+             </groupMarker>
+         </menu>
+         <action
+               class="org.eclipse.papyrus.facade.codegen.ui.launcher.GenerateFacadeAction"
+               enablesFor="*"
+               id="org.eclipse.papyrus.facade.codegen"
+               label="Generate Facade Code"
+               menubarPath="org.eclipse.emf.eef.ui.menu/facade-generation">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
