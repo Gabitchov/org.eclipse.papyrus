@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.exteditor.cdt.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -30,7 +30,7 @@ public class TextEditorModelSharedResource extends AbstractModelWithSharedResour
 	/**
 	 * Model ID.
 	 */
-	public static final String MODEL_ID = "org.eclipse.papyrus.example.text.TextEditorModelSharedResource"; //$NON-NLS-1$
+	public static final String MODEL_ID = "org.eclipse.papyrus.exteditor.cdt.CDTEditorModelSharedResource"; //$NON-NLS-1$
 
 
 	/**
@@ -88,6 +88,23 @@ public class TextEditorModelSharedResource extends AbstractModelWithSharedResour
 		getResource().getContents().remove(textInstance);
 	}
 
+	/**
+	 * @param editedObject an edited element
+	 * @return an editor reference for a given object if an editor exists, or null
+	
+	 */
+	public PapyrusTextInstance getPapyrusTextInstance(EObject editedObject) {
+		for (EObject textInstanceEO : getResource().getContents()) {
+			if (textInstanceEO instanceof PapyrusTextInstance) {
+				PapyrusTextInstance textInstance = (PapyrusTextInstance) textInstanceEO;
+				if (textInstance.getEditedObject() == editedObject) {
+					return textInstance;
+				}
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#isModelRoot(org.eclipse.emf.ecore.EObject)

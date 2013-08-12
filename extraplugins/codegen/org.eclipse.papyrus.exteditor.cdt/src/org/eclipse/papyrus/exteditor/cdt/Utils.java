@@ -1,13 +1,35 @@
+/*******************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Ansgar Radermacher - ansgar.radermacher@cea.fr CEA LIST - initial API and implementation
+ *
+ *******************************************************************************/
+
 package org.eclipse.papyrus.exteditor.cdt;
 
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
+/**
+ * Collection of utility operations that are used by the CDT editor.
+ */
 public class Utils {
 
+	public static final String nsSep = "::";  //$NON-NLS-1$
+	
+	/**
+	 * Decrease the indentation of a text block. This function is used during synchronization, since
+	 * the code within an opaque behavior is not indented, whereas the code of an operation within a
+	 * file is indented with a tab. 
+	 */
 	public static String decreaseIndent(char[] contents, int start, int end) {
-		String newBlock = "";
+		String newBlock = ""; //$NON-NLS-1$
 		boolean newLine = true;
 		int consume = 0;
 		for(int i = start; i < end; i++) {
@@ -52,7 +74,7 @@ public class Utils {
 	public static NamedElement getQualifiedElement(Package root,
 		String qualifiedName) {
 		NamedElement namedElement = null;
-		int index = qualifiedName.indexOf("::");
+		int index = qualifiedName.indexOf(nsSep);
 		if(index != -1) {
 			// first try using a path without top element (since
 			// getQualifiedElement is typically used for
@@ -65,7 +87,7 @@ public class Utils {
 			// has been copied into the model,
 			// i.e. qualifiedName is prefixed by model name
 			namedElement = getQualifiedElement(root, qualifiedName,
-				root.getName() + "::" + qualifiedName);
+				root.getName() + nsSep + qualifiedName);
 		}
 		return namedElement;
 	}
@@ -81,7 +103,7 @@ public class Utils {
 		if(root == null) {
 			return null;
 		}
-		if(!remainingPath.contains("::")) {
+		if(!remainingPath.contains(nsSep)) {
 			for(NamedElement candidate : root.getMembers()) {
 				String name = candidate.getName();
 				if((name != null) && name.equals(remainingPath)) {
@@ -91,7 +113,7 @@ public class Utils {
 				}
 			}
 		} else {
-			String segment = remainingPath.split("::")[0];
+			String segment = remainingPath.split(nsSep)[0];
 			String remainder = remainingPath.substring(segment.length() + 2);
 			for(Element element : root.getMembers()) {
 				if(element instanceof Package) {

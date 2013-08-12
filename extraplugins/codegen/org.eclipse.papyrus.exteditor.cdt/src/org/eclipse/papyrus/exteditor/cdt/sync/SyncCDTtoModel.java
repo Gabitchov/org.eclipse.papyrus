@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Ansgar Radermacher - ansgar.radermacher@cea.fr CEA LIST - initial API and implementation
+ *
+ *******************************************************************************/
+
 package org.eclipse.papyrus.exteditor.cdt.sync;
 
 import org.eclipse.cdt.core.CCorePlugin;
@@ -55,13 +67,17 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class SyncCDTtoModel implements Runnable {
 
+	public static final String sAtParam = "@param"; //$NON-NLS-1$
+	
+	public static final String ansiCLib = "AnsiCLibrary"; //$NON-NLS-1$
+	
 	public SyncCDTtoModel(IEditorInput input, Classifier classifier, String projectName) {
 		m_input = input;
 		m_classifier = classifier;
 		m_projectName = projectName;
 	}
 
-	public final String langID = "C/C++";
+	public final String langID = "C/C++"; //$NON-NLS-1$
 
 	public void syncCDTtoModel() {
 		CommandSupport.exec("update model from CDT", this);
@@ -161,8 +177,8 @@ public class SyncCDTtoModel implements Runnable {
 		String contents = new String(itu.getContents());
 		int preBodyStart = contents.indexOf(Constants.cppIncPreBodyStart);
 		int preBodyEnd = contents.indexOf(Constants.cppIncPreBodyEnd);
-		String preBody = "";
-		String body = "";
+		String preBody = ""; //$NON-NLS-1$
+		String body = ""; //$NON-NLS-1$
 		if(preBodyStart != -1) {
 			preBodyStart += Constants.cppIncPreBodyStart.length();
 			if(preBodyEnd > preBodyStart) {
@@ -202,7 +218,7 @@ public class SyncCDTtoModel implements Runnable {
 	 */
 	public Operation updateMethod(int position, IParent parent, String qualifiedName, String body, IASTFunctionDeclarator declarator) {
 
-		String names[] = qualifiedName.split("::");
+		String names[] = qualifiedName.split(Utils.nsSep);
 		String name = names[names.length - 1];
 
 		Operation operation = m_classifier.getOperation(name, null, null);
@@ -305,13 +321,13 @@ public class SyncCDTtoModel implements Runnable {
 						else if(tokenStr.equals("&")) { //$NON-NLS-1$
 							isRef = true;
 						}
-						else if(tokenStr.equals("const")) {
+						else if(tokenStr.equals("const")) { //$NON-NLS-1$
 							// do nothing (use isConst() operation of parameterType)
 							// is not part of parameter type
 						}
 						else {
 							if(parameterTypeName.length() > 0) {
-								parameterTypeName += " ";
+								parameterTypeName += " "; //$NON-NLS-1$
 							}
 							parameterTypeName += tokenStr;
 						}
@@ -322,7 +338,7 @@ public class SyncCDTtoModel implements Runnable {
 
 				NamedElement umlParameterType = Utils.getQualifiedElement(Utils.getTop(m_classifier), parameterTypeName);
 				if(umlParameterType == null) {
-					umlParameterType = Utils.getQualifiedElement(Utils.getTop(m_classifier), "AnsiCLibrary::" + parameterTypeName);
+					umlParameterType = Utils.getQualifiedElement(Utils.getTop(m_classifier), ansiCLib + Utils.nsSep + parameterTypeName);
 				}
 				if(parameterType.isRestrict()) {
 				}
@@ -346,7 +362,7 @@ public class SyncCDTtoModel implements Runnable {
 				}
 				if(array.length() > 0) {
 					Array arraySt = StUtils.applyApp(umlParameter, Array.class);
-					if (!array.equals("[]") && (!array.equals("[ ]"))) {
+					if (!array.equals("[]") && (!array.equals("[ ]"))) {  //$NON-NLS-1$//$NON-NLS-2$
 						arraySt.setDefinition(array);
 					}
 				}
@@ -356,7 +372,7 @@ public class SyncCDTtoModel implements Runnable {
 
 		if(ob.getBodies().size() == 0) {
 			ob.getLanguages().add(langID);
-			ob.getBodies().add("");
+			ob.getBodies().add(""); //$NON-NLS-1$
 		}
 		for(int i = 0; i < ob.getLanguages().size(); i++) {
 			if(ob.getLanguages().get(i).equals(langID)) {
@@ -383,7 +399,7 @@ public class SyncCDTtoModel implements Runnable {
 			// of the AST tree.
 			return Utils.decreaseIndent(contents, start + 2, end - 2);
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	public void updateComment(ITranslationUnit itu, IASTFunctionDefinition definition, Operation operation) {
@@ -391,22 +407,23 @@ public class SyncCDTtoModel implements Runnable {
 		int start = bodyLoc.getNodeOffset() - 1;
 		int end = start;
 		char contents[] = itu.getContents();
-		String comment = "";
+		String comment = ""; //$NON-NLS-1$
 		// backward scan for beginning /* 
 		while(start > 0) {
 			if(contents[start] == '/' && contents[start + 1] == '*') {
-				start += "/**".length(); // TODO: common string constants with generator
+				start += "/**".length(); // TODO: common string constants with generator //$NON-NLS-1$
 				for(int i = start; i < end; i++) {
 					comment += contents[i];
 				}
-				comment = comment.replace("\n * ", "\n").replace("*/", "").trim();
+				comment = comment.replace("\n * ", "\n").	//$NON-NLS-1$//$NON-NLS-2$
+						replace("*/", "").trim();  			//$NON-NLS-1$//$NON-NLS-2$
 				break;
 			}
 			start--;
 		}
 		if(comment.length() > 0) {
 			// filter @param
-			int atParam = comment.indexOf("@param");
+			int atParam = comment.indexOf(sAtParam);
 			String commentMethodOnly = (atParam != -1) ? comment.substring(0, atParam).trim() : comment;
 
 			EList<Comment> commentsUML = operation.getOwnedComments();
@@ -420,10 +437,10 @@ public class SyncCDTtoModel implements Runnable {
 			}
 			while(atParam != -1) {
 				int currentAtParam = atParam;
-				atParam = comment.indexOf("@param", atParam + 1);
+				atParam = comment.indexOf(sAtParam, atParam + 1);
 				String commentParam = (atParam != -1) ? comment.substring(currentAtParam, atParam) : comment.substring(currentAtParam);
 				Comment commentParamUML;
-				int atParamName = "@param".length();
+				int atParamName = sAtParam.length();
 
 				while((atParamName < commentParam.length()) && Character.isWhitespace(commentParam.charAt(atParamName))) {
 					atParamName++;
@@ -450,7 +467,8 @@ public class SyncCDTtoModel implements Runnable {
 					else {
 						// parameter is not found in model, e.g. either renamed or not yet existing
 						// store comment in operation comment
-						commentMethodOnly += "\n @param " + parameterName + " not found(!) " + commentParamText;
+						commentMethodOnly += "\n " + sAtParam + parameterName + //$NON-NLS-1$
+								" not found(!) " + commentParamText; //$NON-NLS-1$
 					}
 				}
 			}

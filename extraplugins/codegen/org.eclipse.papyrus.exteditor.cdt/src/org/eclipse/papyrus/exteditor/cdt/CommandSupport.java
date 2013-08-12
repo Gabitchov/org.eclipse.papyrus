@@ -1,13 +1,14 @@
-/**
- * Copyright CEA-LIST 2011
- * available under EPL 1.0 licence
- * 
- * This file is part of the eC3M tool chain (www.ec3m.net)
- * 
+/*******************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *     Ansgar Radermacher - ansgar.radermacher@cea.fr CEA LIST - initial API and implementation
+ *
+ *******************************************************************************/
 
 package org.eclipse.papyrus.exteditor.cdt;
 

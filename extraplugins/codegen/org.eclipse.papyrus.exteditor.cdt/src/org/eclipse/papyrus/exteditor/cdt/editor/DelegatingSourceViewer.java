@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher (CEA LIST) Ansgar.Radermacher@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.exteditor.cdt.editor;
 
 import java.util.Iterator;
@@ -33,12 +47,12 @@ import org.eclipse.uml2.uml.Classifier;
 
 /**
  * Unsuccessful attempt to create a delegating source viewer that changes the implementation of
- * the operation getSelectionProvider of a source viewer. Problem in case of CDT is that
- * source viewer is case to CSourceViewer later.
- *  
- * @author ansgar
+ * the operation getSelectionProvider of a source viewer. This does not work in case of CDT since the
+ * source viewer is cast to CSourceViewer later.
  *
+ * CURRENTLY NOT USED
  */
+@Deprecated
 public class DelegatingSourceViewer implements ISourceViewer {
 
 	public DelegatingSourceViewer(ISourceViewer delegationTarget, Classifier classifier) {

@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Ansgar Radermacher - ansgar.radermacher@cea.fr CEA LIST - initial API and implementation
+ *
+ *******************************************************************************/
+
 package org.eclipse.papyrus.exteditor.cdt.sync;
 
 import org.eclipse.cdt.core.CCProjectNature;
@@ -18,8 +30,6 @@ import org.eclipse.uml2.uml.Classifier;
  * Main listener for model changes (registered via plugin.xml). It will delegate
  * to the sub-listeners for specific sub-elements (type, operation, port, ...) that
  * can be found in this package
- * 
- * @author ansgar
  * 
  */
 public class SyncModelToCDT {
@@ -49,7 +59,7 @@ public class SyncModelToCDT {
 					modelProject.hasNature(CCProjectNature.CC_NATURE_ID))
 				{
 					String name = classifier.getName();
-					System.err.println("regen: " + name);
+					// System.err.println("regen: " + name);
 
 					// get the container for the current element
 					ModelElementsCreator mec = new CppModelElementsCreator(modelProject);

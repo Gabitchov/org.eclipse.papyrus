@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.exteditor.cdt.handler;
@@ -34,11 +35,11 @@ import org.eclipse.papyrus.exteditor.cdt.Activator;
 import org.eclipse.papyrus.exteditor.cdt.editor.PapyrusCDTEditor;
 import org.eclipse.papyrus.exteditor.cdt.modelresource.TextEditorModelSharedResource;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.text.instance.papyrustextinstance.PapyrusTextInstance;
 import org.eclipse.papyrus.text.instance.papyrustextinstance.PapyrustextinstanceFactory;
 import org.eclipse.ui.PlatformUI;
@@ -46,9 +47,11 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Transition;
 
 
+/**
+ * The handler creates a new CDT editor
+ */
 public class PapyrusCDTEditorHandler extends AbstractHandler {
 
 
@@ -66,7 +69,7 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 		List<EObject> selected = getSelection();
 		if(selected.size() == 1) {
 			Object o = selected.get(0);
-			if(o instanceof Class || o instanceof Operation || o instanceof Transition) {
+			if(o instanceof Class || o instanceof Operation || o instanceof DataType) {
 				return true;
 			}
 		}
@@ -88,6 +91,15 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 					if((tmp instanceof Class) || (tmp instanceof DataType)) {
 						currentSelection.add(tmp);
 					}
+					else if (tmp instanceof Operation) {
+						Operation op = (Operation) tmp;
+						if (op.getClass_() != null) {
+							currentSelection.add(op.getDatatype());
+						}
+						else if (op.getDatatype() != null) {
+							currentSelection.add(op.getDatatype());	
+						}
+					}
 				}
 			}
 		}
@@ -103,49 +115,35 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 	 */
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		try {
-			runAsTransaction();
-		} catch (ServiceException e) {
-			throw new ExecutionException("I can't create a CDT editor", e); //$NON-NLS-1$
-		}
-		return null;
-	}
+			final ServicesRegistry serviceRegistry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+			TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 
-	/**
-	 * Run the command as a transaction.
-	 * Create a Transaction and delegate the command to {@link #doExecute(ServicesRegistry)}.
-	 * 
-	 * @throws ServiceException
-	 * 
-	 */
-	public void runAsTransaction() throws ServiceException {
-		final ServicesRegistry serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
-		TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
+			//Create the transactional command
+			AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create CDT editor") {
 
-		//Create the transactional command
-		AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create CDT editor") { //$NON-NLS-1$
-
-			@Override
-			protected IStatus doExecute(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				try {
-					PapyrusCDTEditorHandler.this.doExecute(serviceRegistry);
-				} catch (ServiceException e) {
-					Activator.log.error(e);
-					return Status.CANCEL_STATUS;
-				} catch (NotFoundException e) {
-					Activator.log.error(e);
-					return Status.CANCEL_STATUS;
+				@Override
+				protected IStatus doExecute(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+					try {
+						PapyrusCDTEditorHandler.this.doExecute(serviceRegistry);
+					} catch (ServiceException e) {
+						Activator.log.error(e);
+						return Status.CANCEL_STATUS;
+					} catch (NotFoundException e) {
+						Activator.log.error(e);
+						return Status.CANCEL_STATUS;
+					}
+					return Status.OK_STATUS;
 				}
-				return Status.OK_STATUS;
-			}
-		};
+			};
 
-		// Execute the command
-		try {
+			// Execute the command
 			CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
-			Activator.log.error("I can't create a CDT editor", e); //$NON-NLS-1$
+			Activator.log.error("Can't create a CDT editor", e);
+		} catch (ServiceException e) {
+			Activator.log.error("Service exception during creation of CDT editor", e);
 		}
-
+		return null;
 	}
 
 
@@ -157,12 +155,23 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 	 * @throws NotFoundException
 	 */
 	public void doExecute(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
-		Object editorModel = createEditorModel(serviceRegistry);
-		// Get the mngr allowing to add/open new editor.
-		IPageMngr pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
-		// add the new editor model to the sash.
-		pageMngr.openPage(editorModel);
+		// Get the page manager allowing to add/open an editor.
+		IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 
+		Object editorModel = getEditorModel(serviceRegistry);
+		if (editorModel == null) {
+			// no editor exist for the given file => create
+			editorModel = createEditorModel(serviceRegistry);
+			// add the new editor model to the sash.
+		}
+		// TODO: editorModel remains in notation, even if editor is closed
+		if (pageMngr.isOpen(editorModel)) {	
+			// select existing editor
+			pageMngr.selectPage(editorModel);
+		}
+		else {
+			pageMngr.openPage(editorModel);
+		}
 	}
 
 	/**
@@ -179,7 +188,7 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 		editorModel.setEditedObject(editedObject);
 		editorModel.setType(PapyrusCDTEditor.EDITOR_TYPE);
 		if(editedObject instanceof NamedElement) {
-			editorModel.setName("CDT " + ((NamedElement)editedObject).getName());
+			editorModel.setName("CDT " + ((NamedElement)editedObject).getName()); //$NON-NLS-1$
 		}
 		else {
 			editorModel.setName(PapyrusCDTEditor.EDITOR_DEFAULT_NAME);
@@ -189,5 +198,12 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 		model.addPapyrusTextInstance(editorModel);
 
 		return editorModel;
+	}
+	
+	protected Object getEditorModel(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+		TextEditorModelSharedResource model = (TextEditorModelSharedResource)
+			ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
+		EObject editedObject = getSelection().get(0);
+		return model.getPapyrusTextInstance(editedObject);
 	}
 }
