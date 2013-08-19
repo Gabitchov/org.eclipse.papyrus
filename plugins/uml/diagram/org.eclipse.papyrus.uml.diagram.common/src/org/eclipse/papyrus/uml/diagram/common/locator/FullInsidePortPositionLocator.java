@@ -22,7 +22,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
  * This class is used to constrain the position of ConstraintParameter when they are added on a ConstraintProperty
  * 
  * <pre>
- * 	 +-------------------+
+ * 	 /------------------ \
  * 	 |   [Constraint]    |
  * 	 +-------------------+
  * 	 |                   |
@@ -30,7 +30,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
  * 	 |                 +-+ - Expected position of ConstraintParameter 
  * 	 |                 +-+
  * 	 |                   |
- * 	 +-------------------+
+ * 	 \-------------------/
  * 
  * </pre>
  * 
@@ -38,16 +38,29 @@ import org.eclipse.draw2d.geometry.Rectangle;
  * TODO  : The ConstraintParameter is not re-sizable
  * </pre>
  */
-public class ConstraintParameterPositionLocator extends PortPositionLocator {
+public class FullInsidePortPositionLocator extends PortPositionLocator {
 
 	/** the width of the area surrounding the parent figure where border item can be put */
 
-	private int constraintParameterSize = 20;
+	private int insidePortSize = 20;
+	private int corner = 0;
 	
 	/** Constructor **/
-	public ConstraintParameterPositionLocator(IFigure parentFigure, int preferredSide) {
+	public FullInsidePortPositionLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 		borderItemOffset = 0;
+	}
+
+	/** Constructor **/
+	public FullInsidePortPositionLocator(IFigure parentFigure, int preferredSide, int corner) {
+		this(parentFigure, preferredSide);
+		this.corner = corner;
+	}
+
+	/** Constructor **/
+	public FullInsidePortPositionLocator(IFigure parentFigure, int preferredSide, int corner, int portSize) {
+		this(parentFigure, preferredSide, corner);
+		this.insidePortSize = portSize;
 	}
 
 	/**
@@ -67,9 +80,9 @@ public class ConstraintParameterPositionLocator extends PortPositionLocator {
 		// Calculate Max position around the graphical parent (1/2 size or the port around
 		// the graphical parent bounds.
 		int xMin = parentRec.x;
-		int xMax = parentRec.x + parentRec.width - constraintParameterSize;
+		int xMax = parentRec.x + parentRec.width - insidePortSize;
 		int yMin = parentRec.y;
-		int yMax = parentRec.y + parentRec.height - constraintParameterSize;
+		int yMax = parentRec.y + parentRec.height - insidePortSize;
 
 		// Modify Port location if MAX X or Y are exceeded
 		if(realLocation.x < xMin) {
@@ -92,7 +105,6 @@ public class ConstraintParameterPositionLocator extends PortPositionLocator {
 		// Modify position if needed.
 		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
 			if((realLocation.x != xMin) && (realLocation.x != xMax)) {
-
 				if(realLocation.x <= (xMin + (parentRec.width / 2))) {
 					realLocation.x = xMin;
 				} else {
@@ -101,6 +113,31 @@ public class ConstraintParameterPositionLocator extends PortPositionLocator {
 			}
 		}
 
+		// Follow the curved corner of the ConstraintProperty
+		if (realLocation.x > (xMax - corner / 2)) {
+			if (realLocation.y < (yMin + corner / 2)) {
+				int h = (yMin + corner / 2) - realLocation.y;
+				int offSetX = new Double(Math.sqrt(Math.pow(corner / 2, 2) - Math.pow(h, 2))).intValue();
+				realLocation.x = (xMax - corner / 2) + offSetX;
+			}
+			if (realLocation.y > (yMax - corner / 2)) {
+				int h = realLocation.y - (yMax - corner / 2);
+				int offSetX = new Double(Math.sqrt(Math.pow(corner / 2, 2) - Math.pow(h, 2))).intValue();
+				realLocation.x = (xMax - corner / 2) + offSetX;
+			}
+		}
+		if (realLocation.x < (xMin + corner / 2) && (realLocation.y < (yMin + corner / 2) || realLocation.y > (yMax - corner / 2))) {
+			if (realLocation.y < (yMin + corner / 2)) {
+				int h = (yMin + corner / 2) - realLocation.y;
+				int offSetX = new Double(Math.sqrt(Math.pow(corner / 2, 2) - Math.pow(h, 2))).intValue();
+				realLocation.x = (xMin + corner / 2) - offSetX;
+			}
+			if (realLocation.y > (yMax - corner / 2)) {
+				int h = realLocation.y - (yMax - corner / 2);
+				int offSetX = new Double(Math.sqrt(Math.pow(corner / 2, 2) - Math.pow(h, 2))).intValue();
+				realLocation.x = (xMin + corner / 2) - offSetX;
+			}
+		}
 		// Return constrained location
 		return realLocation;
 	}

@@ -57,6 +57,7 @@ public class BlockDropHelper extends ElementHelper {
 	}
 
 	public Command getDropAsStructureItemOnPart(DropObjectsRequest request, GraphicalEditPart host, IElementType elementType) {
+		Object droppedEObject = request.getObjects().get(0);
 		String label = "";
 		if(elementType == SysMLElementTypes.PART_PROPERTY) {
 			label = "Create a new Part";
@@ -73,9 +74,19 @@ public class BlockDropHelper extends ElementHelper {
 		if(elementType == UMLElementTypes.PROPERTY) {
 			label = "Create a new Property";
 		}
+		// New kind of element
+		if(elementType == SysMLElementTypes.CONSTRAINT_PROPERTY) {
+			label = "Create a new ConstraintProperty";
+			// Constraint Property on ConstraintBlock strictly
+			if (droppedEObject instanceof Type) {
+				if (!((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type)droppedEObject)) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
+		}
+		
 		CompoundCommand cc = new CompoundCommand(label);
 
-		Object droppedEObject = request.getObjects().get(0);
 		if(!isValidStructureItemType(droppedEObject, elementType)) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -124,19 +135,9 @@ public class BlockDropHelper extends ElementHelper {
 		// Filter part/reference : a property type by a ConstraintBlock MUST be a ConstraintProperty
 		if(elementType == SysMLElementTypes.PART_PROPERTY) {
 			label = "Create a new Part";
-			if (droppedEObject instanceof Type) {
-				if (((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type)droppedEObject)) {
-					return UnexecutableCommand.INSTANCE;
-				}
-			}
 		}
 		if(elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
 			label = "Create a new Reference";
-			if (droppedEObject instanceof Type) {
-				if (((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type)droppedEObject)) {
-					return UnexecutableCommand.INSTANCE;
-				}
-			}
 		}
 		if(elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
 			label = "Create a new ActorPart";
@@ -148,6 +149,7 @@ public class BlockDropHelper extends ElementHelper {
 			label = "Create a new Property";
 		}
 		
+		// New kind of element
 		if(elementType == SysMLElementTypes.CONSTRAINT_PROPERTY) {
 			label = "Create a new ConstraintProperty";
 			// Constraint Property on ConstraintBlock strictly

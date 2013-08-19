@@ -80,6 +80,64 @@
 		
 </extension>
 
+<!-- Handler for Show/Hide content on Part or Ref. -->
+<extension point="org.eclipse.ui.handlers">
+	<handler class="org.eclipse.papyrus.sysml.diagram.parametric.handler.ShowHideRelatedContentsHandler" commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand">
+		<activeWhen>
+		<and>
+			<with variable="activeEditor">
+				<test property="org.eclipse.papyrus.uml.diagram.common.diagram.tester.diagramType" value="Parametric" forcePluginActivation="true"></test>
+			</with>	
+			<with variable="showHideRelatedContents">
+				<equals value="enabled"></equals>
+			</with>
+			<with variable="selection">
+				<iterate ifEmpty="false" operator="and">
+					<instanceof value="org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockPropertyCompositeEditPart"></instanceof>
+				</iterate>
+			</with>
+		</and>
+		
+		</activeWhen>
+	</handler>
+	<handler class="org.eclipse.papyrus.sysml.diagram.parametric.handler.ShowHideRelatedContentsHandler" commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand">
+		<activeWhen>
+		<and>
+			<with variable="activeEditor">
+				<test property="org.eclipse.papyrus.uml.diagram.common.diagram.tester.diagramType" value="Parametric" forcePluginActivation="true"></test>
+			</with>	
+			<with variable="showHideRelatedContents">
+				<equals value="enabled"></equals>
+			</with>
+			<with variable="selection">
+				<iterate ifEmpty="false" operator="and">
+					<instanceof value="org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomBlockCompositeEditPartTN"></instanceof>
+				</iterate>
+			</with>
+		</and>
+		
+		</activeWhen>
+	</handler>
+	<handler class="org.eclipse.papyrus.sysml.diagram.parametric.handler.ShowHideRelatedContentsHandler" commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand">
+		<activeWhen>
+		<and>
+			<with variable="activeEditor">
+				<test property="org.eclipse.papyrus.uml.diagram.common.diagram.tester.diagramType" value="Parametric" forcePluginActivation="true"></test>
+			</with>	
+			<with variable="showHideRelatedContents">
+				<equals value="enabled"></equals>
+			</with>
+			<with variable="selection">
+				<iterate ifEmpty="false" operator="and">
+					<instanceof value="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart"></instanceof>
+				</iterate>
+			</with>
+		</and>
+		
+		</activeWhen>
+	</handler>
+</extension>
+
 <!-- Palette tool definition (defines tools possibly used by the palette(s)) -->
 <extension point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"
 	name="SYSML_Parametric_Predefined_Entries"
@@ -554,8 +612,7 @@
 		<elementType ref="org.eclipse.papyrus.sysml.service.types.helper.ConstraintParameterEditHelperAdvice"/>
 	</binding>
 		
-</extension>
-  
+</extension>  
 <!-- // End of user code 
   -->
 

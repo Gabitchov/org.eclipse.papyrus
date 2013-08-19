@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.papyrus.sysml.diagram.internalblock.dnd.helper.CustomLinkMappingHelper;
-import org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomGraphicalTypeRegistry;
+import org.eclipse.papyrus.sysml.diagram.parametric.provider.CustomGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;

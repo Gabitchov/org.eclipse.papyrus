@@ -520,12 +520,15 @@
 	<handler class="org.eclipse.papyrus.sysml.diagram.internalblock.handler.ShowHideRelatedContentsHandler" commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand">
 		<activeWhen>
 		<and>
+			<with variable="activeEditor">
+				<test property="org.eclipse.papyrus.uml.diagram.common.diagram.tester.diagramType" value="InternalBlock" forcePluginActivation="true"></test>
+			</with>	
 			<with variable="showHideRelatedContents">
 				<equals value="enabled"></equals>
 			</with>
 			<with variable="selection">
 				<iterate ifEmpty="false" operator="and">
-					<instanceof value="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart"></instanceof>
+					<instanceof value="org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomBlockCompositeEditPartTN"></instanceof>
 				</iterate>
 			</with>
 		</and>
