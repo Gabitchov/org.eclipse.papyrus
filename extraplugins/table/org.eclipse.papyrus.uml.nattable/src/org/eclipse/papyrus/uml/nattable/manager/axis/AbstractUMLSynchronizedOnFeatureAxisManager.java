@@ -29,7 +29,7 @@ public abstract class AbstractUMLSynchronizedOnFeatureAxisManager extends Abstra
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
+	 * @see org.eclipse.papyrus.uml.nattable.manager.axis.AbstractUMLSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
 	 * 
 	 */
 	@Override
@@ -40,14 +40,14 @@ public abstract class AbstractUMLSynchronizedOnFeatureAxisManager extends Abstra
 			@Override
 			public void notifyChanged(Notification notification, EClass eClass, EStructuralFeature derivedUnion) {
 				if(getListenFeatures().contains(derivedUnion)) {
-					getTableManager().updateAxisContents(getRepresentedContentProvider());
+					featureValueHasChanged(notification);
 				}
 			}
 
 			@Override
 			public void notifyChanged(Notification msg) {
 				if(getListenFeatures().contains(msg.getFeature())) {
-					getTableManager().updateAxisContents(getRepresentedContentProvider());
+					featureValueHasChanged(msg);
 				}
 				super.notifyChanged(msg);
 			};
@@ -55,6 +55,7 @@ public abstract class AbstractUMLSynchronizedOnFeatureAxisManager extends Abstra
 		};
 		getTableContext().eAdapters().add(this.featureListener);
 	}
+
 
 
 }

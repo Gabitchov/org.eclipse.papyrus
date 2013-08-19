@@ -22,6 +22,7 @@ import java.util.Set;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -79,6 +80,21 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	private EObject tableContext;
 
 	/**
+	 * the list of the managed objects
+	 */
+	protected final List<Object> managedObject;
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
+	public AbstractAxisManager() {
+		this.managedObject = new ArrayList<Object>();
+	}
+
+
+	/**
 	 * 
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
@@ -96,15 +112,40 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		this.representedAxisManager = rep;
 		this.representedContentProvider = provider;
 		this.tableContext = manager.getTable().getContext();
+		initializeManagedObjectList();
+		addListeners();
+	}
+
+	/**
+	 * add the required listeners
+	 */
+	protected void addListeners() {
 		this.axisListener = new AdapterImpl() {
 
 			@Override
-			public void notifyChanged(org.eclipse.emf.common.notify.Notification msg) {
-				getTableManager().updateAxisContents(getRepresentedContentProvider());
+			public void notifyChanged(final Notification notification) {
+				axisManagerHasChanged(notification);
 			}
 		};
 		this.representedContentProvider.eAdapters().add(this.axisListener);
+	}
 
+	/**
+	 * 
+	 * @param notification
+	 *        the notification
+	 */
+	protected void axisManagerHasChanged(final Notification notification) {
+		//nothing to do here, for axis manager managing elements stored in the table metamodel, there is nothing to do here, it is done by the Composite Axis Manager
+	}
+
+
+	/**
+	 * Initialise the list of the managed elements
+	 * for axis manager managing elements stored in the table metamodel, there is nothing to do here, it is done by the Composite Axis Manager
+	 */
+	protected void initializeManagedObjectList() {
+		//nothing to do here, for axis manager managing elements stored in the table metamodel, there is nothing to do here, it is done by the Composite Axis Manager
 	}
 
 	/**
@@ -158,11 +199,18 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * 
 	 */
 	public void dispose() {
+		removeListeners();
+		this.tableContext = null;
+	}
+
+	/**
+	 * remove the listeners
+	 */
+	protected void removeListeners() {
 		if(this.axisListener != null) {
 			this.representedContentProvider.eAdapters().remove(this.axisListener);
 			this.axisListener = null;
 		}
-		this.tableContext = null;
 	}
 
 	/**
@@ -251,7 +299,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param object
 	 * @return <code>true</code> if the object is not yet represented by an axis
 	 */
-	public boolean isAllowedContents(Object object) {
+	public boolean isAllowedContents(Object object) {//FIXME : the name of this method doesn't match with its documentation!
 		return !getTableManager().getElementsList(getRepresentedContentProvider()).contains(object);
 	}
 
@@ -323,7 +371,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @return
 	 */
 	public Collection<Object> getAllManagedAxis() {
-		Set<Object> eObjects = new HashSet<Object>();
+		final Set<Object> eObjects = new HashSet<Object>();
 		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
 			if(current.getManager() == this.representedAxisManager) {
 				eObjects.add(current.getElement());

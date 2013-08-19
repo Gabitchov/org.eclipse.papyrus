@@ -25,6 +25,7 @@ import java.util.Set;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -44,12 +45,19 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.providers.CompoundFilteredRestrictedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 
-
+/**
+ * This axis manager allows to encapsulated others axis manager. It allows to manage the contents of the table.
+ * When this contents is stored in the table metamodel, It is able to manage the Add/Remove and Move elements in the list of the displayed elements
+ * 
+ * @author VL222926
+ * 
+ */
 public class CompositeAxisManager extends AbstractAxisManager implements ICompositeAxisManager {
 
 	/**
 	 * the id of this manager
 	 */
+	@SuppressWarnings("unused")
 	private static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.composite.axis.manager"; //$NON-NLS-1$
 
 	/**
@@ -61,6 +69,85 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * the comparator used to sort the axis
 	 */
 	protected Comparator<Object> axisComparator;
+
+	/**
+	 * 
+	 * @param notification
+	 *        the notification
+	 */
+	protected void axisManagerHasChanged(final Notification notification) {
+		if(notification.isTouch()) {
+			return;
+		}
+		final List<Object> newListValue = new ArrayList<Object>(this.managedObject);
+		boolean needRefresh = false;
+		int eventType = notification.getEventType();
+		switch(eventType) {
+		case Notification.ADD:
+			final Object addedValue = notification.getNewValue();
+			final int index = notification.getPosition();
+
+			newListValue.add(index, addedValue);
+			needRefresh = true;
+			break;
+		case Notification.ADD_MANY:
+			final Collection<?> addedValues = (Collection<?>)notification.getNewValue();
+			//			final int lisIndex = notification.getPosition();
+			newListValue.addAll(addedValues);
+			needRefresh = true;
+			break;
+		case Notification.EVENT_TYPE_COUNT:
+			break;
+		case Notification.MOVE:
+			final Object movedObject = notification.getNewValue();
+			final int newPos = notification.getPosition();
+			newListValue.remove(movedObject);
+			newListValue.add(newPos, movedObject);
+			needRefresh = true;
+			break;
+		case Notification.REMOVE:
+			final Object removedObject = notification.getOldValue();
+			newListValue.remove(removedObject);
+			needRefresh = true;
+			break;
+		case Notification.REMOVE_MANY:
+			final Collection<?> removedValues = (Collection<?>)notification.getOldValue();
+			newListValue.removeAll(removedValues);
+			needRefresh = true;
+			break;
+		case Notification.REMOVING_ADAPTER:
+			break;
+		case Notification.RESOLVE:
+			break;
+		case Notification.SET:
+			break;
+		case Notification.UNSET:
+			break;
+		//		case Notification.NO_FEATURE_ID:
+		//			break;
+		//		case Notification.NO_INDEX:
+		//			break;
+		default:
+			break;
+		}
+		if(needRefresh) {
+			this.managedObject.clear();
+			this.managedObject.addAll(newListValue);
+			newListValue.clear();
+			getTableManager().updateAxisContents(getRepresentedContentProvider());
+		}
+
+	}
+
+
+	/**
+	 * Initialize the list of the managed elements which are owned by the model
+	 */
+	protected void initializeManagedObjectList() {
+		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
+			this.managedObject.add(current);
+		}
+	}
 
 	/**
 	 * 
@@ -184,7 +271,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		final List<Object> displayedElement = getTableManager().getElementsList(getRepresentedContentProvider());
 		synchronized(displayedElement) {
 			displayedElement.clear();
-			displayedElement.addAll(getRepresentedContentProvider().getAxis());
+			displayedElement.addAll(this.managedObject);
 			if(this.subManagers != null) {
 				for(final IAxisManager current : this.subManagers) {
 					if(current.isDynamic()) {
@@ -310,7 +397,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	@Override
 	public Collection<Object> getAllManagedAxis() {
-		Set<Object> allExistingAxis = new HashSet<Object>();
+		final Set<Object> allExistingAxis = new HashSet<Object>();
 		for(IAxisManager manager : this.subManagers) {
 			Collection<Object> managerPossibleElements = manager.getAllManagedAxis();
 			if(managerPossibleElements != null) {
@@ -521,7 +608,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @return
 	 */
 	@Override
-	public Object getAdapter(Class adapter) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		for(final IAxisManager current : this.subManagers) {
 			if(current.getClass() == adapter) {
 				return current;

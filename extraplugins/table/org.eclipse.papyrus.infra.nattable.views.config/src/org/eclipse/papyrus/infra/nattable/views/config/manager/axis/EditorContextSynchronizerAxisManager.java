@@ -52,9 +52,9 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 		this.featureListener = new AdapterImpl() {
 
 			@Override
-			public void notifyChanged(Notification msg) {
+			public void notifyChanged(final Notification msg) {
 				if(msg.getFeature() == DiPackage.eINSTANCE.getPageList_AvailablePage()) {
-					getTableManager().updateAxisContents(getRepresentedContentProvider());
+					featureValueHasChanged(msg);
 				}
 			}
 		};
@@ -70,6 +70,24 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#getFeaturesValue()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected List<Object> getFeaturesValue() {
+		final List<Object> pages = new ArrayList<Object>();
+		for(final PageRef current : getPageList().getAvailablePage()) {
+			final Object pageIdentifier = current.getPageIdentifier();
+			if(pageIdentifier != null) {
+				pages.add(pageIdentifier);
+			}
+		}
+		return pages;
+	}
+
+	/**
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#verifyValues()
 	 * 
 	 */
@@ -78,6 +96,13 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 		//nothing to do
 	}
 
+	@Override
+	protected boolean isAllowed(Object object) {
+		if(object instanceof PageRef) {
+			return mustBeDisplayedInThisTable(((PageRef)object).getPageIdentifier());
+		}
+		return mustBeDisplayedInThisTable(object);
+	}
 
 	/**
 	 * 
@@ -115,25 +140,6 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 		super.dispose();
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAllManagedAxis()
-	 * 
-	 * @return
-	 */
-	@Override
-	public Collection<Object> getAllManagedAxis() {
-		final PageList pageList = Utils.getPageList(getTableManager().getTable());
-		final List<Object> elements = new ArrayList<Object>();
-		elements.clear();
-		for(final PageRef ref : pageList.getAvailablePage()) {
-			final Object page = ref.getPageIdentifier();
-			if(mustBeDisplayedInThisTable(page)) {
-				elements.add(page);
-			}
-		}
-		return elements;
-	}
 
 	/**
 	 * 
@@ -160,8 +166,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain,
-	 *      java.lang.Integer)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain, java.lang.Integer)
 	 * 
 	 * @param domain
 	 * @param axisPosition
@@ -170,6 +175,82 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	@Override
 	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
 		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * 
+	 * @param notification
+	 *        update the list of the managed objects if its required
+	 */
+	@Override
+	protected void featureValueHasChanged(final Notification notification) {
+		if(notification.isTouch()) {
+			return;
+		}
+
+		int eventType = notification.getEventType();
+		List<Object> toAdd = new ArrayList<Object>();
+		List<Object> toRemove = new ArrayList<Object>();
+		switch(eventType) {
+		case Notification.REMOVING_ADAPTER:
+			break;//nothing to do
+		case Notification.ADD:
+			Object newValue = notification.getNewValue();
+			if(newValue instanceof PageRef) {
+				newValue = ((PageRef)newValue).getPageIdentifier();
+			}
+			if(isAllowed(newValue)) {
+				toAdd.add(newValue);
+			}
+			break;
+		case Notification.ADD_MANY:
+			Collection<?> newValues = (Collection<?>)notification.getNewValue();
+			for(Object current : newValues) {
+				if(current instanceof PageRef) {
+					current = ((PageRef)current).getPageIdentifier();
+				}
+				if(isAllowed(current)) {
+					toAdd.add(current);
+				}
+			}
+			break;
+		case Notification.EVENT_TYPE_COUNT:
+			break;
+		case Notification.MOVE:
+			//we ignore it
+			break;
+		case Notification.REMOVE:
+			Object oldValue = notification.getOldValue();
+			if(oldValue instanceof PageRef) {
+				newValue = ((PageRef)oldValue).getPageIdentifier();
+			}
+			if(this.managedObject.contains(oldValue)) {
+				toRemove.add(oldValue);
+			}
+			break;
+		case Notification.REMOVE_MANY:
+			Collection<?> oldValues = (Collection<?>)notification.getOldValue();
+			for(Object current : oldValues) {
+				if(current instanceof PageRef) {
+					newValue = ((PageRef)current).getPageIdentifier();
+				}
+				if(this.managedObject.contains(oldValues)) {
+					toRemove.add(current);
+				}
+			}
+			break;
+		case Notification.RESOLVE:
+		case Notification.SET:
+		case Notification.UNSET:
+			//case Notification.NO_FEATURE_ID:
+			//case Notification.NO_INDEX:
+
+		default:
+			break;
+		}
+		if(toAdd.size() > 0 || toRemove.size() > 0) {
+			updateManagedList(toAdd, toRemove);
+		}
 	}
 
 }

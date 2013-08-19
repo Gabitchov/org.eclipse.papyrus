@@ -300,14 +300,17 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						start = range.start;
 						break;
 					}
+
 					if(start != -1) {
+						final List<IAxis> allAxis = AbstractNattableWidgetManager.this.getColumnAxisManager().getRepresentedContentProvider().getAxis();
+
 						// This solve an index difference between moving
 						// a column from right to left and moving a
 						// column from left to right
-						if(start >= 0 && start < end) {
+						if(start >= 0 && start < end && columnReorderEvent.isReorderToLeftEdge()) {
 							end--;
 						}
-						final List<IAxis> allAxis = AbstractNattableWidgetManager.this.table.getCurrentColumnAxisProvider().getAxis();
+
 						final IAxis axisToMove = allAxis.get(start);
 						if(axisToMove != null) {
 							moveColumnElement(axisToMove, end);

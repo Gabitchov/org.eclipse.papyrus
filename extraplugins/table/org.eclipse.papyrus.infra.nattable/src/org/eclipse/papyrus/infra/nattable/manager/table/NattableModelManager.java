@@ -18,11 +18,18 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EventObject;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.State;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -43,6 +50,7 @@ import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.dialog.DisplayedAxisSelectorDialog;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AxisManagerFactory;
@@ -66,6 +74,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.F
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.CellMapKey;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
@@ -84,6 +93,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
+
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager, IAdaptable {
 
@@ -129,6 +141,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	private AdapterImpl changeAxisProviderHistory;
 
+	/**
+	 * the listener on the table cells
+	 */
+	private Adapter tableCellsListener;
+
+	private BiMap<CellMapKey, Cell> cellsMap;
 
 	/**
 	 * 
@@ -144,7 +162,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.columnProvider = rawModel.getCurrentColumnAxisProvider();
 		this.verticalElements = Collections.synchronizedList(new ArrayList<Object>());
 		this.horizontalElements = Collections.synchronizedList(new ArrayList<Object>());
-
+		this.cellsMap = HashBiMap.create();
 
 		this.invertAxisListener = new AdapterImpl() {
 
@@ -205,12 +223,22 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		};
 
 		rawModel.eAdapters().add(changeAxisProvider);
+		tableCellsListener = new AdapterImpl() {
 
+			@Override
+			public void notifyChanged(final Notification msg) {
+				if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_Cells()) {
+					updateCellMap(msg);
+				}
+			}
+		};
+		rawModel.eAdapters().add(tableCellsListener);
 	}
 
 
 	@Override
 	public NatTable createNattable(Composite parent, int style, IWorkbenchPartSite site) {
+		updateCellMap(null);
 		final NatTable nattable = super.createNattable(parent, style, site);
 		this.refreshListener = new CommandStackListener() {
 
@@ -464,9 +492,16 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public void dispose() {
+		getContextEditingDomain().getCommandStack().removeCommandStackListener(this.refreshListener);
 		this.columnManager.dispose();
 		this.rowManager.dispose();
-		getContextEditingDomain().getCommandStack().removeCommandStackListener(this.refreshListener);
+		Table table = getTable();
+		if(table != null && this.tableCellsListener != null) {
+			table.eAdapters().remove(this.tableCellsListener);
+		}
+		if(this.cellsMap != null) {
+			this.cellsMap.clear();
+		}
 	}
 
 	/**
@@ -1166,6 +1201,82 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return null;
 	}
 
+	private void updateCellMap(final Notification notification) {
+		Job job = new Job("Update cells") { //$NON-NLS-1$
+
+			@Override
+			protected IStatus run(final IProgressMonitor monitor) {
+				if(notification == null) {
+					cellsMap.clear();
+					for(final Cell current : getTable().getCells()) {
+						final CellMapKey key = createCellMapKeyWaitingCellAxis(current);
+						cellsMap.put(key, current);
+					}
+				} else {
+					int eventType = notification.getEventType();
+					if(eventType == Notification.ADD) {
+						final Object object = notification.getNewValue();
+						if(object instanceof Cell) {
+							final Cell cell = (Cell)object;
+							final CellMapKey key = createCellMapKeyWaitingCellAxis(cell);
+							cellsMap.put(key, cell);
+						}
+					} else if(eventType == Notification.ADD_MANY) {
+						final Object coll = notification.getNewValue();
+
+						if(coll instanceof Collection<?>) {
+							final Iterator<?> iter = ((Collection<?>)coll).iterator();
+							while(iter.hasNext()) {
+								Object object = iter.next();
+								if(object instanceof Cell) {
+									final Cell cell = (Cell)object;
+									final CellMapKey key = createCellMapKeyWaitingCellAxis(cell);
+									cellsMap.put(key, cell);
+								}
+							}
+						}
+					} else if(eventType == Notification.REMOVE) {
+						Object oldCell = notification.getOldValue();
+						if(oldCell instanceof Cell) {
+							CellMapKey key = cellsMap.inverse().get(oldCell);
+							cellsMap.remove(key);
+						}
+					} else if(eventType == Notification.REMOVE_MANY) {
+						final Object coll = notification.getOldValue();
+
+						if(coll instanceof Collection<?>) {
+							final Iterator<?> iter = ((Collection<?>)coll).iterator();
+							while(iter.hasNext()) {
+								Object object = iter.next();
+								if(object instanceof Cell) {
+									final CellMapKey key = cellsMap.inverse().get(object);
+									cellsMap.remove(key);
+								}
+							}
+						}
+					}
+				}
+
+				return Status.OK_STATUS;
+			}
+		};
+		job.setUser(false);
+		job.setSystem(true);
+		job.addJobChangeListener(new JobChangeAdapter() {
+
+			@Override
+			public void done(IJobChangeEvent event) {
+				refreshNatTable();
+			}
+
+		});
+		job.schedule();
+
+
+	}
+
+
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getCell(java.lang.Object, java.lang.Object)
@@ -1175,22 +1286,32 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 */
 	public Cell getCell(final Object columnElement, final Object rowElement) {
-		//FIXME : improve this methods, with a HashMap synchronized on the EMF-Model!
-		//		for(final Cell current : getTable().getCells()) {
-		//			final ICellAxisWrapper rowWrapper = current.getRowWrapper();
-		//			final ICellAxisWrapper columnWrapper = current.getColumnWrapper();
-		//
-		//			if(rowWrapper.getElement().equals(AxisUtils.getRepresentedElement(rowElement)) && AxisUtils.getRepresentedElement(columnElement).equals(columnWrapper.getElement())) {
-		//				return current;
-		//			}
-		//			//FIXME : several others case to manage 
-		//			//FIXME : (replacement of an EObject by an IAxis)
-		//			//FIXME : replacement of an IAxis by its EObject
-		//		}
-		return null;
+		final CellMapKey key = new CellMapKey(columnElement, rowElement);
+		return this.cellsMap.get(key);
 	}
 
-
-
+	/**
+	 * This method allows to create a CellMapKey object waiting that required fields in the cell have been initialized
+	 * 
+	 * @param cell
+	 *        a cell
+	 */
+	private CellMapKey createCellMapKeyWaitingCellAxis(final Cell cell) {
+		while(cell.getColumnWrapper() == null || cell.getRowWrapper() == null) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				Activator.log.equals(e);
+			}
+		}
+		while(cell.getColumnWrapper().getElement() == null || cell.getRowWrapper().getElement() == null) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				Activator.log.equals(e);
+			}
+		}
+		return new CellMapKey(cell.getColumnWrapper().getElement(), cell.getRowWrapper().getElement());
+	}
 
 }

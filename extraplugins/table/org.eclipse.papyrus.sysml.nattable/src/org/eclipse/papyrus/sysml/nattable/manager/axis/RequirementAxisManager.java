@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.nattable.manager.axis;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -26,9 +23,14 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.sysml.requirements.Requirement;
+import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
-import org.eclipse.papyrus.uml.nattable.manager.axis.AbstractUMLSynchronizedOnFeatureAxisManager;
+import org.eclipse.papyrus.uml.nattable.manager.axis.AbstractStereotypedElementUMLSynchronizedOnFeatureAxisManager;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
+
 
 
 /**
@@ -37,64 +39,21 @@ import org.eclipse.papyrus.uml.nattable.manager.axis.AbstractUMLSynchronizedOnFe
  * @author Vincent Lorenzo
  * 
  */
-public class RequirementAxisManager extends AbstractUMLSynchronizedOnFeatureAxisManager {//AbstractSynchronizedOnFeatureAxisManager {//FIXME must inherits from EObjectAxisManager when the listen feature is typed by an EObejct...
+public class RequirementAxisManager extends AbstractStereotypedElementUMLSynchronizedOnFeatureAxisManager<Requirement> {
 
-	//	/**
-	//	 * 
-	//	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
-	//	 * 
-	//	 */
-	//	@Override
-	//	protected void addContextFeatureValueListener() {
-	//		this.featureListener = new AdapterImpl() {
-	//
-	//			@Override
-	//			public void notifyChanged(Notification msg) {
-	//				if(msg.getFeature() == RequirementAxisManager.this.listenFeatures || msg.getFeature() == UMLPackage.eINSTANCE.getPackage_PackagedElement()) {
-	//					getTableManager().updateAxisContents(getRepresentedContentProvider());
-	//				}
-	//			}
-	//		};
-	//		getTableContext().eAdapters().add(this.featureListener);
-	//	}
-
-	//	/**
-	//	 * 
-	//	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#dispose()
-	//	 * 
-	//	 */
-	//	@Override
-	//	public void dispose() {
-	//		getTableContext().eAdapters().remove(this.featureListener);
-	//		super.dispose();
-	//	}
-
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canCreateAxisElement(java.lang.String)
+	 * 
+	 * @param elementId
+	 * @return
+	 */
 	@Override
 	public boolean canCreateAxisElement(String elementId) {
 		return ((ISpecializationType)SysMLElementTypes.REQUIREMENT).getId().equals(elementId);
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#filterObject(java.util.List)
-	 * 
-	 * @param objects
-	 * @return
-	 */
-	@Override
-	protected List<Object> filterObject(final List<Object> objects) {
-		final List<Object> interestingObjects = new ArrayList<Object>();
-		final RequirementMatcher matcher = new RequirementMatcher();
-		for(Object object : objects) {
-			if(object instanceof EObject) {
-				if(matcher.matches((EObject)object)) {
-					interestingObjects.add(object);
-				}
-			}
-		}
-		return interestingObjects;
-	}
+
 
 	/**
 	 * 
@@ -113,8 +72,7 @@ public class RequirementAxisManager extends AbstractUMLSynchronizedOnFeatureAxis
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain,
-	 *      java.lang.Integer)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain, java.lang.Integer)
 	 * 
 	 * @param domain
 	 * @param axisPosition
@@ -131,5 +89,64 @@ public class RequirementAxisManager extends AbstractUMLSynchronizedOnFeatureAxis
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.manager.axis.AbstractStereotypedElementUMLSynchronizedOnFeatureAxisManager#getStereotypeApplication(org.eclipse.uml2.uml.Element)
+	 * 
+	 * @param el
+	 * @return
+	 */
+	@Override
+	protected Requirement getStereotypeApplication(Element el) {
+		return UMLUtil.getStereotypeApplication(el, Requirement.class);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.manager.axis.AbstractStereotypedElementUMLSynchronizedOnFeatureAxisManager#isInstanceOfRequiredStereotypeApplication(java.lang.Object)
+	 * 
+	 * @param object
+	 * @return
+	 */
+	@Override
+	protected boolean isInstanceOfRequiredStereotypeApplication(final Object object) {
+		return object instanceof Requirement;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.manager.axis.AbstractStereotypedElementUMLSynchronizedOnFeatureAxisManager#getStereotypeBaseElement(org.eclipse.emf.ecore.EObject)
+	 * 
+	 * @param stereotypeApplication
+	 * @return
+	 */
+	@Override
+	protected Element getStereotypeBaseElement(final Requirement stereotypeApplication) {
+		return stereotypeApplication.getBase_Class();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.manager.axis.AbstractStereotypedElementUMLSynchronizedOnFeatureAxisManager#isAllowedAsBaseElement(org.eclipse.uml2.uml.Element)
+	 * 
+	 * @param element
+	 * @return
+	 */
+	@Override
+	protected boolean isAllowedAsBaseElement(final Element element) {
+		return element instanceof Class;
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.manager.axis.AbstractStereotypedElementUMLSynchronizedOnFeatureAxisManager#getStereotypeApplicationBasePropertyName()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected String getStereotypeApplicationBasePropertyName() {
+		return RequirementsPackage.eINSTANCE.getRequirement_Base_Class().getName();
+	}
 
 }

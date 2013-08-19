@@ -457,15 +457,6 @@ public class PasteEObjectAxisInTableCommandProvider {
 					progressMonitor.worked(1);
 				}
 
-				if(progressMonitor != null) {
-					if(progressMonitor.isCanceled()) {
-						return CommandResult.newCancelledCommandResult();
-					}
-					progressMonitor.worked(1);
-				}
-
-				//add the created cells to the table
-				AddCommand.create(tableEditingDomain, table, NattablePackage.eINSTANCE.getTable_Cells(), cells).execute();
 
 				if(progressMonitor != null) {
 					if(progressMonitor.isCanceled()) {
@@ -488,6 +479,19 @@ public class PasteEObjectAxisInTableCommandProvider {
 						}
 					}
 				}
+
+				//the cells must be attached at the end (in order to update properly the cell map in the table manager
+				if(progressMonitor != null) {
+					if(progressMonitor.isCanceled()) {
+						return CommandResult.newCancelledCommandResult();
+					}
+					progressMonitor.worked(1);
+				}
+
+				//add the created cells to the table
+				AddCommand.create(tableEditingDomain, table, NattablePackage.eINSTANCE.getTable_Cells(), cells).execute();
+
+
 				progressMonitor.done();
 				localDispose();
 				return CommandResult.newOKCommandResult();
