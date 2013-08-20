@@ -453,7 +453,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 
 
 				for(final String currentPostActions : postActions) {
-					PastePostActionRegistry.INSTANCE.doAfterAddPastedElementCommand(tableManager, currentPostActions, sharedMap);
+					PastePostActionRegistry.INSTANCE.concludePostAction(tableManager, currentPostActions, sharedMap);
 					progressMonitor.worked(1);
 				}
 

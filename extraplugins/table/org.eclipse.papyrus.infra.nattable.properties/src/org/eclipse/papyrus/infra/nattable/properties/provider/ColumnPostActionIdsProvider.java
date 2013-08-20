@@ -11,26 +11,23 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.properties.observable;
+package org.eclipse.papyrus.infra.nattable.properties.provider;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
-/**
- * Observable value for the element type id
- * 
- * @author VL222926
- * 
- */
-public class RowPasteObjectPostActionsObservableValue extends AbstractPasteObjectPostActionsObservableValue {
+
+public class ColumnPostActionIdsProvider extends AbstractPostActionIdsProvider {
 
 	/**
 	 * 
 	 * Constructor.
 	 * 
-	 * @param table
+	 * @param tableManager
+	 *        the table manager
 	 */
-	public RowPasteObjectPostActionsObservableValue(final EditingDomain domain, final Table table) {
-		super(domain, table, false);
+	public ColumnPostActionIdsProvider(INattableModelManager tableManager) {
+		super(tableManager, true);
 	}
+
+
 }
