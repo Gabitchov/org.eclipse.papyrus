@@ -11,8 +11,11 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  * Adapted code from UML
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.paste;
+package org.eclipse.papyrus.uml.tools.utils;
 
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -24,7 +27,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.internal.operations.ElementOperations;
 
 
-public class PapyrusElementOperations extends ElementOperations {
+public class CustomElementOperations extends ElementOperations {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -50,6 +53,12 @@ public class PapyrusElementOperations extends ElementOperations {
 		return applyStereotype(element, definition);
 	}
 
+	/**
+	 * 
+	 * @param element
+	 * @param stereotype
+	 * @return
+	 */
 	protected static EClass getDefinition(Element element, Stereotype stereotype) {
 
 		if(stereotype != null) {
@@ -79,8 +88,51 @@ public class PapyrusElementOperations extends ElementOperations {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param element
+	 * @param definition
+	 * @return
+	 */
 	protected static EObject applyStereotype(Element element, EClass definition) {
-		return PasteUMLUtil.StereotypeApplicationHelper.INSTANCE.applyStereotype(element, definition);
+		return CustomUMLUtil.StereotypeApplicationHelper.INSTANCE.applyStereotype(element, definition);
+	}
+
+	/**
+	 * Duplicated and adapted from UML ElementOperations
+	 * 
+	 * @param element
+	 * @param package_
+	 * @return
+	 */
+	public static EList<Stereotype> getApplicableStereotypes(Element element, final Package package_) {
+		//		org.eclipse.uml2.uml.Package package_ = element.getNearestPackage();
+
+		if(package_ != null) {
+			EList<Stereotype> applicableStereotypes = new UniqueEList.FastCompare<Stereotype>();
+
+			for(ProfileApplication profileApplication : package_.getAllProfileApplications()) {
+
+				Profile appliedProfile = profileApplication.getAppliedProfile();
+
+				if(appliedProfile != null) {
+
+					for(Stereotype stereotype : appliedProfile.allApplicableStereotypes()) {
+
+						ENamedElement appliedDefinition = profileApplication.getAppliedDefinition(stereotype);
+
+						if(appliedDefinition instanceof EClass && !((EClass)appliedDefinition).isAbstract() && getExtension(element, stereotype) != null) {
+
+							applicableStereotypes.add(stereotype);
+						}
+					}
+				}
+			}
+
+			return ECollections.unmodifiableEList(applicableStereotypes);
+		}
+
+		return ECollections.emptyEList();
 	}
 
 }

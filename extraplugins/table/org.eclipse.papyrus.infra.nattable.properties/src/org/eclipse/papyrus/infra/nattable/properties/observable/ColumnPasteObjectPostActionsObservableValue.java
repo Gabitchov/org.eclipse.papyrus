@@ -13,11 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.observable;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
-import org.eclipse.papyrus.infra.nattable.utils.AxisConfigurationUtils;
 
 /**
  * Observable value for the element type id
@@ -34,19 +31,6 @@ public class ColumnPasteObjectPostActionsObservableValue extends AbstractPasteOb
 	 * @param table
 	 */
 	public ColumnPasteObjectPostActionsObservableValue(final EditingDomain domain, final Table table) {
-		super(domain, table);
+		super(domain, table, true);
 	}
-
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.properties.observable.AbstractColumnPasteEObjectConfigurationObservableValue#getEditedEObject()
-	 * 
-	 * @return
-	 */
-	protected EObject getEditedEObject() {
-		return AxisConfigurationUtils.getIAxisConfigurationUsedInTable(getTable(), NattableaxisconfigurationPackage.eINSTANCE.getPasteEObjectConfiguration(), true);
-	}
-
-
 }

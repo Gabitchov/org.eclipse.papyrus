@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
@@ -19,8 +19,8 @@
 		<ppe:ReferenceDialog input="{Binding}"
 			property="nattable:Table:localRowHeaderAxisConfiguration.pastedEObjectContainmentFeature"
 			customLabel="Containment Feature"></ppe:ReferenceDialog>
-		<ppe:MultiString input="{Binding}"
+		<ppe:MultiReference input="{Binding}"
 			property="nattable:Table:localRowHeaderAxisConfiguration.postActions"
-			customLabel="Post Actions"></ppe:MultiString>
+			customLabel="Post Actions"></ppe:MultiReference>
 	</Group>
 </Composite>
