@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
  org.eclipse.pde;bundle-version="3.8.100",
- org.eclipse.pde.ui;bundle-version="3.8.0"
+ org.eclipse.pde.ui;bundle-version="3.8.0",
+ org.eclipse.papyrus.uml.profile.externalresource;bundle-version="0.10.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.profile.externalresource.tests,

@@ -35,7 +35,7 @@ public class ExternalResourceProfileUtils {
 	/**
 	 * @param profileApplication
 	 */
-	public void updateStereotypeApplicationsLocation(ProfileApplication profileApplication, IStereotypeApplicationLocationStrategy oldStrategy, IStereotypeApplicationLocationStrategy newStrategy) {
+	public static void updateStereotypeApplicationsLocation(ProfileApplication profileApplication, IStereotypeApplicationLocationStrategy oldStrategy, IStereotypeApplicationLocationStrategy newStrategy) {
 		// 1. retrieve all stereotype applications concerned by the given profile application
 		// 2. move the stereotype application in their new containment list
 		Resource modelResource = profileApplication.eResource();

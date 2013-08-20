@@ -16,6 +16,7 @@ import static org.junit.Assert.fail;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.ExternalResourceProfileUtils;
 import org.eclipse.papyrus.uml.profile.externalresource.tests.AbstractExternalResourcesTest;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.uml2.uml.Class;
@@ -23,11 +24,13 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.rules.ExternalResource;
 
 /**
  * Test class for load/unload
  */
 public class LoadUnloadOutsideEditorTests extends AbstractExternalResourcesTest {
+	
 	@Test
 	public void testLoadModelOutsidePapyrusEditor() {
 		UmlModel umlModel = null;
@@ -57,8 +60,8 @@ public class LoadUnloadOutsideEditorTests extends AbstractExternalResourcesTest 
 	}
 
 	@Test
-	public void testStereotypeApplicationOutsidePapyrusEditor() {
-		
+	public void moveStereotypeApplicationOutsidePapyrusEditor() {
+		//ExternalResourceProfileUtils.updateStereotypeApplicationsLocation(profileApplication, oldStrategy, newStrategy);
 	}
 	
 	
