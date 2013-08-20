@@ -11,7 +11,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.css.CSSConnectorImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.papyrus.sysml.diagram.common.utils.ConstraintBlockHelper;
@@ -61,7 +60,7 @@ public class CustomBindingConnectorReorientCommand extends ConnectorReorientComm
 		}
 		
 		Object connectorView = getRequest().getParameter(DefaultSemanticEditPolicy.GRAPHICAL_RECONNECTED_EDGE);
-		if (connectorView instanceof CSSConnectorImpl) {
+		if (connectorView instanceof org.eclipse.gmf.runtime.notation.Connector) {
 			View sourceView = getSourceView();
 			View targetView = getTargetView();
 			
@@ -95,8 +94,8 @@ public class CustomBindingConnectorReorientCommand extends ConnectorReorientComm
 		}
 	}
 	
-	private CSSConnectorImpl getConnectorView () {
-		return  (CSSConnectorImpl)getRequest().getParameter(DefaultSemanticEditPolicy.GRAPHICAL_RECONNECTED_EDGE);
+	private org.eclipse.gmf.runtime.notation.Connector getConnectorView () {
+		return  (org.eclipse.gmf.runtime.notation.Connector)getRequest().getParameter(DefaultSemanticEditPolicy.GRAPHICAL_RECONNECTED_EDGE);
 	}
 	private View getSourceView() {
 		return reorientDirection == ReorientReferenceRelationshipRequest.REORIENT_SOURCE ? 
