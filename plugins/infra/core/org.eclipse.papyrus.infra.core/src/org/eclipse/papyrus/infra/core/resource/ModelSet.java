@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
  *  Christian W. Damus (CEA) - Refactoring of Create Model Wizard (CDO)
+ *  Christian W. Damus (CEA LIST) - Controlled resources in CDO repositories
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -1004,4 +1005,7 @@ public class ModelSet extends ResourceSetImpl {
 		}
 	}
 
+	public boolean isUserModelResource(URI uri) {
+		return uri.isPlatformResource() || uri.isFile();
+	}
 }

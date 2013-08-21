@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 Atos Origin, CEA, and others.
+ * Copyright (c) 2010, 2013 Atos Origin, CEA LIST, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Emilien Perico emilien.perico@atosorigin.com - manage loading strategies
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
+ *  Christian W. Damus (CEA LIST) - support control mode in CDO resources
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.additional;
@@ -79,7 +80,7 @@ public class AdditionalResourcesModel extends AbstractModel implements IModel {
 			if(isAdditionalResource(getModelManager(), r.getURI())) {
 				// only save referenced models not
 				// read-only and either platform or file
-				if(!modelSet.getTransactionalEditingDomain().isReadOnly(r) && (r.getURI().isPlatformResource() || r.getURI().isFile()) && !ModelUtils.resourceFailedOnLoad(r)) {
+				if(!modelSet.getTransactionalEditingDomain().isReadOnly(r) && modelSet.isUserModelResource(r.getURI()) && !ModelUtils.resourceFailedOnLoad(r)) {
 					if(r instanceof XMIResource){
 						r.save(Collections.singletonMap(XMLResource.OPTION_URI_HANDLER, new URIHandlerImpl.PlatformSchemeAware()));
 					}else {

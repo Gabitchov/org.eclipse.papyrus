@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2013 Atos Origin, CEA LIST, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - support control mode in CDO resources
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.strategies;
@@ -32,7 +33,7 @@ public class LoadControlledResources implements ILoadingStrategy {
 	 * Other resources used from references are not loaded
 	 */
 	public boolean loadResource(ModelSet modelSet, URI uri) {
-		boolean result = !uri.isPlatform() && !uri.isFile();
+		boolean result = !modelSet.isUserModelResource(uri);
 		if(!result) {
 			URI initialURI = SashModelUtils.getInitialURI(modelSet).trimFileExtension().appendFileExtension(uri.fileExtension());
 			URI uriInitialTrimFragment = initialURI.trimFragment();
