@@ -1301,14 +1301,14 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				Activator.log.equals(e);
+				Activator.log.error(e);
 			}
 		}
 		while(cell.getColumnWrapper().getElement() == null || cell.getRowWrapper().getElement() == null) {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				Activator.log.equals(e);
+				Activator.log.error(e);
 			}
 		}
 		return new CellMapKey(cell.getColumnWrapper().getElement(), cell.getRowWrapper().getElement());
