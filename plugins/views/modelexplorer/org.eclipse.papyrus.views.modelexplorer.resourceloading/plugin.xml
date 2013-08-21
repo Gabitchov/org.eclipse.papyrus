@@ -16,11 +16,11 @@
           <or>
             <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllLoaded"
+               property="org.eclipse.papyrus.infra.core.resourceloading.tester.isAllLoaded"
                value="true" />
             <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllNotLoaded"
+               property="org.eclipse.papyrus.infra.core.resourceloading.tester.isAllNotLoaded"
                value="true" />
           </or>
          </with>
@@ -38,7 +38,7 @@
                variable="selection">
           <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllNotLoaded"
+               property="org.eclipse.papyrus.infra.core.resourceloading.tester.isAllNotLoaded"
                value="true" />
          </with>
        </visibleWhen>
@@ -55,7 +55,7 @@
                variable="selection">
           <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllLoaded"
+               property="org.eclipse.papyrus.infra.core.resourceloading.tester.isAllLoaded"
                value="true" />
          </with>
        </visibleWhen>
@@ -87,7 +87,7 @@
                variable="selection">
           <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllNotLoaded"
+               property="org.eclipse.papyrus.infra.core.resourceloading.tester.isAllNotLoaded"
                value="true" />
          </with>
 		</activeWhen>
@@ -98,7 +98,7 @@
                variable="selection">
           <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllLoaded"
+               property="org.eclipse.papyrus.infra.core.resourceloading.tester.isAllLoaded"
                value="true" />
          </with>
 		</activeWhen>
