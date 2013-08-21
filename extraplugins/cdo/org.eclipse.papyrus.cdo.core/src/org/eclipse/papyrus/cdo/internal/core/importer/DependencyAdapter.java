@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 
@@ -133,8 +134,16 @@ public class DependencyAdapter extends AdapterImpl {
 	}
 
 	boolean isUserModelResource(URI uri) {
-		return // config.hasResource(uri) &&
-		(uri.isPlatformResource() || uri.isFile() || CDOUtils.isCDOURI(uri)) && !uri.isArchive();
+		ModelSet modelSet = getModelSet();
+		boolean result = (modelSet != null) ? modelSet.isUserModelResource(uri) :
+		// config.hasResource(uri) &&
+		uri.isPlatformResource() || uri.isFile() || CDOUtils.isCDOURI(uri);
+
+		return result && !uri.isArchive();
+	}
+
+	private ModelSet getModelSet() {
+		return CDOUtils.adapt(getResource().getResourceSet(), ModelSet.class);
 	}
 
 	public static boolean isDIResource(Resource resource) {

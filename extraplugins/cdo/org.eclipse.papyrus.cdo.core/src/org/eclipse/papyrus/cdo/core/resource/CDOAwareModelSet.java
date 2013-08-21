@@ -31,6 +31,7 @@ import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
+import org.eclipse.papyrus.cdo.internal.core.controlmode.CDOProxyManager;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSet;
 
@@ -43,6 +44,8 @@ import com.google.common.collect.Iterables;
 public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 	private final ThreadLocal<Boolean> inGetResource = new ThreadLocal<Boolean>();
+
+	private final CDOProxyManager proxyManager = new CDOProxyManager(this);
 
 	private final IPapyrusRepositoryManager repositoryManager;
 
@@ -59,13 +62,22 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 	@Override
 	public EObject getEObject(URI uri, boolean loadOnDemand) {
-		return CDOUtils.isCDOURI(uri) ? basicGetEObject(uri, loadOnDemand) : super.getEObject(uri, loadOnDemand);
+		return CDOUtils.isCDOURI(uri) ? getCDOObject(uri, loadOnDemand) : super.getEObject(uri, loadOnDemand);
 	}
 
-	protected EObject basicGetEObject(URI uri, boolean loadOnDemand) {
-		Resource resource = getResource(uri.trimFragment(), loadOnDemand);
+	protected EObject getCDOObject(URI uri, boolean loadOnDemand) {
+		EObject result = null;
 
-		return (resource == null) ? null : resource.getEObject(uri.fragment());
+		if(CDOProxyManager.isCDOProxyURI(uri)) {
+			// get a real proxy object, out of thin air, to give CDO the non-null
+			// instance that it needs (otherwise the 'non-null constraint' of
+			// all kinds of reference lists will be violated)
+			result = proxyManager.getProxy(uri);
+		} else {
+			result = super.getEObject(uri, loadOnDemand);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -153,21 +165,21 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 		try {
 			super.unload();
 		} finally {
-			if((repository != null) && (getCDOView() != null)) {
-				CDOView view = getCDOView();
-				if(view != null) {
-					view.removeListener(getInvalidationListener());
-				}
-				invalidationListener = null;
+		if((repository != null) && (getCDOView() != null)) {
+			CDOView view = getCDOView();
+			if(view != null) {
+				view.removeListener(getInvalidationListener());
+			}
+			invalidationListener = null;
 
-				// dispose the transaction
-				repository.close(this);
+			// dispose the transaction
+			repository.close(this);
 
 				// now, we can remove the CDOViewSet adapter
 				eAdapters().clear();
-			}
+		}
 
-			repository = null;
+		repository = null;
 		}
 	}
 
@@ -190,6 +202,11 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 				}
 			}
 		};
+	}
+
+	@Override
+	public boolean isUserModelResource(URI uri) {
+		return super.isUserModelResource(uri) || CDOUtils.isCDOURI(uri);
 	}
 
 	@Override

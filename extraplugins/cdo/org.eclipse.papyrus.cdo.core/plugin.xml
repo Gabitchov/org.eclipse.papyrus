@@ -80,4 +80,11 @@
       </propertyTester>
    </extension>
    
+   <extension
+         point="org.eclipse.papyrus.infra.services.controlmode.participant">
+      <participant
+            class="org.eclipse.papyrus.cdo.internal.core.controlmode.CDOControlModeParticipant">
+      </participant>
+   </extension>
+   
 </plugin>

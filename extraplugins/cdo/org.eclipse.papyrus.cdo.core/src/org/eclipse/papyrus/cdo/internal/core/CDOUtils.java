@@ -11,12 +11,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core;
 
+import static com.google.common.collect.Iterables.filter;
+import static com.google.common.collect.Iterables.getFirst;
+
 import java.util.Set;
 import java.util.concurrent.Executor;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.cdo.CDOLock;
 import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.common.id.CDOID;
+import org.eclipse.emf.cdo.common.id.CDOIDUtil;
 import org.eclipse.emf.cdo.common.revision.CDORevision;
 import org.eclipse.emf.cdo.dawn.spi.DawnState;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
@@ -27,8 +32,11 @@ import org.eclipse.emf.cdo.view.CDOViewSet;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -59,8 +67,14 @@ public class CDOUtils {
 
 		if(type.isInstance(object)) {
 			result = type.cast(object);
-		} else if(object instanceof IAdaptable) {
-			result = type.cast(((IAdaptable)object).getAdapter(type));
+		} else {
+			if(object instanceof IAdaptable) {
+				result = type.cast(((IAdaptable)object).getAdapter(type));
+			}
+
+			if((result == null) && object instanceof Notifier) {
+				result = getFirst(filter(((Notifier)object).eAdapters(), type), null);
+			}
 		}
 
 		return result;
@@ -111,6 +125,11 @@ public class CDOUtils {
 		}
 
 		return result;
+	}
+
+	public static CDOID getCDOID(EObject object) {
+		CDOObject cdo = getCDOObject(object);
+		return (cdo == null) ? CDOIDUtil.createExternal(EcoreUtil.getURI(object).toString()) : cdo.cdoID();
 	}
 
 	public static CDOView getView(ResourceSet resourceSet) {
@@ -178,6 +197,29 @@ public class CDOUtils {
 
 	public static Iterable<EObject> getEObjects(Iterable<? extends CDOObject> cdoObjects) {
 		return Iterables.transform(cdoObjects, CDOFunctions.getEObject());
+	}
+
+	public static Iterable<EStructuralFeature.Setting> crossReference(EObject object) {
+		Iterable<EStructuralFeature.Setting> result;
+
+		ECrossReferenceAdapter adapter = adapt(object, ECrossReferenceAdapter.class);
+		if(adapter != null) {
+			result = adapter.getInverseReferences(object);
+		} else {
+			EObject tree = EcoreUtil.getRootContainer(object);
+			Resource resource = tree.eResource();
+			ResourceSet rset = (resource == null) ? null : resource.getResourceSet();
+
+			if(rset != null) {
+				result = EcoreUtil.UsageCrossReferencer.find(object, rset);
+			} else if(resource != null) {
+				result = EcoreUtil.UsageCrossReferencer.find(object, resource);
+			} else {
+				result = EcoreUtil.UsageCrossReferencer.find(object, tree);
+			}
+		}
+
+		return result;
 	}
 
 	/**

@@ -5,6 +5,7 @@ Export-Package: org.eclipse.papyrus.cdo.core,
  org.eclipse.papyrus.cdo.core.resource,
  org.eclipse.papyrus.cdo.core.util,
  org.eclipse.papyrus.cdo.internal.core;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui,org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.diagram.ui,org.eclipse.papyrus.cdo.uml.ui,org.eclipse.papyrus.cdo.ui.customization.properties,org.eclipse.papyrus.cdo.uml.ui.tests,org.eclipse.papyrus.cdo.uml.search.ui,org.eclipse.papyrus.cdo.uml.search.ui.tests",
+ org.eclipse.papyrus.cdo.internal.core.controlmode;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.core.exporter;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
  org.eclipse.papyrus.cdo.internal.core.expressions;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
  org.eclipse.papyrus.cdo.internal.core.importer;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
@@ -33,7 +34,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.notation;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.equinox.security;bundle-version="[1.1.100,2.0.0)",
  org.eclipse.core.expressions;bundle-version="[3.4.0,4.0.0)",
- com.google.guava;bundle-version="[11.0.2,12.0.0)"
+ com.google.guava;bundle-version="[11.0.2,12.0.0)",
+ org.eclipse.papyrus.infra.services.controlmode;bundle-version="0.10.1",
+ org.eclipse.gmf.runtime.emf.commands.core;bundle-version="[1.7.0,2.0.0)"
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2

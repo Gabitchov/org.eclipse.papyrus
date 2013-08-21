@@ -37,6 +37,19 @@ public class PapyrusCDOEditorInput extends URIEditorInput {
 	public IPersistableElement getPersistable() {
 		return null;
 	}
+	
+	@Override
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+		Object result;
+
+		if(adapter == URI.class) {
+			result = getURI();
+		} else {
+			result = super.getAdapter(adapter);
+		}
+
+		return result;
+	}
 
 	/**
 	 * A specialization of the CDO editor input that supports specifying editor pages to open in addition.
