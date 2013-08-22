@@ -45,11 +45,11 @@ public abstract class AbstractUMLNattableCellLabelProvider extends GenericCellLa
 	 *         a list of 2 elements when
 	 *         <ul>
 	 *         <li>the first obejct is an instanceof Element</li>
-	 *         <li>the second object is an UML EstructuralFeature or the real property if we are working with a property of steretoype</li>
+	 *         <li>the second object is an UML EstructuralFeature or the real property if we are working with a property of stereotype</li>
 	 *         </ul>
 	 *         or <code>null</code> if the conditions are not satisfied
 	 */
-	protected List<Object> getUMLObjects(final Object obj1, final Object obj2) {//FIXME do a util method for that?
+	protected List<Object> getUMLObjects(final Object obj1, final Object obj2) {
 		List<Object> objects = new ArrayList<Object>();
 		if(obj1 instanceof Element) {
 			objects.add(obj1);

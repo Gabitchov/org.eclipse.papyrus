@@ -53,7 +53,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 * the event which have declenched the call to setEnable(Object evaluationContext. This event contains the location of the mouse pointer when
 	 * the popup menu for this handler have been created
 	 */
-	//FIXME : should maybe be remove with the future usage of e4 and the Eclispe Context
+	//TODO : should maybe be remove with the future usage of e4 and the Eclispe Context
 	protected NatEventData eventData;
 
 	/**
@@ -121,12 +121,12 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 				eventData = (NatEventData)value;
 			}
 		}
-		//FIXME : currently we can't have dependency on org.eclipse.e4.... 
+		//TODO : currently we can't have dependency on org.eclipse.e4.... 
 		//that's why we can't add the variable NAT_EVENT_DATA_PARAMETER_ID and we need to create a NatEventData instead of to get it in evaluationContext
 		if(eventData == null) {
 			Point cursorLocation = Display.getDefault().getCursorLocation();
-			Control control = Display.getDefault().getCursorControl();//FIXME doesn't work when we are selecting a command in a menu!
-			if(control instanceof NatTable) {//FIXME : not nice, but required
+			Control control = Display.getDefault().getCursorControl();//TODO doesn't work when we are selecting a command in a menu!
+			if(control instanceof NatTable) {//TODO : not nice, but required
 				cursorLocation = control.toControl(cursorLocation);
 				Event e = new Event();
 				e.x = cursorLocation.x;

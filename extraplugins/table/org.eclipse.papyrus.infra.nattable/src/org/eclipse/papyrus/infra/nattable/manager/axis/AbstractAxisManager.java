@@ -40,6 +40,7 @@ import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Ab
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.editors.InputDialog;
+import org.eclipse.papyrus.infra.widgets.editors.InputDialogWithLocation;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
@@ -149,6 +151,19 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	/**
+	 * We don't want to save configurations of axis representing EObjects
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canBeSavedAsConfig()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean canBeSavedAsConfig() {
+		return false;
+	}
+
+
+	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getTableManager()
 	 * 
@@ -184,12 +199,18 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDropAxisElement(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canDropAxisElement(java.util.Collection)
 	 * 
 	 * @param objectsToAdd
 	 * @return
 	 */
+	@Override
 	public boolean canDropAxisElement(Collection<Object> objectsToAdd) {
+		for(Object object : objectsToAdd) {
+			if(isAllowedContents(object) && !isAlreadyManaged(object)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -299,10 +320,21 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param object
 	 * @return <code>true</code> if the object is not yet represented by an axis
 	 */
-	public boolean isAllowedContents(Object object) {//FIXME : the name of this method doesn't match with its documentation!
-		return !getTableManager().getElementsList(getRepresentedContentProvider()).contains(object);
+	public boolean isAllowedContents(Object object) {
+		return true;
 	}
 
+	/**
+	 * 
+	 * @param object
+	 *        an object
+	 * @return
+	 *         <code>true</code> if the object is already displayed
+	 */
+	@Override
+	public boolean isAlreadyManaged(final Object object) {
+		return !getElements().contains(object);
+	}
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canMoveAxis()
@@ -336,9 +368,9 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @return
 	 */
 	@Override
-	public Command getDestroyAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToDestroy) {//FIXME must be done in the abstract class
+	public Command getDestroyAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToDestroy) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
-		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
+		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command"); //$NON-NLS-1$
 		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
 			if(current.getManager() == this.representedAxisManager) {
 				if(objectToDestroy.contains(current) || objectToDestroy.contains(current.getElement())) {
@@ -480,6 +512,17 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canEditAxisHeader()
+	 * 
+	 * @return
+	 */
+	public boolean canEditAxisHeader() {
+		return false;
+	}
+
+
+	/**
+	 * 
 	 * @param axisPositions
 	 * @return
 	 */
@@ -496,6 +539,13 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.util.List)
+	 * 
+	 * @param axisPositions
+	 * @return
+	 */
 	@Override
 	public boolean canDestroyAxisElement(List<Integer> axisPositions) {
 		if(axisPositions.isEmpty()) {
@@ -559,7 +609,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 */
 	@Override
 	public void destroyAxisElement(final List<Integer> axisPosition) {
-		final CompoundCommand cmd = new CompoundCommand("Destroy Axis Element Command");
+		final CompoundCommand cmd = new CompoundCommand("Destroy Axis Element Command"); //$NON-NLS-1$
 		TransactionalEditingDomain domain = getContextEditingDomain();
 		for(Integer integer : axisPosition) {
 			cmd.append(getDestroyAxisElementCommand(domain, integer));
@@ -573,8 +623,12 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @return
 	 *         the list owning the elements displayed on the managed axis
 	 */
-	protected List<Object> getElements() {
-		return this.tableManager.getElementsList(getRepresentedContentProvider());
+	protected final List<Object> getElements() {
+		if(isUsedAsColumnManager()) {
+			return this.tableManager.getColumnElementsList();
+		} else {
+			return this.tableManager.getRowElementsList();
+		}
 	}
 
 	/**
@@ -587,5 +641,23 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	@Override
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#isUsedAsColumnManager()
+	 * 
+	 * @return
+	 */
+	@Override
+	public final boolean isUsedAsColumnManager() {
+		final AbstractAxisProvider columnAxisProvider;
+		final Table table = getTableManager().getTable();
+		if(table.isInvertAxis()) {
+			columnAxisProvider = table.getCurrentRowAxisProvider();
+		} else {
+			columnAxisProvider = table.getCurrentColumnAxisProvider();
+		}
+		return columnAxisProvider == getRepresentedContentProvider();
 	}
 }

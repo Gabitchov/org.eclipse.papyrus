@@ -268,7 +268,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * 
 	 */
 	public synchronized void updateAxisContents() {
-		final List<Object> displayedElement = getTableManager().getElementsList(getRepresentedContentProvider());
+		final List<Object> displayedElement = getElements();
 		synchronized(displayedElement) {
 			displayedElement.clear();
 			displayedElement.addAll(this.managedObject);
@@ -474,14 +474,20 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	@Override
 	public boolean canEditAxisHeader(final NatEventData axisIndex) {
-		axisIndex.getColumnPosition();//FIXME
-		if(canEditAxisHeader()) {//FIXME
+		axisIndex.getColumnPosition();//TODO
+		if(canEditAxisHeader()) {//TODO
 			return true;
 		} else {
-			return false;//FIXME : we need to iterate on the contents to know if it is possible or not
+			return false;//TODO : we need to iterate on the contents to know if it is possible or not
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canEditAxisHeader()
+	 * 
+	 * @return
+	 */
 	@Override
 	public boolean canEditAxisHeader() {
 		for(final IAxisManager current : this.subManagers) {
@@ -540,7 +546,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	@Override
 	public boolean canDestroyAxis(final Integer axisPosition) {
-		final List<Object> elements = tableManager.getElementsList(getRepresentedContentProvider());//FIXME create a util method for that
+		final List<Object> elements = getElements();
 		final Object element = elements.get(axisPosition);
 		if(element instanceof IAxis) {
 			return getAxisManager((IAxis)element).canDestroyAxis(axisPosition);
@@ -558,7 +564,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	@Override
 	public boolean canDestroyAxisElement(Integer axisPosition) {
-		final List<Object> elements = tableManager.getElementsList(getRepresentedContentProvider());//FIXME create a util method for that
+		final List<Object> elements = getElements();
 		final Object element = elements.get(axisPosition);
 		if(element instanceof IAxis) {
 			return getAxisManager((IAxis)element).canDestroyAxisElement(axisPosition);
@@ -580,7 +586,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	@Override
 	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
-		final List<Object> elements = tableManager.getElementsList(getRepresentedContentProvider());//FIXME create a util method for that
+		final List<Object> elements = getElements();
 		final Object element = elements.get(axisPosition);
 		if(element instanceof IAxis) {
 			return getAxisManager((IAxis)element).getDestroyAxisElementCommand(domain, axisPosition);
@@ -637,7 +643,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	public void setAxisComparator(final Comparator<Object> comp) {
 		this.axisComparator = comp;
 		if(this.axisComparator != null) {
-			List<Object> displayedElement = getTableManager().getElementsList(getRepresentedContentProvider());
+			List<Object> displayedElement = getElements();
 			synchronized(displayedElement) {
 				Collections.sort(displayedElement, comp);
 				getTableManager().refreshNatTable();//useful?
@@ -647,4 +653,20 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#isAlreadyManaged(java.lang.Object)
+	 * 
+	 * @param object
+	 * @return
+	 */
+	@Override
+	public boolean isAlreadyManaged(final Object object) {
+		for(final IAxisManager current : this.subManagers) {
+			if(current.isAlreadyManaged(object)) {
+				return false;
+			}
+		}
+		return false;
+	}
 }

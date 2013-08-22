@@ -26,7 +26,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
-import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
+import org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 
 /**
@@ -34,7 +34,7 @@ import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
  * @author Vincent Lorenzo
  * 
  */
-public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOnFeatureAxisManager {
+public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOnEStructuralFeatureAxisManager {
 
 	/**
 	 * we keep it to be able to remove the listener during the destruction of the table
@@ -44,7 +44,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager#addContextFeatureValueListener()
 	 * 
 	 */
 	@Override
@@ -70,7 +70,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#getFeaturesValue()
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager#getFeaturesValue()
 	 * 
 	 * @return
 	 */
@@ -88,7 +88,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#verifyValues()
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager#verifyValues()
 	 * 
 	 */
 	@Override
@@ -96,8 +96,15 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 		//nothing to do
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#isAllowedContents(java.lang.Object)
+	 * 
+	 * @param object
+	 * @return
+	 */
 	@Override
-	protected boolean isAllowed(Object object) {
+	public boolean isAllowedContents(Object object) {
 		if(object instanceof PageRef) {
 			return mustBeDisplayedInThisTable(((PageRef)object).getPageIdentifier());
 		}
@@ -199,7 +206,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 			if(newValue instanceof PageRef) {
 				newValue = ((PageRef)newValue).getPageIdentifier();
 			}
-			if(isAllowed(newValue)) {
+			if(isAllowedContents(newValue)) {
 				toAdd.add(newValue);
 			}
 			break;
@@ -209,7 +216,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 				if(current instanceof PageRef) {
 					current = ((PageRef)current).getPageIdentifier();
 				}
-				if(isAllowed(current)) {
+				if(isAllowedContents(current)) {
 					toAdd.add(current);
 				}
 			}

@@ -20,18 +20,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 public abstract class AbstractCellEditorConfiguration implements IAxisCellEditorConfiguration {
 
-	public static final String CELL_LABEL = "cell_label"; //$NON-NLS-1$
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getConfigCellId()
-	 * 
-	 * @return
-	 */
-	public final String getConfigCellId() {
-		return getEditorId() + CELL_LABEL;
-	}
-
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getDataValidator(Table, Object)
@@ -50,6 +38,6 @@ public abstract class AbstractCellEditorConfiguration implements IAxisCellEditor
 	 * @return
 	 */
 	public String getEditorDescription() {
-		return "No Existing Description";
+		return "No Existing Description"; //$NON-NLS-1$
 	}
 }

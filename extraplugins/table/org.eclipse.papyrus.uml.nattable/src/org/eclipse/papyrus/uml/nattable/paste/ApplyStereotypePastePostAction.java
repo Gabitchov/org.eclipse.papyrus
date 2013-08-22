@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EClass;
@@ -99,7 +100,7 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doPostAction(INattableModelManager tableManager, String postAction, Object editedElement, Map<Object, Object> sharedMap) {
-		//FIXME : we must do verification between apply stereotypes on an element : extened metaclass + stereotype already apply or not, + profile apply on the model
+		//TODO : we must do verification before to apply stereotypes on an element : extened metaclass + stereotype already apply or not, + profile apply on the model
 		if(editedElement instanceof Element && !(editedElement instanceof Stereotype) && tableManager.getTable().getContext() instanceof Element) {
 			final Element elementToStereotype = (Element)editedElement;
 			final Element tableContext = (Element)tableManager.getTable().getContext();
@@ -134,11 +135,10 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 							sharedMap.put(elementToStereotype, struct);
 						}
 						//create the structure used to store this mapping
-						for(final Property current : mapping.keySet()) {
-							final StereotypeApplicationStructure structure = new StereotypeApplicationStructure(ste, stereotypeApplication, current, mapping.get(current));
+						for(final Entry<Property, EStructuralFeature> current : mapping.entrySet()){
+							final StereotypeApplicationStructure structure = new StereotypeApplicationStructure(ste, stereotypeApplication, current.getKey(), current.getValue());
 							struct.add(structure);
 						}
-
 					}
 				}
 			}
@@ -175,8 +175,8 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 			toAdd.add(current);
 		}
 
-		for(final Resource resource : resourcesAndSteApp.keySet()) {
-			resource.getContents().addAll(resourcesAndSteApp.get(resource));
+		for(final Entry<Resource, List<EObject>> entry : resourcesAndSteApp.entrySet()) {
+			entry.getKey().getContents().addAll(entry.getValue());
 		}
 	}
 

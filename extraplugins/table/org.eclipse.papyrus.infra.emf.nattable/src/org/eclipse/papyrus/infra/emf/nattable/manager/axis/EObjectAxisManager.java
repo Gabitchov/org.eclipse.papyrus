@@ -13,10 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
-import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
@@ -40,10 +39,38 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
  */
 public class EObjectAxisManager extends AbstractAxisManager {
 
+	//	/**
+	//	 * 
+	//	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis)
+	//	 * 
+	//	 * @param axis
+	//	 * @return
+	//	 */
+	//	public boolean canDestroyAxisElement(final IAxis axis) {
+	//		final EObject object = (EObject)axis.getElement();
+	//		return !EMFHelper.isReadOnly(object);
+	//	}
+
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(TransactionalEditingDomain,
-	 *      java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.lang.Integer)
+	 * 
+	 * @param axisPosition
+	 * @return
+	 */
+	public boolean canDestroyAxisElement(Integer axisPosition) {
+		final Object current = getElements().get(axisPosition);
+		if(current instanceof EObjectAxis) {
+			return !EMFHelper.isReadOnly(((EObjectAxis)current).getElement());
+		}
+		return false;
+	}
+
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(TransactionalEditingDomain, java.util.Collection)
 	 * 
 	 * @param domain
 	 *        the editing domain
@@ -54,35 +81,52 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	 */
 	@Override
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
-		final CompoundCommand cmd = new CompoundCommand(Messages.EObjectManager_AddAxisElement);
+		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 		for(final Object object : objectToAdd) {
-			if(isAllowedContents(object)) {
+			if(isAllowedContents(object) && !isAlreadyManaged(object)) {
 				final EObjectAxis horizontalAxis = NattableaxisFactory.eINSTANCE.createEObjectAxis();
 				horizontalAxis.setElement((EObject)object);
 				horizontalAxis.setManager(this.representedAxisManager);
-				//FIXME : replace me by a SetRequest
-				final Command tmp = AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), horizontalAxis);
-				cmd.append(tmp);
+				toAdd.add(horizontalAxis);
 			}
 		}
-		return cmd;
-	}
-
-	/**
-	 * This manager doesn't add axis on the other side, because it is a master axis manager
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(TransactionalEditingDomain,
-	 *      java.util.Collection)
-	 * 
-	 * @param domain
-	 * @param objectToAdd
-	 * @return
-	 */
-	@Override
-	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
+		if(!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+		}
 		return null;
 	}
 
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain, java.lang.Integer)
+	 * 
+	 * @param domain
+	 * @param axisPosition
+	 * @return
+	 */
+	public Command getDestroyAxisElementCommand(final TransactionalEditingDomain domain, final Integer axisPosition) {
+		final Object current = getElements().get(axisPosition);
+		if(current instanceof EObjectAxis) {
+			final EObject element = ((EObjectAxis)current).getElement();
+			final DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)getContextEditingDomain(), element, false);
+			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(element);
+			return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getElementAxisName(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis)
+	 * 
+	 * @param axis
+	 * @return
+	 */
+	@Override
+	public String getElementAxisName(final IAxis axis) {
+		throw new UnsupportedOperationException();
+	}
 
 	/**
 	 * 
@@ -93,28 +137,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	 */
 	@Override
 	public boolean isAllowedContents(Object object) {
-		boolean isAllowed = super.isAllowedContents(object);
-		if(isAllowed) {
-			return object instanceof EObject;
-		}
-		return false;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canDropAxisElement(java.util.Collection)
-	 * 
-	 * @param objectsToAdd
-	 * @return
-	 */
-	@Override
-	public boolean canDropAxisElement(Collection<Object> objectsToAdd) {
-		for(Object object : objectsToAdd) {
-			if(isAllowedContents(object)) {
-				return true;
-			}
-		}
-		return false;
+		return object instanceof EObject;
 	}
 
 	/**
@@ -134,81 +157,6 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	 * @return
 	 */
 	public boolean isSlave() {
-		return false;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canEditAxisHeader()
-	 * 
-	 * @return
-	 */
-	public boolean canEditAxisHeader() {
-		return false;
-	}
-
-
-	@Override
-	public String getElementAxisName(IAxis axis) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis)
-	 * 
-	 * @param axis
-	 * @return
-	 */
-	public boolean canDestroyAxisElement(final IAxis axis) {
-		final EObject object = (EObject)axis.getElement();
-		return !EMFHelper.isReadOnly(object);
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.lang.Integer)
-	 * 
-	 * @param axisPosition
-	 * @return
-	 */
-	public boolean canDestroyAxisElement(Integer axisPosition) {
-		final Object current = getElements().get(axisPosition);
-		if(current instanceof EObjectAxis) {
-			return !EMFHelper.isReadOnly(((EObjectAxis)current).getElement());
-		}
-		return false;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain,
-	 *      java.lang.Integer)
-	 * 
-	 * @param domain
-	 * @param axisPosition
-	 * @return
-	 */
-	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
-		final Object current = getElements().get(axisPosition);
-		if(current instanceof EObjectAxis) {
-			final EObject element = ((EObjectAxis)current).getElement();
-			final DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)getContextEditingDomain(), element, false);
-			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(element);
-			return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
-		}
-		return null;
-	}
-
-	/**
-	 * We don't want to save configurations of axis representing EObjects
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canBeSavedAsConfig()
-	 * 
-	 * @return
-	 */
-	@Override
-	public boolean canBeSavedAsConfig() {
 		return false;
 	}
 

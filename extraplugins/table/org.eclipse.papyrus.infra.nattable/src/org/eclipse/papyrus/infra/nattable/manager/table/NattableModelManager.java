@@ -848,8 +848,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public boolean canCreateColumnElement(String elementType) {
-		// TODO Auto-generated method stub
-		return true;
+		return this.columnManager.canCreateAxisElement(elementType);
 	}
 
 	public Command getAddRowElementCommand(Collection<Object> objectsToAdd) {
@@ -902,23 +901,15 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return cmd;
 	}
 
-
-	public boolean declareEditorsOnColumns() {
-		return true;//FIXME : used?
-	}
-
-	public boolean declareEditorsOnRows() {
-		return false;//FIXME : used?
-	}
-
-	public ITableAxisElementProvider getTableAxisElementProvider() {// FIXME :
-																	// must be
-																	// renamed?
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getTableAxisElementProvider()
+	 * 
+	 * @return
+	 */
+	public ITableAxisElementProvider getTableAxisElementProvider() {
 		return this;
 	}
-
-
-
 
 	/**
 	 * When the axis manager is dynamic, we can't destroy axis

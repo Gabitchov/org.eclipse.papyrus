@@ -108,6 +108,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 		if(editedEObject == null) {
 			editedEObject = NattableaxisconfigurationFactory.eINSTANCE.createPasteEObjectConfiguration();
 		}
+		@SuppressWarnings("unchecked")
 		final List<Object> newValues = new ArrayList<Object>(this.wrappedList);
 		newValues.addAll(values);
 
@@ -129,6 +130,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 		if(editedEObject == null) {
 			editedEObject = NattableaxisconfigurationFactory.eINSTANCE.createPasteEObjectConfiguration();
 		}
+		@SuppressWarnings("unchecked")
 		final List<Object> newValues = new ArrayList<Object>(this.wrappedList);
 		newValues.addAll(index, values);;
 
@@ -151,23 +153,12 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 			editedEObject = NattableaxisconfigurationFactory.eINSTANCE.createPasteEObjectConfiguration();
 		}
 
+		@SuppressWarnings("unchecked")
 		final List<String> newValues = new ArrayList<String>(this.wrappedList);
 		newValues.add((String)value);;
 
 		final ICommand cmd = TableCommands.getSetIAxisConfigurationValueCommand(getTable(), editedEObject, feature, newValues, isEditingColumn);
 		return new GMFtoEMFCommandWrapper(cmd);
-	}
-
-	//FIXME : OK must be erased
-	@Override
-	public Command getClearCommand() {
-		return super.getClearCommand();
-	}
-
-	//FIXME : OK must be erased
-	@Override
-	public Command getRemoveCommand(int index) {
-		return super.getRemoveCommand(index);
 	}
 
 
@@ -178,6 +169,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 		if(editedEObject == null) {
 			editedEObject = NattableaxisconfigurationFactory.eINSTANCE.createPasteEObjectConfiguration();
 		}
+		@SuppressWarnings("unchecked")
 		final List<String> newValues = new ArrayList<String>(this.wrappedList);
 		Object value = get(oldIndex);
 		newValues.remove(value);
@@ -194,11 +186,6 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 		return super.getRetainAllCommand(values);
 	}
 
-	//FIXME : OK must be erased
-	@Override
-	protected void addDestroyCommand(Command cmd, EObject objToDestroy) {
-		super.addDestroyCommand(cmd, objToDestroy);
-	}
 
 	/**
 	 * 
@@ -213,6 +200,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 		if(editedEObject == null) {
 			editedEObject = NattableaxisconfigurationFactory.eINSTANCE.createPasteEObjectConfiguration();
 		}
+		@SuppressWarnings("unchecked")
 		final List<String> newValues = new ArrayList<String>(this.wrappedList);
 		newValues.add((String)value);
 		final ICommand cmd = TableCommands.getSetIAxisConfigurationValueCommand(getTable(), editedEObject, feature, newValues, isEditingColumn);
@@ -241,6 +229,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 		if(editedEObject == null) {
 			editedEObject = NattableaxisconfigurationFactory.eINSTANCE.createPasteEObjectConfiguration();
 		}
+		@SuppressWarnings("unchecked")
 		final List<String> newValues = new ArrayList<String>(this.wrappedList);
 		newValues.removeAll(values);
 
@@ -260,12 +249,11 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 	 */
 	@Override
 	public Command getSetCommand(int index, Object value) {
-		Object oldValue = get(index);
-		final CompoundCommand compoundCommand = new CompoundCommand("Set Paste Post Actions Commands"); //$NON-NLS-1$
 		PasteEObjectConfiguration editedEObject = (PasteEObjectConfiguration)getEditedEObject();
 		if(editedEObject == null) {
 			editedEObject = NattableaxisconfigurationFactory.eINSTANCE.createPasteEObjectConfiguration();
 		}
+		@SuppressWarnings("unchecked")
 		final List<String> newValues = new ArrayList<String>(this.wrappedList);
 		newValues.add(index, (String)value);
 

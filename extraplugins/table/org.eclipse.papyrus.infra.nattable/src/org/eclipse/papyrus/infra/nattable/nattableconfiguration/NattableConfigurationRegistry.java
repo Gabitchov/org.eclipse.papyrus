@@ -100,7 +100,7 @@ public class NattableConfigurationRegistry {
 				Object file = iConfigurationElement.getAttribute(FILE_ATTRIBUTE);
 				IContributor contributor = iConfigurationElement.getContributor();
 				//we build the uri for the file
-				URI uri = URI.createPlatformPluginURI(contributor.getName() + "/" + file.toString(), true);//$NON-NLS-1$ //FIXME : maybe a best way?
+				URI uri = URI.createPlatformPluginURI(contributor.getName() + "/" + file.toString(), true);//$NON-NLS-1$ //TODO : maybe a best way?
 				Resource res = this.resourceSet.getResource(uri, true);
 				if(res.getContents().size() > 0) {
 					EObject first = res.getContents().get(0);

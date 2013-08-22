@@ -11,23 +11,34 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager.axis;
+package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 
 /**
@@ -35,9 +46,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Ab
  * @author Vincent Lorenzo
  * 
  */
-//FIXME : this abstract class must inherits from the UML Element axis manager
-//FIXME : must be moved into infra.emf.nattable
-public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractAxisManager {
+public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extends AbstractAxisManager {
 
 	/**
 	 * the feature listener
@@ -67,6 +76,22 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 
 	/**
 	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.lang.Integer)
+	 * 
+	 * @param axisPosition
+	 * @return
+	 */
+	public boolean canDestroyAxisElement(Integer axisPosition) {
+		final Object current = getElements().get(axisPosition);
+		final Object elementToDestroy = AxisUtils.getRepresentedElement(current);
+		if(this.managedObject.contains(current) || this.managedObject.contains(elementToDestroy)) {
+			return !EMFHelper.isReadOnly(((EObjectAxis)current).getElement());
+		}
+		return false;
+	}
+
+	/**
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#addListeners()
 	 * 
 	 */
@@ -84,7 +109,7 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	@Override
 	protected void initializeManagedObjectList() {
 		for(final Object current : getFeaturesValue()) {
-			if(isAllowed(current)) {
+			if(isAllowedContents(current)) {
 				this.managedObject.add(current);
 			}
 		}
@@ -96,12 +121,17 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 * @return
 	 *         the list of the objects which are referenced by the listen features
 	 */
+	@SuppressWarnings("unchecked")
 	protected List<Object> getFeaturesValue() {
 		final List<Object> featureValue = new ArrayList<Object>();
 		for(final EStructuralFeature current : getListenFeatures()) {
 			if(current.isMany()) {
-				Collection<? extends Object> values = (Collection<? extends Object>)getTableContext().eGet(current);
-				featureValue.addAll(values);
+				final Object value = getTableContext().eGet(current);
+				if(value instanceof Collection<?>) {
+					featureValue.addAll((Collection<Object>)value);
+				} else {
+					featureValue.add(value);//never tested
+				}
 			}
 		}
 		return featureValue;
@@ -323,14 +353,14 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 			break;//nothing to do
 		case Notification.ADD:
 			Object newValue = notification.getNewValue();
-			if(isAllowed(newValue)) {
+			if(isAllowedContents(newValue) && !isAlreadyManaged(newValue)) {
 				toAdd.add(newValue);
 			}
 			break;
 		case Notification.ADD_MANY:
 			Collection<?> newValues = (Collection<?>)notification.getNewValue();
 			for(final Object current : newValues) {
-				if(isAllowed(current)) {
+				if(isAllowedContents(current) && !isAlreadyManaged(current)) {
 					toAdd.add(current);
 				}
 			}
@@ -368,10 +398,6 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 		}
 	}
 
-	protected boolean isAllowed(final Object object) {//FIXME : replace me by isAllowedContents when its implementation will be have corrected!F
-		return object instanceof EObject;
-	}
-
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.nattable.manager.axis.AbstractUMLSynchronizedOnFeatureAxisManager#getAllManagedAxis()
@@ -381,5 +407,26 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	@Override
 	public Collection<Object> getAllManagedAxis() {
 		return new ArrayList<Object>(this.managedObject);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain, java.lang.Integer)
+	 * 
+	 * @param domain
+	 * @param axisPosition
+	 * @return
+	 */
+	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
+		if(canDestroyAxisElement(axisPosition)) {
+			final Object current = getElements().get(axisPosition);
+			Object elementToDestroy = AxisUtils.getRepresentedElement(current);
+			if(elementToDestroy != null && elementToDestroy instanceof EObject) {
+				final DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)getContextEditingDomain(), (EObject)elementToDestroy, false);
+				final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
+				return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 }

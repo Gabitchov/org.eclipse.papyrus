@@ -20,11 +20,11 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
 import org.eclipse.papyrus.uml.service.types.filter.ICommandFilter;
 import org.eclipse.papyrus.uml.service.types.filter.UmlElementCommandFilter;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Abstract handler for commands regarding creation of elements
@@ -100,8 +100,7 @@ public abstract class AbstractCreateCommandHandler extends AbstractCommandHandle
 	}
 
 	protected IWorkbenchPart getActiveWorkbenchPart() {
-		IWorkbenchPart activePart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
-		return activePart;
+		return WorkbenchPartHelper.getCurrentActiveWorkbenchPart();
 	}
 
 

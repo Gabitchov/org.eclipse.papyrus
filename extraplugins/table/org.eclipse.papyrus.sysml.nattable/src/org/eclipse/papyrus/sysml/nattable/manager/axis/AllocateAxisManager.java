@@ -13,16 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.nattable.manager.axis;
 
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
-import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
@@ -64,46 +55,6 @@ public class AllocateAxisManager extends AbstractStereotypedElementUMLSynchroniz
 		return object instanceof Allocate;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.lang.Integer)
-	 * 
-	 * @param axisPosition
-	 * @return
-	 */
-	public boolean canDestroyAxisElement(Integer axisPosition) {
-		final Object current = getElements().get(axisPosition);
-		if(current instanceof EObjectAxis) {
-			return !EMFHelper.isReadOnly(((EObjectAxis)current).getElement());
-		} else if(current instanceof EObject) {
-			return !EMFHelper.isReadOnly((EObject)current);
-		}
-		return false;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain, java.lang.Integer)
-	 * 
-	 * @param domain
-	 * @param axisPosition
-	 * @return
-	 */
-	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
-		final Object current = getElements().get(axisPosition);
-		EObject elementToDestroy = null;
-		if(current instanceof EObjectAxis) {
-			elementToDestroy = ((EObjectAxis)current).getElement();
-		} else if(current instanceof EObject) {
-			elementToDestroy = (EObject)current;
-		}
-		if(elementToDestroy != null) {
-			final DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)getContextEditingDomain(), elementToDestroy, false);
-			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
-			return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
-		}
-		return null;
-	}
 
 	/**
 	 * 

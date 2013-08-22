@@ -100,8 +100,8 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	}
 
 	/**
-	 * FIXME : should be merge with the specific method for stereotype property
-	 * FIXME : this method should be stored in another plugin specific for UML
+	 * TODO : should be merge with the specific method for stereotype property
+	 * TODO : this method should be stored in another plugin specific for UML
 	 * 
 	 * @param element
 	 *        the edited element
@@ -167,7 +167,7 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	 * @return
 	 *         the edited object located at this place
 	 */
-	//	FIXME : try to remove this method, improving the ComboAction...
+	//	TODO : try to remove this method, improving the ComboAction...
 	public EObject getEditedEObject(int columnIndex, int rowIndex) {
 		Object colElement = this.elementProvider.getColumnElement(columnIndex);
 		Object rowElement = this.elementProvider.getRowElement(rowIndex);
@@ -194,7 +194,7 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 	 * @return
 	 *         the edited feature located at this place
 	 */
-	//FIXME : try to remove this method, improving the ComboAction...
+	//TODO : try to remove this method, improving the ComboAction...
 	public Object getEditedFeature(int columnIndex, int rowIndex) {
 		return this.axisElement;
 	}

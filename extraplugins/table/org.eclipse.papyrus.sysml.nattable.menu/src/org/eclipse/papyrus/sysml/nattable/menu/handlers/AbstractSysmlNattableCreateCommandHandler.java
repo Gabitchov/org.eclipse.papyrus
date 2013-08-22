@@ -13,6 +13,7 @@ package org.eclipse.papyrus.sysml.nattable.menu.handlers;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.utils.INattableModelManagerUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.handlers.AbstractSysmlCreateCommandHandler;
 import org.eclipse.papyrus.uml.nattable.menu.util.TableMenuUtils;
@@ -48,7 +49,7 @@ public abstract class AbstractSysmlNattableCreateCommandHandler extends Abstract
 	 * @return
 	 */
 	protected ICommandContext getCommandContext() {
-		return TableMenuUtils.getTableCommandContext(TableMenuUtils.getTableManager(getActiveWorkbenchPart()));
+		return TableMenuUtils.getTableCommandContext(INattableModelManagerUtils.getTableManagerFromWorkbenchPart(getActiveWorkbenchPart()));
 
 	}
 
@@ -60,7 +61,7 @@ public abstract class AbstractSysmlNattableCreateCommandHandler extends Abstract
 	 * @param evaluationContext
 	 */
 	public void setEnabled(Object evaluationContext) {
-		INattableModelManager tableManager = TableMenuUtils.getTableManager(getActiveWorkbenchPart());
+		INattableModelManager tableManager = INattableModelManagerUtils.getTableManagerFromWorkbenchPart(getActiveWorkbenchPart());
 		boolean isEnabled = tableManager.canCreateRowElement(getElementTypeToCreate().getId());
 		if(isEnabled) {
 			//we test the enable of the super implementation

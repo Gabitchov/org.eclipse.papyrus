@@ -102,31 +102,30 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	@Override
 	public void doSave(final IProgressMonitor monitor) {
-		// TODO Auto-generated method stub
-
+		// nothing to do
 	}
 
 	@Override
 	public void doSaveAs() {
-		// TODO Auto-generated method stub
+		// nothing to do
 
 	}
 
 	@Override
 	public boolean isDirty() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return false;
 	}
 
 	@Override
 	public boolean isSaveAsAllowed() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return false;
 	}
 
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
+		// nothing to do
 	}
 
 	@Override

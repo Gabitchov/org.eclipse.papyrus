@@ -102,7 +102,7 @@ public abstract class AbstractConfigurationElementObservableValue extends Abstra
 	public void handleEvent(Event event) {
 		final Object newValue = doGetValue();
 		//big test required to avoid NPE when we receive event during the exchange of the axis
-		if((newValue != oldValue) && ((newValue != null && oldValue == null) || newValue == null && oldValue != null || !oldValue.equals(newValue))) {
+		if((newValue != oldValue) && ((newValue != null && oldValue == null) || newValue == null && oldValue != null || (oldValue != null && !oldValue.equals(newValue)))) {
 			final Object localOldValue = oldValue;
 			oldValue = newValue;
 			fireValueChange(new ValueDiff() {

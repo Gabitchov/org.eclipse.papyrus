@@ -127,7 +127,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			break;
 		case SINGLE_UML_REFERENCE:
 			UMLSingleReferenceComboBoxDataProvider dataProvider = new UMLSingleReferenceComboBoxDataProvider(axisElement, elementProvider);
-			UMLDialogComboAction action = new UMLDialogComboAction(axisElement, dataProvider);//FIXME : try to replace the comboAction by a AbstractCellFileEditor...
+			UMLDialogComboAction action = new UMLDialogComboAction(axisElement, dataProvider);//TODO : try to replace the comboAction by a AbstractCellFileEditor...
 			ButtonConfiguration conf = new ButtonConfiguration();
 			//		conf.setImage(Activator.getDefault().getImage("/icons/browse_12x12.gif"));
 			conf.setText("...");
@@ -397,16 +397,16 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig#getDisplayConvert(java.lang.Object,
-	 *      org.eclipse.papyrus.infra.nattable.model.nattable.Table, org.eclipse.jface.viewers.ILabelProvider)
-	 * 
-	 * @param axisElement
 	 * @param table
+	 * @param axisElement
 	 * @param provider
+	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig#getDisplayConvert(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 *      java.lang.Object, org.eclipse.jface.viewers.ILabelProvider)
+	 * 
 	 * @return
 	 */
 	@Override
-	public IDisplayConverter getDisplayConvert(Object axisElement, Table table, final ILabelProvider provider) {
+	public IDisplayConverter getDisplayConvert(Table table, Object axisElement, final ILabelProvider provider) {
 		int editorKind = getFeatureIdentifier(table, axisElement);
 		IDisplayConverter converter = null;
 		switch(editorKind) {
@@ -419,7 +419,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 				}
 
 				@Override
-				public Object canonicalToDisplayValue(Object canonicalValue) {//FIXME : we should use the table label provider to do the conversion!
+				public Object canonicalToDisplayValue(Object canonicalValue) {//TODO : we should use the table label provider to do the conversion!
 					if(canonicalValue instanceof DynamicEObjectImpl) {
 						EStructuralFeature feature = ((DynamicEObjectImpl)canonicalValue).eClass().getEStructuralFeature("base_Class");
 						return provider.getText(((DynamicEObjectImpl)canonicalValue).eGet(feature));
@@ -441,7 +441,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			converter = new DefaultDisplayConverter() {
 
 				@Override
-				public Object canonicalToDisplayValue(Object sourceValue) {//FIXME : we should use the table label provider to do the conversion!
+				public Object canonicalToDisplayValue(Object sourceValue) {//TODO : we should use the table label provider to do the conversion!
 					if(sourceValue.equals(new Integer(-1))) {
 						return "*";
 					}
@@ -458,7 +458,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			};
 			break;
 		default:
-			converter = super.getDisplayConvert(axisElement, table, provider);
+			converter = super.getDisplayConvert(table, axisElement, provider);
 			break;
 		}
 		return converter;
@@ -492,7 +492,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 	}
 
 	@Override
-	public String getEditorId() {
+	public String getEditorConfigId() {
 		return EDITOR_CONFIG_ID;
 	}
 }

@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.manager.axis;
+package org.eclipse.papyrus.uml.tools.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,6 @@ import org.eclipse.uml2.uml.util.UMLDerivedUnionAdapter;
  * 
  *         This class has not been generated
  */
-//FIXME : move me in oep.uml.tools or others uml plugin
 public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 	/**
@@ -76,7 +75,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			if(eClass == UMLPackage.eINSTANCE.getPackage()) {
 				System.out.println("case UMLPackage.PACKAGE__PACKAGED_ELEMENT:\n notifyChanged(notification, eClass, UMLPackage.Literals.PACKAGE__NESTED_PACKAGE);\n notifyChanged(notification, eClass, UMLPackage.Literals.PACKAGE__OWNED_STEREOTYPE); \n notifyChanged(notification, eClass, UMLPackage.Literals.PACKAGE__OWNED_TYPE);\n"); //$NON-NLS-1$
 			}
-			System.out.println("break; \n default:\n}}"); //$NON-NLS-1$
+			System.out.println("break; \n default:break;\n break;\n}}"); //$NON-NLS-1$
 		}
 	}
 
@@ -104,6 +103,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -129,6 +129,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -153,6 +154,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -177,6 +179,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -203,6 +206,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -231,6 +235,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -257,6 +262,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -281,6 +287,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -307,6 +314,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -332,6 +340,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -356,6 +365,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -382,6 +392,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -406,6 +417,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -432,6 +444,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -458,6 +471,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -484,6 +498,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -508,6 +523,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -534,6 +550,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -558,6 +575,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -584,6 +602,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -611,6 +630,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -635,6 +655,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -661,6 +682,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -687,6 +709,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -713,6 +736,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -741,6 +765,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -767,6 +792,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -788,6 +814,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.PACKAGE__OWNED_TYPE);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -809,6 +836,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.PACKAGE__OWNED_TYPE);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -830,6 +858,7 @@ public class PapyrusUMLDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.PACKAGE__OWNED_TYPE);
 			break;
 		default:
+			break;
 		}
 	}
 

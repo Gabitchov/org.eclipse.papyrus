@@ -39,7 +39,7 @@ public class NattableConfigAttributes {
 	 * <li>To get it : <code></code></li>
 	 * </ul>
 	 */
-	public static final ConfigAttribute<INattableModelManager> NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE = new ConfigAttribute<INattableModelManager>();//FIXME : try to create a new interface to limit the access of the method
+	public static final ConfigAttribute<INattableModelManager> NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE = new ConfigAttribute<INattableModelManager>();
 
 	/**
 	 * The config attribute used to register the label provider service

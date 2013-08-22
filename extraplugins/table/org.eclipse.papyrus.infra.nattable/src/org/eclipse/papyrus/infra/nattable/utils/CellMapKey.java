@@ -79,6 +79,9 @@ public class CellMapKey {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		return obj.hashCode() == hashCode();
+		if(obj instanceof CellMapKey) {
+			return obj.hashCode() == hashCode();
+		}
+		return false;
 	}
 }

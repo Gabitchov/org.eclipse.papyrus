@@ -123,7 +123,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 			realFeature = realEditedObject.eClass().getEStructuralFeature(prop.getName());
 		}
 		if(stereotypesWithEditedFeatureAppliedOnElement != null && stereotypesWithEditedFeatureAppliedOnElement.size() > 1) {
-			//FIXME : not yet managed
+			//TODO : not yet managed
 		} else {
 			this.dialog = createDialog(realEditedObject, realFeature, stereotype, editedElement.eResource().getResourceSet());
 		}
@@ -198,7 +198,6 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	 * @return
 	 *         the element selector to use in the dialog
 	 */
-	//FIXME : remove the label provider?!
 	protected abstract IElementSelector getElementSelector(final boolean isUnique, final ILabelProvider labelProvider, final IStaticContentProvider contentProvider);
 
 	@Override

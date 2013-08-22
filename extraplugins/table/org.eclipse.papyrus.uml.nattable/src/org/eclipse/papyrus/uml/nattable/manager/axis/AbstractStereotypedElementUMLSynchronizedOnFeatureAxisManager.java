@@ -58,7 +58,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
 	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation,
 	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider)
 	 * 
@@ -75,7 +75,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addListeners()
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager#addListeners()
 	 * 
 	 */
 	@Override
@@ -130,7 +130,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 			break;//nothing to do
 		case Notification.ADD:
 			Object newValue = notification.getNewValue();
-			if(isAllowed(newValue)) {
+			if(isAllowedContents(newValue)) {
 				final T_StereotypeApplication stereotypeApplication = getStereotypeApplication((Element)newValue);
 				if(stereotypeApplication != null) {
 					toAdd.add(newValue);
@@ -142,7 +142,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 		case Notification.ADD_MANY:
 			Collection<?> newValues = (Collection<?>)notification.getNewValue();
 			for(final Object current : newValues) {
-				if(isAllowed(current)) {
+				if(isAllowedContents(current)) {
 					final T_StereotypeApplication stereotypeApplication = getStereotypeApplication((Element)current);
 					if(stereotypeApplication != null) {
 						toAdd.add(current);
@@ -159,7 +159,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 			break;
 		case Notification.REMOVE:
 			final Object oldValue = notification.getOldValue();
-			if(isAllowed(oldValue) && this.managedObject.contains(oldValue)) {
+			if(this.managedObject.contains(oldValue)) {
 				toRemove.add(oldValue);//no need to test the stereotype application
 				final T_StereotypeApplication stereotypeApplication = getStereotypeApplication((Element)oldValue);
 				if(stereotypeApplication != null) {
@@ -171,7 +171,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 		case Notification.REMOVE_MANY:
 			Collection<?> oldValues = (Collection<?>)notification.getOldValue();
 			for(final Object current : oldValues) {
-				if(isAllowed(current)) {
+				if(this.managedObject.contains(current)) {
 					toRemove.add(current);
 					final T_StereotypeApplication stereotypeApplication = getStereotypeApplication((Element)current);
 					if(stereotypeApplication != null) {
@@ -201,7 +201,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#initializeManagedObjectList()
 	 * 
 	 */
-	protected void initializeManagedObjectList() {//FIXME : implements me in the upper class
+	protected void initializeManagedObjectList() {
 		final List<Object> featureValue = getFeaturesValue();
 
 		//we filter them now
@@ -209,7 +209,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 			if(!(current instanceof Element) && isInstanceOfRequiredStereotypeApplication(current)) {
 				final Element baseElement = UMLUtil.getBaseElement(current);
 				if(baseElement != null) {
-					if(isAllowed(baseElement) && featureValue.contains(baseElement)) {
+					if(isAllowedContents(baseElement) && featureValue.contains(baseElement)) {
 						this.managedObject.add(baseElement);
 						this.stereotypedElementsMap.put(current, ((Element)baseElement));
 						addStereotypeApplicationListener(current);
@@ -226,6 +226,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 	 * @param notification
 	 *        the notification
 	 */
+	@SuppressWarnings("unchecked")
 	protected void resourceHasChanged(final Notification notification) {
 		if(notification.isTouch()) {
 			return;
@@ -241,7 +242,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 				List<Object> featureValue = getFeaturesValue();
 				final T_StereotypeApplication stereotypeApplication = (T_StereotypeApplication)addedValue;
 				final Element stereotypedElement = getStereotypeBaseElement(stereotypeApplication);
-				if(stereotypedElement != null && featureValue.contains(stereotypedElement)) {
+				if(stereotypedElement != null && isAllowedAsBaseElement(stereotypedElement) && featureValue.contains(stereotypedElement)) {
 					toAdd.add(stereotypedElement);
 					this.stereotypedElementsMap.put(stereotypeApplication, stereotypedElement);
 				}
@@ -256,7 +257,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 				if(current instanceof EObject && isInstanceOfRequiredStereotypeApplication(current)) {
 					final T_StereotypeApplication stereotypeApplication = (T_StereotypeApplication)current;
 					final Element stereotypedElement = getStereotypeBaseElement(stereotypeApplication);
-					if(featureValue.contains(stereotypedElement)) {
+					if(stereotypedElement != null && isAllowedAsBaseElement(stereotypedElement) && featureValue.contains(stereotypedElement)) {
 						toAdd.add(stereotypedElement);
 						this.stereotypedElementsMap.put(stereotypeApplication, stereotypedElement);
 					}
@@ -345,7 +346,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#removeListeners()
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager#removeListeners()
 	 * 
 	 */
 	@Override
@@ -437,13 +438,37 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 			default:
 				break;
 			}
-
 		}
 	}
 
-	protected boolean isAllowed(final Object object) {//FIXME : replace me by isAllowedContents when its implementation will be have corrected!F
-		return object instanceof Element && isAllowedAsBaseElement((Element)object);
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#isAllowedContents(java.lang.Object)
+	 * 
+	 * @param object
+	 * @return
+	 *         <code>true</code> if the object is an instance of Element + is allowed as base Element + has required stereotype applied on it
+	 */
+	@Override
+	public boolean isAllowedContents(final Object object) {
+		return object instanceof Element && isAllowedAsBaseElement((Element)object) && hasRequiredStereotypes((Element)object);
 	}
+
+	/**
+	 * 
+	 * @param element
+	 * @return
+	 *         <code>true</code> if the elements has all required stererotypes applied on it
+	 */
+	protected final boolean hasRequiredStereotypes(final Element element) {
+		for(final EObject current : element.getStereotypeApplications()) {
+			if(isInstanceOfRequiredStereotypeApplication(current)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	/**
 	 * 

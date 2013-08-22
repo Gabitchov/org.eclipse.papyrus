@@ -76,7 +76,6 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	 * @param managerRep
 	 *        its axis manager representation
 	 * @param provider
-	 *        //FIXME : realy usefule?
 	 *        the managed axis provider
 	 */
 	public void init(final INattableModelManager manager, AxisManagerRepresentation managerRep, final AbstractAxisProvider provider);
@@ -96,7 +95,7 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	 * @return
 	 *         the table manager using this axis manager
 	 */
-	public NattableModelManager getTableManager(); //FIXME : we must use an interface with a small set of accessible method... 
+	public NattableModelManager getTableManager();
 
 
 
@@ -206,7 +205,7 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	 * @return
 	 *         the name used for this axis
 	 */
-	public String getElementAxisName(final IAxis axis);//FIXME pb if the axisManager returns Object and not IAxis... -> use the index!
+	public String getElementAxisName(final IAxis axis);//TODO pb if the axisManager returns Object and not IAxis... -> use the index!
 
 	/**
 	 * 
@@ -275,6 +274,22 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	 * @return
 	 */
 	public boolean canBeSavedAsConfig();
+
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> if the axis manager is currently used as Column Manager (managing the invert axis)
+	 */
+	public boolean isUsedAsColumnManager();
+
+	/**
+	 * 
+	 * @param object
+	 *        an object
+	 * @return
+	 *         <code>true</code> if the object is already managed by the axis manager
+	 */
+	public boolean isAlreadyManaged(Object object);
 
 
 }

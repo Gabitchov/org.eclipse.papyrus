@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.manager.axis;
+package org.eclipse.papyrus.uml.tools.adapters;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -30,7 +30,6 @@ import org.eclipse.uml2.uml.util.UMLDerivedUnionAdapter;
  * @author vl222926
  * 
  */
-//FIXME : move me in oep.uml.tools or others uml plugin
 public class PackageDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 	@Override
@@ -43,6 +42,7 @@ public class PackageDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.PACKAGE__OWNED_TYPE);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -56,6 +56,7 @@ public class PackageDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.PACKAGE__OWNED_TYPE);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -69,6 +70,7 @@ public class PackageDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 			notifyChanged(notification, eClass, UMLPackage.Literals.PACKAGE__OWNED_TYPE);
 			break;
 		default:
+			break;
 		}
 	}
 
