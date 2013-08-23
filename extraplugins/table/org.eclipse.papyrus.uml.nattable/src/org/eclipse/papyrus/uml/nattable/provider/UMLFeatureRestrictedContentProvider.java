@@ -35,7 +35,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author vl222926
  * 
  */
-//TODO : we should create or extends an EMF-content provider
 public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedContentProvider {
 
 	/** the uml feature axis manager */
@@ -79,18 +78,25 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 	 * @return
 	 */
 	public Object[] getElements(Object inputElement) {
-		final boolean columnManager = axisManager.isUsedAsColumnManager();
-		final List<?> elements;
-		if(columnManager) {
-			elements = this.axisManager.getTableManager().getRowElementsList();
-		} else {
-			elements = this.axisManager.getTableManager().getColumnElementsList();
+		if(isRestricted()) {
+			final boolean columnManager = axisManager.isUsedAsColumnManager();
+			final List<?> elements;
+			if(columnManager) {
+				elements = this.axisManager.getTableManager().getRowElementsList();
+			} else {
+				elements = this.axisManager.getTableManager().getColumnElementsList();
+			}
+			if(elements.isEmpty()) {//we returns nothing in restricted mode when the table is empty
+				return new Object[0];
+			}
 		}
-		if(isRestricted() && elements.isEmpty()) {//we must returns nothing when the table is empty
-			return new Object[0];
-		} else {
-			return this.axisManager.getAllPossibleAxis().toArray();
-		}
+		return new Object[]{ UMLPackage.eINSTANCE };
+
+		//		if(isRestricted() && elements.isEmpty()) {//we must returns nothing when the table is empty
+		//			return new Object[0];
+		//		} else {
+		//			return this.axisManager.getAllPossibleAxis().toArray();
+		//		}
 	}
 
 	/**
@@ -130,9 +136,9 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 				boolean isColumnManager = this.axisManager.isUsedAsColumnManager();
 				final List<Object> elementsList;
 				if(isColumnManager) {
-					elementsList = this.axisManager.getTableManager().getColumnElementsList();
-				} else {
 					elementsList = this.axisManager.getTableManager().getRowElementsList();
+				} else {
+					elementsList = this.axisManager.getTableManager().getColumnElementsList();
 				}
 				for(Object object : elementsList) {
 					if(object instanceof EObject) {
