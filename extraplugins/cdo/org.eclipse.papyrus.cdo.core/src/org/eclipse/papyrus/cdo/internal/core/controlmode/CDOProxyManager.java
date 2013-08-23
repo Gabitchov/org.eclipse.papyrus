@@ -79,12 +79,16 @@ public class CDOProxyManager {
 	}
 
 	public static String createPapyrusCDOURI(EObject object) {
+		return createPapyrusCDOURI(object.eResource().getURI(), object);
+	}
+
+	public static String createPapyrusCDOURI(URI resourceURI, EObject object) {
 		long oid = CDOIDUtil.getLong(CDOUtils.getCDOID(object));
 		CDOClassifierRef typeRef = new CDOClassifierRef(object.eClass());
 		CDOID oidWithTypeRef = CDOIDUtil.createLongWithClassifier(oid, typeRef);
 
 		StringBuilder result = new StringBuilder();
-		result.append(object.eResource().getURI());
+		result.append(resourceURI);
 		result.append('#');
 		CDOIDUtil.write(result, oidWithTypeRef);
 

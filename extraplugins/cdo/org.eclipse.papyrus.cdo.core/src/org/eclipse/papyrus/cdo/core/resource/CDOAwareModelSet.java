@@ -13,9 +13,15 @@ package org.eclipse.papyrus.cdo.core.resource;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.EnumSet;
+import java.util.Set;
 
+import org.eclipse.emf.cdo.CDOState;
 import org.eclipse.emf.cdo.dawn.gmf.util.DawnDiagramUpdater;
+import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CDOUtil;
+import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
 import org.eclipse.emf.cdo.view.CDOViewSet;
@@ -32,6 +38,7 @@ import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.controlmode.CDOProxyManager;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSet;
 
@@ -42,6 +49,8 @@ import com.google.common.collect.Iterables;
  * This is the CDOAwareModelSet type. Enjoy.
  */
 public class CDOAwareModelSet extends OnDemandLoadingModelSet {
+
+	private static final Set<CDOState> DIRTY_STATES = EnumSet.of(CDOState.NEW, CDOState.DIRTY, CDOState.CONFLICT, CDOState.INVALID_CONFLICT);
 
 	private final ThreadLocal<Boolean> inGetResource = new ThreadLocal<Boolean>();
 
@@ -55,6 +64,9 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 	public CDOAwareModelSet(IPapyrusRepositoryManager repositoryManager) {
 		super();
+
+		this.resources = new SafeResourceList();
+
 		setTrackingModification(false);
 
 		this.repositoryManager = repositoryManager;
@@ -255,5 +267,90 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 	private boolean canDisconnectCDOViewSet() {
 		CDOView view = getCDOView();
 		return ((view == null) || view.isClosed()) && getResources().isEmpty();
+	}
+
+	boolean isDirty(Resource resource) {
+		return (resource instanceof CDOResource) && DIRTY_STATES.contains(((CDOResource)resource).cdoState());
+	}
+
+	@Override
+	protected void handleResourcesToDelete() {
+		final int initialCount = getResourcesToDeleteOnSave().size();
+
+		super.handleResourcesToDelete();
+
+		// any changes made by resource deletions?
+		CDOView view = getCDOView();
+		if((view instanceof CDOTransaction) && (getResourcesToDeleteOnSave().size() < initialCount)) {
+			try {
+				((CDOTransaction)view).commit();
+			} catch (CommitException e) {
+				Activator.log.error("Failed to commit resource deletions.", e);
+			}
+		}
+	}
+
+	@Override
+	protected boolean validateDeleteResource(URI uri) {
+		boolean result = true;
+
+		Resource resource = getResource(uri, false);
+
+		// if it was meant to be deleted, an attempt would have been made to remove it.  That may
+		// have been prevented if it was dirty.  If it isn't now, then delete it.  Otherwise,
+		// block again
+		if((resource != null) && isDirty(resource)) {
+			result = false;
+			Activator.log.warn("Attempt to delete a dirty CDO resource: " + uri);
+		}
+
+		return result;
+	}
+
+	@Override
+	protected boolean deleteResource(URI uri) {
+		Resource res = getResource(uri, false);
+		boolean result = res instanceof CDOResource;
+
+		if(!result) {
+			// not a CDO resource.  Default behaviour
+			result = super.deleteResource(uri);
+		} else {
+			try {
+				res.delete(null);
+				if(res.getResourceSet() != null) {
+					res.unload();
+					res.getResourceSet().getResources().remove(res);
+				}
+			} catch (IOException e) {
+				Activator.log.error(e);
+			}
+		}
+
+		return result;
+	}
+
+	//
+	// Nested types
+	//
+
+	/**
+	 * CDO doesn't permit resources to be removed from the resource set if they are {@linkplain CDOState#DIRTY dirty}, so this specialized list
+	 * prevents that.
+	 */
+	private class SafeResourceList extends ResourcesEList<Resource> {
+
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public boolean remove(Object object) {
+			boolean result = !(object instanceof CDOResource) || !isDirty((CDOResource)object);
+
+			if(result) {
+				result = super.remove(object);
+			}
+
+			return result;
+		}
 	}
 }
