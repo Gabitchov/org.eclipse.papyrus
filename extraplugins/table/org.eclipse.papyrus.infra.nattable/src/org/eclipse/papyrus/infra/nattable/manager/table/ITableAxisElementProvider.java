@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.nattable.manager.table;
 
 import java.util.List;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
+
 
 /**
  * This interface is used to get the elements on the axis
@@ -55,5 +57,16 @@ public interface ITableAxisElementProvider {
 	 *         the row element for this index or <code>null</code>
 	 */
 	public Object getRowElement(int index);
+
+	/**
+	 * 
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @return
+	 *         the cell for this couple if existing on the model or <code>null</code>
+	 */
+	public Cell getCell(final Object columnElement, final Object rowElement);
 
 }

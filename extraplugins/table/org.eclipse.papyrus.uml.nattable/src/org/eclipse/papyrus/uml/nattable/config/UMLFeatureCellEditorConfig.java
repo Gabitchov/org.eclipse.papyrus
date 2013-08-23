@@ -19,14 +19,12 @@ import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.nattable.celleditor.ButtonConfiguration;
-import org.eclipse.papyrus.infra.nattable.celleditor.ComboBoxWithButtonCellEditor;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.uml.nattable.dataprovider.UMLSingleReferenceComboBoxDataProvider;
 import org.eclipse.papyrus.uml.nattable.dataprovider.UMLStereotypeSingleEnumerationComboBoxDataProvider;
 import org.eclipse.papyrus.uml.nattable.editor.MultiBooleanCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiEnumCellEditor;
@@ -35,10 +33,10 @@ import org.eclipse.papyrus.uml.nattable.editor.MultiRealCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiReferenceCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiStringCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiUnlimitedNaturalCellEditor;
+import org.eclipse.papyrus.uml.nattable.editor.SingleReferenceValueCellEditor;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.nattable.validator.RealDataValidator;
 import org.eclipse.papyrus.uml.nattable.validator.UnlimitedNaturalDataValidator;
-import org.eclipse.papyrus.uml.nattable.widget.UMLDialogComboAction;
 import org.eclipse.papyrus.uml.tools.utils.PrimitivesTypesUtils;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.DataType;
@@ -126,14 +124,16 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			editor = new TextCellEditor();
 			break;
 		case SINGLE_UML_REFERENCE:
-			UMLSingleReferenceComboBoxDataProvider dataProvider = new UMLSingleReferenceComboBoxDataProvider(axisElement, elementProvider);
-			UMLDialogComboAction action = new UMLDialogComboAction(axisElement, dataProvider);//TODO : try to replace the comboAction by a AbstractCellFileEditor...
-			ButtonConfiguration conf = new ButtonConfiguration();
-			//		conf.setImage(Activator.getDefault().getImage("/icons/browse_12x12.gif"));
-			conf.setText("...");
-			conf.setAction(action);
-			conf.setTooltipText("Open a dialog to select the value");
-			editor = new ComboBoxWithButtonCellEditor(dataProvider, conf);
+			//			UMLSingleReferenceComboBoxDataProvider dataProvider = new UMLSingleReferenceComboBoxDataProvider(axisElement, elementProvider);
+			//			UMLDialogComboAction action = new UMLDialogComboAction(axisElement, dataProvider);//TODO : try to replace the comboAction by a AbstractCellFileEditor...
+			//			ButtonConfiguration conf = new ButtonConfiguration();
+			//			//		conf.setImage(Activator.getDefault().getImage("/icons/browse_12x12.gif"));
+			//			conf.setText("...");
+			//			conf.setAction(action);
+			//			conf.setTooltipText("Open a dialog to select the value");
+			//			editor = new ComboBoxWithButtonCellEditor(dataProvider, conf);
+			INattableModelManager manager = (INattableModelManager)elementProvider;
+			editor = new SingleReferenceValueCellEditor(axisElement, elementProvider);
 			break;
 		case SINGLE_UML_ENUMERATION:
 			editor = new ComboBoxCellEditor(getComboDataProvider(table, axisElement, elementProvider));
