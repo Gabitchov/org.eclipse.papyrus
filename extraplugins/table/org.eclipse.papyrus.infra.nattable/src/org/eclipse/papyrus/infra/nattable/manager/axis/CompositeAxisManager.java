@@ -664,7 +664,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	public boolean isAlreadyManaged(final Object object) {
 		for(final IAxisManager current : this.subManagers) {
 			if(current.isAlreadyManaged(object)) {
-				return false;
+				return true;
 			}
 		}
 		return false;

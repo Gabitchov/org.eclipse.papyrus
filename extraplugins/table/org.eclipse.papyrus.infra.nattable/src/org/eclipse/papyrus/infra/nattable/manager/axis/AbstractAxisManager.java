@@ -333,7 +333,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 */
 	@Override
 	public boolean isAlreadyManaged(final Object object) {
-		return !getElements().contains(object);
+		return getElements().contains(object);
 	}
 	/**
 	 * 
