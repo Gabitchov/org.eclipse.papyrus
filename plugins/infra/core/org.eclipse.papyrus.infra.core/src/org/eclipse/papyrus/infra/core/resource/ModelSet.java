@@ -716,23 +716,51 @@ public class ModelSet extends ResourceSetImpl {
 		Iterator<URI> uriIterator = getResourcesToDeleteOnSave().iterator();
 		while(uriIterator.hasNext()) {
 			URI uri = (URI)uriIterator.next();
-			Resource resource = getResource(uri, false);
-			if(resource != null) {
-				String warMessage = "The resource " + resource.getURI().lastSegment() + " was about to deleted but was still contained in the resource set. The will not be deleted";
-				Activator.log.warn(warMessage);
-
-				continue;
+			
+			if (validateDeleteResource(uri)) {
+				if (deleteResource(uri)) {
+					uriIterator.remove();
+				}
 			}
+		}
+	}
+	
+	protected boolean validateDeleteResource(URI uri) {
+		boolean result = true;
+		
+		Resource resource = getResource(uri, false);
+		if(resource != null) {
+			String warMessage = "The resource " + resource.getURI().lastSegment() + " was about to deleted but was still contained in the resource set. The will not be deleted";
+			Activator.log.warn(warMessage);
+
+			result = false;
+		}
+		
+		return result;
+	}
+	
+	protected boolean deleteResource(URI uri) {
+		boolean result = false;
+		
+		try {
+			getURIConverter().delete(uri, null);
+			result = true;
+		} catch (IOException e) {
+			Activator.log.error(e);
+			
+			// hope it's a file that we can delete from the workspace!
 			IFile file = getFile(uri);
 			if(file != null && file.exists()) {
 				try {
 					file.delete(true, new NullProgressMonitor());
-					uriIterator.remove();
-				} catch (CoreException e) {
-					Activator.log.error(e);
+					result = true;
+				} catch (CoreException e2) {
+					Activator.log.error(e2);
 				}
 			}
 		}
+		
+		return result;
 	}
 
 	/**
