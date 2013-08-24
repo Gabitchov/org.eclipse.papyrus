@@ -16,7 +16,6 @@ package org.eclipse.papyrus.qompass.designer.core.dialogs;
 
 import java.util.Collections;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -254,13 +253,13 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 				tsd.setLabelProvider(new UMLLabelProvider());
 				tsd.open();
 				Object result[] = tsd.getResult();
-				if(result.length == 1) {
-					if(result[0] instanceof IAdaptable) {
-						Object type = ((IAdaptable)result[0]).getAdapter(EObject.class);
-						if(type instanceof Type) {
-							m_currentPort.setType((Type)type);
-							selectPort(m_currentPort);
-						}
+				if((result != null) && (result.length == 1)) {
+					// if(result[0] instanceof IAdaptable) {
+					// Object type = ((IAdaptable)result[0]).getAdapter(EObject.class);
+					Object type = result[0];
+					if(type instanceof Type) {
+						m_currentPort.setType((Type)type);
+						selectPort(m_currentPort);
 					}
 				}
 			}

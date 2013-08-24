@@ -132,7 +132,7 @@ public class CompImplTrafos {
 						// due to partially copied composites).
 						// Check is based on names, since the connector points to elements within another
 						// model (copyClassifier does not make a proper connector copy)
-						body += part.getName() + refOp(part) + PrefixConstants.getP_Prefix + role.getName() + "();";  //$NON-NLS-1$
+						body += part.getName() + refOp(part) + opName + "();";  //$NON-NLS-1$
 					} else {
 						// role is not a port: connector connects directly to a structural feature
 						// without passing via a port
@@ -216,14 +216,14 @@ public class CompImplTrafos {
 					// add index parameter
 					Element eLong = Utils.getQualifiedElement(Utils.getTop(implementation), CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE);
 					if(eLong instanceof Type) {
-						op.createOwnedParameter("index", (Type)eLong);
+						op.createOwnedParameter("index", (Type)eLong); //$NON-NLS-1$
 					}
 					else {
 						throw new RuntimeException("Can not find type " + CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE +
 								". Thus, unable to create suitable connect operation in component to OO transformation");
 					}
 				}
-				Parameter refParam = op.createOwnedParameter("ref", requiredIntf);
+				Parameter refParam = op.createOwnedParameter("ref", requiredIntf); //$NON-NLS-1$
 				StUtils.apply(refParam, Ptr.class);
 
 				OpaqueBehavior behavior = (OpaqueBehavior)
@@ -241,15 +241,15 @@ public class CompImplTrafos {
 					body = part.getName();
 					ConnectableElement role = ce.getRole();
 					if(role instanceof Port) {
-						body += refOp(part) + PrefixConstants.connectQ_Prefix + role.getName() + " ";
+						body += refOp(part) + opName;
 						if((portInfo.getUpper() > 1) || (portInfo.getUpper() == -1)) {
-							body += "(index, ref);";
+							body += "(index, ref);"; //$NON-NLS-1$
 						} else {
-							body += "(ref);";
+							body += "(ref);"; //$NON-NLS-1$
 						}
 
 					} else {
-						body += ";";
+						body += ";"; //$NON-NLS-1$
 					}
 				} else {
 					// no delegation - create attribute for port
@@ -260,10 +260,10 @@ public class CompImplTrafos {
 						// is shared (should store a reference)
 						attr.setAggregation(AggregationKind.SHARED_LITERAL);
 					}
-					body = attributeName + (multiPort ? "[index]" : "") + " = ref;";
+					body = attributeName + (multiPort ? "[index]" : "") + " = ref;";  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 				}
 				// TODO: defined by template
-				behavior.getLanguages().add("C/C++");
+				behavior.getLanguages().add("C/C++"); //$NON-NLS-1$
 				behavior.getBodies().add(body);
 
 				// -------------------------
@@ -279,7 +279,7 @@ public class CompImplTrafos {
 					if(op == null) {
 						op = implementation.createOwnedOperation(opName, null, null, requiredIntf);
 						Parameter retParam = op.getOwnedParameters().get(0);
-						retParam.setName("ret");
+						retParam.setName("ret"); //$NON-NLS-1$
 						StUtils.apply(retParam, Ptr.class);
 					}
 					behavior = (OpaqueBehavior)
@@ -289,8 +289,8 @@ public class CompImplTrafos {
 
 					// no delegation
 					String name = PrefixConstants.attributePrefix + portInfo.getName();
-					body = "return " + name + ";";
-					behavior.getLanguages().add("C/C++");
+					body = "return " + name + ";"; //$NON-NLS-1$ //$NON-NLS-2$
+					behavior.getLanguages().add("C/C++"); //$NON-NLS-1$
 					behavior.getBodies().add(body);
 				}
 			}
@@ -311,7 +311,7 @@ public class CompImplTrafos {
 
 		for(Connector connector : implementation.getOwnedConnectors()) {
 			if(ConnectorUtils.isAssembly(connector)) {
-				Boolean associationBased = false;
+				// Boolean associationBased = false;
 				if (connector.getEnds().size() != 2) {
 					throw new TransformationException("Connector <" + connector.getName() + "> does not have two ends. This is currently not supported"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
@@ -331,7 +331,7 @@ public class CompImplTrafos {
 					cmd += connectPorts(indexMap, connector, end1, end2, null);
 					cmd += connectPorts(indexMap, connector, end2, end1, null);
 				}
-				createConnBody += cmd + "\n";
+				createConnBody += cmd + "\n"; //$NON-NLS-1$
 			}
 		}
 		// TODO: use template, as in bootloader
