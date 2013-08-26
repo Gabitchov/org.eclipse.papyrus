@@ -195,7 +195,7 @@
     <!-- M2M QVT-OML -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MMT QVTo 3.3.0",0) -->
-      <rm:uri format="{0}/mmt/qvto/updates/milestones/3.3.0">
+      <rm:uri format="{0}/mmt/qvto/updates/releases/3.3.0">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
