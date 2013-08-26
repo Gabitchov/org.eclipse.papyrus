@@ -1,5 +1,6 @@
 [module CppClassInheritedDeclarations('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/papyrus/C_Cpp/1')/]
-[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::acceleo::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::CppGenUtils/]
 
 [comment
 Return a list of relationships that are either Generalizations or InterfaceRealiazations
@@ -20,5 +21,5 @@ if (hasStereotype(Visibility)) then getApplication(Visibility).oclAsType(Visibil
 [template public CppClassInheritedDeclarations(class : Classifier)]
 [if (filteredRelationships()->size() > 0)] : [/if]
 [for (filteredRelationships()) separator(', \n')]
-	[getCppVisibility()/] [target->asSequence()->first().oclAsType(Classifier).qualifiedName()/][/for]	
+	[getCppVisibility()/] [target->asSequence()->first().oclAsType(Classifier).cppQualifiedName()/][/for]	
 [/template]

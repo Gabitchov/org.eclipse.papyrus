@@ -21,7 +21,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypePropertyAxisManager;
@@ -41,7 +40,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * @author JC236769
  * 
  */
-//FIXME we maybe should use the AbstractRestrictedContentProvider
+//TODO we maybe should use the AbstractRestrictedContentProvider
 //of extends a  generic uml content provider?
 public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotypePropertyContentProvider implements IRestrictedContentProvider {
 
@@ -96,8 +95,13 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	@Override
 	public Object[] getElements() {
 		if(this.isRestricted) {
-			final AbstractAxisProvider secondAxisProvider = getOtherAxisProvider();
-			final List<?> elements = umlStereotypePropertyManager.getTableManager().getElementsList(secondAxisProvider);
+			final boolean isColumnManager = umlStereotypePropertyManager.isUsedAsColumnManager();
+			final List<?> elements;
+			if(isColumnManager) {
+				elements = this.umlStereotypePropertyManager.getTableManager().getRowElementsList();
+			} else {
+				elements = this.umlStereotypePropertyManager.getTableManager().getColumnElementsList();
+			}
 			if(elements.isEmpty()) {
 				return new Object[0];
 			} else {
@@ -120,8 +124,13 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		final Collection<Element> restrictedElements = new HashSet<Element>();
 		//we are restricted so we show only the elements available for the current contents of the table
 		final Set<Stereotype> restrictedStereotypes = new HashSet<Stereotype>();
-		final AbstractAxisProvider otherAxisProvider = getOtherAxisProvider();
-		final List<Object> elementsList = this.umlStereotypePropertyManager.getTableManager().getElementsList(otherAxisProvider);
+		final boolean isColumnManager = umlStereotypePropertyManager.isUsedAsColumnManager();
+		final List<?> elementsList;
+		if(isColumnManager) {
+			elementsList = this.umlStereotypePropertyManager.getTableManager().getRowElementsList();
+		} else {
+			elementsList = this.umlStereotypePropertyManager.getTableManager().getColumnElementsList();
+		}
 		for(Object object : elementsList) {
 			Object representedElement = AxisUtils.getRepresentedElement(object);
 			if(representedElement instanceof Element) {
@@ -203,7 +212,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	 *        a package
 	 * @return
 	 *         a collection with all profiles applied in the package and its subpackage
-	 *         //FIXME : should be moved in an upper plugin
+	 *         //TODO : should be moved in an upper plugin
 	 */
 	private static final Collection<Profile> getAppliedProfilesInWholePackage(final Package pack) {
 		final Collection<Profile> appliedProfiles = new HashSet<Profile>();
@@ -230,7 +239,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	 *        may be null, metatype is ignored if not null
 	 * @return a list containing the selected instances
 	 */
-	//FIXME : replace me by ElementUtils.getInstance...
+	//TODO : replace me by ElementUtils.getInstance...
 	@SuppressWarnings("unchecked")
 	private static final <T extends EObject> List<T> getInstancesFilteredByType(final Package topPackage, final java.lang.Class<T> metaType, final Stereotype appliedStereotype) {
 		// retrieve parent element
@@ -333,20 +342,6 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		this.isRestricted = isRestricted;
 	}
 
-
-	/**
-	 * 
-	 * @return
-	 *         the other axis provider
-	 */
-	protected AbstractAxisProvider getOtherAxisProvider() {
-		AbstractAxisProvider currentProvider = this.umlStereotypePropertyManager.getRepresentedContentProvider();
-		if(currentProvider == this.umlStereotypePropertyManager.getTableManager().getVerticalAxisProvider()) {
-			return this.umlStereotypePropertyManager.getTableManager().getHorizontalAxisProvider();
-		} else {
-			return this.umlStereotypePropertyManager.getTableManager().getVerticalAxisProvider();
-		}
-	}
 
 	/**
 	 * 

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.paste;
 
+import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -63,6 +64,17 @@ public interface IPastePostAction {
 	 * @param sharedMap
 	 *        the map where the class managing the paste and the set value can store interesting information
 	 */
-	public void doAfterAddPastedElementCommand(final INattableModelManager tableManager, final String postActionId, final Map<Object, Object> sharedMap);
+	public void concludePostAction(final INattableModelManager tableManager, final String postActionId, final Map<Object, Object> sharedMap);
+
+	/**
+	 * 
+	 * @param tableManager
+	 *        the table manager
+	 * @param object
+	 *        the object
+	 * @return
+	 *         the possible post actions for this object
+	 */
+	public Collection<String> getAvailablePostActionIds(final INattableModelManager tableManager, final Object object);
 
 }

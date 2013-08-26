@@ -36,11 +36,7 @@ public class UMLElementAxisManager extends EObjectAxisManager {
 	 */
 	@Override
 	public boolean isAllowedContents(Object object) {
-		boolean value = super.isAllowedContents(object);
-		if(value) {
-			return object instanceof Element;
-		}
-		return value;
+		return object instanceof Element;
 	}
 
 	/**

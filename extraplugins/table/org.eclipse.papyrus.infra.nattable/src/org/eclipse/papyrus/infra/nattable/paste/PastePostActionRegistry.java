@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.nattable.paste;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
@@ -97,10 +99,10 @@ public final class PastePostActionRegistry {
 	 * @param sharedMap
 	 *        the map where the class managing the paste and the set value can store interesting information
 	 */
-	public void doAfterAddPastedElementCommand(final INattableModelManager tableManager, final String postActionId, final Map<Object, Object> sharedMap) {
+	public void concludePostAction(final INattableModelManager tableManager, final String postActionId, final Map<Object, Object> sharedMap) {
 		final IPastePostAction postAction = getPostAction(postActionId);
 		if(postAction != null) {
-			postAction.doAfterAddPastedElementCommand(tableManager, postActionId, sharedMap);
+			postAction.concludePostAction(tableManager, postActionId, sharedMap);
 		} else {
 			Activator.log.warn(NLS.bind("No Manager were found to manage {0}", postActionId)); //$NON-NLS-1$
 		}
@@ -120,5 +122,23 @@ public final class PastePostActionRegistry {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * 
+	 * @param tableManager
+	 *        the current table manager
+	 * @param object
+	 *        an object
+	 * @return
+	 *         the possible post actions for this objects
+	 */
+	public Collection<String> getAvailablePostActionIds(final INattableModelManager tableManager, final Object object) {
+		final List<String> postActions = new ArrayList<String>();
+		for(final IPastePostAction current : this.postActions) {
+			postActions.addAll(current.getAvailablePostActionIds(tableManager, object));
+		}
+		Collections.sort(postActions);
+		return postActions;
 	}
 }

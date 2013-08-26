@@ -19,14 +19,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.paste.IPastePostAction;
 import org.eclipse.papyrus.uml.nattable.utils.Constants;
+import org.eclipse.papyrus.uml.tools.utils.CustomElementOperations;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
@@ -97,7 +100,7 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doPostAction(INattableModelManager tableManager, String postAction, Object editedElement, Map<Object, Object> sharedMap) {
-		//FIXME : we must do verification between apply stereotypes on an element : extened metaclass + stereotype already apply or not, + profile apply on the model
+		//TODO : we must do verification before to apply stereotypes on an element : extened metaclass + stereotype already apply or not, + profile apply on the model
 		if(editedElement instanceof Element && !(editedElement instanceof Stereotype) && tableManager.getTable().getContext() instanceof Element) {
 			final Element elementToStereotype = (Element)editedElement;
 			final Element tableContext = (Element)tableManager.getTable().getContext();
@@ -112,7 +115,7 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 					final Stereotype ste = (Stereotype)nearestPackage.getMember(stereotypeName, false, UMLPackage.eINSTANCE.getStereotype());
 
 					if(ste != null) {
-						final EObject stereotypeApplication = PapyrusElementOperations.applyStereotype(((Element)tableContext).getNearestPackage(), elementToStereotype, ste);
+						final EObject stereotypeApplication = CustomElementOperations.applyStereotype(((Element)tableContext).getNearestPackage(), elementToStereotype, ste);
 						final Collection<EObject> steAppList;
 						if(sharedMap.containsKey(STEREOTYPES_APPLICATIONS_TO_ADD_TO_RESOURCE)) {
 							steAppList = (Collection<EObject>)sharedMap.get(STEREOTYPES_APPLICATIONS_TO_ADD_TO_RESOURCE);
@@ -132,11 +135,10 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 							sharedMap.put(elementToStereotype, struct);
 						}
 						//create the structure used to store this mapping
-						for(final Property current : mapping.keySet()) {
-							final StereotypeApplicationStructure structure = new StereotypeApplicationStructure(ste, stereotypeApplication, current, mapping.get(current));
+						for(final Entry<Property, EStructuralFeature> current : mapping.entrySet()){
+							final StereotypeApplicationStructure structure = new StereotypeApplicationStructure(ste, stereotypeApplication, current.getKey(), current.getValue());
 							struct.add(structure);
 						}
-
 					}
 				}
 			}
@@ -145,7 +147,7 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.paste.IPastePostAction#doAfterAddPastedElementCommand(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
+	 * @see org.eclipse.papyrus.infra.nattable.paste.IPastePostAction#concludePostAction(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
 	 *      java.lang.String, java.util.Map)
 	 * 
 	 * @param tableManager
@@ -153,7 +155,7 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 	 * @param sharedMap
 	 */
 	@Override
-	public void doAfterAddPastedElementCommand(final INattableModelManager tableManager, final String postActionId, final Map<Object, Object> sharedMap) {
+	public void concludePostAction(final INattableModelManager tableManager, final String postActionId, final Map<Object, Object> sharedMap) {
 		@SuppressWarnings("unchecked")
 		//must always work!
 		final Collection<EObject> value = (Collection<EObject>)sharedMap.get(STEREOTYPES_APPLICATIONS_TO_ADD_TO_RESOURCE);
@@ -173,8 +175,8 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 			toAdd.add(current);
 		}
 
-		for(final Resource resource : resourcesAndSteApp.keySet()) {
-			resource.getContents().addAll(resourcesAndSteApp.get(resource));
+		for(final Entry<Resource, List<EObject>> entry : resourcesAndSteApp.entrySet()) {
+			entry.getKey().getContents().addAll(entry.getValue());
 		}
 	}
 
@@ -189,5 +191,37 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 	 */
 	private Resource getResourceToStoreStereotypeApplication(final INattableModelManager tableManager, final EObject stereotypeApplication) {
 		return tableManager.getTable().getContext().eResource();
+	}
+
+	public static final List<Stereotype> getApplicableStereotypes(final Element el, final Element context, final Resource resource) {
+		final List<Stereotype> stereotypes = new ArrayList<Stereotype>();
+		stereotypes.addAll(CustomElementOperations.getApplicableStereotypes(el, context.getNearestPackage()));
+		return stereotypes;
+	}
+
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.paste.IPastePostAction#getAvailablePostActionIds(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
+	 *      java.lang.Object)
+	 * 
+	 * @param tableManager
+	 * @param object
+	 * @return
+	 */
+	@Override
+	public Collection<String> getAvailablePostActionIds(final INattableModelManager tableManager, final Object object) {
+		final Collection<String> postActions = new ArrayList<String>();
+		if(object instanceof EClass && UMLPackage.eINSTANCE.getEClassifiers().contains(object)) {
+			final EClass eClass = (EClass)object;
+			final Element instance = (Element)eClass.getEPackage().getEFactoryInstance().create(eClass);
+
+			List<Stereotype> applicableStereotypes = getApplicableStereotypes(instance, (Element)tableManager.getTable().getContext(), tableManager.getTable().getContext().eResource());
+			for(Stereotype stereotype : applicableStereotypes) {
+				postActions.add(Constants.POST_ACTION_APPLY_STEREOTYPE_PREFIX + stereotype.getQualifiedName());
+			}
+		}
+		return postActions;
 	}
 }

@@ -191,7 +191,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 				final EStructuralFeature steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
 				return getSetValueCommand(domain, stereotypeApplication, steApFeature, newValue);
 			} else {
-				//FIXME : not yet managed
+				//TODO : not yet managed
 			}
 		}
 		return null;
@@ -275,7 +275,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 				}
 			}
 		}
-		final Command createProblemCommand = getCreateStringResolutionProblemProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
+		final Command createProblemCommand = getCreateStringResolutionProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
 		if(createProblemCommand != null) {
 			cmd.add(new EMFtoGMFCommandWrapper(createProblemCommand));
 		}
@@ -297,7 +297,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		EStructuralFeature steApFeature = null;
 		if(sharedMap != null) {
 			List<StereotypeApplicationStructure> struct = UMLTableUtils.findStereotypeApplicationDataStructure(el, id, sharedMap);
-			//FIXME : size > 1 not yet managed
+			//TODO : size > 1 not yet managed
 			StereotypeApplicationStructure current = struct.get(0);
 			stereotypeApplication = current.getStereotypeApplication();
 			steApFeature = current.getFeature();
@@ -322,7 +322,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		solvedValue = valueSolver.deduceValueFromString(prop, valueAsString);
 
 
-		if(prop.getType() instanceof Enumeration) {//FIXME : this case must be managed by the converter!
+		if(prop.getType() instanceof Enumeration) {//TODO : this case must be managed by the converter!
 			EEnum eenum = (EEnum)steApFeature.getEType();
 			Object value = solvedValue.getConvertedValue();
 			if(value instanceof Collection<?>) {
@@ -359,7 +359,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 			}
 		}
 
-		createStringResolutionProblemProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
+		createStringResolutionProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
 
 	}
 }

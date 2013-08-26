@@ -79,7 +79,7 @@ public class CellEditorConfigurationFactory {
 		assert configurationId != null;
 		for(final Integer order : this.registry.keySet()) {
 			final IAxisCellEditorConfiguration current = this.registry.get(order);
-			if(configurationId.equals(current.getEditorId())) {
+			if(configurationId.equals(current.getEditorConfigId())) {
 				return current;
 			}
 		}

@@ -12,7 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.externalresource.tests;
 
-import org.eclipse.papyrus.uml.profile.externalresource.tests.resourceloading.ResourceLoading;
+import org.eclipse.papyrus.uml.profile.externalresource.tests.resourceperprofile.LoadUnloadOutsideEditorTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -23,7 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-		ResourceLoading.class
+		LoadUnloadOutsideEditorTests.class
 })
 public class AllTests {
 }

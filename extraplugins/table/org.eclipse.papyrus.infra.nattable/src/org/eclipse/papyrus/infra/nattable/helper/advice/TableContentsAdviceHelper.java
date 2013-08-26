@@ -19,11 +19,13 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.ICellAxisWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage;
@@ -88,12 +90,16 @@ public class TableContentsAdviceHelper extends AbstractEditHelperAdvice {
 	 *        the {@link EObject} element
 	 * @return the {@link CrossReferenceAdapter} corresponding to element
 	 */
-	public static CrossReferenceAdapter getCrossReferenceAdapter(EObject element) {
-
+	public static CrossReferenceAdapter getCrossReferenceAdapter(final EObject element) {
 		CrossReferenceAdapter crossReferenceAdapter = CrossReferenceAdapter.getExistingCrossReferenceAdapter(element);
 		if(crossReferenceAdapter == null) {
-			//FIXME : replace this call to transaction util.
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(element);
+
+			TransactionalEditingDomain domain = null;
+			try {
+				domain = ServiceUtilsForEObject.getInstance().getService(TransactionalEditingDomain.class, element);
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
 			if(domain != null) {
 				crossReferenceAdapter = CrossReferenceAdapter.getCrossReferenceAdapter(domain.getResourceSet());
 			}

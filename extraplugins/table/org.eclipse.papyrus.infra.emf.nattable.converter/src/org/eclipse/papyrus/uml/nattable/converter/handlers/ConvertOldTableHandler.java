@@ -235,12 +235,13 @@ public class ConvertOldTableHandler extends AbstractHandler {
 	 * @return
 	 *         a new UML Generic Table initialized with the same rows as the old table
 	 */
+	@SuppressWarnings("deprecation")
 	protected Table getCreateUMLGenericTableCommand(final PapyrusTableInstance oldTable) {
 		URI uri = NattableConfigurationRegistry.INSTANCE.getConfigurationURI(PAPYRUS_NEW_DEFAULT_TABLE);
 		ResourceSet resourceSet = oldTable.eResource().getResourceSet();
 		TableConfiguration configuration = (TableConfiguration)resourceSet.getResource(uri, true).getContents().get(0);
 		Table newTable = getCreateTableFromConfiguration(oldTable, configuration);
-		final AxisManagerRepresentation representation = configuration.getRowHeaderAxisConfiguration().getAxisManagers().get(0);//FIXME : add a test to be sure! 
+		final AxisManagerRepresentation representation = configuration.getRowHeaderAxisConfiguration().getAxisManagers().get(0);
 		for(final EObject element : oldTable.getTable().getElements()) {
 			EObjectAxis axis = NattableaxisFactory.eINSTANCE.createEObjectAxis();
 			axis.setElement(element);
@@ -288,6 +289,7 @@ public class ConvertOldTableHandler extends AbstractHandler {
 	 * @return
 	 *         the new table initialized with its configuration
 	 */
+	@SuppressWarnings("deprecation")
 	protected Table getCreateTableFromConfiguration(final PapyrusTableInstance oldTable, final TableConfiguration tableConfiguration) {
 		return TableHelper.createTable(tableConfiguration, oldTable.getTable().getContext(), oldTable.getName() + "(Converted)", oldTable.getTable().getDescription()); //$NON-NLS-1$
 	}

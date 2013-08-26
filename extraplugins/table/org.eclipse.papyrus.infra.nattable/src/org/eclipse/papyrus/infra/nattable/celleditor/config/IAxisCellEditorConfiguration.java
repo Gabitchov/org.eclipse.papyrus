@@ -30,23 +30,23 @@ public interface IAxisCellEditorConfiguration {
 
 	/**
 	 * 
-	 * @param axisElement
-	 *        TODO
 	 * @param table
-	 *        TODO
+	 *        the table
+	 * @param axisElement
+	 *        the axis element
 	 * @param provider
 	 *        the label provider to use
 	 * @return
 	 *         the display converter
 	 */
-	public IDisplayConverter getDisplayConvert(Object axisElement, Table table, final ILabelProvider provider);
+	public IDisplayConverter getDisplayConvert(Table table, Object axisElement, final ILabelProvider provider);
 
 	/**
 	 * 
 	 * @param table
-	 *        TODO
+	 *        the table
 	 * @param axisElement
-	 *        TODO
+	 *        the axis element
 	 * @return
 	 *         the cell painter for the editor
 	 */
@@ -55,7 +55,7 @@ public interface IAxisCellEditorConfiguration {
 	/**
 	 * 
 	 * @param table
-	 *        TODO
+	 *        the table
 	 * @param axisElement
 	 *        the edited element axis
 	 * @param elementProvider
@@ -67,9 +67,9 @@ public interface IAxisCellEditorConfiguration {
 	/**
 	 * 
 	 * @param table
-	 *        TODO
+	 *        the table
 	 * @param axisElement
-	 *        TODO
+	 *        the axis element
 	 * @return
 	 *         the display mode to use for the editor
 	 */
@@ -80,23 +80,16 @@ public interface IAxisCellEditorConfiguration {
 	 * @return
 	 *         the id of the editor
 	 */
-	//FIXME should be renamed into getEditorConfigId
-	public String getEditorId();
+	public String getEditorConfigId();
 
 	/**
 	 * 
-	 * @return
-	 *         the id to use to tag the cell
-	 */
-	public String getConfigCellId();//FIXME : shoudl be removed!
-
-	/**
-	 * the data validator
 	 * 
 	 * @param table
-	 *        TODO
+	 *        the table
 	 * @param axisElement
-	 *        TODO
+	 *        the axis element
+	 * @return the data validator
 	 */
 	public IDataValidator getDataValidator(Table table, Object axisElement);
 

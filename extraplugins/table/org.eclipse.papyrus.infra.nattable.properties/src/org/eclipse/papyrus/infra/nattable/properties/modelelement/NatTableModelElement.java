@@ -65,8 +65,10 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectDe
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectPostActionsObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnElementTypeIdContentProvider;
+import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowElementTypeIdContentProvider;
+import org.eclipse.papyrus.infra.nattable.properties.provider.RowPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -478,7 +480,7 @@ public class NatTableModelElement extends EMFModelElement {
 			} else if(Constants.ROW_PASTED_OBJECT_DETACHED_MODE_FEATURE.equals(propertyPath)) {
 				res = true;
 			} else if(Constants.ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
-				res = true;
+				res = new RowPostActionIdsProvider(this.tableModelManager).getElements().length != 0;
 
 				//paste column EObject
 			} else if(Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
@@ -488,13 +490,20 @@ public class NatTableModelElement extends EMFModelElement {
 			} else if(Constants.COLUMN_PASTED_OBJECT_DETACHED_MODE_FEATURE.equals(propertyPath)) {
 				res = true;
 			} else if(Constants.COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
-				res = true;
+				res = new ColumnPostActionIdsProvider(this.tableModelManager).getElements().length != 0;
 			}
 		}
 
 		return res;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#getContentProvider(java.lang.String)
+	 * 
+	 * @param propertyPath
+	 * @return
+	 */
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		IStaticContentProvider provider = null;
@@ -506,10 +515,49 @@ public class NatTableModelElement extends EMFModelElement {
 			provider = new RowElementTypeIdContentProvider(this.tableModelManager);
 		} else if(Constants.COLUMN_PASTED_EOBJECT_ID.equals(propertyPath)) {
 			provider = new ColumnElementTypeIdContentProvider(this.tableModelManager);
+		} else if(Constants.ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+			provider = new RowPostActionIdsProvider(this.tableModelManager);
+		} else if(Constants.COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+			provider = new RowPostActionIdsProvider(this.tableModelManager);
 		}
 		if(provider != null) {
 			return provider;
 		}
 		return super.getContentProvider(propertyPath);
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#isUnique(java.lang.String)
+	 * 
+	 * @param propertyPath
+	 * @return
+	 */
+	@Override
+	public boolean isUnique(final String propertyPath) {
+		if(Constants.ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+			return true;
+		} else if(Constants.COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+			return true;
+		}
+		return super.isUnique(propertyPath);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#isOrdered(java.lang.String)
+	 * 
+	 * @param propertyPath
+	 * @return
+	 */
+	@Override
+	public boolean isOrdered(final String propertyPath) {
+		if(Constants.ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+			return true;
+		} else if(Constants.COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
+			return true;
+		}
+		return super.isOrdered(propertyPath);
+	}
+
 }

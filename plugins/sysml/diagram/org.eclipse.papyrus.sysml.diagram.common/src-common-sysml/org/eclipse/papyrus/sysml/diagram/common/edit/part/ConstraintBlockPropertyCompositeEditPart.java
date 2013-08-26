@@ -50,7 +50,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayE
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.locator.ConstraintParameterPositionLocator;
+import org.eclipse.papyrus.uml.diagram.common.locator.FullInsidePortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -117,7 +117,7 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 		}
 
 		if(childEditPart instanceof ConstraintParameterAffixedNodeEditPart) {
-			IBorderItemLocator locator = new ConstraintParameterPositionLocator(getMainFigure(), PositionConstants.NONE);
+			IBorderItemLocator locator = new FullInsidePortPositionLocator(getMainFigure(), PositionConstants.NONE, ((ConstraintBlockPropertyCompositeFigure)getPrimaryShape()).getCorner());
 			getBorderedFigure().getBorderItemContainer().add(((ConstraintParameterAffixedNodeEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
@@ -132,12 +132,11 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 			return true;
 		}
 
-		if(childEditPart instanceof FlowPortAffixedNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((FlowPortAffixedNodeEditPart)childEditPart).getFigure());
+		if(childEditPart instanceof ConstraintNodeLabelEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof PortAffixedNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((PortAffixedNodeEditPart)childEditPart).getFigure());
+		if(childEditPart instanceof ConstraintParameterAffixedNodeEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ConstraintParameterAffixedNodeEditPart)childEditPart).getFigure());
 			return true;
 		}
 

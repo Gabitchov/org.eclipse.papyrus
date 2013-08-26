@@ -65,7 +65,7 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 	 * 
 	 * @param tableModelManager
 	 */
-	public AbstractHeaderDataProvider(INattableModelManager tableModelManager) {//FIXME : we don't manage the remove of the axis configuration (possible when we return to the initial configuration
+	public AbstractHeaderDataProvider(INattableModelManager tableModelManager) {//TODO : we don't manage the remove of the axis configuration (possible when we return to the initial configuration
 		super(tableModelManager);
 		this.listenAxisConfiguration = getAxisConfiguration();
 		initListeners();

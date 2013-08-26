@@ -14,22 +14,17 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
-import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
-import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
+import org.eclipse.papyrus.sysml.diagram.common.utils.ConstraintBlockHelper;
 import org.eclipse.papyrus.uml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
@@ -60,24 +55,8 @@ public class CustomBindingConnectorCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if (this.source != null && this.target != null) {
-			return isConstraintParameter((Element)source, RequestParameterUtils.getSourceView(getRequest())) 
-					|| isConstraintParameter((Element)target, RequestParameterUtils.getTargetView(getRequest()));
-		}
-		return false;
-	}
-
-	private boolean isConstraintParameter(Element element, View view) {
-		if (element instanceof Property) {
-			Property property = (Property) element;
-			Element ownerConstraintBlock = property.getOwner();
-			if (ownerConstraintBlock instanceof org.eclipse.uml2.uml.Class && UMLUtil.getStereotypeApplication(ownerConstraintBlock, ConstraintBlock.class) != null) {
-				// check for graphics : owned by a constraintProperty
-				View containerView = ViewUtil.getContainerView(view);
-				Element containerElement = (Element)containerView.getElement();
-				return containerElement instanceof Property 
-						&& UMLUtil.getStereotypeApplication(containerElement, ConstraintProperty.class) != null 
-						&& ((Property)containerElement).getType() == ownerConstraintBlock;
-			}
+			return ConstraintBlockHelper.isConstraintParameter((Element)source, RequestParameterUtils.getSourceView(getRequest())) 
+					|| ConstraintBlockHelper.isConstraintParameter((Element)target, RequestParameterUtils.getTargetView(getRequest()));
 		}
 		return false;
 	}

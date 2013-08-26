@@ -1,5 +1,6 @@
 [module CppBindHeader('http://www.eclipse.org/uml2/4.0.0/UML')/]
-[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::acceleo::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::CppGenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeClassDeclaration/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppTemplates/]
 [import org::eclipse::papyrus::cpp::codegen::preferences::CppCodeGenUtils/]

@@ -94,7 +94,7 @@ public class PapyrusNattableControlModeParticipant implements IControlCommandPar
 	 */
 	@Override
 	public ICommand getPreControlCommand(ControlModeRequest request) {
-		//don't create the notation resource since it is already handled //FIXME :
+		//don't create the notation resource since it is already handled 
 		return null;
 	}
 

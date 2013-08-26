@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.nebula.widgets.nattable.NatTable;
@@ -24,7 +23,6 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -32,7 +30,7 @@ import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.services.IDisposable;
 
 
-public interface INattableModelManager extends ILimitedNattableModelManager, ITableAxisElementProvider, IDisposable, IDataProvider {
+public interface INattableModelManager extends ITableAxisElementProvider, IDisposable, IDataProvider {
 
 
 	public int getColumnCount();
@@ -73,10 +71,6 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 
 	public boolean canInvertAxis();
 
-	public boolean declareEditorsOnColumns();
-
-	public boolean declareEditorsOnRows();
-
 	public Table getTable();
 
 	public ITableAxisElementProvider getTableAxisElementProvider();
@@ -84,8 +78,6 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public NatTable createNattable(final Composite parent, int style, IWorkbenchPartSite site);
 
 	public LocationValue getLocationInTheTable(final Point location);
-
-	public List<Object> getElementsList(final AbstractAxisProvider axisProvider);
 
 	public boolean canCreateRowElement(String elementType);
 
@@ -187,14 +179,4 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	 */
 	public IAxisManager getRowAxisManager();
 
-	/**
-	 * 
-	 * @param columnElement
-	 *        the column element
-	 * @param rowElement
-	 *        the row element
-	 * @return
-	 *         the cell for this couple if existing on the model or <code>null</code>
-	 */
-	public Cell getCell(final Object columnElement, final Object rowElement);
 }

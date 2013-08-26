@@ -25,12 +25,11 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.utils.INattableModelManagerUtils;
 import org.eclipse.papyrus.uml.nattable.menu.messages.Messages;
 import org.eclipse.papyrus.uml.service.types.utils.CommandContext;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
-import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -39,14 +38,14 @@ import org.eclipse.ui.PlatformUI;
 public class TableMenuUtils {
 
 	/**
-	 * FIXME move me in an upper plugin
+	 * 
 	 * 
 	 * @param tableManager
 	 *        the table manager
 	 * @return
 	 *         the command context to use to create new elements in the table
 	 */
-	public static ICommandContext getTableCommandContext(INattableModelManager tableManager) {
+	public static ICommandContext getTableCommandContext(final INattableModelManager tableManager) {
 		INattableModelManager manager = tableManager;
 		if(manager != null) {
 			final EObject container = manager.getTable().getContext();
@@ -60,26 +59,16 @@ public class TableMenuUtils {
 	}
 
 	/**
-	 * FIXME move me in an upper plugin
 	 * 
-	 * @param activeWorkbenchPart
+	 * @param createCmd
+	 *        the create command
+	 * @param createElementRequest
+	 *        the create element request
 	 * @return
-	 *         the table manager from the workbench part
+	 *         the command to use to create elements in the table editor
 	 */
-	public static INattableModelManager getTableManager(IWorkbenchPart activeWorkbenchPart) {
-		IWorkbenchPart activePart = activeWorkbenchPart;
-		if(activePart instanceof AbstractMultiPageSashEditor) {
-			activePart = ((AbstractMultiPageSashEditor)activePart).getActiveEditor();
-			if(activePart != null) {
-				return (INattableModelManager)activePart.getAdapter(INattableModelManager.class);
-			}
-
-		}
-		return null;
-	}
-
 	public static Command buildNattableCreationCommand(Command createCmd, final CreateElementRequest createElementRequest) {
-		final INattableModelManager nattableModelManager = getTableManager(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart());
+		final INattableModelManager nattableModelManager = INattableModelManagerUtils.getTableManagerFromWorkbenchPart(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart());
 		if(nattableModelManager != null) {
 			CompositeCommand cmd = new CompositeCommand(""); //$NON-NLS-1$
 			cmd.add(new EMFtoGMFCommandWrapper(createCmd));

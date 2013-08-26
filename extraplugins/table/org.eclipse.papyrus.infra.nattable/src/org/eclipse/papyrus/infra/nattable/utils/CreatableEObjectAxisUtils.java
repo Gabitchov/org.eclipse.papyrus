@@ -75,8 +75,4 @@ public class CreatableEObjectAxisUtils {
 		return allowedElements;
 	}
 
-
-
-
-
 }

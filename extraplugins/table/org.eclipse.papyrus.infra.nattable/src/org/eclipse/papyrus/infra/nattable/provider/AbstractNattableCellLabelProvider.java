@@ -20,7 +20,6 @@ import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
@@ -116,7 +115,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 */
 	protected Object getRowObject(final ILayerCell cell, final IConfigRegistry registry) {
 		int rowIndex = cell.getRowIndex();
-		ITableAxisElementProvider provider = getAxisContentProvider(registry);
+		INattableModelManager provider = getAxisContentProvider(registry);
 		return provider.getRowElement(rowIndex);
 	}
 
@@ -129,7 +128,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 */
 	protected Object getColumnObject(final ILayerCell cell, final IConfigRegistry registry) {
 		int columnIndex = cell.getColumnIndex();
-		ITableAxisElementProvider provider = getAxisContentProvider(registry);
+		INattableModelManager provider = getAxisContentProvider(registry);
 		return provider.getColumnElement(columnIndex);
 	}
 
@@ -139,7 +138,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 * @return
 	 *         the table axis element provider
 	 */
-	protected ITableAxisElementProvider getAxisContentProvider(final IConfigRegistry registry) {
+	protected INattableModelManager getAxisContentProvider(final IConfigRegistry registry) {
 		return registry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 	}
 

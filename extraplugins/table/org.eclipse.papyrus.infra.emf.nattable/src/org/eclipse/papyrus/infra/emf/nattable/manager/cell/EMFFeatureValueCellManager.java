@@ -100,7 +100,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @param rowElement
 	 *        the row element
 	 * @param sharedMap
-	 *        TODO
+	 *        a map with interesting informations
 	 * @return
 	 *         <code>null</code> or a list of 2 objects.
 	 *         <ul>
@@ -207,7 +207,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		if(setValueCommand != null) {
 			cmd.add(new EMFtoGMFCommandWrapper(setValueCommand));
 		}
-		final Command createProblemCommand = getCreateStringResolutionProblemProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
+		final Command createProblemCommand = getCreateStringResolutionProblemCommand(domain, tableManager, columnElement, rowElement, newValue, solvedValue);
 		if(createProblemCommand != null) {
 			cmd.add(new EMFtoGMFCommandWrapper(createProblemCommand));
 		}
@@ -235,8 +235,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @return
 	 *         the command to create a String resolution Problem
 	 */
-	//FIXME : could be in a util class
-	protected Command getCreateStringResolutionProblemProblemCommand(final TransactionalEditingDomain domain, final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer) {
+	protected Command getCreateStringResolutionProblemCommand(final TransactionalEditingDomain domain, final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer) {
 		final IStatus status = valueContainer.getStatus();
 		if(!status.isOK()) {
 			if(status.matches(IStatus.ERROR)) {
@@ -355,18 +354,27 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		}
 	}
 
-	//FIXME : could be in a util class
-	protected void createStringResolutionProblemProblem(final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer, final Map<?, ?> sharedMap) {
+	/**
+	 * Create the string problems if required
+	 * 
+	 * @param tableManager
+	 * @param columnElement
+	 * @param rowElement
+	 * @param pastedText
+	 * @param valueContainer
+	 * @param sharedMap
+	 */
+	protected void createStringResolutionProblem(final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer, final Map<?, ?> sharedMap) {
 		final IStatus status = valueContainer.getStatus();
 		if(!status.isOK()) {
 			if(status.matches(IStatus.ERROR)) {
+				@SuppressWarnings("unchecked")
 				final List<ReferenceValueSetter> references = (List<ReferenceValueSetter>)sharedMap.get(Constants.REFERENCES_TO_SET_KEY);
 				if(status.matches(IStatus.ERROR)) {
 					Cell cell = tableManager.getCell(columnElement, rowElement);
 
 					if(cell == null) {
 						//we create the cell
-						final Table table = tableManager.getTable();
 						cell = NattablecellFactory.eINSTANCE.createCell();
 
 						//create the columnWrapper;
@@ -397,6 +405,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 						}
 						cell.setColumnWrapper(columnWrapper);
 						cell.setRowWrapper(rowWrapper);
+						@SuppressWarnings("unchecked")
 						final List<Cell> cells = (List<Cell>)sharedMap.get(Constants.CELLS_TO_ADD_KEY);
 						cells.add(cell);
 
@@ -444,6 +453,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		final EStructuralFeature editedFeature = (EStructuralFeature)objects.get(1);
 		ConvertedValueContainer<?> solvedValue = valueConverter.deduceValueFromString(editedFeature, valueAsString);
 		if(editedFeature instanceof EReference) {
+			@SuppressWarnings("unchecked")
 			final List<ReferenceValueSetter> references = (List<ReferenceValueSetter>)sharedMap.get(Constants.REFERENCES_TO_SET_KEY);
 			final ReferenceValueSetter structure = new ReferenceValueSetter(editedObject, (EReference)editedFeature, solvedValue.getConvertedValue());
 			references.add(structure);
@@ -451,6 +461,6 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 			editedObject.eSet(editedFeature, solvedValue.getConvertedValue());
 		}
 
-		createStringResolutionProblemProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
+		createStringResolutionProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
 	}
 }

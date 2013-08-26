@@ -65,7 +65,7 @@ public class MultiReferenceCellEditor extends AbstractUMLMultiValueCellEditor {
 	protected IElementSelector getElementSelector(final boolean isUnique, final ILabelProvider labelProvider, final IStaticContentProvider contentProvider) {
 		final ReferenceSelector selector = new ReferenceSelector(isUnique);
 		selector.setContentProvider(contentProvider);
-		selector.setLabelProvider(new UMLLabelProvider());//FIXME
+		selector.setLabelProvider(new UMLLabelProvider());
 		return selector;
 	}
 

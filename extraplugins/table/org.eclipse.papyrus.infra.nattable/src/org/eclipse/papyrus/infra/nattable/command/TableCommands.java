@@ -68,7 +68,7 @@ public class TableCommands {
 	 * @return
 	 *         the command to change a value in the row configuration header of a table
 	 */
-	//FIXME : the handler must use me
+	//TODO : the handler must use me
 	public static ICommand getSetRowHeaderConfigurationValueCommand(final Table table, final EStructuralFeature feature, final Object newValue) {
 		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
 		final CompositeCommand compositeCommand = new CompositeCommand("SetRowHeaderConfigurationCommand"); //$NON-NLS-1$
@@ -103,7 +103,7 @@ public class TableCommands {
 	 * @return
 	 *         the command to change a value in the column configuration header of a table
 	 */
-	//FIXME : the handler must use me
+	//TODO : the handler must use me
 	public static ICommand getSetColumnHeaderConfigurationValueCommand(final Table table, final EStructuralFeature feature, final Object newValue) {
 		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
 		final CompositeCommand compositeCommand = new CompositeCommand("SetColumnHeaderConfigurationCommand"); //$NON-NLS-1$
@@ -141,7 +141,7 @@ public class TableCommands {
 	 *         the command to modify the feature value in the label configuration of the table. This command adds the localLabelConfiguration when it
 	 *         is required
 	 */
-	//FIXME the handler must use me
+	//TODO the handler must use me
 	public static final ICommand getSetColumnLabelConfigurationValueCommand(final Table table, final ILabelProviderConfiguration usedLabelConfiguration, final EStructuralFeature editedFeature, final Object newValue) {
 		final CompositeCommand cmd = new CompositeCommand("ChangeColumnLabelConfigurationValueCommand"); //$NON-NLS-1$
 		TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
@@ -172,7 +172,7 @@ public class TableCommands {
 	 *         the command to modify the feature value in the label configuration of the table. This command adds the localLabelConfiguration when it
 	 *         is required
 	 */
-	//FIXME the handler must use me
+	//TODO the handler must use me
 	public static final ICommand getSetRowLabelConfigurationValueCommand(final Table table, final ILabelProviderConfiguration usedLabelConfiguration, final EStructuralFeature editedFeature, final Object newValue) {
 		final CompositeCommand cmd = new CompositeCommand("ChangeRowLabelConfigurationValueCommand"); //$NON-NLS-1$
 		TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);

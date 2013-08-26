@@ -124,8 +124,6 @@ public abstract class AbstractCreateStereotypePropertyMenuFactory extends Extens
 							super.fill(parent, index);
 							getMenu().getParentItem().setEnabled(true);
 							Image image = Activator.getDefault().getImage(org.eclipse.papyrus.uml.nattable.Activator.getDefault().PLUGIN_ID, iconPath);
-							//FIXME : set the image
-							//Image image = Activator.getImage("IMG_OBJ_ADD"); //$NON-NLS-1$
 							getMenu().getParentItem().setImage(image);
 						}
 

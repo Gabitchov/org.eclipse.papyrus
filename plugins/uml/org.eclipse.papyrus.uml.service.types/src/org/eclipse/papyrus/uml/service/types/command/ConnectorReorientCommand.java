@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
@@ -68,7 +69,17 @@ public class ConnectorReorientCommand extends EditElementCommand {
 		newEndView = RequestParameterUtils.getReconnectedEndView(request);
 		oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
 	}
-
+	
+	public ConnectorReorientCommand(ReorientReferenceRelationshipRequest request) {
+		super(request.getLabel(), null, request);
+		reorientDirection = request.getDirection();
+		oldEnd = request.getOldRelationshipEnd();
+		newEnd = request.getNewRelationshipEnd();
+		reorientedEdgeView = RequestParameterUtils.getReconnectedEdge(request);
+		newEndView = RequestParameterUtils.getReconnectedEndView(request);
+		oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
+	}
+	
 	/**
 	 * Test if the command can be executed.
 	 */
@@ -228,7 +239,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 		return (parent instanceof Element) ? (Element)parent : null;
 	}
 
-	private void replaceOwner(Connector connector, StructuredClassifier newOwner) {
+	protected void replaceOwner(Connector connector, StructuredClassifier newOwner) {
 		// Change owner and Connector name (possibly already exists in new container)
 		if (newOwner.getOwnedConnector(connector.getName()) != null) {
 			String replacementName = NamedElementHelper.getDefaultNameWithIncrementFromBase("connector", newOwner.eContents()); // //$NON-NLS-0$
@@ -243,7 +254,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 	 * 
 	 * @return the new {@link Connector} end part with port.
 	 */
-	private Property getNewPartWithPort() {
+	protected Property getNewPartWithPort() {
 		Property partWithPort = null;
 		Element newEndParent = getEndParent(newEndView);
 		if(newEnd instanceof Port) {
@@ -264,7 +275,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 	 * 
 	 * @return the new {@link Connector} opposite end part with port.
 	 */
-	private Property getNewOppositePartWithPort() {
+	protected Property getNewOppositePartWithPort() {
 		Property partWithPort = null;
 		Element oppositeEndParent = getEndParent(oppositeEndView);
 		if(oppositeEndView.getElement() instanceof Port) {

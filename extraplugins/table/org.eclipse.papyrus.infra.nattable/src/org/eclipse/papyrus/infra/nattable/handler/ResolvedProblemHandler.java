@@ -42,8 +42,6 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
  * @author VL222926
  * 
  */
-//FIXME : we must replace this handler by a dynamic menu to be able to remove several problems in the same cell
-
 public class ResolvedProblemHandler extends AbstractTableHandler {
 
 	/**
@@ -68,7 +66,7 @@ public class ResolvedProblemHandler extends AbstractTableHandler {
 		CompositeCommand composite = new CompositeCommand("Destroy Problem Command"); //$NON-NLS-1$
 		composite.add(provider.getEditCommand(request));
 
-		//FIXME : improve me and move me into an edit helper when we will have customization for the cell
+		//TODO : improve me and move me into an edit helper when we will have customization for the cell
 		composite.add(new AbstractTransactionalCommand(domain, "Clean Table Model : remove empty Cell", null) { //$NON-NLS-1$
 
 			@Override

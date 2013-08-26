@@ -107,13 +107,11 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 			editor = new CheckBoxCellEditor();
 			break;
 		case SINGLE_EENUM_TYPE:
-			editor = new ComboBoxCellEditor(new IComboBoxDataProvider() {//FIXME add a method to get the dataprovider!
+			editor = new ComboBoxCellEditor(new IComboBoxDataProvider() {
 
 
 				public List<?> getValues(int columnIndex, int rowIndex) {
-					Object el = elementProvider.getColumnElement(columnIndex);
-					//					Object el = elementProvider.getColumnElement(columnIndex);
-					List<Object> literals = new ArrayList<Object>();
+					final List<Object> literals = new ArrayList<Object>();
 					for(final EEnumLiteral instances : ((EEnum)((EStructuralFeature)axisElement).getEType()).getELiterals()) {
 						literals.add(instances.getInstance());
 					}
@@ -130,11 +128,11 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getEditorId()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getEditorConfigId()
 	 * 
 	 * @return
 	 */
-	public String getEditorId() {
+	public String getEditorConfigId() {
 		return EDITOR_CONFIG_ID;
 	}
 
@@ -156,13 +154,16 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 	}
 
 	/**
+	 * 
+	 * @param table
+	 * @param axisElement
 	 * @param provider
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.conf#getDisplayConvert(Object, Table, org.eclipse.jface.viewers.ILabelProvider)
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getDisplayConvert(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 *      java.lang.Object, org.eclipse.jface.viewers.ILabelProvider)
 	 * 
 	 * @return
 	 */
-
-	public IDisplayConverter getDisplayConvert(Object axisElement, Table table, final ILabelProvider provider) {
+	public IDisplayConverter getDisplayConvert(final Table table, final Object axisElement, final ILabelProvider provider) {
 		int editorKind = getFeatureIdentifier(table, axisElement);
 		IDisplayConverter displayConverter = null;
 		switch(editorKind) {
@@ -211,7 +212,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 			cellPainter = new ComboBoxPainter();
 			break;
 		default:
-			cellPainter = new TextPainter();//FIXME : seems overriden by the CustomizedCellPainter... -> the result is correct, but our code is maybe incorrect
+			cellPainter = new TextPainter();//TODO : seems overriden by the CustomizedCellPainter... -> the result is correct, but our code is maybe incorrect
 			break;
 		}
 		return cellPainter;
