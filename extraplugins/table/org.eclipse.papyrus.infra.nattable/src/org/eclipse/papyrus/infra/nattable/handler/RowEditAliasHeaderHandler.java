@@ -19,11 +19,11 @@ import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 
-//FIXME : this handler should be declare on org.eclipse.ui.edit (or something like this) to be binded on F2
+//TODO : this handler should be declare on org.eclipse.ui.edit (or something like this) to be binded on F2
 
 public class RowEditAliasHeaderHandler extends AbstractTableHandler {
 
-	//FIXME : this attribute must be removed when we introduce the dependency on e4.
+	//TODO : this attribute must be removed when we introduce the dependency on e4.
 	private NatEventData eventData;
 
 	@Override

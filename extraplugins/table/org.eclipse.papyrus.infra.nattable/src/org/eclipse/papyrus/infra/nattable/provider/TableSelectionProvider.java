@@ -64,7 +64,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 
 	}
 
-	public ISelection getSelection() {
+	public synchronized ISelection getSelection() {
 		return this.currentSelection;
 	}
 

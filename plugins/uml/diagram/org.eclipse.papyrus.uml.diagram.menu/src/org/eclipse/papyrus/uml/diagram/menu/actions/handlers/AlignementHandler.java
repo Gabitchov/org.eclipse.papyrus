@@ -49,7 +49,7 @@ public class AlignementHandler extends ParametricAndListeningHandler {
 	 * @throws ExecutionException
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		super.getCommand();
 		this.action = new CustomAlignAction(getAlignment(this.parameter), this.getSelectedElements());
 		Command cmd = action.getCommand();

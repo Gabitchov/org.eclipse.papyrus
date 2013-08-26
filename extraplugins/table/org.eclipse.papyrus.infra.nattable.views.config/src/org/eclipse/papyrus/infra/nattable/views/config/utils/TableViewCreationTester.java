@@ -28,7 +28,7 @@ public class TableViewCreationTester implements ITableTester {
 	public IStatus isAllowed(Object context) {
 		if(context instanceof EObject) {
 			final EObject current = (EObject)context;
-			if(current.eResource() != null && current.eResource().getURI().fileExtension().equals(UmlModel.UML_FILE_EXTENSION)) {//FIXME remove the uml dependency
+			if(current.eResource() != null && current.eResource().getURI().fileExtension().equals(UmlModel.UML_FILE_EXTENSION)) {
 				return new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.TableViewCreationTester_TheTableViewCanBeCreated);
 			}
 		}

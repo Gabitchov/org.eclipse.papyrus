@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.tools;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.tools;bundle-version="0.10.1",
+ org.eclipse.papyrus.sysml
 Export-Package: org.eclipse.papyrus.sysml.nattable.manager.axis
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy

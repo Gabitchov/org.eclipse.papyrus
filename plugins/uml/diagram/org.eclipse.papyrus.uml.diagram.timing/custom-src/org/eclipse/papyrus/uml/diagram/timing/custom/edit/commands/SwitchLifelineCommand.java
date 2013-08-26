@@ -568,7 +568,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 	}
 
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		final CompoundCommand cmd = new CompoundCommand(Messages.SwitchLifelineCommand_switchLifeline);
 		final List<IGraphicalEditPart> selectedElements = getSelectedElements();
 		for(final IGraphicalEditPart selectedElement : selectedElements) {

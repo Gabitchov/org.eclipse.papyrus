@@ -103,7 +103,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 		final CellEditorConfigurationFactory factory = CellEditorConfigurationFactory.INSTANCE;
 		List<String> existingEditorIds = new ArrayList<String>();
 		for(int i = 0; i < elements.size(); i++) {
-			//FIXME : for containement feature : see oep.views.properties.
+			//TODO : for containement feature : see oep.views.properties.
 			// example : create Usecase in a class from the property view : EcorePropertyEditorFactory create a popup to display available type 
 			//then EditionDialog to edit the created object
 			Object current = elements.get(i);
@@ -115,7 +115,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			if(config != null) {
 				final ICellEditor editor = config.getICellEditor(table, current, modelManager.getTableAxisElementProvider());
 				if(editor != null) {
-					final String editorId = config.getEditorId() + Integer.toString(i);
+					final String editorId = config.getEditorConfigId() + Integer.toString(i);
 					if(existingEditorIds.contains(editorId)) {
 						org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id");
 					} else {
@@ -126,7 +126,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 
 					final ICellPainter painter = config.getCellPainter(table, current);
 					final String displayMode = config.getDisplayMode(table, current);
-					final IDisplayConverter converter = config.getDisplayConvert(current, table, new EMFLabelProvider());//FIXME : label provider + arg order
+					final IDisplayConverter converter = config.getDisplayConvert(table, current, new EMFLabelProvider());//TODO : label provider
 
 					final IDataValidator validator = config.getDataValidator(table, current);
 					assert !cellId.equals(editorId);
@@ -148,7 +148,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 						configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, validator, displayMode, cellId);
 					}
 				} else {
-					final String errorMessage = NLS.bind(Messages.EditConfiguration_FactoryHandlesElementButDoesntProvideEditor, config.getEditorId(), current);
+					final String errorMessage = NLS.bind(Messages.EditConfiguration_FactoryHandlesElementButDoesntProvideEditor, config.getEditorConfigId(), current);
 					if(!this.messagesAlreadyDisplayed.contains(errorMessage)) {
 						Activator.log.warn(errorMessage);
 						this.messagesAlreadyDisplayed.add(errorMessage);

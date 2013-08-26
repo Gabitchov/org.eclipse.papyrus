@@ -23,26 +23,24 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.CustomDuplicatePasteEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockCompositeSemanticEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeDropEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDiagramDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDragDropEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.EncapsulatedClassifierDropEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.parametric.policies.StructureClassifierDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.TypedElementDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomBlockCompositeEditPartTN;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.ParametricDiagramEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomBlockCompositeDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomBlockPropertyCompositeDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomParametricSemanticPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.policies.StructureClassifierDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLinkEditPart;
@@ -50,6 +48,7 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConstraintParameterAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.policy.StructuredClassifierCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN;
@@ -105,7 +104,7 @@ public class CustomEditPolicyProvider extends ParametricDiagramEditPolicyProvide
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
 
-		if(editPart instanceof InternalBlockDiagramEditPart) {
+		if(editPart instanceof ParametricDiagramEditPart) {
 			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDropEditPolicy());
 			// no installation of other policies. 
@@ -141,20 +140,15 @@ public class CustomEditPolicyProvider extends ParametricDiagramEditPolicyProvide
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomParametricSemanticPolicy());
 		}
 
-		/*
-		 * if(editPart instanceof NestedBlockPropertyCompositeEditPart) {
-		 * editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
-		 * editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomNestedBlockPropertyCompositeSemanticEditPolicy());
-		 * }
-		 */
-
 		if(editPart instanceof BlockPropertyStructureCompartmentEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 		}
 
-		if(editPart instanceof BlockCompositeEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new EncapsulatedClassifierDropEditPolicy());
+		if(editPart instanceof CustomBlockCompositeEditPartTN) {
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockCompositeDropEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new StructuredClassifierCreationEditPolicy());
+
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomBlockCompositeSemanticEditPolicy());
 		}
 

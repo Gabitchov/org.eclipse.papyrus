@@ -45,7 +45,7 @@ import org.eclipse.swt.widgets.Display;
  * @author Vincent Lorenzo
  * 
  */
-//FIXME : we should use the TextPainter itself, now with the GenericDisplayConverter, it should works fine
+//TODO : we should use the TextPainter itself, now with the GenericDisplayConverter, it should works fine
 public class CustomizedCellPainter extends TextPainter {
 
 	/**

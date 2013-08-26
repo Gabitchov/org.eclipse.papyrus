@@ -81,7 +81,7 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 	private void buildMenu(final Menu popupMenu, final Object eventData) {
 		final Collection<Command> commands = EclipseCommandUtils.getAllExistingCommandsInCategory(category);
 
-		//FIXME : we should use the EclipseContext to transfert the eventData from here to the handler, but currently we can't have dependency on e4 plugins
+		//TODO : we should use the EclipseContext to transfert the eventData from here to the handler, but currently we can't have dependency on e4 plugins
 		//		final IEclipseContext eclipseContext = (IEclipseContext)PlatformUI.getWorkbench().getService(IEclipseContext.class);
 		//		eclipseContext.set(AbstractTableHandler.NAT_EVENT_DATA_PARAMETER_ID, eventData);
 
@@ -90,7 +90,7 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 			if(handler == null || !(handler instanceof AbstractHandler)) {
 				continue;
 			}
-			//FIXME : we should use the EclipseContext to transfert the eventData from here to the handler, but currently we can't have dependency on e4 plugins
+			//TODO : we should use the EclipseContext to transfert the eventData from here to the handler, but currently we can't have dependency on e4 plugins
 			//			((AbstractHandler)handler).setEnabled(eclipseContext);
 			((AbstractHandler)handler).setEnabled(null);
 			boolean isEnabled = handler.isEnabled();
@@ -109,7 +109,7 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						try {
-							//FIXME : we must be able to give the SelectionEvent to the handler using EclispeContext
+							//TODO : we must be able to give the SelectionEvent to the handler using EclispeContext
 							Map<Object, Object> parameters = Collections.emptyMap();
 							handler.execute(new ExecutionEvent(command, parameters, null, null));
 						} catch (ExecutionException e1) {

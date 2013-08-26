@@ -63,31 +63,30 @@ public class GenericCellLabelProvider extends AbstractNattableCellLabelProvider 
 		final ILabelProviderCellContextElementWrapper contextElement = (ILabelProviderCellContextElementWrapper)element;
 		final IConfigRegistry registry = ((ILabelProviderContextElementWrapper)element).getConfigRegistry();
 		Object value = contextElement.getObject();
-		String label = ""; //$NON-NLS-1$
+		final StringBuffer label = new StringBuffer();
 		final LabelProviderService service = getLabelProviderService(registry);
 		if(value instanceof Collection<?>) {
 			Iterator<?> iter = ((Collection<?>)value).iterator();
-			label += Constants.BEGIN_OF_COLLECTION;
+			label.append(Constants.BEGIN_OF_COLLECTION);
 			int i = 1;
 			while(iter.hasNext()) {
 				if(i > MAX_DISPLAYED_ELEMENTS) {
-					label += Constants.BIG_COLLECTION;
+					label.append(Constants.BIG_COLLECTION);
 					break;
 				}
 
 				Object current = iter.next();
-				label += service.getLabelProvider(current).getText(current);
+				label.append(service.getLabelProvider(current).getText(current));
 				if(iter.hasNext()) {
-					label += Constants.SEPARATOR;
+					label.append(Constants.SEPARATOR);
 				}
-
 				i++;
 			}
 
-			label += Constants.END_OF_COLLECTION;
+			label.append(Constants.END_OF_COLLECTION);
 		} else {
-			label = service.getLabelProvider(value).getText(value);
+			label.append(service.getLabelProvider(value).getText(value));
 		}
-		return label;
+		return label.toString();
 	}
 }

@@ -26,7 +26,7 @@ import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
  * but in this case, Eclipse doesn't refresh correctly the status of the command in the menu Edit or in other menu.
  * 
  * 
- * FIXME : i think this class is not yet used
+ * 
  */
 public class TablePropertyTester extends PropertyTester {
 
@@ -62,8 +62,6 @@ public class TablePropertyTester extends PropertyTester {
 	 * @return
 	 *         <code>true</code> if the selection is composed by {@link Table}
 	 * 
-	 *         FIXME : this method should be in an upper plugin like oep.infra.gmfdiag.common
-	 *         FIXME : why use this one and not the other method isTable (see upper in this class)
 	 */
 	private boolean isTable(IStructuredSelection selection) {
 		if(!selection.isEmpty()) {

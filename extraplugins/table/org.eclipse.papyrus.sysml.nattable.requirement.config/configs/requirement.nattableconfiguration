@@ -7,6 +7,7 @@
       <listenFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/ownedMember"/>
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xsi:type="nattableaxisconfiguration:PasteEObjectConfiguration" pastedElementId="org.eclipse.papyrus.sysml.Requirement">
+      <postActions>applyStereotype:/SysML::Requirements::Requirement</postActions>
       <pasteElementContainementFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Package/packagedElement"/>
     </ownedAxisConfigurations>
     <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.sysml.nattable.requirement.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" specificAxisConfigurations="//@rowHeaderAxisConfiguration/@ownedAxisConfigurations.0"/>

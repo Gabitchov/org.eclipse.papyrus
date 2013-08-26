@@ -40,7 +40,7 @@ public class FillingConfigurationUtils {
 	 * @return
 	 *         the list of the filling configuration used by the table
 	 */
-	//FIXME : doesn't yet manage the local filling configuration
+	//TODO : doesn't yet manage the local filling configuration
 	public static final Collection<IFillingConfiguration> getFillingConfigurationUsedInTable(final Table table, final boolean onColumn) {
 		final Collection<IFillingConfiguration> confs = new ArrayList<IFillingConfiguration>();
 

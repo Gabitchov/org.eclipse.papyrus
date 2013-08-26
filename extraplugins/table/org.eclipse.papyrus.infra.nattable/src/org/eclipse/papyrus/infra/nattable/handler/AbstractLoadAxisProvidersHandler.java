@@ -61,7 +61,7 @@ public abstract class AbstractLoadAxisProvidersHandler extends AbstractTableHand
 		dialog = new LoadCurrentAxisProvidersDialog(Display.getDefault().getActiveShell(), axisProvidersHistory, currentAxisProvider, getConfigRegistry());
 		currentAxisProviderEReference = getCurrentAxisProviderEFeature();
 
-		//FIXME We need to provide a proper LabelProvider to display the axis' names in the dialog.
+		//TODO We need to provide a proper LabelProvider to display the axis' names in the dialog.
 
 		//		final LabelProviderService serv = getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 		//		final ILabelProvider labelProvider = serv.getLabelProvider();

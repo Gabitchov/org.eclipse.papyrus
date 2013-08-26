@@ -61,7 +61,7 @@ public class RowHeaderDataProvider extends AbstractHeaderDataProvider {
 			return null;
 		case 1:
 			if(this.displayFilter) {
-				return null;//FIXME not tested
+				return null;//TODO not tested
 			} else if(this.displayIndex) {
 				return getAxisIndex(rowIndex);
 			} else if(this.displayLabel) {
@@ -76,7 +76,7 @@ public class RowHeaderDataProvider extends AbstractHeaderDataProvider {
 					return this.manager.getRowElement(rowIndex);
 				}
 			} else {
-				//FIXME not tested
+				//TODO not tested
 			}
 			break;
 		case 3:
@@ -88,7 +88,7 @@ public class RowHeaderDataProvider extends AbstractHeaderDataProvider {
 					return this.manager.getRowElement(rowIndex);
 				}
 				if(columnIndex == 2) {
-					//FIXME not tested
+					//TODO not tested
 				}
 			}
 			break;

@@ -45,5 +45,9 @@ public class ConstraintBlockPropertyCompositeFigure extends PapyrusRoundedNodeFi
 	public WrappingLabel getConstraintLabel() {
 		return constraintLabel;
 	}
+	
+	public int getCorner() {
+		return corner;
+	}
 
 }

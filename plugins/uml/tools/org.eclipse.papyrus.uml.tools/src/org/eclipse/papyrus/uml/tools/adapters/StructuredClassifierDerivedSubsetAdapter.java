@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.manager.axis;
+package org.eclipse.papyrus.uml.tools.adapters;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -29,7 +29,6 @@ import org.eclipse.uml2.uml.util.UMLDerivedUnionAdapter;
  * @author vl222926
  * @see PapyrusUMLDerivedSubsetAdapter
  */
-//FIXME : move me in oep.uml.tools or others uml plugin
 public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAdapter {
 
 	@Override
@@ -41,6 +40,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -53,6 +53,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -65,6 +66,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -77,6 +79,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -89,6 +92,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -101,6 +105,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -113,6 +118,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -125,6 +131,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -137,6 +144,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -149,6 +157,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -161,6 +170,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -173,6 +183,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -185,6 +196,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 
@@ -197,6 +209,7 @@ public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAda
 			notifyChanged(notification, eClass, UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT);
 			break;
 		default:
+			break;
 		}
 	}
 

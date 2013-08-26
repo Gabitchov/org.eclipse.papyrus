@@ -43,6 +43,7 @@
     <labels href="UML.ReusableParts.idgen#label_uml_property_label"/>
     <affixedNodes href="#shape_sysml_flowport_as_affixed"/>
     <affixedNodes href="UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
+    <affixedNodes href="UML.ReusableParts.idgen#shape_uml_property_as_affixed"/>
     <borderedNodeFigure href="UML.ReusableParts.idgen#org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure"/>
   </customNodes>
   <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_dimension_as_classifier" label="Dimension" semanticType="org.eclipse.papyrus.sysml.Dimension" tag="dimension" labels="label_sysml_dimension_name"/>

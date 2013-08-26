@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  * @author Vincent Lorenzo
  * 
- *         FIXME : maybe we could improve this action using AbstractDialogCellEditor
+ *         TODO : maybe we could improve this action using AbstractDialogCellEditor
  */
 public class UMLDialogComboAction extends AbstractComboAction {
 
@@ -100,7 +100,7 @@ public class UMLDialogComboAction extends AbstractComboAction {
 			}
 
 			if(stereotypesWithEditedFeatureAppliedOnElement != null && stereotypesWithEditedFeatureAppliedOnElement.size() > 1) {
-				//FIXME : not yet managed
+				//TODO : not yet managed
 				return;
 			}
 			dialog.setTitle(realFeature.getEType().getName());

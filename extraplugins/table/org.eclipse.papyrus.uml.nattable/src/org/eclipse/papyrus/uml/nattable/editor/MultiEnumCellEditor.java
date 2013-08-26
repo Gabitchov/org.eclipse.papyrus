@@ -54,7 +54,7 @@ public class MultiEnumCellEditor extends AbstractUMLMultiValueCellEditor {
 	protected IElementSelector getElementSelector(boolean isUnique, ILabelProvider labelProvider, IStaticContentProvider contentProvider) {
 		final ReferenceSelector selector = new ReferenceSelector(isUnique);
 		selector.setContentProvider(contentProvider);
-		selector.setLabelProvider(new UMLLabelProvider());//FIXME
+		selector.setLabelProvider(new UMLLabelProvider());//TODO
 		return selector;
 	}
 

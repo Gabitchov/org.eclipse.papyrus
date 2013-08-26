@@ -24,8 +24,10 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
@@ -53,6 +55,10 @@ public class ConstraintPropertyEditHelperAdvice extends AbstractStereotypedEleme
 					// Initialize the element name based on the created IElementType
 					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(ConstraintsPackage.eINSTANCE.getConstraintProperty().getName().toLowerCase(), element.eContainer().eContents());
 					element.setName(initializedName);
+					// SysML constraint : self.ownedAttribute->forAll(p | p.type.oclIsKindOf(ConstraintBlock) implies p.aggregation = #composite)
+					if (element instanceof Property) {
+						((Property)element).setAggregation(AggregationKind.COMPOSITE_LITERAL);
+					}
 				}
 				return CommandResult.newOKCommandResult(element);
 			}

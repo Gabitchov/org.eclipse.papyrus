@@ -29,6 +29,7 @@ import org.eclipse.papyrus.uml.diagram.component.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.component.custom.ui.InterfaceManagerDialog;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 
@@ -40,13 +41,14 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 
 	/**
 	 * Gets the command.
-	 *
+	 * 
 	 * @return the command
-	 * @throws ExecutionException the execution exception
+	 * @throws ExecutionException
+	 *         the execution exception
 	 * @see org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler#getCommand()
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		List<IGraphicalEditPart> selection = getSelectedElements();
 		if(selection.size() != 1) {
 			return UnexecutableCommand.INSTANCE;
@@ -85,9 +87,9 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 
 		/**
 		 * Returns the command to add/remove provided/required interfaces.
-		 *
+		 * 
 		 * @return the command
-		 * the command to add/remove provided/required interfaces
+		 *         the command to add/remove provided/required interfaces
 		 */
 		public Command getCommand() {
 			if(type != null && !(type instanceof Classifier)) {
@@ -107,7 +109,7 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 
 	/**
 	 * Checks if is enabled.
-	 *
+	 * 
 	 * @return true, if is enabled
 	 * @see org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler#isEnabled()
 	 */

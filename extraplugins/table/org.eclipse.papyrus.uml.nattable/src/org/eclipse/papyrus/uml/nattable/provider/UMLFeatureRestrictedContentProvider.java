@@ -35,7 +35,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author vl222926
  * 
  */
-//FIXME : we should create or extends an EMF-content provider
 public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedContentProvider {
 
 	/** the uml feature axis manager */
@@ -79,13 +78,25 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 	 * @return
 	 */
 	public Object[] getElements(Object inputElement) {
-		final AbstractAxisProvider secondAxisProvider = getSecondAxisProvider();
-		final List<?> elements = axisManager.getTableManager().getElementsList(secondAxisProvider);
-		if(isRestricted() && elements.isEmpty()) {//we must returns nothing when the table is empty
-			return new Object[0];
-		} else {
-			return this.axisManager.getAllPossibleAxis().toArray();
+		if(isRestricted()) {
+			final boolean columnManager = axisManager.isUsedAsColumnManager();
+			final List<?> elements;
+			if(columnManager) {
+				elements = this.axisManager.getTableManager().getRowElementsList();
+			} else {
+				elements = this.axisManager.getTableManager().getColumnElementsList();
+			}
+			if(elements.isEmpty()) {//we returns nothing in restricted mode when the table is empty
+				return new Object[0];
+			}
 		}
+		return new Object[]{ UMLPackage.eINSTANCE };
+
+		//		if(isRestricted() && elements.isEmpty()) {//we must returns nothing when the table is empty
+		//			return new Object[0];
+		//		} else {
+		//			return this.axisManager.getAllPossibleAxis().toArray();
+		//		}
 	}
 
 	/**
@@ -94,19 +105,6 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 	 */
 	protected AbstractAxisProvider getManagedAxisProvider() {
 		return this.axisManager.getRepresentedContentProvider();
-	}
-
-	/**
-	 * 
-	 * @return
-	 *         the other axis provider
-	 */
-	protected AbstractAxisProvider getSecondAxisProvider() {//FIXME : move me in an upper class
-		AbstractAxisProvider secondAxisProvider = this.axisManager.getTableManager().getVerticalAxisProvider();
-		if(secondAxisProvider == this.axisManager) {
-			secondAxisProvider = this.axisManager.getTableManager().getHorizontalAxisProvider();
-		}
-		return secondAxisProvider;
 	}
 
 	/**
@@ -135,7 +133,13 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 				if(axisProvider == this.axisManager.getRepresentedContentProvider()) {
 					axisProvider = ((INattableModelManager)this.axisManager.getTableManager()).getVerticalAxisProvider();
 				}
-				List<Object> elementsList = this.axisManager.getTableManager().getElementsList(axisProvider);
+				boolean isColumnManager = this.axisManager.isUsedAsColumnManager();
+				final List<Object> elementsList;
+				if(isColumnManager) {
+					elementsList = this.axisManager.getTableManager().getRowElementsList();
+				} else {
+					elementsList = this.axisManager.getTableManager().getColumnElementsList();
+				}
 				for(Object object : elementsList) {
 					if(object instanceof EObject) {
 						EObject eObject = (EObject)object;

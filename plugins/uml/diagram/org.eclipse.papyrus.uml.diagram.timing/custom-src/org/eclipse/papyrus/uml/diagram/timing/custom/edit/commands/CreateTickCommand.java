@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 public class CreateTickCommand extends GraphicalCommandHandler {
 
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		final CompoundCommand cmd = new CompoundCommand(Messages.CreateTickCommand_attachTick);
 		final ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
 		if(!selection.isEmpty() && selection instanceof IStructuredSelection) {

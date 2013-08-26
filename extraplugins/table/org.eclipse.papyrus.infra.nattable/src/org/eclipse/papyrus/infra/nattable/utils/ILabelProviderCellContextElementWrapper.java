@@ -22,7 +22,6 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
  * @author Vincent Lorenzo
  * 
  */
-//FIXME : must implements ILayerCell
 public interface ILabelProviderCellContextElementWrapper extends ILabelProviderContextElementWrapper, ILayerCell {
 
 

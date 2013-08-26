@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,15 +11,23 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager.table;
+package org.eclipse.papyrus.infra.nattable.properties.provider;
 
-import java.util.List;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 
-public interface ILimitedNattableModelManager {
+public class ColumnPostActionIdsProvider extends AbstractPostActionIdsProvider {
 
-	public List<Object> getElementsList(final AbstractAxisProvider axisProvider);
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param tableManager
+	 *        the table manager
+	 */
+	public ColumnPostActionIdsProvider(INattableModelManager tableManager) {
+		super(tableManager, true);
+	}
+
 
 }

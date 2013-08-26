@@ -165,17 +165,19 @@ public class PasteEObjectAxisInTableCommandProvider {
 		default:
 			break;
 		}
-		this.containmentFeature = configuration.getPasteElementContainementFeature();
-		this.typeToCreate = ElementTypeRegistry.getInstance().getType(configuration.getPastedElementId());
-		this.postActions = configuration.getPostActions();
-		this.detachedMode = configuration.isDetachedMode();
+		if(configuration != null) {
+			this.containmentFeature = configuration.getPasteElementContainementFeature();
+			this.typeToCreate = ElementTypeRegistry.getInstance().getType(configuration.getPastedElementId());
+			this.postActions = configuration.getPostActions();
+			this.detachedMode = configuration.isDetachedMode();
+		}
 	}
 
 	/**
 	 * 
 	 * @param useProgressMonitor
 	 *        boolean indicating that we must do the paste with a progress monitor
-	 *        FIXME : post actions are not yet supported in the in the detached mode
+	 *        TODO : post actions are not yet supported in the in the detached mode
 	 */
 	public void executePasteFromStringCommand(final boolean useProgressMonitor) {
 		final String pasteJobName;
@@ -326,7 +328,9 @@ public class PasteEObjectAxisInTableCommandProvider {
 
 		//initialize the progress monitor
 		final int nbActions = axisToPaste.length;
-		progressMonitor.beginTask(PASTE_ACTION_TASK_NAME, nbActions + 1);//+1 to add the created elements to the table
+		if(progressMonitor != null) {
+			progressMonitor.beginTask(PASTE_ACTION_TASK_NAME, nbActions + 1);//+1 to add the created elements to the table
+		}
 		//the list of the created elements
 		final List<Object> createdElements = new ArrayList<Object>();
 
@@ -453,19 +457,10 @@ public class PasteEObjectAxisInTableCommandProvider {
 
 
 				for(final String currentPostActions : postActions) {
-					PastePostActionRegistry.INSTANCE.doAfterAddPastedElementCommand(tableManager, currentPostActions, sharedMap);
+					PastePostActionRegistry.INSTANCE.concludePostAction(tableManager, currentPostActions, sharedMap);
 					progressMonitor.worked(1);
 				}
 
-				if(progressMonitor != null) {
-					if(progressMonitor.isCanceled()) {
-						return CommandResult.newCancelledCommandResult();
-					}
-					progressMonitor.worked(1);
-				}
-
-				//add the created cells to the table
-				AddCommand.create(tableEditingDomain, table, NattablePackage.eINSTANCE.getTable_Cells(), cells).execute();
 
 				if(progressMonitor != null) {
 					if(progressMonitor.isCanceled()) {
@@ -488,7 +483,21 @@ public class PasteEObjectAxisInTableCommandProvider {
 						}
 					}
 				}
-				progressMonitor.done();
+
+				//the cells must be attached at the end (in order to update properly the cell map in the table manager
+				if(progressMonitor != null) {
+					if(progressMonitor.isCanceled()) {
+						return CommandResult.newCancelledCommandResult();
+					}
+					progressMonitor.worked(1);
+				}
+
+				//add the created cells to the table
+				AddCommand.create(tableEditingDomain, table, NattablePackage.eINSTANCE.getTable_Cells(), cells).execute();
+
+				if(progressMonitor != null) {
+					progressMonitor.done();
+				}
 				localDispose();
 				return CommandResult.newOKCommandResult();
 			}
@@ -635,7 +644,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 	 * @return
 	 *         <code>true</code> if the name must be initialized
 	 */
-	//FIXME : not very nice must efficient
+	//TODO : not very nice must efficient
 	private Boolean mustInitializeName() {
 		final List<?> existingColumns;
 		if(this.pasteMode == PasteModeEnumeration.PASTE_EOBJECT_COLUMN) {
@@ -658,7 +667,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 	 *         the paste mode selected by the user
 	 */
 	protected PasteModeEnumeration askWhichPasteModeDo() {
-		//TODO develop a dialog for that
+		//FIXME develop a dialog for that
 		throw new UnsupportedOperationException();
 	}
 

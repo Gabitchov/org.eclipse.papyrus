@@ -84,7 +84,7 @@ public class NatTableDropListener implements DropTargetListener {
 			}
 			break;
 		case CELL:
-			//FIXME
+			//TODO
 			drop = DND.DROP_NONE;
 			break;
 		case UNKNOWN:
@@ -119,7 +119,7 @@ public class NatTableDropListener implements DropTargetListener {
 					this.manager.insertRows(droppedElements, this.dropKindValue.getRowIndex());
 					break;
 				case CELL:
-					//FIXME
+					//TODO
 					break;
 				case UNKNOWN:
 					break;

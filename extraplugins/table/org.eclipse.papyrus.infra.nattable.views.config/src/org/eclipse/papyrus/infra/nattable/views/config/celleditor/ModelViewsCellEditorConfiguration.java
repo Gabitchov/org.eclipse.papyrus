@@ -72,7 +72,7 @@ public class ModelViewsCellEditorConfiguration extends EStructuralFeatureEditorC
 	}
 
 	@Override
-	public String getEditorId() {
+	public String getEditorConfigId() {
 		return CONFIG_EDITOR_ID;
 	}
 }

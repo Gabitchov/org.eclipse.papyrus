@@ -13,7 +13,6 @@ package org.eclipse.papyrus.sysml.diagram.common.figure;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.OrderedLayout;
@@ -71,7 +70,6 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 		frameLabelContainerFigure.setOutline(false);
 		frameLabelContainerFigure.setFill(false);
 		frameLabelContainerFigure.setLayoutManager(new ToolbarLayout(false));
-		frameLabelContainerFigure.setLineStyle(Graphics.LINE_DASHDOTDOT);
 		frameLabelContainerFigure.add(interactionFigure, OrderedLayout.ALIGN_CENTER);
 		return frameLabelContainerFigure;
 	}
@@ -98,6 +96,7 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 	public IFigure createStructureCompartmentFigures() {
 		structureCompartmentFigure = new RectangleFigure();
 		structureCompartmentFigure.setFill(false);
+		structureCompartmentFigure.setOutline(false);		
 		
 		return structureCompartmentFigure;
 	}
@@ -129,10 +128,10 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 						bound.setSize(prefConstraint);
 					}
 					int offset = 24;
-					bound.x = container.getBounds().x;
-					bound.y = container.getBounds().y + offset;
-					bound.width = container.getBounds().width;
-					bound.height = container.getBounds().height - offset; 
+					bound.x = container.getBounds().x + 10;
+					bound.y = container.getBounds().y + offset ;
+					bound.width = container.getBounds().width - 20;
+					bound.height = container.getBounds().height - offset - 10; 
 					currentCompartment.setBounds(bound);
 				} else if (currentCompartment == frameLabelContainerFigure) {
 					Rectangle boundLabel = new Rectangle(frameLabelContainerFigure.getBounds());

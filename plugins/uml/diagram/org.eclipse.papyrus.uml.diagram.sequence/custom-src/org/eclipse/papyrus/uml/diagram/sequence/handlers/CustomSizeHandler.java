@@ -53,7 +53,7 @@ public class CustomSizeHandler extends SizeHandler {
 	 * @throws ExecutionException
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		super.getCommand();
 		CustomSizeAction action = new CustomSizeAction(this.parameter, getSelectedElements());
 		Command cmd = action.getCommand();
@@ -78,6 +78,7 @@ public class CustomSizeHandler extends SizeHandler {
 		 * @return
 		 *         Return the command for the Same Height Action
 		 */
+		@Override
 		protected Command getHeightCommand() {
 			if(!(this.selectedElements.size() > 1)) {
 				return UnexecutableCommand.INSTANCE;
@@ -96,10 +97,11 @@ public class CustomSizeHandler extends SizeHandler {
 					Integer previousWidth = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Width());
 					Integer previousHeight = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height());
 					Dimension previousSize;
-					if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1)
+					if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1) {
 						previousSize = toResize.getFigure().getSize().getCopy();
-					else
+					} else {
 						previousSize = new Dimension(previousWidth.intValue(), previousHeight.intValue());
+					}
 					// Calculate delta resize
 					Dimension delta = new Dimension(0, primarySize.height - previousSize.height);
 					if(isLifelines()) {
@@ -119,7 +121,7 @@ public class CustomSizeHandler extends SizeHandler {
 					// size.width = ((Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Width())).intValue();
 					// doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), size))); //$NON-NLS-1$
 					//
-					doResizeCmd.add(resizeCommand); //$NON-NLS-1$
+					doResizeCmd.add(resizeCommand);
 				}
 				return doResizeCmd.unwrap();
 			}
@@ -161,10 +163,11 @@ public class CustomSizeHandler extends SizeHandler {
 			Integer width = (Integer)ViewUtil.getStructuralFeatureValue(primaryView, NotationPackage.eINSTANCE.getSize_Width());
 			Integer height = (Integer)ViewUtil.getStructuralFeatureValue(primaryView, NotationPackage.eINSTANCE.getSize_Height());
 			Dimension primarySize;
-			if(width.intValue() == -1 || height.intValue() == -1)
+			if(width.intValue() == -1 || height.intValue() == -1) {
 				primarySize = primaryChild.getFigure().getSize().getCopy();
-			else
+			} else {
 				primarySize = new Dimension(width.intValue(), height.intValue());
+			}
 			return primarySize;
 		}
 
@@ -174,6 +177,7 @@ public class CustomSizeHandler extends SizeHandler {
 		 * @return
 		 *         the command for the Same Width Action
 		 */
+		@Override
 		protected Command getWidthCommand() {
 			if(!(this.selectedElements.size() > 1)) {
 				return UnexecutableCommand.INSTANCE;
@@ -192,10 +196,11 @@ public class CustomSizeHandler extends SizeHandler {
 					Integer previousWidth = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Width());
 					Integer previousHeight = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height());
 					Dimension previousSize;
-					if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1)
+					if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1) {
 						previousSize = toResize.getFigure().getSize().getCopy();
-					else
+					} else {
 						previousSize = new Dimension(previousWidth.intValue(), previousHeight.intValue());
+					}
 					// Calculate delta resize
 					Dimension delta = new Dimension(primarySize.width - previousSize.width, 0);
 					// Prepare setBoundRequest
@@ -209,7 +214,7 @@ public class CustomSizeHandler extends SizeHandler {
 					// size.height = ((Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height())).intValue();
 					// doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), size))); //$NON-NLS-1$
 					//
-					doResizeCmd.add(resizeCommand); //$NON-NLS-1$
+					doResizeCmd.add(resizeCommand);
 				}
 				return doResizeCmd.unwrap();
 			}
@@ -239,10 +244,11 @@ public class CustomSizeHandler extends SizeHandler {
 				Integer height = (Integer)ViewUtil.getStructuralFeatureValue(primaryView, NotationPackage.eINSTANCE.getSize_Height());
 
 				Dimension primarySize;
-				if(width.intValue() == -1 || height.intValue() == -1)
+				if(width.intValue() == -1 || height.intValue() == -1) {
 					primarySize = primary.getFigure().getSize().getCopy();
-				else
+				} else {
 					primarySize = new Dimension(width.intValue(), height.intValue());
+				}
 
 				while(iter.hasNext()) {
 
@@ -255,10 +261,11 @@ public class CustomSizeHandler extends SizeHandler {
 					Integer previousHeight = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height());
 
 					Dimension previousSize;
-					if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1)
+					if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1) {
 						previousSize = toResize.getFigure().getSize().getCopy();
-					else
+					} else {
 						previousSize = new Dimension(previousWidth.intValue(), previousHeight.intValue());
+					}
 
 					// Calculate delta resize
 					Dimension delta = new Dimension(primarySize.width - previousSize.width, primarySize.height - previousSize.height);
@@ -281,7 +288,7 @@ public class CustomSizeHandler extends SizeHandler {
 					// doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), primarySize))); //$NON-NLS-1$
 					//
 
-					doResizeCmd.add(resizeCommand); //$NON-NLS-1$
+					doResizeCmd.add(resizeCommand);
 				}
 
 				return doResizeCmd.unwrap();

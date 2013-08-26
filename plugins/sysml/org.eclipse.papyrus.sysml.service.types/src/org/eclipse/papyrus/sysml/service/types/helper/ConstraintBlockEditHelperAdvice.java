@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
@@ -49,12 +48,8 @@ public class ConstraintBlockEditHelperAdvice extends AbstractStereotypedElementE
 
 		if(UMLElementTypes.STRUCTURAL_FEATURE.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
 			if(elementToCreate != SysMLElementTypes.CONSTRAINT_PROPERTY && elementToCreate != UMLElementTypes.PROPERTY) {
-				return UnexecutableCommand.INSTANCE;
+				return null;
 			}
-		}
-
-		if(UMLElementTypes.BEHAVIORAL_FEATURE.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
-			return UnexecutableCommand.INSTANCE;
 		}
 
 		return super.getBeforeCreateCommand(request);

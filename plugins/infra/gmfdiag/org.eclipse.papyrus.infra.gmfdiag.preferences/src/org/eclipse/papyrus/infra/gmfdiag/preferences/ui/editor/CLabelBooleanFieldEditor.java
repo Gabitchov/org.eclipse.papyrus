@@ -110,10 +110,14 @@ public class CLabelBooleanFieldEditor extends BooleanFieldEditor {
 			getCLabelControl(parent);
 			checkBox = getChangeControl(parent);
 			checkBox.setLayoutData(gd);
+			break;
 		case SWT.RIGHT:
 			checkBox = getChangeControl(parent);
 			checkBox.setLayoutData(gd);
 			getCLabelControl(parent);
+			break;
+		default:
+			break;
 		}
 	}
 

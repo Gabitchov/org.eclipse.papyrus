@@ -16,7 +16,8 @@ package org.eclipse.papyrus.uml.nattable.manager.axis;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
+import org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager;
+import org.eclipse.papyrus.uml.tools.adapters.PapyrusUMLDerivedSubsetAdapter;
 
 /**
  * *
@@ -24,12 +25,12 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFea
  * @author vl222926
  * 
  */
-public abstract class AbstractUMLSynchronizedOnFeatureAxisManager extends AbstractSynchronizedOnFeatureAxisManager {
+public abstract class AbstractUMLSynchronizedOnFeatureAxisManager extends AbstractSynchronizedOnEStructuralFeatureAxisManager {
 
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
+	 * @see org.eclipse.papyrus.uml.nattable.manager.axis.AbstractUMLSynchronizedOnFeatureAxisManager#addContextFeatureValueListener()
 	 * 
 	 */
 	@Override
@@ -40,14 +41,14 @@ public abstract class AbstractUMLSynchronizedOnFeatureAxisManager extends Abstra
 			@Override
 			public void notifyChanged(Notification notification, EClass eClass, EStructuralFeature derivedUnion) {
 				if(getListenFeatures().contains(derivedUnion)) {
-					getTableManager().updateAxisContents(getRepresentedContentProvider());
+					featureValueHasChanged(notification);
 				}
 			}
 
 			@Override
 			public void notifyChanged(Notification msg) {
 				if(getListenFeatures().contains(msg.getFeature())) {
-					getTableManager().updateAxisContents(getRepresentedContentProvider());
+					featureValueHasChanged(msg);
 				}
 				super.notifyChanged(msg);
 			};

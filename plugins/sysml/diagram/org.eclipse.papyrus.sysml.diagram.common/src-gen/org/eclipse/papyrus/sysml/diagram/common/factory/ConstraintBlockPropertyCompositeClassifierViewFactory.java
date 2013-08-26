@@ -39,11 +39,12 @@ public class ConstraintBlockPropertyCompositeClassifierViewFactory extends Shape
 				
 				ViewService.createNode(view, getConstraint(constraintProperty), UMLGraphicalTypes.SHAPE_UML_CONSTRAINT_AS_LABEL_ID, getPreferencesHint());
 
-				
+				/* TODO : Remove ConstraintParameter initialization => use DnD instead
 				List<Property> constraintParameters = getConstraintParameters(constraintProperty);
 				for (Property constraintParameter : constraintParameters) {
 					ViewService.createNode(view, constraintParameter, UMLGraphicalTypes.SHAPE_UML_PROPERTY_AS_AFFIXED_ID, getPreferencesHint());
 				}
+				*/
 			}
 		}
 		
@@ -58,7 +59,8 @@ public class ConstraintBlockPropertyCompositeClassifierViewFactory extends Shape
 			Class constraintBlock = (Class)type;
 			EList<Property> ownedAttributes = constraintBlock.getOwnedAttributes();
 			for (Property property : ownedAttributes) {
-				if (property.getAppliedStereotypes().isEmpty()) {
+				// Filter part and reference
+				if (property.getAppliedStereotypes().isEmpty() && property.getAssociation() == null) {
 					constraintParameters.add(property);							
 				}
 			}

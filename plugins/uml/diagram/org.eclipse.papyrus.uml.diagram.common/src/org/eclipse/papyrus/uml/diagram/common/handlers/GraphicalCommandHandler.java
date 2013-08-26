@@ -13,23 +13,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.handlers;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * This abstract command handler: - calculates the current selection -
@@ -39,7 +41,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public abstract class GraphicalCommandHandler extends AbstractHandler {
 
-	protected abstract Command getCommand() throws ExecutionException;
+	protected abstract Command getCommand();
 
 	/**
 	 * Iterate over current selection and build a list of the {@link IGraphicalEditPart} contained in the selection.
@@ -47,33 +49,14 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	 * @return the currently selected {@link IGraphicalEditPart}
 	 */
 	protected List<IGraphicalEditPart> getSelectedElements() {
-		List<IGraphicalEditPart> editparts = new ArrayList<IGraphicalEditPart>();
-
-		// Get current selection
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
-
-		// Treat non-null selected object (try to adapt and return EObject)
-		if(selection != null) {
-
-			if(selection instanceof IStructuredSelection) {
-
-				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-
-				Iterator<?> it = structuredSelection.iterator();
-				while(it.hasNext()) {
-					Object object = it.next();
-					if(object instanceof IGraphicalEditPart) {
-						editparts.add((IGraphicalEditPart)object);
-					}
-				}
-
-			} else if(selection instanceof IGraphicalEditPart) {
-				editparts.add((IGraphicalEditPart)selection);
+		List<IGraphicalEditPart> result = new LinkedList<IGraphicalEditPart>();
+		for(Object element : getSelection()) {
+			if(element instanceof IGraphicalEditPart) {
+				result.add((IGraphicalEditPart)element);
 			}
 		}
 
-		return editparts;
+		return result;
 	}
 
 	/**
@@ -85,36 +68,75 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		try {
+			ISelection selection = HandlerUtil.getCurrentSelection(event);
+			this.selection = (selection instanceof IStructuredSelection) ? ((IStructuredSelection)selection).toList() : Collections.EMPTY_LIST;
 
-		TransactionalEditingDomain editingDomain = getEditingDomain();
-		Command command = getCommand();
-		if(editingDomain != null && command != null) {
-			editingDomain.getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+			getEditingDomain(event).getCommandStack().execute(new GEFtoEMFCommandWrapper(getCommand()));
+		} finally {
+			// clear the selection
+			this.selection = Collections.EMPTY_LIST;
 		}
 
 		return null;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return true is the command can be executed
-	 */
-	@Override
-	public boolean isEnabled() {
-
+	protected TransactionalEditingDomain getEditingDomain(ExecutionEvent event) {
 		try {
-			Command command = getCommand();
-			if(command != null && command.canExecute()) {
-				return true;
+			return ServiceUtilsForHandlers.getInstance().getTransactionalEditingDomain(event);
+		} catch (ServiceException ex) {
+			return null;
+		}
+	}
+
+	protected TransactionalEditingDomain getEditingDomain() {
+		TransactionalEditingDomain editingDomain = null;
+		for(IGraphicalEditPart editPart : getSelectedElements()) {
+			try {
+				editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(editPart);
+				if(editingDomain != null) {
+					break;
+				}
+			} catch (ServiceException ex) {
+				//Keep searching
 			}
-		} catch (ExecutionException e) {
-			Activator.log.error(e);
 		}
 
-		return false;
+		//TODO: From active editor?
+
+		return editingDomain;
 	}
+
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		if(evaluationContext instanceof IEvaluationContext) {
+			Object selection = ((IEvaluationContext)evaluationContext).getDefaultVariable();
+			if(selection instanceof Collection<?>) {
+				this.selection = (selection instanceof List<?>) ? (List<?>)selection : new java.util.ArrayList<Object>((Collection<?>)selection);
+				setBaseEnabled(computeEnabled());
+				this.selection = Collections.EMPTY_LIST;
+			}
+		}
+		super.setEnabled(evaluationContext);
+	}
+
+	protected boolean computeEnabled() {
+		boolean result = false;
+
+		Command command = getCommand();
+		if(command != null) {
+			result = getCommand().canExecute();
+			command.dispose();
+		}
+
+		return result;
+	}
+
+	protected List<?> getSelection() {
+		return selection;
+	}
+
+	private List<?> selection = Collections.EMPTY_LIST;
 
 	/**
 	 * 
@@ -122,23 +144,5 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	 */
 	public boolean isVisible() {
 		return isEnabled();
-	}
-
-	/**
-	 * Retrieves the TransactionalEditingDomain
-	 * 
-	 * @return the editing domain (can be null)
-	 */
-	protected TransactionalEditingDomain getEditingDomain() {
-		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
-		TransactionalEditingDomain editingDomain = null;
-		try {
-			editingDomain = serviceUtils.getTransactionalEditingDomain();
-
-		} catch (ServiceException e) {
-			//Ignore and return null
-		}
-
-		return editingDomain;
 	}
 }

@@ -47,7 +47,7 @@ public class DistributionHandler extends ParametricAndListeningHandler {
 	 * @throws ExecutionException
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		super.getCommand();
 		this.action = new DistributeLinkNodeAction(this.parameter, getSelectedElements());
 		Command cmd = action.getCommand();
