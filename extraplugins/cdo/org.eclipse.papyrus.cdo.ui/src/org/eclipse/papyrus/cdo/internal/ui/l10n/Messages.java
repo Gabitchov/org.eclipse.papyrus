@@ -26,9 +26,53 @@ public class Messages extends NLS {
 
 	public static String AddRepositoryDialog_1;
 
+	public static String BrowseRepoDlg_anyNode;
+
+	public static String BrowseRepoDlg_binKind;
+
+	public static String BrowseRepoDlg_existsError;
+
+	public static String BrowseRepoDlg_existsWarning;
+
+	public static String BrowseRepoDlg_fileKind;
+
+	public static String BrowseRepoDlg_folderKind;
+
+	public static String BrowseRepoDlg_invalidURISeg;
+
+	public static String BrowseRepoDlg_modelKind;
+
+	public static String BrowseRepoDlg_nameLabel;
+
+	public static String BrowseRepoDlg_newFolderAction;
+
+	public static String BrowseRepoDlg_noSuchResource;
+
+	public static String BrowseRepoDlg_textKind;
+
+	public static String BrowseRepoDlg_windowTitle;
+
+	public static String BrowseRepoDlg_wrongSelection;
+
 	public static String CDOStateLabelDecorator_1;
 
 	public static String ConnectRepositoryAction_0;
+
+	public static String CreateCDOFragDlg_browseMessage;
+
+	public static String CreateCDOFragDlg_browseRepo;
+
+	public static String CreateCDOFragDlg_browseTitle;
+
+	public static String CreateCDOFragDlg_existsError;
+
+	public static String CreateCDOFragDlg_hasFragmentError;
+
+	public static String CreateCDOFragDlg_noSuchFolderError;
+
+	public static String CreateCDOFragDlg_notFolderError;
+
+	public static String CreateCDOFragDlg_uriLabel;
 
 	public static String CreateFolderAction_0;
 

@@ -285,7 +285,7 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 			try {
 				((CDOTransaction)view).commit();
 			} catch (CommitException e) {
-				Activator.log.error("Failed to commit resource deletions.", e);
+				Activator.log.error("Failed to commit resource deletions.", e); //$NON-NLS-1$
 			}
 		}
 	}
@@ -301,7 +301,7 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 		// block again
 		if((resource != null) && isDirty(resource)) {
 			result = false;
-			Activator.log.warn("Attempt to delete a dirty CDO resource: " + uri);
+			Activator.log.warn("Attempt to delete a dirty CDO resource: " + uri); //$NON-NLS-1$
 		}
 
 		return result;

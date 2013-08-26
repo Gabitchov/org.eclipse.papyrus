@@ -47,6 +47,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
+import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.papyrus.infra.services.controlmode.commands.AbstractControlCommand;
 import org.eclipse.papyrus.infra.services.controlmode.participants.IControlCommandParticipant;
@@ -313,7 +314,7 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 				// Use the resolved view in the EObject, instead
 				index = ((EList<?>)owner.eGet(feature)).indexOf(originalObject);
 				if(index < 0) {
-					Activator.log.error("Setting does not include the object being replaced by a proxy.", null);
+					Activator.log.error("Setting does not include the object being replaced by a proxy.", null); //$NON-NLS-1$
 				}
 			}
 		}
@@ -368,7 +369,7 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 				// Use the resolved view in the EObject, instead
 				index = ((EList<?>)owner.eGet(feature)).indexOf(originalObject);
 				if(index < 0) {
-					Activator.log.error("Setting does not include the object being replaced by a proxy.", null);
+					Activator.log.error("Setting does not include the object being replaced by a proxy.", null); //$NON-NLS-1$
 				}
 			}
 		}
@@ -431,7 +432,7 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 	private static abstract class AbstractCDOControlCommand extends AbstractControlCommand {
 
 		AbstractCDOControlCommand(ControlModeRequest request) {
-			super("CDO aspects", Collections.emptyList(), request);
+			super(Messages.CDOControlModeParticipant_commandLabel, Collections.emptyList(), request);
 		}
 
 		private List<Update> updates;

@@ -36,6 +36,7 @@ import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.actions.CreateFolderAction;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.util.UIUtil;
 import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoryItemProvider;
 import org.eclipse.papyrus.cdo.internal.ui.widgets.ActionButton;
@@ -93,7 +94,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 	 *        one of {@link SWT#OPEN} or {@link SWT#SAVE}
 	 */
 	public BrowseRepositoryDialog(Shell parentShell, String title, String message, CDOView view, int style) {
-		this(parentShell, "Browse Repository", title, message, view, style);
+		this(parentShell, Messages.BrowseRepoDlg_windowTitle, title, message, view, style);
 	}
 
 	/**
@@ -228,13 +229,13 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			actionButtons.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
 			actionButtons.setLayout(new RowLayout(SWT.VERTICAL));
 
-			ActionButton newFolderButton = new ActionButton("New Folder...", new CreateFolderAction(this), SWT.PUSH);
+			ActionButton newFolderButton = new ActionButton(Messages.BrowseRepoDlg_newFolderAction, new CreateFolderAction(this), SWT.PUSH);
 			newFolderButton.attach(tree);
 			newFolderButton.createControl(actionButtons);
 
 			// don't need to type in names of non-existent resources when opening an existing resource
 			Label label = new Label(result, SWT.NONE);
-			label.setText("Resource name:");
+			label.setText(Messages.BrowseRepoDlg_nameLabel);
 			GridData gd = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 			gd.verticalIndent = convertVerticalDLUsToPixels(8);
 			label.setLayoutData(gd);
@@ -327,7 +328,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 		if(name != null) {
 			if(!URI.validSegment(name)) {
-				error = "Resource name is not a valid URI segment.";
+				error = Messages.BrowseRepoDlg_invalidURISeg;
 			}
 		}
 
@@ -335,18 +336,18 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			String path = CDOURIUtil.extractResourcePath(basicGetSelectedURI());
 			CDOView view = getRepository().getMasterView();
 			if(isOpenStyle() && !view.hasResource(path)) {
-				error = "Resource does not exist.";
+				error = Messages.BrowseRepoDlg_noSuchResource;
 			} else if(isOpenStyle()) {
 				// then the resource exists.  Is it the kind we want?
 				CDOResourceNode node = view.getResourceNode(path);
 				if(!getNodeTypeFilter().isInstance(node)) {
-					info = NLS.bind("Selection must be a {0}.", getNodeType(getNodeTypeFilter()));
+					info = NLS.bind(Messages.BrowseRepoDlg_wrongSelection, getNodeType(getNodeTypeFilter()));
 				}
 			} else if(isSaveStyle() && view.hasResource(path)) {
 				if(isAllowOverwrite()) {
-					warning = "Resource already exists and will be replaced.";
+					warning = Messages.BrowseRepoDlg_existsWarning;
 				} else {
-					error = "Resource already exists.";
+					error = Messages.BrowseRepoDlg_existsError;
 				}
 			}
 		}
@@ -364,24 +365,24 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 	}
 
 	private String getNodeType(EClass nodeClass) {
-		String result = "node of any kind";
+		String result = Messages.BrowseRepoDlg_anyNode;
 
 		if(nodeClass.getEPackage() == EresourcePackage.eINSTANCE) {
 			switch(nodeClass.getClassifierID()) {
 			case EresourcePackage.CDO_RESOURCE:
-				result = "model resource";
+				result = Messages.BrowseRepoDlg_modelKind;
 				break;
 			case EresourcePackage.CDO_RESOURCE_FOLDER:
-				result = "folder";
+				result = Messages.BrowseRepoDlg_folderKind;
 				break;
 			case EresourcePackage.CDO_TEXT_RESOURCE:
-				result = "text resource";
+				result = Messages.BrowseRepoDlg_textKind;
 				break;
 			case EresourcePackage.CDO_BINARY_RESOURCE:
-				result = "binary resource";
+				result = Messages.BrowseRepoDlg_binKind;
 				break;
 			case EresourcePackage.CDO_FILE_RESOURCE:
-				result = "file (document) resource";
+				result = Messages.BrowseRepoDlg_fileKind;
 				break;
 			}
 		}

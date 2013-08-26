@@ -26,6 +26,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.infra.services.controlmode.ui.IControlModeFragmentDialogProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -74,7 +75,7 @@ public class CreateCDOModelFragmentDialog extends Dialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 
-		newShell.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_ControlDialog_title"));
+		newShell.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_ControlDialog_title")); //$NON-NLS-1$
 	}
 
 	@Override
@@ -83,7 +84,7 @@ public class CreateCDOModelFragmentDialog extends Dialog {
 
 		result.setLayout(new GridLayout(2, false));
 
-		new Label(result, SWT.NONE).setText("Resource URI:");
+		new Label(result, SWT.NONE).setText(Messages.CreateCDOFragDlg_uriLabel);
 
 		Composite browseComposite = new Composite(result, SWT.NONE);
 		browseComposite.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
@@ -130,7 +131,7 @@ public class CreateCDOModelFragmentDialog extends Dialog {
 
 	private void createBrowseButtons(Composite composite) {
 		Button browseRepo = new Button(composite, SWT.PUSH);
-		browseRepo.setText("Browse Repository...");
+		browseRepo.setText(Messages.CreateCDOFragDlg_browseRepo);
 
 		browseRepo.addSelectionListener(new SelectionAdapter() {
 
@@ -142,7 +143,7 @@ public class CreateCDOModelFragmentDialog extends Dialog {
 	}
 
 	private void browseRepository() {
-		BrowseRepositoryDialog dlg = new BrowseRepositoryDialog(getShell(), "Create Model Unit", "Choose the location and name of the new model unit.", view, SWT.SAVE);
+		BrowseRepositoryDialog dlg = new BrowseRepositoryDialog(getShell(), Messages.CreateCDOFragDlg_browseTitle, Messages.CreateCDOFragDlg_browseMessage, view, SWT.SAVE);
 
 		dlg.setNodeTypeFilter(EresourcePackage.Literals.CDO_RESOURCE);
 		dlg.setAllowOverwrite(false);
@@ -166,7 +167,7 @@ public class CreateCDOModelFragmentDialog extends Dialog {
 
 	private void setError(String error) {
 		if(error == null) {
-			errorLabel.setText("");
+			errorLabel.setText(""); //$NON-NLS-1$
 		} else {
 			errorLabel.setText(error);
 		}
@@ -183,18 +184,18 @@ public class CreateCDOModelFragmentDialog extends Dialog {
 				URI parsed = URI.createURI(uri, true);
 
 				if(parsed.hasFragment()) {
-					throw new IllegalArgumentException("Resource URI must not have a fragment.");
+					throw new IllegalArgumentException(Messages.CreateCDOFragDlg_hasFragmentError);
 				} else if(uriConverter.exists(parsed, null)) {
-					throw new IllegalArgumentException("Resource already exists.");
+					throw new IllegalArgumentException(Messages.CreateCDOFragDlg_existsError);
 				} else {
 					// an empty folder name indicates a resource at the root; the root always exists
 					String folder = CDOURIUtil.extractResourceFolderAndName(parsed)[0];
 					if(!Strings.isNullOrEmpty(folder)) {
 						if(!view.hasResource(folder)) {
-							throw new IllegalArgumentException(NLS.bind("No such folder: {0}", folder));
+							throw new IllegalArgumentException(NLS.bind(Messages.CreateCDOFragDlg_noSuchFolderError, folder));
 						}
 						if(!(view.getResourceNode(folder) instanceof CDOResourceFolder)) {
-							throw new IllegalArgumentException(NLS.bind("Not a folder: {0}", folder));
+							throw new IllegalArgumentException(NLS.bind(Messages.CreateCDOFragDlg_notFolderError, folder));
 						}
 					}
 				}
