@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.eresource.EresourcePackage;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOView;
+import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -28,16 +29,24 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
+import org.eclipse.net4j.util.event.IEvent;
+import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.eclipse.papyrus.cdo.internal.ui.actions.CreateFolderAction;
+import org.eclipse.papyrus.cdo.internal.ui.util.UIUtil;
 import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoryItemProvider;
+import org.eclipse.papyrus.cdo.internal.ui.widgets.ActionButton;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -77,6 +86,8 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 	private String name;
 
+	private IListener viewerRefresh;
+
 	/**
 	 * @param style
 	 *        one of {@link SWT#OPEN} or {@link SWT#SAVE}
@@ -98,6 +109,8 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		this.style = checkStyle(style);
 
 		this.repository = PapyrusRepositoryManager.INSTANCE.getRepository(view);
+
+		setHelpAvailable(false);
 	}
 
 	int checkStyle(int style) {
@@ -111,6 +124,19 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		super.configureShell(newShell);
 
 		newShell.setText(windowTitle);
+
+		newShell.addDisposeListener(new DisposeListener() {
+
+			public void widgetDisposed(DisposeEvent e) {
+				shellDisposed();
+			}
+		});
+	}
+
+	private void shellDisposed() {
+		if((viewerRefresh != null) && (getRepository() != null)) {
+			getRepository().getMasterView().removeListener(viewerRefresh);
+		}
 	}
 
 	public boolean isAllowOverwrite() {
@@ -181,11 +207,11 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 		Composite main = (Composite)super.createDialogArea(parent);
 		Composite result = new Composite(main, SWT.NONE);
-		result.setLayout(new GridLayout(2, false));
+		result.setLayout(new GridLayout(isSaveStyle() ? 3 : 1, false));
 		result.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		tree = new TreeViewer(result, SWT.SINGLE | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		tree.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		tree.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, isSaveStyle() ? 2 : 1, 1));
 
 		ModelRepositoryItemProvider itemProvider = new ModelRepositoryItemProvider(null, getRepository());
 		tree.setContentProvider(itemProvider);
@@ -193,9 +219,20 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		tree.setSorter(itemProvider);
 		if(getRepository() != null) {
 			tree.setInput(PapyrusRepositoryManager.INSTANCE);
+			getRepository().getMasterView().addListener(getViewerRefresh());
 		}
 
 		if(isSaveStyle()) {
+			// don't need to create new folders when opening an existing resource
+			Composite actionButtons = new Composite(result, SWT.NONE);
+			actionButtons.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
+			actionButtons.setLayout(new RowLayout(SWT.VERTICAL));
+
+			ActionButton newFolderButton = new ActionButton("New Folder...", new CreateFolderAction(this), SWT.PUSH);
+			newFolderButton.attach(tree);
+			newFolderButton.createControl(actionButtons);
+
+			// don't need to type in names of non-existent resources when opening an existing resource
 			Label label = new Label(result, SWT.NONE);
 			label.setText("Resource name:");
 			GridData gd = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
@@ -203,7 +240,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			label.setLayoutData(gd);
 
 			nameText = new Text(result, SWT.BORDER);
-			gd = new GridData(SWT.FILL, SWT.TOP, true, false);
+			gd = new GridData(SWT.FILL, SWT.TOP, true, false, 2, 1);
 			gd.verticalIndent = convertVerticalDLUsToPixels(8);
 			nameText.setLayoutData(gd);
 		}
@@ -350,5 +387,24 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		}
 
 		return result;
+	}
+
+	private IListener getViewerRefresh() {
+		if(viewerRefresh == null) {
+			viewerRefresh = new IListener() {
+
+				public void notifyEvent(IEvent event) {
+					if(event instanceof CDOViewInvalidationEvent) {
+						if((getContents() != null) && !getContents().isDisposed()) {
+							if(UIUtil.ensureUIThread(this, event)) {
+								tree.refresh();
+							}
+						}
+					}
+				}
+			};
+		}
+
+		return viewerRefresh;
 	}
 }

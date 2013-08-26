@@ -40,6 +40,7 @@ Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papy
    org.eclipse.papyrus.cdo.uml.diagram.ui,
    org.eclipse.papyrus.cdo.uml.ui,
    org.eclipse.papyrus.cdo.uml.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.widgets;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.ui.wizards;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.diagram.ui,org.eclipse.papyrus.cdo.ui.customization.properties"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

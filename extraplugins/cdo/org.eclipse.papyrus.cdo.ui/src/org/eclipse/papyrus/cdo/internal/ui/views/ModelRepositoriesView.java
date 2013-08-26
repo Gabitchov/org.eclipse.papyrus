@@ -167,7 +167,7 @@ public class ModelRepositoriesView extends ContainerView {
 		disconnectRepositoryAction = new DisconnectRepositoryAction(this);
 		removeRepositoryAction = new RemoveRepositoryAction(this);
 		openModelAction = new OpenPapyrusModelAction(this);
-		createFolderAction = new CreateFolderAction(this);
+		createFolderAction = new CreateFolderAction(this.getSite());
 		renameModelAction = new RenameModelAction(this);
 		deleteModelAction = new DeleteModelAction(this);
 
