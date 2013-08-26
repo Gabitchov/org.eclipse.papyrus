@@ -97,15 +97,15 @@ public class PTabFolder {
 	 * This event is used to send mouse double click events.
 	 */
 	private MouseListener mouseListener = new MouseListener() {
-		
+
 		public void mouseUp(MouseEvent e) {
 			handleMouseUp(e);
 		}
-		
+
 		public void mouseDown(MouseEvent e) {
 			handleMouseDown(e);
 		}
-		
+
 		public void mouseDoubleClick(MouseEvent e) {
 			handleMouseDoubleClick(e);
 		}
@@ -172,8 +172,9 @@ public class PTabFolder {
 	 * Dispose internal resources.
 	 */
 	public void dispose() {
-		if(tabFolder.isDisposed())
+		if(tabFolder.isDisposed()) {
 			return;
+		}
 
 		detachListeners(tabFolder);
 		tabFolder.dispose();
@@ -190,7 +191,7 @@ public class PTabFolder {
 		PresentationUtil.addDragListener(theControl, dragListener);
 
 		theControl.addListener(SWT.Activate, activateListener);
-		
+
 		// mouse double click
 		theControl.addMouseListener(mouseListener);
 
@@ -271,16 +272,18 @@ public class PTabFolder {
 		int itemIndex = getItemIndex(displayPos);
 		// If click is not from an item, it can come from a click on border.
 		// restore the last selected item
-		if(itemIndex == -1)
+		if(itemIndex == -1) {
 			itemIndex = tabFolder.getSelectionIndex();
-		if(itemIndex == -1)
+		}
+		if(itemIndex == -1) {
 			return;
+		}
 
 		listenersManager.firePageChange(itemIndex);
 	}
 
 	/**
-	 * A mouse double click is detected on the tabs area. 
+	 * A mouse double click is detected on the tabs area.
 	 * Fire the event to appropriate listeners.
 	 * 
 	 * @param globalPos
@@ -294,9 +297,9 @@ public class PTabFolder {
 		int itemIndex = getItemIndex(displayPos);
 		listenersManager.fireMouseDoubleClick(itemIndex, e);
 	}
-	
+
 	/**
-	 * A mouse double click is detected on the tabs area. 
+	 * A mouse double click is detected on the tabs area.
 	 * Fire the event to appropriate listeners.
 	 * 
 	 * @param globalPos
@@ -310,9 +313,9 @@ public class PTabFolder {
 		int itemIndex = getItemIndex(displayPos);
 		listenersManager.fireMouseUp(itemIndex, e);
 	}
-	
+
 	/**
-	 * A mouse double click is detected on the tabs area. 
+	 * A mouse double click is detected on the tabs area.
 	 * Fire the event to appropriate listeners.
 	 * 
 	 * @param globalPos
@@ -326,8 +329,8 @@ public class PTabFolder {
 		int itemIndex = getItemIndex(displayPos);
 		listenersManager.fireMouseDown(itemIndex, e);
 	}
-	
-	
+
+
 	/**
 	 * Returns true iff the given point is on the border of the folder. By default, double-clicking,
 	 * context menus, and drag/drop are disabled on the folder's border.
@@ -371,13 +374,21 @@ public class PTabFolder {
 
 	/**
 	 * Get the index of the item at the specified mouse position
+	 * 
 	 * @param pt
 	 * @return
 	 */
 	public int getItemIndex(Point pt) {
-		CTabItem item = tabFolder.getItem(pt);
-		if(item == null)
+		//Fix for Bug 414816: If we just closed the last tab of a folder, the folder is disposed. Return -1
+		if(tabFolder.isDisposed()) {
 			return -1;
+		}
+		//
+
+		CTabItem item = tabFolder.getItem(pt);
+		if(item == null) {
+			return -1;
+		}
 		return getItemIndex(item);
 	}
 
@@ -497,12 +508,14 @@ public class PTabFolder {
 		public void pageChangeEvent(int newPageIndex);
 
 		public void mouseDoubleClickEvent(int itemIndex, MouseEvent e);
+
 		public void mouseUpEvent(int itemIndex, MouseEvent e);
+
 		public void mouseDownEvent(int itemIndex, MouseEvent e);
 	}
 
 	/**
-	 * This class maintains a list of listeners (IPTabFolderListener). It allows to 
+	 * This class maintains a list of listeners (IPTabFolderListener). It allows to
 	 * fire events on all registered listeners.
 	 * 
 	 * @author dumoulin
@@ -573,11 +586,11 @@ public class PTabFolder {
 				cur.menuDetectEvent(tab, e);
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param itemIndex
-		 * @param e 
+		 * @param e
 		 */
 		public void fireMouseDoubleClick(int itemIndex, MouseEvent e) {
 			for(IPTabFolderListener cur : listeners) {
