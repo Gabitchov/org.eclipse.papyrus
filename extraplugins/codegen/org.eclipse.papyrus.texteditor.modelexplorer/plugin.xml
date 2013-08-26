@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+    <extension point="org.eclipse.emf.facet.infra.facet.registration">
+      <facetset file="resources/TextEditorFacet.facetSet"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset file="resources/TextEditorQuery.querySet"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resources/TextEditorFacetCustomization.uiCustom" loadByDefault="true"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resources/TextEditorInstanceCustomization.uiCustom" loadByDefault="true"/>
+   </extension>
+</plugin>

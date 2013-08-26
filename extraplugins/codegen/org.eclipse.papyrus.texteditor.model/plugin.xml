@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+  Copyright (c) 2012 CEA LIST.
+ 
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+ 
+  Contributors:
+  Ansgar Radermacher (CEA-LIST) ansgar.radermacher@cea.fr - Initial API and implementation
+  (derived from code from Vincent Lorenzo)
+ 
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/Papyrus/Text/0.10.0/texteditormodel"
+            class="org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelPackage"
+            genModel="model/texteditormodel.genmodel"/>
+   </extension>
+
+</plugin>
