@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:papyrustextinstance="http://www.eclipse.org/Papyrus/Example/0.9.0/papyrustextinstance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:papyrustextinstance="http://www.eclipse.org/Papyrus/Example/0.9.0/papyrustextinstance" xmlns:texteditormodel="http://www.eclipse.org/Papyrus/Example/0.10.0/texteditormodel" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <notation:Diagram xmi:id="_JOw40PccEd-KM6l7lmIPkw" type="PapyrusUMLClassDiagram" name="NewDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_iUAUQP6QEeKlg5tzGV3QVQ" type="2008" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iUCwgP6QEeKlg5tzGV3QVQ" source="ShadowFigure">
@@ -43,19 +43,7 @@
     <styles xmi:type="notation:DiagramStyle" xmi:id="_JOw40fccEd-KM6l7lmIPkw"/>
     <element xmi:type="uml:Model" href="TestCDTintegration.uml#_Ae6MwPccEd-KM6l7lmIPkw"/>
   </notation:Diagram>
-  <papyrustextinstance:PapyrusTextInstance xmi:id="_yRoOIA1XEeK5O8LY525qvg" type="CDTEditorInPapyrus" name="CDT Class0">
-    <editedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_KOvvIPccEd-KM6l7lmIPkw"/>
-  </papyrustextinstance:PapyrusTextInstance>
-  <papyrustextinstance:PapyrusTextInstance xmi:id="_bQHpAA4VEeKZ9ci_RaQQlQ" type="CDTEditorInPapyrus" name="CDT Class0">
-    <editedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_KOvvIPccEd-KM6l7lmIPkw"/>
-  </papyrustextinstance:PapyrusTextInstance>
-  <papyrustextinstance:PapyrusTextInstance xmi:id="_uPqI8BRnEeK2iINwXBL4pA" type="CDTEditorInPapyrus" name="CDT Class0">
-    <editedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_KOvvIPccEd-KM6l7lmIPkw"/>
-  </papyrustextinstance:PapyrusTextInstance>
-  <papyrustextinstance:PapyrusTextInstance xmi:id="_NmlC0B0LEeKlYLZOWTi6uw" type="CDTEditorInPapyrus" name="CDT Class3">
+  <texteditormodel:TextEditorModel xmi:id="_z3K2EA5UEeOvI9e-hgvtnQ" type="CDTEditorInPapyrus" name="CDT Class3">
     <editedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_K8FLcB0LEeKlYLZOWTi6uw"/>
-  </papyrustextinstance:PapyrusTextInstance>
-  <papyrustextinstance:PapyrusTextInstance xmi:id="_CdQNMAFFEeO6K_N_1OaJGA" type="CDTEditorInPapyrus" name="CDT Class3">
-    <editedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_K8FLcB0LEeKlYLZOWTi6uw"/>
-  </papyrustextinstance:PapyrusTextInstance>
+  </texteditormodel:TextEditorModel>
 </xmi:XMI>
