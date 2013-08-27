@@ -98,11 +98,18 @@ public class DeleteFromModelCommandHandler extends GraphicalCommandHandler imple
 
 		for(IGraphicalEditPart editPart : getSelectedElements()) {
 			EObject semantic = EMFHelper.getEObject(editPart);
+
 			View graphical = NotationHelper.findView(editPart);
 
 			if(readOnly != null) {
 				List<URI> uris = new LinkedList<URI>();
-				if(semantic != null) {
+				if(semantic == null || semantic == graphical) {
+					return false;
+				} else {
+					if(semantic.eContainer() == null) {
+						//Do not delete root semantic element
+						return false;
+					}
 					uris.add(EcoreUtil.getURI(semantic));
 				}
 

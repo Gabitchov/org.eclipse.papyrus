@@ -23,10 +23,13 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
+import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
@@ -66,17 +69,22 @@ public abstract class AbstractExternalResourcesTest {
 
 	public static String editorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
 
-	
 	public static final String EXTERNAL_RESOURCES_TEST_PROFILE = "ExternalResourcesTestProfile";
-	public static final String EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE = EXTERNAL_RESOURCES_TEST_PROFILE+NamedElement.SEPARATOR+"SubProfile";
+
+	public static final String EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE = EXTERNAL_RESOURCES_TEST_PROFILE + NamedElement.SEPARATOR + "SubProfile";
+
 	public static final String MODEL_CLASS1 = "Class1";
+
 	public static final String CLASS_STEREOTYPE_NAME = "ClassStereotype";
-	public static final String CLASS_STEREOTYPE_QN = EXTERNAL_RESOURCES_TEST_PROFILE+"::"+CLASS_STEREOTYPE_NAME;
+
+	public static final String CLASS_STEREOTYPE_QN = EXTERNAL_RESOURCES_TEST_PROFILE + "::" + CLASS_STEREOTYPE_NAME;
 
 	public static final String MODEL_CLASS2 = "Class2";
+
 	public static final String ELEMENT_STEREOTYPE_NAME = "ElementStereotype";
-	public static final String ELEMENT_STEREOTYPE_QN = EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE+NamedElement.SEPARATOR+ELEMENT_STEREOTYPE_NAME;
-	
+
+	public static final String ELEMENT_STEREOTYPE_QN = EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE + NamedElement.SEPARATOR + ELEMENT_STEREOTYPE_NAME;
+
 	@Before
 	public void initializeRegistry() {
 		// first of all, delete existing model
@@ -84,22 +92,22 @@ public abstract class AbstractExternalResourcesTest {
 		IWorkspaceRoot root = workspace.getRoot();
 		IProject project = root.getProject(Activator.PLUGIN_ID);
 		//at this point, no resources have been created
-			if(project.exists()) {
-				try {
-					project.delete(true, true, new NullProgressMonitor());
-				} catch (CoreException e) {
-					Assert.fail(e.getMessage());
-				}
+		if(project.exists()) {
+			try {
+				project.delete(true, true, new NullProgressMonitor());
+			} catch (CoreException e) {
+				Assert.fail(e.getMessage());
 			}
-		
+		}
 		// import model files.
-		PluginImportOperation operation = new PluginImportOperation(new IPluginModelBase[] {PDECore.getDefault().getModelManager().findModel(Activator.PLUGIN_ID)} , PluginImportOperation.IMPORT_WITH_SOURCE, false);
+		PluginImportOperation operation = new PluginImportOperation(new IPluginModelBase[]{ PDECore.getDefault().getModelManager().findModel(Activator.PLUGIN_ID) }, PluginImportOperation.IMPORT_WITH_SOURCE, false);
 		IStatus status = operation.run(new NullProgressMonitor());
 		if(IStatus.ERROR == status.getSeverity()) {
 			Assert.fail(status.getMessage());
 		}
 		servicesRegistry = getServicesRegistry();
-		modelSet = getModelSet();
+		modelSet = getModelSet(getURI());
+		Assert.assertNotNull("Model set should not be null", modelSet);
 	}
 
 	@After
@@ -180,7 +188,7 @@ public abstract class AbstractExternalResourcesTest {
 		return null;
 	}
 
-	public ModelSet getModelSet() {
+	public ModelSet getModelSet(URI uri) {
 		//If null, try to find one or create one
 		if(modelSet == null) {
 			try {
@@ -188,10 +196,14 @@ public abstract class AbstractExternalResourcesTest {
 			} catch (ServiceException e) {
 				//Create one
 				try {
-					modelSet = createModelSet(getURI());
+					modelSet = createModelSet(uri);
 					getServicesRegistry().add(ModelSet.class, 10, modelSet);
 					getServicesRegistry().add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
 					getServicesRegistry().startServicesByClassKeys(ModelSet.class, ServiceUtilsForResourceInitializerService.class);
+					TransactionalEditingDomain domain = TransactionalEditingDomainManager.createTransactionalEditingDomain(modelSet);
+					getServicesRegistry().add(TransactionalEditingDomain.class, 10, domain);
+					getServicesRegistry().add(EditingDomain.class, 10, domain);
+					
 				} catch (ModelMultiException modelMultiException) {
 					Activator.log.error(modelMultiException);
 				} catch (ServiceMultiException e1) {
@@ -207,5 +219,5 @@ public abstract class AbstractExternalResourcesTest {
 	/**
 	 * @return the uri
 	 */
-	public abstract  URI getURI();
+	public abstract URI getURI();
 }
