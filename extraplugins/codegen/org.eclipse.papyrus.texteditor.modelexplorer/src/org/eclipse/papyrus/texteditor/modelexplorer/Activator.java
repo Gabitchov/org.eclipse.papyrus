@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -8,9 +8,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
+ *  (with the help of examining table support from Vincent Lorenzo)
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.texteditor.modelexplorer;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
@@ -24,7 +26,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.exteditor.cdt.modelexplorer"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.texteditor.modelexplorer"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
