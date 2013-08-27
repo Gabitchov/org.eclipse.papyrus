@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.validation.constraints;
 
 import org.eclipse.core.runtime.IStatus;
@@ -5,14 +19,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.BootLoaderGen;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Package;
 
 /**
  * Verify that at exactly one blocking start routine is defined.
@@ -34,14 +48,14 @@ public class InitialEntryPoints extends AbstractModelConstraint {
 				entryPoints = new BasicEList<String>();
 				validate(initIS);
 				if(entryPoints.size() > 1) {
-					String msg = "";
+					String msg = ""; //$NON-NLS-1$
 					for(String entryPoint : entryPoints) {
 						if(msg.length() > 0) {
-							msg += ", ";
+							msg += ", "; //$NON-NLS-1$
 						}
 						msg += entryPoint;
 					}
-					return ctx.createFailureStatus("The deployment plan '" + pkg.getName() + "' contains more than one start entry point: " + msg);
+					return ctx.createFailureStatus("The deployment plan '" + pkg.getName() + "' contains more than one start entry point: " + msg); //$NON-NLS-1$
 				}
 			}
 		}

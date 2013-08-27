@@ -14,14 +14,14 @@
 
 package org.eclipse.papyrus.qompass.designer.validation.constraints;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.validation.IValidationContext;
+/**
+ * Check whether two operations have the same name *and* have indistinguishable parameter lists
+ * 
+ * While UML demands that all members of a name-space have a unique name, this is more strict than
+ * the requirements of programming languages. Many OO languages allow for identical operation names
+ * if the operation can be uniquely identified via the type and number of parameters.
+ *
+ */
+public class DuplicateOperation {
 
-
-public class UnconnectedProvPorts extends UnconnectedPorts {
-	
-	@Override
-	public IStatus validate(IValidationContext ctx) {
-		return super.validatePorts (ctx, false);
-	}
 }

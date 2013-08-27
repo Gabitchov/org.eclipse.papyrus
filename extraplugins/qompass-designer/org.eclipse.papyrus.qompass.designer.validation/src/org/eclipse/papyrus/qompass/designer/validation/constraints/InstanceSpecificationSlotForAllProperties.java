@@ -1,25 +1,35 @@
-/*******************************************************************************
- * Copyright (c) 2008-2010 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
- * are property of the CEA, their use is subject to specific agreement 
- * with the CEA.
- * 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
  * Contributors:
- *    CEA LIST - initial API and implementation
- *******************************************************************************/
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.validation.constraints;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.papyrus.FCM.ConfigurationProperty;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
-import org.eclipse.papyrus.FCM.ConfigurationProperty;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 
+/**
+ * check whether an instance specification for a classifier defines slots for
+ * each configuration attribute. This rule is specific to Qompass, since only
+ * attributes with the ConfigurationProperty stereotypes are checked.
+ */
 public class InstanceSpecificationSlotForAllProperties extends AbstractModelConstraint {
 
 	@Override

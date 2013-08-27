@@ -1,37 +1,41 @@
-/*******************************************************************************
- * Copyright (c) 2008-2010 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
- * are property of the CEA, their use is subject to specific agreement 
- * with the CEA.
- * 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
  * Contributors:
- *    CEA LIST - initial API and implementation
- *******************************************************************************/
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.validation.constraints;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.uml2.uml.Class;
+import org.eclipse.papyrus.FCM.DerivedElement;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.uml2.uml.Operation;
 
 /**
- * Check whether all operations are implemented
- * TODO? check whether signature has changed without an update of the implementation
- *   => warning (check is impossible since no history?).
- *   Better?: lift errors/warnings from compiler to model level, but that's a different task ...
+ * Check whether a non abstract operation has an implementation.
+ * Whereas this rule would make sense in general, it has been made specific to
+ * Qompass by verifying whether FCM is applied (check if DerivedElement stereotype
+ * is applicable)
  */
 public class OperationsAreImplemented extends AbstractModelConstraint
 {
 	@Override
 	public IStatus validate(IValidationContext ctx) {
 
-		Class clazz = (Class) ctx.getTarget();
-		for (Operation operation : clazz.getOwnedOperations ()) {
-			if (!operation.isAbstract () && operation.getMethods ().size () == 0) {
-				return ctx.createFailureStatus ("The operation '" + operation.getName () + "' of class '" +
-						clazz.getName () + "' has no implementation (and is not marked as abstract)");
-			}
+		Operation operation = (Operation) ctx.getTarget();
+		if((!operation.isAbstract() && operation.getMethods ().size() == 0) && StUtils.isApplicable(operation, DerivedElement.class)) {
+			return ctx.createFailureStatus ("The operation '" + operation.getName () +
+				" has no implementation (and is not marked as abstract)");
 		}
 		return ctx.createSuccessStatus();
 	}
