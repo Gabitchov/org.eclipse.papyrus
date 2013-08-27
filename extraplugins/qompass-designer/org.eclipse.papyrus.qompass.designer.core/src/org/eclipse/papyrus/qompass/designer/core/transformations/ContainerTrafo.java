@@ -59,9 +59,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ContainerTrafo extends AbstractContainerTrafo {
 
-	public static final String executorPartName = "_executor";
+	public static final String executorPartName = "_executor"; //$NON-NLS-1$
 
-	public static final String interceptorName = "intercept ";
+	public static final String interceptorName = "intercept "; //$NON-NLS-1$
+
+	public static final String containerPostfix = "_cc"; //$NON-NLS-1$
+
+	public static final String hwContainerPostfix = "_hwcc"; //$NON-NLS-1$
 
 	/**
 	 * Constructor
@@ -88,20 +92,13 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 */
 	public void createContainer(Class smComponent, Class tmComponent) throws TransformationException {
 		Package tmPkgOwner = (Package)tmComponent.getOwner();
-		// create a container with the name of the original component
-		// renaming existing component (postfix "_e" for "executor")
-		if(false) {
-			tmContainerImpl = tmPkgOwner.createOwnedClass(tmComponent.getName(), false);
-			tmComponent.setName(tmComponent.getName() + "_e");
-		}
-		else {
-			tmContainerImpl = tmPkgOwner.createOwnedClass(tmComponent.getName() + "_cc", false);
-		}
-		Copy.copyID(tmComponent, tmContainerImpl, "c");
+		// create a container with the suitable postfix
+		tmContainerImpl = tmPkgOwner.createOwnedClass(tmComponent.getName() + containerPostfix, false);
+		Copy.copyID(tmComponent, tmContainerImpl, containerPostfix);
 
 		// add part and slot corresponding to component;
 		executorPart = tmContainerImpl.createOwnedAttribute(executorPartName, tmComponent);
-		Copy.copyID(tmComponent, executorPart, "e");
+		Copy.copyID(tmComponent, executorPart, "e"); //$NON-NLS-1$
 
 		this.smClass = smComponent;
 
@@ -118,7 +115,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			StUtils.copyStereotypes(port, newPort);
 
 			// create delegation for application port
-			Connector containerDelegation = tmContainerImpl.createOwnedConnector("delegation " + port.getName());
+			Connector containerDelegation = tmContainerImpl.createOwnedConnector("delegation " + port.getName()); //$NON-NLS-1$
 			Copy.copyID(tmContainerImpl, containerDelegation);
 			ConnectorEnd end1 = containerDelegation.createEnd();
 			end1.setRole(newPort);
@@ -150,8 +147,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 */
 	public void createHwContainer(Class tmComponent) throws TransformationException {
 		Package tmPkgOwner = (Package)tmComponent.getOwner();
-		tmContainerImpl = tmPkgOwner.createOwnedClass(tmComponent.getName() + "Hwcc", false);
-		Copy.copyID(tmComponent, tmContainerImpl, "hwcc");
+		tmContainerImpl = tmPkgOwner.createOwnedClass(tmComponent.getName() + hwContainerPostfix, false);
+		Copy.copyID(tmComponent, tmContainerImpl, hwContainerPostfix);
 
 		// register created container
 		containers.put(tmComponent, this);
@@ -174,7 +171,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		containerIS = (InstanceSpecification)tmCDP.createPackagedElement(tmIS.getName(), UMLPackage.eINSTANCE.getInstanceSpecification());
 		// assign new name to original instance specification which reflects
 		// role within containment hierarchy
-		tmIS.setName(tmIS.getName() + "._executor");
+		tmIS.setName(tmIS.getName() + "." + executorPartName); //$NON-NLS-1$
 		containerIS.getClassifiers().add(tmContainerImpl);
 		// existing instance specification (tmIS) is the executor instance specification
 		DepCreation.createSlot(containerIS, tmIS, executorPart);
@@ -206,7 +203,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 */
 	public void createHwContainerInstance(Class tmComponent, InstanceSpecification tmNode, ContainerContext context) {
 		// create an instance specification for the container
-		containerIS = (InstanceSpecification)tmCDP.createPackagedElement(tmNode.getName() + "HWC", UMLPackage.eINSTANCE.getInstanceSpecification());
+		containerIS = (InstanceSpecification)tmCDP.createPackagedElement(tmNode.getName() + hwContainerPostfix, UMLPackage.eINSTANCE.getInstanceSpecification());
 		// assign new name to original instance specification which reflects
 		// role within containment hierarchy
 		containerIS.getClassifiers().add(tmContainerImpl);
@@ -248,7 +245,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		for(Property part : smContainerRule.getBase_Class().getAllAttributes()) {
 			Type type = part.getType();
 			if(type == null) {
-				String ruleName = (smContainerRule.getBase_Class() != null) ? smContainerRule.getBase_Class().getName() : "undefined";
+				String ruleName = (smContainerRule.getBase_Class() != null) ? smContainerRule.getBase_Class().getName() : "undefined"; //$NON-NLS-1$
 				throw new TransformationException("Cannot apply container rule <" + ruleName + ">, since the type of one of its parts is undefined. Check for unresolved proxies in imports");
 			}
 			if(part instanceof Port) {
@@ -323,9 +320,10 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 					Property connectorPart = ConnectorReification.reifyConnector(copy, tmContainerImpl,
 						UMLTool.varName(connector), connector, containerIS, null);
 					// don't create specific configuration slots (don't know how to specific in source model)
-					InstanceSpecification tmReifiedConnectorIS = DepCreation.createDepPlan(
+					// InstanceSpecification tmReifiedConnectorIS =
+					DepCreation.createDepPlan(
 						tmCDP, (Class)connectorPart.getType(),
-						tmIS.getName() + "." + connector.getName(), false);
+						tmIS.getName() + "." + connector.getName(), false); //$NON-NLS-1$
 				}
 				else {
 					copy.remove(connector);
@@ -372,7 +370,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		// Copy.copyID(tmComponent, extensionPart, "a");
 		extensionPart.setIsComposite(true);
 		// TODO separation of container creation and instance creation
-		InstanceSpecification containerExtIS = DepCreation.createDepPlan(tmCDP, tmContainerExtImpl, containerIS.getName() + "." + extensionPart.getName(), false);
+		InstanceSpecification containerExtIS = DepCreation.createDepPlan(tmCDP, tmContainerExtImpl, containerIS.getName() + "." + extensionPart.getName(), false); //$NON-NLS-1$
 		// configure extension
 		context.port = null;
 		InstanceConfigurator.configureInstance(containerExtIS, extensionPart, context);
@@ -459,7 +457,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			}
 			// Now create an instance specification for the reified connector
 			InstanceSpecification reifiedConnectorIS = DepCreation.createDepPlan(tmCDP, (Class)connectorPart.getType(),
-				containerIS.getName() + "." + interceptionName, false);
+				containerIS.getName() + "." + interceptionName, false); //$NON-NLS-1$
 			// configure connector
 			context.port = port;
 			InstanceConfigurator.configureInstance(reifiedConnectorIS, connectorPart, context);
@@ -533,7 +531,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 								// container => create connection,
 								// unless already existing.
 								if(!ConnectorUtils.existsConnector(tmContainerImpl, part, checkPart)) {
-									Connector conn = tmContainerImpl.createOwnedConnector(part.getName() + "_" + checkPart.getName());
+									Connector conn = tmContainerImpl.createOwnedConnector(part.getName() + "_" + checkPart.getName()); //$NON-NLS-1$
 									conn.setType(association);
 									conn.createEnd().setRole(part);
 									conn.createEnd().setRole(checkPart);

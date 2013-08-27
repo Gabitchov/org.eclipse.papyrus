@@ -323,6 +323,7 @@ public class CompImplTrafos {
 					Port port = (Port) end1.getRole();
 					EList<PortInfo> subPorts = PortUtils.flattenExtendedPort(port);
 					for (PortInfo subPort : subPorts) {
+						cmd += "  // realization of connection for sub-port " + subPort.getPort().getName() + "\n";
 						cmd += connectPorts(indexMap, connector, end1, end2, subPort.getPort());
 						cmd += connectPorts(indexMap, connector, end2, end1, subPort.getPort());
 					}
@@ -365,7 +366,10 @@ public class CompImplTrafos {
 		if((receptacleEnd.getRole() instanceof Port) && (facetEnd.getRole() instanceof Port)) {
 			Port facetPort = (Port) facetEnd.getRole();
 			Port receptaclePort = (Port) receptacleEnd.getRole();
-			if((PortUtils.getProvided(facetPort) != null) && (PortUtils.getRequired(receptaclePort) != null)) {
+			PortInfo facetPI = PortInfo.fromSubPort(facetPort, subPort);
+			PortInfo receptaclePI = PortInfo.fromSubPort(receptaclePort, subPort);
+
+			if((facetPI.getProvided() != null) && (receptaclePI.getRequired() != null)) {
 				Property facetPart = facetEnd.getPartWithPort();
 				Property receptaclePart = receptacleEnd.getPartWithPort();
 					

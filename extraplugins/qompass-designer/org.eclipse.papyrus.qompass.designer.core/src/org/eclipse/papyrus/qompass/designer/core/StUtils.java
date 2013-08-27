@@ -65,6 +65,18 @@ public class StUtils {
 	}
 
 	/**
+	 * This method verifies if a stereotype is applicable on an UML element
+	 * 
+	 * @param element
+	 *        A UML element
+	 * @param the
+	 *        class of an element of a static profile
+	 */
+	public static boolean isApplicable(Element element, java.lang.Class<? extends EObject> clazz) {
+		return StUtils.getStereoName(element,  clazz) != null;
+	}
+	
+	/**
 	 * Return the attribute of a stereotype. If the attribute type is a model reference,
 	 * use the function getAttributeBase instead.
 	 * 
