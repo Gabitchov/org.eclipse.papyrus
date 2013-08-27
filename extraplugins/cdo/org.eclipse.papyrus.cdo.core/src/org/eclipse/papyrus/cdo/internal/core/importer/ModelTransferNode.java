@@ -19,8 +19,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
@@ -144,7 +146,7 @@ public class ModelTransferNode implements IModelTransferNode {
 		}
 	}
 
-	private void scanForDependencies() {
+	void scanForDependencies() {
 		// for each component resource, find the external resources that it
 		// references and, for any that seems to have a primary resource, get
 		// its node
@@ -170,6 +172,52 @@ public class ModelTransferNode implements IModelTransferNode {
 		URI candidate = componentURI.trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
 		if(converter.exists(candidate, null)) {
 			result = candidate;
+		}
+
+		return result;
+	}
+
+	public boolean isModelParentUnit(IModelTransferNode other) {
+		boolean result = false;
+
+		out: for(URI childURI : getResourceURIs()) {
+			Resource child = config.getResourceSet().getResource(childURI, false);
+			if(child != null) {
+				for(EObject root : child.getContents()) {
+					EObject container = root.eContainer();
+					if(container != null) {
+						URI uri = EcoreUtil.getURI(container).trimFragment();
+						if(other.getResourceURIs().contains(uri)) {
+							// found the parent unit
+							result = true;
+							break out;
+						}
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public boolean isModelSubUnit(IModelTransferNode other) {
+		boolean result = false;
+
+		out: for(URI uri : other.getResourceURIs()) {
+			Resource possibleChild = config.getResourceSet().getResource(uri, false);
+			if(possibleChild != null) {
+				for(EObject root : possibleChild.getContents()) {
+					EObject container = root.eContainer();
+					if(container != null) {
+						URI parentURI = EcoreUtil.getURI(container).trimFragment();
+						if(getResourceURIs().contains(parentURI)) {
+							// found a child unit
+							result = true;
+							break out;
+						}
+					}
+				}
+			}
 		}
 
 		return result;
