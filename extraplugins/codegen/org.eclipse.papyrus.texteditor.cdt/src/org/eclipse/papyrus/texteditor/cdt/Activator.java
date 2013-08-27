@@ -23,7 +23,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.example.uml.comment.editor.sharedresource"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.texteditor.cdt"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

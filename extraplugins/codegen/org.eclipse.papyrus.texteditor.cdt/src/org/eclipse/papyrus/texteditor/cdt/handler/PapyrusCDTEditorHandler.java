@@ -17,14 +17,21 @@ package org.eclipse.papyrus.texteditor.cdt.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.cdt.core.CCProjectNature;
+import org.eclipse.cdt.core.CProjectNature;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
@@ -69,8 +76,28 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 		List<EObject> selected = getSelection();
 		if(selected.size() == 1) {
 			Object o = selected.get(0);
-			if(o instanceof Class || o instanceof Operation || o instanceof DataType) {
-				return true;
+			if(o instanceof Class || o instanceof DataType) {
+				URI uri = ((EObject) o).eResource().getURI();
+
+				// URIConverter uriConverter = resource.getResourceSet().getURIConverter();
+				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+				if(uri.segmentCount() < 2) {
+					return false;
+				}
+				IProject modelProject = root.getProject(uri.segment(1));
+				if(modelProject.exists()) {
+					try {
+						// check whether the project is a C or C++ project
+						if(modelProject.hasNature(CProjectNature.C_NATURE_ID) ||
+							modelProject.hasNature(CCProjectNature.CC_NATURE_ID)) {
+							return true;
+						}
+					}
+					catch (CoreException e) {
+						Activator.getDefault().getLog().log(
+							new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not verify, if CDT project", e));
+					}
+				}
 			}
 		}
 		return false;

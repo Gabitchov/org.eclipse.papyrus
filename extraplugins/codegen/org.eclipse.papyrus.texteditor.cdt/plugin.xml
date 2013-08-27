@@ -31,7 +31,7 @@
          <command
                commandId="org.eclipse.papyrus.exteditor.cdt.openeditor"
                id="org.eclipse.papyrus.exteditor.cdt.open"
-               icon="icons/texteditor.bmp"
+               icon="icons/texteditor.gif"
                style="push">
             <visibleWhen
                   checkEnabled="true">

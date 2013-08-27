@@ -117,7 +117,7 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 			} catch (Exception e) {
 				// Lets propagate. This is an implementation problem that should be solved by
 				// programmer.
-				throw new PartInitException("Can't create TextEditor", e); //$NON-NLS-1$
+				throw new PartInitException("Can't create TextEditor", e);
 			}
 
 		}
@@ -183,7 +183,12 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 			if(widgetsActivator == null) {
 				return null;
 			}
-			return widgetsActivator.getImage(Activator.PLUGIN_ID, getEditorDescriptor().getIconURL());
+			String path = getEditorDescriptor().getIconURL();
+			if (path.startsWith(Activator.PLUGIN_ID)) {
+				// remove PLUGIN-ID prefix from the path (since the image will be searched relative to plugin) 
+				path = path.substring(Activator.PLUGIN_ID.length());
+			}
+			return widgetsActivator.getImage(Activator.PLUGIN_ID, path);
 		}
 
 		/**
