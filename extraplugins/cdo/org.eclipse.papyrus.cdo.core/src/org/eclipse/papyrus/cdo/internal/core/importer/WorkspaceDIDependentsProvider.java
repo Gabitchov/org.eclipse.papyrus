@@ -92,7 +92,7 @@ public class WorkspaceDIDependentsProvider implements IModelDependentsProvider {
 
 			try {
 				for(IFile next : filter(Arrays.asList(container.members()), IFile.class)) {
-					if((next != file) && baseName.equals(next.getFullPath().removeFileExtension().lastSegment())) {
+					if(!next.equals(file) && baseName.equals(next.getFullPath().removeFileExtension().lastSegment())) {
 						uris.add(baseURI.appendSegment(next.getName()));
 					}
 				}
