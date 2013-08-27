@@ -46,7 +46,10 @@ public class StereotypeApplicationExternalResourceModel extends AbstractModel im
 	public static final String ID = "ExternalStereotypeApplicationModel";
 
 	/** list of resources for stereotype applications */
-	List<Resource> profileApplicationResources = new ArrayList<Resource>();
+	protected List<Resource> profileApplicationResources = new ArrayList<Resource>();
+
+	/** stores the root URI that was used to load all the manage resources */
+	protected URI rootURI;
 
 	/**
 	 * {@inheritDoc}
@@ -61,7 +64,7 @@ public class StereotypeApplicationExternalResourceModel extends AbstractModel im
 	 */
 	@Override
 	public void createModel(IPath fullPath) {
-		throw new UnsupportedOperationException("CreateModel_IPath is not supported for " + getClass().getCanonicalName());
+		// throw new UnsupportedOperationException("CreateModel_IPath is not supported for " + getClass().getCanonicalName());
 	}
 
 	/**
@@ -69,7 +72,7 @@ public class StereotypeApplicationExternalResourceModel extends AbstractModel im
 	 */
 	@Override
 	public void createModel(URI uri) {
-		throw new UnsupportedOperationException("CreateModel_URI is not supported for " + getClass().getCanonicalName());
+		// throw new UnsupportedOperationException("CreateModel_URI is not supported for " + getClass().getCanonicalName());
 	}
 
 	/**
@@ -96,6 +99,7 @@ public class StereotypeApplicationExternalResourceModel extends AbstractModel im
 	 */
 	@Override
 	public void loadModel(URI uri) {
+		rootURI = uri;
 		List<Resource> resources = getResources(true);
 		for(Resource resource : resources) {
 			try {
@@ -204,7 +208,15 @@ public class StereotypeApplicationExternalResourceModel extends AbstractModel im
 	 */
 	@Override
 	public void setModelURI(URI uri) {
-		throw new UnsupportedOperationException("setModelURI is not supported for " + getClass().getCanonicalName());
+		List<Resource> resources = getResources(true);
+		for(Resource resource : resources) {
+			if(!ModelUtils.resourceFailedOnLoad(resource)) {
+				String fileExtension = resource.getURI().fileExtension();
+				URI newURI = uri.appendFileExtension(fileExtension);
+				resource.setURI(newURI);
+			}
+		}
+		rootURI = uri;
 	}
 
 	/**
