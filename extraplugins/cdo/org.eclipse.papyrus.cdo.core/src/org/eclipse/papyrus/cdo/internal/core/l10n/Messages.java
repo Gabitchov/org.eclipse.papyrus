@@ -66,6 +66,10 @@ public class Messages extends NLS {
 
 	public static String ModelTransferConfiguration_2;
 
+	public static String ModelTransferConfiguration_3;
+
+	public static String ModelTransferConfiguration_4;
+
 	public static String ModelTransferConfiguration_6;
 
 	public static String ModelTransferConfiguration_7;

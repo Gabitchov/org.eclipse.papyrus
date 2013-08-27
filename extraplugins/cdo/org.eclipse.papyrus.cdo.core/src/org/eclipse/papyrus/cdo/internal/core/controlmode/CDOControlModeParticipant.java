@@ -452,7 +452,7 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 	private static abstract class OneWayUpdate implements IUpdate {
 
 		public void revert() {
-			throw new UnsupportedOperationException("OneWayUpdate cannot be reverted");
+			throw new UnsupportedOperationException("OneWayUpdate cannot be reverted"); //$NON-NLS-1$
 		}
 
 		public IUpdate chain(IUpdate update) {

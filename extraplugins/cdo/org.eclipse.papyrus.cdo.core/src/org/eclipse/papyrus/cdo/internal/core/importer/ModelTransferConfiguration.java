@@ -229,7 +229,7 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 		if(!leftOut.isEmpty()) {
 			IModelTransferNode parentUnit = findParentUnit(node, leftOut);
 			if(parentUnit != null) {
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, NLS.bind("Parent unit {2} of controlled unit {0} must be selected for {1}.", new Object[]{ node.getName(), direction, parentUnit.getName() }), new Object[]{ node, parentUnit }));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, NLS.bind(Messages.ModelTransferConfiguration_3, new Object[]{ node.getName(), direction, parentUnit.getName() }), new Object[]{ node, parentUnit }));
 			} else {
 				int severity = direction.isImport() ? Diagnostic.WARNING : Diagnostic.INFO;
 				diagnostics.add(new BasicDiagnostic(severity, Activator.PLUGIN_ID, 0, NLS.bind(Messages.ModelTransferConfiguration_1, node.getName(), direction), new Object[]{ node, leftOut }));
@@ -243,7 +243,7 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 		if(!leftOut.isEmpty()) {
 			Set<IModelTransferNode> subUnits = findSubUnits(node, leftOut);
 			if(!subUnits.isEmpty()) {
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, NLS.bind("All controlled sub-units of {0} must be selected for {1}.", new Object[]{ node.getName(), direction }), new Object[]{ node, subUnits }));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, NLS.bind(Messages.ModelTransferConfiguration_4, new Object[]{ node.getName(), direction }), new Object[]{ node, subUnits }));
 			} else {
 				int severity = direction.isImport() ? Diagnostic.INFO : Diagnostic.WARNING;
 				diagnostics.add(new BasicDiagnostic(severity, Activator.PLUGIN_ID, 0, NLS.bind(Messages.ModelTransferConfiguration_2, node.getName(), direction), new Object[]{ node, leftOut }));

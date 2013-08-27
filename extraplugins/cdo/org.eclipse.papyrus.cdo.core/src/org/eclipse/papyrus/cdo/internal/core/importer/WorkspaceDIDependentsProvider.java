@@ -97,7 +97,7 @@ public class WorkspaceDIDependentsProvider implements IModelDependentsProvider {
 					}
 				}
 			} catch (CoreException e) {
-				Activator.log.error("Could not determine components of model " + diResource.getURI(), e);
+				Activator.log.error("Could not determine components of model " + diResource.getURI(), e); //$NON-NLS-1$
 			}
 
 			result = uris.build();
