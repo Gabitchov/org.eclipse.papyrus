@@ -89,4 +89,23 @@ public class PapyrusStereotypeApplicationHelper extends StereotypeApplicationHel
 		return null;
 	}
 	
+	/**
+	 * Sets the specific location strategy to use for the given model element
+	 * Warning: this method modifies the model, it should be executed in a command. 
+	 * @param element the stereotyped element
+	 * @return the location strategy or <code>null</code> if none was found
+	 */
+	public static void setCurrentLocationStrategy(EObject element, IStereotypeApplicationLocationStrategy newStrategy) {
+		EObject container = EcoreUtil.getRootContainer(element, true);
+		if(container instanceof Element) {
+			EAnnotation annotation = ((Element)container).getEAnnotation(PAPYRUS_EXTERNAL_RESOURCE_EANNOTATION_SOURCE);
+			if(annotation == null) {
+				// create a new one
+				annotation = ((Element)container).createEAnnotation(PAPYRUS_EXTERNAL_RESOURCE_EANNOTATION_SOURCE);
+			}
+			// update or create
+			annotation.getDetails().put(LOCATION_STRATEGY_KEY, newStrategy.getIdentifier());
+		}
+	}
+	
 }

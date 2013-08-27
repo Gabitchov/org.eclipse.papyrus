@@ -37,6 +37,14 @@ public class StandardApplicationLocationStrategy implements IStereotypeApplicati
 	 * {@inheritDoc}
 	 */
 	@Override
+	public String getIdentifier() {
+		return ID;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public EList<EObject> getContainmentList(Element element, EClass definition) {
 		if(element.eResource() !=null) {
 			return element.eResource().getContents();

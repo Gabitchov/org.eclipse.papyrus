@@ -64,6 +64,14 @@ public class ResourcePerProfileStrategy implements IStereotypeApplicationLocatio
 		}
 		return instance;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getIdentifier() {
+		return ID;
+	}
 
 	/**
 	 * Returns the resource where the stereotype application should be added for the given couple element/stereotype

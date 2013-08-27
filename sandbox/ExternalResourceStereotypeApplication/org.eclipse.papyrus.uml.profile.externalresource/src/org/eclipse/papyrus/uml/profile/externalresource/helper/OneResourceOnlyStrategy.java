@@ -101,4 +101,12 @@ public class OneResourceOnlyStrategy extends AbstractStereotypeApplicationLocati
 		return Collections.emptySet();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getIdentifier() {
+		return ID;
+	}
+
 }
