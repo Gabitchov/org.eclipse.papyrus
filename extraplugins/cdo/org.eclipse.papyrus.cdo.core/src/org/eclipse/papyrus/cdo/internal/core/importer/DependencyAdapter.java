@@ -19,12 +19,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 
 /**
@@ -83,35 +83,13 @@ public class DependencyAdapter extends AdapterImpl {
 	}
 
 	private void analyze(Resource resource) {
-		for(Iterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {
+		for(Iterator<EObject> iter = EcoreUtil.getAllProperContents(resource, false); iter.hasNext();) {
 			for(EObject xref : iter.next().eCrossReferences()) {
 				Resource xrefRes = xref.eResource();
 				if((xrefRes != null) && (isUserModelResource(xrefRes.getURI()))) {
-
 					addDependency(xrefRes);
 				}
 			}
-		}
-
-		if(isDIResource(resource)) {
-			// find implicit dependencies, being the other components of the
-			// logical Papyrus model. Note that this iteration over new
-			// members depends on the set being a LinkedHashSet (retaining
-			// the order of insertion)
-			int size, oldSize = 0;
-			do {
-				size = dependencies.size();
-
-				for(Resource firstOrder : ImmutableList.copyOf(dependencies).subList(oldSize, size)) {
-					for(Resource next : getDependencies(firstOrder)) {
-						if(getDIResource(next) == resource) {
-							addDependency(next);
-						}
-					}
-				}
-
-				oldSize = size;
-			} while(oldSize < dependencies.size());
 		}
 	}
 
@@ -119,7 +97,7 @@ public class DependencyAdapter extends AdapterImpl {
 		return (Resource)getTarget();
 	}
 
-	private void addDependency(Resource resource) {
+	void addDependency(Resource resource) {
 		Resource self = getResource();
 
 		if((resource != self) && dependencies.add(resource)) {

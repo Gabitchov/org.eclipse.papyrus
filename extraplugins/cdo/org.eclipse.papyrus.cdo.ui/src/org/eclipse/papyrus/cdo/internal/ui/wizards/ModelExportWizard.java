@@ -46,6 +46,8 @@ import com.google.common.eventbus.EventBus;
  */
 public class ModelExportWizard extends Wizard implements IWorkbenchWizard {
 
+	private final LocalRepositoryView localView = new LocalRepositoryView();
+
 	private ModelReferencesPage referencesPage;
 
 	private ModelExportMappingsPage mappingsPage;
@@ -63,7 +65,7 @@ public class ModelExportWizard extends Wizard implements IWorkbenchWizard {
 	}
 
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		this.selection = selection;
+		this.selection = localView.translate(selection);
 
 		setWindowTitle(Messages.ModelExportWizard_0);
 		setNeedsProgressMonitor(true);
@@ -162,7 +164,11 @@ public class ModelExportWizard extends Wizard implements IWorkbenchWizard {
 
 				@Override
 				protected IStatus run(IProgressMonitor monitor) {
-					configuration.dispose();
+					try {
+						configuration.dispose();
+					} finally {
+						localView.dispose();
+					}
 					return Status.OK_STATUS;
 				}
 			}.schedule();

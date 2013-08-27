@@ -23,4 +23,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 public interface IModelDependentsProvider {
 
 	Collection<URI> getDependents(Resource resource, IProgressMonitor monitor);
+
+	Collection<URI> getComponents(Resource diResource, IProgressMonitor monitor);
 }

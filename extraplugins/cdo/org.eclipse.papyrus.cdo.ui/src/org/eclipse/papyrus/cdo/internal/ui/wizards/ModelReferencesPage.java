@@ -224,7 +224,6 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 			config = (IModelTransferConfiguration)newInput;
 
 			this.viewer = viewer;
-			viewer.refresh();
 		}
 
 		public Object[] getElements(Object inputElement) {

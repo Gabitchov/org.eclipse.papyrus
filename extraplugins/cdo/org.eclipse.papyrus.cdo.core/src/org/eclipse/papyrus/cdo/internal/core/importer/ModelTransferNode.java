@@ -32,8 +32,7 @@ import com.google.common.collect.Sets;
 /**
  * This is the ModelTransferNode type. Enjoy.
  */
-public class ModelTransferNode
-		implements IModelTransferNode {
+public class ModelTransferNode implements IModelTransferNode {
 
 	private final ModelTransferConfiguration config;
 
@@ -59,9 +58,7 @@ public class ModelTransferNode
 		context.run(new IModelTransferOperation() {
 
 			public Diagnostic run(IProgressMonitor monitor) {
-
-				SubMonitor sub = SubMonitor.convert(monitor,
-					Messages.ModelTransferNode_0, 2);
+				SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelTransferNode_0, 2);
 
 				components.add(resource);
 				scanForComponents();
@@ -78,11 +75,11 @@ public class ModelTransferNode
 	}
 
 	public String getName() {
-		if (name == null) {
+		if(name == null) {
 			URI uri = getPrimaryResourceURI();
 
 			String path = uri.path();
-			if (uri.isPlatformResource()) {
+			if(uri.isPlatformResource()) {
 				// trim the project segment
 				path = path.substring(("/" + uri.segment(0)).length()); //$NON-NLS-1$
 			} // else a file: URI's path does not include the device, so it's OK
@@ -104,7 +101,7 @@ public class ModelTransferNode
 	public Collection<URI> getResourceURIs() {
 		ImmutableSet.Builder<URI> result = ImmutableSet.builder();
 
-		for (Resource next : components) {
+		for(Resource next : components) {
 			result.add(next.getURI());
 		}
 
@@ -130,9 +127,7 @@ public class ModelTransferNode
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof IModelTransferNode)
-			&& getPrimaryResourceURI().equals(
-				((IModelTransferNode) obj).getPrimaryResourceURI());
+		return (obj instanceof IModelTransferNode) && getPrimaryResourceURI().equals(((IModelTransferNode)obj).getPrimaryResourceURI());
 	}
 
 	@Override
@@ -140,10 +135,10 @@ public class ModelTransferNode
 		return String.format("ModelTransferNode(%s)", getName()); //$NON-NLS-1$
 	}
 
-	private void scanForComponents() {
+	void scanForComponents() {
 		Resource self = getPrimaryResource();
-		for (Resource next : DependencyAdapter.getDependencies(self)) {
-			if (DependencyAdapter.getDIResource(next) == self) {
+		for(Resource next : DependencyAdapter.getDependencies(self)) {
+			if(DependencyAdapter.getDIResource(next) == self) {
 				components.add(next);
 			}
 		}
@@ -156,12 +151,12 @@ public class ModelTransferNode
 
 		URIConverter converter = resource.getResourceSet().getURIConverter();
 
-		for (Resource component : components) {
-			for (Resource xref : DependencyAdapter.getDependencies(component)) {
+		for(Resource component : components) {
+			for(Resource xref : DependencyAdapter.getDependencies(component)) {
 				URI primary = findPrimaryResource(xref.getURI(), converter);
-				if ((primary != null) && converter.exists(primary, null)) {
+				if((primary != null) && converter.exists(primary, null)) {
 					IModelTransferNode node = config.getNode(primary);
-					if ((node != null) && !node.equals(this)) {
+					if((node != null) && !node.equals(this)) {
 						dependencies.add(node);
 					}
 				}
@@ -172,9 +167,8 @@ public class ModelTransferNode
 	private URI findPrimaryResource(URI componentURI, URIConverter converter) {
 		URI result = null;
 
-		URI candidate = componentURI.trimFileExtension().appendFileExtension(
-			DiModel.DI_FILE_EXTENSION);
-		if (converter.exists(candidate, null)) {
+		URI candidate = componentURI.trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+		if(converter.exists(candidate, null)) {
 			result = candidate;
 		}
 

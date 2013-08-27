@@ -95,6 +95,19 @@ public class CDOProxyManager {
 		return result.toString();
 	}
 
+	public static String extractOIDFragment(URI proxyURI) {
+		String result = null;
+
+		CDOID oid = CDOIDUtil.read(proxyURI.fragment());
+		if(oid.isObject()) {
+			StringBuilder buf = new StringBuilder();
+			CDOIDUtil.write(buf, CDOIDUtil.createLong(CDOIDUtil.getLong(oid)));
+			result = buf.toString();
+		}
+
+		return result;
+	}
+
 	//
 	// Nested types
 	//

@@ -139,7 +139,7 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 	protected IModelTransferNode getNode(URI resourceURI) {
 		IModelTransferNode result = null;
 
-		Resource resource = resourceSet.getResource(resourceURI, true);
+		final Resource resource = resourceSet.getResource(resourceURI, true);
 		if(resource != null) {
 			result = importNodes.get(resource);
 			if(result == null) {
@@ -154,10 +154,26 @@ public class ModelTransferConfiguration implements IModelTransferConfiguration {
 						SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelTransferConfiguration_0, dependentsProviders.size());
 
 						for(IModelDependentsProvider next : dependentsProviders) {
-							for(URI uri : next.getDependents(newNode.getPrimaryResource(), monitor)) {
+							// first, if it's a DI resource, ensure that it gets its components
+							if(DependencyAdapter.isDIResource(resource)) {
+								DependencyAdapter adapter = DependencyAdapter.getInstance(resource);
+								for(URI uri : next.getComponents(resource, monitor)) {
+									// this is an implicit dependency, even if there are no references
+									// to it (which occurs, e.g., in model sub-units that have no diagrams)
+									Resource implicitDependency = resource.getResourceSet().getResource(uri, true);
+									if(implicitDependency != null) {
+										adapter.addDependency(implicitDependency);
+									}
+								}
 
+								// scan for components again
+								newNode.scanForComponents();
+							}
+
+							for(URI uri : next.getDependents(newNode.getPrimaryResource(), monitor)) {
 								newNode.addDependent(getNode(uri));
 							}
+
 							sub.worked(1);
 						}
 

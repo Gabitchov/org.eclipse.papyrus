@@ -11,16 +11,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.exporter;
 
+import static com.google.common.collect.Iterables.filter;
 import static org.eclipse.papyrus.cdo.internal.core.importer.DependencyAdapter.getDIResource;
 import static org.eclipse.papyrus.cdo.internal.core.importer.DependencyAdapter.isDIResource;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -29,10 +32,11 @@ import org.eclipse.papyrus.cdo.core.importer.IModelDependentsProvider;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.importer.DependencyAdapter;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 
 /**
- * This is the WorkspaceDIDependentsProvider type. Enjoy.
+ * This is the CDODIDependentsProvider type. Enjoy.
  */
 public class CDODIDependentsProvider implements IModelDependentsProvider {
 
@@ -65,6 +69,33 @@ public class CDODIDependentsProvider implements IModelDependentsProvider {
 					}
 				}
 			}
+		}
+
+		return result;
+	}
+
+	public Collection<URI> getComponents(Resource diResource, IProgressMonitor monitor) {
+		Collection<URI> result;
+
+		if(!(diResource instanceof CDOResource)) {
+			result = Collections.emptyList();
+		} else {
+			ImmutableList.Builder<URI> uris = ImmutableList.builder();
+			CDOResource cdo = (CDOResource)diResource;
+			CDOView view = cdo.cdoView();
+
+			final URI baseURI = cdo.getURI().trimFileExtension();
+			final CDOResourceFolder folder = cdo.getFolder();
+
+			Iterable<CDOResource> inSameFolder = filter((folder == null) ? view.getRootResource().getContents() : folder.getNodes(), CDOResource.class);
+			for(CDOResource next : inSameFolder) {
+				URI uri = next.getURI();
+				if((next != cdo) && uri.trimFileExtension().equals(baseURI)) {
+					uris.add(next.getURI());
+				}
+			}
+
+			result = uris.build();
 		}
 
 		return result;
