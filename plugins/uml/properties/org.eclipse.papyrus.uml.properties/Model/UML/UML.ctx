@@ -1395,6 +1395,14 @@
       <widget href="ui/SingleElement.xwt#/"/>
     </sections>
   </tabs>
+  <tabs label="Definition" id="definition" category="org.eclipse.papyrus" image="" priority="49">
+    <sections name="ProfileDefinitions" sectionFile="ui/ProfileDefinitions.xwt">
+      <widget href="ui/ProfileDefinitions.xwt#/"/>
+    </sections>
+    <sections name="SingleProfileDefinition" sectionFile="ui/SingleProfileDefinition.xwt">
+      <widget href="ui/SingleProfileDefinition.xwt#/"/>
+    </sections>
+  </tabs>
   <views name="SinglePackageProfile" sections="//@tabs.2/@sections.0" automaticContext="true">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePackage" overrideable="false">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
@@ -2104,7 +2112,7 @@
       <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="Stereotype"/>
     </constraints>
   </views>
-  <views name="SingleProfile" sections="//@tabs.0/@sections.115" automaticContext="true">
+  <views name="SingleProfile" sections="//@tabs.0/@sections.115 //@tabs.3/@sections.0" automaticContext="true">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleProfile">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="Profile"/>
@@ -4181,6 +4189,19 @@
       <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="PackageMerge"/>
     </constraints>
   </views>
+  <views name="SingleProfileDefinition" sections="//@tabs.3/@sections.1">
+    <constraints xsi:type="constraints:CompositeConstraint" name="isSingleProfileDefinition">
+      <constraints name="isEPackage">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.0"/>
+        <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/emf/2002/Ecore"/>
+        <properties xsi:type="constraints:ValueProperty" name="className" value="EPackage"/>
+      </constraints>
+      <constraints name="isProfileDefinition">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.5"/>
+        <properties xsi:type="constraints:ValueProperty" name="annotationName" value="PapyrusVersion"/>
+      </constraints>
+    </constraints>
+  </views>
   <dataContexts name="UML" label="UML">
     <elements name="Comment" supertypes="//@dataContexts.0/@elements.1">
       <properties name="body" description="Specifies a string that is the comment."/>
@@ -5244,5 +5265,21 @@
   <dataContexts name="AppliedComments" label="AppliedComments">
     <properties name="appliedComments" label="" type="Reference" multiplicity="-1" description="The list of comments applied to this element"/>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.7"/>
+  </dataContexts>
+  <dataContexts name="Profile" label="ProfileDefinition">
+    <elements name="Profile">
+      <properties name="definitions" type="Reference" multiplicity="-1" description="The list of definitions of this profile"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.8"/>
+  </dataContexts>
+  <dataContexts name="ProfileDefinitionAnnotation">
+    <elements name="PapyrusVersion">
+      <properties name="Version"/>
+      <properties name="Author"/>
+      <properties name="Copyright"/>
+      <properties name="Date"/>
+      <properties name="Comment"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.1"/>
   </dataContexts>
 </contexts:Context>
