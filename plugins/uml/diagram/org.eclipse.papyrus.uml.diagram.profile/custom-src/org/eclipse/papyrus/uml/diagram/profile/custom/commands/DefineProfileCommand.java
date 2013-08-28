@@ -101,8 +101,8 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 
 		options.put(Profile2EPackageConverter.OPTION__ECORE_TAGGED_VALUES, UMLUtil.OPTION__PROCESS);
 		options.put(Profile2EPackageConverter.OPTION__DERIVED_FEATURES, UMLUtil.OPTION__REPORT);
-		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_FEATURE_INHERITANCE, UMLUtil.OPTION__REPORT);
-		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_FEATURES, UMLUtil.OPTION__REPORT);
+		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_FEATURE_INHERITANCE, UMLUtil.OPTION__PROCESS);
+		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_FEATURES, UMLUtil.OPTION__PROCESS);
 		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_OPERATIONS, UMLUtil.OPTION__REPORT);
 		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_OPERATION_INHERITANCE, UMLUtil.OPTION__REPORT);
 		options.put(Profile2EPackageConverter.OPTION__REDEFINING_OPERATIONS, UMLUtil.OPTION__REPORT);
@@ -111,13 +111,15 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		options.put(Profile2EPackageConverter.OPTION__UNION_PROPERTIES, UMLUtil.OPTION__PROCESS);
 		options.put(UML2EcoreConverter.OPTION__SUPER_CLASS_ORDER, UMLUtil.OPTION__REPORT);
 		options.put(Profile2EPackageConverter.OPTION__ANNOTATION_DETAILS, UMLUtil.OPTION__REPORT);
-		if(saveConstraintInDef == true) {
-			//		//for the validation
-			options.put(Profile2EPackageConverter.OPTION__INVARIANT_CONSTRAINTS, UMLUtil.OPTION__PROCESS);
-			options.put(Profile2EPackageConverter.OPTION__VALIDATION_DELEGATES, UMLUtil.OPTION__PROCESS);
-			options.put(Profile2EPackageConverter.OPTION__INVOCATION_DELEGATES, UMLUtil.OPTION__PROCESS);
-			options.put(UML2EcoreConverter.OPTION__OPERATION_BODIES, UMLUtil.OPTION__PROCESS);
-		}
+
+		//Generate constraints for the validation
+		String handleConstraints = saveConstraintInDef ? UMLUtil.OPTION__PROCESS : UMLUtil.OPTION__IGNORE;
+		options.put(Profile2EPackageConverter.OPTION__INVARIANT_CONSTRAINTS, handleConstraints);
+		options.put(Profile2EPackageConverter.OPTION__VALIDATION_DELEGATES, handleConstraints);
+		options.put(Profile2EPackageConverter.OPTION__INVOCATION_DELEGATES, handleConstraints);
+		options.put(UML2EcoreConverter.OPTION__OPERATION_BODIES, handleConstraints);
+		//
+
 		options.put(Profile2EPackageConverter.OPTION__COMMENTS, UMLUtil.OPTION__IGNORE);
 		options.put(Profile2EPackageConverter.OPTION__FOREIGN_DEFINITIONS, UMLUtil.OPTION__IGNORE);
 
