@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,10 +9,16 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Fix leaking of all UML models in search results
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui.query;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
 import org.eclipse.search.ui.ISearchQuery;
 
 /**
@@ -39,4 +45,41 @@ public abstract class AbstractPapyrusQuery implements ISearchQuery {
 		return false;
 	}
 
+	//
+	// Nested types
+	//
+	
+	public static final class Empty extends AbstractPapyrusQuery {
+		public static final Empty INSTANCE = new Empty();
+		
+		private Empty() {
+			super();
+		}
+		
+		public IStatus run(IProgressMonitor monitor) throws OperationCanceledException {
+			return Status.OK_STATUS;
+		}
+
+		public String getLabel() {
+			return "Empty Papyrus Search";
+		}
+
+		public boolean canRerun() {
+			return true;
+		}
+
+		public boolean canRunInBackground() {
+			return true;
+		}
+
+		public PapyrusSearchResult getSearchResult() {
+			return new PapyrusSearchResult(this);
+		}
+
+		@Override
+		public String getSearchQueryText() {
+			return "";
+		}
+		
+	}
 }

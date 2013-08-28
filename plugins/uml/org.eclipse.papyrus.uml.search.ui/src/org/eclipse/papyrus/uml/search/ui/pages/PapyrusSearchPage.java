@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Fix leaking of all UML models in search results
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui.pages;
@@ -85,6 +86,8 @@ import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.views.search.regex.PatternHelper;
 import org.eclipse.papyrus.views.search.scope.ScopeCollector;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
+import org.eclipse.papyrus.views.search.utils.DefaultServiceRegistryTracker;
+import org.eclipse.papyrus.views.search.utils.IServiceRegistryTracker;
 import org.eclipse.search.ui.IReplacePage;
 import org.eclipse.search.ui.ISearchPage;
 import org.eclipse.search.ui.ISearchPageContainer;
@@ -966,16 +969,17 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	}
 
 	/**
-	 * Create scopeEntries based on an IResources
+	 * Create scopeEntries based on IResources.
 	 * 
 	 * @return the created scopeEntries
 	 */
 	private Collection<ScopeEntry> createScopeEntries(Collection<IResource> scope) {
+		IServiceRegistryTracker tracker = createServiceRegistryTracker();
 		Collection<ScopeEntry> results = new HashSet<ScopeEntry>();
 
 		for(IResource resource : scope) {
 
-			ScopeEntry scopeEntry = new ScopeEntry(resource);
+			ScopeEntry scopeEntry = new ScopeEntry(resource, tracker);
 
 			results.add(scopeEntry);
 
@@ -984,6 +988,10 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		return results;
 	}
 
+	private IServiceRegistryTracker createServiceRegistryTracker() {
+		return new DefaultServiceRegistryTracker();
+	}
+	
 	public boolean performAction() {
 
 		if(queryKind.getSelectionIndex() == TEXT_QUERY_KIND) {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Fix leaking of all UML models in search results
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui.providers;
@@ -22,6 +23,7 @@ import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.uml.search.ui.pages.PapyrusSearchResultPage;
+import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
 import org.eclipse.papyrus.views.search.results.ResultEntry;
@@ -71,6 +73,11 @@ public class ResultContentProvider implements ITreeContentProvider {
 				fResult = (AbstractTextSearchResult)newInput;
 				initialize();
 			}
+		} else {
+			// forget the previous result, so that the ScopeEntry instances it contains, with all
+			// of the ModelSet and ServicesRegistry instances they hang on to (and lots of UML models!)
+			// may be garbage-collected
+			fResult = AbstractPapyrusQuery.Empty.INSTANCE.getSearchResult();
 		}
 	}
 

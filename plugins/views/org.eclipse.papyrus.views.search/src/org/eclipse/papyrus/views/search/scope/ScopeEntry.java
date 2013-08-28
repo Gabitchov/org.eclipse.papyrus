@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Fix leaking of all UML models in search results
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.scope;
@@ -35,6 +36,7 @@ import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService
 import org.eclipse.papyrus.infra.services.openelement.service.impl.OpenElementServiceImpl;
 import org.eclipse.papyrus.views.search.Activator;
 import org.eclipse.papyrus.views.search.Messages;
+import org.eclipse.papyrus.views.search.utils.IServiceRegistryTracker;
 import org.eclipse.papyrus.views.search.utils.ModelUtils;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
@@ -49,6 +51,11 @@ import org.eclipse.ui.ide.ResourceUtil;
  * 
  */
 public class ScopeEntry {
+	/**
+	 * Tracks service registries created implicitly (not borrowed from editors) by scope entries, so that they may
+	 * be properly shut down when no longer needed.
+	 */
+	private final IServiceRegistryTracker serviceRegistryTracker;
 
 	/**
 	 * The modelSet that contains the model element
@@ -67,24 +74,18 @@ public class ScopeEntry {
 
 	private IPath pathResource;
 
-
 	public ScopeEntry(IResource resource) {
-		super();
-		//		this.resource = resource;
+		this(resource, null);
+	}
 
+	public ScopeEntry(IResource resource, IServiceRegistryTracker serviceRegistryTracker) {
+		super();
+
+		this.serviceRegistryTracker = serviceRegistryTracker;
 		this.pathResource = resource.getFullPath();
 		this.modelSet = getModelSet();
 		this.servicesRegistry = getServicesRegistry();
 	}
-
-	//	public boolean isOpen() {
-	//		return isOpen;
-	//	}
-	//
-	//
-	//	public void setOpen(boolean isOpen) {
-	//		this.isOpen = isOpen;
-	//	}
 
 	private Collection<IEditorPart> getEditors() {
 		Collection<IEditorPart> results = new HashSet<IEditorPart>();
@@ -115,6 +116,11 @@ public class ScopeEntry {
 			//			serviceRegistry.add(IPageIconsRegistry.class, 10, new PageIconRegistryServiceFactory());
 			serviceRegistry.startRegistry();
 
+			if(serviceRegistryTracker != null) {
+				// register this service registry for automatic shut-down when it is no longer needed
+				serviceRegistryTracker.track(this, serviceRegistry);
+			}
+			
 			return serviceRegistry;
 		} catch (ServiceException e) {
 			Activator.log.error(Messages.ScopeEntry_0, e);
@@ -193,10 +199,8 @@ public class ScopeEntry {
 				}
 
 				servicesRegistry = registry;
-				//				this.isOpen = true;
 
 			} else {
-				//				this.isOpen = false;
 				servicesRegistry = createServicesRegistry();
 			}
 		}
