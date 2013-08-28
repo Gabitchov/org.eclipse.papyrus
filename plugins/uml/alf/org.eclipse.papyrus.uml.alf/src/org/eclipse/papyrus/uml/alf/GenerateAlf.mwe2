@@ -22,9 +22,6 @@ Workflow {
 	component = DirectoryCleaner {
 		directory = "${runtimeProject}.ui/src-gen"
 	}
-	
-	
-	
 
 	component = Generator {
 		pathRtProject = runtimeProject
@@ -47,7 +44,6 @@ Workflow {
            		generateStub = false
            	}
 			
-
 			// a custom ResourceFactory for use with EMF 
 			fragment = resourceFactory.ResourceFactoryFragment {
 				fileExtensions = file.extensions
@@ -63,6 +59,7 @@ Workflow {
 			// java-based API for validation 
 			fragment = validation.JavaValidatorFragment {
 				composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
+				inheritImplementation = false				
 				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
 				// registerForImportedPackages = true
 			}
@@ -79,7 +76,7 @@ Workflow {
 			// generator API
             fragment = generator.GeneratorFragment {
                 generateMwe = false
-                generateJavaMain = false
+                generateJavaMain = false        
             }
 			// formatter API 
 			fragment = formatting.FormatterFragment {}

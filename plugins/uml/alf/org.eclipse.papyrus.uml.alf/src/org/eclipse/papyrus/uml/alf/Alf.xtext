@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-grammar org.eclipse.papyrus.uml.alf.Alf with org.eclipse.xtext.common.Terminals
+grammar org.eclipse.papyrus.uml.alf.Alf with org.eclipse.papyrus.uml.alf.Common
 
 generate alf "http://www.eclipse.org/papyrus/alf/Alf"
 
@@ -48,17 +48,10 @@ NUMBER_LITERAL :
 	INTEGER_LITERAL | UNLIMITED_LITERAL ;
 
 INTEGER_LITERAL :
-	value = IntegerValue ; // (suffix = SuffixExpression) ? ;
+	value = INTEGER_VALUE ; // (suffix = SuffixExpression) ? ;
 
 UNLIMITED_LITERAL :
 	value = '*' ; // (suffix = SuffixExpression) ? ;
-
-terminal IntegerValue :
-	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
-	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
-	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
-	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
-; 
 
 STRING_LITERAL :
 	value = STRING ; // (suffix = SuffixExpression) ?;
@@ -451,8 +444,6 @@ enum AnnotationKind :
 	PARALLEL = 'parallel'
 ;
 
-
-
 BlockStatement :
 	block = Block
 ;
@@ -485,7 +476,6 @@ NonFinalClause :
 	
 FinalClause : 
 	'else' block = Block ;
-
 
 SwitchStatement : 
 	'switch' '(' expression = Expression ')' '{' 
@@ -618,24 +608,3 @@ enum AssignmentOperator :
 	RSHIFTASSIGN = '>>=' |
 	URSHIFTASSIGN = '>>>='
 ;
-
-/****************
-* Terminals
-*****************/
-
-//terminal DOUBLE_COLON : '::' ;
-
-terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
-terminal STRING	: '"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
-terminal ML_COMMENT	: '/*' !('@') -> '*/';
-terminal SL_COMMENT : '//' !('\n'|'\r'|'@')* ('\r'? '\n')?;
-
-//terminal IDENTIFIER : ID  ;
-//terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
-
-//terminal DOCUMENTATION_COMMENT : '/*' -> '*/' ;
- 
-//terminal ML_COMMENT	: '/°' -> '°/';
-//terminal SL_COMMENT 	: '°°' !('\n'|'\r')* ('\r'? '\n')?;
-
-//terminal WS			: (' '|'\t'|'\r'|'\n')+;
