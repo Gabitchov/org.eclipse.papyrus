@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.eclipse.papyrus.uml.xtext.integration.validation"
+            name="Papyrus xtext constraints">
+      </category>
+      <constraintProvider
+            cache="false">
+         <package
+               namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+         </package>
+         <constraints
+               categories="org.eclipse.papyrus.uml.xtext.integration.validation">
+            <constraint
+                  class="org.eclipse.papyrus.uml.xtext.integration.validation.ExistsAnnotationConstraint"
+                  id="org.eclipse.papyrus.uml.xtext.integration.validation.ExistsAnnotationConstraint"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Exists annotation constraint"
+                  severity="ERROR"
+                  statusCode="0">
+               <message>
+                  A {0} with invalid text string found.
+               </message>
+               <description>
+                  If the model element has an invalid xtext string it is out of sync with the UML model.
+               </description>
+               <target
+                     class="uml.Element">
+               </target>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            id="org.eclipse.papyrus.uml.xtext.integration.validation.context">
+         <selector
+               class="org.eclipse.papyrus.uml.xtext.integration.validation.ClientSelector">
+         </selector>
+      </clientContext>
+      <binding
+            context="org.eclipse.papyrus.uml.xtext.integration.validation.context">
+         <category
+               ref="org.eclipse.papyrus.uml.xtext.integration.validation">
+         </category>
+      </binding>
+   </extension>
+
+</plugin>
