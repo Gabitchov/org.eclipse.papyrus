@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui.results;
@@ -22,9 +23,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;
@@ -46,6 +51,7 @@ import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 
+import com.google.common.base.Objects;
 import com.swtdesigner.ResourceManager;
 
 public class PapyrusSearchResult extends AbstractTextSearchResult implements IEditorMatchAdapter, IFileMatchAdapter {
@@ -105,7 +111,7 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 		for(AbstractResultEntry modelMatch : allMatches) {
 			Object element = modelMatch.getElement();
 			if(element instanceof ScopeEntry) {
-				if(((ScopeEntry)element).getResource().equals(file)) {
+				if(file.equals(getWorkspaceResource((ScopeEntry) element))) {
 					results.add(modelMatch);
 				}
 			}
@@ -115,10 +121,23 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 		return results.toArray(arrayResult);
 	}
 
+	protected IResource getWorkspaceResource(ScopeEntry scopeEntry) {
+		IResource result = null;
+
+		URI uri = scopeEntry.getResourceURI();
+		if((uri != null) && uri.isPlatformResource()) {
+			String path = uri.toPlatformString(true);
+			result = ResourcesPlugin.getWorkspace().getRoot().findMember(path);
+		}
+
+		return result;
+	}
+	
 	public IFile getFile(Object element) {
 		if(element instanceof ScopeEntry) {
-			if(((ScopeEntry)element).getResource() instanceof IFile) {
-				return (IFile)((ScopeEntry)element).getResource();
+			IResource resource = getWorkspaceResource((ScopeEntry) element);
+			if(resource instanceof IFile) {
+				return (IFile)resource;
 			}
 		}
 		return null;
@@ -128,9 +147,7 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 		if(match instanceof AbstractResultEntry) {
 			Object element = match.getElement();
 			if(element instanceof ScopeEntry) {
-				((ScopeEntry)element).getResource();
-
-				if(((ScopeEntry)element).getResource().equals(ResourceUtil.getResource(editor.getEditorInput()))) {
+				if(Objects.equal(EditorUtils.getResourceURI(editor), ((ScopeEntry) element).getResourceURI())) {
 					return true;
 				}
 			}
@@ -229,7 +246,7 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 		for(AbstractResultEntry modelMatch : allMatches) {
 			Object element = modelMatch.getElement();
 			if(element instanceof ScopeEntry) {
-				if(((ScopeEntry)element).getResource().equals(ResourceUtil.getResource(editor.getEditorInput()))) {
+				if(((ScopeEntry)element).getResourceURI().equals(EditorUtils.getResourceURI(editor))) {
 					results.add(modelMatch);
 				}
 			}

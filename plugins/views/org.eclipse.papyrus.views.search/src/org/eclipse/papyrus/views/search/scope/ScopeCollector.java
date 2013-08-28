@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.scope;
@@ -20,12 +21,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ISelection;
@@ -44,21 +45,13 @@ import org.eclipse.ui.IWorkingSet;
 
 public class ScopeCollector implements IScopeCollector {
 
-	private static ScopeCollector instance = null;
+	private static final ScopeCollector instance = new ScopeCollector();
 
 	private ScopeCollector() {
 		super();
 	}
 
 	public final static ScopeCollector getInstance() {
-
-		if(ScopeCollector.instance == null) {
-			synchronized(ScopeCollector.class) {
-				if(ScopeCollector.instance == null) {
-					ScopeCollector.instance = new ScopeCollector();
-				}
-			}
-		}
 		return ScopeCollector.instance;
 	}
 
@@ -68,12 +61,11 @@ public class ScopeCollector implements IScopeCollector {
 	 * @param container
 	 * @return
 	 */
-	public Collection<IResource> computeSearchScope(ISearchPageContainer container) {
+	public Collection<URI> computeSearchScope(ISearchPageContainer container) {
 
-		Set<IResource> results = new HashSet<IResource>();
+		Set<URI> results = new HashSet<URI>();
 
 		if(container == null) {
-			//Worksapce scope
 			results.addAll(createWorkspaceScope());
 
 		} else {
@@ -131,38 +123,48 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createSelectionScope(IStructuredSelection selection) {
-		List<IResource> results = new ArrayList<IResource>();
+	protected List<URI> createSelectionScope(IStructuredSelection selection) {
+		List<URI> results = new ArrayList<URI>();
 
-		Iterator it = selection.iterator();
+		Iterator<?> it = selection.iterator();
 		while(it.hasNext()) {
 			Object object = (Object)it.next();
 
 			if(object instanceof IPapyrusFile) {
-				results.add(((IPapyrusFile)object).getMainFile());
+				results.addAll(findPapyrusModels(((IPapyrusFile)object).getMainFile()));
 			} else if(object instanceof IResource) {
 				results.addAll(findPapyrusModels((IResource)object));
 			} else {
-
 				Object element = BusinessModelResolver.getInstance().getBusinessModel(object);
 				if(element instanceof EObject) {
-					Resource eResource = ((EObject)element).eResource();
-					IFile resource = ModelUtils.getIFile(eResource);
-					if(resource != null) {
+					// CDO resource *are* EObjects
+					Resource eResource = (element instanceof Resource) ? (Resource) element : ((EObject)element).eResource();
+					if(eResource != null) {
+						ModelSet modelSet = null;
+						
 						try {
-							ModelSet modelSet = ModelUtils.openFile(resource);
+							modelSet = ModelUtils.openResource(eResource.getURI());
 							SashModel sashModel = (SashModel)modelSet.getModelChecked(SashModel.MODEL_ID);
-							IFile diResource = ModelUtils.getIFile(sashModel.getResource());
-							results.add((IFile)diResource);
-							modelSet.unload();
+							Resource diResource = sashModel.getResource();
+							if (diResource != null) {
+								results.add(diResource.getURI());
+							}
 						} catch (ModelMultiException e) {
 							//Do a workspace search instead
 							results.addAll(createWorkspaceScope());
 						} catch (NotFoundException e) {
 							//Do a workspace search instead
 							results.addAll(createWorkspaceScope());
+						} finally {
+							if (modelSet != null) {
+								try {
+									modelSet.unload();
+								} catch (Exception e) {
+									Activator.log.error(e);
+								}
+							}
 						}
-
+						
 					} else {
 						//Do a workspace search instead
 						results.addAll(createWorkspaceScope());
@@ -186,8 +188,8 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createProjectsScope(String[] projects) {
-		List<IResource> results = new ArrayList<IResource>();
+	protected List<URI> createProjectsScope(String[] projects) {
+		List<URI> results = new ArrayList<URI>();
 
 		for(String projectName : projects) {
 			IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
@@ -206,8 +208,8 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createWorkingSetsScope(IWorkingSet[] workingSets) {
-		List<IResource> results = new ArrayList<IResource>();
+	protected List<URI> createWorkingSetsScope(IWorkingSet[] workingSets) {
+		List<URI> results = new ArrayList<URI>();
 
 		if(workingSets != null && workingSets.length > 0) {
 			for(IWorkingSet iWorkingSet : workingSets) {
@@ -231,7 +233,7 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the found Papyrus models
 	 */
-	protected Collection<IResource> findPapyrusModels(IResource res) {
+	protected Collection<URI> findPapyrusModels(IResource res) {
 		ResourceVisitor visitor = new ResourceVisitor();
 		try {
 			res.accept(visitor, IResource.DEPTH_INFINITE);
@@ -239,7 +241,7 @@ public class ScopeCollector implements IScopeCollector {
 			Activator.log.warn(Messages.ScopeCollector_0 + res);
 		}
 
-		return visitor.getParticipants();
+		return visitor.getParticipantURIs();
 	}
 
 	/**
@@ -248,7 +250,7 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected Collection<IResource> createWorkspaceScope() {
+	protected Collection<URI> createWorkspaceScope() {
 
 		//Go through the workspace root
 		IResource root = ResourcesPlugin.getWorkspace().getRoot();

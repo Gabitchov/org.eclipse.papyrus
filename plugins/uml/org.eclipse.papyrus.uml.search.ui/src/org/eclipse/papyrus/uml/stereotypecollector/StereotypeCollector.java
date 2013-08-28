@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.stereotypecollector;
@@ -20,7 +21,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -37,7 +37,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
-import org.eclipse.papyrus.views.search.utils.ModelUtils;
 import org.eclipse.search.ui.ISearchPageContainer;
 import org.eclipse.ui.IWorkingSet;
 import org.eclipse.uml2.uml.Classifier;
@@ -47,21 +46,13 @@ import org.eclipse.uml2.uml.Stereotype;
 
 public class StereotypeCollector implements IStereotypeCollector {
 
-	private static StereotypeCollector instance = null;
+	private static final StereotypeCollector instance = new StereotypeCollector();
 
 	private StereotypeCollector() {
 		super();
 	}
 
 	public final static StereotypeCollector getInstance() {
-
-		if(StereotypeCollector.instance == null) {
-			synchronized(StereotypeCollector.class) {
-				if(StereotypeCollector.instance == null) {
-					StereotypeCollector.instance = new StereotypeCollector();
-				}
-			}
-		}
 		return StereotypeCollector.instance;
 	}
 
@@ -71,10 +62,9 @@ public class StereotypeCollector implements IStereotypeCollector {
 
 		Set<Profile> profiles = new HashSet<Profile>();
 
-		Set<IResource> umlResources = new HashSet<IResource>();
+		Set<URI> umlResources = new HashSet<URI>();
 
 		if(container == null) {
-			//Worksapce scope
 			umlResources.addAll(createWorkspaceScope());
 
 		} else {
@@ -120,8 +110,7 @@ public class StereotypeCollector implements IStereotypeCollector {
 			}
 		}
 
-		for(IResource umlRes : umlResources) {
-			URI uri = URI.createPlatformResourceURI(umlRes.getFullPath().toString(), true);
+		for(URI uri : umlResources) {
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.getResource(uri, true);
 
@@ -206,10 +195,10 @@ public class StereotypeCollector implements IStereotypeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createSelectionScope(IStructuredSelection selection) {
-		List<IResource> results = new ArrayList<IResource>();
+	protected List<URI> createSelectionScope(IStructuredSelection selection) {
+		List<URI> results = new ArrayList<URI>();
 
-		Iterator it = selection.iterator();
+		Iterator<?> it = selection.iterator();
 		while(it.hasNext()) {
 			Object object = (Object)it.next();
 
@@ -225,10 +214,10 @@ public class StereotypeCollector implements IStereotypeCollector {
 
 				Object element = BusinessModelResolver.getInstance().getBusinessModel(object);
 				if(element instanceof EObject) {
-					Resource eResource = ((EObject)element).eResource();
-					IFile resource = ModelUtils.getIFile(eResource);
-					if(resource != null) {
-						results.add(resource);
+					// CDO resource *are* EObjects
+					Resource eResource = (element instanceof Resource) ? (Resource) element : ((EObject)element).eResource();
+					if(eResource != null) {
+						results.add(eResource.getURI());
 
 					} else {
 						//Do a workspace search instead
@@ -253,8 +242,8 @@ public class StereotypeCollector implements IStereotypeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createProjectsScope(String[] projects) {
-		List<IResource> results = new ArrayList<IResource>();
+	protected List<URI> createProjectsScope(String[] projects) {
+		List<URI> results = new ArrayList<URI>();
 
 		for(String projectName : projects) {
 			IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
@@ -273,8 +262,8 @@ public class StereotypeCollector implements IStereotypeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createWorkingSetsScope(IWorkingSet[] workingSets) {
-		List<IResource> results = new ArrayList<IResource>();
+	protected List<URI> createWorkingSetsScope(IWorkingSet[] workingSets) {
+		List<URI> results = new ArrayList<URI>();
 
 		if(workingSets != null && workingSets.length > 0) {
 			for(IWorkingSet iWorkingSet : workingSets) {
@@ -298,7 +287,7 @@ public class StereotypeCollector implements IStereotypeCollector {
 	 * @return
 	 *         the found Papyrus models
 	 */
-	protected Collection<IResource> findUMLModels(IResource res) {
+	protected Collection<URI> findUMLModels(IResource res) {
 		UMLResourceVisitor visitor = new UMLResourceVisitor();
 		try {
 			res.accept(visitor, IResource.DEPTH_INFINITE);
@@ -306,7 +295,7 @@ public class StereotypeCollector implements IStereotypeCollector {
 			org.eclipse.papyrus.uml.search.ui.Activator.log.warn(Messages.StereotypeCollector_0 + res);
 		}
 
-		return visitor.getParticipants();
+		return visitor.getParticipantURIs();
 	}
 
 	/**
@@ -315,7 +304,7 @@ public class StereotypeCollector implements IStereotypeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected Collection<IResource> createWorkspaceScope() {
+	protected Collection<URI> createWorkspaceScope() {
 
 		//Go through the workspace root
 		IResource root = ResourcesPlugin.getWorkspace().getRoot();

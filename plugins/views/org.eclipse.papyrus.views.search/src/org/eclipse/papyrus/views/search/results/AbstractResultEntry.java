@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.results;
@@ -20,6 +21,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -50,6 +52,8 @@ public abstract class AbstractResultEntry extends Match {
 	protected URI uriSource;
 
 	protected java.net.URI uriResource;
+	
+	protected URI uriEResource;
 
 	/**
 	 * Used to specify offset and length of {@link Match} when these attributes are not meaningful
@@ -97,7 +101,7 @@ public abstract class AbstractResultEntry extends Match {
 				child.setParent(theParent);
 				recursiveHierarchy(theParent);
 			} else {
-				ResultEntry theParent = new ResultEntry(((ScopeEntry)this.getElement()).getResource(), (ScopeEntry)this.getElement());
+				ResultEntry theParent = new ResultEntry(((ScopeEntry)this.getElement()).getResourceURI(), (ScopeEntry)this.getElement());
 				child.setParent(theParent);
 			}
 		}
@@ -112,14 +116,14 @@ public abstract class AbstractResultEntry extends Match {
 
 			while(potentialParent != null) {
 				theParent = new ResultEntry(potentialParent, scopeEntry);
-				theParent.setParent(new ResultEntry(scopeEntry.getResource(), scopeEntry));
+				theParent.setParent(new ResultEntry(scopeEntry.getResourceURI(), scopeEntry));
 
 				potentialParent = potentialParent.eContainer();
 			}
 
 			if(theParent == null) {
 
-				theParent = new ResultEntry(scopeEntry.getResource(), scopeEntry);
+				theParent = new ResultEntry(scopeEntry.getResourceURI(), scopeEntry);
 
 			}
 			return theParent;
@@ -188,6 +192,15 @@ public abstract class AbstractResultEntry extends Match {
 			this.uriSource = EcoreUtil.getURI((EObject)source);
 		} else if(source instanceof IResource) {
 			this.uriResource = ((IResource)source).getLocationURI();
+		} else if (source instanceof URI) {
+			URI uri = (URI) source;
+			
+			if (uri.isPlatformResource()) {
+				// we use this as a proxy for IResources
+				this.uriResource = java.net.URI.create(((URI) source).toString());
+			} else {
+				this.uriEResource = uri;
+			}
 		}
 	}
 
@@ -202,6 +215,9 @@ public abstract class AbstractResultEntry extends Match {
 
 			IPath path = new Path(this.uriResource.getPath());
 			return root.getFile(path);
+		} else if (this.uriEResource != null) {
+			ResourceSet rset = ((ScopeEntry)this.getElement()).getModelSet();
+			return rset.getResource(this.uriEResource, true);
 		}
 
 		return null;

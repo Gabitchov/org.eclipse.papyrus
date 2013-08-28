@@ -10,6 +10,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - Fix leaking of all UML models in search results
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui.pages;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.PatternSyntaxException;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
@@ -791,7 +791,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 	protected ScopeEntry getCurrentScopeEntry() {
 		if(container.getSelectedScope() == ISearchPageContainer.SELECTION_SCOPE) {
-			Collection<IResource> scope = ScopeCollector.getInstance().computeSearchScope(container);
+			Collection<URI> scope = ScopeCollector.getInstance().computeSearchScope(container);
 
 			Collection<ScopeEntry> scopeEntries = createScopeEntries(scope);
 
@@ -969,17 +969,17 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	}
 
 	/**
-	 * Create scopeEntries based on IResources.
+	 * Create scopeEntries based on URIs.
 	 * 
 	 * @return the created scopeEntries
 	 */
-	private Collection<ScopeEntry> createScopeEntries(Collection<IResource> scope) {
+	private Collection<ScopeEntry> createScopeEntries(Collection<URI> scope) {
 		IServiceRegistryTracker tracker = createServiceRegistryTracker();
 		Collection<ScopeEntry> results = new HashSet<ScopeEntry>();
 
-		for(IResource resource : scope) {
+		for(URI uri : scope) {
 
-			ScopeEntry scopeEntry = new ScopeEntry(resource, tracker);
+			ScopeEntry scopeEntry = new ScopeEntry(uri, tracker);
 
 			results.add(scopeEntry);
 
@@ -996,7 +996,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 		if(queryKind.getSelectionIndex() == TEXT_QUERY_KIND) {
 			if(validateRegex()) {
-				Collection<IResource> scope = ScopeCollector.getInstance().computeSearchScope(container);
+				Collection<URI> scope = ScopeCollector.getInstance().computeSearchScope(container);
 				Collection<ScopeEntry> scopeEntries = createScopeEntries(scope);
 				ISearchQuery query;
 				if(searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
@@ -1092,7 +1092,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 					return false;
 				}
 
-				Collection<IResource> scope = ScopeCollector.getInstance().computeSearchScope(container);
+				Collection<URI> scope = ScopeCollector.getInstance().computeSearchScope(container);
 
 				Collection<ScopeEntry> scopeEntries = createScopeEntries(scope);
 				AbstractPapyrusQuery query;
