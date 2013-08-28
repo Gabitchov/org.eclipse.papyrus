@@ -38,7 +38,7 @@
             description="Generate C++ code"
             id="org.eclipse.papyrus.cpp.codegen.command"
             defaultHandler="org.eclipse.papyrus.cpp.codegen.ui.handler.GenerateCodeHandler"
-            name="">
+            name="Generate C++ code">
       </command>
    </extension>
    <extension
