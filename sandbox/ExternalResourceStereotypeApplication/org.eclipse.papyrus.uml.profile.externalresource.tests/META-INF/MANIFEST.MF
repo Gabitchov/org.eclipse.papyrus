@@ -18,7 +18,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.pde;bundle-version="3.8.100",
  org.eclipse.pde.ui;bundle-version="3.8.0",
  org.eclipse.papyrus.uml.profile.externalresource;bundle-version="0.10.1",
- org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.7.0"
+ org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.7.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.profile.externalresource.tests,
