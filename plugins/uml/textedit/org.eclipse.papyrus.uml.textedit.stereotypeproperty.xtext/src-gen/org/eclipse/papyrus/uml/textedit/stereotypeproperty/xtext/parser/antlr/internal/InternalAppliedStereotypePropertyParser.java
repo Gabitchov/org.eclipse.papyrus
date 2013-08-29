@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalAppliedStereotypePropertyParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGERVALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INT", "RULE_WS", "RULE_ANY_OTHER", "'='", "'*'", "'++'", "'--'", "'::'", "'<'", "','", "'>'", "'=>'", "'('", "')'", "'?'", "':'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<='", "'>='", "'<<'", "'>>'", "'>>>'", "'+'", "'-'", "'/'", "'%'", "'!'", "'$'", "'~'", "'.'", "'['", "']'", "'->'", "'reduce'", "'ordered'", "'isUnique'", "'null'", "'this'", "'super'", "'new'", "'{'", "'..'", "'}'", "'allInstances'", "'/*@'", "'inline'", "'*/'", "'//@'", "';'", "'let'", "'if'", "'else'", "'or'", "'switch'", "'case'", "'default'", "'while'", "'do'", "'for'", "'in'", "'break'", "'return'", "'accept'", "'classify'", "'from'", "'to'", "'true'", "'false'", "'createLink'", "'destroyLink'", "'clearAssoc'", "'select'", "'reject'", "'collect'", "'iterate'", "'forAll'", "'exists'", "'one'", "'isolated'", "'determined'", "'assured'", "'parallel'", "'+='", "'-='", "'*='", "'%='", "'/='", "'&='", "'|='", "'^='", "'<<='", "'>>='", "'>>>='"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INT", "RULE_WS", "RULE_ANY_OTHER", "'='", "'*'", "'++'", "'--'", "'::'", "'<'", "','", "'>'", "'=>'", "'('", "')'", "'?'", "':'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<='", "'>='", "'<<'", "'>>'", "'>>>'", "'+'", "'-'", "'/'", "'%'", "'!'", "'$'", "'~'", "'.'", "'['", "']'", "'->'", "'reduce'", "'ordered'", "'isUnique'", "'null'", "'this'", "'super'", "'new'", "'{'", "'..'", "'}'", "'allInstances'", "'/*@'", "'inline'", "'*/'", "'//@'", "';'", "'let'", "'if'", "'else'", "'or'", "'switch'", "'case'", "'default'", "'while'", "'do'", "'for'", "'in'", "'break'", "'return'", "'accept'", "'classify'", "'from'", "'to'", "'true'", "'false'", "'createLink'", "'destroyLink'", "'clearAssoc'", "'select'", "'reject'", "'collect'", "'iterate'", "'forAll'", "'exists'", "'one'", "'isolated'", "'determined'", "'assured'", "'parallel'", "'+='", "'-='", "'*='", "'%='", "'/='", "'&='", "'|='", "'^='", "'<<='", "'>>='", "'>>>='"
     };
     public static final int RULE_ID=4;
     public static final int T__29=29;
@@ -36,6 +36,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
     public static final int RULE_ANY_OTHER=11;
     public static final int T__21=21;
     public static final int T__20=20;
+    public static final int RULE_INTEGER_VALUE=5;
     public static final int EOF=-1;
     public static final int T__93=93;
     public static final int T__19=19;
@@ -51,7 +52,6 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
     public static final int T__14=14;
     public static final int T__13=13;
     public static final int T__99=99;
-    public static final int RULE_INTEGERVALUE=5;
     public static final int T__98=98;
     public static final int T__97=97;
     public static final int T__96=96;
@@ -468,7 +468,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
                 alt1=1;
                 }
                 break;
-            case RULE_INTEGERVALUE:
+            case RULE_INTEGER_VALUE:
             case 13:
                 {
                 alt1=2;
@@ -715,7 +715,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==RULE_INTEGERVALUE) ) {
+            if ( (LA2_0==RULE_INTEGER_VALUE) ) {
                 alt2=1;
             }
             else if ( (LA2_0==13) ) {
@@ -821,7 +821,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
 
 
     // $ANTLR start "ruleINTEGER_LITERAL"
-    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:303:1: ruleINTEGER_LITERAL returns [EObject current=null] : ( (lv_value_0_0= RULE_INTEGERVALUE ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:303:1: ruleINTEGER_LITERAL returns [EObject current=null] : ( (lv_value_0_0= RULE_INTEGER_VALUE ) ) ;
     public final EObject ruleINTEGER_LITERAL() throws RecognitionException {
         EObject current = null;
 
@@ -830,18 +830,18 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:306:28: ( ( (lv_value_0_0= RULE_INTEGERVALUE ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:307:1: ( (lv_value_0_0= RULE_INTEGERVALUE ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:306:28: ( ( (lv_value_0_0= RULE_INTEGER_VALUE ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:307:1: ( (lv_value_0_0= RULE_INTEGER_VALUE ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:307:1: ( (lv_value_0_0= RULE_INTEGERVALUE ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:308:1: (lv_value_0_0= RULE_INTEGERVALUE )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:307:1: ( (lv_value_0_0= RULE_INTEGER_VALUE ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:308:1: (lv_value_0_0= RULE_INTEGER_VALUE )
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:308:1: (lv_value_0_0= RULE_INTEGERVALUE )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:309:3: lv_value_0_0= RULE_INTEGERVALUE
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:308:1: (lv_value_0_0= RULE_INTEGER_VALUE )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:309:3: lv_value_0_0= RULE_INTEGER_VALUE
             {
-            lv_value_0_0=(Token)match(input,RULE_INTEGERVALUE,FOLLOW_RULE_INTEGERVALUE_in_ruleINTEGER_LITERAL699); 
+            lv_value_0_0=(Token)match(input,RULE_INTEGER_VALUE,FOLLOW_RULE_INTEGER_VALUE_in_ruleINTEGER_LITERAL699); 
 
-            			newLeafNode(lv_value_0_0, grammarAccess.getINTEGER_LITERALAccess().getValueIntegerValueTerminalRuleCall_0()); 
+            			newLeafNode(lv_value_0_0, grammarAccess.getINTEGER_LITERALAccess().getValueINTEGER_VALUETerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
@@ -851,7 +851,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
                    			current, 
                    			"value",
                     		lv_value_0_0, 
-                    		"IntegerValue");
+                    		"INTEGER_VALUE");
             	    
 
             }
@@ -8278,7 +8278,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
                 alt51=1;
                 }
                 break;
-            case RULE_INTEGERVALUE:
+            case RULE_INTEGER_VALUE:
             case RULE_STRING:
             case 13:
             case 83:
@@ -18945,7 +18945,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
     public static final BitSet FOLLOW_ruleUNLIMITED_LITERAL_in_ruleNUMBER_LITERAL613 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleINTEGER_LITERAL_in_entryRuleINTEGER_LITERAL648 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleINTEGER_LITERAL658 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGERVALUE_in_ruleINTEGER_LITERAL699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_VALUE_in_ruleINTEGER_LITERAL699 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUNLIMITED_LITERAL_in_entryRuleUNLIMITED_LITERAL739 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUNLIMITED_LITERAL749 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_13_in_ruleUNLIMITED_LITERAL791 = new BitSet(new long[]{0x0000000000000002L});

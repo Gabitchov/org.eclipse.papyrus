@@ -22,24 +22,25 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlCollaborationUseParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'<Undefined>'", "'*'", "'+'", "'-'", "'#'", "'~'", "':'", "'::'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'<Undefined>'", "'*'", "'+'", "'-'", "'#'", "'~'", "':'", "'::'"
     };
     public static final int RULE_ID=5;
-    public static final int RULE_STRING=6;
+    public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_INTEGER_VALUE=6;
+    public static final int EOF=-1;
+    public static final int RULE_SL_COMMENT=9;
+    public static final int RULE_ML_COMMENT=8;
+    public static final int T__19=19;
+    public static final int RULE_STRING=7;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
     public static final int T__17=17;
     public static final int T__12=12;
-    public static final int T__11=11;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_ANY_OTHER=10;
     public static final int RULE_INT=4;
-    public static final int RULE_WS=9;
-    public static final int RULE_SL_COMMENT=8;
-    public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_WS=10;
 
     // delegates
     // delegators
@@ -524,7 +525,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             if ( (LA1_0==RULE_ID) ) {
                 alt1=1;
             }
-            else if ( (LA1_0==11) ) {
+            else if ( (LA1_0==12) ) {
                 alt1=2;
             }
             else {
@@ -566,7 +567,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:235:1: '<Undefined>'
                     {
                      before(grammarAccess.getCollaborationUseRuleAccess().getUndefinedKeyword_3_1()); 
-                    match(input,11,FOLLOW_11_in_rule__CollaborationUseRule__Alternatives_3429); 
+                    match(input,12,FOLLOW_12_in_rule__CollaborationUseRule__Alternatives_3429); 
                      after(grammarAccess.getCollaborationUseRuleAccess().getUndefinedKeyword_3_1()); 
 
                     }
@@ -605,7 +606,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             if ( (LA2_0==RULE_INT) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==12) ) {
+            else if ( (LA2_0==13) ) {
                 alt2=2;
             }
             else {
@@ -637,7 +638,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:259:1: '*'
                     {
                      before(grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
-                    match(input,12,FOLLOW_12_in_rule__UnlimitedLiteral__Alternatives481); 
+                    match(input,13,FOLLOW_13_in_rule__UnlimitedLiteral__Alternatives481); 
                      after(grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
 
                     }
@@ -672,22 +673,22 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:275:1: ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) )
             int alt3=4;
             switch ( input.LA(1) ) {
-            case 13:
+            case 14:
                 {
                 alt3=1;
                 }
                 break;
-            case 14:
+            case 15:
                 {
                 alt3=2;
                 }
                 break;
-            case 15:
+            case 16:
                 {
                 alt3=3;
                 }
                 break;
-            case 16:
+            case 17:
                 {
                 alt3=4;
                 }
@@ -710,7 +711,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:278:1: ( '+' )
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:278:3: '+'
                     {
-                    match(input,13,FOLLOW_13_in_rule__VisibilityKind__Alternatives516); 
+                    match(input,14,FOLLOW_14_in_rule__VisibilityKind__Alternatives516); 
 
                     }
 
@@ -731,7 +732,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:285:1: ( '-' )
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:285:3: '-'
                     {
-                    match(input,14,FOLLOW_14_in_rule__VisibilityKind__Alternatives537); 
+                    match(input,15,FOLLOW_15_in_rule__VisibilityKind__Alternatives537); 
 
                     }
 
@@ -752,7 +753,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:292:1: ( '#' )
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:292:3: '#'
                     {
-                    match(input,15,FOLLOW_15_in_rule__VisibilityKind__Alternatives558); 
+                    match(input,16,FOLLOW_16_in_rule__VisibilityKind__Alternatives558); 
 
                     }
 
@@ -773,7 +774,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:299:1: ( '~' )
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:299:3: '~'
                     {
-                    match(input,16,FOLLOW_16_in_rule__VisibilityKind__Alternatives579); 
+                    match(input,17,FOLLOW_17_in_rule__VisibilityKind__Alternatives579); 
 
                     }
 
@@ -1023,7 +1024,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:388:1: ':'
             {
              before(grammarAccess.getCollaborationUseRuleAccess().getColonKeyword_2()); 
-            match(input,17,FOLLOW_17_in_rule__CollaborationUseRule__Group__2__Impl764); 
+            match(input,18,FOLLOW_18_in_rule__CollaborationUseRule__Group__2__Impl764); 
              after(grammarAccess.getCollaborationUseRuleAccess().getColonKeyword_2()); 
 
             }
@@ -1185,7 +1186,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             if ( (LA4_0==RULE_ID) ) {
                 int LA4_1 = input.LA(2);
 
-                if ( (LA4_1==18) ) {
+                if ( (LA4_1==19) ) {
                     alt4=1;
                 }
             }
@@ -1443,7 +1444,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:545:1: '::'
             {
              before(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1()); 
-            match(input,18,FOLLOW_18_in_rule__QualifiedName__Group__1__Impl1073); 
+            match(input,19,FOLLOW_19_in_rule__QualifiedName__Group__1__Impl1073); 
              after(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1()); 
 
             }
@@ -1520,7 +1521,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             if ( (LA5_0==RULE_ID) ) {
                 int LA5_1 = input.LA(2);
 
-                if ( (LA5_1==18) ) {
+                if ( (LA5_1==19) ) {
                     alt5=1;
                 }
             }
@@ -1914,22 +1915,22 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
     public static final BitSet FOLLOW_rule__UnlimitedLiteral__Alternatives_in_ruleUnlimitedLiteral336 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VisibilityKind__Alternatives_in_ruleVisibilityKind373 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__CollaborationUseRule__TypeAssignment_3_0_in_rule__CollaborationUseRule__Alternatives_3410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rule__CollaborationUseRule__Alternatives_3429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_rule__CollaborationUseRule__Alternatives_3429 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_rule__UnlimitedLiteral__Alternatives463 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__UnlimitedLiteral__Alternatives481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__VisibilityKind__Alternatives516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__VisibilityKind__Alternatives537 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__VisibilityKind__Alternatives558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__VisibilityKind__Alternatives579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__UnlimitedLiteral__Alternatives481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__VisibilityKind__Alternatives516 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__VisibilityKind__Alternatives537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__VisibilityKind__Alternatives558 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__VisibilityKind__Alternatives579 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__CollaborationUseRule__Group__0__Impl_in_rule__CollaborationUseRule__Group__0613 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__CollaborationUseRule__Group__1_in_rule__CollaborationUseRule__Group__0616 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__CollaborationUseRule__VisibilityAssignment_0_in_rule__CollaborationUseRule__Group__0__Impl643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CollaborationUseRule__Group__1__Impl_in_rule__CollaborationUseRule__Group__1673 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_rule__CollaborationUseRule__Group__1__Impl_in_rule__CollaborationUseRule__Group__1673 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_rule__CollaborationUseRule__Group__2_in_rule__CollaborationUseRule__Group__1676 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__CollaborationUseRule__NameAssignment_1_in_rule__CollaborationUseRule__Group__1__Impl703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CollaborationUseRule__Group__2__Impl_in_rule__CollaborationUseRule__Group__2733 = new BitSet(new long[]{0x0000000000000820L});
+    public static final BitSet FOLLOW_rule__CollaborationUseRule__Group__2__Impl_in_rule__CollaborationUseRule__Group__2733 = new BitSet(new long[]{0x0000000000001020L});
     public static final BitSet FOLLOW_rule__CollaborationUseRule__Group__3_in_rule__CollaborationUseRule__Group__2736 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__CollaborationUseRule__Group__2__Impl764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_rule__CollaborationUseRule__Group__2__Impl764 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__CollaborationUseRule__Group__3__Impl_in_rule__CollaborationUseRule__Group__3795 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__CollaborationUseRule__Alternatives_3_in_rule__CollaborationUseRule__Group__3__Impl822 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypeRule__Group__0__Impl_in_rule__TypeRule__Group__0860 = new BitSet(new long[]{0x0000000000000020L});
@@ -1937,12 +1938,12 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
     public static final BitSet FOLLOW_rule__TypeRule__PathAssignment_0_in_rule__TypeRule__Group__0__Impl890 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypeRule__Group__1__Impl_in_rule__TypeRule__Group__1921 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypeRule__TypeAssignment_1_in_rule__TypeRule__Group__1__Impl948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__0982 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__0982 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__0985 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl1012 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__11042 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__11045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_rule__QualifiedName__Group__1__Impl1073 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_rule__QualifiedName__Group__1__Impl1073 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__21104 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__RemainingAssignment_2_in_rule__QualifiedName__Group__2__Impl1131 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleVisibilityKind_in_rule__CollaborationUseRule__VisibilityAssignment_01175 = new BitSet(new long[]{0x0000000000000002L});

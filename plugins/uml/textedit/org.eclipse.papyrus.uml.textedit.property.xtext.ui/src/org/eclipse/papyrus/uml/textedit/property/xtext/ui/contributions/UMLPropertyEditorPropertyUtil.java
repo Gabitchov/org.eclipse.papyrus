@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions;
 
 import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
-import org.eclipse.papyrus.uml.textedit.property.xtext.validation.UmlPropertyJavaValidator;
+import org.eclipse.papyrus.uml.alf.naming.ALFIDConverter;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
@@ -34,33 +34,34 @@ public class UMLPropertyEditorPropertyUtil extends PropertyUtil {
 
 		// name
 		buffer.append(" ");
-		buffer.append(getName(property));
+		buffer.append(ALFIDConverter.nameToID(getName(property)));
 
 		// type
-		if(property.getType() != null) {
-			buffer.append(" : " + CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(property.getType(), UmlPropertyJavaValidator.getModel()));
+		if (property.getType() != null) {
+			buffer.append(" : "
+					+ CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(property.getType(),
+							property.getNamespace()));
 		} else {
 			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME);
 		}
 
 		// multiplicity -> do not display [1]
 		String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
-		if(!multiplicity.trim().equals("[1]")) {
+		if (!multiplicity.trim().equals("[1]")) {
 			buffer.append(multiplicity);
 		}
 
 		// property modifiers
-		buffer.append(" ") ;
+		buffer.append(" ");
 		buffer.append(PropertyUtil.getModifiersAsString(property, false));
-		
+
 		// default value
-		if(property.getDefault() != null) {
+		if (property.getDefault() != null) {
 			buffer.append(" = ");
 			buffer.append("\"" + property.getDefault() + "\"");
 		}
-		
-		
+
 		return buffer.toString();
 	}
-	
+
 }

@@ -28,7 +28,7 @@ public class UmlPropertyFormatter extends AbstractDeclarativeFormatter {
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-		org.eclipse.papyrus.uml.textedit.property.xtext.services.UmlPropertyGrammarAccess f = (org.eclipse.papyrus.uml.textedit.property.xtext.services.UmlPropertyGrammarAccess) getGrammarAccess();
+//		org.eclipse.papyrus.uml.textedit.property.xtext.services.UmlPropertyGrammarAccess f = (org.eclipse.papyrus.uml.textedit.property.xtext.services.UmlPropertyGrammarAccess) getGrammarAccess();
 
 		//...
 	}

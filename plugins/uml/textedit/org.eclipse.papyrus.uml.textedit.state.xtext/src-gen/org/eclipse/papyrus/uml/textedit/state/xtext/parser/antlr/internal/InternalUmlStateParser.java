@@ -22,24 +22,25 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlStateParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'::'", "'entry'", "'do'", "'exit'", "'Activity'", "'StateMachine'", "'OpaqueBehavior'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'::'", "'entry'", "'do'", "'exit'", "'Activity'", "'StateMachine'", "'OpaqueBehavior'"
     };
     public static final int RULE_ID=4;
+    public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_INTEGER_VALUE=5;
+    public static final int EOF=-1;
+    public static final int RULE_SL_COMMENT=8;
+    public static final int RULE_ML_COMMENT=7;
+    public static final int T__19=19;
     public static final int RULE_STRING=6;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
     public static final int T__17=17;
     public static final int T__12=12;
-    public static final int T__11=11;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_ANY_OTHER=10;
-    public static final int RULE_INT=5;
-    public static final int RULE_WS=9;
-    public static final int RULE_SL_COMMENT=8;
-    public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_INT=9;
+    public static final int RULE_WS=10;
 
     // delegates
     // delegators
@@ -170,14 +171,14 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==11) ) {
+            if ( (LA1_0==12) ) {
                 alt1=1;
             }
             switch (alt1) {
                 case 1 :
                     // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:99:4: otherlv_1= ':' ( (lv_submachine_2_0= ruleSubmachineRule ) )
                     {
-                    otherlv_1=(Token)match(input,11,FOLLOW_11_in_ruleStateRule145); 
+                    otherlv_1=(Token)match(input,12,FOLLOW_12_in_ruleStateRule145); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getStateRuleAccess().getColonKeyword_1_0());
                         
@@ -236,13 +237,13 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
                 int alt2=4;
                 int LA2_0 = input.LA(1);
 
-                if ( LA2_0 ==13 && getUnorderedGroupHelper().canSelect(grammarAccess.getStateRuleAccess().getUnorderedGroup_2(), 0) ) {
+                if ( LA2_0 ==14 && getUnorderedGroupHelper().canSelect(grammarAccess.getStateRuleAccess().getUnorderedGroup_2(), 0) ) {
                     alt2=1;
                 }
-                else if ( LA2_0 ==14 && getUnorderedGroupHelper().canSelect(grammarAccess.getStateRuleAccess().getUnorderedGroup_2(), 1) ) {
+                else if ( LA2_0 ==15 && getUnorderedGroupHelper().canSelect(grammarAccess.getStateRuleAccess().getUnorderedGroup_2(), 1) ) {
                     alt2=2;
                 }
-                else if ( LA2_0 ==15 && getUnorderedGroupHelper().canSelect(grammarAccess.getStateRuleAccess().getUnorderedGroup_2(), 2) ) {
+                else if ( LA2_0 ==16 && getUnorderedGroupHelper().canSelect(grammarAccess.getStateRuleAccess().getUnorderedGroup_2(), 2) ) {
                     alt2=3;
                 }
 
@@ -548,7 +549,7 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
             if ( (LA3_0==RULE_ID) ) {
                 int LA3_1 = input.LA(2);
 
-                if ( (LA3_1==12) ) {
+                if ( (LA3_1==13) ) {
                     alt3=1;
                 }
             }
@@ -704,7 +705,7 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,12,FOLLOW_12_in_ruleQualifiedName640); 
+            otherlv_1=(Token)match(input,13,FOLLOW_13_in_ruleQualifiedName640); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1());
                 
@@ -715,7 +716,7 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
             if ( (LA4_0==RULE_ID) ) {
                 int LA4_1 = input.LA(2);
 
-                if ( (LA4_1==12) ) {
+                if ( (LA4_1==13) ) {
                     alt4=1;
                 }
             }
@@ -829,7 +830,7 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:356:1: (otherlv_0= 'entry' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) )
             // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:356:3: otherlv_0= 'entry' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,13,FOLLOW_13_in_ruleEntryRule745); 
+            otherlv_0=(Token)match(input,14,FOLLOW_14_in_ruleEntryRule745); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getEntryRuleAccess().getEntryKeyword_0());
                 
@@ -965,7 +966,7 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:417:1: (otherlv_0= 'do' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) )
             // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:417:3: otherlv_0= 'do' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,14,FOLLOW_14_in_ruleDoRule871); 
+            otherlv_0=(Token)match(input,15,FOLLOW_15_in_ruleDoRule871); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getDoRuleAccess().getDoKeyword_0());
                 
@@ -1101,7 +1102,7 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:478:1: (otherlv_0= 'exit' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) )
             // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:478:3: otherlv_0= 'exit' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,15,FOLLOW_15_in_ruleExitRule997); 
+            otherlv_0=(Token)match(input,16,FOLLOW_16_in_ruleExitRule997); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getExitRuleAccess().getExitKeyword_0());
                 
@@ -1199,17 +1200,17 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:529:1: ( (enumLiteral_0= 'Activity' ) | (enumLiteral_1= 'StateMachine' ) | (enumLiteral_2= 'OpaqueBehavior' ) )
             int alt5=3;
             switch ( input.LA(1) ) {
-            case 16:
+            case 17:
                 {
                 alt5=1;
                 }
                 break;
-            case 17:
+            case 18:
                 {
                 alt5=2;
                 }
                 break;
-            case 18:
+            case 19:
                 {
                 alt5=3;
                 }
@@ -1228,7 +1229,7 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:529:2: (enumLiteral_0= 'Activity' )
                     // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:529:4: enumLiteral_0= 'Activity'
                     {
-                    enumLiteral_0=(Token)match(input,16,FOLLOW_16_in_ruleBehaviorKind1090); 
+                    enumLiteral_0=(Token)match(input,17,FOLLOW_17_in_ruleBehaviorKind1090); 
 
                             current = grammarAccess.getBehaviorKindAccess().getACTIVITYEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getBehaviorKindAccess().getACTIVITYEnumLiteralDeclaration_0()); 
@@ -1245,7 +1246,7 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:535:6: (enumLiteral_1= 'StateMachine' )
                     // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:535:8: enumLiteral_1= 'StateMachine'
                     {
-                    enumLiteral_1=(Token)match(input,17,FOLLOW_17_in_ruleBehaviorKind1107); 
+                    enumLiteral_1=(Token)match(input,18,FOLLOW_18_in_ruleBehaviorKind1107); 
 
                             current = grammarAccess.getBehaviorKindAccess().getSTATE_MACHINEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getBehaviorKindAccess().getSTATE_MACHINEEnumLiteralDeclaration_1()); 
@@ -1262,7 +1263,7 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:541:6: (enumLiteral_2= 'OpaqueBehavior' )
                     // ../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g:541:8: enumLiteral_2= 'OpaqueBehavior'
                     {
-                    enumLiteral_2=(Token)match(input,18,FOLLOW_18_in_ruleBehaviorKind1124); 
+                    enumLiteral_2=(Token)match(input,19,FOLLOW_19_in_ruleBehaviorKind1124); 
 
                             current = grammarAccess.getBehaviorKindAccess().getOPAQUE_BEHAVIOREnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getBehaviorKindAccess().getOPAQUE_BEHAVIOREnumLiteralDeclaration_2()); 
@@ -1299,38 +1300,38 @@ public class InternalUmlStateParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_ruleStateRule_in_entryRuleStateRule75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleStateRule85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleStateRule127 = new BitSet(new long[]{0x000000000000E802L});
-    public static final BitSet FOLLOW_11_in_ruleStateRule145 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleSubmachineRule_in_ruleStateRule166 = new BitSet(new long[]{0x000000000000E002L});
-    public static final BitSet FOLLOW_ruleEntryRule_in_ruleStateRule234 = new BitSet(new long[]{0x000000000000E002L});
-    public static final BitSet FOLLOW_ruleDoRule_in_ruleStateRule309 = new BitSet(new long[]{0x000000000000E002L});
-    public static final BitSet FOLLOW_ruleExitRule_in_ruleStateRule384 = new BitSet(new long[]{0x000000000000E002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleStateRule127 = new BitSet(new long[]{0x000000000001D002L});
+    public static final BitSet FOLLOW_12_in_ruleStateRule145 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleSubmachineRule_in_ruleStateRule166 = new BitSet(new long[]{0x000000000001C002L});
+    public static final BitSet FOLLOW_ruleEntryRule_in_ruleStateRule234 = new BitSet(new long[]{0x000000000001C002L});
+    public static final BitSet FOLLOW_ruleDoRule_in_ruleStateRule309 = new BitSet(new long[]{0x000000000001C002L});
+    public static final BitSet FOLLOW_ruleExitRule_in_ruleStateRule384 = new BitSet(new long[]{0x000000000001C002L});
     public static final BitSet FOLLOW_ruleSubmachineRule_in_entryRuleSubmachineRule460 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSubmachineRule470 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleSubmachineRule516 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleSubmachineRule537 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName573 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName628 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleQualifiedName640 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName628 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleQualifiedName640 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedName661 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEntryRule_in_entryRuleEntryRule698 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleEntryRule708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_ruleEntryRule745 = new BitSet(new long[]{0x0000000000070000L});
+    public static final BitSet FOLLOW_14_in_ruleEntryRule745 = new BitSet(new long[]{0x00000000000E0000L});
     public static final BitSet FOLLOW_ruleBehaviorKind_in_ruleEntryRule766 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleEntryRule783 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDoRule_in_entryRuleDoRule824 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDoRule834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_ruleDoRule871 = new BitSet(new long[]{0x0000000000070000L});
+    public static final BitSet FOLLOW_15_in_ruleDoRule871 = new BitSet(new long[]{0x00000000000E0000L});
     public static final BitSet FOLLOW_ruleBehaviorKind_in_ruleDoRule892 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleDoRule909 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExitRule_in_entryRuleExitRule950 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleExitRule960 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_ruleExitRule997 = new BitSet(new long[]{0x0000000000070000L});
+    public static final BitSet FOLLOW_16_in_ruleExitRule997 = new BitSet(new long[]{0x00000000000E0000L});
     public static final BitSet FOLLOW_ruleBehaviorKind_in_ruleExitRule1018 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleExitRule1035 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_ruleBehaviorKind1090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_ruleBehaviorKind1107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleBehaviorKind1124 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_ruleBehaviorKind1090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_ruleBehaviorKind1107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleBehaviorKind1124 = new BitSet(new long[]{0x0000000000000002L});
 
 }

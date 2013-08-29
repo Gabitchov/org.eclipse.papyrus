@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.textedit.state.xtext.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.DoRule;
@@ -24,10 +25,9 @@ import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.ExitRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.StateRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementUtil;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Vertex;
@@ -36,34 +36,6 @@ import org.eclipse.xtext.validation.Check;
 
 public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 
-	private static Namespace model ;
-	private static Element contextElement ;
-	private static boolean valid_StateName = true ;
-	private static boolean valid_SubMachineRule = true ;
-	
-	public static void init(Element _contextElement) {
-		contextElement = _contextElement ;
-		if (contextElement != null) {
-			Element elem = contextElement.getOwner() ;
-			while (elem.getOwner() != null) {
-				elem = elem.getOwner() ;
-			}
-			model = (Namespace)elem ;
-		}
-	}
-
-	public static Namespace getModel() {
-		return model ;
-	}
-	
-	public static Element getContextElement() {
-		return contextElement ;
-	}
-	
-	public static boolean validate() {
-		return valid_StateName && valid_SubMachineRule ;
-	}
-	
 	/**
 	 * First checks if the new name being attributed to the edited state is already used by another state in the region.
 	 * Then, notifies (via warning) any of the potential Behavior deletion implied by the textual specification 
@@ -103,10 +75,6 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 		// Check if ConnectionPointReference exist when one delete the submachine reference: not allowed!
 		if((stateRule.getSubmachine() == null) && !editedState.getConnections().isEmpty()){
 			error(getErrorMessageForSubmachineState(), UmlStatePackage.eINSTANCE.getStateRule_Submachine()) ;
-			valid_StateName = false ;
-		}
-		else {
-			valid_StateName = true ;
 		}
 		//
 		// Then, checks if the textual specification implies deletion of the DoActivity, Entry or Exit behavior
@@ -264,22 +232,15 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 	
 	@Check
 	public void checkSubmachineRule(SubmachineRule rule) {
+		EObject contextElement = ContextElementUtil.getContextElement(rule.eResource());
 		if (contextElement == null || ! (contextElement instanceof org.eclipse.uml2.uml.State))
 			return ;
 		org.eclipse.uml2.uml.State contextState = (org.eclipse.uml2.uml.State)contextElement ;
 		if (contextState.isOrthogonal()) {
 			error(getErrorMessageForOrthogonalState(), UmlStatePackage.eINSTANCE.getSubmachineRule_Submachine()) ;
-			valid_SubMachineRule = false ;
-		}
-		else {
-			valid_SubMachineRule = true ;
 		}
 		if (contextState.isComposite()) {
 			error(getErrorMessageForCompositeState(), UmlStatePackage.eINSTANCE.getSubmachineRule_Submachine()) ;
-			valid_SubMachineRule = false ;
-		}
-		else {
-			valid_SubMachineRule = true ;
 		}
 	}
 	

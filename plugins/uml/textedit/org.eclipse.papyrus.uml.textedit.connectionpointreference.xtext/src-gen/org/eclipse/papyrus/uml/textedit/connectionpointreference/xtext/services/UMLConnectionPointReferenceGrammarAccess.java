@@ -12,7 +12,7 @@ import org.eclipse.xtext.*;
 import org.eclipse.xtext.service.GrammarProvider;
 import org.eclipse.xtext.service.AbstractElementFinder.*;
 
-import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
+import org.eclipse.papyrus.uml.alf.services.CommonGrammarAccess;
 
 @Singleton
 public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarElementFinder {
@@ -120,13 +120,13 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 	
 	private final Grammar grammar;
 
-	private TerminalsGrammarAccess gaTerminals;
+	private CommonGrammarAccess gaCommon;
 
 	@Inject
 	public UMLConnectionPointReferenceGrammarAccess(GrammarProvider grammarProvider,
-		TerminalsGrammarAccess gaTerminals) {
+		CommonGrammarAccess gaCommon) {
 		this.grammar = internalFindGrammar(grammarProvider);
-		this.gaTerminals = gaTerminals;
+		this.gaCommon = gaCommon;
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -151,8 +151,8 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 	}
 	
 
-	public TerminalsGrammarAccess getTerminalsGrammarAccess() {
-		return gaTerminals;
+	public CommonGrammarAccess getCommonGrammarAccess() {
+		return gaCommon;
 	}
 
 	
@@ -169,54 +169,81 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 		return getConnectionPointReferenceRuleAccess().getRule();
 	}
 
+	//terminal INTEGER_VALUE:
+	//
+	//	("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL 
+	//
+	//	// BINARY
+	//
+	//	// HEX
+	//
+	//	// OCT
+	//
+	//	| ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
+	//
+	//	"A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
+	public TerminalRule getINTEGER_VALUERule() {
+		return gaCommon.getINTEGER_VALUERule();
+	} 
+
 	//terminal ID:
 	//
-	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
 	public TerminalRule getIDRule() {
-		return gaTerminals.getIDRule();
+		return gaCommon.getIDRule();
+	} 
+
+	//terminal STRING:
+	//
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	public TerminalRule getSTRINGRule() {
+		return gaCommon.getSTRINGRule();
+	} 
+
+	//terminal ML_COMMENT:
+	//
+	//	"/ *" !"@"->"* /";
+	public TerminalRule getML_COMMENTRule() {
+		return gaCommon.getML_COMMENTRule();
+	} 
+
+	////terminal DOUBLE_COLON : '::' ;
+	//
+	////terminal IDENTIFIER : ID  ;
+	//
+	////terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
+	//
+	////terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
+	//
+	////terminal ML_COMMENT	: '/°' -> '°/';
+	//
+	////terminal SL_COMMENT 	: '°°' !('\n'|'\r')* ('\r'? '\n')?;
+	//
+	////terminal WS			: (' '|'\t'|'\r'|'\n')+; terminal SL_COMMENT:
+	//
+	//	"//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
+	public TerminalRule getSL_COMMENTRule() {
+		return gaCommon.getSL_COMMENTRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
 	//
 	//	"0".."9"+;
 	public TerminalRule getINTRule() {
-		return gaTerminals.getINTRule();
-	} 
-
-	//terminal STRING:
-	//
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
-	//
-	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
-	public TerminalRule getSTRINGRule() {
-		return gaTerminals.getSTRINGRule();
-	} 
-
-	//terminal ML_COMMENT:
-	//
-	//	"/ *"->"* /";
-	public TerminalRule getML_COMMENTRule() {
-		return gaTerminals.getML_COMMENTRule();
-	} 
-
-	//terminal SL_COMMENT:
-	//
-	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
-	public TerminalRule getSL_COMMENTRule() {
-		return gaTerminals.getSL_COMMENTRule();
+		return gaCommon.getINTRule();
 	} 
 
 	//terminal WS:
 	//
 	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
-		return gaTerminals.getWSRule();
+		return gaCommon.getWSRule();
 	} 
 
 	//terminal ANY_OTHER:
 	//
 	//	.;
 	public TerminalRule getANY_OTHERRule() {
-		return gaTerminals.getANY_OTHERRule();
+		return gaCommon.getANY_OTHERRule();
 	} 
 }
