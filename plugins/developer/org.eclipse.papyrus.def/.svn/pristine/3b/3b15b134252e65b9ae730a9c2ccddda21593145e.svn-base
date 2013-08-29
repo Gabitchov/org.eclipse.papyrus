@@ -1,0 +1,32 @@
+/*
+ * Copyright (c) 2009 Atos Origin
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thibault Landre (Atos Origin) - initial API and implementation
+ */
+
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«EXTENSION xpt::diagram::editparts::Utils»
+
+
+«AROUND handleNotificationEventBody FOR gmfgen::GenNodeLabel-»
+	Object feature = event.getFeature();
+	«IF isStoringChildPositions(node)-»
+		«EXPAND xpt::diagram::editparts::Common::handleBounds FOR self-»
+	«ENDIF-»
+	«EXPAND xpt::diagram::editparts::Common::handleText FOR self-»
+	«REM»START Papyrus Code«ENDREM»
+	«IF elementIcon-»
+		if(event.getNewValue() instanceof org.eclipse.emf.ecore.EAnnotation && org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((org.eclipse.emf.ecore.EAnnotation)event.getNewValue()).getSource())){	
+			refreshLabel();
+		}
+	«ENDIF-»
+		«REM»End Papyrus Code«ENDREM»
+	super.handleNotificationEvent(event);
+«ENDAROUND»

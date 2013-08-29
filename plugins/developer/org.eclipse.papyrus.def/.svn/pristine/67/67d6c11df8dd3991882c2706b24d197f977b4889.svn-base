@@ -1,0 +1,607 @@
+/*
+ * Copyright (c) 2007, 2009 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+  *   modified by Patrick Tessier (CEA LIST)
+ */
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
+«IMPORT 'http://www.eclipse.org/emf/2002/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+«EXTENSION xpt::diagram::editpolicies::Utils»
+«EXTENSION xpt::diagram::Utils»
+«EXTENSION xpt::GenModelUtils»
+«EXTENSION xpt::expressions::ValueExpression»
+«EXTENSION xpt::StringOperations»
+«EXTENSION xpt::OclMigrationProblems»
+
+«REM»Documentation: PapyrusGenCode«ENDREM»
+«REM»This tamplate has been modified in order to allow the moving command«ENDREM»
+«DEFINE BaseItemSemanticEditPolicy FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::copyright FOR editorGen-»
+package «getDiagram().editPoliciesPackageName»;
+«EXPAND xpt::Common::generatedClassComment»
+public class «baseItemSemanticEditPolicyClassName» extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy {
+	«EXPAND attributes-»
+	
+	«EXPAND _constructor-»
+	«EXPAND xpt::Common::generatedMemberComment(
+		'Extended request data key to hold editpart visual id.\n' + 
+		'Add visual id of edited editpart to extended data of the request\n' + 
+		'so command switch can decide what kind of diagram element is being edited.\n' + 
+		'It is done in those cases when it\'s not possible to deduce diagram\n' + 
+		'element kind from domain element.\n' +
+		'Add the reoriented view to the request extended data so that the view\n ' +
+		'currently edited can be distinguished from other views of the same element\n ' +
+		'and these latter possibly removed if they become inconsistent after reconnect\n'
+	)»
+	@SuppressWarnings("unchecked")
+	public org.eclipse.gef.commands.Command getCommand(org.eclipse.gef.Request request) {
+		if (request instanceof org.eclipse.gef.requests.ReconnectRequest) {
+			Object view = ((org.eclipse.gef.requests.ReconnectRequest) request).getConnectionEditPart().getModel();
+			if (view instanceof org.eclipse.gmf.runtime.notation.View) {
+				Integer id = new Integer(«EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall»((org.eclipse.gmf.runtime.notation.View) view));
+				request.getExtendedData().put(VISUAL_ID_KEY, id);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (org.eclipse.gmf.runtime.notation.View)view);
+			}
+		}
+		return super.getCommand(request);
+	}
+	
+	«EXPAND xpt::Common::generatedMemberComment('Returns visual id from request parameters.')»
+	protected int getVisualID(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request) {
+		Object id = request.getParameter(VISUAL_ID_KEY);
+		return id instanceof Integer ? ((Integer) id).intValue() : -1;
+	}
+	«EXPAND semanticPart-»
+	«EXPAND xpt::Common::generatedMemberComment('Returns editing domain from the host edit part.')»
+	protected org.eclipse.emf.transaction.TransactionalEditingDomain getEditingDomain() {
+		return ((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) getHost()).getEditingDomain();
+	}
+	«EXPAND addDestroyShortcutsCommand-»
+
+«IF links->exists(not sansDomain) -»
+	«EXPAND linkConstraints-»
+«ENDIF-»
+
+	«EXPAND additions-»
+}
+«ENDDEFINE»
+«DEFINE attributes FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment('Extended request data key to hold editpart visual id.')»
+	public static final String VISUAL_ID_KEY = "visual_id"; «EXPAND xpt::Common::nonNLS»
+	«EXPAND xpt::Common::generatedMemberComment('Extended request data key to hold the edge view during a reconnect request.')»
+	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; «EXPAND xpt::Common::nonNLS»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private final org.eclipse.gmf.runtime.emf.type.core.IElementType myElementType;
+«ENDDEFINE»
+«DEFINE _constructor FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected «baseItemSemanticEditPolicyClassName»(org.eclipse.gmf.runtime.emf.type.core.IElementType elementType) {
+		myElementType = elementType;
+	}
+«ENDDEFINE»
+«DEFINE addDestroyShortcutsCommand FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment('Clean all shortcuts to the host element from the same diagram')»
+	protected void addDestroyShortcutsCommand(org.eclipse.gmf.runtime.common.core.command.ICompositeCommand cmd, org.eclipse.gmf.runtime.notation.View view) {
+		«EXPAND xpt::Common::_assert('view.getEAnnotation(\"Shortcut\") == null')-»
+		for (java.util.Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
+			org.eclipse.gmf.runtime.notation.View nextView = (org.eclipse.gmf.runtime.notation.View) it.next();
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) {«EXPAND xpt::Common::nonNLS»
+				continue;
+			}
+			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), nextView));
+		}
+	}
+«ENDDEFINE»
+«DEFINE semanticPart FOR gmfgen::GenDiagram-»
+	«EXPAND getSemanticCommand-»
+	
+	«EXPAND addDeleteViewCommand-»
+	
+	«EXPAND getEditHelperCommand-»
+	
+	«EXPAND getContextElementType-»
+	
+	«EXPAND getSemanticCommandSwitch-»
+	
+	«EXPAND getConfigureCommand-»
+	«EXPAND getCreateRelationshipCommand-»
+	«EXPAND getCreateCommand-»
+	// RS: add code for extended types
+	«EXPAND getCreateExtendedTypeCommand-»
+	«EXPAND getExtendedStartCreateRelationshipCommand-»
+	«EXPAND getExtendedCompleteCreateRelationshipCommand-»
+	// RS: End of add code for extended types
+	«EXPAND getCreateSemanticServiceEditCommand-»
+	«EXPAND getSetCommand-»
+	«EXPAND getEditContextCommand-»
+	«EXPAND getDestroyElementCommand-»
+	«EXPAND getDestroyReferenceCommand-»
+	«EXPAND getDuplicateCommand-»
+	«EXPAND getMoveCommand-»
+	«EXPAND getReorientReferenceRelationshipCommand-»
+	«EXPAND getReorientRelationshipCommand-»
+	
+	«EXPAND getGEFWrapper-»
+	
+«ENDDEFINE»
+«DEFINE getEditHelperCommand FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private org.eclipse.gef.commands.Command getEditHelperCommand(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request, org.eclipse.gef.commands.Command editPolicyCommand) {
+		if (editPolicyCommand != null) {
+			org.eclipse.gmf.runtime.common.core.command.ICommand command = editPolicyCommand instanceof org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy ? ((org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy) editPolicyCommand).getICommand() : new org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy(editPolicyCommand);
+			request.setParameter(«EXPAND xpt::diagram::edithelpers::BaseEditHelper::editPolicyCommandConstant», command);
+		}
+		org.eclipse.gmf.runtime.emf.type.core.IElementType requestContextElementType = getContextElementType(request);
+		request.setParameter(«EXPAND xpt::diagram::edithelpers::BaseEditHelper::contextElementTypeConstant», requestContextElementType);
+		org.eclipse.gmf.runtime.common.core.command.ICommand command = requestContextElementType.getEditCommand(request);
+		request.setParameter(«EXPAND xpt::diagram::edithelpers::BaseEditHelper::editPolicyCommandConstant», null);
+		request.setParameter(«EXPAND xpt::diagram::edithelpers::BaseEditHelper::contextElementTypeConstant», null);
+		if (command != null) {
+			if (!(command instanceof org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand)) {
+				command = new org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);
+			}
+			return new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(command);
+		}
+		return editPolicyCommand;
+	}
+«ENDDEFINE»
+«DEFINE getContextElementType FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.emf.type.core.IElementType getContextElementType(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request) {
+		org.eclipse.gmf.runtime.emf.type.core.IElementType requestContextElementType = «getElementTypesQualifiedClassName()».getElementType(getVisualID(request));
+		return requestContextElementType != null ? requestContextElementType : myElementType;
+	}
+«ENDDEFINE»
+«DEFINE getSemanticCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getSemanticCommand(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request) {
+	org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest completedRequest = completeRequest(request);
+	org.eclipse.gef.commands.Command semanticCommand = getSemanticCommandSwitch(completedRequest);
+	semanticCommand = getEditHelperCommand(completedRequest, semanticCommand);
+	if (completedRequest instanceof org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest) {
+		org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest destroyRequest = (org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest) completedRequest;
+		return shouldProceed(destroyRequest) ? addDeleteViewCommand(semanticCommand, destroyRequest) : null;
+		}
+		return semanticCommand;
+	}
+«ENDDEFINE»
+«DEFINE addDeleteViewCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command addDeleteViewCommand(org.eclipse.gef.commands.Command mainCommand, org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest completedRequest){
+		org.eclipse.gef.commands.Command deleteViewCommand = getGEFWrapper(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), (org.eclipse.gmf.runtime.notation.View) getHost().getModel()));
+		return mainCommand == null ? deleteViewCommand : mainCommand.chain(deleteViewCommand);
+}
+«ENDDEFINE»
+«DEFINE getSemanticCommandSwitch FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getSemanticCommandSwitch(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest req) {
+	if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest) {
+		return getCreateRelationshipCommand((org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) {
+		return getCreateCommand((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest) {
+		return getConfigureCommand((org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest) {
+		return getDestroyElementCommand((org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest) {
+		return getDestroyReferenceCommand((org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest) {
+		return getDuplicateCommand((org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest) {
+		return getEditContextCommand((org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest) {
+		return getMoveCommand((org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest) {
+		return getReorientReferenceRelationshipCommand((org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest) {
+		return getReorientRelationshipCommand((org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest) req);
+	} else if (req instanceof org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest) {
+		return getSetCommand((org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest) req);
+	}
+	return null;
+}
+«ENDDEFINE»
+«DEFINE getConfigureCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest req) {
+	return null;
+}
+«ENDDEFINE»
+«DEFINE getCreateRelationshipCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest req) {
+	«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()<1-»
+	return null;
+	«ENDIF»
+	«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0-»
+	org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)getHost()).resolveSemanticElement());
+	if(req.getElementType() != null) {
+		commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getElementType());
+	}
+
+	if(commandService == null) {
+		return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+	}
+
+	org.eclipse.gmf.runtime.common.core.command.ICommand semanticCommand = commandService.getEditCommand(req);
+
+	if((semanticCommand != null) && (semanticCommand.canExecute())) {
+		return getGEFWrapper(semanticCommand);
+	} 
+	return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+	«ENDIF»
+}
+«ENDDEFINE»
+«DEFINE getCreateCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+ protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+ 		// no more usage of the extended types here. 
+        return null;
+  }
+«ENDDEFINE»
+«DEFINE getCreateExtendedTypeCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+ protected org.eclipse.gef.commands.Command getExtendedTypeCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType requestElementType) {
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(request.getContainer());
+		if(provider == null) {
+			return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+		}
+		// Retrieve create command from the Element Edit service
+		org.eclipse.gmf.runtime.common.core.command.ICommand createGMFCommand = provider.getEditCommand(request);
+		return getGEFWrapper(createGMFCommand);
+	}
+«ENDDEFINE»
+«DEFINE getExtendedStartCreateRelationshipCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+ protected org.eclipse.gef.commands.Command getExtendedStartCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType requestElementType) {
+	org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(requestElementType);
+	if(provider == null) {
+		return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+	}
+	// Retrieve create command from the Element Edit service
+	org.eclipse.gmf.runtime.common.core.command.ICommand createGMFCommand = provider.getEditCommand(request);
+	return getGEFWrapper(createGMFCommand);
+}
+«ENDDEFINE»
+«DEFINE getExtendedCompleteCreateRelationshipCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+ protected org.eclipse.gef.commands.Command getExtendedCompleteCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType requestElementType) {
+	org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(requestElementType);
+	if(provider == null) {
+		return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+	}
+	// Retrieve create command from the Element Edit service
+	org.eclipse.gmf.runtime.common.core.command.ICommand createGMFCommand = provider.getEditCommand(request);
+	return getGEFWrapper(createGMFCommand);
+}
+«ENDDEFINE»
+«DEFINE getSetCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest req) {
+	return null;
+}
+«ENDDEFINE»
+«DEFINE getEditContextCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getEditContextCommand(org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest req) {
+	return null;
+}
+«ENDDEFINE»
+«DEFINE getDestroyElementCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
+	return null;
+}
+«ENDDEFINE»
+«DEFINE getDestroyReferenceCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getDestroyReferenceCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest req) {
+	return null;
+}
+«ENDDEFINE»
+«DEFINE getDuplicateCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getDuplicateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest req) {
+	return null;
+}
+«ENDDEFINE»
+«DEFINE getMoveCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getMoveCommand(org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest req) {
+	«REM»BEGIN: PapyrusGenCode«ENDREM»
+	«REM»add move command«ENDREM»
+		org.eclipse.emf.ecore.EObject targetCEObject = req.getTargetContainer();
+		if(targetCEObject != null) {
+			org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(targetCEObject);
+			if(provider != null) {
+				org.eclipse.gmf.runtime.common.core.command.ICommand moveCommand = provider.getEditCommand(req);
+				if(moveCommand != null) {
+					return new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(moveCommand);
+				}
+			}
+			return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+		} else {
+			return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand(req));
+		}
+    «REM»END: PapyrusGenCode«ENDREM»
+	
+}
+«ENDDEFINE»
+«DEFINE getReorientReferenceRelationshipCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getReorientReferenceRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest req) {
+	return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+}
+«ENDDEFINE»
+«DEFINE getReorientRelationshipCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest req) {
+	return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+}
+«ENDDEFINE»
+«DEFINE getGEFWrapper FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected final org.eclipse.gef.commands.Command getGEFWrapper(org.eclipse.gmf.runtime.common.core.command.ICommand cmd) {
+		return new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(cmd);
+	}
+«ENDDEFINE»
+
+«DEFINE _accessLinkConstraints FOR gmfgen::GenDiagram-»
+«getBaseItemSemanticEditPolicyQualifiedClassName()».getLinkConstraints()«-»
+«ENDDEFINE»
+
+«DEFINE canExistCall(gmfgen::GenLink link, String sourceVar, String targetVar) FOR gmfgen::FeatureLinkModelFacet-»
+«EXPAND _accessLinkConstraints FOR link.diagram».canExist«link.getUniqueIdentifier()»(«sourceVar», «targetVar»)«-»
+«ENDDEFINE»
+// NOTE, containerVar will be used only when link has other container than its source. It's safe to pass variable/method name that doesn't exist
+«DEFINE canExistCall(gmfgen::GenLink link, String containerVar, String linkVar, String sourceVar, String targetVar) FOR gmfgen::TypeLinkModelFacet-»
+«EXPAND _accessLinkConstraints FOR link.diagram».canExist«link.getUniqueIdentifier()»(«IF hasContainerOtherThanSource(self)»«containerVar», «ENDIF»«linkVar», «sourceVar», «targetVar»)«-»
+«ENDDEFINE»
+
+«DEFINE canCreateCall(gmfgen::GenLink link, String sourceVar, String targetVar) FOR gmfgen::FeatureLinkModelFacet-»
+«EXPAND _accessLinkConstraints FOR link.diagram».canCreate«link.getUniqueIdentifier()»(«sourceVar», «targetVar»)«-»
+«ENDDEFINE»
+// NOTE, containerVar will be used only when link has other container than its source. It's safe to pass variable/method name that doesn't exist
+// Yes, this is sorta hack, but no idea of better approach right now. Perhaps, CreateLinkUtils may always define getContainer() for TypeLinkModelFacet, and use getSource() by default? 
+«DEFINE canCreateCall(gmfgen::GenLink link, String containerVar, String sourceVar, String targetVar) FOR gmfgen::TypeLinkModelFacet-»
+«EXPAND _accessLinkConstraints FOR link.diagram».canCreate«link.getUniqueIdentifier()»(«IF hasContainerOtherThanSource(self)»«containerVar», «ENDIF»«sourceVar», «targetVar»)«-»
+«ENDDEFINE»
+
+
+
+«REM»
+		FIXME need to check constraint's provider to ensure we don't generate a field
+		for e.g. Java (or Literal, which is unlikely, though) expressions
+		
+		[Papyrus Quick Fix] Do not generate field when the expression is provided
+		by a GenJavaExpressionProvider.
+«ENDREM»
+«DEFINE linkConstraints FOR gmfgen::GenDiagram-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public static «getLinkCreationConstraintsClassName()» getLinkConstraints() {
+		«getLinkCreationConstraintsClassName()» cached = «EXPAND plugin::Activator::instanceAccess FOR editorGen».getLinkConstraints();
+		if (cached == null) {
+			«EXPAND plugin::Activator::instanceAccess FOR editorGen».setLinkConstraints(cached = new «getLinkCreationConstraintsClassName()»());
+		}
+		return cached;
+	}
+
+
+«EXPAND xpt::Common::generatedClassComment»
+public static class «getLinkCreationConstraintsClassName()» {
+
+«EXPAND xpt::Common::generatedMemberComment»
+	public «getLinkCreationConstraintsClassName()»() {«REM»package-local for the BaseItemSemanticEditPolicy to instantiate. Perhaps, protected is better (i.e. if someone subclasses it?)«ENDREM»
+		// use static method #getLinkConstraints() to access instance
+	}
+
+	«EXPAND canCreate FOREACH links-»
+	«EXPAND canExist FOREACH links-»
+}
+«ENDDEFINE»
+«DEFINE canCreate FOR gmfgen::GenLink»
+«EXPAND xpt::Common::generatedMemberComment»
+public boolean canCreate«getUniqueIdentifier()»(«EXPAND canCreateParameters FOR modelFacet») {
+	«EXPAND checkEMFConstraints FOR modelFacet-»
+	return canExist«getUniqueIdentifier()»(«EXPAND canCreateValues FOR modelFacet»);
+}
+
+«ENDDEFINE»
+
+«REM»
+		XXX for now, both constraints are injected into single method
+			which may not be suitable for modification especially when mixing
+			java and ocl constraints (former requires manual code).
+		Better approach would be:
+			if either is non-null and providers are not the same - introduce two methods, 
+			to check source and target separately. Otherwize, do it inplace.
+«ENDREM»
+«DEFINE canExist FOR gmfgen::GenLink»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public boolean canExist«getUniqueIdentifier()»(«EXPAND canExistParameters FOR modelFacet») {
+«IF creationConstraints <> null and (creationConstraints.isValid() and null <> getDiagram().editorGen.expressionProviders)-»
+		try {
+«IF null <> creationConstraints.sourceEnd-»
+			«EXPAND _checkAdditionalConstraint(creationConstraints.sourceEnd, 'source', 'target', creationConstraints.getSourceEndContextClass(), creationConstraints.getTargetEndContextClass()) FOR creationConstraints.sourceEnd.provider-»
+«ENDIF-»
+«IF null <> creationConstraints.targetEnd-»
+			«EXPAND _checkAdditionalConstraint(creationConstraints.targetEnd, 'target', 'source', creationConstraints.getTargetEndContextClass(), creationConstraints.getSourceEndContextClass()) FOR creationConstraints.targetEnd.provider-»
+«ENDIF-»
+			return true;
+		} catch(Exception e) {	
+			«EXPAND plugin::Activator::instanceAccess FOR getDiagram().editorGen».logError("Link constraint evaluation error", e);«EXPAND xpt::Common::nonNLS»
+			return false;
+		}
+«ELSE-»
+		return true;
+«ENDIF-»
+	}
+«ENDDEFINE»
+
+// FIXME mark as private (_) and move to impl::<find proper place>::LinkConstraints.xpt
+«DEFINE canCreateParameters FOR gmfgen::LinkModelFacet»«EXPAND sourceTargetParameters»«ENDDEFINE»// source and target are reasonable defaults
+«DEFINE canCreateParameters FOR gmfgen::TypeLinkModelFacet»«IF hasContainerOtherThanSource(self)»«EXPAND MetaModel::QualifiedClassName FOR containmentMetaFeature.genClass» container, «ENDIF»«EXPAND sourceTargetParameters»«ENDDEFINE»
+
+«DEFINE canExistParameters FOR gmfgen::LinkModelFacet»«EXPAND sourceTargetParameters»«ENDDEFINE»// source and target are reasonable defaults
+«DEFINE canExistParameters FOR gmfgen::TypeLinkModelFacet»«IF hasContainerOtherThanSource(self)»«EXPAND MetaModel::QualifiedClassName FOR containmentMetaFeature.genClass» container, «ENDIF»«EXPAND MetaModel::QualifiedClassName FOR metaClass» linkInstance, «EXPAND sourceTargetParameters»«ENDDEFINE»
+
+«DEFINE sourceTargetParameters FOR gmfgen::LinkModelFacet»«EXPAND MetaModel::QualifiedClassName FOR getSourceType()» source, «EXPAND MetaModel::QualifiedClassName FOR getTargetType()» target«ENDDEFINE»
+
+// these are in fact 'canExist' values
+«DEFINE canCreateValues FOR gmfgen::LinkModelFacet»source, target«ENDDEFINE» // defaults
+«DEFINE canCreateValues FOR gmfgen::TypeLinkModelFacet»«IF hasContainerOtherThanSource(self)»container, «ENDIF»null, source, target«ENDDEFINE»
+
+
+«DEFINE checkEMFConstraints FOR gmfgen::LinkModelFacet»«ERROR 'Unrecognized link model facet in checkEMFConstraints: ' + self.repr()»«ENDDEFINE»
+
+
+«DEFINE checkEMFConstraints FOR gmfgen::TypeLinkModelFacet-»
+«IF  not containmentMetaFeature.ecoreFeature.oclIsUndefined()-»
+	«LET childMetaFeature <> containmentMetaFeature and not isUnbounded(childMetaFeature.ecoreFeature) AS checkChildFeatureBounds-»
+		«IF not isUnbounded(containmentMetaFeature.ecoreFeature) or checkChildFeatureBounds-»
+if («getContainerVariable(self)» != null) {
+			«EXPAND checkEMFConstraints(self) FOR containmentMetaFeature-»
+			«IF checkChildFeatureBounds-»
+				«EXPAND checkEMFConstraints(self) FOR childMetaFeature-»
+			«ENDIF-»
+}
+		«ENDIF-»
+	«ENDLET-»
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE checkEMFConstraints(modelFacet : gmfgen::TypeLinkModelFacet) FOR genmodel::GenFeature-»
+«IF  not containmentMetaFeature.ecoreFeature.oclIsUndefined()-»
+«IF not isUnbounded(ecoreFeature)-»
+if («EXPAND featureBoundComparator(getContainerVariable(modelFacet), modelFacet.getSourceType())») {
+	return false;
+}
+«ENDIF-»
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE checkEMFConstraints FOR gmfgen::FeatureLinkModelFacet-»
+if (source != null) {
+	if («EXPAND featureBoundsConditionClause('source', getSourceType()) FOR metaFeature») {
+		return false;
+	}
+	«IF isContains(metaFeature)-»
+	if (source == target) {
+		return false;
+	}
+	«ENDIF-»	
+}
+«IF getReverse(metaFeature) <> null-»
+if (target != null && («EXPAND featureBoundsConditionClause('target', getTargetType()) FOR getReverse(metaFeature)»)) {
+	return false;
+}
+«ENDIF»
+«ENDDEFINE»
+
+«DEFINE featureBoundsConditionClause(targetVar : String, targetType : genmodel::GenClass) FOR genmodel::GenFeature-»
+«REM»Checking upper bounds if was specified in MM«ENDREM»«-»
+«IF not ecoreFeature.oclIsUndefined()»
+	«IF not isUnbounded(ecoreFeature)»«EXPAND featureBoundComparator(targetVar, targetType)»«ENDIF-»
+	«REM»Checking uniqueness in addition if upper bounds != 1«ENDREM»«-»
+	«IF not isSingleValued(ecoreFeature) and not isUnbounded(ecoreFeature)» || «ENDIF-»
+	«REM»Checking uniqueness in if upper bounds !- 1«ENDREM»«-»
+	«IF not isSingleValued(ecoreFeature)»«EXPAND featureUniquenessComparator(targetVar, targetType)»«ENDIF»
+«ENDIF»
+«ENDDEFINE»
+
+«DEFINE featureBoundComparator(featureVar : String, featureVarGenClass : genmodel::GenClass) FOR genmodel::GenFeature»«EXPAND MetaModel::getFeatureValue(featureVar, featureVarGenClass)»«IF ecoreFeature.upperBound.oclAsType(Integer) = 1» != null«ELSE».size() >= «ecoreFeature.upperBound.oclAsType(Integer)»«ENDIF»«ENDDEFINE»
+«DEFINE featureUniquenessComparator(featureVar : String, featureVarGenClass : genmodel::GenClass) FOR genmodel::GenFeature»«EXPAND MetaModel::getFeatureValue(featureVar, featureVarGenClass) FOR self».contains(target)«ENDDEFINE»
+
+
+«DEFINE _checkAdditionalConstraint(gmfgen::ValueExpression valueExpr, String sourceEndVar, String targetEndVar, genmodel::GenClass context, genmodel::GenClass oppositeEndContext) FOR gmfgen::GenExpressionProviderBase»
+«ERROR 'Have no idea what extra constraints to check for ' + self.repr()»
+«ENDDEFINE»
+
+«DEFINE _checkAdditionalConstraint(gmfgen::ValueExpression valueExpr, String sourceEndVar, String targetEndVar, genmodel::GenClass context, genmodel::GenClass oppositeEndContext) FOR gmfgen::GenExpressionInterpreter-»
+	if («sourceEndVar» == null) {
+		return true;
+	} else {«REM»else is important here as it gives scope for the env variable«ENDREM»
+		java.util.Map«EXPAND CodeStyle::G2('String', 'org.eclipse.emf.ecore.EClassifier') FOR container.editorGen.diagram» env = java.util.Collections.«EXPAND CodeStyle::G2('String', 'org.eclipse.emf.ecore.EClassifier') FOR container.editorGen.diagram»singletonMap(«EXPAND oppositeEndVariableNameValue», «EXPAND MetaModel::MetaClass FOR oppositeEndContext»);«EXPAND xpt::Common::nonNLS»
+		Object «sourceEndVar»Val = «EXPAND xpt::expressions::getExpression::getExpression(valueExpr, context, 'env')».evaluate(«sourceEndVar», java.util.Collections.singletonMap(«EXPAND oppositeEndVariableNameValue», «targetEndVar»));«EXPAND xpt::Common::nonNLS»
+		if (false == «sourceEndVar»Val instanceof Boolean || !((Boolean) «sourceEndVar»Val).booleanValue()) {
+			return false;
+		} // else fall-through
+	}
+«ENDDEFINE»
+
+«DEFINE _checkAdditionalConstraint(gmfgen::ValueExpression valueExpr, String sourceEndVar, String targetEndVar, genmodel::GenClass context, genmodel::GenClass oppositeEndContext) FOR gmfgen::GenJavaExpressionProvider-»
+«IF injectExpressionBody and (valueExpr.body <> null and valueExpr.body.size() <> 0)-»
+	«valueExpr.body»
+«ELSEIF throwException or (injectExpressionBody and (valueExpr.body = null or valueExpr.body.size() = 0))-»
+	// TODO: implement this method, using «sourceEndVar» and «targetEndVar» 
+	// to access link source and target, respectively
+	// Ensure that you remove @generated or mark it @generated NOT
+	if (Boolean.TRUE.booleanValue()) {
+		throw new java.lang.UnsupportedOperationException("No java implementation provided");«EXPAND xpt::Common::nonNLS»
+	}
+«ELSE-»
+	if (Boolean.TRUE.booleanValue()) {«REM»just in case there are two consecutive java expression with neither throw nor inject - avoid unreachable code.«ENDREM»
+		return false;
+	}
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE oppositeEndVariableNameValue FOR OclAny»"oppositeEnd"«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenDiagram»«ENDDEFINE»
+
+«DEFINE defaultConstructor FOR gmfgen::GenCommonBase-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «itemSemanticEditPolicyClassName»() {
+		«EXPAND defaultConstructorBody-»
+	}
+«ENDDEFINE»
+
+«REM»
+	This method should be called only with diagram, node or link used as a parameter 
+	(then elementType != null)
+«ENDREM»
+«DEFINE defaultConstructorBody FOR gmfgen::GenCommonBase-»
+	«IF elementType = null-»
+		«ERROR 'No element type in the passed node. Only diagram, node or link are supported in this template: ' + self.repr()-»
+	«ENDIF-»
+	super(«EXPAND xpt::providers::ElementTypes::accessElementType»);
+«ENDDEFINE»
+
+«REM»
+	Generate generic method if using semantic creation command based on element types framework.
+«ENDREM»
+«DEFINE getCreateSemanticServiceEditCommand FOR gmfgen::GenDiagram-»
+«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.common.core.command.ICommand getSemanticCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
+		if(commandService == null) {
+			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+		}
+		return commandService.getEditCommand(req);
+	}
+«ENDIF-»	
+«ENDDEFINE»
+
+«DEFINE getCreateSemanticServiceEditCommand FOR gmfgen::GenDiagram-»
+«IF papyrusgmfgenextension::GenerateUsingElementTypeCreationCommand.allInstances()->size()>0-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.common.core.command.ICommand getSemanticCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
+		if(commandService == null) {
+			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+		}
+		return commandService.getEditCommand(req);
+	}
+«ENDIF-»	
+«ENDDEFINE»

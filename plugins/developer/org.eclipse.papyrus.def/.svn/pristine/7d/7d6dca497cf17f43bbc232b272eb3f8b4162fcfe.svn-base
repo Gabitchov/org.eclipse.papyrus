@@ -1,0 +1,594 @@
+﻿/*
+ * Copyright (c) 2006, 2009 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ *	  Emilien Perico (Atos Origin) - add code to refactor some classes
+ */
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«EXTENSION xpt::editor::Utils»
+
+
+«AROUND Editor FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::copyright FOR editorGen-»
+package «packageName»;
+
+	«EXPAND xpt::Common::generatedClassComment»
+public class «className»  extends org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor«EXPAND implementsList FOR getEditorImplementsList(self)» {
+
+	«EXPAND attributes-»
+	
+	«EXPAND _constructor-»
+	
+	«EXPAND getContextID-»
+	«EXPAND createPaletteRoot FOR editorGen.diagram.palette-»
+	
+	«EXPAND getPreferencesHint-»
+	
+	«EXPAND getContributorId-»
+	«EXPAND getAdapter-»
+	
+	«EXPAND getDocumentProvider-»
+	
+	«EXPAND getEditingDomain-»
+	
+	«EXPAND setDocumentProvider-»
+	«IF isIDEMode(self)-»
+	
+		«EXPAND gotoMarker-»
+		
+		«EXPAND isSaveAsAllowed-»
+		
+		«EXPAND doSaveAs-»
+		
+		«EXPAND performSaveAs-»
+		
+		«EXPAND getShowInContext-»
+		«EXPAND getNavigatorSelection FOR editorGen.navigator-»
+	«ENDIF-»
+
+	«EXPAND configureGraphicalViewer-»
+
+	«IF editorGen.diagram.generateCreateShortcutAction()-»
+	
+		«EXPAND initializeGraphicalViewer-»
+		
+		«EXPAND DropTargetListener-»
+	«ENDIF-»
+
+	«EXPAND additions-»
+}
+«ENDAROUND»
+
+«DEFINE attributes FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public static final String ID = "«iD»"; «EXPAND xpt::Common::nonNLS»
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+public static final String CONTEXT_ID = "«contextID»"; «EXPAND xpt::Common::nonNLS»
+
+	
+	«REM»Documentation. adds listener for papyrus editors«ENDREM»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private org.eclipse.gef.KeyHandler paletteKeyHandler = null;
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private org.eclipse.swt.events.MouseListener paletteMouseListener = null;
+
+	«REM»Helps to handle correctly the dirty state«ENDREM»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private org.eclipse.core.commands.operations.IUndoableOperation savedOperation = null;
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+	private org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain;
+
+	«EXPAND xpt::Common::generatedMemberComment»
+    private org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider documentProvider;
+    	
+	
+	«REM»«ENDREM»
+«ENDDEFINE»
+
+«DEFINE _constructor FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «className»(org.eclipse.papyrus.infra.core.services.ServicesRegistry servicesRegistry, org.eclipse.gmf.runtime.notation.Diagram diagram) throws org.eclipse.papyrus.infra.core.services.ServiceException{
+	super(servicesRegistry, diagram);
+
+	«REM»Documentation. adds listener for papyrus palette service«ENDREM»
+	// adds a listener to the palette service, which reacts to palette customizations
+	org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().addProviderChangeListener(this);
+	
+	«REM»Share the same editing domain«ENDREM»
+	// Share the same editing provider
+	editingDomain = servicesRegistry.getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class);
+	documentProvider = new org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider(editingDomain);
+
+	// overrides editing domain created by super constructor
+	setDocumentProvider(documentProvider);
+	
+	«REM»end of listeners addition«ENDREM»
+	}
+«ENDDEFINE»
+
+«DEFINE createPaletteRoot FOR gmfgen::Palette-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gef.palette.PaletteRoot createPaletteRoot(org.eclipse.gef.palette.PaletteRoot existingPaletteRoot) {
+		org.eclipse.gef.palette.PaletteRoot paletteRoot;
+		if (existingPaletteRoot == null) {
+			paletteRoot = org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
+		} else {
+			org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
+			paletteRoot = existingPaletteRoot;
+		}
+		applyCustomizationsToPalette(paletteRoot);
+		return paletteRoot;
+	}
+«ENDDEFINE»
+
+«DEFINE createPaletteCustomizer FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gef.ui.palette.PaletteCustomizer createPaletteCustomizer() {
+		return new org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteCustomizer(getPreferenceStore());
+	}
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenEditorView-»
+	
+	«EXPAND createEditingDomain-»
+	
+	«EXPAND configureDiagramEditDomain-»
+	
+	«EXPAND doSave-»
+	
+	«EXPAND isDirty-»
+	
+	«REM»Documentation. adds method to handle palette changes«ENDREM»
+	«EXPAND handlePaletteChange-»
+	
+	«EXPAND dispose-»
+	
+	«EXPAND getPaletteViewer-»
+	
+	«REM»Documentation: (RS) advanced customization abilities
+	«EXPAND createPaletteCustomizer-»
+	«ENDREM»
+	
+	«EXPAND constructPaletteViewer -»
+	
+	«EXPAND createPaletteviewerProvider-»
+	
+	«EXPAND getGraphicalViewer-»
+	
+	«EXPAND initializeGraphicalViewer-»
+	
+	«EXPAND selectionChanged-»
+«ENDDEFINE»
+
+«DEFINE handlePaletteChange FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void providerChanged(org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent event) {
+		// update the palette if the palette service has changed
+		if (org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().equals(event.getSource())) {
+			org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
+					getDefaultPaletteContent());
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE constructPaletteViewer FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gef.ui.palette.PaletteViewer constructPaletteViewer() {
+		return new org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteViewer();
+	}
+«ENDDEFINE»
+
+«DEFINE dispose FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void dispose() {
+		// remove palette service listener
+		// remove preference listener
+		org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
+		
+		super.dispose();
+	}
+«ENDDEFINE»
+
+«DEFINE getPaletteViewer FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gef.ui.palette.PaletteViewer getPaletteViewer() {
+		return getEditDomain().getPaletteViewer();
+	}
+«ENDDEFINE»	
+	
+«DEFINE implementsList FOR Sequence(String)-»
+ implements org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener
+«IF not self->isEmpty()», «EXPAND implementsListEntry FOREACH self SEPARATOR ', '»«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE implementsListEntry FOR String»«self»«ENDDEFINE»
+
+«DEFINE createPaletteviewerProvider FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerProvider() {
+		getEditDomain().setPaletteRoot(createPaletteRoot(null));
+		return new org.eclipse.gef.ui.palette.PaletteViewerProvider(getEditDomain()) {
+
+			/**
+			 * Override to provide the additional behavior for the tools. Will intialize with a
+			 * PaletteEditPartFactory that has a TrackDragger that understand how to handle the
+			 * mouseDoubleClick event for shape creation tools. Also will initialize the palette
+			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
+			 * key which will result in the creation of the shape also.
+			 */
+			protected void configurePaletteViewer(org.eclipse.gef.ui.palette.PaletteViewer viewer) {
+				super.configurePaletteViewer(viewer);
+
+				// customize menu...
+				viewer.setContextMenu(new org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteContextMenuProvider(viewer));
+
+				viewer.getKeyHandler().setParent(getPaletteKeyHandler());
+				viewer.getControl().addMouseListener(getPaletteMouseListener());
+
+				// Add a transfer drag target listener that is supported on
+				// palette template entries whose template is a creation tool.
+				// This will enable drag and drop of the palette shape creation
+				// tools.
+				viewer.addDragSourceListener(new org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener(viewer));
+				viewer.setCustomizer(createPaletteCustomizer());
+			}
+
+			public org.eclipse.gef.ui.palette.PaletteViewer createPaletteViewer(org.eclipse.swt.widgets.Composite parent) {
+				org.eclipse.gef.ui.palette.PaletteViewer pViewer = constructPaletteViewer();
+				pViewer.createControl(parent);
+				configurePaletteViewer(pViewer);
+				hookPaletteViewer(pViewer);
+				return pViewer;
+			}
+
+			/**
+			 * @return Palette Key Handler for the palette
+			 */
+			private org.eclipse.gef.KeyHandler getPaletteKeyHandler() {
+
+				if (paletteKeyHandler == null) {
+
+					paletteKeyHandler = new org.eclipse.gef.KeyHandler() {
+
+						/**
+						 * Processes a <i>key released </i> event. This method is called by the Tool
+						 * whenever a key is released, and the Tool is in the proper state. Override
+						 * to support pressing the enter key to create a shape or connection
+						 * (between two selected shapes)
+						 * 
+						 * @param event
+						 *            the KeyEvent
+						 * @return <code>true</code> if KeyEvent was handled in some way
+						 */
+						public boolean keyReleased(org.eclipse.swt.events.KeyEvent event) {
+
+							if (event.keyCode == org.eclipse.swt.SWT.Selection) {
+
+								org.eclipse.gef.Tool tool = getPaletteViewer().getActiveTool().createTool();
+
+								if (toolSupportsAccessibility(tool)) {
+
+									tool.keyUp(event, getDiagramGraphicalViewer());
+
+									// deactivate current selection
+									getPaletteViewer().setActiveTool(null);
+
+									return true;
+								}
+
+							}
+							return super.keyReleased(event);
+						}
+
+					};
+
+				}
+				return paletteKeyHandler;
+			}
+
+			/**
+			 * @return Palette Mouse listener for the palette
+			 */
+			private org.eclipse.swt.events.MouseListener getPaletteMouseListener() {
+
+				if (paletteMouseListener == null) {
+
+					paletteMouseListener = new org.eclipse.swt.events.MouseListener() {
+
+						/**
+						 * Flag to indicate that the current active tool should be cleared after a
+						 * mouse double-click event.
+						 */
+						private boolean clearActiveTool = false;
+
+						/**
+						 * Override to support double-clicking a palette tool entry to create a
+						 * shape or connection (between two selected shapes).
+						 * 
+						 * @see org.eclipse.swt.events.MouseListener#mouseDoubleClick(org.eclipse.swt.events.MouseEvent)
+						 */
+						public void mouseDoubleClick(org.eclipse.swt.events.MouseEvent e) {
+							org.eclipse.gef.Tool tool = getPaletteViewer().getActiveTool().createTool();
+
+							if (toolSupportsAccessibility(tool)) {
+
+								tool.setViewer(getDiagramGraphicalViewer());
+								tool.setEditDomain(getDiagramGraphicalViewer().getEditDomain());
+								tool.mouseDoubleClick(e, getDiagramGraphicalViewer());
+
+								// Current active tool should be deactivated,
+								// but if it is down here it will get
+								// reactivated deep in GEF palette code after
+								// receiving mouse up events.
+								clearActiveTool = true;
+							}
+						}
+
+						public void mouseDown(org.eclipse.swt.events.MouseEvent e) {
+							// do nothing
+						}
+
+						public void mouseUp(org.eclipse.swt.events.MouseEvent e) {
+							// Deactivate current active tool here if a
+							// double-click was handled.
+							if (clearActiveTool) {
+								getPaletteViewer().setActiveTool(null);
+								clearActiveTool = false;
+							}
+
+						}
+					};
+
+				}
+				return paletteMouseListener;
+			}
+
+		};
+	}
+«ENDDEFINE»
+
+«REM»Not used«ENDREM»
+«DEFINE performSaveAs FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
+  // Nothing
+}
+«ENDDEFINE»
+
+«REM»Share the same editing domain«ENDREM»
+«DEFINE getEditingDomain FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+    public org.eclipse.emf.transaction.TransactionalEditingDomain getEditingDomain() {
+    	return editingDomain;
+    }	
+«ENDDEFINE»
+
+«DEFINE createEditingDomain FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.emf.transaction.TransactionalEditingDomain createEditingDomain() {
+		// Already configured
+		return editingDomain;
+	}
+«ENDDEFINE»
+
+
+«DEFINE configureDiagramEditDomain FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	protected void configureDiagramEditDomain() {
+		super.configureDiagramEditDomain();
+		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new org.eclipse.gef.commands.CommandStackListener() {
+
+			public void commandStackChanged(java.util.EventObject event) {
+				firePropertyChange( org.eclipse.ui.IEditorPart.PROP_DIRTY);
+			}
+		});
+	}
+«ENDDEFINE»
+
+«DEFINE doSave FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	public void doSave(org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
+		// The saving of the resource is done by the CoreMultiDiagramEditor
+		savedOperation =  getOperationHistory().getUndoOperation(getUndoContext());
+	}
+«ENDDEFINE»
+
+«REM»Fix the dirty state«ENDREM»
+«DEFINE isDirty FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	public boolean isDirty() {
+		org.eclipse.core.commands.operations.IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
+		return savedOperation != op;
+	}
+«ENDDEFINE»
+
+«REM»Code refactoring moved in UMLDiagramEditor«ENDREM»
+«DEFINE getDocumentProvider FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected final org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider getDocumentProvider(org.eclipse.ui.IEditorInput input) {
+		return documentProvider;
+	}
+«ENDDEFINE»
+
+«DEFINE setDocumentProvider FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected final void setDocumentProvider(org.eclipse.ui.IEditorInput input) {
+		// Already set in the constructor
+	}
+«ENDDEFINE»
+
+«DEFINE getGraphicalViewer FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	@Override
+	public org.eclipse.gef.GraphicalViewer getGraphicalViewer() {
+		return super.getGraphicalViewer();
+	}
+«ENDDEFINE»
+
+
+«DEFINE initializeGraphicalViewer FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	@Override
+	protected void initializeGraphicalViewer() {
+		super.initializeGraphicalViewer();
+
+		// Enable Drop
+		getDiagramGraphicalViewer().addDropTargetListener(
+				new org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener(getDiagramGraphicalViewer(), org.eclipse.jface.util.LocalSelectionTransfer.getTransfer()) {
+
+					@Override
+					protected Object getJavaObject(org.eclipse.swt.dnd.TransferData data) {
+						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+					}
+
+					@Override
+					protected org.eclipse.emf.transaction.TransactionalEditingDomain getTransactionalEditingDomain() {
+						return getEditingDomain();
+					}
+				});
+
+	}
+«ENDDEFINE»
+
+«DEFINE selectionChanged FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	@Override
+	public void selectionChanged(org.eclipse.ui.IWorkbenchPart part, org.eclipse.jface.viewers.ISelection selection) {
+		if (getSite().getPage().getActiveEditor() instanceof org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor) {
+			org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor editor = (org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor) getSite().getPage().getActiveEditor();
+			// If not the active editor, ignore selection changed.
+			if (this.equals(editor.getActiveEditor())) {
+				updateActions(getSelectionActions());
+				super.selectionChanged(part, selection);
+			} else {
+				super.selectionChanged(part, selection);
+			}
+		} else {
+			super.selectionChanged(part, selection);
+		}
+		// from
+		// org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart,
+		// ISelection)
+		if (part == this) {
+			rebuildStatusLine();
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE getContextID FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected String getContextID() {
+	return CONTEXT_ID;
+}
+«ENDDEFINE»
+
+«DEFINE getPreferencesHint FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint getPreferencesHint() {
+«REM» 
+	XXX seems better we use preference store directly (in configureGraphicalViewer) instead all these indirect ids 
+«ENDREM»«-»
+	return «EXPAND xpt::plugin::Activator::preferenceHintAccess FOR editorGen»;
+}
+«ENDDEFINE»
+
+«DEFINE getContributorId FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public String getContributorId() {
+	return «editorGen.plugin.getActivatorQualifiedClassName()».ID;
+}
+«ENDDEFINE»
+
+«DEFINE getAdapter FOR gmfgen::GenEditorView-»
+	«IF not hasPropertySheet(self) or hasNavigator(self)-»
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+public Object getAdapter(Class type) {
+	«IF not hasPropertySheet(self)-»
+	if (type == org.eclipse.ui.views.properties.IPropertySheetPage.class) {
+		return null;
+	}
+	«ENDIF-»
+	«IF hasNavigator(self)-»
+	if (type == org.eclipse.ui.part.IShowInTargetList.class) {
+		return new org.eclipse.ui.part.IShowInTargetList() {
+			public String[] getShowInTargetIds() {
+				return new String[] { org.eclipse.ui.navigator.resources.ProjectExplorer.VIEW_ID };
+			}
+		};
+	}
+	«ENDIF-»
+	return super.getAdapter(type);
+}
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE gotoMarker FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public void gotoMarker(org.eclipse.core.resources.IMarker marker) {
+	org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService.getInstance().gotoMarker(this, marker);
+}
+«ENDDEFINE»
+
+«DEFINE isSaveAsAllowed FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public boolean isSaveAsAllowed() {
+	return true;
+}
+«ENDDEFINE»
+
+«DEFINE doSaveAs FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public void doSaveAs() {
+	performSaveAs(new org.eclipse.core.runtime.NullProgressMonitor());
+}
+«ENDDEFINE»
+
+«DEFINE getShowInContext FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public org.eclipse.ui.part.ShowInContext getShowInContext() {
+	return new org.eclipse.ui.part.ShowInContext(getEditorInput(), «IF hasNavigator(self)»getNavigatorSelection()«ELSE»getGraphicalViewer().getSelection()«ENDIF»);
+}
+«ENDDEFINE»
+«DEFINE getNavigatorSelection FOR gmfgen::GenNavigator-»
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+private org.eclipse.jface.viewers.ISelection getNavigatorSelection() {
+	org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument document = getDiagramDocument();
+	«EXPAND xpt::navigator::NavigatorLinkHelper::findSelectionBody-»
+}
+«ENDDEFINE»
+«DEFINE configureGraphicalViewer FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		«EXPAND xpt::editor::DiagramEditorContextMenuProvider::qualifiedClassName FOR editorGen.diagram» provider =
+				new «EXPAND xpt::editor::DiagramEditorContextMenuProvider::qualifiedClassName FOR editorGen.diagram»(this, getDiagramGraphicalViewer());
+		getDiagramGraphicalViewer().setContextMenu(provider);
+		getSite().registerContextMenu(org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
+	}
+«ENDDEFINE»
+
+«DEFINE DropTargetListener FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedClassComment»
+private abstract class DropTargetListener extends org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener {
+
+	«EXPAND DTL_constructor-»
+
+	«EXPAND DTL_getObjectsBeingDropped-»
+
+	«EXPAND DTL_getJavaObject-»
+
+	«EXPAND DTL_additions-»
+}
+«ENDDEFINE»

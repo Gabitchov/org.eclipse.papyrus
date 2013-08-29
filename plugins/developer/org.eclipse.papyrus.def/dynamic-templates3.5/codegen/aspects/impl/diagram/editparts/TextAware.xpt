@@ -56,7 +56,9 @@
 	«EXPAND getModelChildren-»
 	
 	«EXPAND getChildBySemanticHint-»
-	
+	«REM»ITEMIS CHANGES«ENDREM»
+	«EXPAND setParser -»
+	«REM»ITEMIS CHANGES END«ENDREM»
 	«EXPAND getParserElement(modelFacet)-»
 	
 	«EXPAND getLabelIcon(useElementIcon, diagram)-»
@@ -87,7 +89,9 @@
 	
 	«EXPAND performDirectEditWithInitialChar-»
 	
-	«EXPAND performDirectEditRequest-»
+	«EXPAND performDirectEditRequest(diagram)-»
+	
+	«EXPAND initializeDirectEditManager-»
 	
 	«EXPAND refreshVisuals(needsRefreshBounds)-»
 	
@@ -218,6 +222,13 @@
 	«EXPAND xpt::Common::generatedMemberComment»
 	public org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
+	}
+«ENDDEFINE»
+
+«DEFINE setParser FOR gmfgen::GenCommonBase-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void setParser(IParser parser) {
+		this.parser = parser;
 	}
 «ENDDEFINE»
 
@@ -421,7 +432,7 @@
 	}
 «ENDDEFINE»
 	
-«DEFINE performDirectEditRequest FOR gmfgen::GenCommonBase-»
+«DEFINE performDirectEditRequest(diagram : gmfgen::GenDiagram) FOR gmfgen::GenCommonBase-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected void performDirectEditRequest(org.eclipse.gef.Request request) {
 		
@@ -437,11 +448,20 @@
 		case org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
+				// Create default edit manager
+				setManager(new org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager(this,
+				org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+				«diagram.getEditPartFactoryQualifiedClassName()».getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				org.eclipse.jface.dialogs.Dialog dialog = null;
-				if (configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration) {
+				if (configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration) {
+					setManager(((org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
+					setParser(((org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration) configuration).createParser(this.resolveSemanticElement()));
+					initializeDirectEditManager(theRequest);
+					return;
+				} else if (configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration) {
 					org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper helper = ((org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration)configuration).createPopupEditorHelper(this) ;
 					helper.showEditor() ;
 					return ;
@@ -470,31 +490,37 @@
 			}
 			break;
 		case org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
-			// initialize the direct edit manager
-			try {
-				getEditingDomain().runExclusive(new Runnable() {
-
-					public void run() {
-						if (isActive() && isEditable()) {
-							if (theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character) theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-								performDirectEdit(initialChar.charValue());
-							} else if ((theRequest instanceof org.eclipse.gef.requests.DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-								org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest) theRequest;
-								performDirectEdit(editRequest.getLocation());
-							} else {
-								performDirectEdit();
-							}
-						}
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			initializeDirectEditManager(theRequest);
 			break;
 		default:
 			break;
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE initializeDirectEditManager FOR gmfgen::GenCommonBase-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected void initializeDirectEditManager(final Request request) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+				public void run() {
+					if (isActive() && isEditable()) {
+						if (request.getExtendedData().get(
+							org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) request.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else if ((request instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest) request;
+							performDirectEdit(editRequest.getLocation());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 «ENDDEFINE»

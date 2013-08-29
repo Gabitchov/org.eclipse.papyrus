@@ -1,0 +1,138 @@
+/*
+ * Copyright (c) 2006, 2009 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+«EXTENSION MetaModel»
+«EXTENSION xpt::GenModelUtils»
+«EXTENSION xpt::EMFUtils»
+«EXTENSION xpt::mutatingUtils»
+«REM» [Mutating] new getCreatecommand with an element switch «ENDREM»
+«AROUND DiagramItemSemanticEditPolicy FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «editPoliciesPackageName»;
+	«EXPAND xpt::Common::generatedClassComment»
+public class «itemSemanticEditPolicyClassName» extends «getBaseItemSemanticEditPolicyQualifiedClassName()» {
+  «EXPAND childMutatingContainerCreateCommand FOR self-»
+	«EXPAND xpt::diagram::editpolicies::BaseItemSemanticEditPolicy::defaultConstructor-»
+	
+	
+	«EXPAND getDuplicateCommand-»
+	
+	«EXPAND DuplicateAnythingCommand-»
+	
+	«EXPAND additions-»
+}
+«ENDAROUND»
+«REM» Mutating canvas create commands «ENDREM»
+«DEFINE childMutatingContainerCreateCommand FOR gmfgen::GenDiagram»
+	«IF not self.topLevelNodes->isEmpty()-»
+	«EXPAND createMutatingSwitch FOR self»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+	«REM»fjcano:: we set a parameter in the request to pass the Diagram  «ENDREM»
+		org.eclipse.gmf.runtime.notation.Diagram diagram = org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
+		if (diagram != null) {
+			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource, diagram);
+		}
+		org.eclipse.emf.ecore.EObject canvasElement = org.eclipse.papyrus.uml.diagram.common.part.DiagramCanvasSwitch.getCanvasElement(this);
+		if (canvasElement == null) {
+			return null;
+		}
+		aSwitch.setInfo(req.getElementType());
+		req.setContainmentFeature(aSwitch.doSwitch(canvasElement));
+		«EXPAND childNodeCreateCommand FOREACH topLevelNodes-»
+		return super.getCreateCommand(req);
+	}
+	«ENDIF-»
+«ENDDEFINE»
+«DEFINE childNodeCreateCommand FOR gmfgen::GenNode-»
+	«EXPAND childNodeCreateCommand(self) FOR modelFacet-»
+«ENDDEFINE»
+«DEFINE childNodeCreateCommand(gmfgen::GenNode node) FOR gmfgen::TypeModelFacet-»
+		if («node.getDiagram().getElementTypesQualifiedClassName()».«node.getUniqueIdentifier()» == req.getElementType()) {
+			return getGEFWrapper(«node.getCreateCommandQualifiedClassName()».create(req, canvasElement));
+		}
+«ENDDEFINE»
+«REM» Mutating canvas Switch to create command «ENDREM»
+«DEFINE createMutatingSwitch FOR gmfgen::GenDiagram»
+	«EXPAND xpt::Common::generatedMemberComment»
+	static class EReferenceDiagramSwitch extends org.eclipse.papyrus.uml.diagram.common.util.BasicEcoreSwitch<org.eclipse.emf.ecore.EReference, org.eclipse.gmf.runtime.emf.type.core.IElementType> {
+		@Override
+		public org.eclipse.emf.ecore.EReference doSwitch(org.eclipse.emf.ecore.EObject modelElement) {
+			«REM»getInfo provides the View«ENDREM»
+			final org.eclipse.gmf.runtime.emf.type.core.IElementType type = getInfo();
+			if (type == null) {
+				return null;
+			}
+			«getModelSwitchQualifiedName(domainDiagramElement)»<org.eclipse.emf.ecore.EReference> aSwitch = new «getModelSwitchQualifiedName(domainDiagramElement)»<org.eclipse.emf.ecore.EReference>() {
+				@Override
+				public org.eclipse.emf.ecore.EReference case«domainDiagramElement.ecoreClass.name»(«getQualifiedInterfaceName(domainDiagramElement)» modelElement) {
+					org.eclipse.emf.ecore.EReference reference = null;
+					«FOREACH topLevelNodes AS node-»
+					if (type.equals(«node.getDiagram().getElementTypesQualifiedClassName()».«node.getUniqueIdentifier()»)) {
+						reference = «EXPAND MetaModel::MetaFeature FOR node.modelFacet.containmentMetaFeature»;
+					}
+					«ENDFOREACH-»
+					return reference;
+				}
+				«FOREACH getReferencingObjects().typeSelect(AlternateCanvas) AS referencer»
+				@Override
+				public org.eclipse.emf.ecore.EReference case«referencer.domainDiagramElement.ecoreClass.name»(«getQualifiedInterfaceName(referencer.domainDiagramElement)» modelElement) {
+					org.eclipse.emf.ecore.EReference reference = null;
+					«FOREACH referencer.alternateTopLevelNodes AS node-»
+					if (type.equals(«node.genTopLevelNode.getDiagram().getElementTypesQualifiedClassName()».«node.genTopLevelNode.getUniqueIdentifier()»)) {
+						reference = «EXPAND MetaModel::MetaFeature FOR node.typeModelFacet.containmentMetaFeature-»;
+					}
+					«ENDFOREACH-»
+					return reference;
+				}
+				«ENDFOREACH-»
+			};
+			
+			return aSwitch.doSwitch(modelElement);
+		}
+	}
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+	private EReferenceDiagramSwitch aSwitch = new EReferenceDiagramSwitch();
+«ENDDEFINE»
+«DEFINE getDuplicateCommand FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getDuplicateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest req) {
+	org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain = ((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) getHost()).getEditingDomain();
+	org.eclipse.gmf.runtime.notation.Diagram currentDiagram = null;
+	if(getHost()instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) {
+		currentDiagram = ((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)getHost()).getNotationView().getDiagram();
+	}
+	return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
+}
+«ENDDEFINE»
+«DEFINE DuplicateAnythingCommand FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedClassComment»
+private static class DuplicateAnythingCommand extends org.eclipse.papyrus.uml.diagram.common.commands.DuplicateNamedElementCommand {
+«EXPAND xpt::Common::generatedMemberComment»
+private org.eclipse.gmf.runtime.notation.Diagram diagram;
+	«EXPAND DAC_constructor-»
+	«EXPAND DAC_additions-»
+}
+«ENDDEFINE»
+«DEFINE DAC_constructor FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public DuplicateAnythingCommand(org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain, org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest req,org.eclipse.gmf.runtime.notation.Diagram currentDiagram) {
+	super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap(),currentDiagram);
+this.diagram = currentDiagram;
+}
+«ENDDEFINE»
+«DEFINE DAC_additions FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
+«DEFINE additions FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
