@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="queryProviders" name="Papyrus Search Query Providers" schema="schema/queryProviders.exsd"/>
    <extension
          point="org.eclipse.search.searchPages">
       <page
@@ -57,6 +58,12 @@
                type="org.eclipse.search.ui.ISearchPageScoreComputer">
          </adapter>
       </factory>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.search.ui.queryProviders">
+      <queryProvider
+            class="org.eclipse.papyrus.uml.search.ui.query.WorkspaceQueryProvider">
+      </queryProvider>
    </extension>
 
 </plugin>

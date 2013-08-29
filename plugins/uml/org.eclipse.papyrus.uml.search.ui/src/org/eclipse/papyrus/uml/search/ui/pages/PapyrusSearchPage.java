@@ -19,9 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -78,16 +76,15 @@ import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeContentProvide
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeElement;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeLabelProvider;
 import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;
-import org.eclipse.papyrus.uml.search.ui.query.PapyrusAdvancedQuery;
+import org.eclipse.papyrus.uml.search.ui.query.CompositePapyrusQueryProvider;
 import org.eclipse.papyrus.uml.search.ui.query.PapyrusOCLQuery;
-import org.eclipse.papyrus.uml.search.ui.query.PapyrusQuery;
+import org.eclipse.papyrus.uml.search.ui.query.QueryInfo;
+import org.eclipse.papyrus.uml.search.ui.query.WorkspaceQueryProvider;
 import org.eclipse.papyrus.uml.stereotypecollector.StereotypeCollector;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.views.search.regex.PatternHelper;
 import org.eclipse.papyrus.views.search.scope.ScopeCollector;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
-import org.eclipse.papyrus.views.search.utils.DefaultServiceRegistryTracker;
-import org.eclipse.papyrus.views.search.utils.IServiceRegistryTracker;
 import org.eclipse.search.ui.IReplacePage;
 import org.eclipse.search.ui.ISearchPage;
 import org.eclipse.search.ui.ISearchPageContainer;
@@ -148,8 +145,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 
 	private HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>> participantsList = new HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>>();
-
-	private ArrayList<ParticipantTypeElement> result = new ArrayList<ParticipantTypeElement>();
 
 	private Collection<Stereotype> availableStereotypes;
 
@@ -219,8 +214,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	protected Group grpSearchFor;
 
 	private Composite textQueryFieldsComposite;
-
-	protected Set<EObject> umlMetaClasses = new HashSet<EObject>();
 
 	protected ParticipantTypeContentProvider participantTypeContentProvider = new ParticipantTypeContentProvider();
 
@@ -697,16 +690,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		btnSearchAllStringAttributes.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
 	}
 
-	public void initMetaClasses() {
-
-		for(EClassifier eClassifier : UMLPackage.eINSTANCE.getEClassifiers()) {
-			if(eClassifier instanceof EClass) {
-				umlMetaClasses.add(eClassifier);
-			}
-		}
-
-	}
-
 
 	protected void createOCLSearchQueryField(EObject root) {
 
@@ -793,7 +776,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		if(container.getSelectedScope() == ISearchPageContainer.SELECTION_SCOPE) {
 			Collection<URI> scope = ScopeCollector.getInstance().computeSearchScope(container);
 
-			Collection<ScopeEntry> scopeEntries = createScopeEntries(scope);
+			// this is only used for OCL queries, which currently assume workspace-like availability of the model content
+			Collection<ScopeEntry> scopeEntries = WorkspaceQueryProvider.createScopeEntries(scope);
 
 			if(scopeEntries.size() == 1) {
 				Object[] entries = scopeEntries.toArray();
@@ -968,45 +952,19 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		});
 	}
 
-	/**
-	 * Create scopeEntries based on URIs.
-	 * 
-	 * @return the created scopeEntries
-	 */
-	private Collection<ScopeEntry> createScopeEntries(Collection<URI> scope) {
-		IServiceRegistryTracker tracker = createServiceRegistryTracker();
-		Collection<ScopeEntry> results = new HashSet<ScopeEntry>();
-
-		for(URI uri : scope) {
-
-			ScopeEntry scopeEntry = new ScopeEntry(uri, tracker);
-
-			results.add(scopeEntry);
-
-		}
-
-		return results;
-	}
-
-	private IServiceRegistryTracker createServiceRegistryTracker() {
-		return new DefaultServiceRegistryTracker();
-	}
-	
 	public boolean performAction() {
 
 		if(queryKind.getSelectionIndex() == TEXT_QUERY_KIND) {
 			if(validateRegex()) {
 				Collection<URI> scope = ScopeCollector.getInstance().computeSearchScope(container);
-				Collection<ScopeEntry> scopeEntries = createScopeEntries(scope);
 				ISearchQuery query;
 				if(searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
 					if(searchQueryText.getText().length() == 0) {
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_29, Messages.PapyrusSearchPage_30);
 						return false;
 					} else {
-						initMetaClasses();
-
-						query = new PapyrusQuery(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), scopeEntries, umlMetaClasses.toArray(), btnSearchAllStringAttributes.getSelection());
+						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), btnSearchAllStringAttributes.getSelection(), scope);
+						query = CompositePapyrusQueryProvider.getInstance().createSimpleSearchQuery(info);
 					}
 				} else {
 
@@ -1036,7 +994,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 							}
 						}
 
-						query = new PapyrusAdvancedQuery(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), scopeEntries, participantsToEvaluate.toArray());
+						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope);
+						query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
 
 					}
 
@@ -1094,12 +1053,10 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 				Collection<URI> scope = ScopeCollector.getInstance().computeSearchScope(container);
 
-				Collection<ScopeEntry> scopeEntries = createScopeEntries(scope);
 				AbstractPapyrusQuery query;
 				if(searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
-					initMetaClasses();
-
-					query = new PapyrusQuery(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), scopeEntries, umlMetaClasses.toArray(), btnSearchAllStringAttributes.getSelection());
+					QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), btnSearchAllStringAttributes.getSelection(), scope);
+					query = CompositePapyrusQueryProvider.getInstance().createSimpleSearchQuery(info);
 				} else {
 					List<ParticipantTypeElement> participantsToEvaluate = new ArrayList<ParticipantTypeElement>();
 					for(ParticipantTypeElement element : this.participantsList.keySet()) {
@@ -1123,7 +1080,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 							}
 						}
 					}
-					query = new PapyrusAdvancedQuery(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), scopeEntries, participantsToEvaluate.toArray());
+					QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope);
+					query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
 
 				}
 
