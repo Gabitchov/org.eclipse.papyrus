@@ -12,42 +12,61 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.externalresource.tests;
 
+import static org.junit.Assert.fail;
+
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
-import org.eclipse.pde.internal.core.PDECore;
-import org.eclipse.pde.internal.ui.wizards.imports.PluginImportOperation;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
+import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.ExternalResourceProfileUtils;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.OneResourceOnlyStrategy;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.PapyrusStereotypeApplicationHelper;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.StrategyRegistry;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Abstract class for all tests in this plugin
@@ -84,31 +103,70 @@ public abstract class AbstractExternalResourcesTest {
 	public static final String ELEMENT_STEREOTYPE_NAME = "ElementStereotype";
 
 	public static final String ELEMENT_STEREOTYPE_QN = EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE + NamedElement.SEPARATOR + ELEMENT_STEREOTYPE_NAME;
+	
+	public static final String ONE_PROFILE_MODEL_FILENAME = "oneProfileApplied";
 
+	public final static String DI_FILE =  ONE_PROFILE_MODEL_FILENAME+"."+DiModel.DI_FILE_EXTENSION;
+	
+	public final static String UML_FILE =  ONE_PROFILE_MODEL_FILENAME+"."+UmlModel.UML_FILE_EXTENSION;
+	
+	public final static String NOTATION_FILE =  ONE_PROFILE_MODEL_FILENAME+"."+NotationModel.NOTATION_FILE_EXTENSION;
+	
+	public final static String ALL_PROFILES_FILE = ONE_PROFILE_MODEL_FILENAME+"."+OneResourceOnlyStrategy.PROFILE_DEFAULT_EXTENSION;
+	
+	public final static String EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE = ONE_PROFILE_MODEL_FILENAME+"."+EXTERNAL_RESOURCES_TEST_PROFILE+"Profile";
+	
+	public static final String STANDARD_STRATEGY_FOLDER = "StandardResource";
+	
+	public static final String ONE_RESOURCE_FOR_ALL_PROFILES_FOLDER = "OneResourceForAllProfiles";
+	
+	public static final String ONE_RESOURCE_PER_PROFILE_FOLDER = "OneResourcePerProfile";
+	
+	
 	@Before
 	public void initializeRegistry() {
-		// first of all, delete existing model
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IWorkspaceRoot root = workspace.getRoot();
-		IProject project = root.getProject(Activator.PLUGIN_ID);
-		//at this point, no resources have been created
-		if(project.exists()) {
-			try {
-				project.delete(true, true, new NullProgressMonitor());
-			} catch (CoreException e) {
-				Assert.fail(e.getMessage());
-			}
+		ResourcesPlugin.getWorkspace().getDescription().setAutoBuilding(false);
+		IProject project = null;
+		try {
+			project = ProjectUtils.createProject(getTestProjectName());
+		} catch (CoreException e1) {
+			fail(e1.getMessage());
 		}
+		Assert.assertNotNull("Impossible to create the project", project);
 		// import model files.
-		PluginImportOperation operation = new PluginImportOperation(new IPluginModelBase[]{ PDECore.getDefault().getModelManager().findModel(Activator.PLUGIN_ID) }, PluginImportOperation.IMPORT_WITH_SOURCE, false);
-		IStatus status = operation.run(new NullProgressMonitor());
-		if(IStatus.ERROR == status.getSeverity()) {
-			Assert.fail(status.getMessage());
-		}
+		// retrieve the content of the source folder, and copy it into the destination folder
+		for(String fileName : getModelFileNames()) {
+			try {
+				PapyrusProjectUtils.copyIFile("resources/"+getTestProjectName()+"/"+fileName, Platform.getBundle(Activator.PLUGIN_ID), project, fileName);
+			} catch (CoreException e) {
+				fail(e.getMessage());
+			} catch (IOException e) {
+				fail(e.getMessage());
+			}
+		}		
+		
 		servicesRegistry = getServicesRegistry();
 		modelSet = getModelSet(getURI());
 		Assert.assertNotNull("Model set should not be null", modelSet);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public URI getURI() {
+		return URI.createPlatformResourceURI(getTestProjectName()+"/"+getModelFileNames().get(0), true);
+	}
+	
+	/**
+	 * Warning: main Model.di file must be put first!!!
+	 * @return
+	 */
+	protected abstract List<String> getModelFileNames();
+
+	/**
+	 * @return
+	 */
+	protected abstract String getTestProjectName();
 
 	@After
 	public void tearDownRegistry() {
@@ -125,6 +183,39 @@ public abstract class AbstractExternalResourcesTest {
 				org.junit.Assert.fail(e.getMessage());
 			}
 		}
+	}
+	
+	@Test
+	public void testLoadModelOutsidePapyrusEditor() {
+		UmlModel umlModel = null;
+		// get The model. try to see applied stereotypes
+		try {
+			umlModel = (UmlModel)modelSet.getModelChecked(UmlModel.MODEL_ID);
+		} catch (NotFoundException e) {
+			fail(e.getMessage());
+		}
+		Model rootModel = (Model)umlModel.getResource().getContents().get(0);
+		Assert.assertNotNull("Root model impossible to find", rootModel);
+		// test applied profiles
+		checkModel(rootModel);
+	}
+	
+	/**
+	 * @param rootModel
+	 */
+	protected void checkModel(Model rootModel) {
+		Assert.assertEquals("Some profiles are missing", 2, rootModel.getAllAppliedProfiles().size());
+		Assert.assertNotNull("ExternalResourcesTestProfile is missing", rootModel.getAppliedProfile(EXTERNAL_RESOURCES_TEST_PROFILE));
+		Assert.assertNotNull("ExternalResourcesTestProfile::SubProfile is missing", rootModel.getAppliedProfile(EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE));
+		// test some stereotype applications
+		// Model::class1 should have <<classStereotype>> Applied (verify root level stererotype)
+		Class class1_ = (Class)rootModel.getPackagedElement(MODEL_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
+		Assert.assertNotNull(MODEL_CLASS1 + " should not be null", class1_);
+		Assert.assertNotNull(MODEL_CLASS1 + " should have stereotype " + CLASS_STEREOTYPE_NAME, class1_.getAppliedStereotype(CLASS_STEREOTYPE_QN));
+		// Model::class1 should have <<classStereotype>> Applied (verify stereotype in subprofile)
+		Class class2_ = (Class)rootModel.getPackagedElement(MODEL_CLASS2, true, UMLPackage.eINSTANCE.getClass_(), false);
+		Assert.assertNotNull(MODEL_CLASS2 + " should not be null", class2_);
+		Assert.assertNotNull(MODEL_CLASS2 + " should have stereotype " + ELEMENT_STEREOTYPE_NAME + ", but has only: " + class2_.getAppliedStereotypes(), class2_.getAppliedStereotype(ELEMENT_STEREOTYPE_QN));
 	}
 
 	public ModelSet createModelSet(URI uri) throws ModelMultiException {
@@ -215,9 +306,6 @@ public abstract class AbstractExternalResourcesTest {
 		}
 		return modelSet;
 	}
+	
 
-	/**
-	 * @return the uri
-	 */
-	public abstract URI getURI();
 }
