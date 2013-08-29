@@ -22,16 +22,17 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUMLConnectionPointReferenceParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'entry'", "','", "'exit'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INT", "RULE_WS", "RULE_ANY_OTHER", "'entry'", "','", "'exit'"
     };
     public static final int RULE_ID=4;
     public static final int RULE_STRING=6;
     public static final int T__12=12;
-    public static final int T__11=11;
+    public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_ANY_OTHER=10;
-    public static final int RULE_INT=5;
-    public static final int RULE_WS=9;
+    public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_INT=9;
+    public static final int RULE_INTEGER_VALUE=5;
+    public static final int RULE_WS=10;
     public static final int RULE_SL_COMMENT=8;
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
@@ -121,7 +122,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==11||LA1_0==13) ) {
+            if ( (LA1_0==12||LA1_0==14) ) {
                 alt1=1;
             }
             switch (alt1) {
@@ -172,10 +173,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==11) ) {
+            if ( (LA2_0==12) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==13) ) {
+            else if ( (LA2_0==14) ) {
                 alt2=2;
             }
             else {
@@ -304,7 +305,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:130:1: 'entry'
             {
              before(grammarAccess.getConnectionPointReferenceRuleAccess().getEntryKeyword_0_0()); 
-            match(input,11,FOLLOW_11_in_rule__ConnectionPointReferenceRule__Group_0__0__Impl211); 
+            match(input,12,FOLLOW_12_in_rule__ConnectionPointReferenceRule__Group_0__0__Impl211); 
              after(grammarAccess.getConnectionPointReferenceRuleAccess().getEntryKeyword_0_0()); 
 
             }
@@ -465,7 +466,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
                 int alt3=2;
                 int LA3_0 = input.LA(1);
 
-                if ( (LA3_0==12) ) {
+                if ( (LA3_0==13) ) {
                     alt3=1;
                 }
 
@@ -562,7 +563,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:224:1: ','
             {
              before(grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_0_2_0()); 
-            match(input,12,FOLLOW_12_in_rule__ConnectionPointReferenceRule__Group_0_2__0__Impl397); 
+            match(input,13,FOLLOW_13_in_rule__ConnectionPointReferenceRule__Group_0_2__0__Impl397); 
              after(grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_0_2_0()); 
 
             }
@@ -717,7 +718,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:287:1: 'exit'
             {
              before(grammarAccess.getConnectionPointReferenceRuleAccess().getExitKeyword_1_0()); 
-            match(input,13,FOLLOW_13_in_rule__ConnectionPointReferenceRule__Group_1__0__Impl520); 
+            match(input,14,FOLLOW_14_in_rule__ConnectionPointReferenceRule__Group_1__0__Impl520); 
              after(grammarAccess.getConnectionPointReferenceRuleAccess().getExitKeyword_1_0()); 
 
             }
@@ -878,7 +879,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( (LA4_0==12) ) {
+                if ( (LA4_0==13) ) {
                     alt4=1;
                 }
 
@@ -975,7 +976,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
             // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:381:1: ','
             {
              before(grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_1_2_0()); 
-            match(input,12,FOLLOW_12_in_rule__ConnectionPointReferenceRule__Group_1_2__0__Impl706); 
+            match(input,13,FOLLOW_13_in_rule__ConnectionPointReferenceRule__Group_1_2__0__Impl706); 
              after(grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_1_2_0()); 
 
             }
@@ -1269,28 +1270,28 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalC
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__0_in_rule__ConnectionPointReferenceRule__Alternatives149 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__0__Impl_in_rule__ConnectionPointReferenceRule__Group_0__0180 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__1_in_rule__ConnectionPointReferenceRule__Group_0__0183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rule__ConnectionPointReferenceRule__Group_0__0__Impl211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__1__Impl_in_rule__ConnectionPointReferenceRule__Group_0__1242 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_rule__ConnectionPointReferenceRule__Group_0__0__Impl211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__1__Impl_in_rule__ConnectionPointReferenceRule__Group_0__1242 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__2_in_rule__ConnectionPointReferenceRule__Group_0__1245 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__EntryAssignment_0_1_in_rule__ConnectionPointReferenceRule__Group_0__1__Impl272 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0__2__Impl_in_rule__ConnectionPointReferenceRule__Group_0__2302 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0_2__0_in_rule__ConnectionPointReferenceRule__Group_0__2__Impl329 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0_2__0_in_rule__ConnectionPointReferenceRule__Group_0__2__Impl329 = new BitSet(new long[]{0x0000000000002002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0_2__0__Impl_in_rule__ConnectionPointReferenceRule__Group_0_2__0366 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0_2__1_in_rule__ConnectionPointReferenceRule__Group_0_2__0369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__ConnectionPointReferenceRule__Group_0_2__0__Impl397 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__ConnectionPointReferenceRule__Group_0_2__0__Impl397 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_0_2__1__Impl_in_rule__ConnectionPointReferenceRule__Group_0_2__1428 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__EntryAssignment_0_2_1_in_rule__ConnectionPointReferenceRule__Group_0_2__1__Impl455 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__0__Impl_in_rule__ConnectionPointReferenceRule__Group_1__0489 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__1_in_rule__ConnectionPointReferenceRule__Group_1__0492 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__ConnectionPointReferenceRule__Group_1__0__Impl520 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__1__Impl_in_rule__ConnectionPointReferenceRule__Group_1__1551 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_14_in_rule__ConnectionPointReferenceRule__Group_1__0__Impl520 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__1__Impl_in_rule__ConnectionPointReferenceRule__Group_1__1551 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__2_in_rule__ConnectionPointReferenceRule__Group_1__1554 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__ExitAssignment_1_1_in_rule__ConnectionPointReferenceRule__Group_1__1__Impl581 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1__2__Impl_in_rule__ConnectionPointReferenceRule__Group_1__2611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1_2__0_in_rule__ConnectionPointReferenceRule__Group_1__2__Impl638 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1_2__0_in_rule__ConnectionPointReferenceRule__Group_1__2__Impl638 = new BitSet(new long[]{0x0000000000002002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1_2__0__Impl_in_rule__ConnectionPointReferenceRule__Group_1_2__0675 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1_2__1_in_rule__ConnectionPointReferenceRule__Group_1_2__0678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__ConnectionPointReferenceRule__Group_1_2__0__Impl706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__ConnectionPointReferenceRule__Group_1_2__0__Impl706 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__Group_1_2__1__Impl_in_rule__ConnectionPointReferenceRule__Group_1_2__1737 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ConnectionPointReferenceRule__ExitAssignment_1_2_1_in_rule__ConnectionPointReferenceRule__Group_1_2__1__Impl764 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__ConnectionPointReferenceRule__EntryAssignment_0_1807 = new BitSet(new long[]{0x0000000000000002L});
