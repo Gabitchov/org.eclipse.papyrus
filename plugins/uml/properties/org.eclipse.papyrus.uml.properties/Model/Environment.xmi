@@ -37,8 +37,11 @@
       name="Stereotype Appearance Factory"
       factoryClass="org.eclipse.papyrus.uml.properties.modelelement.StereotypeAppearanceFactory"/>
   <modelElementFactories
-      name="Applied Comments Model Element Factory"
+      name="Applied Comments Factory"
       factoryClass="org.eclipse.papyrus.uml.properties.modelelement.CommentModelElementFactory"/>
+  <modelElementFactories
+      name="Profile definitions"
+      factoryClass="org.eclipse.papyrus.uml.properties.modelelement.ProfileDefinitionModelElementFactory"/>
   <propertyEditorTypes
       label="ExpressionEditor"
       widgetClass="ExpressionEditor"

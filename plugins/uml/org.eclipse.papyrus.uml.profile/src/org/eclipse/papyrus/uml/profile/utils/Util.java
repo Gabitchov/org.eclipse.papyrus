@@ -534,22 +534,7 @@ public class Util {
 	 * @return the version of the current profile definition
 	 */
 	public static Version getProfileDefinitionVersion(Profile profile) {
-		EAnnotation annotation = getPapyrusVersionAnnotation(profile);
-		if(annotation == null) {
-			return Version.emptyVersion;
-		} else {
-			// retrieve the version from the annotation
-			Version version;
-			String value = "";
-			try {
-				value = annotation.getDetails().get(IPapyrusVersionConstants.PAPYRUS_VERSION_KEY);
-				version = new Version((value != null) ? value : "");
-			} catch (Exception e) {
-				Activator.logWarning("impossible to parse the version value: " + value);
-				version = Version.emptyVersion;
-			}
-			return version;
-		}
+		return getDefinitionVersion(profile.getDefinition());
 	}
 
 	/**
@@ -642,5 +627,35 @@ public class Util {
 			container = container.eContainer();
 		}
 		return profileApplication;
+	}
+
+	/**
+	 * Returns the Version of the specified Profile Definition.
+	 * It is never null, but can be empty (Version.emptyVersion)
+	 * 
+	 * @param definition
+	 * @return
+	 */
+	public static Version getDefinitionVersion(EPackage definition) {
+		if(definition == null) {
+			return Version.emptyVersion;
+		}
+
+		EAnnotation annotation = definition.getEAnnotation(IPapyrusVersionConstants.PAPYRUS_EANNOTATION_SOURCE);
+		if(annotation == null) {
+			return Version.emptyVersion;
+		} else {
+			// retrieve the version from the annotation
+			Version version;
+			String value = "";
+			try {
+				value = annotation.getDetails().get(IPapyrusVersionConstants.PAPYRUS_VERSION_KEY);
+				version = new Version((value != null) ? value : "");
+			} catch (Exception e) {
+				Activator.logWarning("impossible to parse the version value: " + value);
+				version = Version.emptyVersion;
+			}
+			return version;
+		}
 	}
 }
