@@ -48,7 +48,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
@@ -157,10 +160,7 @@ public class PapyrusCDTEditor extends CEditor {
 				if(isDirty()) {
 					syncCpp.syncCDTtoModel();
 					Classifier classifier = (Classifier)papyrusTextInstance.getEditedObject();
-					// apparently doSave does not work properly
-					System.err.println("before save:" + isDirty());
 					doSave(new NullProgressMonitor());
-					System.err.println("after save:" + isDirty());
 					// regenerate code. TODO: raises update dialog
 					SyncModelToCDT.syncModelToCDT(classifier);
 				}
@@ -194,8 +194,12 @@ public class PapyrusCDTEditor extends CEditor {
 			
 			public void widgetSelected(SelectionEvent e) {
 				IEditorPart ep = getEditorSite().getPage().getActiveEditor();
-				ISelection selection = getSelectionProvider().getSelection(); 
+				ISelection selection = getSelectionProvider().getSelection();
 				if ((ep instanceof IGotoMarker) && (selection instanceof ITextSelection)) {
+					if (((ITextSelection) selection).getLength() > 0) {
+						// don't try to navigate during selection of a chunk of text.
+						return;
+					}
 					IMarker marker;
 					/*
 	                 * create a temporary validation marker on the
@@ -207,9 +211,13 @@ public class PapyrusCDTEditor extends CEditor {
 						Element element = reveal.obtainSelectedElement((ITextSelection) selection);
 						String modelURI = EcoreUtil.getURI(element).toString();
 						marker = srcFile.createMarker(EValidator.MARKER);
+						marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);	// set severity before URI to avoid marker update without associated icon
 						marker.setAttribute(EValidator.URI_ATTRIBUTE, modelURI);
-						marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
+						IWorkbenchPage wbpage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+						IWorkbenchPart activePart = wbpage.getActivePart();
 						((IGotoMarker) ep).gotoMarker(marker);
+						// reactivate this editor
+						wbpage.activate(activePart);
 						marker.delete();
 					} catch (CoreException e1) {
 						// TODO Auto-generated catch block
@@ -222,7 +230,8 @@ public class PapyrusCDTEditor extends CEditor {
 			}
 		};
 		
-		viewer.getTextWidget().addSelectionListener(selectionListener);
+		// TODO: don't add selection listener for the moment. It can cause deadlocks (setting a marker attribute while file is locked, reproducible with cut (^X) on selection)
+		// viewer.getTextWidget().addSelectionListener(selectionListener);
 		
 		return viewer;
 	}

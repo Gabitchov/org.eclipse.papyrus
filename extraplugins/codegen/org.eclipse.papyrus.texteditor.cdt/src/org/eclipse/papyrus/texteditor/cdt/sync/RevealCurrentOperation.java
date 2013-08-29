@@ -27,6 +27,7 @@ import org.eclipse.cdt.core.model.ISourceReference;
 import org.eclipse.cdt.core.model.ITranslationUnit;
 import org.eclipse.cdt.ui.CDTUITools;
 import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -63,7 +64,7 @@ public class RevealCurrentOperation {
 
 				String opName = findOperation(itu, selector, itu, selection);
 				if (opName != null) {
-					int sep = opName.lastIndexOf("::");
+					int sep = opName.lastIndexOf("::"); //$NON-NLS-1$
 					if (sep != -1) {
 						opName = opName.substring(sep+2);
 					}
@@ -72,7 +73,7 @@ public class RevealCurrentOperation {
 				}
 
 			} catch (CModelException e) {
-				System.err.println(e);
+				Activator.getDefault().getLog().log(e.getStatus());
 			} catch (Exception e) {
 				System.err.println(e);
 			} finally {
