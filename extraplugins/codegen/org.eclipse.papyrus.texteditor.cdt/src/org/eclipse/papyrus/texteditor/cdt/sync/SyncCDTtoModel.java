@@ -49,6 +49,7 @@ import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
 import org.eclipse.papyrus.cpp.codegen.Constants;
 import org.eclipse.papyrus.cpp.profile.StUtils;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.texteditor.cdt.CommandSupport;
 import org.eclipse.papyrus.texteditor.cdt.Utils;
 import org.eclipse.papyrus.texteditor.cdt.listener.ModelListener;
@@ -103,7 +104,6 @@ public class SyncCDTtoModel implements Runnable {
 
 				IASTTranslationUnit ast = itu.getAST(index, ITranslationUnit.AST_SKIP_INDEXED_HEADERS);
 				IASTNodeSelector selector = ast.getNodeSelector(null);
-				System.err.println(ast);
 
 				examineChildren(itu, selector, itu);
 				updateCppInclude(itu);
@@ -117,7 +117,7 @@ public class SyncCDTtoModel implements Runnable {
 				}
 
 			} catch (CModelException e) {
-				System.err.println(e);
+				Activator.getDefault().getLog().log(e.getStatus());
 			} catch (Exception e) {
 				System.err.println(e);
 			} finally {

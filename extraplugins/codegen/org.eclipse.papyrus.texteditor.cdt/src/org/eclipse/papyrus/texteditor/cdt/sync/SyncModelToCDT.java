@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.acceleo.ModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
@@ -67,10 +68,11 @@ public class SyncModelToCDT {
 					try {
 						mec.createPackageableElement(srcPkg, null, classifier); // need listener for sync in both directions!
 					} catch (CoreException coreException) {
+						Activator.getDefault().getLog().log(coreException.getStatus());
 						return null;
 					}
-					IFile cppFile = srcPkg.getFile(new Path(name + ".cpp"));	// TODO: extension is configurable!
-					IFile hFile = srcPkg.getFile(new Path(name + ".h"));
+					IFile cppFile = srcPkg.getFile(new Path(name + ".cpp"));	// TODO: extension is configurable! //$NON-NLS-1$
+					IFile hFile = srcPkg.getFile(new Path(name + ".h")); //$NON-NLS-1$
 					if(!cppFile.exists()) {
 						return null;
 					}
