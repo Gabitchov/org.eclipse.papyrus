@@ -89,11 +89,11 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		return container;
 	}
 
-	public Collection<? extends IPapyrusRepository> getRepositories() {
+	public Collection<? extends IInternalPapyrusRepository> getRepositories() {
 		return Collections.unmodifiableCollection(repositories.values());
 	}
 
-	public IPapyrusRepository createRepository(String url) {
+	public IInternalPapyrusRepository createRepository(String url) {
 		if(getRepository(url) != null) {
 			throw new IllegalArgumentException("repository already exists"); //$NON-NLS-1$
 		}
@@ -138,12 +138,12 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		fireElementRemovedEvent(repository);
 	}
 
-	public IPapyrusRepository getRepository(String url) {
+	public IInternalPapyrusRepository getRepository(String url) {
 		return repositories.get(url);
 	}
 
-	public IPapyrusRepository getRepositoryForURI(URI uri) {
-		IPapyrusRepository result = null;
+	public IInternalPapyrusRepository getRepositoryForURI(URI uri) {
+		IInternalPapyrusRepository result = null;
 
 		if(CDOUtils.isCDOURI(uri)) {
 			String uuid = CDOURIUtil.extractRepositoryUUID(uri);

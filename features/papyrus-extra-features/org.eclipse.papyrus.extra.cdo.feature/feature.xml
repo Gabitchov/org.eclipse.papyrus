@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.extra.cdo.feature" label="%featureName" provider-name="%providerName" version="0.10.1.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.extra.cdo.feature"
+      label="%featureName"
+      version="0.10.1.qualifier"
+      provider-name="%providerName">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2013 CEA LIST.
@@ -12,18 +17,60 @@ http://www.eclipse.org/legal/epl-v10.html.
       %license
    </license>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.cdo.core" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.cdo.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.cdo.ui" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.cdo.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.cdo.uml.diagram.ui" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.cdo.uml.diagram.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.cdo.ui.customization.properties" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.cdo.ui.customization.properties"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.cdo.validation.problems" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.cdo.validation.problems"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.cdo.validation.problems.edit" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.cdo.validation.problems.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.cdo.uml.ui" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.cdo.uml.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.cdo.uml.search.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

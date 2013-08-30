@@ -42,6 +42,7 @@ import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.IResourceSetDisposalApprover;
 import org.eclipse.papyrus.cdo.core.tests.AbstractPapyrusCDOTest;
+import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.IRepositoryModelStorage;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
@@ -58,8 +59,7 @@ import com.google.common.collect.Lists;
 /**
  * This is the PapyrusRepositoryManagerTest type. Enjoy.
  */
-public class PapyrusRepositoryManagerTest
-		extends AbstractPapyrusCDOTest {
+public class PapyrusRepositoryManagerTest extends AbstractPapyrusCDOTest {
 
 	private PapyrusRepositoryManager fixture;
 
@@ -68,8 +68,7 @@ public class PapyrusRepositoryManagerTest
 	}
 
 	@Test
-	public void createAndRemoveRepository()
-			throws Exception {
+	public void createAndRemoveRepository() throws Exception {
 
 		ContainerListener<IPapyrusRepository> listener = new ContainerListener<IPapyrusRepository>();
 		fixture.addListener(listener);
@@ -83,14 +82,11 @@ public class PapyrusRepositoryManagerTest
 
 		repo.setName("My Repository");
 
-		assertThat(listener.getAdded(),
-			equalTo(Collections.singletonList(repo)));
-		assertThat(listener.getRemoved(),
-			equalTo(Collections.<IPapyrusRepository> emptyList()));
+		assertThat(listener.getAdded(), equalTo(Collections.singletonList(repo)));
+		assertThat(listener.getRemoved(), equalTo(Collections.<IPapyrusRepository> emptyList()));
 
-		assertArrayEquals(new IPapyrusRepository[]{repo}, fixture.getElements());
-		assertThat(ImmutableSet.copyOf(fixture.getRepositories()),
-			equalTo(ImmutableSet.of(repo)));
+		assertArrayEquals(new IPapyrusRepository[]{ repo }, fixture.getElements());
+		assertThat(ImmutableSet.copyOf(fixture.getRepositories()), equalTo(ImmutableSet.of((IInternalPapyrusRepository)repo)));
 
 		repo.connect();
 
@@ -101,16 +97,13 @@ public class PapyrusRepositoryManagerTest
 		assertThat(repo.isConnected(), is(false));
 
 		fixture.removeRepository(repo);
-		assertThat(listener.getRemoved(),
-			equalTo(Collections.singletonList(repo)));
+		assertThat(listener.getRemoved(), equalTo(Collections.singletonList(repo)));
 	}
 
 	@Test
-	public void createTransaction_ResourceSet()
-			throws Exception {
+	public void createTransaction_ResourceSet() throws Exception {
 
-		PapyrusRepository repo = (PapyrusRepository) fixture
-			.createRepository(getRepositoryURL());
+		PapyrusRepository repo = (PapyrusRepository)fixture.createRepository(getRepositoryURL());
 
 		ContainerListener<CDOResourceNode> listener = new ContainerListener<CDOResourceNode>();
 		repo.addListener(listener);
@@ -122,7 +115,7 @@ public class PapyrusRepositoryManagerTest
 		ResourceSet rset = new ResourceSetImpl();
 		assertThat(repo.createTransaction(rset), sameInstance(rset));
 
-		CDOTransaction transaction = (CDOTransaction) repo.getCDOView(rset);
+		CDOTransaction transaction = (CDOTransaction)repo.getCDOView(rset);
 		assertThat(transaction.isClosed(), is(false));
 		assertThat(transaction.isDirty(), is(false));
 
@@ -130,8 +123,7 @@ public class PapyrusRepositoryManagerTest
 		res.getContents().add(UMLFactory.eINSTANCE.createModel());
 		assertThat(transaction.isDirty(), is(true));
 
-		assertThat(fixture.getRepositoryForURI(res.getURI()),
-			sameInstance((IPapyrusRepository) repo));
+		assertThat(fixture.getRepositoryForURI(res.getURI()), sameInstance((IPapyrusRepository)repo));
 
 		repo.commit(rset);
 		assertThat(transaction.isDirty(), is(false));
@@ -152,8 +144,7 @@ public class PapyrusRepositoryManagerTest
 	}
 
 	@Test
-	public void loadAndSave()
-			throws Exception {
+	public void loadAndSave() throws Exception {
 		StringStorage storage = new StringStorage();
 
 		PapyrusRepositoryManager mgr = new PapyrusRepositoryManager(storage);
@@ -169,8 +160,7 @@ public class PapyrusRepositoryManagerTest
 
 		try {
 			assertThat(mgr.getRepositories().size(), equalTo(1));
-			PapyrusRepository repo = (PapyrusRepository) Iterables
-				.getOnlyElement(mgr.getRepositories());
+			PapyrusRepository repo = (PapyrusRepository)Iterables.getOnlyElement(mgr.getRepositories());
 			assertThat(repo.getName(), equalTo("My Repository"));
 			assertThat(repo.getURL(), equalTo(getRepositoryURL()));
 			assertThat(repo.isConnected(), is(false));
@@ -181,18 +171,14 @@ public class PapyrusRepositoryManagerTest
 	}
 
 	@Test
-	public void disposalNoAction()
-			throws Exception {
+	public void disposalNoAction() throws Exception {
 
-		PapyrusRepository repo = (PapyrusRepository) fixture
-			.createRepository(getRepositoryURL());
+		PapyrusRepository repo = (PapyrusRepository)fixture.createRepository(getRepositoryURL());
 		repo.connect();
 
 		repo.addResourceSetDisposalApprover(new IResourceSetDisposalApprover() {
 
-			public DisposeAction disposalRequested(
-					IPapyrusRepository repository,
-					Collection<ResourceSet> resourceSets) {
+			public DisposeAction disposalRequested(IPapyrusRepository repository, Collection<ResourceSet> resourceSets) {
 
 				return DisposeAction.NONE;
 			}
@@ -214,18 +200,14 @@ public class PapyrusRepositoryManagerTest
 	}
 
 	@Test
-	public void disposalSaveAction()
-			throws Exception {
+	public void disposalSaveAction() throws Exception {
 
-		PapyrusRepository repo = (PapyrusRepository) fixture
-			.createRepository(getRepositoryURL());
+		PapyrusRepository repo = (PapyrusRepository)fixture.createRepository(getRepositoryURL());
 		repo.connect();
 
 		repo.addResourceSetDisposalApprover(new IResourceSetDisposalApprover() {
 
-			public DisposeAction disposalRequested(
-					IPapyrusRepository repository,
-					Collection<ResourceSet> resourceSets) {
+			public DisposeAction disposalRequested(IPapyrusRepository repository, Collection<ResourceSet> resourceSets) {
 
 				return DisposeAction.SAVE;
 			}
@@ -248,18 +230,14 @@ public class PapyrusRepositoryManagerTest
 	}
 
 	@Test
-	public void disposalCloseAction()
-			throws Exception {
+	public void disposalCloseAction() throws Exception {
 
-		PapyrusRepository repo = (PapyrusRepository) fixture
-			.createRepository(getRepositoryURL());
+		PapyrusRepository repo = (PapyrusRepository)fixture.createRepository(getRepositoryURL());
 		repo.connect();
 
 		repo.addResourceSetDisposalApprover(new IResourceSetDisposalApprover() {
 
-			public DisposeAction disposalRequested(
-					IPapyrusRepository repository,
-					Collection<ResourceSet> resourceSets) {
+			public DisposeAction disposalRequested(IPapyrusRepository repository, Collection<ResourceSet> resourceSets) {
 
 				return DisposeAction.CLOSE;
 			}
@@ -291,24 +269,21 @@ public class PapyrusRepositoryManagerTest
 	}
 
 	@Before
-	public void createRepositoryManager()
-			throws Exception {
+	public void createRepositoryManager() throws Exception {
 
 		fixture = new PapyrusRepositoryManager();
 	}
 
 	@After
-	public void disposeRepositoryManager()
-			throws Exception {
+	public void disposeRepositoryManager() throws Exception {
 
-		if (fixture != null) {
+		if(fixture != null) {
 			fixture.dispose();
 			fixture = null;
 		}
 	}
 
-	static class ContainerListener<T>
-			extends ContainerEventAdapter<T> {
+	static class ContainerListener<T> extends ContainerEventAdapter<T> {
 
 		private List<T> added = Lists.newArrayListWithExpectedSize(1);
 
@@ -319,7 +294,7 @@ public class PapyrusRepositoryManagerTest
 		private boolean removedChanged;
 
 		List<T> getAdded() {
-			synchronized (added) {
+			synchronized(added) {
 				// clear the flag
 				addedChanged = false;
 				return added;
@@ -327,9 +302,9 @@ public class PapyrusRepositoryManagerTest
 		}
 
 		List<T> getAdded(long seconds) {
-			synchronized (added) {
+			synchronized(added) {
 				long timeout = TimeUnit.SECONDS.toMillis(seconds);
-				while (!addedChanged && (timeout > 0L)) {
+				while(!addedChanged && (timeout > 0L)) {
 					timeout = waitFor(added, timeout);
 				}
 
@@ -354,7 +329,7 @@ public class PapyrusRepositoryManagerTest
 		}
 
 		List<T> getRemoved() {
-			synchronized (added) {
+			synchronized(added) {
 				// clear the flag
 				removedChanged = false;
 				return removed;
@@ -362,9 +337,9 @@ public class PapyrusRepositoryManagerTest
 		}
 
 		List<T> getRemoved(long seconds) {
-			synchronized (removed) {
+			synchronized(removed) {
 				long timeout = TimeUnit.SECONDS.toMillis(seconds);
-				while (!removedChanged && (timeout > 0L)) {
+				while(!removedChanged && (timeout > 0L)) {
 					timeout = waitFor(removed, timeout);
 				}
 
@@ -375,16 +350,18 @@ public class PapyrusRepositoryManagerTest
 			}
 		}
 
+		@Override
 		protected void onAdded(IContainer<T> container, T element) {
-			synchronized (added) {
+			synchronized(added) {
 				added.add(element);
 				addedChanged = true;
 				added.notifyAll();
 			}
 		}
 
+		@Override
 		protected void onRemoved(IContainer<T> container, T element) {
-			synchronized (removed) {
+			synchronized(removed) {
 				removed.add(element);
 				removedChanged = true;
 				removed.notifyAll();
@@ -392,8 +369,7 @@ public class PapyrusRepositoryManagerTest
 		}
 	}
 
-	static class CommitListener
-			implements IListener {
+	static class CommitListener implements IListener {
 
 		private volatile boolean committed;
 
@@ -404,33 +380,27 @@ public class PapyrusRepositoryManagerTest
 		}
 
 		public void notifyEvent(IEvent event) {
-			if (event instanceof CDOTransactionFinishedEvent) {
+			if(event instanceof CDOTransactionFinishedEvent) {
 				committed = true;
 			}
 		}
 	}
 
-	static class StringStorage
-			implements IRepositoryModelStorage {
+	static class StringStorage implements IRepositoryModelStorage {
 
 		String storage = null;
 
-		public InputStream createInputStream()
-				throws IOException {
+		public InputStream createInputStream() throws IOException {
 
-			return (storage == null
-				? null
-				: new ByteArrayInputStream(storage.getBytes("UTF-8")));
+			return (storage == null ? null : new ByteArrayInputStream(storage.getBytes("UTF-8")));
 		}
 
-		public OutputStream createOutputStream()
-				throws IOException {
+		public OutputStream createOutputStream() throws IOException {
 
 			return new ByteArrayOutputStream() {
 
 				@Override
-				public void close()
-						throws IOException {
+				public void close() throws IOException {
 
 					super.close();
 
