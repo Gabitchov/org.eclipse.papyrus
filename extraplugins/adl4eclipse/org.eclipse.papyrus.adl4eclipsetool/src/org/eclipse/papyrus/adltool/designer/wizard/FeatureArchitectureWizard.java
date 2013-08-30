@@ -20,10 +20,16 @@ import org.eclipse.papyrus.adltool.designer.ArchitectureSnapshotDesigner;
 
 /**
  * this wizard is used to display feature from workspace and the platform
- *
+ *@deprecated
  */
 public class FeatureArchitectureWizard extends PluginArchitectureWizard {
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param onlyWorkspace
+	 */
 	public FeatureArchitectureWizard(boolean onlyWorkspace) {
 		super(onlyWorkspace);
 	}

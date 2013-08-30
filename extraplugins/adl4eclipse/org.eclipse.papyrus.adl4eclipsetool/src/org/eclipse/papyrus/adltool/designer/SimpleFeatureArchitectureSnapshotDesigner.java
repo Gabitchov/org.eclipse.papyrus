@@ -29,8 +29,16 @@ public class SimpleFeatureArchitectureSnapshotDesigner extends CompleteFeatureAr
 	protected Package architecturefeature;
 	protected Package platformfeature;
 	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param rootPackage the root package where the sub-packages "Architecture" and "platform" will be created
+	 * @param bundleInitialList the list of feature that will be retro engineered.
+	 */
 	public SimpleFeatureArchitectureSnapshotDesigner(Package rootPackage, ArrayList<Object> bundleInitialList) {
 		super(rootPackage, bundleInitialList);
+		this.dependencyLevelMax=1;
 	}
 
 	

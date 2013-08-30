@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.adl4eclipsetool;bundle-version="0.10.1"
+ org.eclipse.papyrus.adl4eclipsetool;bundle-version="0.10.1",
+ org.eclipse.pde.core;bundle-version="3.9.0"
 Export-Package: org.eclipse.papyrus.adltool.assistant
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier

@@ -29,6 +29,14 @@ public class CompletePluginsArchitectureSnapshotCommand extends RecordingCommand
 	protected ArrayList<Object> bundleList=null;
 	protected Package rootPackage;
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param domain the domain mandatory to launch the command
+	 * @param rootPackage the root package in which the sub-packages will be created
+	 * @param bundleList the list of bundle for the retro engineering
+	 */
 	public CompletePluginsArchitectureSnapshotCommand(TransactionalEditingDomain domain,Package rootPackage, ArrayList<Object> bundleList) {
 		super(domain,"Import Bundles", "Model architecture from current workspace");
 		this.rootPackage=rootPackage;

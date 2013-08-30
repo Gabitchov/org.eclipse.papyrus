@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-      <extension
+      <!--extension
             point="org.eclipse.ui.menus">
          <menuContribution
                allPopups="false"
@@ -75,10 +75,31 @@
             id="org.eclipse.papyrus.adltool.assistant.ModelCompleteFeatureArchitectureHandler"
             name="Complete Feature architecture snapshot">
       </command>
-   </extension>
+   </extension-->
      <extension
          point="org.eclipse.ui.startup">
       <startup
             class="org.eclipse.papyrus.adltool.assistant.Activator"></startup>
    </extension>
+     <extension
+           point="org.eclipse.ui.importWizards">
+        <category
+              id="org.eclipse.papyrus.editor.category"
+              name="papyrus">
+        </category>
+        <wizard
+              category="org.eclipse.papyrus.editor.category"
+              class="org.eclipse.papyrus.adl4eclipsetool.assistant.SimplePluginImport"
+              icon="img/adl.png"
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.wizard1"
+              name="Simple Plugins architecture snapshot">
+        </wizard>
+        <wizard
+              category="org.eclipse.papyrus.editor.category"
+              class="org.eclipse.papyrus.adl4eclipsetool.assistant.SimpleFeatureImport"
+              icon="img/adl.png"
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.wizard1"
+              name="Simple Features architecture snapshot">
+        </wizard>
+     </extension>
 </plugin>

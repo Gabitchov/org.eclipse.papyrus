@@ -24,7 +24,13 @@ import org.eclipse.uml2.uml.Package;
   public class CompleteArchitectureSnapshotDesigner extends ArchitectureSnapshotDesigner {
  
 
-	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param rootPackage
+	 * @param bundleInitialList
+	 */
 	public CompleteArchitectureSnapshotDesigner(Package rootPackage, ArrayList<Object>bundleInitialList) {
 		super(rootPackage, bundleInitialList);
 	}

@@ -17,19 +17,28 @@ package org.eclipse.papyrus.adltool.designer.wizard;
 
 import java.util.ArrayList;
 
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.adltool.designer.ArchitectureSnapshotDesigner;
+import org.eclipse.ui.IImportWizard;
+import org.eclipse.ui.IWorkbench;
 
 /**
  * this wizard is used to display plugin from workspace and the platform
- *
+ *@deprecated
  */
 
-public class PluginArchitectureWizard extends Wizard {
+public class PluginArchitectureWizard extends Wizard  implements IImportWizard{
 
 	protected BundleSelectionPage bundleSelectionPage;
 	protected boolean onlyWorkspace=true;
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param onlyWorkspace
+	 */
 	public PluginArchitectureWizard(boolean onlyWorkspace) {
 		super();
 		setNeedsProgressMonitor(true);
@@ -48,6 +57,10 @@ public class PluginArchitectureWizard extends Wizard {
 		addPage(bundleSelectionPage);
 	}
 
+	/**
+	 * 
+	 * @return the list of selected bundle
+	 */
 	public ArrayList<Object> getSelectedBundle(){
 		return bundleSelectionPage.getResult();
 	}
@@ -58,5 +71,10 @@ public class PluginArchitectureWizard extends Wizard {
 			return true;
 		}
 		return false;
+	}
+
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		// TODO Auto-generated method stub
+		
 	}
 } 

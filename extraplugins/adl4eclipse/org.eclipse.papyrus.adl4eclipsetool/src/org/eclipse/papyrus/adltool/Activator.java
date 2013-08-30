@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/** The plug-in ID**/
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.adl4eclipsetool"; //$NON-NLS-1$
 
 	// The shared instance
