@@ -147,8 +147,10 @@ public class CDOUtils {
 	}
 
 	public static boolean isLockable(CDOObject object) {
-		// transient objects do not have lock states
-		return object.cdoLockState() != null;
+		// transient objects do not have lock states, nor do those that are not
+		// in a view or are in a closed view
+		CDOView view = object.cdoView();
+		return (view != null) && !view.isClosed() && (object.cdoLockState() != null);
 	}
 
 	public static boolean isLocked(CDOObject object, boolean remotely) {

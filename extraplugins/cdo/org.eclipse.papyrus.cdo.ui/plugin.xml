@@ -328,4 +328,14 @@
             provider="org.eclipse.papyrus.cdo.internal.ui.providers.CDOResourceLabelProvider">
       </labelProvider>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet"
+            class="org.eclipse.papyrus.cdo.internal.ui.dialogs.CreateCDOModelFragmentDialog$AdapterFactory">
+         <adapter
+               type="org.eclipse.papyrus.infra.services.controlmode.ui.IControlModeFragmentDialogProvider">
+         </adapter>
+      </factory>
+   </extension>
 </plugin>
