@@ -31,10 +31,14 @@ import org.eclipse.uml2.uml.Package;
 
 /**
  * this handler is used to generate the architecture from workspace
- *
+ *@deprecated
  */
 public class ModelPluginArchitectureFromWorkspaceHandler extends ADLToolAbstractHandler {
-
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
 	public ModelPluginArchitectureFromWorkspaceHandler() {
 	}
 
@@ -62,14 +66,11 @@ public class ModelPluginArchitectureFromWorkspaceHandler extends ADLToolAbstract
 			}
 		} 
 
-		
+
 		return null;
 	}
 	/**
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEnabled() {

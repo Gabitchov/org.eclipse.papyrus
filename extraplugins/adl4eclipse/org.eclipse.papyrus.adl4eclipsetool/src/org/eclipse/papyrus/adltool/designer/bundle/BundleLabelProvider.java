@@ -23,10 +23,18 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
 
-
+/**
+ * this class is a label provider to display in a GUI a list of bundle
+ */
+@SuppressWarnings("restriction")
 public class BundleLabelProvider extends LabelProvider {
 	BundleDesignerRegistry bundleDesignerRegistry;
 	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
 	public BundleLabelProvider() {
 		bundleDesignerRegistry= new BundleDesignerRegistry();
 	}

@@ -29,10 +29,17 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
-
+/**
+ *@deprecated 
+ *
+ */
 
 public class ModelCompletePluginArchitectureHandler extends ADLToolAbstractHandler {
-
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
 	public ModelCompletePluginArchitectureHandler() {
 	}
 
@@ -59,14 +66,12 @@ public class ModelCompletePluginArchitectureHandler extends ADLToolAbstractHandl
 				dom.getCommandStack().execute(comd);
 			}
 		} 
-		
+
 		return null;
 	}
 	/**
 	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return
+	 *{@inheritDoc}
 	 */
 	@Override
 	public boolean isEnabled() {

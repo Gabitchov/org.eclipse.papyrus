@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.adltool.designer.bundle;
 
-import java.util.ArrayList;
+import java.util.Collections;
 
 import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
 import org.eclipse.papyrus.osgi.profile.IOSGIStereotype;
@@ -22,13 +22,18 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.osgi.framework.Constants;
 
 
+/**
+ * this abstract class is used to construct model from bundle in the workspace or from the platform
+ *
+ */
+
 public abstract class AbstractBundleDescriptionDesigner implements IBundleDescriptionDesigner {
 	/**
 	 * @see org.eclipse.papyrus.adltool.designer.bundle.IBundleDescriptionDesigner#getBundleValue(java.lang.Object, java.lang.String)
 	 *
 	 * @param bundleProject
 	 * @param key
-	 * @return
+	 * @return the value that corresponds to the key
 	 */
 	
 	public abstract String  getBundleValue( Object bundleProject, String key);
@@ -111,6 +116,7 @@ public abstract class AbstractBundleDescriptionDesigner implements IBundleDescri
 		//String activator=getBundleValue( bundleProject, Constants.BUNDLE_NATIVECODE_PROCESSOR);
 
 		//BUNDLE_REQUIREDEXECUTIONENVIRONMENT
+		@SuppressWarnings("deprecation")
 		String requiredExecutionEnv=getBundleValue( bundleProject, Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT);
 		bundleComponent.setValue(pluginStereotype, IOSGIStereotype.BUNDLE_REQUIREDEXECUTIONENVIRONMENT_ATT, requiredExecutionEnv);
 		//BUNDLE_SYMBOLICNAME
@@ -139,30 +145,30 @@ public abstract class AbstractBundleDescriptionDesigner implements IBundleDescri
 			if( lazystartExpression.contains(";")){
 				String lazyStartString= lazystartExpression.substring(0, lazystartExpression.indexOf(";"));
 				lazyStartValue= Boolean.valueOf(lazyStartString);
-				String lazyStartException= lazystartExpression.substring(lazystartExpression.indexOf(";"));
+				//String lazyStartException= lazystartExpression.substring(lazystartExpression.indexOf(";"));
 				//TODO: lazystartExpression
 				//bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_LAZYSTARTEXCEPTION_ATT,lazyStartException );
 			}
 			else{
 				lazyStartValue= Boolean.valueOf(lazystartExpression);
 				bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_LAZYSTART_ATT,lazyStartValue );
-				bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_LAZYSTARTEXCEPTION_ATT,new ArrayList()  );
+				bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_LAZYSTARTEXCEPTION_ATT,Collections.EMPTY_LIST  );
 			}
 		}else{
 			bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_LAZYSTART_ATT,null );
-			bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_LAZYSTARTEXCEPTION_ATT, new ArrayList() );
+			bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_LAZYSTARTEXCEPTION_ATT, Collections.EMPTY_LIST );
 		}
 
 
 
 		//IADL4ECLIPSE_Stereotype.PLUGIN_BUDDYPOLICY_ATT
-		String buddypolicy=getBundleValue( bundleProject, ECLIPSE_BUDDY_LOADER);
+		//String buddypolicy=getBundleValue( bundleProject, ECLIPSE_BUDDY_LOADER);
 		//bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_BUDDYPOLICY_ATT, buddypolicy);
 		//IADL4ECLIPSE_Stereotype.PLUGIN_BUNDLESHAPE_ATT
-		String bundleShape=getBundleValue( bundleProject, ECLIPSE_BUNDLE_SHAPE);
+		//String bundleShape=getBundleValue( bundleProject, ECLIPSE_BUNDLE_SHAPE);
 		//bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_BUDDYPOLICY_ATT, buddypolicy);
 		//IADL4ECLIPSE_Stereotype.PLUGIN_CAPABILITY_ATT
-		String capability=getBundleValue( bundleProject, ECLIPSE_GENERICCAPABILITY);
+		//String capability=getBundleValue( bundleProject, ECLIPSE_GENERICCAPABILITY);
 		//bundleComponent.setValue(pluginStereotype, IADL4ECLIPSE_Stereotype.PLUGIN_CAPABILITY_ATT, capability);
 		//IADL4ECLIPSE_Stereotype.PLUGIN_EXTENSIBLEAPI_ATT
 		//String buddypolicy=getBundleValue( bundleProject, BUDDY_LOADER);

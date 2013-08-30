@@ -29,7 +29,16 @@ public class SimpleFeaturesArchitectureSnapshotCommand extends RecordingCommand 
 
 	protected Package rootPackage;
 	protected ArrayList<Object> bundleList=null;
-
+	
+	
+	/**
+	 * Use to create the structure of features from plugin and feature in eclipse
+	 * Constructor.
+	 *
+	 * @param domain the editing domain
+	 * @param rootPackage the package root
+	 * @param bundleList the list of feature that will be retro-engineered
+	 */
 	public SimpleFeaturesArchitectureSnapshotCommand(TransactionalEditingDomain domain,Package rootPackage, ArrayList<Object> bundleList) {
 		super(domain,"Import Bundles", "Model Feature architecture from current workspace");
 		this.rootPackage=rootPackage; 

@@ -30,6 +30,14 @@ public class SimplePluginsArchitectureSnapshotCommand extends RecordingCommand {
 	protected Package rootPackage;
 	protected ArrayList<Object> bundleList=null;
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param domain the domain mandatory to launch the command
+	 * @param rootPackage the root package in which the sub-packages will be created
+	 * @param bundleList the list of bundle for the retro engineering
+	 */
 	public SimplePluginsArchitectureSnapshotCommand(TransactionalEditingDomain domain,Package rootPackage, ArrayList<Object> bundleList) {
 		super(domain,"Import Bundles", "Model architecture from current workspace");
 		this.rootPackage=rootPackage; 
