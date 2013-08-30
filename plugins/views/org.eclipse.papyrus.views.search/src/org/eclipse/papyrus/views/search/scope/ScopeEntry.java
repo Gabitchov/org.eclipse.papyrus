@@ -71,7 +71,7 @@ public class ScopeEntry {
 
 
 	public ScopeEntry(URI resourceURI) {
-		this(resourceURI, null);
+		this(resourceURI, (IServiceRegistryTracker) null);
 	}
 
 	public ScopeEntry(URI resourceURI, IServiceRegistryTracker serviceRegistryTracker) {
@@ -81,6 +81,15 @@ public class ScopeEntry {
 		this.resourceURI = resourceURI;
 		this.modelSet = getModelSet();
 		this.servicesRegistry = getServicesRegistry();
+	}
+
+	public ScopeEntry(URI resourceURI, ServicesRegistry servicesRegistry) {
+		super();
+		
+		this.serviceRegistryTracker = null;
+		this.resourceURI = resourceURI;
+		this.servicesRegistry = servicesRegistry;
+		this.modelSet = getModelSet();
 	}
 
 	private Collection<IEditorPart> getEditors() {
@@ -147,10 +156,6 @@ public class ScopeEntry {
 			}
 		}
 		return modelSet;
-	}
-
-	public void setModelSet(ModelSet modelSet) {
-		this.modelSet = modelSet;
 	}
 
 	private IEditorPart editorOnResource() {
