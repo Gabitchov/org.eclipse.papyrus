@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -91,6 +92,8 @@ public class CDOScopeProvider implements IScopeProvider {
 						uri = null;
 					}
 				}
+			} else if((node instanceof CDOResourceFolder) && !uri.hasTrailingPathSeparator()) {
+				uri = uri.appendSegment(""); //$NON-NLS-1$
 			}
 
 			result = (uri == null) ? Collections.<URI> emptyList() : Collections.singletonList(uri);

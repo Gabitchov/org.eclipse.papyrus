@@ -19,6 +19,7 @@ import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
@@ -76,8 +77,17 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 		Multimap<CDOView, URI> views = getViews(queryInfo.getScope());
 		List<AbstractPapyrusQuery> result = Lists.newArrayListWithCapacity(views.keySet().size());
 		for(CDOView view : views.keySet()) {
-			String ocl = createNameOnlyOCLExpression(searchPattern, isRegexMatch, views.get(view));
+			Map<String, Object> parameters = Maps.newHashMap();
+			String ocl = createNameOnlyOCLExpression(searchPattern, isRegexMatch, views.get(view), parameters);
 			CDOQuery query = view.createQuery("ocl", ocl, UMLPackage.Literals.NAMED_ELEMENT);
+
+			// variables referenced by the OCL query expression
+			for(Map.Entry<String, ?> next : parameters.entrySet()) {
+				query.setParameter(next.getKey(), next.getValue());
+			}
+
+			// parameters for the server-side OCL query handler
+			query.setParameter("cdoImplicitRootClass", EcorePackage.Literals.EOBJECT);
 
 			AbstractPapyrusQuery searchQuery = new CDOPapyrusQuery(queryInfo.getQueryText(), view, query);
 			result.add(searchQuery);
@@ -134,23 +144,25 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 		return result;
 	}
 
-	protected String createNameOnlyOCLExpression(String searchPattern, boolean isRegexMatch, Collection<URI> scope) {
+	protected String createNameOnlyOCLExpression(String searchPattern, boolean isRegexMatch, Collection<URI> scope, Map<String, Object> parameters) {
 		StringBuilder result = new StringBuilder();
+
+		// parameters to pass through to OCL
+		parameters.put("searchPattern", searchPattern); //$NON-NLS-1$
 
 		result.append("NamedElement.allInstances()->select(e | not e.name.oclIsUndefined() and e.name."); //$NON-NLS-1$
 		if(isRegexMatch) {
-			result.append("matches('"); //$NON-NLS-1$
-			result.append(oclQuoteString(searchPattern));
-			result.append("')"); //$NON-NLS-1$
+			result.append("matches(searchPattern)"); //$NON-NLS-1$
 		} else {
-			result.append("indexOf('"); //$NON-NLS-1$
-			result.append(oclQuoteString(searchPattern));
-			result.append("') > 0"); //$NON-NLS-1$
+			result.append("indexOf(searchPattern) > 0"); //$NON-NLS-1$
 		}
 
 		boolean first = true;
 		for(URI uri : scope) {
 			String path = CDOURIUtil.extractResourcePath(uri);
+			if(uri.hasTrailingPathSeparator() && !path.endsWith("/")) { //$NON-NLS-1$
+				path = path + "/"; //$NON-NLS-1$
+			}
 			if((path.length() > 1) || (!path.startsWith("/") && (path.length() > 0))) { //$NON-NLS-1$
 				if(first) {
 					result.append(" and ("); //$NON-NLS-1$
@@ -159,7 +171,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 					result.append(" or "); //$NON-NLS-1$
 				}
 
-				result.append("e.oclAsType(ecore::EObject).eResource().oclAsType(eresource::CDOResource).path.startsWith('"); //$NON-NLS-1$
+				result.append("e.eResource().oclAsType(eresource::CDOResource).path.startsWith('"); //$NON-NLS-1$
 				result.append(oclQuoteString(path));
 				result.append("')"); //$NON-NLS-1$
 			}
