@@ -644,11 +644,11 @@
   <RobotML:DataFlowPort xmi:id="_8CTXAJYDEeGTwaQpvIKq0Q" base_Port="_8B_1AJYDEeGTwaQpvIKq0Q"/>
   <RobotML:DataFlowPort xmi:id="_Kx70MJYEEeGTwaQpvIKq0Q" base_Port="_KxmdAJYEEeGTwaQpvIKq0Q"/>
   <RobotML:State xmi:id="_0qpToKNOEeGOdPdoEUDJtQ"/>
-  <RobotML:Transition xmi:id="_DoOtQKNPEeGOdPdoEUDJtQ" guard="_CWOFAKQOEeGAwP2ngawvCw"/>
-  <RobotML:Transition xmi:id="_JDTO0KNPEeGOdPdoEUDJtQ" guard="_Ks_qEKQLEeGAwP2ngawvCw"/>
-  <RobotML:Transition xmi:id="_NvIr0KNPEeGOdPdoEUDJtQ" guard="_Ks_qEKQLEeGAwP2ngawvCw"/>
+  <RobotML:Transition xmi:id="_DoOtQKNPEeGOdPdoEUDJtQ" />
+  <RobotML:Transition xmi:id="_JDTO0KNPEeGOdPdoEUDJtQ" />
+  <RobotML:Transition xmi:id="_NvIr0KNPEeGOdPdoEUDJtQ" />
   <RobotML:OnPort xmi:id="_qtb8QKNREeGOdPdoEUDJtQ" port="_Kx70MJYEEeGTwaQpvIKq0Q" base_Parameter="_gnGlcKNREeGOdPdoEUDJtQ"/>
-  <RobotML:Transition xmi:id="_L3iFcKNZEeGOdPdoEUDJtQ" guard="_vE0NIKQKEeGAwP2ngawvCw" effect="_Pvq4wKQWEeGOjYafct30dQ"/>
+  <RobotML:Transition xmi:id="_L3iFcKNZEeGOdPdoEUDJtQ" />
   <RobotML:Algorithm xmi:id="_vE0NIKQKEeGAwP2ngawvCw" base_Operation="_u44ecKNQEeGOdPdoEUDJtQ"/>
   <RobotML:Algorithm xmi:id="_Ks_qEKQLEeGAwP2ngawvCw" base_Operation="_I4XDsKQLEeGAwP2ngawvCw"/>
   <RobotML:OnPort xmi:id="_WrFXQKQMEeGAwP2ngawvCw" port="_8CTXAJYDEeGTwaQpvIKq0Q" base_Parameter="_iDoZUKQLEeGAwP2ngawvCw"/>

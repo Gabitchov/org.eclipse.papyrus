@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ASCII"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <di:SashWindowsMngr xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.eclipse.org/papyrus/0.7.0/sashdi">
   <pageList>
     <availablePage>
@@ -106,6 +106,9 @@
         </children>
         <children>
           <emfPageIdentifier href="RoboCab.notation#_OCVFkBwAEeGa5bH_RJFzBQ"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="RoboCab.notation#_EKbpcEK6EeGv-54Wm4mRWQ"/>
         </children>
       </children>
     </windows>

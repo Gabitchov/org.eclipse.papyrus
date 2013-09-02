@@ -1,14 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotML;
 
 
@@ -16,30 +7,29 @@ package org.eclipse.papyrus.RobotML;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Data Flow Port</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotML.DataFlowPort#getDirection <em>Direction</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotML.DataFlowPort#getBufferSize <em>Buffer Size</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.DataFlowPort#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.DataFlowPort#getBufferSize <em>Buffer Size</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getDataFlowPort()
  * @model
  * @generated
  */
 public interface DataFlowPort extends Port {
-
 	/**
 	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.eclipse.papyrus.RobotML.DataFlowDirectionKind}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Direction</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Direction</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Direction</em>' attribute.
 	 * @see org.eclipse.papyrus.RobotML.DataFlowDirectionKind
 	 * @see #setDirection(DataFlowDirectionKind)
@@ -53,9 +43,7 @@ public interface DataFlowPort extends Port {
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.DataFlowPort#getDirection <em>Direction</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Direction</em>' attribute.
+	 * @param value the new value of the '<em>Direction</em>' attribute.
 	 * @see org.eclipse.papyrus.RobotML.DataFlowDirectionKind
 	 * @see #getDirection()
 	 * @generated
@@ -67,10 +55,10 @@ public interface DataFlowPort extends Port {
 	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Buffer Size</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Buffer Size</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Buffer Size</em>' attribute.
 	 * @see #setBufferSize(int)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getDataFlowPort_BufferSize()
@@ -83,9 +71,7 @@ public interface DataFlowPort extends Port {
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.DataFlowPort#getBufferSize <em>Buffer Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Buffer Size</em>' attribute.
+	 * @param value the new value of the '<em>Buffer Size</em>' attribute.
 	 * @see #getBufferSize()
 	 * @generated
 	 */

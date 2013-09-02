@@ -1,57 +1,64 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.papyrus.RobotML.RobotMLPackage;
+
 import org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.Actionlib_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.impl.Actionlib_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.diagnostic_datatypes.Diagnostic_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.diagnostic_datatypes.impl.Diagnostic_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl.Geometry_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.impl.Nav_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.CarLikeCommand;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.ExtentedLidarScan;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.MultiLayerLidarScan;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesFactory;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Oarp4_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.impl.Oarp4_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.Sensor_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl;
+
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_datatypesPackage {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass carLikeCommandEClass = null;
@@ -59,7 +66,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass multiLayerLidarScanEClass = null;
@@ -67,19 +73,20 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass extentedLidarScanEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage#eNS_URI
 	 * @see #init()
@@ -92,7 +99,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -100,18 +106,17 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>
-	 * This method is used to initialize {@link Oarp1_datatypesPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
-	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>This method is used to initialize {@link Oarp1_datatypesPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static Oarp1_datatypesPackage init() {
-		if(isInited)
-			return (Oarp1_datatypesPackage)EPackage.Registry.INSTANCE.getEPackage(Oarp1_datatypesPackage.eNS_URI);
+		if (isInited) return (Oarp1_datatypesPackage)EPackage.Registry.INSTANCE.getEPackage(Oarp1_datatypesPackage.eNS_URI);
 
 		// Obtain or create and register package
 		Oarp1_datatypesPackageImpl theOarp1_datatypesPackage = (Oarp1_datatypesPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof Oarp1_datatypesPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new Oarp1_datatypesPackageImpl());
@@ -156,7 +161,7 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 		// Mark meta-data to indicate it can't be changed
 		theOarp1_datatypesPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(Oarp1_datatypesPackage.eNS_URI, theOarp1_datatypesPackage);
 		return theOarp1_datatypesPackage;
@@ -165,7 +170,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCarLikeCommand() {
@@ -175,7 +179,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCarLikeCommand_Velocity() {
@@ -185,7 +188,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCarLikeCommand_SteeringAngle() {
@@ -195,7 +197,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMultiLayerLidarScan() {
@@ -205,7 +206,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMultiLayerLidarScan_Layers() {
@@ -215,7 +215,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMultiLayerLidarScan_NbLayer() {
@@ -225,7 +224,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getExtentedLidarScan() {
@@ -235,7 +233,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getExtentedLidarScan_Scan() {
@@ -245,7 +242,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getExtentedLidarScan_LayerId() {
@@ -255,7 +251,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getExtentedLidarScan_LayerAngle() {
@@ -265,7 +260,6 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Oarp1_datatypesFactory getOarp1_datatypesFactory() {
@@ -275,22 +269,19 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if(isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -311,22 +302,19 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if(isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -344,7 +332,7 @@ public class Oarp1_datatypesPackageImpl extends EPackageImpl implements Oarp1_da
 
 		// Add supertypes to classes
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(carLikeCommandEClass, CarLikeCommand.class, "CarLikeCommand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCarLikeCommand_Velocity(), theStd_datatypesPackage.getFloat64(), "velocity", "0", 1, 1, CarLikeCommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getCarLikeCommand_SteeringAngle(), theStd_datatypesPackage.getFloat64(), "steeringAngle", "0", 1, 1, CarLikeCommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

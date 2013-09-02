@@ -1,14 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes;
 
 import org.eclipse.emf.ecore.EObject;
@@ -17,29 +8,28 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Wrench</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Wrench#getForce <em>Force</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Wrench#getTorque <em>Torque</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Wrench#getForce <em>Force</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Wrench#getTorque <em>Torque</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage#getWrench()
  * @model
  * @generated
  */
 public interface Wrench extends EObject {
-
 	/**
 	 * Returns the value of the '<em><b>Force</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Force</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Force</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Force</em>' containment reference.
 	 * @see #setForce(Vector3)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage#getWrench_Force()
@@ -49,13 +39,10 @@ public interface Wrench extends EObject {
 	Vector3 getForce();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Wrench#getForce
-	 * <em>Force</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Wrench#getForce <em>Force</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Force</em>' containment reference.
+	 * @param value the new value of the '<em>Force</em>' containment reference.
 	 * @see #getForce()
 	 * @generated
 	 */
@@ -65,10 +52,10 @@ public interface Wrench extends EObject {
 	 * Returns the value of the '<em><b>Torque</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Torque</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Torque</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Torque</em>' containment reference.
 	 * @see #setTorque(Vector3)
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage#getWrench_Torque()
@@ -78,13 +65,10 @@ public interface Wrench extends EObject {
 	Vector3 getTorque();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Wrench#getTorque
-	 * <em>Torque</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Wrench#getTorque <em>Torque</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Torque</em>' containment reference.
+	 * @param value the new value of the '<em>Torque</em>' containment reference.
 	 * @see #getTorque()
 	 * @generated
 	 */

@@ -1,14 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotML;
 
 import java.util.Arrays;
@@ -22,7 +13,6 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Shade</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getShade()
  * @model
  * @generated
@@ -32,7 +22,6 @@ public enum Shade implements Enumerator {
 	 * The '<em><b>WIREFRAME</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #WIREFRAME_VALUE
 	 * @generated
 	 * @ordered
@@ -43,7 +32,6 @@ public enum Shade implements Enumerator {
 	 * The '<em><b>BOUNDBOX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #BOUNDBOX_VALUE
 	 * @generated
 	 * @ordered
@@ -54,7 +42,6 @@ public enum Shade implements Enumerator {
 	 * The '<em><b>SOLID</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #SOLID_VALUE
 	 * @generated
 	 * @ordered
@@ -65,7 +52,6 @@ public enum Shade implements Enumerator {
 	 * The '<em><b>TEXTURED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #TEXTURED_VALUE
 	 * @generated
 	 * @ordered
@@ -76,10 +62,10 @@ public enum Shade implements Enumerator {
 	 * The '<em><b>WIREFRAME</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>WIREFRAME</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>WIREFRAME</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #WIREFRAME
 	 * @model
 	 * @generated
@@ -91,10 +77,10 @@ public enum Shade implements Enumerator {
 	 * The '<em><b>BOUNDBOX</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BOUNDBOX</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>BOUNDBOX</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #BOUNDBOX
 	 * @model
 	 * @generated
@@ -106,10 +92,10 @@ public enum Shade implements Enumerator {
 	 * The '<em><b>SOLID</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SOLID</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>SOLID</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #SOLID
 	 * @model
 	 * @generated
@@ -121,10 +107,10 @@ public enum Shade implements Enumerator {
 	 * The '<em><b>TEXTURED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>TEXTURED</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>TEXTURED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #TEXTURED
 	 * @model
 	 * @generated
@@ -136,16 +122,20 @@ public enum Shade implements Enumerator {
 	 * An array of all the '<em><b>Shade</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	private static final Shade[] VALUES_ARRAY = new Shade[]{ WIREFRAME, BOUNDBOX, SOLID, TEXTURED, };
+	private static final Shade[] VALUES_ARRAY =
+		new Shade[] {
+			WIREFRAME,
+			BOUNDBOX,
+			SOLID,
+			TEXTURED,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>Shade</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final List<Shade> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -154,13 +144,12 @@ public enum Shade implements Enumerator {
 	 * Returns the '<em><b>Shade</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static Shade get(String literal) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			Shade result = VALUES_ARRAY[i];
-			if(result.toString().equals(literal)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -171,13 +160,12 @@ public enum Shade implements Enumerator {
 	 * Returns the '<em><b>Shade</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static Shade getByName(String name) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			Shade result = VALUES_ARRAY[i];
-			if(result.getName().equals(name)) {
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -188,19 +176,14 @@ public enum Shade implements Enumerator {
 	 * Returns the '<em><b>Shade</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static Shade get(int value) {
-		switch(value) {
-		case WIREFRAME_VALUE:
-			return WIREFRAME;
-		case BOUNDBOX_VALUE:
-			return BOUNDBOX;
-		case SOLID_VALUE:
-			return SOLID;
-		case TEXTURED_VALUE:
-			return TEXTURED;
+		switch (value) {
+			case WIREFRAME_VALUE: return WIREFRAME;
+			case BOUNDBOX_VALUE: return BOUNDBOX;
+			case SOLID_VALUE: return SOLID;
+			case TEXTURED_VALUE: return TEXTURED;
 		}
 		return null;
 	}
@@ -208,7 +191,6 @@ public enum Shade implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -216,7 +198,6 @@ public enum Shade implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -224,7 +205,6 @@ public enum Shade implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -233,7 +213,6 @@ public enum Shade implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private Shade(int value, String name, String literal) {
@@ -245,43 +224,39 @@ public enum Shade implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-
+	
 } //Shade

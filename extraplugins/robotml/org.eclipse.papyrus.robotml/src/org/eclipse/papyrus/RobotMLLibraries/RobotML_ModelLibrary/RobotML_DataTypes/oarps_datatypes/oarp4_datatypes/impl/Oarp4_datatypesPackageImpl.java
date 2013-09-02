@@ -1,33 +1,38 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.papyrus.RobotML.RobotMLPackage;
+
 import org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.Actionlib_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.impl.Actionlib_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.diagnostic_datatypes.Diagnostic_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.diagnostic_datatypes.impl.Diagnostic_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl.Geometry_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.impl.Nav_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.impl.Oarp1_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Angular;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Art_Set_Point;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Distance;
@@ -46,25 +51,27 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Velocity_Angular;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Velocity_Angular_Left_Right;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Velocity_Linear;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.Sensor_datatypesPackageImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.impl.Std_datatypesPackageImpl;
+
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_datatypesPackage {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass velocity_LinearEClass = null;
@@ -72,7 +79,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass art_Set_PointEClass = null;
@@ -80,7 +86,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass velocity_AngularEClass = null;
@@ -88,7 +93,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass distanceEClass = null;
@@ -96,7 +100,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass metricEClass = null;
@@ -104,7 +107,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass angularEClass = null;
@@ -112,7 +114,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass op_Set_PointEClass = null;
@@ -120,7 +121,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass speed_Tics_Left_RightEClass = null;
@@ -128,7 +128,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass speed_TicsEClass = null;
@@ -136,7 +135,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass odometer_TicsEClass = null;
@@ -144,7 +142,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass odometer_Tics_Left_RightEClass = null;
@@ -152,7 +149,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass proxi_Left_RightEClass = null;
@@ -160,7 +156,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass milli_AmpEClass = null;
@@ -168,7 +163,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass odometer_Linear_Left_RightEClass = null;
@@ -176,7 +170,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass velocity_Angular_Left_RightEClass = null;
@@ -184,19 +177,20 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass velocityEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Oarp4_datatypesPackage#eNS_URI
 	 * @see #init()
@@ -209,7 +203,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -217,18 +210,17 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>
-	 * This method is used to initialize {@link Oarp4_datatypesPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
-	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>This method is used to initialize {@link Oarp4_datatypesPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static Oarp4_datatypesPackage init() {
-		if(isInited)
-			return (Oarp4_datatypesPackage)EPackage.Registry.INSTANCE.getEPackage(Oarp4_datatypesPackage.eNS_URI);
+		if (isInited) return (Oarp4_datatypesPackage)EPackage.Registry.INSTANCE.getEPackage(Oarp4_datatypesPackage.eNS_URI);
 
 		// Obtain or create and register package
 		Oarp4_datatypesPackageImpl theOarp4_datatypesPackage = (Oarp4_datatypesPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof Oarp4_datatypesPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new Oarp4_datatypesPackageImpl());
@@ -273,7 +265,7 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 		// Mark meta-data to indicate it can't be changed
 		theOarp4_datatypesPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(Oarp4_datatypesPackage.eNS_URI, theOarp4_datatypesPackage);
 		return theOarp4_datatypesPackage;
@@ -282,7 +274,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getVelocity_Linear() {
@@ -292,7 +283,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getVelocity_Linear_Value() {
@@ -302,7 +292,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getArt_Set_Point() {
@@ -312,7 +301,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getArt_Set_Point_Omega_left() {
@@ -322,7 +310,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getArt_Set_Point_Omega_right() {
@@ -332,7 +319,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getVelocity_Angular() {
@@ -342,7 +328,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getVelocity_Angular_Value() {
@@ -352,7 +337,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getDistance() {
@@ -362,7 +346,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getDistance_Value() {
@@ -372,7 +355,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMetric() {
@@ -382,7 +364,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMetric_Value() {
@@ -392,7 +373,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAngular() {
@@ -402,7 +382,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAngular_Value() {
@@ -412,7 +391,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getOp_Set_Point() {
@@ -422,7 +400,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getOp_Set_Point_Velocity() {
@@ -432,7 +409,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getOp_Set_Point_Orientation() {
@@ -442,7 +418,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSpeed_Tics_Left_Right() {
@@ -452,7 +427,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSpeed_Tics_Left_Right_Speed_tics_left() {
@@ -462,7 +436,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSpeed_Tics_Left_Right_Speed_tics_right() {
@@ -472,7 +445,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSpeed_Tics() {
@@ -482,7 +454,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSpeed_Tics_Value() {
@@ -492,7 +463,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getOdometer_Tics() {
@@ -502,7 +472,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getOdometer_Tics_Value() {
@@ -512,7 +481,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getOdometer_Tics_Left_Right() {
@@ -522,7 +490,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getOdometer_Tics_Left_Right_Odometer_tics_left() {
@@ -532,7 +499,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getOdometer_Tics_Left_Right_Odometer_tics_right() {
@@ -542,7 +508,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getProxi_Left_Right() {
@@ -552,7 +517,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProxi_Left_Right_Proxi_left() {
@@ -562,7 +526,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProxi_Left_Right_Proxi_right() {
@@ -572,7 +535,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMilli_Amp() {
@@ -582,7 +544,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMilli_Amp_Value() {
@@ -592,7 +553,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getOdometer_Linear_Left_Right() {
@@ -602,7 +562,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getOdometer_Linear_Left_Right_Odometer_linear_left() {
@@ -612,7 +571,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getOdometer_Linear_Left_Right_Odometer_linear_right() {
@@ -622,7 +580,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getVelocity_Angular_Left_Right() {
@@ -632,7 +589,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getVelocity_Angular_Left_Right_Velocity_angular_left() {
@@ -642,7 +598,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getVelocity_Angular_Left_Right_Velocity_angular_right() {
@@ -652,7 +607,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getVelocity() {
@@ -662,7 +616,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getVelocity_Velocity_linear() {
@@ -672,7 +625,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getVelocity_Velocity_angular() {
@@ -682,7 +634,6 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Oarp4_datatypesFactory getOarp4_datatypesFactory() {
@@ -692,22 +643,19 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if(isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -771,22 +719,19 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if(isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -803,7 +748,7 @@ public class Oarp4_datatypesPackageImpl extends EPackageImpl implements Oarp4_da
 
 		// Add supertypes to classes
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(velocity_LinearEClass, Velocity_Linear.class, "Velocity_Linear", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVelocity_Linear_Value(), theStd_datatypesPackage.getInt32(), "value", null, 1, 1, Velocity_Linear.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
