@@ -1,24 +1,20 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.ChannelFloat32;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage;
 
@@ -29,22 +25,18 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.ChannelFloat32Impl#getName <em>Name
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.ChannelFloat32Impl#getValues <em>
- * Values</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.ChannelFloat32Impl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.ChannelFloat32Impl#getValues <em>Values</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
-
+public class ChannelFloat32Impl extends MinimalEObjectImpl.Container implements ChannelFloat32 {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -55,7 +47,6 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -66,7 +57,6 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValues()
 	 * @generated
 	 * @ordered
@@ -76,7 +66,6 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ChannelFloat32Impl() {
@@ -86,7 +75,6 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,7 +85,6 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -107,24 +94,22 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME, oldName, name));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Float> getValues() {
-		if(values == null) {
+		if (values == null) {
 			values = new EDataTypeUniqueEList<Float>(Float.class, this, Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES);
 		}
 		return values;
@@ -133,16 +118,15 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME:
-			return getName();
-		case Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES:
-			return getValues();
+		switch (featureID) {
+			case Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME:
+				return getName();
+			case Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES:
+				return getValues();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -150,20 +134,19 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME:
-			setName((String)newValue);
-			return;
-		case Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES:
-			getValues().clear();
-			getValues().addAll((Collection<? extends Float>)newValue);
-			return;
+		switch (featureID) {
+			case Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME:
+				setName((String)newValue);
+				return;
+			case Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES:
+				getValues().clear();
+				getValues().addAll((Collection<? extends Float>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -171,18 +154,17 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES:
-			getValues().clear();
-			return;
+		switch (featureID) {
+			case Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES:
+				getValues().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -190,16 +172,15 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES:
-			return values != null && !values.isEmpty();
+		switch (featureID) {
+			case Sensor_datatypesPackage.CHANNEL_FLOAT32__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case Sensor_datatypesPackage.CHANNEL_FLOAT32__VALUES:
+				return values != null && !values.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -207,13 +188,11 @@ public class ChannelFloat32Impl extends EObjectImpl implements ChannelFloat32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

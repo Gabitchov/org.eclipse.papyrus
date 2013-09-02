@@ -1,14 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes;
 
 import java.util.Arrays;
@@ -22,7 +13,6 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>STATUS TYPE</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage#getSTATUS_TYPE()
  * @model
  * @generated
@@ -32,7 +22,6 @@ public enum STATUS_TYPE implements Enumerator {
 	 * The '<em><b>STATUS NO FIX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STATUS_NO_FIX_VALUE
 	 * @generated
 	 * @ordered
@@ -43,7 +32,6 @@ public enum STATUS_TYPE implements Enumerator {
 	 * The '<em><b>STATUS FIX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STATUS_FIX_VALUE
 	 * @generated
 	 * @ordered
@@ -54,7 +42,6 @@ public enum STATUS_TYPE implements Enumerator {
 	 * The '<em><b>STATUS SBAS FIX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STATUS_SBAS_FIX_VALUE
 	 * @generated
 	 * @ordered
@@ -65,7 +52,6 @@ public enum STATUS_TYPE implements Enumerator {
 	 * The '<em><b>STATUS GBAS FIX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STATUS_GBAS_FIX_VALUE
 	 * @generated
 	 * @ordered
@@ -76,10 +62,10 @@ public enum STATUS_TYPE implements Enumerator {
 	 * The '<em><b>STATUS NO FIX</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STATUS NO FIX</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>STATUS NO FIX</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STATUS_NO_FIX
 	 * @model
 	 * @generated
@@ -91,10 +77,10 @@ public enum STATUS_TYPE implements Enumerator {
 	 * The '<em><b>STATUS FIX</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STATUS FIX</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>STATUS FIX</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STATUS_FIX
 	 * @model
 	 * @generated
@@ -106,10 +92,10 @@ public enum STATUS_TYPE implements Enumerator {
 	 * The '<em><b>STATUS SBAS FIX</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STATUS SBAS FIX</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>STATUS SBAS FIX</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STATUS_SBAS_FIX
 	 * @model
 	 * @generated
@@ -121,10 +107,10 @@ public enum STATUS_TYPE implements Enumerator {
 	 * The '<em><b>STATUS GBAS FIX</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STATUS GBAS FIX</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>STATUS GBAS FIX</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STATUS_GBAS_FIX
 	 * @model
 	 * @generated
@@ -136,16 +122,20 @@ public enum STATUS_TYPE implements Enumerator {
 	 * An array of all the '<em><b>STATUS TYPE</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	private static final STATUS_TYPE[] VALUES_ARRAY = new STATUS_TYPE[]{ STATUS_NO_FIX, STATUS_FIX, STATUS_SBAS_FIX, STATUS_GBAS_FIX, };
+	private static final STATUS_TYPE[] VALUES_ARRAY =
+		new STATUS_TYPE[] {
+			STATUS_NO_FIX,
+			STATUS_FIX,
+			STATUS_SBAS_FIX,
+			STATUS_GBAS_FIX,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>STATUS TYPE</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final List<STATUS_TYPE> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -154,13 +144,12 @@ public enum STATUS_TYPE implements Enumerator {
 	 * Returns the '<em><b>STATUS TYPE</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static STATUS_TYPE get(String literal) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			STATUS_TYPE result = VALUES_ARRAY[i];
-			if(result.toString().equals(literal)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -171,13 +160,12 @@ public enum STATUS_TYPE implements Enumerator {
 	 * Returns the '<em><b>STATUS TYPE</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static STATUS_TYPE getByName(String name) {
-		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			STATUS_TYPE result = VALUES_ARRAY[i];
-			if(result.getName().equals(name)) {
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -188,19 +176,14 @@ public enum STATUS_TYPE implements Enumerator {
 	 * Returns the '<em><b>STATUS TYPE</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static STATUS_TYPE get(int value) {
-		switch(value) {
-		case STATUS_NO_FIX_VALUE:
-			return STATUS_NO_FIX;
-		case STATUS_FIX_VALUE:
-			return STATUS_FIX;
-		case STATUS_SBAS_FIX_VALUE:
-			return STATUS_SBAS_FIX;
-		case STATUS_GBAS_FIX_VALUE:
-			return STATUS_GBAS_FIX;
+		switch (value) {
+			case STATUS_NO_FIX_VALUE: return STATUS_NO_FIX;
+			case STATUS_FIX_VALUE: return STATUS_FIX;
+			case STATUS_SBAS_FIX_VALUE: return STATUS_SBAS_FIX;
+			case STATUS_GBAS_FIX_VALUE: return STATUS_GBAS_FIX;
 		}
 		return null;
 	}
@@ -208,7 +191,6 @@ public enum STATUS_TYPE implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -216,7 +198,6 @@ public enum STATUS_TYPE implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -224,7 +205,6 @@ public enum STATUS_TYPE implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -233,7 +213,6 @@ public enum STATUS_TYPE implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private STATUS_TYPE(int value, String name, String literal) {
@@ -245,43 +224,39 @@ public enum STATUS_TYPE implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-
+	
 } //STATUS_TYPE

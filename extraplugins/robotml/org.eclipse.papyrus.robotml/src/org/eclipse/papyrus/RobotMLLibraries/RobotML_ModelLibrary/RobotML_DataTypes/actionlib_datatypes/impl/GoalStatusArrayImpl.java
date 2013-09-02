@@ -1,30 +1,27 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.Actionlib_datatypesPackage;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.GoalStatus;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.GoalStatusArray;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Header;
 
 /**
@@ -34,22 +31,18 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.impl.GoalStatusArrayImpl#getHeader <em>
- * Header</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.impl.GoalStatusArrayImpl#getStatus_list
- * <em>Status list</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.impl.GoalStatusArrayImpl#getHeader <em>Header</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.impl.GoalStatusArrayImpl#getStatus_list <em>Status list</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray {
-
+public class GoalStatusArrayImpl extends MinimalEObjectImpl.Container implements GoalStatusArray {
 	/**
 	 * The cached value of the '{@link #getHeader() <em>Header</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getHeader()
 	 * @generated
 	 * @ordered
@@ -60,7 +53,6 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	 * The cached value of the '{@link #getStatus_list() <em>Status list</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getStatus_list()
 	 * @generated
 	 * @ordered
@@ -70,7 +62,6 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GoalStatusArrayImpl() {
@@ -80,7 +71,6 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,7 +81,6 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Header getHeader() {
@@ -101,18 +90,14 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetHeader(Header newHeader, NotificationChain msgs) {
 		Header oldHeader = header;
 		header = newHeader;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER, oldHeader, newHeader);
-			if(msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -120,31 +105,29 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setHeader(Header newHeader) {
-		if(newHeader != header) {
+		if (newHeader != header) {
 			NotificationChain msgs = null;
-			if(header != null)
+			if (header != null)
 				msgs = ((InternalEObject)header).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER, null, msgs);
-			if(newHeader != null)
+			if (newHeader != null)
 				msgs = ((InternalEObject)newHeader).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER, null, msgs);
 			msgs = basicSetHeader(newHeader, msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else if(eNotificationRequired())
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER, newHeader, newHeader));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<GoalStatus> getStatus_list() {
-		if(status_list == null) {
+		if (status_list == null) {
 			status_list = new EObjectContainmentEList<GoalStatus>(GoalStatus.class, this, Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST);
 		}
 		return status_list;
@@ -153,16 +136,15 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
-			return basicSetHeader(null, msgs);
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
-			return ((InternalEList<?>)getStatus_list()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
+				return basicSetHeader(null, msgs);
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
+				return ((InternalEList<?>)getStatus_list()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -170,16 +152,15 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
-			return getHeader();
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
-			return getStatus_list();
+		switch (featureID) {
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
+				return getHeader();
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
+				return getStatus_list();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,20 +168,19 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
-			setHeader((Header)newValue);
-			return;
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
-			getStatus_list().clear();
-			getStatus_list().addAll((Collection<? extends GoalStatus>)newValue);
-			return;
+		switch (featureID) {
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
+				setHeader((Header)newValue);
+				return;
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
+				getStatus_list().clear();
+				getStatus_list().addAll((Collection<? extends GoalStatus>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -208,18 +188,17 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
-			setHeader((Header)null);
-			return;
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
-			getStatus_list().clear();
-			return;
+		switch (featureID) {
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
+				setHeader((Header)null);
+				return;
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
+				getStatus_list().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -227,16 +206,15 @@ public class GoalStatusArrayImpl extends EObjectImpl implements GoalStatusArray 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
-			return header != null;
-		case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
-			return status_list != null && !status_list.isEmpty();
+		switch (featureID) {
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__HEADER:
+				return header != null;
+			case Actionlib_datatypesPackage.GOAL_STATUS_ARRAY__STATUS_LIST:
+				return status_list != null && !status_list.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1,46 +1,38 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotML;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.uml2.uml.Property;
 
+// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Simulated System</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotML.SimulatedSystem#getBase_Property <em>Base Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotML.SimulatedSystem#getMesh <em>Mesh</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.SimulatedSystem#getBase_Property <em>Base Property</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.SimulatedSystem#getMesh <em>Mesh</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getSimulatedSystem()
  * @model
  * @generated
  */
 public interface SimulatedSystem extends Software {
-
 	/**
 	 * Returns the value of the '<em><b>Base Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Property</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Base Property</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Base Property</em>' reference.
 	 * @see #setBase_Property(Property)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getSimulatedSystem_Base_Property()
@@ -53,9 +45,7 @@ public interface SimulatedSystem extends Software {
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.SimulatedSystem#getBase_Property <em>Base Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Base Property</em>' reference.
+	 * @param value the new value of the '<em>Base Property</em>' reference.
 	 * @see #getBase_Property()
 	 * @generated
 	 */
@@ -66,10 +56,10 @@ public interface SimulatedSystem extends Software {
 	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Mesh</em>' attribute list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Mesh</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Mesh</em>' attribute list.
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getSimulatedSystem_Mesh()
 	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"

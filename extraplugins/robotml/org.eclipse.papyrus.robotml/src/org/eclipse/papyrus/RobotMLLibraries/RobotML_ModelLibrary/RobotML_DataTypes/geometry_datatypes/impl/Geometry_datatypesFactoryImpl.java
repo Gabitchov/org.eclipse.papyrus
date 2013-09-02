@@ -1,68 +1,38 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesFactory;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Point;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Point32;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.PointStamped;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Polygon;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.PolygonStamped;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Pose;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Pose2D;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.PoseArray;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.PoseStamped;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.PoseWithCovariance;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.PoseWithCovarianceStamped;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Quaternion;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.QuaternionStamped;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Transform;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Twist;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.TwistStamped;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.TwistWithCovariance;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Vector3;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Vector3Stamped;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Wrench;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.WrenchStamped;
+
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.*;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geometry_datatypesFactory {
-
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static Geometry_datatypesFactory init() {
 		try {
-			Geometry_datatypesFactory theGeometry_datatypesFactory = (Geometry_datatypesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes.ecore");
-			if(theGeometry_datatypesFactory != null) {
+			Geometry_datatypesFactory theGeometry_datatypesFactory = (Geometry_datatypesFactory)EPackage.Registry.INSTANCE.getEFactory(Geometry_datatypesPackage.eNS_URI);
+			if (theGeometry_datatypesFactory != null) {
 				return theGeometry_datatypesFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new Geometry_datatypesFactoryImpl();
@@ -72,7 +42,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Geometry_datatypesFactoryImpl() {
@@ -82,63 +51,40 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case Geometry_datatypesPackage.POINT:
-			return createPoint();
-		case Geometry_datatypesPackage.POINT32:
-			return createPoint32();
-		case Geometry_datatypesPackage.POINT_STAMPED:
-			return createPointStamped();
-		case Geometry_datatypesPackage.POLYGON:
-			return createPolygon();
-		case Geometry_datatypesPackage.POLYGON_STAMPED:
-			return createPolygonStamped();
-		case Geometry_datatypesPackage.VECTOR3:
-			return createVector3();
-		case Geometry_datatypesPackage.VECTOR3_STAMPED:
-			return createVector3Stamped();
-		case Geometry_datatypesPackage.QUATERNION:
-			return createQuaternion();
-		case Geometry_datatypesPackage.POSE:
-			return createPose();
-		case Geometry_datatypesPackage.POSE_STAMPED:
-			return createPoseStamped();
-		case Geometry_datatypesPackage.TWIST_WITH_COVARIANCE:
-			return createTwistWithCovariance();
-		case Geometry_datatypesPackage.TWIST:
-			return createTwist();
-		case Geometry_datatypesPackage.TWIST_STAMPED:
-			return createTwistStamped();
-		case Geometry_datatypesPackage.POSE_WITH_COVARIANCE:
-			return createPoseWithCovariance();
-		case Geometry_datatypesPackage.POSE2_D:
-			return createPose2D();
-		case Geometry_datatypesPackage.POSE_WITH_COVARIANCE_STAMPED:
-			return createPoseWithCovarianceStamped();
-		case Geometry_datatypesPackage.POSE_ARRAY:
-			return createPoseArray();
-		case Geometry_datatypesPackage.QUATERNION_STAMPED:
-			return createQuaternionStamped();
-		case Geometry_datatypesPackage.TRANSFORM:
-			return createTransform();
-		case Geometry_datatypesPackage.WRENCH_STAMPED:
-			return createWrenchStamped();
-		case Geometry_datatypesPackage.WRENCH:
-			return createWrench();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID()) {
+			case Geometry_datatypesPackage.POINT: return createPoint();
+			case Geometry_datatypesPackage.POINT32: return createPoint32();
+			case Geometry_datatypesPackage.POINT_STAMPED: return createPointStamped();
+			case Geometry_datatypesPackage.POLYGON: return createPolygon();
+			case Geometry_datatypesPackage.POLYGON_STAMPED: return createPolygonStamped();
+			case Geometry_datatypesPackage.VECTOR3: return createVector3();
+			case Geometry_datatypesPackage.VECTOR3_STAMPED: return createVector3Stamped();
+			case Geometry_datatypesPackage.QUATERNION: return createQuaternion();
+			case Geometry_datatypesPackage.POSE: return createPose();
+			case Geometry_datatypesPackage.POSE_STAMPED: return createPoseStamped();
+			case Geometry_datatypesPackage.TWIST_WITH_COVARIANCE: return createTwistWithCovariance();
+			case Geometry_datatypesPackage.TWIST: return createTwist();
+			case Geometry_datatypesPackage.TWIST_STAMPED: return createTwistStamped();
+			case Geometry_datatypesPackage.POSE_WITH_COVARIANCE: return createPoseWithCovariance();
+			case Geometry_datatypesPackage.POSE2_D: return createPose2D();
+			case Geometry_datatypesPackage.POSE_WITH_COVARIANCE_STAMPED: return createPoseWithCovarianceStamped();
+			case Geometry_datatypesPackage.POSE_ARRAY: return createPoseArray();
+			case Geometry_datatypesPackage.QUATERNION_STAMPED: return createQuaternionStamped();
+			case Geometry_datatypesPackage.TRANSFORM: return createTransform();
+			case Geometry_datatypesPackage.WRENCH_STAMPED: return createWrenchStamped();
+			case Geometry_datatypesPackage.WRENCH: return createWrench();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Point createPoint() {
@@ -149,7 +95,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Point32 createPoint32() {
@@ -160,7 +105,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PointStamped createPointStamped() {
@@ -171,7 +115,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Polygon createPolygon() {
@@ -182,7 +125,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PolygonStamped createPolygonStamped() {
@@ -193,7 +135,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Vector3 createVector3() {
@@ -204,7 +145,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Vector3Stamped createVector3Stamped() {
@@ -215,7 +155,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Quaternion createQuaternion() {
@@ -226,7 +165,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Pose createPose() {
@@ -237,7 +175,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PoseStamped createPoseStamped() {
@@ -248,7 +185,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TwistWithCovariance createTwistWithCovariance() {
@@ -259,7 +195,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Twist createTwist() {
@@ -270,7 +205,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TwistStamped createTwistStamped() {
@@ -281,7 +215,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PoseWithCovariance createPoseWithCovariance() {
@@ -292,7 +225,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Pose2D createPose2D() {
@@ -303,7 +235,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PoseWithCovarianceStamped createPoseWithCovarianceStamped() {
@@ -314,7 +245,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PoseArray createPoseArray() {
@@ -325,7 +255,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public QuaternionStamped createQuaternionStamped() {
@@ -336,7 +265,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Transform createTransform() {
@@ -347,7 +275,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WrenchStamped createWrenchStamped() {
@@ -358,7 +285,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Wrench createWrench() {
@@ -369,7 +295,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Geometry_datatypesPackage getGeometry_datatypesPackage() {
@@ -379,7 +304,6 @@ public class Geometry_datatypesFactoryImpl extends EFactoryImpl implements Geome
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -1,20 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.RegionOfInterest;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage;
 
@@ -25,28 +19,21 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getX_offset <em>
- * Xoffset</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getY_offset <em>
- * Yoffset</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getHeight <em>
- * Height</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#isDo_rectify <em>
- * Do rectify</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getWidth <em>
- * Width</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getX_offset <em>Xoffset</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getY_offset <em>Yoffset</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#isDo_rectify <em>Do rectify</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.RegionOfInterestImpl#getWidth <em>Width</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInterest {
-
+public class RegionOfInterestImpl extends MinimalEObjectImpl.Container implements RegionOfInterest {
 	/**
 	 * The default value of the '{@link #getX_offset() <em>Xoffset</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getX_offset()
 	 * @generated
 	 * @ordered
@@ -57,7 +44,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	 * The cached value of the '{@link #getX_offset() <em>Xoffset</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getX_offset()
 	 * @generated
 	 * @ordered
@@ -68,7 +54,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	 * The default value of the '{@link #getY_offset() <em>Yoffset</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getY_offset()
 	 * @generated
 	 * @ordered
@@ -79,7 +64,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	 * The cached value of the '{@link #getY_offset() <em>Yoffset</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getY_offset()
 	 * @generated
 	 * @ordered
@@ -90,7 +74,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getHeight()
 	 * @generated
 	 * @ordered
@@ -101,7 +84,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getHeight()
 	 * @generated
 	 * @ordered
@@ -112,7 +94,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	 * The default value of the '{@link #isDo_rectify() <em>Do rectify</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isDo_rectify()
 	 * @generated
 	 * @ordered
@@ -123,7 +104,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	 * The cached value of the '{@link #isDo_rectify() <em>Do rectify</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isDo_rectify()
 	 * @generated
 	 * @ordered
@@ -134,7 +114,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getWidth()
 	 * @generated
 	 * @ordered
@@ -145,7 +124,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getWidth()
 	 * @generated
 	 * @ordered
@@ -155,7 +133,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RegionOfInterestImpl() {
@@ -165,7 +142,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,7 +152,6 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public long getX_offset() {
@@ -186,20 +161,18 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setX_offset(long newX_offset) {
 		long oldX_offset = x_offset;
 		x_offset = newX_offset;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET, oldX_offset, x_offset));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public long getY_offset() {
@@ -209,20 +182,18 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setY_offset(long newY_offset) {
 		long oldY_offset = y_offset;
 		y_offset = newY_offset;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET, oldY_offset, y_offset));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public long getHeight() {
@@ -232,20 +203,18 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setHeight(long newHeight) {
 		long oldHeight = height;
 		height = newHeight;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT, oldHeight, height));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDo_rectify() {
@@ -255,20 +224,18 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDo_rectify(boolean newDo_rectify) {
 		boolean oldDo_rectify = do_rectify;
 		do_rectify = newDo_rectify;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY, oldDo_rectify, do_rectify));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public long getWidth() {
@@ -278,35 +245,33 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setWidth(long newWidth) {
 		long oldWidth = width;
 		width = newWidth;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH, oldWidth, width));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
-			return getX_offset();
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
-			return getY_offset();
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
-			return getHeight();
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
-			return isDo_rectify();
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
-			return getWidth();
+		switch (featureID) {
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
+				return getX_offset();
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
+				return getY_offset();
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
+				return getHeight();
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
+				return isDo_rectify();
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
+				return getWidth();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -314,27 +279,26 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
-			setX_offset((Long)newValue);
-			return;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
-			setY_offset((Long)newValue);
-			return;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
-			setHeight((Long)newValue);
-			return;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
-			setDo_rectify((Boolean)newValue);
-			return;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
-			setWidth((Long)newValue);
-			return;
+		switch (featureID) {
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
+				setX_offset((Long)newValue);
+				return;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
+				setY_offset((Long)newValue);
+				return;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
+				setHeight((Long)newValue);
+				return;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
+				setDo_rectify((Boolean)newValue);
+				return;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
+				setWidth((Long)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -342,27 +306,26 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
-			setX_offset(XOFFSET_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
-			setY_offset(YOFFSET_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
-			setHeight(HEIGHT_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
-			setDo_rectify(DO_RECTIFY_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
-			setWidth(WIDTH_EDEFAULT);
-			return;
+		switch (featureID) {
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
+				setX_offset(XOFFSET_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
+				setY_offset(YOFFSET_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
+				setDo_rectify(DO_RECTIFY_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
+				setWidth(WIDTH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -370,22 +333,21 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
-			return x_offset != XOFFSET_EDEFAULT;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
-			return y_offset != YOFFSET_EDEFAULT;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
-			return height != HEIGHT_EDEFAULT;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
-			return do_rectify != DO_RECTIFY_EDEFAULT;
-		case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
-			return width != WIDTH_EDEFAULT;
+		switch (featureID) {
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__XOFFSET:
+				return x_offset != XOFFSET_EDEFAULT;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__YOFFSET:
+				return y_offset != YOFFSET_EDEFAULT;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__HEIGHT:
+				return height != HEIGHT_EDEFAULT;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__DO_RECTIFY:
+				return do_rectify != DO_RECTIFY_EDEFAULT;
+			case Sensor_datatypesPackage.REGION_OF_INTEREST__WIDTH:
+				return width != WIDTH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -393,13 +355,11 @@ public class RegionOfInterestImpl extends EObjectImpl implements RegionOfInteres
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (x_offset: ");

@@ -1,14 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotML;
 
 
@@ -16,30 +7,29 @@ package org.eclipse.papyrus.RobotML;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Cycab TK</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotML.CycabTK#isUseRealTime <em>Use Real Time</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotML.CycabTK#getTimeStep <em>Time Step</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotML.CycabTK#getTimeFactor <em>Time Factor</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.CycabTK#isUseRealTime <em>Use Real Time</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.CycabTK#getTimeStep <em>Time Step</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.CycabTK#getTimeFactor <em>Time Factor</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getCycabTK()
  * @model
  * @generated
  */
 public interface CycabTK extends RoboticSimulator {
-
 	/**
 	 * Returns the value of the '<em><b>Use Real Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Use Real Time</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Use Real Time</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Use Real Time</em>' attribute.
 	 * @see #setUseRealTime(boolean)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getCycabTK_UseRealTime()
@@ -52,9 +42,7 @@ public interface CycabTK extends RoboticSimulator {
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.CycabTK#isUseRealTime <em>Use Real Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Use Real Time</em>' attribute.
+	 * @param value the new value of the '<em>Use Real Time</em>' attribute.
 	 * @see #isUseRealTime()
 	 * @generated
 	 */
@@ -64,10 +52,10 @@ public interface CycabTK extends RoboticSimulator {
 	 * Returns the value of the '<em><b>Time Step</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Time Step</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Time Step</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Time Step</em>' attribute.
 	 * @see #setTimeStep(float)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getCycabTK_TimeStep()
@@ -80,9 +68,7 @@ public interface CycabTK extends RoboticSimulator {
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.CycabTK#getTimeStep <em>Time Step</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Time Step</em>' attribute.
+	 * @param value the new value of the '<em>Time Step</em>' attribute.
 	 * @see #getTimeStep()
 	 * @generated
 	 */
@@ -92,10 +78,10 @@ public interface CycabTK extends RoboticSimulator {
 	 * Returns the value of the '<em><b>Time Factor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Time Factor</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Time Factor</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Time Factor</em>' attribute.
 	 * @see #setTimeFactor(float)
 	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getCycabTK_TimeFactor()
@@ -108,9 +94,7 @@ public interface CycabTK extends RoboticSimulator {
 	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.CycabTK#getTimeFactor <em>Time Factor</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Time Factor</em>' attribute.
+	 * @param value the new value of the '<em>Time Factor</em>' attribute.
 	 * @see #getTimeFactor()
 	 * @generated
 	 */
