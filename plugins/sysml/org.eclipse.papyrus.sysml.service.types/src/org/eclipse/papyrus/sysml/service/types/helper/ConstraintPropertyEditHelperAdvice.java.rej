@@ -1,0 +1,9 @@
+@@ -116,7 +116,7 @@
+ 					// Create targetProperty
+ 					Property targetProperty = UMLFactory.eINSTANCE.createProperty();
+ 					targetProperty.setType(sourceType);
+-					targetProperty.setName(sourceType.getName().toLowerCase()); // all elements in UML must have a qualified name
++					targetProperty.setName(sourceType.getName() != null ? sourceType.getName().toLowerCase() : "null");
+ 
+ 					Association association = UMLFactory.eINSTANCE.createAssociation();
+ 					association.getMemberEnds().add(sourcePart);

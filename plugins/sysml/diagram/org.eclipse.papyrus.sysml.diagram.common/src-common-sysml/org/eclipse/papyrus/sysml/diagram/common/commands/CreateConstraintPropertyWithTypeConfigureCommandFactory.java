@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *		
- *		CEA LIST - Initial API and implementation
+ * Régis Chevrel (chevrel.regis@gmail.com) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.commands;
@@ -106,25 +106,6 @@ public class CreateConstraintPropertyWithTypeConfigureCommandFactory extends Abs
 						ICommand newConstraintCreateCommand = commandService.getEditCommand(createTypeRequest);
 						if (newConstraintCreateCommand.canExecute()) {
 							newConstraintCreateCommand.execute(monitor, info);
-							Object newObject = newConstraintCreateCommand.getCommandResult().getReturnValue();
-							// Create the constraint specification
-							if (newObject instanceof EObject) {
-								final EObject newElement = (EObject)newObject;
-								final IDirectEditorConfiguration configuration = initExtendedEditorConfiguration(newElement);
-								Dialog dialog = new ConstraintExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), newElement, configuration.getTextToEdit(newElement), configuration);
-								final Dialog finalDialog = dialog;
-								if(Window.OK == dialog.open()) {
-									TransactionalEditingDomain domain = getEditingDomain();
-									RecordingCommand command = new RecordingCommand(domain, "Edit Constraint specification") {
-										@Override
-										protected void doExecute() {
-											configuration.postEditAction(newElement, ((ILabelEditorDialog)finalDialog).getValue());
-										}
-									};
-									domain.getCommandStack().execute(command);
-								}
-							}
-
 						}
 					}
 				}
