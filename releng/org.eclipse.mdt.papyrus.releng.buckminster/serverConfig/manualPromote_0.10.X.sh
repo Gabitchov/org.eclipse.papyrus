@@ -42,31 +42,31 @@ version=""
 updateSite=""
 sure=""
 
-echo "mainBuildNumber (the number of the \"papyrus-trunk-nightly\" Hudson build from which to publish the main Papyrus plug-ins): "
+echo "mainBuildNumber (the number of the \"papyrus-0.10-maintenance-nightly\" Hudson build from which to publish the main Papyrus plug-ins): "
 while [[ ! "$mainBuildNumber" =~ ^[0-9]+$ || "$mainBuildNumber" < 1 ]]; do
 	echo -n "? "
 	read mainBuildNumber
 done
 
-echo "extrasBuildNumber (the number of the \"papyrus-trunk-extra-nightly\" Hudson build from which to publish the extra Papyrus plug-ins, or 0 to not publish): "
+echo "extrasBuildNumber (the number of the \"papyrus-0.10-maintenance-extra-nightly\" Hudson build from which to publish the extra Papyrus plug-ins, or 0 to not publish): "
 while [[ ! "$extrasBuildNumber" =~ ^[0-9]+$ || "$extrasBuildNumber" < 0 ]]; do
 	echo -n "? "
 	read extrasBuildNumber
 done
 
-echo "testsBuildNumber (the number of the \"papyrus-trunk-nightly-tests\" Hudson build from which to publish the test results, or 0 to not publish): "
+echo "testsBuildNumber (the number of the \"papyrus-0.10-maintenance-nightly-tests\" Hudson build from which to publish the test results, or 0 to not publish): "
 while [[ ! "$testsBuildNumber" =~ ^[0-9]+$ || "$testsBuildNumber" < 0 ]]; do
 	echo -n "? "
 	read testsBuildNumber
 done
 
-echo "version (e.g. \"0.9.0\"): "
+echo "version (e.g. \"0.10.0\"): "
 while [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
 	echo -n "? "
 	read version
 done
 
-echo "updateSite (e.g. \"nightly/juno\", \"milestones/0.9/M5\", \"releases/indigo/0.8.1\") : "
+echo "updateSite (e.g. \"nightly/kepler\", \"milestones/0.10/M5\", \"releases/kepler/0.10.1\") : "
 while [[ ! "$updateSite" =~ ^(tmpTest|releases/(indigo|juno|kepler|luna)/[0-9]+\.[0-9]\.[0-9]|milestones/[0-9]+\.[0-9]+/(M[1-7]|RC[1-9]|SR[1-9]_RC[1-9])|nightly/(indigo|juno|kepler|luna))$ ]]; do
 	echo -n "? "
 	read updateSite
@@ -104,8 +104,8 @@ workingDir=$(mktemp -d)
 cd "$workingDir"
 
 # ============================== PUBLISH MAIN ==============================
-nfsURL="/shared/jobs/papyrus-trunk-nightly/builds/$mainBuildNumber/archive/"
-hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/$mainBuildNumber/artifact/"
+nfsURL="/shared/jobs/papyrus-0.10-maintenance-nightly/builds/$mainBuildNumber/archive/"
+hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.10-maintenance-nightly/$mainBuildNumber/artifact/"
 zipName="Papyrus-Main.zip"
 updateZipPrefix="Papyrus-Update-incubation"
 getZip "$zipName" "$nfsURL" "$hudsonURL"
@@ -154,8 +154,8 @@ $ADD_DOWNLOAD_STATS "$updateSiteDir/main" "main"
 
 # ============================== PUBLISH EXTRAS ==============================
 if [[ "$extrasBuildNumber" != "0" ]]; then
-	nfsURL="/shared/jobs/papyrus-trunk-extra-nightly/builds/$extrasBuildNumber/archive/"
-	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/$extrasBuildNumber/artifact/"
+	nfsURL="/shared/jobs/papyrus-0.10-maintenance-extra-nightly/builds/$extrasBuildNumber/archive/"
+	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.10-maintenance-extra-nightly/$extrasBuildNumber/artifact/"
 	zipName="Papyrus-Extra.zip"
 	updateZipName="Papyrus-Extra-Update.zip"
 	getZip "$zipName" "$nfsURL" "$hudsonURL"
@@ -168,8 +168,8 @@ fi
 
 # ============================== PUBLISH TESTS ==============================
 if [[ "$testsBuildNumber" != "0" ]]; then
-	nfsURL="/shared/jobs/papyrus-trunk-nightly-tests/builds/$testsBuildNumber/archive/"
-	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/$testsBuildNumber/artifact/"
+	nfsURL="/shared/jobs/papyrus-0.10-maintenance-nightly-tests/builds/$testsBuildNumber/archive/"
+	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.10-maintenance-nightly-tests/$testsBuildNumber/artifact/"
 	zipName="Papyrus-TestResults.zip"
 	getZip "$zipName" "$nfsURL" "$hudsonURL"
 	# unzips under a "testresults" folder under the main build's folder 
