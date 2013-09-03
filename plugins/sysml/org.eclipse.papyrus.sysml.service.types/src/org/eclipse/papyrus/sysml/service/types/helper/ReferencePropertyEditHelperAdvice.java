@@ -117,7 +117,7 @@ public class ReferencePropertyEditHelperAdvice extends AbstractPropertyEditHelpe
 					// Create targetProperty
 					Property targetProperty = UMLFactory.eINSTANCE.createProperty();
 					targetProperty.setType(sourceType);
-					targetProperty.setName("");
+					targetProperty.setName(sourceType.getName() != null ? sourceType.getName().toLowerCase() : "null");
 
 					Association association = UMLFactory.eINSTANCE.createAssociation();
 					association.getMemberEnds().add(sourcePart);
