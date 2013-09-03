@@ -6,31 +6,40 @@
       <details key="documentation" value="guard is typed with a boolean operation that have to be defined in the model before using it&#xD;&#xA;effect is typed by an operation that is owned by the component that is behaviored by the FSM&#xD;&#xA;"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Transition" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Transition"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Transition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="guard" ordered="false"
-        lowerBound="1" eType="#//Algorithm"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="effect" ordered="false"
-        lowerBound="1" eType="#//Algorithm"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Algorithm">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="LibFileFormat can be elf, matlab, etc"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Operation" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isExternal" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="extFunctionName" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libPath" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libFileFormat" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
         defaultValueLiteral="elf"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="When a state is activated, a behavior is activated and executed.&#xD;&#xA;It is possible to associate more one behavior to the state. But the question is how to define the order of execution of the behaviors?"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_State" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//State"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Robot" eSuperTypes="#//Agent #//System">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" lowerBound="1"
-        eType="#//RobotKind" defaultValueLiteral="UGV"/>
+        eType="#//RobotKind" defaultValueLiteral="UGVcar"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mass" ordered="false" lowerBound="1"
         eType="ecore:EDataType RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float32"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" ordered="false"
@@ -40,13 +49,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="System">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="native" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryPath" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryComponentName" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Agent" eSuperTypes="#//PhysicalObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="movesOver" ordered="false"
@@ -76,12 +85,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" ordered="false"
         lowerBound="1" eType="#//DataFlowDirectionKind"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bufferSize" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Integer"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Integer"
         defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Port" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Port" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Port"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Port"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="synchronizationPolicy"
         ordered="false" lowerBound="1" eType="#//SynchronizationKind"/>
   </eClassifiers>
@@ -121,7 +130,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Hardware" eSuperTypes="#//System"/>
   <eClassifiers xsi:type="ecore:EClass" name="Software" eSuperTypes="#//System">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPeriodic" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="period" ordered="false"
         lowerBound="1" eType="ecore:EDataType RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float32"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" ordered="false"
@@ -133,19 +142,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveData" eSuperTypes="#//DataType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_PrimitiveType" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//PrimitiveType"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//PrimitiveType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataType" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="native" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryPath" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EngineSystem" eSuperTypes="#//ActuatorSystem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vehicleTraction" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxEngineForce" ordered="false"
         lowerBound="1" eType="ecore:EDataType RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float32"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxBreakingForce" ordered="false"
@@ -251,23 +260,15 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimulatedSystem" eSuperTypes="#//Software">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Property" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mesh" ordered="false" upperBound="-1"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AlgorithmLibrary">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" ordered="false" lowerBound="1"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="State">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_State" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//State"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
-        lowerBound="1" eType="#//Algorithm"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" ordered="false"
-        upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SensorDriver" eSuperTypes="#//Software"/>
   <eClassifiers xsi:type="ecore:EClass" name="Building" eSuperTypes="#//PhysicalObject"/>
@@ -281,7 +282,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="Stairs" eSuperTypes="#//Ground"/>
   <eClassifiers xsi:type="ecore:EClass" name="Platform" eSuperTypes="#//System">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="library" ordered="false"
+        upperBound="-1" eType="#//ExternalLibrary"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternalLibrary">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="libPath" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="libFileFormat" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
+        defaultValueLiteral="elf"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Interface" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RoboticMiddleware" eSuperTypes="#//Platform">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" lowerBound="1"
@@ -297,7 +309,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="RoboticSimulator" eSuperTypes="#//Platform"/>
   <eClassifiers xsi:type="ecore:EClass" name="CycabTK" eSuperTypes="#//RoboticSimulator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="useRealTime" ordered="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeStep" ordered="false"
         eType="ecore:EDataType RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float32"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeFactor" ordered="false"
@@ -305,9 +317,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BlenderMorse" eSuperTypes="#//RoboticSimulator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debugMode" ordered="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debugDisplay" ordered="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="gravity" ordered="false"
         eType="ecore:EDataType RobotMLLibraries.ecore#//RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes/Float32"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="_viewport_shade" ordered="false"
@@ -323,11 +335,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="port" ordered="false" lowerBound="1"
         eType="#//Port"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Parameter" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Allocate">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Abstraction" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InertialMeasurementUnitSystem" eSuperTypes="#//SensorSystem"/>
   <eClassifiers xsi:type="ecore:EClass" name="InertialNavigationSystem" eSuperTypes="#//GPSSystem"/>
@@ -335,9 +347,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="InfraRedProximetrySystem" eSuperTypes="#//ObjectDetectionSensorSystem"/>
   <eClassifiers xsi:type="ecore:EClass" name="DeploymentPlan">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mainInstance" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Gyroscope" eSuperTypes="#//SensorSystem"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OnProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Parameter" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
+  </eClassifiers>
 </ecore:EPackage>

@@ -1,20 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Point32;
 
@@ -25,21 +19,19 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl.Point32Impl#getX <em>X</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl.Point32Impl#getY <em>Y</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl.Point32Impl#getZ <em>Z</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl.Point32Impl#getX <em>X</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl.Point32Impl#getY <em>Y</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.impl.Point32Impl#getZ <em>Z</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class Point32Impl extends EObjectImpl implements Point32 {
-
+public class Point32Impl extends MinimalEObjectImpl.Container implements Point32 {
 	/**
 	 * The default value of the '{@link #getX() <em>X</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getX()
 	 * @generated
 	 * @ordered
@@ -50,7 +42,6 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	 * The cached value of the '{@link #getX() <em>X</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getX()
 	 * @generated
 	 * @ordered
@@ -61,7 +52,6 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	 * The default value of the '{@link #getY() <em>Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getY()
 	 * @generated
 	 * @ordered
@@ -72,7 +62,6 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getY()
 	 * @generated
 	 * @ordered
@@ -83,7 +72,6 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	 * The default value of the '{@link #getZ() <em>Z</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getZ()
 	 * @generated
 	 * @ordered
@@ -94,7 +82,6 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	 * The cached value of the '{@link #getZ() <em>Z</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getZ()
 	 * @generated
 	 * @ordered
@@ -104,7 +91,6 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Point32Impl() {
@@ -114,7 +100,6 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,7 +110,6 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public float getX() {
@@ -135,20 +119,18 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setX(float newX) {
 		float oldX = x;
 		x = newX;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.POINT32__X, oldX, x));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public float getY() {
@@ -158,20 +140,18 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setY(float newY) {
 		float oldY = y;
 		y = newY;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.POINT32__Y, oldY, y));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public float getZ() {
@@ -181,31 +161,29 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setZ(float newZ) {
 		float oldZ = z;
 		z = newZ;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Geometry_datatypesPackage.POINT32__Z, oldZ, z));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case Geometry_datatypesPackage.POINT32__X:
-			return getX();
-		case Geometry_datatypesPackage.POINT32__Y:
-			return getY();
-		case Geometry_datatypesPackage.POINT32__Z:
-			return getZ();
+		switch (featureID) {
+			case Geometry_datatypesPackage.POINT32__X:
+				return getX();
+			case Geometry_datatypesPackage.POINT32__Y:
+				return getY();
+			case Geometry_datatypesPackage.POINT32__Z:
+				return getZ();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,21 +191,20 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case Geometry_datatypesPackage.POINT32__X:
-			setX((Float)newValue);
-			return;
-		case Geometry_datatypesPackage.POINT32__Y:
-			setY((Float)newValue);
-			return;
-		case Geometry_datatypesPackage.POINT32__Z:
-			setZ((Float)newValue);
-			return;
+		switch (featureID) {
+			case Geometry_datatypesPackage.POINT32__X:
+				setX((Float)newValue);
+				return;
+			case Geometry_datatypesPackage.POINT32__Y:
+				setY((Float)newValue);
+				return;
+			case Geometry_datatypesPackage.POINT32__Z:
+				setZ((Float)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -235,21 +212,20 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case Geometry_datatypesPackage.POINT32__X:
-			setX(X_EDEFAULT);
-			return;
-		case Geometry_datatypesPackage.POINT32__Y:
-			setY(Y_EDEFAULT);
-			return;
-		case Geometry_datatypesPackage.POINT32__Z:
-			setZ(Z_EDEFAULT);
-			return;
+		switch (featureID) {
+			case Geometry_datatypesPackage.POINT32__X:
+				setX(X_EDEFAULT);
+				return;
+			case Geometry_datatypesPackage.POINT32__Y:
+				setY(Y_EDEFAULT);
+				return;
+			case Geometry_datatypesPackage.POINT32__Z:
+				setZ(Z_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -257,18 +233,17 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case Geometry_datatypesPackage.POINT32__X:
-			return x != X_EDEFAULT;
-		case Geometry_datatypesPackage.POINT32__Y:
-			return y != Y_EDEFAULT;
-		case Geometry_datatypesPackage.POINT32__Z:
-			return z != Z_EDEFAULT;
+		switch (featureID) {
+			case Geometry_datatypesPackage.POINT32__X:
+				return x != X_EDEFAULT;
+			case Geometry_datatypesPackage.POINT32__Y:
+				return y != Y_EDEFAULT;
+			case Geometry_datatypesPackage.POINT32__Z:
+				return z != Z_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -276,13 +251,11 @@ public class Point32Impl extends EObjectImpl implements Point32 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (x: ");

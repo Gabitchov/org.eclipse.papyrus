@@ -1,19 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotML.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.papyrus.RobotML.CycabTK;
 import org.eclipse.papyrus.RobotML.RobotMLPackage;
 
@@ -24,21 +18,19 @@ import org.eclipse.papyrus.RobotML.RobotMLPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotML.impl.CycabTKImpl#isUseRealTime <em>Use Real Time</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotML.impl.CycabTKImpl#getTimeStep <em>Time Step</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotML.impl.CycabTKImpl#getTimeFactor <em>Time Factor</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.CycabTKImpl#isUseRealTime <em>Use Real Time</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.CycabTKImpl#getTimeStep <em>Time Step</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.CycabTKImpl#getTimeFactor <em>Time Factor</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
-
 	/**
 	 * The default value of the '{@link #isUseRealTime() <em>Use Real Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isUseRealTime()
 	 * @generated
 	 * @ordered
@@ -49,7 +41,6 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * The cached value of the '{@link #isUseRealTime() <em>Use Real Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isUseRealTime()
 	 * @generated
 	 * @ordered
@@ -60,7 +51,6 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * The default value of the '{@link #getTimeStep() <em>Time Step</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTimeStep()
 	 * @generated
 	 * @ordered
@@ -71,7 +61,6 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * The cached value of the '{@link #getTimeStep() <em>Time Step</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTimeStep()
 	 * @generated
 	 * @ordered
@@ -82,7 +71,6 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * The default value of the '{@link #getTimeFactor() <em>Time Factor</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTimeFactor()
 	 * @generated
 	 * @ordered
@@ -93,7 +81,6 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	 * The cached value of the '{@link #getTimeFactor() <em>Time Factor</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTimeFactor()
 	 * @generated
 	 * @ordered
@@ -103,7 +90,6 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CycabTKImpl() {
@@ -113,7 +99,6 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,7 +109,6 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isUseRealTime() {
@@ -134,20 +118,18 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setUseRealTime(boolean newUseRealTime) {
 		boolean oldUseRealTime = useRealTime;
 		useRealTime = newUseRealTime;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.CYCAB_TK__USE_REAL_TIME, oldUseRealTime, useRealTime));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public float getTimeStep() {
@@ -157,20 +139,18 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTimeStep(float newTimeStep) {
 		float oldTimeStep = timeStep;
 		timeStep = newTimeStep;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.CYCAB_TK__TIME_STEP, oldTimeStep, timeStep));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public float getTimeFactor() {
@@ -180,31 +160,29 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTimeFactor(float newTimeFactor) {
 		float oldTimeFactor = timeFactor;
 		timeFactor = newTimeFactor;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.CYCAB_TK__TIME_FACTOR, oldTimeFactor, timeFactor));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case RobotMLPackage.CYCAB_TK__USE_REAL_TIME:
-			return isUseRealTime();
-		case RobotMLPackage.CYCAB_TK__TIME_STEP:
-			return getTimeStep();
-		case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
-			return getTimeFactor();
+		switch (featureID) {
+			case RobotMLPackage.CYCAB_TK__USE_REAL_TIME:
+				return isUseRealTime();
+			case RobotMLPackage.CYCAB_TK__TIME_STEP:
+				return getTimeStep();
+			case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
+				return getTimeFactor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -212,21 +190,20 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case RobotMLPackage.CYCAB_TK__USE_REAL_TIME:
-			setUseRealTime((Boolean)newValue);
-			return;
-		case RobotMLPackage.CYCAB_TK__TIME_STEP:
-			setTimeStep((Float)newValue);
-			return;
-		case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
-			setTimeFactor((Float)newValue);
-			return;
+		switch (featureID) {
+			case RobotMLPackage.CYCAB_TK__USE_REAL_TIME:
+				setUseRealTime((Boolean)newValue);
+				return;
+			case RobotMLPackage.CYCAB_TK__TIME_STEP:
+				setTimeStep((Float)newValue);
+				return;
+			case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
+				setTimeFactor((Float)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -234,21 +211,20 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case RobotMLPackage.CYCAB_TK__USE_REAL_TIME:
-			setUseRealTime(USE_REAL_TIME_EDEFAULT);
-			return;
-		case RobotMLPackage.CYCAB_TK__TIME_STEP:
-			setTimeStep(TIME_STEP_EDEFAULT);
-			return;
-		case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
-			setTimeFactor(TIME_FACTOR_EDEFAULT);
-			return;
+		switch (featureID) {
+			case RobotMLPackage.CYCAB_TK__USE_REAL_TIME:
+				setUseRealTime(USE_REAL_TIME_EDEFAULT);
+				return;
+			case RobotMLPackage.CYCAB_TK__TIME_STEP:
+				setTimeStep(TIME_STEP_EDEFAULT);
+				return;
+			case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
+				setTimeFactor(TIME_FACTOR_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -256,18 +232,17 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case RobotMLPackage.CYCAB_TK__USE_REAL_TIME:
-			return useRealTime != USE_REAL_TIME_EDEFAULT;
-		case RobotMLPackage.CYCAB_TK__TIME_STEP:
-			return timeStep != TIME_STEP_EDEFAULT;
-		case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
-			return timeFactor != TIME_FACTOR_EDEFAULT;
+		switch (featureID) {
+			case RobotMLPackage.CYCAB_TK__USE_REAL_TIME:
+				return useRealTime != USE_REAL_TIME_EDEFAULT;
+			case RobotMLPackage.CYCAB_TK__TIME_STEP:
+				return timeStep != TIME_STEP_EDEFAULT;
+			case RobotMLPackage.CYCAB_TK__TIME_FACTOR:
+				return timeFactor != TIME_FACTOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -275,13 +250,11 @@ public class CycabTKImpl extends RoboticSimulatorImpl implements CycabTK {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (useRealTime: ");

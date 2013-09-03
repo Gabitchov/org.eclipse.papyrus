@@ -1,52 +1,42 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.EFactoryImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.GridCells;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.MapMetaData;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesFactory;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesPackage;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.OccupancyGrid;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Odometry;
-import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Path;
 
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.*;
+
+// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_datatypesFactory {
-
+	
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
+	 * @return the nav_datatypes factory
 	 * @generated
 	 */
 	public static Nav_datatypesFactory init() {
 		try {
-			Nav_datatypesFactory theNav_datatypesFactory = (Nav_datatypesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes.ecore");
-			if(theNav_datatypesFactory != null) {
+			Nav_datatypesFactory theNav_datatypesFactory = (Nav_datatypesFactory)EPackage.Registry.INSTANCE.getEFactory(Nav_datatypesPackage.eNS_URI);
+			if (theNav_datatypesFactory != null) {
 				return theNav_datatypesFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new Nav_datatypesFactoryImpl();
@@ -56,7 +46,6 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Nav_datatypesFactoryImpl() {
@@ -65,32 +54,30 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @param eClass the e class
+	 * @return the e object
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case Nav_datatypesPackage.PATH:
-			return createPath();
-		case Nav_datatypesPackage.ODOMETRY:
-			return createOdometry();
-		case Nav_datatypesPackage.MAP_META_DATA:
-			return createMapMetaData();
-		case Nav_datatypesPackage.OCCUPANCY_GRID:
-			return createOccupancyGrid();
-		case Nav_datatypesPackage.GRID_CELLS:
-			return createGridCells();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID()) {
+			case Nav_datatypesPackage.PATH: return createPath();
+			case Nav_datatypesPackage.ODOMETRY: return createOdometry();
+			case Nav_datatypesPackage.MAP_META_DATA: return createMapMetaData();
+			case Nav_datatypesPackage.OCCUPANCY_GRID: return createOccupancyGrid();
+			case Nav_datatypesPackage.GRID_CELLS: return createGridCells();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @return the path
 	 * @generated
 	 */
 	public Path createPath() {
@@ -100,8 +87,9 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @return the odometry
 	 * @generated
 	 */
 	public Odometry createOdometry() {
@@ -111,8 +99,9 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @return the map meta data
 	 * @generated
 	 */
 	public MapMetaData createMapMetaData() {
@@ -122,8 +111,9 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @return the occupancy grid
 	 * @generated
 	 */
 	public OccupancyGrid createOccupancyGrid() {
@@ -133,8 +123,9 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @return the grid cells
 	 * @generated
 	 */
 	public GridCells createGridCells() {
@@ -144,8 +135,9 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @return the nav_datatypes package
 	 * @generated
 	 */
 	public Nav_datatypesPackage getNav_datatypesPackage() {
@@ -154,8 +146,9 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @return the package
 	 * @deprecated
 	 * @generated
 	 */

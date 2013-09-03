@@ -1,20 +1,14 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Oarp4_datatypesPackage;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Odometer_Tics;
 
@@ -25,21 +19,17 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.impl.Odometer_TicsImpl#getValue
- * <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.impl.Odometer_TicsImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
-
+public class Odometer_TicsImpl extends MinimalEObjectImpl.Container implements Odometer_Tics {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -50,7 +40,6 @@ public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -60,7 +49,6 @@ public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Odometer_TicsImpl() {
@@ -70,7 +58,6 @@ public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +68,6 @@ public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -91,27 +77,25 @@ public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValue(int newValue) {
 		int oldValue = value;
 		value = newValue;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Oarp4_datatypesPackage.ODOMETER_TICS__VALUE, oldValue, value));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case Oarp4_datatypesPackage.ODOMETER_TICS__VALUE:
-			return getValue();
+		switch (featureID) {
+			case Oarp4_datatypesPackage.ODOMETER_TICS__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,15 +103,14 @@ public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case Oarp4_datatypesPackage.ODOMETER_TICS__VALUE:
-			setValue((Integer)newValue);
-			return;
+		switch (featureID) {
+			case Oarp4_datatypesPackage.ODOMETER_TICS__VALUE:
+				setValue((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,15 +118,14 @@ public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case Oarp4_datatypesPackage.ODOMETER_TICS__VALUE:
-			setValue(VALUE_EDEFAULT);
-			return;
+		switch (featureID) {
+			case Oarp4_datatypesPackage.ODOMETER_TICS__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -151,14 +133,13 @@ public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case Oarp4_datatypesPackage.ODOMETER_TICS__VALUE:
-			return value != VALUE_EDEFAULT;
+		switch (featureID) {
+			case Oarp4_datatypesPackage.ODOMETER_TICS__VALUE:
+				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -166,13 +147,11 @@ public class Odometer_TicsImpl extends EObjectImpl implements Odometer_Tics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (value: ");

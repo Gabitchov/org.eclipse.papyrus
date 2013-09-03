@@ -1,31 +1,28 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.COVARIANCE_TYPE;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.NavSatFix;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.SERVICE_TYPE;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.STATUS_TYPE;
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage;
+
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Header;
 
 /**
@@ -35,35 +32,24 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getStatus <em>Status
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getService <em>Service
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getHeader <em>Header
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getLatitude <em>Latitude
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getLongitude <em>
- * Longitude</em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getAltitude <em>Altitude
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getPosition_covariance
- * <em>Position covariance</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getPosition_covariance_type
- * <em>Position covariance type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getStatus <em>Status</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getService <em>Service</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getHeader <em>Header</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getLatitude <em>Latitude</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getLongitude <em>Longitude</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getAltitude <em>Altitude</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getPosition_covariance <em>Position covariance</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.impl.NavSatFixImpl#getPosition_covariance_type <em>Position covariance type</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
-
+public class NavSatFixImpl extends MinimalEObjectImpl.Container implements NavSatFix {
 	/**
 	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getStatus()
 	 * @generated
 	 * @ordered
@@ -74,7 +60,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getStatus()
 	 * @generated
 	 * @ordered
@@ -85,7 +70,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The default value of the '{@link #getService() <em>Service</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getService()
 	 * @generated
 	 * @ordered
@@ -96,7 +80,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The cached value of the '{@link #getService() <em>Service</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getService()
 	 * @generated
 	 * @ordered
@@ -107,7 +90,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The cached value of the '{@link #getHeader() <em>Header</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getHeader()
 	 * @generated
 	 * @ordered
@@ -118,7 +100,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The default value of the '{@link #getLatitude() <em>Latitude</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getLatitude()
 	 * @generated
 	 * @ordered
@@ -129,7 +110,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The cached value of the '{@link #getLatitude() <em>Latitude</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getLatitude()
 	 * @generated
 	 * @ordered
@@ -140,7 +120,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The default value of the '{@link #getLongitude() <em>Longitude</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getLongitude()
 	 * @generated
 	 * @ordered
@@ -151,7 +130,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The cached value of the '{@link #getLongitude() <em>Longitude</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getLongitude()
 	 * @generated
 	 * @ordered
@@ -162,7 +140,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The default value of the '{@link #getAltitude() <em>Altitude</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAltitude()
 	 * @generated
 	 * @ordered
@@ -173,7 +150,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The cached value of the '{@link #getAltitude() <em>Altitude</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAltitude()
 	 * @generated
 	 * @ordered
@@ -184,7 +160,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The cached value of the '{@link #getPosition_covariance() <em>Position covariance</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPosition_covariance()
 	 * @generated
 	 * @ordered
@@ -195,7 +170,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The default value of the '{@link #getPosition_covariance_type() <em>Position covariance type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPosition_covariance_type()
 	 * @generated
 	 * @ordered
@@ -206,7 +180,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	 * The cached value of the '{@link #getPosition_covariance_type() <em>Position covariance type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPosition_covariance_type()
 	 * @generated
 	 * @ordered
@@ -216,7 +189,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NavSatFixImpl() {
@@ -226,7 +198,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -237,7 +208,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public STATUS_TYPE getStatus() {
@@ -247,20 +217,18 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStatus(STATUS_TYPE newStatus) {
 		STATUS_TYPE oldStatus = status;
 		status = newStatus == null ? STATUS_EDEFAULT : newStatus;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__STATUS, oldStatus, status));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SERVICE_TYPE getService() {
@@ -270,20 +238,18 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setService(SERVICE_TYPE newService) {
 		SERVICE_TYPE oldService = service;
 		service = newService == null ? SERVICE_EDEFAULT : newService;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__SERVICE, oldService, service));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Header getHeader() {
@@ -293,18 +259,14 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetHeader(Header newHeader, NotificationChain msgs) {
 		Header oldHeader = header;
 		header = newHeader;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__HEADER, oldHeader, newHeader);
-			if(msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -312,27 +274,25 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setHeader(Header newHeader) {
-		if(newHeader != header) {
+		if (newHeader != header) {
 			NotificationChain msgs = null;
-			if(header != null)
+			if (header != null)
 				msgs = ((InternalEObject)header).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Sensor_datatypesPackage.NAV_SAT_FIX__HEADER, null, msgs);
-			if(newHeader != null)
+			if (newHeader != null)
 				msgs = ((InternalEObject)newHeader).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Sensor_datatypesPackage.NAV_SAT_FIX__HEADER, null, msgs);
 			msgs = basicSetHeader(newHeader, msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else if(eNotificationRequired())
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__HEADER, newHeader, newHeader));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public double getLatitude() {
@@ -342,20 +302,18 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLatitude(double newLatitude) {
 		double oldLatitude = latitude;
 		latitude = newLatitude;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE, oldLatitude, latitude));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public double getLongitude() {
@@ -365,20 +323,18 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLongitude(double newLongitude) {
 		double oldLongitude = longitude;
 		longitude = newLongitude;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE, oldLongitude, longitude));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public double getAltitude() {
@@ -388,24 +344,22 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAltitude(double newAltitude) {
 		double oldAltitude = altitude;
 		altitude = newAltitude;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE, oldAltitude, altitude));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Double> getPosition_covariance() {
-		if(position_covariance == null) {
+		if (position_covariance == null) {
 			position_covariance = new EDataTypeUniqueEList<Double>(Double.class, this, Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE);
 		}
 		return position_covariance;
@@ -414,7 +368,6 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public COVARIANCE_TYPE getPosition_covariance_type() {
@@ -424,27 +377,25 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPosition_covariance_type(COVARIANCE_TYPE newPosition_covariance_type) {
 		COVARIANCE_TYPE oldPosition_covariance_type = position_covariance_type;
 		position_covariance_type = newPosition_covariance_type == null ? POSITION_COVARIANCE_TYPE_EDEFAULT : newPosition_covariance_type;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE, oldPosition_covariance_type, position_covariance_type));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
-			return basicSetHeader(null, msgs);
+		switch (featureID) {
+			case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
+				return basicSetHeader(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -452,28 +403,27 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.NAV_SAT_FIX__STATUS:
-			return getStatus();
-		case Sensor_datatypesPackage.NAV_SAT_FIX__SERVICE:
-			return getService();
-		case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
-			return getHeader();
-		case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
-			return getLatitude();
-		case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
-			return getLongitude();
-		case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
-			return getAltitude();
-		case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
-			return getPosition_covariance();
-		case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:
-			return getPosition_covariance_type();
+		switch (featureID) {
+			case Sensor_datatypesPackage.NAV_SAT_FIX__STATUS:
+				return getStatus();
+			case Sensor_datatypesPackage.NAV_SAT_FIX__SERVICE:
+				return getService();
+			case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
+				return getHeader();
+			case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
+				return getLatitude();
+			case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
+				return getLongitude();
+			case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
+				return getAltitude();
+			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
+				return getPosition_covariance();
+			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:
+				return getPosition_covariance_type();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -481,38 +431,37 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.NAV_SAT_FIX__STATUS:
-			setStatus((STATUS_TYPE)newValue);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__SERVICE:
-			setService((SERVICE_TYPE)newValue);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
-			setHeader((Header)newValue);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
-			setLatitude((Double)newValue);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
-			setLongitude((Double)newValue);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
-			setAltitude((Double)newValue);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
-			getPosition_covariance().clear();
-			getPosition_covariance().addAll((Collection<? extends Double>)newValue);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:
-			setPosition_covariance_type((COVARIANCE_TYPE)newValue);
-			return;
+		switch (featureID) {
+			case Sensor_datatypesPackage.NAV_SAT_FIX__STATUS:
+				setStatus((STATUS_TYPE)newValue);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__SERVICE:
+				setService((SERVICE_TYPE)newValue);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
+				setHeader((Header)newValue);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
+				setLatitude((Double)newValue);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
+				setLongitude((Double)newValue);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
+				setAltitude((Double)newValue);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
+				getPosition_covariance().clear();
+				getPosition_covariance().addAll((Collection<? extends Double>)newValue);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:
+				setPosition_covariance_type((COVARIANCE_TYPE)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -520,36 +469,35 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.NAV_SAT_FIX__STATUS:
-			setStatus(STATUS_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__SERVICE:
-			setService(SERVICE_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
-			setHeader((Header)null);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
-			setLatitude(LATITUDE_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
-			setLongitude(LONGITUDE_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
-			setAltitude(ALTITUDE_EDEFAULT);
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
-			getPosition_covariance().clear();
-			return;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:
-			setPosition_covariance_type(POSITION_COVARIANCE_TYPE_EDEFAULT);
-			return;
+		switch (featureID) {
+			case Sensor_datatypesPackage.NAV_SAT_FIX__STATUS:
+				setStatus(STATUS_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__SERVICE:
+				setService(SERVICE_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
+				setHeader((Header)null);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
+				setLatitude(LATITUDE_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
+				setLongitude(LONGITUDE_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
+				setAltitude(ALTITUDE_EDEFAULT);
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
+				getPosition_covariance().clear();
+				return;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:
+				setPosition_covariance_type(POSITION_COVARIANCE_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -557,28 +505,27 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case Sensor_datatypesPackage.NAV_SAT_FIX__STATUS:
-			return status != STATUS_EDEFAULT;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__SERVICE:
-			return service != SERVICE_EDEFAULT;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
-			return header != null;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
-			return latitude != LATITUDE_EDEFAULT;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
-			return longitude != LONGITUDE_EDEFAULT;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
-			return altitude != ALTITUDE_EDEFAULT;
-		case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
-			return position_covariance != null && !position_covariance.isEmpty();
-		case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:
-			return position_covariance_type != POSITION_COVARIANCE_TYPE_EDEFAULT;
+		switch (featureID) {
+			case Sensor_datatypesPackage.NAV_SAT_FIX__STATUS:
+				return status != STATUS_EDEFAULT;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__SERVICE:
+				return service != SERVICE_EDEFAULT;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__HEADER:
+				return header != null;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__LATITUDE:
+				return latitude != LATITUDE_EDEFAULT;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__LONGITUDE:
+				return longitude != LONGITUDE_EDEFAULT;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__ALTITUDE:
+				return altitude != ALTITUDE_EDEFAULT;
+			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE:
+				return position_covariance != null && !position_covariance.isEmpty();
+			case Sensor_datatypesPackage.NAV_SAT_FIX__POSITION_COVARIANCE_TYPE:
+				return position_covariance_type != POSITION_COVARIANCE_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -586,13 +533,11 @@ public class NavSatFixImpl extends EObjectImpl implements NavSatFix {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (status: ");
