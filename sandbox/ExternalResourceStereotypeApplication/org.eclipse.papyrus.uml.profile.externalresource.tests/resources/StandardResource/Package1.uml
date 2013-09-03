@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExternalResourcesTestProfile="http:///schemas/ExternalResourcesTestProfile/_aPlNkPLZEeKxdJFsMzlLJA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/ExternalResourcesTestProfile/_aPlNkPLZEeKxdJFsMzlLJA/1 pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_aPl0oPLZEeKxdJFsMzlLJA">
+  <uml:Package xmi:id="_VSiREBCvEeOTVqJPk38YKg" name="Package1">
+    <packagedElement xmi:type="uml:Class" xmi:id="_WzY_0BCvEeOTVqJPk38YKg" name="Package1_Class1"/>
+    <profileApplication xmi:id="_fTc8YBCvEeOTVqJPk38YKg">
+      <eAnnotations xmi:id="_fTq-0BCvEeOTVqJPk38YKg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_aPl0oPLZEeKxdJFsMzlLJA"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_fZtVYBCvEeOTVqJPk38YKg" source="duplicatedProfile"/>
+      <appliedProfile href="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_yW4wUPLPEeKxdJFsMzlLJA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_fZt8cBCvEeOTVqJPk38YKg">
+      <eAnnotations xmi:id="_faAQUBCvEeOTVqJPk38YKg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_aPpfAfLZEeKxdJFsMzlLJA"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_faA3YBCvEeOTVqJPk38YKg" source="duplicatedProfile"/>
+      <appliedProfile href="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_8HJwgPLPEeKxdJFsMzlLJA"/>
+    </profileApplication>
+  </uml:Package>
+  <ExternalResourcesTestProfile:ClassStereotype xmi:id="_bXZ9kBCvEeOTVqJPk38YKg" base_Class="_WzY_0BCvEeOTVqJPk38YKg"/>
+</xmi:XMI>

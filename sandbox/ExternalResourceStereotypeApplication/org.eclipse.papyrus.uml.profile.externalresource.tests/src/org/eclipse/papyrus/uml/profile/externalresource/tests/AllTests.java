@@ -22,9 +22,9 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
+	org.eclipse.papyrus.uml.profile.externalresource.tests.standardstrategy.StandardStrategyTests.class,
 	org.eclipse.papyrus.uml.profile.externalresource.tests.resourceperprofile.ResourcePerProfileTests.class,
 	org.eclipse.papyrus.uml.profile.externalresource.tests.oneresourceforallprofiles.OneResourceForAllProfilesTests.class,
-	org.eclipse.papyrus.uml.profile.externalresource.tests.standardstrategy.StandardStrategyTests.class,
 })
 public class AllTests {
 }
