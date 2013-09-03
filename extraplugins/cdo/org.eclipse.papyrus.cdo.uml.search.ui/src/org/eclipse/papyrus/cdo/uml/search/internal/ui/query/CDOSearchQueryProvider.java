@@ -73,12 +73,11 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 
 		IServiceRegistryTracker tracker = new DefaultServiceRegistryTracker();
 
-		// TODO: Handle queryInfo.isSearchAllStringAttributes
 		Multimap<CDOView, URI> views = getViews(queryInfo.getScope());
 		List<AbstractPapyrusQuery> result = Lists.newArrayListWithCapacity(views.keySet().size());
 		for(CDOView view : views.keySet()) {
 			Map<String, Object> parameters = Maps.newHashMap();
-			String ocl = createNameOnlyOCLExpression(searchPattern, isRegexMatch, views.get(view), parameters);
+			String ocl = createOCLExpression(searchPattern, isRegexMatch, queryInfo.isSearchAllStringAttributes(), views.get(view), parameters);
 			CDOQuery query = view.createQuery("ocl", ocl, UMLPackage.Literals.NAMED_ELEMENT);
 
 			// variables referenced by the OCL query expression
@@ -144,19 +143,14 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 		return result;
 	}
 
-	protected String createNameOnlyOCLExpression(String searchPattern, boolean isRegexMatch, Collection<URI> scope, Map<String, Object> parameters) {
+	protected String createOCLExpression(String searchPattern, boolean isRegexMatch, boolean isAllStringAttributes, Collection<URI> scope, Map<String, Object> parameters) {
 		StringBuilder result = new StringBuilder();
 
 		// parameters to pass through to OCL
 		parameters.put("searchPattern", searchPattern); //$NON-NLS-1$
 
-		result.append("NamedElement.allInstances()->select(e | not e.name.oclIsUndefined() and e.name."); //$NON-NLS-1$
-		if(isRegexMatch) {
-			result.append("matches(searchPattern)"); //$NON-NLS-1$
-		} else {
-			result.append("indexOf(searchPattern) > 0"); //$NON-NLS-1$
-		}
-
+		// first, build the CDOResource.allInstances() select clause for the scope
+		StringBuilder scopeClause = new StringBuilder();
 		boolean first = true;
 		for(URI uri : scope) {
 			String path = CDOURIUtil.extractResourcePath(uri);
@@ -165,23 +159,48 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 			}
 			if((path.length() > 1) || (!path.startsWith("/") && (path.length() > 0))) { //$NON-NLS-1$
 				if(first) {
-					result.append(" and ("); //$NON-NLS-1$
 					first = false;
 				} else {
-					result.append(" or "); //$NON-NLS-1$
+					scopeClause.append(" or "); //$NON-NLS-1$
 				}
 
-				result.append("e.eResource().oclAsType(eresource::CDOResource).path.startsWith('"); //$NON-NLS-1$
-				result.append(oclQuoteString(path));
-				result.append("')"); //$NON-NLS-1$
+				scopeClause.append("r.path.startsWith('"); //$NON-NLS-1$
+				scopeClause.append(oclQuoteString(path));
+				scopeClause.append("')"); //$NON-NLS-1$
 			}
 		}
-		if(!first) {
-			// close the and-group
+
+		// based on the CDOResource scope clause, find the candidate NamedElements
+		if(scopeClause.length() == 0) {
+			// easy case.  Do an allInstances() query
+			result.append("NamedElement.allInstances()"); //$NON-NLS-1$
+		} else {
+			// iterate the contents of resources matching the scope criteria
+			result.append("eresource::CDOResource.allInstances()->select(r | ");
+
+			result.append(scopeClause);
+
+			// close the CDOResource.allInstances()->select(...) scope clause
 			result.append(")"); //$NON-NLS-1$
+
+			// and collect all of the NamedElements within those resources
+			result.append("->collect(r | r.cdoAllProperContents(NamedElement))"); //$NON-NLS-1$
 		}
 
-		result.append(")"); //$NON-NLS-1$
+		// from our candidate NamedElements, select those that match
+		if(isAllStringAttributes) {
+			result.append("->select(e | e.cdoMatches(searchPattern))"); //$NON-NLS-1$
+		} else {
+			result.append("->select(e | not e.name.oclIsUndefined() and e.name."); //$NON-NLS-1$
+			if(isRegexMatch) {
+				result.append("matches(searchPattern)"); //$NON-NLS-1$
+			} else {
+				result.append("indexOf(searchPattern) > 0"); //$NON-NLS-1$
+			}
+
+			// close the ->select(...)
+			result.append(")"); //$NON-NLS-1$
+		}
 
 		return result.toString();
 	}
