@@ -2,8 +2,11 @@
 <rm:rmap xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:psf="http://www.eclipse.org/buckminster/PSFProvider-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <rm:property key="build.type" mutable="true" value="N"/>
   <rm:locator pattern="^org\.eclipse\.mdt\.papyrus\.releng.*" searchPathRef="releng"/>
-  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*" searchPathRef="sources"/>
-  <rm:locator failOnError="true" pattern="^org\.eclipse\.epf\..*" searchPathRef="sources"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?tests?$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.junit\.utils$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\..*?feature$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*" searchPathRef="papyrusBinaries"/>
+  
   <rm:locator failOnError="false" searchPathRef="orbit"/>
   <rm:locator failOnError="true" searchPathRef="platform.binaries"/>
   
@@ -18,144 +21,106 @@
     </rm:provider>
   </rm:searchPath>
   
-  <!-- Papyrus sources -->
-  <rm:searchPath name="sources">
+  <!-- Papyrus test sources -->
+  <rm:searchPath name="papyrusTests">
   
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/customization/{1}">
+    <rm:provider componentTypes="eclipse.feature" readerType="local">
+      <rm:uri format="{0}/features/papyrus-main-features/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/developer/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/editor/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/xwt/{1}">
+      <rm:uri format="{0}/features/papyrus-tests-features/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     
-    <!--  INFRA -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/core/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
     
     <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/{1}">
+      <rm:uri format="{0}/tests/junit/plugins/sysml/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
+    
     <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/core/{1}">
+      <rm:uri format="{0}/tests/junit/plugins/sysml/diagram/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/uml/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/uml/diagram/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
      <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/emf/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/gmfdiag/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/modelset/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/queries/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-<!--     <rm:provider componentTypes="osgi.bundle" readerType="local"> -->
-<!--       <rm:uri format="{0}/plugins/infra/serviceregistry/{1}"> -->
-<!--         <bc:propertyRef key="local.repository"/> -->
-<!--         <bc:propertyRef key="buckminster.component"/> -->
-<!--       </rm:uri> -->
-<!--     </rm:provider> -->
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/services/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/table/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/widget/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/xtext/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/infra/discovery/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    
-    <!-- /INFRA -->
-
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/sysml/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/sysml/diagram/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/sysml/modelexplorer/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/sysml/properties/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/sysml/table/{1}">
+      <rm:uri format="{0}/tests/junit/plugins/uml/modelexplorer/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     
     <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/team/{1}">
+      <rm:uri format="{0}/tests/junit/plugins/infra/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/infra/services/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/uml/tools/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/developer/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/views/modelexplorer/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/customization/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/junit/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -168,175 +133,20 @@
       </rm:uri>
     </rm:provider>
     
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/doc/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    
-    <!-- UML -->
-    
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/uml/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/uml/diagram/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/uml/modelexplorer/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/uml/profilefacet/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/uml/properties/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/uml/table/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/uml/textedit/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/uml/tools/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/uml/alf/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    
-    <!-- /UML -->
-    
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/views/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/views/documentation/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/views/modelexplorer/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/views/properties/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/plugins/views/validation/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    
-    <!-- EPF -->
-    
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/extraplugins/epf-richtext/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    
-    <!-- /EPF -->
-
-<!-- TEST -->
-<!-- 
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/tests/junit/plugins/core/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/tests/junit/plugins/developer/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/tests/junit/plugins/others/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/tests/junit/plugins/profile-tool/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/tests/junit/plugins/sysml/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/tests/junit/plugins/uml/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-     -->
-     <!-- /TEST -->
-     
-     <!-- feature -->
-    <rm:provider componentTypes="eclipse.feature" readerType="local">
-      <rm:uri format="{0}/features/papyrus-main-features/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-
- 	<rm:provider componentTypes="eclipse.feature" readerType="local">
-      <rm:uri format="{0}/extraplugins/epf-richtext/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>						
-
   </rm:searchPath>
   
   
   <!-- **************************************** UPDATE SITES **************************************** -->
 
+  <!-- Papyrus nightly -->
+  <rm:searchPath name="papyrusBinaries">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <rm:uri format="{0}">
+        <bc:propertyRef key="papyrus.update.site"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+    
   <!-- Orbit bundles -->
   <rm:searchPath name="orbit">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
@@ -417,7 +227,7 @@
     <!-- EMF Facet -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF Facet",0) -->
-      <rm:uri format="{0}/facet/updates/integration/0.3.1/I201308191255/">
+       <rm:uri format="{0}/facet/updates/integration/0.3.1/I201308191255/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -493,7 +303,7 @@
     <!-- GEF -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GEF",0) -->
-      <rm:uri format="{0}/tools/gef/updates/milestones">
+     <rm:uri format="{0}/tools/gef/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -541,7 +351,7 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.3-M-builds/M-4.3.1RC1-201308140800/">
+		<rm:uri format="{0}/eclipse/updates/4.3-M-builds/M-4.3.1RC2-201308291300/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>
@@ -552,6 +362,14 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
+
+    <!-- Papyrus Richtext -->
+<!--     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false"> -->
+<!--       <rm:uri format="{0}/modeling/mdt/papyrus/extra/updates/richtext"> -->
+<!--         <bc:propertyRef key="eclipse.downloads"/> -->
+<!--       </rm:uri> -->
+<!--     </rm:provider> -->
+   
 
   </rm:searchPath>
 
