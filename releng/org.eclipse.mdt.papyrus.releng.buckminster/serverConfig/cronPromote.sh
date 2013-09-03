@@ -108,9 +108,6 @@ signalDate10MaintenanceNightly=$(stat --format=%Y $PROMOTE_SIGNAL_0_10_MAINTENAN
 signalDate10MaintenanceExtraNightly=$(stat --format=%Y $PROMOTE_SIGNAL_0_10_MAINTENANCE_EXTRA_NIGHTLY)
 signalDate10MaintenanceNightlyTests=$(stat --format=%Y $PROMOTE_SIGNAL_0_10_MAINTENANCE_NIGHTLY_TESTS)
 
-signalDateMaintenanceNightly=$(stat --format=%Y $PROMOTE_SIGNAL_MAINTENANCE_NIGHTLY)
-signalDateMaintenanceExtraNightly=$(stat --format=%Y $PROMOTE_SIGNAL_MAINTENANCE_EXTRA_NIGHTLY)
-
 ###
 
 lastPromoteDateTrunkNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_TRUNK_NIGHTLY)
@@ -120,9 +117,6 @@ lastPromoteDateTrunkNightlyTests=$(stat --format=%Y $LAST_PROMOTE_FILE_TRUNK_NIG
 lastPromoteDate10MaintenanceNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_0_10_MAINTENANCE_NIGHTLY)
 lastPromoteDate10MaintenanceExtraNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_0_10_MAINTENANCE_EXTRA_NIGHTLY)
 lastPromoteDate10MaintenanceNightlyTests=$(stat --format=%Y $LAST_PROMOTE_FILE_0_10_MAINTENANCE_NIGHTLY_TESTS)
-
-lastPromoteDateMaintenanceNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY)
-lastPromoteDateMaintenanceExtraNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_MAINTENANCE_EXTRA_NIGHTLY)
 
 ########## trunk main nightly ##########
 if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
