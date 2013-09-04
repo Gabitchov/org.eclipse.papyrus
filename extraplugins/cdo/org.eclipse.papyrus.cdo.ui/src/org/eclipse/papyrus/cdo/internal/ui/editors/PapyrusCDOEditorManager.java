@@ -35,6 +35,8 @@ import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.util.UIUtil;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
@@ -75,11 +77,16 @@ public class PapyrusCDOEditorManager {
 	}
 
 	public IEditorPart openEditor(IWorkbenchPage page, URI uri, String name) throws PartInitException {
+		return openEditor(page, new PapyrusCDOEditorInput(uri, name));
+	}
+
+	public IEditorPart openEditor(IWorkbenchPage page, IEditorInput input) throws PartInitException {
+		URI uri = EditorUtils.getResourceURI(input);
 
 		IInternalPapyrusRepository repository = getRepository(uri);
 		repository.addResourceSetDisposalApprover(getDisposalApprover());
 
-		IEditorPart result = page.openEditor(new PapyrusCDOEditorInput(uri, name), PapyrusMultiDiagramEditor.EDITOR_ID);
+		IEditorPart result = page.openEditor(input, PapyrusMultiDiagramEditor.EDITOR_ID);
 
 		EditingDomain domain = (EditingDomain)result.getAdapter(EditingDomain.class);
 		ResourceSet resourceSet = domain.getResourceSet();
@@ -104,7 +111,7 @@ public class PapyrusCDOEditorManager {
 	}
 
 	IInternalPapyrusRepository getRepository(URI uri) {
-		return (IInternalPapyrusRepository)PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
+		return PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
 	}
 
 	void add(CDOView view, final IEditorPart editor) {

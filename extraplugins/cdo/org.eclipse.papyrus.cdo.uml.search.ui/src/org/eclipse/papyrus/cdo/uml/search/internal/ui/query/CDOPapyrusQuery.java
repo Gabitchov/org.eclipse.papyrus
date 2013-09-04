@@ -23,6 +23,9 @@ import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.net4j.util.event.IListener;
+import org.eclipse.net4j.util.lifecycle.ILifecycle;
+import org.eclipse.net4j.util.lifecycle.LifecycleEventAdapter;
 import org.eclipse.papyrus.cdo.uml.search.internal.ui.Activator;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
@@ -31,7 +34,7 @@ import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
 import org.eclipse.papyrus.views.search.results.ModelElementMatch;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
 import org.eclipse.search.ui.ISearchResult;
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.common.collect.Maps;
@@ -56,6 +59,8 @@ public class CDOPapyrusQuery extends AbstractPapyrusQuery {
 		this.searchText = searchText;
 		this.view = view;
 		this.query = query;
+
+		view.addListener(createViewClosedListener());
 	}
 
 	@Override
@@ -70,7 +75,8 @@ public class CDOPapyrusQuery extends AbstractPapyrusQuery {
 
 	@Override
 	public boolean canRerun() {
-		return true;
+		// I can be run again as long as my view is open
+		return (view != null) && !view.isClosed();
 	}
 
 	@Override
@@ -88,7 +94,7 @@ public class CDOPapyrusQuery extends AbstractPapyrusQuery {
 		// if it doesn't know about an EClass, then a priori, none of its
 		// instances exist, so we don't need to run the query
 		if(view.getSession().getPackageRegistry().getPackageInfo(UMLPackage.eINSTANCE) != null) {
-			List<NamedElement> queryResult = query.getResult(NamedElement.class);
+			List<Element> queryResult = query.getResult(Element.class);
 
 			final Map<URI, ScopeEntry> scopeEntries = Maps.newHashMap();
 
@@ -96,7 +102,7 @@ public class CDOPapyrusQuery extends AbstractPapyrusQuery {
 			// past a resource proxy that cannot be resolved
 			for(int i = 0; i < queryResult.size(); i++) {
 				try {
-					NamedElement next = queryResult.get(i);
+					Element next = queryResult.get(i);
 
 					Resource resource = next.eResource();
 					ResourceSet rset = resource.getResourceSet();
@@ -126,4 +132,17 @@ public class CDOPapyrusQuery extends AbstractPapyrusQuery {
 		return searchResult;
 	}
 
+	private IListener createViewClosedListener() {
+		return new LifecycleEventAdapter() {
+
+			@Override
+			protected void onDeactivated(ILifecycle lifecycle) {
+				// the view is closed.  The user probably closed the repository session.  Attempts to access the search results
+				// will fail henceforth, so clear them
+				if(searchResult != null) {
+					searchResult.removeAll();
+				}
+			}
+		};
+	}
 }

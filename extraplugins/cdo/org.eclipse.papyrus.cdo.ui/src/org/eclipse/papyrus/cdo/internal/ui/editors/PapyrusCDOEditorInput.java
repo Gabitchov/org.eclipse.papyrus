@@ -13,16 +13,16 @@ package org.eclipse.papyrus.cdo.internal.ui.editors;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.infra.core.editor.IPapyrusPageInput;
 import org.eclipse.ui.IPersistableElement;
 
 /**
  * This is the PapyrusCDOEditorInput type. Enjoy.
  */
-public class PapyrusCDOEditorInput
-		extends URIEditorInput {
+public class PapyrusCDOEditorInput extends URIEditorInput {
 
 	public PapyrusCDOEditorInput(URI uri) {
-		super(uri);
+		this(uri, uri.trimFileExtension().lastSegment());
 	}
 
 	public PapyrusCDOEditorInput(URI uri, String name) {
@@ -36,5 +36,38 @@ public class PapyrusCDOEditorInput
 	@Override
 	public IPersistableElement getPersistable() {
 		return null;
+	}
+
+	/**
+	 * A specialization of the CDO editor input that supports specifying editor pages to open in addition.
+	 */
+	public static class PageInput extends PapyrusCDOEditorInput implements IPapyrusPageInput {
+
+		private static final URI[] NO_URIS = {};
+
+		private final URI[] pageURIs;
+
+		private final boolean closeOtherPages;
+
+		public PageInput(URI uri) {
+			this(uri, NO_URIS, false);
+		}
+
+		public PageInput(URI uri, URI[] pageURIs, boolean closeOtherPages) {
+			super(uri);
+
+			this.pageURIs = pageURIs;
+			this.closeOtherPages = closeOtherPages;
+		}
+
+
+		public URI[] getPages() {
+			return pageURIs;
+		}
+
+		public boolean closeOtherPages() {
+			return closeOtherPages;
+		}
+
 	}
 }

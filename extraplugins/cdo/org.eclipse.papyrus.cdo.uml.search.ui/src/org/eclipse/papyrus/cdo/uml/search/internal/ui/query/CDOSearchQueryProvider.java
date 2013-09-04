@@ -35,6 +35,7 @@ import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.uml.search.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.uml.search.internal.ui.open.CDOOpenElementService;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -44,7 +45,6 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
-import org.eclipse.papyrus.infra.services.openelement.service.impl.OpenElementServiceImpl;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeAttribute;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeElement;
 import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;
@@ -193,7 +193,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 
 						ServicesRegistry services = new ServicesRegistry();
 						services.add(LabelProviderService.class, 10, new LabelProviderServiceImpl());
-						services.add(OpenElementService.class, 10, new OpenElementServiceImpl());
+						services.add(OpenElementService.class, 10, new CDOOpenElementService());
 						services.startRegistry();
 
 						services.add(ModelSet.class, 10, new CDOAwareModelSet(PapyrusRepositoryManager.INSTANCE));
