@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.texteditor.cdt;singleton:=true
 Bundle-Version: 0.10.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.texteditor.cdt.Activator
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.editors;bundle-version="3.7.0",
