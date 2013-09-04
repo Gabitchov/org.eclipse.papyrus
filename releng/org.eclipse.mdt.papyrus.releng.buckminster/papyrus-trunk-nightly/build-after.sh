@@ -23,9 +23,9 @@ promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteDir
 FULL_BUILD_ID=$(cat $promoteDirName)
 
 if [ -n "$BUILD_ALIAS" ]; then
-  updateZipName=Papyrus-Update-incubation${BUILD_ALIAS}.zip
+  updateZipName=Papyrus-Update-incubation-${BUILD_ALIAS}.zip
 else
-  updateZipName=Papyrus-Update-incubation${FULL_BUILD_ID}.zip
+  updateZipName=Papyrus-Update-incubation-${FULL_BUILD_ID}.zip
 fi
 zipName="Papyrus-Main.zip"
 

@@ -20,7 +20,7 @@ DROPS_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/downloads/d
 ARCHIVE_DIR=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/drops
 ARCHIVE_INDEX=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/index.html
 UPDATE_SITES_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates
-ZIP_PREFIX="Papyrus-Update-incubation"
+ZIP_PREFIX="Papyrus-Update-incubation-"
 PROMOTE_FUNCTIONS_SH=/opt/public/modeling/mdt/papyrus/promoteFunctions.sh
 ADD_TO_COMPOSITE_SH=/opt/public/modeling/mdt/papyrus/addToComposite.sh
 
