@@ -1,6 +1,6 @@
-promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly-tests/promoteSignal
-promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly-tests/promoteDirName
-# note: the version and build id used by the cronPromote.sh are taken from papyrus-trunk-nightly
+promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-0.10-maintenance-nightly-tests/promoteSignal
+promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-0.10-maintenance-nightly-tests/promoteDirName
+# note: the version and build id used by the cronPromote.sh are taken from papyrus-0.10-maintenance-nightly
 
 zipName="Papyrus-TestResults.zip"
 
