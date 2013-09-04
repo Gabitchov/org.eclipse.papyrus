@@ -17,10 +17,11 @@ import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.List;
+import java.util.Enumeration;
 
-import org.eclipse.osgi.framework.internal.core.BundleFragment;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.osgi.internal.framework.EquinoxBundle;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.junit.Assert;
@@ -187,20 +188,23 @@ public class BundlesTests {
 		int nb = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			URL url = current.getResource(filepath);
-			//specific behavior for the fragment!
-			if((url == null) && (current instanceof BundleFragment)) {
-				final BundleFragment fragment = (BundleFragment)current;
-				final Enumeration<URL> entries = fragment.findEntries("/", filepath, false); //$NON-NLS-1$
-				if(entries != null) {
-					if(entries.hasMoreElements()) {
-						url = entries.nextElement();
-					}
-				}
-			}
+			// specific behavior for the fragment!
+			
+			//never provides the url, so commented...
+			//			if((url == null) && current instanceof EquinoxBundle) {// Platform.isFragment(current))
+			//																	// {
+			//				final EquinoxBundle equinoxBundle = (EquinoxBundle)current;
+			//				final Enumeration<URL> entries = equinoxBundle.findEntries("/", filepath, true);
+			//				if(entries != null) {
+			//					if(entries.hasMoreElements()) {
+			//						url = entries.nextElement();
+			//					}
+			//				}
+			//			}
 
 			if(url == null) {
 				if(message == null) {
-					message = "The following bundles don't have the file about.html :"; //$NON-NLS-1$
+					message = NLS.bind("The following bundles don't have the file {0}.", filepath); //$NON-NLS-1$
 				}
 				message += "\n "; //$NON-NLS-1$
 				message += current.getSymbolicName();
