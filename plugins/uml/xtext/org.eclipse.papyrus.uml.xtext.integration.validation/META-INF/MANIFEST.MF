@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GMF Xtext Integration Validation
+Bundle-Name: GMF Xtext Integration Validation (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.uml.xtext.integration.validation;singleton:=true
 Bundle-Version: 0.10.1.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

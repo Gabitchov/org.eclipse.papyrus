@@ -1,22 +1,17 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.RobotML.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.papyrus.RobotML.PrimitiveData;
 import org.eclipse.papyrus.RobotML.RobotMLPackage;
+
 import org.eclipse.uml2.uml.PrimitiveType;
 
 /**
@@ -26,19 +21,17 @@ import org.eclipse.uml2.uml.PrimitiveType;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.RobotML.impl.PrimitiveDataImpl#getBase_PrimitiveType <em>Base Primitive Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.PrimitiveDataImpl#getBase_PrimitiveType <em>Base Primitive Type</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PrimitiveDataImpl extends DataTypeImpl implements PrimitiveData {
-
 	/**
 	 * The cached value of the '{@link #getBase_PrimitiveType() <em>Base Primitive Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getBase_PrimitiveType()
 	 * @generated
 	 * @ordered
@@ -48,7 +41,6 @@ public class PrimitiveDataImpl extends DataTypeImpl implements PrimitiveData {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PrimitiveDataImpl() {
@@ -58,7 +50,6 @@ public class PrimitiveDataImpl extends DataTypeImpl implements PrimitiveData {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,15 +60,14 @@ public class PrimitiveDataImpl extends DataTypeImpl implements PrimitiveData {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimitiveType getBase_PrimitiveType() {
-		if(base_PrimitiveType != null && base_PrimitiveType.eIsProxy()) {
+		if (base_PrimitiveType != null && base_PrimitiveType.eIsProxy()) {
 			InternalEObject oldBase_PrimitiveType = (InternalEObject)base_PrimitiveType;
 			base_PrimitiveType = (PrimitiveType)eResolveProxy(oldBase_PrimitiveType);
-			if(base_PrimitiveType != oldBase_PrimitiveType) {
-				if(eNotificationRequired())
+			if (base_PrimitiveType != oldBase_PrimitiveType) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE, oldBase_PrimitiveType, base_PrimitiveType));
 			}
 		}
@@ -87,7 +77,6 @@ public class PrimitiveDataImpl extends DataTypeImpl implements PrimitiveData {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimitiveType basicGetBase_PrimitiveType() {
@@ -97,29 +86,26 @@ public class PrimitiveDataImpl extends DataTypeImpl implements PrimitiveData {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBase_PrimitiveType(PrimitiveType newBase_PrimitiveType) {
 		PrimitiveType oldBase_PrimitiveType = base_PrimitiveType;
 		base_PrimitiveType = newBase_PrimitiveType;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE, oldBase_PrimitiveType, base_PrimitiveType));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE:
-			if(resolve)
-				return getBase_PrimitiveType();
-			return basicGetBase_PrimitiveType();
+		switch (featureID) {
+			case RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE:
+				if (resolve) return getBase_PrimitiveType();
+				return basicGetBase_PrimitiveType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -127,15 +113,14 @@ public class PrimitiveDataImpl extends DataTypeImpl implements PrimitiveData {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE:
-			setBase_PrimitiveType((PrimitiveType)newValue);
-			return;
+		switch (featureID) {
+			case RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE:
+				setBase_PrimitiveType((PrimitiveType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -143,15 +128,14 @@ public class PrimitiveDataImpl extends DataTypeImpl implements PrimitiveData {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE:
-			setBase_PrimitiveType((PrimitiveType)null);
-			return;
+		switch (featureID) {
+			case RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE:
+				setBase_PrimitiveType((PrimitiveType)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -159,14 +143,13 @@ public class PrimitiveDataImpl extends DataTypeImpl implements PrimitiveData {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE:
-			return base_PrimitiveType != null;
+		switch (featureID) {
+			case RobotMLPackage.PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE:
+				return base_PrimitiveType != null;
 		}
 		return super.eIsSet(featureID);
 	}

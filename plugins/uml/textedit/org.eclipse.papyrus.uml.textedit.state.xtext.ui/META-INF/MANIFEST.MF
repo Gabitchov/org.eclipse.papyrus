@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.state.xtext;bundle-version="0.1
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
  org.eclipse.papyrus.uml.alf.common.ui,
- org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.0.0"
+ org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.1.qualifier

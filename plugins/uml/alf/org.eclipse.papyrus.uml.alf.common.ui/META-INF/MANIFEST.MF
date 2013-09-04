@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.common.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.papyrus.uml.alf.common;visibility:=reexport,
@@ -16,3 +16,4 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.uml.alf.ui.contentassist
 Bundle-Activator: org.eclipse.papyrus.uml.alf.ui.internal.CommonActivator
+Bundle-Localization: plugin

@@ -85,17 +85,17 @@ public class FSMQueries {
 	 * @param vertex
 	 * @return
 	 */
-	public String generateOperationStateString(org.eclipse.uml2.uml.Vertex vertex) {
-		String result = "";
-		if(vertex instanceof State) {
-			org.eclipse.papyrus.RobotML.State state = UMLUtil.getStereotypeApplication(vertex, org.eclipse.papyrus.RobotML.State.class);
-			if(state != null) {
-				if(state.getOperation() != null) {
-					String operation = state.getOperation().getBase_Operation().getName();
-					result = operation;
-				}
-			}
-		}
-		return result;
-	}
+	//	public String generateOperationStateString(org.eclipse.uml2.uml.Vertex vertex) {
+	//		String result = "";
+	//		if(vertex instanceof State) {
+	//			org.eclipse.papyrus.RobotML.State state = UMLUtil.getStereotypeApplication(vertex, org.eclipse.papyrus.RobotML.State.class);
+	//			if(state != null) {
+	//				if(state.getOperation() != null) {
+	//					String operation = state.getOperation().getBase_Operation().getName();
+	//					result = operation;
+	//				}
+	//			}
+	//		}
+	//		return result;
+	//	}
 }

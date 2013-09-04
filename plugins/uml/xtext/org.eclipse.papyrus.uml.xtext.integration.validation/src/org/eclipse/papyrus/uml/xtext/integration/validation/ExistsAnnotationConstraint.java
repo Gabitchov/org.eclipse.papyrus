@@ -19,6 +19,7 @@ import org.eclipse.emf.validation.IValidationContext;
 public class ExistsAnnotationConstraint extends AbstractModelConstraint {
 
 	public static final String ANNOTATION_SOURCE = "expression_source";
+
 	public static final String ANNOTATION_DETAIL = "expression";
 
 	@Override
@@ -27,16 +28,15 @@ public class ExistsAnnotationConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 		String text = null;
 		// In the case of batch mode.
-		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof EModelElement) {
-				EAnnotation eAnnotation = ((EModelElement) eObj)
-						.getEAnnotation(ANNOTATION_SOURCE);
-				if (eAnnotation != null) {
+		if(eType == EMFEventType.NULL) {
+			if(eObj instanceof EModelElement) {
+				EAnnotation eAnnotation = ((EModelElement)eObj).getEAnnotation(ANNOTATION_SOURCE);
+				if(eAnnotation != null) {
 					text = eAnnotation.getDetails().get(ANNOTATION_DETAIL);
 				}
 			}
 
-			if (text != null && !text.isEmpty()) {
+			if(text != null && !"".equals(text)) {
 				return ctx.createFailureStatus(eObj.eClass().getName());
 			}
 		}

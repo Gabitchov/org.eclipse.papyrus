@@ -38,7 +38,6 @@ import org.eclipse.papyrus.sysml.diagram.common.figure.ConstraintBlockPropertyCo
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConstraintNodeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConstraintParameterAffixedNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PropertyNodeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.policy.EncapsulatedClassifierResizableShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.edit.policy.StructuredClassifierCreationEditPolicy;

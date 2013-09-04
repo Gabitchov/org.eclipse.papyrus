@@ -1,0 +1,30 @@
+@@ -105,29 +99,6 @@
+ 						ICommand newConstraintCreateCommand = commandService.getEditCommand(createTypeRequest);
+ 						if (newConstraintCreateCommand.canExecute()) {
+ 							newConstraintCreateCommand.execute(monitor, info);
+-							Object newObject = newConstraintCreateCommand.getCommandResult().getReturnValue();
+-							// Create the constraint specification
+-							if (newObject instanceof EObject) {
+-								final EObject newElement = (EObject)newObject;
+-								final IDirectEditorConfiguration configuration = initExtendedEditorConfiguration(newElement);
+-								try {
+-									Dialog dialog = new ConstraintExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), newElement, configuration.getTextToEdit(newElement), configuration);
+-									final Dialog finalDialog = dialog;
+-									if(Window.OK == dialog.open()) {
+-										TransactionalEditingDomain domain = getEditingDomain();
+-										RecordingCommand command = new RecordingCommand(domain, "Edit Constraint specification") {
+-											@Override
+-											protected void doExecute() {
+-												configuration.postEditAction(newElement, ((ILabelEditorDialog)finalDialog).getValue());
+-											}
+-										};
+-										domain.getCommandStack().execute(command);
+-									}							
+-								} catch (Exception e) {
+-									Activator.log.error("Problem during editing Constaint", e);
+-								}
+-							}
+-
+ 						}
+ 					}
+ 				}

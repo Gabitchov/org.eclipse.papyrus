@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.common; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,
@@ -21,3 +21,4 @@ Export-Package: org.eclipse.papyrus.uml.alf,
  org.eclipse.papyrus.uml.alf.serializer,
  org.eclipse.papyrus.uml.alf.services,
  org.eclipse.papyrus.uml.alf.validation
+Bundle-Localization: plugin

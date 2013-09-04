@@ -285,14 +285,14 @@ end</body>
   <RobotML:Algorithm xmi:id="_leMm4DikEeK2K5cKvwDFDw" base_Operation="_leDc8DikEeK2K5cKvwDFDw"/>
   <RobotML:Algorithm xmi:id="_qwWdADikEeK2K5cKvwDFDw" base_Operation="_qwK20DikEeK2K5cKvwDFDw"/>
   <RobotML:Algorithm xmi:id="_VBDpkDilEeK2K5cKvwDFDw" base_Operation="_VA4qcDilEeK2K5cKvwDFDw" path=""/>
-  <RobotML:Transition xmi:id="_Y4YOgDinEeK2K5cKvwDFDw" base_Transition="_Y4FTkDinEeK2K5cKvwDFDw" guard="_QGg3oDikEeK2K5cKvwDFDw"/>
+  <RobotML:Transition xmi:id="_Y4YOgDinEeK2K5cKvwDFDw" base_Transition="_Y4FTkDinEeK2K5cKvwDFDw" />
   <RobotML:Algorithm xmi:id="__GlO8DinEeK2K5cKvwDFDw" base_Operation="__GcsEDinEeK2K5cKvwDFDw"/>
-  <RobotML:Transition xmi:id="_MW0V8DioEeK2K5cKvwDFDw" base_Transition="_MWgM4DioEeK2K5cKvwDFDw" guard="__GlO8DinEeK2K5cKvwDFDw" effect="_y6MucDijEeK2K5cKvwDFDw"/>
-  <RobotML:Transition xmi:id="_TAgU0DiqEeKSArdUqChi-A" base_Transition="_TAE3ADiqEeKSArdUqChi-A" guard="_qaG4gDiqEeKSArdUqChi-A" effect="_qwWdADikEeK2K5cKvwDFDw"/>
+  <RobotML:Transition xmi:id="_MW0V8DioEeK2K5cKvwDFDw" base_Transition="_MWgM4DioEeK2K5cKvwDFDw" />
+  <RobotML:Transition xmi:id="_TAgU0DiqEeKSArdUqChi-A" base_Transition="_TAE3ADiqEeKSArdUqChi-A" />
   <RobotML:Algorithm xmi:id="_qaG4gDiqEeKSArdUqChi-A" base_Operation="_qZ1ywDiqEeKSArdUqChi-A"/>
-  <RobotML:Transition xmi:id="_uv4UADisEeKSArdUqChi-A" base_Transition="_uvaZ8DisEeKSArdUqChi-A" guard="_qaG4gDiqEeKSArdUqChi-A" effect="_VBDpkDilEeK2K5cKvwDFDw"/>
-  <RobotML:Transition xmi:id="_SqZakDitEeKSArdUqChi-A" base_Transition="_Sp6SYDitEeKSArdUqChi-A" guard="_QGg3oDikEeK2K5cKvwDFDw"/>
-  <RobotML:Transition xmi:id="_jU5B8DitEeKSArdUqChi-A" base_Transition="_jUbH4DitEeKSArdUqChi-A" guard="__GlO8DinEeK2K5cKvwDFDw" effect="_y6MucDijEeK2K5cKvwDFDw"/>
+  <RobotML:Transition xmi:id="_uv4UADisEeKSArdUqChi-A" base_Transition="_uvaZ8DisEeKSArdUqChi-A" />
+  <RobotML:Transition xmi:id="_SqZakDitEeKSArdUqChi-A" base_Transition="_Sp6SYDitEeKSArdUqChi-A" />
+  <RobotML:Transition xmi:id="_jU5B8DitEeKSArdUqChi-A" base_Transition="_jUbH4DitEeKSArdUqChi-A" />
   <RobotML:DataFlowPort xmi:id="_zcCgcEOJEeKE2858SxsX1g" base_Port="_zYby0EOJEeKE2858SxsX1g"/>
   <RobotML:GPSSystem xmi:id="_QqilgEOLEeKE2858SxsX1g"/>
   <RobotML:SensorSystem xmi:id="_oe100GZAEeK8vedwRu2M7w" base_Class="_oa4h4GZAEeK8vedwRu2M7w"/>
