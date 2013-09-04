@@ -140,7 +140,7 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	nfsURL="/shared/jobs/papyrus-trunk-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/lastSuccessfulBuild/artifact/"
 	export SVN_DIRECTORIES_TO_TAG=( )
-	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_TRUNK_NIGHTLY" "Papyrus-Update-" "NA"
+	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_TRUNK_NIGHTLY" "Papyrus-Update-incubation-" "NA"
 
 	echo "[$DATE] promote done"
 	
@@ -305,7 +305,7 @@ if [ $signalDate10MaintenanceNightly -gt $lastPromoteDate10MaintenanceNightly ];
 	nfsURL="/shared/jobs/papyrus-0.10-maintenance-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.10-maintenance-nightly/lastSuccessfulBuild/artifact/"
 	export SVN_DIRECTORIES_TO_TAG=( )
-	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_0_10_MAINTENANCE_NIGHTLY" "Papyrus-Update-" "NA"
+	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_0_10_MAINTENANCE_NIGHTLY" "Papyrus-Update-incubation-" "NA"
 
 	echo "[$DATE] promote done"
 	
