@@ -334,7 +334,7 @@ if [ $signalDate10MaintenanceNightly -gt $lastPromoteDate10MaintenanceNightly ];
 		{"name": "BUILD_TYPE", "value": "N"},
 		{"name": "SITE_PACK200", "value": "true"},
 		{"name": "BUILD_TARGET", "value": "site.p2"},
-		{"name": "JAVA_HOME", "value": "/shared/common/jdk-1.5.0-22.x86_64"},
+		{"name": "JAVA_HOME", "value": "/shared/common/sun-jdk1.6.0_21_x64"},
 		{"name": "SIGN_UPDATE_SITE", "value": "false"}
 	], "": ""}'
 	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-0.10-maintenance-extra-nightly/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
