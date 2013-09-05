@@ -198,12 +198,15 @@ public class CDOPackageImportSource extends AbstractPackageImportSource {
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			if(newInput == null) {
 				itemProvider.inputChanged(viewer, repoMan, null);
+				super.inputChanged(viewer, repoMan, null);
 			} else {
 				// substitute the repository manager as the input element
 				itemProvider.inputChanged(viewer, null, repoMan);
 
 				// prime the internal nodes for the repositories
-				itemProvider.getChildren(repoMan);
+				itemProvider.getElements(repoMan);
+
+				super.inputChanged(viewer, null, repoMan);
 			}
 		}
 

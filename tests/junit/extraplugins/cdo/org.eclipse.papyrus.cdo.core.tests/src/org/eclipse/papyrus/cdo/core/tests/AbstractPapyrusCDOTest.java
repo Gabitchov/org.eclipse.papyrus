@@ -17,7 +17,6 @@ import static org.junit.Assert.assertThat;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.CDOCommonRepository;
 import org.eclipse.emf.cdo.net4j.CDONet4jUtil;
 import org.eclipse.emf.cdo.server.CDOServerUtil;
@@ -27,7 +26,6 @@ import org.eclipse.emf.cdo.server.net4j.CDONet4jServerUtil;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.spi.server.InternalRepository;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
-import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -124,7 +122,6 @@ public abstract class AbstractPapyrusCDOTest {
 		props.put(Props.OVERRIDE_UUID, ""); // use the name as the UUID
 		props.put(Props.SUPPORTING_AUDITS, "false");
 		props.put(Props.SUPPORTING_BRANCHES, "false");
-		props.put(Props.SUPPORTING_ECORE, "true");
 		props.put(Props.ID_GENERATION_LOCATION, CDOCommonRepository.IDGenerationLocation.STORE.toString());
 	}
 
@@ -234,13 +231,8 @@ public abstract class AbstractPapyrusCDOTest {
 	}
 
 	protected <T extends EObject> T getMasterViewObject(T object) {
-		CDOObject cdo = CDOUtil.getCDOObject(object);
-
 		CDOView view = getInternalPapyrusRepository().getMasterView();
-		@SuppressWarnings("unchecked")
-		T result = (T)CDOUtil.getEObject(view.getObject(cdo.cdoID()));
-
-		return result;
+		return view.getObject(object);
 	}
 
 	public static <T extends Number & Comparable<T>> Matcher<T> lessThan(final T max) {

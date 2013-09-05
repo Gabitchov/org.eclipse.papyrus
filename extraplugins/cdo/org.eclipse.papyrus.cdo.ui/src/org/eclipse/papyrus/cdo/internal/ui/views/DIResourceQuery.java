@@ -269,14 +269,13 @@ public class DIResourceQuery {
 
 			diResources.set(ImmutableSet.copyOf(result));
 
-			if(viewer.getControl() != null) {
+			if((viewer != null) && (viewer.getControl() != null)) {
 				Display display = viewer.getControl().getDisplay();
 				if(display != null) {
 					display.asyncExec(new Runnable() {
 
 						public void run() {
-							if((viewer.getControl() != null) && !viewer.getControl().isDisposed()) {
-
+							if((viewer != null) && (viewer.getControl() != null) && !viewer.getControl().isDisposed()) {
 								refresh();
 							}
 						}
