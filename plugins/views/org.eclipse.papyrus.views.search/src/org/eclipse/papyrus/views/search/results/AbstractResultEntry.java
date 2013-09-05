@@ -9,7 +9,8 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility 
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
+ *  Christian W. Damus (CEA LIST) - Fix equals() to avoid resolving source objects and add missing hashCode() 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.results;
@@ -21,7 +22,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -145,7 +145,15 @@ public abstract class AbstractResultEntry extends Match {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof AbstractResultEntry) {
+		if(obj == this) {
+			return true;
+		}
+		if(obj == null) {
+			return false;
+		}
+		if(!(obj instanceof AbstractResultEntry)) {
+			// support comparison against EObjects
+			// FIXME: This violates the symmetry contract of Object::equals!
 			if(obj instanceof EObject && this.getSource() instanceof EObject) {
 				if(EcoreUtil.equals((EObject)this.getSource(), (EObject)obj)) {
 					if(((AbstractResultEntry)obj).getOffset() == this.getOffset()) {
@@ -154,22 +162,40 @@ public abstract class AbstractResultEntry extends Match {
 						}
 					}
 				}
-			} else {
-				if(((AbstractResultEntry)obj).getSource() != null) {
-					if(((AbstractResultEntry)obj).getSource().equals(this.getSource())) {
-						if(((AbstractResultEntry)obj).getOffset() == this.getOffset()) {
-							if(((AbstractResultEntry)obj).getLength() == this.getLength()) {
-								return true;
-							}
-						}
-
-					}
-				}
 			}
 			return false;
-
 		}
-		return super.equals(obj);
+
+		AbstractResultEntry other = (AbstractResultEntry)obj;
+
+		// don't attempt to resolve the source object by URI in case it is no longer available.
+		// Note that, in the degenerate (and invalid) case in which all of the uri variants of
+		// both result entries are null, they are not considered equal
+		boolean sameSource = ((uriSource != null) && uriSource.equals(other.uriSource)) //
+			|| ((uriResource != null) && uriResource.equals(other.uriResource)) //
+			|| ((uriEResource != null) && uriEResource.equals(other.uriEResource));
+
+		return sameSource && (getOffset() == other.getOffset()) && (getLength() == other.getLength());
+	}
+	
+	@Override
+	public int hashCode() {
+		int result = 0;
+		
+		if (uriSource != null) {
+			result = result ^ uriSource.hashCode();
+		}
+		if (uriResource != null) {
+			result = result ^ uriResource.hashCode();
+		}
+		if (uriEResource != null) {
+			result = result ^ uriEResource.hashCode();
+		}
+		
+		result = result ^ (getOffset() * 17);
+		result = result ^ (getLength() * 37);
+		
+		return super.hashCode();
 	}
 
 	/**
