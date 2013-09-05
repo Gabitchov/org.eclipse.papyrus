@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility 
  *  Christian W. Damus (CEA LIST) - Fix equals() to avoid resolving source objects and add missing hashCode() 
  *
  *****************************************************************************/
@@ -177,25 +177,25 @@ public abstract class AbstractResultEntry extends Match {
 
 		return sameSource && (getOffset() == other.getOffset()) && (getLength() == other.getLength());
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = 0;
 		
 		if (uriSource != null) {
 			result = result ^ uriSource.hashCode();
-		}
+					}
 		if (uriResource != null) {
 			result = result ^ uriResource.hashCode();
-		}
+				}
 		if (uriEResource != null) {
 			result = result ^ uriEResource.hashCode();
-		}
+			}
 		
 		result = result ^ (getOffset() * 17);
 		result = result ^ (getLength() * 37);
-		
-		return super.hashCode();
+
+		return result;
 	}
 
 	/**
