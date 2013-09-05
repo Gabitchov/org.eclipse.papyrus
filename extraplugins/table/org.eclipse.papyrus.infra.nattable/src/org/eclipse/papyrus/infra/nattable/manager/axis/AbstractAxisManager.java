@@ -15,9 +15,7 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -402,8 +400,8 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * 
 	 * @return
 	 */
-	public Collection<Object> getAllManagedAxis() {
-		final Set<Object> eObjects = new HashSet<Object>();
+	public List<Object> getAllManagedAxis() {
+		final List<Object> eObjects = new ArrayList<Object>();
 		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
 			if(current.getManager() == this.representedAxisManager) {
 				eObjects.add(current.getElement());

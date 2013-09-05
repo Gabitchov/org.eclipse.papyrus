@@ -17,16 +17,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.TreeMap;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.command.MoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -37,9 +38,12 @@ import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.utils.AxisComparator;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.providers.CompoundFilteredRestrictedContentProvider;
@@ -396,12 +400,39 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @return
 	 */
 	@Override
-	public Collection<Object> getAllManagedAxis() {
-		final Set<Object> allExistingAxis = new HashSet<Object>();
+	public List<Object> getAllManagedAxis() {
+		final List<Object> allExistingAxis = new ArrayList<Object>();
 		for(IAxisManager manager : this.subManagers) {
 			Collection<Object> managerPossibleElements = manager.getAllManagedAxis();
 			if(managerPossibleElements != null) {
 				allExistingAxis.addAll(managerPossibleElements);
+			}
+		}
+		return allExistingAxis;
+	}
+
+	/**
+	 * 
+	 * @param resolve
+	 *        if <code>true</code> the path will be resolved
+	 * @return
+	 *         a list with the managed objects
+	 */
+	public List<Object> getAllManagedAxis(final boolean resolve) {
+		final List<Object> allExistingAxis = new ArrayList<Object>();
+		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
+			Object representedElement = AxisUtils.getRepresentedElement(current);
+			if(resolve && current instanceof IdAxis) {
+				representedElement = getResolvedPath((IdAxis)current);
+			}
+			allExistingAxis.add(representedElement);
+		}
+		for(IAxisManager manager : this.subManagers) {
+			if(manager.isDynamic()) {
+				final List<Object> managerPossibleElements = manager.getAllManagedAxis();
+				if(managerPossibleElements != null) {
+					allExistingAxis.addAll(managerPossibleElements);
+				}
 			}
 		}
 		return allExistingAxis;
@@ -668,5 +699,84 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager#getSetNewAxisOrderCommand(java.util.List)
+	 * 
+	 * @param newOrder
+	 * @return
+	 */
+	@Override
+	public Command getSetNewAxisOrderCommand(final List<Object> newOrder) {
+		if(canMoveAxis() && !isDynamic()) {
+			return new RecordingCommand(getTableEditingDomain()) {
+
+				@Override
+				protected void doExecute() {
+					final TreeMap<Integer, IAxis> order = new TreeMap<Integer, IAxis>();
+					final AbstractAxisProvider provider = getRepresentedContentProvider();
+					for(int i = 0; i < provider.getAxis().size(); i++) {
+						final IAxis currentAxis = provider.getAxis().get(i);
+						int index = newOrder.indexOf(currentAxis);
+						if(index != -1) {
+							order.put(Integer.valueOf(index), currentAxis);
+						} else {
+							Object resolvedObject = AxisUtils.getRepresentedElement(currentAxis);
+							if(currentAxis instanceof IdAxis) {
+								resolvedObject = getResolvedPath((IdAxis)currentAxis);
+							}
+							index = newOrder.indexOf(resolvedObject);
+							if(index == -1) {
+								throw new IndexOutOfBoundsException("A reordered element can't be resolved"); //$NON-NLS-1$
+							}
+							order.put(Integer.valueOf(index), currentAxis);
+						}
+					}
+
+					final List<IAxis> newValues = new ArrayList<IAxis>();
+					newValues.addAll(order.values());
+					SetCommand.create(getTableEditingDomain(), provider, NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), newValues).execute();
+				}
+			};
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param axisManagerId
+	 *        an axis
+	 * @return
+	 *         the axis manager managing it
+	 */
+	protected IAxisManager findAxisManager(final IAxis axis) {
+		final String axisManagerId = axis.getManager().getAxisManagerId();
+		for(final IAxisManager currentManager : this.subManagers) {
+			if(currentManager.getAxisManagerRepresentation().getAxisManagerId().equals(axisManagerId)) {
+				return currentManager;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param idAxis
+	 *        an idAxis
+	 * @return
+	 *         the resolved path or the {@link String} represented by the idAxis if the path can't be resolved
+	 */
+	protected Object getResolvedPath(final IdAxis idAxis) {
+		final String path = idAxis.getElement();
+		final IAxisManager manager = findAxisManager(idAxis);
+		if(manager instanceof IIdAxisManager) {
+			final Object resolvedElement = ((IIdAxisManager)manager).resolvedPath(path);
+			if(resolvedElement != null) {
+				return resolvedElement;
+			}
+		}
+		return path;
 	}
 }

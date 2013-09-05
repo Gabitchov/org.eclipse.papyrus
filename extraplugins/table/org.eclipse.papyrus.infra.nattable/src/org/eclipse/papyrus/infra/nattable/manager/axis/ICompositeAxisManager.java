@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 
@@ -63,6 +64,15 @@ public interface ICompositeAxisManager extends IAxisManager {
 	 *        the comparator to use to sort the axis. this comparator may be null
 	 */
 	public void setAxisComparator(final Comparator<Object> comp);
+
+	/**
+	 * 
+	 * @param newOrder
+	 *        the new order for the objects : the objects can be IAxis or objects, or objects represented by IAxis in the model
+	 * @return
+	 *         the command to use to set this new order
+	 */
+	public Command getSetNewAxisOrderCommand(final List<Object> newOrder);
 
 
 }
