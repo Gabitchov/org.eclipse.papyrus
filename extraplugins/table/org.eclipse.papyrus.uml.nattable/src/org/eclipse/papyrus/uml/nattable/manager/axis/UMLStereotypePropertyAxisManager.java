@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.nattable.manager.axis.IIdAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
@@ -39,6 +40,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.papyrus.uml.nattable.provider.UMLStereotypeRestrictedPropertyContentProvider;
 import org.eclipse.papyrus.uml.nattable.utils.Constants;
+import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -52,7 +54,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * @author Vincent Lorenzo
  * 
  */
-public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager {
+public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager implements IIdAxisManager {
 
 	/**
 	 * 
@@ -203,30 +205,16 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager {
 		return null;
 	}
 
-	//	/**
-	//	 * 
-	//	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAllManagedAxis()
-	//	 * 
-	//	 * @return
-	//	 */
-	//	@Override
-	//	public Collection<Object> getAllManagedAxis() {//TODO : this calculus must not be done here
-	//		Set<Object> eObjects = new HashSet<Object>();
-	//		final List<Object> elementList = getElements();
-	//		for(final Object element : elementList) {
-	//			if(element instanceof IAxis && ((IAxis)element).getManager() == this.representedAxisManager) {
-	//				EObject context = ((INattableModelManager)getTableManager()).getTable().getContext();
-	//				String id = null;
-	//				IdAxis idAxis = (IdAxis)element;
-	//				id = idAxis.getElement();
-	//				Property property = UMLTableUtils.getRealStereotypeProperty(context, id);
-	//				if(property != null) {
-	//					eObjects.add(property);
-	//				} else {
-	//					eObjects.add(idAxis);
-	//				}
-	//			}
-	//		}
-	//		return eObjects;
-	//	}
+	/**
+	 * 
+	 * @param path
+	 * @return
+	 */
+	public Object resolvedPath(final String path) {
+		if(path.startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX)) {
+			return UMLTableUtils.getRealStereotypeProperty(getTableContext(), path);
+		}
+		return null;
+	}
+
 }

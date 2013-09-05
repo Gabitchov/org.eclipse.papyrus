@@ -149,7 +149,7 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	 * @return
 	 *         the list of the existing axis managed by the axis manager
 	 */
-	public Collection<Object> getAllManagedAxis();
+	public List<Object> getAllManagedAxis();
 
 	/**
 	 * 

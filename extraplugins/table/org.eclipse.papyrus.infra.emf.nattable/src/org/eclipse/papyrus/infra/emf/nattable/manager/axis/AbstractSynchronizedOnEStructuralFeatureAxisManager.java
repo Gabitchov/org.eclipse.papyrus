@@ -405,7 +405,7 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 	 * @return
 	 */
 	@Override
-	public Collection<Object> getAllManagedAxis() {
+	public List<Object> getAllManagedAxis() {
 		return new ArrayList<Object>(this.managedObject);
 	}
 

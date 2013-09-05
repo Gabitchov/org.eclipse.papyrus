@@ -986,8 +986,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		IStaticContentProvider provider = editedAxisManager.createPossibleAxisContentProvider(true);
 		if(provider != null) {
 			selector.setContentProvider(new FlattenableRestrictedFilteredContentProvider((IRestrictedContentProvider)provider, selector));
-
-			final DisplayedAxisSelectorDialog dialog = new DisplayedAxisSelectorDialog(Display.getDefault().getActiveShell(), selector, dialogTitle, true, false, -1);
+			boolean canBeReorder = (!editedAxisManager.isDynamic()) && editedAxisManager.canMoveAxis();
+			final DisplayedAxisSelectorDialog dialog = new DisplayedAxisSelectorDialog(Display.getDefault().getActiveShell(), selector, dialogTitle, true, canBeReorder, -1);
 			boolean displayCheckBox = editedAxisProvider instanceof ISlaveAxisProvider;
 			dialog.setDisplayCheckBox(displayCheckBox);
 			boolean checkboxValue = secondAxisProvider instanceof IMasterAxisProvider && ((IMasterAxisProvider)secondAxisProvider).isDisconnectSlave();
@@ -997,13 +997,15 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 			dialog.setInformationDialogValues(Messages.NattableModelManager_DisconnectAxisManagerInformationDialogTitle, dialogQuestion);
 			dialog.setLabelProvider(labelProvider);
-			dialog.setInitialElementSelections(new ArrayList<Object>(editedAxisManager.getAllManagedAxis()));
+			final List<Object> initialSelection = ((CompositeAxisManager)editedAxisManager).getAllManagedAxis(true);//TODO : must be a list!
+			dialog.setInitialElementSelections(new ArrayList<Object>(initialSelection));
 
 			int open = dialog.open();
 			if(open == Window.OK) {
-				Collection<Object> existingColumns = editedAxisManager.getAllManagedAxis();
+				Collection<Object> existingColumns = initialSelection;
 				ArrayList<Object> checkedColumns = new ArrayList<Object>();
-				checkedColumns.addAll(Arrays.asList(dialog.getResult()));
+				final List<Object> result = Arrays.asList(dialog.getResult());
+				checkedColumns.addAll(result);
 
 				ArrayList<Object> columnsToAdd = new ArrayList<Object>(checkedColumns);
 				columnsToAdd.removeAll(existingColumns);
@@ -1038,6 +1040,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 					compoundCommand.append(new GMFtoEMFCommandWrapper(commandProvider.getEditCommand(request)));
 				}
 
+				if(canBeReorder) {
+					final Command setOrderCommand = ((ICompositeAxisManager)editedAxisManager).getSetNewAxisOrderCommand(result);
+					if(setOrderCommand != null) {
+						compoundCommand.append(setOrderCommand);
+					}
+				}
 				if(!compoundCommand.isEmpty()) {
 					getContextEditingDomain().getCommandStack().execute(compoundCommand);
 					updateToggleActionState();
