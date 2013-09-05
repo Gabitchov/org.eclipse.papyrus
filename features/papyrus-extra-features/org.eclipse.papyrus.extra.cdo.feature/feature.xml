@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.extra.cdo.feature"
       label="%featureName"
-      version="0.10.1.qualifier"
+      version="0.10.100.qualifier"
       provider-name="%providerName">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
