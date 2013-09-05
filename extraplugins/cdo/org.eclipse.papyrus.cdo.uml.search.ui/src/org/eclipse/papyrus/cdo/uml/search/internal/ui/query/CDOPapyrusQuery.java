@@ -31,12 +31,16 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
+import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
 import org.eclipse.papyrus.views.search.results.ModelElementMatch;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
 import org.eclipse.search.ui.ISearchResult;
+import org.eclipse.search.ui.text.Match;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 
@@ -53,12 +57,15 @@ public class CDOPapyrusQuery extends AbstractPapyrusQuery {
 
 	private final PapyrusSearchResult searchResult = new PapyrusSearchResult(this);
 
-	public CDOPapyrusQuery(String searchText, CDOView view, CDOQuery query) {
+	private final AttributeMatchStrategy attributeMatchStrategy;
+
+	public CDOPapyrusQuery(String searchText, CDOView view, CDOQuery query, AttributeMatchStrategy attributeMatchStrategy) {
 		super();
 
 		this.searchText = searchText;
 		this.view = view;
 		this.query = query;
+		this.attributeMatchStrategy = attributeMatchStrategy;
 
 		view.addListener(createViewClosedListener());
 	}
@@ -113,8 +120,11 @@ public class CDOPapyrusQuery extends AbstractPapyrusQuery {
 						scopeEntries.put(resource.getURI(), scopeEntry);
 					}
 
-					// TODO: Post-process query results to determine attribute matches?
-					searchResult.addMatch(new ModelElementMatch(next, scopeEntry));
+					AbstractResultEntry elementMatch = new ModelElementMatch(next, scopeEntry);
+					searchResult.addMatch(elementMatch);
+
+					// post-process the query result to determine specific attribute matches
+					postProcessAttributeMatches(searchResult, elementMatch, next);
 				} catch (Exception e) {
 					// can get "node not found" exceptions on incompletely
 					// deleted resources
@@ -125,6 +135,15 @@ public class CDOPapyrusQuery extends AbstractPapyrusQuery {
 		}
 
 		return result;
+	}
+
+	protected void postProcessAttributeMatches(PapyrusSearchResult searchResult, AbstractResultEntry elementMatch, Element element) {
+		List<Match> attributeMatches = Lists.newArrayListWithExpectedSize(1);
+		attributeMatchStrategy.apply(elementMatch, element, attributeMatches);
+
+		if(!attributeMatches.isEmpty()) {
+			searchResult.addMatches(Iterables.toArray(attributeMatches, Match.class));
+		}
 	}
 
 	@Override

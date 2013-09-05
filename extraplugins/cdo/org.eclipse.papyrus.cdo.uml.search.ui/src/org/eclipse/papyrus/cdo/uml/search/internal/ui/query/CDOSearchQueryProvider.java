@@ -83,7 +83,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 		final String searchPattern = _searchPattern.getElement1();
 		final boolean isRegexMatch = _searchPattern.getElement2();
 
-		return createOCLSearchQuery(queryInfo, new Function<Triplet<QueryInfo, CDOView, Collection<URI>>, CDOQuery>() {
+		return createOCLSearchQuery(queryInfo, AttributeMatchStrategy.create(queryInfo), new Function<Triplet<QueryInfo, CDOView, Collection<URI>>, CDOQuery>() {
 
 			@Override
 			public CDOQuery apply(Triplet<QueryInfo, CDOView, Collection<URI>> input) {
@@ -126,7 +126,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 			}
 		}
 
-		return createOCLSearchQuery(queryInfo, new Function<Triplet<QueryInfo, CDOView, Collection<URI>>, CDOQuery>() {
+		return createOCLSearchQuery(queryInfo, AttributeMatchStrategy.create(queryInfo, attributes), new Function<Triplet<QueryInfo, CDOView, Collection<URI>>, CDOQuery>() {
 
 			@Override
 			public CDOQuery apply(Triplet<QueryInfo, CDOView, Collection<URI>> input) {
@@ -154,7 +154,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 		return Pair.create(searchPattern, isRegexMatch);
 	}
 
-	protected AbstractPapyrusQuery createOCLSearchQuery(QueryInfo queryInfo, Function<Triplet<QueryInfo, CDOView, Collection<URI>>, CDOQuery> queryFunction) {
+	protected AbstractPapyrusQuery createOCLSearchQuery(QueryInfo queryInfo, AttributeMatchStrategy attributeMatcheStrategy, Function<Triplet<QueryInfo, CDOView, Collection<URI>>, CDOQuery> queryFunction) {
 		IServiceRegistryTracker tracker = new DefaultServiceRegistryTracker();
 
 		Multimap<CDOView, URI> views = getViews(queryInfo.getScope());
@@ -165,7 +165,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 			// parameters for the server-side OCL query handler
 			query.setParameter("cdoImplicitRootClass", EcorePackage.Literals.EOBJECT);
 
-			AbstractPapyrusQuery searchQuery = new CDOPapyrusQuery(queryInfo.getQueryText(), view, query);
+			AbstractPapyrusQuery searchQuery = new CDOPapyrusQuery(queryInfo.getQueryText(), view, query, attributeMatcheStrategy);
 			result.add(searchQuery);
 
 			try {
@@ -340,7 +340,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 					if(isRegexMatch) {
 						result.append(".matches(searchPattern)"); //$NON-NLS-1$
 					} else {
-						result.append(" = searchPattern"); //$NON-NLS-1$
+						result.append(".indexOf(searchPattern) > 0"); //$NON-NLS-1$
 					}
 
 					// close the exists iterator (many case) or 'and' group (scalar case)
@@ -353,7 +353,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 					if(isRegexMatch) {
 						result.append(".matches(searchPattern)"); //$NON-NLS-1$
 					} else {
-						result.append(" = searchPattern"); //$NON-NLS-1$
+						result.append(".indexOf(searchPattern) > 0"); //$NON-NLS-1$
 					}
 
 					// close the exists iterator

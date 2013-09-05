@@ -13,6 +13,8 @@ package org.eclipse.papyrus.cdo.uml.search.internal.ui.query;
 
 import static java.util.regex.Pattern.quote;
 
+import java.util.regex.Matcher;
+
 
 /**
  * Utilities for working with regex patterns in CDO OCL queries.
@@ -70,6 +72,40 @@ public class PatternUtil {
 		if(!result.endsWith(WILDCARD)) {
 			result = result + WILDCARD;
 		}
+		return result;
+	}
+
+	/**
+	 * Local post-processing of element matches uses {@link Matcher#find()} to gather up all applicable attribute matches. This method converts
+	 * the user's search criteria into an appropriate regular expression.
+	 * 
+	 * @param searchText
+	 *        the user's search text
+	 * @param caseSensitive
+	 *        whether the search is case-sensitive
+	 * @param regularExpression
+	 *        whether the search tex is to be interpreted as a regular expression
+	 * 
+	 * @return the appropriately modified string specifying the regular expression search term, never {@code null}
+	 */
+	public static String wrapForFind(String searchText, boolean caseSensitive, boolean regularExpression) {
+		String result;
+
+		if(caseSensitive) {
+			if(!regularExpression) {
+				result = quote(searchText); // simple sub-string search
+			} else {
+				result = searchText; // already a regex
+			}
+		} else {
+			if(!regularExpression) {
+				// make a case-insensitive regex matching the literal text
+				result = String.format("(?i)%s", quote(searchText));
+			} else {
+				result = String.format("(?i)%s", searchText);
+			}
+		}
+
 		return result;
 	}
 }
