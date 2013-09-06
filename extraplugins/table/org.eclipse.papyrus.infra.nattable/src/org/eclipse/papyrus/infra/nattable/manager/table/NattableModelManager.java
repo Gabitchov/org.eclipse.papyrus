@@ -422,7 +422,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	public void invertJavaObject() {
 		getRowSortModel().clear();//we clear the sort model
-		this.rowManager.setAxisComparator(null);
 		AbstractAxisProvider newColumProvider = this.rowProvider;
 		AbstractAxisProvider newRowProvider = this.columnProvider;
 		List<Object> newVerticalElementList = this.horizontalElements;
@@ -438,6 +437,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		NattableModelManager.this.rowManager = newRowManager;
 		NattableModelManager.this.columnManager = newColumnManager;
+		this.rowManager.setAxisComparator(null);
+		this.columnManager.setAxisComparator(null);
+
 		updateToggleActionState();
 		configureNatTable();
 		refreshNatTable();
