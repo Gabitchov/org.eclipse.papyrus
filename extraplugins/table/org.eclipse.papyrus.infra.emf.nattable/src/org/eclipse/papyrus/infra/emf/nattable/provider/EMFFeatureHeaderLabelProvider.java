@@ -74,7 +74,12 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	 */
 	protected String getText(FeatureLabelProviderConfiguration featureConf, final IConfigRegistry configRegistry, final String name, final Object type, final boolean isDerived, final int lowerBound, final int upperBounds) {
 		//we collect the required values
-		boolean displayName = featureConf.isDisplayName();
+		boolean displayName = false;
+		try {
+			displayName = featureConf.isDisplayName();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		boolean displayMultiplicity = featureConf.isDisplayMultiplicity();
 		boolean displayType = featureConf.isDisplayType();
 		boolean displayIsDerived = featureConf.isDisplayIsDerived();
@@ -141,33 +146,37 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 	 */
 	@Override
 	public String getText(Object element) {
-		final Object object = ((ILabelProviderContextElementWrapper)element).getObject();
+		final ILabelProviderContextElementWrapper wrapper = (ILabelProviderContextElementWrapper)element;
+		final IConfigRegistry configRegistry = wrapper.getConfigRegistry();
+
+		final Object value = wrapper.getObject();
 		EStructuralFeature feature = null;
-		String alias = "";
-		if(object instanceof EStructuralFeatureAxis) {
-			feature = ((EStructuralFeatureAxis)object).getElement();
-			alias = ((EStructuralFeatureAxis)object).getAlias();
+		String alias = "";//$NON-NLS-1$
+		if(value instanceof EStructuralFeatureAxis) {
+			feature = ((EStructuralFeatureAxis)value).getElement();
+			alias = ((EStructuralFeatureAxis)value).getAlias();
 		} else if(feature instanceof EStructuralFeature) {
 			feature = (EStructuralFeature)((ILabelProviderContextElementWrapper)element).getObject();
 		}
 
-		final IConfigRegistry configRegistry = ((ILabelProviderContextElementWrapper)element).getConfigRegistry();
+		String returnedValue = null;
+		if(alias != null && !alias.isEmpty()) {
+			returnedValue = alias;
+		} else {
+			returnedValue = feature.getName();
+		}
 		ILabelProviderConfiguration conf = null;
-		if(element instanceof LabelProviderCellContextElementWrapper) {
-			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper)element);
+		if(wrapper instanceof LabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper)wrapper);
 		}
 		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
-			return ""; //$NON-NLS-1$
-		}
-		if(conf instanceof FeatureLabelProviderConfiguration) {
-			String nameToDisplay = feature.getName();
-			if(alias != null && !alias.equals("")) {
-				nameToDisplay = alias;
-			}
-			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, nameToDisplay, feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
+			returnedValue = ""; //$NON-NLS-1$
 		} else {
-			return super.getText(element);
+			if(conf instanceof FeatureLabelProviderConfiguration) {
+				returnedValue = getText((FeatureLabelProviderConfiguration)conf, configRegistry, returnedValue, feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
+			}
 		}
+		return returnedValue;
 	}
 
 	/**

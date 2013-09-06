@@ -65,11 +65,9 @@ public class AxisComparator implements Comparator<IAxis> {
 	 * @return
 	 */
 	public int compare(IAxis arg0, IAxis arg1) {
-		LabelProviderService serv = this.configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-		Object element0 = arg0.getElement();
-		Object element1 = arg1.getElement();
-		final String str1 = getText(serv, element0).replaceAll(AxisUtils.REGEX, "");//we keep only words characters (letters + numbers) + whitespace
-		final String str2 = getText(serv, element1).replaceAll(AxisUtils.REGEX, "");
+		final LabelProviderService serv = this.configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		final String str1 = getText(serv, arg0).replaceAll(AxisUtils.REGEX, "");//we keep only words characters (letters + numbers) + whitespace
+		final String str2 = getText(serv, arg1).replaceAll(AxisUtils.REGEX, "");
 		if(this.alphabeticOrder) {
 			return str1.compareToIgnoreCase(str2);
 		}

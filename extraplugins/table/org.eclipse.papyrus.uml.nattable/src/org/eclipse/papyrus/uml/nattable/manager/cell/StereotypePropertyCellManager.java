@@ -230,6 +230,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 				default:
 					prop = null;
 					stereotypes = Collections.emptyList();
+					break;
 				}
 			}
 		}
