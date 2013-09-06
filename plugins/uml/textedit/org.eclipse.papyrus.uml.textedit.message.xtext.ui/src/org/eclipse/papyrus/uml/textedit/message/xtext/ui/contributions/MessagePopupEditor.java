@@ -23,9 +23,9 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.textedit.message.xtext.ui.internal.UmlMessageActivator;
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
 

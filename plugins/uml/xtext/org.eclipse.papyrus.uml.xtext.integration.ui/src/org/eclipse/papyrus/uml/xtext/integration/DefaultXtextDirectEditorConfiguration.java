@@ -9,14 +9,11 @@
  * Contributors:
  * Andreas Muelder - muelder@itemis.de -  Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.extensionpoints.editors.configuration;
-
-import static org.eclipse.papyrus.uml.xtext.integration.validation.ExistsAnnotationConstraint.ANNOTATION_DETAIL;
-import static org.eclipse.papyrus.uml.xtext.integration.validation.ExistsAnnotationConstraint.ANNOTATION_SOURCE;
+package org.eclipse.papyrus.uml.xtext.integration;
 
 import java.io.IOException;
 import java.util.Collections;
-   
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
@@ -33,8 +30,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.papyrus.uml.xtext.integration.XtextDirectEditManager;
-import org.eclipse.papyrus.uml.xtext.integration.XtextFakeResourceContext;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.swt.SWT;
@@ -53,6 +51,10 @@ import com.google.inject.Injector;
 public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirectEditorConfiguration implements
 		ICustomDirectEditorConfiguration {
 
+	public static final String ANNOTATION_SOURCE = "expression_source";
+
+	public static final String ANNOTATION_DETAIL = "expression";
+	
 	/**
 	 * returns the UI Injector for the Xtext language
 	 * 

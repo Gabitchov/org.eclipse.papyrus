@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -29,6 +28,7 @@ import org.eclipse.papyrus.uml.textedit.property.xtext.ui.internal.UmlPropertyAc
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.ModifierSpecification;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.PropertyRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.TypeRule;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
