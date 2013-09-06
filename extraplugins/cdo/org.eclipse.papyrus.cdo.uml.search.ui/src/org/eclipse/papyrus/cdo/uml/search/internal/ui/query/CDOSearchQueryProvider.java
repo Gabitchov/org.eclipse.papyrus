@@ -111,8 +111,10 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 		// attributes specifically selected, add all of its attributes
 		final Multimap<EClass, EAttribute> attributes = ArrayListMultimap.create();
 		for(ParticipantTypeAttribute next : filter(queryInfo.getParticipantTypes(), ParticipantTypeAttribute.class)) {
-			EAttribute attr = (EAttribute)next.getElement();
-			attributes.put(attr.getEContainingClass(), attr);
+			if(next.getParent().getElement() instanceof EClass) {
+				EAttribute attr = (EAttribute)next.getElement();
+				attributes.put((EClass)next.getParent().getElement(), attr);
+			}
 		}
 		for(ParticipantTypeElement next : filter(queryInfo.getParticipantTypes(), not(instanceOf(ParticipantTypeAttribute.class)))) {
 			if(next.getElement() instanceof EClass) {
@@ -318,14 +320,21 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 		// from our candidate elements, select those that match the attribute criteria
 		result.append("->select(e | "); //$NON-NLS-1$
 
+		boolean firstEClass = true;
 		for(EClass next : attributes.keySet()) {
+			if(firstEClass) {
+				firstEClass = false;
+			} else {
+				result.append(" or ");
+			}
+
 			result.append("e.oclIsKindOf(").append(next.getName()).append(") and ("); //$NON-NLS-1$ //$NON-NLS-2$
 			result.append("let s : ").append(next.getName()).append(" = e.oclAsType(").append(next.getName()).append(") in "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
-			boolean first = true;
+			boolean firstAttr = true;
 			for(EAttribute attr : attributes.get(next)) {
-				if(first) {
-					first = false;
+				if(firstAttr) {
+					firstAttr = false;
 				} else {
 					result.append(" or ");
 				}
