@@ -13,63 +13,29 @@ import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
-import org.eclipse.papyrus.uml.xtext.integration.XtextStyledTextCellEditorEx;
-import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 
 /**
  * 
  * @author andreas muelder - Initial contribution and API
  * 
  */
-public class XtextEditingSupport extends EditingSupport {
+public class DirectEditorEditingSupport extends EditingSupport {
 
-	public XtextEditingSupport(ColumnViewer viewer) {
+	public DirectEditorEditingSupport(ColumnViewer viewer) {
 		super(viewer);
 	}
 
 	@Override
 	protected CellEditor getCellEditor(final Object element) {
-		DefaultXtextDirectEditorConfiguration configuration = getConfiguration(element);
-		IContextElementProvider provider = new IContextElementProvider() {
-			public EObject getContextObject() {
-				return (EObject) ((IAdaptable) element).getAdapter(EObject.class);
-			}
-		};
-		XtextStyledTextCellEditorEx cellEditor = new XtextStyledTextCellEditorEx(SWT.MULTI | SWT.BORDER,
-				configuration.getInjector(), provider) {
-
-			// This is a workaround for bug
-			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=412732
-			// We can not create SWT.SINGLE CellEditor here, so we have to hook
-			// into the StyledTextListener to disable new line. Delete this when
-			// the bug is fixed
-			@Override
-			protected StyledText createStyledText(Composite parent) {
-				StyledText text = super.createStyledText(parent);
-				text.addListener(3005, new Listener() {
-					public void handleEvent(Event event) {
-						if (event.character == SWT.CR && !completionProposalAdapter.isProposalPopupOpen()) {
-							focusLost();
-						}
-					}
-				});
-				return text;
-			}
-			// Workaround end
-
-		};
+		ICustomDirectEditorConfiguration configuration = getConfiguration(element);
+		EObject semanticObject = (EObject) ((IAdaptable) element).getAdapter(EObject.class);
 		Composite parent = (Composite) getViewer().getControl();
-		cellEditor.create(parent);
-		return cellEditor;
+		return configuration.createCellEditor(parent, semanticObject);
 	}
 
 	@Override
@@ -79,14 +45,14 @@ public class XtextEditingSupport extends EditingSupport {
 
 	@Override
 	protected Object getValue(Object element) {
-		DefaultXtextDirectEditorConfiguration configuration = getConfiguration(element);
+		ICustomDirectEditorConfiguration configuration = getConfiguration(element);
 		Object semanticObject = ((IAdaptable) element).getAdapter(EObject.class);
 		return configuration.getTextToEdit(semanticObject);
 	}
 
 	@Override
 	protected void setValue(Object element, Object value) {
-		DefaultXtextDirectEditorConfiguration configuration = getConfiguration(element);
+		ICustomDirectEditorConfiguration configuration = getConfiguration(element);
 		EObject semanticObject = (EObject) ((IAdaptable) element).getAdapter(EObject.class);
 		IParser parser = configuration.createParser(semanticObject);
 
@@ -95,7 +61,7 @@ public class XtextEditingSupport extends EditingSupport {
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 	}
 
-	protected DefaultXtextDirectEditorConfiguration getConfiguration(Object element) {
+	protected ICustomDirectEditorConfiguration getConfiguration(Object element) {
 		if (element instanceof IAdaptable) {
 			EObject semanticObject = (EObject) ((IAdaptable) element).getAdapter(EObject.class);
 			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
@@ -106,8 +72,8 @@ public class XtextEditingSupport extends EditingSupport {
 			if (languagePreferred != null && !languagePreferred.equals("")) {
 				IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred,
 						semanticClassName);
-				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
-					return (DefaultXtextDirectEditorConfiguration) configuration;
+				if (configuration instanceof ICustomDirectEditorConfiguration) {
+					return (ICustomDirectEditorConfiguration) configuration;
 				}
 			}
 		}

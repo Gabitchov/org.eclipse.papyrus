@@ -30,12 +30,17 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.xtext.util.StringInputStream;
 
 import com.google.inject.Injector;
@@ -159,6 +164,40 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 					EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS, eAnnotation));
 		}
 		return UnexecutableCommand.INSTANCE;
+	}
+	
+	
+	public CellEditor createCellEditor(Composite parent, final EObject semanticObject) {
+		IContextElementProvider provider = new IContextElementProvider() {
+			public EObject getContextObject() {
+				return semanticObject;
+			}
+		};
+		XtextStyledTextCellEditorEx cellEditor = new XtextStyledTextCellEditorEx(
+				SWT.MULTI | SWT.BORDER, getInjector(), provider) {
 
+			// This is a workaround for bug
+			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=412732
+			// We can not create SWT.SINGLE CellEditor here, so we have to hook
+			// into the StyledTextListener to disable new line. Delete this when
+			// the bug is fixed
+			@Override
+			protected StyledText createStyledText(Composite parent) {
+				StyledText text = super.createStyledText(parent);
+				text.addListener(3005, new Listener() {
+					public void handleEvent(Event event) {
+						if (event.character == SWT.CR
+								&& !completionProposalAdapter
+										.isProposalPopupOpen()) {
+							focusLost();
+						}
+					}
+				});
+				return text;
+			}
+			// Workaround end
+		};
+		cellEditor.create(parent);
+		return cellEditor;
 	}
 }
