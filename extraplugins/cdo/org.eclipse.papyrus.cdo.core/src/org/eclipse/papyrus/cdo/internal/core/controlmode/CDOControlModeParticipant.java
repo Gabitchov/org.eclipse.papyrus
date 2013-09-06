@@ -14,6 +14,7 @@ package org.eclipse.papyrus.cdo.internal.core.controlmode;
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.filter;
 import static com.google.common.collect.Iterables.transform;
+import static org.eclipse.papyrus.cdo.internal.core.controlmode.CDOProxyManager.createPapyrusCDOURI;
 
 import java.util.Collections;
 import java.util.EnumSet;
@@ -137,6 +138,31 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 				updates.add(new ControlUpdate(next, object, proxy));
 			}
 		}
+	}
+
+	public IUpdate getProxyCrossReferencesUpdate(final EObject owner, final EReference crossReference) {
+		IUpdate result = IUpdate.EMPTY;
+		final CDOStore[] store = { null };
+
+		for(ListIterator<? extends EObject> xrefs = CDOUtils.iterator(owner, crossReference, false); xrefs.hasNext();) {
+			final int index = xrefs.nextIndex();
+			final EObject referent = xrefs.next();
+
+			if(!referent.eIsProxy() && !inSameUnit(owner, referent)) {
+				if(store[0] == null) {
+					store[0] = ((InternalCDOView)CDOUtils.getCDOObject(owner).cdoView()).getStore();
+				}
+
+				result = result.chain(new OneWayUpdate() {
+
+					public void apply() {
+						store[0].set((InternalEObject)owner, crossReference, index, CDOIDUtil.createExternal(createPapyrusCDOURI(referent)));
+					}
+				});
+			}
+		}
+
+		return result;
 	}
 
 	public ICommand getPreUncontrolCommand(ControlModeRequest request) {

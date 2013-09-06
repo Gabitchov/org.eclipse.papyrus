@@ -16,7 +16,7 @@ import org.eclipse.papyrus.cdo.core.util.tests.AllUtilTests;
 import org.eclipse.papyrus.cdo.internal.core.exporter.tests.AllModelExportTests;
 import org.eclipse.papyrus.cdo.internal.core.expressions.tests.AllExpressionsTests;
 import org.eclipse.papyrus.cdo.internal.core.importer.tests.AllModelImportTests;
-import org.eclipse.papyrus.cdo.internal.core.tests.PapyrusRepositoryManagerTest;
+import org.eclipse.papyrus.cdo.internal.core.tests.AllInternalCoreTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -26,7 +26,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({ AllUtilTests.class, AllExpressionsTests.class, //
-PapyrusRepositoryManagerTest.class, CDOAwareModelSetTest.class, //
+AllInternalCoreTests.class, CDOAwareModelSetTest.class, //
 AllModelImportTests.class, AllModelExportTests.class })
 public class AllTests {
 

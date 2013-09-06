@@ -12,10 +12,14 @@
 package org.eclipse.papyrus.cdo.core.resource;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.CDOState;
 import org.eclipse.emf.cdo.dawn.gmf.util.DawnDiagramUpdater;
 import org.eclipse.emf.cdo.eresource.CDOResource;
@@ -29,6 +33,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -37,12 +42,14 @@ import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
+import org.eclipse.papyrus.cdo.internal.core.controlmode.CDOControlModeParticipant;
 import org.eclipse.papyrus.cdo.internal.core.controlmode.CDOProxyManager;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSet;
 
 import com.google.common.base.Predicates;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 
 /**
@@ -177,21 +184,21 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 		try {
 			super.unload();
 		} finally {
-		if((repository != null) && (getCDOView() != null)) {
-			CDOView view = getCDOView();
-			if(view != null) {
-				view.removeListener(getInvalidationListener());
-			}
-			invalidationListener = null;
+			if((repository != null) && (getCDOView() != null)) {
+				CDOView view = getCDOView();
+				if(view != null) {
+					view.removeListener(getInvalidationListener());
+				}
+				invalidationListener = null;
 
-			// dispose the transaction
-			repository.close(this);
+				// dispose the transaction
+				repository.close(this);
 
 				// now, we can remove the CDOViewSet adapter
 				eAdapters().clear();
-		}
+			}
 
-		repository = null;
+			repository = null;
 		}
 	}
 
@@ -328,6 +335,56 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 		}
 
 		return result;
+	}
+
+	@Override
+	public void save(IProgressMonitor monitor) throws IOException {
+		CDOView view = getCDOView();
+		CDOTransaction transaction = null;
+
+		Collection<CDOObject> updates;
+		if((view instanceof CDOTransaction) && view.isDirty()) {
+			// collect updated objects to post-process for cross-unit references
+			transaction = (CDOTransaction)view;
+			updates = ImmutableList.<CDOObject> builder() //
+			.addAll(transaction.getNewObjects().values()) //
+			.addAll(transaction.getDirtyObjects().values()) //
+			.build();
+		} else {
+			updates = Collections.emptyList();
+		}
+
+		SubMonitor sub = SubMonitor.convert(monitor, updates.isEmpty() ? 1 : 2);
+
+		super.save(sub.newChild(1));
+
+		if(!updates.isEmpty()) {
+			CDOControlModeParticipant control = new CDOControlModeParticipant();
+			CDOControlModeParticipant.IUpdate run = CDOControlModeParticipant.IUpdate.EMPTY;
+
+			for(CDOObject next : updates) {
+				EObject object = CDOUtil.getEObject(next);
+				if(object != null) {
+					for(EReference xref : object.eClass().getEAllReferences()) {
+						if(!xref.isContainment() && xref.isChangeable() && !xref.isDerived() && !xref.isTransient()) {
+							run = run.chain(control.getProxyCrossReferencesUpdate(object, xref));
+						}
+					}
+				}
+			}
+
+			if(!run.isEmpty()) {
+				run.apply();
+
+				try {
+					transaction.commit(sub.newChild(1));
+				} catch (CommitException e) {
+					Activator.log.error("Follow-up commit after save failed.", e);
+				}
+			} else {
+				sub.done();
+			}
+		}
 	}
 
 	//
