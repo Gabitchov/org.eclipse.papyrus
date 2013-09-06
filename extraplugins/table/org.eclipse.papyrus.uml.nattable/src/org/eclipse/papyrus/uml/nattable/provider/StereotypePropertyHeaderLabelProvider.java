@@ -21,6 +21,7 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
@@ -79,40 +80,49 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	 */
 	@Override
 	public String getText(Object element) {
-		ILabelProviderConfiguration conf = null;
-		final IConfigRegistry configRegistry = ((ILabelProviderContextElementWrapper)element).getConfigRegistry();
+		final ILabelProviderContextElementWrapper wrapper = (ILabelProviderContextElementWrapper)element;
+		final IConfigRegistry configRegistry = wrapper.getConfigRegistry();
+		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+		final Table table = modelManager.getTable();
+		final EObject tableContext = table.getContext();
+		final Object value = wrapper.getObject();
 		String alias = ""; //$NON-NLS-1$
-		if(element instanceof LabelProviderCellContextElementWrapper) {
-			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			LabelStack labels = ((LabelProviderCellContextElementWrapper)element).getConfigLabels();
-			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
-				conf = LabelConfigurationManagementUtils.getUsedColumnFeatureLabelConfiguration(manager.getTable());
-			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
-				conf = LabelConfigurationManagementUtils.getUsedRowFeatureLabelConfiguration(manager.getTable());
-			}
-
-		}
-		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
-			return ""; //$NON-NLS-1$
-		}
-		final Object value = ((ILabelProviderContextElementWrapper)element).getObject();
 		if(value instanceof FeatureAxis) {
 			alias = ((FeatureAxis)value).getAlias();
 		}
-		final INattableModelManager modelManager = (INattableModelManager)getAxisContentProvider(configRegistry);
-		final EObject tableContext = modelManager.getTable().getContext();
-		String id = AxisUtils.getPropertyId(value);
-		final Property prop = UMLTableUtils.getRealStereotypeProperty(tableContext, id);
-		if(prop != null) {
-			String nameToDisplay = prop.getName();
-			if(alias != null && !alias.equals("")) { //$NON-NLS-1$
-				nameToDisplay = alias;
+
+		ILabelProviderConfiguration conf = null;
+		if(wrapper instanceof LabelProviderCellContextElementWrapper) {
+			LabelStack labels = ((LabelProviderCellContextElementWrapper)wrapper).getConfigLabels();
+			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
+				conf = LabelConfigurationManagementUtils.getUsedColumnFeatureLabelConfiguration(table);
+			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
+				conf = LabelConfigurationManagementUtils.getUsedRowFeatureLabelConfiguration(table);
 			}
-			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, nameToDisplay, prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
-		} else {
-			id = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
-			return id + " " + REQUIRED_PROFILE_NOT_AVALAIBLE; //$NON-NLS-1$
+
 		}
+		String returnedValue = null;
+		if(conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
+			returnedValue = ""; //$NON-NLS-1$
+		} else {
+			String id = AxisUtils.getPropertyId(value);
+			final Property prop = UMLTableUtils.getRealStereotypeProperty(tableContext, id);
+			if(alias != null && !alias.isEmpty()) {
+				returnedValue = alias;
+			} else {
+				returnedValue = getLabelProviderService(configRegistry).getLabelProvider(prop).getText(prop);
+			}
+			if(conf != null && prop != null) {
+				if(alias != null && !alias.equals("")) { //$NON-NLS-1$
+					returnedValue = alias;
+				}
+				returnedValue = getText((FeatureLabelProviderConfiguration)conf, configRegistry, returnedValue, prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
+			} else if(prop == null) {
+				id = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
+				returnedValue = id + " " + REQUIRED_PROFILE_NOT_AVALAIBLE; //$NON-NLS-1$
+			}
+		}
+		return returnedValue;
 	}
 
 	/**

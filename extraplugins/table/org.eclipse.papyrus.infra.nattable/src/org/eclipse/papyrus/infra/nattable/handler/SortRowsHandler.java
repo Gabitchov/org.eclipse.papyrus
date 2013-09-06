@@ -51,9 +51,10 @@ public class SortRowsHandler extends AbstractTableHandler {
 	@Override
 	public void setEnabled(Object evaluationContext) {
 		INattableModelManager manager = getCurrentNattableModelManager();
+		boolean enabled = false;
 		if(manager != null) {
-			setBaseEnabled(manager.canMoveColumns());
+			enabled = manager.canMoveColumns();
 		}
-		super.setBaseEnabled(false);
+		setBaseEnabled(enabled);
 	}
 }
