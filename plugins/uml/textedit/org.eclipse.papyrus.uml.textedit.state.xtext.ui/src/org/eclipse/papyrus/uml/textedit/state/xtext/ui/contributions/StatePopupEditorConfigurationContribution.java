@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -30,6 +29,7 @@ import org.eclipse.papyrus.uml.textedit.state.xtext.ui.contentassist.UmlStatePro
 import org.eclipse.papyrus.uml.textedit.state.xtext.ui.internal.UmlStateActivator;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.StateRule;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;

@@ -29,7 +29,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.alf.alf.BOOLEAN_LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.INTEGER_LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.NameExpression;
@@ -37,6 +36,7 @@ import org.eclipse.papyrus.uml.alf.alf.STRING_LITERAL;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypePropertyEditorUtil;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.internal.AppliedStereotypePropertyActivator;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 

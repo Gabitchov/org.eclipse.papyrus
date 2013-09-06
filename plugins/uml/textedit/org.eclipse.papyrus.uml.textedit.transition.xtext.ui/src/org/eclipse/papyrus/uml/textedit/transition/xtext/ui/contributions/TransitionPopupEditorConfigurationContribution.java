@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal.UmlTransitionActivator;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.CallOrSignalEventRule;
@@ -36,6 +35,7 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EventRule
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.RelativeTimeEventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TimeEventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
