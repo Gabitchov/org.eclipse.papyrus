@@ -202,7 +202,7 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 				@Override
 				public Adapter remove(int index) {
 					Adapter toRemove = primitiveGet(index);
-					if((toRemove instanceof CDOViewSet) && canDisconnectCDOViewSet()) {
+					if((toRemove instanceof CDOViewSet) && !canDisconnectCDOViewSet()) {
 						// don't allow its removal if my view is still open!
 						// (Papyrus attempts to clear the resource set's adapters when disposing a ModelSet)
 						return null;
@@ -213,7 +213,7 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 				@Override
 				public void clear() {
-					if(canDisconnectCDOViewSet()) {
+					if(!canDisconnectCDOViewSet()) {
 						// we can remove everything but the view-set adapter
 						Adapter viewSetAdapter = getViewSetAdapter();
 						if(viewSetAdapter != null) {
