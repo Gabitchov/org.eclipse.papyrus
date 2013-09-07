@@ -194,6 +194,15 @@ public abstract class AbstractPapyrusCDOTest {
 		return URI.createURI("cdo://" + repoUUID + getResourcePath(path), false);
 	}
 
+	protected URI getRepositoryURI() {
+		return getInternalPapyrusRepository().getMasterView().getRootResource().getURI();
+	}
+
+	protected URI getTestFolderURI() {
+		// last segment adds the trailing separator
+		return getRepositoryURI().appendSegment(getClass().getSimpleName()).appendSegment(name.getMethodName()).appendSegment("");
+	}
+
 	protected static <T> T cast(Object object, Class<T> type) {
 		assertThat(object, instanceOf(type));
 		return type.cast(object);

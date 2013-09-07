@@ -147,7 +147,7 @@ public class CDOSearchQueryProvider implements IPapyrusQueryProvider {
 	}
 
 	protected Pair<String, Boolean> getSearchPattern(QueryInfo queryInfo) {
-		String searchPattern = PatternUtil.wrap(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression());
+		String searchPattern = PatternUtil.wrap(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), queryInfo.isSearchAllStringAttributes());
 		boolean isRegexMatch = searchPattern != null;
 		if(!isRegexMatch) {
 			searchPattern = queryInfo.getQueryText();

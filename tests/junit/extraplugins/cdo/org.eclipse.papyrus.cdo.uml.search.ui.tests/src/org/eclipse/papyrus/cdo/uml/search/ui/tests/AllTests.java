@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.cdo.tests;
+package org.eclipse.papyrus.cdo.uml.search.ui.tests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -19,11 +19,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * This is the AllTests type. Enjoy.
  */
 @RunWith(Suite.class)
-@SuiteClasses({ org.eclipse.papyrus.cdo.core.tests.AllTests.class, //
-org.eclipse.papyrus.cdo.ui.tests.AllTests.class, //
-org.eclipse.papyrus.cdo.uml.ui.tests.AllTests.class, //
-org.eclipse.papyrus.cdo.validation.problems.tests.ProblemsAllTests.class, //
-org.eclipse.papyrus.cdo.uml.search.ui.tests.AllTests.class })
+@SuiteClasses({ BasicTextSearchTest.class, AdvancedTextSearchTest.class, SearchScopingTest.class })
 public class AllTests {
 
 	public AllTests() {

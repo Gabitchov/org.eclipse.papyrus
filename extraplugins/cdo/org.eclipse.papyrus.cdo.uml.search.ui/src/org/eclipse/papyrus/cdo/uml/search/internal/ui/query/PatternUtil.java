@@ -37,17 +37,25 @@ public class PatternUtil {
 	 * @param caseSensitive
 	 *        whether the search is case-sensitive
 	 * @param regularExpression
-	 *        whether the search tex is to be interpreted as a regular expression
+	 *        whether the search text is to be interpreted as a regular expression
+	 * @param allStringAttributes
+	 *        whether the search text is sought in all string attributes of an object
 	 * 
 	 * @return the appropriately modified string specifying the regular expression search term, or {@code null} if the search text
 	 *         is actually a literal exact sub-string match
 	 */
-	public static String wrap(String searchText, boolean caseSensitive, boolean regularExpression) {
+	public static String wrap(String searchText, boolean caseSensitive, boolean regularExpression, boolean allStringAttributes) {
 		String result;
 
 		if(caseSensitive) {
 			if(!regularExpression) {
-				result = null; // simple sub-string search
+				if(allStringAttributes) {
+					// the cdoMatches() operation needs a regex
+					result = String.format("%s%s%s", WILDCARD, quote(searchText), WILDCARD);
+				} else {
+					// we use "indexOf(searchPattern) > 0" to do a simple sub-string search
+					result = null;
+				}
 			} else {
 				result = ensureRegexSubstring(searchText);
 			}

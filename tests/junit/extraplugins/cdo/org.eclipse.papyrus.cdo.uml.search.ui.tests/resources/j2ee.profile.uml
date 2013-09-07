@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_a8wFsBexEeOaDesjAlqXXw" name="j2ee" metaclassReference="_a8wFyhexEeOaDesjAlqXXw _a8wFyxexEeOaDesjAlqXXw">
+  <eAnnotations xmi:id="_a8wFsRexEeOaDesjAlqXXw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_a8wFshexEeOaDesjAlqXXw" name="j2ee" nsURI="http:///schemas/j2ee/_6PHYYFkiEeK52Llgof0Xvg/0" nsPrefix="j2ee">
+      <eAnnotations xmi:id="_a8wFsxexEeOaDesjAlqXXw" source="PapyrusVersion">
+        <details xmi:id="_a8wFtBexEeOaDesjAlqXXw" key="Version" value="0.0.1"/>
+        <details xmi:id="_a8wFtRexEeOaDesjAlqXXw" key="Comment" value=""/>
+        <details xmi:id="_a8wFthexEeOaDesjAlqXXw" key="Copyright" value=""/>
+        <details xmi:id="_a8wFtxexEeOaDesjAlqXXw" key="Date" value="2013-01-07"/>
+        <details xmi:id="_a8wFuBexEeOaDesjAlqXXw" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_a8wFuRexEeOaDesjAlqXXw" name="Bean">
+        <eAnnotations xmi:id="_a8wFuhexEeOaDesjAlqXXw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_a8wFzBexEeOaDesjAlqXXw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_a8wFuxexEeOaDesjAlqXXw" name="base_Classifier" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_a8wFvRexEeOaDesjAlqXXw" name="kind" ordered="false" lowerBound="1" eType="_a8wFwRexEeOaDesjAlqXXw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_a8wFvxexEeOaDesjAlqXXw" name="primaryFinder" ordered="false" eType="_a8wFxhexEeOaDesjAlqXXw"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_a8wFwRexEeOaDesjAlqXXw" name="BeanKind">
+        <eAnnotations xmi:id="_a8wFwhexEeOaDesjAlqXXw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_a8wF1BexEeOaDesjAlqXXw"/>
+        <eLiterals xmi:id="_a8wFwxexEeOaDesjAlqXXw" name="entity"/>
+        <eLiterals xmi:id="_a8wFxBexEeOaDesjAlqXXw" name="session" value="1"/>
+        <eLiterals xmi:id="_a8wFxRexEeOaDesjAlqXXw" name="messagedriven" value="2"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_a8wFxhexEeOaDesjAlqXXw" name="Finder">
+        <eAnnotations xmi:id="_a8wFxxexEeOaDesjAlqXXw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_a8wF2BexEeOaDesjAlqXXw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_a8wFyBexEeOaDesjAlqXXw" name="base_Operation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_a8wFyhexEeOaDesjAlqXXw" alias="Classifier">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+  </elementImport>
+  <elementImport xmi:id="_a8wFyxexEeOaDesjAlqXXw" alias="Operation">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_a8wFzBexEeOaDesjAlqXXw" name="Bean">
+    <ownedAttribute xmi:id="_a8wFzRexEeOaDesjAlqXXw" name="base_Classifier" association="_a8wF0hexEeOaDesjAlqXXw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_a8wFzhexEeOaDesjAlqXXw" name="kind" type="_a8wF1BexEeOaDesjAlqXXw"/>
+    <ownedAttribute xmi:id="_a8wFzxexEeOaDesjAlqXXw" name="primaryFinder" type="_a8wF2BexEeOaDesjAlqXXw" association="_a8wF3BexEeOaDesjAlqXXw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a8wF0BexEeOaDesjAlqXXw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a8wF0RexEeOaDesjAlqXXw" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_a8wF0hexEeOaDesjAlqXXw" name="E_Bean_Classifier1" memberEnd="_a8wF0xexEeOaDesjAlqXXw _a8wFzRexEeOaDesjAlqXXw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_a8wF0xexEeOaDesjAlqXXw" name="extension_Bean" type="_a8wFzBexEeOaDesjAlqXXw" aggregation="composite" association="_a8wF0hexEeOaDesjAlqXXw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_a8wF1BexEeOaDesjAlqXXw" name="BeanKind">
+    <ownedLiteral xmi:id="_a8wF1RexEeOaDesjAlqXXw" name="entity"/>
+    <ownedLiteral xmi:id="_a8wF1hexEeOaDesjAlqXXw" name="session"/>
+    <ownedLiteral xmi:id="_a8wF1xexEeOaDesjAlqXXw" name="messagedriven"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_a8wF2BexEeOaDesjAlqXXw" name="Finder">
+    <ownedAttribute xmi:id="_a8wF2RexEeOaDesjAlqXXw" name="base_Operation" association="_a8wF2hexEeOaDesjAlqXXw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_a8wF2hexEeOaDesjAlqXXw" name="E_Finder_Operation1" memberEnd="_a8wF2xexEeOaDesjAlqXXw _a8wF2RexEeOaDesjAlqXXw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_a8wF2xexEeOaDesjAlqXXw" name="extension_Finder" type="_a8wF2BexEeOaDesjAlqXXw" aggregation="composite" association="_a8wF2hexEeOaDesjAlqXXw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_a8wF3BexEeOaDesjAlqXXw" name="bean_finder_1" memberEnd="_a8wF3RexEeOaDesjAlqXXw _a8wFzxexEeOaDesjAlqXXw">
+    <ownedEnd xmi:id="_a8wF3RexEeOaDesjAlqXXw" name="bean" type="_a8wFzBexEeOaDesjAlqXXw" association="_a8wF3BexEeOaDesjAlqXXw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_a8wF3hexEeOaDesjAlqXXw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a8wF3xexEeOaDesjAlqXXw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Profile>
