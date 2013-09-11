@@ -23,6 +23,7 @@ import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Utility functions for the update derived elements, e.g. operations of a component
@@ -51,7 +52,7 @@ public class UpdateUtils {
 		while(elements.hasNext()) {
 			Element element = elements.next();
 			if(StUtils.isApplied(element, DerivedElement.class)) {
-				DerivedElement de = StUtils.getApplication(element, DerivedElement.class);
+				DerivedElement de = UMLUtil.getStereotypeApplication(element, DerivedElement.class);
 				if((de != null) && (de.getSource() == source)) {
 					return element;
 				}
@@ -67,7 +68,7 @@ public class UpdateUtils {
 
 	public static Element getSource(Element element) {
 		if(StUtils.isApplied(element, DerivedElement.class)) {
-			DerivedElement de = StUtils.getApplication(element, DerivedElement.class);
+			DerivedElement de = UMLUtil.getStereotypeApplication(element, DerivedElement.class);
 			if(de != null) {
 				return de.getSource();
 			}

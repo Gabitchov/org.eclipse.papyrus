@@ -52,6 +52,7 @@ import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Make the container transformation, i.e. add elements into a container
@@ -259,7 +260,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 
 				if(StUtils.isApplied(extOrInterceptor, InteractionComponent.class)) {
 
-					InterceptionRule interceptionRule = StUtils.getApplication(part, InterceptionRule.class);
+					InterceptionRule interceptionRule = UMLUtil.getStereotypeApplication(part, InterceptionRule.class);
 					InterceptionKind interceptionKind = InterceptionKind.INTERCEPT_ALL; // default: intercept all ports
 					EList<Feature> interceptFeatures = null;
 					if(interceptionRule != null) {
@@ -440,7 +441,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 
 				interceptionConnector.setName(interceptorName + port.getName() + counter);
 				org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.applyApp(interceptionConnector, org.eclipse.papyrus.FCM.Connector.class);
-				InteractionComponent fcmConnType = StUtils.getApplication(smContainerConnImpl, InteractionComponent.class);
+				InteractionComponent fcmConnType = UMLUtil.getStereotypeApplication(smContainerConnImpl, InteractionComponent.class);
 				fcmConn.setIc(fcmConnType);
 
 				// pass target component and port to interceptor (not clean, define

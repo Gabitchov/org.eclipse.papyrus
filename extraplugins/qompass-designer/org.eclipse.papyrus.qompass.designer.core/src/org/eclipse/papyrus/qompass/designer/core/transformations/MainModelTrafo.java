@@ -59,6 +59,7 @@ import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class executes the main model transformation. It traverses the
@@ -284,7 +285,7 @@ public class MainModelTrafo {
 							}
 
 							Package smCDP = smIS.getNearestPackage();
-							DeploymentPlan smFCM_CDP = StUtils.getApplication(smCDP, DeploymentPlan.class);
+							DeploymentPlan smFCM_CDP = UMLUtil.getStereotypeApplication(smCDP, DeploymentPlan.class);
 
 							for(ContainerRule rule : hwRules) {
 								if(isRuleActive(rule)) {
@@ -455,7 +456,9 @@ public class MainModelTrafo {
 
 		// needs to be called independently
 		// propagateNodeAllocation (cdp, compositeInstance);
-
+		AllocTransfo at = new AllocTransfo();
+		at.transformAllocs(copy, tmComponent);
+		
 		if(containerTrafo != null) {
 			// return containerIS
 			containerTrafo.moveSlots();

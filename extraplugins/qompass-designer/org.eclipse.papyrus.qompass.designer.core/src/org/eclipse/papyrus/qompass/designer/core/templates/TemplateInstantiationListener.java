@@ -23,7 +23,6 @@ import org.eclipse.papyrus.FCM.ActualChoice;
 import org.eclipse.papyrus.FCM.Template;
 import org.eclipse.papyrus.FCM.TemplateKind;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
@@ -44,6 +43,7 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Template instantiation is implemented by means of an CopyListener that
@@ -95,14 +95,14 @@ public class TemplateInstantiationListener implements CopyListener {
 					// in case of a behavior, examine stereotype on associated operation
 					BehavioralFeature bf = behavior.getSpecification();
 					if(bf != null) {
-						Template template = StUtils.getApplication(bf, Template.class);
+						Template template = UMLUtil.getStereotypeApplication(bf, Template.class);
 						if(template != null) {
 							return null;
 						}
 					}
 				}
 				else {
-					Template template = StUtils.getApplication((Element)sourceEObj, Template.class);
+					Template template = UMLUtil.getStereotypeApplication((Element)sourceEObj, Template.class);
 					if((template != null)) { // && (!treatTemplateElement.containsKey(sourceEObj))) {
 						// treatTemplateElement.put(sourceEObj, true);
 						if(sourceEObj instanceof Operation) {
@@ -247,7 +247,7 @@ public class TemplateInstantiationListener implements CopyListener {
 	 * @throws TransformationException
 	 */
 	public static EList<Classifier> getActuals(TemplateBinding binding, Element element) throws TransformationException {
-		Template template = StUtils.getApplication(element, Template.class);
+		Template template = UMLUtil.getStereotypeApplication(element, Template.class);
 		if(template != null) {
 			EList<Classifier> templateParams = template.getTemplateParams();
 			EList<Classifier> actuals = new BasicEList<Classifier>();
@@ -290,7 +290,7 @@ public class TemplateInstantiationListener implements CopyListener {
 	 */
 	public void bindOperation(Operation operation, Classifier actual) throws TransformationException {
 		// perform binding in case of C++ initializer
-		ConstInit cppConstInit = StUtils.getApplication(operation, ConstInit.class);
+		ConstInit cppConstInit = UMLUtil.getStereotypeApplication(operation, ConstInit.class);
 		if(cppConstInit != null) {
 			// TODO: specific to C++
 			String init = cppConstInit.getInitialisation();

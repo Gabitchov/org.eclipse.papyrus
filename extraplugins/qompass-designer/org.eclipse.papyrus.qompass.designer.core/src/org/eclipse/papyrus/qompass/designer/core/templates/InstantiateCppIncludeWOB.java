@@ -18,13 +18,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.FCM.Template;
 import org.eclipse.papyrus.FCM.TemplateKind;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Instantiate the text within a C++Include tag.
@@ -48,11 +48,11 @@ public class InstantiateCppIncludeWOB implements CopyListener {
 		if(targetEObj instanceof Classifier) {
 			// TODO: C++ specific code!
 			Classifier targetCl = (Classifier)targetEObj;
-			Template template = StUtils.getApplication(targetCl, Template.class);
+			Template template = UMLUtil.getStereotypeApplication(targetCl, Template.class);
 			// apply, in case of pass-classifier
 			if((template != null) && (template.getKind() == TemplateKind.PASS_CLASSIFIER)) {
 				try {
-					Include cppInclude = StUtils.getApplication(targetCl, Include.class);
+					Include cppInclude = UMLUtil.getStereotypeApplication(targetCl, Include.class);
 					TransformationContext.classifier = targetCl;
 					String newBody = AcceleoDriverWrapper.evaluate(cppInclude.getBody(), targetCl, null);
 					String newPreBody = AcceleoDriverWrapper.evaluate(cppInclude.getPreBody(), targetCl, null);

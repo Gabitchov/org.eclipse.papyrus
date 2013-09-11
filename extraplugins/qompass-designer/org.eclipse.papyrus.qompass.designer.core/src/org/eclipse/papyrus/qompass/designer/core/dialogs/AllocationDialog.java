@@ -43,6 +43,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Select a connector type and implementation (group)
@@ -79,7 +80,7 @@ public class AllocationDialog extends SelectionStatusDialog {
 	public AllocationDialog(Shell parent, Package cdp) {
 		super(parent);
 		// m_cdp = cdp;
-		m_cdp = StUtils.getApplication(cdp, DeploymentPlan.class);
+		m_cdp = UMLUtil.getStereotypeApplication(cdp, DeploymentPlan.class);
 		visitedPackages = new BasicEList<Package>();
 		nodeOrThreadList = new BasicEList<InstanceSpecification>();
 		nodeOrThreadList.add(null); // dummy entry for no allocation

@@ -17,7 +17,6 @@ package org.eclipse.papyrus.qompass.designer.core.templates;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.Template;
 import org.eclipse.papyrus.FCM.TemplateKind;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -35,6 +34,7 @@ import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.TemplateableElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class encapsulated functions around template instantiation.
@@ -194,7 +194,7 @@ public class TemplateInstantiation {
 
 		Package boundPackage = (Package)binding.getBoundElement();
 		EList<Namespace> path = TemplateUtils.relativePathWithMerge(namedElement, packageTemplate);
-		Template template = StUtils.getApplication(namedElement, Template.class);
+		Template template = UMLUtil.getStereotypeApplication(namedElement, Template.class);
 		TemplateKind templateKind = (template != null) ?
 			templateKind = template.getKind() :
 			TemplateKind.PASS_FORMAL;

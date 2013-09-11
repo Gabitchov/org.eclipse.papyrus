@@ -61,13 +61,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * the call to getProvided/getRequired interface might trigger its creation resulting in
  * the corruption of list iterators (ConcurrentAccess exception)
  * 
- * @author ansgar
- * 
  */
 public class CompImplTrafos {
 
 	public static Class bootloader;
 
+	public static final String retParamName = "ret"; //$NON-NLS-1$
+	
+	public static final String progLang = "C/C++"; //$NON-NLS-1$
+	
 	public static void addPortOperations(Copy copy, Package pkg) throws TransformationException {
 		EList<PackageableElement> peList = new BasicEList<PackageableElement>();
 		peList.addAll(pkg.getPackagedElements());
@@ -103,13 +105,17 @@ public class CompImplTrafos {
 				// port provides an interface, add "get_p" operation & implementation
 
 				String opName = PrefixConstants.getP_Prefix + portInfo.getName();
-				if (implementation.getOwnedOperation(opName, null, null) != null) {
+				Operation op = implementation.getOwnedOperation(opName, null, null);
+				if (op != null) {
 					// operation already exists. Assume that user wants to override standard delegation
+					if (op.getType() != providedIntf) {
+						op.createOwnedParameter(retParamName, providedIntf);
+					}
 					continue;
 				}
-				Operation op = implementation.createOwnedOperation(opName, null, null, providedIntf);
+				op = implementation.createOwnedOperation(opName, null, null, providedIntf);
 				Parameter retParam = op.getOwnedParameters().get(0);
-				retParam.setName("ret");
+				retParam.setName(retParamName);
 				StUtils.apply(retParam, Ptr.class);
 
 				OpaqueBehavior behavior = (OpaqueBehavior)
@@ -132,8 +138,11 @@ public class CompImplTrafos {
 						// due to partially copied composites).
 						// Check is based on names, since the connector points to elements within another
 						// model (copyClassifier does not make a proper connector copy)
-						body += part.getName() + refOp(part) + opName + "();";  //$NON-NLS-1$
-					} else {
+						// body += part.getName() + refOp(part) + opName + "();";  //$NON-NLS-1$
+						// TODO: this will NOT work for extended ports!
+						body += part.getName() + refOp(part) + PrefixConstants.getP_Prefix + role.getName() + "();"; //$NON-NLS-1$
+					}
+					else {
 						// role is not a port: connector connects directly to a structural feature
 						// without passing via a port
 						// TODO: check whether structural feature exists
@@ -158,7 +167,7 @@ public class CompImplTrafos {
 					}
 				}
 				// todo: defined by template
-				behavior.getLanguages().add("C/C++"); //$NON-NLS-1$
+				behavior.getLanguages().add(progLang);
 				behavior.getBodies().add(body);
 			}
 		}
@@ -263,7 +272,7 @@ public class CompImplTrafos {
 					body = attributeName + (multiPort ? "[index]" : "") + " = ref;";  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 				}
 				// TODO: defined by template
-				behavior.getLanguages().add("C/C++"); //$NON-NLS-1$
+				behavior.getLanguages().add(progLang);
 				behavior.getBodies().add(body);
 
 				// -------------------------
@@ -279,7 +288,7 @@ public class CompImplTrafos {
 					if(op == null) {
 						op = implementation.createOwnedOperation(opName, null, null, requiredIntf);
 						Parameter retParam = op.getOwnedParameters().get(0);
-						retParam.setName("ret"); //$NON-NLS-1$
+						retParam.setName(retParamName);
 						StUtils.apply(retParam, Ptr.class);
 					}
 					behavior = (OpaqueBehavior)
@@ -290,7 +299,7 @@ public class CompImplTrafos {
 					// no delegation
 					String name = PrefixConstants.attributePrefix + portInfo.getName();
 					body = "return " + name + ";"; //$NON-NLS-1$ //$NON-NLS-2$
-					behavior.getLanguages().add("C/C++"); //$NON-NLS-1$
+					behavior.getLanguages().add(progLang); //$NON-NLS-1$
 					behavior.getBodies().add(body);
 				}
 			}
@@ -337,12 +346,12 @@ public class CompImplTrafos {
 		}
 		// TODO: use template, as in bootloader
 		if(createConnBody.length() > 0) {
-			Operation operation = implementation.createOwnedOperation("createConnections", null, null);
+			Operation operation = implementation.createOwnedOperation("createConnections", null, null); //$NON-NLS-1$
 
 			OpaqueBehavior behavior = (OpaqueBehavior)
-				implementation.createOwnedBehavior("b:" + operation.getName(),
+				implementation.createOwnedBehavior("b:" + operation.getName(), //$NON-NLS-1$
 					UMLPackage.eINSTANCE.getOpaqueBehavior());
-			behavior.getLanguages().add("C/C++");
+			behavior.getLanguages().add(progLang);
 			behavior.getBodies().add(createConnBody);
 			behavior.setSpecification(operation);
 		}
@@ -528,6 +537,6 @@ public class CompImplTrafos {
 	 */
 	protected static String refOp(Property part) {
 		return instantiateViaBootloader(part) ?
-			"->" : ".";
+			"->" : "."; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

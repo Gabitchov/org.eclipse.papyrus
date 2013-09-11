@@ -19,7 +19,6 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
@@ -36,6 +35,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Currently unused synchronization for deployment plans.
@@ -71,7 +71,7 @@ public class DepPlanSync {
 	public static void syncDepPlan(Package depPlan) {
 		removeUnusedSlots(depPlan);
 		// EList<InstanceSpecification> list = new BasicEList<InstanceSpecification>();
-		DeploymentPlan cdp = StUtils.getApplication(depPlan, DeploymentPlan.class);
+		DeploymentPlan cdp = UMLUtil.getStereotypeApplication(depPlan, DeploymentPlan.class);
 		if(cdp == null) {
 			return;
 		}
