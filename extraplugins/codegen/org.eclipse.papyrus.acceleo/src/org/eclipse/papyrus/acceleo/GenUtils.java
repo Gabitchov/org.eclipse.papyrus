@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
@@ -396,17 +397,17 @@ public class GenUtils {
 	 * such as C_Cpp::Include is passed as EClass and we therefore use this operation from Acceleo.
 	 * 
 	 * @param element
-	 * @param eClass The eClass associated with the stereotype name
+	 * @param definition The eClass associated with the stereotype name (its definition)
 	 * @return
 	 */
-	public static boolean hasStereotypeA(Element element, EClass eClass) {
+	public static boolean hasStereotypeA(Element element, EClass definition) {
 		if(element == null) {
 			// make query more robust
 			return false;
 		}
 		for(EObject stereoApplication : element.getStereotypeApplications()) {
 			// check whether the stereotype application has the right eClass
-			if(stereoApplication.eClass() == eClass) {
+			if(stereoApplication.eClass() == definition) {
 				return true;
 			}
 		}
@@ -414,25 +415,49 @@ public class GenUtils {
 	}
 
 	/**
-	 * Return the stereotype application by passing an element of the static profile
+	 * Verify if an Element or its parent Elements have a stereotype. Pass the class associated with a stereotype
 	 * 
-	 * @param element
-	 *        the UML model element
+	 * @param elt
+	 *        Element used.
 	 * @param clazz
-	 *        the class of an element of a static profile. Compatible sub-types will be returned as well
-	 * @return the stereotype application or null
+	 * 		  the class associated with a stereotype in a static profile
+	 * 
+	 * @return true if found. false otherwise
 	 */
-	@SuppressWarnings("unchecked")
-	public static <T extends EObject> T getApplication(Element element, java.lang.Class<T> clazz) {
-		for(EObject stereoApplication : element.getStereotypeApplications()) {
-			// check whether the stereotype is an instance of the passed parameter clazz
-			if(clazz.isInstance(stereoApplication)) {
-				return (T)stereoApplication;
-			}
-		}
-		return null;
+	public static boolean hasStereotypeTree(Element elt, java.lang.Class<? extends EObject> clazz)
+	{
+		Element owner;
+
+		if(hasStereotype(elt, clazz))
+			return true;
+		else if((owner = elt.getOwner()) != null)
+			return hasStereotypeTree(owner, clazz);
+		else
+			return false;
 	}
 
+	/**
+	 * Verify if an Element or its parent Elements have a stereotype. Pass the definition of the stereotype
+	 * 
+	 * @param elt
+	 *        Element used.
+	 * @param definition
+	 *        The stereotype definition
+	 * @return true if found. false otherwise
+	 */
+	public static boolean hasStereotypeTree(Element elt, EClass definition)
+	{
+		Element owner;
+
+		if(hasStereotypeA(elt, definition))
+			return true;
+		else if((owner = elt.getOwner()) != null)
+			return hasStereotypeTree(owner, definition);
+		else
+			return false;
+	}
+
+	
 	/**
 	 * Return a stereotype application when given the eClass of that application.
 	 * In case of Java, we use the class above (without the A) prefix. In case of Acceleo, a stereotype
@@ -501,5 +526,27 @@ public class GenUtils {
 			return ""; //$NON-NLS-1$
 		}
 		return str;
+	}
+	
+	/**
+	 * Return the relative path of ne2 as seen from ne1
+	 * (might not always be useful, if includes are always done from a common root)
+	 *
+	 * @param ne1 a named element
+	 * @param ne2 a named element
+	 * @return
+	 */
+	public static String getRelativePath(NamedElement ne1, NamedElement ne2) {
+		// get common prefix
+		EList<Namespace> ne1namespaces = ne1.allNamespaces();
+		String path = "";
+		for (Namespace ns : ne2.allNamespaces()) {
+			if (ne1namespaces.contains(ns)) {
+				// ns is a common prefix
+				return ne2.getName();
+			}
+			path += "../";
+		}
+		return null;
 	}
 }

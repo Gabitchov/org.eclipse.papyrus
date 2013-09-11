@@ -22,15 +22,15 @@ import org.eclipse.papyrus.C_Cpp.ManualGeneration;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Template;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
+import org.eclipse.papyrus.acceleo.GenUtils;
 import org.eclipse.papyrus.acceleo.ModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
-import org.eclipse.papyrus.cpp.codegen.utils.GenUtils;
-import org.eclipse.papyrus.cpp.profile.StUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 
@@ -99,10 +99,10 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 
 		// treat case of manual code generation
 		if(GenUtils.hasStereotype(classifier, ManualGeneration.class)) {
-			ManualGeneration mg = StUtils.getApplication(classifier, ManualGeneration.class);
-			Include cppInclude = StUtils.getApplication(classifier, Include.class);
+			ManualGeneration mg = UMLUtil.getStereotypeApplication(classifier, ManualGeneration.class);
+			Include cppInclude = UMLUtil.getStereotypeApplication(classifier, Include.class);
 			String fileContent = commentHeader + cppInclude.getHeader();
-			createFile(container, classifier.getName() + "." + hppExt, fileContent, true);
+			createFile(container, classifier.getName() + "." + hppExt, fileContent, true); //$NON-NLS-1$
 
 			String manualURI = "TODO"; // fileContent = AcceleoDriver.evaluateURI(new URI(CppPackageHeader)), classifier);
 
@@ -115,7 +115,7 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 		}
 
 		// Only generate when no CppNoCodeGen stereotype is applied to the class
-		else if((!GenUtils.hasStereotype(classifier, NoCodeGen.class)) && (!GenUtils.hasStereotype(classifier, External.class)) && (!GenUtils.hasStereotype(classifier, Template.class))) {
+		else if((!GenUtils.hasStereotypeTree(classifier, NoCodeGen.class)) && (!GenUtils.hasStereotype(classifier, External.class)) && (!GenUtils.hasStereotype(classifier, Template.class))) {
 
 			// Template Bound Class
 			if(GenUtils.isTemplateBoundElement(classifier)) {
