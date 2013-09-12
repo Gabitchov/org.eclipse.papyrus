@@ -3,15 +3,16 @@
 
 <plugin>
  <!-- we provide a new navigator content for the tables. To be called, this navigator content should have an id beginning with org.eclipse.papyrus.views.modelexplorer.* -->
-   <extension point="org.eclipse.ui.handlers">
+ 
+   <!--extension point="org.eclipse.ui.handlers">
          <handler class="org.eclipse.papyrus.infra.table.modelexplorer.handlers.DuplicateTableHandler" commandId="org.eclipse.papyrus.views.modelexplorer.duplicate.command">
          <activeWhen>
             <and>
                <with variable="selection">
-                     <!-- We add these tests for : 
-                     	- force the refresh of the action in the menu edit  
-                     	- avoid have 2 handlers enabled in the same time 
-                     	-->
+                     //We add these tests for : 
+                     //	- force the refresh of the action in the menu edit  
+                     //	- avoid have 2 handlers enabled in the same time 
+                     
                   <and>
                      <test forcePluginActivation="true" property="org.eclipse.papyrus.views.modelexplorer.tester.isDiagram" value="false">
                      </test>
@@ -38,7 +39,7 @@
             </or>
          </activeWhen>
       </handler>
-   </extension>
+   </extension-->
    <extension point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester class="org.eclipse.papyrus.infra.table.modelexplorer.providers.TablePropertyTester" id="org.eclipse.papyrus.table.modelexplorer.tester" namespace="org.eclipse.papyrus.table.modelexplorer.tester" properties="isTable" type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>

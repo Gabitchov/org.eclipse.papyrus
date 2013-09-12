@@ -11,7 +11,7 @@
             type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.ui.handlers">
       <handler
             class="org.eclipse.papyrus.uml.table.common.handler.SelectColumnsHandler"
@@ -57,5 +57,5 @@
             class="org.eclipse.papyrus.uml.table.common.menu.ContributionFactory"
             locationURI="popup:org.eclipse.ui.popup.any">
       </menuContribution>
-   </extension>
+   </extension-->
 </plugin>

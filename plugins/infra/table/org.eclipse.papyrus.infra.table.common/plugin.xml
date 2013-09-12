@@ -10,7 +10,7 @@
       <model classname="org.eclipse.papyrus.infra.table.common.modelresource.PapyrusNattableModel" description="Model for Papyrus Table editors">
       </model>
    </extension>
- <extension id="papyrus.table.menuspapyrus.table.menu" name="Papyrus Table Menus" point="org.eclipse.ui.menus">
+ <!--extension id="papyrus.table.menuspapyrus.table.menu" name="Papyrus Table Menus" point="org.eclipse.ui.menus">
       <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
          <menu icon="icons/table.gif" id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createtable" label="New Table" mnemonic="&amp;T" tooltip="The table menu">
          </menu>
@@ -23,7 +23,7 @@
          <toolbar id="org.eclipse.papyrus.table.ui.toolbar" label="Papyrus Table Toolbar">
          </toolbar>
       </menuContribution>
-   </extension>
+   </extension-->
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resources/table_Ecore_hideEAnnotationFeature.uiCustom"/>
    </extension>
@@ -47,7 +47,7 @@
             provider="org.eclipse.papyrus.infra.table.common.providers.FilteredTableLabelProvider">
       </labelProvider>
    </extension> 
-    <extension
+    <!--extension
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.papyrus.editor.category"
@@ -55,8 +55,8 @@
             id="org.eclipse.papyrus.infra.table.common.selectvisiblecolumns"
             name="Select the columns to Show">
       </command>
-   </extension>
-   <extension
+   </extension-->
+   <!--extension
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
@@ -79,7 +79,7 @@
             </visibleWhen>
          </command>
       </menuContribution>
-   </extension>
+   </extension-->
     <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <metamodel

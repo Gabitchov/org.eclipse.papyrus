@@ -6,7 +6,7 @@
       <editorDiagram factoryClass="org.eclipse.papyrus.sysml.table.allocation.CreateAllocationTableFactory" icon="icons/table_SysML_Allocation.gif">
       </editorDiagram>
    </extension>
-    <extension point="org.eclipse.ui.menus">
+    <!--extension point="org.eclipse.ui.menus">
       <menuContribution allPopups="false" locationURI="toolbar:org.eclipse.papyrus.table.ui.toolbar">
          <command commandId="org.eclipse.papyrus.sysml.table.allocation.create.table.command" icon="icons/table_SysML_Allocation.gif" id="org.eclipse.papyrus.table.ui.toolbar.allocation.table" style="push" tooltip="Create a new SysML Allocation table">
             <visibleWhen>
@@ -50,7 +50,7 @@
             </and>
          </activeWhen>
       </handler>
-   </extension>
+   </extension-->
    <extension point="org.eclipse.emf.facet.infra.query.registration">
       <modelqueryset file="resources/allocate.querySet"/>
    </extension>
