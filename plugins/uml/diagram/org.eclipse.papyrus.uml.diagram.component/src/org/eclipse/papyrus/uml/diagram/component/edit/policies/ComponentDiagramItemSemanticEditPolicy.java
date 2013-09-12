@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.commands.DependencyNodeCre
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.InterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ModelCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.PackageCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.edit.commands.RectangleInterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
 // TODO: Auto-generated Javadoc
@@ -97,6 +98,12 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new PackageCreateCommand(req));
+		}
+		if(UMLElementTypes.Interface_3205 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new RectangleInterfaceCreateCommand(req));
 		}
 		if(UMLElementTypes.Interface_2003 == baseElementType) {
 			if(isExtendedType) {
