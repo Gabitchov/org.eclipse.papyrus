@@ -45,6 +45,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class Utils {
 
@@ -443,7 +444,7 @@ public class Utils {
 	 * @return
 	 */
 	public static EList<ContainerRule> getRules(Class component) {
-		RuleApplication ruleApplication = StUtils.getApplication(component, RuleApplication.class);
+		RuleApplication ruleApplication = UMLUtil.getStereotypeApplication(component, RuleApplication.class);
 		if(ruleApplication != null) {
 			return ruleApplication.getContainerRule();
 		}
@@ -486,7 +487,7 @@ public class Utils {
 			}
 			else if(el instanceof Class) {
 				if(StUtils.isApplied(el, ContainerRule.class)) {
-					ContainerRule rule = StUtils.getApplication((Class)el, ContainerRule.class);
+					ContainerRule rule = UMLUtil.getStereotypeApplication((Class)el, ContainerRule.class);
 					contRuleList.add(rule);
 				}
 			}

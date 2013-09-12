@@ -50,6 +50,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Select a connector type and implementation (group)
@@ -112,7 +113,7 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 		// createLabel(contents, lowerLabel);
 		fLower = createFilteredList(fLowerGroup);
 		fFilteredList = fUpper;
-		org.eclipse.papyrus.FCM.Connector fcmConnector = StUtils.getApplication(m_selectedConnector, org.eclipse.papyrus.FCM.Connector.class);
+		org.eclipse.papyrus.FCM.Connector fcmConnector = UMLUtil.getStereotypeApplication(m_selectedConnector, org.eclipse.papyrus.FCM.Connector.class);
 		if(fcmConnector != null) {
 			// getInitialElementSelections();
 			initialSelection = fcmConnector.getIc();
@@ -152,7 +153,7 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 			if(!componentCompBase.isAbstract()) {
 				// get first superclass that is a component type
 				Class componentTypeBase = Utils.componentType(componentCompBase);
-				componentComp = StUtils.getApplication(componentTypeBase, InteractionComponent.class);
+				componentComp = UMLUtil.getStereotypeApplication(componentTypeBase, InteractionComponent.class);
 			} else {
 				// fLower.setEnabled (false);
 				// fLowerGroup.setEnabled(false);

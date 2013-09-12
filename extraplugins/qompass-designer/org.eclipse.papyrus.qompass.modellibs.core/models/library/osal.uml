@@ -10551,4 +10551,7 @@ Show: output the whole line immediately and reset the output string</body>
     <libs>rt</libs>
   </C_Cpp:ExternLibrary>
   <C_Cpp:External xmi:id="_ClGTQNqFEeKrRY-H1kHnNA" name="pthread.h" base_class="_4lsq4NqEEeKrRY-H1kHnNA"/>
+  <C_Cpp:NoCodeGen xmi:id="_2wrHsBpmEeONpa5JgejICQ" base_element="_5YJA0It4EeCA0czgCf_91g"/>
+  <C_Cpp:External xmi:id="_B5U3IBpnEeONpa5JgejICQ" name="time.h" base_Classifier="_SPVucIt6EeCA0czgCf_91g"/>
+  <C_Cpp:NoCodeGen xmi:id="_YYbsABpoEeOa5ZlfiNMZuA" base_element="_vZD1EFKWEd-OfYmxqPWG5g"/>
 </xmi:XMI>

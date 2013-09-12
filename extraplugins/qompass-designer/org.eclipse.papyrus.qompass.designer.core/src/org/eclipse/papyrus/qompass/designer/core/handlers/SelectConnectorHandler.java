@@ -23,6 +23,7 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Implementation class for ClassAction action
@@ -74,7 +75,7 @@ public class SelectConnectorHandler extends CmdHandler {
 
 					public void run() {
 						org.eclipse.papyrus.FCM.Connector fcmSelectedConnector = StUtils.applyApp(selectedConnector, org.eclipse.papyrus.FCM.Connector.class);
-						InteractionComponent newConnType = StUtils.getApplication((Class)result[0], InteractionComponent.class);
+						InteractionComponent newConnType = UMLUtil.getStereotypeApplication((Class)result[0], InteractionComponent.class);
 						fcmSelectedConnector.setIc(newConnType);
 					}
 				});

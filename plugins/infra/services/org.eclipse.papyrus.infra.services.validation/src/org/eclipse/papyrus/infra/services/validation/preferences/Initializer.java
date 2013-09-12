@@ -12,6 +12,8 @@ public class Initializer extends AbstractPreferenceInitializer {
 	@Override
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		store.setDefault(PreferencePage.HIERARCHICAL_MARKERS, "ALL");
+		store.setDefault(PreferenceConstants.HIERARCHICAL_MARKERS, "ALL"); //$NON-NLS-1$
+		
+		store.setDefault(PreferenceConstants.AUTO_SHOW_VALIDATION_VIEW, true);
 	}
 }

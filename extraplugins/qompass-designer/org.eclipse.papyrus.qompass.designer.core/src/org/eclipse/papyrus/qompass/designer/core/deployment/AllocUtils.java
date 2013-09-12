@@ -25,6 +25,7 @@ import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -40,9 +41,14 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class AllocUtils {
 
+	public static final String startPortName = "start"; //$NON-NLS-1$
+	
+	public static final String startPortType = "IStart"; //$NON-NLS-1$
+	
 	/**
 	 * Retrieve a list of nodes to which the instance is allocated to *or*
 	 * to which one of the contained instances is allocated to (recursively)
@@ -57,6 +63,30 @@ public class AllocUtils {
 		}
 		return nodeList;
 	}
+	
+	/**
+	 * Retrieve a list of nodes to which the instance is allocated to *or*
+	 * to which one of the contained instances is allocated to (recursively)
+	 * 
+	 * @param instanceAttribute an attribute within a composite that represents a component instance
+	 *       or a set thereof, if the composite itself is instantiated multiple times)
+	 * @return a list of nodes
+	 */
+	public static Property getThreadAlloc(Property instanceAttribute) {
+		for (DirectedRelationship relation : instanceAttribute.getSourceDirectedRelationships()) {
+			if (StUtils.isApplied(relation, Allocate.class)) {
+				if (relation.getTargets().size() != 1) continue;
+				Element targetElem = relation.getTargets().get(0);
+				if (!(targetElem instanceof Property)) continue;
+				Property target = (Property) targetElem;
+				if (StUtils.isApplied(target.getType(), SwSchedulableResource.class)) {
+					return target;
+				}
+			}
+		}
+		return null;
+	}
+
 
 	/**
 	 * Retrieve a list of nodes to which the instance is allocated to *or*
@@ -264,7 +294,7 @@ public class AllocUtils {
 			for(Slot slot : slots) {
 				Property containedProperty = (Property)slot.getDefiningFeature();
 
-				Fragment fragment = StUtils.getApplication(containedProperty, Fragment.class);
+				Fragment fragment = UMLUtil.getStereotypeApplication(containedProperty, Fragment.class);
 				if(fragment != null) {
 					// TODO
 					/*
@@ -293,5 +323,23 @@ public class AllocUtils {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Return the start Port of a component, i.e. a port that corresponds to the "magic" port name
+	 * start and is typed with the interface IStart
+	 * 
+	 * @param component a component implementation
+	 * @return The start port or null
+	 */
+	public static Port getStartPort(Class component) {
+		Element startPortElem = Utils.getNamedElementFromList(component.getAllAttributes(), startPortName);
+		if (startPortElem instanceof Port) {
+			Port startPort = (Port) startPortElem;
+			if(startPort.getType().getName().equals(startPortType)) {
+				return startPort;
+			}
+		}
+		return null;
 	}
 }

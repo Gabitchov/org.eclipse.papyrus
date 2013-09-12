@@ -495,7 +495,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7qNCOTefEeGPyrZ5I3hMlA"/>
       </children>
       <element xmi:type="uml:Node" href="HelloWorld.uml#_zY9vMDLiEd2RVeNawwNNzg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7qMbITefEeGPyrZ5I3hMlA" x="441" y="63" width="154" height="91"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7qMbITefEeGPyrZ5I3hMlA" x="441" y="63" width="172" height="91"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_jhQ20DegEeGPyrZ5I3hMlA" type="2109" fontName="" fontHeight="10" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jhQ20jegEeGPyrZ5I3hMlA" source="ShadowFigure">

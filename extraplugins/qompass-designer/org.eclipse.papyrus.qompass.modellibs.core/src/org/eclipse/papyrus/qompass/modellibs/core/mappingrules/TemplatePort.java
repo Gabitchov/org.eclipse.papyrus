@@ -17,7 +17,6 @@ package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.FCM.util.ITemplateMappingRule;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
@@ -35,6 +34,7 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -104,7 +104,7 @@ public class TemplatePort implements ITemplateMappingRule {
 				}
 				PackageableElement boundClass = pkg.getPackagedElement(extendedPort.getName());
 				if (boundClass != null) {
-					return StUtils.getApplication(boundClass, PortKind.class);
+					return UMLUtil.getStereotypeApplication(boundClass, PortKind.class);
 				}
 			}
 		}

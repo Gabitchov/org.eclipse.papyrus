@@ -14,7 +14,7 @@
 /]
 
 [query public getTemplateTypeName(arg0 : TemplateParameter) : String
-	= invoke('org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils', 'getType(org.eclipse.uml2.uml.TemplateParameter)', Sequence{arg0})
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils', 'getTemplateTypeName(org.eclipse.uml2.uml.TemplateParameter)', Sequence{arg0})
 /]
 
 [query public getNamespace(arg0 : NamedElement) : String

@@ -11,7 +11,7 @@
 
 package org.eclipse.papyrus.cpp.codegen;
 
-import org.eclipse.papyrus.cpp.codegen.utils.GenUtils;
+import org.eclipse.papyrus.acceleo.GenUtils;
 import org.eclipse.uml2.uml.Element;
 
 public class StdStereo {

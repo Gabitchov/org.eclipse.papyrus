@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
+import org.eclipse.papyrus.infra.services.validation.preferences.PreferenceUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -49,6 +50,8 @@ import org.eclipse.ui.PlatformUI;
  * @author Ansgar Radermacher (CEA LIST)
  */
 abstract public class AbstractValidateCommand extends AbstractTransactionalCommand {
+
+	final String modelValidationViewID = "org.eclipse.papyrus.views.validation.ModelValidationView"; //$NON-NLS-1$
 
 	protected TransactionalEditingDomain domain;
 
@@ -124,6 +127,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			{
 				try {
 					handleDiagnostic(progressMonitor, diagnostic, validateElement, shell);
+					
 				}
 				finally {
 					progressMonitor.done();
@@ -139,6 +143,15 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			diagnostic = null;
 			new ProgressMonitorDialog(shell).run(true, true, runValidationWithProgress);
 			if(diagnostic != null) {
+				int markersToCreate = diagnostic.getChildren().size();
+				if((markersToCreate > 0) && PreferenceUtils.getAutoShowValidation()) {
+					// activate model view, if activated in configuration
+					// IViewRegistry viewRegistry = PlatformUI.getWorkbench().getViewRegistry();
+					// IViewDescriptor desc = viewRegistry.find(modelValidationViewID);
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(modelValidationViewID);
+					// HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().showView(modelValidationViewID);
+					
+				}
 				// don't fork this dialog, i.e. run it in the UI thread. This avoids that the diagrams are constantly refreshing *while*
 				// markers/decorations are changing. This greatly enhances update performance. See also bug 400593
 				new ProgressMonitorDialog(shell).run(false, true, createMarkersWithProgress);
@@ -158,7 +171,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			++validationSteps;
 		}
 
-		progressMonitor.beginTask("", validationSteps);
+		progressMonitor.beginTask("", validationSteps); //$NON-NLS-1$
 		AdapterFactory adapterFactory =
 			domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain)domain).getAdapterFactory() : null;
 		diagnostician.initialize(adapterFactory, progressMonitor);
@@ -166,7 +179,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 		BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(validateElement);
 		Map<Object, Object> context = diagnostician.createDefaultContext();
 
-		progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[]{ diagnostician.getObjectLabel(validateElement) }));
+		progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[]{ diagnostician.getObjectLabel(validateElement) })); //$NON-NLS-1$
 		diagnostician.validate(validateElement, diagnostic, context);
 
 		if(progressMonitor.isCanceled()) {

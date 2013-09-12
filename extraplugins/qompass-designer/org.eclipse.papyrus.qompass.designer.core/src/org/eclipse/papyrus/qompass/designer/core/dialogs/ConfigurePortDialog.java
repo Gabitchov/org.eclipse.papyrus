@@ -57,6 +57,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Select container rules, either from a list of globally defined rules or from
@@ -313,7 +314,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 			return;
 		}
 		setEnabled(true);
-		org.eclipse.papyrus.FCM.Port fcmPort = StUtils.getApplication(port, org.eclipse.papyrus.FCM.Port.class);
+		org.eclipse.papyrus.FCM.Port fcmPort = UMLUtil.getStereotypeApplication(port, org.eclipse.papyrus.FCM.Port.class);
 		if(port.getType() != null) {
 			fType.setText(port.getType().getQualifiedName());
 		}
@@ -362,7 +363,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 					getAvailableKinds((Package)el, portKindList, visitedPackages);
 				}
 			} else if(el instanceof Class) {
-				PortKind portKind = StUtils.getApplication((Class)el, PortKind.class);
+				PortKind portKind = UMLUtil.getStereotypeApplication((Class)el, PortKind.class);
 				if(portKind != null) {
 					portKindList.add(portKind);
 				}

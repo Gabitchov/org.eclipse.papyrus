@@ -145,26 +145,6 @@ public class StUtils {
 	}
 
 	/**
-	 * Return the stereotype application by passing an element of the static profile
-	 * 
-	 * @param element
-	 *        the UML model element
-	 * @param clazz
-	 *        the class of an element of a static profile. Compatible sub-types will be returned as well
-	 * @return the stereotype application (first compatible with passed clazz) or null
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T extends EObject> T getApplication(Element element, java.lang.Class<T> clazz) {
-		for(EObject stereoApplication : element.getStereotypeApplications()) {
-			// check whether the stereotype is an instance of the passed parameter clazz
-			if(clazz.isInstance(stereoApplication)) {
-				return (T)stereoApplication;
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * Apply a stereotype. The stereotype is not applied, if already a sub-stereotype is applied.
 	 * If you want to apply the new stereotype also in this case, use applyExact instead.
 	 * 
@@ -220,7 +200,7 @@ public class StUtils {
 	 */
 	public static <T extends EObject> T applyApp(Element element, java.lang.Class<T> clazz) {
 		if(apply(element, clazz) != null) {
-			return getApplication(element, clazz);
+			return UMLUtil.getStereotypeApplication(element, clazz);
 		}
 		return null;
 	}
@@ -446,7 +426,7 @@ public class StUtils {
 	}
 
 	public static org.eclipse.papyrus.FCM.Connector getConnector(Connector connector) {
-		return getApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
+		return UMLUtil.getStereotypeApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
 	}
 
 	public static boolean isConnector(Connector candidate) {

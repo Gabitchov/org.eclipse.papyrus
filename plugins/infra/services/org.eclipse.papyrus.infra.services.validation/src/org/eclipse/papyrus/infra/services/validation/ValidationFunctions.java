@@ -22,7 +22,7 @@ import org.eclipse.papyrus.infra.services.decoration.util.Decoration;
 import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
-import org.eclipse.papyrus.infra.services.validation.preferences.PreferencePage;
+import org.eclipse.papyrus.infra.services.validation.preferences.PreferenceUtils;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
@@ -112,7 +112,7 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 	}
 
 	public MarkChildren supportsMarkerPropagation() {
-		return PreferencePage.getHierarchicalMarkers();
+		return PreferenceUtils.getHierarchicalMarkers();
 	}
 
 	/**

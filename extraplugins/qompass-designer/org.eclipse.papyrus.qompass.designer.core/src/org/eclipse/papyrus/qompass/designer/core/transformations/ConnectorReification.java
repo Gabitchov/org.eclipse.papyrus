@@ -29,7 +29,6 @@ import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
@@ -46,6 +45,7 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class enables the reification of connectors, i.e. the replacement of
@@ -192,7 +192,7 @@ public class ConnectorReification {
 		String name, Connector smConnector, InstanceSpecification tmIS, Object[] args)
 		throws TransformationException {
 
-		org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getApplication(smConnector, org.eclipse.papyrus.FCM.Connector.class);
+		org.eclipse.papyrus.FCM.Connector fcmConn = UMLUtil.getStereotypeApplication(smConnector, org.eclipse.papyrus.FCM.Connector.class);
 
 		InteractionComponent connType = fcmConn.getIc();
 		if(connType == null) {

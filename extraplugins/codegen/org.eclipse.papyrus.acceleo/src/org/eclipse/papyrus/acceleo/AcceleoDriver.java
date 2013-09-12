@@ -231,7 +231,9 @@ public class AcceleoDriver {
 		if(!templateStr.startsWith("[module")) {
 			templateStr = "[module dummyMod('http://www.eclipse.org/uml2/4.0.0/UML')/]\n\n" + templateStr;
 		}
-
+		// workaround for Acceleo bug
+		templateStr.replace("http://www.eclipse.org/uml2/4.0.0/UML", "http://www.eclipse.org/uml2/3.0.0/UML");
+		
 		// Strategy:
 		//   1. Use AcceleoParser to transform text (OpaqueExpression) into Module
 		//		=> list of dependencies via explicit import statements
@@ -304,7 +306,7 @@ public class AcceleoDriver {
 	 * @return
 	 */
 	public static String evaluateURI(String moduleName, Element element) {
-		int index = moduleName.lastIndexOf("::");
+		int index = moduleName.lastIndexOf("::"); //$NON-NLS-1$
 		String templateName = (index == -1) ? moduleName : moduleName.substring(index + 2);
 		return evaluateURI(moduleName, templateName, element);
 	}
@@ -336,7 +338,7 @@ public class AcceleoDriver {
 
 		Resource resource = acceleoResourceSet.getResource(uri, true);
 		if(resource != null) {
-			return evaluateResource(resource, element, templateName, "");
+			return evaluateResource(resource, element, templateName, ""); //$NON-NLS-1$
 		}
 		return null;
 	}

@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class DepCreation {
 
@@ -217,7 +218,7 @@ public class DepCreation {
 
 		is.getClassifiers().add(implementation);
 		// add connector and container implementations
-		RuleApplication ruleApplication = StUtils.getApplication(implementation, RuleApplication.class);
+		RuleApplication ruleApplication = UMLUtil.getStereotypeApplication(implementation, RuleApplication.class);
 		if((ruleApplication != null) && (createSlotsForConfigValues)) {
 			for(ContainerRule rule : ruleApplication.getContainerRule()) {
 				addConfigurationOfContainer(rule, is);
@@ -225,7 +226,7 @@ public class DepCreation {
 		}
 
 		for(Connector connector : implementation.getOwnedConnectors()) {
-			org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
+			org.eclipse.papyrus.FCM.Connector fcmConn = UMLUtil.getStereotypeApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
 			if(fcmConn != null) {
 				String partName = name + "." + connector.getName();
 				InteractionComponent connectorComp = fcmConn.getIc();
@@ -512,7 +513,7 @@ public class DepCreation {
 				throw new TransformationRTException(is.getName() + " has a slot without defining feature"); //$NON-NLS-1$
 			}
 			if(StUtils.isApplied(sf, CopyAttributeValue.class)) {
-				CopyAttributeValue cav = StUtils.getApplication(sf,
+				CopyAttributeValue cav = UMLUtil.getStereotypeApplication(sf,
 					CopyAttributeValue.class);
 				Property source = cav.getSource();
 				ValueSpecification vs = getNearestValue(isStack, source);

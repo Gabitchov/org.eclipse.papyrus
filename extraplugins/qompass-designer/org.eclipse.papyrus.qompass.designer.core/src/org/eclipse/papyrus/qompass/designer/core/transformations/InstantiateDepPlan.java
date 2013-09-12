@@ -57,6 +57,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class executes all transformations during the instantiation of a
@@ -97,7 +98,7 @@ public class InstantiateDepPlan {
 			cdp = (Package)cdpOrConfig;
 			MainModelTrafo.setConfiguration(null);
 		} else if(StUtils.isApplied(cdpOrConfig, Configuration.class)) {
-			configuration = StUtils.getApplication(cdpOrConfig, Configuration.class);
+			configuration = UMLUtil.getStereotypeApplication(cdpOrConfig, Configuration.class);
 			DeploymentPlan fcmCDP = configuration.getDeploymentPlan();
 			if(fcmCDP == null) {
 				final NamedElement config = (NamedElement)cdpOrConfig;

@@ -33,6 +33,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.TemplateParameter;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 
@@ -276,7 +277,7 @@ public class CppGenUtils {
 	 */
 	public static String getGeneralizationVisibility(Element element) {
 		// get visibility and target name
-		Visibility cppVisibility = GenUtils.getApplication(element, Visibility.class);
+		Visibility cppVisibility = UMLUtil.getStereotypeApplication(element, Visibility.class);
 		if(cppVisibility != null) {
 			return cppVisibility.getValue();
 		} else {
