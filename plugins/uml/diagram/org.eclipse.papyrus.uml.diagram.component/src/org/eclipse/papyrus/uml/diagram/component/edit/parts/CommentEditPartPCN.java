@@ -307,6 +307,9 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
+		}
 		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
@@ -356,6 +359,7 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Model_3202);
 			types.add(UMLElementTypes.Package_3200);
+			types.add(UMLElementTypes.Interface_3205);
 			types.add(UMLElementTypes.Interface_2003);
 			types.add(UMLElementTypes.Comment_3201);
 			types.add(UMLElementTypes.Constraint_3199);

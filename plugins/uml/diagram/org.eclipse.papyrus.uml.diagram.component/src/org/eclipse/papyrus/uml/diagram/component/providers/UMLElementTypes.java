@@ -51,6 +51,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
@@ -122,6 +123,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Constraint_3199 = getElementType("org.eclipse.papyrus.uml.diagram.component.Comment_3199"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Interface_3205 = getElementType("org.eclipse.papyrus.uml.diagram.component.Interface_3205"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -270,6 +276,7 @@ public class UMLElementTypes {
 			elements.put(Component_2002, UMLPackage.eINSTANCE.getComponent());
 			elements.put(Model_3202, UMLPackage.eINSTANCE.getModel());
 			elements.put(Package_3200, UMLPackage.eINSTANCE.getPackage());
+			elements.put(Interface_3205, UMLPackage.eINSTANCE.getInterface());
 			elements.put(Interface_2003, UMLPackage.eINSTANCE.getInterface());
 			elements.put(Comment_3201, UMLPackage.eINSTANCE.getComment());
 			elements.put(Constraint_3199, UMLPackage.eINSTANCE.getConstraint());
@@ -315,6 +322,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Component_2002);
 			KNOWN_ELEMENT_TYPES.add(Model_3202);
 			KNOWN_ELEMENT_TYPES.add(Package_3200);
+			KNOWN_ELEMENT_TYPES.add(Interface_3205);
 			KNOWN_ELEMENT_TYPES.add(Interface_2003);
 			KNOWN_ELEMENT_TYPES.add(Comment_3201);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3199);
@@ -358,6 +366,8 @@ public class UMLElementTypes {
 			return Model_3202;
 		case PackageEditPart.VISUAL_ID:
 			return Package_3200;
+		case RectangleInterfaceEditPart.VISUAL_ID:
+			return Interface_3205;
 		case InterfaceEditPart.VISUAL_ID:
 			return Interface_2003;
 		case CommentEditPart.VISUAL_ID:

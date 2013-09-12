@@ -78,9 +78,6 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	}
 
 	/**
-	 * Gets the static label role.
-	 * 
-	 * @return the static label role
 	 * @generated
 	 */
 	private static TreeMap<String, String> getStaticLabelRole() {
@@ -90,9 +87,6 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	}
 
 	/**
-	 * Gets the static label visibility preferences.
-	 * 
-	 * @return the static label visibility preferences
 	 * @generated
 	 */
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
@@ -102,12 +96,8 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	}
 
 	/**
-	 * Gets the label role.
-	 * 
-	 * @return the label role
 	 * @generated
 	 */
-	@Override
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
