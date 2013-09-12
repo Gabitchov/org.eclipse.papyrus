@@ -9,9 +9,12 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.scope;
+
+import static org.eclipse.papyrus.views.search.scope.WorkspaceScopeProvider.findPapyrusModels;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,46 +22,36 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.plugin.RegistryReader;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
-import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
-import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.views.search.Activator;
-import org.eclipse.papyrus.views.search.Messages;
-import org.eclipse.papyrus.views.search.utils.ModelUtils;
 import org.eclipse.search.ui.ISearchPageContainer;
 import org.eclipse.ui.IWorkingSet;
 
 public class ScopeCollector implements IScopeCollector {
 
-	private static ScopeCollector instance = null;
+	private static final ScopeCollector instance = new ScopeCollector();
 
+	private final Iterable<? extends IScopeProvider> scopeProviders;
+	
 	private ScopeCollector() {
 		super();
+		
+		scopeProviders = loadScopeProviders();
 	}
 
 	public final static ScopeCollector getInstance() {
-
-		if(ScopeCollector.instance == null) {
-			synchronized(ScopeCollector.class) {
-				if(ScopeCollector.instance == null) {
-					ScopeCollector.instance = new ScopeCollector();
-				}
-			}
-		}
 		return ScopeCollector.instance;
 	}
 
@@ -68,12 +61,11 @@ public class ScopeCollector implements IScopeCollector {
 	 * @param container
 	 * @return
 	 */
-	public Collection<IResource> computeSearchScope(ISearchPageContainer container) {
+	public Collection<URI> computeSearchScope(ISearchPageContainer container) {
 
-		Set<IResource> results = new HashSet<IResource>();
+		Set<URI> results = new HashSet<URI>();
 
 		if(container == null) {
-			//Worksapce scope
 			results.addAll(createWorkspaceScope());
 
 		} else {
@@ -131,50 +123,29 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createSelectionScope(IStructuredSelection selection) {
-		List<IResource> results = new ArrayList<IResource>();
+	protected List<URI> createSelectionScope(IStructuredSelection selection) {
+		List<URI> results = new ArrayList<URI>();
 
-		Iterator it = selection.iterator();
+		Iterator<?> it = selection.iterator();
 		while(it.hasNext()) {
-			Object object = (Object)it.next();
-
-			if(object instanceof IPapyrusFile) {
-				results.add(((IPapyrusFile)object).getMainFile());
-			} else if(object instanceof IResource) {
-				results.addAll(findPapyrusModels((IResource)object));
-			} else {
-
-				Object element = BusinessModelResolver.getInstance().getBusinessModel(object);
-				if(element instanceof EObject) {
-					Resource eResource = ((EObject)element).eResource();
-					IFile resource = ModelUtils.getIFile(eResource);
-					if(resource != null) {
-						try {
-							ModelSet modelSet = ModelUtils.openFile(resource);
-							SashModel sashModel = (SashModel)modelSet.getModelChecked(SashModel.MODEL_ID);
-							IFile diResource = ModelUtils.getIFile(sashModel.getResource());
-							results.add((IFile)diResource);
-							modelSet.unload();
-						} catch (ModelMultiException e) {
-							//Do a workspace search instead
-							results.addAll(createWorkspaceScope());
-						} catch (NotFoundException e) {
-							//Do a workspace search instead
-							results.addAll(createWorkspaceScope());
-						}
-
-					} else {
-						//Do a workspace search instead
-						results.addAll(createWorkspaceScope());
-					}
-
-				} else {
-					//Do a workspace search instead
-					results.addAll(createWorkspaceScope());
+			Object next = it.next();
+			
+			for (IScopeProvider provider : getScopeProviders()) {
+				Collection<URI> scope = provider.getScope(next);
+				if (!scope.isEmpty()) {
+					results.addAll(scope);
+					
+					// don't consult the next provider
+					break;
 				}
-
 			}
 		}
+		
+		if (results.isEmpty()) {
+			// search the workspace instead, then
+			results.addAll(createWorkspaceScope());
+		}
+		
 		return results;
 	}
 
@@ -186,8 +157,8 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createProjectsScope(String[] projects) {
-		List<IResource> results = new ArrayList<IResource>();
+	protected List<URI> createProjectsScope(String[] projects) {
+		List<URI> results = new ArrayList<URI>();
 
 		for(String projectName : projects) {
 			IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
@@ -206,8 +177,8 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the scope
 	 */
-	protected List<IResource> createWorkingSetsScope(IWorkingSet[] workingSets) {
-		List<IResource> results = new ArrayList<IResource>();
+	protected List<URI> createWorkingSetsScope(IWorkingSet[] workingSets) {
+		List<URI> results = new ArrayList<URI>();
 
 		if(workingSets != null && workingSets.length > 0) {
 			for(IWorkingSet iWorkingSet : workingSets) {
@@ -224,36 +195,162 @@ public class ScopeCollector implements IScopeCollector {
 	}
 
 	/**
-	 * Find all Papyrus models from a specific root
-	 * 
-	 * @param res
-	 *        the root
-	 * @return
-	 *         the found Papyrus models
-	 */
-	protected Collection<IResource> findPapyrusModels(IResource res) {
-		ResourceVisitor visitor = new ResourceVisitor();
-		try {
-			res.accept(visitor, IResource.DEPTH_INFINITE);
-		} catch (CoreException e) {
-			Activator.log.warn(Messages.ScopeCollector_0 + res);
-		}
-
-		return visitor.getParticipants();
-	}
-
-	/**
 	 * Create a scope when the container is ISearchPageContainer.WORKSPACE_SCOPE
 	 * 
 	 * @return
 	 *         the scope
 	 */
-	protected Collection<IResource> createWorkspaceScope() {
-
-		//Go through the workspace root
-		IResource root = ResourcesPlugin.getWorkspace().getRoot();
-
-		return findPapyrusModels(root);
+	protected Collection<URI> createWorkspaceScope() {
+		Collection<URI> result = new ArrayList<URI>();
+		
+		for (IScopeProvider next : getScopeProviders()) {
+			result.addAll(next.getScope());
+		}
+		
+		return result;
 	}
 
+	private Iterable<? extends IScopeProvider> loadScopeProviders() {
+		return new ProvidersReader().load(); 
+	}
+	
+	final Iterable<? extends IScopeProvider> getScopeProviders() {
+		List<IScopeProvider> result = new ArrayList<IScopeProvider>();
+		
+		synchronized(scopeProviders) {
+			for (IScopeProvider next : scopeProviders) {
+				result.add(next);
+			}
+		}
+		
+		return result;
+	}
+	
+	//
+	// Nested types
+	//
+	
+	private static class PriorityScopeProvider implements IScopeProvider, Comparable<PriorityScopeProvider> {
+		private final IScopeProvider delegate;
+		
+		private final int priority;
+		
+		public PriorityScopeProvider(IScopeProvider delegate, int priority) {
+			this.delegate = delegate;
+			this.priority = priority;
+		}
+		
+		public int compareTo(PriorityScopeProvider o) {
+			// sort by descending priority
+			return o.priority - this.priority;
+		}
+		
+		@Override
+		public int hashCode() {
+			return delegate.hashCode();
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			return (obj instanceof PriorityScopeProvider) && ((PriorityScopeProvider) obj).delegate.equals(delegate);
+		}
+		
+		//
+		// API delegation
+		//
+		
+		public Collection<URI> getScope() {
+			return delegate.getScope();
+		}
+		
+		public Collection<URI> getScope(Object selected) {
+			return delegate.getScope(selected);
+		}
+	}
+	
+	private class ProvidersReader extends RegistryReader {
+		private static final String EXT_PT = "scopeProviders"; //$NON-NLS-1$
+		
+		private static final String TAG_PROVIDER = "scopeProvider"; //$NON-NLS-1$
+		
+		private static final String ATTR_CLASS = "class"; //$NON-NLS-1$
+		
+		private static final String ATTR_PRIORITY = "priority"; //$NON-NLS-1$
+		
+		private final SortedSet<PriorityScopeProvider> providers = new java.util.TreeSet<PriorityScopeProvider>();
+
+		ProvidersReader() {
+			super(Platform.getExtensionRegistry(), Activator.PLUGIN_ID, EXT_PT);
+		}
+
+		Iterable<? extends IScopeProvider> load() {
+			synchronized(providers) {
+				providers.clear();
+				readRegistry();
+			}
+			
+			return providers;
+		}
+		
+		@Override
+		protected boolean readElement(IConfigurationElement element, boolean add) {
+			boolean result = false;
+
+			if(TAG_PROVIDER.equals(element.getName())) {
+				result = true;
+
+				String className = element.getAttribute(ATTR_CLASS);
+				if((className == null) || (className.length() == 0)) {
+					logMissingAttribute(element, ATTR_CLASS);
+				} else if(add) {
+					addProvider(element, className);
+				} else {
+					removeProvider(element, className);
+				}
+			}
+
+			return result;
+		}
+
+		private void addProvider(IConfigurationElement element, String className) {
+			try {
+				Object provider = element.createExecutableExtension(ATTR_CLASS);
+
+				if(!(provider instanceof IScopeProvider)) {
+					Activator.log.error("Scope provider extension does not implement IScopeProvider interface: " + className, null); //$NON-NLS-1$
+				} else {
+					String priorityString = element.getAttribute(ATTR_PRIORITY);
+					int priority = 0;
+
+					try {
+						if((priorityString) != null && (priorityString.length() > 0)) {
+							priority = Integer.parseInt(priorityString);
+							if(priority < 0) {
+								Activator.log.warn("Negative priority in scope provider " + className); //$NON-NLS-1$
+								priority = 0;
+							}
+						}
+					} catch (NumberFormatException e) {
+						Activator.log.warn("Not an integer priority in scope provider " + className); //$NON-NLS-1$
+					}
+
+					synchronized(providers) {
+						providers.add(new PriorityScopeProvider((IScopeProvider)provider, priority));
+					}
+				}
+			} catch (CoreException e) {
+				Activator.getDefault().getLog().log(e.getStatus());
+			}
+		}
+		
+		private void removeProvider(IConfigurationElement element, String className) {
+			synchronized(providers) {
+				for (Iterator<PriorityScopeProvider> iter = providers.iterator(); iter.hasNext();) {
+					if (iter.next().delegate.getClass().getName().equals(className)) {
+						iter.remove();
+					}
+				}
+			}
+		}
+	}
 }

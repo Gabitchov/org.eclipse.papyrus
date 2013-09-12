@@ -19,10 +19,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -33,6 +32,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IPapyrusPageInput;
 import org.eclipse.papyrus.infra.core.editor.PapyrusPageInput;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
@@ -161,7 +161,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 
 		if(editor == null) {
 			//Cannot find the IMultiDiagramEditor: try to open a new one
-			IFile diFile = getDiFile(semanticElement);
+			URI diFile = getDiResourceURI(semanticElement);
 			editor = openURIsInNewEditor(diFile, pageURIs);
 		} else {
 			final IPageManager pageMngr = registry.getService(IPageManager.class);
@@ -277,36 +277,34 @@ public class OpenElementServiceImpl implements OpenElementService {
 		return null;
 	}
 
-	private IFile getDiFile(URI uri) {
+	protected URI getDiResourceURI(URI uri) {
 		URI fileURI = uri.trimFileExtension().trimFragment();
 		fileURI = fileURI.appendFileExtension(SashModel.MODEL_FILE_EXTENSION);
 
-		if(fileURI.isPlatformResource()) {
-			if(fileURI.segmentCount() > 1) {
-				String projectName = fileURI.segment(1);
-				URI baseURI = URI.createPlatformResourceURI(projectName + "/", true);
-				URI relativeFileURI = fileURI.deresolve(baseURI);
-
-				IWorkspace workspace = ResourcesPlugin.getWorkspace();
-				IProject project = workspace.getRoot().getProject(projectName);
-				IFile result = project.getFile(relativeFileURI.toString());
-				if(result.exists()) {
-					return result;
-				} else {
-					Activator.log.warn("The resource doesn't exist: " + fileURI);
-				}
-			}
+		if(!exists(fileURI)) {
+			Activator.log.warn("The resource doesn't exist: " + fileURI);
 		} else {
-			Activator.log.warn("The element is not a platform resource. Cannot convert it to an IFile: " + fileURI);
+			return fileURI;
 		}
 
 		return null;
 	}
 
-	private IFile getDiFile(EObject element) {
+	protected boolean exists(URI uri) {
+		try {
+			ModelSet modelSet = registry.getService(ModelSet.class);
+			return modelSet.getURIConverter().exists(uri, null);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			// no ModelSet? Must not exist, then
+			return false;
+		}
+	}
+	
+	protected URI getDiResourceURI(EObject element) {
 		Resource resource = element.eResource();
 		URI fileURI = resource.getURI();
-		return getDiFile(fileURI);
+		return getDiResourceURI(fileURI);
 	}
 
 	private IMultiDiagramEditor getCurrentEditor() {
@@ -322,7 +320,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 		IMultiDiagramEditor editor = getCurrentEditor();
 		if(editor == null) {
 			//Cannot find the IMultiDiagramEditor: try to open a new one
-			IFile diFile = getDiFile(pageURI);
+			URI diFile = getDiResourceURI(pageURI);
 			editor = openURIsInNewEditor(diFile, new URI[]{ pageURI });
 		} else {
 			final IPageManager pageManager = registry.getService(IPageManager.class);
@@ -350,19 +348,20 @@ public class OpenElementServiceImpl implements OpenElementService {
 		return editor;
 	}
 
-	private IMultiDiagramEditor openURIsInNewEditor(IFile diFile, URI[] pageURIs) throws PartInitException {
-		if(diFile == null) {
+	protected IMultiDiagramEditor openURIsInNewEditor(URI diResourceURI, URI[] pageURIs) throws PartInitException {
+		final IEditorInput input = createPapyrusPageInput(diResourceURI, pageURIs);
+		
+		if (input == null) {
 			return null;
 		}
-		final IEditorInput input = new PapyrusPageInput(diFile, pageURIs, false);
-
+		
 		RunnableWithResult<IMultiDiagramEditor> runnable;
-		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl() {
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<IMultiDiagramEditor>() {
 
 			public void run() {
 				try {
 					final IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-					IMultiDiagramEditor openedEditor = (IMultiDiagramEditor)IDE.openEditor(page, input, PAPYRUS_EDITOR_ID);
+					IMultiDiagramEditor openedEditor = openEditor(page, input);
 					setResult(openedEditor);
 					setStatus(Status.OK_STATUS);
 				} catch (PartInitException ex) {
@@ -378,4 +377,18 @@ public class OpenElementServiceImpl implements OpenElementService {
 		return runnable.getResult();
 	}
 
+	protected IPapyrusPageInput createPapyrusPageInput(URI diResourceURI, URI[] pageURIs) {
+		IFile diFile = null;
+		
+		if((diResourceURI != null) && diResourceURI.isPlatformResource()) {
+			diFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(diResourceURI.toPlatformString(true)));
+		}
+		
+		return ((diFile == null) || !diFile.exists()) ? null : new PapyrusPageInput(diFile, pageURIs, false);
+	}
+	
+	protected IMultiDiagramEditor openEditor(IWorkbenchPage workbenchPage, IEditorInput input) throws PartInitException {
+		return (IMultiDiagramEditor)IDE.openEditor(workbenchPage, input, PAPYRUS_EDITOR_ID);
+	}
+	
 }

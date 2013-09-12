@@ -12,12 +12,15 @@
 package org.eclipse.papyrus.cdo.core.resource;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import org.eclipse.emf.cdo.dawn.gmf.util.DawnDiagramUpdater;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
 import org.eclipse.emf.cdo.view.CDOViewSet;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,6 +34,7 @@ import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSet;
 
+import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 
 /**
@@ -146,20 +150,25 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 	@Override
 	public void unload() {
-		if((repository != null) && (getCDOView() != null)) {
-			CDOView view = getCDOView();
-			if(view != null) {
-				view.removeListener(getInvalidationListener());
+		try {
+			super.unload();
+		} finally {
+			if((repository != null) && (getCDOView() != null)) {
+				CDOView view = getCDOView();
+				if(view != null) {
+					view.removeListener(getInvalidationListener());
+				}
+				invalidationListener = null;
+
+				// dispose the transaction
+				repository.close(this);
+
+				// now, we can remove the CDOViewSet adapter
+				eAdapters().clear();
 			}
-			invalidationListener = null;
 
-			// dispose the transaction
-			repository.close(this);
+			repository = null;
 		}
-
-		repository = null;
-
-		super.unload();
 	}
 
 	protected final IListener getInvalidationListener() {
@@ -181,5 +190,53 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 				}
 			}
 		};
+	}
+
+	@Override
+	public EList<Adapter> eAdapters() {
+		if(eAdapters == null) {
+			eAdapters = new EAdapterList<Adapter>(this) {
+
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public Adapter remove(int index) {
+					Adapter toRemove = primitiveGet(index);
+					if((toRemove instanceof CDOViewSet) && !canDisconnectCDOViewSet()) {
+						// don't allow its removal if my view is still open!
+						// (Papyrus attempts to clear the resource set's adapters when disposing a ModelSet)
+						return null;
+					}
+
+					return super.remove(index);
+				}
+
+				@Override
+				public void clear() {
+					if(!canDisconnectCDOViewSet()) {
+						// we can remove everything but the view-set adapter
+						Adapter viewSetAdapter = getViewSetAdapter();
+						if(viewSetAdapter != null) {
+							retainAll(Collections.singleton(viewSetAdapter));
+						} else {
+							super.clear();
+						}
+					} else {
+						super.clear();
+					}
+				}
+
+				private Adapter getViewSetAdapter() {
+					return Iterables.find(this, Predicates.instanceOf(CDOViewSet.class), null);
+				}
+			};
+		}
+
+		return eAdapters;
+	}
+
+	private boolean canDisconnectCDOViewSet() {
+		CDOView view = getCDOView();
+		return ((view == null) || view.isClosed()) && getResources().isEmpty();
 	}
 }

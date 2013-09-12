@@ -15,6 +15,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.ObservableList;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -38,7 +41,7 @@ import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
  * @author Camille Letavernier
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class EMFObservableList extends ObservableList implements ICommitListener {
+public class EMFObservableList extends ObservableList implements ICommitListener, IChangeListener {
 
 	/**
 	 * The list of commands that haven't been executed yet
@@ -84,6 +87,31 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		this.editingDomain = domain;
 		this.source = source;
 		this.feature = feature;
+
+		if(concreteList instanceof IObservableList) {
+			((IObservableList)concreteList).addChangeListener(this);
+		}
+	}
+
+	protected boolean isCommitting;
+
+	public void handleChange(ChangeEvent event) {
+		if(isCommitting) {
+			return; //We're modifying the wrapped Observable list, which sends us change events. Ignore them.
+		}
+
+		//Refresh if we don't have pending changes
+		if(commands.isEmpty()) {
+			refreshCacheList();
+		}
+	}
+
+	@Override
+	public synchronized void dispose() {
+		if(concreteList instanceof IObservableList) {
+			((IObservableList)concreteList).removeChangeListener(this);
+		}
+		super.dispose();
 	}
 
 	/**
@@ -93,7 +121,9 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	 * @see org.eclipse.papyrus.infra.widgets.editors.ICommitListener#commit(AbstractEditor)
 	 * 
 	 */
-	public void commit(AbstractEditor editor) {
+	public synchronized void commit(AbstractEditor editor) {
+
+		isCommitting = true;
 
 		if(commands.isEmpty()) {
 			return;
@@ -140,6 +170,8 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		editingDomain.getCommandStack().execute(compoundCommand);
 		refreshCacheList();
 		commands.clear();
+
+		isCommitting = false;
 	}
 
 	/**
@@ -301,7 +333,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	public Command getRemoveCommand(Object value) {
 		Command cmd = RemoveCommand.create(editingDomain, source, feature, value);
-		if (value instanceof EObject && feature instanceof EReference && ((EReference)feature).isContainment()) {
+		if(value instanceof EObject && feature instanceof EReference && ((EReference)feature).isContainment()) {
 			addDestroyCommand(cmd, (EObject)value);
 		}
 		return cmd;
@@ -310,9 +342,9 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	public Command getRemoveAllCommand(Collection<?> values) {
 		CompoundCommand cc = new CompoundCommand("Edit list");
 
-		if (feature instanceof EReference && ((EReference)feature).isContainment() && values != null) {
-			for (Object o : values) {
-				if (o instanceof EObject) {
+		if(feature instanceof EReference && ((EReference)feature).isContainment() && values != null) {
+			for(Object o : values) {
+				if(o instanceof EObject) {
 					addDestroyCommand(cc, (EObject)o);
 				}
 			}
@@ -347,16 +379,16 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	public Command getSetCommand(int index, Object value) {
 		Object oldValue = get(index);
 		Command command = SetCommand.create(editingDomain, source, feature, value, index);
-		if (oldValue instanceof EObject && feature instanceof EReference && ((EReference)feature).isContainment()) {
+		if(oldValue instanceof EObject && feature instanceof EReference && ((EReference)feature).isContainment()) {
 			addDestroyCommand(command, (EObject)oldValue);
 		}
 		return command;
 	}
-	
+
 	protected void addDestroyCommand(Command cmd, EObject objToDestroy) {
 		Command destroyCmd = DeleteCommand.create(editingDomain, objToDestroy);
 
-		if (cmd instanceof CompoundCommand) {
+		if(cmd instanceof CompoundCommand) {
 			((CompoundCommand)cmd).append(destroyCmd);
 		} else {
 			cmd.chain(destroyCmd);

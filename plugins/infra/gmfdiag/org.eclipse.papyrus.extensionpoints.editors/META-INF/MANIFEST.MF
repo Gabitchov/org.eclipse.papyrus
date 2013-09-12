@@ -15,9 +15,7 @@ Require-Bundle: org.eclipse.ui.editors;bundle-version="3.4.0",
  org.eclipse.ui.workbench.texteditor;bundle-version="3.8.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
- org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="0.10.1",
- com.google.inject;bundle-version="3.0.0",
- org.eclipse.papyrus.uml.xtext.integration.validation;bundle-version="0.10.1"
+ com.google.inject;bundle-version="3.0.0"
 Export-Package: org.eclipse.papyrus.extensionpoints.editors,
  org.eclipse.papyrus.extensionpoints.editors.configuration,
  org.eclipse.papyrus.extensionpoints.editors.definition,

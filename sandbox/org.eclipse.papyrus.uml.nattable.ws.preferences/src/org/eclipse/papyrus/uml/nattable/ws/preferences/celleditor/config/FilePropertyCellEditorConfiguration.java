@@ -34,11 +34,6 @@ public class FilePropertyCellEditorConfiguration extends EStructuralFeatureEdito
 	}
 
 	@Override
-	public String getEditorId() {
-		return super.getEditorId();
-	}
-
-	@Override
 	protected IComboBoxDataProvider getComboDataProvider(Table table, Object axisElement, ITableAxisElementProvider elementProvider) {
 		return super.getComboDataProvider(table, axisElement, elementProvider);
 	}

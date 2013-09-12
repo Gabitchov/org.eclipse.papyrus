@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;bundle
  org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.papyrus.uml.commands;bundle-version="0.10.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
  org.eclipse.core.expressions;bundle-version="3.4.200",
@@ -20,7 +19,8 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;bundle
  org.eclipse.papyrus.uml.profile;bundle-version="0.10.0",
  org.eclipse.papyrus.uml.tools;bundle-version="0.10.0",
  org.eclipse.papyrus.uml.alf;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr,

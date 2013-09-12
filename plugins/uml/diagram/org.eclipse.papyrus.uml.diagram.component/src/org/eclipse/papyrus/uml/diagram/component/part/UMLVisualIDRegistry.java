@@ -77,6 +77,8 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableEl
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionNameEditPart;
@@ -198,6 +200,9 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
 				return PackageEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
+				return RectangleInterfaceEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPart.VISUAL_ID;
@@ -358,6 +363,9 @@ public class UMLVisualIDRegistry {
 			if(PackageEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(RectangleInterfaceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(InterfaceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -400,6 +408,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(PackagePackageableElementCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RectangleInterfaceEditPart.VISUAL_ID:
+			if(RectangleInterfaceNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -728,6 +741,7 @@ public class UMLVisualIDRegistry {
 		case CommentEditPart.VISUAL_ID:
 		case DependencyNodeEditPart.VISUAL_ID:
 		case DefaultNamedElementEditPart.VISUAL_ID:
+		case RectangleInterfaceEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

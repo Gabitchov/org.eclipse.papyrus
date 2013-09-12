@@ -74,7 +74,7 @@ import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
-import org.eclipse.papyrus.views.modelexplorer.xtext.XtextEditingSupport;
+import org.eclipse.papyrus.views.modelexplorer.xtext.DirectEditorEditingSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -493,7 +493,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	protected CommonViewer createCommonViewer(Composite aParent) {
 		CommonViewer viewer = super.createCommonViewer(aParent);
 		ViewerColumn column = (ViewerColumn) viewer.getTree().getData(Policy.JFACE + ".columnViewer");
-		column.setEditingSupport(new XtextEditingSupport(viewer));
+		column.setEditingSupport(new DirectEditorEditingSupport(viewer));
 		return viewer;
 	}
 	

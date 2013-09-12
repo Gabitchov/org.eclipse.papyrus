@@ -121,6 +121,13 @@
       </rm:uri>
     </rm:provider>
     
+     <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/plugins/infra/nattable/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
     <!-- /INFRA -->
 
     <rm:provider componentTypes="osgi.bundle" readerType="local">
@@ -149,6 +156,13 @@
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/plugins/sysml/table/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+     <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/plugins/sysml/nattable/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -213,6 +227,14 @@
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
+    
+     <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/plugins/uml/nattable/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/plugins/uml/textedit/{1}">
         <bc:propertyRef key="local.repository"/>
@@ -558,7 +580,13 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-
+  
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <rm:uri format="{0}/nattable/releases/1.0.1/repository/">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+  	  </rm:provider>
+  	  
   </rm:searchPath>
 
 </rm:rmap>

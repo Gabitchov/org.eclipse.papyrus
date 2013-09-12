@@ -76,5 +76,11 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes id="org.eclipse.papyrus.uml.search.source.feature" version="0.0.0"/>
    
    <includes id="org.eclipse.papyrus.uml.xtext.integration.feature" version="0.0.0"/>
+   
+   <includes id="org.eclipse.papyrus.infra.nattable.source.feature" version="0.0.0"/>
+
+   <includes id="org.eclipse.papyrus.sysml.nattable.source.feature" version="0.0.0"/>
+
+   <includes id="org.eclipse.papyrus.uml.nattable.source.feature" version="0.0.0"/>
 
 </feature>

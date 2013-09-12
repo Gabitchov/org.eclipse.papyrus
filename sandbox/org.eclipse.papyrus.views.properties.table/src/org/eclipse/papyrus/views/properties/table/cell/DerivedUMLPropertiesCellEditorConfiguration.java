@@ -70,7 +70,7 @@ public class DerivedUMLPropertiesCellEditorConfiguration extends AbstractCellEdi
 		};
 	}
 
-	public String getEditorId() {
+	public String getEditorConfigId() {
 		return DerivedUMLPropertiesAxisManager.MULTIPLICITY;
 	}
 
@@ -81,6 +81,11 @@ public class DerivedUMLPropertiesCellEditorConfiguration extends AbstractCellEdi
 	@Override
 	public String getEditorDescription() {
 		return "Specific editor for Multiplicities";
+	}
+
+	@Override
+	public IDisplayConverter getDisplayConvert(Table table, Object axisElement, ILabelProvider provider) {
+		return null;
 	}
 
 }

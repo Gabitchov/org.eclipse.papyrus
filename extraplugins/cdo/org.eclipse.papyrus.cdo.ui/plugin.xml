@@ -321,4 +321,11 @@
             id="org.eclipse.papyrus.cdo.ui.modelDropAction">
       </action>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="255"
+            provider="org.eclipse.papyrus.cdo.internal.ui.providers.CDOResourceLabelProvider">
+      </labelProvider>
+   </extension>
 </plugin>

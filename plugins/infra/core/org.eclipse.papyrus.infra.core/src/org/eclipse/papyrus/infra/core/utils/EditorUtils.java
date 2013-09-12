@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2013 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>: Code simplification and NPE
  *         management.
+ *  Christian W. Damus (CEA LIST) - API for determining URI of a resource in an editor
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.Activator;
@@ -34,11 +37,14 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IURIEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -670,4 +676,62 @@ public class EditorUtils {
 		}
 	}
 
+	/**
+	 * Obtains the URI of the EMF resource identified by the given editor reference.
+	 * 
+	 * @param editorRef
+	 *        an editor reference
+	 * 
+	 * @return the best-effort URI of the resource that it edits, or {@code null} if it could not be determined,
+	 *         including the case when the editor input could not be obtained from the reference
+	 */
+	public static URI getResourceURI(IEditorReference editorRef) {
+		try {
+			return getResourceURI(editorRef.getEditorInput());
+		} catch (PartInitException e) {
+			Activator.log.error("Could not obtain editor input from editor reference.", e); //$NON-NLS-1$
+			return null;
+		}
+	}
+
+	/**
+	 * Obtains the URI of the EMF resource edited by the given {@code editor}.
+	 * 
+	 * @param editor
+	 *        an open editor
+	 * 
+	 * @return the best-effort URI of the resource that it edits, or {@code null} if it could not be determined,
+	 *         such as if the editor input could not be obtained from the editor
+	 */
+	public static URI getResourceURI(IEditorPart editor) {
+		return getResourceURI(editor.getEditorInput());
+	}
+
+	/**
+	 * Obtains the URI of the EMF resource identified by the given editor input.
+	 * 
+	 * @param editorInput
+	 *        an editor input
+	 * 
+	 * @return the best-effort URI of the resource that it edits, or {@code null} if it could not be determined
+	 */
+	public static URI getResourceURI(IEditorInput editorInput) {
+		URI result = null;
+
+		if(editorInput instanceof IFileEditorInput) {
+			result = URI.createPlatformResourceURI(((IFileEditorInput)editorInput).getFile().getFullPath().toString(), true);
+		} else if(editorInput instanceof URIEditorInput) {
+			result = ((URIEditorInput)editorInput).getURI();
+		} else if(editorInput instanceof IURIEditorInput) {
+			result = URI.createURI(((IURIEditorInput)editorInput).getURI().toASCIIString(), true);
+		} else if(editorInput != null) {
+			// desperation
+			Object adapter = editorInput.getAdapter(URI.class);
+			if(adapter instanceof URI) {
+				result = (URI)adapter;
+			}
+		}
+
+		return result;
+	}
 }

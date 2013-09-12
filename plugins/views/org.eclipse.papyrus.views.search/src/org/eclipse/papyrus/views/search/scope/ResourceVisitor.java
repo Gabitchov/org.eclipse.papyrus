@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.scope;
@@ -29,11 +30,11 @@ import org.eclipse.emf.common.util.URI;
  */
 public class ResourceVisitor implements IResourceProxyVisitor {
 
-	private Collection<IResource> participants;
+	private Collection<URI> participantURIs;
 
 	public ResourceVisitor() {
 		super();
-		this.participants = new HashSet<IResource>();
+		this.participantURIs = new HashSet<URI>();
 	}
 
 	public boolean visit(IResourceProxy proxy) throws CoreException {
@@ -48,7 +49,7 @@ public class ResourceVisitor implements IResourceProxyVisitor {
 				//				try {
 				//					ModelSet modelSet = ModelUtils.openFile(resource);
 				//					modelSet.unload();
-				participants.add(resource);
+				participantURIs.add(uri);
 				//				} catch (ModelMultiException e) {
 				//				}
 			}
@@ -60,8 +61,8 @@ public class ResourceVisitor implements IResourceProxyVisitor {
 		return true;
 	}
 
-	public Collection<IResource> getParticipants() {
-		return participants;
+	public Collection<URI> getParticipantURIs() {
+		return participantURIs;
 	}
 
 }

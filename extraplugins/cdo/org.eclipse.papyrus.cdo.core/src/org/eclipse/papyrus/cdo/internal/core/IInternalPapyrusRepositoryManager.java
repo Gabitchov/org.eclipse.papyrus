@@ -11,7 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core;
 
+import java.util.Collection;
+
 import org.eclipse.emf.cdo.view.CDOView;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
@@ -30,4 +33,17 @@ public interface IInternalPapyrusRepositoryManager extends IPapyrusRepositoryMan
 	void setCredentialsProviderFactory(ICredentialsProviderFactory credentialsProviderFactory);
 
 	IInternalPapyrusRepository getRepository(CDOView view);
+
+	//
+	// Specializations of inherited API
+	//
+
+	Collection<? extends IInternalPapyrusRepository> getRepositories();
+
+	IInternalPapyrusRepository createRepository(String url);
+
+	IInternalPapyrusRepository getRepository(String url);
+
+	IInternalPapyrusRepository getRepositoryForURI(URI uri);
+
 }

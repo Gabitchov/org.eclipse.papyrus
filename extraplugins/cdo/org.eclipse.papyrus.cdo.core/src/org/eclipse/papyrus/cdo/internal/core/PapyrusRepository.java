@@ -626,6 +626,17 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 	//
 
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-		return Platform.getAdapterManager().getAdapter(this, adapter);
+		Object result = null;
+
+		if((adapter == CDOResourceNode.class) || (adapter == CDOResource.class)) {
+			CDOView view = getMasterView();
+			if((view != null) && !view.isClosed()) {
+				result = view.getRootResource();
+			}
+		} else {
+			result = Platform.getAdapterManager().getAdapter(this, adapter);
+		}
+
+		return result;
 	}
 }

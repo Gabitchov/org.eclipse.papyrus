@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.table.axis;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
+import org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
@@ -35,13 +34,13 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
  * @author Camille Letavernier
  * 
  */
-public class SynchronizedFeatureValueAxisManager extends AbstractSynchronizedOnFeatureAxisManager {
+public class SynchronizedFeatureValueAxisManager extends AbstractSynchronizedOnEStructuralFeatureAxisManager {
 
 	public static final String AXIS_MANAGER_ID = "org.eclipse.papyrus.emf.nattable.synchronized.featurevalue.axis.manager"; //$NON-NLS-1$
 
 	@Override
-	public Collection<Object> getAllManagedAxis() {
-		Collection<Object> result = new LinkedList<Object>();
+	public List<Object> getAllManagedAxis() {
+		List<Object> result = new LinkedList<Object>();
 
 		EStructuralFeatureValueFillingConfiguration config = null;
 		for(final IAxisConfiguration current : this.representedAxisManager.getSpecificAxisConfigurations()) {

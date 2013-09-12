@@ -13,6 +13,7 @@
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra\..*?feature$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra\.build\.feature$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*" searchPathRef="papyrusBinaries"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.nebula\..*" searchPathRef="papyrusBinaries"/>
   
   <rm:locator failOnError="false" searchPathRef="orbit"/>
   <rm:locator failOnError="true" searchPathRef="platform.binaries"/>
@@ -63,13 +64,6 @@
     
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/tests/junit/extraplugins/cdo/{1}">
-        <bc:propertyRef key="local.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    
-    <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/tests/junit/extraplugins/table/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -140,7 +134,7 @@
     <!-- CDO -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 	  <!-- updateFrom("EMF CDO",0) -->
-      <rm:uri format="{0}/modeling/emf/cdo/drops/S20130822-1137">
+      <rm:uri format="{0}/modeling/emf/cdo/drops/I20130906-2340">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -338,12 +332,6 @@
 <!--         <bc:propertyRef key="eclipse.downloads"/> -->
 <!--       </rm:uri> -->
 <!--     </rm:provider> -->
-
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <rm:uri format="{0}/nattable/releases/1.0.1/repository/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-  	  </rm:provider>
 
   </rm:searchPath>
 

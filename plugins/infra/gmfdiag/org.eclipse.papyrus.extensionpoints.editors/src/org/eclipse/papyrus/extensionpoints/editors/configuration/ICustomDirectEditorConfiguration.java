@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * 
@@ -27,5 +29,7 @@ public interface ICustomDirectEditorConfiguration extends IDirectEditorConfigura
 	public DirectEditManager createDirectEditManager(ITextAwareEditPart host);
 
 	public IParser createParser(EObject host);
+	
+	public CellEditor createCellEditor(Composite parent, EObject object);
 	
 }
