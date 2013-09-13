@@ -65,7 +65,7 @@
          </command>
          <command
                commandId="org.eclipse.papyrus.infra.core.commands.closeothersdiagrams"
-               label="Close Others Diagrams"
+               label="Close Other Diagrams"
                style="push"
                tooltip="Close All Diagrams except the selected one">
             <visibleWhen>
@@ -124,7 +124,7 @@
          </command>
          <command
                commandId="org.eclipse.papyrus.infra.core.commands.closeothersdiagrams"
-               label="Close Others Diagrams"
+               label="Close Other Diagrams"
                style="push"
                tooltip="Close All Diagrams except the selected one">
             <visibleWhen>
@@ -150,7 +150,7 @@
       </command>
       <command
             id="org.eclipse.papyrus.infra.core.commands.closeothersdiagrams"
-            name="Close Others Diagrams">
+            name="Close Other Diagrams">
       </command>
       <command
             defaultHandler="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands.CloseDiagramCommand"
