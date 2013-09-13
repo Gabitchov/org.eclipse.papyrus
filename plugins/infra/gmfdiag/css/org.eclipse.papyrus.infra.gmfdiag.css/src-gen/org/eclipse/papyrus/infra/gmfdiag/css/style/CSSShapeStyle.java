@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.style;
 
 
-public interface CSSShapeStyle extends CSSFontStyle, CSSDescriptionStyle, CSSFillStyle, CSSLineStyle, CSSRoundedCornersStyle{
+public interface CSSShapeStyle extends CSSFontStyle, CSSDescriptionStyle, CSSFillStyle, CSSLineStyle, CSSRoundedCornersStyle {
 
 
 }

@@ -31,25 +31,25 @@ public class CSSFilteringStyleImpl extends FilteringStyleImpl implements CSSFilt
 
 	protected CSSFilteringStyle getFilteringStyle() {
 		if(filteringStyle == null) {
-			filteringStyle = new  CSSFilteringStyleDelegate(this, getEngine());
+			filteringStyle = new CSSFilteringStyleDelegate(this, getEngine());
 		}
 		return filteringStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -62,20 +62,20 @@ public class CSSFilteringStyleImpl extends FilteringStyleImpl implements CSSFilt
 	//////////////////////////////////////////
 
 
-	public Filtering getCSSFiltering(){
+	public Filtering getCSSFiltering() {
 		Filtering value = super.getFiltering();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFilteringStyle_Filtering(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFilteringStyle_Filtering(), value)) {
 			return value;
 		} else {
 			return getFilteringStyle().getCSSFiltering();
 		}
 	}
 
-	public java.util.List getCSSFilteringKeys(){
+	public java.util.List getCSSFilteringKeys() {
 		java.util.List value = super.getFilteringKeys();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFilteringStyle_FilteringKeys(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFilteringStyle_FilteringKeys(), value)) {
 			return value;
 		} else {
 			return getFilteringStyle().getCSSFilteringKeys();
@@ -84,13 +84,13 @@ public class CSSFilteringStyleImpl extends FilteringStyleImpl implements CSSFilt
 
 
 	@Override
-	public Filtering getFiltering(){
+	public Filtering getFiltering() {
 		//return super.getFiltering();
 		return getCSSFiltering();
 	}
 
 	@Override
-	public java.util.List getFilteringKeys(){
+	public java.util.List getFilteringKeys() {
 		//return super.getFilteringKeys();
 		return getCSSFilteringKeys();
 	}
@@ -102,17 +102,17 @@ public class CSSFilteringStyleImpl extends FilteringStyleImpl implements CSSFilt
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setFiltering(Filtering value){
+	public void setFiltering(Filtering value) {
 		super.setFiltering(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFilteringStyle_Filtering();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setFilteringKeys(java.util.List value){
+	public void setFilteringKeys(java.util.List value) {
 		super.setFilteringKeys(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFilteringStyle_FilteringKeys();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -125,7 +125,7 @@ public class CSSFilteringStyleImpl extends FilteringStyleImpl implements CSSFilt
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

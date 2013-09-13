@@ -34,6 +34,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.Compartment;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -331,6 +333,8 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 				} else {
 					localName = type;
 				}
+			} else if (getNotationElement() instanceof BasicCompartment){
+				return "Compartment";
 			} else {
 				localName = getSemanticElement().eClass().getName();
 			}
@@ -349,7 +353,6 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		String value = doGetAttribute(attr);
 		if(value != null) {
 			return value;
-
 		}
 
 		return "";
@@ -363,6 +366,14 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * Returns null if the attribute is not known
 	 */
 	protected String doGetAttribute(String attr) {
+		if (notationElement instanceof BasicCompartment){
+			if ("type".equals(attr)){
+				BasicCompartment compartment = (BasicCompartment)notationElement;
+				return compartment.getType(); //7017, 7018, 7019 for Attribute/Operation/Classifier compartments
+				//TODO: Create a mapping list between GMF ID (Type) and user-readable labels
+			}
+		}
+		
 		EStructuralFeature feature = getSemanticElement().eClass().getEStructuralFeature(attr);
 		if(feature != null) {
 			Object value = semanticElement.eGet(feature);
@@ -406,7 +417,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		return getChildren().length;
 	}
 
-	private Node[] getChildren() {
+	protected Node[] getChildren() {
 		if(children == null) {
 			children = computeChildren(notationElement, engine);
 		}
@@ -421,7 +432,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * If a notation child element represents the same semantic element
 	 * than self, returns its own children (Recursively).
 	 */
-	private static Node[] computeChildren(View notationElement, CSSEngine engine) {
+	protected static Node[] computeChildren(View notationElement, CSSEngine engine) {
 		EObject semanticElement = SemanticElementHelper.findSemanticElement(notationElement);
 		List<Node> childList = new LinkedList<Node>();
 		for(EObject child : notationElement.eContents()) {
@@ -432,6 +443,12 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 				} else {
 					childList.addAll(Arrays.asList(computeChildren(notationChild, engine)));
 				}
+			}
+		}
+		
+		for (EObject child : notationElement.eContents()){
+			if (child instanceof BasicCompartment){
+				childList.add(engine.getElement(child));
 			}
 		}
 

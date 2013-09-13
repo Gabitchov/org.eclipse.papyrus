@@ -31,25 +31,25 @@ public class CSSTextStyleImpl extends TextStyleImpl implements CSSTextStyle {
 
 	protected CSSTextStyle getTextStyle() {
 		if(textStyle == null) {
-			textStyle = new  CSSTextStyleDelegate(this, getEngine());
+			textStyle = new CSSTextStyleDelegate(this, getEngine());
 		}
 		return textStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -62,10 +62,10 @@ public class CSSTextStyleImpl extends TextStyleImpl implements CSSTextStyle {
 	//////////////////////////////////////////
 
 
-	public TextAlignment getCSSTextAlignment(){
+	public TextAlignment getCSSTextAlignment() {
 		TextAlignment value = super.getTextAlignment();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getTextStyle_TextAlignment(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getTextStyle_TextAlignment(), value)) {
 			return value;
 		} else {
 			return getTextStyle().getCSSTextAlignment();
@@ -74,7 +74,7 @@ public class CSSTextStyleImpl extends TextStyleImpl implements CSSTextStyle {
 
 
 	@Override
-	public TextAlignment getTextAlignment(){
+	public TextAlignment getTextAlignment() {
 		//return super.getTextAlignment();
 		return getCSSTextAlignment();
 	}
@@ -86,9 +86,9 @@ public class CSSTextStyleImpl extends TextStyleImpl implements CSSTextStyle {
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setTextAlignment(TextAlignment value){
+	public void setTextAlignment(TextAlignment value) {
 		super.setTextAlignment(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getTextStyle_TextAlignment();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -101,7 +101,7 @@ public class CSSTextStyleImpl extends TextStyleImpl implements CSSTextStyle {
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

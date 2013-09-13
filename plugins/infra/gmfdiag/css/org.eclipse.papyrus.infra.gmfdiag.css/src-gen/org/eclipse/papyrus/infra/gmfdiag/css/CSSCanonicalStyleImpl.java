@@ -30,25 +30,25 @@ public class CSSCanonicalStyleImpl extends CanonicalStyleImpl implements CSSCano
 
 	protected CSSCanonicalStyle getCanonicalStyle() {
 		if(canonicalStyle == null) {
-			canonicalStyle = new  CSSCanonicalStyleDelegate(this, getEngine());
+			canonicalStyle = new CSSCanonicalStyleDelegate(this, getEngine());
 		}
 		return canonicalStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,10 +61,10 @@ public class CSSCanonicalStyleImpl extends CanonicalStyleImpl implements CSSCano
 	//////////////////////////////////////////
 
 
-	public boolean isCSSCanonical(){
+	public boolean isCSSCanonical() {
 		boolean value = super.isCanonical();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getCanonicalStyle_Canonical(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getCanonicalStyle_Canonical(), value)) {
 			return value;
 		} else {
 			return getCanonicalStyle().isCSSCanonical();
@@ -73,7 +73,7 @@ public class CSSCanonicalStyleImpl extends CanonicalStyleImpl implements CSSCano
 
 
 	@Override
-	public boolean isCanonical(){
+	public boolean isCanonical() {
 		//return super.isCanonical();
 		return isCSSCanonical();
 	}
@@ -85,9 +85,9 @@ public class CSSCanonicalStyleImpl extends CanonicalStyleImpl implements CSSCano
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setCanonical(boolean value){
+	public void setCanonical(boolean value) {
 		super.setCanonical(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getCanonicalStyle_Canonical();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -100,7 +100,7 @@ public class CSSCanonicalStyleImpl extends CanonicalStyleImpl implements CSSCano
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

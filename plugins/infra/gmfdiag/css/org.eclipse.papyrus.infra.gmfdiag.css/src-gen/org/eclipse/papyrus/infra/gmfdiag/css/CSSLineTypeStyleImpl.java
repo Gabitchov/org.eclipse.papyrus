@@ -31,25 +31,25 @@ public class CSSLineTypeStyleImpl extends LineTypeStyleImpl implements CSSLineTy
 
 	protected CSSLineTypeStyle getLineTypeStyle() {
 		if(lineTypeStyle == null) {
-			lineTypeStyle = new  CSSLineTypeStyleDelegate(this, getEngine());
+			lineTypeStyle = new CSSLineTypeStyleDelegate(this, getEngine());
 		}
 		return lineTypeStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -62,10 +62,10 @@ public class CSSLineTypeStyleImpl extends LineTypeStyleImpl implements CSSLineTy
 	//////////////////////////////////////////
 
 
-	public LineType getCSSLineType(){
+	public LineType getCSSLineType() {
 		LineType value = super.getLineType();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineTypeStyle_LineType(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineTypeStyle_LineType(), value)) {
 			return value;
 		} else {
 			return getLineTypeStyle().getCSSLineType();
@@ -74,7 +74,7 @@ public class CSSLineTypeStyleImpl extends LineTypeStyleImpl implements CSSLineTy
 
 
 	@Override
-	public LineType getLineType(){
+	public LineType getLineType() {
 		//return super.getLineType();
 		return getCSSLineType();
 	}
@@ -86,9 +86,9 @@ public class CSSLineTypeStyleImpl extends LineTypeStyleImpl implements CSSLineTy
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setLineType(LineType value){
+	public void setLineType(LineType value) {
 		super.setLineType(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getLineTypeStyle_LineType();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -101,7 +101,7 @@ public class CSSLineTypeStyleImpl extends LineTypeStyleImpl implements CSSLineTy
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

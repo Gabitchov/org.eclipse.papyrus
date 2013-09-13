@@ -30,25 +30,25 @@ public class CSSHintedDiagramLinkStyleImpl extends HintedDiagramLinkStyleImpl im
 
 	protected CSSHintedDiagramLinkStyle getHintedDiagramLinkStyle() {
 		if(hintedDiagramLinkStyle == null) {
-			hintedDiagramLinkStyle = new  CSSHintedDiagramLinkStyleDelegate(this, getEngine());
+			hintedDiagramLinkStyle = new CSSHintedDiagramLinkStyleDelegate(this, getEngine());
 		}
 		return hintedDiagramLinkStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,10 +61,10 @@ public class CSSHintedDiagramLinkStyleImpl extends HintedDiagramLinkStyleImpl im
 	//////////////////////////////////////////
 
 
-	public java.lang.String getCSSHint(){
+	public java.lang.String getCSSHint() {
 		java.lang.String value = super.getHint();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getHintedDiagramLinkStyle_Hint(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getHintedDiagramLinkStyle_Hint(), value)) {
 			return value;
 		} else {
 			return getHintedDiagramLinkStyle().getCSSHint();
@@ -73,7 +73,7 @@ public class CSSHintedDiagramLinkStyleImpl extends HintedDiagramLinkStyleImpl im
 
 
 	@Override
-	public java.lang.String getHint(){
+	public java.lang.String getHint() {
 		//return super.getHint();
 		return getCSSHint();
 	}
@@ -85,9 +85,9 @@ public class CSSHintedDiagramLinkStyleImpl extends HintedDiagramLinkStyleImpl im
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setHint(java.lang.String value){
+	public void setHint(java.lang.String value) {
 		super.setHint(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getHintedDiagramLinkStyle_Hint();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -100,7 +100,7 @@ public class CSSHintedDiagramLinkStyleImpl extends HintedDiagramLinkStyleImpl im
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

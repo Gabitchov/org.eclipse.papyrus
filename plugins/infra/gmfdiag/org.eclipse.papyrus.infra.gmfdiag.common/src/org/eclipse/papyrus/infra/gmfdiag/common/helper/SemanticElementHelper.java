@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -36,10 +37,16 @@ public class SemanticElementHelper {
 		if(notationElement == null) {
 			return null;
 		}
+		
 		if(notationElement instanceof Diagram) {
 			return notationElement;
 		}
-		if(notationElement instanceof View) {
+		
+		if (notationElement instanceof BasicCompartment){
+			return notationElement;
+		}
+		
+		if (notationElement instanceof View) {
 			View view = (View)notationElement;
 			EObject semanticElement = view.getElement();
 			if(semanticElement != null) {

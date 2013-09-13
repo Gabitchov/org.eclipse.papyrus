@@ -30,25 +30,25 @@ public class CSSRoundedCornersStyleImpl extends RoundedCornersStyleImpl implemen
 
 	protected CSSRoundedCornersStyle getRoundedCornersStyle() {
 		if(roundedCornersStyle == null) {
-			roundedCornersStyle = new  CSSRoundedCornersStyleDelegate(this, getEngine());
+			roundedCornersStyle = new CSSRoundedCornersStyleDelegate(this, getEngine());
 		}
 		return roundedCornersStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,10 +61,10 @@ public class CSSRoundedCornersStyleImpl extends RoundedCornersStyleImpl implemen
 	//////////////////////////////////////////
 
 
-	public int getCSSRoundedBendpointsRadius(){
+	public int getCSSRoundedBendpointsRadius() {
 		int value = super.getRoundedBendpointsRadius();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius(), value)) {
 			return value;
 		} else {
 			return getRoundedCornersStyle().getCSSRoundedBendpointsRadius();
@@ -73,7 +73,7 @@ public class CSSRoundedCornersStyleImpl extends RoundedCornersStyleImpl implemen
 
 
 	@Override
-	public int getRoundedBendpointsRadius(){
+	public int getRoundedBendpointsRadius() {
 		//return super.getRoundedBendpointsRadius();
 		return getCSSRoundedBendpointsRadius();
 	}
@@ -85,9 +85,9 @@ public class CSSRoundedCornersStyleImpl extends RoundedCornersStyleImpl implemen
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setRoundedBendpointsRadius(int value){
+	public void setRoundedBendpointsRadius(int value) {
 		super.setRoundedBendpointsRadius(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -100,7 +100,7 @@ public class CSSRoundedCornersStyleImpl extends RoundedCornersStyleImpl implemen
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 
