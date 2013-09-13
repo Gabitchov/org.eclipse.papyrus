@@ -18,11 +18,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Check whether the specific system class. This class can be identified, since it is the
@@ -36,7 +36,7 @@ public class SystemHasNoPorts extends AbstractModelConstraint {
 	{
 		Package pkg = (Package) ctx.getTarget ();
 		
-		DeploymentPlan cdp = StUtils.getApplication(pkg, DeploymentPlan.class);
+		DeploymentPlan cdp = UMLUtil.getStereotypeApplication(pkg, DeploymentPlan.class);
 			
 		if (cdp != null) {
 			InstanceSpecification mi =  cdp.getMainInstance();

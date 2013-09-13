@@ -18,11 +18,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.InteractionComponent;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.ConnectorBinding;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Check whether a connector is connectable, i.e. whether the ports of application parts match with those
@@ -40,7 +40,7 @@ public class ConnectorConnectable extends AbstractModelConstraint
 		Connector connector = (Connector)ctx.getTarget();
 		Class class_ = (Class)connector.getOwner();
 
-		org.eclipse.papyrus.FCM.Connector fcmConnector = StUtils.getApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
+		org.eclipse.papyrus.FCM.Connector fcmConnector = UMLUtil.getStereotypeApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
 		if(fcmConnector != null) {
 			InteractionComponent connectorComp = fcmConnector.getIc();
 			if(connectorComp != null) {

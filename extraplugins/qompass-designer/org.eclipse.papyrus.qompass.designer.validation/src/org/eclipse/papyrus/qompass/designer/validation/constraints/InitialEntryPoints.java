@@ -20,13 +20,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.BootLoaderGen;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Verify that at exactly one blocking start routine is defined.
@@ -41,7 +41,7 @@ public class InitialEntryPoints extends AbstractModelConstraint {
 	{
 		Package pkg = (Package)ctx.getTarget();
 
-		DeploymentPlan cdp = StUtils.getApplication(pkg, DeploymentPlan.class);
+		DeploymentPlan cdp = UMLUtil.getStereotypeApplication(pkg, DeploymentPlan.class);
 		if(cdp != null) {
 			InstanceSpecification initIS = cdp.getMainInstance();
 			if(initIS != null) {

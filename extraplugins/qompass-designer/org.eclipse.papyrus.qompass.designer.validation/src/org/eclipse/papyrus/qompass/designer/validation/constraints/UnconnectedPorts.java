@@ -32,11 +32,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Check whether a port of a part remains without connection. Whereas it is typically problematic
@@ -61,7 +61,7 @@ abstract public class UnconnectedPorts extends AbstractModelConstraint
 			if (attribute.getType () instanceof Class) {
 				Class class_ = (Class) attribute.getType ();
 				for (Port port : class_.getOwnedPorts ()) {
-					org.eclipse.papyrus.FCM.Port fcmPort = StUtils.getApplication(port, org.eclipse.papyrus.FCM.Port.class);
+					org.eclipse.papyrus.FCM.Port fcmPort = UMLUtil.getStereotypeApplication(port, org.eclipse.papyrus.FCM.Port.class);
 					if (fcmPort == null) {
 						continue;	// make rule Qompass specific, only check ports with FCM stereotype
 					}
