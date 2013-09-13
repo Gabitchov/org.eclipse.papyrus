@@ -29,25 +29,25 @@ public class CSSGuideStyleImpl extends GuideStyleImpl implements CSSGuideStyle {
 
 	protected CSSGuideStyle getGuideStyle() {
 		if(guideStyle == null) {
-			guideStyle = new  CSSGuideStyleDelegate(this, getEngine());
+			guideStyle = new CSSGuideStyleDelegate(this, getEngine());
 		}
 		return guideStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -58,8 +58,6 @@ public class CSSGuideStyleImpl extends GuideStyleImpl implements CSSGuideStyle {
 	//////////////////////////////////////////
 	//	Forwards accesses to CSS properties	//
 	//////////////////////////////////////////
-
-
 
 
 
@@ -78,7 +76,7 @@ public class CSSGuideStyleImpl extends GuideStyleImpl implements CSSGuideStyle {
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

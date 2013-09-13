@@ -30,25 +30,25 @@ public class CSSFillStyleImpl extends FillStyleImpl implements CSSFillStyle {
 
 	protected CSSFillStyle getFillStyle() {
 		if(fillStyle == null) {
-			fillStyle = new  CSSFillStyleDelegate(this, getEngine());
+			fillStyle = new CSSFillStyleDelegate(this, getEngine());
 		}
 		return fillStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,30 +61,30 @@ public class CSSFillStyleImpl extends FillStyleImpl implements CSSFillStyle {
 	//////////////////////////////////////////
 
 
-	public int getCSSFillColor(){
+	public int getCSSFillColor() {
 		int value = super.getFillColor();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_FillColor(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_FillColor(), value)) {
 			return value;
 		} else {
 			return getFillStyle().getCSSFillColor();
 		}
 	}
 
-	public int getCSSTransparency(){
+	public int getCSSTransparency() {
 		int value = super.getTransparency();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_Transparency(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_Transparency(), value)) {
 			return value;
 		} else {
 			return getFillStyle().getCSSTransparency();
 		}
 	}
 
-	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient(){
+	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient() {
 		org.eclipse.gmf.runtime.notation.datatype.GradientData value = super.getGradient();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_Gradient(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_Gradient(), value)) {
 			return value;
 		} else {
 			return getFillStyle().getCSSGradient();
@@ -93,19 +93,19 @@ public class CSSFillStyleImpl extends FillStyleImpl implements CSSFillStyle {
 
 
 	@Override
-	public int getFillColor(){
+	public int getFillColor() {
 		//return super.getFillColor();
 		return getCSSFillColor();
 	}
 
 	@Override
-	public int getTransparency(){
+	public int getTransparency() {
 		//return super.getTransparency();
 		return getCSSTransparency();
 	}
 
 	@Override
-	public org.eclipse.gmf.runtime.notation.datatype.GradientData getGradient(){
+	public org.eclipse.gmf.runtime.notation.datatype.GradientData getGradient() {
 		//return super.getGradient();
 		return getCSSGradient();
 	}
@@ -117,25 +117,25 @@ public class CSSFillStyleImpl extends FillStyleImpl implements CSSFillStyle {
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setFillColor(int value){
+	public void setFillColor(int value) {
 		super.setFillColor(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFillStyle_FillColor();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setTransparency(int value){
+	public void setTransparency(int value) {
 		super.setTransparency(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFillStyle_Transparency();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setGradient(org.eclipse.gmf.runtime.notation.datatype.GradientData value){
+	public void setGradient(org.eclipse.gmf.runtime.notation.datatype.GradientData value) {
 		super.setGradient(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFillStyle_Gradient();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -148,7 +148,7 @@ public class CSSFillStyleImpl extends FillStyleImpl implements CSSFillStyle {
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

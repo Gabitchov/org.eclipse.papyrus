@@ -30,25 +30,25 @@ public class CSSLineStyleImpl extends LineStyleImpl implements CSSLineStyle {
 
 	protected CSSLineStyle getLineStyle() {
 		if(lineStyle == null) {
-			lineStyle = new  CSSLineStyleDelegate(this, getEngine());
+			lineStyle = new CSSLineStyleDelegate(this, getEngine());
 		}
 		return lineStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,20 +61,20 @@ public class CSSLineStyleImpl extends LineStyleImpl implements CSSLineStyle {
 	//////////////////////////////////////////
 
 
-	public int getCSSLineColor(){
+	public int getCSSLineColor() {
 		int value = super.getLineColor();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineStyle_LineColor(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineStyle_LineColor(), value)) {
 			return value;
 		} else {
 			return getLineStyle().getCSSLineColor();
 		}
 	}
 
-	public int getCSSLineWidth(){
+	public int getCSSLineWidth() {
 		int value = super.getLineWidth();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineStyle_LineWidth(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineStyle_LineWidth(), value)) {
 			return value;
 		} else {
 			return getLineStyle().getCSSLineWidth();
@@ -83,13 +83,13 @@ public class CSSLineStyleImpl extends LineStyleImpl implements CSSLineStyle {
 
 
 	@Override
-	public int getLineColor(){
+	public int getLineColor() {
 		//return super.getLineColor();
 		return getCSSLineColor();
 	}
 
 	@Override
-	public int getLineWidth(){
+	public int getLineWidth() {
 		//return super.getLineWidth();
 		return getCSSLineWidth();
 	}
@@ -101,17 +101,17 @@ public class CSSLineStyleImpl extends LineStyleImpl implements CSSLineStyle {
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setLineColor(int value){
+	public void setLineColor(int value) {
 		super.setLineColor(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getLineStyle_LineColor();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setLineWidth(int value){
+	public void setLineWidth(int value) {
 		super.setLineWidth(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getLineStyle_LineWidth();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -124,7 +124,7 @@ public class CSSLineStyleImpl extends LineStyleImpl implements CSSLineStyle {
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

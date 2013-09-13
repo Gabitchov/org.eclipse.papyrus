@@ -171,6 +171,8 @@ public class ResetStyleHandler extends AbstractHandler {
 			resetAnnotations(view);
 			//Remove the Papyrus Style EAnnotations
 			resetStyleAnnotations(view);
+			//Reset the visibility
+			view.eUnset(NotationPackage.eINSTANCE.getView_Visible());
 		}
 
 		private void resetStyle(Style style) {

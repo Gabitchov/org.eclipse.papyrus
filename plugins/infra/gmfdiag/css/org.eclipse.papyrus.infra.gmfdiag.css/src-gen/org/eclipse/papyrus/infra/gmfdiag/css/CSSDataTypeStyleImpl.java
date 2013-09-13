@@ -30,25 +30,25 @@ public class CSSDataTypeStyleImpl extends DataTypeStyleImpl implements CSSDataTy
 
 	protected CSSDataTypeStyle getDataTypeStyle() {
 		if(dataTypeStyle == null) {
-			dataTypeStyle = new  CSSDataTypeStyleDelegate(this, getEngine());
+			dataTypeStyle = new CSSDataTypeStyleDelegate(this, getEngine());
 		}
 		return dataTypeStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,10 +61,10 @@ public class CSSDataTypeStyleImpl extends DataTypeStyleImpl implements CSSDataTy
 	//////////////////////////////////////////
 
 
-	public java.lang.String getCSSName(){
+	public java.lang.String getCSSName() {
 		java.lang.String value = super.getName();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getNamedStyle_Name(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getNamedStyle_Name(), value)) {
 			return value;
 		} else {
 			return getDataTypeStyle().getCSSName();
@@ -73,7 +73,7 @@ public class CSSDataTypeStyleImpl extends DataTypeStyleImpl implements CSSDataTy
 
 
 	@Override
-	public java.lang.String getName(){
+	public java.lang.String getName() {
 		//return super.getName();
 		return getCSSName();
 	}
@@ -85,9 +85,9 @@ public class CSSDataTypeStyleImpl extends DataTypeStyleImpl implements CSSDataTy
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setName(java.lang.String value){
+	public void setName(java.lang.String value) {
 		super.setName(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getNamedStyle_Name();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -100,7 +100,7 @@ public class CSSDataTypeStyleImpl extends DataTypeStyleImpl implements CSSDataTy
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

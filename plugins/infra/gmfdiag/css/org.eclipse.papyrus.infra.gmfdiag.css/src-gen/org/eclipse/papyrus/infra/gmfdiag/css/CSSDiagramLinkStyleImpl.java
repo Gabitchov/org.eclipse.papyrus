@@ -29,25 +29,25 @@ public class CSSDiagramLinkStyleImpl extends DiagramLinkStyleImpl implements CSS
 
 	protected CSSDiagramLinkStyle getDiagramLinkStyle() {
 		if(diagramLinkStyle == null) {
-			diagramLinkStyle = new  CSSDiagramLinkStyleDelegate(this, getEngine());
+			diagramLinkStyle = new CSSDiagramLinkStyleDelegate(this, getEngine());
 		}
 		return diagramLinkStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -58,8 +58,6 @@ public class CSSDiagramLinkStyleImpl extends DiagramLinkStyleImpl implements CSS
 	//////////////////////////////////////////
 	//	Forwards accesses to CSS properties	//
 	//////////////////////////////////////////
-
-
 
 
 
@@ -78,7 +76,7 @@ public class CSSDiagramLinkStyleImpl extends DiagramLinkStyleImpl implements CSS
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

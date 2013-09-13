@@ -28,13 +28,13 @@ public class CSSCompartmentImpl extends CompartmentImpl implements CSSDrawerStyl
 
 	protected CSSDrawerStyle getDrawerStyle() {
 		if(drawerStyle == null) {
-			drawerStyle = new  CSSDrawerStyleDelegate(this, getEngine());
+			drawerStyle = new CSSDrawerStyleDelegate(this, getEngine());
 		}
 		return drawerStyle;
 	}
 
 	protected ExtendedCSSEngine getEngine() {
-		if(engine == null) {		
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)getDiagram()).getEngine();
 		}
 		return engine;
@@ -46,10 +46,10 @@ public class CSSCompartmentImpl extends CompartmentImpl implements CSSDrawerStyl
 	//////////////////////////////////////////
 
 
-	public boolean isCSSCollapsed(){
+	public boolean isCSSCollapsed() {
 		boolean value = super.isCollapsed();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getDrawerStyle_Collapsed(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getDrawerStyle_Collapsed(), value)) {
 			return value;
 		} else {
 			return getDrawerStyle().isCSSCollapsed();
@@ -58,7 +58,7 @@ public class CSSCompartmentImpl extends CompartmentImpl implements CSSDrawerStyl
 
 
 	@Override
-	public boolean isCollapsed(){
+	public boolean isCollapsed() {
 		//return super.isCollapsed();
 		return isCSSCollapsed();
 	}
@@ -70,49 +70,49 @@ public class CSSCompartmentImpl extends CompartmentImpl implements CSSDrawerStyl
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setVisible(boolean value){
+	public void setVisible(boolean value) {
 		super.setVisible(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getView_Visible();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setType(java.lang.String value){
+	public void setType(java.lang.String value) {
 		super.setType(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getView_Type();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setMutable(boolean value){
+	public void setMutable(boolean value) {
 		super.setMutable(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getView_Mutable();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setCollapsed(boolean value){
+	public void setCollapsed(boolean value) {
 		super.setCollapsed(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getDrawerStyle_Collapsed();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setCanonical(boolean value){
+	public void setCanonical(boolean value) {
 		super.setCanonical(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getCanonicalStyle_Canonical();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setShowTitle(boolean value){
+	public void setShowTitle(boolean value) {
 		super.setShowTitle(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getTitleStyle_ShowTitle();
 		ForceValueHelper.setValue(this, feature, value);
 	}
@@ -125,7 +125,7 @@ public class CSSCompartmentImpl extends CompartmentImpl implements CSSDrawerStyl
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(this, feature);
 	}
 

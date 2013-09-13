@@ -30,25 +30,25 @@ public class CSSImageStyleImpl extends ImageStyleImpl implements CSSImageStyle {
 
 	protected CSSImageStyle getImageStyle() {
 		if(imageStyle == null) {
-			imageStyle = new  CSSImageStyleDelegate(this, getEngine());
+			imageStyle = new CSSImageStyleDelegate(this, getEngine());
 		}
 		return imageStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,20 +61,20 @@ public class CSSImageStyleImpl extends ImageStyleImpl implements CSSImageStyle {
 	//////////////////////////////////////////
 
 
-	public java.lang.Boolean getCSSAntiAlias(){
+	public java.lang.Boolean getCSSAntiAlias() {
 		java.lang.Boolean value = super.getAntiAlias();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getImageStyle_AntiAlias(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getImageStyle_AntiAlias(), value)) {
 			return value;
 		} else {
 			return getImageStyle().getCSSAntiAlias();
 		}
 	}
 
-	public java.lang.Boolean getCSSMaintainAspectRatio(){
+	public java.lang.Boolean getCSSMaintainAspectRatio() {
 		java.lang.Boolean value = super.getMaintainAspectRatio();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getImageStyle_MaintainAspectRatio(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getImageStyle_MaintainAspectRatio(), value)) {
 			return value;
 		} else {
 			return getImageStyle().getCSSMaintainAspectRatio();
@@ -83,13 +83,13 @@ public class CSSImageStyleImpl extends ImageStyleImpl implements CSSImageStyle {
 
 
 	@Override
-	public java.lang.Boolean getAntiAlias(){
+	public java.lang.Boolean getAntiAlias() {
 		//return super.getAntiAlias();
 		return getCSSAntiAlias();
 	}
 
 	@Override
-	public java.lang.Boolean getMaintainAspectRatio(){
+	public java.lang.Boolean getMaintainAspectRatio() {
 		//return super.getMaintainAspectRatio();
 		return getCSSMaintainAspectRatio();
 	}
@@ -101,17 +101,17 @@ public class CSSImageStyleImpl extends ImageStyleImpl implements CSSImageStyle {
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setAntiAlias(java.lang.Boolean value){
+	public void setAntiAlias(java.lang.Boolean value) {
 		super.setAntiAlias(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getImageStyle_AntiAlias();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setMaintainAspectRatio(java.lang.Boolean value){
+	public void setMaintainAspectRatio(java.lang.Boolean value) {
 		super.setMaintainAspectRatio(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getImageStyle_MaintainAspectRatio();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -124,7 +124,7 @@ public class CSSImageStyleImpl extends ImageStyleImpl implements CSSImageStyle {
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 
