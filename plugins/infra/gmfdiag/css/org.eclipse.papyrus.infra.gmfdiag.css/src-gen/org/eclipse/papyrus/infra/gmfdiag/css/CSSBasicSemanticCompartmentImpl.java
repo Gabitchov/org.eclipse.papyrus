@@ -18,13 +18,17 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSDrawerStyle;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSDrawerStyleDelegate;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 
 public class CSSBasicSemanticCompartmentImpl extends BasicSemanticCompartmentImpl implements CSSDrawerStyle {
 
 	protected ExtendedCSSEngine engine;
 
 	private CSSDrawerStyle drawerStyle;
+
+	private CSSView cssView;
 
 	protected CSSDrawerStyle getDrawerStyle() {
 		if(drawerStyle == null) {
@@ -38,6 +42,13 @@ public class CSSBasicSemanticCompartmentImpl extends BasicSemanticCompartmentImp
 			engine = ((CSSDiagramImpl)getDiagram()).getEngine();
 		}
 		return engine;
+	}
+
+	protected CSSView getCSSView() {
+		if(cssView == null) {
+			cssView = new CSSViewDelegate(this, getEngine());
+		}
+		return cssView;
 	}
 
 
@@ -61,6 +72,21 @@ public class CSSBasicSemanticCompartmentImpl extends BasicSemanticCompartmentImp
 	public boolean isCollapsed() {
 		//return super.isCollapsed();
 		return isCSSCollapsed();
+	}
+
+	@Override
+	public boolean isVisible() {
+		return isCSSVisible();
+	}
+
+	public boolean isCSSVisible() {
+		boolean value = super.isVisible();
+
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getView_Visible(), value)) {
+			return value;
+		} else {
+			return getCSSView().isCSSVisible();
+		}
 	}
 
 

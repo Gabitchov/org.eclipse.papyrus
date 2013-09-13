@@ -22,13 +22,17 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSConnectorStyle;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSConnectorStyleDelegate;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 
 public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle {
 
 	protected ExtendedCSSEngine engine;
 
 	private CSSConnectorStyle connectorStyle;
+
+	private CSSView cssView;
 
 	protected CSSConnectorStyle getConnectorStyle() {
 		if(connectorStyle == null) {
@@ -42,6 +46,13 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 			engine = ((CSSDiagramImpl)getDiagram()).getEngine();
 		}
 		return engine;
+	}
+
+	protected CSSView getCSSView() {
+		if(cssView == null) {
+			cssView = new CSSViewDelegate(this, getEngine());
+		}
+		return cssView;
 	}
 
 
@@ -209,6 +220,21 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 	public int getLineWidth() {
 		//return super.getLineWidth();
 		return getCSSLineWidth();
+	}
+
+	@Override
+	public boolean isVisible() {
+		return isCSSVisible();
+	}
+
+	public boolean isCSSVisible() {
+		boolean value = super.isVisible();
+
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getView_Visible(), value)) {
+			return value;
+		} else {
+			return getCSSView().isCSSVisible();
+		}
 	}
 
 
