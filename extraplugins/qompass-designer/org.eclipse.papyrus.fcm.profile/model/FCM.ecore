@@ -110,11 +110,11 @@
       <details key="documentation" value="This stereotype references the interaction component that should realize the communication. It can be applied to UML connectors as well as to properties. The former is used, if there are two communication partners, the latter is more flexible. For instance, in case of a DDS interaction, a publisher does not know the consumers, it therefore communicates with a part (property) representing the publisher part of the interaction component"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Connector" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Connector"/>
+        unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Connector"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ic" ordered="false" unique="false"
         eType="#//InteractionComponent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Property" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+        unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurableElementInstance" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" ordered="false"
@@ -138,11 +138,11 @@
       <details key="documentation" value="Apply a set of container rules. It can be applied to a single class or to a package, implying that all components within the package apply the specified rule."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+        unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="containerRule" ordered="false"
         unique="false" upperBound="-1" eType="#//ContainerRule"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+        eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContainerRule">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

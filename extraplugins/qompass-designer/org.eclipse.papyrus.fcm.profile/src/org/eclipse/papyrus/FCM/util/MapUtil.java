@@ -28,9 +28,9 @@ public class MapUtil
 	// It avoids that copies of derived interfaces are created at different places
 	// [better alternative: avoid problem by using set of models instead of single large one]
 	// [other option?: no-update flag?]
-	public static final String rootModelName = "root";
+	public static final String rootModelName = "root"; //$NON-NLS-1$
 
-	public static final String MAPPING_RULE_ID = "fcmPortMappingRule";
+	public static final String MAPPING_RULE_ID = "fcmPortMappingRule"; //$NON-NLS-1$
 
 	/**
 	 * return the top-level owner of an element. This function returns the same value
@@ -71,7 +71,7 @@ public class MapUtil
 	 */
 	public static DerivedElement applyDE(Element element)
 	{
-		Stereotype stereotype = element.getApplicableStereotype("FCM::DerivedElement");
+		Stereotype stereotype = element.getApplicableStereotype("FCM::DerivedElement"); //$NON-NLS-1$
 		if(stereotype != null) {
 			EObject alreadyApplied = element.getStereotypeApplication(stereotype);
 			if(alreadyApplied instanceof DerivedElement) {
@@ -276,12 +276,12 @@ public class MapUtil
 	 */
 	private static Interface getOrCreateDerivedInterfaceIntern(Port port, String prefix, Type type, boolean createOnDemand)
 	{
-		String interfaceName = "D_" + prefix + type.getName();
+		String interfaceName = "D_" + prefix + type.getName(); //$NON-NLS-1$
 
 		// create derived element in "derivedInterface" package within the model owning
 		// the port (which must be an FCM model, since the port carries the FCM stereotype)
 		Package baseModelOfPort = getTop(port.getBase_Port());
-		Package derivedInterfaces = getAndCreate(baseModelOfPort, "derivedInterfaces", createOnDemand);
+		Package derivedInterfaces = getAndCreate(baseModelOfPort, "derivedInterfaces", createOnDemand); //$NON-NLS-1$
 		if (derivedInterfaces == null) {
 			return null;
 		}
@@ -366,12 +366,12 @@ public class MapUtil
 	public static IMappingRule getMappingRule(String portKindName)
 	{
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
-		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(Activator.PLUGIN_ID + "." + MAPPING_RULE_ID);
+		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(Activator.PLUGIN_ID + "." + MAPPING_RULE_ID); //$NON-NLS-1$
 		for(IConfigurationElement configElement : configElements) {
 			try {
-				final String extPortKindName = configElement.getAttribute("portKindName");
+				final String extPortKindName = configElement.getAttribute("portKindName"); //$NON-NLS-1$
 				if(extPortKindName.equals(portKindName)) {
-					final Object obj = configElement.createExecutableExtension("class");
+					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
 					if(obj instanceof IMappingRule) {
 						return (IMappingRule)obj;
 					}
