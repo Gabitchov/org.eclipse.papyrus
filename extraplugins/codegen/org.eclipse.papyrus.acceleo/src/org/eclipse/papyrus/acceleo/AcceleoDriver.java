@@ -42,10 +42,14 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 
 public class AcceleoDriver {
 
+	public final static String UML_URI = "http://www.eclipse.org/uml2/4.0.0/UML";  //$NON-NLS-1$
+
+	public final static String DOT = "."; //$NON-NLS-1$
+	
 	/**
 	 * URI of file that is currently evaluated
 	 */
-	public static final URI currentURI = URI.createURI("current." + IAcceleoConstants.EMTL_FILE_EXTENSION);
+	public static final URI currentURI = URI.createURI("current." + IAcceleoConstants.EMTL_FILE_EXTENSION); //$NON-NLS-1$
 
 	public static void init() {
 		engine = new AcceleoEngine();
@@ -95,15 +99,15 @@ public class AcceleoDriver {
 		for(int pass = 0; pass < 2; pass++) {
 			// try bin directory in first pass (deployed plugins: don't use bin, devel: use bin).
 			// Problem: resource is also found without bin, but resolving fails later
-			String binSep = (pass == 0) ? "/bin/" : "/";
+			String binSep = (pass == 0) ? "/bin/" : "/"; //$NON-NLS-1$ //$NON-NLS-2$
 			for(int segmentLen = segments.length - 1; segmentLen > 1; segmentLen--) {
 				String pluginNameCandidate = segments[0];
 				for(int i = 1; i < segmentLen; i++) {
-					pluginNameCandidate += "." + segments[i];
+					pluginNameCandidate += DOT + segments[i];
 				}
 
 				String fileNameCandidate = pluginNameCandidate + binSep + relativePath +
-					"." + IAcceleoConstants.EMTL_FILE_EXTENSION;
+					DOT + IAcceleoConstants.EMTL_FILE_EXTENSION;
 				// String absoluteFileName = Utils.getAbsoluteFN(fileNameCandidate);
 				// if(absoluteFileName != null) {
 				// }
@@ -192,7 +196,7 @@ public class AcceleoDriver {
 	 * @return the evaluated template
 	 */
 	public static String evaluate(String templateStr, Element element, Object args[]) throws AcceleoException {
-		return evaluate(templateStr, "dummy", element, args);
+		return evaluate(templateStr, "dummy", element, args); //$NON-NLS-1$
 	}
 
 	/**
@@ -223,17 +227,18 @@ public class AcceleoDriver {
 		}
 
 		// support non declaration of a template for default naming operations
-		if(!(templateStr.startsWith("[import") || templateStr.startsWith("[template") || templateStr.startsWith("[module"))) {
-			templateStr = "[template public dummy(ne : NamedElement)]\n" + templateStr + "\n[/template]\n";
+		if(!(templateStr.startsWith("[import") || //$NON-NLS-1$
+			templateStr.startsWith("[template") || //$NON-NLS-1$
+			templateStr.startsWith("[module"))) { //$NON-NLS-1$
+			templateStr = "[template public dummy(ne : NamedElement)]\n" + templateStr + //$NON-NLS-1$
+					"\n[/template]\n"; //$NON-NLS-1$
 		}
 
 		// module names are not relevant, since passed templates can not be called by others
-		if(!templateStr.startsWith("[module")) {
-			templateStr = "[module dummyMod('http://www.eclipse.org/uml2/4.0.0/UML')/]\n\n" + templateStr;
+		if(!templateStr.startsWith("[module")) { //$NON-NLS-1$
+			templateStr = "[module dummyMod('" + UML_URI + "')/]\n\n" + templateStr;  //$NON-NLS-1$//$NON-NLS-2$
 		}
-		// workaround for Acceleo bug
-		templateStr.replace("http://www.eclipse.org/uml2/4.0.0/UML", "http://www.eclipse.org/uml2/3.0.0/UML");
-		
+				
 		// Strategy:
 		//   1. Use AcceleoParser to transform text (OpaqueExpression) into Module
 		//		=> list of dependencies via explicit import statements
@@ -372,7 +377,7 @@ public class AcceleoDriver {
 							// we do not throw an exception, since it would imply that the evaluation result is
 							// lost. For a users, the (partially) evaluated result might be more useful to locate
 							// the problem than the actual error message.
-							// log additional info about template, which are not present in the acceleo log
+							// log additional info about template, which are not present in the Acceleo log
 							String message = "an acceleo error occurred during the evaluation of template <" + //$NON-NLS-1$
 									templateName + ">. Check previous errors in the log."; //$NON-NLS-1$
 							if (templateStr.length() > 0) {
