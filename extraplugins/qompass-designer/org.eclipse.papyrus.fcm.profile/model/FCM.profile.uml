@@ -526,7 +526,7 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
         </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_8g_IsNTGEeKiLbHSN_MIRQ" name="compiler" visibility="public" type="_iDiaINRxEeKiLbHSN_MIRQ">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AIgB8NTHEeKiLbHSN_MIRQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AIgB8NTHEeKiLbHSN_MIRQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AJC0gNTHEeKiLbHSN_MIRQ" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_AKHykNTHEeKiLbHSN_MIRQ">
           <value xsi:nil="true"/>

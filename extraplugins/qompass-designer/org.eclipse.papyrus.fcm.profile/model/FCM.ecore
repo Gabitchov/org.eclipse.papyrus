@@ -271,7 +271,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="availROM" ordered="false"
         lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Integer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compiler" ordered="false"
-        lowerBound="1" eType="#//CompilerChain"/>
+        eType="#//CompilerChain"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompilerChain">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
