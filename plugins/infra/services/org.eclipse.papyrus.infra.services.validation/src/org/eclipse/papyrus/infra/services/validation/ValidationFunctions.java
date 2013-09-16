@@ -104,7 +104,7 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 
 	public String getMessage(IPapyrusMarker marker) {
 		// message is stored within marker
-		return marker.getAttribute(IPapyrusMarker.MESSAGE, "");
+		return marker.getAttribute(IPapyrusMarker.MESSAGE, ""); //$NON-NLS-1$
 	}
 
 	public int getPriority(IPapyrusMarker marker) {
