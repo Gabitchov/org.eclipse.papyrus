@@ -212,6 +212,7 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 	protected IListener createInvalidationListener() {
 		return new IListener() {
 
+			@Override
 			public void notifyEvent(IEvent event) {
 				if(event instanceof CDOViewInvalidationEvent) {
 					TransactionalEditingDomain domain = getTransactionalEditingDomain();
@@ -366,7 +367,9 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 				EObject object = CDOUtil.getEObject(next);
 				if(object != null) {
 					for(EReference xref : object.eClass().getEAllReferences()) {
-						if(!xref.isContainment() && xref.isChangeable() && !xref.isDerived() && !xref.isTransient()) {
+						// do include containment references because we may have added a model
+						// element and controlled it in the same transaction
+						if(xref.isChangeable() && !xref.isDerived() && !xref.isTransient()) {
 							run = run.chain(control.getProxyCrossReferencesUpdate(object, xref));
 						}
 					}
