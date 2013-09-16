@@ -15,11 +15,13 @@ import java.io.IOException;
 import java.util.Collections;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -53,13 +55,12 @@ import com.google.inject.Injector;
  * 
  * 
  */
-public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirectEditorConfiguration implements
-		ICustomDirectEditorConfiguration {
+public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
 
 	public static final String ANNOTATION_SOURCE = "expression_source";
 
 	public static final String ANNOTATION_DETAIL = "expression";
-	
+
 	/**
 	 * returns the UI Injector for the Xtext language
 	 * 
@@ -85,9 +86,10 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 
 	public DirectEditManager createDirectEditManager(final ITextAwareEditPart host) {
 		IContextElementProvider provider = new IContextElementProvider() {
+
 			public EObject getContextObject() {
-				if (host instanceof IGraphicalEditPart)
-					return ((IGraphicalEditPart) host).resolveSemanticElement();
+				if(host instanceof IGraphicalEditPart)
+					return ((IGraphicalEditPart)host).resolveSemanticElement();
 				return null;
 			}
 		};
@@ -95,17 +97,18 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	}
 
 	/**
-	 * Adapts {@link IDirectEditorConfiguration} to gmfs {@link IParser}
-	 * interface for reuse in GMF direct editing infrastructure.
+	 * Adapts {@link IDirectEditorConfiguration} to gmfs {@link IParser} interface for reuse in GMF direct editing infrastructure.
 	 */
 	public IParser createParser(final EObject semanticObject) {
 		return new IParser() {
+
 			public String getEditString(IAdaptable element, int flags) {
 				return DefaultXtextDirectEditorConfiguration.this.getTextToEditInternal(semanticObject);
 			}
 
 			public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 				IContextElementProvider provider = new IContextElementProvider() {
+
 					public EObject getContextObject() {
 						return semanticObject;
 					}
@@ -117,7 +120,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				if (!context.getFakeResource().getParseResult().hasSyntaxErrors()) {
+				if(!context.getFakeResource().getParseResult().hasSyntaxErrors()) {
 					EObject xtextObject = context.getFakeResource().getParseResult().getRootASTElement();
 					return DefaultXtextDirectEditorConfiguration.this.getParseCommand(semanticObject, xtextObject);
 				} else {
@@ -146,9 +149,10 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	}
 
 	protected String getTextToEditInternal(EObject semanticObject) {
-		if (semanticObject instanceof EModelElement) {
-			EAnnotation eAnnotation = ((EModelElement) semanticObject).getEAnnotation(ANNOTATION_SOURCE);
-			if (eAnnotation != null) {
+		if(semanticObject instanceof EModelElement) {
+			EAnnotation eAnnotation = ((EModelElement)semanticObject).getEAnnotation(ANNOTATION_SOURCE);
+			if(eAnnotation != null) {
+				registerInvalidStringAdapter(semanticObject);
 				return eAnnotation.getDetails().get(ANNOTATION_DETAIL);
 			}
 		}
@@ -156,25 +160,31 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	}
 
 	protected ICommand createInvalidStringCommand(String newString, EObject semanticElement) {
-		if (semanticElement instanceof EModelElement) {
+		if(semanticElement instanceof EModelElement) {
 			EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			eAnnotation.setSource(ANNOTATION_SOURCE);
 			eAnnotation.getDetails().put(ANNOTATION_DETAIL, newString);
-			return new SetValueCommand(new SetRequest(semanticElement,
-					EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS, eAnnotation));
+			registerInvalidStringAdapter(semanticElement);
+			return new SetValueCommand(new SetRequest(semanticElement, EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS, eAnnotation));
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-	
-	
+
+	protected void registerInvalidStringAdapter(EObject semanticElement) {
+		Adapter existingAdapter = EcoreUtil.getExistingAdapter(semanticElement, InvalidSyntaxAdapter.class);
+		if(existingAdapter == null) {
+			semanticElement.eAdapters().add(new InvalidSyntaxAdapter());
+		}
+	}
+
 	public CellEditor createCellEditor(Composite parent, final EObject semanticObject) {
 		IContextElementProvider provider = new IContextElementProvider() {
+
 			public EObject getContextObject() {
 				return semanticObject;
 			}
 		};
-		XtextStyledTextCellEditorEx cellEditor = new XtextStyledTextCellEditorEx(
-				SWT.MULTI | SWT.BORDER, getInjector(), provider) {
+		XtextStyledTextCellEditorEx cellEditor = new XtextStyledTextCellEditorEx(SWT.MULTI | SWT.BORDER, getInjector(), provider) {
 
 			// This is a workaround for bug
 			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=412732
@@ -185,10 +195,9 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 			protected StyledText createStyledText(Composite parent) {
 				StyledText text = super.createStyledText(parent);
 				text.addListener(3005, new Listener() {
+
 					public void handleEvent(Event event) {
-						if (event.character == SWT.CR
-								&& !completionProposalAdapter
-										.isProposalPopupOpen()) {
+						if(event.character == SWT.CR && !completionProposalAdapter.isProposalPopupOpen()) {
 							focusLost();
 						}
 					}
