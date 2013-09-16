@@ -259,16 +259,23 @@ public class Decoration implements IPapyrusDecoration {
 	}
 
 	public static String getMessageFromDecorations(List<IPapyrusDecoration> decorations) {
-		String message = "";
+		String message = ""; //$NON-NLS-1$
 		if(decorations != null) {
 			for(IPapyrusDecoration decoration : decorations) {
 				if(message.length() > 0) {
-					message += "\n";
+					message += "\n"; //$NON-NLS-1$
 				}
-				message += decoration.getMessage();
+				if (decoration.getMessage() != null) {
+					message += decoration.getMessage();
+				}
 			}
 		}
-		return message;
+		if (message.length() > 0) {
+			return message;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	/**
