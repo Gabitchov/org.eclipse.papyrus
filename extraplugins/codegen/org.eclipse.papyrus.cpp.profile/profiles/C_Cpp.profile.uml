@@ -12,8 +12,7 @@
       <body>Some toolkits require a quite particular way of use. For instance, LTTng requires the use of C (not C++) for the declaration of a trace provider and the header file is read several time with redefined macros. Therefore, the code generator supports a &quot;manual&quot; generation mode, in which primarily the contents of the CppInclude directive is written.</body>
     </ownedComment>
     <ownedComment xmi:type="uml:Comment" xmi:id="_w-x6sNTPEeKiLbHSN_MIRQ" annotatedElement="_PmXVQByJEduN1bTiWJ0lyw">
-      <body>Mark a package as External Library. If this package is used, the associated CDT project will be configured accordingly.
-The name is not required, since the UML name is used </body>
+      <body>Mark a package as External Library. If this package is used, the associated CDT project will be configured accordingly.</body>
     </ownedComment>
     <ownedComment xmi:type="uml:Comment" xmi:id="_LBAtgNTQEeKiLbHSN_MIRQ" annotatedElement="_IHjS8ByMEdu0tMSz-ceC5A">
       <body>No code generation should be done for this element. This also means that no include directive is generated, if the class is referenced.</body>
@@ -192,10 +191,13 @@ The name is not required, since the UML name is used </body>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_PmXVQByJEduN1bTiWJ0lyw" name="ExternLibrary">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_WFVj0ByJEduN1bTiWJ0lyw" name="name" isUnique="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_WFVj0ByJEduN1bTiWJ0lyw" name="includePaths" visibility="public" isUnique="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_x4IIgOL8EeKxe91u-BdTVQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_x4hxIOL8EeKxe91u-BdTVQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_x4hxIOL8EeKxe91u-BdTVQ" value="*"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_3ta7IB5IEeO_BdY-WQWY-A">
+          <value xsi:nil="true"/>
+        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_zqayUByJEduN1bTiWJ0lyw" name="base_package" isUnique="false" association="_zqqC4ByJEduN1bTiWJ0lyw">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
@@ -443,11 +445,9 @@ The name is not required, since the UML name is used </body>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_1C3Q0JMIEeKrb5fnA81_2Q" name="readWrite"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_YVBzYJMIEeKrb5fnA81_2Q" name="EStorageClass">
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_g3RhQJMIEeKrb5fnA81_2Q" name="auto"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_g3RhQJMIEeKrb5fnA81_2Q" name="volatile"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_iJ4_sJMIEeKrb5fnA81_2Q" name="register"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_irt6YJMIEeKrb5fnA81_2Q" name="extern"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_mrDdwJMIEeKrb5fnA81_2Q" name="static"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_nXJHsJMIEeKrb5fnA81_2Q" name="inline"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_U3BNgJVPEeKCE6_KfOehJw" name="StorageClass">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_X910gJVPEeKCE6_KfOehJw" name="storageClass" visibility="public" type="_YVBzYJMIEeKrb5fnA81_2Q" isUnique="false">

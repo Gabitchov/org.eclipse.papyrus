@@ -42,10 +42,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExternLibrary">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Mark a package as External Library. If this package is used, the associated CDT project will be configured accordingly.&#xA;The name is not required, since the UML name is used "/>
+      <details key="documentation" value="Mark a package as External Library. If this package is used, the associated CDT project will be configured accordingly."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="includePaths" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_package" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libPaths" ordered="false"
@@ -180,11 +180,9 @@
     <eLiterals name="readWrite" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EStorageClass">
-    <eLiterals name="auto"/>
+    <eLiterals name="volatile"/>
     <eLiterals name="register" value="1"/>
     <eLiterals name="extern" value="2"/>
-    <eLiterals name="static" value="3"/>
-    <eLiterals name="inline" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StorageClass">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="storageClass" ordered="false"

@@ -603,7 +603,7 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExternLibrary_Name() {
+	public EAttribute getExternLibrary_IncludePaths() {
 		return (EAttribute)externLibraryEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1067,7 +1067,7 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		createEReference(manualGenerationEClass, MANUAL_GENERATION__BASE_CLASS);
 
 		externLibraryEClass = createEClass(EXTERN_LIBRARY);
-		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__NAME);
+		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__INCLUDE_PATHS);
 		createEReference(externLibraryEClass, EXTERN_LIBRARY__BASE_PACKAGE);
 		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__LIB_PATHS);
 		createEAttribute(externLibraryEClass, EXTERN_LIBRARY__MACROS);
@@ -1208,7 +1208,7 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		initEReference(getManualGeneration_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, ManualGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(externLibraryEClass, ExternLibrary.class, "ExternLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExternLibrary_Name(), theTypesPackage.getString(), "name", null, 0, 1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getExternLibrary_IncludePaths(), theTypesPackage.getString(), "includePaths", null, 0, -1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getExternLibrary_Base_package(), theUMLPackage.getPackage(), null, "base_package", null, 1, 1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getExternLibrary_LibPaths(), theTypesPackage.getString(), "libPaths", null, 0, -1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getExternLibrary_Macros(), theTypesPackage.getString(), "macros", null, 0, -1, ExternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1303,11 +1303,9 @@ public class C_CppPackageImpl extends EPackageImpl implements C_CppPackage {
 		addEEnumLiteral(eAccessKindEEnum, EAccessKind.READ_WRITE);
 
 		initEEnum(eStorageClassEEnum, EStorageClass.class, "EStorageClass");
-		addEEnumLiteral(eStorageClassEEnum, EStorageClass.AUTO);
+		addEEnumLiteral(eStorageClassEEnum, EStorageClass.VOLATILE);
 		addEEnumLiteral(eStorageClassEEnum, EStorageClass.REGISTER);
 		addEEnumLiteral(eStorageClassEEnum, EStorageClass.EXTERN);
-		addEEnumLiteral(eStorageClassEEnum, EStorageClass.STATIC);
-		addEEnumLiteral(eStorageClassEEnum, EStorageClass.INLINE);
 
 		// Create resource
 		createResource(eNS_URI);

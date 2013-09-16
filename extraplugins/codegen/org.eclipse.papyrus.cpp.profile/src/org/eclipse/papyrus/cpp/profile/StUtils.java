@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Some functions around stereotype usage.
@@ -94,26 +95,6 @@ public class StUtils {
 	}
 
 	/**
-	 * Return the stereotype application by passing an element of the static profile
-	 * 
-	 * @param element
-	 *        the UML model element
-	 * @param clazz
-	 *        the class of an element of a static profile. Compatible sub-types will be returned as well
-	 * @return the stereotype application or null
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T extends EObject> T getApplication(Element element, java.lang.Class<T> clazz) {
-		for(EObject stereoApplication : element.getStereotypeApplications()) {
-			// check whether the stereotype is an instance of the passed parameter clazz
-			if(clazz.isInstance(stereoApplication)) {
-				return (T)stereoApplication;
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * Apply a stereotype. The stereotype is not applied, if already a sub-stereotype is applied.
 	 * If you want to apply the new stereotype also in this case, use applyExact instead.
 	 * 
@@ -169,26 +150,11 @@ public class StUtils {
 	 */
 	public static <T extends EObject> T applyApp(Element element, java.lang.Class<T> clazz) {
 		if(apply(element, clazz) != null) {
-			return getApplication(element, clazz);
+			return UMLUtil.getStereotypeApplication(element, clazz);
 		}
 		return null;
 	}
 
-	/**
-	 * @param element
-	 * @param stereo_name
-	 * @return
-	 */
-	public static Stereotype applyExact(Element element, String stereo_name) {
-		Stereotype stereotype = element.getApplicableStereotype(stereo_name);
-		if(stereotype != null) {
-			Stereotype alreadyApplied = element.getAppliedSubstereotype(stereotype, stereo_name);
-			if(alreadyApplied == null) {
-				element.applyStereotype(stereotype);
-			}
-		}
-		return stereotype;
-	}
 
 	/**
 	 * Apply a stereotype.
@@ -221,21 +187,6 @@ public class StUtils {
 		unapply(element, getStereoName(element, clazz));
 	}
 
-	/**
-	 * Apply a stereotype.
-	 * Caveat: the function relies on the correspondence between the fully qualified
-	 * stereotype name and the package name within the static profile. The latter may
-	 * use a different prefix (as it is the case with the MARTE analysis & design profile).
-	 * 
-	 * @param element
-	 *        the element
-	 * @param stereo_name
-	 *        the stereotype name
-	 * @return
-	 */
-	public static Stereotype applyExact(Element element, java.lang.Class<? extends EObject> clazz) {
-		return applyExact(element, getStereoName(element, clazz));
-	}
 
 	public static Stereotype getStereo(Element element, java.lang.Class<? extends EObject> clazz) {
 		return element.getAppliedStereotype(getStereoName(element, clazz));

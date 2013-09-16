@@ -37,7 +37,7 @@ public class StorageClassImpl extends EObjectImpl implements StorageClass {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EStorageClass STORAGE_CLASS_EDEFAULT = EStorageClass.AUTO;
+	protected static final EStorageClass STORAGE_CLASS_EDEFAULT = EStorageClass.VOLATILE;
 
 	/**
 	 * The cached value of the '{@link #getStorageClass() <em>Storage Class</em>}' attribute.

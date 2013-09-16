@@ -263,13 +263,13 @@ public interface C_CppPackage extends EPackage {
 	int EXTERN_LIBRARY = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Include Paths</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERN_LIBRARY__NAME = 0;
+	int EXTERN_LIBRARY__INCLUDE_PATHS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base package</b></em>' reference.
@@ -1385,15 +1385,15 @@ public interface C_CppPackage extends EPackage {
 	EClass getExternLibrary();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludePaths <em>Include Paths</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.ExternLibrary#getName()
+	 * @return the meta object for the attribute list '<em>Include Paths</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludePaths()
 	 * @see #getExternLibrary()
 	 * @generated
 	 */
-	EAttribute getExternLibrary_Name();
+	EAttribute getExternLibrary_IncludePaths();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getBase_package <em>Base package</em>}'.
@@ -2197,12 +2197,12 @@ public interface C_CppPackage extends EPackage {
 		EClass EXTERN_LIBRARY = eINSTANCE.getExternLibrary();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Include Paths</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERN_LIBRARY__NAME = eINSTANCE.getExternLibrary_Name();
+		EAttribute EXTERN_LIBRARY__INCLUDE_PATHS = eINSTANCE.getExternLibrary_IncludePaths();
 
 		/**
 		 * The meta object literal for the '<em><b>Base package</b></em>' reference feature.
