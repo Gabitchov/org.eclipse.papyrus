@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
-import org.eclipse.gmf.runtime.notation.Compartment;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -333,7 +332,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 				} else {
 					localName = type;
 				}
-			} else if (getNotationElement() instanceof BasicCompartment){
+			} else if(getNotationElement() instanceof BasicCompartment) {
 				return "Compartment";
 			} else {
 				localName = getSemanticElement().eClass().getName();
@@ -366,14 +365,14 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * Returns null if the attribute is not known
 	 */
 	protected String doGetAttribute(String attr) {
-		if (notationElement instanceof BasicCompartment){
-			if ("type".equals(attr)){
+		if(notationElement instanceof BasicCompartment) {
+			if("type".equals(attr)) {
 				BasicCompartment compartment = (BasicCompartment)notationElement;
 				return compartment.getType(); //7017, 7018, 7019 for Attribute/Operation/Classifier compartments
 				//TODO: Create a mapping list between GMF ID (Type) and user-readable labels
 			}
 		}
-		
+
 		EStructuralFeature feature = getSemanticElement().eClass().getEStructuralFeature(attr);
 		if(feature != null) {
 			Object value = semanticElement.eGet(feature);
@@ -445,9 +444,9 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 				}
 			}
 		}
-		
-		for (EObject child : notationElement.eContents()){
-			if (child instanceof BasicCompartment){
+
+		for(EObject child : notationElement.eContents()) {
+			if(child instanceof BasicCompartment) {
 				childList.add(engine.getElement(child));
 			}
 		}
