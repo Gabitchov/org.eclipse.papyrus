@@ -14,6 +14,7 @@ package org.eclipse.papyrus.cdo.internal.core.controlmode;
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.filter;
 import static com.google.common.collect.Iterables.transform;
+import static org.eclipse.emf.ecore.util.EcoreUtil.getRootContainer;
 import static org.eclipse.papyrus.cdo.internal.core.controlmode.CDOProxyManager.createPapyrusCDOURI;
 
 import java.util.Collections;
@@ -133,8 +134,11 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 	private void collectProxyCrossReferenceUpdates(IUpdate.Collector updates, ResourceSet resourceSet, URI unitURI) {
 		for(final EObject object : getAllPersistentSubunitContents(resourceSet, unitURI)) {
 			// replace references to the element by a proxy
-			final CDOID proxy = CDOIDUtil.createExternal(CDOProxyManager.createPapyrusCDOURI(object));
+			CDOID proxy = null;
 			for(EStructuralFeature.Setting next : getExternalCrossReferences(object)) {
+				if(proxy == null) {
+					proxy = CDOIDUtil.createExternal(CDOProxyManager.createPapyrusCDOURI(object));
+				}
 				updates.add(new ControlUpdate(next, object, proxy));
 			}
 		}
@@ -148,7 +152,7 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 			final int index = xrefs.nextIndex();
 			final EObject referent = xrefs.next();
 
-			if(!referent.eIsProxy() && !inSameUnit(owner, referent)) {
+			if(!referent.eIsProxy() && !inSameUnit(owner, referent) && inSameModel(owner, referent)) {
 				if(store[0] == null) {
 					store[0] = ((InternalCDOView)CDOUtils.getCDOObject(owner).cdoView()).getStore();
 				}
@@ -185,12 +189,9 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 				for(final EObject object : getAllPersistentSubunitContents(getRequest().getModelSet(), sourceURI)) {
 					// replace proxy references to the element by the element or an updated proxy
 					// which will be located in the destination resource
-					Resource sourceResource = object.eResource();
-					final CDOID sourceProxy = CDOIDUtil.createExternal(CDOProxyManager.createPapyrusCDOURI(object));
-
-					Resource destinationResource = request.getTargetResource(sourceResource.getURI().fileExtension());
-					String proxyURI = CDOProxyManager.createPapyrusCDOURI(destinationResource.getURI(), object);
-					final CDOID proxy = CDOIDUtil.createExternal(proxyURI);
+					CDOID sourceProxy = null;
+					URI destinationResourceURI = null;
+					CDOID proxy = null;
 
 					// internal cross-references within the unit won't be affected, as they are all moving
 					for(final EStructuralFeature.Setting next : getExternalCrossReferences(object)) {
@@ -207,7 +208,16 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 							});
 
 						} else {
-							updates.add(new UncontrolUpdate(next, object, sourceProxy, destinationResource.getURI(), proxy));
+							if(sourceProxy == null) {
+								// create the source proxy
+								sourceProxy = CDOIDUtil.createExternal(CDOProxyManager.createPapyrusCDOURI(object));
+
+								// and the destination proxy
+								destinationResourceURI = request.getTargetResource(object.eResource().getURI().fileExtension()).getURI();
+								String proxyURI = CDOProxyManager.createPapyrusCDOURI(destinationResourceURI, object);
+								proxy = CDOIDUtil.createExternal(proxyURI);
+							}
+							updates.add(new UncontrolUpdate(next, object, sourceProxy, destinationResourceURI, proxy));
 						}
 					}
 
@@ -226,12 +236,15 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 				for(final EObject object : getAllPersistentSubunitContents(getRequest().getModelSet(), getRequest().getNewURI())) {
 					// replace proxy references to the element by the element or an updated proxy
 					// which will be located in the destination resource
-					final CDOID targetProxy = CDOIDUtil.createExternal(CDOProxyManager.createPapyrusCDOURI(object));
+					CDOID targetProxy = null;
 
 					for(EStructuralFeature.Setting next : getExternalCrossReferences(object)) {
 						if(inUnit(next.getEObject(), sourceURI)) {
 							// replace proxy references from the sub-unit into the parent with a direct reference, as this will
 							// no longer be a cross-unit reference
+							if(targetProxy == null) {
+								targetProxy = CDOIDUtil.createExternal(CDOProxyManager.createPapyrusCDOURI(object));
+							}
 							updates.add(new UncontrolUpdate(next, object, targetProxy));
 						}
 					}
@@ -280,7 +293,8 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 	}
 
 	/**
-	 * Get all cross-references to an {@code object} from outside of its own controlled unit.
+	 * Get all cross-references to an {@code object} from outside of its own controlled unit <em>within</em> the same model (cross-model references do
+	 * not count).
 	 * 
 	 * @param object
 	 *        an object being controlled
@@ -294,7 +308,7 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 
 				EStructuralFeature ref = input.getEStructuralFeature();
 				if((ref != EresourcePackage.Literals.CDO_RESOURCE__CONTENTS) && ref.isChangeable() && !ref.isDerived()) {
-					result = !inSameUnit(input.getEObject(), object);
+					result = !inSameUnit(input.getEObject(), object) && inSameModel(input.getEObject(), object);
 				}
 
 				return result;
@@ -314,19 +328,49 @@ public class CDOControlModeParticipant implements IControlCommandParticipant, IU
 		return result;
 	}
 
-	static boolean inSameUnit(EObject object, EObject other) {
+	private static boolean inSameModel(EObject object, EObject other) {
+		// is the one object in the other's logical Papyrus model?
+		URI model1 = getResourceURI(getRootContainer(object));
+		URI model2 = getResourceURI(getRootContainer(other));
+
+		return (model1 != null) && (model2 != null) && model1.trimFileExtension().equals(model2.trimFileExtension());
+	}
+
+	private static URI getResourceURI(EObject object) {
+		URI result;
+
+		if(object.eIsProxy()) {
+			result = ((InternalEObject)object).eProxyURI().trimFragment();
+		} else {
+			Resource res = object.eResource();
+			result = (res == null) ? null : res.getURI();
+		}
+
+		return result;
+	}
+
+	private static boolean inSameUnit(EObject object, EObject other) {
 		// is the one object in the other's unit?
-		URI uri = other.eIsProxy() ? ((InternalEObject)other).eProxyURI().trimFragment() : other.eResource().getURI();
+		URI uri = getResourceURI(other);
 		return inUnit(object, uri);
 	}
 
-	static boolean inUnit(EObject object, URI unit) {
+	private static boolean inUnit(EObject object, URI unit) {
+		boolean result = false;
+
+		if(unit != null) {
 		// get the extension-less model URIs
-		URI uri = object.eIsProxy() ? ((InternalEObject)object).eProxyURI().trimFragment() : object.eResource().getURI();
+			URI uri = getResourceURI(object);
+
+			if(uri != null) {
 		uri = uri.trimFileExtension();
 		URI otherURI = unit.trimFileExtension();
 
-		return uri.equals(otherURI);
+				result = uri.equals(otherURI);
+			}
+		}
+
+		return result;
 	}
 
 	/**
