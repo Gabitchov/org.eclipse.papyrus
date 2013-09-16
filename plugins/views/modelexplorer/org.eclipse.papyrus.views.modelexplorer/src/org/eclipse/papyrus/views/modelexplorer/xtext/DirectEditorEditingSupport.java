@@ -33,8 +33,7 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	@Override
 	protected CellEditor getCellEditor(final Object element) {
 		ICustomDirectEditorConfiguration configuration = getConfiguration(element);
-		EObject semanticObject = (EObject) ((IAdaptable) element)
-				.getAdapter(EObject.class);
+		EObject semanticObject = (EObject) ((IAdaptable) element).getAdapter(EObject.class);
 		Composite parent = (Composite) getViewer().getControl();
 		return configuration.createCellEditor(parent, semanticObject);
 	}
@@ -47,43 +46,32 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	@Override
 	protected Object getValue(Object element) {
 		ICustomDirectEditorConfiguration configuration = getConfiguration(element);
-		Object semanticObject = ((IAdaptable) element)
-				.getAdapter(EObject.class);
-		return configuration.createParser((EObject) semanticObject)
-				.getEditString(new EObjectAdapter((EObject) semanticObject), 0);
+		Object semanticObject = ((IAdaptable) element).getAdapter(EObject.class);
+		return configuration.getTextToEdit(semanticObject);
 	}
 
 	@Override
 	protected void setValue(Object element, Object value) {
 		ICustomDirectEditorConfiguration configuration = getConfiguration(element);
-		EObject semanticObject = (EObject) ((IAdaptable) element)
-				.getAdapter(EObject.class);
+		EObject semanticObject = (EObject) ((IAdaptable) element).getAdapter(EObject.class);
 		IParser parser = configuration.createParser(semanticObject);
 
-		ICommand command = parser.getParseCommand(new EObjectAdapter(
-				semanticObject), (String) value, 0);
-		TransactionalEditingDomain editingDomain = TransactionUtil
-				.getEditingDomain(semanticObject);
-		editingDomain.getCommandStack().execute(
-				new GMFtoEMFCommandWrapper(command));
+		ICommand command = parser.getParseCommand(new EObjectAdapter(semanticObject), (String) value, 0);
+		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(semanticObject);
+		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 	}
 
 	protected ICustomDirectEditorConfiguration getConfiguration(Object element) {
 		if (element instanceof IAdaptable) {
-			EObject semanticObject = (EObject) ((IAdaptable) element)
-					.getAdapter(EObject.class);
-			IPreferenceStore store = Activator.getDefault()
-					.getPreferenceStore();
-			String semanticClassName = semanticObject.eClass()
-					.getInstanceClassName();
-			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
-					+ semanticClassName;
+			EObject semanticObject = (EObject) ((IAdaptable) element).getAdapter(EObject.class);
+			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+			String semanticClassName = semanticObject.eClass().getInstanceClassName();
+			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticClassName;
 			String languagePreferred = store.getString(key);
 
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				IDirectEditorConfiguration configuration = DirectEditorsUtil
-						.findEditorConfiguration(languagePreferred,
-								semanticClassName);
+				IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred,
+						semanticClassName);
 				if (configuration instanceof ICustomDirectEditorConfiguration) {
 					return (ICustomDirectEditorConfiguration) configuration;
 				}
