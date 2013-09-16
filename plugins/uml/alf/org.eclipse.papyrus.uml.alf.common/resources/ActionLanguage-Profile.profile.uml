@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mofext="http://www.omg.org/spec/MOF/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <uml:Profile xmi:id="ActionLanguage" name="ActionLanguage" URI="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" metamodelReference="ActionLanguage-packageImport">
+    <eAnnotations xmi:id="_sYse0IZLEeKyw49uR6nx3g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_sYse0YZLEeKyw49uR6nx3g" name="ActionLanguage" nsURI="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" nsPrefix="ActionLanguage">
+        <eAnnotations xmi:id="_sYse2YZLEeKyw49uR6nx3g" source="PapyrusVersion">
+          <details xmi:id="_sYse2oZLEeKyw49uR6nx3g" key="Version" value="0.1.0"/>
+          <details xmi:id="_sYse24ZLEeKyw49uR6nx3g" key="Comment" value=""/>
+          <details xmi:id="_sYse3IZLEeKyw49uR6nx3g" key="Copyright" value=""/>
+          <details xmi:id="_sYse3YZLEeKyw49uR6nx3g" key="Date" value="2013-03-06"/>
+          <details xmi:id="_sYse3oZLEeKyw49uR6nx3g" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_sYse0oZLEeKyw49uR6nx3g" name="TextualRepresentation">
+          <eAnnotations xmi:id="_sYse04ZLEeKyw49uR6nx3g" source="http://www.eclipse.org/uml2/2.0.0/UML" references="ActionLanguage-TextualRepresentation"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sYse1IZLEeKyw49uR6nx3g" name="base_Comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Comment"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sYse1oZLEeKyw49uR6nx3g" name="language" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+    </eAnnotations>
+    <packageImport xmi:id="ActionLanguage-packageImport">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="ActionLanguage-TextualRepresentation" name="TextualRepresentation">
+      <ownedAttribute xmi:id="ActionLanguage-TextualRepresentation-base_Comment" name="base_Comment" association="ActionLanguage-packagedElement-2">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Comment"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="ActionLanguage-TextualRepresentation-language" name="language" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="ActionLanguage-packagedElement-2" memberEnd="ActionLanguage-packagedElement-2-ownedEnd ActionLanguage-TextualRepresentation-base_Comment" navigableOwnedEnd="ActionLanguage-packagedElement-2-ownedEnd">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="ActionLanguage-packagedElement-2-ownedEnd" name="extension_TextualRepresentation" type="ActionLanguage-TextualRepresentation" aggregation="composite" association="ActionLanguage-packagedElement-2">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ActionLanguage-packagedElement-2-ownedEnd-lowerValue"/>
+      </ownedEnd>
+    </packagedElement>
+  </uml:Profile>
+</xmi:XMI>
