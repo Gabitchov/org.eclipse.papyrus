@@ -23,15 +23,12 @@ import org.eclipse.papyrus.cdo.validation.problems.util.tests.AllUtilTests;
 /**
  * <!-- begin-user-doc --> A test suite for the '<em><b>Problems</b></em>'
  * model. <!-- end-user-doc -->
- * 
  * @generated
  */
-public class ProblemsAllTests
-		extends TestSuite {
+public class ProblemsAllTests extends TestSuite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -46,8 +43,8 @@ public class ProblemsAllTests
 	public static Test suite() {
 		TestSuite suite = new ProblemsAllTests("Problems Tests"); //$NON-NLS-1$
 		suite.addTest(ProblemsTests.suite());
-		
-		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+
+		if(EMFPlugin.IS_ECLIPSE_RUNNING) {
 			suite.addTest(new JUnit4TestAdapter(AllUtilTests.class));
 		}
 
@@ -57,7 +54,6 @@ public class ProblemsAllTests
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProblemsAllTests(String name) {

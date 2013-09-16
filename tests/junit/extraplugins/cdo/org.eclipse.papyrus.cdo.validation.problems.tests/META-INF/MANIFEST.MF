@@ -3,11 +3,13 @@ Export-Package: org.eclipse.papyrus.cdo.validation.problems.edit.tests,
  org.eclipse.papyrus.cdo.validation.problems.tests,
  org.eclipse.papyrus.cdo.validation.problems.util.tests
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)",
- org.eclipse.papyrus.cdo.validation.problems;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.cdo.validation.problems;visibility:=reexport;bundle-version="0.10.1",
  org.eclipse.papyrus.cdo.validation.problems.edit;bundle-version="0.10.1",
- org.eclipse.emf.ecore.xmi;bundle-version="[2.8.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport;bundle-version="[2.8.0,3.0.0)",
+ org.junit;visibility:=reexport,
  org.eclipse.emf.ecore.edit;bundle-version="[2.8.0,3.0.0)",
  org.eclipse.papyrus.cdo.core.tests;bundle-version="0.10.1"
+Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-ClassPath: .
 Bundle-Version: 0.10.1.qualifier

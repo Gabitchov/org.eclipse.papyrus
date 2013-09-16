@@ -250,7 +250,7 @@ public class RepositoriesPackageImpl extends EPackageImpl implements Repositorie
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$		
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$	
 		addAnnotation
 		  (getRepository_URL(), 
 		   source, 
