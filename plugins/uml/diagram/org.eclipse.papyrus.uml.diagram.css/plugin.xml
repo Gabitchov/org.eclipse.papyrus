@@ -8,5 +8,74 @@
             order="50">
       </factory>
    </extension>
-
+   <extension
+       point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+    <mapping
+          humanReadableType="Composite Diagram"
+          type="CompositeStructure">
+    </mapping>
+    <mapping
+          humanReadableType="Package Diagram"
+          type="Package">
+    </mapping>
+    <mapping
+          humanReadableType="Activity Diagram"
+          type="PapyrusUMLActivityDiagram">
+    </mapping>
+    <mapping
+          humanReadableType="Class Diagram"
+          type="PapyrusUMLClassDiagram">
+    </mapping>
+    <mapping
+          humanReadableType="Communication Diagram"
+          type="PapyrusUMLCommunicationDiagram">
+    </mapping>
+    <mapping
+          humanReadableType="Component Diagram"
+          type="PapyrusUMLComponentDiagram">
+    </mapping>
+    <mapping
+          humanReadableType="Deployment Diagram"
+          type="PapyrusUMLDeploymentDiagram">
+    </mapping>
+    <mapping
+          humanReadableType="Profile Diagram"
+          type="PapyrusUMLProfileDiagram">
+    </mapping>
+    <mapping
+          humanReadableType="Sequence Diagram"
+          type="PapyrusUMLSequenceDiagram">
+    </mapping>
+    <mapping
+          humanReadableType="State Machine Diagram"
+          type="PapyrusUMLStateMachineDiagram">
+    </mapping>
+    <mapping
+          humanReadableType="Use Case Diagram"
+          type="UseCase">
+    </mapping>
+    <mapping
+          humanReadableType="Timing Diagram"
+          type="PapyrusUMLTimingDiagram">
+    </mapping>
+    <mapping
+          humanReadableType="Interaction Overview Diagram"
+          type="PapyrusUMLInteractionOverviewDiagram">
+    </mapping>
+ </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+      <mapping
+            humanReadableType="attribute"
+            type="7017">
+      </mapping>
+      <mapping
+            humanReadableType="operation"
+            type="7018">
+      </mapping>
+      <mapping
+            humanReadableType="nestedClassifier"
+            type="7019">
+      </mapping>
+   </extension>
 </plugin>
