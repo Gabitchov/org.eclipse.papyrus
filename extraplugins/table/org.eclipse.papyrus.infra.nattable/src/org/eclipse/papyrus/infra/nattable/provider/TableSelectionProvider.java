@@ -86,12 +86,12 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 	protected/* synchronized */void calculateAndStoreNewSelection(final ILayerEvent event) {
 		//the list of the selected elements
 		final List<Object> selection = new ArrayList<Object>();
-
+		final ISelection newSelection;
 		if(event instanceof ISelectionEvent) {
 			//add the cell selection
 			final Collection<PositionCoordinate> selectedCells = Arrays.asList(this.selectionLayer.getSelectedCellPositions());
 			final TableSelectionWrapper wrapper = new TableSelectionWrapper(selectedCells);
-			selection.add(0, wrapper);
+			//			selection.add(0, wrapper);
 
 			//we returns the contents of the last selected cell
 			//we could returns the contents of all selected cells if its required
@@ -117,8 +117,11 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 					}
 				}
 			}
+			newSelection = new TableStructuredSelection(selection, wrapper);
+		} else {
+			newSelection = new StructuredSelection();
 		}
-		setSelection(new StructuredSelection(selection));
+		setSelection(newSelection);
 	}
 
 	public void dispose() {
