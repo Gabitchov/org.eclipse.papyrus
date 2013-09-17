@@ -44,6 +44,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.StringInputStream;
 
 import com.google.inject.Injector;
@@ -133,8 +135,11 @@ public abstract class DefaultXtextDirectEditorConfiguration extends
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				EcoreUtil2.resolveLazyCrossReferences(
+						context.getFakeResource(), CancelIndicator.NullImpl);
 				if (!context.getFakeResource().getParseResult()
-						.hasSyntaxErrors()) {
+						.hasSyntaxErrors()
+						&& context.getFakeResource().getErrors().size() == 0) {
 					EObject xtextObject = context.getFakeResource()
 							.getParseResult().getRootASTElement();
 					return DefaultXtextDirectEditorConfiguration.this
