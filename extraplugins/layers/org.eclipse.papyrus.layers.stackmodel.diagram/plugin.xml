@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+      <editorDiagram
+            actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
+            contextId="defaultContext"
+            factoryClass="org.eclipse.papyrus.layers.stackmodel.diagram.LayersTreeDiagramEditorFactory"
+            icon="icons/layerDiagram.gif">
+      </editorDiagram>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Create a Layers Tree Editor (EMF Tree Editor)"
+            id="org.eclipse.papyrus.layers.stackmodel.diagram.createDiagram"
+            name="Create Layers Tree">
+      </command>
+      <command
+            description="Create a child of the selected model element"
+            id="org.eclipse.papyrus.layers.stackmodel.diagram.ui.handlers.emfchildrenmenu"
+            name="Create Child">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.layers.stackmodel.diagram.CreateLayersTreeDiagramHandler"
+            commandId="org.eclipse.papyrus.layers.stackmodel.diagram.createDiagram">
+         <enabledWhen>
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.infra.core.papyrusEditor">
+               </equals>
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers.stackmodel.diagram.ui.handlers.ShowCreateChildCommand"
+            commandId="org.eclipse.papyrus.layers.stackmodel.diagram.ui.handlers.emfchildrenmenu">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.papyrus.ui.menu">
+         <menu
+               id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams"
+               label="Diagrams">
+            <command
+                  commandId="org.eclipse.papyrus.layers.stackmodel.diagram.createDiagram"
+                  icon="icons/layerDiagram.gif"
+                  label="Create a new Layer Tree"
+                  style="push"
+                  tooltip="Create a new Layers Tree">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+            <command
+                  commandId="org.eclipse.papyrus.layers.stackmodel.diagram.createDiagram"
+                  icon="icons/layerDiagram.gif"
+                  label="Create a new Layers Tree"
+                  style="push"
+                  tooltip="Create a new Layers Tree">
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.papyrus.layers.stackmodel.diagram.ui.contextmenu">
+         <menu
+               id="org.eclipse.papyrus.layers.stackmodel.diagram"
+               label="Diagrams">
+            <command
+                  commandId="org.eclipse.papyrus.layers.stackmodel.diagram.createDiagram"
+                  icon="icons/layerDiagram.gif"
+                  label="Create a new Layer Tree"
+                  style="push"
+                  tooltip="Create a new Layers Tree">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.layers.stackmodel.diagram.ui.contextmenu">
+         <menu
+               id="org.eclipse.papyrus.layers.stackmodel.ui.popupmenu"
+               label="layers">
+            <command
+                  commandId="org.eclipse.papyrus.layers.stackmodel.diagram.createDiagram"
+                  icon="icons/layerDiagram.gif"
+                  label="Create a new Layer Tree"
+                  style="push"
+                  tooltip="Create a new Layers Tree">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+
+</plugin>

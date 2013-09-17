@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.layers3.ui.view.LayersExplorerView"
+            icon="icons/LayersStackApplication.gif"
+            id="org.eclipse.papyrus.layers.ui.view.layersexplorer"
+            name="LayersExplorer"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="org.eclipse.papyrus.diagram.ui.toolbar">
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.selectAssociatedElement"
+                  label="Select Associated Elements"
+                  style="push"
+                  tooltip="Select all elements associated to the current layer">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.delete"
+            name="Delete">
+      </command>
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.createlayer"
+            name="Create Layer">
+      </command>
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.createregexplayer"
+            name="Create RegExp Layer">
+      </command>
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.createtoplayeroperator"
+            name="Create Top Layer Operator">
+      </command>
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.createstackedLayerOperator"
+            name="Create Stacked Layer Operator">
+      </command>
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.attachPropertyToLayer"
+            name="Attach a Property to a Layer">
+      </command>
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.attachPropertiesToLayer"
+            name="Attach Properties to a Layer">
+      </command>
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.attachDiagramViewsToLayer"
+            name="Attach Multiple Diagram Views to a Layer">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.layers3.ui.commands.CreateLayerOperatorsFromParameter"
+            id="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
+            name="Create LayerOperators">
+         <commandParameter
+               id="org.eclipse.papyrus.layers.ui.createLayerOperator.parameters"
+               name="name"
+               optional="true"
+               values="org.eclipse.papyrus.layers3.ui.commands.LayerOperatorsParameterValues">
+         </commandParameter>
+      </command>
+   </extension>
+   <extension
+         name="Layers v3"
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.AttachLayerStackCommand"
+            commandId="org.eclipse.papyrus.layers.ui.commands.attachLayerStack">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.DetachLayerStackCommand"
+            commandId="org.eclipse.papyrus.layers.ui.commands.detachLayerStack">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.CreateLayerHandler"
+            commandId="org.eclipse.papyrus.layers.ui.commands.createlayer">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.CreateRegExpLayerHandler"
+            commandId="org.eclipse.papyrus.layers.ui.commands.createregexplayer">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.CreateTopLayerOperatorHandler"
+            commandId="org.eclipse.papyrus.layers.ui.commands.createtoplayeroperator">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.CreateStackedLayerOperatorHandler"
+            commandId="org.eclipse.papyrus.layers.ui.commands.createstackedLayerOperator">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.AttachPropertyToLayer"
+            commandId="org.eclipse.papyrus.layers.ui.commands.attachPropertyToLayer">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.AttachPropertyFromListToLayer"
+            commandId="org.eclipse.papyrus.layers.ui.commands.attachPropertiesToLayer">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.AttachDiagramViewsToLayer"
+            commandId="org.eclipse.papyrus.layers.ui.commands.attachDiagramViewsToLayer">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.CreateLayerOperatorsFromParameter"
+            commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.commands.DeleteItemHandler"
+            commandId="org.eclipse.papyrus.layers.ui.commands.delete">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.papyrus.ui.menu">
+         <menu
+               label="Layers">
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.attachLayerStack"
+                  label="Attach Layer Stack"
+                  style="push"
+                  tooltip="Attach a Layer Stack to the diagram">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.detachLayerStack"
+                  label="Detach Layer Stack"
+                  style="push"
+                  tooltip="Detach a Layer Stack to the diagram">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.layers.stackmodel.ui.popupmenu">
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.attachLayerStack"
+               label="Attach Layer Stack"
+               style="push"
+               tooltip="Attach a Layer Stack to the diagram">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.createlayer"
+               label="Create Layer"
+               style="push"
+               tooltip="Create a new Layer in selected parent">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.createregexplayer"
+               label="Create a RegExp  Layer"
+               style="push"
+               tooltip="Create a RegExp  Layer">
+         </command>
+         <menu
+               commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
+               id="org.eclipse"
+               label="Layer Operators ...">
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
+                  label="Create Stacked Layers"
+                  style="push"
+                  tooltip="Create a new Stacked Layers Operator">
+               <parameter
+                     name="org.eclipse.papyrus.layers.ui.createLayerOperator.parameters"
+                     value="stackedLayersOperator">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
+                  label="Create Minimum Stacked Layers"
+                  style="push"
+                  tooltip="Create a new Stacked Layers with Operators of type &apos;Minimum&apos; ">
+               <parameter
+                     name="org.eclipse.papyrus.layers.ui.createLayerOperator.parameters"
+                     value="stackedLayersOperatorMinimum">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
+                  label="Create Maximum Stacked Layers"
+                  style="push"
+                  tooltip="Create a new Stacked Layers with Operators of type &apos;Maximum&apos; ">
+               <parameter
+                     name="org.eclipse.papyrus.layers.ui.createLayerOperator.parameters"
+                     value="stackedLayersOperatorMaximum">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
+                  label="Create Average Stacked Layers"
+                  style="push"
+                  tooltip="Create a new Stacked Layers with Operators of type &apos;Average&apos; ">
+               <parameter
+                     name="org.eclipse.papyrus.layers.ui.createLayerOperator.parameters"
+                     value="stackedLayersOperatorAverage">
+               </parameter>
+            </command>
+         </menu>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.createtoplayeroperator"
+               label="Create Top Layer Operator"
+               style="push"
+               tooltip="Create a top Layer operator">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.createstackedLayerOperator"
+               label="Create Stacked Layer Operator"
+               style="push"
+               tooltip="Create a Stacked Layer operator">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.attachPropertyToLayer"
+               label="Attach a Property to a Layer"
+               style="push"
+               tooltip="Attach a Property to a Layer">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.attachPropertiesToLayer"
+               label="Attach Properties to a Layer"
+               style="push"
+               tooltip="Attach Properties to a Layer">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.attachDiagramViewsToLayer"
+               label="Attach Diagram Views to a Layer"
+               style="push"
+               tooltip="Attach Multiple Diagram Views to a Layer">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
+               label="Create Layer Operators No Param"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.delete"
+               label="Delete Item"
+               style="push"
+               tooltip="Delete Selected Item">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <menu
+               label="Layers v3">
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.attachLayerStack"
+                  label="Attach Layer Stack"
+                  style="push"
+                  tooltip="Attach a Layer Stack to the diagram">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.detachLayerStack"
+                  label="Detach Layer Stack"
+                  style="push"
+                  tooltip="Detach a Layer Stack to the diagram">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.context">
+      <context
+            contextModel="properties/properties.ctx"
+            isCustomizable="true">
+      </context>
+   </extension>
+
+</plugin>

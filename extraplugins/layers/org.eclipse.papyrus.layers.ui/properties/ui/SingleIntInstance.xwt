@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:j="clr-namespace:java.lang"
+	xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:IntegerEditor input="{Binding}" property="layers:IntInstance:value"></ppe:IntegerEditor>
+	</Composite>
+</Composite>
