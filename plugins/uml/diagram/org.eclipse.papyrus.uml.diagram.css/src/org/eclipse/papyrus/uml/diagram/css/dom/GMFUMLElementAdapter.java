@@ -44,21 +44,6 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	public static final String QUALIFIER_SEPARATOR = "--"; //$NON-NLS-1$
 
 	static {
-		//UML
-		diagramNameMappings.put("CompositeStructure", "CompositeDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("Package", "PackageDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLActivityDiagram", "ActivityDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLClassDiagram", "ClassDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLCommunicationDiagram", "CommunicationDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLComponentDiagram", "ComponentDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLDeploymentDiagram", "DeploymentDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLProfileDiagram", "ProfileDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLSequenceDiagram", "SequenceDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLStateMachineDiagram", "StateMachineDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("UseCase", "UseCaseDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLTimingDiagram", "TimingDiagram"); //$NON-NLS-1$
-		diagramNameMappings.put("PapyrusUMLInteractionOverviewDiagram", "InteractionOverviewDiagram"); //$NON-NLS-1$
-
 		//SysML
 		diagramNameMappings.put("BlockDefinition", "BlockDiagram");
 		diagramNameMappings.put("InternalBlock", "InternalBlockDiagram");

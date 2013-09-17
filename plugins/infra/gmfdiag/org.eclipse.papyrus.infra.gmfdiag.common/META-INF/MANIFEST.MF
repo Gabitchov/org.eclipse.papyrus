@@ -13,6 +13,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.preferences,
  org.eclipse.papyrus.infra.gmfdiag.common.providers,
  org.eclipse.papyrus.infra.gmfdiag.common.service.shape,
+ org.eclipse.papyrus.infra.gmfdiag.common.types,
  org.eclipse.papyrus.infra.gmfdiag.common.undocontext,
  org.eclipse.papyrus.infra.gmfdiag.common.utils
 Bundle-ActivationPolicy: lazy

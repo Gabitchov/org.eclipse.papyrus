@@ -19,7 +19,6 @@ import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles.CSS_GMF_S
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -44,6 +43,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.listener.CustomStyleListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.types.NotationTypesMap;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView;
@@ -64,7 +64,8 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * The later can be used as valid CSS Selectors
 	 */
 	//TODO : Use an extension point for this map, or find another way to map Diagram ID to CSS Element name
-	public static final Map<String, String> diagramNameMappings = new HashMap<String, String>();
+	@Deprecated
+	public static final Map<String, String> diagramNameMappings = NotationTypesMap.instance.getComputerToHumanTypeMapping();
 
 	/**
 	 * The Semantic Model Element associated to the current styled element
@@ -368,7 +369,11 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		if(notationElement instanceof BasicCompartment) {
 			if("type".equals(attr)) {
 				BasicCompartment compartment = (BasicCompartment)notationElement;
-				return compartment.getType(); //7017, 7018, 7019 for Attribute/Operation/Classifier compartments
+				String humanType = NotationTypesMap.instance.getHumanReadableType(compartment.getType());
+				if(humanType == null) {
+					humanType = compartment.getType();
+				}
+				return humanType; //7017, 7018, 7019 for Attribute/Operation/Classifier compartments
 				//TODO: Create a mapping list between GMF ID (Type) and user-readable labels
 			}
 		}
@@ -445,11 +450,24 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 			}
 		}
 
-		for(EObject child : notationElement.eContents()) {
-			if(child instanceof BasicCompartment) {
-				childList.add(engine.getElement(child));
-			}
-		}
+		/*
+		 * <--------------------
+		 * 
+		 * //Allows both notations Class > Property and Class > Compartment > Property
+		 * 
+		 * //FIXME: The Tree is computed through "getParentNode". "getChildren" is barely used. Moreover,
+		 * //there is a mapping between Notation element and DOM element, which makes it impossible to associate the same
+		 * //notation element to different DOM elements.
+		 * 
+		 * // for(EObject child : notationElement.eContents()) {
+		 * // if(child instanceof BasicCompartment) {
+		 * // //Add the Compartment's children to this' children
+		 * // childList.addAll(Arrays.asList(computeChildren((View)child, engine)));
+		 * // }
+		 * // }
+		 * 
+		 * -------------------->
+		 */
 
 		return childList.toArray(new Node[childList.size()]);
 	}
