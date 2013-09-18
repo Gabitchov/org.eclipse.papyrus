@@ -15,6 +15,7 @@ import org.eclipse.emf.cdo.eresource.CDOBinaryResource;
 import org.eclipse.emf.cdo.eresource.CDOFileResource;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
+import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.eresource.CDOTextResource;
 import org.eclipse.emf.cdo.eresource.util.EresourceSwitch;
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
@@ -47,6 +49,7 @@ public class CDOResourceLabelProvider extends LabelProvider implements IFiltered
 		super();
 	}
 
+	@Override
 	public boolean accept(Object element) {
 		return (element instanceof CDOResourceNode) || (element instanceof URI) && CDOUtils.isCDOURI((URI)element);
 	}
@@ -70,12 +73,12 @@ public class CDOResourceLabelProvider extends LabelProvider implements IFiltered
 		URI uri = (element instanceof URI) ? (URI)element : ((CDOResourceNode)element).getURI();
 
 		if(uri != null) {
-			String nodeType = element instanceof CDOResourceNode ? nodeTypeSwitch.doSwitch((CDOResource)element) : "Node";
+			String nodeType = element instanceof CDOResourceNode ? nodeTypeSwitch.doSwitch((CDOResource)element) : Messages.CDOResLabels_node;
 			String path = CDOURIUtil.extractResourcePath(uri);
 			IPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
-			String repoName = (repo == null) ? "(unknown)" : repo.getName();
+			String repoName = (repo == null) ? Messages.CDOResLabels_unknown : repo.getName();
 
-			result = NLS.bind("{0} {1} in repository \"{2}\"", new Object[]{ nodeType, path, repoName });
+			result = NLS.bind(Messages.CDOResLabels_pattern, new Object[]{ nodeType, path, repoName });
 		}
 
 		return result;
@@ -86,32 +89,37 @@ public class CDOResourceLabelProvider extends LabelProvider implements IFiltered
 
 			@Override
 			public String defaultCase(EObject object) {
-				return "Node";
+				return Messages.CDOResLabels_nodeKind;
 			}
 
 			@Override
 			public String caseCDOResource(CDOResource object) {
-				return "Model";
+				return Messages.CDOResLabels_modelKind;
 			}
 
 			@Override
 			public String caseCDOResourceFolder(CDOResourceFolder object) {
-				return "Folder";
+				return Messages.CDOResLabels_folderKind;
 			}
 
 			@Override
 			public String caseCDOBinaryResource(CDOBinaryResource object) {
-				return "Binary file";
+				return Messages.CDOResLabels_binKind;
 			}
 
 			@Override
 			public String caseCDOTextResource(CDOTextResource object) {
-				return "Text file";
+				return Messages.CDOResLabels_txtKind;
 			}
 
 			@Override
 			public String caseCDOFileResource(CDOFileResource<?> object) {
-				return "File";
+				return Messages.CDOResLabels_fileKind;
+			}
+
+			@Override
+			public String caseCDOResourceLeaf(CDOResourceLeaf object) {
+				return Messages.CDOResLabels_leafKind;
 			}
 		};
 	}
