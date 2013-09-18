@@ -132,7 +132,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 			return createComponentCreationTool();
 		}
 		if(toolId.equals(COMPONENT_TOOL_INTERFACE)) {
-			return createRectancleInterfaceCreationTool();
+			return createInterfaceCreationTool();
 		}
 		if(toolId.equals(COMPONENT_TOOL_PORT)) {
 			return createPortCreationTool();
@@ -222,9 +222,10 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createRectancleInterfaceCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Interface_3205);
+	private Tool createInterfaceCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.Interface_2003);
+		types.add(UMLElementTypes.Interface_3072);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

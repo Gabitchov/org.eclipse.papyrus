@@ -57,7 +57,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
@@ -141,10 +140,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == PackageEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == RectangleInterfaceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -539,8 +534,6 @@ public class UMLDiagramUpdater {
 			return getModel_3202ContainedLinks(view);
 		case PackageEditPart.VISUAL_ID:
 			return getPackage_3200ContainedLinks(view);
-		case RectangleInterfaceEditPart.VISUAL_ID:
-			return getInterface_3205ContainedLinks(view);
 		case InterfaceEditPart.VISUAL_ID:
 			return getInterface_2003ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -600,8 +593,6 @@ public class UMLDiagramUpdater {
 			return getModel_3202IncomingLinks(view);
 		case PackageEditPart.VISUAL_ID:
 			return getPackage_3200IncomingLinks(view);
-		case RectangleInterfaceEditPart.VISUAL_ID:
-			return getInterface_3205IncomingLinks(view);
 		case InterfaceEditPart.VISUAL_ID:
 			return getInterface_2003IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -661,8 +652,6 @@ public class UMLDiagramUpdater {
 			return getModel_3202OutgoingLinks(view);
 		case PackageEditPart.VISUAL_ID:
 			return getPackage_3200OutgoingLinks(view);
-		case RectangleInterfaceEditPart.VISUAL_ID:
-			return getInterface_3205OutgoingLinks(view);
 		case InterfaceEditPart.VISUAL_ID:
 			return getInterface_2003OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -804,16 +793,6 @@ public class UMLDiagramUpdater {
 		Constraint modelElement = (Constraint)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getInterface_3205ContainedLinks(View view) {
-		Interface modelElement = (Interface)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
 		return result;
 	}
 
@@ -1096,27 +1075,6 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getInterface_3205IncomingLinks(View view) {
-		Interface modelElement = (Interface)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4006(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferences));
@@ -1570,24 +1528,6 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getInterface_3205OutgoingLinks(View view) {
-		Interface modelElement = (Interface)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
 		return result;

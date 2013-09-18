@@ -53,7 +53,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.Messages;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -71,12 +70,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
 		if(editPart instanceof ComponentDiagramEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(9);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(8);
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Model_3202);
 			types.add(UMLElementTypes.Package_3200);
-			types.add(UMLElementTypes.Interface_3205);
 			types.add(UMLElementTypes.Interface_2003);
 			types.add(UMLElementTypes.Comment_3201);
 			types.add(UMLElementTypes.Constraint_3199);
@@ -173,9 +171,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof PackageEditPart) {
 			return ((PackageEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof RectangleInterfaceEditPart) {
-			return ((RectangleInterfaceEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
 		if(sourceEditPart instanceof InterfaceEditPart) {
 			return ((InterfaceEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
@@ -231,9 +226,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof PackageEditPart) {
 			return ((PackageEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof RectangleInterfaceEditPart) {
-			return ((RectangleInterfaceEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof InterfaceEditPart) {
 			return ((InterfaceEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -292,9 +284,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof PackageEditPart) {
 			return ((PackageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof RectangleInterfaceEditPart) {
-			return ((RectangleInterfaceEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		if(sourceEditPart instanceof InterfaceEditPart) {
 			return ((InterfaceEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -351,9 +340,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof PackageEditPart) {
 			return ((PackageEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof RectangleInterfaceEditPart) {
-			return ((RectangleInterfaceEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
 		if(targetEditPart instanceof InterfaceEditPart) {
 			return ((InterfaceEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -409,9 +395,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof PackageEditPart) {
 			return ((PackageEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof RectangleInterfaceEditPart) {
-			return ((RectangleInterfaceEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof InterfaceEditPart) {
 			return ((InterfaceEditPart)sourceEditPart).getMATypesForTarget(relationshipType);

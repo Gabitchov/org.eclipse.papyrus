@@ -305,12 +305,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createRectancleInterfaceCreationTool_title;
+	public static String createInterfaceCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createRectancleInterfaceCreationTool_desc;
+	public static String createInterfaceCreationTool_desc;
 
 	/**
 	 * @generated

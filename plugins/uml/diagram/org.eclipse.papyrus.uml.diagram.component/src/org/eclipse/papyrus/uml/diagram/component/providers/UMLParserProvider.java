@@ -55,7 +55,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.parsers.MessageFormatParser;
@@ -150,23 +149,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			packageName_5254Parser = parser;
 		}
 		return packageName_5254Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser interfaceName_5266Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getInterfaceName_5266Parser() {
-		if(interfaceName_5266Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			interfaceName_5266Parser = parser;
-		}
-		return interfaceName_5266Parser;
 	}
 
 	/**
@@ -591,8 +573,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getModelName_5262Parser();
 		case PackageNameEditPart.VISUAL_ID:
 			return getPackageName_5254Parser();
-		case RectangleInterfaceNameEditPart.VISUAL_ID:
-			return getInterfaceName_5266Parser();
 		case InterfaceNameEditPart.VISUAL_ID:
 			return getInterfaceName_5005Parser();
 		case CommentBodyEditPart.VISUAL_ID:
