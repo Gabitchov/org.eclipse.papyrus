@@ -101,7 +101,16 @@ public class AdapterUtils {
 	 * @return the best-effort adapter of the given {@code type}, else the {@code defaultAdapter}
 	 */
 	public static <T> T adapt(Object object, Class<T> type, T defaultAdapter) {
-		return (object == null) ? defaultAdapter : adapt(object, type).or(defaultAdapter);
+		T result = defaultAdapter;
+		
+		if (object != null) {
+			Optional<T> adapter = adapt(object, type);
+			if (adapter.isPresent()) {
+				result = adapter.get();
+			}
+		}
+		
+		return result;
 	}
 
 
