@@ -69,18 +69,26 @@ public class CDOUtils {
 	}
 
 	public static <T> T adapt(Object object, Class<? extends T> type) {
-		T result = null;
+		T result = tryCast(object, type);
 
-		if(type.isInstance(object)) {
-			result = type.cast(object);
-		} else {
+		if(result == null) {
 			if(object instanceof IAdaptable) {
 				result = type.cast(((IAdaptable)object).getAdapter(type));
 			}
 
-			if((result == null) && object instanceof Notifier) {
+			if((result == null) && (object instanceof Notifier)) {
 				result = getFirst(filter(((Notifier)object).eAdapters(), type), null);
 			}
+		}
+
+		return result;
+	}
+
+	public static <T> T tryCast(Object object, Class<? extends T> type) {
+		T result = null;
+
+		if(type.isInstance(object)) {
+			result = type.cast(object);
 		}
 
 		return result;
@@ -150,6 +158,11 @@ public class CDOUtils {
 		}
 
 		return result;
+	}
+
+	public static CDOView getView(EObject object) {
+		CDOObject cdo = getCDOObject(object);
+		return (cdo == null) ? null : cdo.cdoView();
 	}
 
 	public static boolean isLockable(CDOObject object) {
@@ -255,30 +268,37 @@ public class CDOUtils {
 
 			class NonEmpty extends UnmodifiableListIterator<E> implements FeatureListIterator<E> {
 
+				@Override
 				public EStructuralFeature feature() {
 					return feature;
 				}
 
+				@Override
 				public boolean hasNext() {
 					return delegate.hasNext();
 				}
 
+				@Override
 				public E next() {
 					return delegate.next();
 				}
 
+				@Override
 				public int nextIndex() {
 					return delegate.nextIndex();
 				}
 
+				@Override
 				public boolean hasPrevious() {
 					return delegate.hasPrevious();
 				}
 
+				@Override
 				public E previous() {
 					return delegate.previous();
 				}
 
+				@Override
 				public int previousIndex() {
 					return delegate.previousIndex();
 				}
@@ -288,30 +308,37 @@ public class CDOUtils {
 		} else if(value == null) {
 			class Empty extends UnmodifiableListIterator<E> implements FeatureListIterator<E> {
 
+				@Override
 				public EStructuralFeature feature() {
 					return feature;
 				}
 
+				@Override
 				public boolean hasNext() {
 					return false;
 				}
 
+				@Override
 				public E next() {
 					throw new NoSuchElementException();
 				}
 
+				@Override
 				public int nextIndex() {
 					return -1;
 				}
 
+				@Override
 				public boolean hasPrevious() {
 					return false;
 				}
 
+				@Override
 				public E previous() {
 					throw new NoSuchElementException();
 				}
 
+				@Override
 				public int previousIndex() {
 					return -2;
 				}
@@ -326,14 +353,17 @@ public class CDOUtils {
 
 				private int index = -1;
 
+				@Override
 				public EStructuralFeature feature() {
 					return feature;
 				}
 
+				@Override
 				public boolean hasNext() {
 					return index < 0;
 				}
 
+				@Override
 				public E next() {
 					if(!hasNext()) {
 						throw new NoSuchElementException();
@@ -342,14 +372,17 @@ public class CDOUtils {
 					return onlyValue;
 				}
 
+				@Override
 				public int nextIndex() {
 					return index;
 				}
 
+				@Override
 				public boolean hasPrevious() {
 					return index == 0;
 				}
 
+				@Override
 				public E previous() {
 					if(!hasPrevious()) {
 						throw new NoSuchElementException();
@@ -358,6 +391,7 @@ public class CDOUtils {
 					return onlyValue;
 				}
 
+				@Override
 				public int previousIndex() {
 					return index - 1;
 				}
@@ -389,6 +423,7 @@ public class CDOUtils {
 
 		broadcastExecutor.execute(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					domain.runExclusive(broadcastCommand);
@@ -409,6 +444,7 @@ public class CDOUtils {
 
 	private static final class DirectExecutor implements Executor {
 
+		@Override
 		public void execute(Runnable command) {
 			command.run();
 		}
