@@ -20,13 +20,20 @@ import static com.google.common.collect.Iterables.filter;
 
 import java.util.List;
 
+import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
+import org.eclipse.emf.cdo.eresource.CDOResourceNode;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
+import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
+import org.eclipse.papyrus.infra.hyperlink.helper.IHyperlinkHelperExtension;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 
@@ -36,7 +43,7 @@ import com.google.common.collect.ImmutableList;
 /**
  * Helper extension for hyperlinks to resources in CDO model repositories.
  */
-public class CDOResourceHyperlinkHelper extends AbstractHyperLinkHelper {
+public class CDOResourceHyperlinkHelper extends AbstractHyperLinkHelper implements IHyperlinkHelperExtension {
 
 	@Override
 	public HyperLinkObject getHyperLinkObject(EAnnotation eAnnotation) {
@@ -85,5 +92,29 @@ public class CDOResourceHyperlinkHelper extends AbstractHyperLinkHelper {
 	@Override
 	public List<HyperLinkObject> getFilteredObject(List<HyperLinkObject> hyperlinkObjects) {
 		return ImmutableList.copyOf(filter(hyperlinkObjects, instanceOf(CDOResourceHyperlink.class)));
+	}
+
+	@Override
+	public Command getCreateHyperlinkCommand(TransactionalEditingDomain domain, EModelElement linkOwner, Object linkTarget) {
+		Command result = null;
+
+		CDOResourceNode node = AdapterUtils.adapt(linkTarget, CDOResourceNode.class, null);
+		if(node instanceof CDOResourceLeaf) {
+			URI uri = node.getURI();
+			String tip = uri.lastSegment();
+
+			if(node instanceof CDOResource) {
+				DIModel di = DIModel.getInstance((CDOResource)node, false);
+				if(di != null) {
+					// it's a DI model.  We don't use file extensions with their names
+					tip = di.getName();
+				}
+			}
+
+			// don't navigate CDO documents by default; this is most appropriate for links to diagrams
+			result = new CreateCDOResourceHyperlinkCommand(domain, linkOwner, tip, uri, false);
+		}
+
+		return result;
 	}
 }
