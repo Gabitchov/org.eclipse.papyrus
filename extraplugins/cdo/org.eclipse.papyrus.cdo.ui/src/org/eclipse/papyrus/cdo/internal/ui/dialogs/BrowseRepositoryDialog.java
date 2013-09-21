@@ -359,22 +359,28 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			}
 		}
 
-		if((error == null) && (getRepository() != null)) {
-			String path = CDOURIUtil.extractResourcePath(basicGetSelectedURI());
-			CDOView view = getRepository().getMasterView();
-			if(isOpenStyle() && !view.hasResource(path)) {
-				error = Messages.BrowseRepoDlg_noSuchResource;
-			} else if(isOpenStyle()) {
-				// then the resource exists.  Is it the kind we want?
-				CDOResourceNode node = view.getResourceNode(path);
-				if(!getNodeTypeFilter().isInstance(node)) {
-					info = NLS.bind(Messages.BrowseRepoDlg_wrongSelection, getNodeType(getNodeTypeFilter()));
-				}
-			} else if(isSaveStyle() && view.hasResource(path)) {
-				if(isAllowOverwrite()) {
-					warning = Messages.BrowseRepoDlg_existsWarning;
-				} else {
-					error = Messages.BrowseRepoDlg_existsError;
+		if(error == null) {
+			if(selection == null) {
+				disable = true;
+			} else {
+				String path = CDOURIUtil.extractResourcePath(basicGetSelectedURI());
+				CDOView view = selection.cdoView();
+
+				if(isOpenStyle() && !view.hasResource(path)) {
+					error = Messages.BrowseRepoDlg_noSuchResource;
+				} else if(isOpenStyle()) {
+					// then the resource exists.  Is it the kind we want?
+					CDOResourceNode node = view.getResourceNode(path);
+					if(!getNodeTypeFilter().isInstance(node)) {
+						disable = true;
+						info = NLS.bind(Messages.BrowseRepoDlg_wrongSelection, getNodeType(getNodeTypeFilter()));
+					}
+				} else if(isSaveStyle() && view.hasResource(path)) {
+					if(isAllowOverwrite()) {
+						warning = Messages.BrowseRepoDlg_existsWarning;
+					} else {
+						error = Messages.BrowseRepoDlg_existsError;
+					}
 				}
 			}
 		}
