@@ -60,10 +60,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new RectangleInterfaceEditPart(view);
 			case RectangleInterfaceNameEditPart.VISUAL_ID:
 				return new RectangleInterfaceNameEditPart(view);
-			case InterfaceEditPart.VISUAL_ID:
-				return new InterfaceEditPart(view);
-			case InterfaceNameEditPart.VISUAL_ID:
-				return new InterfaceNameEditPart(view);
 			case CommentEditPart.VISUAL_ID:
 				return new CommentEditPart(view);
 			case CommentBodyEditPart.VISUAL_ID:
@@ -78,6 +74,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new DefaultNamedElementEditPart(view);
 			case DefaultNamedElementNameEditPart.VISUAL_ID:
 				return new DefaultNamedElementNameEditPart(view);
+			case InterfaceEditPart.VISUAL_ID:
+				return new InterfaceEditPart(view);
+			case InterfaceNameEditPart.VISUAL_ID:
+				return new InterfaceNameEditPart(view);
 			case PortEditPart.VISUAL_ID:
 				return new PortEditPart(view);
 			case PortNameEditPart.VISUAL_ID:
@@ -114,6 +114,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConstraintNameEditPartPCN(view);
 			case ConstraintSpecificationEditPartPCN.VISUAL_ID:
 				return new ConstraintSpecificationEditPartPCN(view);
+			case PropertyForInterfaceEditPart.VISUAL_ID:
+				return new PropertyForInterfaceEditPart(view);
 			case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 				return new ComponentCompositeCompartmentEditPart(view);
 			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
@@ -128,6 +130,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ComponentCompositeCompartmentEditPartCN(view);
 			case ComponentCompositeCompartmentEditPartPCN.VISUAL_ID:
 				return new ComponentCompositeCompartmentEditPartPCN(view);
+			case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
+				return new InterfaceAttributeCompartmentEditPart(view);
 			case UsageEditPart.VISUAL_ID:
 				return new UsageEditPart(view);
 			case InterfaceRealizationEditPart.VISUAL_ID:

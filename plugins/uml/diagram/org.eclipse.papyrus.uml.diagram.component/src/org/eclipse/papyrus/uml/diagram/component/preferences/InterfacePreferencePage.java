@@ -18,7 +18,6 @@ import java.util.TreeMap;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.uml.diagram.common.util.StringComparator;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 
@@ -29,6 +28,11 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
  * @generated
  */
 public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
+
+	/**
+	 * @generated
+	 */
+	public static final String compartments[] = { "AttributeCompartment" };
 
 	/**
 	 * Instantiates a new interface preference page.
@@ -60,12 +64,17 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 		String key = ComponentDiagramEditPart.MODEL_ID + "_Interface";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 20);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 20);
-		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
-		for(String role : map.keySet()) {
-			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
-			store.setDefault(preferenceName, map.get(role));
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 100);
+		Map<String, Boolean> map = getStaticCompartmentVisibilityPreferences();
+		for(String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, map.get(name));
+		}
+		map = getStaticCompartmentTitleVisibilityPreferences();
+		for(String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			store.setDefault(preferenceName, map.get(name));
 		}
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -80,25 +89,35 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	private static TreeMap<String, String> getStaticLabelRole() {
-		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
-		map.put("Name", "");//$NON-NLS-1$
-		return map;
+	@Override
+	protected void initializeCompartmentsList() {
+		for(String name : compartments) {
+			this.compartmentsList.add(name);
+		}
 	}
 
 	/**
 	 * @generated
 	 */
-	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
+	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("Name", Boolean.TRUE);
+		map.put("AttributeCompartment", Boolean.TRUE);
 		return map;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected TreeMap<String, String> getLabelRole() {
-		return getStaticLabelRole();
+	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		map.put("AttributeCompartment", Boolean.FALSE);
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
+		return getStaticCompartmentTitleVisibilityPreferences();
 	}
 }

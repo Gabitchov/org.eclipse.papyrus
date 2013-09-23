@@ -105,12 +105,6 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			}
 			return getGEFWrapper(new RectangleInterfaceCreateCommand(req));
 		}
-		if(UMLElementTypes.Interface_2003 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
-			return getGEFWrapper(new InterfaceCreateCommand(req));
-		}
 		if(UMLElementTypes.Comment_3201 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
@@ -128,6 +122,12 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new DefaultNamedElementCreateCommand(req));
+		}
+		if(UMLElementTypes.NamedElement_2003 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InterfaceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

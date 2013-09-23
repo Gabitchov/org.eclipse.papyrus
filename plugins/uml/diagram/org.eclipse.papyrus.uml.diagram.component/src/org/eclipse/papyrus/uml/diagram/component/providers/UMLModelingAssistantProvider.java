@@ -77,15 +77,20 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Model_3202);
 			types.add(UMLElementTypes.Package_3200);
 			types.add(UMLElementTypes.Interface_3205);
-			types.add(UMLElementTypes.Interface_2003);
 			types.add(UMLElementTypes.Comment_3201);
 			types.add(UMLElementTypes.Constraint_3199);
 			types.add(UMLElementTypes.NamedElement_3204);
+			types.add(UMLElementTypes.NamedElement_2003);
 			return types;
 		}
 		if(editPart instanceof ComponentEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
 			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof RectangleInterfaceEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Property_1);
 			return types;
 		}
 		if(editPart instanceof ComponentEditPartCN) {
@@ -176,9 +181,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof RectangleInterfaceEditPart) {
 			return ((RectangleInterfaceEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof InterfaceEditPart) {
-			return ((InterfaceEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
 		if(sourceEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
@@ -187,6 +189,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof DefaultNamedElementEditPart) {
 			return ((DefaultNamedElementEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof InterfaceEditPart) {
+			return ((InterfaceEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof PortEditPart) {
 			return ((PortEditPart)sourceEditPart).getMARelTypesOnSource();
@@ -235,9 +240,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			return ((RectangleInterfaceEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof InterfaceEditPart) {
-			return ((InterfaceEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
 		if(targetEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
@@ -246,6 +248,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			return ((DefaultNamedElementEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof InterfaceEditPart) {
+			return ((InterfaceEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof PortEditPart) {
 			return ((PortEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -295,9 +300,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof RectangleInterfaceEditPart) {
 			return ((RectangleInterfaceEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof InterfaceEditPart) {
-			return ((InterfaceEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		if(sourceEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -306,6 +308,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof DefaultNamedElementEditPart) {
 			return ((DefaultNamedElementEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof InterfaceEditPart) {
+			return ((InterfaceEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof PortEditPart) {
 			return ((PortEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -354,9 +359,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			return ((RectangleInterfaceEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof InterfaceEditPart) {
-			return ((InterfaceEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
 		if(targetEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -365,6 +367,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			return ((DefaultNamedElementEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof InterfaceEditPart) {
+			return ((InterfaceEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof PortEditPart) {
 			return ((PortEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -413,9 +418,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof RectangleInterfaceEditPart) {
 			return ((RectangleInterfaceEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof InterfaceEditPart) {
-			return ((InterfaceEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
 		if(sourceEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
@@ -424,6 +426,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof DefaultNamedElementEditPart) {
 			return ((DefaultNamedElementEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof InterfaceEditPart) {
+			return ((InterfaceEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof PortEditPart) {
 			return ((PortEditPart)sourceEditPart).getMATypesForTarget(relationshipType);

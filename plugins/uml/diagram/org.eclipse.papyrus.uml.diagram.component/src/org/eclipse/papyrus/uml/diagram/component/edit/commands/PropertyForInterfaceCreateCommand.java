@@ -1,15 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -24,13 +12,16 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Package;
+import org.eclipse.papyrus.uml.diagram.component.providers.ElementInitializers;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class InterfaceCreateCommand extends EditElementCommand {
+public class PropertyForInterfaceCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -45,7 +36,7 @@ public class InterfaceCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public InterfaceCreateCommand(CreateElementRequest req, EObject eObject) {
+	public PropertyForInterfaceCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -54,14 +45,14 @@ public class InterfaceCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static InterfaceCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new InterfaceCreateCommand(req, eObject);
+	public static PropertyForInterfaceCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new PropertyForInterfaceCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public InterfaceCreateCommand(CreateElementRequest req) {
+	public PropertyForInterfaceCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -85,10 +76,6 @@ public class InterfaceCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		// Creation constraint for TopLevelNodes
-		if(!(getElementToEdit() instanceof Package)) {
-			return false;
-		}
 		return true;
 	}
 
@@ -96,13 +83,21 @@ public class InterfaceCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
+		Property newElement = UMLFactory.eINSTANCE.createProperty();
+		StructuredClassifier owner = (StructuredClassifier)getElementToEdit();
+		owner.getOwnedAttributes().add(newElement);
+		Interface childHolder = (Interface)getElementToEdit();
+		childHolder.getOwnedAttributes().add(newElement);
+		ElementInitializers.getInstance().init_Property_1(newElement);
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(NamedElement newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Property newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

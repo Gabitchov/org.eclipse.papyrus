@@ -27,8 +27,10 @@ import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -71,18 +73,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Interface_2003(Interface instance) {
-		try {
-			Object value_0 = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getInterface(), null).evaluate(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public void init_Package_3200(Package instance) {
 		try {
 			Object value_0 = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getPackage(), null).evaluate(instance);
@@ -113,6 +103,18 @@ public class ElementInitializers {
 			instance.setName((String)value_0);
 			Object value_1 = specification_Constraint_3199(instance);
 			instance.setSpecification((ValueSpecification)value_1);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_NamedElement_2003(NamedElement instance) {
+		try {
+			Object value_0 = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getNamedElement(), null).evaluate(instance);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -224,6 +226,18 @@ public class ElementInitializers {
 			instance.setName((String)value_0);
 			Object value_1 = specification_Constraint_3075(instance);
 			instance.setSpecification((ValueSpecification)value_1);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Property_1(Property instance) {
+		try {
+			Object value_0 = name_Property_1(instance);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -394,6 +408,13 @@ public class ElementInitializers {
 		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
 		value.setValue("");
 		return value;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Property_1(Property self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
 	/**
