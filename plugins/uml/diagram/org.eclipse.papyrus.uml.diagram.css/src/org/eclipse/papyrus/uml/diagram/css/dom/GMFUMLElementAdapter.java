@@ -15,13 +15,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.dom.GMFElementAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * DOM Element Adapter for UML Elements
@@ -77,17 +83,27 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					appliedStereotypes.add(stereotype.getName());
 					appliedStereotypes.add(stereotype.getQualifiedName());
 				}
+				
 				if(!appliedStereotypes.isEmpty()) {
-					return ListHelper.deepToString(appliedStereotypes, " ");
+					return ListHelper.deepToString(appliedStereotypes, CSS_VALUES_SEPARATOR);
 				}
 			}
 
 			for(EObject stereotypeApplication : currentElement.getStereotypeApplications()) {
 				EStructuralFeature feature = stereotypeApplication.eClass().getEStructuralFeature(attr);
 				if(feature != null) {
-					Object value = stereotypeApplication.eGet(feature);
-					if(value != null) {
-						return value.toString();
+					if(feature.isMany()) {
+						List<?> values = (List<?>)stereotypeApplication.eGet(feature);
+						List<String> cssValues = new LinkedList<String>();
+						for(Object value : values) {
+							cssValues.add(getCSSValue(feature, value));
+						}
+
+						return ListHelper.deepToString(cssValues, CSS_VALUES_SEPARATOR);
+					} else {
+						Object value = stereotypeApplication.eGet(feature);
+						String cssValue = getCSSValue(feature, value);
+						return cssValue;
 					}
 				}
 			}
@@ -98,7 +114,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 				String propertyName = qualifiers.remove(qualifiers.size() - 1); //Last element is the property name
 				//Remaining strings can be used to build the Stereotype's qualified name
 
-				String stereotypeName = ListHelper.deepToString(qualifiers, "::");
+				String stereotypeName = ListHelper.deepToString(qualifiers, "::"); //$NON-NLS-1$
 
 				Stereotype appliedStereotype = currentElement.getAppliedStereotype(stereotypeName);
 
@@ -107,9 +123,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					EStructuralFeature feature = stereotypeApplication.eClass().getEStructuralFeature(propertyName);
 					if(feature != null) {
 						Object value = stereotypeApplication.eGet(feature);
-						if(value != null) {
-							return value.toString();
-						}
+						return getCSSValue(feature, value);
 					}
 				}
 			}
@@ -117,4 +131,14 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 		return null;
 	}
+
+	@Override
+	protected String getCSSValue(EStructuralFeature feature, Object value) {
+		if(feature instanceof EReference && value instanceof NamedElement) {
+			return ((NamedElement)value).getName();
+		}
+
+		return super.getCSSValue(feature, value);
+	}
+
 }
