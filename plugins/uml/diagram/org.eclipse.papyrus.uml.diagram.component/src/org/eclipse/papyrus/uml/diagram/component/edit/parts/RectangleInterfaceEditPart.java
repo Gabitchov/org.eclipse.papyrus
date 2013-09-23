@@ -148,6 +148,12 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 			pane.add(((InterfaceAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
+		if(childEditPart instanceof InterfaceOperationCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((InterfaceOperationCompartmentEditPart)childEditPart).getFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -161,6 +167,11 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			pane.remove(((InterfaceAttributeCompartmentEditPart)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof InterfaceOperationCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			pane.remove(((InterfaceOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -192,6 +203,9 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof InterfaceAttributeCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
+		}
+		if(editPart instanceof InterfaceOperationCompartmentEditPart) {
+			return getPrimaryShape().getOperationCompartmentFigure();
 		}
 		return getContentPane();
 	}
@@ -954,6 +968,9 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == UMLElementTypes.Property_1) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPart.VISUAL_ID));
+			}
+			if(type == UMLElementTypes.Operation_5) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

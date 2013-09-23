@@ -98,6 +98,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceNameEditPartPCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceOperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.LinkDescriptorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationAppliedStereotypeEditPart;
@@ -110,6 +111,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelPackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelPackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.MultiDependencyLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.OperationForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageNameEditPart;
@@ -251,6 +253,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ModelEditPartCN.VISUAL_ID:
 				case PackageEditPartCN.VISUAL_ID:
 				case PropertyForInterfaceEditPart.VISUAL_ID:
+				case OperationForInterfaceEditPart.VISUAL_ID:
 				case ComponentEditPartCN.VISUAL_ID:
 				case ComponentEditPartPCN.VISUAL_ID:
 				case InterfaceEditPartPCN.VISUAL_ID:
@@ -265,7 +268,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return DependencyNodeEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || ModelEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || RectangleInterfaceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || PortEditPart.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || ComponentEditPartPCN.VISUAL_ID == visualID || InterfaceEditPartPCN.VISUAL_ID == visualID || CommentEditPartPCN.VISUAL_ID == visualID || ConstraintEditPartPCN.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID;
+		return DependencyNodeEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || ModelEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || RectangleInterfaceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || PortEditPart.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || ComponentEditPartPCN.VISUAL_ID == visualID || InterfaceEditPartPCN.VISUAL_ID == visualID || CommentEditPartPCN.VISUAL_ID == visualID || ConstraintEditPartPCN.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID || OperationForInterfaceEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -360,6 +363,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createConstraint_3075(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyForInterfaceEditPart.VISUAL_ID:
 			return createProperty_1(domainElement, containerView, index, persisted, preferencesHint);
+		case OperationForInterfaceEditPart.VISUAL_ID:
+			return createOperation_5(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -543,6 +548,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Interface");
 		Node label5266 = createLabel(node, UMLVisualIDRegistry.getType(RectangleInterfaceNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID), true, true, true, true);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interface");
 		return node;
 	}
@@ -771,6 +777,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Property");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createOperation_5(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(OperationForInterfaceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Operation");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Operation");
 		return node;
 	}
 

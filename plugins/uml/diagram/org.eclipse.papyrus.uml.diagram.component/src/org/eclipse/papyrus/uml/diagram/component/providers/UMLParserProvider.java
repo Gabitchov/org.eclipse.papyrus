@@ -51,6 +51,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationNameEdi
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.MultiDependencyLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.OperationForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotypeEditPart;
@@ -424,6 +425,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser operation_5Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOperation_5Parser() {
+		if(operation_5Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			operation_5Parser = parser;
+		}
+		return operation_5Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private AppliedStereotypeParser generalizationIsSubstitutable_2Parser;
 
 	/**
@@ -643,6 +661,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintSpecification_5260Parser();
 		case PropertyForInterfaceEditPart.VISUAL_ID:
 			return getProperty_1Parser();
+		case OperationForInterfaceEditPart.VISUAL_ID:
+			return getOperation_5Parser();
 		case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_2Parser();
 		case SubstitutionNameEditPart.VISUAL_ID:

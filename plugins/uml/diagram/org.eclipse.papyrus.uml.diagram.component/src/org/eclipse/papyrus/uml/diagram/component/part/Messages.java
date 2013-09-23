@@ -325,6 +325,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createOperationCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createOperationCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createPortCreationTool_title;
 
 	/**
@@ -491,6 +501,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String InterfaceAttributeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InterfaceOperationCompartmentEditPart_title;
 
 	/**
 	 * @generated

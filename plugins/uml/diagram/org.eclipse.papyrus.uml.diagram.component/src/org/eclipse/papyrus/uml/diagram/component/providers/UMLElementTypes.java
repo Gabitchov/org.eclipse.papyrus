@@ -48,6 +48,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.LinkDescriptorEditPa
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.OperationForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
@@ -183,6 +184,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Operation_5 = getElementType("org.eclipse.papyrus.uml.diagram.component.Operation_5"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Usage_4001 = getElementType("org.eclipse.papyrus.uml.diagram.component.Usage_4001"); //$NON-NLS-1$
 
 	/**
@@ -296,6 +302,7 @@ public class UMLElementTypes {
 			elements.put(Comment_3074, UMLPackage.eINSTANCE.getComment());
 			elements.put(Constraint_3075, UMLPackage.eINSTANCE.getConstraint());
 			elements.put(Property_1, UMLPackage.eINSTANCE.getProperty());
+			elements.put(Operation_5, UMLPackage.eINSTANCE.getOperation());
 			elements.put(Usage_4001, UMLPackage.eINSTANCE.getUsage());
 			elements.put(InterfaceRealization_4006, UMLPackage.eINSTANCE.getInterfaceRealization());
 			elements.put(Generalization_4003, UMLPackage.eINSTANCE.getGeneralization());
@@ -343,6 +350,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Comment_3074);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3075);
 			KNOWN_ELEMENT_TYPES.add(Property_1);
+			KNOWN_ELEMENT_TYPES.add(Operation_5);
 			KNOWN_ELEMENT_TYPES.add(Usage_4001);
 			KNOWN_ELEMENT_TYPES.add(InterfaceRealization_4006);
 			KNOWN_ELEMENT_TYPES.add(Generalization_4003);
@@ -402,6 +410,8 @@ public class UMLElementTypes {
 			return Constraint_3075;
 		case PropertyForInterfaceEditPart.VISUAL_ID:
 			return Property_1;
+		case OperationForInterfaceEditPart.VISUAL_ID:
+			return Operation_5;
 		case UsageEditPart.VISUAL_ID:
 			return Usage_4001;
 		case InterfaceRealizationEditPart.VISUAL_ID:

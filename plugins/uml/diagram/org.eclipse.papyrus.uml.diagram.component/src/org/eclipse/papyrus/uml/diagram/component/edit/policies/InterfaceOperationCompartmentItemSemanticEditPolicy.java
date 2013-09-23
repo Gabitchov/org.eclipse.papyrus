@@ -18,18 +18,18 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.PropertyForInterfaceCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.edit.commands.OperationForInterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class InterfaceAttributeCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class InterfaceOperationCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public InterfaceAttributeCompartmentItemSemanticEditPolicy() {
+	public InterfaceOperationCompartmentItemSemanticEditPolicy() {
 		super(UMLElementTypes.Interface_3205);
 	}
 
@@ -53,11 +53,11 @@ public class InterfaceAttributeCompartmentItemSemanticEditPolicy extends UMLBase
 				isExtendedType = true;
 			}
 		}
-		if(UMLElementTypes.Property_1 == baseElementType) {
+		if(UMLElementTypes.Operation_5 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new PropertyForInterfaceCreateCommand(req));
+			return getGEFWrapper(new OperationForInterfaceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

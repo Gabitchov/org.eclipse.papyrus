@@ -32,7 +32,7 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "AttributeCompartment" };
+	public static final String compartments[] = { "AttributeCompartment", "OperationCompartment" };
 
 	/**
 	 * Instantiates a new interface preference page.
@@ -102,6 +102,7 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("AttributeCompartment", Boolean.TRUE);
+		map.put("OperationCompartment", Boolean.TRUE);
 		return map;
 	}
 
@@ -111,6 +112,7 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("AttributeCompartment", Boolean.FALSE);
+		map.put("OperationCompartment", Boolean.FALSE);
 		return map;
 	}
 

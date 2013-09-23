@@ -33,7 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.OperationForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class InterfaceAttributeCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
+public class InterfaceOperationCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -60,7 +60,7 @@ public class InterfaceAttributeCompartmentCanonicalEditPolicy extends CanonicalE
 	 * @generated
 	 */
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getInterface_OwnedAttribute();
+		return UMLPackage.eINSTANCE.getInterface_OwnedOperation();
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class InterfaceAttributeCompartmentCanonicalEditPolicy extends CanonicalE
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getInterfaceAttributeCompartment_7008SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getInterfaceOperationCompartment_7009SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -88,7 +88,7 @@ public class InterfaceAttributeCompartmentCanonicalEditPolicy extends CanonicalE
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return PropertyForInterfaceEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		return OperationForInterfaceEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class InterfaceAttributeCompartmentCanonicalEditPolicy extends CanonicalE
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getInterfaceAttributeCompartment_7008SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getInterfaceOperationCompartment_7009SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();

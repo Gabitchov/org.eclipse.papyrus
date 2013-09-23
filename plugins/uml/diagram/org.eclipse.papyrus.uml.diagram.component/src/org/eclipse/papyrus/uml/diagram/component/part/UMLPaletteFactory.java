@@ -30,12 +30,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String COMPONENT_TOOL_MODEL = "component.tool.model"; //$NON-NLS-1$
+	private final static String COMPONENT_TOOL_CONSTRAINT = "component.tool.constraint"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String COMPONENT_TOOL_PACKAGE = "component.tool.package"; //$NON-NLS-1$
+	private final static String COMPONENT_TOOL_COMMENT = "component.tool.comment"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -50,22 +50,27 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String COMPONENT_TOOL_MODEL = "component.tool.model"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String COMPONENT_TOOL_PROPERTY = "component.tool.property"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
+	private final static String COMPONENT_TOOL_OPERATION = "component.tool.operation"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String COMPONENT_TOOL_PACKAGE = "component.tool.package"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String COMPONENT_TOOL_PORT = "component.tool.port"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String COMPONENT_TOOL_COMMENT = "component.tool.comment"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String COMPONENT_TOOL_CONSTRAINT = "component.tool.constraint"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -139,11 +144,14 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(COMPONENT_TOOL_INTERFACE)) {
 			return createRectancleInterfaceCreationTool();
 		}
+		if(toolId.equals(COMPONENT_TOOL_MODEL)) {
+			return createModelCreationTool();
+		}
 		if(toolId.equals(COMPONENT_TOOL_PROPERTY)) {
 			return createPropertyCreationTool();
 		}
-		if(toolId.equals(COMPONENT_TOOL_MODEL)) {
-			return createModelCreationTool();
+		if(toolId.equals(COMPONENT_TOOL_OPERATION)) {
+			return createOperationCreationTool();
 		}
 		if(toolId.equals(COMPONENT_TOOL_PACKAGE)) {
 			return createPackageCreationTool();
@@ -243,6 +251,16 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createPropertyCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Property_1);
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createOperationCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Operation_5);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

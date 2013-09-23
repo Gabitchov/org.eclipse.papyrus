@@ -27,13 +27,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.component.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class PropertyForInterfaceCreateCommand extends EditElementCommand {
+public class OperationForInterfaceCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -48,7 +48,7 @@ public class PropertyForInterfaceCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public PropertyForInterfaceCreateCommand(CreateElementRequest req, EObject eObject) {
+	public OperationForInterfaceCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -57,14 +57,14 @@ public class PropertyForInterfaceCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static PropertyForInterfaceCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new PropertyForInterfaceCreateCommand(req, eObject);
+	public static OperationForInterfaceCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new OperationForInterfaceCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public PropertyForInterfaceCreateCommand(CreateElementRequest req) {
+	public OperationForInterfaceCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -95,10 +95,10 @@ public class PropertyForInterfaceCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Property newElement = UMLFactory.eINSTANCE.createProperty();
+		Operation newElement = UMLFactory.eINSTANCE.createOperation();
 		Interface owner = (Interface)getElementToEdit();
-		owner.getOwnedAttributes().add(newElement);
-		ElementInitializers.getInstance().init_Property_1(newElement);
+		owner.getOwnedOperations().add(newElement);
+		ElementInitializers.getInstance().init_Operation_5(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
@@ -107,7 +107,7 @@ public class PropertyForInterfaceCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Property newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Operation newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

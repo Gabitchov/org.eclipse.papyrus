@@ -22,14 +22,14 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 /**
  * @generated
  */
-public class PropertyPreferencePage extends AbstractPapyrusNodePreferencePage {
+public class OperationPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @generated
 	 */
-	public PropertyPreferencePage() {
+	public OperationPreferencePage() {
 		super();
-		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID + "_Property");
+		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID + "_Operation");
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class PropertyPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		String key = ComponentDiagramEditPart.MODEL_ID + "_Property";
+		String key = ComponentDiagramEditPart.MODEL_ID + "_Operation";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));

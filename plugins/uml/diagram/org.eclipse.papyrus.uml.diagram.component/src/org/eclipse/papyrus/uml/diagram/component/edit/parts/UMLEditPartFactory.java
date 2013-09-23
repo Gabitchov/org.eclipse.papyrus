@@ -116,6 +116,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConstraintSpecificationEditPartPCN(view);
 			case PropertyForInterfaceEditPart.VISUAL_ID:
 				return new PropertyForInterfaceEditPart(view);
+			case OperationForInterfaceEditPart.VISUAL_ID:
+				return new OperationForInterfaceEditPart(view);
 			case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 				return new ComponentCompositeCompartmentEditPart(view);
 			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
@@ -132,6 +134,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ComponentCompositeCompartmentEditPartPCN(view);
 			case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
 				return new InterfaceAttributeCompartmentEditPart(view);
+			case InterfaceOperationCompartmentEditPart.VISUAL_ID:
+				return new InterfaceOperationCompartmentEditPart(view);
 			case UsageEditPart.VISUAL_ID:
 				return new UsageEditPart(view);
 			case InterfaceRealizationEditPart.VISUAL_ID:

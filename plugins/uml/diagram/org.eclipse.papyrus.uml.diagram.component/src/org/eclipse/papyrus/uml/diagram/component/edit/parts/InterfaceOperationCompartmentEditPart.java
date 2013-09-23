@@ -28,23 +28,23 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceAttributeCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceOperationCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.part.Messages;
 
 /**
  * @generated
  */
-public class InterfaceAttributeCompartmentEditPart extends ResizeableListCompartmentEditPart {
+public class InterfaceOperationCompartmentEditPart extends ResizeableListCompartmentEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 7008;
+	public static final int VISUAL_ID = 7009;
 
 	/**
 	 * @generated
 	 */
-	public InterfaceAttributeCompartmentEditPart(View view) {
+	public InterfaceOperationCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -59,7 +59,7 @@ public class InterfaceAttributeCompartmentEditPart extends ResizeableListCompart
 	 * @generated
 	 */
 	public String getCompartmentName() {
-		return Messages.InterfaceAttributeCompartmentEditPart_title;
+		return Messages.InterfaceOperationCompartmentEditPart_title;
 	}
 
 	/**
@@ -68,12 +68,12 @@ public class InterfaceAttributeCompartmentEditPart extends ResizeableListCompart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceAttributeCompartmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceOperationCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceAttributeCompartmentCanonicalEditPolicy());
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceOperationCompartmentCanonicalEditPolicy());
 	}
 
 	/**
