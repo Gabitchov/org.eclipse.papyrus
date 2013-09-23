@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.diagram.common.service.palette;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,13 +23,16 @@ import java.util.StringTokenizer;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -39,18 +43,30 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
+import org.eclipse.jface.viewers.DialogCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.utils.ProviderHelper;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
+import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -82,8 +98,8 @@ public class SemanticPostAction extends ModelPostAction {
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
 
-	/** viewer for the attributes to initialize */
-	protected TableViewer attributeViewer;
+	/** viewer for the features to initialize */
+	protected TableViewer featureViewer;
 
 	/**
 	 * this attribute caches the value of the metaclass linked to the creation
@@ -171,16 +187,16 @@ public class SemanticPostAction extends ModelPostAction {
 	/**
 	 * {@inheritDoc}
 	 */
-	public ICommand getPostCommand(final IAdaptable viewAdpater) {
+	public ICommand getPostCommand(final IAdaptable viewAdapter) {
 		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
 
 		return new AbstractTransactionalCommand(editingDomain, "Modify Semantic", null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				View view = (View)viewAdpater.getAdapter(View.class);
+				View view = (View)viewAdapter.getAdapter(View.class);
 
-				if (view != null) {
+				if(view != null) {
 					EObject objectToEdit = view.getElement();
 
 					for(String featureName : propertiesToUpdate.keySet()) {
@@ -188,6 +204,21 @@ public class SemanticPostAction extends ModelPostAction {
 						EStructuralFeature feature = objectToEdit.eClass().getEStructuralFeature(featureName);
 						if(feature == null) {
 							Activator.log.error("Impossible to find the feature " + featureName + " for element " + objectToEdit, null);
+						} else if(feature instanceof EReference) {
+							URI uri = (URI)getValue(feature, propertiesToUpdate.get(featureName));
+
+							try {
+								EObject value = objectToEdit.eResource().getResourceSet().getEObject(uri, true);
+
+								if(value == null) {
+									return CommandResult.newErrorCommandResult("Cannot find the object at " + uri);
+								}
+
+								objectToEdit.eSet(feature, value);
+							} catch (Exception ex) {
+								Activator.log.error(String.format("Cannot set the initial value for '%s'", feature.getName()), ex); //The exception is not properly propagated. Log it here to avoid silent exceptions
+								return CommandResult.newErrorCommandResult(ex);
+							}
 						} else {
 							objectToEdit.eSet(feature, getValue(feature, propertiesToUpdate.get(featureName)));
 						}
@@ -235,15 +266,15 @@ public class SemanticPostAction extends ModelPostAction {
 		GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
 		titleLabel.setLayoutData(data);
 
-		attributeViewer = new TableViewer(mainComposite, SWT.BORDER | SWT.FULL_SELECTION);
-		createColumns(attributeViewer);
-		attributeViewer.setContentProvider(new AttributeContentProvider());
-		attributeViewer.setLabelProvider(new AttributeLabelProvider());
+		featureViewer = new TableViewer(mainComposite, SWT.BORDER | SWT.FULL_SELECTION);
+		createColumns(featureViewer);
+		featureViewer.setContentProvider(new FeatureContentProvider());
+		featureViewer.setLabelProvider(new FeatureLabelProvider());
 		data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		data.horizontalSpan = 3;
-		attributeViewer.getControl().setLayoutData(data);
+		featureViewer.getControl().setLayoutData(data);
 
-		updateAttributesViewer();
+		updateFeaturesViewer();
 		return mainComposite;
 	}
 
@@ -275,7 +306,7 @@ public class SemanticPostAction extends ModelPostAction {
 		valueColumn.getColumn().setWidth(300);
 		valueColumn.getColumn().setResizable(true);
 		valueColumn.getColumn().setMoveable(false);
-		valueColumn.setEditingSupport(new AttributeEditingSupport(viewer));
+		valueColumn.setEditingSupport(new FeatureEditingSupport(viewer));
 
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);
@@ -285,8 +316,8 @@ public class SemanticPostAction extends ModelPostAction {
 	/**
 	 * updates the stereotype viewer
 	 */
-	protected void updateAttributesViewer() {
-		attributeViewer.setInput(metaclass);
+	protected void updateFeaturesViewer() {
+		featureViewer.setInput(metaclass);
 	}
 
 	/**
@@ -341,10 +372,19 @@ public class SemanticPostAction extends ModelPostAction {
 		return runtimeDefinedProperties.contains(feature.getName());
 	}
 
+	protected ResourceSet getResourceSet() {
+		try {
+			return getServicesRegistry().getService(ModelSet.class);
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+			return null;
+		}
+	}
+
 	/**
-	 * Content provider for the attribute viewer
+	 * Content provider for the feature viewer
 	 */
-	protected class AttributeContentProvider implements IStructuredContentProvider {
+	protected class FeatureContentProvider implements IStructuredContentProvider {
 
 		/** current edited metaclass */
 		protected EClass currentEClass;
@@ -355,14 +395,21 @@ public class SemanticPostAction extends ModelPostAction {
 		public Object[] getElements(Object inputElement) {
 			if(inputElement instanceof EClass) {
 				currentEClass = (EClass)inputElement;
-				List<EAttribute> attributes = new ArrayList<EAttribute>();
-				// create a new list with only non derived attributes
-				for(EAttribute attribute : currentEClass.getEAllAttributes()) {
-					if(!attribute.isDerived() && attribute.isChangeable()) {
-						attributes.add(attribute);
+				List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
+				// create a new list with only non derived features
+				for(EStructuralFeature feature : currentEClass.getEAllStructuralFeatures()) {
+					if(feature instanceof EReference) {
+						EReference reference = (EReference)feature;
+						if(reference.isContainer() || reference.isContainment() || reference.isMany()) {
+							continue; //Ignore containment and container features, as well as multi-valued references
+						}
+					}
+
+					if(!feature.isDerived() && feature.isChangeable()) {
+						features.add(feature);
 					}
 				}
-				return attributes.toArray();
+				return features.toArray();
 			}
 			return new Object[0];
 		}
@@ -371,14 +418,14 @@ public class SemanticPostAction extends ModelPostAction {
 		 * @{inheritDoc
 		 */
 		public void dispose() {
-
+			//Nothing
 		}
 
 		/**
 		 * @{inheritDoc
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-
+			//Nothing
 		}
 
 	}
@@ -386,7 +433,7 @@ public class SemanticPostAction extends ModelPostAction {
 	/**
 	 * Class giving cell editors for statically defined values
 	 */
-	protected class AttributeEditingSupport extends EditingSupport {
+	protected class FeatureEditingSupport extends EditingSupport {
 
 		/** proposals for boolean */
 		protected final String[] booleanProposals = new String[]{ "", "true", "false" };
@@ -397,7 +444,7 @@ public class SemanticPostAction extends ModelPostAction {
 		 * @param viewer
 		 *        viewer in which editors will open
 		 */
-		public AttributeEditingSupport(ColumnViewer viewer) {
+		public FeatureEditingSupport(ColumnViewer viewer) {
 			super(viewer);
 		}
 
@@ -415,6 +462,11 @@ public class SemanticPostAction extends ModelPostAction {
 		@Override
 		protected CellEditor getCellEditor(Object element) {
 			EStructuralFeature feature = (EStructuralFeature)element;
+
+			if(feature instanceof EReference) {
+				return createReferenceEditor((EReference)feature);
+			}
+
 			EClassifier eType = feature.getEType();
 			if(eType instanceof EEnum) {
 				return createEnumerationEditor(feature);
@@ -443,6 +495,18 @@ public class SemanticPostAction extends ModelPostAction {
 		}
 
 		/**
+		 * Creates and return a Reference Browser dialog for a Reference type
+		 * 
+		 * @param reference
+		 *        The reference to edit
+		 * @return
+		 *         The newly created dialog editor
+		 */
+		protected CellEditor createReferenceEditor(EReference reference) {
+			return new ReferenceDialogCellEditor(((TableViewer)getViewer()).getTable(), reference, SWT.NONE);
+		}
+
+		/**
 		 * Creates and return a combobox cell editor for an enumeration type
 		 * 
 		 * @param feature
@@ -467,6 +531,9 @@ public class SemanticPostAction extends ModelPostAction {
 		@Override
 		protected Object getValue(Object element) {
 			EStructuralFeature feature = (EStructuralFeature)element;
+			if(feature instanceof EReference) {
+				return getReferenceValue((EReference)feature);
+			}
 			EClassifier eType = feature.getEType();
 			if(eType instanceof EEnum) {
 				return getEnumerationValue(feature);
@@ -522,24 +589,43 @@ public class SemanticPostAction extends ModelPostAction {
 		}
 
 		/**
+		 * Returns the URI value for this reference
+		 * 
+		 * @param feature
+		 * @return
+		 */
+		public Object getReferenceValue(EReference feature) {
+			Object uriAsString = propertiesToUpdate.get(feature.getName());
+			if(uriAsString == null || "".equals(uriAsString)) {
+				return null;
+			}
+			URI uri = URI.createURI((String)uriAsString);
+			return uri;
+		}
+
+		/**
 		 * @{inheritDoc
 		 */
 		@Override
 		protected void setValue(Object element, Object value) {
 			EStructuralFeature feature = (EStructuralFeature)element;
 			String featureName = ((EStructuralFeature)element).getName();
-			EClassifier eType = feature.getEType();
-			if(eType instanceof EEnum) {
-				setEnumerationValue(element, value);
+			if(feature instanceof EReference) {
+				setReferenceValue(element, value);
 			} else {
-				String instanceTypeName = eType.getInstanceClassName();
-				if(instanceTypeName.equals("boolean")) {
-					setBooleanValue(element, value);
+				EClassifier eType = feature.getEType();
+				if(eType instanceof EEnum) {
+					setEnumerationValue(element, value);
 				} else {
-					if(value == null || value.equals("")) {
-						propertiesToUpdate.remove(featureName);
+					String instanceTypeName = eType.getInstanceClassName();
+					if(instanceTypeName.equals("boolean")) {
+						setBooleanValue(element, value);
 					} else {
-						propertiesToUpdate.put(featureName, value);
+						if(value == null || value.equals("")) {
+							propertiesToUpdate.remove(featureName);
+						} else {
+							propertiesToUpdate.put(featureName, value);
+						}
 					}
 				}
 			}
@@ -573,7 +659,24 @@ public class SemanticPostAction extends ModelPostAction {
 				int index = (Integer)value;
 				propertiesToUpdate.put(featureName, proposals.get(index));
 			}
+		}
 
+		/**
+		 * Set the new EObject value for this feature. The URI is stored as a URI
+		 * 
+		 * @param element
+		 *        The Feature
+		 * @param value
+		 *        The EObject value
+		 */
+		protected void setReferenceValue(Object element, Object value) {
+			EStructuralFeature feature = (EStructuralFeature)element;
+			String featureName = feature.getName();
+			if(value instanceof EObject) {
+				propertiesToUpdate.put(featureName, EcoreUtil.getURI((EObject)value).toString());
+			} else {
+				propertiesToUpdate.remove(feature.getName());
+			}
 		}
 
 		/**
@@ -662,16 +765,17 @@ public class SemanticPostAction extends ModelPostAction {
 	}
 
 	/**
-	 * Label provider for the attribute viewer
+	 * Label provider for the feature viewer
 	 */
-	protected class AttributeLabelProvider implements ITableLabelProvider {
+	protected class FeatureLabelProvider implements ITableLabelProvider {
 
 		/**
 		 * @{inheritDoc
 		 */
 		public Image getColumnImage(Object element, int columnIndex) {
+			EStructuralFeature feature = (EStructuralFeature)element;
+
 			if(columnIndex == 1) {
-				EStructuralFeature feature = (EStructuralFeature)element;
 				// check if it is defined at runtime, using a popup dialog
 				if(isRuntimeDefined(feature)) {
 					return Activator.getPluginIconImage(Activator.ID, ICON_CHECKED);
@@ -679,6 +783,26 @@ public class SemanticPostAction extends ModelPostAction {
 					return Activator.getPluginIconImage(Activator.ID, ICON_UNCHECKED);
 				}
 
+			} else if(columnIndex == 2) {
+				if(feature instanceof EReference) {
+					Object value = propertiesToUpdate.get(feature.getName());
+					if(value == null) {
+						return null;
+					}
+
+					ResourceSet resourceSet = getResourceSet();
+					EObject eObject = resourceSet.getEObject(URI.createURI(value.toString()), true);
+					if(eObject.eIsProxy()) {
+						eObject = EcoreUtil.resolve(eObject, resourceSet);
+					}
+
+					try {
+						return getServicesRegistry().getService(LabelProviderService.class).getLabelProvider().getImage(eObject);
+					} catch (Exception ex) {
+						Activator.log.error(ex);
+						return null;
+					}
+				}
 			}
 			return null;
 		}
@@ -698,6 +822,27 @@ public class SemanticPostAction extends ModelPostAction {
 			case 2:
 				// retrieve current given values
 				Object value = propertiesToUpdate.get(feature.getName());
+
+				if(feature instanceof EReference) {
+					if(value != null) {
+						ResourceSet resourceSet = getResourceSet();
+						EObject eObject = resourceSet.getEObject(URI.createURI(value.toString()), false);
+						if(eObject.eIsProxy()) {
+							eObject = EcoreUtil.resolve(eObject, resourceSet);
+						}
+
+						try {
+							text = getServicesRegistry().getService(LabelProviderService.class).getLabelProvider().getText(eObject);
+							return text;
+						} catch (Exception ex) {
+							Activator.log.error(ex);
+							return null;
+						}
+					}
+				}
+
+
+
 				text = (value != null) ? value.toString() : "";
 
 			default:
@@ -711,14 +856,14 @@ public class SemanticPostAction extends ModelPostAction {
 		 * @{inheritDoc
 		 */
 		public void addListener(ILabelProviderListener listener) {
-
+			//Nothing
 		}
 
 		/**
 		 * @{inheritDoc
 		 */
 		public void dispose() {
-
+			//Nothing
 		}
 
 		/**
@@ -732,7 +877,55 @@ public class SemanticPostAction extends ModelPostAction {
 		 * @{inheritDoc
 		 */
 		public void removeListener(ILabelProviderListener listener) {
+			//Nothing
+		}
+	}
 
+	/**
+	 * A CellEditor for reference properties
+	 * 
+	 * @author Camille Letavernier
+	 */
+	public class ReferenceDialogCellEditor extends DialogCellEditor {
+
+		protected EReference reference;
+
+		public ReferenceDialogCellEditor(Composite parent, EReference reference, int style) {
+			super(parent, style);
+			this.reference = reference;
+		}
+
+		@Override
+		protected Object openDialogBox(Control cellEditorWindow) {
+			TreeSelectorDialog dialog = new TreeSelectorDialog(cellEditorWindow.getShell());
+
+			try {
+				ModelSet modelSet = ServiceUtils.getInstance().getModelSet(getServicesRegistry());
+				UmlModel umlModel = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
+				EObject root = umlModel.lookupRoot();
+
+				SemanticUMLContentProvider provider = new SemanticUMLContentProvider(new EObject[]{ root });
+				provider.setWantedMetaclasses(Collections.singletonList(reference.getEType()));
+				ITreeContentProvider wrappedProvider = ProviderHelper.encapsulateProvider(provider, modelSet, "org.eclipse.papyrus.uml.diagram.common.customization.palette"); //$NON-NLS-1$
+
+				dialog.setContentProvider(wrappedProvider);
+				dialog.setLabelProvider(getServicesRegistry().getService(LabelProviderService.class).getLabelProvider());
+				if(dialog.open() == Window.OK) {
+					Object[] result = dialog.getResult();
+					if(result.length == 0) {
+						return null;
+					}
+
+					if(result[0] instanceof EObject) {
+						return result[0];
+					}
+				}
+			} catch (NotFoundException ex) { //UML Root element not found
+				Activator.log.error(ex);
+			} catch (ServiceException ex) { //Service registry not found
+				Activator.log.error(ex);
+			}
+			return null;
 		}
 	}
 }

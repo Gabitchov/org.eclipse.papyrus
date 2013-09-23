@@ -13,12 +13,17 @@ package org.eclipse.papyrus.uml.diagram.common.service.palette;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Node;
@@ -28,6 +33,13 @@ import org.w3c.dom.Node;
  * model)
  */
 public abstract class ModelPostAction implements IPostAction {
+
+	/**
+	 * the current services registry
+	 * Available only during customization
+	 * At runtime, use the ViewAdapter
+	 */
+	private ServicesRegistry registry;
 
 	/** factory used to create this action */
 	protected IAspectActionProvider factory;
@@ -85,6 +97,13 @@ public abstract class ModelPostAction implements IPostAction {
 	 * @return the same value, but correctly cast.
 	 */
 	protected Object getValue(EStructuralFeature feature, Object value) {
+
+		if(feature instanceof EReference) {
+			//Value is a serialized URI. Here, we don't know the resolution context, so we cannot return the EObject
+			URI uri = URI.createURI((String)value);
+			return uri;
+		}
+
 		EClassifier type = feature.getEType();
 		if(type instanceof EDataType) {
 			Class<?> iClass = type.getInstanceClass();
@@ -240,9 +259,32 @@ public abstract class ModelPostAction implements IPostAction {
 	}
 
 	public void runInPostCommit(EditPart editPart) {
+		//Nothing
 	}
 
 	public boolean needsPostCommitRun() {
 		return false;
+	}
+
+	public void setServicesRegistry(ServicesRegistry registry) {
+		this.registry = registry;
+	}
+
+	protected ServicesRegistry getServicesRegistry() {
+		if(registry == null) {
+			//FIXME: #setServicesRegistry() is not always properly called.
+			//Workaround: We rely on the ActiveEditor to retrieve the services registry, which is dangerous
+			//The initial Palette Customization wizard knows the customization context, but it is lost way before the PostAction is created
+			if(registry == null) {
+				try {
+					registry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+					return null;
+				}
+			}
+		}
+
+		return registry;
 	}
 }
