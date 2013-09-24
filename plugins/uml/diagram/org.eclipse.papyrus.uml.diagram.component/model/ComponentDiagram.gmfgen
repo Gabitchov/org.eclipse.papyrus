@@ -127,7 +127,7 @@
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.PropertyLabelEditPolicy"/>
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.PortLabelEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0">
@@ -2691,6 +2691,15 @@
               createMethodName="createPortCreationTool"
               id="&quot;component.tool.port&quot;"
               genNodes="/0/@diagram/@childNodes.0"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Reception"
+              description="Create a Reception"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
+              createMethodName="createReceptionCreationTool"
+              id="&quot;component.tool.reception&quot;"
+              genNodes="/0/@diagram/@childNodes.10"/>
         </groups>
         <groups
             title="Links"
