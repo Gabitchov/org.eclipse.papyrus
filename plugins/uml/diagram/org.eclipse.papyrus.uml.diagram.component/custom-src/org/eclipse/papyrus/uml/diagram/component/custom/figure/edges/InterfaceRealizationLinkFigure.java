@@ -15,6 +15,10 @@ package org.eclipse.papyrus.uml.diagram.component.custom.figure.edges;
 
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFigure;
 
-
+/**
+ * this class has to option to display it:
+ * normal with the UML view or as a link to display lollipop 
+ *
+ */
 public class InterfaceRealizationLinkFigure extends InterfaceRealizationFigure  {
 }
