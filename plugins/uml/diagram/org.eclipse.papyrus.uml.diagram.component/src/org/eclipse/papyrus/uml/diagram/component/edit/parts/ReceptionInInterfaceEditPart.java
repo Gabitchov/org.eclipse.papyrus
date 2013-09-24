@@ -103,7 +103,7 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	private org.eclipse.gmf.runtime.common.ui.services.parser.IParser parser;
+	private IParser parser;
 
 	/**
 	 * @generated
@@ -139,7 +139,7 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public DragTracker getDragTracker(org.eclipse.gef.Request request) {
+	public DragTracker getDragTracker(Request request) {
 		if(request instanceof SelectionRequest && ((SelectionRequest)request).getLastButtonPressed() == 3) {
 			return null;
 		}
@@ -161,8 +161,8 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getText();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
 		} else {
@@ -174,8 +174,8 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setText(text);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
 		} else {
@@ -187,8 +187,8 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getIcon();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
 		} else {
@@ -200,8 +200,8 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setIcon(icon);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
 		} else {
@@ -311,7 +311,7 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 			public String isValid(final Object value) {
 				if(value instanceof String) {
 					final EObject element = getParserElement();
-					final org.eclipse.gmf.runtime.common.ui.services.parser.IParser parser = getParser();
+					final IParser parser = getParser();
 					try {
 						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
 
@@ -350,7 +350,7 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser() {
+	public IParser getParser() {
 		if(parser == null) {
 			parser = UMLParserProvider.getParser(UMLElementTypes.Reception_6, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart.VISUAL_ID));
 		}
@@ -404,8 +404,8 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	protected void performDirectEditRequest(org.eclipse.gef.Request request) {
-		final org.eclipse.gef.Request theRequest = request;
+	protected void performDirectEditRequest(Request request) {
+		final Request theRequest = request;
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -474,7 +474,7 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 							Character initialChar = (Character)request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else if((request instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest)request;
+							DirectEditRequest editRequest = (DirectEditRequest)request;
 							performDirectEdit(editRequest.getLocation());
 						} else {
 							performDirectEdit();
@@ -523,8 +523,8 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	 */
 	protected void refreshUnderline() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
@@ -540,8 +540,8 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	 */
 	protected void refreshStrikeThrough() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 
@@ -610,7 +610,7 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View)getModel();
 	}
 
 	/**
@@ -691,7 +691,7 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
-	protected void performDefaultDirectEditorEdit(final org.eclipse.gef.Request theRequest) {
+	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
@@ -701,8 +701,8 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if((theRequest instanceof org.eclipse.gef.requests.DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest)theRequest;
+						} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest)theRequest;
 							performDirectEdit(editRequest.getLocation());
 						} else {
 							performDirectEdit();
@@ -779,6 +779,6 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();
+		return new WrappingLabel();
 	}
 }

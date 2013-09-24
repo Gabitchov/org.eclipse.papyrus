@@ -12,15 +12,14 @@
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.InterfaceRealizationLinkFigure;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceRealizationItemSemanticEditPolicy;
 
 /**
@@ -58,26 +57,13 @@ public class InterfaceRealizationEditPart extends ConnectionEditPart implements 
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new SimpleDependency();
+		return new InterfaceRealizationLinkFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public SimpleDependency getPrimaryShape() {
-		return (SimpleDependency)getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class SimpleDependency extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public SimpleDependency() {
-			this.setForegroundColor(ColorConstants.black);
-		}
+	public InterfaceRealizationLinkFigure getPrimaryShape() {
+		return (InterfaceRealizationLinkFigure)getFigure();
 	}
 }

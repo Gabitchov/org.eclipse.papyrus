@@ -345,16 +345,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createReceptionCreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createReceptionCreationTool_desc;
-
-	/**
-	 * @generated
-	 */
 	public static String createCommentCreationTool_title;
 
 	/**

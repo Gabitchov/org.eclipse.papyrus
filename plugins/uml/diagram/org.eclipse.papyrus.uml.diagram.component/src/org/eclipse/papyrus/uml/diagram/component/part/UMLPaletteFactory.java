@@ -75,11 +75,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String COMPONENT_TOOL_RECEPTION = "component.tool.reception"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	private final static String COMPONENT_TOOL_LINK = "component.tool.link"; //$NON-NLS-1$
 
 	/**
@@ -163,9 +158,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(COMPONENT_TOOL_PORT)) {
 			return createPortCreationTool();
-		}
-		if(toolId.equals(COMPONENT_TOOL_RECEPTION)) {
-			return createReceptionCreationTool();
 		}
 		if(toolId.equals(COMPONENT_TOOL_LINK)) {
 			return createLinkCreationTool();
@@ -279,16 +271,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createPortCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Port_3069);
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createReceptionCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Reception_6);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
