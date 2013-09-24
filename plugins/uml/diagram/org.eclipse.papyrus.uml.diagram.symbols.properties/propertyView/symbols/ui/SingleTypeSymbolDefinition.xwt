@@ -11,6 +11,19 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:XWTStringFileSelectorEMF input="{Binding}"
-			property="PapyrusInternal:Symbols:TypeSymbolDefinition:symbolPath"></ppe:XWTStringFileSelectorEMF>
+			property="PapyrusInternal:Symbols:TypeSymbolDefinition:symbolPath">
+			<ppe:XWTStringFileSelectorEMF.filterNames>
+				<x:Array Type="j:String">
+					<j:String>Images</j:String>
+					<j:String>All</j:String>
+				</x:Array>
+			</ppe:XWTStringFileSelectorEMF.filterNames>
+			<ppe:XWTStringFileSelectorEMF.filterExtensions>
+				<x:Array Type="j:String">
+					<j:String>*.jpg;*.png;*.bmp;*.svg;*.gif</j:String>
+					<j:String>*</j:String>
+				</x:Array>
+			</ppe:XWTStringFileSelectorEMF.filterExtensions>
+		</ppe:XWTStringFileSelectorEMF>
 	</Composite>
 </Composite>
