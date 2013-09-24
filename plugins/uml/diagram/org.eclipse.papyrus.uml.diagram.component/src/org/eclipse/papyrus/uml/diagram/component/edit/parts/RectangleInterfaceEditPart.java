@@ -972,6 +972,9 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 			if(type == UMLElementTypes.Operation_5) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID));
 			}
+			if(type == UMLElementTypes.Reception_6) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID));
+			}
 		}
 		return super.getTargetEditPart(request);
 	}

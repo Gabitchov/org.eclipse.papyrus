@@ -61,6 +61,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableEl
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
@@ -84,6 +85,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -578,6 +580,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
+			Reception childElement = (Reception)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ReceptionInInterfaceEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -626,6 +636,8 @@ public class UMLDiagramUpdater {
 			return getProperty_1ContainedLinks(view);
 		case OperationForInterfaceEditPart.VISUAL_ID:
 			return getOperation_5ContainedLinks(view);
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return getReception_6ContainedLinks(view);
 		case UsageEditPart.VISUAL_ID:
 			return getUsage_4001ContainedLinks(view);
 		case InterfaceRealizationEditPart.VISUAL_ID:
@@ -691,6 +703,8 @@ public class UMLDiagramUpdater {
 			return getProperty_1IncomingLinks(view);
 		case OperationForInterfaceEditPart.VISUAL_ID:
 			return getOperation_5IncomingLinks(view);
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return getReception_6IncomingLinks(view);
 		case UsageEditPart.VISUAL_ID:
 			return getUsage_4001IncomingLinks(view);
 		case InterfaceRealizationEditPart.VISUAL_ID:
@@ -756,6 +770,8 @@ public class UMLDiagramUpdater {
 			return getProperty_1OutgoingLinks(view);
 		case OperationForInterfaceEditPart.VISUAL_ID:
 			return getOperation_5OutgoingLinks(view);
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return getReception_6OutgoingLinks(view);
 		case UsageEditPart.VISUAL_ID:
 			return getUsage_4001OutgoingLinks(view);
 		case InterfaceRealizationEditPart.VISUAL_ID:
@@ -992,6 +1008,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getOperation_5ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getReception_6ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -1385,6 +1408,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getOperation_5IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getReception_6IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -1845,6 +1875,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getOperation_5OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getReception_6OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 

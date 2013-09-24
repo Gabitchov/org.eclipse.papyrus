@@ -32,6 +32,7 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -259,6 +260,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Reception_6(Reception instance) {
+		try {
+			Object value_0 = name_Reception_6(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_Usage_4001(Usage instance) {
 		try {
 			Object value_0 = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getUsage(), null).evaluate(instance);
@@ -434,6 +447,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Operation_5(Operation self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Reception_6(Reception self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

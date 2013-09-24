@@ -15,9 +15,11 @@ package org.eclipse.papyrus.uml.diagram.component.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -34,6 +36,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.OperationForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
@@ -43,6 +46,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class InterfaceOperationCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
 	/**
 	 * @generated
@@ -59,8 +67,13 @@ public class InterfaceOperationCompartmentCanonicalEditPolicy extends CanonicalE
 	/**
 	 * @generated
 	 */
-	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getInterface_OwnedOperation();
+	protected Set getFeaturesToSynchronize() {
+		if(myFeaturesToSynchronize == null) {
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInterface_OwnedOperation());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInterface_OwnedReception());
+		}
+		return myFeaturesToSynchronize;
 	}
 
 	/**
@@ -88,7 +101,8 @@ public class InterfaceOperationCompartmentCanonicalEditPolicy extends CanonicalE
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return OperationForInterfaceEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		return visualID == OperationForInterfaceEditPart.VISUAL_ID || visualID == ReceptionInInterfaceEditPart.VISUAL_ID;
 	}
 
 	/**

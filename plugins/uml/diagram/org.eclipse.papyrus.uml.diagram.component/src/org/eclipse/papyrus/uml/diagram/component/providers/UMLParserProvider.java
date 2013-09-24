@@ -57,6 +57,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageNameEditPartC
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionNameEditPart;
@@ -442,6 +443,26 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser reception_6Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getReception_6Parser() {
+		if(reception_6Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("\u00ABSignal\u00BB {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			reception_6Parser = parser;
+		}
+		return reception_6Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private AppliedStereotypeParser generalizationIsSubstitutable_2Parser;
 
 	/**
@@ -663,6 +684,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getProperty_1Parser();
 		case OperationForInterfaceEditPart.VISUAL_ID:
 			return getOperation_5Parser();
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return getReception_6Parser();
 		case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_2Parser();
 		case SubstitutionNameEditPart.VISUAL_ID:

@@ -122,6 +122,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotyp
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
@@ -254,6 +255,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case PackageEditPartCN.VISUAL_ID:
 				case PropertyForInterfaceEditPart.VISUAL_ID:
 				case OperationForInterfaceEditPart.VISUAL_ID:
+				case ReceptionInInterfaceEditPart.VISUAL_ID:
 				case ComponentEditPartCN.VISUAL_ID:
 				case ComponentEditPartPCN.VISUAL_ID:
 				case InterfaceEditPartPCN.VISUAL_ID:
@@ -268,7 +270,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return DependencyNodeEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || ModelEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || RectangleInterfaceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || PortEditPart.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || ComponentEditPartPCN.VISUAL_ID == visualID || InterfaceEditPartPCN.VISUAL_ID == visualID || CommentEditPartPCN.VISUAL_ID == visualID || ConstraintEditPartPCN.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID || OperationForInterfaceEditPart.VISUAL_ID == visualID;
+		return DependencyNodeEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || ModelEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || RectangleInterfaceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || PortEditPart.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || ComponentEditPartPCN.VISUAL_ID == visualID || InterfaceEditPartPCN.VISUAL_ID == visualID || CommentEditPartPCN.VISUAL_ID == visualID || ConstraintEditPartPCN.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID || OperationForInterfaceEditPart.VISUAL_ID == visualID || ReceptionInInterfaceEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -365,6 +367,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createProperty_1(domainElement, containerView, index, persisted, preferencesHint);
 		case OperationForInterfaceEditPart.VISUAL_ID:
 			return createOperation_5(domainElement, containerView, index, persisted, preferencesHint);
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return createReception_6(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -792,6 +796,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Operation");
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Operation");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createReception_6(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(ReceptionInInterfaceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Reception");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Reception");
 		return node;
 	}
 

@@ -81,6 +81,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotyp
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
@@ -339,6 +340,9 @@ public class UMLVisualIDRegistry {
 		case InterfaceOperationCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())) {
 				return OperationForInterfaceEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getReception().isSuperTypeOf(domainElement.eClass())) {
+				return ReceptionInInterfaceEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -627,6 +631,9 @@ public class UMLVisualIDRegistry {
 			if(OperationForInterfaceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ReceptionInInterfaceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case GeneralizationEditPart.VISUAL_ID:
 			if(GeneralizationAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
@@ -766,6 +773,7 @@ public class UMLVisualIDRegistry {
 			return false;
 		case PropertyForInterfaceEditPart.VISUAL_ID:
 		case OperationForInterfaceEditPart.VISUAL_ID:
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
 		case InterfaceEditPart.VISUAL_ID:
 		case PortEditPart.VISUAL_ID:
 		case InterfaceEditPartPCN.VISUAL_ID:

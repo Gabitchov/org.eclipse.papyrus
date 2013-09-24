@@ -89,9 +89,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof RectangleInterfaceEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 			types.add(UMLElementTypes.Property_1);
 			types.add(UMLElementTypes.Operation_5);
+			types.add(UMLElementTypes.Reception_6);
 			return types;
 		}
 		if(editPart instanceof ComponentEditPartCN) {
