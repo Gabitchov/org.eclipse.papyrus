@@ -71,7 +71,7 @@ public class StringFileSelector extends StringEditor {
 		browse.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				File file = FileUtil.getFile(text.getText());
+				File file = getFile(text.getText());
 
 				FileDialog dialog = new FileDialog(getShell());
 				if(labelText != null) {
@@ -105,7 +105,7 @@ public class StringFileSelector extends StringEditor {
 
 				ILabelProvider labelProvider = labelProviderService.getLabelProvider();
 
-				IFile currentFile = FileUtil.getIFile(text.getText());
+				IFile currentFile = getIFile(text.getText());
 
 				TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
 				if(labelText != null) {
@@ -164,6 +164,14 @@ public class StringFileSelector extends StringEditor {
 	protected void setResult(String path) {
 		text.setText(path);
 		notifyChange();
+	}
+	
+	protected IFile getIFile(String path){
+		return FileUtil.getIFile(path);
+	}
+	
+	protected File getFile(String path){
+		return FileUtil.getFile(path);
 	}
 
 	public void setFilters(String[] filterExtensions, String[] filterNames) {
