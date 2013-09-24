@@ -36,6 +36,9 @@ public class Messages extends NLS {
 	public static String CDOResourceHyperlinkLabelProvider_tipAndURI;
 
 	public static String CDOResourceHyperlinkLabelProvider_uriOnly;
+	public static String DropStrategy_desc;
+
+	public static String DropStrategy_label;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

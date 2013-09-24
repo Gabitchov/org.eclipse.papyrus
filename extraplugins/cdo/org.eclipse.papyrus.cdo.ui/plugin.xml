@@ -378,4 +378,11 @@
          </includes>
       </viewerContentBinding>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.dynamic_package">
+      <resource
+            location="model/DND.ecore"
+            uri="http://www.eclipse.org/papyrus/1.0.0/cdo/private/dnd">
+      </resource>
+   </extension>
 </plugin>

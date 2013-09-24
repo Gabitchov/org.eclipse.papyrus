@@ -62,6 +62,7 @@ import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
 import org.eclipse.papyrus.cdo.core.resource.PapyrusCDOResourceFactory;
 import org.eclipse.papyrus.cdo.internal.core.repositories.Repository;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.base.Strings;
 import com.google.common.collect.BiMap;
@@ -109,10 +110,12 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		activate();
 	}
 
+	@Override
 	public String getName() {
 		return model.getName();
 	}
 
+	@Override
 	public void setName(String name) {
 		if(Strings.isNullOrEmpty(name)) {
 			throw new IllegalArgumentException("null or empty name"); //$NON-NLS-1$
@@ -121,14 +124,17 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		model.setName(name);
 	}
 
+	@Override
 	public String getURL() {
 		return model.getURL();
 	}
 
+	@Override
 	public String getUsername() {
 		return getSecureStorageValue("username"); //$NON-NLS-1$
 	}
 
+	@Override
 	public void setUsername(String username) {
 		if(username != null) {
 			username = username.trim();
@@ -140,6 +146,7 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		setSecureStorageValue("username", username, false); //$NON-NLS-1$
 	}
 
+	@Override
 	public String getPassword() {
 		return getSecureStorageValue("password"); //$NON-NLS-1$
 	}
@@ -168,6 +175,7 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 			EncodingUtils.encodeSlashes(getURL()));
 	}
 
+	@Override
 	public void setPassword(String password) {
 		setSecureStorageValue("password", password, true); //$NON-NLS-1$
 	}
@@ -185,6 +193,7 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		}
 	}
 
+	@Override
 	public void clearCredentials() {
 		ISecurePreferences store = SecurePreferencesFactory.getDefault();
 		String path = getSecureStorePath();
@@ -193,10 +202,12 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		}
 	}
 
+	@Override
 	public boolean isConnected() {
 		return (session != null) && !session.isClosed();
 	}
 
+	@Override
 	public void connect() {
 		if(!isConnected()) {
 			ICredentialsProvider2 creds = getCredentialsProvider();
@@ -234,6 +245,13 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 					createReadOnlyView(new ResourceSetImpl());
 
 					fireRepositoryEvent(PapyrusRepositoryEvent.CONNECTED);
+
+					// update the last known UUID in the model
+					String uuid = session.getRepositoryInfo().getUUID();
+					if(!Objects.equal(uuid, model.getUUID())) {
+						model.setUUID(uuid);
+						PapyrusRepositoryManager.INSTANCE.saveRepositories();
+					}
 				}
 			} finally {
 				if(creds != null) {
@@ -258,10 +276,12 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		return result;
 	}
 
+	@Override
 	public void disconnect() throws CommitException {
 		if(isConnected()) {
 			ImmutableList<ResourceSet> dirty = ImmutableList.copyOf(Iterables.filter(transactions.keySet(), new Predicate<ResourceSet>() {
 
+				@Override
 				public boolean apply(ResourceSet input) {
 					return transactions.get(input).isDirty();
 				}
@@ -301,10 +321,12 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		}
 	}
 
+	@Override
 	public Collection<ResourceSet> getReadOnlyViews() {
 		return Collections.unmodifiableCollection(readOnlyViews.keySet());
 	}
 
+	@Override
 	public ResourceSet createReadOnlyView(ResourceSet resourceSet) {
 		checkConnected();
 
@@ -328,10 +350,12 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		return result;
 	}
 
+	@Override
 	public Collection<ResourceSet> getTransactions() {
 		return Collections.unmodifiableCollection(transactions.keySet());
 	}
 
+	@Override
 	public ResourceSet createTransaction(ResourceSet resourceSet) {
 		checkConnected();
 
@@ -343,14 +367,17 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		return result;
 	}
 
+	@Override
 	public CDOSession getCDOSession() {
 		return session;
 	}
 
+	@Override
 	public CDOView getMasterView() {
 		return masterView;
 	}
 
+	@Override
 	public CDOView getCDOView(ResourceSet resourceSet) {
 		CDOView result = readOnlyViews.get(resourceSet);
 
@@ -374,6 +401,7 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		return (CDOTransaction)view;
 	}
 
+	@Override
 	public void commit(ResourceSet transaction) throws CommitException {
 		CDOView cdoView = getCDOView(transaction);
 
@@ -384,11 +412,13 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		}
 	}
 
+	@Override
 	public void rollback(ResourceSet transaction) {
 		CDOView cdoView = getCDOView(transaction);
 		checkTransaction(cdoView).rollback();
 	}
 
+	@Override
 	public void close(ResourceSet view) {
 		CDOView cdoView = getCDOView(view);
 
@@ -487,6 +517,7 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		if(masterViewListener == null) {
 			masterViewListener = new IListener() {
 
+				@Override
 				public void notifyEvent(IEvent event) {
 					if(event instanceof CDOViewInvalidationEvent) {
 						CDOViewInvalidationEvent inval = (CDOViewInvalidationEvent)event;
@@ -507,18 +538,22 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		view.removeListener(getMasterViewListener());
 	}
 
+	@Override
 	public void addResourceSetDisposalApprover(IResourceSetDisposalApprover approver) {
 		approvers.addApprover(approver);
 	}
 
+	@Override
 	public void removeResourceSetDisposalApprover(IResourceSetDisposalApprover approver) {
 		approvers.removeApprover(approver);
 	}
 
+	@Override
 	public void addPapyrusRepositoryListener(IPapyrusRepositoryListener listener) {
 		listeners.addIfAbsent(listener);
 	}
 
+	@Override
 	public void removePapyrusRepositoryListener(IPapyrusRepositoryListener listener) {
 		listeners.remove(listener);
 	}
@@ -545,6 +580,7 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 		return !isActive() || !isConnected() || (masterView == null) || masterView.isEmpty();
 	}
 
+	@Override
 	public CDOResourceNode[] getElements() {
 		CDOResourceNode[] result = NO_RESOURCE_NODES;
 
@@ -625,6 +661,7 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 	// IAdaptable protocol
 	//
 
+	@Override
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		Object result = null;
 

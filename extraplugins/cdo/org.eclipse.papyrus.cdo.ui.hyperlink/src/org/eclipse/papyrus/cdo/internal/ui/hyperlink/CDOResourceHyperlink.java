@@ -72,9 +72,9 @@ public class CDOResourceHyperlink extends HyperLinkObject {
 			// open the appropriate editor
 			URI uri = getHyperlink();
 
-			IInternalPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
+			IInternalPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri, false);
 			if(repo == null) {
-				MessageDialog.openError(UIUtil.getActiveWorkbenchWindow().getShell(), Messages.CDOResourceHyperlink_openError, Messages.CDOResourceHyperlink_noSuchRepo);
+				MessageDialog.openError(UIUtil.getActiveWorkbenchWindow().getShell(), Messages.CDOResourceHyperlink_openError, Messages.CDOResourceHyperlink_notConnected);
 			} else if(!repo.isConnected()) {
 				repo.connect();
 				if(!repo.isConnected()) {

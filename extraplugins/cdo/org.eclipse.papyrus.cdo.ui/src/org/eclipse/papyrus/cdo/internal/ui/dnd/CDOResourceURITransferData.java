@@ -11,10 +11,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.dnd;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
@@ -29,11 +35,18 @@ import com.google.common.io.ByteStreams;
  */
 public final class CDOResourceURITransferData {
 
+	private static final String NS_URI = "http://www.eclipse.org/papyrus/1.0.0/cdo/private/dnd"; //$NON-NLS-1$
+
+	private static final EClass ECLASS = (EClass)EPackage.Registry.INSTANCE.getEPackage(NS_URI).getEClassifier(CDOResourceURITransferData.class.getSimpleName());
+
+	private static final EAttribute URIS = (EAttribute)ECLASS.getEStructuralFeature("resourceURIs"); //$NON-NLS-1$
+
 	private final List<URI> uris;
 
 	public CDOResourceURITransferData(Iterable<? extends CDOResourceNode> resourceNodes) {
 		this(ImmutableList.copyOf(Iterables.transform(resourceNodes, new Function<CDOResourceNode, URI>() {
 
+			@Override
 			public URI apply(CDOResourceNode input) {
 				return input.getURI();
 			}
@@ -69,5 +82,22 @@ public final class CDOResourceURITransferData {
 		}
 
 		return new CDOResourceURITransferData(uris.build());
+	}
+
+	public static boolean isCDOResourceURITransferData(EObject object) {
+		return ECLASS.isInstance(object);
+	}
+
+	public static CDOResourceURITransferData fromEObject(EObject object) {
+		@SuppressWarnings("unchecked")
+		List<URI> uris = isCDOResourceURITransferData(object) ? (List<URI>)object.eGet(URIS) : Collections.<URI> emptyList();
+
+		return new CDOResourceURITransferData(uris);
+	}
+
+	public EObject asEObject() {
+		EObject result = EcoreUtil.create(ECLASS);
+		result.eSet(URIS, getURIs());
+		return result;
 	}
 }

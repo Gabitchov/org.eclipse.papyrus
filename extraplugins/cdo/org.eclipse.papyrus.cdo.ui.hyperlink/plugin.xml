@@ -16,5 +16,11 @@
             provider="org.eclipse.papyrus.cdo.internal.ui.hyperlink.CDOResourceHyperlinkLabelProvider">
       </labelProvider>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">
+      <strategy
+            strategy="org.eclipse.papyrus.cdo.internal.ui.hyperlink.CDOResourceURIDropStrategy">
+      </strategy>
+   </extension>
 
 </plugin>

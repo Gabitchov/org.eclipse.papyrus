@@ -38,12 +38,18 @@ public interface IInternalPapyrusRepositoryManager extends IPapyrusRepositoryMan
 	// Specializations of inherited API
 	//
 
+	@Override
 	Collection<? extends IInternalPapyrusRepository> getRepositories();
 
+	@Override
 	IInternalPapyrusRepository createRepository(String url);
 
+	@Override
 	IInternalPapyrusRepository getRepository(String url);
 
+	@Override
 	IInternalPapyrusRepository getRepositoryForURI(URI uri);
+
+	IInternalPapyrusRepository getRepositoryForURI(URI uri, boolean connectedOnly);
 
 }
