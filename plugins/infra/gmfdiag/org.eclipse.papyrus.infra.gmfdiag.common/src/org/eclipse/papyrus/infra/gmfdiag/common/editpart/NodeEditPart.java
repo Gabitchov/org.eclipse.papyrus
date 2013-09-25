@@ -50,6 +50,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	 * 
 	 * @return the primary shape associated to this edit part.
 	 */
+	@Override
 	public abstract IPapyrusNodeFigure getPrimaryShape();
 
 	/**
@@ -90,6 +91,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 		refreshShadow();
 		refreshLineType();
 		refreshLineWidth();
+		refreshTransparency();
 	}
 
 	@Override

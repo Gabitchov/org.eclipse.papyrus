@@ -96,20 +96,17 @@ public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPar
 	 */
 	public abstract ShapeNamedElementFigure getPrimaryShape();
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void refresh() {
-
-		refreshIcons();
-		super.refresh();
-	}
-
 	protected Element getUMLElement() {
 		return (Element)resolveSemanticElement();
 	}
+
+	@Override
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshIcons();
+		refreshTransparency();
+	}
+
 
 	/**
 	 * refresh the icon by taking in account the type of the diagram
