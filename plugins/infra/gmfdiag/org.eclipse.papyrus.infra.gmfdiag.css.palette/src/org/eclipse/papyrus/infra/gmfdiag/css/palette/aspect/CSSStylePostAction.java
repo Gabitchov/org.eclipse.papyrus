@@ -24,6 +24,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.AddCustomStyleListValueCommand;
+import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
+import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringCombo;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider;
@@ -52,6 +54,8 @@ public class CSSStylePostAction extends ModelPostAction {
 
 	public static final String CLASS_PROPERTY = "class";
 
+	private String value;
+
 	//Copied from org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles.CSS_GMF_CLASS_KEY
 	//FIXME: Add a dependency and use the existing constant. Avoid dependency to the GMF Factory.
 	private static final String CSS_CLASS = "cssClass";
@@ -59,6 +63,17 @@ public class CSSStylePostAction extends ModelPostAction {
 	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		editor = new StringCombo(parent, SWT.NONE);
 		editor.setContentProvider(EmptyContentProvider.instance); //TODO: We should not depend on the CSS Parser ; do not use CSSClassContentProvider.
+		if(value != null) {
+			editor.setValue(value);
+		}
+
+		editor.addCommitListener(new ICommitListener() {
+
+			public void commit(AbstractEditor widget) {
+				value = editor.getValue();
+			}
+		});
+
 		return editor;
 	}
 
@@ -66,21 +81,20 @@ public class CSSStylePostAction extends ModelPostAction {
 	public void init(Node configurationNode, IAspectActionProvider factory) {
 		super.init(configurationNode, factory);
 		this.configurationNode = configurationNode;
+
+		this.value = getValue();
 	}
 
 	public void save(Node parentNode) {
-		String value;
-		if(editor == null) {
-			value = getValue();
-		} else {
-			value = editor.getValue();
-		}
 		Element cssElement = ((Element)parentNode).getOwnerDocument().createElement(CLASS_ELEMENT);
 		parentNode.appendChild(cssElement);
-		cssElement.setAttribute(CLASS_PROPERTY, value);
+		cssElement.setAttribute(CLASS_PROPERTY, value == null ? "" : value);
 	}
 
 	private String getValue() {
+		if(configurationNode == null) {
+			return null;
+		}
 		NodeList cssElements = ((Element)configurationNode).getElementsByTagName(CLASS_ELEMENT);
 		if(cssElements != null) {
 			for(int i = 0; i < cssElements.getLength(); i++) {
