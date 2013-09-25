@@ -30,7 +30,6 @@ import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.e4.ui.css.core.dom.ElementAdapter;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -372,11 +371,14 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 */
 	protected String doGetAttribute(String attr) {
 		if(notationElement instanceof BasicCompartment) {
-			if("type".equals(attr)) {
+			//Compartments can be filtered by type (notation::View::type), or by title (From GmfGen model)
+			//We add the "kind" attribute which is specific to the CSS (More user-friendly)
+			if("kind".equals(attr)) {
+
 				BasicCompartment compartment = (BasicCompartment)notationElement;
 				String humanType = NotationTypesMap.instance.getHumanReadableType(compartment.getType());
 				if(humanType == null) {
-					humanType = compartment.getType();
+					return compartment.getType();
 				}
 				return humanType; //7017, 7018, 7019 for Attribute/Operation/Classifier compartments
 				//TODO: Create a mapping list between GMF ID (Type) and user-readable labels
@@ -404,7 +406,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 		return null;
 	}
-	
+
 	/**
 	 * Returns the value of the given feature as a formatted String (Valid w.r.t CSS Syntax)
 	 * Used by {@link #doGetAttribute(String)}
@@ -415,15 +417,15 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * @param value
 	 * @return
 	 */
-	protected String getCSSValue(EStructuralFeature feature, Object value){
-		if (value == null){
+	protected String getCSSValue(EStructuralFeature feature, Object value) {
+		if(value == null) {
 			return null;
 		}
-		
-		if (feature instanceof EReference && value instanceof ENamedElement){
+
+		if(feature instanceof EReference && value instanceof ENamedElement) {
 			return ((ENamedElement)value).getName();
 		}
-		
+
 		//Standard case. For EObject values, it might be better to return null than a random label...
 		return value.toString();
 	}
