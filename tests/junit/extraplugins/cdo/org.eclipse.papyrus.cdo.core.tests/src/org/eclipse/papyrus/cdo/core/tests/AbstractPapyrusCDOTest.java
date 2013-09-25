@@ -88,9 +88,16 @@ public abstract class AbstractPapyrusCDOTest {
 		repoURL = "jvm://default?repositoryName=" + repo.getName();
 
 		if(needPapyrusRepository()) {
-			repository = PapyrusRepositoryManager.INSTANCE.createRepository(repoURL);
+			repository = PapyrusRepositoryManager.INSTANCE.getRepository(repoURL);
+			if(repository == null) {
+				repository = PapyrusRepositoryManager.INSTANCE.createRepository(repoURL);
+			}
+
 			repository.setName(name.getMethodName());
-			repository.connect();
+
+			if(!repository.isConnected()) {
+				repository.connect();
+			}
 
 			CDOSession session = ((IInternalPapyrusRepository)repository).getCDOSession();
 
