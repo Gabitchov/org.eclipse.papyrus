@@ -110,15 +110,14 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void refresh() {
-
+	public void refreshVisuals() {
+		super.refreshVisuals();
 		refreshIcons();
-		super.refresh();
+		refreshTransparency();
 	}
 
 	@Override
 	public void notifyChanged(Notification notification) {
-		// TODO Auto-generated method stub
 		super.notifyChanged(notification);
 		refreshIcons();
 	}
