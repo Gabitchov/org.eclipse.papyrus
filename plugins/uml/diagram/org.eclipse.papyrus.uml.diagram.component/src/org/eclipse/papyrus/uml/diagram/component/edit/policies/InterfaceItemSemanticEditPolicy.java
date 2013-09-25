@@ -34,7 +34,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.commands.ConstraintConstra
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.DependencyBranchCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.DependencyCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.InterfaceRealizationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ManifestationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.SubstitutionCreateCommand;
@@ -45,7 +44,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealization
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
@@ -66,7 +64,7 @@ public class InterfaceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	 * @generated
 	 */
 	public InterfaceItemSemanticEditPolicy() {
-		super(UMLElementTypes.Interface_2003);
+		super(UMLElementTypes.NamedElement_2003);
 	}
 
 	/**
@@ -139,12 +137,6 @@ public class InterfaceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new InterfaceRealizationCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.Generalization_4003 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
-			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Substitution_4012 == baseElementType) {
 			if(isExtendedType) {
@@ -223,16 +215,7 @@ public class InterfaceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.InterfaceRealization_4006 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
-			return getGEFWrapper(new InterfaceRealizationCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.Generalization_4003 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
-			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if(UMLElementTypes.Substitution_4012 == baseElementType) {
 			if(isExtendedType) {
@@ -298,7 +281,6 @@ public class InterfaceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		switch(getVisualID(req)) {
 		case UsageEditPart.VISUAL_ID:
 		case InterfaceRealizationEditPart.VISUAL_ID:
-		case GeneralizationEditPart.VISUAL_ID:
 		case SubstitutionEditPart.VISUAL_ID:
 		case ManifestationEditPart.VISUAL_ID:
 		case ComponentRealizationEditPart.VISUAL_ID:

@@ -51,10 +51,13 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationNameEdi
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.MultiDependencyLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.OperationForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionNameEditPart;
@@ -116,23 +119,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			modelName_5262Parser = parser;
 		}
 		return modelName_5262Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser interfaceName_5005Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getInterfaceName_5005Parser() {
-		if(interfaceName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			interfaceName_5005Parser = parser;
-		}
-		return interfaceName_5005Parser;
 	}
 
 	/**
@@ -231,6 +217,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			namedElementName_5265Parser = parser;
 		}
 		return namedElementName_5265Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser namedElementName_5005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNamedElementName_5005Parser() {
+		if(namedElementName_5005Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			namedElementName_5005Parser = parser;
+		}
+		return namedElementName_5005Parser;
 	}
 
 	/**
@@ -401,6 +404,60 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			constraintSpecification_5260Parser = new ConstraintParser();
 		}
 		return constraintSpecification_5260Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser property_1Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProperty_1Parser() {
+		if(property_1Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			property_1Parser = parser;
+		}
+		return property_1Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser operation_5Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOperation_5Parser() {
+		if(operation_5Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			operation_5Parser = parser;
+		}
+		return operation_5Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser reception_6Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getReception_6Parser() {
+		if(reception_6Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("\u00ABSignal\u00BB {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			reception_6Parser = parser;
+		}
+		return reception_6Parser;
 	}
 
 	/**
@@ -593,8 +650,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getPackageName_5254Parser();
 		case RectangleInterfaceNameEditPart.VISUAL_ID:
 			return getInterfaceName_5266Parser();
-		case InterfaceNameEditPart.VISUAL_ID:
-			return getInterfaceName_5005Parser();
 		case CommentBodyEditPart.VISUAL_ID:
 			return getCommentBody_5255Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
@@ -603,6 +658,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintSpecification_5253Parser();
 		case DefaultNamedElementNameEditPart.VISUAL_ID:
 			return getNamedElementName_5265Parser();
+		case InterfaceNameEditPart.VISUAL_ID:
+			return getNamedElementName_5005Parser();
 		case PortNameEditPart.VISUAL_ID:
 			return getPortName_5006Parser();
 		case PortAppliedStereotypeEditPart.VISUAL_ID:
@@ -623,6 +680,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintName_5259Parser();
 		case ConstraintSpecificationEditPartPCN.VISUAL_ID:
 			return getConstraintSpecification_5260Parser();
+		case PropertyForInterfaceEditPart.VISUAL_ID:
+			return getProperty_1Parser();
+		case OperationForInterfaceEditPart.VISUAL_ID:
+			return getOperation_5Parser();
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return getReception_6Parser();
 		case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_2Parser();
 		case SubstitutionNameEditPart.VISUAL_ID:

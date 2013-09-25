@@ -11,8 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.wizards;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -47,6 +50,7 @@ import org.eclipse.swt.widgets.Text;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 
@@ -142,20 +146,7 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 
 		if(configuration != null) {
 			// initialize the checkboxes
-			Collection<IModelTransferNode> initialSet = configuration.getModelsToTransfer();
-			ITreeContentProvider contents = (ITreeContentProvider)modelsTree.getContentProvider();
-			ICheckable checkable = (ICheckable)modelsTree;
-			for(Object next : contents.getElements(configuration)) {
-				checkable.setChecked(next, true);
-
-				for(Object child : contents.getChildren(next)) {
-					ITreeNode treeNode = (ITreeNode)child;
-					if((isImport ? treeNode.isDependent() : treeNode.isDependency()) || initialSet.contains(treeNode.getElement())) {
-						checkable.setChecked(child, true);
-						configuration.addModelToTransfer(treeNode.getElement().getPrimaryResourceURI());
-					}
-				}
-			}
+			initializeCheckedNodes();
 		}
 
 		validatePage();
@@ -167,6 +158,50 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 		importConfig = null;
 
 		super.dispose();
+	}
+
+	private void initializeCheckedNodes() {
+		final Collection<IModelTransferNode> initialSet = importConfig.getModelsToTransfer();
+		final ITreeContentProvider contents = (ITreeContentProvider)modelsTree.getContentProvider();
+		final ICheckable checkable = (ICheckable)modelsTree;
+
+		final Set<IModelTransferNode> visited = Sets.newHashSet();
+		final Queue<Object> queue = new java.util.ArrayDeque<Object>(Arrays.asList(contents.getElements(importConfig)));
+
+		for(Object next = queue.poll(); next != null; next = queue.poll()) {
+			ITreeNode parent = (ITreeNode)next;
+
+			// we must check a parent if the user initially selected it on opening the wizard
+			// or we are importing and it is a dependent of a checked node,
+			// or we are exporting and it is a dependency of a checked node,
+			// or it is a model sub-unit (required dependency) of a checked node
+			boolean mustCheck = initialSet.contains(parent.getElement());
+			if(mustCheck) {
+				checkable.setChecked(next, true);
+			}
+
+			if(visited.add(parent.getElement())) {
+				// recurse into the children
+				for(Object child : contents.getChildren(next)) {
+					ITreeNode treeNode = (ITreeNode)child;
+					queue.add(treeNode);
+
+					// we must check a node if either the user initially selected it on opening the wizard,
+					// or we are importing and it is a dependent of a checked node,
+					// or we are exporting and it is a dependency of a checked node,
+					// or it is a model sub-unit (required dependency) of a checked node
+					mustCheck = initialSet.contains(treeNode.getElement()) //
+						|| (isImport ? treeNode.isDependent() : treeNode.isDependency()) //
+						|| (checkable.getChecked(parent) && parent.getElement().isModelSubUnit(treeNode.getElement()));
+
+					if(mustCheck) {
+						checkable.setChecked(child, true);
+						importConfig.addModelToTransfer(treeNode.getElement().getPrimaryResourceURI());
+					}
+				}
+			}
+		}
+
 	}
 
 	void selected(Object treeNode) {
@@ -224,7 +259,6 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 			config = (IModelTransferConfiguration)newInput;
 
 			this.viewer = viewer;
-			viewer.refresh();
 		}
 
 		public Object[] getElements(Object inputElement) {
@@ -304,7 +338,6 @@ public class ModelReferencesPage extends ModelImportWizardPage {
 			}
 
 			TreeNode(TreeNode parent, IModelTransferNode element, boolean dependent) {
-
 				this.parent = parent;
 				this.element = element;
 				this.dependent = dependent;

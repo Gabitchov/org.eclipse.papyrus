@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2013 Atos Origin, CEA LIST, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - support control mode in CDO resources
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.strategies;
@@ -25,7 +26,7 @@ public class LoadCurrentResource implements ILoadingStrategy {
 	 * Controlled resources from the current one are not loaded
 	 */
 	public boolean loadResource(ModelSet modelSet, URI uri) {
-		return (!uri.isPlatform() && !uri.isFile());
+		return !modelSet.isUserModelResource(uri);
 	}
 
 }

@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.UsageDecoration;
+import org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.UsageLinkFigure;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.UsageItemSemanticEditPolicy;
 
 /**
@@ -57,13 +57,13 @@ public class UsageEditPart extends ConnectionEditPart implements ITreeBranchEdit
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new UsageDecoration();
+		return new UsageLinkFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public UsageDecoration getPrimaryShape() {
-		return (UsageDecoration)getFigure();
+	public UsageLinkFigure getPrimaryShape() {
+		return (UsageLinkFigure)getFigure();
 	}
 }

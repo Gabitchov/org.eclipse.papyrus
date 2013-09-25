@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,8 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Christian W. Damus (CEA LIST) - Consolidate all hyperlink helper contributions into one tab
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.messages;
 
@@ -109,11 +110,15 @@ public class Messages extends NLS {
 	public static String HyperLinkManagerShell_ImpossibleToReadPreferences;
 
 	public static String HyperLinkManagerShell_InputOutputException;
+	public static String HyperLinkTab_addTooltip;
+
 	public static String HyperLinkTab_Hyperlink;
 
 	public static String HyperLinkTab_Hyperlinks;
 
 	public static String HyperLinkTab_hyperLinks;
+
+	public static String HyperLinkTab_title;
 
 	public static String HyperLinkTab_Listof;
 

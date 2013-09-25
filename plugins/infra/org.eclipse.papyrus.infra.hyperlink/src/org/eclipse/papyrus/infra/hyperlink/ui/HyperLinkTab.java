@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,30 +9,38 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Consolidate all hyperlink helper contributions into one tab
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
+import org.eclipse.papyrus.infra.hyperlink.helper.CompositeHyperlinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
+import org.eclipse.papyrus.infra.widgets.util.PopupButtonMenu;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.layout.GridData;
@@ -85,10 +93,10 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 	 * Constructor.
 	 * 
 	 * @param tabId
-	 * @param helper
+	 * @param helpers
 	 */
-	public HyperLinkTab(String tabId, AbstractHyperLinkHelper helper) {
-		super(tabId, helper);
+	public HyperLinkTab(String tabId, Collection<? extends AbstractHyperLinkHelper> helpers) {
+		super(tabId, (helpers.size() == 1) ? helpers.iterator().next() : new CompositeHyperlinkHelper(helpers));
 	}
 
 	/**
@@ -132,7 +140,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 	public void init(CTabFolder cTabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element/* , IHyperLinkShell parent */) {
 		super.init(cTabFolder, hyperlinkObjects, element /* , parent */);
 		CTabItem cTabItem2 = new CTabItem(cTabFolder, SWT.NONE);
-		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink() + Messages.HyperLinkTab_hyperLinks);
+		cTabItem2.setText(Messages.HyperLinkTab_title);
 		Composite diagramComposite = new Composite(cTabFolder, SWT.NONE);
 		cTabItem2.setControl(diagramComposite);
 		GridData gridData4 = new GridData();
@@ -157,7 +165,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		diagramComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		diagramComposite.setLayout(gridLayout);
 		CLabel listLabel = new CLabel(diagramComposite, SWT.SHADOW_NONE);
-		listLabel.setText(Messages.HyperLinkTab_Listof + hyperLinkHelper.getNameofManagedHyperLink() + Messages.HyperLinkTab_Hyperlink);
+		listLabel.setText(Messages.HyperLinkTab_Listof);
 		listLabel.setEnabled(false);
 		listLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 
@@ -165,14 +173,14 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		hyperLinkListTable = new Table(diagramComposite, SWT.BORDER | SWT.MULTI);
 		tableViewer = new TableViewer(hyperLinkListTable);
 
-		newHyperLinkbutton = new Button(diagramComposite, SWT.NONE);
+		newHyperLinkbutton = new Button(diagramComposite, SWT.PUSH);
 		newHyperLinkbutton.setText(""); //$NON-NLS-1$
 		newHyperLinkbutton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("/icons/Add_16x16.gif")); //$NON-NLS-1$
 		newHyperLinkbutton.setLayoutData(gridData4);
 		newHyperLinkbutton.setToolTipText("New hyperlink");
 
 		hyperLinkListTable.setHeaderVisible(false);
-		hyperLinkListTable.setToolTipText(Messages.HyperLinkTab_SetOf + hyperLinkHelper.getNameofManagedHyperLink() + Messages.HyperLinkTab_Hyperlinks);
+		hyperLinkListTable.setToolTipText(Messages.HyperLinkTab_SetOf);
 		hyperLinkListTable.setLayoutData(gridData1);
 		hyperLinkListTable.setLinesVisible(false);
 		modifyHyperLinkButton = new Button(diagramComposite, SWT.NONE);
@@ -288,19 +296,24 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 			}
 		});
 
-		getNewHyperLinkbutton().addMouseListener(new MouseListener() {
+		final Runnable addHandler = new Runnable() {
 
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
+			public void run() {
 				HyperLinkTab.this.hyperLinkHelper.executeNewMousePressed(HyperLinkTab.this.getHyperlinkObjects(), HyperLinkTab.this.element);
 				HyperLinkTab.this.setInput(HyperLinkTab.this.getHyperlinkObjects());
 			}
+		};
+		if(!isCompositeHelper()) {
+			getNewHyperLinkbutton().addMouseListener(new MouseAdapter() {
 
-			public void mouseDoubleClick(MouseEvent e) {
+			public void mouseDown(MouseEvent e) {
+				addHandler.run();
 			}
-		});
+			});
+		} else {
+			addNewHyperLinkMenuActions(addHandler);
+		}
+		
 		getModifyHyperLinkButton().addMouseListener(new MouseListener() {
 
 			public void mouseUp(MouseEvent e) {
@@ -319,7 +332,24 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		});
 	}
 
+	private void addNewHyperLinkMenuActions(final Runnable addNewHyperlinkHandler) {
+		PopupButtonMenu menu = new PopupButtonMenu(getNewHyperLinkbutton());
+		
+		for(final AbstractHyperLinkHelper helper : ((CompositeHyperlinkHelper)hyperLinkHelper).getHelpers()) {
+				IAction action = new Action(helper.getNameofManagedHyperLink()) {
 
+					@Override
+					public void run() {
+						((CompositeHyperlinkHelper)hyperLinkHelper).setActiveHelper(helper);
+						addNewHyperlinkHandler.run();
+					}
+				};
+				action.setToolTipText(NLS.bind(Messages.HyperLinkTab_addTooltip, helper.getNameofManagedHyperLink()));
+
+				menu.addAction(action);
+			}
+		}
+	
 	/**
 	 * 
 	 * @return get the button to create a hyperlinkObject
@@ -327,7 +357,11 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 	private Button getNewHyperLinkbutton() {
 		return newHyperLinkbutton;
 	}
-
+	
+	protected boolean isCompositeHelper() {
+		return hyperLinkHelper instanceof CompositeHyperlinkHelper;
+	}
+	
 	/**
 	 * 
 	 * @return the button to edit a hyperlinkObject

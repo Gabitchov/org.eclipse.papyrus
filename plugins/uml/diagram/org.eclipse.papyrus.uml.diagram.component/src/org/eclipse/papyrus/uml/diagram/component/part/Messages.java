@@ -315,12 +315,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createPropertyCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createPropertyCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createOperationCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createOperationCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createPortCreationTool_title;
 
 	/**
 	 * @generated
 	 */
 	public static String createPortCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createReceptionCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createReceptionCreationTool_desc;
 
 	/**
 	 * @generated
@@ -476,6 +506,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String ComponentCompositeCompartmentEditPartPCN_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InterfaceAttributeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InterfaceOperationCompartmentEditPart_title;
 
 	/**
 	 * @generated

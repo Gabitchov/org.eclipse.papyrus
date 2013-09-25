@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Atos.
+ * Copyright (c) 2013 Atos, CEA LIST, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - pluggable providers of fragment-resource selection dialogs
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.handlers;
@@ -23,10 +24,15 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
+import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.papyrus.infra.services.controlmode.IControlModeManager;
-import org.eclipse.papyrus.infra.services.controlmode.ui.CreateModelFragmentDialog;
+import org.eclipse.papyrus.infra.services.controlmode.ui.IControlModeFragmentDialogProvider;
 import org.eclipse.papyrus.infra.services.controlmode.util.LabelHelper;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.views.modelexplorer.handler.AbstractModelExplorerHandler;
@@ -47,14 +53,26 @@ public class ControlCommandHandler extends AbstractModelExplorerHandler {
 			return null;
 		}
 		EObject eObjectToControl = selection.get(0);
-		CreateModelFragmentDialog dialog = new CreateModelFragmentDialog(Display.getCurrent().getActiveShell(), eObjectToControl.eResource(), getDefaultLabelResource(eObjectToControl));
+		IControlModeFragmentDialogProvider provider = getDialogProvider(eObjectToControl);
+		Dialog dialog = provider.createDialog(Display.getCurrent().getActiveShell(), eObjectToControl.eResource(), getDefaultLabelResource(eObjectToControl));
 		if(dialog.open() == Dialog.OK) {
-			ControlModeRequest controlRequest = ControlModeRequest.createUIControlModelRequest(getEditingDomain(), eObjectToControl, dialog.getURI());
+			ControlModeRequest controlRequest = ControlModeRequest.createUIControlModelRequest(getEditingDomain(), eObjectToControl, provider.getSelectedURI(dialog));
 			IControlModeManager controlMng = ControlModeManager.getInstance();
 			ICommand controlCommand = controlMng.getControlCommand(controlRequest);
 			getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(controlCommand));
 		}
 		return null;
+	}
+	
+	IControlModeFragmentDialogProvider getDialogProvider(EObject context) {
+		try {
+			ModelSet modelSet = ServiceUtilsForEObject.getInstance().getModelSet(context);
+			return AdapterUtils.adapt(modelSet, IControlModeFragmentDialogProvider.class, IControlModeFragmentDialogProvider.DEFAULT);
+		} catch (ServiceException e) {
+			// can't get the model set?  Odd
+			ControlModePlugin.log.error("Cannot obtain ModelSet for controlled object.", e);
+			return IControlModeFragmentDialogProvider.DEFAULT;
+		}
 	}
 
 	/**

@@ -37,6 +37,7 @@ import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
+import org.eclipse.papyrus.cdo.internal.core.controlmode.CDOControlModeParticipant;
 import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
@@ -88,9 +89,9 @@ public class ModelImporter implements IModelImporter {
 		// imported, all proxies have been resolved that can be. So,
 		// there's no need for a further EcoreUtil.resolveAll() or such
 
-		// 1 for transaction commit, 1 for saving affected non-imported
-		// models, and 1 for clean-up
-		SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelImporter_4, configuration.getModelsToTransfer().size() + 3);
+		// 1/resource for import and 1/resource for sub-unit proxies
+		// 1 for each transaction commit, 1 for saving affected non-imported models, and 1 for clean-up
+		SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelImporter_4, configuration.getModelsToTransfer().size() + 4);
 
 		IInternalPapyrusRepository repository = (IInternalPapyrusRepository)mapping.getRepository();
 		ResourceSet destination = repository.createTransaction(new ResourceSetImpl());
@@ -105,6 +106,24 @@ public class ModelImporter implements IModelImporter {
 				transaction.commit(sub.newChild(1));
 			} catch (CommitException e) {
 				result.add(new BasicDiagnostic(IStatus.ERROR, Activator.PLUGIN_ID, 0, Messages.ModelImporter_5, new Object[]{ e }));
+			}
+
+			// can't create CDO-style proxies until the resources have been committed, because only then
+			// will the objects be persisted and have OIDs to reference
+			boolean hasSubUnits = false;
+			for(IModelTransferNode model : configuration.getModelsToTransfer()) {
+				if(createSubUnitProxies(model, mapping.getMapping(model), transaction, sub.newChild(1))) {
+					hasSubUnits = true;
+				}
+			}
+			if(hasSubUnits) {
+				try {
+					transaction.commit(sub.newChild(1));
+				} catch (CommitException e) {
+					result.add(new BasicDiagnostic(IStatus.ERROR, Activator.PLUGIN_ID, 0, Messages.ModelImporter_5, new Object[]{ e }));
+				}
+			} else {
+				sub.worked(1); // nothing to commit but still count progress
 			}
 
 			try {
@@ -137,6 +156,25 @@ public class ModelImporter implements IModelImporter {
 			add(result, importResource(rset.getResource(next, true), destination));
 			sub.worked(1);
 		}
+
+		sub.done();
+
+		return result;
+	}
+
+	protected boolean createSubUnitProxies(IModelTransferNode model, IPath toPath, CDOTransaction transaction, IProgressMonitor monitor) {
+		boolean result;
+
+		IPath basePath = toPath.removeFileExtension();
+		URI uri = model.getPrimaryResourceURI();
+
+		SubMonitor sub = SubMonitor.convert(monitor, model.getName(), 1);
+
+		Resource destination = transaction.getResource(basePath.addFileExtension(uri.fileExtension()).toString());
+		CDOControlModeParticipant.IUpdate update = new CDOControlModeParticipant().getProxyCrossReferencesUpdate(destination);
+		result = !update.isEmpty();
+		update.apply(); // no harm in applying an empty update
+		sub.worked(1);
 
 		sub.done();
 

@@ -85,7 +85,7 @@ public class JobWaiter {
 
 	protected boolean doWait(long timeout, TimeUnit unit) throws InterruptedException {
 		if(timeout <= 0) {
-			throw new IllegalArgumentException("Non-positive timeout");
+			throw new IllegalArgumentException("Non-positive timeout"); //$NON-NLS-1$
 		}
 
 		boolean result = false;

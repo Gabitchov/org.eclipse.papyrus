@@ -31,16 +31,12 @@ import org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage;
  * <p>
  * The following operations are tested:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.EProblem#toDiagnostic()
- * <em>To Diagnostic</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#toDiagnostic() <em>To Diagnostic</em>}</li>
  * </ul>
  * </p>
- * 
  * @generated
  */
-public class EProblemTest
-		extends TestCase {
+public class EProblemTest extends TestCase {
 
 	protected static ESeverity SEVERITY = ESeverity.ERROR;
 
@@ -57,16 +53,15 @@ public class EProblemTest
 	protected static EObject RELATED2 = ProblemsPackage.Literals.EDIAGNOSTIC;
 
 	/**
-	 * The fixture for this EProblem test case. <!-- begin-user-doc --> <!--
+	 * The fixture for this EProblem test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EProblem fixture = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -84,9 +79,9 @@ public class EProblemTest
 	}
 
 	/**
-	 * Sets the fixture for this EProblem test case. <!-- begin-user-doc -->
+	 * Sets the fixture for this EProblem test case.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void setFixture(EProblem fixture) {
@@ -94,9 +89,9 @@ public class EProblemTest
 	}
 
 	/**
-	 * Returns the fixture for this EProblem test case. <!-- begin-user-doc -->
+	 * Returns the fixture for this EProblem test case.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EProblem getFixture() {
@@ -110,8 +105,7 @@ public class EProblemTest
 	 * @generated NOT
 	 */
 	@Override
-	protected void setUp()
-			throws Exception {
+	protected void setUp() throws Exception {
 		setFixture(ProblemsFactory.eINSTANCE.createEProblem());
 
 		getFixture().setSeverity(SEVERITY);
@@ -124,13 +118,11 @@ public class EProblemTest
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
 	@Override
-	protected void tearDown()
-			throws Exception {
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -146,12 +138,10 @@ public class EProblemTest
 	public void testToDiagnostic() {
 		Diagnostic diag = getFixture().toDiagnostic();
 
-		assertDiagnostic(diag, MESSAGE, new Object[]{ELEMENT, RELATED1,
-			RELATED2});
+		assertDiagnostic(diag, MESSAGE, new Object[]{ ELEMENT, RELATED1, RELATED2 });
 	}
 
-	static void assertDiagnostic(Diagnostic diag, String message,
-			Object... data) {
+	static void assertDiagnostic(Diagnostic diag, String message, Object... data) {
 		assertEquals(Diagnostic.ERROR, diag.getSeverity());
 		assertEquals(SOURCE, diag.getSource());
 		assertEquals(CODE, diag.getCode());

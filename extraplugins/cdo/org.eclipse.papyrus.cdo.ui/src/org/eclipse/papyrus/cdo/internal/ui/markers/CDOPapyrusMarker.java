@@ -124,7 +124,7 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 	}
 
 	static boolean isBoolean(String s) {
-		return (s != null) && (s.equalsIgnoreCase("true") || s.equalsIgnoreCase("false"));
+		return (s != null) && (s.equalsIgnoreCase("true") || s.equalsIgnoreCase("false")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	static boolean isInteger(String s) {

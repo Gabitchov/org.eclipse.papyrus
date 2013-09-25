@@ -30,4 +30,5 @@ Bundle-Activator: org.eclipse.papyrus.infra.hyperlink.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.hyperlink;singleton:=tr
  ue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: com.google.common.base;version="10.0.0"
 

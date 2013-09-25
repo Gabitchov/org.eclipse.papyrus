@@ -4,45 +4,42 @@ Export-Package: org.eclipse.papyrus.cdo.core,
  org.eclipse.papyrus.cdo.core.importer,
  org.eclipse.papyrus.cdo.core.resource,
  org.eclipse.papyrus.cdo.core.util,
- org.eclipse.papyrus.cdo.internal.core;
-  x-friends:="org.eclipse.papyrus.cdo.core.tests,
-   org.eclipse.papyrus.cdo.ui,
-   org.eclipse.papyrus.cdo.ui.tests,
-   org.eclipse.papyrus.cdo.uml.diagram.ui,
-   org.eclipse.papyrus.cdo.uml.ui,
-   org.eclipse.papyrus.cdo.ui.customization.properties,
-   org.eclipse.papyrus.cdo.uml.ui.tests,
-   org.eclipse.papyrus.cdo.uml.search.ui,
-   org.eclipse.papyrus.cdo.uml.search.ui.tests",
+ org.eclipse.papyrus.cdo.internal.core;x-friends:="org.eclipse.papyrus.cdo.core.tests,  org.eclipse.papyrus.cdo.ui,  org.eclipse.papyrus.cdo.ui.tests,  org.eclipse.papyrus.cdo.uml.diagram.ui,  org.eclipse.papyrus.cdo.uml.ui,  org.eclipse.papyrus.cdo.ui.customization.properties,  org.eclipse.papyrus.cdo.uml.ui.tests,  org.eclipse.papyrus.cdo.uml.search.ui,  org.eclipse.papyrus.cdo.uml.search.ui.tests,  org.eclipse.papyrus.cdo.ui.hyperlink",
+ org.eclipse.papyrus.cdo.internal.core.controlmode;x-friends:="org.eclipse.papyrus.cdo.ui,org.eclipse.papyrus.cdo.core.tests",
  org.eclipse.papyrus.cdo.internal.core.exporter;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
  org.eclipse.papyrus.cdo.internal.core.expressions;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
  org.eclipse.papyrus.cdo.internal.core.importer;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
  org.eclipse.papyrus.cdo.internal.core.l10n;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.core.repositories;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
  org.eclipse.papyrus.cdo.internal.core.repositories.impl;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
- org.eclipse.papyrus.cdo.internal.core.repositories.util;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui"
+ org.eclipse.papyrus.cdo.internal.core.repositories.util;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
+ org.eclipse.papyrus.cdo.internal.core.services.localizer;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.emf.cdo;bundle-version="[4.2.0,5.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.emf.cdo;visibility:=reexport;bundle-version="[4.2.0,5.0.0)",
+ org.eclipse.papyrus.infra.core;visibility:=reexport;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.resourceloading;bundle-version="0.10.1";visibility:=reexport,
- org.eclipse.papyrus.infra.emf.readonly;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.services.resourceloading;visibility:=reexport;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf.readonly;visibility:=reexport;bundle-version="0.10.1",
  org.eclipse.emf.workspace;bundle-version="[1.5.1,2.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.emf.cdo.dawn;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.emf.cdo.dawn.gmf;bundle-version="[2.1.0,3.0.0)",
- org.eclipse.emf.transaction;bundle-version="[1.4.0,2.0.0)";visibility:=reexport,
+ org.eclipse.emf.transaction;visibility:=reexport;bundle-version="[1.4.0,2.0.0)",
  org.eclipse.gmf.runtime.notation;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.equinox.security;bundle-version="[1.1.100,2.0.0)",
  org.eclipse.core.expressions;bundle-version="[3.4.0,4.0.0)",
- com.google.guava;bundle-version="[11.0.2,12.0.0)"
+ com.google.guava;bundle-version="[11.0.2,12.0.0)",
+ org.eclipse.papyrus.infra.services.controlmode;bundle-version="0.10.1",
+ org.eclipse.gmf.runtime.emf.commands.core;bundle-version="[1.7.0,2.0.0)",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.7.0,2.0.0)",
+ org.eclipse.papyrus.infra.services.localizer;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2

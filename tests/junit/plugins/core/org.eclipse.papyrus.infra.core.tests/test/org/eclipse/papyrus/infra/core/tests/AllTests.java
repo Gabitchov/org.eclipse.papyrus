@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - add test for AdapterUtils
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.tests;
 
@@ -17,6 +18,7 @@ import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResourceTe
 import org.eclipse.papyrus.infra.core.resource.ModelSetTest;
 import org.eclipse.papyrus.infra.core.services.ComposedServiceTest;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistryTest;
+import org.eclipse.papyrus.infra.core.utils.AdapterUtilsTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -32,6 +34,8 @@ ComposedServiceTest.class, ServicesRegistryTest.class,
 // {oep}.core.lifecycleevents
 /* SaveAndDirtyServiceTest.class, */LifeCycleEventsProviderTest.class, 
 NestedEditorDelegatedOutlinePageTest.class,
+//{oep}.core.utils
+AdapterUtilsTest.class
 })
 /**
  * Suite Class for all tests in the plugin

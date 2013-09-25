@@ -163,7 +163,7 @@ class ItemProviderFilterRegistry {
 			try {
 				return enabled && filter.get().filter(input.object);
 			} catch (Exception e) {
-				Activator.log.error("Uncaught exception in element filter. Filter will be disabled.", e);
+				Activator.log.error("Uncaught exception in element filter. Filter will be disabled.", e); //$NON-NLS-1$
 				enabled = false;
 				return false;
 			}
@@ -186,7 +186,7 @@ class ItemProviderFilterRegistry {
 			try {
 				return enabled && predicate.get().apply(input.object);
 			} catch (Exception e) {
-				Activator.log.error("Uncaught exception in predicate. Filter will be disabled.", e);
+				Activator.log.error("Uncaught exception in predicate. Filter will be disabled.", e); //$NON-NLS-1$
 				enabled = false;
 				return false;
 			}
@@ -242,7 +242,7 @@ class ItemProviderFilterRegistry {
 					if(add) {
 						if(currentID != null) {
 							// haven't created the previous filter
-							logError(currentConfig, String.format("Missing specification of filter %s.", currentID));
+							logError(currentConfig, String.format("Missing specification of filter %s.", currentID)); //$NON-NLS-1$
 						}
 
 						currentID = id;
@@ -254,10 +254,10 @@ class ItemProviderFilterRegistry {
 			} else if(add) { // don't need to process deletion of filter specifications, only filters
 				if(currentID == null) {
 					result = false;
-					logError(config, String.format("Too many filter specifications."));
+					logError(config, String.format("Too many filter specifications.")); //$NON-NLS-1$
 				} else if(filters.containsKey(currentID)) {
 					result = false;
-					logError(config, String.format("Duplicate filter ID \"%s\".  The duplicate is ignored.", currentID));
+					logError(config, String.format("Duplicate filter ID \"%s\".  The duplicate is ignored.", currentID)); //$NON-NLS-1$
 				} else {
 					result = createFilter(config);
 				}
@@ -311,7 +311,7 @@ class ItemProviderFilterRegistry {
 						objectClass = bundle.loadClass(className);
 					} catch (Exception e) {
 						result = false;
-						logError(config, String.format("Could not find class \"%s\" in bundle \"%s\".", className, bundleID));
+						logError(config, String.format("Could not find class \"%s\" in bundle \"%s\".", className, bundleID)); //$NON-NLS-1$
 					}
 				}
 
@@ -331,7 +331,7 @@ class ItemProviderFilterRegistry {
 					} catch (Exception e) {
 						result = false;
 						Activator.log.error(e);
-						logError(config, String.format("Failed to initialize filter on pattern \"%s\".", pattern));
+						logError(config, String.format("Failed to initialize filter on pattern \"%s\".", pattern)); //$NON-NLS-1$
 					}
 				}
 			}
@@ -353,7 +353,7 @@ class ItemProviderFilterRegistry {
 					Object extension = config.createExecutableExtension(A_CLASS);
 					if(!(extension instanceof IElementFilter)) {
 						result = false;
-						logError(config, String.format("Extension is not an IElementFilter: %s", extension.getClass().getName()));
+						logError(config, String.format("Extension is not an IElementFilter: %s", extension.getClass().getName())); //$NON-NLS-1$
 					}
 
 					addFilter(new ElementFilterFilter(currentID, Suppliers.ofInstance((IElementFilter)extension)));
@@ -366,7 +366,7 @@ class ItemProviderFilterRegistry {
 					Object extension = config.createExecutableExtension(A_CLASS);
 					if(!(extension instanceof Supplier<?>)) {
 						result = false;
-						logError(config, String.format("Extension is not a Supplier<? extends IElementFilter>: %s", extension.getClass().getName()));
+						logError(config, String.format("Extension is not a Supplier<? extends IElementFilter>: %s", extension.getClass().getName())); //$NON-NLS-1$
 					}
 
 					@SuppressWarnings("unchecked")
@@ -395,7 +395,7 @@ class ItemProviderFilterRegistry {
 					Object extension = config.createExecutableExtension(A_CLASS);
 					if(!(extension instanceof Predicate<?>)) {
 						result = false;
-						logError(config, String.format("Extension is not a Predicate<Object>: %s", extension.getClass().getName()));
+						logError(config, String.format("Extension is not a Predicate<Object>: %s", extension.getClass().getName())); //$NON-NLS-1$
 					}
 
 					@SuppressWarnings("unchecked")
@@ -410,7 +410,7 @@ class ItemProviderFilterRegistry {
 					Object extension = config.createExecutableExtension(A_CLASS);
 					if(!(extension instanceof Supplier<?>)) {
 						result = false;
-						logError(config, String.format("Extension is not a Supplier<? extends Predicate<Object>>: %s", extension.getClass().getName()));
+						logError(config, String.format("Extension is not a Supplier<? extends Predicate<Object>>: %s", extension.getClass().getName())); //$NON-NLS-1$
 					}
 
 					@SuppressWarnings("unchecked")

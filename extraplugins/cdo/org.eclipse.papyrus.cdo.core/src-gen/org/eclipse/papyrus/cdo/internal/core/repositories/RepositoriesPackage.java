@@ -141,13 +141,22 @@ public interface RepositoriesPackage extends EPackage {
 	int REPOSITORY__DESCRIPTION = 2;
 
 	/**
+	 * The feature id for the '<em><b>UUID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY__UUID = 3;
+
+	/**
 	 * The number of structural features of the '<em>Repository</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_FEATURE_COUNT = 3;
+	int REPOSITORY_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Repository</em>' class.
@@ -224,6 +233,17 @@ public interface RepositoriesPackage extends EPackage {
 	EAttribute getRepository_Description();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.cdo.internal.core.repositories.Repository#getUUID <em>UUID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>UUID</em>'.
+	 * @see org.eclipse.papyrus.cdo.internal.core.repositories.Repository#getUUID()
+	 * @see #getRepository()
+	 * @generated
+	 */
+	EAttribute getRepository_UUID();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,6 +317,14 @@ public interface RepositoriesPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REPOSITORY__DESCRIPTION = eINSTANCE.getRepository_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>UUID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REPOSITORY__UUID = eINSTANCE.getRepository_UUID();
 
 	}
 

@@ -7,7 +7,7 @@
     editorPluginClass="org.eclipse.papyrus.cdo.validation.problems.presentation.ProblemsEditorPlugin"
     nonNLSMarkers="true" rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
     reflectiveDelegation="true" codeFormatting="true" testSuiteClass="org.eclipse.papyrus.cdo.validation.problems.tests.ProblemsAllTests"
-    importerID="org.eclipse.emf.importer.cdo" featureDelegation="Reflective" complianceLevel="5.0"
+    importerID="org.eclipse.emf.importer.cdo" featureDelegation="Reflective" complianceLevel="6.0"
     copyrightFields="false" providerRootExtendsClass="org.eclipse.papyrus.cdo.validation.problems.edit.ProblemTypeItemProviderAdapter"
     optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
     runtimeVersion="2.8" operationReflection="true" importOrganizing="true">

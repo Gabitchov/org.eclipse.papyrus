@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.views;
 
+import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
+import org.eclipse.emf.cdo.ui.CDOEditorUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IMenuManager;
@@ -167,7 +169,7 @@ public class ModelRepositoriesView extends ContainerView {
 		disconnectRepositoryAction = new DisconnectRepositoryAction(this);
 		removeRepositoryAction = new RemoveRepositoryAction(this);
 		openModelAction = new OpenPapyrusModelAction(this);
-		createFolderAction = new CreateFolderAction(this);
+		createFolderAction = new CreateFolderAction(this.getSite());
 		renameModelAction = new RenameModelAction(this);
 		deleteModelAction = new DeleteModelAction(this);
 
@@ -220,6 +222,8 @@ public class ModelRepositoriesView extends ContainerView {
 			invoke(openModelAction);
 		} else if(object instanceof IPapyrusRepository) {
 			invoke(connectRepositoryAction);
+		} else if(object instanceof CDOResourceLeaf) {
+			CDOEditorUtil.openEditor(getSite().getPage(), (CDOResourceLeaf)object);
 		} else {
 			super.doubleClicked(object);
 		}

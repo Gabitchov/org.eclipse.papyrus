@@ -18,9 +18,10 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.eresource.CDOResourceNode;
+import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
+import org.eclipse.papyrus.cdo.internal.ui.views.DIResourceQuery;
 import org.eclipse.papyrus.cdo.internal.ui.wizards.ModelExportWizard;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -41,6 +43,7 @@ import com.google.common.collect.Lists;
  */
 public class ExportModelHandler extends AbstractHandler {
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
@@ -72,9 +75,16 @@ public class ExportModelHandler extends AbstractHandler {
 			if(repo != null) {
 				CDOView view = ((IInternalPapyrusRepository)repo).getMasterView();
 				if(view != null) { // the repository could be disconnected by now
-					Resource resource = view.getResourceSet().getResource(next, true);
-					if(resource instanceof CDOResource) {
-						models.add(DIModel.getInstance((CDOResource)resource, true));
+					try {
+						CDOResourceNode resource = view.getResourceNode(CDOURIUtil.extractResourcePath(next));
+						if(resource instanceof CDOResource) {
+							// only export DI models!
+							if(DIResourceQuery.getDIResources(view).contains(resource)) {
+								models.add(DIModel.getInstance((CDOResource)resource, true));
+							}
+						}
+					} catch (Exception e) {
+						// normal consequence of the repository path not being found
 					}
 				}
 			}

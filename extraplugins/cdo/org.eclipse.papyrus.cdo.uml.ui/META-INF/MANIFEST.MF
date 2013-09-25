@@ -17,5 +17,5 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.cdo.uml.internal.ui.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.cdo.uml.ui;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

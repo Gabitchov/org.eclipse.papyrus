@@ -7,10 +7,14 @@ Require-Bundle: org.eclipse.papyrus.cdo.core;bundle-version="0.10.1";visibility:
  org.eclipse.net4j.jvm;bundle-version="[4.1.0,5.0.0)",
  org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
- org.eclipse.core.expressions;bundle-version="3.4.0"
+ org.eclipse.core.expressions;bundle-version="3.4.0",
+ org.eclipse.papyrus.infra.services.controlmode;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.resourceloading.preferences;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.cdo.core.resource.tests,
  org.eclipse.papyrus.cdo.core.tests,
  org.eclipse.papyrus.cdo.core.util.tests,
+ org.eclipse.papyrus.cdo.internal.core.controlmode.tests;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.core.exporter.tests;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.core.expressions.tests;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.core.importer.tests;x-internal:=true,
@@ -24,5 +28,5 @@ Bundle-SymbolicName: org.eclipse.papyrus.cdo.core.tests
 Import-Package: com.google.common.base;version="10.0.1",
  com.google.common.collect;version="10.0.1",
  com.google.common.io;version="10.0.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

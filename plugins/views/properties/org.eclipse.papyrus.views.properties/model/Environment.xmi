@@ -157,6 +157,10 @@
       label="FloatEditor"
       widgetClass="FloatEditor"
       namespace="//@namespaces.3"/>
+  <propertyEditorTypes
+      label="File Selector - EMF URI Format"
+      widgetClass="XWTStringFileSelectorEMF"
+      namespace="//@namespaces.3"/>
   <compositeWidgetTypes
       label="Composite"
       widgetClass="Composite"/>

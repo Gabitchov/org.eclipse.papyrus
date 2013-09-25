@@ -32,6 +32,8 @@ public class Messages extends NLS {
 
 	public static String CDOAwareModelSetServiceFactory_0;
 
+	public static String CDOControlModeParticipant_commandLabel;
+
 	public static String CDOUndoContext_0;
 
 	public static String CommitException_0;
@@ -63,6 +65,10 @@ public class Messages extends NLS {
 	public static String ModelTransferConfiguration_1;
 
 	public static String ModelTransferConfiguration_2;
+
+	public static String ModelTransferConfiguration_3;
+
+	public static String ModelTransferConfiguration_4;
 
 	public static String ModelTransferConfiguration_6;
 

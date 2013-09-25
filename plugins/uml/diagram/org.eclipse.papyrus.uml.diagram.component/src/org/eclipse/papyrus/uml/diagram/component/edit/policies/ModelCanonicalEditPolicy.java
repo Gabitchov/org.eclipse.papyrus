@@ -171,10 +171,10 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ModelEditPart.VISUAL_ID:
 		case PackageEditPart.VISUAL_ID:
 		case RectangleInterfaceEditPart.VISUAL_ID:
-		case InterfaceEditPart.VISUAL_ID:
 		case CommentEditPart.VISUAL_ID:
 		case ConstraintEditPart.VISUAL_ID:
 		case DefaultNamedElementEditPart.VISUAL_ID:
+		case InterfaceEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;
@@ -384,14 +384,6 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
-		case InterfaceEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getInterface_2003ContainedLinks(view));
-			}
-			domain2NotationMap.putView(view.getElement(), view);
-			break;
-		}
 		case CommentEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
@@ -412,6 +404,14 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getNamedElement_3204ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InterfaceEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getNamedElement_2003ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;

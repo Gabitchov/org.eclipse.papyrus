@@ -20,9 +20,7 @@ Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.cdo.internal.ui.customization.pr
- operties.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.cdo.ui.customization.properti
- es;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Activator: org.eclipse.papyrus.cdo.internal.ui.customization.properties.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.cdo.ui.customization.properties;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

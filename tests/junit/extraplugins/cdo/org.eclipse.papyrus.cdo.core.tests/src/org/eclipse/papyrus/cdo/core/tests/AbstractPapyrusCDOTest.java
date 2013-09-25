@@ -13,7 +13,11 @@ package org.eclipse.papyrus.cdo.core.tests;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -161,13 +165,57 @@ public abstract class AbstractPapyrusCDOTest {
 	protected CDOTransaction createTransaction() {
 		IInternalPapyrusRepository repo = getInternalPapyrusRepository();
 
-		CDOTransaction result = getTransaction(repo.createTransaction(new ResourceSetImpl()));
+		CDOTransaction result = getTransaction(repo.createTransaction(createResourceSet()));
+
+		return result;
+	}
+
+	protected CDOView createView() {
+		IInternalPapyrusRepository repo = getInternalPapyrusRepository();
+
+		CDOView result = getInternalPapyrusRepository().getCDOView(repo.createReadOnlyView(createResourceSet()));
+
+		return result;
+	}
+
+	private ResourceSet createResourceSet() {
+		ResourceSet result = null;
+
+		Method factory = getAnnotatedMethod(ResourceSetFactory.class);
+		if(factory != null) {
+			try {
+				result = (ResourceSet)factory.invoke(this);
+			} catch (InvocationTargetException e) {
+				e.getTargetException().printStackTrace();
+				fail("Failed to create resource set for test case: " + e.getTargetException().getLocalizedMessage());
+			} catch (IllegalAccessException e) {
+				fail("Resource-set factory method not accessible: " + factory.getName());
+			}
+		}
+
+		if(result == null) {
+			// default
+			result = new ResourceSetImpl();
+		}
 
 		return result;
 	}
 
 	protected CDOTransaction getTransaction(ResourceSet resourceSet) {
 		return cast(getInternalPapyrusRepository().getCDOView(resourceSet), CDOTransaction.class);
+	}
+
+	protected final Method getAnnotatedMethod(Class<? extends Annotation> annotationType) {
+		Method result = null;
+
+		for(Method next : getClass().getMethods()) {
+			if(next.isAnnotationPresent(annotationType)) {
+				result = next;
+				break;
+			}
+		}
+
+		return result;
 	}
 
 	protected String getRepositoryURL() {
@@ -247,10 +295,12 @@ public abstract class AbstractPapyrusCDOTest {
 	public static <T extends Number & Comparable<T>> Matcher<T> lessThan(final T max) {
 		return new BaseMatcher<T>() {
 
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("< ").appendValue(max);
 			}
 
+			@Override
 			@SuppressWarnings("unchecked")
 			public boolean matches(Object item) {
 				return ((T)item).compareTo(max) < 0;
@@ -261,10 +311,12 @@ public abstract class AbstractPapyrusCDOTest {
 	public static <T extends Number & Comparable<T>> Matcher<T> lessThanOrEqualTo(final T max) {
 		return new BaseMatcher<T>() {
 
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("<= ").appendValue(max);
 			}
 
+			@Override
 			@SuppressWarnings("unchecked")
 			public boolean matches(Object item) {
 				return ((T)item).compareTo(max) <= 0;
@@ -275,10 +327,12 @@ public abstract class AbstractPapyrusCDOTest {
 	public static <T> Matcher<Iterable<T>> hasSize(final int size) {
 		return new BaseMatcher<Iterable<T>>() {
 
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("has size ").appendValue(size);
 			}
 
+			@Override
 			public boolean matches(Object item) {
 				return Iterables.size((Iterable<?>)item) == size;
 			}
