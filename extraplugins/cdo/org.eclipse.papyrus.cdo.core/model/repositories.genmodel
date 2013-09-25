@@ -15,6 +15,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repositories.ecore#//Repository/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repositories.ecore#//Repository/uRL"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repositories.ecore#//Repository/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repositories.ecore#//Repository/uUID"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

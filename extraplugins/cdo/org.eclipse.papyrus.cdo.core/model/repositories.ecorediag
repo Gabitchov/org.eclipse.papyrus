@@ -31,6 +31,10 @@
         <element xmi:type="ecore:EAttribute" href="repositories.ecore#//Repository/uRL"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_dScfAV5XEeKVz4CWs4rkiA"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_qfYY4CVhEeOe3PUVH5W0Qg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="repositories.ecore#//Repository/uUID"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qfYY4SVhEeOe3PUVH5W0Qg"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_P7MKBV5XEeKVz4CWs4rkiA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_P7MKBl5XEeKVz4CWs4rkiA"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_P7MKB15XEeKVz4CWs4rkiA"/>

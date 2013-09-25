@@ -165,6 +165,15 @@ public class RepositoriesPackageImpl extends EPackageImpl implements Repositorie
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getRepository_UUID() {
+		return (EAttribute)repositoryEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RepositoriesFactory getRepositoriesFactory() {
 		return (RepositoriesFactory)getEFactoryInstance();
 	}
@@ -195,6 +204,7 @@ public class RepositoriesPackageImpl extends EPackageImpl implements Repositorie
 		createEAttribute(repositoryEClass, REPOSITORY__NAME);
 		createEAttribute(repositoryEClass, REPOSITORY__URL);
 		createEAttribute(repositoryEClass, REPOSITORY__DESCRIPTION);
+		createEAttribute(repositoryEClass, REPOSITORY__UUID);
 	}
 
 	/**
@@ -234,6 +244,7 @@ public class RepositoriesPackageImpl extends EPackageImpl implements Repositorie
 		initEAttribute(getRepository_Name(), ecorePackage.getEString(), "name", null, 1, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getRepository_URL(), ecorePackage.getEString(), "uRL", null, 1, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getRepository_Description(), ecorePackage.getEString(), "description", null, 0, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getRepository_UUID(), ecorePackage.getEString(), "uUID", null, 0, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

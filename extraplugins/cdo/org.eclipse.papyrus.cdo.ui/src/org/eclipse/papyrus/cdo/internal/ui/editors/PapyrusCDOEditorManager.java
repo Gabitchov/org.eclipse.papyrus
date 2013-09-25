@@ -17,6 +17,7 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
+import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
@@ -76,6 +77,10 @@ public class PapyrusCDOEditorManager {
 		super();
 	}
 
+	public IEditorPart openEditor(IWorkbenchPage page, CDOResource diResource) throws PartInitException {
+		return openEditor(page, diResource.getURI(), diResource.getURI().trimFileExtension().lastSegment());
+	}
+
 	public IEditorPart openEditor(IWorkbenchPage page, URI uri, String name) throws PartInitException {
 		return openEditor(page, new PapyrusCDOEditorInput(uri, name));
 	}
@@ -121,6 +126,7 @@ public class PapyrusCDOEditorManager {
 		try {
 			editorListeners.get(editor.getSite().getPage(), new Callable<EditorListener>() {
 
+				@Override
 				public EditorListener call() throws Exception {
 					//Probably not necessary. But the previous API is deprecated. It is probably safer
 					//to return a non-null EditorListener, but we're not supposed to enter this method anyway
@@ -156,6 +162,7 @@ public class PapyrusCDOEditorManager {
 		protected void onDeactivated(ILifecycle lifecycle) {
 			UIUtil.later(new Runnable() {
 
+				@Override
 				public void run() {
 					if(editors.containsKey(editor)) {
 						editor.getSite().getPage().closeEditor(editor, false);
@@ -175,6 +182,7 @@ public class PapyrusCDOEditorManager {
 			editors.add(editor);
 		}
 
+		@Override
 		public void partClosed(IWorkbenchPart part) {
 			if(editors.remove(part)) {
 				IEditorPart editor = (IEditorPart)part;
@@ -182,18 +190,22 @@ public class PapyrusCDOEditorManager {
 			}
 		}
 
+		@Override
 		public void partActivated(IWorkbenchPart part) {
 			// pass
 		}
 
+		@Override
 		public void partBroughtToTop(IWorkbenchPart part) {
 			// pass
 		}
 
+		@Override
 		public void partDeactivated(IWorkbenchPart part) {
 			// pass
 		}
 
+		@Override
 		public void partOpened(IWorkbenchPart part) {
 			// pass
 		}
@@ -201,6 +213,7 @@ public class PapyrusCDOEditorManager {
 
 	private class ResourceSetDisposalApprover implements IResourceSetDisposalApprover {
 
+		@Override
 		public DisposeAction disposalRequested(IPapyrusRepository repository, Collection<ResourceSet> resourceSets) {
 
 			DisposeAction result = DisposeAction.CLOSE;
@@ -219,6 +232,7 @@ public class PapyrusCDOEditorManager {
 			if(!dirty.isEmpty()) {
 				Future<Integer> dlgResult = UIUtil.call(new Callable<Integer>() {
 
+					@Override
 					public Integer call() {
 						MessageDialog dlg = new MessageDialog(dirty.get(0).getSite().getShell(), Messages.PapyrusCDOEditorManager_1, null, Messages.PapyrusCDOEditorManager_2, MessageDialog.QUESTION_WITH_CANCEL, //
 						new String[]{ IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL }, 2);

@@ -41,6 +41,7 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 
 	private final Predicate<Object> isDIResource = new Predicate<Object>() {
 
+		@Override
 		public boolean apply(Object input) {
 			return (input instanceof CDOResource) && DIResourceQuery.getDIResources(((CDOResource)input).cdoView()).contains(input);
 		}
@@ -48,8 +49,9 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 
 	private final Predicate<Object> isUnaffiliatedResource = new Predicate<Object>() {
 
+		@Override
 		public boolean apply(Object input) {
-			return (input instanceof CDOResource) && DIResourceQuery.isUnaffiliatedResource((CDOResource)input);
+			return !(input instanceof CDOResource) || DIResourceQuery.isUnaffiliatedResource((CDOResource)input);
 		}
 	};
 
@@ -58,6 +60,7 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 
 	private final Function<Object, Object> resourceNodeTransformer = new Function<Object, Object>() {
 
+		@Override
 		public Object apply(Object input) {
 			if(isDIResource.apply(input)) {
 				return DIModel.getInstance((CDOResource)input, true);
@@ -83,6 +86,7 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 	public ModelRepositoryItemProvider(IWorkbenchPage page, final Collection<?> rootElementsToShow) {
 		this(page, new IElementFilter() {
 
+			@Override
 			public boolean filter(Object element) {
 				return rootElementsToShow.contains(element);
 			}

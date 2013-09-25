@@ -238,7 +238,7 @@ public class ResourceDropAdapter extends ViewerDropAdapter {
 			} else if(node instanceof CDOResource) {
 				result = view.getResource(node.getPath());
 			} else {
-				throw new CoreException(error(Messages.ResourceDropAdapter_4 + node.getClass().getName()));
+				throw new CoreException(error(NLS.bind(Messages.ResourceDropAdapter_4, node.getClass().getName())));
 			}
 		} catch (CoreException e) {
 			throw e;
@@ -375,6 +375,7 @@ public class ResourceDropAdapter extends ViewerDropAdapter {
 		Iterable<IPapyrusFile> papyrusFiles = Iterables.filter(selection.toList(), IPapyrusFile.class);
 		Iterable<IFile> files = Iterables.filter(Iterables.filter(selection.toList(), IFile.class), new Predicate<IFile>() {
 
+			@Override
 			public boolean apply(IFile input) {
 				return PapyrusModelHelper.getPapyrusModelFactory().isDi(input);
 			}
@@ -382,6 +383,7 @@ public class ResourceDropAdapter extends ViewerDropAdapter {
 
 		return Iterables.concat(files, Iterables.transform(papyrusFiles, new Function<IPapyrusFile, IFile>() {
 
+			@Override
 			public IFile apply(IPapyrusFile input) {
 				return input.getMainFile();
 			}

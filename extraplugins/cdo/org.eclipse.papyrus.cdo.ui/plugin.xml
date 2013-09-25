@@ -15,7 +15,7 @@
 -->
 
 <plugin>
-   <extension-point id="repositoryFilters" name="Model Repository Item Provider Filters" schema="schema/repositoryFilters.exsd"/>
+   <extension-point id="repositoryFilters" name="%repoFiltersExtPt.name" schema="schema/repositoryFilters.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -337,5 +337,52 @@
                type="org.eclipse.papyrus.infra.services.controlmode.ui.IControlModeFragmentDialogProvider">
          </adapter>
       </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            contentProvider="org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDropAdapterAssistant$DummyContent"
+            id="org.eclipse.papyrus.cdo.ui.navigatorResourceDropAssistant"
+            name="%navigatorDropContent.name"
+            icon="$nl$/icons/full/view16/model_repositories.gif"
+            priority="high">
+         <dropAssistant
+               class="org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDropAdapterAssistant"
+               id="org.eclipse.papyrus.cdo.ui.resourceDropAssistant">
+            <possibleDropTargets>
+               <instanceof
+                     value="org.eclipse.core.resources.IContainer">
+               </instanceof>
+            </possibleDropTargets>
+         </dropAssistant>
+         <possibleChildren>
+            <adapt
+                  type="org.eclipse.papyrus.cdo.internal.ui.views.DIModel">
+            </adapt>
+         </possibleChildren>
+         <triggerPoints>
+            <instanceof
+                  value="org.eclipse.core.resources.IContainer">
+            </instanceof>
+         </triggerPoints>
+      </navigatorContent>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerContentBinding
+            viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension
+                  pattern="org.eclipse.papyrus.cdo.ui.navigatorResourceDropAssistant">
+            </contentExtension>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.dynamic_package">
+      <resource
+            location="model/DND.ecore"
+            uri="http://www.eclipse.org/papyrus/1.0.0/cdo/private/dnd">
+      </resource>
    </extension>
 </plugin>

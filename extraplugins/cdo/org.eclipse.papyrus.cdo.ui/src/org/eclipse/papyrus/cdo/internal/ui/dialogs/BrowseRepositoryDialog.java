@@ -31,7 +31,9 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
+import org.eclipse.net4j.util.ui.views.IElementFilter;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
@@ -109,7 +111,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		this.message = message;
 		this.style = checkStyle(style);
 
-		this.repository = PapyrusRepositoryManager.INSTANCE.getRepository(view);
+		this.repository = (view == null) ? null : PapyrusRepositoryManager.INSTANCE.getRepository(view);
 
 		setHelpAvailable(false);
 	}
@@ -128,6 +130,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 		newShell.addDisposeListener(new DisposeListener() {
 
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				shellDisposed();
 			}
@@ -135,8 +138,12 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 	}
 
 	private void shellDisposed() {
-		if((viewerRefresh != null) && (getRepository() != null)) {
-			getRepository().getMasterView().removeListener(viewerRefresh);
+		if(viewerRefresh != null) {
+			for(IInternalPapyrusRepository next : PapyrusRepositoryManager.INSTANCE.getRepositories()) {
+				if(next.isConnected()) {
+					next.getMasterView().removeListener(viewerRefresh);
+				}
+			}
 		}
 	}
 
@@ -214,13 +221,15 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		tree = new TreeViewer(result, SWT.SINGLE | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		tree.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, isSaveStyle() ? 2 : 1, 1));
 
-		ModelRepositoryItemProvider itemProvider = new ModelRepositoryItemProvider(null, getRepository());
+		ModelRepositoryItemProvider itemProvider = (getRepository() == null) ? new ModelRepositoryItemProvider(null, showConnectedRepositories()) : new ModelRepositoryItemProvider(null, getRepository());
 		tree.setContentProvider(itemProvider);
 		tree.setLabelProvider(new DecoratingLabelProvider(itemProvider, PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator()));
 		tree.setSorter(itemProvider);
-		if(getRepository() != null) {
-			tree.setInput(PapyrusRepositoryManager.INSTANCE);
-			getRepository().getMasterView().addListener(getViewerRefresh());
+		tree.setInput(PapyrusRepositoryManager.INSTANCE);
+		for(IInternalPapyrusRepository next : PapyrusRepositoryManager.INSTANCE.getRepositories()) {
+			if(next.isConnected()) {
+				next.getMasterView().addListener(getViewerRefresh());
+			}
 		}
 
 		if(isSaveStyle()) {
@@ -254,6 +263,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 		tree.addSelectionChangedListener(new ISelectionChangedListener() {
 
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				IStructuredSelection sel = (IStructuredSelection)event.getSelection();
 				if(sel.isEmpty()) {
@@ -273,6 +283,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		if(nameText != null) {
 			nameText.addModifyListener(new ModifyListener() {
 
+				@Override
 				public void modifyText(ModifyEvent e) {
 					name = Strings.emptyToNull(nameText.getText().trim());
 					validateSelection();
@@ -281,6 +292,22 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		}
 
 		return result;
+	}
+
+	private IElementFilter showConnectedRepositories() {
+		return new IElementFilter() {
+
+			@Override
+			public boolean filter(Object element) {
+				boolean result = false;
+
+				if(element instanceof IPapyrusRepository) {
+					result = ((IPapyrusRepository)element).isConnected();
+				}
+
+				return result;
+			}
+		};
 	}
 
 	private void initializeSelection() {
@@ -332,22 +359,28 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			}
 		}
 
-		if((error == null) && (getRepository() != null)) {
-			String path = CDOURIUtil.extractResourcePath(basicGetSelectedURI());
-			CDOView view = getRepository().getMasterView();
-			if(isOpenStyle() && !view.hasResource(path)) {
-				error = Messages.BrowseRepoDlg_noSuchResource;
-			} else if(isOpenStyle()) {
-				// then the resource exists.  Is it the kind we want?
-				CDOResourceNode node = view.getResourceNode(path);
-				if(!getNodeTypeFilter().isInstance(node)) {
-					info = NLS.bind(Messages.BrowseRepoDlg_wrongSelection, getNodeType(getNodeTypeFilter()));
-				}
-			} else if(isSaveStyle() && view.hasResource(path)) {
-				if(isAllowOverwrite()) {
-					warning = Messages.BrowseRepoDlg_existsWarning;
-				} else {
-					error = Messages.BrowseRepoDlg_existsError;
+		if(error == null) {
+			if(selection == null) {
+				disable = true;
+			} else {
+				String path = CDOURIUtil.extractResourcePath(basicGetSelectedURI());
+				CDOView view = selection.cdoView();
+
+				if(isOpenStyle() && !view.hasResource(path)) {
+					error = Messages.BrowseRepoDlg_noSuchResource;
+				} else if(isOpenStyle()) {
+					// then the resource exists.  Is it the kind we want?
+					CDOResourceNode node = view.getResourceNode(path);
+					if(!getNodeTypeFilter().isInstance(node)) {
+						disable = true;
+						info = NLS.bind(Messages.BrowseRepoDlg_wrongSelection, getNodeType(getNodeTypeFilter()));
+					}
+				} else if(isSaveStyle() && view.hasResource(path)) {
+					if(isAllowOverwrite()) {
+						warning = Messages.BrowseRepoDlg_existsWarning;
+					} else {
+						error = Messages.BrowseRepoDlg_existsError;
+					}
 				}
 			}
 		}
@@ -384,6 +417,9 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			case EresourcePackage.CDO_FILE_RESOURCE:
 				result = Messages.BrowseRepoDlg_fileKind;
 				break;
+			case EresourcePackage.CDO_RESOURCE_LEAF:
+				result = Messages.BrowseRepoDlg_leafKind;
+				break;
 			}
 		}
 
@@ -394,6 +430,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		if(viewerRefresh == null) {
 			viewerRefresh = new IListener() {
 
+				@Override
 				public void notifyEvent(IEvent event) {
 					if(event instanceof CDOViewInvalidationEvent) {
 						if((getContents() != null) && !getContents().isDisposed()) {

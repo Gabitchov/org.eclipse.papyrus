@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo.
+ * Copyright (c) 2008, 2013 Obeo, CEA LIST, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *     modified by CEA-LIST
+ *     Christian W. Damus (CEA LIST) - delegate object localization to a new service
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.listeners;
 
@@ -18,12 +19,14 @@ import java.util.List;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.services.localizer.IObjectLocalizer;
+import org.eclipse.papyrus.infra.services.localizer.util.LocalizerUtil;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
 
@@ -60,8 +63,13 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 													// order of the selection
 
 		Object transferedObject = getJavaObject(data);
+		ArrayList<EObject> result = new ArrayList<EObject>();
+		
 		if(transferedObject instanceof IStructuredSelection) {
 			IStructuredSelection selection = (IStructuredSelection)transferedObject;
+			ResourceSet localSet = getTransactionalEditingDomain().getResourceSet();
+			IObjectLocalizer localizer = LocalizerUtil.getInstance(localSet);
+			
 			for(Iterator<?> it = selection.iterator(); it.hasNext();) {
 				Object nextSelectedObject = it.next();
 				// if (nextSelectedObject instanceof UMLNavigatorItem) {
@@ -74,14 +82,14 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 					nextSelectedObject = adaptable.getAdapter(EObject.class);
 				}
 				if(nextSelectedObject instanceof EObject) {
-					EObject modelElement = (EObject)nextSelectedObject;
-					Resource modelElementResource = modelElement.eResource();
-					uris.add(modelElementResource.getURI().appendFragment(modelElementResource.getURIFragment(modelElement)));
+					EObject local = localizer.getLocalEObject(localSet, (EObject)nextSelectedObject);
+					if(local != null) {
+						result.add(local);
+					}
 				}
 			}
 		}
 
-		ArrayList<EObject> result = new ArrayList<EObject>();
 		for(URI uri : uris) {
 			EObject modelObject = getTransactionalEditingDomain().getResourceSet().getEObject(uri, true);
 			result.add(modelObject);
