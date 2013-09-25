@@ -17,6 +17,10 @@ unwished behaviors, related to the base implementation (GMF, Papyrus...)
 
 */
 
+Compartment[type="compartment_shape_display"]{
+	visible:false;
+}
+
 * {
  	lineColor:black; /* Avoid the gray line-colors from default GMF connectors */
  	fontName:"Segoe UI"; /* Default font used in Papyrus. It is different from the GMF default */
