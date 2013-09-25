@@ -69,7 +69,12 @@ public class CSSStylePostAction extends ModelPostAction {
 	}
 
 	public void save(Node parentNode) {
-		String value = editor.getValue();
+		String value;
+		if(editor == null) {
+			value = getValue();
+		} else {
+			value = editor.getValue();
+		}
 		Element cssElement = ((Element)parentNode).getOwnerDocument().createElement(CLASS_ELEMENT);
 		parentNode.appendChild(cssElement);
 		cssElement.setAttribute(CLASS_PROPERTY, value);
