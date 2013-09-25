@@ -178,6 +178,7 @@ public class PapyrusRepositoryManagerTest extends AbstractPapyrusCDOTest {
 
 		repo.addResourceSetDisposalApprover(new IResourceSetDisposalApprover() {
 
+			@Override
 			public DisposeAction disposalRequested(IPapyrusRepository repository, Collection<ResourceSet> resourceSets) {
 
 				return DisposeAction.NONE;
@@ -207,6 +208,7 @@ public class PapyrusRepositoryManagerTest extends AbstractPapyrusCDOTest {
 
 		repo.addResourceSetDisposalApprover(new IResourceSetDisposalApprover() {
 
+			@Override
 			public DisposeAction disposalRequested(IPapyrusRepository repository, Collection<ResourceSet> resourceSets) {
 
 				return DisposeAction.SAVE;
@@ -237,6 +239,7 @@ public class PapyrusRepositoryManagerTest extends AbstractPapyrusCDOTest {
 
 		repo.addResourceSetDisposalApprover(new IResourceSetDisposalApprover() {
 
+			@Override
 			public DisposeAction disposalRequested(IPapyrusRepository repository, Collection<ResourceSet> resourceSets) {
 
 				return DisposeAction.CLOSE;
@@ -270,13 +273,12 @@ public class PapyrusRepositoryManagerTest extends AbstractPapyrusCDOTest {
 
 	@Before
 	public void createRepositoryManager() throws Exception {
-
-		fixture = new PapyrusRepositoryManager();
+		// make sure that any saves are ephemeral
+		fixture = new PapyrusRepositoryManager(new StringStorage());
 	}
 
 	@After
 	public void disposeRepositoryManager() throws Exception {
-
 		if(fixture != null) {
 			fixture.dispose();
 			fixture = null;
@@ -379,6 +381,7 @@ public class PapyrusRepositoryManagerTest extends AbstractPapyrusCDOTest {
 			return result;
 		}
 
+		@Override
 		public void notifyEvent(IEvent event) {
 			if(event instanceof CDOTransactionFinishedEvent) {
 				committed = true;
@@ -390,11 +393,13 @@ public class PapyrusRepositoryManagerTest extends AbstractPapyrusCDOTest {
 
 		String storage = null;
 
+		@Override
 		public InputStream createInputStream() throws IOException {
 
 			return (storage == null ? null : new ByteArrayInputStream(storage.getBytes("UTF-8")));
 		}
 
+		@Override
 		public OutputStream createOutputStream() throws IOException {
 
 			return new ByteArrayOutputStream() {

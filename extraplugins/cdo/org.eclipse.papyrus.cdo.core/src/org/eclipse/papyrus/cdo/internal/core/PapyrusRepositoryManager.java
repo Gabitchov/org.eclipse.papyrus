@@ -71,6 +71,8 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		this.repositories = initializeRepositories();
 
 		activate();
+
+		container.putElement(PRODUCT_GROUP, MANAGER_FACTORY, null, this);
 	}
 
 	public void dispose() {

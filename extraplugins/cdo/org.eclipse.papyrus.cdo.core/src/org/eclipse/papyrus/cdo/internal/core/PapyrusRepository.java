@@ -250,7 +250,7 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 					String uuid = session.getRepositoryInfo().getUUID();
 					if(!Objects.equal(uuid, model.getUUID())) {
 						model.setUUID(uuid);
-						PapyrusRepositoryManager.INSTANCE.saveRepositories();
+						getManager().saveRepositories();
 					}
 				}
 			} finally {
@@ -258,17 +258,22 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 					if(oldCreds != null) {
 						container.putElement(CredentialsProviderFactory.PRODUCT_GROUP, "interactive", null, oldCreds); //$NON-NLS-1$
 					} else {
-						container/* IPluginContainer.INSTANCE */.removeElement(CredentialsProviderFactory.PRODUCT_GROUP, "interactive", null); //$NON-NLS-1$
+						container.removeElement(CredentialsProviderFactory.PRODUCT_GROUP, "interactive", null); //$NON-NLS-1$
 					}
 				}
 			}
 		}
 	}
 
+	protected final IInternalPapyrusRepositoryManager getManager() {
+		return (IInternalPapyrusRepositoryManager)container.getElement(IInternalPapyrusRepositoryManager.PRODUCT_GROUP, IInternalPapyrusRepositoryManager.MANAGER_FACTORY, null);
+	}
+
 	private ICredentialsProvider2 getCredentialsProvider() {
 		ICredentialsProvider2 result = null;
 
-		ICredentialsProviderFactory factory = PapyrusRepositoryManager.INSTANCE.getCredentialsProviderFactory();
+		ICredentialsProviderFactory factory = getManager().getCredentialsProviderFactory();
+
 		if(factory != null) {
 			result = factory.createCredentialsProvider(this);
 		}

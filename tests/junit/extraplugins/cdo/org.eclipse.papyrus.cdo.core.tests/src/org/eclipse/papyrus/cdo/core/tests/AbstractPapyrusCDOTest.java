@@ -109,6 +109,9 @@ public abstract class AbstractPapyrusCDOTest {
 			repository.disconnect();
 			PapyrusRepositoryManager.INSTANCE.removeRepository(repository);
 			repository = null;
+
+			// persist the removal (the new new repository saved its UUID when opened)
+			PapyrusRepositoryManager.INSTANCE.saveRepositories();
 		}
 
 		LifecycleUtil.deactivate(container);
