@@ -66,4 +66,9 @@ public class InterfaceRealizationEditPart extends ConnectionEditPart implements 
 	public InterfaceRealizationLinkFigure getPrimaryShape() {
 		return (InterfaceRealizationLinkFigure)getFigure();
 	}
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		super.refresh();
+	}
 }

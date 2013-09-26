@@ -1388,5 +1388,48 @@
        name="Operation">
  </page>
 </extension>
-
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.component.custom.handler.RectangleToLollipopHandler"
+         id="org.eclipse.papyrus.uml.diagram.component.custom.handler.RectancleToLollipop.command"
+         name="Display Interface as lollipop">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.component.custom.handler.LollipopToRectangleHandler"
+         id="org.eclipse.papyrus.uml.diagram.component.custom.handler.LollipopToRectancle.command"
+         name="Display Interface as Rectangle">
+   </command>
+</extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.format">
+      <command
+            commandId="org.eclipse.papyrus.uml.diagram.component.custom.handler.RectancleToLollipop.command"
+            icon="icons/obj16/lollipop.gif"
+            id="org.eclipse.papyrus.uml.diagram.component.custom.handler.RectancleToLollipop.popup"
+            label="Display Interface as lollipop"
+            style="push"
+            tooltip="Display Interface as lollipop">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.uml.diagram.component.custom.handler.LollipopToRectancle.command"
+            icon="icons/obj16/Interface.gif"
+            id="org.eclipse.papyrus.uml.diagram.component.custom.handler.LollipopToRectancle.popup"
+            label="Display Interface as Rectangle"
+            style="push"
+            tooltip="Display Interface as Rectangle">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+   </menuContribution>
+</extension>
 </plugin>
