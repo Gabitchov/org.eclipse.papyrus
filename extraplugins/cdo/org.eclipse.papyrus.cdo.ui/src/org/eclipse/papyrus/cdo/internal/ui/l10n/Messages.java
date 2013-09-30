@@ -80,6 +80,8 @@ public class Messages extends NLS {
 
 	public static String ConnectRepositoryAction_0;
 
+	public static String ConnectRepositoryAction_errorTitle;
+
 	public static String CreateCDOFragDlg_browseMessage;
 
 	public static String CreateCDOFragDlg_browseRepo;
@@ -181,6 +183,10 @@ public class Messages extends NLS {
 	public static String ModelReferencesPage_8;
 
 	public static String ModelReferencesPage_9;
+
+	public static String ModelRepositoriesView_commitSaveError;
+
+	public static String ModelRepositoriesView_commitSaveFailed;
 
 	public static String OpenPapyrusModelAction_0;
 

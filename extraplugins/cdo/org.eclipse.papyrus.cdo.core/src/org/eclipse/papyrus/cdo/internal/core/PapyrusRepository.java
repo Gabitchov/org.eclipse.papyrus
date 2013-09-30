@@ -19,7 +19,9 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.model.CDOPackageRegistry;
 import org.eclipse.emf.cdo.common.model.CDOPackageRegistryPopulator;
@@ -44,6 +46,7 @@ import org.eclipse.equinox.security.storage.EncodingUtils;
 import org.eclipse.equinox.security.storage.ISecurePreferences;
 import org.eclipse.equinox.security.storage.SecurePreferencesFactory;
 import org.eclipse.equinox.security.storage.StorageException;
+import org.eclipse.net4j.signal.RemoteException;
 import org.eclipse.net4j.util.container.Container;
 import org.eclipse.net4j.util.container.ContainerEvent;
 import org.eclipse.net4j.util.container.IContainerDelta;
@@ -52,14 +55,17 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.ILifecycle;
 import org.eclipse.net4j.util.lifecycle.LifecycleEventAdapter;
+import org.eclipse.net4j.util.lifecycle.LifecycleException;
 import org.eclipse.net4j.util.security.CredentialsProviderFactory;
 import org.eclipse.net4j.util.security.ICredentialsProvider2;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.core.CommitException;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryListener;
 import org.eclipse.papyrus.cdo.core.IResourceSetDisposalApprover;
 import org.eclipse.papyrus.cdo.core.PapyrusRepositoryEvent;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
 import org.eclipse.papyrus.cdo.core.resource.PapyrusCDOResourceFactory;
+import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.core.repositories.Repository;
 
 import com.google.common.base.Objects;
@@ -208,7 +214,9 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 	}
 
 	@Override
-	public void connect() {
+	public IStatus connect() {
+		IStatus result = Status.OK_STATUS;
+
 		if(!isConnected()) {
 			ICredentialsProvider2 creds = getCredentialsProvider();
 			Object oldCreds = null;
@@ -221,8 +229,15 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 				for(;;) {
 					try {
 						session = (CDOSession)container.getElement("org.eclipse.emf.cdo.sessions", "cdo", getURL()); //$NON-NLS-1$ //$NON-NLS-2$
+					} catch (LifecycleException e) {
+						// most probably we simply failed to connect to the repository
+						result = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.PapyrusRepository_connectFailed, e);
+					} catch (RemoteException e) {
+						// most probably we connected to the CDO server but the repository is not available
+						result = new Status(IStatus.ERROR, Activator.PLUGIN_ID, NLS.bind(Messages.PapyrusRepository_badRepo, getName()), e.getCause());
 					} catch (NotAuthenticatedException e) {
 						// user cancelled the credentials dialog. That's OK
+						result = Status.CANCEL_STATUS;
 						break;
 					} catch (SecurityException e) {
 						// wrong credentials. If the user stored them, purge and
@@ -263,6 +278,8 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 				}
 			}
 		}
+
+		return result;
 	}
 
 	protected final IInternalPapyrusRepositoryManager getManager() {

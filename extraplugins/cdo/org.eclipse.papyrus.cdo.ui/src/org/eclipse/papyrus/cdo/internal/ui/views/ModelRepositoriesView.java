@@ -42,6 +42,7 @@ import org.eclipse.papyrus.cdo.internal.ui.actions.RemoveRepositoryAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.RenameModelAction;
 import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDragAdapter;
 import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDropAdapter;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
@@ -270,9 +271,9 @@ public class ModelRepositoriesView extends ContainerView {
 							try {
 								trans.commit();
 							} catch (CommitException e) {
-								StatusAdapter adapter = new StatusAdapter(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to commit saved changes.", e));
+								StatusAdapter adapter = new StatusAdapter(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ModelRepositoriesView_commitSaveFailed, e));
 								adapter.setProperty(IStatusAdapterConstants.TIMESTAMP_PROPERTY, System.currentTimeMillis());
-								adapter.setProperty(IStatusAdapterConstants.TITLE_PROPERTY, "Save Problem");
+								adapter.setProperty(IStatusAdapterConstants.TITLE_PROPERTY, Messages.ModelRepositoriesView_commitSaveError);
 								StatusManager.getManager().handle(adapter);
 							}
 						}
