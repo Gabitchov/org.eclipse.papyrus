@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.component.custom.figure.edges;
 
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**this class has to option to display it:

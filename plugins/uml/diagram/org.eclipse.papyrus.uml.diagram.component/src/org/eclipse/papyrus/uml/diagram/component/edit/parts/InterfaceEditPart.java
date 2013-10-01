@@ -17,10 +17,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -31,7 +28,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
@@ -54,6 +50,7 @@ import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForEle
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes.LollipopInterfaceFigure;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
@@ -141,14 +138,14 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new InterfaceAsCercle();
+		return primaryShape = new LollipopInterfaceFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public InterfaceAsCercle getPrimaryShape() {
-		return (InterfaceAsCercle)primaryShape;
+	public LollipopInterfaceFigure getPrimaryShape() {
+		return (LollipopInterfaceFigure)primaryShape;
 	}
 
 	/**
@@ -172,18 +169,6 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public EditPolicy getPrimaryDragEditPolicy() {
-		EditPolicy result = super.getPrimaryDragEditPolicy();
-		if(result instanceof ResizableEditPolicy) {
-			ResizableEditPolicy ep = (ResizableEditPolicy)result;
-			ep.setResizeDirections(PositionConstants.NONE);
-		}
 		return result;
 	}
 
@@ -871,20 +856,6 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Constraint_3075);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class InterfaceAsCercle extends Ellipse {
-
-		/**
-		 * @generated
-		 */
-		public InterfaceAsCercle() {
-			this.setFill(false);
-			this.setForegroundColor(ColorConstants.black);
-		}
 	}
 
 	/**
