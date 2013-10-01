@@ -513,7 +513,8 @@
          </test>
       </with>
    </activeWhen></handler>
-<handler class= "org.eclipse.papyrus.uml.nattable.menu.handlers.ConnectorHandler" commandId="org.eclipse.papyrus.uml.service.types.ConnectorCreateCommand">
+     <!--desactivated because we need to be able to create Connector in some table -->>
+<!--handler class= "org.eclipse.papyrus.uml.nattable.menu.handlers.ConnectorHandler" commandId="org.eclipse.papyrus.uml.service.types.ConnectorCreateCommand">
    <activeWhen>
       <with
             variable="selection">
@@ -522,7 +523,7 @@
                value="true">
          </test>
       </with>
-   </activeWhen></handler>
+   </activeWhen></handler-->
 <handler class= "org.eclipse.papyrus.uml.nattable.menu.handlers.ConsiderIgnoreFragmentHandler" commandId="org.eclipse.papyrus.uml.service.types.ConsiderIgnoreFragmentCreateCommand">
    <activeWhen>
       <with
