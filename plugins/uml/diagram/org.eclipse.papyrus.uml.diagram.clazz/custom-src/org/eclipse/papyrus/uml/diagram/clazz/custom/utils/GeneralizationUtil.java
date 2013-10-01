@@ -39,10 +39,8 @@ public class GeneralizationUtil {
 	public boolean isConcernedByGeneralizationChanges(Generalization generalization, View view) {
 		boolean isConcerned = false;
 		NamedElement graphicalOwner = getGraphicalOwner(view);
-
 		// If the View element is owned by its graphical owner bypass the tests
 		if((Element)view.getElement().eContainer() != graphicalOwner) {
-
 			if(graphicalOwner instanceof Classifier) {
 				if(graphicalOwner != null && generalization != null) {
 					isConcerned = getAllGeneralization((Classifier)graphicalOwner, null).contains(generalization);
@@ -53,13 +51,10 @@ public class GeneralizationUtil {
 					isConcerned = getAllGeneralization((Classifier)type, null).contains(generalization);
 				}
 			}
-
 			if(isConcerned && existsAnotherInheritanceWay((Element)view.getElement(), generalization, graphicalOwner, null)) {
 				isConcerned = false;
 			}
-
 		}
-
 		return isConcerned;
 	}
 
@@ -76,9 +71,7 @@ public class GeneralizationUtil {
 	 *         <code>true</code> if another way exists to inherit of this element <code>false</code> if not
 	 */
 	protected boolean existsAnotherInheritanceWay(Element inheritedElement, Generalization forbiddenPath, NamedElement el, Set<Element> ignoredGeneralizations) {
-
 		Set<Generalization> generalizations = new HashSet<Generalization>();
-
 		Classifier _classifier = null;
 		if(el instanceof Property) {
 			Type type = ((Property)el).getType();
@@ -88,28 +81,21 @@ public class GeneralizationUtil {
 		} else if(el instanceof Classifier) {
 			_classifier = (Classifier)el;
 		}
-
 		// List Generalization that have already been tested to avoid loop issues
 		// in case of Generalization cycles (such cycle creation should be avoided)
 		Set<Element> ignoredGeneralizationsTmp = new HashSet<Element>();
 		if(ignoredGeneralizations != null) {
 			ignoredGeneralizationsTmp.addAll(ignoredGeneralizations);
 		}
-
 		if(el != null) {
 			generalizations.addAll(_classifier.getGeneralizations());
-
 			for(Generalization generalization : generalizations) {
 				if((generalization != forbiddenPath) && (!ignoredGeneralizationsTmp.contains(generalization))) {
-
 					Classifier general = generalization.getGeneral();
 					if(general != null) {
-
 						ignoredGeneralizationsTmp.add(generalization);
-
 						if(general.getOwnedMembers().contains(inheritedElement)) {
 							return true;
-
 						} else if(existsAnotherInheritanceWay(inheritedElement, forbiddenPath, general, ignoredGeneralizationsTmp)) {
 							return true;
 						}
@@ -149,20 +135,16 @@ public class GeneralizationUtil {
 	 *         all the generalization (direct and indirect) owning by the classifier
 	 */
 	protected Set<Generalization> getAllGeneralization(Classifier classifier, Set<Classifier> alreadyParsedClassifiers) {
-
 		Set<Generalization> generalizations = new HashSet<Generalization>();
-
 		// Keep track of already parsed Classifiers to avoid loop in case 
 		// of Generalization cycle.
 		Set<Classifier> parsedClassifiers = new HashSet<Classifier>();
 		if(alreadyParsedClassifiers != null) {
 			parsedClassifiers.addAll(alreadyParsedClassifiers);
 		}
-
 		Set<Generalization> generalizationsTmp = new HashSet<Generalization>();
 		if(classifier != null) {
 			generalizations.addAll(classifier.getGeneralizations());
-
 			if(!parsedClassifiers.contains(classifier)) {
 				parsedClassifiers.add(classifier);
 				for(Generalization generalization : generalizations) {
@@ -170,9 +152,7 @@ public class GeneralizationUtil {
 				}
 			}
 		}
-
 		generalizations.addAll(generalizationsTmp);
-
 		return generalizations;
 	}
 }

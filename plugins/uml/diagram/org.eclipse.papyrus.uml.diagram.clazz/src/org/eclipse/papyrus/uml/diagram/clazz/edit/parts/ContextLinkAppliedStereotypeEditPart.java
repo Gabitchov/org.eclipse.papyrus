@@ -40,6 +40,7 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
@@ -144,8 +145,8 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getText();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
 		} else {
@@ -157,8 +158,8 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setText(text);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
 		} else {
@@ -170,8 +171,8 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getIcon();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
 		} else {
@@ -183,8 +184,8 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setIcon(icon);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
 		} else {
@@ -195,7 +196,7 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	/**
 	 * @generated
 	 */
-	public void setLabel(org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -215,6 +216,13 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	 */
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setParser(IParser parser) {
+		this.parser = parser;
 	}
 
 	/**
@@ -392,11 +400,18 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
 			if(configuration == null || configuration.getLanguage() == null) {
+				// Create default edit manager
+				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if(configuration instanceof IPopupEditorConfiguration) {
+				if(configuration instanceof ICustomDirectEditorConfiguration) {
+					setManager(((ICustomDirectEditorConfiguration)configuration).createDirectEditManager(this));
+					setParser(((ICustomDirectEditorConfiguration)configuration).createParser(this.resolveSemanticElement()));
+					initializeDirectEditManager(theRequest);
+					return;
+				} else if(configuration instanceof IPopupEditorConfiguration) {
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
@@ -422,30 +437,37 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-			// initialize the direct edit manager
-			try {
-				getEditingDomain().runExclusive(new Runnable() {
-
-					public void run() {
-						if(isActive() && isEditable()) {
-							if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-								performDirectEdit(initialChar.charValue());
-							} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-								DirectEditRequest editRequest = (DirectEditRequest)theRequest;
-								performDirectEdit(editRequest.getLocation());
-							} else {
-								performDirectEdit();
-							}
-						}
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			initializeDirectEditManager(theRequest);
 			break;
 		default:
 			break;
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void initializeDirectEditManager(final Request request) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+
+				public void run() {
+					if(isActive() && isEditable()) {
+						if(request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character)request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else if((request instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest)request;
+							performDirectEdit(editRequest.getLocation());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -485,8 +507,8 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	 */
 	protected void refreshUnderline() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
@@ -502,8 +524,8 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	 */
 	protected void refreshStrikeThrough() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 

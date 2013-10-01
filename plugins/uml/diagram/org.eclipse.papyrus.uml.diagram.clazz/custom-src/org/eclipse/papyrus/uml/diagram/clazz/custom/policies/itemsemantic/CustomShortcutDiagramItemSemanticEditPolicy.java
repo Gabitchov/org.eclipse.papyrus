@@ -22,7 +22,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ShortCutDiagramItemSe
  * this is a specific item edit policy to deactivate the action remove from model
  * 
  */
-
 public class CustomShortcutDiagramItemSemanticEditPolicy extends ShortCutDiagramItemSemanticEditPolicy {
 
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {

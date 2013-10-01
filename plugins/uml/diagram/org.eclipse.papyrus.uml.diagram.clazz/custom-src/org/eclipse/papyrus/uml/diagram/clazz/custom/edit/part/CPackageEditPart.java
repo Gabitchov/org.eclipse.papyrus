@@ -36,7 +36,6 @@ public class CPackageEditPart extends PackageEditPart {
 	 * {@inheritDoc}
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
 	}
@@ -52,5 +51,4 @@ public class CPackageEditPart extends PackageEditPart {
 		}
 		return super.addFixedChild(childEditPart);
 	}
-
 }

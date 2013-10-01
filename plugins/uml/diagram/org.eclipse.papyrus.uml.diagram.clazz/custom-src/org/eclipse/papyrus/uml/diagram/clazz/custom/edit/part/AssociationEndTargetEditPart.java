@@ -21,7 +21,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationSourceNameEdi
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * The Class AssociationEndTargetEditPart.
  * Ensure the edition of ends in the diagram
@@ -52,7 +51,6 @@ public class AssociationEndTargetEditPart extends AssociationSourceNameEditPart 
 	 * 
 	 * @return
 	 */
-
 	public EObject resolveSemanticElement() {
 		return AssociationEndSourceLabelHelper.getInstance().getUMLElement(this);
 	}

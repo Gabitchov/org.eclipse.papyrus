@@ -15,8 +15,6 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.action;
 
 import org.eclipse.uml2.uml.AggregationKind;
 
-
-
 /**
  * set the association end shared
  */
@@ -29,5 +27,4 @@ public class SetSharedPropertyAction extends SetAggregationPropertyAction {
 		super();
 		aggregationKind = AggregationKind.SHARED_LITERAL;
 	}
-
 }

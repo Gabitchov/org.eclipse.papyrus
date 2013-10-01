@@ -57,7 +57,6 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		 * {@inheritDoc}
 		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
-
 		}
 
 		/**
@@ -66,7 +65,6 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		public void widgetSelected(SelectionEvent e) {
 			// add or remove the flag to the display Operation value (invert the current value)
 			operationValue = operationValue ^ style;
-
 			// refresh buttons at the end
 			refreshButtons();
 		}
@@ -82,12 +80,10 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		String elementName = "Operation";
 		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(177, 207, 229));
-
 		// Set the default for the gradient
 		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY), false);
 		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
-
 		// default for Operation label display
 		store.setDefault(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE, ICustomAppearence.DEFAULT_UML_OPERATION);
 	}
@@ -127,39 +123,32 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		Group group = new Group(parent, SWT.SHADOW_NONE);
 		group.setText("Label Display");
 		group.setLayout(new FormLayout());
-
 		FormData data;
-
 		displVisibility = createCheckButton(group, "Visibility", ICustomAppearence.DISP_VISIBILITY);
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.top = new FormAttachment(0, 0);
 		displVisibility.setLayoutData(data);
-
 		displName = createCheckButton(group, "Name", ICustomAppearence.DISP_NAME);
 		data = new FormData();
 		data.left = new FormAttachment(displVisibility, 85);
 		data.top = new FormAttachment(0, 0);
 		displName.setLayoutData(data);
-
 		displParamDirection = createCheckButton(group, "Parameter Direction", ICustomAppearence.DISP_PARAMETER_DIRECTION);
 		data = new FormData();
 		data.left = new FormAttachment(displName, 85);
 		data.top = new FormAttachment(0, 0);
 		displParamDirection.setLayoutData(data);
-
 		displModifiers = createCheckButton(group, "Modifiers", ICustomAppearence.DISP_MOFIFIERS);
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
 		displModifiers.setLayoutData(data);
-
 		displParameterType = createCheckButton(group, "Parameter Type", ICustomAppearence.DISP_PARAMETER_TYPE);
 		data = new FormData();
 		data.left = new FormAttachment(displModifiers, 85);
 		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
 		displParameterType.setLayoutData(data);
-
 	}
 
 	/**
@@ -168,10 +157,8 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 	@Override
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
-
 		// adds the label preferences checkboxes
 		createLabelPreferencesButtons(parent);
-
 		refreshButtons();
 	}
 
@@ -206,7 +193,6 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 	// protected String getLineColorPreferenceName() {
 	// return IPapyrusOperationPreferencesConstant.OPERATION_PREF_LINE_COLOR;
 	// }
-
 	/**
 	 * Load the default preferences of the fields contained in this page
 	 */
@@ -243,7 +229,6 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		// if (proper == 0) {
 		// displayValue = ICustomAppearence.DEFAULT_UML_OPERATION;
 		// }
-
 		displVisibility.setSelection((operationValue & ICustomAppearence.DISP_VISIBILITY) == ICustomAppearence.DISP_VISIBILITY);
 		displName.setSelection((operationValue & ICustomAppearence.DISP_NAME) == ICustomAppearence.DISP_NAME);
 		displParamDirection.setSelection((operationValue & ICustomAppearence.DISP_PARAMETER_DIRECTION) == ICustomAppearence.DISP_PARAMETER_DIRECTION);

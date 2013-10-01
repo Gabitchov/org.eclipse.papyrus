@@ -56,26 +56,20 @@ public class TemplateParameterParser implements IParser {
 	}
 
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-
 		ICommand command = UnexecutableCommand.INSTANCE;
 		if(element instanceof EObjectAdapter) {
 			final TemplateParameter templateParam = ((TemplateParameter)((EObjectAdapter)element).getRealObject());
 			if(newString.contains("<UNDEFINED>")) {
 				return UnexecutableCommand.INSTANCE;
 			}
-
-
 			if(templateParam.getParameteredElement() instanceof NamedElement) {
 				NamedElement namedElement = (NamedElement)templateParam.getParameteredElement();
 				String name = newString.substring(0, newString.indexOf(":"));
-
 				SetRequest request = new SetRequest(namedElement, UMLPackage.eINSTANCE.getNamedElement_Name(), name.trim());
 				command = new SetValueCommand(request);
 			}
 		}
 		return command;
-
-
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
@@ -89,17 +83,12 @@ public class TemplateParameterParser implements IParser {
 				NamedElement namedElement = (NamedElement)templateParam.getParameteredElement();
 				out = namedElement.getName() + ": " + namedElement.eClass().getName();
 			}
-
 			if(templateParam instanceof OperationTemplateParameter) {
 				if(templateParam.getParameteredElement() != null) {
 					Operation op = (Operation)(templateParam.getParameteredElement());
 					out = displayOperation(op);
-
 				}
-			}
-
-
-			else if(templateParam instanceof ClassifierTemplateParameter) {
+			} else if(templateParam instanceof ClassifierTemplateParameter) {
 				if(!((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().isEmpty()) {
 					out = out + ">";
 					for(int i = 0; i < ((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().size(); i++) {
@@ -108,7 +97,6 @@ public class TemplateParameterParser implements IParser {
 							out = out + ", ";
 						}
 					}
-
 				}
 			}
 			if(templateParam.getDefault() instanceof Operation) {
@@ -117,9 +105,7 @@ public class TemplateParameterParser implements IParser {
 				out = out + "=" + ((NamedElement)templateParam.getDefault()).getName();
 			}
 			return out;
-
 		}
-
 		return "<UNDEFINED>";
 	}
 
@@ -135,7 +121,6 @@ public class TemplateParameterParser implements IParser {
 		}
 		out = out + ")";
 		return out;
-
 	}
 
 	public boolean isAffectingEvent(Object event, int flags) {
@@ -145,6 +130,4 @@ public class TemplateParameterParser implements IParser {
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
-
-
 }

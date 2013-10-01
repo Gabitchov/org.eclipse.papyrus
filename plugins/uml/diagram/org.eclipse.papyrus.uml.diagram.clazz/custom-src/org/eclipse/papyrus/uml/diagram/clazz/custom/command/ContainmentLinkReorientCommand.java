@@ -78,7 +78,6 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 			throw new IllegalStateException();
 		}
 		oldEndVisualParent = ((View)oldEndView.eContainer()).getElement();
-
 		oldEnd = req.getOldRelationshipEnd();
 		newEnd = req.getNewRelationshipEnd();
 	}
@@ -170,12 +169,9 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 		EObject source = getOldTarget().getOwner();
 		EObject moveOldTargetTo = getOldTargetOwner();
 		EObject moveNewTargetTo = source;
-
 		ContainmentHelper helper = new ContainmentHelper(getEditingDomain());
-
 		helper.move(getOldTarget(), moveOldTargetTo);
 		helper.move(getNewTarget(), moveNewTargetTo);
-
 		deleteOldLinkEditPart();
 		return CommandResult.newOKCommandResult();
 	}
@@ -203,8 +199,6 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 		}
 		return true;
 	}
-
-
 
 	/**
 	 * Gets the old source.
@@ -250,5 +244,4 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	private EObject getOldTargetOwner() {
 		return oldEndVisualParent;
 	}
-
 }

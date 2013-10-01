@@ -73,7 +73,6 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 		EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name(), };
 		IParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
 		return parser;
-
 	}
 
 	/**
@@ -153,10 +152,8 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getAssociationName_6002Parser();
 		case AssociationTargetNameEditPart.VISUAL_ID:
 			return getAssociationTargetRole();
-
 		case AssociationSourceNameEditPart.VISUAL_ID:
 			return getAssociationSourceMultiplicity();
-
 		case AssociationBranchRoleEditPart.VISUAL_ID:
 			return getAssociationSourceRole();
 		case AssociationBranchMutliplicityEditPart.VISUAL_ID:
@@ -177,12 +174,10 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
-
 		case AppliedStereotypeElementImportEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypePackageImportEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
-
 		}
 		return super.getParser(visualID);
 	}

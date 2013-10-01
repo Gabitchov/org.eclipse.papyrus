@@ -34,5 +34,4 @@ public class ISRoleSourceDisplayEditPolicy extends InstanceSpecificationRoleDisp
 	protected Property getprefvalue(ArrayList<Property> array) {
 		return array.get(0);
 	}
-
 }

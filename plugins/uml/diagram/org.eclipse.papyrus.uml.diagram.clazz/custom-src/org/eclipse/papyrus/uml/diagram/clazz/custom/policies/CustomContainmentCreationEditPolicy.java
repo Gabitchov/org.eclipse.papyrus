@@ -40,7 +40,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
-
 /**
  * The Class CustomContainmentCreationEditPolicy.
  */
@@ -72,7 +71,6 @@ public class CustomContainmentCreationEditPolicy extends PapyrusCreationEditPoli
 			if(view == null) {
 				continue;
 			}
-
 			EObject semantic = ViewUtil.resolveSemanticElement(view);
 			if(semantic == null) {
 				cc.compose(getReparentViewCommand((IGraphicalEditPart)ep));
@@ -94,5 +92,4 @@ public class CustomContainmentCreationEditPolicy extends PapyrusCreationEditPoli
 	private boolean hasContainmentLink(View movedView) {
 		return ourCanHaveContainmentLinks.contains(UMLVisualIDRegistry.getVisualID(movedView));
 	}
-
 }

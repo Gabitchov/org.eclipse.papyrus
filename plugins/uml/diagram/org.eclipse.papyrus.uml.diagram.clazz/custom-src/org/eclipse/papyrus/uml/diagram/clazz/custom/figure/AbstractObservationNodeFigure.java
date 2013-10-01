@@ -11,7 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.clazz.custom.figure;
 
 import java.util.List;
@@ -49,10 +48,8 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 		 */
 		@Override
 		protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
-
 			int minimumWidth = 0;
 			int minimumHeight = 0;
-
 			// Adapt the container to the contents
 			for(int i = 0; i < container.getChildren().size(); i++) {
 				// we ignore the stereotype Label and the qualified name label
@@ -61,11 +58,9 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 				} else {
 					minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height + 2;
 					minimumWidth = minimumWidth + ((IFigure)container.getChildren().get(i)).getPreferredSize().width + 1;
-
 				}
 			}
 			return new Dimension(minimumWidth, minimumHeight);
-
 		}
 
 		/**
@@ -74,7 +69,6 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 		 */
 		public void layout(IFigure container) {
 			List<?> childrenList = container.getChildren();
-
 			for(int i = 0; i < container.getChildren().size(); i++) {
 				// stereotype and qualified name labels are not displayed
 				if(container.getChildren().get(i) instanceof Label) {
@@ -84,13 +78,10 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 				bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
 				if(i > 0) {
 					bound.y = container.getBounds().y + 2;
-
 					bound.x = container.getBounds().x + 2;
 				}
 				((IFigure)childrenList.get(i)).setBounds(bound);
-
 			}
-
 		}
 	}
 
@@ -103,16 +94,13 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 	 * Constructor
 	 */
 	public AbstractObservationNodeFigure() {
-
 		super();
-
 		this.iconLabel = new WrappingLabel("");
 		this.add(this.iconLabel);
 		ToolbarLayout toolbarLayout = new ToolbarLayout();
 		toolbarLayout.setSpacing(5);
 		toolbarLayout.setVertical(false);
 		this.setLayoutManager(new AbstractObservationLayoutManager());
-
 	}
 
 	/**
@@ -122,7 +110,6 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 	 */
 	public WrappingLabel getIconContainer() {
 		return iconLabel;
-
 	}
 
 	/**
@@ -132,7 +119,5 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 	 */
 	public void setIcon(Image image) {
 		getIconContainer().setIcon(image, 0);
-
 	}
-
 }

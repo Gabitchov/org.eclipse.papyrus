@@ -72,15 +72,12 @@ public class PropertyParser implements IParser {
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 		final Property property = ((Property)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
-
-
 		final TransactionalEditingDomain editingDomain;
 		try {
 			editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(property);
 		} catch (ServiceException ex) {
 			return null;
 		}
-
 		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Property", (List)null) {
 
 			@Override
@@ -99,7 +96,6 @@ public class PropertyParser implements IParser {
 					}
 				});
 				return CommandResult.newOKCommandResult();
-
 			}
 		};
 		return tc;

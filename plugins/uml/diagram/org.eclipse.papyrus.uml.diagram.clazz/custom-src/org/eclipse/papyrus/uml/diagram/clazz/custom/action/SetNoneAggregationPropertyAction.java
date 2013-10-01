@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.action;
 
 import org.eclipse.uml2.uml.AggregationKind;
 
-
 /**
  * Set the association end without aggragation
  */
@@ -28,5 +27,4 @@ public class SetNoneAggregationPropertyAction extends SetAggregationPropertyActi
 		super();
 		aggregationKind = AggregationKind.NONE_LITERAL;
 	}
-
 }

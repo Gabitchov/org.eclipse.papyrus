@@ -23,7 +23,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLModelingAssistantProvider;
 
-
 /**
  * this is a custom assistant for editpart
  * I overload possible shorcut that can be created

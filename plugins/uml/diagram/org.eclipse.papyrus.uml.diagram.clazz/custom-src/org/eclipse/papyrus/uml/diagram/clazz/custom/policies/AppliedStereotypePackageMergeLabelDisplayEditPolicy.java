@@ -30,5 +30,4 @@ public class AppliedStereotypePackageMergeLabelDisplayEditPolicy extends Applied
 	public AppliedStereotypePackageMergeLabelDisplayEditPolicy() {
 		super("Merge");//$NON-NLS-N$
 	}
-
 }

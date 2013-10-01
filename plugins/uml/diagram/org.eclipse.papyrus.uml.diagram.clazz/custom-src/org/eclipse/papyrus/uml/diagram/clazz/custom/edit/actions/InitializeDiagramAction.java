@@ -70,10 +70,8 @@ public class InitializeDiagramAction extends AbstractAction {
 		}
 		DiagramEditPart diagramEditPart = (DiagramEditPart)getHost();
 		final DiagramCommandStack commandStack = getHost().getDiagramEditDomain().getDiagramCommandStack();
-
 		// Run initialize at first (do not use compoundCommand)
 		commandStack.execute(new ICommandProxy(new InitializeDiagramCommand(diagramEditPart)), new NullProgressMonitor());
-
 		// Run ArrangeAll on the newly created graphical elements
 		// get the element list to arrange
 		List<?> editparts = diagramEditPart.getRoot().getChildren();

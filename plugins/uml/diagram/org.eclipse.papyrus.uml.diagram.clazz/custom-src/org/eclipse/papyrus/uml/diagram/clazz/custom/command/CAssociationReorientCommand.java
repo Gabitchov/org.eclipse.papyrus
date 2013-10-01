@@ -67,7 +67,6 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 		if(!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
 		}
-
 		//if getLink().getEndTypes().size() == 1 the source and the target is the same classe
 		if(getLink().getEndTypes().size() == 0) {
 			return false;
@@ -91,10 +90,6 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-
-
 		return AssociationHelper.reconnect(AssociationHelper.target, getLink(), getNewTarget());
-
 	}
-
 }

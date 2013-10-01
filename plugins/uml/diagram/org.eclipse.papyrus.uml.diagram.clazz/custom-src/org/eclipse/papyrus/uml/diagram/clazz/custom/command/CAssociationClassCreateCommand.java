@@ -65,7 +65,6 @@ public class CAssociationClassCreateCommand extends org.eclipse.papyrus.uml.diag
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if(source instanceof Type && target instanceof Type && container instanceof Package) {
-
 			AssociationClass newElement = (AssociationClass)AssociationClassHelper.createAssociationClass(getEditingDomain(), (Type)source, (Type)target, (Package)container);
 			((CreateElementRequest)getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);

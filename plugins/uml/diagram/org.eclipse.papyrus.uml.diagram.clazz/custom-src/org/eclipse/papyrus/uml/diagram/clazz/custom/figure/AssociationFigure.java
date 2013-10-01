@@ -25,7 +25,6 @@ import org.eclipse.swt.SWT;
 /**
  * this is the figure to display a association figure.
  */
-
 public class AssociationFigure extends UMLEdgeFigure {
 
 	/** the end of the association is an aggregation i.e. this a transparent diamond. */
@@ -83,37 +82,25 @@ public class AssociationFigure extends UMLEdgeFigure {
 	 */
 	protected void createContents() {
 		super.createContents();
-
 		fAssociationNameLabel = new WrappingLabel();
 		fAssociationNameLabel.setText("");
-
 		this.add(fAssociationNameLabel);
-
 		// fAppliedStereotypeAssociationLabel = new WrappingLabel();
 		// fAppliedStereotypeAssociationLabel.setText("");
 		//
 		// this.add(fAppliedStereotypeAssociationLabel);
-
 		fRoleSourceLabel = new WrappingLabel();
 		fRoleSourceLabel.setText("");
-
 		this.add(fRoleSourceLabel);
-
 		fMultiplicitySourceLabel = new WrappingLabel();
 		fMultiplicitySourceLabel.setText("");
-
 		this.add(fMultiplicitySourceLabel);
-
 		fRoleTargetLabel = new WrappingLabel();
 		fRoleTargetLabel.setText("");
-
 		this.add(fRoleTargetLabel);
-
 		fMultiplicityTargetLabel = new WrappingLabel();
 		fMultiplicityTargetLabel.setText("");
-
 		this.add(fMultiplicityTargetLabel);
-
 	}
 
 	/**
@@ -186,7 +173,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 		int aggregationValue = remain / aggregation;
 		remain = remain % aggregation;
 		int navigationValue = remain / navigable;
-
 		// the end association is contained by the association?
 		if(ownedValue == 1) {
 			// this is composite.
@@ -209,9 +195,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 			} else {
 				return getOwnedDecoration();
 			}
-		}
-
-		else {
+		} else {
 			// this is composite.
 			if(compositeValue == 1) {
 				if(navigationValue == 1) {
@@ -232,7 +216,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -341,7 +324,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-5, 2);
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, -1);
-
 		decoration.setScale(3, 2);
 		decoration.setTemplate(decorationPointList);
 		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
@@ -381,7 +363,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 		// decorationPointList.addPoint(-5, 2);
 		// decorationPointList.addPoint(-6, 1);
 		// decorationPointList.addPoint(-6, -1);
-
 		decoration.setScale(3, 2);
 		decoration.setTemplate(decorationPointList);
 		return decoration;
@@ -393,7 +374,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 	 * @return the owned decoration
 	 */
 	protected RotatableDecoration getOwnedDecoration() {
-
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
 		decorationPointList.addPoint(0, 1);
@@ -406,7 +386,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(0, -1);
 		decoration.setTemplate(decorationPointList);
 		decoration.setScale(1, 1);
-
 		return decoration;
 	}
 
@@ -448,7 +427,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-5, 2);
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, -1);
-
 		decoration.setScale(1, 0.75);
 		decoration.setTemplate(decorationPointList);
 		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
@@ -492,7 +470,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 		// decorationPointList.addPoint(-5, 2);
 		// decorationPointList.addPoint(-6, 1);
 		// decorationPointList.addPoint(-6, -1);
-
 		decoration.setScale(1, 0.75);
 		decoration.setTemplate(decorationPointList);
 		return decoration;
@@ -519,7 +496,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-4, -3);
 		decorationPointList.addPoint(-2, -3);
 		decorationPointList.addPoint(0, -1);
-
 		decoration.setScale(1, 1);
 		decoration.setTemplate(decorationPointList);
 		return decoration;
@@ -549,7 +525,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 	public void paintFigure(Graphics graphics) {
 		graphics.setAntialias(SWT.ON);
 		super.paintFigure(graphics);
-
 	}
 
 	/**
@@ -561,7 +536,6 @@ public class AssociationFigure extends UMLEdgeFigure {
 	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 */
 	public void setEnd(int sourceType, int targetType) {
-
 		this.setSourceDecoration(getDecoration(sourceType));
 		this.setTargetDecoration(getDecoration(targetType));
 	}

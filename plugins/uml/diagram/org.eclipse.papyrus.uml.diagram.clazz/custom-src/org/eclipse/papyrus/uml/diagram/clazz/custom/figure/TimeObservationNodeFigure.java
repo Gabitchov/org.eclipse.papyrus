@@ -11,7 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.clazz.custom.figure;
 
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -30,7 +29,5 @@ public class TimeObservationNodeFigure extends AbstractObservationNodeFigure {
 		} else {
 			setIcon(image);
 		}
-
 	}
-
 }

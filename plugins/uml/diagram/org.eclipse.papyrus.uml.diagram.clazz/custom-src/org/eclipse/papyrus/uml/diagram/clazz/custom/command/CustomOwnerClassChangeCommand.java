@@ -32,7 +32,6 @@ public class CustomOwnerClassChangeCommand extends AbstractTransactionalCommand 
 	public CustomOwnerClassChangeCommand(TransactionalEditingDomain domain, PackageableElement containedclassifier) {
 		super(domain, CUSTOMREMOVE_COMMAND, null);
 		classifier = containedclassifier;
-
 	}
 
 	@Override
@@ -54,5 +53,4 @@ public class CustomOwnerClassChangeCommand extends AbstractTransactionalCommand 
 		}
 		return CommandResult.newOKCommandResult();
 	}
-
 }

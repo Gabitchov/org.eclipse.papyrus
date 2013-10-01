@@ -83,7 +83,6 @@ public class CustomComponentItemSemanticEditPolicyCN extends ComponentItemSemant
 		if(UMLElementTypes.Association_4019 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}

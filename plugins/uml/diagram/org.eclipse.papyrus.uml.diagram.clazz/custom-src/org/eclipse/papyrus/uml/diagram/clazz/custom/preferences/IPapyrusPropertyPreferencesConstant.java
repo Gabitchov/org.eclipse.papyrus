@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.preferences;
 
-
 /**
  * Constants for {@link Property} preferences.
  */

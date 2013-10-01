@@ -33,9 +33,7 @@ public class CAssociationNodeEditPart extends AssociationNodeEditPart {
 	 * @return
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new AssociationNodeFigure(20, 20);
-
 		return result;
 	}
 }

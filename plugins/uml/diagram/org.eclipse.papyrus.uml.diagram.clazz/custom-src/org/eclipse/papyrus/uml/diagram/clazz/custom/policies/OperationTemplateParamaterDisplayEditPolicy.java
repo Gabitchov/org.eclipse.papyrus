@@ -29,7 +29,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamaterDisplayEditPolicy {
 
-
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -42,7 +41,6 @@ public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamat
 		}
 		hostSemanticElement = initSemanticElement();
 		if(hostSemanticElement != null) {
-
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
@@ -70,7 +68,6 @@ public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamat
 		}
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
-
 		if(hostSemanticElement != null) {
 			getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
 		}
@@ -96,9 +93,6 @@ public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamat
 				}
 			}
 		}
-
-
-
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
 	}
@@ -134,20 +128,13 @@ public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamat
 				} else {
 					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 				}
-
 			}
-
-
 		}
 		if(notification.getEventType() == Notification.REMOVE) {
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter())) {
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 			}
-
 		}
-
 		refreshDisplay();
 	}
-
-
 }

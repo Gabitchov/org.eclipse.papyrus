@@ -45,9 +45,7 @@ public class CustomContextLinkFigure extends DashedEdgeFigure {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
 		dec.setLineWidth(1);
-
 		this.setTargetDecoration(null);
 		this.setLineStyle(Graphics.LINE_DASHDOT); // line drawing style
 	}
-
 }
