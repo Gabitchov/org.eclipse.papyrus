@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.papyrus.RobotML.DataFlowDirectionKind;
 import org.eclipse.papyrus.RobotML.DataFlowPort;
 import org.eclipse.papyrus.RobotML.RobotMLPackage;
+import org.eclipse.uml2.uml.Image;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -212,6 +214,37 @@ public class DataFlowPortImpl extends PortImpl implements DataFlowPort {
 		result.append(bufferSize);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Images registered in Profile are :
+	 * 
+	 * 0 - FlowPort IN
+	 * 1 - FlowPort OUT
+	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @return the icon
+	 * @generated NOT
+	 */
+	public Image getIcon() {
+		Image ImageNotFound = null;
+		if(getBase_Port() != null) {
+			Stereotype st = getBase_Port().getAppliedStereotype("RobotML::DataFlowPort");
+			Image image = st.getIcons().get(0);
+
+			if(getDirection() == DataFlowDirectionKind.OUT) {
+				image = st.getIcons().get(1);
+			}else
+				if(getDirection() == DataFlowDirectionKind.INOUT) {
+					image = st.getIcons().get(2);
+				}
+
+			return image;
+		} else {
+			return ImageNotFound;
+		}
 	}
 
 } //DataFlowPortImpl

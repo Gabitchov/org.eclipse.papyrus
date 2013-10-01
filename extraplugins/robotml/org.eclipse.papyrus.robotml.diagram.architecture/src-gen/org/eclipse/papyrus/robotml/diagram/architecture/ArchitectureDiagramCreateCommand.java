@@ -37,15 +37,4 @@ public class ArchitectureDiagramCreateCommand extends AbstractPapyrusGmfCreateDi
 	protected PreferencesHint getPreferenceHint() {
 		return Activator.DIAGRAM_PREFERENCES_HINT;
 	}
-
-	public String getCreatedDiagramType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean isParentReassignable() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
