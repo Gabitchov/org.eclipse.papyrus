@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * @author vl222926
  * 
  */
-public class ReferenceValueSetter {
+public class ReferenceValueSetter implements IValueSetter {
 
 	/**
 	 * the feature to edit
@@ -42,7 +42,7 @@ public class ReferenceValueSetter {
 	/**
 	 * the new value
 	 */
-	private final Object value;
+	protected final Object value;
 
 	/**
 	 * if true, the current value will be erased
@@ -72,17 +72,17 @@ public class ReferenceValueSetter {
 	 *        the edited object
 	 * @param feature
 	 *        the edited feature
-	 * @param tutu
+	 * @param value
 	 *        the value for this feature.
 	 * @param eraseExistingMultiValueValue
 	 *        if <code>true</code>, in case of multivalued references, the current value will be replaced by {@code tutu} , if <code>false</code> we
 	 *        will add {@code tutu} to the current value
 	 *        , will be added to the current value
 	 */
-	public ReferenceValueSetter(final EObject editedObject, final EReference feature, final Object tutu, final boolean eraseExistingMultiValueValue) {
+	public ReferenceValueSetter(final EObject editedObject, final EReference feature, final Object value, final boolean eraseExistingMultiValueValue) {
 		this.eReference = feature;
 		this.editedObject = editedObject;
-		this.value = tutu;
+		this.value = value;
 		this.eraseExistingMultiValueValue = eraseExistingMultiValueValue;
 	}
 
@@ -92,7 +92,14 @@ public class ReferenceValueSetter {
 	 * @param domain
 	 *        the editing domain used to do the action
 	 */
+	@Deprecated
+	//deprecated since october 2013. use doSetValue instead of this method
 	public void setReferenceValue(final EditingDomain domain) {
+		doSetValue(domain);
+	}
+
+	@Override
+	public void doSetValue(final EditingDomain domain) {
 		if(this.eReference.isMany() && !this.eraseExistingMultiValueValue && this.value instanceof Collection<?>) {
 			Collection<?> collection = (Collection<?>)value;
 			AddCommand.create(domain, editedObject, eReference, collection).execute();

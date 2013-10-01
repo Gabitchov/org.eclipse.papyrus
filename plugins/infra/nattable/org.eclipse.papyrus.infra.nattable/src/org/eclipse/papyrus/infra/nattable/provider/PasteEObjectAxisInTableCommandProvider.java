@@ -54,8 +54,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
+import org.eclipse.papyrus.infra.nattable.paste.IValueSetter;
 import org.eclipse.papyrus.infra.nattable.paste.PastePostActionRegistry;
-import org.eclipse.papyrus.infra.nattable.paste.ReferenceValueSetter;
 import org.eclipse.papyrus.infra.nattable.utils.AxisConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
@@ -339,7 +339,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 		final EFactory eFactory = eClassToCreate.getEPackage().getEFactoryInstance();
 		//the map used to store useful information for the paste
 		sharedMap.put(Constants.PASTED_ELEMENT_CONTAINER_KEY, tableContext);
-		sharedMap.put(Constants.REFERENCES_TO_SET_KEY, new ArrayList<ReferenceValueSetter>());
+		sharedMap.put(Constants.REFERENCES_TO_SET_KEY, new ArrayList<IValueSetter>());
 		sharedMap.put(Constants.CELLS_TO_ADD_KEY, new ArrayList<Cell>());
 		//2.3 create the axis
 		int index = 1;
@@ -411,13 +411,13 @@ public class PasteEObjectAxisInTableCommandProvider {
 				//initialize lists
 				final Collection<String> postActions = getPostActions();
 				final List<Cell> cells = (List<Cell>)sharedMap.get(Constants.CELLS_TO_ADD_KEY);
-				final List<ReferenceValueSetter> referencesToSet = (List<ReferenceValueSetter>)sharedMap.get(Constants.REFERENCES_TO_SET_KEY);
+				final List<IValueSetter> valueToSet = (List<IValueSetter>)sharedMap.get(Constants.REFERENCES_TO_SET_KEY);
 
 				int nbTasks = 1; //to add created elements to the model
 				nbTasks = nbTasks + 1; //to add createds elements to the table
 				nbTasks = nbTasks + postActions.size();//to do post actions after the attachment to the model
 				nbTasks = nbTasks + 1; //to attach the cells to the model
-				nbTasks = nbTasks + referencesToSet.size(); //to set the references values
+				nbTasks = nbTasks + valueToSet.size(); //to set the references values
 
 				if(progressMonitor != null) {
 					if(progressMonitor.isCanceled()) {
@@ -472,9 +472,9 @@ public class PasteEObjectAxisInTableCommandProvider {
 
 				//we set the references
 
-				if(referencesToSet.size() > 0) {
-					for(final ReferenceValueSetter current : referencesToSet) {
-						current.setReferenceValue(contextEditingDomain);
+				if(valueToSet.size() > 0) {
+					for(final IValueSetter current : valueToSet) {
+						current.doSetValue(contextEditingDomain);
 						if(progressMonitor != null) {
 							if(progressMonitor.isCanceled()) {
 								return CommandResult.newCancelledCommandResult();
