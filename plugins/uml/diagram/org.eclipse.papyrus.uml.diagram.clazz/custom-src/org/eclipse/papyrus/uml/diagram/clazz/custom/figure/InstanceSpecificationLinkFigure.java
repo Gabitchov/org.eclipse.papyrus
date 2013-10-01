@@ -19,7 +19,6 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.figure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
-
 public class InstanceSpecificationLinkFigure extends UMLEdgeFigure {
 
 	protected WrappingLabel targetLabel;
@@ -39,7 +38,6 @@ public class InstanceSpecificationLinkFigure extends UMLEdgeFigure {
 		this.add(sourceLabel);
 	}
 
-
 	/**
 	 * 
 	 * @return the label of the target, never null
@@ -48,7 +46,6 @@ public class InstanceSpecificationLinkFigure extends UMLEdgeFigure {
 		return targetLabel;
 	}
 
-
 	/**
 	 * 
 	 * @return return the source of the label, never null
@@ -56,5 +53,4 @@ public class InstanceSpecificationLinkFigure extends UMLEdgeFigure {
 	public WrappingLabel getSourceLabel() {
 		return sourceLabel;
 	}
-
 }

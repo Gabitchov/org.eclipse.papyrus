@@ -32,8 +32,6 @@ import org.eclipse.uml2.uml.Property;
 
 public class GraphicalAssociationBranchViewCommand extends CommonDeferredCreateConnectionViewCommand {
 
-
-
 	private Object associationEndWrapper;
 
 	/**
@@ -62,8 +60,6 @@ public class GraphicalAssociationBranchViewCommand extends CommonDeferredCreateC
 		if(associationEnd != null && associationEnd instanceof Property) {
 			MultiAssociationHelper.setSemanticBranchEnd(view, (Property)associationEnd);
 		}
-
 		return commandResult;
 	}
-
 }

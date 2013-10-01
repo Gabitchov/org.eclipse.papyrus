@@ -70,7 +70,6 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 		View view = (View)getHost().getModel();
 		getDiagramEventBroker().removeNotificationListener(view, this);
 		getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
-
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
 	}
@@ -126,13 +125,10 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 				String elementID = EMFCoreUtil.getProxyID(((GeneralizationSetEditPart)getHost()).resolveSemanticElement());
 				List<EditPart> editpartList = ((DiagramGraphicalViewer)(getHost().getViewer())).findEditPartsForElement(elementID, GeneralizationSetEditPart.class);
 				if(editpartList.size() > 1 && editpartList.indexOf(getHost()) > 0) {
-
 					try {
-
 						((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
 
 							public void run() {
-
 								Display.getCurrent().asyncExec(new Runnable() {
 
 									public void run() {
@@ -146,7 +142,6 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 								});
 							}
 						});
-
 					} catch (Exception e) {
 						Activator.log.error(e);
 					}
@@ -154,13 +149,10 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 			}
 		}
 		if(notification.getNotifier() instanceof RelativeBendpoints) {
-
 			try {
-
 				((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
 
 					public void run() {
-
 						Display.getCurrent().asyncExec(new Runnable() {
 
 							public void run() {
@@ -184,12 +176,9 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 						});
 					}
 				});
-
 			} catch (Exception e) {
 				Activator.log.error(e);
 			}
-
 		}
 	}
-
 }

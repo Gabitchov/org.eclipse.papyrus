@@ -79,7 +79,6 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 				return false;
 			}
 		}
-
 		Element source = getSourceElement();
 		Element target = getTargetElement();
 		if(source != null && target != null) {
@@ -95,10 +94,8 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
-
 		Map epRegistry = viewer.getEditPartRegistry();
 		IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(targetViewAdapter.getAdapter(View.class));
-
 		IGraphicalEditPart sourceContainmentCircleEP = getSourceContainmentCircleEP(epRegistry);
 		if(sourceContainmentCircleEP == null) {
 			return null;
@@ -107,9 +104,7 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 		View sourceView = (View)sourceContainmentCircleEP.getParent().getAdapter(View.class);
 		PackageableElement targetElement = (PackageableElement)targetView.getElement();
 		PackageableElement sourceElement = (PackageableElement)sourceView.getElement();
-
 		EditPart sourceEP = sourceContainmentCircleEP.getParent();
-
 		//only top level classes can serve as a source
 		//		if(sourceEP instanceof ClassEdiart) {
 		if(sourceElement instanceof org.eclipse.uml2.uml.Class) {
@@ -126,7 +121,6 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 	}
 
 	private boolean containsLoop(Element sourceElement, Element targetElement) {
-
 		if(sourceElement.equals(targetElement)) {
 			return true;
 		}

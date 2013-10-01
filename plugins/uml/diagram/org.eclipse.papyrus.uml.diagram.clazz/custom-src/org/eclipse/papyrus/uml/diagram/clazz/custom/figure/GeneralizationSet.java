@@ -40,5 +40,4 @@ public class GeneralizationSet extends DashedEdgeFigure {
 	public WrappingLabel getConstraintLabel() {
 		return constraintLabel;
 	}
-
 }

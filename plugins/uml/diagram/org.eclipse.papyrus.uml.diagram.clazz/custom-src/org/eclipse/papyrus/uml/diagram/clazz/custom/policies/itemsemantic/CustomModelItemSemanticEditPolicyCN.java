@@ -37,7 +37,6 @@ public class CustomModelItemSemanticEditPolicyCN extends ModelItemSemanticEditPo
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
-
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
 		case DependencyBranchEditPart.VISUAL_ID:

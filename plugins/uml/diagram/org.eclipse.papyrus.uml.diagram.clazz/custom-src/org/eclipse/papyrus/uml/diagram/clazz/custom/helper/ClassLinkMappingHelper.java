@@ -77,7 +77,6 @@ public class ClassLinkMappingHelper implements ILinkMappingHelper {
 				ArrayList result = new ArrayList();
 				result.add(object.getImplementingClassifier());
 				return result;
-
 			};
 
 			public java.util.Collection<?> caseProfileApplication(org.eclipse.uml2.uml.ProfileApplication object) {
@@ -91,7 +90,6 @@ public class ClassLinkMappingHelper implements ILinkMappingHelper {
 				result.add(object.getBoundElement());
 				return result;
 			};
-
 		});
 	}
 
@@ -132,7 +130,6 @@ public class ClassLinkMappingHelper implements ILinkMappingHelper {
 				result.add(object.getSignature().getOwner());
 				return result;
 			};
-
 		});
 	}
 }

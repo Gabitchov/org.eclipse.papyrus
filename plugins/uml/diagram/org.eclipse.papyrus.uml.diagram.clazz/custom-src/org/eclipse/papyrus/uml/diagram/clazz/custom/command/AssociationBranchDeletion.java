@@ -62,23 +62,16 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 	 * {@inheritDoc}
 	 */
 	public void run(IAction action) {
-
 		CompoundCommand command = new CompoundCommand();
 		Association association = null;
 		TransactionalEditingDomain domain = selectedElement.getEditingDomain();
 		GraphicalEditPart associationNodeEditPart = null;
-
 		// 1. Semantic deletion
 		GraphicalEditPart branchSource = (GraphicalEditPart)selectedElement.getSource();
-
-
 		// target is the association end of the association branch
 		association = (Association)branchSource.resolveSemanticElement();
 		associationNodeEditPart = branchSource;
-
 		Property associationEndToRemove = MultiAssociationHelper.getPropertyToListen((Edge)selectedElement.getModel(), association);
-
-
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(associationEndToRemove);
 		if(provider != null) {
 			DestroyElementRequest destroyRequest = new DestroyElementRequest(associationEndToRemove, false);
@@ -88,13 +81,9 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 				command.add(new ICommandProxy(deleteCommand));
 			}
 		}
-
-
-
 		// 2. graphical deletion of the branch
 		View associationBranchView = selectedElement.getNotationView();
 		command.add(new ICommandProxy(new DeleteCommand(domain, associationBranchView)));
-
 		// 3. test if it exists more than 2 branches
 		int branchNumber = associationNodeEditPart.getSourceConnections().size() + associationNodeEditPart.getTargetConnections().size();
 		if(branchNumber == 3) {
@@ -105,21 +94,18 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 			// dependency
 			ArrayList<EditPart> sourceList = new ArrayList<EditPart>();
 			ArrayList<EditPart> targetList = new ArrayList<EditPart>();
-
 			sourceList.addAll(associationNodeEditPart.getSourceConnections());
 			targetList.addAll(associationNodeEditPart.getTargetConnections());
 			sourceList.remove(selectedElement);
 			targetList.remove(selectedElement);
 			PreferencesHint preferencesHint = ((GraphicalEditPart)((ConnectionEditPart)(sourceList.get(0))).getTarget()).getDiagramPreferencesHint();
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4001, ((IHintedType)UMLElementTypes.Association_4001).getSemanticHint(), preferencesHint);
-
 			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType)UMLElementTypes.Association_4001).getSemanticHint(), new SemanticAdapter(null, (((ConnectionEditPart)(sourceList.get(0))).getTarget()).getModel()), new SemanticAdapter(null, (((ConnectionEditPart)(sourceList.get(1))).getTarget()).getModel()), sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
 			binaryCommand.setElement(association);
 			command.add(new ICommandProxy(binaryCommand));
 		}
 		// 6.command Execution
 		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-
 	}
 
 	/**
@@ -141,6 +127,5 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
-
 	}
 }

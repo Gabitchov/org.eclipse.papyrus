@@ -41,37 +41,28 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 
 	@Override
 	protected ICommand getBeforeReorientRelationshipCommand(ReorientRelationshipRequest request) {
-
 		// The list of member views becoming inconsistent after re-orient that should be deleted.
 		Set<View> viewsToDestroy = new HashSet<View>();
-
 		if(request.getRelationship() instanceof Generalization) {
 			viewsToDestroy.addAll(getMemberViewsToDestroy((Generalization)request.getRelationship()));
 		}
-
 		//return the command to destroy all these views
 		if(!viewsToDestroy.isEmpty()) {
-
 			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getRelationship(), false);
 			ddr.setClientContext(request.getClientContext());
 			ddr.addParameters(request.getParameters());
 			return ddr.getDestroyDependentsCommand(viewsToDestroy);
-
 		}
 		return null;
 	}
 
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
-
 		EObject destructee = request.getElementToDestroy();
-
 		Set<View> viewsToDestroy = new HashSet<View>();
-
 		if(destructee instanceof Generalization) {
 			viewsToDestroy = getMemberViewsToDestroy((Generalization)destructee);
 		}
-
 		//return the command to destroy all these views
 		if(!viewsToDestroy.isEmpty()) {
 			return request.getDestroyDependentsCommand(viewsToDestroy);
@@ -89,18 +80,15 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 	 */
 	protected Set<View> getMemberViewsToDestroy(Generalization generalization) {
 		Set<View> viewsToDestroy = new HashSet<View>();
-
 		Classifier general = generalization.getGeneral();
 		if(general != null) {
 			// Parse members
 			EList<NamedElement> members = general.getMembers();
 			for(NamedElement member : members) {
-
 				// Find Views in Composite Structure Diagram that are referencing current member
 				Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(member, ModelEditPart.MODEL_ID).iterator();
 				while(viewIt.hasNext()) {
 					View view = viewIt.next();
-
 					// Test if current view (member) is concerned by the deletion (re-orientation) of the generalization
 					GeneralizationUtil util = new GeneralizationUtil();
 					if(util.isConcernedByGeneralizationChanges(generalization, view)) {
@@ -109,7 +97,6 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 				}
 			}
 		}
-
 		return viewsToDestroy;
 	}
 }

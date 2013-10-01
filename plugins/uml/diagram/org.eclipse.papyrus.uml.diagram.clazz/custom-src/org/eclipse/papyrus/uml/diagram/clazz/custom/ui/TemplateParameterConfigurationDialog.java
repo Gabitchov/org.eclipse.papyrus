@@ -47,7 +47,6 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 	/** The not wanted. */
 	protected List<EClass> notWanted = null;
 
-
 	/**
 	 * Gets the parameterable element.
 	 * 
@@ -56,7 +55,6 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 	public ParameterableElement getParameterableElement() {
 		return parameterableElement;
 	}
-
 
 	/**
 	 * Gets the defaultparameterable element.
@@ -116,7 +114,6 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 	 * @see org.eclipse.papyrus.uml.diagram.clazz.custom.ui.AbstractTemplateParameterConfigurationDialog#createContents()
 	 * 
 	 */
-
 	@Override
 	protected void createContents() {
 		// TODO Auto-generated method stub
@@ -127,7 +124,6 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 		getChoosePararameteredElementButton().addMouseListener(new MouseListener() {
 
 			public void mouseUp(MouseEvent e) {
-
 				ElementChooseDialog elementChoose = new ElementChooseDialog(new Shell(), SWT.None, templatesignature.getTemplate(), eclass, notWanted);
 				if(elementChoose.open() != null) {
 					parameterableElement = ((ParameterableElement)elementChoose.getSelectedElement());
@@ -135,8 +131,6 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 					getParameteredElementContent().setText(labelProvider.getText(parameterableElement));
 					getParameteredElementContent().setImage(labelProvider.getImage(parameterableElement));
 				}
-
-
 			}
 
 			public void mouseDown(MouseEvent e) {
@@ -146,7 +140,6 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 			}
 		});
 		getChooseDefaultParameterButton().addMouseListener(new MouseListener() {
-
 
 			public void mouseUp(MouseEvent e) {
 				if(parameterableElement != null) {

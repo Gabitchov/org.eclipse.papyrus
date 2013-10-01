@@ -34,7 +34,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
  * this the layout used to replace layout in the generated code
  * 
  */
-
 public class ShapeNamedElementLayoutEditPolicy extends LayoutEditPolicy {
 
 	/**
@@ -79,6 +78,4 @@ public class ShapeNamedElementLayoutEditPolicy extends LayoutEditPolicy {
 	protected Command getCreateCommand(CreateRequest request) {
 		return null;
 	}
-
-
 }

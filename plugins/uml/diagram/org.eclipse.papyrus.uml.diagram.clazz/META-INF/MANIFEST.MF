@@ -68,10 +68,7 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.gef
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagra
- mEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.clazz;singleton:=
- true
-
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.clazz; singleton:=true

@@ -23,7 +23,6 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Slot;
 
-
 public class RoleInstanceSpecificationLinkSourceParser implements IParser {
 
 	public String getEditString(IAdaptable element, int flags) {
@@ -33,8 +32,6 @@ public class RoleInstanceSpecificationLinkSourceParser implements IParser {
 				Association association = (Association)instanceSpecification.getClassifiers().get(0);
 				Slot slotSource = instanceSpecification.getSlots().get(0);
 				return slotSource.getValues().get(0).getType().getName();
-
-
 			}
 		}
 		return "<UNSPECIFIED>";
@@ -71,5 +68,4 @@ public class RoleInstanceSpecificationLinkSourceParser implements IParser {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

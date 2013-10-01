@@ -116,10 +116,8 @@ public class GeneralizationSetHelper extends ElementHelper {
 					ageneralizationSet = ageneralizationSetList.get(selectedButtonIndex);
 				}
 				((Shell)abuttonOk.getParent()).close();
-
 			}
 		}
-
 	}
 
 	protected static final String WOULD_YOU_LIKE_TO_CREATE_A_NEW_GENERALIZATION = "Would you like to create a new Generalization?";
@@ -150,7 +148,6 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * @return the generalization set
 	 */
 	public GeneralizationSet createGeneralizationSet(Generalization source, Generalization target, org.eclipse.uml2.uml.Package container) {
-
 		final ArrayList<GeneralizationSet> generalizationSetList = new ArrayList<GeneralizationSet>(source.getGeneralizationSets());
 		Iterator<GeneralizationSet> iterator = target.getGeneralizationSets().iterator();
 		while(iterator.hasNext()) {
@@ -166,7 +163,6 @@ public class GeneralizationSetHelper extends ElementHelper {
 			generalizationSettoCreate = UMLFactory.eINSTANCE.createGeneralizationSet();
 			generalizationSettoCreate.setName("GeneralizationSet_" + source.getSpecific().getName() + "_" + target.getSpecific().getName());
 			container.getPackagedElements().add(generalizationSettoCreate);
-
 		}
 		if(!generalizationSettoCreate.getGeneralizations().contains(source)) {
 			generalizationSettoCreate.getGeneralizations().add(source);
@@ -241,12 +237,9 @@ public class GeneralizationSetHelper extends ElementHelper {
 	public Command getReconnectSourceCommand(ReconnectRequest request, INodeEditPart node) {
 		// System.err.println("custom reconnection for GeneralizationSet source");
 		// System.err.println("node--> " + node);
-
 		if(node == null)
 			return null;
-
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-
 		ConnectionAnchor sourceAnchor = node.getSourceConnectionAnchor(request);
 		// System.err.println("sourceAnchor--> " + sourceAnchor.getReferencePoint());
 		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
@@ -255,11 +248,9 @@ public class GeneralizationSetHelper extends ElementHelper {
 		SetConnectionAnchorsCommand scaCommand = new SetConnectionAnchorsCommand(editingDomain, StringStatics.BLANK);
 		scaCommand.setEdgeAdaptor(new EObjectAdapter((View)request.getConnectionEditPart().getModel()));
 		scaCommand.setNewSourceTerminal(node.mapConnectionAnchorToTerminal(sourceAnchor));
-
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_SetConnectionEndsCommand_Source);
 		cc.compose(sceCommand);
 		cc.compose(scaCommand);
-
 		// look for all Generalization set connected to the source location that reference the same
 		// generalizationSet
 		ArrayList linkList = new ArrayList();
@@ -289,7 +280,6 @@ public class GeneralizationSetHelper extends ElementHelper {
 			cc.compose(scaCommandbis);
 		}
 		return new ICommandProxy(cc);
-
 	}
 
 	/**
@@ -302,11 +292,8 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 *        the editing domain
 	 */
 	private void launchDialog(final ArrayList<GeneralizationSet> generalizationSetList, TransactionalEditingDomain editingDomain) {
-
 		// Thread myThread = new Thread(new Runnable() {
-
 		// public void run() {
-
 		Display.getDefault().syncExec(new Runnable() {
 
 			public void run() {
@@ -318,7 +305,6 @@ public class GeneralizationSetHelper extends ElementHelper {
 				gridLayout.verticalSpacing = 8;
 				dialog.setLayout(gridLayout);
 				dialog.setText("GeneralizationSet Selection");
-
 				// Line1: Proposition of a new GeneralizationSet
 				Label text = new Label(dialog, SWT.CENTER);
 				text.setText(WOULD_YOU_LIKE_TO_CREATE_A_NEW_GENERALIZATION);
@@ -326,13 +312,11 @@ public class GeneralizationSetHelper extends ElementHelper {
 				GridData gridData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 				gridData.horizontalSpan = 1;
 				text.setLayoutData(gridData);
-
 				radios[0] = new Button(dialog, SWT.RADIO);
 				radios[0].setBackground(ColorConstants.white);
 				gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
 				gridData.horizontalSpan = 1;
 				radios[0].setLayoutData(gridData);
-
 				// Line2:
 				text = new Label(dialog, SWT.CENTER);
 				text.setBackground(ColorConstants.white);
@@ -340,30 +324,23 @@ public class GeneralizationSetHelper extends ElementHelper {
 				gridData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 				gridData.horizontalSpan = 1;
 				text.setLayoutData(gridData);
-
 				radios[1] = new Button(dialog, SWT.RADIO);
 				radios[1].setBackground(ColorConstants.white);
 				gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
 				gridData.horizontalSpan = 1;
 				radios[1].setLayoutData(gridData);
-
 				// Line3..X: the combo
-
 				final List list = new List(dialog, SWT.MULTI | SWT.BORDER);
-
 				gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
 				gridData.horizontalSpan = 2;
 				list.setLayoutData(gridData);
 				for(int i = 0; i < generalizationSetList.size(); i++) {
-
 					if(generalizationSetList.get(i).getLabel() != null) {
 						list.add(generalizationSetList.get(i).getLabel());
 					} else {
 						list.add("GeneralizationSet" + i);
 					}
-
 				}
-
 				radios[0].addSelectionListener(new SelectionListener() {
 
 					public void widgetDefaultSelected(SelectionEvent e) {
@@ -381,7 +358,6 @@ public class GeneralizationSetHelper extends ElementHelper {
 				gridData.horizontalAlignment = GridData.END;
 				buttonok.setLayoutData(gridData);
 				buttonok.setText("  OK  ");
-
 				// button Cancel
 				Button cancel = new Button(dialog, SWT.PUSH);
 				gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
@@ -389,7 +365,6 @@ public class GeneralizationSetHelper extends ElementHelper {
 				gridData.horizontalAlignment = GridData.END;
 				cancel.setLayoutData(gridData);
 				cancel.setText("Cancel");
-
 				// listener of button
 				DialogListener listener = new DialogListener(generalizationSetList, list, buttonok);
 				buttonok.addListener(SWT.Selection, listener);
@@ -401,7 +376,6 @@ public class GeneralizationSetHelper extends ElementHelper {
 						display.sleep();
 				}
 				generalizationSettoCreate = listener.getResult();
-
 			}
 		});
 	}

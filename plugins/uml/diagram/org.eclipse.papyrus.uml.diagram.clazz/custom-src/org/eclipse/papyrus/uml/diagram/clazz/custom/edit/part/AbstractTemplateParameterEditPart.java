@@ -51,7 +51,6 @@ public class AbstractTemplateParameterEditPart extends UMLCompartmentEditPart {
 	/**
 	 * {@inheritDoc}
 	 */
-
 	public void deactivate() {
 		removeOwnedParamListeners();
 		super.deactivate();

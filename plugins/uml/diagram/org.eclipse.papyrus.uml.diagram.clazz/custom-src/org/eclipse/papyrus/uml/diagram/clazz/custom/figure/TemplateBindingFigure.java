@@ -28,8 +28,6 @@ public class TemplateBindingFigure extends UMLEdgeFigure {
 
 	protected BindingSubstitutionFigure bindingSubstitutionFigure;
 
-
-
 	public TemplateBindingFigure() {
 		setAntialias(SWT.ON);
 	}
@@ -46,14 +44,11 @@ public class TemplateBindingFigure extends UMLEdgeFigure {
 		dec.setBackgroundColor(ColorConstants.white);
 		dec.setLineWidth(1);
 		setTargetDecoration(dec); // arrow at target endpoint
-
 		setForegroundColor(ColorConstants.black);
-
 		this.setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
 		bindingSubstitutionFigure = new BindingSubstitutionFigure();
 		this.add(bindingSubstitutionFigure);
 	}
-
 
 	/**
 	 * 
@@ -62,7 +57,4 @@ public class TemplateBindingFigure extends UMLEdgeFigure {
 	public BindingSubstitutionFigure getBindingSubstitutionFigure() {
 		return bindingSubstitutionFigure;
 	}
-
-
-
 }

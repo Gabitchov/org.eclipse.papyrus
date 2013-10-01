@@ -81,7 +81,6 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 		this.viewAdapter = viewAdapter;
 		this.viewer = viewer;
 		this.req = req;
-
 	}
 
 	@Override
@@ -104,11 +103,9 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 						return true;
 					}
 				}
-
 			}
 			return false;
 		}
-
 		//source and target != null 
 		//look for if it exist at least a common association between classifiers referenced between these instances
 		if(req.getSourceEditPart() != null && req.getTargetEditPart() != null) {
@@ -129,7 +126,6 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 				Classifier classifier = (Classifier)iterator.next();
 				assoSource.addAll(classifier.getAssociations());
 			}
-
 			HashSet<Association> assoTarget = new HashSet<Association>();
 			iterator = target.getClassifiers().iterator();
 			while(iterator.hasNext()) {
@@ -139,11 +135,9 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 			assoSource.retainAll(assoTarget);
 			commonAssociations = new HashSet<Association>();
 			commonAssociations.addAll(assoSource);
-
 			return (commonAssociations.size() > 0);
 		}
 		return false;
-
 	}
 
 	@Override
@@ -152,16 +146,13 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 		AssociationSelectionDialog associationSelectionDialog;
 		Association selectedAssociation = null;
 		if(source.getClassifiers().size() > 0 && target.getClassifiers().size() > 0) {
-
 			//look for the good association
 			associationSelectionDialog = new AssociationSelectionDialog(new Shell(), SWT.NATIVE, commonAssociations);
 			associationSelectionDialog.open();
 			selectedAssociation = associationSelectionDialog.getSelectedAssociation();
-
 			if(view != null && view.eContainer() != null) {
 				View parent = (View)view.eContainer();
 				InstanceSpecification instanceSpecification = org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createInstanceSpecification();
-
 				if(parent.getElement() instanceof Package) {
 					((Package)parent.getElement()).getPackagedElements().add(instanceSpecification);
 				}
@@ -186,7 +177,6 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 							associateValue(source, slot, property.getType());
 						} else {
 							associateValue(target, slot, property.getType());
-
 						}
 					}
 				}

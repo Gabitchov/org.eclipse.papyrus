@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.action;
 
 import org.eclipse.uml2.uml.AggregationKind;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The the association end composite
@@ -29,5 +28,4 @@ public class SetCompositePropertyAction extends SetAggregationPropertyAction {
 		super();
 		aggregationKind = AggregationKind.COMPOSITE_LITERAL;
 	}
-
 }

@@ -46,13 +46,10 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
-
-
 /**
  * The Class ClazzCompartmentCreationEditPolicy overload the creation editpolicy in order to manage correctly the drop of a class into a class
  */
 public class NestedClazzCompartmentCreationEditPolicy extends PapyrusCreationEditPolicy {
-
 
 	/**
 	 * 
@@ -61,28 +58,22 @@ public class NestedClazzCompartmentCreationEditPolicy extends PapyrusCreationEdi
 	 * @param gep
 	 * @return
 	 */
-
 	protected ICommand getReparentCommand(IGraphicalEditPart gep) {
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 		View container = (View)getHost().getModel();
 		EObject context = ViewUtil.resolveSemanticElement(container);
 		View view = (View)gep.getModel();
 		EObject element = ViewUtil.resolveSemanticElement(view);
-
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-
 		// graphical Deletion
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		cc.compose(new CommandProxy(gep.getCommand(deleteViewRequest)));
-
 		// semantic reparent
 		if(element != null) {
 			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(new MoveRequest(editingDomain, context, element)));
-
 			if(moveSemanticCmd == null) {
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 			}
-
 			cc.compose(new CommandProxy(moveSemanticCmd));
 		}
 		// drop of the object
@@ -103,21 +94,13 @@ public class NestedClazzCompartmentCreationEditPolicy extends PapyrusCreationEdi
 	protected Command getCreateCommand(CreateViewRequest request) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
-
 		Iterator descriptors = request.getViewDescriptors().iterator();
-
 		while(descriptors.hasNext()) {
 			CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor)descriptors.next();
-
 			CreateCommand createCommand = new CreateUniqueViewCommand(editingDomain, descriptor, (View)(getHost().getModel()));
 			createCommand.setLabel("custoCreateCommand");
-
 			cc.compose(createCommand);
 		}
 		return new ICommandProxy(cc.reduce());
 	}
-
-
-
-
 }

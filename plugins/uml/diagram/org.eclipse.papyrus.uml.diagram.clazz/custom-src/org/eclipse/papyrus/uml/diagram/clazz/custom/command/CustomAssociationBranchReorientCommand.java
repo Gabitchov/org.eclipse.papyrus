@@ -74,10 +74,8 @@ public class CustomAssociationBranchReorientCommand extends AssociationBranchReo
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-
 		/* look for end for the given type */
 		int i = 0;
-
 		Property end = null;
 		if(MultiAssociationHelper.getSemanticBranchEnd(connection) != null) {
 			end = MultiAssociationHelper.getSemanticBranchEnd(connection);
@@ -90,6 +88,5 @@ public class CustomAssociationBranchReorientCommand extends AssociationBranchReo
 			}
 		}
 		return AssociationHelper.reconnect(i, getLink(), getNewTarget());
-
 	}
 }

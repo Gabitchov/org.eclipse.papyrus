@@ -15,11 +15,9 @@ package org.eclipse.papyrus.uml.diagram.clazz;
 
 import org.eclipse.papyrus.infra.gmfdiag.navigation.CreateDiagramWithNavigationHandler;
 
-
 public class CreateClassDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
 
 	public CreateClassDiagramWithNavigationHandler() {
 		super(new CreateClassDiagramCommand(), new ClassDiagramCreationCondition());
 	}
-
 }

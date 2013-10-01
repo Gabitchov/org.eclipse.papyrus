@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.handles.HandleBounds;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.Decoration;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
@@ -266,26 +267,53 @@ public class DiagramDecorationAdapter {
 		if(editPart == null || editPart.getViewer() == null) {
 			return decoration;
 		}
-		if(editPart instanceof GraphicalEditPart) {
-			GraphicalEditPart gEditPart = (GraphicalEditPart)editPart;
-			if(view instanceof Edge) {
-				decoration = decoratorTarget.addConnectionDecoration(image, percentageFromSource, isVolatile);
-			} else {
-				IFigure parentFig = gEditPart.getFigure();
-				if(parentFig instanceof HandleBounds) {
-					// only support figures with handle bounds
-					Locator locator = new MultiIconTopRightLocator(parentFig, margin);
+		if (view instanceof Edge) {
+			
+			decoration = decoratorTarget.addConnectionDecoration(image,
+					percentageFromSource, isVolatile);
+			
+		} else  {
+			
+			IPrimaryEditPart primaryEditPart = getPrimaryEditPart(editPart);
+			
+			if (primaryEditPart != null && primaryEditPart instanceof GraphicalEditPart) {
+				IFigure parentFig = ((GraphicalEditPart) primaryEditPart).getFigure();
 
-					// Direction NORTH_EAST will be ignored, since we impose "our" locator below
-					decoration = decoratorTarget.addShapeDecoration(image, IDecoratorTarget.Direction.NORTH_EAST, margin, isVolatile);
-					if(decoration instanceof Decoration) {
-						((Decoration)decoration).setLocator(locator);
-					}
+				// only support figures with handle bounds
+				Locator locator = new MultiIconTopRightLocator(parentFig,
+						margin);
+
+				// Direction NORTH_EAST will be ignored, since we impose
+				// "our" locator below
+				decoration = decoratorTarget.addShapeDecoration(image,
+						IDecoratorTarget.Direction.NORTH_EAST, margin,
+						isVolatile);
+				if (decoration instanceof Decoration) {
+					((Decoration) decoration).setLocator(locator);
 				}
 			}
-
 		}
 		return decoration;
+	}
+	
+	/**
+	 * Steps up the parent EditPart hierarchy until the parent is type of an
+	 * {@link IPrimaryEditPart}. If the given EditPart is already a
+	 * {@link IPrimaryEditPart} it is directly returned.
+	 * 
+	 * @param editPart
+	 *            - EditPart to start from
+	 * @return The EditPart directly or one of the parent EditParts or
+	 *         {@code NULL} if none of the parents match IPrimaryEditPart
+	 */
+	protected IPrimaryEditPart getPrimaryEditPart(EditPart editPart) {
+		IPrimaryEditPart ret = null;
+		if (editPart instanceof IPrimaryEditPart) {
+			return (IPrimaryEditPart) editPart;
+		} else if (editPart.getParent() != null) {
+			ret = getPrimaryEditPart(editPart.getParent());
+		}
+		return ret;
 	}
 
 	/**

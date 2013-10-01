@@ -37,7 +37,6 @@ public class CModelEditPartCN extends ModelEditPartCN {
 	 * {@inheritDoc}
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
 	}
@@ -50,5 +49,4 @@ public class CModelEditPartCN extends ModelEditPartCN {
 		((PackageFigure)primaryShape).setTagIcon(Activator.getPluginIconImage(Activator.ID, ICONS_PATH));
 		return primaryShape;
 	}
-
 }

@@ -55,7 +55,6 @@ public class CustomDropAppliedStereotypeCommand extends AbstractTransactionalCom
 		return CommandResult.newOKCommandResult();
 	}
 
-
 	/**
 	 * Gets the difered applied stereotype command.
 	 * 
@@ -73,5 +72,4 @@ public class CustomDropAppliedStereotypeCommand extends AbstractTransactionalCom
 	public static RecordingCommand getDiferedAppliedStereotypeCommand(TransactionalEditingDomain domain, IAdaptable adapter, String appliedStereotypeListToAdd, String presentationKind) {
 		return new DefferedAppliedStereotypeToDisplayCommand(domain, adapter, appliedStereotypeListToAdd, presentationKind);
 	}
-
 }

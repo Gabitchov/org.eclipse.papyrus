@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
-
 public class InstanceSpecificationLinkHelper {
 
 	protected static final String INSTANCE_END = "InstanceEnd";////$NON-NLS-N$
@@ -54,7 +53,6 @@ public class InstanceSpecificationLinkHelper {
 			endtypes = instanceLink.createEAnnotation(INSTANCE_END);
 		}
 		endtypes.getReferences().add(end);
-
 	}
 
 	/**
@@ -70,7 +68,5 @@ public class InstanceSpecificationLinkHelper {
 			endtypes = instanceLink.createEAnnotation(INSTANCE_END);
 		}
 		endtypes.getReferences().remove(end);
-
 	}
-
 }

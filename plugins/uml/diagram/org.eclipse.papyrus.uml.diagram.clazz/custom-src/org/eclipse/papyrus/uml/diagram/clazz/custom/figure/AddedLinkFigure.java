@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
-
 /**
  * The Class AddedLinkFigure.
  */

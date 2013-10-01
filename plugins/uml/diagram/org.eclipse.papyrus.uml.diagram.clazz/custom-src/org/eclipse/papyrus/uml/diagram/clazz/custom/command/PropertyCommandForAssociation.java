@@ -48,9 +48,7 @@ public class PropertyCommandForAssociation extends PropertyForComponentCreateCom
 	 */
 	protected EObject doDefaultElementCreation() {
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
-
 		Association owner = (Association)getElementToEdit();
-
 		Object type = getRequest().getParameter("type");
 		if(type != null && type instanceof Type) {
 			newElement.setType((Type)type);
@@ -69,7 +67,6 @@ public class PropertyCommandForAssociation extends PropertyForComponentCreateCom
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Property newElement = (Property)doDefaultElementCreation();
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -81,5 +78,4 @@ public class PropertyCommandForAssociation extends PropertyForComponentCreateCom
 	protected EClass getEClassToEdit() {
 		return UMLPackage.eINSTANCE.getAssociation();
 	}
-
 }

@@ -86,7 +86,6 @@ public class CustomDataTypeItemSemanticEditPolicy extends DataTypeItemSemanticEd
 		if(UMLElementTypes.Association_4019 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
 		return super.getStartCreateRelationshipCommand(req);
 	}
 }

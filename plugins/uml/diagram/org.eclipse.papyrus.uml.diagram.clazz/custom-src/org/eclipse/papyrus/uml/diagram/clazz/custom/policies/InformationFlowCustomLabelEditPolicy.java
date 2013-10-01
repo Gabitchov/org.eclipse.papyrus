@@ -10,7 +10,6 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -46,7 +45,6 @@ public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEdi
 	 */
 	protected void addAdditionalListeners() {
 		// adds a listener to the element itself, and to linked elements, like Type
-
 		if(getUMLElement() instanceof InformationFlow) {
 			// adds listener to each Convoyed Classifier
 			EList<Classifier> conveyedClassifiers = ((InformationFlow)getUMLElement()).getConveyeds();
@@ -54,7 +52,6 @@ public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEdi
 				getDiagramEventBroker().addNotificationListener(conveyedClassifiers.get(i), this);
 			}
 		}
-
 	}
 
 	public void refreshDisplay() {
@@ -80,9 +77,7 @@ public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEdi
 	 */
 	protected void refreshNameDisplay() {
 		if(getHost() instanceof InformationFlowConveyedLabelEditPart) {
-
 			((InformationFlowConveyedLabelEditPart)getHost()).setLabelText(nameToDisplay());
-
 		}
 	}
 
@@ -97,7 +92,6 @@ public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEdi
 		// - a convoyed classifier's name have changed
 		// - add or remove of a convoyed classifier
 		final int eventType = notification.getEventType();
-
 		if(notification.getNotifier() instanceof InformationFlow) {
 			switch(eventType) {
 			case ADD_CONVEYED_CLASSIFIER:
@@ -112,11 +106,9 @@ public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEdi
 				// Nothing to do
 			}
 		}
-
 		if(eventType == CHANGE_NAME_OF_A_CONVOYED_CLASSIFIER) {
 			refreshDisplay();
 		}
-
 	}
 
 	/**
@@ -125,7 +117,6 @@ public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEdi
 	 */
 	public String nameToDisplay() {
 		String name = "";
-
 		if(getUMLElement() instanceof InformationFlow) {
 			EList<Classifier> classes = ((InformationFlow)getUMLElement()).getConveyeds();
 			for(int i = 0; i < classes.size(); i++) {
@@ -137,5 +128,4 @@ public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEdi
 		}
 		return name;
 	}
-
 }

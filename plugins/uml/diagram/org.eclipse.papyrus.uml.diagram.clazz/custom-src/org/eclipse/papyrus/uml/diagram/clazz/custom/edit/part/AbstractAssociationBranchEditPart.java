@@ -30,7 +30,6 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 
 	public AbstractAssociationBranchEditPart(View view) {
 		super(view);
-
 	}
 
 	/**
@@ -51,7 +50,6 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 			Property targetEnd = MultiAssociationHelper.getPropertyToListen(((Edge)getModel()), (Association)resolveSemanticElement());
 			if(targetEnd != null) {
 				addListenerFilter("AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
-
 			}
 		}
 	}
@@ -63,7 +61,6 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 	public void deactivate() {
 		removeAssociationEndListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -75,14 +72,11 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 	 * 
 	 * {@inheritDoc}
 	 */
-
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 		// set the good ends for the association figure
 		if(((View)getModel()).isSetElement()) {
-
 			refreshVisuals();
 		}
 	}
@@ -99,7 +93,6 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 				if(target != null && target.getOwner() != null) {
 					int sourceType = 0;
 					int targetType = 0;
-
 					// aggregation?
 					if(target.getAggregation() == AggregationKind.SHARED_LITERAL) {
 						targetType += AssociationFigure.aggregation;
@@ -124,7 +117,5 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 	 */
 	protected void removeAssociationEndListeners() {
 		removeListenerFilter("AssociationEndListenersTarget");
-
 	}
-
 }

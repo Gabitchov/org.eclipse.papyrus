@@ -89,6 +89,5 @@ public abstract class AbstractAssociationEndEditPart extends LabelEditPart {
 	protected void removeAssociationEndListeners() {
 		removeListenerFilter("AssociationEndListenersSource");
 		removeListenerFilter("AssociationEndListenersTarget");
-
 	}
 }

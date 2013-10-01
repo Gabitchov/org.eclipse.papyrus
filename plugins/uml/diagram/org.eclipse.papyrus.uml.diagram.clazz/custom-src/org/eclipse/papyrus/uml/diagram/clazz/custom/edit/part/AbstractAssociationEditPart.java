@@ -57,7 +57,6 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 			if(association.getMemberEnds().size() >= 2) {
 				EObject sourceEnd = association.getMemberEnds().get(0);
 				EObject targetEnd = association.getMemberEnds().get(1);
-
 				addListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE, this, sourceEnd);
 				addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd);
 			}
@@ -68,7 +67,6 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * 
 	 * {@inheritDoc}
 	 */
-
 	@Override
 	public void deactivate() {
 		removeAssociationEndListeners();
@@ -79,14 +77,11 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * 
 	 * {@inheritDoc}
 	 */
-
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 		// set the good ends for the association figure
 		if(resolveSemanticElement() != null) {
-
 			refreshVisuals();
 		}
 	}
@@ -101,21 +96,17 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 			if(getSource() == null || getTarget() == null) {
 				return;
 			}
-
 			if(!(getSource() instanceof GraphicalEditPart && getTarget() instanceof GraphicalEditPart)) {
 				return;
 			}
-
 			//FIXME: This is a quick fix to avoid model corruption when an associationClass is drawn between an association and a Class.
 			//A better solution would probably be to forbid this behavior. Currently, it is not possible to draw directly an Association Class between
 			//an association and a class, but it is possible to retarget an AssociationClass' end to an Association (Which would lead to a diagram corruption)
 			if(((GraphicalEditPart)getSource()).resolveSemanticElement() == null || ((GraphicalEditPart)getTarget()).resolveSemanticElement() == null) {
 				return;
 			}
-
 			Property source = null;
 			Property target = null;
-
 			// Get the association
 			Element umlElement = getUMLElement();
 			if(umlElement instanceof Association) {
@@ -155,7 +146,6 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 					if(target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
 						sourceType += AssociationFigure.composition;
 					}
-
 					// navigable?
 					if(association.getNavigableOwnedEnds().contains(source)) {
 						sourceType += AssociationFigure.navigable;
@@ -167,9 +157,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 						((AssociationFigure)getPrimaryShape()).setEnd(sourceType, targetType);
 					}
 				}
-
 			}
-
 		}
 		super.refreshVisuals();
 	}
@@ -180,6 +168,5 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	protected void removeAssociationEndListeners() {
 		removeListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE);
 		removeListenerFilter(ASSOCIATION_END_LISTENERS_TARGET);
-
 	}
 }

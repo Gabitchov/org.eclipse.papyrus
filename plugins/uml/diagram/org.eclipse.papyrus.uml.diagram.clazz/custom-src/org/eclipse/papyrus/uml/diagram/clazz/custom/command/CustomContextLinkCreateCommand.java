@@ -35,7 +35,6 @@ import org.eclipse.uml2.uml.Namespace;
  */
 public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 
-
 	public CustomContextLinkCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request, source, target);
 	}
@@ -61,17 +60,14 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 			}
 		}
 		View viewSource = findView(source);
-		
 		if(viewSource != null && source instanceof Constraint) {
 			View viewTarget = findView(target);
 			List sourceConnections = ViewUtil.getSourceConnections(viewSource);
-			
 			for(Object connector : sourceConnections) {
 				if(!(connector instanceof Connector)) {
 					continue;
 				}
 				Edge edge = (Edge)connector;
-
 				if(("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
 					if(viewTarget == edge.getTarget()) {
 						// the context link is already
@@ -81,7 +77,6 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 				}
 			}
 		}
-				
 		if(getTarget() != null && (getTarget().getOwnedRules().contains(getTarget()))) {
 			return false;
 		}

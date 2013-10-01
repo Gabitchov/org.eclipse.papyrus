@@ -32,7 +32,6 @@ public class CPackageEditPartCN extends PackageEditPartCN {
 	 * {@inheritDoc}
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
 	}

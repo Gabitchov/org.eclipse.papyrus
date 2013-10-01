@@ -49,38 +49,30 @@ public class ConstraintHelperAdvice extends AbstractEditHelperAdvice {
 
 	@Override
 	protected ICommand getAfterSetCommand(SetRequest request) {
-
 		EObject element = request.getElementToEdit();
 		View view = findView(element);
 		if(view != null) {
-
 			if(element instanceof Constraint) {
 				EStructuralFeature feature = request.getFeature();
 				final Object value = request.getValue();
 				Edge edgeToDestroy = null;
 				Element targetContextElement = null;
 				if(UMLPackage.eINSTANCE.getConstraint_Context().equals(feature)) {
-
 					Namespace constraintContext = ((Constraint)element).getContext();
-
 					if(constraintContext == value) {
 						// if the new value to set is the already context value
 						// then do noting
 						return null;
 					}
-
 					targetContextElement = constraintContext;
-
 					if(targetContextElement != null) {
 						View target = findView(targetContextElement);
 						List sourceConnections = ViewUtil.getSourceConnections(view);
-
 						for(Object connector : sourceConnections) {
 							if(!(connector instanceof Connector)) {
 								continue;
 							}
 							Edge edge = (Edge)connector;
-
 							if(("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
 								if(target == edge.getTarget()) {
 									edgeToDestroy = edge;
@@ -88,7 +80,6 @@ public class ConstraintHelperAdvice extends AbstractEditHelperAdvice {
 							}
 						}
 					}
-
 					if(edgeToDestroy != null) {
 						TransactionalEditingDomain editingDomain = request.getEditingDomain();
 						CompositeCommand command = new CompositeCommand("Clear context links");

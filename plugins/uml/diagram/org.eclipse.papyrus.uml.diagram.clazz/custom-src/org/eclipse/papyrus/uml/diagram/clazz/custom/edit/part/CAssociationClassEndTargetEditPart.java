@@ -19,7 +19,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationEndSourceL
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
 import org.eclipse.ui.views.properties.IPropertySource;
 
-
 /**
  * The Class AssociationEndTargetEditPart.
  * Ensure the edition of ends in the diagram
@@ -37,13 +36,11 @@ public class CAssociationClassEndTargetEditPart extends AssociationClassRoleTarg
 		// TODO Auto-generated constructor stub
 	}
 
-
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
 	 * 
 	 * @return
 	 */
-
 	public EObject resolveSemanticElement() {
 		return AssociationEndSourceLabelHelper.getInstance().getUMLElement(this);
 	}

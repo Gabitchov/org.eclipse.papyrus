@@ -36,7 +36,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * set the owner of the selected property as a corresponded classifier.
@@ -59,19 +58,15 @@ public class SetClassifierPropertyOwnerAction implements IObjectActionDelegate {
 	 * @param action
 	 * @param targetPart
 	 */
-
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
-
 	}
-
 
 	/**
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 * 
 	 * @param action
 	 */
-
 	public void run(IAction action) {
 		//1 this is a associationEnd?
 		CompoundCommand command = new CompoundCommand();
@@ -90,7 +85,6 @@ public class SetClassifierPropertyOwnerAction implements IObjectActionDelegate {
 				}
 			}
 			// this is a classifier , construct and run the command
-
 			EStructuralFeature feature = UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute();
 			if(owner instanceof org.eclipse.uml2.uml.Class) {
 				List<Property> attributeList = new ArrayList<Property>();
@@ -110,7 +104,6 @@ public class SetClassifierPropertyOwnerAction implements IObjectActionDelegate {
 	 * @param action
 	 * @param selection
 	 */
-
 	public void selectionChanged(IAction action, ISelection selection) {
 		if(selection instanceof IStructuredSelection) {
 			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
@@ -118,7 +111,5 @@ public class SetClassifierPropertyOwnerAction implements IObjectActionDelegate {
 				selectedElement = (GraphicalEditPart)selectedobject;
 			}
 		}
-
 	}
-
 }

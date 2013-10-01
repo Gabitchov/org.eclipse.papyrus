@@ -88,14 +88,11 @@ public class SlotParser implements IParser {
 			if(slot.getDefiningFeature() == null) {
 				return "<UNDEFINED>";
 			}
-
 			StructuralFeature feature = slot.getDefiningFeature();
-
 			String result = slot.getDefiningFeature().getName();
 			if(feature.getType() != null) {
 				result += " : " + feature.getType().getName();
 			}
-
 			if(slot.getValues().isEmpty()) {
 				return result;
 			} else {
@@ -140,5 +137,4 @@ public class SlotParser implements IParser {
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.CANCEL, "");
 	}
-
 }

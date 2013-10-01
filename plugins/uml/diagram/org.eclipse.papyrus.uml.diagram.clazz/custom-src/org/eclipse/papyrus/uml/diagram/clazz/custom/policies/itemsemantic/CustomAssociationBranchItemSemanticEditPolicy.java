@@ -74,12 +74,9 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getStartCreateRelationshipCommand(req);
 	}
-
-
 }

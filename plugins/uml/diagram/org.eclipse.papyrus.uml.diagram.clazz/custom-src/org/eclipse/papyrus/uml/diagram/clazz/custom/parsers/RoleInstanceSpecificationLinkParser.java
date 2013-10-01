@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
-
 public class RoleInstanceSpecificationLinkParser implements IParser {
 
 	public String getEditString(IAdaptable element, int flags) {
@@ -49,5 +48,4 @@ public class RoleInstanceSpecificationLinkParser implements IParser {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

@@ -60,12 +60,10 @@ public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCre
 			Map epRegistry = viewer.getEditPartRegistry();
 			IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
 			IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(((AssociationClassViewCreateCommand)command).getNode());
-
 			commandResult = super.doExecuteWithResult(progressMonitor, info, sourceEP, targetEP);
 		} else {
 			commandResult = super.doExecuteWithResult(progressMonitor, info);
 		}
 		return commandResult;
 	}
-
 }

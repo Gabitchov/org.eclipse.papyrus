@@ -64,7 +64,6 @@ public class CreateAssociationSupplement extends SupplementCommand {
 	/**
 	 * {@inheritDoc}
 	 */
-
 	@Override
 	protected ConfigureRequest createConfigureRequest(ConfigureRequest request) {
 		// TODO Auto-generated method stub
@@ -77,9 +76,7 @@ public class CreateAssociationSupplement extends SupplementCommand {
 	 */
 	@Override
 	public EObject doDefaultElementCreation(TransactionalEditingDomain domain, EObject newElement) {
-
 		Association association = UMLFactory.eINSTANCE.createAssociation();
-
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		EditElementCommand c = new PropertyCommandForAssociation(request);
@@ -97,7 +94,6 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
 		// create source property
-
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		c = new PropertyCommandForAssociation(request);
 		try {
@@ -114,7 +110,6 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
-
 		if((memberEnds.indexOf(((Property)sourceProperty)) >= 0)) {
 			association.getMemberEnds().move(0, ((Property)sourceProperty));
 		} else {
@@ -125,7 +120,6 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		} else {
 			association.getMemberEnds().add(1, ((Property)targetProperty));
 		}
-
 		((Package)getContainer()).getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_Association_4001(association);
 		return association;
