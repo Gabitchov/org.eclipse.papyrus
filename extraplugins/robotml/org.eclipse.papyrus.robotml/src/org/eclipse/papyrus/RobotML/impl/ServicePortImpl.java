@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.papyrus.RobotML.RobotMLPackage;
 import org.eclipse.papyrus.RobotML.ServiceFlowKind;
 import org.eclipse.papyrus.RobotML.ServicePort;
+import org.eclipse.uml2.uml.Image;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -158,6 +160,34 @@ public class ServicePortImpl extends PortImpl implements ServicePort {
 		result.append(kind);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Images registered in Profile are :
+	 * 
+	 * 0 - ServicePort Provided
+	 * 1 - ServicePort Required
+	 * 
+	 * <!-- end-user-doc -->.
+	 *
+	 * @return the icon of the port
+	 * @generated NOT
+	 */
+	public Image getIcon() {
+		Image ImageNotFound = null;
+		if(getBase_Port() != null) {
+			Stereotype st = getBase_Port().getAppliedStereotype("RobotML::ServicePort");
+			Image image = st.getIcons().get(0);
+
+			if(getKind() == ServiceFlowKind.REQUIRED) {
+				image = st.getIcons().get(1);
+			}
+
+			return image;
+		} else {
+			return ImageNotFound;
+		}
 	}
 
 } //ServicePortImpl

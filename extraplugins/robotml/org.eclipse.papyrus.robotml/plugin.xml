@@ -78,14 +78,6 @@
             uri="http://Papyrus/RobotML/1">
       </profile>
    </extension>
-   <extension
-         point="org.eclipse.emf.ecore.generated_package">
-      <package
-            class="org.eclipse.papyrus.RobotML.RobotMLPackage"
-            genModel="model/RobotML.genmodel"
-            uri="http://Papyrus/RobotML/1">
-      </package>
-   </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated RobotML -->
