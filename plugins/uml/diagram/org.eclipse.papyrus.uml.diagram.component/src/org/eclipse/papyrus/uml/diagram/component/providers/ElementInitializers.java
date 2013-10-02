@@ -174,6 +174,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Interface_3078(Interface instance) {
+		try {
+			Object value_0 = name_Interface_3078(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_Component_3070(Component instance) {
 		try {
 			Object value_0 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getComponent(), null).evaluate(instance);
@@ -408,6 +420,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Model_3077(Model self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Interface_3078(Interface self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

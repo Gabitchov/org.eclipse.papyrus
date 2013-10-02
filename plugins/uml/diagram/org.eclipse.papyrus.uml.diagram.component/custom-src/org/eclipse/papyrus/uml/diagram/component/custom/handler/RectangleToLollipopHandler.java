@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.component.custom.command.RectangleToLollipopCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
 
 /**
  * this handler is used to change the display of an interface as rectangle to lollipop
@@ -44,7 +45,7 @@ public class RectangleToLollipopHandler extends ChangeShapeHandler implements IH
 	@Override
 	public boolean isEnabled() {
 		GraphicalEditPart editPart = getSelectedGraphicalEditpart();
-		if((editPart instanceof RectangleInterfaceEditPart) ) {
+		if((editPart instanceof RectangleInterfaceEditPart)||(editPart instanceof RectangleInterfaceEditPartCN) ) {
 			return true;
 		}
 		return false;

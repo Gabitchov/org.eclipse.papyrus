@@ -59,6 +59,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.parsers.MessageFormatParser;
@@ -300,6 +301,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			packageName_5261Parser = parser;
 		}
 		return packageName_5261Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser interfaceName_5267Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInterfaceName_5267Parser() {
+		if(interfaceName_5267Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			interfaceName_5267Parser = parser;
+		}
+		return interfaceName_5267Parser;
 	}
 
 	/**
@@ -668,12 +686,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getModelName_5264Parser();
 		case PackageNameEditPartCN.VISUAL_ID:
 			return getPackageName_5261Parser();
+		case RectangleInterfaceNameEditPartCN.VISUAL_ID:
+			return getInterfaceName_5267Parser();
 		case ComponentNameEditPartCN.VISUAL_ID:
 			return getComponentName_5256Parser();
 		case ComponentNameEditPartPCN.VISUAL_ID:
 			return getComponentName_5257Parser();
-		case InterfaceNameEditPartPCN.VISUAL_ID:
-			return getInterfaceName_0Parser();
 		case CommentBodyEditPartPCN.VISUAL_ID:
 			return getCommentBody_5258Parser();
 		case ConstraintNameEditPartPCN.VISUAL_ID:
@@ -686,6 +704,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOperation_5Parser();
 		case ReceptionInInterfaceEditPart.VISUAL_ID:
 			return getReception_6Parser();
+		case InterfaceNameEditPartPCN.VISUAL_ID:
+			return getInterfaceName_0Parser();
 		case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_2Parser();
 		case SubstitutionNameEditPart.VISUAL_ID:

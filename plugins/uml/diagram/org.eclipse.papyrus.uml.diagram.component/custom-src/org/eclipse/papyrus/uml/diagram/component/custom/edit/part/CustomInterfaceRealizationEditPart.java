@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.component.custom.edit.part;
 
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
 
 /**
@@ -37,7 +38,7 @@ public class CustomInterfaceRealizationEditPart extends InterfaceRealizationEdit
 	@Override
 	public void refresh() {
 		super.refresh();
-		if(getTarget() instanceof InterfaceEditPart){
+		if((getTarget() instanceof InterfaceEditPart)||(getTarget() instanceof InterfaceEditPartPCN)){
 			getPrimaryShape().displayAsAlink();
 		}
 		else{
