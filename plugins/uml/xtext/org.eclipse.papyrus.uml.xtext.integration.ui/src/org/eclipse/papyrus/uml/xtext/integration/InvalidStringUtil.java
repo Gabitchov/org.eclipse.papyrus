@@ -124,7 +124,7 @@ public class InvalidStringUtil {
 	 * @param element
 	 * @return
 	 */
-	public static Comment createTextualRepresentationComment(Element element) {
+	public static Comment createTextualRepresentationComment(Element element, String languageId) {
 		Comment textualRepresentationComment = element.createOwnedComment();
 		if (!isActionLanguageProfileApplied(element)) {
 			PackageUtil.applyProfile(
@@ -137,6 +137,7 @@ public class InvalidStringUtil {
 		isATextualRepresentationComment(textualRepresentationComment);
 		textualRepresentationComment
 				.applyStereotype(textualRepresentationStereotype);
+		textualRepresentationComment.setValue(textualRepresentationStereotype, "language", languageId);
 		return textualRepresentationComment;
 	}
 
