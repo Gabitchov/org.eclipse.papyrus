@@ -13,9 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
+import org.eclipse.jface.viewers.ColumnViewerEditor;
+import org.eclipse.jface.viewers.ColumnViewerEditorActivationEvent;
+import org.eclipse.jface.viewers.ColumnViewerEditorActivationStrategy;
+import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.IElementComparer;
+import org.eclipse.jface.viewers.TreeViewerEditor;
+import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
 import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.IReferencable;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.internal.navigator.dnd.NavigatorDnDService;
@@ -83,6 +90,26 @@ public class CustomCommonViewer extends CommonViewer {
 	 */
 	public CommonDropAdapter getDropAdapter() {
 		return dropAdapter;
+	}
+
+	/**
+	 * Overridden to disable cell editor activation by single click, it can be activated via keystroke instead.
+	 */
+	@Override
+	protected ColumnViewerEditor createViewerEditor() {
+		TreeViewerFocusCellManager focusCellManager = new TreeViewerFocusCellManager(
+				this, new FocusCellOwnerDrawHighlighter(this));
+		TreeViewerEditor.create(this,focusCellManager, new ColumnViewerEditorActivationStrategy(this){
+			
+			@Override
+			protected boolean isEditorActivationEvent(
+					ColumnViewerEditorActivationEvent event) {
+				//TODO: Change keyCode to SWT.F2 when rename handler is adopted
+				return event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED && event.keyCode == SWT.F3;
+			}
+		},ColumnViewerEditor.KEYBOARD_ACTIVATION);
+		ColumnViewerEditor editor = this.getColumnViewerEditor();
+		return editor;
 	}
 
 }
