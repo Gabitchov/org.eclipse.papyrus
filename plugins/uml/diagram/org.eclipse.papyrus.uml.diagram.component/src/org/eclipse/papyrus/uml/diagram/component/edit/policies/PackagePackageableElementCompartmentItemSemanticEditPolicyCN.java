@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.CommentCreateCommandPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ComponentCreateCommandPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ConstraintCreateCommandPCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.commands.InterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.InterfaceCreateCommandPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ModelCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.PackageCreateCommandCN;
@@ -57,6 +58,12 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicyCN extend
 				isExtendedType = true;
 			}
 		}
+		if(UMLElementTypes.Interface_3078 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InterfaceCreateCommand(req));
+		}
 		if(UMLElementTypes.Model_3077 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
@@ -75,12 +82,6 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicyCN extend
 			}
 			return getGEFWrapper(new ComponentCreateCommandPCN(req));
 		}
-		if(UMLElementTypes.Interface_3072 == baseElementType) {
-			if(isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
-			}
-			return getGEFWrapper(new InterfaceCreateCommandPCN(req));
-		}
 		if(UMLElementTypes.Comment_3074 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
@@ -92,6 +93,12 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicyCN extend
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ConstraintCreateCommandPCN(req));
+		}
+		if(UMLElementTypes.Interface_3072 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InterfaceCreateCommandPCN(req));
 		}
 		return super.getCreateCommand(req);
 	}

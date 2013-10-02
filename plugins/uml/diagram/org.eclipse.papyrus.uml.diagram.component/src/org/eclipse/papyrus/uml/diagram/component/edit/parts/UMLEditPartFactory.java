@@ -92,6 +92,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new PackageEditPartCN(view);
 			case PackageNameEditPartCN.VISUAL_ID:
 				return new PackageNameEditPartCN(view);
+			case RectangleInterfaceEditPartCN.VISUAL_ID:
+				return new RectangleInterfaceEditPartCN(view);
+			case RectangleInterfaceNameEditPartCN.VISUAL_ID:
+				return new RectangleInterfaceNameEditPartCN(view);
 			case ComponentEditPartCN.VISUAL_ID:
 				return new ComponentEditPartCN(view);
 			case ComponentNameEditPartCN.VISUAL_ID:
@@ -100,10 +104,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ComponentEditPartPCN(view);
 			case ComponentNameEditPartPCN.VISUAL_ID:
 				return new ComponentNameEditPartPCN(view);
-			case InterfaceEditPartPCN.VISUAL_ID:
-				return new InterfaceEditPartPCN(view);
-			case InterfaceNameEditPartPCN.VISUAL_ID:
-				return new InterfaceNameEditPartPCN(view);
 			case CommentEditPartPCN.VISUAL_ID:
 				return new CommentEditPartPCN(view);
 			case CommentBodyEditPartPCN.VISUAL_ID:
@@ -120,6 +120,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new OperationForInterfaceEditPart(view);
 			case ReceptionInInterfaceEditPart.VISUAL_ID:
 				return new ReceptionInInterfaceEditPart(view);
+			case InterfaceEditPartPCN.VISUAL_ID:
+				return new InterfaceEditPartPCN(view);
+			case InterfaceNameEditPartPCN.VISUAL_ID:
+				return new InterfaceNameEditPartPCN(view);
 			case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 				return new ComponentCompositeCompartmentEditPart(view);
 			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
@@ -138,6 +142,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InterfaceAttributeCompartmentEditPart(view);
 			case InterfaceOperationCompartmentEditPart.VISUAL_ID:
 				return new InterfaceOperationCompartmentEditPart(view);
+			case InterfaceAttributeCompartmentEditPartCN.VISUAL_ID:
+				return new InterfaceAttributeCompartmentEditPartCN(view);
+			case InterfaceOperationCompartmentEditPartCN.VISUAL_ID:
+				return new InterfaceOperationCompartmentEditPartCN(view);
 			case UsageEditPart.VISUAL_ID:
 				return new UsageEditPart(view);
 			case InterfaceRealizationEditPart.VISUAL_ID:

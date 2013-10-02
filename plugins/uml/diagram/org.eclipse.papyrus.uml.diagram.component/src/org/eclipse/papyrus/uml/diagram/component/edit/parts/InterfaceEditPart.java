@@ -17,10 +17,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -31,7 +28,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
@@ -54,6 +50,7 @@ import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForEle
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes.LollipopInterfaceFigure;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
@@ -141,14 +138,14 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new InterfaceAsCercle();
+		return primaryShape = new LollipopInterfaceFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public InterfaceAsCercle getPrimaryShape() {
-		return (InterfaceAsCercle)primaryShape;
+	public LollipopInterfaceFigure getPrimaryShape() {
+		return (LollipopInterfaceFigure)primaryShape;
 	}
 
 	/**
@@ -172,18 +169,6 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public EditPolicy getPrimaryDragEditPolicy() {
-		EditPolicy result = super.getPrimaryDragEditPolicy();
-		if(result instanceof ResizableEditPolicy) {
-			ResizableEditPolicy ep = (ResizableEditPolicy)result;
-			ep.setResizeDirections(PositionConstants.NONE);
-		}
 		return result;
 	}
 
@@ -314,19 +299,25 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			types.add(UMLElementTypes.Usage_4001);
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
-			types.add(UMLElementTypes.Usage_4001);
-		}
 		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
+			types.add(UMLElementTypes.Usage_4001);
+		}
 		if(targetEditPart instanceof RectangleInterfaceEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4006);
+		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
@@ -365,18 +356,21 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			types.add(UMLElementTypes.Substitution_4012);
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
-			types.add(UMLElementTypes.Substitution_4012);
-		}
 		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
+			types.add(UMLElementTypes.Substitution_4012);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
@@ -410,16 +404,19 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4014);
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
+		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
-		if(targetEditPart instanceof ConstraintEditPartPCN) {
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -455,16 +452,19 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			types.add(UMLElementTypes.ComponentRealization_4007);
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
+		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
-		if(targetEditPart instanceof ConstraintEditPartPCN) {
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -500,16 +500,19 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4013);
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
+		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
-		if(targetEditPart instanceof ConstraintEditPartPCN) {
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -545,16 +548,19 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
+		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
-		if(targetEditPart instanceof ConstraintEditPartPCN) {
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -590,16 +596,19 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4017);
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
+		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
-		if(targetEditPart instanceof ConstraintEditPartPCN) {
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		return types;
@@ -622,12 +631,14 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
 			types.add(UMLElementTypes.Interface_3205);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Substitution_4012) {
 			types.add(UMLElementTypes.Dependency_3203);
@@ -641,10 +652,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4014) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -657,10 +669,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.ComponentRealization_4007) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -673,10 +686,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4013) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -689,10 +703,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -705,10 +720,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -721,10 +737,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		}
 		return types;
 	}
@@ -763,10 +780,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Substitution_4012) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -779,10 +797,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4014) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -795,10 +814,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.ComponentRealization_4007) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -811,10 +831,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4013) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -827,10 +848,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4015) {
 			types.add(UMLElementTypes.Comment_3201);
 			types.add(UMLElementTypes.Comment_3074);
@@ -849,10 +871,11 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -865,26 +888,13 @@ public class InterfaceEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class InterfaceAsCercle extends Ellipse {
-
-		/**
-		 * @generated
-		 */
-		public InterfaceAsCercle() {
-			this.setFill(false);
-			this.setForegroundColor(ColorConstants.black);
-		}
 	}
 
 	/**

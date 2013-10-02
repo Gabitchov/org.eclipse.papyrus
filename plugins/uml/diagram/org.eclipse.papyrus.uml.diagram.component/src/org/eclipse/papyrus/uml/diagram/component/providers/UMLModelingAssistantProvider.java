@@ -54,6 +54,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableEl
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.part.Messages;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -95,6 +96,13 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Reception_6);
 			return types;
 		}
+		if(editPart instanceof RectangleInterfaceEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			types.add(UMLElementTypes.Property_1);
+			types.add(UMLElementTypes.Operation_5);
+			types.add(UMLElementTypes.Reception_6);
+			return types;
+		}
 		if(editPart instanceof ComponentEditPartCN) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
 			types.add(UMLElementTypes.Port_3069);
@@ -111,43 +119,47 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ModelPackageableElementCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Comment_3074);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 			return types;
 		}
 		if(editPart instanceof PackagePackageableElementCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
-			types.add(UMLElementTypes.Interface_3072);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Comment_3074);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3072);
 			return types;
 		}
 		if(editPart instanceof ModelPackageableElementCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Comment_3074);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 			return types;
 		}
 		if(editPart instanceof PackagePackageableElementCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Comment_3074);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 			return types;
 		}
 		if(editPart instanceof ComponentCompositeCompartmentEditPartCN) {
@@ -204,20 +216,23 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof PackageEditPartCN) {
 			return ((PackageEditPartCN)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof RectangleInterfaceEditPartCN) {
+			return ((RectangleInterfaceEditPartCN)sourceEditPart).getMARelTypesOnSource();
+		}
 		if(sourceEditPart instanceof ComponentEditPartCN) {
 			return ((ComponentEditPartCN)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof ComponentEditPartPCN) {
 			return ((ComponentEditPartPCN)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof InterfaceEditPartPCN) {
-			return ((InterfaceEditPartPCN)sourceEditPart).getMARelTypesOnSource();
-		}
 		if(sourceEditPart instanceof CommentEditPartPCN) {
 			return ((CommentEditPartPCN)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof ConstraintEditPartPCN) {
 			return ((ConstraintEditPartPCN)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof InterfaceEditPartPCN) {
+			return ((InterfaceEditPartPCN)sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -263,20 +278,23 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			return ((PackageEditPartCN)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			return ((RectangleInterfaceEditPartCN)targetEditPart).getMARelTypesOnTarget();
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			return ((ComponentEditPartCN)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			return ((ComponentEditPartPCN)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
-			return ((InterfaceEditPartPCN)targetEditPart).getMARelTypesOnTarget();
-		}
 		if(targetEditPart instanceof CommentEditPartPCN) {
 			return ((CommentEditPartPCN)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			return ((ConstraintEditPartPCN)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
+			return ((InterfaceEditPartPCN)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -323,20 +341,23 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof PackageEditPartCN) {
 			return ((PackageEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof RectangleInterfaceEditPartCN) {
+			return ((RectangleInterfaceEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof ComponentEditPartCN) {
 			return ((ComponentEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ComponentEditPartPCN) {
 			return ((ComponentEditPartPCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof InterfaceEditPartPCN) {
-			return ((InterfaceEditPartPCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		if(sourceEditPart instanceof CommentEditPartPCN) {
 			return ((CommentEditPartPCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ConstraintEditPartPCN) {
 			return ((ConstraintEditPartPCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof InterfaceEditPartPCN) {
+			return ((InterfaceEditPartPCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -382,20 +403,23 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			return ((PackageEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			return ((RectangleInterfaceEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			return ((ComponentEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			return ((ComponentEditPartPCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
-			return ((InterfaceEditPartPCN)targetEditPart).getMATypesForSource(relationshipType);
-		}
 		if(targetEditPart instanceof CommentEditPartPCN) {
 			return ((CommentEditPartPCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof ConstraintEditPartPCN) {
 			return ((ConstraintEditPartPCN)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
+			return ((InterfaceEditPartPCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -441,20 +465,23 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof PackageEditPartCN) {
 			return ((PackageEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
+		if(sourceEditPart instanceof RectangleInterfaceEditPartCN) {
+			return ((RectangleInterfaceEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
 		if(sourceEditPart instanceof ComponentEditPartCN) {
 			return ((ComponentEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof ComponentEditPartPCN) {
 			return ((ComponentEditPartPCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof InterfaceEditPartPCN) {
-			return ((InterfaceEditPartPCN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
 		if(sourceEditPart instanceof CommentEditPartPCN) {
 			return ((CommentEditPartPCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof ConstraintEditPartPCN) {
 			return ((ConstraintEditPartPCN)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof InterfaceEditPartPCN) {
+			return ((InterfaceEditPartPCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

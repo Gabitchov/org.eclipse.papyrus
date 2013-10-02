@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.CommentCreateCommandPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ComponentCreateCommandPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ConstraintCreateCommandPCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.commands.InterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.InterfaceCreateCommandPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ModelCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.PackageCreateCommandCN;
@@ -68,11 +69,11 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends 
 				isExtendedType = true;
 			}
 		}
-		if(UMLElementTypes.Interface_3072 == baseElementType) {
+		if(UMLElementTypes.Interface_3078 == baseElementType) {
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
-			return getGEFWrapper(new InterfaceCreateCommandPCN(req));
+			return getGEFWrapper(new InterfaceCreateCommand(req));
 		}
 		if(UMLElementTypes.Comment_3074 == baseElementType) {
 			if(isExtendedType) {
@@ -103,6 +104,12 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends 
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new PackageCreateCommandCN(req));
+		}
+		if(UMLElementTypes.Interface_3072 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InterfaceCreateCommandPCN(req));
 		}
 		return super.getCreateCommand(req);
 	}

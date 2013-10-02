@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.figure.edges;
 
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFigure;
 
 /**
@@ -21,4 +24,24 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFi
  *
  */
 public class InterfaceRealizationLinkFigure extends InterfaceRealizationFigure  {
+	
+	
+	public void displayAsAlink(){
+		setTargetDecoration(null);
+		this.setLineStyle(Graphics.LINE_SOLID); // line drawing style
+		
+	}
+	
+	public void displayAsUMLShape(){
+		PolygonDecoration dec = new PolygonDecoration();
+		dec.setScale(15, 5);
+		dec.setBackgroundColor(ColorConstants.white);
+		dec.setLineWidth(1);
+		setTargetDecoration(dec); // arrow at target endpoint
+
+		setForegroundColor(ColorConstants.black);
+
+		this.setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
+		
+	}
 }

@@ -247,8 +247,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createRectancleInterfaceCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Interface_3205);
+		types.add(UMLElementTypes.Interface_3078);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
