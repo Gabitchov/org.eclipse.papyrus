@@ -2,6 +2,16 @@
 <?eclipse version="3.4"?>
 <plugin>
 
+<extension point="org.eclipse.ui.contexts" id="ui-context">
+  <?gmfgen generated="true"?>
+  <context
+     description="%context.description"
+     id="org.eclipse.papyrus.sysml.diagram.parametric.ui.diagramContext"
+     name="%context.name"
+     parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+  </context>
+</extension>
+   
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<creationCommand
@@ -22,6 +32,18 @@
 		name="Create a new Parametric Diagram"
 		description="Create a new Parametric Diagram"
 		categoryId="org.eclipse.papyrus.editor.category"/>
+    <command
+		categoryId="org.eclipse.papyrus.editor.category"
+		description="Switch ConstraintProperty Representation"
+		defaultHandler="org.eclipse.papyrus.sysml.diagram.parametric.commands.switchrepresentation.SwitchConstraintPropertyRepresentationCommandHandler"
+		id="org.eclipse.papyrus.sysml.diagram.parametric.custom.switchConstraintProperty"
+		name="Switch ConstraintProperty Representation"/>
+    <command
+		categoryId="org.eclipse.papyrus.editor.category"
+		description="Show/Hide ConstraintExpression"
+		defaultHandler="org.eclipse.papyrus.sysml.diagram.parametric.commands.switchrepresentation.ShowHideConstraintExpressionCommandHandler"
+		id="org.eclipse.papyrus.sysml.diagram.parametric.custom.showHideConstraintExpression"
+		name="Show/Hide Constraint expression"/>
 </extension>
 
 <extension point="org.eclipse.ui.handlers">
@@ -77,7 +99,79 @@
 			
 		</command>
 	</menuContribution>
-		
+
+  	<menuContribution locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.format">
+      <menu
+            label="Representation"
+            tooltip="Representation">
+   	    <command
+	        commandId="org.eclipse.papyrus.sysml.diagram.parametric.custom.switchConstraintProperty"
+	        label="Switch ConstraintProperty representation"
+	        style="push"
+	        tooltip="Switch ConstraintProperty representation">
+	        <visibleWhen>
+            <and>
+               <iterate>
+                  <instanceof
+                        value="org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomConstraintBlockPropertyCompositeEditPart">
+                  </instanceof>
+               </iterate>
+               <with
+                     variable="selection">
+                  <not>
+                     <count
+                           value="0">
+                     </count>
+                  </not>
+               </with>
+            </and>
+         </visibleWhen>
+	    </command>
+	  </menu>
+	  <separator
+            name="org.eclipse.papyrus.uml.diagram.menu.popup.separatorRepresentation"
+            visible="true">
+      </separator>
+  	</menuContribution>       
+
+  	<menuContribution locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.filters">
+	    <command
+	        commandId="org.eclipse.papyrus.sysml.diagram.parametric.custom.showHideConstraintExpression"
+    		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+	        label="Show/Hide Constraint expression"
+	        style="push"
+	        tooltip="Show/Hide Constraint expression">
+	        <visibleWhen>
+            <and>
+               <iterate>
+                  <instanceof
+                        value="org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomConstraintBlockPropertyCompositeEditPart">
+                  </instanceof>
+               </iterate>
+               <with
+                     variable="selection">
+                  <not>
+                     <count
+                           value="0">
+                     </count>
+                  </not>
+               </with>
+            </and>
+         </visibleWhen>
+	    </command>
+  	</menuContribution>       
+</extension>
+
+
+<extension
+      id="update-cmd-binding"
+      point="org.eclipse.ui.bindings">
+   <key
+         commandId="org.eclipse.papyrus.sysml.diagram.parametric.custom.switchConstraintProperty"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+R">
+   </key>
 </extension>
 
 <!-- Handler for Show/Hide content on Part or Ref. -->
@@ -244,7 +338,7 @@
 			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
 		</entry>
 		
-		<!-- internalblock.tool.constraint -->
+		<!-- parametric.tool.constraint -->
 		<entry defineOnly="true"
 			description="Create a Constraint"
 			id="parametric.tool.constraint"
@@ -256,10 +350,20 @@
 
 		<entry
 			defineOnly="true"
-			description="Create a Comment / Constraint link"
+			description="CommentAnnotatedElement"
 			id="parametric.tool.comment_constraint_link"
 			kind="tool"
-			label="Comment / Constraint link"
+			label="CommentAnnotatedElement"
+			large_icon="icons/obj16/Link.gif"
+			small_icon="icons/obj16/Link.gif">
+		</entry>
+
+		<entry
+			defineOnly="true"
+			description="Create a ContextLink"
+			id="parametric.tool.context_link"
+			kind="tool"
+			label="Constraint link"
 			large_icon="icons/obj16/Link.gif"
 			small_icon="icons/obj16/Link.gif">
 		</entry>
@@ -606,12 +710,31 @@
 
 <!-- UML ElementType bindings to Papyrus shared IClientContext -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-
 	<!-- Bindings declaration to shared IClientContext -->
 	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
 		<elementType ref="org.eclipse.papyrus.sysml.service.types.helper.ConstraintParameterEditHelperAdvice"/>
 	</binding>
-		
+</extension>
+
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+   <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <specializationType
+            id="org.eclipse.papyrus.uml.diagram.parametric.ContextLink"
+            name="ContextLink"
+            kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="8500"/>
+      </specializationType>
+   </metamodel>
+   <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <specializationType
+            id="org.eclipse.papyrus.uml.diagram.parametric.ContextLinkAppliedStereotype"
+            name="ContextLinkAppliedStereotype"
+            kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="8501"/>
+      </specializationType>
+   </metamodel>
 </extension>  
 <!-- // End of user code 
   -->

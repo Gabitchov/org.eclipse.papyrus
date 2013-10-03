@@ -115,13 +115,18 @@ public class NamedElementHelper {
 
 	@SuppressWarnings("rawtypes")
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents) {
+		return getDefaultNameWithIncrementFromBase(base, contents, null);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents, EObject elementToRename) {
 		if("property".equalsIgnoreCase(base)) {
 			base = "Attribute";
 		}
 		int nextNumber = 1;
 
 		for(Object o : contents) {
-			if(o instanceof EObject) {
+			if(o instanceof EObject && o != elementToRename) {
 				String name = EMFCoreUtil.getName((EObject)o);
 				if(name != null && name.startsWith(base)) {
 					String end = name.substring(base.length());

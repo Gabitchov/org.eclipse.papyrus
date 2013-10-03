@@ -16,11 +16,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.commands.CustomBindingConnectorCreateCommand;
+import org.eclipse.papyrus.sysml.diagram.parametric.commands.CustomParametricContextLinkReorientCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.commands.ReorientReferenceRelationshipRequestWithGraphical;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomBlockCompositeEditPartTN;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomConstraintBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policy.DiagramSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConstraintParameterAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
@@ -50,7 +52,7 @@ public class CustomParametricSemanticPolicy extends DiagramSemanticEditPolicy {
 			if (getHost() instanceof CustomBlockCompositeEditPartTN) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			if (getHost() instanceof ConstraintBlockPropertyCompositeEditPart) {
+			if (getHost() instanceof CustomConstraintBlockPropertyCompositeEditPart) {
 				return UnexecutableCommand.INSTANCE;			
 			}
 			if (getHost() instanceof ConstraintParameterAffixedNodeEditPart) {
@@ -82,7 +84,7 @@ public class CustomParametricSemanticPolicy extends DiagramSemanticEditPolicy {
 		if (target instanceof CustomBlockCompositeEditPartTN) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (target instanceof ConstraintBlockPropertyCompositeEditPart) {
+		if (target instanceof CustomConstraintBlockPropertyCompositeEditPart) {
 			return UnexecutableCommand.INSTANCE;			
 		}
 
@@ -132,7 +134,7 @@ public class CustomParametricSemanticPolicy extends DiagramSemanticEditPolicy {
 		if (target instanceof CustomBlockCompositeEditPartTN) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (target instanceof ConstraintBlockPropertyCompositeEditPart) {
+		if (target instanceof CustomConstraintBlockPropertyCompositeEditPart) {
 			return UnexecutableCommand.INSTANCE;			
 		}
 
@@ -166,4 +168,72 @@ public class CustomParametricSemanticPolicy extends DiagramSemanticEditPolicy {
 		return getSemanticCommand(semRequest);
 	}
 
+	@Override
+	protected Command getReorientRefRelationshipSourceCommand(
+			ReconnectRequest request) {
+
+		if(request.getConnectionEditPart() instanceof ContextLinkEditPart) {
+			org.eclipse.gef.ConnectionEditPart connectionEP = request.getConnectionEditPart();
+			
+			if (connectionEP instanceof ConnectionEditPart) {
+				if (!((ConnectionEditPart) connectionEP).isSemanticConnection()) {
+					return null;
+				}
+			}
+
+			EditPart sourceEditPart = connectionEP.getSource();
+			EditPart targetEditPart = connectionEP.getTarget();
+			EObject referenceOwner = ViewUtil
+				.resolveSemanticElement((View) targetEditPart.getModel());
+			EObject oldTarget = ViewUtil
+				.resolveSemanticElement((View) sourceEditPart.getModel());
+			EObject newTarget = ViewUtil
+				.resolveSemanticElement((View) request.getTarget().getModel());
+
+	        TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+	            .getEditingDomain();
+
+	        ReorientReferenceRelationshipRequestWithGraphical semRequest = new ReorientReferenceRelationshipRequestWithGraphical(
+	                editingDomain, referenceOwner, newTarget, oldTarget,
+	                ReorientReferenceRelationshipRequest.REORIENT_SOURCE,
+	                sourceEditPart, targetEditPart);
+			return  getGEFWrapper(new CustomParametricContextLinkReorientCommand(semRequest));
+		}
+		return super.getReorientRefRelationshipTargetCommand(request);
+	}
+
+	@Override
+	protected Command getReorientRefRelationshipTargetCommand(
+			ReconnectRequest request) {
+		if(request.getConnectionEditPart() instanceof ContextLinkEditPart) {
+			org.eclipse.gef.ConnectionEditPart connectionEP = request.getConnectionEditPart();
+			
+			if (connectionEP instanceof ConnectionEditPart) {
+				if (!((ConnectionEditPart) connectionEP).isSemanticConnection()) {
+					return null;
+				}
+			}
+
+			EditPart sourceEditPart = connectionEP.getSource();
+			EditPart targetEditPart = connectionEP.getTarget();
+			EObject referenceOwner = ViewUtil
+				.resolveSemanticElement((View) sourceEditPart.getModel());
+			EObject oldTarget = ViewUtil
+				.resolveSemanticElement((View) targetEditPart.getModel());
+			EObject newTarget = ViewUtil
+				.resolveSemanticElement((View) request.getTarget().getModel());
+
+	        TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+	            .getEditingDomain();
+
+	        ReorientReferenceRelationshipRequestWithGraphical semRequest = new ReorientReferenceRelationshipRequestWithGraphical(
+	                editingDomain, referenceOwner, newTarget, oldTarget,
+	                ReorientReferenceRelationshipRequest.REORIENT_TARGET,
+	                sourceEditPart, targetEditPart);
+			return  getGEFWrapper(new CustomParametricContextLinkReorientCommand(semRequest));
+		}
+		return super.getReorientRefRelationshipTargetCommand(request);
+	}
+
+	
 }

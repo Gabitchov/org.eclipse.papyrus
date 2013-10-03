@@ -13,6 +13,7 @@ package org.eclipse.papyrus.sysml.service.types.helper;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -22,12 +23,18 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.AggregationKind;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
@@ -87,5 +94,59 @@ public class ConstraintPropertyEditHelperAdvice extends AbstractStereotypedEleme
 		}
 
 		return null;
+	}
+
+	/**
+	 * Complete creation process by adding the related association.
+	 * This assumes the constraintProperty type has been set at this point.
+	 */
+	@Override
+	protected ICommand getAfterConfigureCommand(final ConfigureRequest request) {
+
+		return new ConfigureElementCommand(request) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				Property sourcePart = (Property)request.getElementToConfigure();
+				if((sourcePart != null) && (sourcePart.eContainer() != null)) {
+
+					sourcePart.setAggregation(AggregationKind.COMPOSITE_LITERAL);
+					
+					// Create association between element owner and element type
+					Type sourceType = resolveTypeContainer(sourcePart);
+					Package associationContainer = sourceType.getNearestPackage();
+
+					// Create targetProperty
+					Property targetProperty = UMLFactory.eINSTANCE.createProperty();
+					targetProperty.setType(sourceType);
+					targetProperty.setName(sourceType.getName() != null ? sourceType.getName().toLowerCase() : "null");
+
+					Association association = UMLFactory.eINSTANCE.createAssociation();
+					association.getMemberEnds().add(sourcePart);
+					association.getOwnedEnds().add(targetProperty);
+					association.getMemberEnds().add(targetProperty);
+
+					String associationName = NamedElementHelper.getDefaultNameWithIncrementFromBase("Association", associationContainer.eContents()); //$NON-NLS-1$
+					association.setName(associationName);
+
+					// Add SysML Nature on the new Association
+					ElementUtil.addNature(association, SysMLElementTypes.SYSML_NATURE);
+
+					association.setPackage(associationContainer);
+				}
+				return CommandResult.newOKCommandResult(sourcePart);
+			}
+
+			private Type resolveTypeContainer(Property property) {
+				EObject eContainer = property.eContainer();
+				if (eContainer instanceof Property) {
+					eContainer = ((Property) eContainer).getType();
+				}
+				if (eContainer instanceof Type) {
+					return (Type)eContainer;
+				}
+				return null;
+			}
+		};
 	}
 }

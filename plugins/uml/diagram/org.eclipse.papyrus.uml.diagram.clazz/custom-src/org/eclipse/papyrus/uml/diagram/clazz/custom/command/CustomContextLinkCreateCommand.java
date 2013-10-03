@@ -82,7 +82,7 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 			}
 		}
 				
-		if(getTarget() != null && (getTarget().getOwnedRules().contains(getTarget()))) {
+		if(resolveTargetNamespace() != null && (resolveTargetNamespace().getOwnedRules().contains(resolveTargetNamespace()))) {
 			return false;
 		}
 		return true;

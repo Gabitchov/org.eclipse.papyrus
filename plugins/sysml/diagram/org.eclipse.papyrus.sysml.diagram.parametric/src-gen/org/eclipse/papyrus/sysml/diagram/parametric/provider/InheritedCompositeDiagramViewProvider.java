@@ -15,8 +15,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
-import org.eclipse.papyrus.sysml.diagram.parametric.provider.ElementTypes;
-import org.eclipse.papyrus.sysml.diagram.parametric.provider.GraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.Activator;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider;
@@ -33,26 +31,12 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 
 		IElementType elementType = (IElementType)semanticAdapter.getAdapter(IElementType.class);
 		if(elementType != null) {
-			createdEdge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
-		} else {
-
-			EObject domainElement = (EObject)semanticAdapter.getAdapter(EObject.class);
-
-			String domainElementGraphicalType = semanticHint;
-			if(domainElementGraphicalType == null) {
-				domainElementGraphicalType = registry.getEdgeGraphicalType(domainElement);
+			if (elementType == ElementTypes.CONTEXT_LINK) {
+				org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider classDiagramUMLProvider = new org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider();
+				createdEdge = classDiagramUMLProvider.createConstraintContext_8500(containerView, index, persisted, preferencesHint);
 			}
-
-			if((!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownEdgeType(domainElementGraphicalType))) {
-				// Cannot use createEdge from super class as it never take the graphical type (semanticHint) into account.
-				// createdEdge = super.createEdge(semanticAdapter, containerView, domainElementGraphicalType, index, persisted, preferencesHint);
-
-				if(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createCommentAnnotatedElement_4002(containerView, index, persisted, preferencesHint);
-				}
-				if(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createConstraintConstrainedElement_4003(containerView, index, persisted, preferencesHint);
-				}
+			else {
+				createdEdge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 			}
 		}
 
@@ -92,7 +76,7 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 		if(elementType == ElementTypes.COMMENT_ANNOTATED_ELEMENT) {
 			return true;
 		}
-		if(elementType == ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT) {
+		if(elementType == ElementTypes.CONTEXT_LINK) {
 			return true;
 		}
 
@@ -206,6 +190,7 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 		return null;
 	}
 
+	
 	@Override
 	protected void stampShortcut(View containerView, Node target) {
 		if(!ElementTypes.DIAGRAM_ID.equals(containerView.getDiagram().getType())) {
@@ -215,4 +200,38 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}
+	
+//	/**
+//	 * @generated
+//	 */
+//	@SuppressWarnings("unchecked")
+//	public Edge createContextLink_8500(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+//		Connector edge = NotationFactory.eINSTANCE.createConnector();
+//		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+//		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+//		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+//		points.add(new RelativeBendpoint());
+//		points.add(new RelativeBendpoint());
+//		bendpoints.setPoints(points);
+//		edge.setBendpoints(bendpoints);
+//		ViewUtil.insertChildView(containerView, edge, index, persisted);
+//		edge.setType(UMLVisualIDRegistry.getType(ContextLinkEditPart.VISUAL_ID));
+//		edge.setElement(null);
+//		// initializePreferences
+//		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+//		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Undefined");
+//		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Undefined");
+//		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+//		//if (routing != null) {
+//		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+//		//}
+//		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
+//		Node label8501 = createLabel(edge, UMLVisualIDRegistry.getType(ContextLinkAppliedStereotypeEditPart.VISUAL_ID));
+//		label8501.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+//		Location location8501 = (Location)label8501.getLayoutConstraint();
+//		location8501.setX(0);
+//		location8501.setY(15);
+//		return edge;
+//	}
+
 }	

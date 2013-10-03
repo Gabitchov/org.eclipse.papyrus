@@ -33,16 +33,23 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
+import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
+import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
+import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
  * <pre>
@@ -56,20 +63,36 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 	 * <pre>
 	 * {@inheritDoc}
 	 * 
-	 * While setting {@link Property} (excluding {@link Port}) type:
+	 * While setting {@link Property} (excluding {@link Port} and {@link ConstraintParameter} type:
 	 * - add possibly required (sysML) association re-factor command when needed.
-	 * 
+	 * - add/remove possibly required ConstraintProperty stereotype when needed.
 	 * </pre>
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
 		ICommand gmfCommand = super.getBeforeSetCommand(request);
 
 		EObject elementToEdit = request.getElementToEdit();
 
-		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() instanceof Type)) {
+		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && 
+				(request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() instanceof Type)) {
 
 			Property propertyToEdit = (Property)elementToEdit;
+
+			// SysML specification : all property typed by a ConstraintBlock must have a ContraintProperty stereotype applied
+			if (request.getValue() instanceof org.eclipse.uml2.uml.Class) {
+				ICommand stereotypeApplication = getConstraintPropertyStereotypeApplicationCommand(propertyToEdit, (org.eclipse.uml2.uml.Class)request.getValue());
+				gmfCommand = CompositeCommand.compose(gmfCommand, stereotypeApplication);
+			}
+
+			// Exclude ConstraintParameter (simple property without stereotype owned by a ConstraintBlock) 
+			if (propertyToEdit.eContainer() instanceof org.eclipse.uml2.uml.Class && UMLUtil.getStereotypeApplication((Element)propertyToEdit.eContainer(), ConstraintBlock.class) != null) {
+				if (UMLUtil.getStereotypeApplication(propertyToEdit, ConstraintProperty.class) == null) {
+					return gmfCommand;
+				}
+			}
+
 			Association relatedAssociation = propertyToEdit.getAssociation();
 
 			// The edited property has to be related to a SysML association
@@ -176,7 +199,7 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 			
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-				Association association = UMLFactory.eINSTANCE.createAssociation();
+ 				Association association = UMLFactory.eINSTANCE.createAssociation();
 				
 				// Add the association in the model
 				org.eclipse.uml2.uml.Package container = (org.eclipse.uml2.uml.Package)EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{sourceBlock, targetBlock}), UMLPackage.eINSTANCE.getPackage());
@@ -203,10 +226,50 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 	}
 	
 	/**
+	 * Apply/remove the ConstraintProperty stereotype application
+	 * 
+	 * @return the ConstraintProperty stereotype application command
+	 */
+	private ICommand getConstraintPropertyStereotypeApplicationCommand(final Property sourceProperty, final org.eclipse.uml2.uml.Class targetBlock) {
+		
+		return new AbstractCommand("Apply/Remove ConstraintProperty Stereotype") {
+			
+			@Override
+			protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				return null;
+			}
+			
+			@Override
+			protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				return null;
+			}
+			
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				// SysML specification : all property typed by a ConstraintBlock must have a ContraintProperty stereotype applied
+				ConstraintProperty constraintPropertyApplication = UMLUtil.getStereotypeApplication(sourceProperty, ConstraintProperty.class);
+				if (UMLUtil.getStereotypeApplication(targetBlock, ConstraintBlock.class) != null) {
+					if (constraintPropertyApplication == null) {
+						StereotypeApplicationHelper.INSTANCE.applyStereotype(sourceProperty, ConstraintsPackage.eINSTANCE.getConstraintProperty());
+					}
+				}
+				else {
+					if (constraintPropertyApplication != null) {
+						StereotypeApplicationHelper.INSTANCE.removeFromContainmentList(sourceProperty, constraintPropertyApplication);
+					}
+				}
+				return CommandResult.newOKCommandResult(sourceProperty) ;
+			}
+		};
+	}
+
+	
+	/**
 	 * Create a part association destroy command.
 	 * 
 	 * @return the part association destroy command
 	 */
+	@SuppressWarnings("unchecked")
 	private ICommand getDestroyPartAssociationCommand(Association partAssociation, Property propertyToEdit) {
 				
 		DestroyElementRequest request = new DestroyElementRequest(partAssociation, false);
