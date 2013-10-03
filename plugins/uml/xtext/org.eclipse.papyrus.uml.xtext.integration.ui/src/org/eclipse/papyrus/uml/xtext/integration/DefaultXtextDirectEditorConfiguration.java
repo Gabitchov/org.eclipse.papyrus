@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -35,6 +36,8 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
+import org.eclipse.papyrus.infra.services.validation.commands.ValidateSubtreeCommand;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.swt.SWT;
@@ -121,8 +124,8 @@ public abstract class DefaultXtextDirectEditorConfiguration extends
 
 			public ICommand getParseCommand(IAdaptable element,
 					String newString, int flags) {
+				CompositeCommand result = new CompositeCommand("validation");
 				IContextElementProvider provider = new IContextElementProvider() {
-
 					public EObject getContextObject() {
 						return semanticObject;
 					}
@@ -145,11 +148,13 @@ public abstract class DefaultXtextDirectEditorConfiguration extends
 						&& context.getFakeResource().getErrors().size() == 0) {
 					EObject xtextObject = context.getFakeResource()
 							.getParseResult().getRootASTElement();
-					return DefaultXtextDirectEditorConfiguration.this
-							.getParseCommand(semanticObject, xtextObject);
+					result.add( DefaultXtextDirectEditorConfiguration.this
+							.getParseCommand(semanticObject, xtextObject));
 				} else {
-					return createInvalidStringCommand(newString, semanticObject);
+					result.add(createInvalidStringCommand(newString, semanticObject));
 				}
+				result.add(new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician()));
+				return result;
 			}
 
 			public String getPrintString(IAdaptable element, int flags) {
