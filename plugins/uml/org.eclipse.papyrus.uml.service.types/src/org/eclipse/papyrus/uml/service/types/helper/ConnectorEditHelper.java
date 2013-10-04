@@ -234,7 +234,8 @@ public class ConnectorEditHelper extends ElementEditHelper {
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 				if((sourceRole == null) || (targetRole == null)) {
-					return CommandResult.newCancelledCommandResult();
+					//to allow creation from the ModelExplorer or from the table
+					//return CommandResult.newCancelledCommandResult();
 				}
 
 				// Add source connector end
