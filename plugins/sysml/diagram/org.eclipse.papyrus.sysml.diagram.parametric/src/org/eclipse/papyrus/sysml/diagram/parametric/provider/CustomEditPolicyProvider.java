@@ -25,8 +25,6 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEd
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockPropertyCompositeEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.CustomDuplicatePasteEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockCompositeSemanticEditPolicy;
@@ -35,25 +33,28 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDiagram
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.TypedElementDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomBlockCompositeEditPartTN;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomConstraintBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.ParametricDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomBlockCompositeDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomBlockPropertyCompositeDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomBlockPropertyStructureCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomParametricSemanticPolicy;
-import org.eclipse.papyrus.sysml.diagram.parametric.policies.StructureClassifierDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomStructureClassifierDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.policies.CustomStructureCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConstraintParameterAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.policy.StructuredClassifierCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintSpecificationEditPartCN;
 
 /**
  * Custom edit policy provider.
@@ -97,6 +98,14 @@ public class CustomEditPolicyProvider extends ParametricDiagramEditPolicyProvide
 			return true;
 		}
 
+		if(gep instanceof ConstraintSpecificationEditPartCN) {
+			return true;
+		}
+
+		if(gep instanceof ConstraintEditPartCN) {
+			return true;
+		}
+
 		return super.provides(operation);
 	}
 
@@ -114,7 +123,7 @@ public class CustomEditPolicyProvider extends ParametricDiagramEditPolicyProvide
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
 
 		if((editPart instanceof ConstraintEditPart) || (editPart instanceof ConstraintEditPartCN)) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomParametricSemanticPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
@@ -125,22 +134,13 @@ public class CustomEditPolicyProvider extends ParametricDiagramEditPolicyProvide
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
 
-		if(editPart instanceof FlowPortAffixedNodeEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TypedElementDropEditPolicy());
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomParametricSemanticPolicy());
-		}
-
-		if(editPart instanceof PortAffixedNodeEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TypedElementDropEditPolicy());
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomParametricSemanticPolicy());
-		}
-
 		if(editPart instanceof BlockPropertyCompositeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomParametricSemanticPolicy());
 		}
 
 		if(editPart instanceof BlockPropertyStructureCompartmentEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomBlockPropertyStructureCompartmentSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 		}
@@ -153,7 +153,8 @@ public class CustomEditPolicyProvider extends ParametricDiagramEditPolicyProvide
 		}
 
 		if(editPart instanceof StructureCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new StructureClassifierDropEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomStructureCompartmentSemanticEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomStructureClassifierDropEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 		}
 
@@ -165,7 +166,7 @@ public class CustomEditPolicyProvider extends ParametricDiagramEditPolicyProvide
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 		
-		if(editPart instanceof ConstraintBlockPropertyCompositeEditPart) {
+		if(editPart instanceof CustomConstraintBlockPropertyCompositeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomParametricSemanticPolicy());
 		}
@@ -176,7 +177,12 @@ public class CustomEditPolicyProvider extends ParametricDiagramEditPolicyProvide
 		if(editPart instanceof CustomBlockCompositeEditPartTN) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomParametricSemanticPolicy());
 		}
-
+		if(editPart instanceof ConstraintSpecificationEditPartCN) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomParametricSemanticPolicy());
+		}
+		if(editPart instanceof ConstraintEditPartCN) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomParametricSemanticPolicy());
+		}
 	}
 
 }

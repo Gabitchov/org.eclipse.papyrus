@@ -8,6 +8,8 @@
  *******************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.commands;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -18,13 +20,17 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.diagram.common.utils.ConstraintBlockHelper;
 import org.eclipse.papyrus.uml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
@@ -55,10 +61,41 @@ public class CustomBindingConnectorCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if (this.source != null && this.target != null) {
-			return ConstraintBlockHelper.isConstraintParameter((Element)source, RequestParameterUtils.getSourceView(getRequest())) 
+			
+			boolean hasEncapsulationViolation = !checkEncapsulationCrossing();		
+			
+			return hasEncapsulationViolation ? false :
+					// one of the end must be a ConstraintParameter	
+					ConstraintBlockHelper.isConstraintParameter((Element)source, RequestParameterUtils.getSourceView(getRequest()))
 					|| ConstraintBlockHelper.isConstraintParameter((Element)target, RequestParameterUtils.getTargetView(getRequest()));
 		}
 		return false;
+	}
+
+	private boolean checkEncapsulationCrossing() {
+		org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils util = new org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils();
+		List<Property> nestedPropertyPath = util.getNestedPropertyPath(RequestParameterUtils.getSourceView(getRequest()), RequestParameterUtils.getTargetView(getRequest()));
+		for (Property property : nestedPropertyPath) {
+			Type type = property.getType();
+			Block stereotypeApplication = UMLUtil.getStereotypeApplication(type, Block.class);
+			if (stereotypeApplication != null) {
+				if (stereotypeApplication.isEncapsulated()) {
+					return false;
+				}
+			}
+		}
+		
+		nestedPropertyPath = util.getNestedPropertyPath(RequestParameterUtils.getTargetView(getRequest()), RequestParameterUtils.getSourceView(getRequest()));
+		for (Property property : nestedPropertyPath) {
+			Type type = property.getType();
+			Block stereotypeApplication = UMLUtil.getStereotypeApplication(type, Block.class);
+			if (stereotypeApplication != null) {
+				if (stereotypeApplication.isEncapsulated()) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	@Override

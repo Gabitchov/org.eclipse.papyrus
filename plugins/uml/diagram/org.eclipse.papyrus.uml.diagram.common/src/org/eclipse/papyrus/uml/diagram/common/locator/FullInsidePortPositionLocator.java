@@ -63,6 +63,14 @@ public class FullInsidePortPositionLocator extends PortPositionLocator {
 		this.insidePortSize = portSize;
 	}
 
+	public int getCorner() {
+		return corner;
+	}
+
+	public void setCorner(int corner) {
+		this.corner = corner;
+	}
+
 	/**
 	 * 
 	 * @param proposedLocation

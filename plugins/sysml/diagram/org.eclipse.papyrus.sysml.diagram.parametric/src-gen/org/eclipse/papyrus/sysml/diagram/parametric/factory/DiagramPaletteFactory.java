@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.eclipse.gef.Tool;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
+import org.eclipse.papyrus.sysml.diagram.parametric.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
@@ -39,7 +39,8 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 			put("parametric.tool.connector", new IElementType[]{ UMLElementTypes.CONNECTOR });	
 			put("parametric.tool.dependency", new IElementType[]{ UMLElementTypes.DEPENDENCY });	
 			//Start of user code Custom edges
-			put("parametric.tool.comment_constraint_link", new IElementType[]{ ElementTypes.COMMENT_ANNOTATED_ELEMENT, ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT });	
+			put("parametric.tool.comment_constraint_link", new IElementType[]{ ElementTypes.COMMENT_ANNOTATED_ELEMENT });	
+			put("parametric.tool.context_link", new IElementType[]{ ElementTypes.CONTEXT_LINK });	
 			//End of user code
 		}
 	};

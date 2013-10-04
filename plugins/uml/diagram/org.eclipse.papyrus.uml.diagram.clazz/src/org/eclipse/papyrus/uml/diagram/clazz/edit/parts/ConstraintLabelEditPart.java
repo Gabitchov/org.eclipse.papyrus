@@ -103,11 +103,6 @@ public class ConstraintLabelEditPart extends PapyrusLabelEditPart implements ITe
 	private List<?> parserElements;
 
 	/**
-	 * @generated
-	 */
-	private String defaultText;
-
-	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
 	 * @generated
@@ -209,7 +204,6 @@ public class ConstraintLabelEditPart extends PapyrusLabelEditPart implements ITe
 	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
-		defaultText = getLabelTextHelper(figure);
 		registerVisuals();
 		refreshVisuals();
 	}
@@ -217,6 +211,7 @@ public class ConstraintLabelEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -258,8 +253,8 @@ public class ConstraintLabelEditPart extends PapyrusLabelEditPart implements ITe
 		if(parserElement != null && getParser() != null) {
 			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
 		}
-		if(text == null || text.length() == 0) {
-			text = defaultText;
+		if(text == null) {
+			text = "";
 		}
 		return text;
 	}
@@ -302,6 +297,7 @@ public class ConstraintLabelEditPart extends PapyrusLabelEditPart implements ITe
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
+			@SuppressWarnings("rawtypes")
 			public String isValid(final Object value) {
 				if(value instanceof String) {
 					final EObject element = getParserElement();
@@ -309,6 +305,7 @@ public class ConstraintLabelEditPart extends PapyrusLabelEditPart implements ITe
 					try {
 						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
 
+							@SuppressWarnings("unchecked")
 							public void run() {
 								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
 							}

@@ -60,14 +60,17 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 			}
 		}
 		View viewSource = findView(source);
+		
 		if(viewSource != null && source instanceof Constraint) {
 			View viewTarget = findView(target);
 			List sourceConnections = ViewUtil.getSourceConnections(viewSource);
+			
 			for(Object connector : sourceConnections) {
 				if(!(connector instanceof Connector)) {
 					continue;
 				}
 				Edge edge = (Edge)connector;
+
 				if(("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
 					if(viewTarget == edge.getTarget()) {
 						// the context link is already
@@ -77,7 +80,8 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 				}
 			}
 		}
-		if(getTarget() != null && (getTarget().getOwnedRules().contains(getTarget()))) {
+		if(resolveTargetNamespace() != null && (resolveTargetNamespace().getOwnedRules().contains(resolveTargetNamespace()))) {
+				
 			return false;
 		}
 		return true;

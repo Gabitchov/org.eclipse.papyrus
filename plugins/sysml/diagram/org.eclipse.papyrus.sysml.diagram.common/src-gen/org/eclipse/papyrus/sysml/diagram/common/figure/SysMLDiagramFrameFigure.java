@@ -20,6 +20,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.InteractionFigure;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LeftToolbarLayout;
@@ -28,12 +29,15 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure
 
 public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 
+	private WrappingLabel stereotypeLabel;
+
 	private WrappingLabel frameLabel;
 
 	private RectangleFigure frameLabelContainerFigure;
-
-	private RectangleFigure structureCompartmentFigure;
-
+	
+	private InteractionFigure interactionFigure;
+	
+	private int structureOffset;
 
 	public SysMLDiagramFrameFigure() {
 		super();
@@ -41,12 +45,27 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 	}
 
 	protected void createContents() {
-		add(createInteractionFigureHeader());
-		add(createStructureCompartmentFigures());
+		add(createFigureHeader());
 		setLayoutManager(new SysMLLayoutLayoutManager());
 	}
 
-	protected RectangleFigure createInteractionFigureHeader() {
+	protected RectangleFigure createFigureHeader() {
+		
+		if (this.stereotypeLabel == null) {
+			this.stereotypeLabel = new WrappingLabel() {
+	
+				@Override
+				public Dimension getPreferredSize(final int wHint, final int hHint) {
+					final Dimension preferredSize = super.getPreferredSize(wHint, hHint);
+					if(preferredSize.width == 0) {
+						return preferredSize;
+					}
+					return new Dimension(preferredSize.width + 2, preferredSize.height);
+				}
+			};
+		}
+
+		stereotypeLabel.setAlignment(OrderedLayout.ALIGN_CENTER);
 		if (this.frameLabel == null) {
 			this.frameLabel = new WrappingLabel() {
 	
@@ -56,16 +75,16 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 					if(preferredSize.width == 0) {
 						return preferredSize;
 					}
-					return new Dimension(preferredSize.width + 2, preferredSize.height + 2);
+					return new Dimension(preferredSize.width + 9, preferredSize.height);
 				}
 			};
 		}
 
-		final InteractionFigure interactionFigure = new InteractionFigure();
-		interactionFigure.setBorder(new MarginBorder(3, 3, 3, 3));
+		interactionFigure = new InteractionFigure();
+		interactionFigure.setBorder(new MarginBorder(3, 3, 6, 3));
 		interactionFigure.setLayoutManager(new LeftToolbarLayout());
 		interactionFigure.add(frameLabel);
-		
+
 		frameLabelContainerFigure = new RectangleFigure();
 		frameLabelContainerFigure.setOutline(false);
 		frameLabelContainerFigure.setFill(false);
@@ -77,28 +96,13 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 	@Override
 	public WrappingLabel getNameLabel() {
 		if (frameLabel == null) {
-			createInteractionFigureHeader();
+			createFigureHeader();
 		}
 		return frameLabel;
 	}
 
 	public RectangleFigure getLabelContainer() {
 		return frameLabelContainerFigure;
-	}
-
-	public IFigure getStructureCompartmentFigure() {
-		if (structureCompartmentFigure == null) {
-			createStructureCompartmentFigures();
-		}
-		return structureCompartmentFigure;
-	}
-	
-	public IFigure createStructureCompartmentFigures() {
-		structureCompartmentFigure = new RectangleFigure();
-		structureCompartmentFigure.setFill(false);
-		structureCompartmentFigure.setOutline(false);		
-		
-		return structureCompartmentFigure;
 	}
 	
 	/**
@@ -116,7 +120,7 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 			for(int i = 0; i < container.getChildren().size(); i++) {
 				IFigure currentCompartment = (IFigure)container.getChildren().get(i);
 				// this is a visible compartment
-				if(currentCompartment == structureCompartmentFigure) {
+				if(currentCompartment instanceof ShapeCompartmentFigure) {
 					Rectangle bound = new Rectangle(currentCompartment.getBounds());
 					currentCompartment.invalidate();
 					Dimension pref = currentCompartment.getPreferredSize();
@@ -127,15 +131,15 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 					} else {
 						bound.setSize(prefConstraint);
 					}
-					int offset = 24;
 					bound.x = container.getBounds().x + 10;
-					bound.y = container.getBounds().y + offset ;
+					bound.y = container.getBounds().y + structureOffset ;
 					bound.width = container.getBounds().width - 20;
-					bound.height = container.getBounds().height - offset - 10; 
+					bound.height = container.getBounds().height - structureOffset - 10; 
 					currentCompartment.setBounds(bound);
 				} else if (currentCompartment == frameLabelContainerFigure) {
 					Rectangle boundLabel = new Rectangle(frameLabelContainerFigure.getBounds());
-					boundLabel.setSize(frameLabelContainerFigure.getPreferredSize());
+					Dimension frameLabelDimension = frameLabelContainerFigure.getPreferredSize();
+					boundLabel.setSize(frameLabelDimension);
 					frameLabelContainerFigure.setBounds(boundLabel);
 				} else {
 					// remove other figure
@@ -147,4 +151,22 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 			}
 		}
 	}
+
+	public void setStereotypeLabel(String stereotypeText) {
+		interactionFigure.remove(frameLabel);
+		if (interactionFigure.getChildren().contains(stereotypeLabel)) {
+			interactionFigure.remove(stereotypeLabel);
+		}
+		if (stereotypeText != null && !stereotypeText.isEmpty()) {
+			stereotypeLabel.setText(String.valueOf("\u00AB") + stereotypeText + String.valueOf("\u00BB"));
+			interactionFigure.add(stereotypeLabel);
+			structureOffset = 41;
+		}
+		else {
+			// no stereotype
+			structureOffset = 26;
+		}
+		interactionFigure.add(frameLabel);
+	}
+	
 }
