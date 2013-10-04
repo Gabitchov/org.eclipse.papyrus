@@ -36,10 +36,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 public class CustomBindingConnectorReorientCommand extends ConnectorReorientCommand {
-	/**
-	 * @generated
-	 */
-	private final int reorientDirection;
+
 
 	/**
 	 * @generated
@@ -56,7 +53,6 @@ public class CustomBindingConnectorReorientCommand extends ConnectorReorientComm
 	 */
 	public CustomBindingConnectorReorientCommand(ReorientReferenceRelationshipRequestWithGraphical request) {
 		super(request);
-		reorientDirection = request.getDirection();
 		source = reorientDirection == ReorientReferenceRelationshipRequest.REORIENT_SOURCE ? request.getNewRelationshipEnd() : request.getReferenceOwner();
 		target = reorientDirection == ReorientReferenceRelationshipRequest.REORIENT_SOURCE ? request.getReferenceOwner() : request.getNewRelationshipEnd();
 	}
