@@ -71,7 +71,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated NOT in order to implement {@link IPapyrusEditPart}
  */
-public class ComponentEditPart extends CompositeEditPart implements IPapyrusEditPart {
+public class ComponentEditPart extends org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated

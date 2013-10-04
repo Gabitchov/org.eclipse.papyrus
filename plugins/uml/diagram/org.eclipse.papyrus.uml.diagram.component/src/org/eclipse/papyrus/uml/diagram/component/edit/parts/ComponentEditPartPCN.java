@@ -70,7 +70,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class ComponentEditPartPCN extends CompositeEditPart {
+public class ComponentEditPartPCN extends org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart {
 
 	/**
 	 * @generated
