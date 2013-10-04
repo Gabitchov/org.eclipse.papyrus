@@ -157,7 +157,7 @@ public class SysMLDiagramFrameFigure extends NodeNamedElementFigure {
 		if (interactionFigure.getChildren().contains(stereotypeLabel)) {
 			interactionFigure.remove(stereotypeLabel);
 		}
-		if (stereotypeText != null && !stereotypeText.isEmpty()) {
+		if(stereotypeText != null && stereotypeText.length() != 0) {
 			stereotypeLabel.setText(String.valueOf("\u00AB") + stereotypeText + String.valueOf("\u00BB"));
 			interactionFigure.add(stereotypeLabel);
 			structureOffset = 41;
