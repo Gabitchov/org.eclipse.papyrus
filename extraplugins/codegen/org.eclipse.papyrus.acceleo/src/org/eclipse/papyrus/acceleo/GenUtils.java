@@ -39,6 +39,7 @@ import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -426,15 +427,21 @@ public class GenUtils {
 	 */
 	public static boolean hasStereotypeTree(Element elt, java.lang.Class<? extends EObject> clazz)
 	{
-		Element owner;
 
-		if(hasStereotype(elt, clazz))
+		if(hasStereotype(elt, clazz)) {
 			return true;
-		else if((owner = elt.getOwner()) != null)
-			return hasStereotypeTree(owner, clazz);
-		else
-			return false;
+		}
+		else {
+			Element owner = elt.getOwner();
+			if (owner != null) {
+				return hasStereotypeTree(owner, clazz);
+			}
+			else {
+				return false;
+			}
+		}
 	}
+
 
 	/**
 	 * Verify if an Element or its parent Elements have a stereotype. Pass the definition of the stereotype
@@ -457,7 +464,58 @@ public class GenUtils {
 			return false;
 	}
 
+
+	/**
+	 * return the first occurrence of a stereotype application in the ownership tree
+	 * 
+	 * @param elt an element
+	 * @param definition the definition of a stereotype (its eClass)
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends EObject> T getApplicationTree(Element elt, java.lang.Class<T> clazz)
+	{
+		EObject application = UMLUtil.getStereotypeApplication(elt, clazz);
+		if(application != null) {
+			return (T) application;
+		}
+		else {
+			Element owner = elt.getOwner();
+			if (owner != null) {
+				return getApplicationTree(owner, clazz);
+			}
+			else {
+				return null;
+			}
+		}
+	}
+
+
+	/**
+	 * return the first occurrence of a stereotype application in the ownership tree
+	 * Variant of @see getApplicationTree that is useful for Acceleo
+	 * @param elt an element
+	 * @param definition the definition of a stereotype (its eClass)
+	 * @return
+	 */
+	public static EObject getApplicationTreeA(Element elt, EClass definition)
+	{
+		EObject application = getApplicationA(elt, definition);
+		if(application != null) {
+			return application;
+		}
+		else {
+			Element owner = elt.getOwner();
+			if (owner != null) {
+				return getApplicationTreeA(owner, definition);
+			}
+			else {
+				return null;
+			}
+		}
+	}
 	
+
 	/**
 	 * Return a stereotype application when given the eClass of that application.
 	 * In case of Java, we use the class above (without the A) prefix. In case of Acceleo, a stereotype
