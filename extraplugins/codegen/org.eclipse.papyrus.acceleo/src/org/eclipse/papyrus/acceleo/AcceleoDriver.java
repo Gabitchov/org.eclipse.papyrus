@@ -108,31 +108,35 @@ public class AcceleoDriver {
 
 				String fileNameCandidate = pluginNameCandidate + binSep + relativePath +
 					DOT + IAcceleoConstants.EMTL_FILE_EXTENSION;
-				// String absoluteFileName = Utils.getAbsoluteFN(fileNameCandidate);
-				// if(absoluteFileName != null) {
-				// }
 
 				URI uri = URI.createPlatformPluginURI(fileNameCandidate, true);
 				try {
 					Resource r = acceleoResourceSet.getResource(uri, true);
 					if(r != null) {
-						// use absolute path, if possible, i.e. if file exists at absolute path
-						// this is required, since Acceleo references dependent files using a relative
-						// path.
-						// This workaround is no longer required. In the contrary, it is harmful for binary
-						// build
+						if (pass == 0) {
+							// use absolute path during first pass, i.e. if file exists at absolute path
+							// this is required, since Acceleo references dependent files using a relative
+							// path (this applies to debugging in 2nd instance only, if a plugin is deployed,
+							// references within the EMTL file become platform:/plugin references and the
+							// workaround is not useful or even harmful).
+							// This workaround is only required, if referencing and referenced plugins
+							// are in different folders (example: tracing)
 						
-						/*
-						String absoluteFileName = Utils.getAbsoluteFN(uri.toString());
-						if(absoluteFileName != null) {
-							File fileCandidate = new File(absoluteFileName);
-							if(fileCandidate.exists()) {
-								// remove resource with "wrong" URI
-								removeURIfromResourceSet(uri);
-								return URI.createFileURI(fileCandidate.getAbsolutePath());
+							String absoluteFileName = Utils.getAbsoluteFN(uri.toString());
+							if(absoluteFileName != null) {
+								File fileCandidate = new File(absoluteFileName);
+								if(fileCandidate.exists()) {
+									// remove resource with "wrong" URI
+									removeURIfromResourceSet(uri);
+									return URI.createFileURI(fileCandidate.getAbsolutePath());
+								}
 							}
-						}
-						*/
+						}						
+						return uri;
+					}
+					uri = URI.createPlatformPluginURI(fileNameCandidate, true);
+					r = acceleoResourceSet.getResource(uri, true);
+					if (r != null) {
 						return uri;
 					}
 				} catch (Exception e) {
