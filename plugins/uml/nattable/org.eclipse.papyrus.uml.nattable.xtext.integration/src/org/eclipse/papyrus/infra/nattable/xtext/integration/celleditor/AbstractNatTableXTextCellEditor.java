@@ -13,14 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.xtext.integration.celleditor;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
+import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.celleditor.AbstractPapyrusStyledTextCellEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
 import org.eclipse.papyrus.infra.nattable.xtext.integration.util.XTextEditorResultWrapper;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.XtextFakeResourceContext;
@@ -28,6 +32,7 @@ import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * 
@@ -92,6 +97,30 @@ public abstract class AbstractNatTableXTextCellEditor extends AbstractPapyrusSty
 
 	/**
 	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.AbstractStyledTextCellEditor#activateCell(org.eclipse.swt.widgets.Composite,
+	 *      java.lang.Object)
+	 * 
+	 * @param parent
+	 * @param originalCanonicalValue
+	 * @return
+	 */
+	protected Control activateCell(final Composite parent, final Object originalCanonicalValue) {
+		//we display the full string which have a problem to display it in the Xtext Editor
+		Object value = originalCanonicalValue;
+		if(originalCanonicalValue instanceof List<?>) {
+			if(((List<?>)originalCanonicalValue).size() > 0) {
+				final Object firstValue = ((List<?>)originalCanonicalValue).get(0);
+				if(firstValue instanceof StringResolutionProblem) {
+					value = ((StringResolutionProblem)firstValue).getValueAsString();
+				}
+			}
+		}
+		return super.activateCell(parent, value);
+	}
+
+
+	/**
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.AbstractStyledTextCellEditor#createStyledText(org.eclipse.swt.widgets.Composite, int)
 	 * 
 	 * @param parent
@@ -114,7 +143,6 @@ public abstract class AbstractNatTableXTextCellEditor extends AbstractPapyrusSty
 			}
 		};
 		context.getFakeResource().eAdapters().add(new ContextElementAdapter(provider));
-
 		jfaceCellEditor = xTextConfiguration.createCellEditor(parent, editedObject);
 		return (StyledText)jfaceCellEditor.getControl();
 	}
@@ -145,10 +173,25 @@ public abstract class AbstractNatTableXTextCellEditor extends AbstractPapyrusSty
 	@Override
 	public Object getEditorValue() {
 		final IParser parser = ((ICustomDirectEditorConfiguration)xTextConfiguration).createParser(getEditedEObject());
-		final String typedString = ((StyledText)jfaceCellEditor.getControl()).getText();
-		final ICommand parseCommand = parser.getParseCommand(null, typedString, 0);
+		final StyledText styledText = ((StyledText)jfaceCellEditor.getControl());
+		ICommand parseCommand = null;
+		String typedString = "";
+		if(styledText != null) {
+			typedString = styledText.getText();
+			final IParserEditStatus result = parser.isValidEditString(null, typedString);
+			System.out.println(result);
+			if(result.isOK()) {
+				parseCommand = parser.getParseCommand(null, typedString, 0);
+			}
+		}
 		return new XTextEditorResultWrapper(typedString, parseCommand);
 	}
 
+	@Override
+	public void close() {
+		//TODO requred?
+//		jfaceCellEditor.deactivate();
+//		jfaceCellEditor.dispose();
+	}
 
 }
