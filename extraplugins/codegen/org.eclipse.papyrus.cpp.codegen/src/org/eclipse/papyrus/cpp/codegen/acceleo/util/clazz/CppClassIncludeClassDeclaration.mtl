@@ -7,7 +7,7 @@
 [comment USED??? /]
 [template public CppClassIncludeClassDeclarationTemplate(class : Class)]
 [openNS()/]
-[if hasStereotype(class, 'CppTemplate.class')]template [/if]class [class.name/];
+[if (hasStereotype(class, Template))]template [/if]class [class.name/];
 [closeNS()/]
 [/template]
 

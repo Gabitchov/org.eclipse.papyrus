@@ -294,7 +294,7 @@
         <eParameters name="arg0">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
         </eParameters>
-        <eParameters name="arg1">
+        <eParameters name="definition">
           <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
         </eParameters>
       </eOperations>

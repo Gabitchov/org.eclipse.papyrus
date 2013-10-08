@@ -16,6 +16,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.C_Cpp.CppRoot;
+import org.eclipse.papyrus.C_Cpp.ExternLibrary;
 import org.eclipse.papyrus.C_Cpp.External;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.ManualGeneration;
@@ -39,18 +40,20 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class CppModelElementsCreator extends ModelElementsCreator {
 
-	public static final String ACCELEO_PREFIX = "org::eclipse::papyrus::cpp::codegen::acceleo::";
+	public static final String ACCELEO_PREFIX = "org::eclipse::papyrus::cpp::codegen::acceleo::"; //$NON-NLS-1$
 
-	public static final String CppClassBody = ACCELEO_PREFIX + "CppClassBody";
+	public static final String CppClassBody = ACCELEO_PREFIX + "CppClassBody"; //$NON-NLS-1$
 
-	public static final String CppClassHeader = ACCELEO_PREFIX + "CppClassHeader";
+	public static final String CppClassHeader = ACCELEO_PREFIX + "CppClassHeader"; //$NON-NLS-1$
 
-	public static final String CppBindBody = ACCELEO_PREFIX + "CppBindBody";
+	public static final String CppBindBody = ACCELEO_PREFIX + "CppBindBody"; //$NON-NLS-1$
 
-	public static final String CppBindHeader = ACCELEO_PREFIX + "CppBindHeader";
+	public static final String CppBindHeader = ACCELEO_PREFIX + "CppBindHeader"; //$NON-NLS-1$
 
-	public static final String CppPackageHeader = ACCELEO_PREFIX + "CppPackageHeader";
+	public static final String CppPackageHeader = ACCELEO_PREFIX + "CppPackageHeader"; //$NON-NLS-1$
 
+	public static final String DOT = "."; //$NON-NLS-1$
+	
 	/**
 	 * 
 	 * Constructor.
@@ -102,7 +105,7 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 			ManualGeneration mg = UMLUtil.getStereotypeApplication(classifier, ManualGeneration.class);
 			Include cppInclude = UMLUtil.getStereotypeApplication(classifier, Include.class);
 			String fileContent = commentHeader + cppInclude.getHeader();
-			createFile(container, classifier.getName() + "." + hppExt, fileContent, true); //$NON-NLS-1$
+			createFile(container, classifier.getName() + DOT + hppExt, fileContent, true);
 
 			String manualURI = "TODO"; // fileContent = AcceleoDriver.evaluateURI(new URI(CppPackageHeader)), classifier);
 
@@ -111,30 +114,31 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 			if(ext.length() == 0) {
 				ext = cppExt;
 			}
-			createFile(container, classifier.getName() + "." + ext, fileContent, true);
+			createFile(container, classifier.getName() + DOT + ext, fileContent, true);
 		}
 
 		// Only generate when no CppNoCodeGen stereotype is applied to the class
-		else if((!GenUtils.hasStereotypeTree(classifier, NoCodeGen.class)) && (!GenUtils.hasStereotype(classifier, External.class)) && (!GenUtils.hasStereotype(classifier, Template.class))) {
+		else if((!noCodeGen(classifier)) &&
+				(!GenUtils.hasStereotype(classifier, Template.class))) {
 
 			// Template Bound Class
 			if(GenUtils.isTemplateBoundElement(classifier)) {
 				// TODO: Acceleo template is only defined for class (not for all classifiers)
 				String fileContent = commentHeader + AcceleoDriver.evaluateURI(CppBindHeader, classifier);
-				createFile(container, classifier.getName() + "." + hppExt, fileContent, true);
+				createFile(container, classifier.getName() + DOT + hppExt, fileContent, true);
 
 				fileContent = commentHeader + AcceleoDriver.evaluateURI(CppBindBody, classifier);
-				createFile(container, classifier.getName() + "." + cppExt, fileContent, true);
+				createFile(container, classifier.getName() + DOT + cppExt, fileContent, true);
 			}
 			else {
 				// Header file generation
 				String fileContent = commentHeader + AcceleoDriver.evaluateURI(CppClassHeader, classifier);
-				createFile(container, classifier.getName() + "." + hppExt, fileContent, true);
+				createFile(container, classifier.getName() + DOT + hppExt, fileContent, true);
 
 				// Create class body
 				if(classifier instanceof Class) {
 					fileContent = commentHeader + AcceleoDriver.evaluateURI(CppClassBody, classifier);
-					createFile(container, classifier.getName() + "." + cppExt, fileContent, true);
+					createFile(container, classifier.getName() + DOT + cppExt, fileContent, true);
 				}
 			}
 		}
@@ -144,7 +148,7 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 	protected void createPackageFiles(IContainer packageContainer, IProgressMonitor monitor, Package pkg) throws CoreException {
 		// Creates the header for the package.
 		String fileContent = commentHeader + AcceleoDriver.evaluateURI(CppPackageHeader, pkg);
-		createFile(packageContainer, "Pkg_" + pkg.getName() + "." + hppExt, fileContent, true);
+		createFile(packageContainer, "Pkg_" + pkg.getName() + DOT + hppExt, fileContent, true); //$NON-NLS-1$
 	}
 
 
@@ -153,6 +157,9 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 	}
 
 	protected boolean noCodeGen(Element element) {
-		return GenUtils.hasStereotype(element, NoCodeGen.class);
+		return
+			GenUtils.hasStereotype(element, NoCodeGen.class) ||
+			GenUtils.hasStereotype(element, External.class) ||
+			GenUtils.hasStereotypeTree(element, ExternLibrary.class);
 	}
 }

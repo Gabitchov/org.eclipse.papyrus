@@ -7,7 +7,7 @@
 
 
 [template public defaultValue(parameter : Parameter)]
-[if (hasStereotype(C_Cpp::Default))] = [getApplication(C_Cpp::Default).oclAsType(C_Cpp::Default).value/][/if]
+[if (defaultValue <> null)] = [defaultValue.stringValue()/][/if]
 [/template]
 
 [comment C++ parameter. Default values are added, if parameter showDefault is true (implementation signature
