@@ -8,10 +8,8 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include model/implementation/Class0/subdir.mk
--include model/implementation/subdir.mk
--include model/Class3/subdir.mk
--include model/subdir.mk
+-include TestCDTintegration/subdir.mk
+-include TestCCodeGen/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -41,19 +39,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: TestCDT
+all: org.eclipse.papyrus.cpp.test
 
 # Tool invocations
-TestCDT: $(OBJS) $(USER_OBJS)
+org.eclipse.papyrus.cpp.test: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++  -o "TestCDT" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "org.eclipse.papyrus.cpp.test" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) TestCDT
+	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) org.eclipse.papyrus.cpp.test
 	-@echo ' '
 
 .PHONY: all clean dependents
