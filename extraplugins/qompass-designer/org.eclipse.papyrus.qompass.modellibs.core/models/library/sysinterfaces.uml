@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Model xmi:id="_RodVAAweEd6it_RkGhz_AA" name="sysinterfaces">
-    <packageImport xmi:id="_RodVAQweEd6it_RkGhz_AA">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_RodVAQweEd6it_RkGhz_AA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
-    <packageImport xmi:id="_3gokYF_LEd6vU6EJjexEKQ">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_3gokYF_LEd6vU6EJjexEKQ">
       <importedPackage xmi:type="uml:Model" href="corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
-    <packageImport xmi:id="_TUuxcPN-EeCovO8AYZymZQ">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_TUuxcPN-EeCovO8AYZymZQ">
       <importedPackage xmi:type="uml:Model" href="pathmap://Papyrus_Alf_LIBRARIES/alflibrary.uml#_0bBI4Hy5EeCKy5kSqd4eVw"/>
     </packageImport>
     <packagedElement xmi:type="uml:Interface" xmi:id="_Xb-y0AweEd6it_RkGhz_AA" name="ITick">
-      <ownedOperation xmi:id="_asFRoAweEd6it_RkGhz_AA" name="tick"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_asFRoAweEd6it_RkGhz_AA" name="tick"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_7TuzoCUUEd6YR-YzyVnLng" name="Dispatch">
-      <ownedOperation xmi:id="__aGzICUUEd6YR-YzyVnLng" name="dispatch" isAbstract="true">
-        <ownedParameter xmi:id="_y4XwwC3vEd6OqY3qskOtLQ" name="buffer">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="__aGzICUUEd6YR-YzyVnLng" name="dispatch" isAbstract="true">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_y4XwwC3vEd6OqY3qskOtLQ" name="buffer">
           <type xmi:type="uml:PrimitiveType" href="corba.uml#_IYEXcB-VEd6nGq8wpI2tjg"/>
         </ownedParameter>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_BHFPQJsqEd61Eo3nmu3JhQ" name="IRunnable">
-      <ownedOperation xmi:id="_C9IK4JsqEd61Eo3nmu3JhQ" name="run"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_C9IK4JsqEd61Eo3nmu3JhQ" name="run"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_PTWzwCS-Ed-A_I32T0fkaA" name="IStart">
-      <generalization xmi:id="_XpdjECS-Ed-A_I32T0fkaA" general="_BHFPQJsqEd61Eo3nmu3JhQ"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_XpdjECS-Ed-A_I32T0fkaA" general="_BHFPQJsqEd61Eo3nmu3JhQ"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_T3li0Dz6Ed-v9PxuTj6Elw" name="ILifeCycle">
-      <ownedOperation xmi:id="_WHyq4Dz6Ed-v9PxuTj6Elw" name="activate" isAbstract="true"/>
-      <ownedOperation xmi:id="_W7YrADz6Ed-v9PxuTj6Elw" name="deactivate" isAbstract="true"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_WHyq4Dz6Ed-v9PxuTj6Elw" name="activate" isAbstract="true"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_W7YrADz6Ed-v9PxuTj6Elw" name="deactivate" isAbstract="true"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_ns4qsClUEeO4bs_nkcnKOg" name="configuration_complete"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_rWJlYFVsEd-K97FBeYjNGA" name="CppCompilationReq"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_xLfoIFVsEd-K97FBeYjNGA" name="CppCompilationReq">
-      <ownedAttribute xmi:id="_zNjmgFVsEd-K97FBeYjNGA" name="include" visibility="public" isUnique="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_zNjmgFVsEd-K97FBeYjNGA" name="include" visibility="public" isUnique="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2NQR0FVsEd-K97FBeYjNGA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2NRf8FVsEd-K97FBeYjNGA" value="1"/>
@@ -40,7 +41,7 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_zbKksFVsEd-K97FBeYjNGA" name="libPaths" visibility="public" isUnique="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_zbKksFVsEd-K97FBeYjNGA" name="libPaths" visibility="public" isUnique="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5Y8xwFVsEd-K97FBeYjNGA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5ZGiwFVsEd-K97FBeYjNGA" value="1"/>
@@ -48,7 +49,7 @@
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_5uSIkFVsEd-K97FBeYjNGA" name="libs" visibility="public" isUnique="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5uSIkFVsEd-K97FBeYjNGA" name="libs" visibility="public" isUnique="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7rCJIFVsEd-K97FBeYjNGA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7rOWYFVsEd-K97FBeYjNGA" value="1"/>
@@ -58,23 +59,23 @@
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_omxU4PNAEeCovO8AYZymZQ" name="PoolControl">
-      <ownedOperation xmi:id="_2-9icPNAEeCovO8AYZymZQ" name="addEvent" visibility="public">
-        <ownedComment xmi:id="_7lclYPNAEeCovO8AYZymZQ">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_2-9icPNAEeCovO8AYZymZQ" name="addEvent" visibility="public">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_7lclYPNAEeCovO8AYZymZQ">
           <body>&lt;&lt;TextualRepresentation>>public addEvent () { }</body>
         </ownedComment>
       </ownedOperation>
     </packagedElement>
-    <profileApplication xmi:id="_RodVAgweEd6it_RkGhz_AA">
-      <eAnnotations xmi:id="_RodVAwweEd6it_RkGhz_AA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_RodVAgweEd6it_RkGhz_AA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RodVAwweEd6it_RkGhz_AA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
     </profileApplication>
-    <profileApplication xmi:id="_-PJq0F_LEd6vU6EJjexEKQ">
-      <eAnnotations xmi:id="_-PN8QF_LEd6vU6EJjexEKQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-PJq0F_LEd6vU6EJjexEKQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-PN8QF_LEd6vU6EJjexEKQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
   </uml:Model>
   <C_Cpp:Ptr xmi:id="__cCUsF_LEd6vU6EJjexEKQ" base_parameter="_y4XwwC3vEd6OqY3qskOtLQ"/>

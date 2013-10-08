@@ -25,7 +25,6 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationE
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FixTemplateSync;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
@@ -61,12 +60,12 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class TemplatePort implements ITemplateMappingRule {
 
-	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
+	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, boolean update)
 	{
 		return null;
 	}
 
-	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
+	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, boolean update)
 	{
 		return null;
 	}
@@ -138,5 +137,46 @@ public class TemplatePort implements ITemplateMappingRule {
 			} catch (TransformationException e) {
 			}
 		}
+	}
+	
+	public boolean needsUpdate(org.eclipse.papyrus.FCM.Port p) {
+		Port port = p.getBase_Port();
+		Type type = port.getType();
+		if(!(type instanceof Classifier)) {
+			return false;
+		}
+		if (p.getKind() == null) {
+			return false;
+		}
+		Class extendedPort = p.getKind().getBase_Class();
+		TemplateSignature signature = TemplateUtils.getSignature(extendedPort.getNearestPackage());
+		Package pkgTemplate = signature.getNearestPackage();
+		if(pkgTemplate != null) {
+			EList<Namespace> path = TemplateUtils.relativePathWithMerge(extendedPort, pkgTemplate);
+			
+			String name = pkgTemplate.getName() + "_" + type.getName();  //$NON-NLS-1$
+			Package model = Utils.getTop(port);
+			Package pkg = model.getNestedPackage(name);
+			if (pkg == null) {
+				model = Utils.getFirstLevel(port);	// try whether package template exists here
+				// required for target model with additional "root" folder
+				pkg = model.getNestedPackage(name);
+			}
+			if (pkg != null) {
+				for (Namespace pathElem : path) {
+					pkg = pkg.getNestedPackage(pathElem.getName());
+					if (pkg == null) {
+						return true;
+					}
+				}
+				PackageableElement boundClass = pkg.getPackagedElement(extendedPort.getName());
+				if (boundClass != null) {
+					if (UMLUtil.getStereotypeApplication(boundClass, PortKind.class) != null) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 }

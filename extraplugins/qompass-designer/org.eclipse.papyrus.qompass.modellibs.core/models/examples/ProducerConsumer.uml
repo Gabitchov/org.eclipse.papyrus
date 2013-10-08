@@ -47,6 +47,7 @@ cout &lt;&lt; &quot;finished waiting&quot; &lt;&lt; endl;
           </ownedBehavior>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_tyjRy8__Ed-TP80eVS-2Rg" name="activate" method="_tyjRwc__Ed-TP80eVS-2Rg"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_tyjRzM__Ed-TP80eVS-2Rg" name="deactivate"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_FJPu4CxyEeOMQpc6Y-MAJw" name="configuration_complete"/>
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_OGM88DLaEd2qeKRLMdIx_A" name="PushConsumer">
@@ -75,6 +76,10 @@ cout &lt;&lt; &quot;finished waiting&quot; &lt;&lt; endl;
 </body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qUSHYPdMEd-KM6l7lmIPkw" name="push" specification="_j0ZdMBphEeONpa5JgejICQ">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_Fnm7UCxxEeOMQpc6Y-MAJw" name="data" type="_wFJ3IP91Ed6Jt8e-UqrRdQ">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FoK8ACxxEeOMQpc6Y-MAJw" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FoWiMCxxEeOMQpc6Y-MAJw" value="1"/>
+            </ownedParameter>
             <language>C/C++</language>
             <body>cout &lt;&lt; &quot;received data: x = &quot; &lt;&lt; data.x &lt;&lt; &quot; y = &quot; &lt;&lt; data.y &lt;&lt; endl;</body>
           </ownedBehavior>
@@ -86,6 +91,7 @@ cout &lt;&lt; &quot;finished waiting&quot; &lt;&lt; endl;
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_j2Uv0BphEeONpa5JgejICQ" value="1"/>
             </ownedParameter>
           </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_FemwUCxxEeOMQpc6Y-MAJw" name="configuration_complete"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_LjkIoBo3EeONpa5JgejICQ" name="Dependency1" client="_oqZNUDLaEd2qeKRLMdIx_A" supplier="_wFJ3IP91Ed6Jt8e-UqrRdQ"/>
       </packagedElement>
@@ -428,4 +434,10 @@ Use the context menu on a selected connector to specify the interaction componen
   <FCM:DerivedElement xmi:id="_-LmSsBoaEeONpa5JgejICQ" base_Element="_-LSwsBoaEeONpa5JgejICQ" source="_wFJ3IP91Ed6Jt8e-UqrRdQ"/>
   <FCM:DerivedElement xmi:id="_EdzKYBo4EeONpa5JgejICQ" base_Element="_EdXskBo4EeONpa5JgejICQ" source="_wFJ3IP91Ed6Jt8e-UqrRdQ"/>
   <FCM:DerivedElement xmi:id="_j2vmkBphEeONpa5JgejICQ" base_Element="_j0ZdMBphEeONpa5JgejICQ" source="_EeDpEBo4EeONpa5JgejICQ"/>
+  <FCM:DerivedElement xmi:id="_Ffh9YCxxEeOMQpc6Y-MAJw" base_Element="_FemwUCxxEeOMQpc6Y-MAJw">
+    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_ns4qsClUEeO4bs_nkcnKOg"/>
+  </FCM:DerivedElement>
+  <FCM:DerivedElement xmi:id="_FKGqgCxyEeOMQpc6Y-MAJw" base_Element="_FJPu4CxyEeOMQpc6Y-MAJw">
+    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_ns4qsClUEeO4bs_nkcnKOg"/>
+  </FCM:DerivedElement>
 </xmi:XMI>

@@ -19,7 +19,6 @@ import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Port;
@@ -44,24 +43,29 @@ import org.eclipse.uml2.uml.Type;
  */
 public class ExtendedPort2 implements IMappingRule {
 
-	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
+	public static final String CONJ_PREFIX = "C2_"; //$NON-NLS-1$
+	
+	public static final String NORM_PREFIX = "N2_"; //$NON-NLS-1$
+			
+
+	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, boolean update)
 	{
-		return getDerived(p, p.getBase_Port().isConjugated(), config, update);
+		return getDerived(p, p.getBase_Port().isConjugated(), update);
 	}
 
-	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, InstanceSpecification config, boolean update)
+	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, boolean update)
 	{
-		return getDerived(p, !p.getBase_Port().isConjugated(), config, update);
+		return getDerived(p, !p.getBase_Port().isConjugated(), update);
 	}
 
-	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isConjugated, InstanceSpecification config, boolean update)
+	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isConjugated, boolean update)
 	{
 		Type type = extPort.getBase_Port().getType();
 		if(!(type instanceof Class))
 			return null;
 
 		Class extendedPort = (Class)type;
-		String prefix = isConjugated ? "C2_" : "N2_";
+		String prefix = isConjugated ? CONJ_PREFIX : NORM_PREFIX;
 		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type, update);
 		if (!update) {
 			return derivedInterface;
@@ -87,5 +91,43 @@ public class ExtendedPort2 implements IMappingRule {
 			}
 		}
 		return derivedInterface;
+	}
+	
+	public boolean needsUpdate(org.eclipse.papyrus.FCM.Port p) {
+		return
+			needsUpdate(p, false) ||
+			needsUpdate(p, true);
+	}
+
+	public boolean needsUpdate(org.eclipse.papyrus.FCM.Port p, boolean isConjugated) {
+		Type type = p.getBase_Port().getType();
+		if(!(type instanceof Class))
+			return false;
+
+		Class extendedPort = (Class)type;
+		String prefix = isConjugated ? CONJ_PREFIX : NORM_PREFIX;
+		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, prefix, type, false);
+
+		if(derivedInterface == null) {
+			return true;
+		}
+		for(Port port : extendedPort.getOwnedPorts()) {
+			// if the extended port is conjugated, each of the provided/required are (implicitly)
+			// conjugated [TODO: is PortUtils aware of it? - probably yes]
+			Interface provIntf = (isConjugated) ?
+				PortUtils.getRequired(port) :
+				PortUtils.getProvided(port);
+
+			if(provIntf != null) {
+				String name = PrefixConstants.getP_Prefix + port.getName();
+
+				// check whether operation already exists. Create, if not
+				Operation derivedOperation = derivedInterface.getOperation(name, null, null);
+				if(derivedOperation == null) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
