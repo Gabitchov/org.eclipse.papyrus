@@ -19,7 +19,7 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Port;
@@ -40,7 +40,7 @@ public class ConnectorCallMultiplicity extends AbstractModelConstraint
 		String portsStr = ""; //$NON-NLS-1$
 		
 		Property part = (Property) ctx.getTarget();
-		if (!StUtils.isApplicable(part, DerivedElement.class)) {
+		if (!StereotypeUtil.isApplicable(part, DerivedElement.class)) {
 			// make rule Qompass specific: only perform check, if the FCM profile is applied (checked via applicability
 			// the DerviedElement stereotype)
 			return ctx.createSuccessStatus();

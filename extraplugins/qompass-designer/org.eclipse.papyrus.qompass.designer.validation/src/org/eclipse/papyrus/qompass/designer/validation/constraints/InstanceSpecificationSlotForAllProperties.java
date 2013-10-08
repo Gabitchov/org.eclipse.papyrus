@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.ConfigurationProperty;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -44,7 +44,7 @@ public class InstanceSpecificationSlotForAllProperties extends AbstractModelCons
 			
 				for (Property attribute : class_.getOwnedAttributes ()) {
 					boolean foundAttribute = false;
-					if (StUtils.isApplied(attribute, ConfigurationProperty.class)) {
+					if (StereotypeUtil.isApplied(attribute, ConfigurationProperty.class)) {
 						for (Slot slot : is.getSlots ()) {
 							if (slot.getDefiningFeature () == attribute) {
 								foundAttribute = true;

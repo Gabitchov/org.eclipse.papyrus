@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.DerivedElement;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -46,7 +46,7 @@ public class TemplateRefWithoutBinding extends AbstractModelConstraint {
 				if (owner instanceof Package) {
 					Package pkg = (Package) owner;
 					if (TemplateUtils.getSignatureDirect(pkg) != null) {
-						if (StUtils.isApplicable(pkg, DerivedElement.class) && !isWithin(pkg, te)) {
+						if (StereotypeUtil.isApplicable(pkg, DerivedElement.class) && !isWithin(pkg, te)) {
 							// the type of an element is defined within a package template (pkg), but the typed element (te) itself
 							// is defined outside of this package
 							return ctx.createFailureStatus("This element is typed with '" + type.getQualifiedName() + "', but defined outside the package template '" + //$NON-NLS-1$ //$NON-NLS-2$

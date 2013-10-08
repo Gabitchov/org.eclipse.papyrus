@@ -15,7 +15,7 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.papyrus.FCM.ConfigurationProperty;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 
 /**
  * Verify if all configuration attribute have a (user-provided) value.
@@ -30,7 +30,7 @@ public class ConfigurationAttributeNotSet extends AbstractModelConstraint {
 	{
 		Slot slot = (Slot) ctx.getTarget();
 		StructuralFeature feature = slot.getDefiningFeature ();
-		if ((feature != null) && (StUtils.isApplied (feature, ConfigurationProperty.class))) {
+		if ((feature != null) && (StereotypeUtil.isApplied (feature, ConfigurationProperty.class))) {
 			if (slot.getValues ().size () == 0) {
 				return ctx.createFailureStatus ("The attribute '" + feature.getName () + "' is tagged as a configuration property, but the associated slot has no value.");
 			}

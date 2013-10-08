@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.DerivedElement;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
@@ -43,7 +43,7 @@ public class OperationsWithTwoReturnValues extends AbstractModelConstraint
 					firstReturn = false;
 				}
 				else {
-					if (StUtils.isApplicable(operation, DerivedElement.class)) {
+					if (StereotypeUtil.isApplicable(operation, DerivedElement.class)) {
 						return ctx.createFailureStatus ("The operation '" + operation.getName () + "' has more than one return parameter. It must have at most one");
 					}
 					else {
