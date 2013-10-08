@@ -17,7 +17,7 @@ package org.eclipse.papyrus.qompass.designer.core.transformations.filters;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.FCM.Connector;
 import org.eclipse.papyrus.FCM.InteractionComponent;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.uml2.uml.Class;
@@ -56,10 +56,10 @@ public class FilterTemplate implements CopyListener {
 	public EObject copyEObject(Copy copy, EObject sourceEObj) {
 		if(active && (sourceEObj instanceof Element)) {
 			Element sourceElem = (Element)sourceEObj;
-			if((sourceEObj instanceof Connector) && StUtils.isApplied(sourceElem, Connector.class)) {
+			if((sourceEObj instanceof Connector) && StereotypeUtil.isApplied(sourceElem, Connector.class)) {
 				return null;
 			}
-			if((sourceEObj instanceof Class) && StUtils.isApplied(sourceElem, InteractionComponent.class)) {
+			if((sourceEObj instanceof Class) && StereotypeUtil.isApplied(sourceElem, InteractionComponent.class)) {
 				return null;
 			}
 		}

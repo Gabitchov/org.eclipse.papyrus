@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * This class encapsulated functions around template instantiation.
+ * This class encapsulates functions around template instantiation.
  * 
  * With respect to composite structures, we need to consider two different
  * cases: (1) the type of a property is a template class itself (2) the type of

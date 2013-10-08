@@ -384,6 +384,9 @@ public class CompImplSync {
 				}
 			}
 		}
+		for (Behavior method : implementation.getOwnedBehaviors()) {
+			SyncBehaviorParameters.syncParameters(method);
+		}
 
 		// remove operations that are no longer provided via an interface of a port (and
 		// that are derived elements, i.e. have a source attribute)

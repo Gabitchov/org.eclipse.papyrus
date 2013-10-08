@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.FCM.TemplatePort;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Interface;
@@ -201,7 +202,7 @@ public class PortUtils {
 	 * @return
 	 */
 	public static boolean isTemplatePort(Port port) {
-		return StUtils.isApplied(port, TemplatePort.class);
+		return StereotypeUtil.isApplied(port, TemplatePort.class);
 	}
 	
 	/**

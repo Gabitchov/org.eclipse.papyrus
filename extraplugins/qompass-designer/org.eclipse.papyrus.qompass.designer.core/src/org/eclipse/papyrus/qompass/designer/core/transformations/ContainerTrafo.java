@@ -37,6 +37,7 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -258,7 +259,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				// DepUtils.chooseImplementation((Class) type,
 				// new BasicEList<InstanceSpecification>(), false);
 
-				if(StUtils.isApplied(extOrInterceptor, InteractionComponent.class)) {
+				if(StereotypeUtil.isApplied(extOrInterceptor, InteractionComponent.class)) {
 
 					InterceptionRule interceptionRule = UMLUtil.getStereotypeApplication(part, InterceptionRule.class);
 					InterceptionKind interceptionKind = InterceptionKind.INTERCEPT_ALL; // default: intercept all ports
@@ -271,7 +272,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 						expandInterceptorExtension(interceptionKind, interceptFeatures, extOrInterceptor, tmComponent);
 					interceptorPartsMap.put(part, interceptorParts);
 				}
-				else if(StUtils.isApplied(part, InterceptionRule.class)) {
+				else if(StereotypeUtil.isApplied(part, InterceptionRule.class)) {
 					throw new TransformationException("The part " + part.getName() + " in rule " + smContainerRule.getBase_Class().getName() + "" +
 						" has an interceptionRule, but is not typed with an interaction component");
 				}
@@ -440,7 +441,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				}
 
 				interceptionConnector.setName(interceptorName + port.getName() + counter);
-				org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.applyApp(interceptionConnector, org.eclipse.papyrus.FCM.Connector.class);
+				org.eclipse.papyrus.FCM.Connector fcmConn = StereotypeUtil.applyApp(interceptionConnector, org.eclipse.papyrus.FCM.Connector.class);
 				InteractionComponent fcmConnType = UMLUtil.getStereotypeApplication(smContainerConnImpl, InteractionComponent.class);
 				fcmConn.setIc(fcmConnType);
 

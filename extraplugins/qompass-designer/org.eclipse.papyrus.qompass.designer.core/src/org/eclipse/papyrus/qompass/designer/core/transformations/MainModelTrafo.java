@@ -44,6 +44,7 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -335,7 +336,7 @@ public class MainModelTrafo {
 						+ smIS.getName() + "\"");
 			}
 			StructuralFeature smPartDF = slot.getDefiningFeature();
-			if(StUtils.isApplied(smPartDF.getType(), InteractionComponent.class)) {
+			if(StereotypeUtil.isApplied(smPartDF.getType(), InteractionComponent.class)) {
 				if(smPartDF instanceof Property) {
 					Property tmPart = ConnectorReification.reifyConnector(copy, tmComponent, (Property)smPartDF, tmIS, null);
 					// update value specification (to the one just created)
@@ -447,7 +448,7 @@ public class MainModelTrafo {
 		 * for(Property part : smComponent.getOwnedAttributes()) {
 		 * Type type = part.getType();
 		 * if(type != null) {
-		 * if(StUtils.isApplied(type, InteractionComponent.class)) {
+		 * if(StereotypeUtil.isApplied(type, InteractionComponent.class)) {
 		 * ConnectorReification.reifyConnector(copy, tmComponent, part, tmIS, null);
 		 * }
 		 * }

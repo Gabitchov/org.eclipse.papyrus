@@ -16,7 +16,7 @@ import org.eclipse.papyrus.FCM.ImplementationGroup;
 import org.eclipse.papyrus.FCM.ImplementationProperties;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.FCM.Target;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
@@ -142,7 +142,7 @@ public class DepUtils {
 		// TODO: assumption that implementations are in same package as type;
 
 		EList<Class> implList = new BasicEList<Class>();
-		if(StUtils.isApplied(componentType, ImplementationGroup.class)) {
+		if(StereotypeUtil.isApplied(componentType, ImplementationGroup.class)) {
 			for(Property groupAttribute : componentType.getAttributes()) {
 				Type implClass = groupAttribute.getType();
 				if((implClass instanceof Class) && isImplEligible((Class)implClass, nodes)) {
@@ -229,7 +229,7 @@ public class DepUtils {
 	 *        instance the top-level instance specification of the plan
 	 */
 	public static void setMainInstance(Package cdp, InstanceSpecification mainInstance) {
-		StUtils.apply(cdp, DeploymentPlan.class);
+		StereotypeUtil.apply(cdp, DeploymentPlan.class);
 		DeploymentPlan dp = UMLUtil.getStereotypeApplication(cdp, DeploymentPlan.class);
 		dp.setMainInstance(mainInstance);
 	}
@@ -259,7 +259,7 @@ public class DepUtils {
 	 */
 	public static boolean isConnector(InstanceSpecification instance) {
 		Classifier cl = getClassifier(instance);
-		return StUtils.isApplied(cl, InteractionComponent.class);
+		return StereotypeUtil.isApplied(cl, InteractionComponent.class);
 	}
 
 	/**

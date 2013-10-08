@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.C_Cpp.External;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Typedef;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
@@ -222,7 +222,7 @@ public class UMLTool {
 	 * @return
 	 */
 	public static String cppQName(NamedElement ne) {
-		if((StUtils.isApplied(ne, External.class)) || (StUtils.isApplied(ne, NoCodeGen.class))) {
+		if((StereotypeUtil.isApplied(ne, External.class)) || (StereotypeUtil.isApplied(ne, NoCodeGen.class))) {
 			return ne.getName();
 		} else {
 			String qName = ne.getName();

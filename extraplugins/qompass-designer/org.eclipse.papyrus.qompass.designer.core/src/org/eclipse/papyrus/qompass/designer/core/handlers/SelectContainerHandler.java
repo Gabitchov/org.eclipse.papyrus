@@ -105,8 +105,8 @@ public class SelectContainerHandler extends CmdHandler {
 			 * if ((result.length == 2) && (result[0] instanceof Class) && (result[1] instanceof Class)) {
 			 * CommandSupport.exec ("Select connector", new Runnable () {
 			 * public void run () {
-			 * Object newConnType = StUtils.getApplication ((Class) result[0], ConnectorType.class);
-			 * Object newConnImpl = StUtils.getApplication ((Class) result[1], ConnectorImpl.class);
+			 * Object newConnType = StereotypeUtil.getApplication ((Class) result[0], ConnectorType.class);
+			 * Object newConnImpl = StereotypeUtil.getApplication ((Class) result[1], ConnectorImpl.class);
 			 * }
 			 * });
 			 * }

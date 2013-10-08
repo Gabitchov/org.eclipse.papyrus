@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -40,13 +40,13 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class AddProfileAndModelLibsHandler extends CmdHandler {
 
-	static final String FCM_PROFILE_URI = "pathmap://FCM_PROFILES/FCM.profile.uml"; //$NON-NLS-1$
+	public static final String FCM_PROFILE_URI = "pathmap://FCM_PROFILES/FCM.profile.uml"; //$NON-NLS-1$
 
-	static final String MARTE_PROFILE_URI = "pathmap://Papyrus_PROFILES/MARTE.profile.uml";//$NON-NLS-1$
+	public static final String MARTE_PROFILE_URI = "pathmap://Papyrus_PROFILES/MARTE.profile.uml";//$NON-NLS-1$
 
-	static final String EC3M_BASIC_CALLS_URI = "pathmap://QML_CORE/core.uml"; //$NON-NLS-1$
+	public static final String EC3M_BASIC_CALLS_URI = "pathmap://QML_CORE/core.uml"; //$NON-NLS-1$
 
-	static final String EC3M_MARTE_CALLS_URI = "pathmap://QML_MARTE/marte.uml"; //$NON-NLS-1$
+	public static final String EC3M_MARTE_CALLS_URI = "pathmap://QML_MARTE/marte.uml"; //$NON-NLS-1$
 
 	static final String MARTE_FOUNDATIONS = "MARTE_Foundations"; //$NON-NLS-1$
 	
@@ -85,9 +85,9 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 	 * 
 	 * @return
 	 */
-	public PackageImport getModelLibraryImportFromURI(URI uri, EditingDomain domain) {
+	public PackageImport getModelLibraryImportFromURI(URI uri, ResourceSet resourceSet) {
 		// Try to reach model
-		Element root = getContent(uri, domain);
+		Element root = getContent(uri, resourceSet);
 		if(root instanceof Package) {
 
 			// Import model library
@@ -101,9 +101,9 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 		return null;
 	}
 
-	public static Element getContent(URI uri, EditingDomain domain) {
+	public static Element getContent(URI uri, ResourceSet rs) {
 		// Resource resource = getTransactionalEditingDomain ().getResourceSet().getResource (uri, true);
-		Resource resource = domain.getResourceSet().getResource(uri, true);
+		Resource resource = rs.getResource(uri, true);
 		return getContent(resource);
 	}
 
@@ -155,9 +155,10 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 		final Package selectedPkg = (Package)getSelectedEObject();
 
 		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(selectedPkg);
-		
+		final ResourceSet resourceSet = selectedPkg.eResource().getResourceSet();
+
 		CommandStack stack = domain.getCommandStack();
-		PackageImport pi = getModelLibraryImportFromURI(URI.createURI(EC3M_BASIC_CALLS_URI), domain);
+		PackageImport pi = getModelLibraryImportFromURI(URI.createURI(EC3M_BASIC_CALLS_URI), resourceSet);
 		EList<Object> list = new BasicEList<Object>();
 		EList<Object> selection = new BasicEList<Object>();
 		if(pi != null) {
@@ -166,7 +167,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 				selection.add(pi);
 			}
 		}
-		pi = getModelLibraryImportFromURI(URI.createURI(EC3M_MARTE_CALLS_URI), domain);
+		pi = getModelLibraryImportFromURI(URI.createURI(EC3M_MARTE_CALLS_URI), resourceSet);
 		if(pi != null) {
 			list.add(pi);
 			if(isAlreadyImported(selectedPkg, pi)) {
@@ -216,8 +217,8 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 
 	public static void addProfiles(Package selectedPkg, int applyCode) {
 
-		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(selectedPkg);
-
+		final ResourceSet resourceSet = selectedPkg.eResource().getResourceSet();
+		
 		try {
 			/*
 			 * // Apply UML Standard profile
@@ -231,7 +232,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 			if((applyCode & APPLY_FCM) != 0) {
 				// Retrieve FCM profile
 				Profile fcmProfile =
-					(Profile)getContent(URI.createURI(FCM_PROFILE_URI), domain);
+					(Profile)getContent(URI.createURI(FCM_PROFILE_URI), resourceSet);
 
 				// Apply FCM profile and its nested profiles to new model
 				if(fcmProfile instanceof Profile) {
@@ -250,7 +251,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 			if((applyCode & (APPLY_ALLOC | APPLY_HLAM_GCM)) != 0) {
 				// Retrieve MARTE profile
 				Profile marteProfile =
-					(Profile)getContent(URI.createURI(MARTE_PROFILE_URI), domain);
+					(Profile)getContent(URI.createURI(MARTE_PROFILE_URI), resourceSet);
 
 				// Apply MARTE::MARTE_DesignModel::HLAM
 				//     & MARTE::MARTE_DesignModel::GCM

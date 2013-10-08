@@ -33,6 +33,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.CompImplTrafos;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -106,7 +107,7 @@ public class BootLoaderGen {
 		 * numberOfNodes.setDefault ("2");
 		 * }
 		 */
-		Include cppInclude = StUtils.applyApp(m_bootLoader, Include.class);
+		Include cppInclude = StereotypeUtil.applyApp(m_bootLoader, Include.class);
 		Object existingBody = cppInclude.getBody();
 		String existingBodyStr = ""; //$NON-NLS-1$
 		if(existingBody instanceof String) {
@@ -226,7 +227,7 @@ public class BootLoaderGen {
 		}
 
 		// if start thread => existing thread activation interceptor? Connection?
-		if(StUtils.isApplied(implementation, SwSchedulableResource.class)) {
+		if(StereotypeUtil.isApplied(implementation, SwSchedulableResource.class)) {
 			// yes, but is the thread instance part of the deployment plan?? [mmh, probably yes...]
 			// call threads start routine here? (via main thread?) which in turn will activate the start routine?
 		}

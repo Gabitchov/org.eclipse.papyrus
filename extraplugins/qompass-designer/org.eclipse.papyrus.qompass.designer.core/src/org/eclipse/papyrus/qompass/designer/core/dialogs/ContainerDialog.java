@@ -26,7 +26,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.RuleApplication;
 import org.eclipse.papyrus.qompass.designer.core.Description;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -81,7 +81,7 @@ public class ContainerDialog extends SelectionStatusDialog {
 	public ContainerDialog(Shell parent, Class componentOrRule) {
 		super(parent);
 		// visitedPackages = new BasicEList<Package> ();
-		m_rulePropertiesOnly = StUtils.isApplied(componentOrRule, ContainerRule.class);
+		m_rulePropertiesOnly = StereotypeUtil.isApplied(componentOrRule, ContainerRule.class);
 		if(m_rulePropertiesOnly) {
 			// m_currentRule = UMLUtil.getStereotypeApplication(componentOrRule, ContainerRule.class);
 		} else {
@@ -243,7 +243,7 @@ public class ContainerDialog extends SelectionStatusDialog {
 	ContainerRule addRule(String name) {
 		Class ruleCl = (Class)
 			m_component.createNestedClassifier(name, UMLPackage.eINSTANCE.getClass_());
-		StUtils.apply(ruleCl, ContainerRule.class);
+		StereotypeUtil.apply(ruleCl, ContainerRule.class);
 		return UMLUtil.getStereotypeApplication(ruleCl, ContainerRule.class);
 	}
 
@@ -265,8 +265,8 @@ public class ContainerDialog extends SelectionStatusDialog {
 	 * @param rule
 	 */
 	void applyRule(ContainerRule rule) {
-		if(!StUtils.isApplied(m_component, RuleApplication.class)) {
-			StUtils.apply(m_component, RuleApplication.class);
+		if(!StereotypeUtil.isApplied(m_component, RuleApplication.class)) {
+			StereotypeUtil.apply(m_component, RuleApplication.class);
 		}
 		RuleApplication containerConfig =
 			UMLUtil.getStereotypeApplication(m_component, RuleApplication.class);

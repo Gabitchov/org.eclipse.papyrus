@@ -17,7 +17,6 @@ package org.eclipse.papyrus.qompass.designer.core.deployment;
 import java.util.Stack;
 
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
@@ -59,7 +58,7 @@ public class PartialCopy implements InstanceDeployer {
 	public Classifier deployInstance(InstanceSpecification is, Stack<Slot> slotPath) throws TransformationException {
 		Classifier classifier = DepUtils.getClassifier(is);
 
-		// only make a partial copy of the system class slotPath size 0) for the moment.
+		// only make a partial copy of the system class (slotPath size 0) for the moment.
 		if(!(classifier instanceof Class) || slotPath.size() > 0) {
 			return copy.getCopy(classifier);
 		}
@@ -75,8 +74,6 @@ public class PartialCopy implements InstanceDeployer {
 		}
 		// since we copied some of its attributes, the copy class created a shallow copy of the class itself
 		Class tmCl = (Class) copy.get(smCl);
-		if (tmCl != null)
-			StUtils.copyStereotypes(smCl, tmCl);
 		
 		return tmCl;
 	}

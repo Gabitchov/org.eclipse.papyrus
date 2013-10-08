@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.ConfigOption;
 import org.eclipse.papyrus.FCM.ContainerRule;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.AlphabeticalViewerSorter;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ChooseSetAssistedDialog;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.IChooseDialog;
@@ -84,7 +84,7 @@ public class ChooseConfigOpt extends ChooseSetAssistedDialog implements IChooseD
 					getAvailConfigOpts((Package)el, configOptList);
 				}
 			} else if(el instanceof Class) {
-				if(StUtils.isApplied(el, ConfigOption.class)) {
+				if(StereotypeUtil.isApplied(el, ConfigOption.class)) {
 					configOptList.add((Class)el);
 				}
 			}

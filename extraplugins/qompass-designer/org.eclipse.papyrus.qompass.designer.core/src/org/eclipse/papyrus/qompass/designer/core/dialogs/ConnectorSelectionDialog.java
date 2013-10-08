@@ -25,7 +25,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.templates.ConnectorBinding;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -320,7 +320,7 @@ public class ConnectorSelectionDialog extends AbstractElementListSelectionDialog
 					getAllConnectors((Package)el, selectedConnector, connectorList);
 				}
 			} else if(el instanceof Class) {
-				if(StUtils.isApplied(el, InteractionComponent.class) && Utils.isCompType((Class)el)) {
+				if(StereotypeUtil.isApplied(el, InteractionComponent.class) && Utils.isCompType((Class)el)) {
 
 					if(selectedConnector == null) {
 						connectorList.add((Class)el);
