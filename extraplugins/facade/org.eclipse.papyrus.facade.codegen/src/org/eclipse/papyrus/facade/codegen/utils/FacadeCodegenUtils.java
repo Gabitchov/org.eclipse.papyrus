@@ -854,6 +854,9 @@ public class FacadeCodegenUtils {
 		result += "return " + genPackage.getImportedPackageInterfaceName() + ".eINSTANCE.get" + getClassifierAccessorName(genModel, correspondingStereotypeMapping) + "();\n";
 		result += "}\n";
 		result += "}\n";
+		for(Stereotype stereotype : combination) {
+			result += "}\n";
+		}
 
 		return result;
 
@@ -866,7 +869,7 @@ public class FacadeCodegenUtils {
 			if(stereotype instanceof Stereotype) {
 				result += "if(((org.eclipse.uml2.uml.Element)umlElement).getApplicableStereotype(\"" + ((Stereotype)stereotype).getQualifiedName() + "\") != null) {\n";
 				result += name + "_Stereotypes.add(((org.eclipse.uml2.uml.Element)umlElement).getApplicableStereotype(\"" + ((Stereotype)stereotype).getQualifiedName() + "\"));\n";
-				result += "}\n";
+
 			}
 		}
 
