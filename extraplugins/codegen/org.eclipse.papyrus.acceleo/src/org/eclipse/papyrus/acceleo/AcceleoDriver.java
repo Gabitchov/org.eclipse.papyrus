@@ -99,7 +99,7 @@ public class AcceleoDriver {
 		for(int pass = 0; pass < 2; pass++) {
 			// try bin directory in first pass (deployed plugins: don't use bin, devel: use bin).
 			// Problem: resource is also found without bin, but resolving fails later
-			String binSep = (pass == 0) ? "/bin/" : "/"; //$NON-NLS-1$ //$NON-NLS-2$
+			String binSep = (pass == 0) ? "/bin/" : "/";  //$NON-NLS-1$//$NON-NLS-2$
 			for(int segmentLen = segments.length - 1; segmentLen > 1; segmentLen--) {
 				String pluginNameCandidate = segments[0];
 				for(int i = 1; i < segmentLen; i++) {
@@ -110,38 +110,37 @@ public class AcceleoDriver {
 					DOT + IAcceleoConstants.EMTL_FILE_EXTENSION;
 
 				URI uri = URI.createPlatformPluginURI(fileNameCandidate, true);
-				try {
-					Resource r = acceleoResourceSet.getResource(uri, true);
-					if(r != null) {
-						if (pass == 0) {
-							// use absolute path during first pass, i.e. if file exists at absolute path
-							// this is required, since Acceleo references dependent files using a relative
-							// path (this applies to debugging in 2nd instance only, if a plugin is deployed,
-							// references within the EMTL file become platform:/plugin references and the
-							// workaround is not useful or even harmful).
-							// This workaround is only required, if referencing and referenced plugins
-							// are in different folders (example: tracing)
-						
-							String absoluteFileName = Utils.getAbsoluteFN(uri.toString());
-							if(absoluteFileName != null) {
-								File fileCandidate = new File(absoluteFileName);
-								if(fileCandidate.exists()) {
-									// remove resource with "wrong" URI
-									removeURIfromResourceSet(uri);
-									return URI.createFileURI(fileCandidate.getAbsolutePath());
-								}
-							}
-						}						
-						return uri;
+				if (pass == 0) {
+					// Use absolute path during first pass, i.e. try to load Acceleo module
+					// at an absolute position.
+					// This is required, since Acceleo references dependent files using a relative
+					// path. This applies to debugging in 2nd instance only, if a plugin is deployed,
+					// references within the EMTL file become platform:/plugin references and the
+					// EMTL file itself should also be loaded using a platform:/plugin reference.
+					//
+					// Caveat: assure that plugins with profile or meta-model definitions are NOT present
+					// in your debugging workspace, since they might get loaded twice which leads to
+					// incompatible Java objects denoting the same element (e.g. two instance of Classifier MM
+					// element). See bug 351137.
+				
+					String absoluteFileName = Utils.getAbsoluteFN(uri.toString());
+					if(absoluteFileName != null) {
+						File fileCandidate = new File(absoluteFileName);
+						if(fileCandidate.exists()) {
+							return URI.createFileURI(fileCandidate.getAbsolutePath());
+						}
 					}
-					uri = URI.createPlatformPluginURI(fileNameCandidate, true);
-					r = acceleoResourceSet.getResource(uri, true);
-					if (r != null) {
-						return uri;
+				}						
+				else {
+					try {
+						Resource r = acceleoResourceSet.getResource(uri, true);
+						if(r != null) {
+							return uri;
+						}
+					} catch (Exception e) {
+						// the URI has been added to the resource set, although there is an exception.
+						removeURIfromResourceSet(uri);
 					}
-				} catch (Exception e) {
-					// the URI has been added to the resource set, although there is an exception.
-					removeURIfromResourceSet(uri);
 				}
 			}
 		}
@@ -242,7 +241,7 @@ public class AcceleoDriver {
 		if(!templateStr.startsWith("[module")) { //$NON-NLS-1$
 			templateStr = "[module dummyMod('" + UML_URI + "')/]\n\n" + templateStr;  //$NON-NLS-1$//$NON-NLS-2$
 		}
-				
+
 		// Strategy:
 		//   1. Use AcceleoParser to transform text (OpaqueExpression) into Module
 		//		=> list of dependencies via explicit import statements
@@ -327,7 +326,7 @@ public class AcceleoDriver {
 			init();
 		}
 		try {
-			// return evaluateURI(URI.createURI("org.eclipse.papyrus.cpp.codegen" + "/" + uriStr.replace(".", "/") + "." + IAcceleoConstants.EMTL_FILE_EXTENSION), element);
+			// return evaluateURI(URI.createURI("org.eclipse.papyrus.cpp.codegen" + "/" + uriStr.replace(DOT, "/") + DOT + IAcceleoConstants.EMTL_FILE_EXTENSION), element);
 			URI uri = findFileInPlugin(moduleName);
 			if (uri == null) {
 				throw new RuntimeException("Cannot find Acceleo module " + moduleName + //$NON-NLS-1$
