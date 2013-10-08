@@ -14,13 +14,14 @@ package org.eclipse.papyrus.views.panels;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.papyrus.C_Cpp.Typedef;
-import org.eclipse.papyrus.cpp.profile.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PrimitiveType;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -108,10 +109,10 @@ public class CppPrimitiveTypePanel extends CppAbstractPanel {
 				public void run()
 				{
 					if(typeDocument.get().equals("")) {
-						StUtils.unapply(selectedPType, Typedef.class);
+						StereotypeUtil.unapply(selectedPType, Typedef.class);
 					}
 					else {
-						Typedef cppType = StUtils.applyApp(selectedPType, Typedef.class);
+						Typedef cppType = StereotypeUtil.applyApp(selectedPType, Typedef.class);
 						cppType.setDefinition(typeDocument.get());
 					}
 				}
@@ -128,7 +129,7 @@ public class CppPrimitiveTypePanel extends CppAbstractPanel {
 	@Override
 	protected void refreshPanel() {
 		if(selectedPType != null) {
-			Typedef cppType = StUtils.getApplication(selectedPType, Typedef.class);
+			Typedef cppType = UMLUtil.getStereotypeApplication(selectedPType, Typedef.class);
 			typeDocument.set(cppType != null ? cppType.getDefinition() : "");
 		}
 	}
@@ -150,7 +151,7 @@ public class CppPrimitiveTypePanel extends CppAbstractPanel {
 	 */
 	@Override
 	public boolean checkModifications() {
-		Typedef cppType = StUtils.getApplication(selectedPType, Typedef.class);
+		Typedef cppType = UMLUtil.getStereotypeApplication(selectedPType, Typedef.class);
 		String typeInModel = cppType != null ? cppType.getDefinition() : "";
 		if(!typeDocument.get().equals(typeInModel)) {
 			return true;

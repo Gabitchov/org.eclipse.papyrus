@@ -13,13 +13,14 @@ package org.eclipse.papyrus.views.panels;
 
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.SourceViewer;
-import org.eclipse.papyrus.cpp.profile.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TemplateParameter;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -118,10 +119,10 @@ public class CppTemplateParameterPanel extends CppAbstractPanel {
 					// Treat Parameter name
 					String newB = docParameter.get();
 					if(newB.equals("")) {
-						StUtils.unapply(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
+						StereotypeUtil.unapply(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
 					}
 					else {
-						org.eclipse.papyrus.C_Cpp.TemplateParameter templateParameter = StUtils.applyApp(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
+						org.eclipse.papyrus.C_Cpp.TemplateParameter templateParameter = StereotypeUtil.applyApp(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
 						templateParameter.setName(newB);
 					}
 				}
@@ -140,7 +141,7 @@ public class CppTemplateParameterPanel extends CppAbstractPanel {
 			/* Log.debug("resetBody : selectedProperty is null"); */
 		} else {
 
-			org.eclipse.papyrus.C_Cpp.TemplateParameter templateParameter = StUtils.getApplication(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
+			org.eclipse.papyrus.C_Cpp.TemplateParameter templateParameter = UMLUtil.getStereotypeApplication(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
 			String parameterName = templateParameter != null ? templateParameter.getName() : "";
 			docParameter.set(parameterName);
 		}
@@ -163,7 +164,7 @@ public class CppTemplateParameterPanel extends CppAbstractPanel {
 	 */
 	@Override
 	public boolean checkModifications() {
-		org.eclipse.papyrus.C_Cpp.TemplateParameter templateParameter = StUtils.getApplication(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
+		org.eclipse.papyrus.C_Cpp.TemplateParameter templateParameter = UMLUtil.getStereotypeApplication(selectedTP, org.eclipse.papyrus.C_Cpp.TemplateParameter.class);
 		// TODO: use UML template bindings?
 		String parameterName = templateParameter != null ? templateParameter.getName() : "";
 		if(!docParameter.get().equals(parameterName)) {

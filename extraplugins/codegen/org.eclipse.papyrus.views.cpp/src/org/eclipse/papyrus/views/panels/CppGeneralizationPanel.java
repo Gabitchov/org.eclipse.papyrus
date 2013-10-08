@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.views.panels;
 
 import org.eclipse.papyrus.C_Cpp.Visibility;
-import org.eclipse.papyrus.cpp.profile.StUtils;
 import org.eclipse.papyrus.views.cpp.Activator;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.SWT;
@@ -26,6 +25,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 
@@ -124,7 +124,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 			visibilityVal = "public";
 			break;
 		}
-		final Visibility visibility = StUtils.getApplication(selectedGeneralization, Visibility.class);
+		final Visibility visibility = UMLUtil.getStereotypeApplication(selectedGeneralization, Visibility.class);
 		if(visibility != null) {
 			String vis = visibility.getValue();
 			if(!vis.equals(visibilityVal)) {
@@ -172,7 +172,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 	protected void refreshPanel()
 	{
 		if(selectedGeneralization != null) {
-			final Visibility visibility = StUtils.getApplication(selectedGeneralization, Visibility.class);
+			final Visibility visibility = UMLUtil.getStereotypeApplication(selectedGeneralization, Visibility.class);
 			if(visibility != null) {
 				String vis = visibility.getValue();
 
@@ -205,7 +205,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 			return true;
 		}
 
-		final Visibility visibility = StUtils.getApplication(selectedGeneralization, Visibility.class);
+		final Visibility visibility = UMLUtil.getStereotypeApplication(selectedGeneralization, Visibility.class);
 		if(visibility != null) {
 			String vis = visibility.getValue();
 
@@ -233,7 +233,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 			return;
 		}
 
-		final Visibility visibility = StUtils.getApplication(selectedGeneralization, Visibility.class);
+		final Visibility visibility = UMLUtil.getStereotypeApplication(selectedGeneralization, Visibility.class);
 		if(visibility != null) {
 			String vis = visibility.getValue();
 			if(!(vis.equals("public")) || !(vis.equals("protected")) || !(vis.equals("private"))) {
