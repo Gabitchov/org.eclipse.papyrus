@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAOperation;
 import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -88,7 +88,7 @@ public class QompassTraceMechanism implements ITraceMechanism {
 					if(traceOption == TAOperation.OnlyCall.ordinal()) {
 						// yes => what do we then (i.e. how is mapping done??)
 					}
-					RuleApplication ruleApplication = StUtils.applyApp(clazzContext, RuleApplication.class);
+					RuleApplication ruleApplication = StereotypeUtil.applyApp(clazzContext, RuleApplication.class);
 					if((ruleApplication != null) && !ruleApplication.getContainerRule().contains(containerRule)) {
 						ruleApplication.getContainerRule().add(containerRule);
 						return true;
