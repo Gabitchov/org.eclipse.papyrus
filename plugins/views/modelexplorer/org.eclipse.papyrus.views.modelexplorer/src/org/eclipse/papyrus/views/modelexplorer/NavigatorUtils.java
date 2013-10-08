@@ -1,3 +1,18 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Jerome Benois (OBEO) - Initial API and implementation
+ *  Francisco Javier Cano (PRODEVELOP)
+ *  Thomas Szadel (ATOS) - Remove Backbone dependency
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
 import java.util.ArrayList;
@@ -42,13 +57,8 @@ import com.google.common.collect.Lists;
 
 /**
  * Utility method for Model Navigator.
- * 
- * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
- * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano
- *         Muñoz</a>
- * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>:
- *         Remove Backbone dependency
- **/
+ * @author Jerome Benois
+ */
 public class NavigatorUtils {
 
 	/**
