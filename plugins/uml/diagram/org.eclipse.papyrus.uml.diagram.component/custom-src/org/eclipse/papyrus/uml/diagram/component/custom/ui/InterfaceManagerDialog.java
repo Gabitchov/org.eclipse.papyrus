@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.component.custom.ui;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +30,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -61,11 +63,16 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
@@ -108,10 +115,10 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	private ReferenceSelector requiredSelector;
 
 	/** the Editor for the provided interfaces. */
-	private SelectionEditor providedEditor;
+	protected ExtendedSelectionEditor providedEditor;
 
 	/** the Editor for the required interfaces. */
-	private SelectionEditor requiredEditor;
+	protected ExtendedSelectionEditor requiredEditor;
 
 	/** In this map, we link the {@link Interface} with their {@link Usage} This map is used when we want remove an Interface from a Usage. */
 	private Map<Interface, List<Usage>> requiredInterfacesMappedWithUsage = new HashMap<Interface, List<Usage>>();
@@ -122,7 +129,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	private Map<Interface, List<Realization>> providedInterfacesMappedWithRealization = new HashMap<Interface, List<Realization>>();
 
 	/** the label provider for selector. */
-	private final ILabelProvider selectorLabelProvider = new SelectorLabelProvider();
+	protected  ILabelProvider selectorLabelProvider = new SelectorLabelProvider();
 
 	/** the label provider for the create new element dialog. */
 	private final ILabelProvider newElementLabelProvider = new CreateElementLabelProvider();
@@ -402,8 +409,8 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * @return the selection editor
 	 *         the created {@link SelectionEditor}
 	 */
-	protected SelectionEditor createEditor(Composite parent, IElementSelector selector, String message, boolean withCreateButton, SelectionListener listener, List<Object> initialSelection) {
-		SelectionEditor editor = new SelectionEditor(parent, selector, selectorLabelProvider, initialSelection);
+	protected ExtendedSelectionEditor createEditor(Composite parent, IElementSelector selector, String message, boolean withCreateButton, SelectionListener listener, List<Object> initialSelection) {
+		ExtendedSelectionEditor editor = new ExtendedSelectionEditor(parent, selector, selectorLabelProvider, initialSelection);
 		editor.setMessage(message);
 		editor.setAdditionalButton(withCreateButton, Messages.InterfaceManagerDialog_CreateNewInterface, listener);
 		return editor;
