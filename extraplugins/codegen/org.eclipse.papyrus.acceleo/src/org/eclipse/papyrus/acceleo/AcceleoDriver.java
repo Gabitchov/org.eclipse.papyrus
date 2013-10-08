@@ -104,36 +104,39 @@ public class AcceleoDriver {
 
 				String fileNameCandidate = pluginNameCandidate + binSep + relativePath +
 					"." + IAcceleoConstants.EMTL_FILE_EXTENSION;
-				// String absoluteFileName = Utils.getAbsoluteFN(fileNameCandidate);
-				// if(absoluteFileName != null) {
-				// }
 
 				URI uri = URI.createPlatformPluginURI(fileNameCandidate, true);
-				try {
-					Resource r = acceleoResourceSet.getResource(uri, true);
-					if(r != null) {
-						// use absolute path, if possible, i.e. if file exists at absolute path
-						// this is required, since Acceleo references dependent files using a relative
-						// path.
-						// This workaround is no longer required. In the contrary, it is harmful for binary
-						// build
-						
-						/*
-						String absoluteFileName = Utils.getAbsoluteFN(uri.toString());
-						if(absoluteFileName != null) {
-							File fileCandidate = new File(absoluteFileName);
-							if(fileCandidate.exists()) {
-								// remove resource with "wrong" URI
-								removeURIfromResourceSet(uri);
-								return URI.createFileURI(fileCandidate.getAbsolutePath());
-							}
+				if (pass == 0) {
+					// Use absolute path during first pass, i.e. try to load Acceleo module
+					// at an absolute position.
+					// This is required, since Acceleo references dependent files using a relative
+					// path. This applies to debugging in 2nd instance only, if a plugin is deployed,
+					// references within the EMTL file become platform:/plugin references and the
+					// EMTL file itself should also be loaded using a platform:/plugin reference.
+					//
+					// Caveat: assure that plugins with profile or meta-model definitions are NOT present
+					// in your debugging workspace, since they might get loaded twice which leads to
+					// incompatible Java objects denoting the same element (e.g. two instance of Classifier MM
+					// element). See bug 349278.
+				
+					String absoluteFileName = Utils.getAbsoluteFN(uri.toString());
+					if(absoluteFileName != null) {
+						File fileCandidate = new File(absoluteFileName);
+						if(fileCandidate.exists()) {
+							return URI.createFileURI(fileCandidate.getAbsolutePath());
 						}
-						*/
-						return uri;
 					}
-				} catch (Exception e) {
-					// the URI has been added to the resource set, although there is an exception.
-					removeURIfromResourceSet(uri);
+				}						
+				else {
+					try {
+						Resource r = acceleoResourceSet.getResource(uri, true);
+						if(r != null) {
+							return uri;
+						}
+					} catch (Exception e) {
+						// the URI has been added to the resource set, although there is an exception.
+						removeURIfromResourceSet(uri);
+					}
 				}
 			}
 		}
