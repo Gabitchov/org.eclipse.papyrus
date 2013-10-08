@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.PackageableElement;
 
 /**
  * <b><u>SyncURI Handler</u></b>
@@ -102,11 +103,10 @@ public class GenerateCodeHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		if(selectedEObj instanceof Classifier) {
-			Classifier classifier = (Classifier)selectedEObj;
-
-			
-			URI uri = classifier.eResource().getURI();
+		if(selectedEObj instanceof PackageableElement) {
+			PackageableElement pe = (PackageableElement)selectedEObj;
+	
+			URI uri = pe.eResource().getURI();
 
 			// URIConverter uriConverter = resource.getResourceSet().getURIConverter();
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -115,16 +115,16 @@ public class GenerateCodeHandler extends AbstractHandler {
 			}
 			IProject modelProject = root.getProject(uri.segment(1));
 			if(modelProject.exists()) {
-				String name = classifier.getName();
+				String name = pe.getName();
 
 				// get the container for the current element
 				String headerSuffix = CppCodeGenUtils.getHeaderSuffix();
 				String bodySuffix = CppCodeGenUtils.getBodySuffix();
 				AcceleoDriver.clearErrors();
 				CppModelElementsCreator mec = new CppModelElementsCreator(modelProject);
-				IContainer srcPkg = mec.getContainer(classifier);
+				IContainer srcPkg = mec.getContainer(pe);
 				try {
-					mec.createPackageableElement(srcPkg, null, classifier);
+					mec.createPackageableElement(srcPkg, null, pe);
 
 					if (AcceleoDriver.hasErrors()) {
 						MessageDialog.openInformation(new Shell(), "Errors during code generation", //$NON-NLS-1$
