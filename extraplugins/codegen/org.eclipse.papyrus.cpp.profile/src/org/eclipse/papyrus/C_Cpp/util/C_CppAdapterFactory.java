@@ -97,10 +97,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 				return createConstAdapter();
 			}
 			@Override
-			public Adapter caseDefault(Default object) {
-				return createDefaultAdapter();
-			}
-			@Override
 			public Adapter caseRef(Ref object) {
 				return createRefAdapter();
 			}
@@ -243,20 +239,6 @@ public class C_CppAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConstAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.C_Cpp.Default <em>Default</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.C_Cpp.Default
-	 * @generated
-	 */
-	public Adapter createDefaultAdapter() {
 		return null;
 	}
 

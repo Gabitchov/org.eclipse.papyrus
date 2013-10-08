@@ -78,13 +78,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Array">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_parameter" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
+        unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="definition" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_property" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+        unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_association" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
+        unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Const">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_parameter" ordered="false"
@@ -93,14 +93,6 @@
         unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_operation" ordered="false"
         unique="false" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Default">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_parameter" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_property" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Ref">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_parameter" ordered="false"

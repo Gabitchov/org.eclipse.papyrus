@@ -63,11 +63,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Const/base_property"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Const/base_operation"/>
     </genClasses>
-    <genClasses ecoreClass="C_Cpp.ecore#//Default">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Default/value"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Default/base_parameter"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Default/base_property"/>
-    </genClasses>
     <genClasses ecoreClass="C_Cpp.ecore#//Ref">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ref/base_parameter"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ref/base_property"/>

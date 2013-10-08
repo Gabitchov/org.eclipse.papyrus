@@ -39,7 +39,7 @@ public interface Array extends EObject {
 	 * @return the value of the '<em>Base parameter</em>' reference.
 	 * @see #setBase_parameter(Parameter)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getArray_Base_parameter()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Parameter getBase_parameter();
@@ -91,7 +91,7 @@ public interface Array extends EObject {
 	 * @return the value of the '<em>Base property</em>' reference.
 	 * @see #setBase_property(Property)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getArray_Base_property()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Property getBase_property();
@@ -117,7 +117,7 @@ public interface Array extends EObject {
 	 * @return the value of the '<em>Base association</em>' reference.
 	 * @see #setBase_association(Association)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getArray_Base_association()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Association getBase_association();

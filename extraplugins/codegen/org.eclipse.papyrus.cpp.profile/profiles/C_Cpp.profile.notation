@@ -994,6 +994,13 @@
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_w3tfEsoSEeGKstsYRuxdvw" type="1034"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_w3tfE8oSEeGKstsYRuxdvw" type="1071">
+        <children xmi:type="notation:Shape" xmi:id="_4SCiACAzEeOBrb_t_69W4Q" type="3002" fontName="Sans Serif" lineColor="0">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__D4pQCAzEeOBrb_t_69W4Q" source="CustomAppearance_Annotation">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__D4pQSAzEeOBrb_t_69W4Q" key="CustomAppearance_MaskValue" value="60"/>
+          </eAnnotations>
+          <element xmi:type="uml:Property" href="C_Cpp.profile.uml#_7e8P0ByPEduuTv8efIb91A"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_4SCiASAzEeOBrb_t_69W4Q" x="55" y="16"/>
+        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_w3tfFMoSEeGKstsYRuxdvw"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_w3tfFcoSEeGKstsYRuxdvw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_w3tfFsoSEeGKstsYRuxdvw"/>
@@ -1006,7 +1013,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_w3tfHMoSEeGKstsYRuxdvw"/>
       </children>
       <element xmi:type="uml:Stereotype" href="C_Cpp.profile.uml#_5W6MUByPEduuTv8efIb91A"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_w3sQ8coSEeGKstsYRuxdvw" x="134" y="126" height="82"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_w3sQ8coSEeGKstsYRuxdvw" x="90" y="126" width="163" height="82"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_w4F5kMoSEeGKstsYRuxdvw" type="1026" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_w4GgoMoSEeGKstsYRuxdvw" source="ShadowFigure">
@@ -1020,6 +1027,13 @@
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_w4GgpsoSEeGKstsYRuxdvw" type="1034"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_w4Ggp8oSEeGKstsYRuxdvw" type="1071">
+        <children xmi:type="notation:Shape" xmi:id="_FdHcMCA0EeOBrb_t_69W4Q" type="3002" fontName="Sans Serif" lineColor="0">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Gque0CA0EeOBrb_t_69W4Q" source="CustomAppearance_Annotation">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Gque0SA0EeOBrb_t_69W4Q" key="CustomAppearance_MaskValue" value="60"/>
+          </eAnnotations>
+          <element xmi:type="uml:Property" href="C_Cpp.profile.uml#_AOo5IByQEduuTv8efIb91A"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_FdHcMSA0EeOBrb_t_69W4Q" x="57" y="10"/>
+        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_w4GgqMoSEeGKstsYRuxdvw"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_w4GgqcoSEeGKstsYRuxdvw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_w4GgqsoSEeGKstsYRuxdvw"/>
@@ -1046,6 +1060,13 @@
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_w4gJRcoSEeGKstsYRuxdvw" type="1034"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_w4gJRsoSEeGKstsYRuxdvw" type="1071">
+        <children xmi:type="notation:Shape" xmi:id="_CUNKgCA0EeOBrb_t_69W4Q" type="3002" fontName="Sans Serif" lineColor="0">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_D_K3gCA0EeOBrb_t_69W4Q" source="CustomAppearance_Annotation">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_D_K3gSA0EeOBrb_t_69W4Q" key="CustomAppearance_MaskValue" value="60"/>
+          </eAnnotations>
+          <element xmi:type="uml:Property" href="C_Cpp.profile.uml#_EV0J4ByQEduuTv8efIb91A"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_CUNKgSA0EeOBrb_t_69W4Q" x="61" y="11"/>
+        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_w4gJR8oSEeGKstsYRuxdvw"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_w4gJSMoSEeGKstsYRuxdvw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_w4gJScoSEeGKstsYRuxdvw"/>
@@ -1100,7 +1121,7 @@
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_y9ECAMoSEeGKstsYRuxdvw" type="1084"/>
       <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_y9Da8MoSEeGKstsYRuxdvw" x="135" y="36"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_y9Da8MoSEeGKstsYRuxdvw" x="90" y="36" width="163"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_zlEdMMoSEeGKstsYRuxdvw" type="1031" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_zlFEQMoSEeGKstsYRuxdvw" source="ShadowFigure">
