@@ -237,7 +237,9 @@ abstract public class ModelElementsCreator {
 	 * @throws CoreException
 	 */
 	protected void createPackage(IContainer packageContainer, IProgressMonitor monitor, Package pkg) throws CoreException {
-		monitor.subTask("generate package " + pkg.getQualifiedName()); //$NON-NLS-1$
+		if (monitor != null) {
+			monitor.subTask("generate package " + pkg.getQualifiedName()); //$NON-NLS-1$
+		}
 
 		if(!isRoot(pkg) && !noCodeGen(pkg)) {
 
