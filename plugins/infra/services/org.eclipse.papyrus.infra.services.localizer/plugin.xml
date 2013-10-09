@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <serviceFactory
+            classname="org.eclipse.papyrus.infra.services.localizer.util.DefaultObjectLocalizerFactory"
+            description="A service that determines the correspondents of objects and resources from other resource sets in the local ModelSet."
+            id="org.eclipse.papyrus.infra.services.localizer.IObjectLocalizer"
+            priority="1"
+            startKind="lazy">
+      </serviceFactory>
+   </extension>
+
+</plugin>

@@ -23,8 +23,6 @@ C_UPPER_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-model/implementation \
-model/implementation/Class0 \
-model \
-model/Class3 \
+TestCDTintegration \
+TestCCodeGen \
 

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.cdo.internal.core.repositories.Repository#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.cdo.internal.core.repositories.Repository#getURL <em>URL</em>}</li>
  *   <li>{@link org.eclipse.papyrus.cdo.internal.core.repositories.Repository#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.internal.core.repositories.Repository#getUUID <em>UUID</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,5 +112,31 @@ public interface Repository extends EObject {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>UUID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>UUID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>UUID</em>' attribute.
+	 * @see #setUUID(String)
+	 * @see org.eclipse.papyrus.cdo.internal.core.repositories.RepositoriesPackage#getRepository_UUID()
+	 * @model
+	 * @generated
+	 */
+	String getUUID();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.cdo.internal.core.repositories.Repository#getUUID <em>UUID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>UUID</em>' attribute.
+	 * @see #getUUID()
+	 * @generated
+	 */
+	void setUUID(String value);
 
 } // Repository

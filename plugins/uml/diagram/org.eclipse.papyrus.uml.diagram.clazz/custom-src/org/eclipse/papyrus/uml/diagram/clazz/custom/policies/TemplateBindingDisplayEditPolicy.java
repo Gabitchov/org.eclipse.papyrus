@@ -37,7 +37,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class TemplateBindingDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
-
 	public static String TEMPLATE_PARAMETER_DISPLAY = "TEMPLATE_SUBSTITUION_DISPLAY";
 
 	/**
@@ -89,7 +88,6 @@ public class TemplateBindingDisplayEditPolicy extends GraphicalEditPolicyEx impl
 		}
 		hostSemanticElement = initSemanticElement();
 		if(hostSemanticElement != null) {
-
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
@@ -99,7 +97,6 @@ public class TemplateBindingDisplayEditPolicy extends GraphicalEditPolicyEx impl
 					TemplateParameterSubstitution substitution = iter.next();
 					//add a listener on the substitution and its references in order to have a correct refresh
 					getDiagramEventBroker().addNotificationListener(substitution, this);
-
 					if(substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
 						getDiagramEventBroker().addNotificationListener(((NamedElement)substitution.getFormal().getParameteredElement()), this);
 					}
@@ -134,34 +131,28 @@ public class TemplateBindingDisplayEditPolicy extends GraphicalEditPolicyEx impl
 				getDiagramEventBroker().removeNotificationListener(substitution, this);
 			}
 		}
-
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
 	}
 
 	protected void refreshDisplay() {
 		getHost().refresh();
-
 	}
 
 	public void notifyChanged(Notification notification) {
-
 		if(notification.getEventType() == Notification.SET && notification.getNotifier() instanceof TemplateParameterSubstitution) {
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameterSubstitution_Actual())) {
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 			}
-
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameterSubstitution_Formal())) {
 				getDiagramEventBroker().addNotificationListener(((TemplateParameter)notification.getNewValue()).getParameteredElement(), this);
 			}
-
 		}
 		if(notification.getEventType() == Notification.ADD) {
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateBinding_ParameterSubstitution())) {
 				//add a listener on the substitution and its references in order to have a correct refresh
 				TemplateParameterSubstitution substitution = (TemplateParameterSubstitution)notification.getNewValue();
 				getDiagramEventBroker().addNotificationListener(substitution, this);
-
 				if(substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
 					getDiagramEventBroker().addNotificationListener(((NamedElement)substitution.getFormal().getParameteredElement()), this);
 				}
@@ -175,7 +166,6 @@ public class TemplateBindingDisplayEditPolicy extends GraphicalEditPolicyEx impl
 				//add a listener
 				TemplateParameterSubstitution substitution = (TemplateParameterSubstitution)notification.getNewValue();
 				getDiagramEventBroker().removeNotificationListener(substitution, this);
-
 				if(substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
 					getDiagramEventBroker().removeNotificationListener(((NamedElement)substitution.getFormal().getParameteredElement()), this);
 				}
@@ -186,6 +176,4 @@ public class TemplateBindingDisplayEditPolicy extends GraphicalEditPolicyEx impl
 		}
 		refreshDisplay();
 	}
-
-
 }

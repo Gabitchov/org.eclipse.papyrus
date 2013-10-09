@@ -16,7 +16,7 @@ import org.eclipse.papyrus.C_Cpp.Array;
 import org.eclipse.papyrus.C_Cpp.Const;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
-import org.eclipse.papyrus.cpp.profile.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -221,19 +221,19 @@ public class CppPropertyPanel extends CppAbstractPanel {
 					// Treat Pointer
 					String newPtr = docPtr.get();
 					if(newPtr.equals("")) {
-						StUtils.unapply(selectedProperty, Ptr.class);
+						StereotypeUtil.unapply(selectedProperty, Ptr.class);
 					}
 					else {
-						StUtils.apply(selectedProperty, Ptr.class);
+						StereotypeUtil.apply(selectedProperty, Ptr.class);
 					}
 
 					// Treat Reference
 					String newRef = docRef.get();
 					if(newRef.equals("")) {
-						StUtils.unapply(selectedProperty, Ref.class);
+						StereotypeUtil.unapply(selectedProperty, Ref.class);
 					}
 					else {
-						StUtils.apply(selectedProperty, Ref.class);
+						StereotypeUtil.apply(selectedProperty, Ref.class);
 					}
 
 					// Treat DefaultValue
@@ -243,10 +243,10 @@ public class CppPropertyPanel extends CppAbstractPanel {
 					// Treat Array
 					String newArray = docArray.get();
 					if(newArray.equals("")) {
-						StUtils.unapply(selectedProperty, Array.class);
+						StereotypeUtil.unapply(selectedProperty, Array.class);
 					}
 					else {
-						StUtils.apply(selectedProperty, Array.class);
+						StereotypeUtil.apply(selectedProperty, Array.class);
 					}
 				}
 			});
@@ -266,11 +266,11 @@ public class CppPropertyPanel extends CppAbstractPanel {
 		}
 		else {
 			isStatic.setSelection(selectedProperty.isStatic());
-			isConst.setSelection(StUtils.isApplied(selectedProperty, Const.class));
-			docPtr.set(StUtils.isApplied(selectedProperty, Ptr.class) ? "*" : "");
-			docRef.set(StUtils.isApplied(selectedProperty, Ref.class) ? "&" : "");
+			isConst.setSelection(StereotypeUtil.isApplied(selectedProperty, Const.class));
+			docPtr.set(StereotypeUtil.isApplied(selectedProperty, Ptr.class) ? "*" : "");
+			docRef.set(StereotypeUtil.isApplied(selectedProperty, Ref.class) ? "&" : "");
 			docDefault.set(selectedProperty.getDefault());
-			docArray.set(StUtils.isApplied(selectedProperty, Array.class) ? "[]" : "");
+			docArray.set(StereotypeUtil.isApplied(selectedProperty, Array.class) ? "[]" : "");
 		}
 	}
 
@@ -290,12 +290,12 @@ public class CppPropertyPanel extends CppAbstractPanel {
 	protected void checkConst() {
 		boolean boxState = isConst.getSelection();
 
-		if(StUtils.isApplied(selectedProperty, Const.class) != boxState) {
+		if(StereotypeUtil.isApplied(selectedProperty, Const.class) != boxState) {
 			if(boxState) {
-				StUtils.apply(selectedProperty, Const.class);
+				StereotypeUtil.apply(selectedProperty, Const.class);
 			}
 			else {
-				StUtils.unapply(selectedProperty, Const.class);
+				StereotypeUtil.unapply(selectedProperty, Const.class);
 			}
 		}
 	}
@@ -328,12 +328,12 @@ public class CppPropertyPanel extends CppAbstractPanel {
 	 *         with the content of the panel
 	 */
 	public boolean checkModifications() {
-		String ptrValue = StUtils.isApplied(selectedProperty, Ptr.class) ? "*" : "";
+		String ptrValue = StereotypeUtil.isApplied(selectedProperty, Ptr.class) ? "*" : "";
 		if(!docPtr.get().equals(ptrValue)) {
 			return true;
 		}
 
-		String refValue = StUtils.isApplied(selectedProperty, Ref.class) ? "&" : "";
+		String refValue = StereotypeUtil.isApplied(selectedProperty, Ref.class) ? "&" : "";
 		if(!docRef.get().equals(refValue)) {
 			return true;
 		}
@@ -348,7 +348,7 @@ public class CppPropertyPanel extends CppAbstractPanel {
 			return true;
 		}
 
-		String arrayValue = StUtils.isApplied(selectedProperty, Array.class) ? "[]" : "";
+		String arrayValue = StereotypeUtil.isApplied(selectedProperty, Array.class) ? "[]" : "";
 		if(!docArray.get().equals(arrayValue)) {
 			return true;
 		}

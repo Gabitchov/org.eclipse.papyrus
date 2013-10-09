@@ -28,7 +28,8 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
-public class AdvancedEditingPropertySection extends AbstractModelerPropertySection implements IContextElementProvider {
+public class AdvancedEditingPropertySection extends
+		AbstractModelerPropertySection implements IContextElementProvider {
 
 	private FormToolkit toolkit;
 
@@ -40,7 +41,8 @@ public class AdvancedEditingPropertySection extends AbstractModelerPropertySecti
 
 	private StyledTextXtextAdapter xtextAdapter;
 
-	final private ContextElementAdapter contextElementAdapter = new ContextElementAdapter(this);
+	final private ContextElementAdapter contextElementAdapter = new ContextElementAdapter(
+			this);
 
 	@Override
 	public void refresh() {
@@ -48,7 +50,8 @@ public class AdvancedEditingPropertySection extends AbstractModelerPropertySecti
 
 		IParser parser = getParser();
 		if (parser != null) {
-			textControl.setText(parser.getPrintString(null, 0));
+			String printString = parser.getEditString(null, 0);
+			textControl.setText(printString);
 		}
 
 	}
@@ -57,7 +60,8 @@ public class AdvancedEditingPropertySection extends AbstractModelerPropertySecti
 	public void aboutToBeHidden() {
 		super.aboutToBeHidden();
 		if (xtextAdapter != null) {
-			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters().remove(contextElementAdapter);
+			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters()
+					.remove(contextElementAdapter);
 		}
 	}
 
@@ -69,7 +73,8 @@ public class AdvancedEditingPropertySection extends AbstractModelerPropertySecti
 	}
 
 	@Override
-	public final void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
+	public final void createControls(Composite parent,
+			TabbedPropertySheetPage aTabbedPropertySheetPage) {
 		toolkit = new FormToolkit(parent.getDisplay());
 		toolkit.setBorderStyle(SWT.BORDER);
 		super.createControls(parent, aTabbedPropertySheetPage);
@@ -84,16 +89,19 @@ public class AdvancedEditingPropertySection extends AbstractModelerPropertySecti
 
 	protected void createTextControl(final Composite parent) {
 
-		textControl = new StyledText(parent, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
+		textControl = new StyledText(parent, SWT.MULTI | SWT.BORDER
+				| SWT.V_SCROLL | SWT.WRAP);
 		textControl.addFocusListener(new FocusListener() {
 
 			public void focusLost(FocusEvent e) {
 				IParser parser = getParser();
 				if (parser != null) {
-					ICommand command = parser.getParseCommand(new EObjectAdapter(getEObject()), textControl.getText(),
-							0);
+					ICommand command = parser.getParseCommand(
+							new EObjectAdapter(getEObject()),
+							textControl.getText(), 0);
 
-					getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+					getEditingDomain().getCommandStack().execute(
+							new GMFtoEMFCommandWrapper(command));
 				}
 			}
 
@@ -101,21 +109,26 @@ public class AdvancedEditingPropertySection extends AbstractModelerPropertySecti
 			}
 		});
 		((StyledText) textControl).setAlwaysShowScrollBars(false);
-		GridDataFactory.fillDefaults().grab(true, true).hint(parent.getSize()).applyTo(textControl);
+		GridDataFactory.fillDefaults().grab(true, true).hint(parent.getSize())
+				.applyTo(textControl);
 
 	}
 
 	protected DefaultXtextDirectEditorConfiguration getConfigurationFromSelection() {
 		IGraphicalEditPart part = getEditPartFromSelection();
 		if (part != null) {
-			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-			String semanticClassName = part.resolveSemanticElement().eClass().getInstanceClassName();
-			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticClassName;
+			IPreferenceStore store = Activator.getDefault()
+					.getPreferenceStore();
+			String semanticClassName = part.resolveSemanticElement().eClass()
+					.getInstanceClassName();
+			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
+					+ semanticClassName;
 			String languagePreferred = store.getString(key);
 
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred,
-						semanticClassName);
+				IDirectEditorConfiguration configuration = DirectEditorsUtil
+						.findEditorConfiguration(languagePreferred,
+								semanticClassName);
 				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
 					return (DefaultXtextDirectEditorConfiguration) configuration;
 				}
@@ -145,11 +158,14 @@ public class AdvancedEditingPropertySection extends AbstractModelerPropertySecti
 		// Check if configuration has changed and update adapters
 		if (newConfiguration != null && newConfiguration != configuration) {
 			if (xtextAdapter != null) {
-				xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters().remove(contextElementAdapter);
+				xtextAdapter.getFakeResourceContext().getFakeResource()
+						.eAdapters().remove(contextElementAdapter);
 			}
 			configuration = newConfiguration;
-			xtextAdapter = new StyledTextXtextAdapter(configuration.getInjector());
-			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters().add(contextElementAdapter);
+			xtextAdapter = new StyledTextXtextAdapter(
+					configuration.getInjector());
+			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters()
+					.add(contextElementAdapter);
 			xtextAdapter.adapt((StyledText) styledText);
 		}
 	}

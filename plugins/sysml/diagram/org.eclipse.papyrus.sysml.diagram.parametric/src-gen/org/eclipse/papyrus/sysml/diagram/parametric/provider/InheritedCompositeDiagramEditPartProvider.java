@@ -2,15 +2,29 @@ package org.eclipse.papyrus.sysml.diagram.parametric.provider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.sysml.diagram.parametric.provider.ElementTypes;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContextLinkAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContextLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLEditPartProvider;
 
 public class InheritedCompositeDiagramEditPartProvider extends UMLEditPartProvider {
 
-
+	@Override
+	protected IGraphicalEditPart createEditPart(View view) {
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		if (visualID == ContextLinkEditPart.VISUAL_ID) {
+			return new ContextLinkEditPart(view);
+		}
+		if (visualID == ContextLinkAppliedStereotypeEditPart.VISUAL_ID) {
+			return new ContextLinkAppliedStereotypeEditPart(view);
+		}
+		return super.createEditPart(view);
+	}
+	
 	@Override
 	public synchronized boolean provides(IOperation operation) {
 		if(operation instanceof CreateGraphicEditPartOperation) {
@@ -43,7 +57,10 @@ public class InheritedCompositeDiagramEditPartProvider extends UMLEditPartProvid
 				return true;
 			}
 			/** Edges (Feature) : CONSTRAINT_CONSTRAINED_ELEMENT *********** */
-			if(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(hint)) {
+			if(ElementTypes.CONTEXT_LINK.getSemanticHint().equals(hint)) {
+				return true;
+			}
+			if(ElementTypes.CONTEXT_LINK_APPLIED_STEREOTYPE.getSemanticHint().equals(hint)) {
 				return true;
 			}
 

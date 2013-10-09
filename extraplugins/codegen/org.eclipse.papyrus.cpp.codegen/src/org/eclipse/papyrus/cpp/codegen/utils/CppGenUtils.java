@@ -13,6 +13,7 @@ package org.eclipse.papyrus.cpp.codegen.utils;
 
 import java.util.Iterator;
 
+import org.eclipse.papyrus.C_Cpp.ExternLibrary;
 import org.eclipse.papyrus.C_Cpp.External;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Typedef;
@@ -45,6 +46,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  */
 public class CppGenUtils {
+
+	public static final String ANSI_C_LIB = "AnsiCLibrary"; //$NON-NLS-1$
 
 	/**
 	 * Return a list of template parameters without type
@@ -122,9 +125,12 @@ public class CppGenUtils {
 		if(owner instanceof Package) {
 			owningPkgName = ((Package)owner).getName();
 		}
-		if((GenUtils.hasStereotype(ne, External.class)) || (GenUtils.hasStereotype(ne, NoCodeGen.class))) {
+		if(		GenUtils.hasStereotype(ne, External.class) ||
+				GenUtils.hasStereotypeTree(ne, NoCodeGen.class) ||
+				GenUtils.hasStereotypeTree(ne, ExternLibrary.class)) {
 			return ne.getName();
-		} else if(owningPkgName.equals("AnsiCLibrary")) { //$NON-NLS-1$
+		}
+		else if(owningPkgName.equals(ANSI_C_LIB)) {
 			// always use the short name for types within the ANSI C library
 			return ne.getName();
 		}

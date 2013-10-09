@@ -75,6 +75,7 @@ public class BlockPropertyStructureCompartmentSemanticEditPolicy extends Compart
 				}
 
 				if(SysMLElementTypes.CONSTRAINT_PROPERTY == req.getElementType()) {
+					req.setContainer(type);
 					req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new CreateConstraintPropertyWithTypeConfigureCommandFactory());
 				}
 

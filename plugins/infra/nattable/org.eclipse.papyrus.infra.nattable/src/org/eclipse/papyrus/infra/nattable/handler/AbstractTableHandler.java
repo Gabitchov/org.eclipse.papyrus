@@ -15,13 +15,12 @@ package org.eclipse.papyrus.infra.nattable.handler;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.expressions.IEvaluationContext;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
@@ -227,14 +226,17 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 
 		if(evaluationContext instanceof IEvaluationContext) {
 			Object selection = HandlerUtil.getVariable(evaluationContext, "selection"); //$NON-NLS-1$
-			if(selection instanceof IStructuredSelection) {
-				Iterator<?> iter = ((IStructuredSelection)selection).iterator();
-				while(iter.hasNext() && wrapper == null) {
-					Object current = iter.next();
-					if(current instanceof TableSelectionWrapper) {
-						wrapper = (TableSelectionWrapper)current;
-					}
-				}
+			//			if(selection instanceof IStructuredSelection) {
+			//				Iterator<?> iter = ((IStructuredSelection)selection).iterator();
+			//				while(iter.hasNext() && wrapper == null) {
+			//					Object current = iter.next();
+			//					if(current instanceof TableSelectionWrapper) {
+			//						wrapper = (TableSelectionWrapper)current;
+			//					}
+			//				}
+			//			}
+			if(selection instanceof IAdaptable) {
+				wrapper = (TableSelectionWrapper)((IAdaptable)selection).getAdapter(TableSelectionWrapper.class);
 			}
 		}
 	}

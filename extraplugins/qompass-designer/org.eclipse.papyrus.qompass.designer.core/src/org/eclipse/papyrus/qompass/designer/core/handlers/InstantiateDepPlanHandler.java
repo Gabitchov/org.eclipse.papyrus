@@ -26,7 +26,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.FCM.Configuration;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.ProjectManagement;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.dialogs.GenerationOptionsDialog;
 import org.eclipse.papyrus.qompass.designer.core.transformations.InstantiateDepPlan;
 import org.eclipse.swt.widgets.Shell;
@@ -47,8 +47,8 @@ public class InstantiateDepPlanHandler extends CmdHandler {
 		updateSelectedEObject();
 		EObject selectedObj = getSelectedEObject();
 		if(selectedObj instanceof Element) {
-			if(StUtils.isApplied((Element)selectedObj, DeploymentPlan.class) ||
-				StUtils.isApplied((Element)selectedObj, Configuration.class)) {
+			if(StereotypeUtil.isApplied((Element)selectedObj, DeploymentPlan.class) ||
+				StereotypeUtil.isApplied((Element)selectedObj, Configuration.class)) {
 				return true;
 			}
 		}

@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -89,8 +89,8 @@ public class CompTypeTrafos {
 					op.setIsAbstract(true);
 					Parameter retParam = op.createOwnedParameter("ret", providedIntf);
 					retParam.setDirection(ParameterDirectionKind.RETURN_LITERAL);
-					StUtils.apply(retParam, Ptr.class);
-					// StUtils.apply(op, CppVirtual.class);
+					StereotypeUtil.apply(retParam, Ptr.class);
+					// StereotypeUtil.apply(op, CppVirtual.class);
 				}
 			}
 			Interface requiredIntf = PortUtils.getRequired(port);
@@ -116,8 +116,8 @@ public class CompTypeTrafos {
 					}
 					Parameter refParam = op.createOwnedParameter("ref", requiredIntf);
 					refParam.setDirection(ParameterDirectionKind.IN_LITERAL);
-					StUtils.apply(refParam, Ptr.class);
-					// StUtils.apply(op, CppVirtual.class);
+					StereotypeUtil.apply(refParam, Ptr.class);
+					// StereotypeUtil.apply(op, CppVirtual.class);
 				}
 			}
 		}

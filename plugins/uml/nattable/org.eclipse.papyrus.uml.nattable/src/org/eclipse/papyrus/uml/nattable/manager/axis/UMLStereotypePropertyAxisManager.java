@@ -68,8 +68,14 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 		boolean result = false;
 		if(object instanceof Property) {
 			final Property prop = (Property)object;
-			result = prop.getOwner() instanceof Stereotype;
-			result = result && EMFHelper.isReadOnly(prop);
+			final Element owner = prop.getOwner();
+			result = owner instanceof Stereotype;
+			if(result) {
+				result = owner.getOwner() instanceof Profile;
+				if(result) {
+					result = EMFHelper.isReadOnly(prop);
+				}
+			}
 		}
 		return result;
 	}
@@ -114,7 +120,7 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		final List<String> allPropertyQN = new ArrayList<String>();
 		for(Object object : objectToAdd) {
-			if(object instanceof Property) {
+			if(isAllowedContents(object)) {
 				allPropertyQN.add(Constants.PROPERTY_OF_STEREOTYPE_PREFIX + ((NamedElement)object).getQualifiedName());
 			}
 		}

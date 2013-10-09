@@ -30,25 +30,25 @@ public class CSSPageStyleImpl extends PageStyleImpl implements CSSPageStyle {
 
 	protected CSSPageStyle getPageStyle() {
 		if(pageStyle == null) {
-			pageStyle = new  CSSPageStyleDelegate(this, getEngine());
+			pageStyle = new CSSPageStyleDelegate(this, getEngine());
 		}
 		return pageStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,40 +61,40 @@ public class CSSPageStyleImpl extends PageStyleImpl implements CSSPageStyle {
 	//////////////////////////////////////////
 
 
-	public int getCSSPageX(){
+	public int getCSSPageX() {
 		int value = super.getPageX();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getPageStyle_PageX(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getPageStyle_PageX(), value)) {
 			return value;
 		} else {
 			return getPageStyle().getCSSPageX();
 		}
 	}
 
-	public int getCSSPageY(){
+	public int getCSSPageY() {
 		int value = super.getPageY();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getPageStyle_PageY(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getPageStyle_PageY(), value)) {
 			return value;
 		} else {
 			return getPageStyle().getCSSPageY();
 		}
 	}
 
-	public int getCSSPageWidth(){
+	public int getCSSPageWidth() {
 		int value = super.getPageWidth();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getPageStyle_PageWidth(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getPageStyle_PageWidth(), value)) {
 			return value;
 		} else {
 			return getPageStyle().getCSSPageWidth();
 		}
 	}
 
-	public int getCSSPageHeight(){
+	public int getCSSPageHeight() {
 		int value = super.getPageHeight();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getPageStyle_PageHeight(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getPageStyle_PageHeight(), value)) {
 			return value;
 		} else {
 			return getPageStyle().getCSSPageHeight();
@@ -103,25 +103,25 @@ public class CSSPageStyleImpl extends PageStyleImpl implements CSSPageStyle {
 
 
 	@Override
-	public int getPageX(){
+	public int getPageX() {
 		//return super.getPageX();
 		return getCSSPageX();
 	}
 
 	@Override
-	public int getPageY(){
+	public int getPageY() {
 		//return super.getPageY();
 		return getCSSPageY();
 	}
 
 	@Override
-	public int getPageWidth(){
+	public int getPageWidth() {
 		//return super.getPageWidth();
 		return getCSSPageWidth();
 	}
 
 	@Override
-	public int getPageHeight(){
+	public int getPageHeight() {
 		//return super.getPageHeight();
 		return getCSSPageHeight();
 	}
@@ -133,33 +133,33 @@ public class CSSPageStyleImpl extends PageStyleImpl implements CSSPageStyle {
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setPageX(int value){
+	public void setPageX(int value) {
 		super.setPageX(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getPageStyle_PageX();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setPageY(int value){
+	public void setPageY(int value) {
 		super.setPageY(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getPageStyle_PageY();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setPageWidth(int value){
+	public void setPageWidth(int value) {
 		super.setPageWidth(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getPageStyle_PageWidth();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setPageHeight(int value){
+	public void setPageHeight(int value) {
 		super.setPageHeight(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getPageStyle_PageHeight();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -172,7 +172,7 @@ public class CSSPageStyleImpl extends PageStyleImpl implements CSSPageStyle {
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

@@ -26,7 +26,6 @@ import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Association;
 
-
 /**
  * This class can be launch is order to open a dialog used to choose an association
  */
@@ -58,7 +57,6 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 	 * @see org.eclipse.papyrus.uml.diagram.clazz.custom.ui.AbstractAssociationSelectionDialog#createContents()
 	 * 
 	 */
-
 	protected void createContents() {
 		// TODO Auto-generated method stub
 		super.createContents();
@@ -106,5 +104,4 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 	public Association getSelectedAssociation() {
 		return selectedAssociation;
 	}
-
 }

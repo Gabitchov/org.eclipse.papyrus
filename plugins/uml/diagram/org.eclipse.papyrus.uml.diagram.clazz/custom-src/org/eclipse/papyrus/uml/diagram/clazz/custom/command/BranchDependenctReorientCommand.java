@@ -11,7 +11,6 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 
 import org.eclipse.emf.ecore.EObject;
@@ -52,7 +51,6 @@ public class BranchDependenctReorientCommand extends Dependency2ReorientCommand 
 		}
 		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_4018(container, getLink(), getNewSource(), target);
-
 	}
 
 	@Override
@@ -70,6 +68,5 @@ public class BranchDependenctReorientCommand extends Dependency2ReorientCommand 
 		}
 		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_4018(container, getLink(), source, getNewTarget());
-
 	}
 }

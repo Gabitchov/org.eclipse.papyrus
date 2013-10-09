@@ -16,24 +16,27 @@ package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.util.IMappingRule;
-import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Type;
 
 
 public class UseInterface implements IMappingRule
 {
-	public Interface getProvided(Port p, InstanceSpecification config, boolean update)
+	public Interface getProvided(Port p, boolean update)
 	{
 		return null;
 	}
 		
-	public Interface getRequired(Port p, InstanceSpecification config, boolean update)
+	public Interface getRequired(Port p, boolean update)
 	{
 		Type type = p.getBase_Port ().getType ();
 		if (type instanceof Interface) {
 			return ((Interface) type);
 		}
 		return null;
+	}
+
+	public boolean needsUpdate(Port p) {
+		return false;
 	}
 }

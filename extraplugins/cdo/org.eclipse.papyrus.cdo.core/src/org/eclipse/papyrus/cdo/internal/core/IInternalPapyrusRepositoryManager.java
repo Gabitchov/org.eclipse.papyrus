@@ -24,6 +24,12 @@ import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
  */
 public interface IInternalPapyrusRepositoryManager extends IPapyrusRepositoryManager {
 
+	/** Managed container product group key for model repository-related elements. */
+	String PRODUCT_GROUP = Activator.PLUGIN_ID + ".repositories"; //$NON-NLS-1$
+
+	/** Managed container product factory key for the repository manager. */
+	String MANAGER_FACTORY = "manager"; //$NON-NLS-1$
+
 	IManagedContainer getSessionsContainer();
 
 	void setURL(IPapyrusRepository repository, String url);
@@ -38,12 +44,18 @@ public interface IInternalPapyrusRepositoryManager extends IPapyrusRepositoryMan
 	// Specializations of inherited API
 	//
 
+	@Override
 	Collection<? extends IInternalPapyrusRepository> getRepositories();
 
+	@Override
 	IInternalPapyrusRepository createRepository(String url);
 
+	@Override
 	IInternalPapyrusRepository getRepository(String url);
 
+	@Override
 	IInternalPapyrusRepository getRepositoryForURI(URI uri);
+
+	IInternalPapyrusRepository getRepositoryForURI(URI uri, boolean connectedOnly);
 
 }

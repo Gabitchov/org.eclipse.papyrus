@@ -17,5 +17,7 @@ Require-Bundle: org.eclipse.gef;bundle-version="3.9.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.uml.xtext.integration
 Bundle-Vendor: Eclipse Modeling Project
-Import-Package: org.eclipse.papyrus.uml.extensionpoints.profile,
+Import-Package: org.eclipse.papyrus.infra.services.validation,
+ org.eclipse.papyrus.infra.services.validation.commands,
+ org.eclipse.papyrus.uml.extensionpoints.profile,
  org.eclipse.papyrus.uml.extensionpoints.standard

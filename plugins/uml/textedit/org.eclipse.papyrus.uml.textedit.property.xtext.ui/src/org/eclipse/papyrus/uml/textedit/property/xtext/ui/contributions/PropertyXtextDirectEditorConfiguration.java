@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -206,11 +207,17 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 				newVisibility);
 		ICommand setVisibilityCommand = provider.getEditCommand(setVisibilityRequest);
 		updateCommand.add(setVisibilityCommand);
-
-		SetRequest setDefaultValueRequest = new SetRequest(property, UMLPackage.eINSTANCE.getProperty_Default(),
-				newDefault);
-		ICommand setDefaultValueCommand = provider.getEditCommand(setDefaultValueRequest);
-		updateCommand.add(setDefaultValueCommand);
+		
+		if (newDefault == null && property.getDefaultValue() != null) {
+			DestroyElementRequest destroyDefaultValueRequest = new DestroyElementRequest(property.getDefaultValue(), false) ;
+			ICommand destroyDefaultValueCommand = provider.getEditCommand(destroyDefaultValueRequest) ;
+			updateCommand.add(destroyDefaultValueCommand);
+		}
+		else {
+			SetRequest setDefaultValueRequest = new SetRequest(property, UMLPackage.eINSTANCE.getProperty_Default(), newDefault);
+			ICommand setDefaultValueCommand = provider.getEditCommand(setDefaultValueRequest);
+			updateCommand.add(setDefaultValueCommand);
+		}
 
 		SetRequest setRedefinedPropertiesRequest = new SetRequest(property,
 				UMLPackage.eINSTANCE.getProperty_RedefinedProperty(), newRedefines);

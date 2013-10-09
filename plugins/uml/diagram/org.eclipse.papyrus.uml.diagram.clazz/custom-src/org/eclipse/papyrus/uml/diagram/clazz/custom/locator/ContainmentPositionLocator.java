@@ -11,7 +11,6 @@
  *  
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.clazz.custom.locator;
 
 import org.eclipse.draw2d.IFigure;
@@ -37,5 +36,4 @@ public class ContainmentPositionLocator extends BorderItemLocator {
 	public ContainmentPositionLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}
-
 }

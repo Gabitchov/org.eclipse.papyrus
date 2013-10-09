@@ -30,25 +30,25 @@ public class CSSTitleStyleImpl extends TitleStyleImpl implements CSSTitleStyle {
 
 	protected CSSTitleStyle getTitleStyle() {
 		if(titleStyle == null) {
-			titleStyle = new  CSSTitleStyleDelegate(this, getEngine());
+			titleStyle = new CSSTitleStyleDelegate(this, getEngine());
 		}
 		return titleStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,10 +61,10 @@ public class CSSTitleStyleImpl extends TitleStyleImpl implements CSSTitleStyle {
 	//////////////////////////////////////////
 
 
-	public boolean isCSSShowTitle(){
+	public boolean isCSSShowTitle() {
 		boolean value = super.isShowTitle();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getTitleStyle_ShowTitle(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getTitleStyle_ShowTitle(), value)) {
 			return value;
 		} else {
 			return getTitleStyle().isCSSShowTitle();
@@ -73,7 +73,7 @@ public class CSSTitleStyleImpl extends TitleStyleImpl implements CSSTitleStyle {
 
 
 	@Override
-	public boolean isShowTitle(){
+	public boolean isShowTitle() {
 		//return super.isShowTitle();
 		return isCSSShowTitle();
 	}
@@ -85,9 +85,9 @@ public class CSSTitleStyleImpl extends TitleStyleImpl implements CSSTitleStyle {
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setShowTitle(boolean value){
+	public void setShowTitle(boolean value) {
 		super.setShowTitle(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getTitleStyle_ShowTitle();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -100,7 +100,7 @@ public class CSSTitleStyleImpl extends TitleStyleImpl implements CSSTitleStyle {
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

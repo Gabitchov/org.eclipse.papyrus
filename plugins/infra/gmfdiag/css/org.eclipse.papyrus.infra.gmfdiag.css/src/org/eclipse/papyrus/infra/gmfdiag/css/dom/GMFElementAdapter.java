@@ -19,7 +19,6 @@ import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles.CSS_GMF_S
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,8 +31,11 @@ import org.eclipse.e4.ui.css.core.dom.ElementAdapter;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -43,6 +45,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.listener.CustomStyleListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.types.NotationTypesMap;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView;
@@ -58,12 +61,15 @@ import org.w3c.dom.NodeList;
 @SuppressWarnings("restriction")
 public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener, StatefulView {
 
+	public static final String CSS_VALUES_SEPARATOR = " "; //$NON-NLS-1$
+
 	/**
 	 * The map of Papyrus Diagram ids to human-readable and consistent diagram IDs
 	 * The later can be used as valid CSS Selectors
 	 */
 	//TODO : Use an extension point for this map, or find another way to map Diagram ID to CSS Element name
-	public static final Map<String, String> diagramNameMappings = new HashMap<String, String>();
+	@Deprecated
+	public static final Map<String, String> diagramNameMappings = NotationTypesMap.instance.getComputerToHumanTypeMapping();
 
 	/**
 	 * The Semantic Model Element associated to the current styled element
@@ -331,6 +337,8 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 				} else {
 					localName = type;
 				}
+			} else if(getNotationElement() instanceof BasicCompartment) {
+				return "Compartment";
 			} else {
 				localName = getSemanticElement().eClass().getName();
 			}
@@ -349,7 +357,6 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		String value = doGetAttribute(attr);
 		if(value != null) {
 			return value;
-
 		}
 
 		return "";
@@ -363,15 +370,64 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * Returns null if the attribute is not known
 	 */
 	protected String doGetAttribute(String attr) {
+		if(notationElement instanceof BasicCompartment) {
+			//Compartments can be filtered by type (notation::View::type), or by title (From GmfGen model)
+			//We add the "kind" attribute which is specific to the CSS (More user-friendly)
+			if("kind".equals(attr)) {
+
+				BasicCompartment compartment = (BasicCompartment)notationElement;
+				String humanType = NotationTypesMap.instance.getHumanReadableType(compartment.getType());
+				if(humanType == null) {
+					return compartment.getType();
+				}
+				return humanType; //7017, 7018, 7019 for Attribute/Operation/Classifier compartments
+				//TODO: Create a mapping list between GMF ID (Type) and user-readable labels
+			}
+		}
+
 		EStructuralFeature feature = getSemanticElement().eClass().getEStructuralFeature(attr);
 		if(feature != null) {
-			Object value = semanticElement.eGet(feature);
-			if(value != null) {
-				return value.toString();
+			if(feature.isMany()) {
+				List<?> values = (List<?>)semanticElement.eGet(feature);;
+				List<String> cssValues = new LinkedList<String>();
+				for(Object value : values) {
+					if(value != null) {
+						cssValues.add(getCSSValue(feature, value));
+					}
+				}
+				return ListHelper.deepToString(cssValues, CSS_VALUES_SEPARATOR);
+			} else {
+				Object value = semanticElement.eGet(feature);
+				if(value != null) {
+					return getCSSValue(feature, value);
+				}
 			}
 		}
 
 		return null;
+	}
+
+	/**
+	 * Returns the value of the given feature as a formatted String (Valid w.r.t CSS Syntax)
+	 * Used by {@link #doGetAttribute(String)}
+	 * 
+	 * Return null if the feature is not supported or the value cannot be converted to a String
+	 * 
+	 * @param feature
+	 * @param value
+	 * @return
+	 */
+	protected String getCSSValue(EStructuralFeature feature, Object value) {
+		if(value == null) {
+			return null;
+		}
+
+		if(feature instanceof EReference && value instanceof ENamedElement) {
+			return ((ENamedElement)value).getName();
+		}
+
+		//Standard case. For EObject values, it might be better to return null than a random label...
+		return value.toString();
 	}
 
 	/**
@@ -406,7 +462,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		return getChildren().length;
 	}
 
-	private Node[] getChildren() {
+	protected Node[] getChildren() {
 		if(children == null) {
 			children = computeChildren(notationElement, engine);
 		}
@@ -421,7 +477,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * If a notation child element represents the same semantic element
 	 * than self, returns its own children (Recursively).
 	 */
-	private static Node[] computeChildren(View notationElement, CSSEngine engine) {
+	protected static Node[] computeChildren(View notationElement, CSSEngine engine) {
 		EObject semanticElement = SemanticElementHelper.findSemanticElement(notationElement);
 		List<Node> childList = new LinkedList<Node>();
 		for(EObject child : notationElement.eContents()) {
@@ -434,6 +490,25 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 				}
 			}
 		}
+
+		/*
+		 * <--------------------
+		 * 
+		 * //Allows both notations Class > Property and Class > Compartment > Property
+		 * 
+		 * //FIXME: The Tree is computed through "getParentNode". "getChildren" is barely used. Moreover,
+		 * //there is a mapping between Notation element and DOM element, which makes it impossible to associate the same
+		 * //notation element to different DOM elements.
+		 * 
+		 * // for(EObject child : notationElement.eContents()) {
+		 * // if(child instanceof BasicCompartment) {
+		 * // //Add the Compartment's children to this' children
+		 * // childList.addAll(Arrays.asList(computeChildren((View)child, engine)));
+		 * // }
+		 * // }
+		 * 
+		 * -------------------->
+		 */
 
 		return childList.toArray(new Node[childList.size()]);
 	}

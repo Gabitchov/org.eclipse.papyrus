@@ -16,11 +16,10 @@ import org.eclipse.papyrus.FCM.RuleApplication;
 import org.eclipse.papyrus.qompass.designer.core.CORBAtypeNames;
 import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Stereotypes;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -259,27 +258,19 @@ public class DepCreation {
 					// hack: ad-hoc replication support. Better solution via design patterns
 					int upper = attribute.getUpper();
 					String infix = ""; //$NON-NLS-1$
-					Object obj = StUtils.getAttribute(attribute,
-						Stereotypes.replicationInfo, "initialNumberOfReplicas"); //$NON-NLS-1$
-					if(obj instanceof Integer) {
-						if(upper != 1) {
-							throw new TransformationException("cannot replicate an array"); //$NON-NLS-1$
-						}
-						upper = ((Integer)obj).intValue();
-						infix = "r"; //$NON-NLS-1$
-					}
+
 					// TODO: check validation constraints
 					for(int i = 0; i < upper; i++) {
-						String partName = name + "." + attribute.getName();
+						String partName = name + "." + attribute.getName(); //$NON-NLS-1$
 						if(upper > 1) {
-							partName += "_" + infix + i;
+							partName += "_" + infix + i; //$NON-NLS-1$
 						}
 						InstanceSpecification partIS = createDepPlan(cdp, cl,
 							partName, createSlotsForConfigValues, visitedClassifiers);
 
 						createSlot(is, partIS, attribute);
 					}
-				} else if(StUtils.isApplied(attribute,
+				} else if(StereotypeUtil.isApplied(attribute,
 					ConfigurationProperty.class)
 					&& createSlotsForConfigValues) {
 					// is a configuration property, create slot
@@ -338,7 +329,7 @@ public class DepCreation {
 		boolean first = true;
 		for(Property attribute : ConfigUtils.getConfigAttributes(rule)) {
 			Type type = attribute.getType();
-			if((StUtils.isApplied(attribute, ConfigurationProperty.class))
+			if((StereotypeUtil.isApplied(attribute, ConfigurationProperty.class))
 				&& (type instanceof Class)) {
 				Class aggregateOrInterceptor = DepUtils.chooseImplementation(
 					(Class)type, new BasicEList<InstanceSpecification>(),
@@ -425,7 +416,7 @@ public class DepCreation {
 							createSlot(is, partIS, attribute);
 						}
 					}
-				} else if(StUtils.isApplied(attribute,
+				} else if(StereotypeUtil.isApplied(attribute,
 					ConfigurationProperty.class)) {
 					// is a configuration property, create slot
 					// TODO: implicit assumption that configuration attributes
@@ -463,10 +454,10 @@ public class DepCreation {
 			if (sf == null) {
 				throw new RuntimeException ("The defining feature of a slot of instance " + slot.getOwningInstance().getName() + " is null");
 			}
-			if(StUtils.isApplied(sf, AutoIndex.class)) {
+			if(StereotypeUtil.isApplied(sf, AutoIndex.class)) {
 				Integer value = null;
 				Object key;
-				if(StUtils.isApplied(sf, AutoIndexPerNode.class)) {
+				if(StereotypeUtil.isApplied(sf, AutoIndexPerNode.class)) {
 					InstanceSpecification nodeOrThread = AllocUtils.getNode(is);
 					key = sf.getName() + nodeOrThread.getName();
 				} else {
@@ -512,7 +503,7 @@ public class DepCreation {
 			if(sf == null) {
 				throw new TransformationRTException(is.getName() + " has a slot without defining feature"); //$NON-NLS-1$
 			}
-			if(StUtils.isApplied(sf, CopyAttributeValue.class)) {
+			if(StereotypeUtil.isApplied(sf, CopyAttributeValue.class)) {
 				CopyAttributeValue cav = UMLUtil.getStereotypeApplication(sf,
 					CopyAttributeValue.class);
 				Property source = cav.getSource();

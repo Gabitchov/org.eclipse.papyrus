@@ -85,6 +85,10 @@
 	= invoke('org.eclipse.papyrus.acceleo.GenUtils', 'getApplicationA(org.eclipse.uml2.uml.Element, org.eclipse.emf.ecore.EClass)', Sequence{arg0, arg1})
 /]
 
+[query public getApplicationTree(arg0 : Element, arg1 : OclAny) : OclAny
+	= invoke('org.eclipse.papyrus.acceleo.GenUtils', 'getApplicationTreeA(org.eclipse.uml2.uml.Element, org.eclipse.emf.ecore.EClass)', Sequence{arg0, arg1})
+/]
+
 [query public getBody(arg0 : Operation, arg1 : String) : String
 	= invoke('org.eclipse.papyrus.acceleo.GenUtils', 'getBody(org.eclipse.uml2.uml.Operation, java.lang.String)', Sequence{arg0, arg1})
 /]

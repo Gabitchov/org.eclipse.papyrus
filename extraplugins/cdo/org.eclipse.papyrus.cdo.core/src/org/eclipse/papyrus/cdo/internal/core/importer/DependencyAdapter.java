@@ -11,11 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
-import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -83,11 +84,18 @@ public class DependencyAdapter extends AdapterImpl {
 	}
 
 	private void analyze(Resource resource) {
-		for(Iterator<EObject> iter = EcoreUtil.getAllProperContents(resource, false); iter.hasNext();) {
-			for(EObject xref : iter.next().eCrossReferences()) {
-				Resource xrefRes = xref.eResource();
-				if((xrefRes != null) && (isUserModelResource(xrefRes.getURI()))) {
-					addDependency(xrefRes);
+		for(TreeIterator<EObject> iter = EcoreUtil.getAllProperContents(resource, false); iter.hasNext();) {
+			EObject next = iter.next();
+
+			// ignore annotations, such as are used for hyperlinks
+			if(next instanceof EAnnotation) {
+				iter.prune();
+			} else {
+				for(EObject xref : next.eCrossReferences()) {
+					Resource xrefRes = xref.eResource();
+					if((xrefRes != null) && (isUserModelResource(xrefRes.getURI()))) {
+						addDependency(xrefRes);
+					}
 				}
 			}
 		}

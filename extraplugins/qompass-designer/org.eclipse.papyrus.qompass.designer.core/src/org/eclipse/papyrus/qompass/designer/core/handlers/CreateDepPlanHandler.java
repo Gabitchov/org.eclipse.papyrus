@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
@@ -111,7 +111,7 @@ public class CreateDepPlanHandler extends CmdHandler {
 
 				public CommandResult run() {
 					Package cdp = depPlans.createNestedPackage(depPlanName);
-					Stereotype st = StUtils.apply(cdp, org.eclipse.papyrus.FCM.DeploymentPlan.class);
+					Stereotype st = StereotypeUtil.apply(cdp, org.eclipse.papyrus.FCM.DeploymentPlan.class);
 					if(st == null) {
 						MessageDialog.openInformation(new Shell(), "Cannot create deployment plan",
 							"Application of stereotype \"FCM::DeploymentPlan\" failed. Check, if FCM profile is applied");

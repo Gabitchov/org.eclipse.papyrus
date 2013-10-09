@@ -31,7 +31,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
-
 	public static String TEMPLATE_PARAMETER_DISPLAY = "TEMPLATE_PARAMETER_DISPLAY";
 
 	/**
@@ -83,7 +82,6 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 		}
 		hostSemanticElement = initSemanticElement();
 		if(hostSemanticElement != null) {
-
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
@@ -111,7 +109,6 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 		}
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
-
 		if(hostSemanticElement != null) {
 			getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
 		}
@@ -121,14 +118,12 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 		if(((TemplateParameter)hostSemanticElement).getDefault() != null) {
 			getDiagramEventBroker().removeNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
 		}
-
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
 	}
 
 	protected void refreshDisplay() {
 		getHost().refresh();
-
 	}
 
 	public void notifyChanged(Notification notification) {
@@ -143,6 +138,4 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 		}
 		refreshDisplay();
 	}
-
-
 }

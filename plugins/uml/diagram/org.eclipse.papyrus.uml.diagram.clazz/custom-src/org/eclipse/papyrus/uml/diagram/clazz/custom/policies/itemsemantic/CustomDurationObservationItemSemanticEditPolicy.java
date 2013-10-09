@@ -19,7 +19,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.command.BranchDependenctReor
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.DurationObservationItemSemanticEditPolicy;
 
-
 /**
  * this class has been specialized in order to manage reconnection of multidependency
  * 

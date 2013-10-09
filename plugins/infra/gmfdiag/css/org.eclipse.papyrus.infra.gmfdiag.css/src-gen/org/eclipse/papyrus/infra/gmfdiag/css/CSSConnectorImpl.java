@@ -22,7 +22,9 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSConnectorStyle;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSConnectorStyleDelegate;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 
 public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle {
 
@@ -30,18 +32,27 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 
 	private CSSConnectorStyle connectorStyle;
 
+	private CSSView cssView;
+
 	protected CSSConnectorStyle getConnectorStyle() {
 		if(connectorStyle == null) {
-			connectorStyle = new  CSSConnectorStyleDelegate(this, getEngine());
+			connectorStyle = new CSSConnectorStyleDelegate(this, getEngine());
 		}
 		return connectorStyle;
 	}
 
 	protected ExtendedCSSEngine getEngine() {
-		if(engine == null) {		
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)getDiagram()).getEngine();
 		}
 		return engine;
+	}
+
+	protected CSSView getCSSView() {
+		if(cssView == null) {
+			cssView = new CSSViewDelegate(this, getEngine());
+		}
+		return cssView;
 	}
 
 
@@ -50,100 +61,100 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 	//////////////////////////////////////////
 
 
-	public int getCSSRoundedBendpointsRadius(){
+	public int getCSSRoundedBendpointsRadius() {
 		int value = super.getRoundedBendpointsRadius();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().getCSSRoundedBendpointsRadius();
 		}
 	}
 
-	public Routing getCSSRouting(){
+	public Routing getCSSRouting() {
 		Routing value = super.getRouting();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().getCSSRouting();
 		}
 	}
 
-	public Smoothness getCSSSmoothness(){
+	public Smoothness getCSSSmoothness() {
 		Smoothness value = super.getSmoothness();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_Smoothness(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_Smoothness(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().getCSSSmoothness();
 		}
 	}
 
-	public boolean isCSSAvoidObstructions(){
+	public boolean isCSSAvoidObstructions() {
 		boolean value = super.isAvoidObstructions();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().isCSSAvoidObstructions();
 		}
 	}
 
-	public boolean isCSSClosestDistance(){
+	public boolean isCSSClosestDistance() {
 		boolean value = super.isClosestDistance();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().isCSSClosestDistance();
 		}
 	}
 
-	public JumpLinkStatus getCSSJumpLinkStatus(){
+	public JumpLinkStatus getCSSJumpLinkStatus() {
 		JumpLinkStatus value = super.getJumpLinkStatus();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().getCSSJumpLinkStatus();
 		}
 	}
 
-	public JumpLinkType getCSSJumpLinkType(){
+	public JumpLinkType getCSSJumpLinkType() {
 		JumpLinkType value = super.getJumpLinkType();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().getCSSJumpLinkType();
 		}
 	}
 
-	public boolean isCSSJumpLinksReverse(){
+	public boolean isCSSJumpLinksReverse() {
 		boolean value = super.isJumpLinksReverse();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().isCSSJumpLinksReverse();
 		}
 	}
 
-	public int getCSSLineColor(){
+	public int getCSSLineColor() {
 		int value = super.getLineColor();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getLineStyle_LineColor(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getLineStyle_LineColor(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().getCSSLineColor();
 		}
 	}
 
-	public int getCSSLineWidth(){
+	public int getCSSLineWidth() {
 		int value = super.getLineWidth();
 
-		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getLineStyle_LineWidth(), value)){
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getLineStyle_LineWidth(), value)) {
 			return value;
 		} else {
 			return getConnectorStyle().getCSSLineWidth();
@@ -152,63 +163,78 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 
 
 	@Override
-	public int getRoundedBendpointsRadius(){
+	public int getRoundedBendpointsRadius() {
 		//return super.getRoundedBendpointsRadius();
 		return getCSSRoundedBendpointsRadius();
 	}
 
 	@Override
-	public Routing getRouting(){
+	public Routing getRouting() {
 		//return super.getRouting();
 		return getCSSRouting();
 	}
 
 	@Override
-	public Smoothness getSmoothness(){
+	public Smoothness getSmoothness() {
 		//return super.getSmoothness();
 		return getCSSSmoothness();
 	}
 
 	@Override
-	public boolean isAvoidObstructions(){
+	public boolean isAvoidObstructions() {
 		//return super.isAvoidObstructions();
 		return isCSSAvoidObstructions();
 	}
 
 	@Override
-	public boolean isClosestDistance(){
+	public boolean isClosestDistance() {
 		//return super.isClosestDistance();
 		return isCSSClosestDistance();
 	}
 
 	@Override
-	public JumpLinkStatus getJumpLinkStatus(){
+	public JumpLinkStatus getJumpLinkStatus() {
 		//return super.getJumpLinkStatus();
 		return getCSSJumpLinkStatus();
 	}
 
 	@Override
-	public JumpLinkType getJumpLinkType(){
+	public JumpLinkType getJumpLinkType() {
 		//return super.getJumpLinkType();
 		return getCSSJumpLinkType();
 	}
 
 	@Override
-	public boolean isJumpLinksReverse(){
+	public boolean isJumpLinksReverse() {
 		//return super.isJumpLinksReverse();
 		return isCSSJumpLinksReverse();
 	}
 
 	@Override
-	public int getLineColor(){
+	public int getLineColor() {
 		//return super.getLineColor();
 		return getCSSLineColor();
 	}
 
 	@Override
-	public int getLineWidth(){
+	public int getLineWidth() {
 		//return super.getLineWidth();
 		return getCSSLineWidth();
+	}
+
+	@Override
+	public boolean isVisible() {
+		return isCSSVisible();
+	}
+
+	public boolean isCSSVisible() {
+		boolean value = super.isVisible();
+
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getView_Visible(), value)) {
+			return value;
+		} else {
+			return getCSSView().isCSSVisible();
+		}
 	}
 
 
@@ -218,105 +244,105 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setVisible(boolean value){
+	public void setVisible(boolean value) {
 		super.setVisible(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getView_Visible();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setType(java.lang.String value){
+	public void setType(java.lang.String value) {
 		super.setType(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getView_Type();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setMutable(boolean value){
+	public void setMutable(boolean value) {
 		super.setMutable(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getView_Mutable();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setRoundedBendpointsRadius(int value){
+	public void setRoundedBendpointsRadius(int value) {
 		super.setRoundedBendpointsRadius(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setRouting(Routing value){
+	public void setRouting(Routing value) {
 		super.setRouting(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_Routing();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setSmoothness(Smoothness value){
+	public void setSmoothness(Smoothness value) {
 		super.setSmoothness(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_Smoothness();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setAvoidObstructions(boolean value){
+	public void setAvoidObstructions(boolean value) {
 		super.setAvoidObstructions(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setClosestDistance(boolean value){
+	public void setClosestDistance(boolean value) {
 		super.setClosestDistance(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setJumpLinkStatus(JumpLinkStatus value){
+	public void setJumpLinkStatus(JumpLinkStatus value) {
 		super.setJumpLinkStatus(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setJumpLinkType(JumpLinkType value){
+	public void setJumpLinkType(JumpLinkType value) {
 		super.setJumpLinkType(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setJumpLinksReverse(boolean value){
+	public void setJumpLinksReverse(boolean value) {
 		super.setJumpLinksReverse(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setLineColor(int value){
+	public void setLineColor(int value) {
 		super.setLineColor(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getLineStyle_LineColor();
 		ForceValueHelper.setValue(this, feature, value);
 	}
 
 	@Override
-	public void setLineWidth(int value){
+	public void setLineWidth(int value) {
 		super.setLineWidth(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getLineStyle_LineWidth();
 		ForceValueHelper.setValue(this, feature, value);
 	}
@@ -329,7 +355,7 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(this, feature);
 	}
 

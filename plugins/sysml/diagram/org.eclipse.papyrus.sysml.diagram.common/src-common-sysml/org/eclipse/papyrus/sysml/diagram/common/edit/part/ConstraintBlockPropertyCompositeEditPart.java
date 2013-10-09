@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.edit.part;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
@@ -29,12 +31,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.figure.ConstraintBlockPropertyCompositeFigure;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConstraintNodeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConstraintParameterAffixedNodeEditPart;
@@ -48,14 +52,21 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEd
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.FullInsidePortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEditPart {
+	
+	public static final String REPRESENTATION_MODE_STYLE = "representation_mode_style"; 
+	public static final String ROUNDED_REPRESENTATION = "rounded_representation"; 
+	public static final String SQUARE_REPRESENTATION_WITH_STRUCTURE = "square_representation_with_structure";
 
+	public Map<EditPart, FullInsidePortPositionLocator> constraintParameter2FullInsidePortPositionLocator = new HashMap<EditPart, FullInsidePortPositionLocator>();
+	
+	public static String lastRepresentationKind;
+	
 	public ConstraintBlockPropertyCompositeEditPart(View view) {
 		super(view);
 	}
@@ -111,12 +122,13 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 			return true;
 		}
 		if(childEditPart instanceof ConstraintNodeLabelEditPart) {
-			((ConstraintNodeLabelEditPart)childEditPart).setLabel((((ConstraintBlockPropertyCompositeFigure)getPrimaryShape()).getConstraintLabel()));
+			((ConstraintNodeLabelEditPart)childEditPart).setLabel(((ConstraintBlockPropertyCompositeFigure)getPrimaryShape()).getConstraintLabel());
 			return true;
 		}
 
 		if(childEditPart instanceof ConstraintParameterAffixedNodeEditPart) {
-			IBorderItemLocator locator = new FullInsidePortPositionLocator(getMainFigure(), PositionConstants.NONE, ((ConstraintBlockPropertyCompositeFigure)getPrimaryShape()).getCorner());
+			FullInsidePortPositionLocator locator = new FullInsidePortPositionLocator(getMainFigure(), PositionConstants.NONE, ((ConstraintBlockPropertyCompositeFigure)getPrimaryShape()).getCorner());
+			constraintParameter2FullInsidePortPositionLocator.put(childEditPart, locator); // register the locator in order to reset the corner when changing ConstraintProeprty representation 
 			getBorderedFigure().getBorderItemContainer().add(((ConstraintParameterAffixedNodeEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
@@ -141,7 +153,15 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 
 		return false;
 	}
-
+	
+	@Override
+	protected void removeChild(EditPart child) {
+		if (child instanceof ConstraintNodeLabelEditPart) {
+			return; // When hiding constraint expression, we want to keep the edit part in order to re-show it 
+		}
+		super.removeChild(child);
+	}
+	
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof IBorderItemEditPart) {
@@ -158,14 +178,33 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 
 	@Override
 	protected IFigure createNodeShape() {
-		primaryShape = new ConstraintBlockPropertyCompositeFigure();
+		if (isSquareRepresentationWithStructure()) {
+			primaryShape = new ConstraintBlockPropertyCompositeFigure(SQUARE_REPRESENTATION_WITH_STRUCTURE);
+		}
+		else if (isRoundedRepresentation()) {
+			primaryShape = new ConstraintBlockPropertyCompositeFigure(ROUNDED_REPRESENTATION);
+		}
+		else {
+			if (lastRepresentationIsSquareWithStructure()) {
+				primaryShape = new ConstraintBlockPropertyCompositeFigure(SQUARE_REPRESENTATION_WITH_STRUCTURE);
+			}
+			else {
+				// default
+				if (this.getChildViewBySemanticHint(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID) != null) {
+					// no style => if structure then square else rounded
+					primaryShape = new ConstraintBlockPropertyCompositeFigure(SQUARE_REPRESENTATION_WITH_STRUCTURE);
+				}
+				else {
+					primaryShape = new ConstraintBlockPropertyCompositeFigure(ROUNDED_REPRESENTATION);					
+				}
+			}
+		}
 		return primaryShape;
 	}
 
-
 	@Override
-	public NodeNamedElementFigure getPrimaryShape() {
-		return (NodeNamedElementFigure)primaryShape;
+	public ConstraintBlockPropertyCompositeFigure getPrimaryShape() {
+		return (ConstraintBlockPropertyCompositeFigure)primaryShape;
 	}
 
 	@Override
@@ -177,6 +216,7 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
+
 		List children = getChildren();
 		for (Object editPart : children) {
 			if (editPart instanceof EditPart) {
@@ -185,6 +225,22 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 		}
 	}
 	
+	public boolean isSquareRepresentationWithStructure() {
+		StringValueStyle style = (StringValueStyle)((View)this.getModel()).getStyle(NotationPackage.eINSTANCE.getStringValueStyle());
+		if (style == null) {
+			return false;
+		}
+		return SQUARE_REPRESENTATION_WITH_STRUCTURE.equals(style.getStringValue());
+	}
+	
+	public boolean isRoundedRepresentation() {
+		StringValueStyle style = (StringValueStyle)((View)this.getModel()).getStyle(NotationPackage.eINSTANCE.getStringValueStyle());
+		if (style == null) {
+			return false;
+		}
+		return ROUNDED_REPRESENTATION.equals(style.getStringValue());
+	}
+
 	/**
 	 * <pre>
 	 * 
@@ -215,6 +271,21 @@ public class ConstraintBlockPropertyCompositeEditPart extends AbstractElementEdi
 		}
 		super.handleNotificationEvent(event);
 		refresh();
+	}
+
+	public static boolean lastRepresentationIsSquareWithStructure() {
+		return ConstraintBlockPropertyCompositeEditPart.SQUARE_REPRESENTATION_WITH_STRUCTURE.equals(ConstraintBlockPropertyCompositeEditPart.lastRepresentationKind);
+	}
+
+	public static void setLastRepresentation(String representationKind) {
+		ConstraintBlockPropertyCompositeEditPart.lastRepresentationKind = representationKind;
+	}
+	
+	public void setCornerLocators(int corner) {
+		for (EditPart editPart : constraintParameter2FullInsidePortPositionLocator.keySet()) {
+			FullInsidePortPositionLocator locator = constraintParameter2FullInsidePortPositionLocator.get(editPart);
+			locator.setCorner(corner);
+		}
 	}
 
 }

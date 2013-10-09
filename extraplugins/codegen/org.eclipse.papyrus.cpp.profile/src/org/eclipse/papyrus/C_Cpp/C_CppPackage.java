@@ -233,16 +233,6 @@ public interface C_CppPackage extends EPackage {
 	int CONST = 7;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.DefaultImpl <em>Default</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.C_Cpp.impl.DefaultImpl
-	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getDefault()
-	 * @generated
-	 */
-	int DEFAULT = 8;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.RefImpl <em>Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -250,7 +240,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getRef()
 	 * @generated
 	 */
-	int REF = 9;
+	int REF = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl <em>Extern Library</em>}' class.
@@ -263,13 +253,13 @@ public interface C_CppPackage extends EPackage {
 	int EXTERN_LIBRARY = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Include Paths</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERN_LIBRARY__NAME = 0;
+	int EXTERN_LIBRARY__INCLUDE_PATHS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base package</b></em>' reference.
@@ -463,42 +453,6 @@ public interface C_CppPackage extends EPackage {
 	int CONST_FEATURE_COUNT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT__VALUE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Base parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT__BASE_PARAMETER = 1;
-
-	/**
-	 * The feature id for the '<em><b>Base property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT__BASE_PROPERTY = 2;
-
-	/**
-	 * The number of structural features of the '<em>Default</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT_FEATURE_COUNT = 3;
-
-	/**
 	 * The feature id for the '<em><b>Base parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -533,7 +487,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getExternal()
 	 * @generated
 	 */
-	int EXTERNAL = 10;
+	int EXTERNAL = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -570,7 +524,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getConstInit()
 	 * @generated
 	 */
-	int CONST_INIT = 11;
+	int CONST_INIT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Initialisation</b></em>' attribute.
@@ -607,7 +561,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getFriend()
 	 * @generated
 	 */
-	int FRIEND = 12;
+	int FRIEND = 11;
 
 	/**
 	 * The feature id for the '<em><b>Base dependency</b></em>' reference.
@@ -644,7 +598,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getInline()
 	 * @generated
 	 */
-	int INLINE = 13;
+	int INLINE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Base operation</b></em>' reference.
@@ -672,7 +626,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getVirtual()
 	 * @generated
 	 */
-	int VIRTUAL = 14;
+	int VIRTUAL = 13;
 
 	/**
 	 * The feature id for the '<em><b>Base operation</b></em>' reference.
@@ -700,7 +654,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getTypedef()
 	 * @generated
 	 */
-	int TYPEDEF = 15;
+	int TYPEDEF = 14;
 
 	/**
 	 * The feature id for the '<em><b>Definition</b></em>' attribute.
@@ -737,7 +691,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getVisibility()
 	 * @generated
 	 */
-	int VISIBILITY = 16;
+	int VISIBILITY = 15;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -774,7 +728,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getCppInit()
 	 * @generated
 	 */
-	int CPP_INIT = 17;
+	int CPP_INIT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -811,7 +765,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getTemplate()
 	 * @generated
 	 */
-	int TEMPLATE = 18;
+	int TEMPLATE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Declaration</b></em>' attribute.
@@ -848,7 +802,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getTemplateBinding()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING = 19;
+	int TEMPLATE_BINDING = 18;
 
 	/**
 	 * The feature id for the '<em><b>Binding</b></em>' attribute.
@@ -885,7 +839,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getTemplateParameter()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER = 20;
+	int TEMPLATE_PARAMETER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -922,7 +876,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getUnion()
 	 * @generated
 	 */
-	int UNION = 21;
+	int UNION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Base Data Type</b></em>' reference.
@@ -950,7 +904,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getStorageClass()
 	 * @generated
 	 */
-	int STORAGE_CLASS = 22;
+	int STORAGE_CLASS = 21;
 
 	/**
 	 * The feature id for the '<em><b>Storage Class</b></em>' attribute.
@@ -996,7 +950,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 23;
+	int VISIBILITY_KIND = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.EAccessKind <em>EAccess Kind</em>}' enum.
@@ -1006,7 +960,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getEAccessKind()
 	 * @generated
 	 */
-	int EACCESS_KIND = 24;
+	int EACCESS_KIND = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.C_Cpp.EStorageClass <em>EStorage Class</em>}' enum.
@@ -1016,7 +970,7 @@ public interface C_CppPackage extends EPackage {
 	 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getEStorageClass()
 	 * @generated
 	 */
-	int ESTORAGE_CLASS = 25;
+	int ESTORAGE_CLASS = 24;
 
 
 	/**
@@ -1268,49 +1222,6 @@ public interface C_CppPackage extends EPackage {
 	EReference getConst_Base_operation();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.C_Cpp.Default <em>Default</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Default</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.Default
-	 * @generated
-	 */
-	EClass getDefault();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.C_Cpp.Default#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.Default#getValue()
-	 * @see #getDefault()
-	 * @generated
-	 */
-	EAttribute getDefault_Value();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.Default#getBase_parameter <em>Base parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base parameter</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.Default#getBase_parameter()
-	 * @see #getDefault()
-	 * @generated
-	 */
-	EReference getDefault_Base_parameter();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.Default#getBase_property <em>Base property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base property</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.Default#getBase_property()
-	 * @see #getDefault()
-	 * @generated
-	 */
-	EReference getDefault_Base_property();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.C_Cpp.Ref <em>Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1385,15 +1296,15 @@ public interface C_CppPackage extends EPackage {
 	EClass getExternLibrary();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludePaths <em>Include Paths</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.papyrus.C_Cpp.ExternLibrary#getName()
+	 * @return the meta object for the attribute list '<em>Include Paths</em>'.
+	 * @see org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludePaths()
 	 * @see #getExternLibrary()
 	 * @generated
 	 */
-	EAttribute getExternLibrary_Name();
+	EAttribute getExternLibrary_IncludePaths();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getBase_package <em>Base package</em>}'.
@@ -2101,40 +2012,6 @@ public interface C_CppPackage extends EPackage {
 		EReference CONST__BASE_OPERATION = eINSTANCE.getConst_Base_operation();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.impl.DefaultImpl <em>Default</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.C_Cpp.impl.DefaultImpl
-		 * @see org.eclipse.papyrus.C_Cpp.impl.C_CppPackageImpl#getDefault()
-		 * @generated
-		 */
-		EClass DEFAULT = eINSTANCE.getDefault();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DEFAULT__VALUE = eINSTANCE.getDefault_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>Base parameter</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEFAULT__BASE_PARAMETER = eINSTANCE.getDefault_Base_parameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Base property</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEFAULT__BASE_PROPERTY = eINSTANCE.getDefault_Base_property();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.C_Cpp.impl.RefImpl <em>Ref</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2197,12 +2074,12 @@ public interface C_CppPackage extends EPackage {
 		EClass EXTERN_LIBRARY = eINSTANCE.getExternLibrary();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Include Paths</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERN_LIBRARY__NAME = eINSTANCE.getExternLibrary_Name();
+		EAttribute EXTERN_LIBRARY__INCLUDE_PATHS = eINSTANCE.getExternLibrary_IncludePaths();
 
 		/**
 		 * The meta object literal for the '<em><b>Base package</b></em>' reference feature.

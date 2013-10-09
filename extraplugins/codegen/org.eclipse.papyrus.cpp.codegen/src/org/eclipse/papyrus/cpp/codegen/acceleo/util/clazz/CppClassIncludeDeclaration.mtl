@@ -17,5 +17,11 @@ endif
 
 [comment TODO: original code did not use nearest package, if stereotype CppRoot was applied/]
 [template public CppClassIncludeDeclaration(ne : NamedElement)]
+[if (hasStereotypeTree(ExternLibrary))]
+	[for (include : String | getApplicationTree(ExternLibrary).oclAsType(ExternLibrary).includes)] 
+#include <[include/]>
+	[/for]
+[else]
 #include <[ne.includeName()/]>
+[/if]
 [/template]

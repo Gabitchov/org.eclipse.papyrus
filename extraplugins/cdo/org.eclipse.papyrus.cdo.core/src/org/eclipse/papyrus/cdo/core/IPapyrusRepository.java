@@ -13,6 +13,7 @@ package org.eclipse.papyrus.cdo.core;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 
@@ -39,7 +40,7 @@ public interface IPapyrusRepository {
 
 	boolean isConnected();
 
-	void connect();
+	IStatus connect();
 
 	void disconnect() throws CommitException;
 

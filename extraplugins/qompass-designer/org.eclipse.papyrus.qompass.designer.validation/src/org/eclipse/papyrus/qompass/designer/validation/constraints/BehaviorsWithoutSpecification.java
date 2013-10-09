@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.DerivedElement;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueBehavior;
@@ -39,7 +39,7 @@ public class BehaviorsWithoutSpecification extends AbstractModelConstraint {
 
 		if (behavior.getSpecification () == null) {
 			Element class_ = behavior.getOwner ();
-			if (StUtils.isApplicable(class_, DerivedElement.class)) {
+			if (StereotypeUtil.isApplicable(class_, DerivedElement.class)) {
 				// check whether DerivedElement is applicable => indirect check whether FCM is applied (make rule specific to Qompass)
 				// TODO alternative? check whether behavior is referenced from either an activity, since that is possible in general?
 				/*

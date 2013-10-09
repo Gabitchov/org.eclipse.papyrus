@@ -35,7 +35,6 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
-
 	public static String SLOT_DISPLAY = "SLOT_DISPLAY";
 
 	/**
@@ -87,7 +86,6 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 		}
 		hostSemanticElement = initSemanticElement();
 		if(hostSemanticElement != null) {
-
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
@@ -97,10 +95,8 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 				while(iterator.hasNext()) {
 					ValueSpecification valueSpecification = (ValueSpecification)iterator.next();
 					getDiagramEventBroker().addNotificationListener(valueSpecification, this);
-
 				}
 			}
-
 			refreshDisplay();
 		} else {
 			Activator.log.error("No semantic element was found during activation of the mask managed label edit policy", null);
@@ -125,7 +121,6 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 			while(iterator.hasNext()) {
 				ValueSpecification valueSpecification = (ValueSpecification)iterator.next();
 				getDiagramEventBroker().removeNotificationListener(valueSpecification, this);
-
 			}
 		}
 		// removes the reference to the semantic element
@@ -134,15 +129,12 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 
 	protected void refreshDisplay() {
 		getHost().refresh();
-
-
 	}
 
 	public void notifyChanged(Notification notification) {
 		if(notification.getEventType() == Notification.ADD) {
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())) {
 				getDiagramEventBroker().addNotificationListener(((EObject)notification.getNewValue()), this);
-
 			}
 		} else if(notification.getEventType() == Notification.REMOVE) {
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getSlot_Value())) {
@@ -151,6 +143,4 @@ public class SlotDisplayEditPolicy extends GraphicalEditPolicyEx implements Noti
 		}
 		refreshDisplay();
 	}
-
-
 }

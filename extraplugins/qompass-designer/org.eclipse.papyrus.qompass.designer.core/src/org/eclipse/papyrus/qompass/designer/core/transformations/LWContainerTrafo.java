@@ -28,6 +28,7 @@ import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -224,7 +225,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 				// DepUtils.chooseImplementation((Class) type,
 				// new BasicEList<InstanceSpecification>(), false);
 
-				if(StUtils.isApplied(part, InterceptionRule.class)) {
+				if(StereotypeUtil.isApplied(part, InterceptionRule.class)) {
 					// port.filter
 					// 
 				}
@@ -325,7 +326,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 					}
 				}
 			}
-			if(StUtils.isApplied(interceptionOperationInRule, Template.class)) {
+			if(StereotypeUtil.isApplied(interceptionOperationInRule, Template.class)) {
 				// pass operation in source model, since this enables acceleo code to check
 				// for markers on model
 				interceptionBody = AcceleoDriverWrapper.evaluate(interceptionBody, smOperation, null);

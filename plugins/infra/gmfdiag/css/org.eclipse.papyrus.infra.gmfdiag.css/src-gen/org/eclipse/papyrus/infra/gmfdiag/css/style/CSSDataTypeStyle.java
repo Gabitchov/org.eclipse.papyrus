@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.style;
 
 
-public interface CSSDataTypeStyle extends CSSNamedStyle{
+public interface CSSDataTypeStyle extends CSSNamedStyle {
 
 
 }

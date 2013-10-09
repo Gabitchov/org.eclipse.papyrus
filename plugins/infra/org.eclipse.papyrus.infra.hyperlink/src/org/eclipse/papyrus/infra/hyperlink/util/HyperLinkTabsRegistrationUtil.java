@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,12 +9,12 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Consolidate all hyperlink helper contributions into one tab
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.util;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -49,6 +49,9 @@ public class HyperLinkTabsRegistrationUtil {
 
 	public static final String TAB_ID = "tabId"; //$NON-NLS-1$
 
+	/** The ID of the tab that shows helper-based contributions. */
+	private static final String GENERIC_TAB_ID = "org.eclipse.papyrus.infra.hyperlink.helpers"; //$NON-NLS-1$
+	
 	/** the instance of HyperLinkTabsRegistrationUtil */
 	public static final HyperLinkTabsRegistrationUtil INSTANCE = new HyperLinkTabsRegistrationUtil();
 
@@ -94,12 +97,11 @@ public class HyperLinkTabsRegistrationUtil {
 
 		//we create the tab for the helpers
 		Map<Integer, AbstractHyperLinkHelper> helpers = HyperLinkHelpersRegistrationUtil.INSTANCE.getHelperWithPosition();
-		Iterator<Integer> iter = helpers.keySet().iterator();
-		while(iter.hasNext()) {
-			Integer position = iter.next();
-			AbstractHyperLinkHelper helper = helpers.get(position);
-			allTabs.put(position, new HyperLinkTab(helper.getTabId(), helper));
+		if (!helpers.isEmpty()) {
+			// use the least position requested by the helpers as the tab position
+			allTabs.put(helpers.keySet().iterator().next(), new HyperLinkTab(GENERIC_TAB_ID, helpers.values()));
 		}
+		
 		return allTabs.values();
 	}
 }

@@ -69,14 +69,12 @@ public class OperationParser implements IParser {
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 		final Operation operation = ((Operation)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
-
 		final TransactionalEditingDomain editingDomain;
 		try {
 			editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(operation);
 		} catch (ServiceException ex) {
 			return null;
 		}
-
 		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Operation", (List)null) {
 
 			@Override
@@ -95,7 +93,6 @@ public class OperationParser implements IParser {
 					}
 				});
 				return CommandResult.newOKCommandResult();
-
 			}
 		};
 		return tc;
@@ -116,5 +113,4 @@ public class OperationParser implements IParser {
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, "");
 	}
-
 }

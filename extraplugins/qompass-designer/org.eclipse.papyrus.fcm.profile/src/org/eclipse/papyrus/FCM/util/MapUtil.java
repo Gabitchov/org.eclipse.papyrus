@@ -330,7 +330,7 @@ public class MapUtil
 			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
 			final IMappingRule mappingRule = getMappingRule(ruleName);
 			if(mappingRule != null) {
-				return mappingRule.getProvided(port, port.getConfiguration(), false);
+				return mappingRule.getProvided(port, false);
 			}
 		}
 		return null;
@@ -357,12 +357,19 @@ public class MapUtil
 			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
 			final IMappingRule mappingRule = getMappingRule(ruleName);
 			if(mappingRule != null) {
-				return mappingRule.getRequired(port, port.getConfiguration(), false);
+				return mappingRule.getRequired(port, false);
 			}
 		}
 		return null;
 	}
 
+	/**
+	 * Obtain the mapping rule for a port when the name of the portKind is given
+	 * 
+	 * @param portKindName the name of the port-kind
+	 * 
+	 * @return the mapping rule or null, if no rule could be found
+	 */
 	public static IMappingRule getMappingRule(String portKindName)
 	{
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
@@ -383,6 +390,31 @@ public class MapUtil
 		return null;
 	}
 	
+	/**
+	 * Get the mapping rule for a port
+	 * 
+	 * @param port the FCM port
+	 * @return the mapping rule or null, if no rule could be found
+	 */
+	public static IMappingRule getMappingRule(final Port port) {
+		if(port.getBase_Port() == null) {
+			// should not happen, but can occur in case of corrupted XMI files
+			return null;
+		}
+		PortKind portKind = port.getKind();
+		if(portKind == null) {
+			return null;
+		}
+		if(portKind.getBase_Class() != null) {
+			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
+			if (port instanceof TemplatePort) {
+				ruleName = "TemplatePort"; //$NON-NLS-1$
+			}
+			return getMappingRule(ruleName);
+		}
+		return null;
+	}
+	
 	public static PortKind getBoundType(final Port port) {
 		if(port.getBase_Port() == null) {
 			// should not happen, but can occur in case of corrupted XMI files
@@ -398,27 +430,36 @@ public class MapUtil
 		return null;
 	}
 	
+	/**
+	 * Update the derived interfaces of a port this operation needs to be
+	 * called in the context of an update command (transaction).
+	 * 
+	 * @param port
+	 */
 	public static void update(final Port port) {
-		if(port.getBase_Port() == null) {
-			// should not happen, but can occur in case of corrupted XMI files
-			return;
-		}
-		PortKind portKind = port.getKind();
-		if(portKind == null) {
-			return;
-		}
-		if(portKind.getBase_Class() != null) {
-			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
-			if (port instanceof TemplatePort) {
-				ruleName = "TemplatePort"; //$NON-NLS-1$
-			}
-			final IMappingRule mappingRule = getMappingRule(ruleName);
+		final IMappingRule mappingRule = getMappingRule(port);
 			
-			mappingRule.getProvided(port, port.getConfiguration(), true);
-			mappingRule.getRequired(port, port.getConfiguration(), true);
+		if (mappingRule != null) {
+			mappingRule.getProvided(port, true);
+			mappingRule.getRequired(port, true);
 			if (mappingRule instanceof ITemplateMappingRule) {
 				((ITemplateMappingRule) mappingRule).updateBinding(port);
 			}
 		}
+	}
+	
+	/**
+	 * Check whether a port needs to be updated, since its derived interfaces
+	 * are either not existing or out of date.
+	 *
+	 * @param port
+	 * @return
+	 */
+	public static boolean needsUpdate(final Port port) {
+		final IMappingRule mappingRule = getMappingRule(port);
+		if (mappingRule != null) {
+			return mappingRule.needsUpdate(port);
+		}
+		return false;
 	}
 }

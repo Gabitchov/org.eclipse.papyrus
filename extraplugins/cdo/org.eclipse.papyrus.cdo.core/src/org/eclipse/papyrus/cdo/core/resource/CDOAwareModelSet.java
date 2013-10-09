@@ -382,7 +382,7 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 				try {
 					transaction.commit(sub.newChild(1));
 				} catch (CommitException e) {
-					Activator.log.error("Follow-up commit after save failed.", e);
+					Activator.log.error("Follow-up commit after save failed.", e); //$NON-NLS-1$
 				}
 			} else {
 				sub.done();

@@ -47,11 +47,13 @@ public class PasteConfigurationUtils {
 			final EStructuralFeature feature = pasteConfiguration.getPasteElementContainementFeature();
 			if(feature instanceof EReference) {
 				final String elementId = pasteConfiguration.getPastedElementId();
-				if(elementId != null && !elementId.equals("")) {
+				if(elementId != null && !elementId.equals("")) { //$NON-NLS-1$
 					final IElementType elementType = ElementTypeRegistry.getInstance().getType(elementId);
-					final EClass elementTypeMetaclass = elementType.getEClass();
-					final EClass containmentFeatureEClass = (EClass)feature.getEType();
-					result = elementTypeMetaclass == containmentFeatureEClass || containmentFeatureEClass.isSuperTypeOf(elementTypeMetaclass);
+					if(elementType != null) {
+						final EClass elementTypeMetaclass = elementType.getEClass();
+						final EClass containmentFeatureEClass = (EClass)feature.getEType();
+						result = elementTypeMetaclass == containmentFeatureEClass || containmentFeatureEClass.isSuperTypeOf(elementTypeMetaclass);
+					}
 				}
 			}
 		}

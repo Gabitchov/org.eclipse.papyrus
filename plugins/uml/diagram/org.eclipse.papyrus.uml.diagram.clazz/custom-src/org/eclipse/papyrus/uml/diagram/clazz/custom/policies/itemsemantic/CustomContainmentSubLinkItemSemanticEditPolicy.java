@@ -30,7 +30,6 @@ import org.eclipse.uml2.uml.PackageableElement;
 
 public class CustomContainmentSubLinkItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
-
 	public CustomContainmentSubLinkItemSemanticEditPolicy() {
 		super(UMLElementTypes.Link_4022);
 		// TODO Auto-generated constructor stub
@@ -47,8 +46,6 @@ public class CustomContainmentSubLinkItemSemanticEditPolicy extends UMLBaseItemS
 		}
 		// Change the owner of the target class 
 		cc.compose(new CustomOwnerClassChangeCommand(editingDomain, (PackageableElement)req.getReferencedObject()));
-
-
 		ContainmentCircleEditPart containmentCEP = (ContainmentCircleEditPart)((ConnectionEditPart)getHost()).getSource();
 		//The containment circle node is deleted only if any other link is connected 
 		if(containmentCEP.getSourceConnections().size() == 1) {
@@ -56,5 +53,4 @@ public class CustomContainmentSubLinkItemSemanticEditPolicy extends UMLBaseItemS
 		}
 		return new ICommandProxy(cc.reduce());
 	}
-
 }

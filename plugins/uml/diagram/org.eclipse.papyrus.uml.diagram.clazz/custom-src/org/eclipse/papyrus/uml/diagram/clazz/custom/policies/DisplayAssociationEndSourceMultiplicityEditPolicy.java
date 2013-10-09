@@ -30,5 +30,4 @@ public class DisplayAssociationEndSourceMultiplicityEditPolicy extends DisplayAs
 	public int getDefaultDisplayValue() {
 		return ICustomAppearence.DISP_MULTIPLICITY;
 	}
-
 }

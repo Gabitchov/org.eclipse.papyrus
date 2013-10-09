@@ -25,7 +25,7 @@ import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
@@ -80,7 +80,7 @@ public class CompImplTrafos {
 				Class implementation = (Class)element;
 				// we may not apply the transformation to the boot-loader itself, in particular it would transform
 				// singletons into pointers.
-				if(Utils.isCompImpl(implementation) && (implementation != bootloader) && !StUtils.isApplied(implementation,  PortKind.class)) {
+				if(Utils.isCompImpl(implementation) && (implementation != bootloader) && !StereotypeUtil.isApplied(implementation,  PortKind.class)) {
 					addGetPortOperation(copy, implementation);
 					addConnectPortOperation(copy, implementation);
 					markPartsPointer(implementation);
@@ -116,7 +116,7 @@ public class CompImplTrafos {
 				op = implementation.createOwnedOperation(opName, null, null, providedIntf);
 				Parameter retParam = op.getOwnedParameters().get(0);
 				retParam.setName(retParamName);
-				StUtils.apply(retParam, Ptr.class);
+				StereotypeUtil.apply(retParam, Ptr.class);
 
 				OpaqueBehavior behavior = (OpaqueBehavior)
 					implementation.createOwnedBehavior(opName,
@@ -191,7 +191,7 @@ public class CompImplTrafos {
 				// => requires adaptations of boot-loader which is then only responsible for creating instances
 				//    corresponding to types
 				if(instantiateViaBootloader(cl)) {
-					StUtils.apply(attribute, Ptr.class);
+					StereotypeUtil.apply(attribute, Ptr.class);
 				}
 			}
 		}
@@ -233,7 +233,7 @@ public class CompImplTrafos {
 					}
 				}
 				Parameter refParam = op.createOwnedParameter("ref", requiredIntf); //$NON-NLS-1$
-				StUtils.apply(refParam, Ptr.class);
+				StereotypeUtil.apply(refParam, Ptr.class);
 
 				OpaqueBehavior behavior = (OpaqueBehavior)
 					implementation.createOwnedBehavior(opName,
@@ -289,7 +289,7 @@ public class CompImplTrafos {
 						op = implementation.createOwnedOperation(opName, null, null, requiredIntf);
 						Parameter retParam = op.getOwnedParameters().get(0);
 						retParam.setName(retParamName);
-						StUtils.apply(retParam, Ptr.class);
+						StereotypeUtil.apply(retParam, Ptr.class);
 					}
 					behavior = (OpaqueBehavior)
 						implementation.createOwnedBehavior(opName,

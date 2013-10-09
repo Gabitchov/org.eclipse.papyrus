@@ -37,7 +37,6 @@ public class CModelEditPart extends ModelEditPartTN {
 	 * {@inheritDoc}
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
 	}

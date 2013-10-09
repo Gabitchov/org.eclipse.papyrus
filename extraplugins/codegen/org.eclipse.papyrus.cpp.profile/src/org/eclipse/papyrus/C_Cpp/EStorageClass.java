@@ -19,16 +19,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum EStorageClass implements Enumerator {
 	/**
-	 * The '<em><b>Auto</b></em>' literal object.
+	 * The '<em><b>Volatile</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AUTO_VALUE
+	 * @see #VOLATILE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AUTO(0, "auto", "auto"),
-
-	/**
+	VOLATILE(0, "volatile", "volatile"), /**
 	 * The '<em><b>Register</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46,42 +44,22 @@ public enum EStorageClass implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXTERN(2, "extern", "extern"),
+	EXTERN(2, "extern", "extern");
 
 	/**
-	 * The '<em><b>Static</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STATIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STATIC(3, "static", "static"),
-
-	/**
-	 * The '<em><b>Inline</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INLINE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INLINE(4, "inline", "inline");
-
-	/**
-	 * The '<em><b>Auto</b></em>' literal value.
+	 * The '<em><b>Volatile</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Auto</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Volatile</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AUTO
-	 * @model name="auto"
+	 * @see #VOLATILE
+	 * @model name="volatile"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUTO_VALUE = 0;
+	public static final int VOLATILE_VALUE = 0;
 
 	/**
 	 * The '<em><b>Register</b></em>' literal value.
@@ -114,36 +92,6 @@ public enum EStorageClass implements Enumerator {
 	public static final int EXTERN_VALUE = 2;
 
 	/**
-	 * The '<em><b>Static</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Static</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STATIC
-	 * @model name="static"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STATIC_VALUE = 3;
-
-	/**
-	 * The '<em><b>Inline</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Inline</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INLINE
-	 * @model name="inline"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INLINE_VALUE = 4;
-
-	/**
 	 * An array of all the '<em><b>EStorage Class</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -151,11 +99,9 @@ public enum EStorageClass implements Enumerator {
 	 */
 	private static final EStorageClass[] VALUES_ARRAY =
 		new EStorageClass[] {
-			AUTO,
+			VOLATILE,
 			REGISTER,
 			EXTERN,
-			STATIC,
-			INLINE,
 		};
 
 	/**
@@ -206,11 +152,9 @@ public enum EStorageClass implements Enumerator {
 	 */
 	public static EStorageClass get(int value) {
 		switch (value) {
-			case AUTO_VALUE: return AUTO;
+			case VOLATILE_VALUE: return VOLATILE;
 			case REGISTER_VALUE: return REGISTER;
 			case EXTERN_VALUE: return EXTERN;
-			case STATIC_VALUE: return STATIC;
-			case INLINE_VALUE: return INLINE;
 		}
 		return null;
 	}

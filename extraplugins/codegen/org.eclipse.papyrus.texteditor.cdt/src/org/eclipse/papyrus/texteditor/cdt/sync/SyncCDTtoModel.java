@@ -48,11 +48,11 @@ import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
 import org.eclipse.papyrus.cpp.codegen.Constants;
-import org.eclipse.papyrus.cpp.profile.StUtils;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.texteditor.cdt.CommandSupport;
 import org.eclipse.papyrus.texteditor.cdt.Utils;
 import org.eclipse.papyrus.texteditor.cdt.listener.ModelListener;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -196,7 +196,7 @@ public class SyncCDTtoModel implements Runnable {
 			}
 		}
 		if(body.length() > 0 || preBody.length() > 0) {
-			Include Include = StUtils.applyApp(m_classifier, Include.class);
+			Include Include = StereotypeUtil.applyApp(m_classifier, Include.class);
 			Include.setPreBody(preBody);
 			Include.setBody(body);
 		}
@@ -352,16 +352,16 @@ public class SyncCDTtoModel implements Runnable {
 					ob.createOwnedParameter(parameterName.toString(), null);
 				}
 				if(parameterType.isConst()) {
-					StUtils.apply(umlParameter, Const.class);
+					StereotypeUtil.apply(umlParameter, Const.class);
 				}
 				if(isPointer) {
-					StUtils.apply(umlParameter, Ptr.class);
+					StereotypeUtil.apply(umlParameter, Ptr.class);
 				}
 				else if(isRef) {
-					StUtils.apply(umlParameter, Ref.class);
+					StereotypeUtil.apply(umlParameter, Ref.class);
 				}
 				if(array.length() > 0) {
-					Array arraySt = StUtils.applyApp(umlParameter, Array.class);
+					Array arraySt = StereotypeUtil.applyApp(umlParameter, Array.class);
 					if (!array.equals("[]") && (!array.equals("[ ]"))) {  //$NON-NLS-1$//$NON-NLS-2$
 						arraySt.setDefinition(array);
 					}

@@ -72,16 +72,18 @@ public class ModelListener implements IPapyrusListener {
 				Feature feature = (Feature)notifier;
 				Element owner = feature.getOwner();
 				if(owner instanceof Classifier) {
-					System.out.println(owner);
+					// System.out.println(owner);
 					regenList.add((Classifier)owner);
 				}
 			}
 			else if(notifier instanceof Parameter) {
 				Parameter parameter = (Parameter)notifier;
-				Element owner = parameter.getOperation().getOwner();
-				if(owner instanceof Classifier) {
-					System.out.println(owner);
-					regenList.add((Classifier)owner);
+				if (parameter.getOperation() != null) {
+					Element owner = parameter.getOperation().getOwner();
+					if(owner instanceof Classifier) {
+						// System.out.println(owner);
+						regenList.add((Classifier)owner);
+					}
 				}
 			}
 			else if(notifier instanceof DirectedRelationship) {
@@ -89,7 +91,7 @@ public class ModelListener implements IPapyrusListener {
 				DirectedRelationship dr = (DirectedRelationship)notifier;
 				for(Element client : dr.getSources()) {
 					if(client instanceof Classifier) {
-						System.out.println(client);
+						// System.out.println(client);
 						regenList.add((Classifier)client);
 					}
 				}

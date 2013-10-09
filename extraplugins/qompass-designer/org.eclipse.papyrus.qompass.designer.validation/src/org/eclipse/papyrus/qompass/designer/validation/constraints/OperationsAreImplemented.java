@@ -18,7 +18,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.DerivedElement;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 
 /**
@@ -33,7 +34,11 @@ public class OperationsAreImplemented extends AbstractModelConstraint
 	public IStatus validate(IValidationContext ctx) {
 
 		Operation operation = (Operation) ctx.getTarget();
-		if((!operation.isAbstract() && operation.getMethods ().size() == 0) && StUtils.isApplicable(operation, DerivedElement.class)) {
+		if(operation.getNamespace() instanceof Interface) {
+			// operations within an interface are always abstract
+			return ctx.createSuccessStatus();
+		}
+		if((!operation.isAbstract() && operation.getMethods().size() == 0) && StereotypeUtil.isApplicable(operation, DerivedElement.class)) {
 			return ctx.createFailureStatus ("The operation '" + operation.getName () +
 				" has no implementation (and is not marked as abstract)");
 		}

@@ -134,7 +134,7 @@
     <!-- CDO -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 	  <!-- updateFrom("EMF CDO",0) -->
-      <rm:uri format="{0}/modeling/emf/cdo/drops/I20130906-2340">
+      <rm:uri format="{0}/modeling/emf/cdo/drops/S20130822-1137">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -150,7 +150,7 @@
     <!-- EMFT MWE -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMFT MWE",0) -->
-      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones/S201308130715/mwe">
+      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones/S201310010411/mwe">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -158,7 +158,7 @@
     <!-- M2M QVT-OML -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("QVT Operational",0) -->
-      <rm:uri format="{0}/mmt/qvto/updates/milestones/3.4.0">
+      <rm:uri format="{0}/mmt/qvto/updates/milestones/3.4.0/S201310010741">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -174,7 +174,7 @@
     <!-- MDT OCL -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MDT OCL 4.2",0) -->
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/4.2.0/S201308191305">
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/4.2.0/S201309221802">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -182,7 +182,7 @@
     <!-- EMF Facet -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF Facet",0) -->
-  <rm:uri format="{0}/facet/updates/integration/0.4.0/I201308190853/">
+  <rm:uri format="{0}/facet/updates/integration/0.4.0/I201309271253/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -190,7 +190,7 @@
     <!-- MoDisco -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MoDisco",0) -->
-      <rm:uri format="{0}/modeling/mdt/modisco/updates/integration/0.11.1/I201308191930/">
+      <rm:uri format="{0}/modeling/mdt/modisco/updates/integration/0.12.0/I201308231439/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -298,7 +298,7 @@
     <!-- WST -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("WebTools",0) -->
-      <rm:uri format="{0}/webtools/downloads/drops/R3.6.0/S-3.6.0M1-20130816211629/repository/">
+      <rm:uri format="{0}/webtools/downloads/drops/R3.6.0/S-3.6.0M2-20130925174106/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -306,7 +306,7 @@
     <!-- CDT -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("CDT",0) -->
-      <rm:uri format="{0}/tools/cdt/builds/kepler/milestones">
+      <rm:uri format="{0}/tools/cdt/builds/luna/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -314,7 +314,7 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.4milestones/S-4.4M1-201308072000/">
+		<rm:uri format="{0}/eclipse/updates/4.4milestones/S-4.4M2-201309182000/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>

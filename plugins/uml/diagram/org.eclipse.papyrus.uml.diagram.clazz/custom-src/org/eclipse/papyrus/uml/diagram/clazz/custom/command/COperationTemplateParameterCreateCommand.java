@@ -26,7 +26,6 @@ import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 public class COperationTemplateParameterCreateCommand extends OperationTemplateParameterCreateCommand {
 
 	public COperationTemplateParameterCreateCommand(CreateElementRequest req) {
@@ -38,9 +37,7 @@ public class COperationTemplateParameterCreateCommand extends OperationTemplateP
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		OperationTemplateParameter newElement = UMLFactory.eINSTANCE.createOperationTemplateParameter();
-
 		TemplateSignature owner = (TemplateSignature)getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
@@ -51,7 +48,6 @@ public class COperationTemplateParameterCreateCommand extends OperationTemplateP
 		newElement.setParameteredElement(configurationDialog.getParameterableElement());
 		newElement.setDefault(configurationDialog.getDefaultparameterableElement());
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}

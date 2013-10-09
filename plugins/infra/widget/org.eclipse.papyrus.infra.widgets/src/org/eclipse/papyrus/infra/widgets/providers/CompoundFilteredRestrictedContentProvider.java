@@ -13,6 +13,8 @@ package org.eclipse.papyrus.infra.widgets.providers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -35,7 +37,7 @@ public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredC
 
 
 	public Object[] getElements(Object inputElement) {
-		List<Object> asList = new ArrayList<Object>();
+		Collection<Object> asList = new HashSet<Object>();
 
 		for(IRestrictedContentProvider encapsulatedContentProvider : encapsulatedContentProviders) {
 			Object[] directElements = encapsulatedContentProvider.getElements(inputElement);
@@ -46,7 +48,7 @@ public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredC
 
 
 	public Object[] getChildren(Object parentElement) {
-		List<Object> asList = new ArrayList<Object>();
+		Collection<Object> asList = new HashSet<Object>();
 
 		for(IRestrictedContentProvider encapsulatedContentProvider : encapsulatedContentProviders) {
 			Object[] directElements = encapsulatedContentProvider.getChildren(parentElement);

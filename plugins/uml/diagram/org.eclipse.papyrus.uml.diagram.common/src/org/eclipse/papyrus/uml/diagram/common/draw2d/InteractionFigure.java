@@ -15,7 +15,6 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
 // TODO: Auto-generated Javadoc
@@ -54,9 +53,9 @@ public class InteractionFigure extends Shape {
 		int labelWidth = -1;
 
 		for(Object obj : getChildren()) {
-			if(obj instanceof WrappingLabel || obj instanceof WrapLabel) {
+			if(obj instanceof WrappingLabel) {
 				WrappingLabel wLabel = (WrappingLabel)obj;
-				labelWidth = wLabel.getPreferredSize().width;
+				labelWidth = Math.max(labelWidth, wLabel.getPreferredSize().width);
 			}
 		}
 

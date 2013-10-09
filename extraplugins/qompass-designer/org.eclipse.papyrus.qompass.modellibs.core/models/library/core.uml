@@ -876,6 +876,16 @@ m_state = FOLLOWER;</body>
           <contract xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
         </interfaceRealization>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MWW4MAQyEd--t-uhRn9OBA" name="staticAct" specification="_yv198P-EEd6628OhKk_dpg">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_TJjA4CxyEeOMQpc6Y-MAJw" name="arg">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TKI2wCxyEeOMQpc6Y-MAJw" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TKVrECxyEeOMQpc6Y-MAJw" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_TKyXACxyEeOMQpc6Y-MAJw" name="ret" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TTLeACxyEeOMQpc6Y-MAJw" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TTZgcCxyEeOMQpc6Y-MAJw" value="1"/>
+          </ownedParameter>
           <language>C/C++</language>
           <body>((Thread*) arg)->rLC->activate();
 return NULL;
@@ -899,9 +909,6 @@ pthread_setschedparam (pt, SCHED_RR, &amp;schedParam);
             <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3MCccP-EEd6628OhKk_dpg" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3MDDgP-EEd6628OhKk_dpg" value="1"/>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_3MDqkP-EEd6628OhKk_dpg">
-              <value xsi:nil="true"/>
-            </defaultValue>
           </ownedParameter>
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_BywjgP-FEd6628OhKk_dpg" name="ret" direction="return">
             <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_8I6RgBydEduyofBvg4RL2w"/>
@@ -909,6 +916,7 @@ pthread_setschedparam (pt, SCHED_RR, &amp;schedParam);
         </ownedOperation>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_JmxyMD16Ed-Bk-AHd6yyoA" name="activate" method="_oP6UcED4Ed-_DOja_sRgWA"/>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_JqB6gD16Ed-Bk-AHd6yyoA" name="deactivate"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_TBScwCxyEeOMQpc6Y-MAJw" name="configuration_complete"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_wCkVcNYGEd-CgJIavLpOxQ" name="ImplRequirement" client="_SiY_AP-EEd6628OhKk_dpg" supplier="_ea234NYGEd-CgJIavLpOxQ"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_WkkjoPNUEeCovO8AYZymZQ" name="CallEvent_">
@@ -1338,9 +1346,9 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:Port xmi:id="_u1uLMVRxEd6GqrP6fkWBoQ" base_Port="_Qk0jYNtuEd2eM5kqcby5ZA" kind="_wySlkFRxEd6GqrP6fkWBoQ"/>
   <FCM:Port xmi:id="_u1uLM1RxEd6GqrP6fkWBoQ" base_Port="_rSCxUAytEd6it_RkGhz_AA" kind="_9Fif4FRxEd6GqrP6fkWBoQ"/>
   <FCM:Port xmi:id="_u1uyQFRxEd6GqrP6fkWBoQ" base_Port="_r5Va0AytEd6it_RkGhz_AA" kind="_wySlkFRxEd6GqrP6fkWBoQ"/>
-  <FCM:PortKind xmi:id="_wySlkFRxEd6GqrP6fkWBoQ" base_Class="_Wtq4sFDlEd6cwecVIgl9nw" providedInterface="_ZzlzMPfBEd2TbIfwytOyPA" providedMappingRule="_nh0TwFdmEd6EBOtlOYpqKw"/>
+  <FCM:PortKind xmi:id="_wySlkFRxEd6GqrP6fkWBoQ" base_Class="_Wtq4sFDlEd6cwecVIgl9nw" providedMappingRule="_nh0TwFdmEd6EBOtlOYpqKw"/>
   <FCM:PortKind xmi:id="_x5mL4FRxEd6GqrP6fkWBoQ" base_Class="_Wtq4sVDlEd6cwecVIgl9nw" requiredMappingRule="_ZpvdUHU5Ed6R5tffIPrlPg"/>
-  <FCM:PortKind xmi:id="_9Fif4FRxEd6GqrP6fkWBoQ" base_Class="_Wtrfw1DlEd6cwecVIgl9nw" requiredInterface="_ZzlzMPfBEd2TbIfwytOyPA" requiredMappingRule="_hluocFdpEd6EBOtlOYpqKw"/>
+  <FCM:PortKind xmi:id="_9Fif4FRxEd6GqrP6fkWBoQ" base_Class="_Wtrfw1DlEd6cwecVIgl9nw" requiredMappingRule="_hluocFdpEd6EBOtlOYpqKw"/>
   <FCM:PortKind xmi:id="_pE6GUFR1Ed6GqrP6fkWBoQ" base_Class="_Wtq4slDlEd6cwecVIgl9nw" providedMappingRule="_eKwKYHU5Ed6R5tffIPrlPg"/>
   <FCM:PortKind xmi:id="_qOK0cFR1Ed6GqrP6fkWBoQ" base_Class="_WtrfwlDlEd6cwecVIgl9nw" requiredMappingRule="_dW32YHU5Ed6R5tffIPrlPg"/>
   <FCM:InteractionComponent xmi:id="_s8OWIFR1Ed6GqrP6fkWBoQ" base_Class="_KxQBELuXEd2TTr3gJIvazw"/>
@@ -1521,4 +1529,9 @@ Be aware that the number of instantiated template packages will be considerably 
   <C_Cpp:NoCodeGen xmi:id="_mCun4BCbEeO2r5QM2KXWbQ" base_element="_ea234NYGEd-CgJIavLpOxQ"/>
   <SW_Concurrency:SwSchedulableResource xmi:id="_42YPYBn3EeONpa5JgejICQ" base_Classifier="_SiY_AP-EEd6628OhKk_dpg"/>
   <C_Cpp:NoCodeGen xmi:id="_ilpvUBqnEeOfW_TxE-lJDw" base_element="_q56toNzEEeKPWMO32vUmzw"/>
+  <FCM:DerivedElement xmi:id="_TJO30CxyEeOMQpc6Y-MAJw" base_Element="_TBScwCxyEeOMQpc6Y-MAJw">
+    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_ns4qsClUEeO4bs_nkcnKOg"/>
+  </FCM:DerivedElement>
+  <C_Cpp:Ptr xmi:id="_TKlisCxyEeOMQpc6Y-MAJw" base_parameter="_TJjA4CxyEeOMQpc6Y-MAJw"/>
+  <C_Cpp:Ptr xmi:id="_TTpYECxyEeOMQpc6Y-MAJw" base_parameter="_TKyXACxyEeOMQpc6Y-MAJw"/>
 </xmi:XMI>

@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.BootLoaderGen;
@@ -300,10 +300,10 @@ public class AllocationDialog extends SelectionStatusDialog {
 			} else if(el instanceof InstanceSpecification) {
 				Classifier cl = DepUtils.getClassifier((InstanceSpecification)el);
 				if(cl != null) {
-					if((cl instanceof Class) || (StUtils.isApplied(cl, SwSchedulableResource.class))) {
+					if((cl instanceof Class) || (StereotypeUtil.isApplied(cl, SwSchedulableResource.class))) {
 						// check that instances are not part of a deployment plan
 						//  [TODO:] check that owner of instance is a platform definition
-						if(!StUtils.isApplied(el.getOwner(), DeploymentPlan.class)) {
+						if(!StereotypeUtil.isApplied(el.getOwner(), DeploymentPlan.class)) {
 							nodeList.add((InstanceSpecification)el);
 						}
 					}

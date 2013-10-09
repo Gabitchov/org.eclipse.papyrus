@@ -996,7 +996,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1GOn9LGREeCfWNndpgPDWA"/>
       </children>
       <element xmi:type="uml:Package" href="ProducerTwoConsumers.uml#_zwMLcLF4EeC9yscvWqW-eg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1GDBwbGREeCfWNndpgPDWA" x="306" y="144" width="198" height="109"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1GDBwbGREeCfWNndpgPDWA" x="315" y="144" width="198" height="109"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_gdmuADefEeGPyrZ5I3hMlA" type="2012" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gdmuAjefEeGPyrZ5I3hMlA" source="ShadowFigure">

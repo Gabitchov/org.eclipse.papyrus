@@ -30,5 +30,4 @@ public class AppliedStereotypeAbstractionLabelDisplayEditPolicy extends AppliedS
 	public AppliedStereotypeAbstractionLabelDisplayEditPolicy() {
 		super("Abstraction");//$NON-NLS-N$
 	}
-
 }

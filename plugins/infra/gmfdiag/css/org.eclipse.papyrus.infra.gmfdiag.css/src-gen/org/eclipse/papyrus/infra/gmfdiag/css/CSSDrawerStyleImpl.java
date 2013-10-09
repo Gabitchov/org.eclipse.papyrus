@@ -30,25 +30,25 @@ public class CSSDrawerStyleImpl extends DrawerStyleImpl implements CSSDrawerStyl
 
 	protected CSSDrawerStyle getDrawerStyle() {
 		if(drawerStyle == null) {
-			drawerStyle = new  CSSDrawerStyleDelegate(this, getEngine());
+			drawerStyle = new CSSDrawerStyleDelegate(this, getEngine());
 		}
 		return drawerStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,10 +61,10 @@ public class CSSDrawerStyleImpl extends DrawerStyleImpl implements CSSDrawerStyl
 	//////////////////////////////////////////
 
 
-	public boolean isCSSCollapsed(){
+	public boolean isCSSCollapsed() {
 		boolean value = super.isCollapsed();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getDrawerStyle_Collapsed(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getDrawerStyle_Collapsed(), value)) {
 			return value;
 		} else {
 			return getDrawerStyle().isCSSCollapsed();
@@ -73,7 +73,7 @@ public class CSSDrawerStyleImpl extends DrawerStyleImpl implements CSSDrawerStyl
 
 
 	@Override
-	public boolean isCollapsed(){
+	public boolean isCollapsed() {
 		//return super.isCollapsed();
 		return isCSSCollapsed();
 	}
@@ -85,9 +85,9 @@ public class CSSDrawerStyleImpl extends DrawerStyleImpl implements CSSDrawerStyl
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setCollapsed(boolean value){
+	public void setCollapsed(boolean value) {
 		super.setCollapsed(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getDrawerStyle_Collapsed();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -100,7 +100,7 @@ public class CSSDrawerStyleImpl extends DrawerStyleImpl implements CSSDrawerStyl
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

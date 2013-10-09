@@ -661,7 +661,7 @@ return processID;</body>
   </FCM:DerivedElement>
   <FCM:Singleton xmi:id="_AdBwIDgvEd-9wq2wHPy3lw" base_Class="_apuYoDNwEd-1k-POY2IaLg"/>
   <C_Cpp:Include xmi:id="_ZWEQwDj0Ed-nsvkE2JvSTg" body="#include &lt;otflib/otf.h>" base_class="_aF1w4DKeEd-WprEKTCaiMA"/>
-  <C_Cpp:ExternClass xmi:id="_ZVArYDj1Ed-nsvkE2JvSTg" name="otflib/OTF_Writer.h" base_class="_W0t44Dj1Ed-nsvkE2JvSTg"/>
+  <C_Cpp:External xmi:id="_ZVArYDj1Ed-nsvkE2JvSTg" name="otflib/OTF_Writer.h" base_class="_W0t44Dj1Ed-nsvkE2JvSTg"/>
   <C_Cpp:Ptr xmi:id="_9n7OYDj2Ed-nsvkE2JvSTg" base_parameter="_v6J20Dj2Ed-nsvkE2JvSTg"/>
   <FCM:DerivedElement xmi:id="_UdG9MD1nEd-Bk-AHd6yyoA" base_Element="_Ucl_0D1nEd-Bk-AHd6yyoA">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/SystemInterfaces.uml#_WHyq4Dz6Ed-v9PxuTj6Elw"/>
@@ -722,7 +722,7 @@ return processID;</body>
   <FCM:ContainerRule xmi:id="_ISo6gLdwEd-CtfrGQre34Q" base_Class="_GVZxwLdwEd-CtfrGQre34Q" extensionKind="InterceptAllPorts" interceptor="_35od4DKrEd-z5o2wSoJ16A">
     <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
-  <C_Cpp:ExternClass xmi:id="_AGg3EPT8Ed-jjdbo8hMhwA" name="otflib/OTF_FileManager.h" base_class="_LjsBkDwLEd-CbfVdCYNz6Q"/>
+  <C_Cpp:External xmi:id="_AGg3EPT8Ed-jjdbo8hMhwA" name="otflib/OTF_FileManager.h" base_class="_LjsBkDwLEd-CbfVdCYNz6Q"/>
   <C_Cpp:Include xmi:id="_mk_ccD5sEeC-VMxjm_qUAg" body="#include &lt;OS_AL/Sets/SetOf.h>&#xA;OS_AL::Sets::SetOf &lt;int> processSet;" base_class="_apuYoDNwEd-1k-POY2IaLg"/>
   <FCM:ContainerRule xmi:id="_6FqQoKAdEeCF0uoVQbVQRg" base_Class="_wHuA0KAdEeCF0uoVQbVQRg" extensionKind="InterceptAllPorts" interceptor="_JvP0oKAeEeCF0uoVQbVQRg" propagate="true">
     <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
@@ -746,7 +746,7 @@ return processID;</body>
     <libs>lttng-ust</libs>
     <libs>dl</libs>
   </C_Cpp:ExternLibrary>
-  <C_Cpp:ExternClass xmi:id="_1PAQ4PzSEeGKDvxFM1SZ_g" name="lttng/tracepoint.h" base_class="_v-VBcPzSEeGKDvxFM1SZ_g"/>
+  <C_Cpp:External xmi:id="_1PAQ4PzSEeGKDvxFM1SZ_g" name="lttng/tracepoint.h" base_class="_v-VBcPzSEeGKDvxFM1SZ_g"/>
   <FCM:Template xmi:id="_flfM8PzhEeGe5LUTfvP5hQ" base_Element="_rGPjgPxWEeGOK9t90vpALA"/>
   <FCM:InteractionComponent xmi:id="__yL98PzhEeGe5LUTfvP5hQ" base_Class="_pwl_MPxWEeGOK9t90vpALA"/>
   <Cpp:ManualGeneration xmi:id="_KSTlgCdaEeKGdt7FoegMYA" extensionBody="c" base_Class="_rGPjgPxWEeGOK9t90vpALA"/>

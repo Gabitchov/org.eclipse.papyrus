@@ -49,20 +49,24 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_419y0A7hEeKpbseGaEy1LA" name="Class2"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_K8FLcB0LEeKlYLZOWTi6uw" name="Class3">
       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_kTVuwP6QEeKlg5tzGV3QVQ" name="Operation1" isReentrant="false" specification="_TY18YB0LEeKlYLZOWTi6uw">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_14qzwA5UEeOvI9e-hgvtnQ" name="arg">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Af5mIC-cEeO2L7HZ7MAV3w" name="arg">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
         </ownedParameter>
         <language>C/C++</language>
-        <body></body>
+        <body>// Now let's add some code
+arg[0] = 1;</body>
       </ownedBehavior>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_TY18YB0LEeKlYLZOWTi6uw" name="Operation1" method="_kTVuwP6QEeKlg5tzGV3QVQ">
         <ownedComment xmi:type="uml:Comment" xmi:id="_II4ccP6WEeKlg5tzGV3QVQ" annotatedElement="_II4ccP6WEeKlg5tzGV3QVQ">
           <body></body>
         </ownedComment>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_14a8IA5UEeOvI9e-hgvtnQ" name="arg">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Af4_EC-cEeO2L7HZ7MAV3w" name="arg">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
         </ownedParameter>
       </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_-2_pQC-IEeObJ6ARx67E0g" name="Package1">
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_DHJ24C-JEeObJ6ARx67E0g" name="Test"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_G5ec8CcLEeGC--E0ZVgUkg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_G6JLUCcLEeGC--E0ZVgUkg" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -134,5 +138,8 @@
   <C_Cpp:Array xmi:id="_erFBkP6XEeKlg5tzGV3QVQ" definition="[267]"/>
   <C_Cpp:Array xmi:id="_U3c_wP9lEeK-WfgwzfbGXg" definition="[25]"/>
   <C_Cpp:Array xmi:id="_HJeEsAFFEeO6K_N_1OaJGA" definition="[25]"/>
-  <C_Cpp:Array xmi:id="_14-VwA5UEeOvI9e-hgvtnQ" base_parameter="_14a8IA5UEeOvI9e-hgvtnQ" definition="[25]"/>
+  <C_Cpp:Array xmi:id="_14-VwA5UEeOvI9e-hgvtnQ" definition="[25]"/>
+  <C_Cpp:Array xmi:id="_yHL1wBlCEeOWi_t2E10dLQ" definition="[25]"/>
+  <C_Cpp:Array xmi:id="_8HiewC-bEeO2L7HZ7MAV3w" definition="[25]"/>
+  <C_Cpp:Array xmi:id="_Af8CYC-cEeO2L7HZ7MAV3w" base_parameter="_Af4_EC-cEeO2L7HZ7MAV3w" definition="[25]"/>
 </xmi:XMI>

@@ -30,9 +30,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.InformationItemItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 
-
 public class CustomInformationItemItemSemanticEditPolicy extends InformationItemItemSemanticEditPolicy {
-
 
 	/**
 	 * 
@@ -66,6 +64,4 @@ public class CustomInformationItemItemSemanticEditPolicy extends InformationItem
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
-
-
 }

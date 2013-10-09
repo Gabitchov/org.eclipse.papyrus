@@ -48,6 +48,12 @@ public abstract class DeploymentNodeEditPart extends AbstractBorderedShapeEditPa
 	}
 
 	@Override
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshTransparency();
+	}
+
+	@Override
 	protected void setTransparency(int transp) {
 		getPrimaryShape().setTransparency(transp);
 	}

@@ -17,10 +17,15 @@ unwished behaviors, related to the base implementation (GMF, Papyrus...)
 
 */
 
+Compartment[type="compartment_shape_display"]{
+	visible:false;
+}
+
 * {
  	lineColor:black; /* Avoid the gray line-colors from default GMF connectors */
  	fontName:"Segoe UI"; /* Default font used in Papyrus. It is different from the GMF default */
  	fontColor:black;
+ 	transparency:0; /* Default transparency in GMF Notation is -1. -1 is recognized as "Unchanged" by the GMF NodeFigure. e.g. changing from 50 to -1 ("reset") does nothing */
 }
 
 /* For most Activity diagram nodes (e.g. initial, final, fork, decision, ...), 

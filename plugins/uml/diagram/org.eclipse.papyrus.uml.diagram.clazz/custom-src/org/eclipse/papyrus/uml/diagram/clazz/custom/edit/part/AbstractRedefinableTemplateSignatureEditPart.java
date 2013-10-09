@@ -28,9 +28,16 @@ public abstract class AbstractRedefinableTemplateSignatureEditPart extends Abstr
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void refreshBounds() {
 		super.refreshBounds();
 		// ensure refreshing figures
 		getFigure().getParent().getLayoutManager().layout(getFigure().getParent());
+	}
+
+	@Override
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshTransparency();
 	}
 }

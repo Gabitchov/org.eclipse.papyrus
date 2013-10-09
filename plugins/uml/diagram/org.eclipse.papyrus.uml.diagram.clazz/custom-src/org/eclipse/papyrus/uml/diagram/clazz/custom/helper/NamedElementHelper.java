@@ -46,10 +46,8 @@ public class NamedElementHelper {
 	 * @return a distinguisable name within the namespace of the umlParent
 	 */
 	public String getNewUMLElementName(Element umlParent, EClass eclass) {
-
 		this.setBaseString(eclass.getName());
 		String name = ""; //$NON-NLS-1$
-
 		boolean found = false;
 		// i <10000: avoid infinite loops
 		for(int i = 0; i < 10001; i++) {

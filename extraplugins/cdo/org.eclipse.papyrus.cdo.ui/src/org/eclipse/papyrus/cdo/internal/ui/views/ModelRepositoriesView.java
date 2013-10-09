@@ -11,6 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.views;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
+import org.eclipse.emf.cdo.transaction.CDOTransaction;
+import org.eclipse.emf.cdo.ui.CDOEditorUtil;
+import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IMenuManager;
@@ -21,6 +27,7 @@ import org.eclipse.net4j.util.container.IContainer;
 import org.eclipse.net4j.util.ui.views.ContainerItemProvider;
 import org.eclipse.net4j.util.ui.views.ContainerView;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
+import org.eclipse.papyrus.cdo.internal.core.Activator;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.actions.AbstractRepositoryAction;
@@ -35,15 +42,24 @@ import org.eclipse.papyrus.cdo.internal.ui.actions.RemoveRepositoryAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.RenameModelAction;
 import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDragAdapter;
 import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDropAdapter;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchCommandConstants;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
+import org.eclipse.ui.statushandlers.IStatusAdapterConstants;
+import org.eclipse.ui.statushandlers.StatusAdapter;
+import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
  * This is the ModelRepositoriesView type. Enjoy.
@@ -220,6 +236,8 @@ public class ModelRepositoriesView extends ContainerView {
 			invoke(openModelAction);
 		} else if(object instanceof IPapyrusRepository) {
 			invoke(connectRepositoryAction);
+		} else if(object instanceof CDOResourceLeaf) {
+			openCDOEditor((CDOResourceLeaf)object);
 		} else {
 			super.doubleClicked(object);
 		}
@@ -236,4 +254,65 @@ public class ModelRepositoriesView extends ContainerView {
 		return new ModelRepositoryItemProvider(getSite().getPage());
 	}
 
+	protected void openCDOEditor(CDOResourceLeaf res) {
+		String editorID = CDOEditorUtil.getEffectiveEditorID(res);
+		if(editorID != null) {
+			final CDOTransaction trans = res.cdoView().getSession().openTransaction();
+			res = trans.getObject(res);
+			IEditorInput input = CDOEditorUtil.createEditorInput(editorID, res, false);
+			try {
+				final IEditorPart editor = getSite().getPage().openEditor(input, editorID, true);
+				editor.addPropertyListener(new IPropertyListener() {
+
+					@Override
+					public void propertyChanged(Object source, int propId) {
+						if((propId == IEditorPart.PROP_DIRTY) && !editor.isDirty()) {
+							// editor was saved.  Commit changes
+							try {
+								trans.commit();
+							} catch (CommitException e) {
+								StatusAdapter adapter = new StatusAdapter(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ModelRepositoriesView_commitSaveFailed, e));
+								adapter.setProperty(IStatusAdapterConstants.TIMESTAMP_PROPERTY, System.currentTimeMillis());
+								adapter.setProperty(IStatusAdapterConstants.TITLE_PROPERTY, Messages.ModelRepositoriesView_commitSaveError);
+								StatusManager.getManager().handle(adapter);
+							}
+						}
+					}
+				});
+				getSite().getPage().addPartListener(new IPartListener() {
+
+					@Override
+					public void partClosed(IWorkbenchPart part) {
+						if(part == editor) {
+							trans.close();
+						}
+					}
+
+					@Override
+					public void partOpened(IWorkbenchPart part) {
+						// pass
+					}
+
+					@Override
+					public void partDeactivated(IWorkbenchPart part) {
+						// pass
+					}
+
+					@Override
+					public void partBroughtToTop(IWorkbenchPart part) {
+						// pass
+					}
+
+					@Override
+					public void partActivated(IWorkbenchPart part) {
+						// pass
+					}
+				});
+			} catch (PartInitException e) {
+				trans.close();
+				StatusManager.getManager().handle(e.getStatus(), StatusManager.SHOW);
+			}
+		}
+
+	}
 }

@@ -30,5 +30,4 @@ public class AppliedStereotypeUsageLabelDisplayEditPolicy extends AppliedStereot
 	public AppliedStereotypeUsageLabelDisplayEditPolicy() {
 		super("Usage");//$NON-NLS-N$
 	}
-
 }

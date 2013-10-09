@@ -48,19 +48,14 @@ public class NamespaceHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getAfterMoveCommand(MoveRequest request) {
 		EObject element = request.getTargetContainer();
-
 		if(element instanceof Namespace) {
 			// EStructuralFeature feature = request.getTargetFeature(element);
-
 			Map elemsToMove = request.getElementsToMove();
-
 			Edge edgeToDestroy = null;
 			for(Iterator value = elemsToMove.keySet().iterator(); value.hasNext();) {
 				Object object = (Object)value.next();
-
 				if(object instanceof Constraint) {
 					if(UMLPackage.eINSTANCE.getNamespace_OwnedRule().equals(elemsToMove.get(object))) {
-
 						View viewConstraint = findView((Constraint)object);
 						List sourceConnections = ViewUtil.getSourceConnections(viewConstraint);
 						for(Object connector : sourceConnections) {
@@ -75,17 +70,13 @@ public class NamespaceHelperAdvice extends AbstractEditHelperAdvice {
 									break;
 								}
 							}
-
 						}
 					}
 				}
-
 			}
-
 			if(edgeToDestroy != null) {
 				TransactionalEditingDomain editingDomain = request.getEditingDomain();
 				CompositeCommand command = new CompositeCommand("Clear owned rule link");
-
 				DestroyElementRequest destroy = new DestroyElementRequest(editingDomain, edgeToDestroy, false);
 				Object eHelperContext = destroy.getEditHelperContext();
 				IElementType context = ElementTypeRegistry.getInstance().getElementType(eHelperContext);
@@ -94,7 +85,6 @@ public class NamespaceHelperAdvice extends AbstractEditHelperAdvice {
 					if(result != null) {
 						command.add(result);
 					}
-
 				}
 				return command;
 			}

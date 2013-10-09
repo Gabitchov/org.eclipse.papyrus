@@ -67,11 +67,9 @@ public class CInstanceSpecificationLinkCreateCommand extends InstanceSpecificati
 						return true;
 					}
 				}
-
 			}
 			return false;
 		}
-
 		//source and target != null 
 		//look for if it exist at least a common association between classifiers referenced between these instances
 		if(source != null && target != null) {
@@ -90,7 +88,6 @@ public class CInstanceSpecificationLinkCreateCommand extends InstanceSpecificati
 				Classifier classifier = (Classifier)iterator.next();
 				assoSource.addAll(classifier.getAssociations());
 			}
-
 			HashSet<Association> assoTarget = new HashSet<Association>();
 			iterator = ((InstanceSpecification)target).getClassifiers().iterator();
 			while(iterator.hasNext()) {
@@ -100,11 +97,9 @@ public class CInstanceSpecificationLinkCreateCommand extends InstanceSpecificati
 			assoSource.retainAll(assoTarget);
 			commonAssociations = new HashSet<Association>();
 			commonAssociations.addAll(assoSource);
-
 			return (commonAssociations.size() > 0);
 		}
 		return false;
-
 	}
 
 	@Override
@@ -112,12 +107,10 @@ public class CInstanceSpecificationLinkCreateCommand extends InstanceSpecificati
 		AssociationSelectionDialog associationSelectionDialog;
 		Association selectedAssociation = null;
 		if(((InstanceSpecification)source).getClassifiers().size() > 0 && ((InstanceSpecification)target).getClassifiers().size() > 0) {
-
 			//look for the good association
 			associationSelectionDialog = new AssociationSelectionDialog(new Shell(), SWT.NATIVE, commonAssociations);
 			associationSelectionDialog.open();
 			selectedAssociation = associationSelectionDialog.getSelectedAssociation();
-
 			//creation of the instance specification link
 			// with a name a container, and set the source and target
 			InstanceSpecification instanceSpecification = org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createInstanceSpecification();
@@ -126,9 +119,6 @@ public class CInstanceSpecificationLinkCreateCommand extends InstanceSpecificati
 			instanceSpecification.getClassifiers().add(selectedAssociation);
 			InstanceSpecificationLinkHelper.addEnd(instanceSpecification, ((InstanceSpecification)source));
 			InstanceSpecificationLinkHelper.addEnd(instanceSpecification, ((InstanceSpecification)target));
-
-
-
 			//Creation of slots into the good instance by taking in account the  association
 			Iterator<Property> proIterator = selectedAssociation.getMemberEnds().iterator();
 			while(proIterator.hasNext()) {
@@ -140,7 +130,6 @@ public class CInstanceSpecificationLinkCreateCommand extends InstanceSpecificati
 					associateValue(((InstanceSpecification)target), slot, property.getType());
 				} else if(((InstanceSpecification)target).getClassifiers().contains(property.getOwner())) {
 					((InstanceSpecification)target).getSlots().add(slot);
-
 					associateValue(((InstanceSpecification)source), slot, property.getType());
 				} else {
 					instanceSpecification.getSlots().add(slot);
@@ -148,10 +137,8 @@ public class CInstanceSpecificationLinkCreateCommand extends InstanceSpecificati
 						associateValue(((InstanceSpecification)source), slot, property.getType());
 					} else {
 						associateValue(((InstanceSpecification)target), slot, property.getType());
-
 					}
 				}
-
 			}
 			return CommandResult.newOKCommandResult(instanceSpecification);
 		}

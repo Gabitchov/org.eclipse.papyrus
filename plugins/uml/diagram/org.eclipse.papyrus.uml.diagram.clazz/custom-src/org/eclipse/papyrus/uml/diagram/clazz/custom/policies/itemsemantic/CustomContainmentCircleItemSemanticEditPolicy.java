@@ -58,7 +58,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.NamedElement;
 
-
 public class CustomContainmentCircleItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	public CustomContainmentCircleItemSemanticEditPolicy() {
@@ -213,9 +212,7 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends UMLBaseItemSe
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-
 		View circle = (View)getHost().getModel();
-
 		List<String> targetNames = new ArrayList<String>();
 		for(Object next : circle.getSourceEdges()) {
 			Edge outgoingLink = (Edge)next;
@@ -224,10 +221,8 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends UMLBaseItemSe
 			}
 		}
 		cmd.add(new AskToDeleteContainmentCommand(targetNames));
-
 		ICommandProxy command = (ICommandProxy)getDestroyElementCommandGen(req);
 		cmd.add(command.getICommand());
-
 		for(Object next : circle.getSourceEdges()) {
 			Edge outgoingLink = (Edge)next;
 			if(ContainmentHelper.isContainmentLink(outgoingLink)) {
@@ -239,10 +234,8 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends UMLBaseItemSe
 				ContainmentHelper.addDeleteOutgoingContainmentLinkViewCommands(getEditingDomain(), outgoingLink.getTarget(), cmd);
 			}
 		}
-
 		return getGEFWrapper(cmd.reduce());
 	}
-
 
 	/**
 	 * 
@@ -258,7 +251,6 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends UMLBaseItemSe
 		return super.getCommand(request);
 	}
 
-
 	/**
 	 * 
 	 * use the AbstractTransactionalCommand "CustomReorientLinkCommand" to change the owner of the target class
@@ -267,7 +259,6 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends UMLBaseItemSe
 		CompoundCommand cc = new CompoundCommand();
 		cc.add(new ICommandProxy(new CustomReorientContainmentLinkCommand(getEditingDomain(), request)));
 		return cc;
-
 	}
 
 	public static class AskToDeleteContainmentCommand extends AbstractOperation {
@@ -312,7 +303,5 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends UMLBaseItemSe
 		public IStatus undo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			return Status.OK_STATUS;
 		}
-
 	}
-
 }

@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.style;
 
 
-public interface CSSConnectorStyle extends CSSRoundedCornersStyle, CSSRoutingStyle, CSSLineStyle{
+public interface CSSConnectorStyle extends CSSRoundedCornersStyle, CSSRoutingStyle, CSSLineStyle {
 
 
 }

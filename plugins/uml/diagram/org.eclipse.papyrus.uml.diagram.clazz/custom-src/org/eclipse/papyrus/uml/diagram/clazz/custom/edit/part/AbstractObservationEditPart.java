@@ -11,7 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -39,7 +38,6 @@ public abstract class AbstractObservationEditPart extends NamedElementEditPart i
 	 * {@inheritDoc}
 	 */
 	protected void refreshBounds() {
-
 		int width = 20;
 		int height = 20;
 		Dimension size = new Dimension(width, height);
@@ -47,7 +45,6 @@ public abstract class AbstractObservationEditPart extends NamedElementEditPart i
 		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
 		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
-
 	}
 
 	protected void handleNotificationEvent(Notification event) {
@@ -55,11 +52,8 @@ public abstract class AbstractObservationEditPart extends NamedElementEditPart i
 		// set the figure active when the feature of the of a class is true
 		if(resolveSemanticElement() != null) {
 			refreshFontColor();
-
 			// To adapt the display of the container to the icon!
 			refreshBounds();
 		}
-
 	}
-
 }

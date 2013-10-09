@@ -12,13 +12,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <!-- begin-model-doc -->
  * Mark a package as External Library. If this package is used, the associated CDT project will be configured accordingly.
- * The name is not required, since the UML name is used 
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludePaths <em>Include Paths</em>}</li>
  *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getBase_package <em>Base package</em>}</li>
  *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getLibPaths <em>Lib Paths</em>}</li>
  *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getMacros <em>Macros</em>}</li>
@@ -33,30 +32,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ExternLibrary extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Include Paths</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Include Paths</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternLibrary_Name()
+	 * @return the value of the '<em>Include Paths</em>' attribute list.
+	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternLibrary_IncludePaths()
 	 * @model unique="false" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
+	EList<String> getIncludePaths();
 
 	/**
 	 * Returns the value of the '<em><b>Base package</b></em>' reference.

@@ -22,6 +22,7 @@ import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.sysml.diagram.parametric.commands.CustomBindingConnectorReorientCommand;
+import org.eclipse.papyrus.sysml.diagram.parametric.commands.CustomParametricContextLinkCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.commands.ReorientReferenceRelationshipRequestWithGraphical;
 import org.eclipse.papyrus.sysml.diagram.parametric.provider.CustomGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.provider.ElementTypes;
@@ -29,8 +30,6 @@ import org.eclipse.papyrus.sysml.diagram.parametric.provider.GraphicalTypeRegist
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CommentAnnotatedElementReorientCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ConstraintConstrainedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.ConnectorReorientCommand;
 
 /**
@@ -58,8 +57,8 @@ public class CustomDefaultSemanticEditPolicy extends DefaultSemanticEditPolicy {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
-		if(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT == req.getElementType()) {
-			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		if(ElementTypes.CONTEXT_LINK == req.getElementType()) {
+			return getGEFWrapper(new CustomParametricContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
 		String newEdgeGraphicalType = registry.getEdgeGraphicalType(req.getElementType());
@@ -87,10 +86,7 @@ public class CustomDefaultSemanticEditPolicy extends DefaultSemanticEditPolicy {
 		if(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(reconnectedViewType)) {
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		}
-		
-		if(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(reconnectedViewType)) {
-			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
-		}
+
 		if(UMLGraphicalTypes.LINK_UML_CONNECTOR_ID.equals(reconnectedViewType)) {
 			if (req instanceof ReorientReferenceRelationshipRequestWithGraphical) {
 				return getGEFWrapper(new CustomBindingConnectorReorientCommand((ReorientReferenceRelationshipRequestWithGraphical)req));

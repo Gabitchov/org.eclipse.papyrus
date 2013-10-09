@@ -27,7 +27,8 @@
  * @param arg 
  */
 void Class3::Operation1(int /*in*/ arg[25]) {
-	
+	// Now let's add some code
+	arg[0] = 1;
 }
 
 

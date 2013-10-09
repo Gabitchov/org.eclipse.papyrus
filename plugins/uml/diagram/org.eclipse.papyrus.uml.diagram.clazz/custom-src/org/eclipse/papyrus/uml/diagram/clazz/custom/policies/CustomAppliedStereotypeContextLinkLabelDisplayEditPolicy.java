@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
 
-
 /**
  * Edit Policy for Applied Stereotype Label for {@link ContextLink}.
  */
@@ -52,5 +51,4 @@ public class CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy extends Ap
 			((IPapyrusUMLElementFigure)figure).setStereotypeDisplay(tag, null);
 		}
 	}
-
 }

@@ -97,5 +97,4 @@ public class ContainerHighlightEditPolicy extends org.eclipse.gef.editpolicies.G
 			showHighlight();
 		}
 	}
-
 }

@@ -24,7 +24,7 @@ import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedula
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
@@ -74,12 +74,12 @@ public class AllocUtils {
 	 */
 	public static Property getThreadAlloc(Property instanceAttribute) {
 		for (DirectedRelationship relation : instanceAttribute.getSourceDirectedRelationships()) {
-			if (StUtils.isApplied(relation, Allocate.class)) {
+			if (StereotypeUtil.isApplied(relation, Allocate.class)) {
 				if (relation.getTargets().size() != 1) continue;
 				Element targetElem = relation.getTargets().get(0);
 				if (!(targetElem instanceof Property)) continue;
 				Property target = (Property) targetElem;
-				if (StUtils.isApplied(target.getType(), SwSchedulableResource.class)) {
+				if (StereotypeUtil.isApplied(target.getType(), SwSchedulableResource.class)) {
 					return target;
 				}
 			}
@@ -141,7 +141,7 @@ public class AllocUtils {
 
 		for(DirectedRelationship relationship : instanceOrThread.getSourceDirectedRelationships(UMLPackage.eINSTANCE.getAbstraction())) {
 			Abstraction abstraction = (Abstraction)relationship;
-			if(StUtils.isApplied(abstraction, Allocate.class)) {
+			if(StereotypeUtil.isApplied(abstraction, Allocate.class)) {
 				for(Element target : abstraction.getTargets()) {
 					if(target instanceof InstanceSpecification) {
 						nodeList.add((InstanceSpecification)target);
@@ -167,7 +167,7 @@ public class AllocUtils {
 		for(InstanceSpecification nodeOrThread : nodeOrThreads)
 		{
 			Classifier nodeOrThreadC = DepUtils.getClassifier(nodeOrThread);
-			if(StUtils.isApplied(nodeOrThreadC, SwSchedulableResource.class)) {
+			if(StereotypeUtil.isApplied(nodeOrThreadC, SwSchedulableResource.class)) {
 				// tread case that instance is allocated to a thread
 				// follow allocation of Thread
 				nodeList.add(getNode(nodeOrThread));
@@ -198,7 +198,7 @@ public class AllocUtils {
 
 		while(relShipIt.hasNext()) {
 			Abstraction abstraction = (Abstraction)relShipIt.next();
-			if(StUtils.isApplied(abstraction, Allocate.class)) {
+			if(StereotypeUtil.isApplied(abstraction, Allocate.class)) {
 				EList<NamedElement> suppliers = abstraction.getSuppliers(); // use suppliers instead of targets (derived)
 				for(int index = 0; index < suppliers.size(); index++) {
 					if(suppliers.get(index) == oldNode) {
@@ -257,7 +257,7 @@ public class AllocUtils {
 		Abstraction allocation = (Abstraction)
 			cdp.createPackagedElement("allocate " + instance.getName() +
 				" to " + node.getName(), UMLPackage.eINSTANCE.getAbstraction());
-		if(StUtils.apply(allocation, Allocate.class) == null) {
+		if(StereotypeUtil.apply(allocation, Allocate.class) == null) {
 			// stereotype application failed
 			return false;
 		}

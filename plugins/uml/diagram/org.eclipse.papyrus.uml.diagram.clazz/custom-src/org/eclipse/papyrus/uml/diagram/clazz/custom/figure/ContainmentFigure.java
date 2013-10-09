@@ -21,9 +21,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 
 /** Use to create a containment circle figure */
-
 public class ContainmentFigure extends Ellipse {
-
 
 	/**
 	 * Fills the circle.
@@ -40,9 +38,7 @@ public class ContainmentFigure extends Ellipse {
 		graphics.popState();
 		Dimension dim = new Dimension(20, 20);
 		this.setMaximumSize(dim);
-
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -54,7 +50,6 @@ public class ContainmentFigure extends Ellipse {
 		super.paintFigure(graphics);
 		graphics.pushState();
 		graphics.setBackgroundColor(ColorConstants.black);
-
 		/* Creates the cross in the circle */
 		Rectangle rect1 = getBounds().getCopy();
 		int scaleFactor_horizontale = rect1.height / 2;
@@ -62,8 +57,6 @@ public class ContainmentFigure extends Ellipse {
 		Rectangle rect = getBounds().getCopy();
 		graphics.drawLine(rect1.x, rect1.y + scaleFactor_horizontale, rect1.x + (int)Math.floor(rect1.width * (scaleFactor_horizontale)), rect1.y - (1 - scaleFactor_horizontale));
 		graphics.drawLine(rect1.x + scaleFactor_verticale, rect1.y, rect1.x - (1 - scaleFactor_verticale), rect1.y + (int)Math.floor(rect1.height * (scaleFactor_verticale)));
-
 		graphics.popState();
 	}
-
 }

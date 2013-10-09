@@ -191,7 +191,7 @@ public interface Target extends EObject {
 	 * @return the value of the '<em>Compiler</em>' reference.
 	 * @see #setCompiler(CompilerChain)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getTarget_Compiler()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	CompilerChain getCompiler();

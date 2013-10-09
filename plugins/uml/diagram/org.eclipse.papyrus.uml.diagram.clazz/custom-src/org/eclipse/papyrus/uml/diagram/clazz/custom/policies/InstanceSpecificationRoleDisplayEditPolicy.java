@@ -36,7 +36,6 @@ import org.eclipse.uml2.uml.Property;
  */
 public abstract class InstanceSpecificationRoleDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
-
 	public static String INSTANCE_SPECIFICATION_ROLE_DISPLAY = "INSTANCE_SPECIFICATION_ROLE_DISPLAY";
 
 	/**
@@ -90,7 +89,6 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 		}
 		hostSemanticElement = initSemanticElement();
 		if(hostSemanticElement != null) {
-
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
@@ -119,7 +117,6 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 		if(getInterestingProperty() != null) {
 			getDiagramEventBroker().removeNotificationListener(getInterestingProperty(), this);
 		}
-
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
 	}
@@ -146,7 +143,6 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 			if(instanceSpecification.getClassifiers().size() > 0) {
 				if(instanceSpecification.getClassifiers().get(0) instanceof Association) {
 					Association association = (Association)instanceSpecification.getClassifiers().get(0);
-
 					InstanceSpecification sourceElt = getEnd();
 					Iterator<Property> iterator = association.getMemberEnds().iterator();
 					while(iterator.hasNext()) {
@@ -195,6 +191,4 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 	public void notifyChanged(Notification notification) {
 		refreshDisplay();
 	}
-
-
 }

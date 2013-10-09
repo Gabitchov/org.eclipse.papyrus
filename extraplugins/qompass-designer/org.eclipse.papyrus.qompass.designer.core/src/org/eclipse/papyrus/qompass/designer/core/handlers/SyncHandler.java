@@ -22,7 +22,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.sync.CompImplSync;
 import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
@@ -54,7 +54,7 @@ public class SyncHandler extends CmdHandler {
 			}
 		}
 		if(selectedObj instanceof Package) {
-			if(StUtils.isApplied((Package)selectedObj, DeploymentPlan.class)) {
+			if(StereotypeUtil.isApplied((Package)selectedObj, DeploymentPlan.class)) {
 				return true;
 			}
 		}

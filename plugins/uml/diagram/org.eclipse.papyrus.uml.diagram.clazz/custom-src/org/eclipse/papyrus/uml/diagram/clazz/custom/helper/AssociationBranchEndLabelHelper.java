@@ -41,12 +41,10 @@ public class AssociationBranchEndLabelHelper extends PropertyLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public Property getUMLElement(GraphicalEditPart editPart) {
-
 		if((View)editPart.getModel() != null && ((View)editPart.getModel()).eContainer() != null) {
 			if(MultiAssociationHelper.getSemanticBranchEnd(((Edge)((View)editPart.getModel()).eContainer())) != null) {
 				return MultiAssociationHelper.getSemanticBranchEnd(((Edge)((View)editPart.getModel()).eContainer()));
 			}
-
 			if(((Edge)((View)editPart.getModel()).eContainer()).getTarget() == null) {
 				return null;
 			}
@@ -54,9 +52,7 @@ public class AssociationBranchEndLabelHelper extends PropertyLabelHelper {
 			Property propertyToDisplay = null;
 			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
-
 				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement()).getMemberEnds().iterator();
-
 				//find the last
 				while(propertiesIterator.hasNext()) {
 					Property currentProperty = (Property)propertiesIterator.next();
@@ -64,20 +60,16 @@ public class AssociationBranchEndLabelHelper extends PropertyLabelHelper {
 						propertyToDisplay = currentProperty;
 					}
 				}
-
 			}
 			if(propertyToDisplay != null) {
 				return propertyToDisplay;
 			}
 			///in the case of reorient the property must be not found,
 			// so we have to find the property that is different from the source.
-
 			Classifier source = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getSource().getElement();
 			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
-
 				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement()).getMemberEnds().iterator();
-
 				//find the last
 				while(propertiesIterator.hasNext()) {
 					Property currentProperty = (Property)propertiesIterator.next();
@@ -85,10 +77,8 @@ public class AssociationBranchEndLabelHelper extends PropertyLabelHelper {
 						propertyToDisplay = currentProperty;
 					}
 				}
-
 			}
 			return propertyToDisplay;
-
 		}
 		return null;
 	}

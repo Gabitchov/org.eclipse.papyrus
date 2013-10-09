@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.ConfigurationProperty;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Class;
@@ -48,7 +48,7 @@ public class AggregationKindValid extends AbstractModelConstraint {
 		if(type instanceof Class) {
 			AggregationKind aggKind = attribute.getAggregation();
 			if(aggKind != AggregationKind.COMPOSITE_LITERAL) {
-				if (StUtils.isApplicable(attribute, ConfigurationProperty.class) && !Utils.isSingleton((Class)type)) {
+				if (StereotypeUtil.isApplicable(attribute, ConfigurationProperty.class) && !Utils.isSingleton((Class)type)) {
 					// no composition, but not singleton: warn user to make up a proper deployment plan
 					// validation has been made Qompass specific by checking whether the Configuration attribute is applicable
 					

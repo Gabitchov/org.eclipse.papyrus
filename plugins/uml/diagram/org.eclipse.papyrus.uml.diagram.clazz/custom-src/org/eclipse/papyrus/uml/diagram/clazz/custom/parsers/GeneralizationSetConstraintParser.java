@@ -65,7 +65,6 @@ public class GeneralizationSetConstraintParser implements IParser {
 				} else {
 					out = out + "incomplete, ";
 				}
-
 				if(generalizationSet.isDisjoint()) {
 					out = out + "disjoint}";
 				} else {
@@ -99,5 +98,4 @@ public class GeneralizationSetConstraintParser implements IParser {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

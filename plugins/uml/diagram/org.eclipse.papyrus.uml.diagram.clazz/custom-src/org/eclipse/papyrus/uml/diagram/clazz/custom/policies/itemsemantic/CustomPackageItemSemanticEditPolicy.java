@@ -113,18 +113,14 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 		return super.getDestroyReferenceCommand(req);
 	}
 
-
-
 	/**
 	 * 
 	 * {@inheritDoc}
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-
 		ICommandProxy command = (ICommandProxy)super.getDestroyElementCommand(req);
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.add(command.getICommand());
-
 		//to ensure the deletion of link and also the undo!
 		addDestroyIncomingContainmentLinksCommand(cmd);
 		ContainmentHelper.addDeleteOutgoingContainmentLinkViewCommands(getEditingDomain(), (View)getHost().getModel(), cmd);
@@ -146,5 +142,4 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 			}
 		}
 	}
-
 }

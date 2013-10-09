@@ -13,13 +13,14 @@ package org.eclipse.papyrus.views.panels;
 
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.papyrus.C_Cpp.Include;
-import org.eclipse.papyrus.cpp.profile.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -121,9 +122,9 @@ public class CppPackagePanel extends CppAbstractPanel {
 				public void run()
 				{
 					if(headerDocument.get().equals("")) {
-						StUtils.unapply(selectedPackage, Include.class);
+						StereotypeUtil.unapply(selectedPackage, Include.class);
 					} else {
-						Include cppInclude = StUtils.applyApp(selectedPackage, Include.class);
+						Include cppInclude = StereotypeUtil.applyApp(selectedPackage, Include.class);
 						cppInclude.setHeader(headerDocument.get());
 					}
 				}
@@ -139,7 +140,7 @@ public class CppPackagePanel extends CppAbstractPanel {
 	@Override
 	protected void refreshPanel() {
 		if(selectedPackage != null) {
-			Include cppInclude = StUtils.getApplication(selectedPackage, Include.class);
+			Include cppInclude = UMLUtil.getStereotypeApplication(selectedPackage, Include.class);
 			if(cppInclude != null) {
 				headerDocument.set(cppInclude.getHeader());
 			}
@@ -167,7 +168,7 @@ public class CppPackagePanel extends CppAbstractPanel {
 	@Override
 	public boolean checkModifications() {
 		String headerInModel = "";
-		Include cppInclude = StUtils.getApplication(selectedPackage, Include.class);
+		Include cppInclude = UMLUtil.getStereotypeApplication(selectedPackage, Include.class);
 		if(cppInclude != null) {
 			headerInModel = cppInclude.getHeader();
 		}

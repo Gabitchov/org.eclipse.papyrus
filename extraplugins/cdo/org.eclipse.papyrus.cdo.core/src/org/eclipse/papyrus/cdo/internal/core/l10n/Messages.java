@@ -75,6 +75,11 @@ public class Messages extends NLS {
 	public static String ModelTransferConfiguration_7;
 
 	public static String ModelTransferNode_0;
+
+	public static String PapyrusRepository_connectFailed;
+
+	public static String PapyrusRepository_badRepo;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -93,19 +93,15 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		droppableElementsVisualID.add(AssociationEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationClassEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationNodeEditPart.VISUAL_ID);
-
 		droppableElementsVisualID.add(NestedClassForClassEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ClassEditPartCN.VISUAL_ID);
 		droppableElementsVisualID.add(PackageEditPartCN.VISUAL_ID);
 		droppableElementsVisualID.add(ModelEditPartCN.VISUAL_ID);
-
-
 		droppableElementsVisualID.add(ModelEditPartTN.VISUAL_ID);
 		droppableElementsVisualID.add(ClassEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(PackageEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(InstanceSpecificationEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(InstanceSpecificationLinkEditPart.VISUAL_ID);
-
 		return droppableElementsVisualID;
 	}
 
@@ -113,16 +109,13 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	 * {@inheritedDoc}
 	 */
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
-
 		//respecify for enumeration because this is also an instancespecification
 		if(nodeVISUALID == EnumerationLiteralEditPart.VISUAL_ID) {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticLink));
 		}
-
 		if(nodeVISUALID == InstanceSpecificationEditPart.VISUAL_ID || linkVISUALID == InstanceSpecificationLinkEditPart.VISUAL_ID) {
 			return dropInstanceSpecification(dropRequest, semanticLink, linkVISUALID);
 		}
-
 		if(linkVISUALID == SubstitutionEditPart.VISUAL_ID) {
 			return dropAsNormalBinaryLink(dropRequest, semanticLink, linkVISUALID);
 		}
@@ -153,7 +146,6 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		}
 	}
 
-
 	/**
 	 * drop a instance specification as a link or as a node
 	 * 
@@ -177,7 +169,6 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 						return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Instance"), source, target, InstanceSpecificationLinkEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
 					}
 				}
-
 			}
 			//DROP AS A NODE
 			EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
@@ -190,9 +181,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 				//drop into another editpart
 			} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(semanticLink)) {
 				return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPartCN.VISUAL_ID, dropRequest.getLocation(), semanticLink));
-
 			}
-
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -242,7 +231,6 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 			Element target = (Element)endtypes.toArray()[0];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001, dropRequest.getLocation(), semanticLink));
 		}
-
 		if(endtypes.size() == 2) {
 			Element source = (Element)endtypes.toArray()[0];
 			Element target = (Element)endtypes.toArray()[1];
@@ -253,7 +241,6 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 			return associationHelper.dropMutliAssociation((Association)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 		}
 		return UnexecutableCommand.INSTANCE;
-
 	}
 
 	/**
@@ -311,10 +298,8 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	 *        is the visual ID of the class
 	 * @return a command to execute
 	 */
-
 	protected Command dropTopLevelNodeWithContainmentLink(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
-
 		Element owner = (Element)semanticObject.getOwner();
 		if(owner == null) {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticObject));
@@ -325,7 +310,6 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		} else {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticObject));
 		}
-
 	}
 
 	/**
@@ -343,7 +327,6 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
 		cc.add(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement));
-
 		EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
 		if(!((droppedElement instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedElement))) {
 			return UnexecutableCommand.INSTANCE;
@@ -351,16 +334,12 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		if(containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement) != null) {
 			EditPart editpart = containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement);
 			View droppedView = (View)(editpart.getModel());
-
 			containmentHelper.deleteIncomingContainmentLinksFor(cc, droppedView);
-
 			// Delete the dropped element existing outside the compartment
 			cc.add(new DeleteCommand(getEditingDomain(), droppedView));
 		}
 		return new ICommandProxy(cc);
 	}
-
-
 
 	/**
 	 * call the mechanism to drop a binary link without specific type
@@ -379,16 +358,12 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		if(sources.size() == 0 || targets.size() == 0) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
 		Element source = (Element)sources.toArray()[0];
 		Element target = (Element)targets.toArray()[0];
 		CompositeCommand cc = new CompositeCommand("");
 		dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
 		return new ICommandProxy(cc);
 	}
-
-
-
 
 	/**
 	 * 
@@ -404,7 +379,6 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
-
 		// in the case of labelEditPart the command add can launch null pointer exception
 		editPartsIter = request.getEditParts().iterator();
 		boolean containsLabelEditpart = false;
@@ -414,7 +388,6 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 				containsLabelEditpart = true;
 			}
 		}
-
 		//the addCommand of a label edit part into the diagram raises an null pointer exception.
 		//it is due to the label has not constraint, used during the AddCommand
 		if(containsLabelEditpart && getHost() instanceof DiagramEditPart) {
@@ -434,5 +407,4 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 			return cmd;
 		}
 	}
-
 }

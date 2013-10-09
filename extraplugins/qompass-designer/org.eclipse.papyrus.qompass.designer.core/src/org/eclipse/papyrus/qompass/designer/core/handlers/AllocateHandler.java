@@ -18,7 +18,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.dialogs.AllocationDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -36,7 +36,7 @@ public class AllocateHandler extends CmdHandler {
 		updateSelectedEObject();
 		EObject selectedObj = getSelectedEObject();
 		if(selectedObj instanceof Package) {
-			return (StUtils.isApplied((Package)selectedObj, DeploymentPlan.class));
+			return (StereotypeUtil.isApplied((Package)selectedObj, DeploymentPlan.class));
 		}
 		return false;
 	}

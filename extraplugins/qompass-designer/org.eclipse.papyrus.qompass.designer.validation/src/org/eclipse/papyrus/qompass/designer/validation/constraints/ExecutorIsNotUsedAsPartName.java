@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.RuleApplication;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerTrafo;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Property;
@@ -35,7 +35,7 @@ public class ExecutorIsNotUsedAsPartName extends AbstractModelConstraint
 
 		Class class_ = (Class) ctx.getTarget();
 
-		if (StUtils.isApplied(class_, RuleApplication.class)) {
+		if (StereotypeUtil.isApplied(class_, RuleApplication.class)) {
 			// limit check to classes applying a container rule.
 			for (Property attribute : class_.getOwnedAttributes ()) {
 				if (attribute.getName().equals(ContainerTrafo.executorPartName)) {

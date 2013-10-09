@@ -43,7 +43,8 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 
 		// Fill known edges set
 		knownEdges.add(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint());
-		knownEdges.add(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint());
+		knownEdges.add(ElementTypes.CONTEXT_LINK.getSemanticHint());
+		knownEdges.add(ElementTypes.CONTEXT_LINK_APPLIED_STEREOTYPE.getSemanticHint());
 
 		// Fill known nodes set (primary nodes)
 		knownNodes.add(UMLElementTypes.CONSTRAINT.getSemanticHint());
@@ -169,6 +170,11 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
 				return ElementTypes.CONSTRAINT_CN.getSemanticHint();
 			}
+			
+			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerType)) {
+				return ElementTypes.CONSTRAINT_CN.getSemanticHint();
+			}
+
 
 			return UNDEFINED_TYPE;
 		}

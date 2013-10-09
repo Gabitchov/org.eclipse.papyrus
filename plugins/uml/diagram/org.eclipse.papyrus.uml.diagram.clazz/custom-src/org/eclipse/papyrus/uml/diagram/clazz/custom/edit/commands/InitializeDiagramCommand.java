@@ -61,7 +61,6 @@ import org.eclipse.uml2.uml.PackageableElement;
 public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 
 	// protected List<?> adapters;
-
 	protected Diagram diagram;
 
 	protected DiagramEditPart host;
@@ -76,10 +75,8 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// To load visualIDRegistry
 		host().refresh();
-
 		List createdViews = new LinkedList();
 		createdViews.addAll(populateSemanticNodes());
-
 		if(createdViews.size() > 0) {
 			RestoreRelatedLinksCommand restoreRelatedLinksCommand = new RestoreRelatedLinksCommand(((DiagramEditPart)getHost()), createdViews);
 			CommandUtil.executeCommand(new ICommandProxy(restoreRelatedLinksCommand), host());
@@ -87,7 +84,6 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 			// DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			// CommandUtils.executeCommand(new ICommandProxy(layoutCmd), host());
 		}
-
 		// Make views immutable
 		List viewAdapters = prepareAdapterList(createdViews);
 		final Command immutable = SetViewMutabilityCommand.makeImmutable(viewAdapters);
@@ -114,7 +110,6 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 			EditPart ep = ccr.getTargetEditPart() == null ? ccr.getSourceEditPart() : ccr.getTargetEditPart();
 			return ep.getCommand(request);
 		}
-
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 		Command cmd = host().getCommand(request);
 		if(cmd == null) {
@@ -190,7 +185,6 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 		// String factoryHint = getDefaultFactoryHint();
 		IAdaptable elementAdapter = new EObjectAdapter(element);// CanonicalElementAdapter(element,
 		// factoryHint);
-
 		ViewDescriptor descriptor = getViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND);
 		return descriptor;
 	}
@@ -209,7 +203,6 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	 * @return a create <i>non-persisted</i> view descriptor
 	 */
 	protected ViewDescriptor getViewDescriptor(IAdaptable elementAdapter, Class viewKind, String hint, int index) {
-
 		return new ViewDescriptor(elementAdapter, viewKind, hint, index, false, host().getDiagramPreferencesHint());
 	}
 
@@ -241,7 +234,6 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 		if(!descriptors.isEmpty()) {
 			// create the request
 			CreateViewRequest request = getCreateViewRequest(descriptors);
-
 			// get the command and execute it.
 			Command cmd = getCreateViewCommand(request);
 			if(cmd != null && cmd.canExecute()) {
@@ -269,5 +261,4 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 		}
 		return viewAdapters;
 	}
-
 }

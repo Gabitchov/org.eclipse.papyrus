@@ -47,5 +47,4 @@ public class CreateClassDiagramCommand extends AbstractPapyrusGmfCreateDiagramCo
 	protected PreferencesHint getPreferenceHint() {
 		return org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
-
 }

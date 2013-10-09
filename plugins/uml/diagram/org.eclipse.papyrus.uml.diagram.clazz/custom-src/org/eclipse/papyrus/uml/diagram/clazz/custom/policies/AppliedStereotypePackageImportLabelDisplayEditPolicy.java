@@ -30,5 +30,4 @@ public class AppliedStereotypePackageImportLabelDisplayEditPolicy extends Applie
 	public AppliedStereotypePackageImportLabelDisplayEditPolicy() {
 		super("Import");//$NON-NLS-N$
 	}
-
 }

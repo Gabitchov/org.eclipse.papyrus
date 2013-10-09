@@ -86,7 +86,6 @@ public class CustomEnumerationItemSemanticEditPolicyCN extends EnumerationItemSe
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-
 		return super.getStartCreateRelationshipCommand(req);
 	}
 }

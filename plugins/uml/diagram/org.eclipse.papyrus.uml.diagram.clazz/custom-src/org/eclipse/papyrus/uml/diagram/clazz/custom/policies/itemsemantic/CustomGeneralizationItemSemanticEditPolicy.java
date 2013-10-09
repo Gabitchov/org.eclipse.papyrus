@@ -29,7 +29,6 @@ public class CustomGeneralizationItemSemanticEditPolicy extends GeneralizationIt
 	 */
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-
 		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
 			return getGEFWrapper(new CGeneralizationSetCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -41,7 +40,6 @@ public class CustomGeneralizationItemSemanticEditPolicy extends GeneralizationIt
 	 */
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-
 		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
 			return getGEFWrapper(new CGeneralizationSetCreateCommand(req, req.getSource(), req.getTarget()));
 		}

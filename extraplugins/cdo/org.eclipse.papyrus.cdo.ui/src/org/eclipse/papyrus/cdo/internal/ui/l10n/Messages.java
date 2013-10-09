@@ -40,6 +40,8 @@ public class Messages extends NLS {
 
 	public static String BrowseRepoDlg_invalidURISeg;
 
+	public static String BrowseRepoDlg_leafKind;
+
 	public static String BrowseRepoDlg_modelKind;
 
 	public static String BrowseRepoDlg_nameLabel;
@@ -54,9 +56,31 @@ public class Messages extends NLS {
 
 	public static String BrowseRepoDlg_wrongSelection;
 
+	public static String CDOResLabels_binKind;
+
+	public static String CDOResLabels_fileKind;
+
+	public static String CDOResLabels_folderKind;
+
+	public static String CDOResLabels_leafKind;
+
+	public static String CDOResLabels_modelKind;
+
+	public static String CDOResLabels_node;
+
+	public static String CDOResLabels_nodeKind;
+
+	public static String CDOResLabels_pattern;
+
+	public static String CDOResLabels_txtKind;
+
+	public static String CDOResLabels_unknown;
+
 	public static String CDOStateLabelDecorator_1;
 
 	public static String ConnectRepositoryAction_0;
+
+	public static String ConnectRepositoryAction_errorTitle;
 
 	public static String CreateCDOFragDlg_browseMessage;
 
@@ -159,6 +183,10 @@ public class Messages extends NLS {
 	public static String ModelReferencesPage_8;
 
 	public static String ModelReferencesPage_9;
+
+	public static String ModelRepositoriesView_commitSaveError;
+
+	public static String ModelRepositoriesView_commitSaveFailed;
 
 	public static String OpenPapyrusModelAction_0;
 

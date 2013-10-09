@@ -86,5 +86,15 @@
             class="org.eclipse.papyrus.cdo.internal.core.controlmode.CDOControlModeParticipant">
       </participant>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <serviceFactory
+            classname="org.eclipse.papyrus.cdo.internal.core.services.localizer.CDOAwareObjectLocalizer$Factory"
+            description="A customized object localizer that is aware of the special semantics of CDO resource nodes."
+            id="org.eclipse.papyrus.infra.services.localizer.IObjectLocalizer"
+            priority="50"
+            startKind="lazy">
+      </serviceFactory>
+   </extension>
    
 </plugin>

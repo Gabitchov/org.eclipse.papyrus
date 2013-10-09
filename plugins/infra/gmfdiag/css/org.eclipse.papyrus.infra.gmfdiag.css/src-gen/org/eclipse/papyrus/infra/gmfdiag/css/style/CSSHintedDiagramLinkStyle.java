@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.style;
 
 
-public interface CSSHintedDiagramLinkStyle extends CSSDiagramLinkStyle{
+public interface CSSHintedDiagramLinkStyle extends CSSDiagramLinkStyle {
 
 	public java.lang.String getCSSHint();
 

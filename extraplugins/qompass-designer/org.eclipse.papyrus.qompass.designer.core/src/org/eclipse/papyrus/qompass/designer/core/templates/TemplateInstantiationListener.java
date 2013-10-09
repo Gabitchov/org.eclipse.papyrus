@@ -48,6 +48,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 /**
  * Template instantiation is implemented by means of an CopyListener that
  * evaluates the template stereotype.
+ * This is a pre-copy listener.
  */
 
 public class TemplateInstantiationListener implements CopyListener {
@@ -137,7 +138,8 @@ public class TemplateInstantiationListener implements CopyListener {
 											Behavior newBehavior =
 												instantiateBehavior(intfOperation, template, (OpaqueBehavior)method);
 											newBehavior.setSpecification(last);
-											removalList.add(method);
+											// removalList.add(method);
+											copy.removeForCopy(method); // enable subsequent instantiations
 										}
 									}
 								}

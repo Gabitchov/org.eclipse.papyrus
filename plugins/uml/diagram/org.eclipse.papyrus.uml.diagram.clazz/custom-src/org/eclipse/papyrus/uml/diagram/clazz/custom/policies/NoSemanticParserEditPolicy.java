@@ -19,7 +19,6 @@ import java.util.Map;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 
-
 public class NoSemanticParserEditPolicy extends AbstractEditPolicy implements IMaskManagedLabelEditPolicy {
 
 	public String getMaskLabel(int value) {
