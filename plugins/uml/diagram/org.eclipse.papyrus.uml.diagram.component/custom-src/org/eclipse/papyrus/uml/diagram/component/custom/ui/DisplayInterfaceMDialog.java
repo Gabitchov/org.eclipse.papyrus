@@ -53,7 +53,7 @@ public class DisplayInterfaceMDialog extends InterfaceManagerDialog {
 		if( supCmd.canExecute()){
 			cmd.add(super.getCommand());
 		}
-		cmd.add(createDisplayedInterfaceCommand());
+		//cmd.add(createDisplayedInterfaceCommand());
 		return cmd;
 	}
 	@Override
