@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.uml.services.decoration;
 
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
+import org.eclipse.uml2.uml.NamedElement;
 
 
 /**
@@ -23,23 +24,17 @@ import org.eclipse.papyrus.infra.services.decoration.DecorationService;
  */
 
 public class UMLDecorationService extends DecorationService {
-	
+		
 	/**
-	 * Gets the decoration.
-	 * use "synchronized" to assure that no decoration modifications are done while this operation is running
-	 * (which would result in a concurrent modification operation)
-	 * 
-	 * @param element
-	 *        the element
-	 * @param navigateToParents
-	 *        the navigate to parents
-	 * @return the decoration
-	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#getDecoration(java.lang.Object, boolean)
+	 * Initial message for UML elements
+	 * @return the qualified name of the element, if it is a named element
 	 */
-	/*
-	public List<IPapyrusDecoration> getDecorations(Object element, boolean navigateToParents) {
-		UMLDecorationUtils tool = new UMLDecorationUtils(element);
-		return tool.getDecorations(this, navigateToParents);
+	@Override
+	public String initialMessage(Object element) {
+		if (element instanceof NamedElement) {
+			NamedElement ne = (NamedElement) element;
+			return ne.getQualifiedName();
+		}
+		return super.initialMessage(element);
 	}
-	*/
 }

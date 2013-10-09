@@ -100,8 +100,7 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 			return null;
 		}
 
-		List<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
-		return Decoration.getMessageFromDecorations(decorations);
+		return Decoration.getMessageFromDecorations(decorationService, element);
 	}
 
 	@Override
