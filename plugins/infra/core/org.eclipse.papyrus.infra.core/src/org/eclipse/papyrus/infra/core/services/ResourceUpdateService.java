@@ -62,7 +62,7 @@ public class ResourceUpdateService implements IService, IPartListener {
 	protected boolean isSaving;
 
 	/**
-	 * Update isSaving flag asynchronously to avoid race conditions, see bug
+	 * Update isSaving flag asynchronously to avoid race conditions, see bug 411574
 	 */
 	Runnable postSaveRunnable = new Runnable() {
 
