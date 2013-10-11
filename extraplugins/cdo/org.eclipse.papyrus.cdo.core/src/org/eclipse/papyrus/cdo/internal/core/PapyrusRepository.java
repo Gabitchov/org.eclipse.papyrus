@@ -692,8 +692,6 @@ public class PapyrusRepository extends Container<CDOResourceNode> implements IIn
 			if((view != null) && !view.isClosed()) {
 				result = view.getRootResource();
 			}
-		} else if(adapter == CDOSession.class) {
-			result = getCDOSession();
 		} else {
 			result = Platform.getAdapterManager().getAdapter(this, adapter);
 		}
