@@ -27,6 +27,12 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
  */
 public class CustomPackageEditPart extends PackageEditPart {
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param view
+	 */
 	public CustomPackageEditPart(View view) {
 		super(view);
 	}

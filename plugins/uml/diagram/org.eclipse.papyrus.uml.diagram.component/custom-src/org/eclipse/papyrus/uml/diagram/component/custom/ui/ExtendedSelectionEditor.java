@@ -1,20 +1,28 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) - Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
-import org.eclipse.jface.viewers.AbstractListViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
-import org.eclipse.papyrus.infra.widgets.editors.SelectionEditor;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
@@ -27,7 +35,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
-
+/**
+ * Extension of selection editor with a table to display icon of element
+ *normally this class must inherits of SelectionEditor but list and table are type that are not compatible, so entire creation of this class was needed
+ */
 
 public class ExtendedSelectionEditor extends Composite implements SelectionListener {
 
@@ -53,7 +64,10 @@ public class ExtendedSelectionEditor extends Composite implements SelectionListe
 		/** The listViewer for chosen elements */
 		protected TableViewer selectedElementsViewer;
 
-		
+		/**
+		 * 
+		 * @return the table viewer in order to get the element selection
+		 */
 		public TableViewer getSelectedElementsViewer() {
 			return selectedElementsViewer;
 		}
@@ -464,6 +478,12 @@ public class ExtendedSelectionEditor extends Composite implements SelectionListe
 			//Nothing to do
 		}
 
+		/**
+		 * 
+		 * @param withAdditionalButton
+		 * @param messageButton
+		 * @param listener
+		 */
 		public void setAdditionalButton(boolean withAdditionalButton, String messageButton, SelectionListener listener) {
 			this.withAdditionalButton = withAdditionalButton;
 			this.additionalButtonLabel = messageButton;

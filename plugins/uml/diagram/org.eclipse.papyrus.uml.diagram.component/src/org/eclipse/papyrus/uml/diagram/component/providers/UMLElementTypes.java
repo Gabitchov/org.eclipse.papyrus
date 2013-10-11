@@ -43,6 +43,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPa
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfacePortLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.LinkDescriptorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
@@ -261,6 +262,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Link_4018 = getElementType("org.eclipse.papyrus.uml.diagram.component.Link_4018"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		return elementTypeImages.getImageDescriptor(element);
 	}
@@ -379,6 +385,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4009);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4010);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4017);
+			KNOWN_ELEMENT_TYPES.add(Link_4018);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -456,6 +463,8 @@ public class UMLElementTypes {
 			return Dependency_4010;
 		case DependencyBranchEditPart.VISUAL_ID:
 			return Dependency_4017;
+		case InterfacePortLinkEditPart.VISUAL_ID:
+			return Link_4018;
 		}
 		return null;
 	}

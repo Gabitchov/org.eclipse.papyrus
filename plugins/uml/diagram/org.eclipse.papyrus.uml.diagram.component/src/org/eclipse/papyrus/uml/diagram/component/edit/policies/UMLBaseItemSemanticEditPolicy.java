@@ -710,6 +710,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
+		 * @generated
+		 */
+		public boolean canCreateLink_4018() {
+			return canExistLink_4018();
+		}
+
+		/**
 		 * Can exist usage_4001.
 		 * 
 		 * @param container
@@ -941,6 +948,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistDependency_4017(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistLink_4018() {
 			return true;
 		}
 	}
