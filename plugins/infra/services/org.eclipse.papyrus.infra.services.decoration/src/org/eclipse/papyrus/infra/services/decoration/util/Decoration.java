@@ -16,9 +16,12 @@ package org.eclipse.papyrus.infra.services.decoration.util;
 
 import java.util.List;
 
+import org.apache.commons.lang.WordUtils;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 
 
 // TODO: Auto-generated Javadoc
@@ -258,18 +261,39 @@ public class Decoration implements IPapyrusDecoration {
 		}
 	}
 
-	public static String getMessageFromDecorations(List<IPapyrusDecoration> decorations) {
-		String message = "";
+	/**
+	 * @param element the element for which we want to get the message. This must be an eObject or an object
+	 *        that can be adapted to an eObject (which is the case for elements of the model explorer)
+	 * @return the decoration message. This might be a multi-line message
+	 */
+	public static String getMessageFromDecorations(DecorationService decorationService, Object element) {
+
+		if (decorationService == null) {
+			return null;
+		}
+
+		List<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
+
+		EObject eObject = (EObject)Platform.getAdapterManager().getAdapter(element, EObject.class);
+		String message = decorationService.initialMessage(eObject);
 		if(decorations != null) {
 			for(IPapyrusDecoration decoration : decorations) {
 				if(message.length() > 0) {
-					message += "\n";
+					message += "\n"; //$NON-NLS-1$
+               	}
+				if (decoration.getMessage() != null) {
+					message += WordUtils.wrap(decoration.getMessage(), 100, "\n  ", true); //$NON-NLS-1$
 				}
-				message += decoration.getMessage();
 			}
 		}
-		return message;
-	}
+		if (message.length() > 0) {
+			return message;
+		}
+		else {
+			return null;
+		}
+    }
+ 
 	
 	/**
 	 * Gets the priority.

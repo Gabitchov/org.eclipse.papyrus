@@ -182,12 +182,14 @@ public class DecorationUtils {
 
 	/**
 	 * Gets the decoration message.
-	 * 
-	 * @param decorationService
-	 *        the decoration service
-	 * @return the decoration message
-	 */
-	public String getDecorationMessage(DecorationService decorationService) {
+	 * Caveat: Decoration.getMessageFromDecorations is used instead of this operation
+     * 
+     * @param decorationService
+     *        the decoration service
+     * @return the decoration message
+     */
+    @Deprecated
+    public String getDecorationMessage(DecorationService decorationService) {
 
 		Map<String, Decoration> decorations = getDecorations(decorationService);
 		if(decorations != null) {

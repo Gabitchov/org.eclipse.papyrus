@@ -9,13 +9,13 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_KOvvIPccEd-KM6l7lmIPkw" clientDependency="_Edy9EBvREeKM2oNGoGF4uQ" name="Class0">
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_U_ezUMzYEeGcRfFFcVPhOg" name="operation1" specification="_mbXNMH8tEeGWNf8qHJJtnw">
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_42nn4BoKEeKjbYasGOLMuA" name="Parameter1">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
           </ownedParameter>
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_42o2ABoKEeKjbYasGOLMuA" name="Parameter2">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
           </ownedParameter>
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_42z1IBoKEeKjbYasGOLMuA" name="p3">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
           </ownedParameter>
           <language>C/C++</language>
           <body></body>
@@ -30,13 +30,13 @@
         </ownedBehavior>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_mbXNMH8tEeGWNf8qHJJtnw" name="operation1" method="_U_ezUMzYEeGcRfFFcVPhOg">
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_42nA0BoKEeKjbYasGOLMuA" name="Parameter1">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
           </ownedParameter>
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_42oO8BoKEeKjbYasGOLMuA" name="Parameter2">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
           </ownedParameter>
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_42zOEBoKEeKjbYasGOLMuA" name="p3">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
           </ownedParameter>
         </ownedOperation>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_XC6DoMzYEeGcRfFFcVPhOg" name="operation2" method="_a9tFQMzYEeGcRfFFcVPhOg"/>
