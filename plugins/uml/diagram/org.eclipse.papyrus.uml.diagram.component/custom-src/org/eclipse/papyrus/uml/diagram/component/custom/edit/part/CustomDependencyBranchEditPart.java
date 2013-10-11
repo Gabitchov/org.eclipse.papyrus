@@ -21,7 +21,13 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPa
  * this a specific editpart used to overload the method createNodePlate
  */
 public class CustomDependencyBranchEditPart extends DependencyBranchEditPart {
-
+	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param view
+	 */
 	public CustomDependencyBranchEditPart(View view) {
 		super(view);
 	}

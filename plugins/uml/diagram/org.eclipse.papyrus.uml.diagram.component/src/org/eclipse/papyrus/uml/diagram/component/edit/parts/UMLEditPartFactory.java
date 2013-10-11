@@ -192,6 +192,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new DependencyAppliedStereotypeEditPart(view);
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new DependencyBranchEditPart(view);
+			case InterfacePortLinkEditPart.VISUAL_ID:
+				return new InterfacePortLinkEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

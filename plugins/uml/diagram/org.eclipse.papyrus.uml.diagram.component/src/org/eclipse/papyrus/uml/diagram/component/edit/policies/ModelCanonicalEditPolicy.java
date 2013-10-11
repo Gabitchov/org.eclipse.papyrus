@@ -68,6 +68,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPa
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfacePortLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.LinkDescriptorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
@@ -306,7 +307,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		for(Iterator linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = (Edge)linksIterator.next();
 			int diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
-			if(diagramLinkVisualID == -1 || diagramLinkVisualID == LinkDescriptorEditPart.VISUAL_ID) {
+			if(diagramLinkVisualID == -1 || diagramLinkVisualID == LinkDescriptorEditPart.VISUAL_ID || diagramLinkVisualID == InterfacePortLinkEditPart.VISUAL_ID) {
 				if(nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}

@@ -300,7 +300,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLComponentDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3203,2002,3202,3200,3205,3201,3199,3204,2003,3069,3077,3076,3078,3070,3071,3074,3075,1,5,6,3072"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010,4017"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010,4017,4018"/>
       </viewProvider>
    </extension>
 
@@ -315,7 +315,7 @@
             <method name="getType()" value="3203,2002,3202,3200,3205,3201,3199,3204,2003,3069,3077,3076,3078,3070,3071,3074,3075,1,5,6,3072"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010,4017"/>
+            <method name="getType()" value="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010,4017,4018"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5008,5004,5262,5254,5266,5255,5252,5253,5265,5005,5006,5007,5264,5261,5267,5256,5257,5258,5259,5260,0"/>
@@ -696,6 +696,13 @@
             <param name="semanticHint" value="4017"/>
          </specializationType>
       </metamodel>
+      <specializationType
+            id="org.eclipse.papyrus.uml.diagram.component.Link_4018"
+            name="%metatype.name.Link_4018"
+            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+         <param name="semanticHint" value="4018"/>
+      </specializationType>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -745,6 +752,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.ConstraintConstrainedElement_4009"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Dependency_4010"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.component.Dependency_4017"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.component.Link_4018"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -1278,6 +1286,14 @@
 			class="org.eclipse.papyrus.uml.diagram.component.preferences.AbstractionPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.component.preferences.AbstractionPreferencePage"
             name="Abstraction Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLComponentDiagram"
+			class="org.eclipse.papyrus.uml.diagram.component.preferences.InterfacePortLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.component.preferences.InterfacePortLinkPreferencePage"
+            name="InterfacePortLink Link" />
 		
 		
 

@@ -25,13 +25,18 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFi
  */
 public class InterfaceRealizationLinkFigure extends InterfaceRealizationFigure  {
 	
-	
+	/**
+	 * display the link as line
+	 */
 	public void displayAsAlink(){
 		setTargetDecoration(null);
 		this.setLineStyle(Graphics.LINE_SOLID); // line drawing style
 		
 	}
 	
+	/**
+	 * display it as the UML representation with tis decoration
+	 */
 	public void displayAsUMLShape(){
 		PolygonDecoration dec = new PolygonDecoration();
 		dec.setScale(15, 5);

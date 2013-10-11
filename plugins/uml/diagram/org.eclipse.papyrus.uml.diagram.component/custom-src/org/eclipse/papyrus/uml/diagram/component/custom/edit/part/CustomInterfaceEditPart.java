@@ -21,13 +21,15 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
+import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes.EllipseFigure;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfacePortLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
@@ -60,6 +62,8 @@ public class CustomInterfaceEditPart extends InterfaceEditPart {
 	@Override
 	protected void refreshBounds() {
 		super.refreshBounds();
+		
+		//the interface is connected to an usage Link
 		if((getTargetConnections().size()==1) && (getTargetConnections().get(0)  instanceof UsageEditPart)){
 			UsageEditPart usageEditPart=((UsageEditPart)getTargetConnections().get(0));
 			Point anchor=usageEditPart.getPrimaryShape().getEnd();
@@ -71,10 +75,34 @@ public class CustomInterfaceEditPart extends InterfaceEditPart {
 			this.getPrimaryShape().setRequired(true);
 			this.getPrimaryShape().setProvided(false);
 			this.getPrimaryShape().setOrientation(position);
+		}
+		
+		//the interface is connected to a link for a port
+		if((getTargetConnections().size()==1) && (getTargetConnections().get(0)  instanceof InterfacePortLinkEditPart)){
+			InterfacePortLinkEditPart interfaceLinkPort=((InterfacePortLinkEditPart)getTargetConnections().get(0));
+			Point anchor=interfaceLinkPort.getPrimaryShape().getEnd();
+
+			Rectangle bounds = this.getFigure().getBounds();
+
+			Rectangle insideRect = bounds.getCopy().shrink(new Insets(2));
+			int position = insideRect.getPosition(anchor);
+			EObjectValueStyle valueStyle=(EObjectValueStyle)((View)interfaceLinkPort.getModel()).getStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
+			if(valueStyle.getName().equals("REQUIRED")){
+				this.getPrimaryShape().setRequired(true);
+				this.getPrimaryShape().setProvided(false);
+			}
+			else{
+				this.getPrimaryShape().setRequired(false);
+				this.getPrimaryShape().setProvided(true);
+			}
+			
+			this.getPrimaryShape().setOrientation(position);
 
 
 
 		}
+		
+		
 		else if((getTargetConnections().size()==1) && (getTargetConnections().get(0)  instanceof InterfaceRealizationEditPart)){
 			this.getPrimaryShape().setRequired(false);
 			this.getPrimaryShape().setProvided(true);
@@ -114,8 +142,8 @@ public class CustomInterfaceEditPart extends InterfaceEditPart {
 				this.getPrimaryShape().setOrientation(position);
 			}
 			if(usageEditPart!=null && interfaceRealizationEditPart!=null){
-				this.getPrimaryShape().setRequired(true);
-				this.getPrimaryShape().setProvided(true);
+				//this.getPrimaryShape().setRequired(true);
+				//this.getPrimaryShape().setProvided(true);
 				Point anchor=usageEditPart.getPrimaryShape().getEnd();
 
 				Rectangle bounds = this.getFigure().getBounds();

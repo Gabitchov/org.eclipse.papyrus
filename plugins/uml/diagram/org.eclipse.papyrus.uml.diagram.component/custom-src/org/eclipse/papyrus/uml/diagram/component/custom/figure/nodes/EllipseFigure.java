@@ -1,6 +1,3 @@
-package org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes;
-
-
 /******************************************************************************
  * Copyright (c) 2003, 2004 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
@@ -12,10 +9,11 @@ package org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes;
  *    IBM Corporation - initial API and implementation 
  ****************************************************************************/
 
+package org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes;
+
+
 
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IOvalAnchorableFigure;
@@ -29,7 +27,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.SlidableOvalAnchor;
  */
 public class EllipseFigure extends DefaultSizeNodeFigure implements IOvalAnchorableFigure {
 
-	
+
 	/**
 	 * Constructor for StateLineFigure.
 	 * @param width figure width
@@ -38,14 +36,14 @@ public class EllipseFigure extends DefaultSizeNodeFigure implements IOvalAnchora
 	public EllipseFigure(int width, int height) {
 		super( width, height );
 	}
-	
 
-	
+
+
 	/** Return <code>getBounds()</code>. */
 	public final Rectangle getOvalBounds() {
 		return getBounds();
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#createAnchor(org.eclipse.draw2d.geometry.PrecisionPoint)
 	 */
@@ -56,7 +54,7 @@ public class EllipseFigure extends DefaultSizeNodeFigure implements IOvalAnchora
 			return createDefaultAnchor();
 		return new SlidableOvalAnchor(this, p);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#createDefaultAnchor()
 	 */

@@ -31,7 +31,12 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 public class CustomModelEditPartCN extends ModelEditPartCN {
 
 	protected static final String ICONS_PATH = "icons/Triangle.gif"; //$NON-NLS-1$
-
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param view
+	 */
 	public CustomModelEditPartCN(View view) {
 		super(view);
 	}

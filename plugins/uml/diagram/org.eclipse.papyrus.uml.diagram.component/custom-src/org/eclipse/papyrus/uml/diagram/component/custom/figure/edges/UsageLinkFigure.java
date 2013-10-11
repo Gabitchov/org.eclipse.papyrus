@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.component.custom.figure.edges;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**this class has to option to display it:
@@ -23,14 +22,17 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 public class UsageLinkFigure extends DashedEdgeFigure{
 	
 	
-	private final int[] dashes = new int[10];
-	
+	/**
+	 * display it as a line
+	 */
 	public void displayAsAlink(){
 		setArrow(false);
 		this.setLineStyle(Graphics.LINE_SOLID);
 		
 	}
-	
+	/**
+	 * display it as the UML representation with its decoration
+	 */
 	public void displayAsUMLShape(){
 		this.setLineStyle(Graphics.LINE_CUSTOM);
 		setArrow(true);

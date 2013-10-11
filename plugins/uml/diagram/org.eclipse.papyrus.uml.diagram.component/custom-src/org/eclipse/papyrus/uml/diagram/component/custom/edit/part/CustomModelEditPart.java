@@ -32,6 +32,12 @@ public class CustomModelEditPart extends ModelEditPart {
 
 	protected static final String ICONS_PATH = "icons/Triangle.gif"; //$NON-NLS-1$
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param view
+	 */
 	public CustomModelEditPart(View view) {
 		super(view);
 	}
