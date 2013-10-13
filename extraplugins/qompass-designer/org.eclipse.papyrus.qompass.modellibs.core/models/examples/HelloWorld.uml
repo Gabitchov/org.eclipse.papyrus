@@ -180,7 +180,4 @@
   <FCM:ConfigurationProperty xmi:id="_KTwJUFT0EeKvFeqt5Q_lqw" base_Property="_8pupUFTzEeKvFeqt5Q_lqw"/>
   <FCM:DeploymentPlan xmi:id="_ymC2gFT2EeKvFeqt5Q_lqw" mainInstance="_ymErsFT2EeKvFeqt5Q_lqw" base_Package="_yl9-AFT2EeKvFeqt5Q_lqw"/>
   <Alloc:Allocate xmi:id="_UP7B0FWUEeKdxoQIVxFNNg" base_Abstraction="_UPx34FWUEeKdxoQIVxFNNg"/>
-  <FCM:CodeGenOptions xmi:id="_1uf4ENykEeKPWMO32vUmzw" base_Package="_LOqIEDLaEd2qeKRLMdIx_A">
-    <progLanguage xmi:type="FCM:ProgLanguage" href="pathmap://QML_CORE/core.uml#_5WrSINzEEeKPWMO32vUmzw"/>
-  </FCM:CodeGenOptions>
 </xmi:XMI>
