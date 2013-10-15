@@ -80,7 +80,11 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.gef
+ org.eclipse.gef,
+ org.apache.batik.dom.svg,
+ org.apache.batik.util,
+ org.apache.batik.svggen;bundle-version="1.6.0",
+ org.apache.batik.dom;bundle-version="1.6.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 0.10.1.qualifier
