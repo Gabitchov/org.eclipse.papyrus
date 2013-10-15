@@ -98,7 +98,7 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	 */
 	private final List<EdgeEndsMapper> existingLinks;
 
-	//FIXME : move the label provider!
+	
 	final UMLLabelProvider labelProvider = new UMLLabelProvider();
 
 	/**
@@ -109,12 +109,13 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	/**
 	 * the image to display when the link is selected
 	 */
-	private static final String CHECKED_ICON_PATH = "/icons/checkedRadioButton.gif"; //$NON-NLS-1$
+
+	private static final String CHECKED_ICON_PATH = "icons/checkedRadioButton.gif"; //$NON-NLS-1$
 
 	/**
 	 * the image to display when the link is not selected
 	 */
-	private static final String UNCHECKED_ICON_PATH = "/icons/uncheckedRadioButton.gif"; //$NON-NLS-1$
+	private static final String UNCHECKED_ICON_PATH = "icons/uncheckedRadioButton.gif"; //$NON-NLS-1$
 
 	/**
 	 * the index of the selected element
