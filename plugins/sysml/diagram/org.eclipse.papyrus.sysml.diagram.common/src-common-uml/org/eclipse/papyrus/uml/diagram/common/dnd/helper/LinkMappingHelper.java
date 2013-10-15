@@ -20,6 +20,7 @@ import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.ILinkMappingHelper;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 /**
@@ -31,7 +32,7 @@ public class LinkMappingHelper implements ILinkMappingHelper {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<?> getSource(EObject link) {
+	public Collection<?> getSource(Element link) {
 		CommonSourceUMLSwitch umlSwitch = new CommonSourceUMLSwitch();
 		return umlSwitch.doSwitch(link);
 	}
@@ -39,7 +40,7 @@ public class LinkMappingHelper implements ILinkMappingHelper {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<?> getTarget(EObject link) {
+	public Collection<?> getTarget(Element link) {
 		CommonTargetUMLSwitch umlSwitch = new CommonTargetUMLSwitch();
 		return umlSwitch.doSwitch(link);
 	}

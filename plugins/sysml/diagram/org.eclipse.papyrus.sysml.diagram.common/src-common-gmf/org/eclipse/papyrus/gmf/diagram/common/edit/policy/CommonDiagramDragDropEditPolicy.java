@@ -62,6 +62,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * Abstract DND edit policy delegating the choice of the view to create for an EObject to a local
@@ -200,8 +201,8 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		// The dropped element is a edge
 		if(!UNDEFINED_TYPE.equals(droppedEdgeType)) {
 
-			Collection<?> sources = linkMappingHelper.getSource(droppedObject);
-			Collection<?> targets = linkMappingHelper.getTarget(droppedObject);
+			Collection<?> sources = linkMappingHelper.getSource((Element)droppedObject);
+			Collection<?> targets = linkMappingHelper.getTarget((Element)droppedObject);
 
 			// Only manage binary link during drop
 			if((sources.size() > 0) && (targets.size() > 0)) {
