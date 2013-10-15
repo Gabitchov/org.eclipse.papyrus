@@ -204,6 +204,7 @@ public class DIResourceQuery {
 	private IListener createCDOViewListener() {
 		return new IListener() {
 
+			@Override
 			public void notifyEvent(IEvent event) {
 				if(event instanceof ILifecycleEvent) {
 					ILifecycleEvent lifecycleEvent = (ILifecycleEvent)event;
@@ -223,6 +224,7 @@ public class DIResourceQuery {
 	private DisposeListener createViewerDisposeListener() {
 		return new DisposeListener() {
 
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				dispose();
 			}
@@ -274,6 +276,7 @@ public class DIResourceQuery {
 				if(display != null) {
 					display.asyncExec(new Runnable() {
 
+						@Override
 						public void run() {
 							if((viewer != null) && (viewer.getControl() != null) && !viewer.getControl().isDisposed()) {
 								refresh();
@@ -293,7 +296,10 @@ public class DIResourceQuery {
 
 			CDOResourceFolder folder = resource.getFolder();
 			if(folder != null) {
-				result = folder.getNodes().contains(resource);
+				// if we don't have read permission on the folder, then we shouldn't attempt to show any contents
+				if(folder.cdoPermission().isReadable()) {
+					result = folder.getNodes().contains(resource);
+				}
 			} else {
 				CDOResource root = resource.cdoResource();
 				if((root != null) && root.isRoot()) {
