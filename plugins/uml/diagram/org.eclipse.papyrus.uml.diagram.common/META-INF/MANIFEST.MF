@@ -90,7 +90,8 @@ Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.services.localizer;bundle-version="0.10.1",
  org.apache.batik.dom.svg,
  org.w3c.dom.svg,
- org.apache.batik.css;bundle-version="1.6.0"
+ org.apache.batik.css;bundle-version="1.6.0",
+ org.apache.batik.util;bundle-version="1.6.0"
 Bundle-Vendor: %providerName
 Ant-Version: Apache Ant 1.7.0
 Bundle-Version: 0.10.1.qualifier
