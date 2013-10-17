@@ -470,18 +470,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 				@Override
 				public boolean isEditable(final int columnIndex, final int rowIndex) {
-					//					final Object row;
-					//					final Object column;
-					final Object rowElement = AbstractNattableWidgetManager.this.rowHeaderDataProvider.getDataValue(1, rowIndex);
-					final Object columnElement = AbstractNattableWidgetManager.this.columnHeaderDataProvider.getDataValue(columnIndex, 1);
-					//					if(AbstractNattableWidgetManager.this.table.isInvertAxis()) {
-					//						row = columnElement;
-					//						column = rowElement;
-					//					} else {
-					//						row = rowElement;
-					//						column = columnElement;
-					//					}
-
+					final Object rowElement = getRowElement(rowIndex);
+					final Object columnElement = getColumnElement(columnIndex);
 					return CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement);
 				}
 			});
