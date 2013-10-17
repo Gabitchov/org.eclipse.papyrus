@@ -53,6 +53,7 @@ import org.eclipse.papyrus.texteditor.cdt.CommandSupport;
 import org.eclipse.papyrus.texteditor.cdt.Utils;
 import org.eclipse.papyrus.texteditor.cdt.listener.ModelListener;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -278,8 +279,11 @@ public class SyncCDTtoModel implements Runnable {
 			}
 		}
 
+		// a parameters.clear() is not sufficient. Otherwise stereotype applications to unresolved elements remain in the model
+		UMLUtil.destroyElements(operation.getOwnedParameters());
+		UMLUtil.destroyElements(ob.getOwnedParameters());
+	
 		operation.getOwnedParameters().clear();
-		ob.getOwnedParameters().clear();
 		for(IASTNode declaratorChild : declarator.getChildren()) {
 			if(declaratorChild instanceof IASTParameterDeclaration) {
 				IASTParameterDeclaration parameter = (IASTParameterDeclaration)declaratorChild;
@@ -475,7 +479,6 @@ public class SyncCDTtoModel implements Runnable {
 			commentUML.setBody(commentMethodOnly);
 		}
 	}
-
 
 	protected IEditorInput m_input;
 

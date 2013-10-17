@@ -17,6 +17,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -320,5 +322,19 @@ public class UMLUtil {
 		}
 
 		return UMLUtil.getContextClassForMessageOccurrence(referer);
+	}
+	
+	/**
+	 * Destroy all elements in a given list
+	 * 
+	 * @param list a list of elements
+	 */
+	public static void destroyElements(EList<? extends Element> list) {
+		BasicEList<Element> listCopy = new BasicEList<Element>();
+		// loop on copy in order to avoid iterator exception 
+		listCopy.addAll(list);
+		for (Element element : listCopy) {
+			element.destroy();
+		}
 	}
 }
