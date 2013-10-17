@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.commands;
 
 import java.util.HashSet;
@@ -37,28 +50,21 @@ import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 public class CustomBindingConnectorReorientCommand extends ConnectorReorientCommand {
 
-
-	/**
-	 * @generated
-	 */
 	private final EObject source;
 
-	/**
-	 * @generated
-	 */
 	private final EObject target;
 
-	/**
-	 * @generated
-	 */
 	public CustomBindingConnectorReorientCommand(ReorientReferenceRelationshipRequestWithGraphical request) {
 		super(request);
 		source = reorientDirection == ReorientReferenceRelationshipRequest.REORIENT_SOURCE ? request.getNewRelationshipEnd() : request.getReferenceOwner();
 		target = reorientDirection == ReorientReferenceRelationshipRequest.REORIENT_SOURCE ? request.getReferenceOwner() : request.getNewRelationshipEnd();
 	}
 
+
 	/**
-	 * @generated
+	 * A BindingConnector could be reoriented in Parametric only if at least one end is a ConstraintParameter.
+	 * Also check Block.isEncapsulated (could not cross a Block which is encapsulted)
+	 * @return 
 	 */
 	public boolean canExecute() {
 		
@@ -83,9 +89,15 @@ public class CustomBindingConnectorReorientCommand extends ConnectorReorientComm
 		return false;
 	}
 
+	/**
+	 * Check that BindingConnector do not cross a "Block.isEncapsulated" Part/Reference/ConstraintProperty
+	 * @return true no encapsulation problem, false else
+	 */
 	private boolean checkEncapsulationCrossing() {
 		org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils util = new org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils();
+		// source end - get the nestedPath	
 		List<Property> nestedPropertyPath = util.getNestedPropertyPath(getSourceView(), getTargetView());
+		// check for each level of path if crossing an isEncapsultaed Block 
 		for (Property property : nestedPropertyPath) {
 			Type type = property.getType();
 			Block stereotypeApplication = UMLUtil.getStereotypeApplication(type, Block.class);
@@ -96,7 +108,9 @@ public class CustomBindingConnectorReorientCommand extends ConnectorReorientComm
 			}
 		}
 		
+		// target end - get the nestedPath	
 		nestedPropertyPath = util.getNestedPropertyPath(getTargetView(), getSourceView());
+		// check for each level of path if crossing an isEncapsultaed Block 
 		for (Property property : nestedPropertyPath) {
 			Type type = property.getType();
 			Block stereotypeApplication = UMLUtil.getStereotypeApplication(type, Block.class);
@@ -134,6 +148,7 @@ public class CustomBindingConnectorReorientCommand extends ConnectorReorientComm
 	private org.eclipse.gmf.runtime.notation.Connector getConnectorView () {
 		return  (org.eclipse.gmf.runtime.notation.Connector)getRequest().getParameter(DefaultSemanticEditPolicy.GRAPHICAL_RECONNECTED_EDGE);
 	}
+
 	private View getSourceView() {
 		return reorientDirection == ReorientReferenceRelationshipRequest.REORIENT_SOURCE ? 
 					(View)((ReorientReferenceRelationshipRequestWithGraphical)getRequest()).getSourceEditPart().getModel() :
@@ -146,6 +161,7 @@ public class CustomBindingConnectorReorientCommand extends ConnectorReorientComm
 					getConnectorView().getTarget();
 
 	}
+	
 	@Override
 	protected Property getNewOppositePartWithPort() {
 		// no Port allowed in Parametric
@@ -158,6 +174,9 @@ public class CustomBindingConnectorReorientCommand extends ConnectorReorientComm
 		return null;
 	}
 
+	/**
+	 * Reorient connector - recalculate nestedPath - remove connector deprecated representations (all diagrams) 
+	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		CommandResult result = super.doExecuteWithResult(monitor, info);

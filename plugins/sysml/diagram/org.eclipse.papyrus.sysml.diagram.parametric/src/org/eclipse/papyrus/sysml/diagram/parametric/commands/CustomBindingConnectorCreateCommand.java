@@ -1,11 +1,16 @@
-/*******************************************************************************
- * Copyright (c) 2012 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *******************************************************************************/
+ *
+ * Contributors:
+ *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.commands;
 
 import java.util.List;
@@ -34,8 +39,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
- * Creates a Message between MessageOccurrenceSpecifications. Converts OccurrenceSpecifications to
- * MessageOccurrenceSpecifications if needed
+ * 
  */
 public class CustomBindingConnectorCreateCommand extends EditElementCommand {
 
@@ -46,9 +50,13 @@ public class CustomBindingConnectorCreateCommand extends EditElementCommand {
 		super(request.getLabel(), null, request);
 		this.source = request.getSource();
 		this.target = request.getTarget();
-		
 	}
 
+	/**
+	 * A BindingConnector could be created in Parametric only if at least one end is a ConstraintParameter.
+	 * Also check Block.isEncapsulated (could not cross a Block which is encapsulted)
+	 * @return 
+	 */
 	@Override
 	public boolean canExecute() {
 		if(this.source == null) {
@@ -72,9 +80,16 @@ public class CustomBindingConnectorCreateCommand extends EditElementCommand {
 		return false;
 	}
 
+	/**
+	 * Check that BindingConnector do not cross a "Block.isEncapsulated" Part/Reference/ConstraintProperty
+	 * @return true no encapsulation problem, false else
+	 */
 	private boolean checkEncapsulationCrossing() {
 		org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils util = new org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils();
+
+		// source end - get the nestedPath	
 		List<Property> nestedPropertyPath = util.getNestedPropertyPath(RequestParameterUtils.getSourceView(getRequest()), RequestParameterUtils.getTargetView(getRequest()));
+		// check for each level of path if crossing an isEncapsultaed Block 
 		for (Property property : nestedPropertyPath) {
 			Type type = property.getType();
 			Block stereotypeApplication = UMLUtil.getStereotypeApplication(type, Block.class);
@@ -85,7 +100,9 @@ public class CustomBindingConnectorCreateCommand extends EditElementCommand {
 			}
 		}
 		
+		// target end - get the nestedPath
 		nestedPropertyPath = util.getNestedPropertyPath(RequestParameterUtils.getTargetView(getRequest()), RequestParameterUtils.getSourceView(getRequest()));
+		// check for each level of path if crossing an isEncapsultaed Block
 		for (Property property : nestedPropertyPath) {
 			Type type = property.getType();
 			Block stereotypeApplication = UMLUtil.getStereotypeApplication(type, Block.class);
@@ -98,6 +115,12 @@ public class CustomBindingConnectorCreateCommand extends EditElementCommand {
 		return true;
 	}
 
+	/**
+	 * Create the connector, affect its owner, calculate nestedPath
+	 * @param monitor
+	 * @param info
+	 * @return CommandResult contains the created Connector
+	 */
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 

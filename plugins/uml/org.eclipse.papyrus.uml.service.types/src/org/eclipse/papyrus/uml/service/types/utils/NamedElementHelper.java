@@ -16,9 +16,11 @@ package org.eclipse.papyrus.uml.service.types.utils;
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * This singleton is used to find a new element name with
@@ -120,6 +122,17 @@ public class NamedElementHelper {
 	
 	@SuppressWarnings("rawtypes")
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents, EObject elementToRename) {
+		// Not change the name if elementToRename already present in the contents collection
+		if (contents.contains(elementToRename)) {
+			if (elementToRename instanceof ENamedElement) {
+				return ((ENamedElement)elementToRename).getName();
+			}
+			// UML specific
+			if (elementToRename instanceof NamedElement) {
+				return ((NamedElement)elementToRename).getName();
+			}
+		}
+		
 		if("property".equalsIgnoreCase(base)) {
 			base = "Attribute";
 		}
